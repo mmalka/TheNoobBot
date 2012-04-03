@@ -1,0 +1,355 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Questing_Bot.API.Bot" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCAAgAAAAAAAQAAAAAAAAAAAAgAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>API\Bot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.API.Config" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAABAAAAAgACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>API\Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.API.Useful" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAAABAAAAAAAAAAgAAAAAAQAAAAAAEA=</HashCode>
+      <FileName>API\Useful.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Bot" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgBAAAECAMIQAAiAAABAAAAAA4gAAgABAEQAAAAAQ=</HashCode>
+      <FileName>Bot\Bot.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Config" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Config.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Farming" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEBAAAAAAAAAEAgAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Farming.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.IsAttacked" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\IsAttacked.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Looting" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Looting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Pause" Collapsed="true">
+    <Position X="9.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Pause.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Questing" Collapsed="true">
+    <Position X="4" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAUAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Questing.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Regeneration" Collapsed="true">
+    <Position X="9.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Regeneration.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Reloger" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAACAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Reloger.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Resurrect" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Resurrect.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Talents" Collapsed="true">
+    <Position X="5.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAACAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Talents.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.ToTown" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAAAAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\ToTown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.States.Trainers" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAAEAAAAAAACAAAEAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\States\Trainers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.Black" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAJAAAACAAAAAAgAAAAIAAEAAAABAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Bot\Tasks\BlackList.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.FarmingTask" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Tasks\FarmingTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.Functions" Collapsed="true">
+    <Position X="9.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAAgACIAAAEAAAAAIAAAAAAAAIAwQCAAAAAAQAA=</HashCode>
+      <FileName>Bot\Tasks\Functions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.LongMove" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAgAAECAAAAAAAAAAAAACgAAAAAAQAAAA=</HashCode>
+      <FileName>Bot\Tasks\LongMove.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.LootingTask" Collapsed="true">
+    <Position X="9.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAA=</HashCode>
+      <FileName>Bot\Tasks\LootingTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.MountTask" Collapsed="true">
+    <Position X="5.75" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Bot\Tasks\MountTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.QuestingTask" Collapsed="true">
+    <Position X="5.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAABEAAAAAAUAAAAAAgQgwAIAA=</HashCode>
+      <FileName>Bot\Tasks\QuestingTask.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Bot.Tasks.Script" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Bot\Tasks\Script.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.CreateProfile" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>/wATRczAweCSSrpQBBCUkgsKBpiCJjIsSS8UQAsIQCw=</HashCode>
+      <FileName>Grinding\Create Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.Profile" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Grinding\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.SubProfile" Collapsed="true">
+    <Position X="4" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIABAAAAAAAAAAAIIAEAQAAgAAIAAAAAQgBAICkEA=</HashCode>
+      <FileName>Grinding\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.Trainers" Collapsed="true">
+    <Position X="9.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Grinding\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.Buy" Collapsed="true">
+    <Position X="9.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Grinding\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Grinding.BlackListZone" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Grinding\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Main" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAQAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>Main.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Questing_Bot.MainForm" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>22GywahKOKE7hRgGgEKAkQC/VAj9BkSCJAUADRkGwDA=</HashCode>
+      <FileName>MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.MainFormConfig" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ECAAoIgAVgAABCAAIAAAcBEIAEgRAAAgAEAAA4BgAQI=</HashCode>
+      <FileName>MainFormConfig.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Profile" Collapsed="true">
+    <Position X="11" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAEAQCiCCQAQIFAAAQACAAMQIIAAQAgBABAAEA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Include" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Npc" Collapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAAgAAAAAAQAAAAAAAAAAAAAAAAgACA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Blackspot" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Mailbox" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Vendor" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAIAAAAAAAAgAAAAAAQAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Buy" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAACAAAAAAAAAABAAAAEA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.KeepItem" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.Quest" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABACADCAABAAAAAAAAAAAAQAAAAAAAAAAAAABAAAAEA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.QuestObjective" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ERAwQAggICQACoAACIQBAAQYDoAIJACAQBBFAhAiAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Questing_Bot.Profile.GoTo" Collapsed="true">
+    <Position X="11" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="Questing_Bot.Bot.Tasks.IScript" Collapsed="true">
+    <Position X="0.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Bot\Tasks\Script.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="Questing_Bot.Bot.States.Priority" Collapsed="true">
+    <Position X="2.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEgAAAAAAAQAAAAAACQEAAAgAAAIEAAAIAAAIAAAAA=</HashCode>
+      <FileName>Bot\States\Priority.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Questing_Bot.Profile.TypeVendor" Collapsed="true">
+    <Position X="7.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAgEAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Questing_Bot.Profile.TrainClass" Collapsed="true">
+    <Position X="4" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAADAAEAAAgECAAAAUAAAAAAMIAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Questing_Bot.Profile.TypeBuy" Collapsed="true">
+    <Position X="5.75" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAgEAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Questing_Bot.Profile.Objective" Collapsed="true">
+    <Position X="0.5" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAYQAAAAAAAAAAAABAEAAAQIEAAAIAAgAAEAAAA=</HashCode>
+      <FileName>Profile\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

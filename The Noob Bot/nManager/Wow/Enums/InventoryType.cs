@@ -1,0 +1,38 @@
+﻿namespace nManager.Wow.Enums
+{
+    public enum InventoryType
+    {
+        None,
+        Head,
+        Neck,
+        Shoulder,
+        Body,
+        Chest,
+        Waist,
+        Legs,
+        Feet,
+        Wrist,
+        Hand,
+        Finger,
+        Trinket,
+        Weapon,
+        Shield,
+        Ranged,
+        Cloak,
+        TwoHandWeapon,
+        Bag,
+        Tabard,
+        Robe,
+        WeaponMainHand,
+        WeaponOffHand,
+        Holdable,
+        Ammo,
+        Thrown,
+        RangedRight,
+        Quiver,
+        Relic
+    }
+
+ 
+
+}

@@ -1,0 +1,106 @@
+﻿using System;
+using System.Collections.Generic;
+using nManager.Helpful;
+using nManager.Wow.Class;
+
+namespace nManager.Wow.Helpers
+{
+    public static class Prospecting
+    {
+        public static void Pulse(List<string> items)
+        {
+            try
+            {
+                var spell = new Spell("Prospecting");
+                if (!spell.KnownSpell)
+                    return;
+
+                var itemArray = "";
+                foreach (var i in items)
+                {
+                    if (!string.IsNullOrEmpty(itemArray))
+                        itemArray = itemArray + ", ";
+                    itemArray = itemArray + "\"" + i + "\"";
+                }
+                var macro =
+                    "myTable = {" + itemArray + "} " +
+                    "for key,value in pairs(myTable) do " +
+                    "	itemAtPropect = value " +
+                    "	_, itemLink = GetItemInfo(itemAtPropect) " +
+                    "	_, _, Color, Ltype, Id, Enchant, Gem1, Gem2, Gem3, Gem4, Suffix, Unique, LinkLvl, Name = string.find(itemLink, \"|?c?f?f?(%x*)|?H?([^:]*):?(%d+):?(%d*):?(%d*):?(%d*):?(%d*):?(%d*):?(%-?%d*):?(%-?%d*):?(%d*)|?h?%[?([^%[%]]*)%]?|?h?|?r?\") " +
+                    "	fisrtI = -1 " +
+                    "	fisrtJ = -1 " +
+                    "	if tonumber(Id) > 0 then " +
+                    "		for i=0,4 do " +
+                    "			 for j=1,GetContainerNumSlots(i)do " +
+                    "				idT = GetContainerItemID(i,j) " +
+                    "				 if tonumber(Id) == idT then " +
+                    "					_, itemCount, _, _, _ = GetContainerItemInfo(i,j); " +
+                    "					if tonumber(itemCount) >=5 then " +
+                    "						CastSpellByName(\"" + spell.NameInGame + "\"); " +
+                    "						UseContainerItem(i,j) " +
+                    "					end " +
+                    "				 end " +
+                    "			 end " +
+                    "		end " +
+                    "	end " +
+                    "end";
+
+                Lua.LuaDoString(macro);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Prospecting > Pulse(List<string> items): " + exception);
+            }
+        }
+
+        public static bool NeedRun(List<string> items)
+        {
+            try
+            {
+                var spell = new Spell("Prospecting");
+                if (!spell.KnownSpell)
+                    return false;
+
+                var itemArray = "";
+                foreach (var i in items)
+                {
+                    if (!string.IsNullOrEmpty(itemArray))
+                        itemArray = itemArray + ", ";
+                    itemArray = itemArray + "\"" + i + "\"";
+                }
+                var macro =
+                    "myTable = {" + itemArray + "} " +
+                    "needRun = \"false\" " +
+                    "for key,value in pairs(myTable) do " +
+                    "	itemAtPropect = value " +
+                    "	_, itemLink = GetItemInfo(itemAtPropect) " +
+                    "	_, _, Color, Ltype, Id, Enchant, Gem1, Gem2, Gem3, Gem4, Suffix, Unique, LinkLvl, Name = string.find(itemLink, \"|?c?f?f?(%x*)|?H?([^:]*):?(%d+):?(%d*):?(%d*):?(%d*):?(%d*):?(%d*):?(%-?%d*):?(%-?%d*):?(%d*)|?h?%[?([^%[%]]*)%]?|?h?|?r?\") " +
+                    "	fisrtI = -1 " +
+                    "	fisrtJ = -1 " +
+                    "	if tonumber(Id) > 0 then " +
+                    "		for i=0,4 do " +
+                    "			 for j=1,GetContainerNumSlots(i)do " +
+                    "				idT = GetContainerItemID(i,j) " +
+                    "				 if tonumber(Id) == idT then " +
+                    "					_, itemCount, _, _, _ = GetContainerItemInfo(i,j); " +
+                    "					if tonumber(itemCount) >=5 then " +
+                    "						needRun = \"true\"" +
+                    "						return " +
+                    "					end " +
+                    "				 end " +
+                    "			 end " +
+                    "		end " +
+                    "	end " +
+                    "end";
+                Lua.LuaDoString(macro);
+                return Lua.GetLocalizedText("needRun") == "true";
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Prospecting > NeedRun(List<string> items): " + exception);
+                return false;
+            }
+        }
+    }
+}

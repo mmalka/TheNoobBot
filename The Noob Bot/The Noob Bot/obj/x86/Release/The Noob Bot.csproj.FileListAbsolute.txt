@@ -1,0 +1,18 @@
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\The Noob Bot.exe.config
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\The Noob Bot.exe
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\The Noob Bot.pdb
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\DevComponents.DotNetBar2.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\nManager.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\RecastLayer.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\fasmdll_managed.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\nManager.pdb
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\DevComponents.DotNetBar2.xml
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Release\RecastLayer.pdb
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\The_Noob_Bot.Login.resources
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\The_Noob_Bot.Main.resources
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\The_Noob_Bot.Properties.Resources.resources
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\The Noob Bot.exe
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\obj\x86\Release\The Noob Bot.pdb

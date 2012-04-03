@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/wowrobotevolution/!svn/ver/243/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks
+END
+LootingTask.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wowrobotevolution/!svn/ver/188/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/LootingTask.cs
+END
+QuestingTask.cs
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/wowrobotevolution/!svn/ver/243/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/QuestingTask.cs
+END
+Script.cs
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/wowrobotevolution/!svn/ver/174/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/Script.cs
+END
+MountTask.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wowrobotevolution/!svn/ver/154/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/MountTask.cs
+END
+FarmingTask.cs
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/wowrobotevolution/!svn/ver/188/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/FarmingTask.cs
+END
+LongMove.cs
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/wowrobotevolution/!svn/ver/188/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/LongMove.cs
+END
+BlackList.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wowrobotevolution/!svn/ver/174/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/BlackList.cs
+END
+Functions.cs
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/wowrobotevolution/!svn/ver/172/WowManager/WowRobot%20Evolution/Questing%20Bot/Bot/Tasks/Functions.cs
+END

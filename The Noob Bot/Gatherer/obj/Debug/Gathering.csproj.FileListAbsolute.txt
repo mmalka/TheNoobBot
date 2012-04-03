@@ -1,0 +1,5 @@
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Gathering.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Gathering.pdb
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\Gathering\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\Gathering\obj\Debug\Gathering.dll
+C:\Users\Remi\Dropbox\Projets\The Noob Bot\Gathering\obj\Debug\Gathering.pdb

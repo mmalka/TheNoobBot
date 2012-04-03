@@ -1,0 +1,322 @@
+﻿using System;
+using nManager.Helpful;
+using Math = System.Math;
+
+namespace nManager.Wow.Class
+{
+    /// <summary>
+    /// Point class
+    /// </summary>
+    public class Point
+    {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Point"/> class.
+        /// </summary>
+        public Point()
+        {
+            X = 0;
+            Y = 0;
+            Z = 0;
+            _type = "";
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Point"/> class.
+        /// </summary>
+        /// <param name="x">The x.</param>
+        /// <param name="y">The y.</param>
+        /// <param name="z">The z.</param>
+        /// <param name="type">Type (Flying, None) </param>
+        public Point(float x, float y, float z, string type = "None")
+        {
+            try
+            {
+                X = x;
+                Y = y;
+                Z = z;
+                _type = type;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point(float x, float y, float z): " + exception);
+            }
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Point"/> class.
+        /// </summary>
+        /// <param name="point">The point.</param>
+        public Point(Point point)
+        {
+            try
+            {
+                X = point.X;
+                Y = point.Y;
+                Z = point.Z;
+                _type = point.Type;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point(Point point): " + exception);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the X Position.
+        /// </summary>
+        /// <value>
+        /// The X Position.
+        /// </value>
+        public float X { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Y Position.
+        /// </summary>
+        /// <value>
+        /// The Y Position.
+        /// </value>
+        public float Y { get; set; }
+
+        /// <summary>
+        /// Gets or sets the Z Position.
+        /// </summary>
+        /// <value>
+        /// The Z Position.
+        /// </value>
+        public float Z { get; set; }
+
+        private string _type = "None";
+        /// <summary>
+        /// Point Type.
+        /// </summary>
+        /// <value>
+        /// Point Type.
+        /// </value>
+        public string Type
+        {
+            get { return _type; }
+            set { _type = value; }
+        }
+
+        public override string ToString()
+        {
+            try
+            {
+                return string.Format("{0} ; {1} ; {2} ; {3}", X, Y, Z, Type);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > ToString(): " + exception);
+            }
+            return "";
+        }
+
+        public Point InFrontOf(float heading, float d)
+        {
+            try
+            {
+                float nx = X + (float)Math.Cos(heading) * d;
+                float ny = Y + (float)Math.Sin(heading) * d;
+                float nz = Z;
+                return new Point(nx, ny, nz);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("InFrontOf(float heading, float d): " + exception);
+            }
+            return new Point();
+        }
+
+        public float Size()
+        {
+            try
+            {
+                return (float)Math.Sqrt(X * X + Y * Y + Z * Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > Size(): " + exception);
+            }
+            return 0;
+        }
+
+        public float Size2D()
+        {
+            try
+            {
+                return (float)Math.Sqrt(X * X + Y * Y);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > Size2D(): " + exception);
+            }
+            return 0;
+        }
+
+        public float DistanceZ(Point a, Point b)
+        {
+            try
+            {
+                float disZTemp = a.Z - b.Z;
+                if (disZTemp < 0)
+                {
+                    disZTemp = -1 * disZTemp;
+                }
+                return disZTemp;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > DistanceZ(Point a, Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public float DistanceZ(Point b)
+        {
+            try
+            {
+                float disZTemp = Z - b.Z;
+                if (disZTemp < 0)
+                {
+                    disZTemp = -1 * disZTemp;
+                }
+                return disZTemp;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > DistanceZ(Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public float DistanceTo(Point b)
+        {
+            try
+            {
+                return (this - b).Size();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > DistanceTo(Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public float DistanceTo2D(Point b)
+        {
+            try
+            {
+                return (this - b).Size2D();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > DistanceTo2D(Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public static float Distance(Point a, Point b)
+        {
+            try
+            {
+                return (a - b).Size();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > Distance(Point a, Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public static float Distance2D(Point a, Point b)
+        {
+            try
+            {
+                return (a - b).Size2D();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > Distance2D(Point a, Point b): " + exception);
+            }
+            return 0;
+        }
+
+        public static Point operator -(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > -(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator +(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > +(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator *(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X * b.X, a.Y * b.Y, a.Z * b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > *(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator /(Point a, Point b)
+        {
+            try
+            {
+                return new Point(a.X / b.X, a.Y / b.Y, a.Z / b.Z);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point >  /(Point a, Point b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator *(Point a, float b)
+        {
+            try
+            {
+                return new Point(a.X * b, a.Y * b, a.Z * b);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > *(Point a, float b): " + exception);
+            }
+            return new Point();
+        }
+
+        public static Point operator /(Point a, float b)
+        {
+            try
+            {
+                return new Point(a.X / b, a.Y / b, a.Z / b);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Point > /(Point a, float b): " + exception);
+            }
+            return new Point();
+        }
+    }
+}

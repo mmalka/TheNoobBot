@@ -1,0 +1,386 @@
+using System;
+using System.IO;
+using System.Linq;
+using System.Threading;
+using System.Windows.Forms;
+using nManager.Helpful;
+using nManager.Wow.Class;
+using nManager.Wow.ObjectManager;
+
+namespace Gatherer.Bot
+{
+    public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
+    {
+        GathererProfile _profile = new GathererProfile();
+        public ProfileCreator()
+        {
+            try
+            {
+                InitializeComponent();
+                Translate();
+                npcTypeC.DropDownStyle = ComboBoxStyle.DropDownList;
+                foreach (var t in Enum.GetValues(typeof(Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                {
+                    npcTypeC.Items.Add(t.ToString());
+                }
+                npcTypeC.Text = Npc.NpcType.None.ToString();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > ProfileCreator(): " + e);
+            }
+        }
+        void Translate()
+        {
+            recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
+            saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record);
+            delB.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            delBlackRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            addBlackB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
+            addNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target_to_Npc_list);
+            delNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
+            nameNpcTb.Text = nManager.Translate.Get(nManager.Translate.Id.Name);
+            addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
+            Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+        }
+        private void saveB_Click(object sender, EventArgs ex)
+        {
+            try
+            {
+                string file =
+                    Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Gatherer\\",
+                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+
+                if (file != "")
+                {
+                    XmlSerializer.Serialize(file, _profile);
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > saveB_Click(object sender, EventArgs ex): " + e);
+            }
+        }
+
+
+        private void loadB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string file =
+                    Others.DialogBoxOpenFile(Application.StartupPath + "\\Profiles\\Gatherer\\",
+                                             "Profile files (*.xml)|*.xml|All files (*.*)|*.*");
+
+                if (File.Exists(file))
+                {
+                    _profile = new GathererProfile();
+                    _profile = XmlSerializer.Deserialize<GathererProfile>(file);
+                    refreshForm();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
+                refreshForm();
+            }
+        }
+
+        private void ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex)
+        {
+            try
+            {
+                pathFinderDroidz.Enabled = false;
+                _loopRecordPoint = false;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " + e);
+            }
+        }
+
+        void refreshForm()
+        {
+            try
+            {
+                // Way
+                listPoint.Items.Clear();
+                foreach (var p in _profile.Points)
+                {
+                    listPoint.Items.Add(p.ToString());
+                }
+                listPoint.SelectedIndex = listPoint.Items.Count - 1;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                // BlackList
+                listBlackRadius.Items.Clear();
+                foreach (var b in _profile.BlackListRadius)
+                {
+                    listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
+                }
+                listBlackRadius.SelectedIndex = listBlackRadius.Items.Count - 1;
+            }
+            catch
+            {
+            }
+
+            try
+            {
+                // Npc
+                listNpc.Items.Clear();
+                foreach (var n in _profile.Npc)
+                {
+                    listNpc.Items.Add(n.Name + " - " + n.Type + " - " + n.Faction);
+                }
+                listNpc.SelectedIndex = listNpc.Items.Count - 1;
+            }
+            catch
+            {
+            }
+        }
+
+
+        // WAY
+        private bool _loopRecordPoint;
+        private void recordWayB_Click(object sender, EventArgs ex)
+        {
+            try
+            {
+                if (_loopRecordPoint)
+                {
+                    _loopRecordPoint = false;
+                    recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
+                }
+                else
+                {
+                    _loopRecordPoint = true;
+                    recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Stop_Record_Way);
+                    LoopRecordWay();
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " + e);
+            }
+        }
+
+        private void LoopRecordWay()
+        {
+            try
+            {
+                const float distanceZSeparator = 15.0f;
+                int lastRotation = 0;
+                _loopRecordPoint = true;
+
+                _profile.Points.Add(ObjectManager.Me.Position);
+                refreshForm();
+
+                while (_loopRecordPoint)
+                {
+                    var lastPoint = _profile.Points[_profile.Points.Count - 1];
+                    float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
+
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
+                         lastRotation != (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                        disZTemp >= distanceZSeparator)
+                    {
+                        _profile.Points.Add(ObjectManager.Me.Position);
+                        lastRotation = (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        refreshForm();
+                    }
+                    Application.DoEvents();
+                    Thread.Sleep(50);
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > LoopRecordWay(): " + e);
+            }
+        }
+
+        private void delB_Click(object sender, EventArgs ex)
+        {
+            try
+            {
+                if (listPoint.SelectedIndex >= 0)
+                    _profile.Points.RemoveAt(listPoint.SelectedIndex);
+                refreshForm();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > delB_Click(object sender, EventArgs ex): " + e);
+            }
+        }
+
+        // BLACK LIST
+        private void delBlackRadius_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listBlackRadius.SelectedIndex >= 0)
+                    _profile.BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
+                refreshForm();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void addBlackB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                _profile.BlackListRadius.Add(new GathererBlackListRadius { Position = ObjectManager.Me.Position, Radius = radiusN.Value });
+                refreshForm();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        // NPC
+        private void delNpcB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (listNpc.SelectedIndex >= 0)
+                    _profile.Npc.RemoveAt(listNpc.SelectedIndex);
+                refreshForm();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > delNpcB_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void addNpcB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsValid || !ObjectManager.Target.IsValid)
+                    return;
+
+                var npc = new Npc
+                              {
+                                  ContinentId =
+                                      (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
+                                  Entry = ObjectManager.Target.Entry,
+                                  Faction =
+                                      (Npc.FactionType)
+                                      Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
+                                  Name = ObjectManager.Target.Name,
+                                  Position = ObjectManager.Target.Position,
+                                  Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                              };
+                _profile.Npc.Add(npc);
+                refreshForm();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > addNpcB_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void addByNameNpcB_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsValid)
+                    return;
+
+                if (string.IsNullOrEmpty(nameNpcTb.Text))
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Name_Empty));
+                    return;
+                }
+
+                var npc = new Npc();
+
+                var gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
+                
+                if (gameObjects.Count > 0)
+                {
+                    var gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
+                    if (gameObject.IsValid)
+                    {
+                        npc.Entry = gameObject.Entry;
+                        npc.Position = gameObject.Position;
+                        npc.Name = gameObject.Name;
+                    }
+                }
+
+                if (npc.Entry <= 0)
+                {
+                    var units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
+                    if (units.Count > 0)
+                    {
+                        var unit = ObjectManager.GetNearestWoWUnit(units);
+                        if (unit.IsValid)
+                        {
+                            npc.Entry = unit.Entry;
+                            npc.Position = unit.Position;
+                            npc.Name = unit.Name;
+                        }
+                    }
+                }
+
+                if (npc.Entry <= 0)
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_found));
+                    return;
+                }
+
+                npc.ContinentId =
+                    (nManager.Wow.Enums.ContinentId)(nManager.Wow.Helpers.Usefuls.ContinentId);
+                npc.Faction =
+                    (Npc.FactionType)
+                    Enum.Parse(typeof(Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                npc.Type = (Npc.NpcType)Enum.Parse(typeof(Npc.NpcType), npcTypeC.Text, true);
+
+                if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
+                    npc.Position.Type = "Flying";
+
+                _profile.Npc.Add(npc);
+                refreshForm();
+                nameNpcTb.Text = "";
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("addByNameNpcB_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void clearB_Click(object sender, EventArgs e)
+        {
+            lock ("pointsForPathFinder")
+            {
+                _profile.PointsPathFinderDroidz.Clear();
+            }
+        }
+
+        private void pathFinderDroidz_Tick(object sender, EventArgs e)
+        {
+            lock ("pointsForPathFinder")
+            {
+                if (_profile.PointsPathFinderDroidz.Count <= 0)
+                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
+
+                if (
+                    _profile.PointsPathFinderDroidz[_profile.PointsPathFinderDroidz.Count - 1].DistanceTo2D(
+                        ObjectManager.Me.Position) > 3 ||
+                    ObjectManager.Me.Position.DistanceZ(ObjectManager.Me.Position) > 1.5)
+                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
+
+                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " points";
+            }
+        }
+    }
+}

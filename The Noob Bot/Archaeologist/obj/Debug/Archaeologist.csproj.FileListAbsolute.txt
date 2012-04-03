@@ -1,0 +1,8 @@
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\Archaeologist.DigSites_List_Management.resources
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\GenerateResource.read.1.tlog
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\GenerateResource.write.1.tlog
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\Archaeologist.dll
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Archaeologist\obj\Debug\Archaeologist.pdb
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Archaeologist.dll
+C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Archaeologist.pdb

@@ -1,0 +1,116 @@
+﻿using System.Collections.Generic;
+using System.Threading;
+using nManager.FiniteStateMachine;
+using nManager.Helpful;
+using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
+
+namespace nManager.Wow.Bot.States
+{
+    public class Grinding : State
+    {
+        public override string DisplayName
+        {
+            get { return "Grinding"; }
+        }
+
+        public override int Priority
+        {
+            get { return _priority; }
+            set { _priority = value; }
+        }
+        private int _priority;
+
+        public override List<State> NextStates
+        {
+            get { return new List<State>(); }
+        }
+
+        public override List<State> BeforeStates
+        {
+            get { return new List<State>(); }
+        }
+
+        public List<int> EntryTarget = new List<int>();
+        public List<uint> FactionsTarget = new List<uint>();
+        public uint MinTargetLevel;
+        public uint MaxTargetLevel = 90;
+        private WoWUnit _unit;
+
+        public override bool NeedToRun
+        {
+            get
+            {
+                if (nManagerSetting.CurrentSetting.dontStartFighting)
+                    return false;
+
+                if (!Usefuls.InGame ||
+                    Usefuls.IsLoadingOrConnecting ||
+                    ObjectManager.ObjectManager.Me.IsDeadMe ||
+                    !ObjectManager.ObjectManager.Me.IsValid ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    !Products.Products.IsStarted)
+                    return false;
+
+                // Get unit:
+                _unit = new WoWUnit(0);
+                var listUnit = new List<WoWUnit>();
+                if (FactionsTarget.Count > 0)
+                    listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByFaction(FactionsTarget));
+                if (EntryTarget.Count > 0)
+                    listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByEntry(EntryTarget));
+
+                _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(listUnit);
+
+                if (!_unit.IsValid)
+                    return false;
+
+                if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
+                    if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.canAttackUnitsAlreadyInFight)
+                        if (!UnitNearest(_unit))
+                            if (_unit.Level <= MaxTargetLevel && _unit.Level >= MinTargetLevel)
+                            return true;
+
+                _unit = new WoWUnit(0);
+                return false;
+            }
+        }
+
+        public static bool UnitNearest(WoWUnit unit)
+        {
+            List<WoWUnit> units = ObjectManager.ObjectManager.GetObjectWoWUnit();
+            var i = 0;
+            foreach (var woWUnit in units)
+            {
+                if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
+                    i++;
+            }
+            var r = i > nManagerSetting.CurrentSetting.maxUnitsNear;
+            if (r)
+            {
+                nManagerSetting.AddBlackList(unit.Guid, 15 * 1000);
+                Logging.Write(i + " Units hostile Near " + unit.Name);
+            }
+            return r;
+        }
+
+        public override void Run()
+        {
+            MovementManager.StopMove();
+            MovementManager.StopMove();
+            Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
+            Fight.StartFight(_unit.Guid);
+            if (_unit.IsDead)
+            {
+                Statistics.Kills++;
+                Thread.Sleep(Usefuls.Latency + 1000);
+                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                {
+                    Thread.Sleep(10);
+                }
+                Fight.StopFight();
+            }
+        }
+    }
+}

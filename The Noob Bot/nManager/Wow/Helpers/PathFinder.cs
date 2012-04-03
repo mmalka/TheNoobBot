@@ -1,0 +1,232 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using nManager.Helpful;
+using nManager.Wow.Class;
+using nManager.Wow.Helpers.PathFinderClass;
+
+namespace nManager.Wow.Helpers
+{
+    /// <summary>
+    /// Path Generator Class
+    /// </summary>
+    public class PathFinder
+    {
+        /// <summary>
+        /// Enable or disable path finder.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [use pather finder]; otherwise, <c>false</c>.
+        /// </value>
+        public static bool UsePatherFind { get { return nManagerSetting.CurrentSetting.usePathsFinder; } }
+        private static Pather _pather;
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="to">To.</param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point to)
+        {
+            try
+            {
+                if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
+                {
+                    return new List<Point> { ObjectManager.ObjectManager.Me.Position, to};
+                }
+                return FindPath(ObjectManager.ObjectManager.Me.Position, to);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("FindPath(Point to): " + exception);
+            }
+            return new List<Point>();
+        }
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point from, Point to)
+        {
+            try
+            {
+                return FindPath(from, to, Usefuls.ContinentNameMpq);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("FindPath(Point from, Point to): " + exception);
+            }
+            return new List<Point>();
+        }
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="to">To.</param>
+        /// <param name="resultSuccess"> </param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point to, out bool resultSuccess)
+        {
+            try
+            {
+                if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
+                {
+                    resultSuccess = true;
+                    return new List<Point> { ObjectManager.ObjectManager.Me.Position, to };
+                }
+                return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("FindPath(Point to, out bool resultSuccess): " + exception);
+            }
+            resultSuccess = false;
+            return new List<Point>();
+        }
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        /// <param name="continentNameMpq">The continent name MPQ.</param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point from, Point to, string continentNameMpq)
+        {
+            try
+            {
+                bool b;
+                return FindPath(from, to, continentNameMpq, out b);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("FindPath(Point from, Point to, string continentNameMpq): " + exception);
+            }
+            return new List<Point>();
+        }
+
+        /// <summary>
+        /// Finds the path.
+        /// </summary>
+        /// <param name="from">From.</param>
+        /// <param name="to">To.</param>
+        /// <param name="continentNameMpq">The continent name MPQ.</param>
+        /// <param name="resultSuccess">if set to <c>true</c> [result success].</param>
+        /// <param name="addFromAndStart">if set to <c>true</c> [add from and start].</param>
+        /// <param name="loadAllTile"></param>
+        /// <returns></returns>
+        public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess, bool addFromAndStart = true, bool loadAllTile = false)
+        {
+            var locList = new List<Point>();
+            resultSuccess = true;
+            try
+            {
+                bool tr;
+                locList = PathFinderDroidz.FindPath(to, out tr);
+                if (tr)
+                {
+                    resultSuccess = true;
+                    return locList;
+                }
+                else
+                    locList = new List<Point>();
+
+                if (!UsePatherFind || continentNameMpq == "None")
+                {
+                    locList.Add(from);
+                    locList.Add(to);
+                    return locList;
+                }
+
+
+                from = new Point(Convert.ToSingle(String.Format("{0:.#}", from.X)),
+                                 Convert.ToSingle(String.Format("{0:.#}", from.Y)),
+                                 Convert.ToSingle(String.Format("{0:.#}", from.Z)));
+                to = new Point(Convert.ToSingle(String.Format("{0:.#}", to.X)),
+                               Convert.ToSingle(String.Format("{0:.#}", to.Y)),
+                               Convert.ToSingle(String.Format("{0:.#}", to.Z)));
+
+                if (_pather == null)
+                    _pather = new Pather(continentNameMpq);
+                if (_pather.Continent != continentNameMpq)
+                {
+                    _pather.Dispose();
+                    _pather = new Pather(continentNameMpq);
+                }
+
+                if (addFromAndStart)
+                    locList.Add(from);
+
+                if (loadAllTile)
+                    _pather.LoadAllTiles();
+
+                locList = _pather.FindPath(from, to, out resultSuccess);
+                if (addFromAndStart)
+                    locList.Add(to);
+
+                // Clean list:
+                for (int i = 0; i <= locList.Count - 2; i++)
+                {
+                    if (locList[i].DistanceTo(locList[i + 1]) < 0.5 ||
+                        (locList[i + 1].X == 0.0f || locList[i + 1].Y == 0.0f || locList[i + 1].Z == 0.0f))
+                    {
+                        locList.RemoveAt(i + 1);
+                        i--;
+                    }
+                }
+
+
+
+                Logging.WriteNavigator("Path Count: " + locList.Count());
+
+                //pather.Dispose();
+
+                return locList;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("ToRecast(this Point v): PATH FIND ERROR: " + e);
+                Console.WriteLine("Path find ERROR.");
+
+                resultSuccess = false;
+                locList = new List<Point>();
+
+                if (addFromAndStart)
+                {
+                    if (from != null)
+                        if (from.X != 0 || from.Y != 0 || from.Z != 0)
+                            locList.Add(from);
+
+                    if (to != null)
+                        if (to.X != 0 || to.Y != 0 || to.Z != 0)
+                            locList.Add(to);
+                }
+
+                return locList;
+            }
+        }
+
+        ///<summary>
+        ///</summary>
+        ///<param name="point"></param>
+        ///<returns></returns>
+        public static float GetZPosition(Point point)
+        {
+            try
+            {
+                List<Point> tempsList = FindPath(point, new Point(point.X + 1, point.Y + 1, point.Z), Usefuls.ContinentNameMpq);
+                if (tempsList.Count > 0)
+                    return tempsList[0].Z;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetZPosition(Point point): " + exception);
+            }
+
+            return 0;
+        }
+    }
+}
