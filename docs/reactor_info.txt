@@ -1,0 +1,37 @@
+Tout d'abord, téléchargez .Net Reactor : http://www.eziriz.com/downloads.htm
+télécharger Mpress as well : http://www.matcode.com/mpress.htm
+
+license.license est un fichier de license octroyer à la société THE NOOB COMPANY.
+
+Ce fichier est multi-utilisateur.
+
+Pour l'utiliser, ouvrir .Net Reactor. Help => Registration, parcourir le fichier license.license du dossier Docs.
+
+Redemarrer .Net Reactor, copier le "Hardware ID", cliquez sur le lien, remplir le formulaire avec une vrai email.
+
+Télécharger le fichier license.v3lic qui ne fonctionne qu'avec votre PC, faite la même manoeuvre dans le logiciel qu'avec license.license.
+
+Le logiciel sera registred au relancement et affichera [THE NOOB COMPANY] au lieu de Demo dans le titre.
+
+
+Pour obfu l'exe :
+Ouvrir The Noob Bot.exe dans .Net Reactor (Main Assembly),
+allez dans Protection Presets => Application Strongest
+
+Dans Quick Settings : décochez 
+NecroBit, Anti ILDASM, Anti Tampering, Compress & Encrypt Resources.
+Changer Control FlowObfuscation de Level 9 vers Level 7.
+
+Cliquez sur Protect à gauche.
+
+
+Pour obfu nManager.dll :
+Ouvrir The Noob Bot.exe dans .Net Reactor (Main Assembly),
+allez dans Protection Presets => Library Strongest
+
+Dans Quick Settings : décochez tout sauf Obfuscation.
+
+Cliquez sur Protect à gauche.
+
+
+Faites passer l'executable obfusquer dans mpress, et le tour est joué.
