@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GathererProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Points>
+    <Point>
+      <X>1781.731</X>
+      <Y>-4353.641</Y>
+      <Z>102.7028</Z>
+      <Type>Flying</Type>
+    </Point>
+  </Points>
+  <Npc />
+  <BlackListRadius />
+</GathererProfile>
