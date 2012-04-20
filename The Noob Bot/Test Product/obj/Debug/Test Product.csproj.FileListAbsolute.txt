@@ -1,5 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Test Product.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Test Product.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Test Product\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Test Product\obj\Debug\Test Product.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Test Product\obj\Debug\Test Product.pdb

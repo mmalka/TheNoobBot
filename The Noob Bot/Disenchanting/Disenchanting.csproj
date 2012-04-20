@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DD5F7A3D-85A9-479F-B3AE-2315C27F666E}</ProjectGuid>
+    <ProjectGuid>{C12400F5-5456-46B3-A154-09E0F6EBF3BB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Profiles_Converters</RootNamespace>
-    <AssemblyName>Profiles Converters</AssemblyName>
+    <RootNamespace>Disenchanting</RootNamespace>
+    <AssemblyName>Disenchanting</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -32,52 +32,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Others\DevComponents.DotNetBar2.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\HonorBuddyGrind.cs" />
-    <Compile Include="Converters\GatherBuddy.cs" />
-    <Compile Include="Converters\MMOLazyMyFlyer.cs" />
-    <Compile Include="Converters\PiroxFlyGatherer.cs" />
-    <Compile Include="Converters\WowRobotGatherFly.cs" />
-    <Compile Include="formMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="formMain.Designer.cs">
-      <DependentUpon>formMain.cs</DependentUpon>
-    </Compile>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Disenchanting.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Gatherer\Gatherer.csproj">
-      <Project>{E321286C-4B1F-40A2-8880-14C29AF1BF9B}</Project>
-      <Name>Gatherer</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Grinder\Grinder.csproj">
-      <Project>{93FEC02A-C062-46A2-BAA0-0705134B961B}</Project>
-      <Name>Grinder</Name>
-    </ProjectReference>
     <ProjectReference Include="..\nManager\nManager.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>
       <Private>False</Private>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="formMain.resx">
-      <DependentUpon>formMain.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

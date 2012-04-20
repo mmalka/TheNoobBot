@@ -1,9 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\Fisherbot.Profile.ProfileCreator.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\Fisherbot.SettingsFisherbotForm.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\Fisherbot.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Fisherbot\obj\Debug\Fisherbot.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Fisherbot.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Fisherbot.pdb

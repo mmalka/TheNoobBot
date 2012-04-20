@@ -1,8 +1,0 @@
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Archaeology.dll
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Archaeology.pdb
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\Archaeology.DigSites_List_Management.resources
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\Archaeology.dll
-C:\Users\Remi\Dropbox\Projets\The Noob Bot\Archaeology\obj\Debug\Archaeology.pdb

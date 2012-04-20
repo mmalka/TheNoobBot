@@ -1,5 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Smelting.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Smelting.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Smelting\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Smelting\obj\Debug\Smelting.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Smelting\obj\Debug\Smelting.pdb

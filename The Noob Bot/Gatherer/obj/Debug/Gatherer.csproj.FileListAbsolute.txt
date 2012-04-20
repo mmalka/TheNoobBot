@@ -1,9 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\Gatherer.Bot.LoadProfile.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\Gatherer.Bot.ProfileCreator.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\Gatherer.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Gatherer\obj\Debug\Gatherer.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Gatherer.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Gatherer.pdb

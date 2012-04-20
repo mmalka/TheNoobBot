@@ -1,5 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Prospecting.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Prospecting.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Prospecting\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Prospecting\obj\Debug\Prospecting.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Prospecting\obj\Debug\Prospecting.pdb

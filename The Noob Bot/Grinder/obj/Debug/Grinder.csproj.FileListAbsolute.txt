@@ -1,9 +1,0 @@
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\ResolveAssemblyReference.cache
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\Grinder.Bot.LoadProfile.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\Grinder.Profile.ProfileCreator.resources
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\GenerateResource.read.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\GenerateResource.write.1.tlog
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\Grinder.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\Grinder\obj\Debug\Grinder.pdb
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Grinder.dll
-C:\Users\Rémi\Dropbox\Projets\The Noob Bot\The Noob Bot\bin\Debug\Products\Grinder.pdb
