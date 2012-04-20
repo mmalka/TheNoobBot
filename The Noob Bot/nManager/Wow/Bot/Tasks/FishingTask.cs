@@ -96,29 +96,29 @@ namespace nManager.Wow.Bot.Tasks
                                 fishingSpell = new Spell("Fishing");
                             fishingSpell.Launch(false, false, true);
                             Others.Wait(2000);
-                            var objBodder =
+                            var objBobber =
                                 new WoWGameObject(Fishing.SearchBobber());
 
-                            if (objBodder.IsValid)
+                            if (objBobber.IsValid)
                             {
-                                if (objBodder.GetBaseAddress > 0)
+                                if (objBobber.GetBaseAddress > 0)
                                 {
                                     var nobe = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
-                                    if (nobe.Position.DistanceTo2D(objBodder.Position) > 2.5 && nobe.IsValid && _guidNode > 0 && _precision)
+                                    if (nobe.Position.DistanceTo2D(objBobber.Position) > 2.5 && nobe.IsValid && _guidNode > 0 && _precision)
                                         continue;
 
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                           (int)objBodder.GetBaseAddress > 0 &&
+                                           (int)objBobber.GetBaseAddress > 0 &&
                                            1 !=
-                                           Memory.WowMemory.Memory.ReadShort(objBodder.GetBaseAddress + 0xD4))
+                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + 0xD4))
                                     {
                                         Thread.Sleep(50);
                                         Application.DoEvents();
                                     }
                                     if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                        (int)objBodder.GetBaseAddress > 0)
+                                        (int)objBobber.GetBaseAddress > 0)
                                     {
-                                        Interact.InteractGameObject(objBodder.GetBaseAddress);
+                                        Interact.InteractGameObject(objBobber.GetBaseAddress);
                                         Statistics.Farms++;
                                         Others.Wait(1000);
                                     }
