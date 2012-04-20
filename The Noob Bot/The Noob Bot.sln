@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Grinder", "Grinder\Grinder.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Product", "Test Product\Test Product.csproj", "{C84ABEEA-C0E4-402F-85AF-8A5FE381AC3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker", "Traker\Tracker.csproj", "{D7BCECEA-F770-4CFC-BA43-EB34A2639951}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tracker", "Tracker\Tracker.csproj", "{D7BCECEA-F770-4CFC-BA43-EB34A2639951}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
