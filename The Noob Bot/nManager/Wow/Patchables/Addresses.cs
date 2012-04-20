@@ -137,7 +137,7 @@
             GAMEOBJECT_FIELD_X = 0x110, // ?
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // ?
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // ?
-            GAMEOBJECT_CREATED_BY = 0x8 * 4, // ?
+            GAMEOBJECT_CREATED_BY = 0x8, // ?
             objName1 = 0x1CC, // ?
             objName2 = 0xB4, // ?
         }
