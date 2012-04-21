@@ -10,7 +10,7 @@
       <Id>In_progress</Id>
     </Translation>
     <Translation>
-      <Text>Veuillez selectionner le personnage sur lequel vous voulez utiliser TheNoobtnb</Text>
+      <Text>Veuillez selectionner le personnage sur lequel vous voulez utiliser TheNoobBot</Text>
       <Id>Please_select_game_Process_and_connect_to_the_game</Id>
     </Translation>
     <Translation>
@@ -22,7 +22,7 @@
       <Id>Please_connect_to_the_game</Id>
     </Translation>
     <Translation>
-      <Text>Ce personnage est déjà attaché à TheNoobtnb, êtes vous sûr de vouloir utiliser ce personnage </Text>
+      <Text>Ce personnage est déjà attaché à TheNoobBot, êtes vous sûr de vouloir utiliser ce personnage </Text>
       <Id>The_Game_is_already_used__do_you_wish_to_use_the_current_process</Id>
     </Translation>
     <Translation>
@@ -42,7 +42,7 @@
       <Id>Error</Id>
     </Translation>
     <Translation>
-      <Text>Connexion - TheNoobtnb version</Text>
+      <Text>Connexion - TheNoobBot version</Text>
       <Id>Login___The_Noob_Bot_version</Id>
     </Translation>
     <Translation>
@@ -126,12 +126,12 @@
       <Id>Suspect_Activity</Id>
     </Translation>
     <Translation>
-      <Text>Le serveur de TheNoobtnb est probablement en panne, cependant, vous pouvez essayer de désactiver votre AntiVirus/Firewall.
+      <Text>Le serveur de TheNoobBot est probablement en panne, cependant, vous pouvez essayer de désactiver votre AntiVirus/Firewall.
       Note: Nous avons peut-être bloqué cette version depuis nos serveurs à cause d'une alerte confirmée du Warden de blizzard ou si la version est crackée. Vous pouvez verifier si une mise à jour est disponible sur notre site internet</Text>
-      <Id>TheNoobtnb_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat</Id>
+      <Id>TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat</Id>
     </Translation>
     <Translation>
-      <Text>Le jeu est réduit dans votre barre des tâches, TheNoobtnb ne peut pas fonctionner si le Jeu est réduit</Text>
+      <Text>Le jeu est réduit dans votre barre des tâches, TheNoobBot ne peut pas fonctionner si le Jeu est réduit</Text>
       <Id>The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window</Id>
     </Translation>
     <Translation>
@@ -235,7 +235,7 @@
       <Id>Target_Health</Id>
     </Translation>
     <Translation>
-      <Text>Votre compte TheNoobtnb</Text>
+      <Text>Votre compte TheNoobBot</Text>
       <Id>Account_Informations</Id>
     </Translation>
     <Translation>
