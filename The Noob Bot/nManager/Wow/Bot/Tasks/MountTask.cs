@@ -130,6 +130,7 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
+                    MountingMount(false);
                     return;
                 }
                 if (TimerMount != null)
