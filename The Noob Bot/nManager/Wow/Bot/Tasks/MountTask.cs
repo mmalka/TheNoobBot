@@ -31,7 +31,7 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.groundName);
                     nManager.Products.Products.ProductStop();
                     return;
                 }
@@ -97,7 +97,7 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.aquaticName);
                     nManager.Products.Products.ProductStop();
                     return;
                 }
@@ -180,7 +180,7 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.flyingMountName);
                     nManager.Products.Products.ProductStop();
                     return;
                 }
