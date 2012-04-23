@@ -74,7 +74,6 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
-                    Logging.Write("You can't use this now !");
                     return;
                 }
 
