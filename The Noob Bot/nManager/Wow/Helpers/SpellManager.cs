@@ -581,6 +581,8 @@ namespace nManager.Wow.Helpers
                 {
                     _spellName = spellName;
                     var listSpellFound = ListSpell.FindAll(FindByName);
+                    if (listSpellFound == null)
+                        return null;
                     listIdSpellFound.AddRange(listSpellFound.Select(tempsSpell => tempsSpell.Id));
 
                     return listIdSpellFound;
