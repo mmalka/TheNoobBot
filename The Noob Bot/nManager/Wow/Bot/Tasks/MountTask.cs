@@ -74,6 +74,7 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
+                    Logging.Write("AreaId" + nManager.Wow.Helpers.Usefuls.AreaId);
                     return;
                 }
 
@@ -124,6 +125,13 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
+                if (nManager.Wow.Helpers.Usefuls.AreaId == 5389
+                     || nManager.Wow.Helpers.Usefuls.AreaId == 5095)
+                {
+                    //    Logging.Write("Please configure your Ground mount in General settings");
+                    //    MessageBox.Show("Please configure your Ground mount in General settings");
+                    return;
+                }
                 if (TimerMount != null)
                     if (!TimerMount.IsReady)
                         return;
