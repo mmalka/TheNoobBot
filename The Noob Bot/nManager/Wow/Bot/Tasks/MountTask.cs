@@ -72,9 +72,6 @@ namespace nManager.Wow.Bot.Tasks
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5145
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] != 98718))
                 {
-                    //    Logging.Write("Please configure your Ground mount in General settings");
-                    //    MessageBox.Show("Please configure your Ground mount in General settings");
-                    Logging.Write("AreaId" + nManager.Wow.Helpers.Usefuls.AreaId);
                     return;
                 }
 
@@ -128,8 +125,6 @@ namespace nManager.Wow.Bot.Tasks
                 if (nManager.Wow.Helpers.Usefuls.AreaId == 5389
                      || nManager.Wow.Helpers.Usefuls.AreaId == 5095)
                 {
-                    //    Logging.Write("Please configure your Ground mount in General settings");
-                    //    MessageBox.Show("Please configure your Ground mount in General settings");
                     MountingMount(false);
                     return;
                 }
@@ -146,6 +141,7 @@ namespace nManager.Wow.Bot.Tasks
                     else
                         MovementManager.StopMoveTo();
                     MessageBox.Show(Translate.Get(Translate.Id.Please_configure_your_Fly_mount_in_General_settings));
+                    nManager.Products.Products.ProductStop();
                     return;
                 }
 
