@@ -142,8 +142,6 @@ namespace nManager.Wow.Class
                 if (tSpell == null)
                 {
                     tSpell = new Spell(SpellManager.SpellListManager.SpellIdByName(spellName)[0]);
-                    if (tSpell == null)
-                        return;
                 }
 
                 Id = tSpell.Id;
