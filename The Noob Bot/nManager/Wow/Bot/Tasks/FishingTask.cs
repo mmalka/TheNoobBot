@@ -20,6 +20,8 @@ namespace nManager.Wow.Bot.Tasks
         static string _lureName = "";
         private static bool _useLure;
 
+        private const float distanceBobber = 2.5f;
+
         public static bool IsLaunched { get { return _fishBotLaunched; } }
 
         /// <summary>
@@ -104,7 +106,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (objBobber.GetBaseAddress > 0)
                                 {
                                     var nobe = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
-                                    if (nobe.Position.DistanceTo2D(objBobber.Position) > 2.5 && nobe.IsValid && _guidNode > 0 && _precision)
+                                    if (nobe.Position.DistanceTo2D(objBobber.Position) > 4.0 && nobe.IsValid && _guidNode > 0 && _precision)
                                         continue;
 
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&

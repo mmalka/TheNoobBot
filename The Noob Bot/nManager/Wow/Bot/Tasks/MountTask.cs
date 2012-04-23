@@ -67,10 +67,14 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.aquaticName == string.Empty)
+                if (nManagerSetting.CurrentSetting.aquaticName == string.Empty || (nManager.Wow.Helpers.Usefuls.AreaId != 5146 
+                     && nManager.Wow.Helpers.Usefuls.AreaId != 4815
+                     && nManager.Wow.Helpers.Usefuls.AreaId != 5145
+                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] != 98718))
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
+                    Logging.Write("You can't use this now !");
                     return;
                 }
 
