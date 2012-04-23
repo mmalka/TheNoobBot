@@ -865,6 +865,10 @@
       <Text>Please configure your Fly mount in General settings</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
+	<Translation>
+      <Text>This mount does not exist</Text>
+      <Id>This_mount_does_not_exist</Id>
+    </Translation>
     <Translation>
       <Text>Please select .exe in the install folder of the game</Text>
       <Id>Please_select_exe_in_the_install_folder_of_the_game</Id>

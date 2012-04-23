@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using Timer = nManager.Helpful.Timer;
+using nManager.Wow.Class;
 
 namespace nManager.Wow.Bot.Tasks
 {
@@ -19,6 +20,19 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
+                    return;
+                }
+
+                var spell = new Spell(nManagerSetting.CurrentSetting.groundName);
+                if (!spell.KnownSpell)
+                {
+                    Logging.Write("The mount does not exist !");
+                    if (stopMove)
+                        MovementManager.StopMove();
+                    else
+                        MovementManager.StopMoveTo();
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
+                    nManager.Products.Products.ProductStop();
                     return;
                 }
 
@@ -72,6 +86,19 @@ namespace nManager.Wow.Bot.Tasks
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5145
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] != 98718))
                 {
+                    return;
+                }
+
+                var spell = new Spell(nManagerSetting.CurrentSetting.aquaticName);
+                if (!spell.KnownSpell)
+                {
+                    Logging.Write("The mount does not exist !");
+                    if (stopMove)
+                        MovementManager.StopMove();
+                    else
+                        MovementManager.StopMoveTo();
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
+                    nManager.Products.Products.ProductStop();
                     return;
                 }
 
@@ -141,6 +168,19 @@ namespace nManager.Wow.Bot.Tasks
                     else
                         MovementManager.StopMoveTo();
                     MessageBox.Show(Translate.Get(Translate.Id.Please_configure_your_Fly_mount_in_General_settings));
+                    nManager.Products.Products.ProductStop();
+                    return;
+                }
+
+                var spell = new Spell(nManagerSetting.CurrentSetting.flyingMountName);
+                if (!spell.KnownSpell)
+                {
+                    Logging.Write("The mount does not exist !");
+                    if (stopMove)
+                        MovementManager.StopMove();
+                    else
+                        MovementManager.StopMoveTo();
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist));
                     nManager.Products.Products.ProductStop();
                     return;
                 }

@@ -866,6 +866,10 @@
       <Text>Merci de selectionner une monture/forme volante dans les configutations générales</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
+	<Translation>
+      <Text>Cette monture n'existe pas</Text>
+      <Id>This_mount_does_not_exist</Id>
+    </Translation>
     <Translation>
       <Text>Selectionner le fichier .exe du jeu la ou vous l'avez installé</Text>
       <Id>Please_select_exe_in_the_install_folder_of_the_game</Id>

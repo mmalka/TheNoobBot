@@ -282,6 +282,7 @@ namespace nManager
             New_whisper,
             Stop_tnb_if,
             Please_configure_your_Fly_mount_in_General_settings,
+            This_mount_does_not_exist,
             Please_select_exe_in_the_install_folder_of_the_game,
             This_Programme_is_for_The_Game,
             Please_change_your_game_version_or_change_this_programme_version,
