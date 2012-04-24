@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using Timer = nManager.Helpful.Timer;
-using nManager.Wow.Class;
 
 namespace nManager.Wow.Bot.Tasks
 {
@@ -23,8 +22,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                var groundSpell = new Spell(nManagerSetting.CurrentSetting.groundName);
-                if (groundSpell.Ids.Count != 0)
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.groundName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.groundName + "\" does not exist !");
                     if (stopMove)
@@ -89,8 +87,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                var aquaticSpell = new Spell(nManagerSetting.CurrentSetting.aquaticName);
-                if (aquaticSpell.Ids.Count != 0)
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.aquaticName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.aquaticName + "\" does not exist !");
                     if (stopMove)
@@ -172,8 +169,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                var flyingMountSpell = new Spell(nManagerSetting.CurrentSetting.flyingMountName);
-                if (flyingMountSpell.Ids.Count != 0)
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.flyingMountName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.flyingMountName + "\" does not exist !");
                     if (stopMove)

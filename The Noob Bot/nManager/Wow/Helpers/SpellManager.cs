@@ -241,6 +241,22 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("CastSpellByIdLUA(uint spellId): " + exception);
             }
         }
+        public static bool ExistMountLUA(string spellName)
+        {
+            try
+            {
+                var ret =
+                    Lua.LuaDoString(
+                        "ret = \"\"; nameclient = \"" + spellName + "\"; for i=1,GetNumCompanions(\"MOUNT\"),1 do local _, name = GetCompanionInfo(\"MOUNT\", i)  if name == nameclient then ret = \"true\"  return end  end",
+                        "ret");
+                return ret == "true";
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("ExistSpellLUA(string spellName): " + exception);
+                return false;
+            }
+        }
         public static bool SpellUsableLUA(string spellName)
         {
             try
