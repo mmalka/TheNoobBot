@@ -50,17 +50,17 @@ namespace nManager.Wow.Bot.Tasks
         /// <summary>
         /// Loop of the fish bot.
         /// </summary>
-        /// <param name="guidNobe">The nobe GUID.</param>
+        /// <param name="guidNode">The node GUID.</param>
         /// <param name="lureName"> </param>
         /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
-        public static void LoopFish(ulong guidNobe = 0, bool useLure = false, string lureName = "", bool precision = false)
+        public static void LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = "", bool precision = false)
         {
             try
             {
                 lock (typeof(FishingTask))
                 {
-                    _guidNode = guidNobe;
+                    _guidNode = guidNode;
                     _precision = precision;
                     _useLure = useLure;
                     _lureName = lureName;
@@ -74,7 +74,7 @@ namespace nManager.Wow.Bot.Tasks
             }
             catch (Exception e)
             {
-                Logging.WriteError("FishingTask > LoopFish(ulong guidNobe = 0, bool useLure = false, string lureName = \"\", bool precision = false): " + e);
+                Logging.WriteError("FishingTask > LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = \"\", bool precision = false): " + e);
             }
         }
 
