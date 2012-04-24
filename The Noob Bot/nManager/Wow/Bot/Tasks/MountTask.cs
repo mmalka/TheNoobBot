@@ -22,7 +22,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.groundName))
+                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.groundName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.groundName + "\" does not exist !");
                     if (stopMove)
@@ -32,7 +32,7 @@ namespace nManager.Wow.Bot.Tasks
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.groundName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }
+                }*/
 
                 if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.groundName))
                     DismountMount(stopMove);
@@ -87,7 +87,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.aquaticName))
+                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.aquaticName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.aquaticName + "\" does not exist !");
                     if (stopMove)
@@ -97,7 +97,7 @@ namespace nManager.Wow.Bot.Tasks
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.aquaticName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }
+                }*/
 
                 if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.aquaticName))
                     DismountMount(stopMove);
@@ -169,7 +169,8 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.flyingMountName))
+                // Todo : Check spell as well for Druid Forms.
+                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.flyingMountName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.flyingMountName + "\" does not exist !");
                     if (stopMove)
@@ -179,7 +180,7 @@ namespace nManager.Wow.Bot.Tasks
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.flyingMountName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }
+                }*/
 
                 if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.flyingMountName) && !Usefuls.IsFlying)
                     DismountMount(stopMove);
