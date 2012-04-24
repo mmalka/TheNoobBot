@@ -23,10 +23,10 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                var spell = new Spell(nManagerSetting.CurrentSetting.groundName);
-                if (!spell.KnownSpell)
+                var groundSpell = new Spell(nManagerSetting.CurrentSetting.groundName);
+                if (groundSpell.Ids.Count != 0)
                 {
-                    Logging.Write("The mount does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.groundName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
@@ -84,15 +84,15 @@ namespace nManager.Wow.Bot.Tasks
                 if (nManagerSetting.CurrentSetting.aquaticName == string.Empty || (nManager.Wow.Helpers.Usefuls.AreaId != 5146 
                      && nManager.Wow.Helpers.Usefuls.AreaId != 4815
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5145
-                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] != 98718))
+                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] == 75207))
                 {
                     return;
                 }
 
-                var spell = new Spell(nManagerSetting.CurrentSetting.aquaticName);
-                if (!spell.KnownSpell)
+                var aquaticSpell = new Spell(nManagerSetting.CurrentSetting.aquaticName);
+                if (aquaticSpell.Ids.Count != 0)
                 {
-                    Logging.Write("The mount does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.aquaticName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
@@ -172,10 +172,10 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                var spell = new Spell(nManagerSetting.CurrentSetting.flyingMountName);
-                if (!spell.KnownSpell)
+                var flyingMountSpell = new Spell(nManagerSetting.CurrentSetting.flyingMountName);
+                if (flyingMountSpell.Ids.Count != 0)
                 {
-                    Logging.Write("The mount does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.flyingMountName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
