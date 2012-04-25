@@ -12230,13 +12230,6 @@
     <Type>Fish</Type>
   </Node>
   <Node>
-    <Id>207724</Id>
-    <Skill>0</Skill>
-    <Actived>true</Actived>
-    <Name>Shipwreck Debris </Name>
-    <Type>Fish</Type>
-  </Node>
-  <Node>
     <Id>202778</Id>
     <Skill>0</Skill>
     <Actived>true</Actived>
@@ -12290,6 +12283,13 @@
     <Skill>0</Skill>
     <Actived>true</Actived>
     <Name>Shipwreck Debris</Name>
+    <Type>Fish</Type>
+  </Node>
+  <Node>
+    <Id>208311</Id>
+    <Skill>0</Skill>
+    <Actived>true</Actived>
+    <Name>deepsea-sagefish-school</Name>
     <Type>Fish</Type>
   </Node>
 </ArrayOfNode>
