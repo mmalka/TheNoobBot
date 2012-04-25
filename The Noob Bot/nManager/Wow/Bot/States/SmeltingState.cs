@@ -72,7 +72,7 @@ namespace nManager.Wow.Bot.States
                 {
                     var pointssmelting = new List<Point>();
                     if ((smeltingZone.Position.Type.ToLower() == "flying") &&
-                        nManagerSetting.CurrentSetting.flyingMountName != "")
+                        nManagerSetting.CurrentSetting.FlyingMountName != "")
                     {
                         pointssmelting.Add(smeltingZone.Position);
                     }

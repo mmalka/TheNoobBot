@@ -3,6 +3,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using nManager.Wow.Class;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.Tasks
@@ -11,30 +12,30 @@ namespace nManager.Wow.Bot.Tasks
     {
         private static int _nbTry;
 
-        public static void MountingMount(bool stopMove = true)
+        public static void MountingGroundMount(bool stopMove = true)
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.groundName == string.Empty)
+                if (nManagerSetting.CurrentSetting.GroundMountName == string.Empty)
                 {
                     //    Logging.Write("Please configure your Ground mount in General settings");
                     //    MessageBox.Show("Please configure your Ground mount in General settings");
                     return;
                 }
 
-                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.groundName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.GroundMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.GroundMountName))
                 {
-                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.groundName + "\" does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.GroundMountName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.groundName);
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.GroundMountName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }*/
+                }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.groundName))
+                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.GroundMountName))
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted && nManagerSetting.CurrentSetting.useGroundMount && Usefuls.IsOutdoors)
@@ -43,10 +44,10 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.groundName);
+                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.GroundMountName);
 
                     Thread.Sleep(500);
-                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.groundName);
+                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.GroundMountName);
                     Thread.Sleep(1000);
                     Thread.Sleep(Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
@@ -71,7 +72,7 @@ namespace nManager.Wow.Bot.Tasks
             }
             catch (Exception ex)
             {
-                Logging.WriteError("MountTask > MountingMount(): " + ex);
+                Logging.WriteError("MountTask > MountingGroundMount(): " + ex);
             }
         }
 
@@ -79,27 +80,27 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.aquaticName == string.Empty || (nManager.Wow.Helpers.Usefuls.AreaId != 5146 
+                if (nManagerSetting.CurrentSetting.AquaticMountName == string.Empty || (nManager.Wow.Helpers.Usefuls.AreaId != 5146 
                      && nManager.Wow.Helpers.Usefuls.AreaId != 4815
                      && nManager.Wow.Helpers.Usefuls.AreaId != 5145
-                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.aquaticName)[0] == 75207))
+                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.AquaticMountName)[0] == 75207))
                 {
                     return;
                 }
 
-                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.aquaticName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.AquaticMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.AquaticMountName))
                 {
-                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.aquaticName + "\" does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.AquaticMountName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.aquaticName);
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.AquaticMountName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }*/
+                }
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.aquaticName))
+                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName))
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -108,10 +109,10 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.aquaticName);
+                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.AquaticMountName);
 
                     Thread.Sleep(500);
-                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.aquaticName);
+                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.AquaticMountName);
                     Thread.Sleep(1000);
                     Thread.Sleep(Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
@@ -142,14 +143,14 @@ namespace nManager.Wow.Bot.Tasks
 
         private static Timer TimerMount;
         private static int tryMounting;
-        public static void MountingFlyMount(bool stopMove = true)
+        public static void MountingFlyingMount(bool stopMove = true)
         {
             try
             {
                 if (nManager.Wow.Helpers.Usefuls.AreaId == 5389
                      || nManager.Wow.Helpers.Usefuls.AreaId == 5095)
                 {
-                    MountingMount(false);
+                    MountingGroundMount(false);
                     return;
                 }
                 if (TimerMount != null)
@@ -157,7 +158,7 @@ namespace nManager.Wow.Bot.Tasks
                         return;
                 TimerMount = new Timer(1*300);
 
-                if (nManagerSetting.CurrentSetting.flyingMountName == string.Empty)
+                if (nManagerSetting.CurrentSetting.FlyingMountName == string.Empty)
                 {
                     Logging.Write("Please configure your Fly mount in General settings");
                     if (stopMove)
@@ -169,20 +170,18 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                // Todo : Check spell as well for Druid Forms.
-                /*if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.flyingMountName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.FlyingMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.FlyingMountName))
                 {
-                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.flyingMountName + "\" does not exist !");
+                    Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.FlyingMountName + "\" does not exist !");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.flyingMountName);
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + nManagerSetting.CurrentSetting.FlyingMountName);
                     nManager.Products.Products.ProductStop();
                     return;
-                }*/
-
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.flyingMountName) && !Usefuls.IsFlying)
+                }
+                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName) && !Usefuls.IsFlying)
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -191,7 +190,7 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.flyingMountName);
+                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.FlyingMountName);
                     Thread.Sleep(100);
                     if (Usefuls.IsSwimming)
                     {
@@ -210,7 +209,7 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         Thread.Sleep(250);
-                        SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.flyingMountName);
+                        SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.FlyingMountName);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;
@@ -278,7 +277,7 @@ namespace nManager.Wow.Bot.Tasks
             }
             catch (Exception ex)
             {
-                Logging.WriteError("MountTask > MountingFlyMount(): " + ex);
+                Logging.WriteError("MountTask > MountingFlyingMount(): " + ex);
             }
         }
 

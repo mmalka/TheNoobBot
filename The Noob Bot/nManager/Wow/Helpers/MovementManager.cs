@@ -162,7 +162,7 @@ namespace nManager.Wow.Helpers
                         return;
                     }
 
-                    if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop && !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.flyingMountName))
+                    if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop && !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                     {
                         bool result;
                         var path = PathFinderDroidz.FindPath(_points[firstIdPoint], out result, "Flying");
@@ -196,7 +196,7 @@ namespace nManager.Wow.Helpers
                     if (nManagerSetting.CurrentSetting.useGroundMount)
                     {
                         if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.mountDistance || _loop)
-                            Bot.Tasks.MountTask.MountingMount(false);
+                            Bot.Tasks.MountTask.MountingGroundMount(false);
                     }
                     _lastNbStuck = StuckCount;
                     int idPoint = firstIdPoint;
@@ -307,7 +307,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    Bot.Tasks.MountTask.MountingFlyMount(false);
+                    Bot.Tasks.MountTask.MountingFlyingMount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint; // Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);

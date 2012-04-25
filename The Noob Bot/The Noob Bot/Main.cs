@@ -85,17 +85,17 @@ namespace The_Noob_Bot
             try
             {
                 SpellManager.SpellBookID();
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.flyingMountName))
+                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.FlyingMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.flyingMountName = SpellManager.GetFlyMountName();
+                    nManager.nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetFlyMountName();
                 }
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.groundName))
+                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.GroundMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.groundName = SpellManager.GetMountName();
+                    nManager.nManagerSetting.CurrentSetting.GroundMountName = SpellManager.GetMountName();
                 }
-                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.aquaticName))
+                if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.AquaticMountName))
                 {
-                    nManager.nManagerSetting.CurrentSetting.aquaticName = SpellManager.GetAquaticMountName();
+                    nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
                 var items = new List<string>();
                 if (nManager.nManagerSetting.CurrentSetting.doNotSellList.Count == 0 || nManager.nManagerSetting.CurrentSetting.doNotMailList.Count == 0)

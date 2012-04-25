@@ -64,7 +64,7 @@ namespace nManager.Wow.Helpers
                 _usedLoop = true;
 
                 //MovementManager.StopMove();
-                Bot.Tasks.MountTask.MountingFlyMount(false);
+                Bot.Tasks.MountTask.MountingFlyingMount(false);
 
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
@@ -167,7 +167,7 @@ namespace nManager.Wow.Helpers
                     {
                         Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
                         Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
-                        Bot.Tasks.MountTask.MountingFlyMount(false);
+                        Bot.Tasks.MountTask.MountingFlyingMount(false);
                         Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
                         Thread.Sleep(1300);
                         Keybindings.UpKeybindings(Enums.Keybindings.JUMP);

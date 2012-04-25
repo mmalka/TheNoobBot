@@ -101,15 +101,15 @@ namespace nManager.Wow.Bot.States
             if (trainer.Type == MyTrainerClass())
                 Logging.Write(SpellManager.SpellAvailable() + " Spell Available");
             // Mounting Mount
-            MountTask.MountingMount();
+            MountTask.MountingGroundMount();
 
             // Find path
             var points = new List<Point>();
-            if ((trainer.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.flyingMountName != "")
+            if ((trainer.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
             {
                 points.Add(new Point(trainer.Position));
             }
-            else if ((trainer.Position.Type.ToLower() == "swimming") && nManagerSetting.CurrentSetting.aquaticName != "" && Usefuls.IsSwimming)
+            else if ((trainer.Position.Type.ToLower() == "swimming") && nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
             {
                 points.Add(trainer.Position);
             }

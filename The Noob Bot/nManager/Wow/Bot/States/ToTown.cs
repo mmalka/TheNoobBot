@@ -94,11 +94,11 @@ namespace nManager.Wow.Bot.States
             {
                 Logging.Write("Go to mailbox");
                 var pointsMail = new List<Point>();
-                if ((mailBox.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.flyingMountName != "")
+                if ((mailBox.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
                 {
                     pointsMail.Add(mailBox.Position);
                 }
-                else if (nManagerSetting.CurrentSetting.aquaticName != "" && Usefuls.IsSwimming)
+                else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
                 {
                     mailBox.Position.Type = "Swimming";
                     pointsMail.Add(mailBox.Position);
@@ -205,11 +205,11 @@ namespace nManager.Wow.Bot.States
                 {
                     Logging.Write("Go to vendor");
                     var pointsVendor = new List<Point>();
-                    if ((vendor.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.flyingMountName != "")
+                    if ((vendor.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
                     {
                         pointsVendor.Add(new Point(vendor.Position));
                     }
-                    else if (nManagerSetting.CurrentSetting.aquaticName != "" && Usefuls.IsSwimming)
+                    else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
                     {
                         vendor.Position.Type = "Swimming";
                         pointsVendor.Add(vendor.Position);

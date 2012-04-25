@@ -284,9 +284,9 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             bool r;
                             points = PathFinder.FindPath(node.Position, out r);
-                            if (nManagerSetting.CurrentSetting.flyingMountName != string.Empty && (!r || ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= 15.0f))
+                            if (nManagerSetting.CurrentSetting.FlyingMountName != string.Empty && (!r || ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= 15.0f))
                             {
-                                MountTask.MountingFlyMount();
+                                MountTask.MountingFlyingMount();
                                 if (Usefuls.IsFlying)
                                 {
                                     Fly(nodes);

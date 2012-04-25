@@ -106,7 +106,7 @@ namespace nManager.Wow.Helpers
             {
                 var faction = (Npc.FactionType)Enum.Parse(typeof(Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
                 return GetNpcNearby(type, faction, (Enums.ContinentId)Usefuls.ContinentId,
-                                    ObjectManager.ObjectManager.Me.Position, (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.flyingMountName) && !Usefuls.IsSwimming));
+                                    ObjectManager.ObjectManager.Me.Position, (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName) && !Usefuls.IsSwimming));
 
             }
             catch (Exception ex)

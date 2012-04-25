@@ -266,7 +266,7 @@ namespace nManager.Wow.Bot.States
                                         {
                                             return;
                                         }
-                                        Tasks.MountTask.MountingFlyMount();
+                                        Tasks.MountTask.MountingFlyingMount();
                                         LongMove.LongMoveByNewThread(p);
                                         var timer =
                                             new Helpful.Timer(1000 *

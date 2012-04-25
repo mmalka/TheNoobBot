@@ -152,15 +152,15 @@ namespace nManager.Helpful.Forms
             this.foodName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
-            this.aquaticName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.AquaticMountName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX66 = new DevComponents.DotNetBar.LabelX();
             this.labelX57 = new DevComponents.DotNetBar.LabelX();
             this.ignoreFightGoundMount = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.mountDistance = new DevComponents.Editors.IntegerInput();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.flyingMountName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.FlyingMountName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX7 = new DevComponents.DotNetBar.LabelX();
-            this.groundName = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.GroundMountName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.useGroundMount = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -2394,15 +2394,15 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel2.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel2.Controls.Add(this.aquaticName);
+            this.expandablePanel2.Controls.Add(this.AquaticMountName);
             this.expandablePanel2.Controls.Add(this.labelX66);
             this.expandablePanel2.Controls.Add(this.labelX57);
             this.expandablePanel2.Controls.Add(this.ignoreFightGoundMount);
             this.expandablePanel2.Controls.Add(this.mountDistance);
             this.expandablePanel2.Controls.Add(this.labelX8);
-            this.expandablePanel2.Controls.Add(this.flyingMountName);
+            this.expandablePanel2.Controls.Add(this.FlyingMountName);
             this.expandablePanel2.Controls.Add(this.labelX7);
-            this.expandablePanel2.Controls.Add(this.groundName);
+            this.expandablePanel2.Controls.Add(this.GroundMountName);
             this.expandablePanel2.Controls.Add(this.labelX6);
             this.expandablePanel2.Controls.Add(this.labelX5);
             this.expandablePanel2.Controls.Add(this.useGroundMount);
@@ -2428,19 +2428,19 @@ namespace nManager.Helpful.Forms
             this.expandablePanel2.TitleStyle.GradientAngle = 90;
             this.expandablePanel2.TitleText = "Mount options";
             // 
-            // aquaticName
+            // AquaticMountName
             // 
-            this.aquaticName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.AquaticMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
-            this.aquaticName.Border.Class = "TextBoxBorder";
-            this.aquaticName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.aquaticName.ForeColor = System.Drawing.Color.Black;
-            this.aquaticName.Location = new System.Drawing.Point(169, 190);
-            this.aquaticName.Name = "aquaticName";
-            this.aquaticName.Size = new System.Drawing.Size(150, 22);
-            this.aquaticName.TabIndex = 22;
+            this.AquaticMountName.Border.Class = "TextBoxBorder";
+            this.AquaticMountName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AquaticMountName.ForeColor = System.Drawing.Color.Black;
+            this.AquaticMountName.Location = new System.Drawing.Point(169, 190);
+            this.AquaticMountName.Name = "AquaticMountName";
+            this.AquaticMountName.Size = new System.Drawing.Size(150, 22);
+            this.AquaticMountName.TabIndex = 22;
             // 
             // labelX66
             // 
@@ -2525,19 +2525,19 @@ namespace nManager.Helpful.Forms
             this.labelX8.TabIndex = 16;
             this.labelX8.Text = "Mount Distance";
             // 
-            // flyingMountName
+            // FlyingMountName
             // 
-            this.flyingMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.FlyingMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
-            this.flyingMountName.Border.Class = "TextBoxBorder";
-            this.flyingMountName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.flyingMountName.ForeColor = System.Drawing.Color.Black;
-            this.flyingMountName.Location = new System.Drawing.Point(169, 161);
-            this.flyingMountName.Name = "flyingMountName";
-            this.flyingMountName.Size = new System.Drawing.Size(150, 22);
-            this.flyingMountName.TabIndex = 15;
+            this.FlyingMountName.Border.Class = "TextBoxBorder";
+            this.FlyingMountName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.FlyingMountName.ForeColor = System.Drawing.Color.Black;
+            this.FlyingMountName.Location = new System.Drawing.Point(169, 161);
+            this.FlyingMountName.Name = "FlyingMountName";
+            this.FlyingMountName.Size = new System.Drawing.Size(150, 22);
+            this.FlyingMountName.TabIndex = 15;
             // 
             // labelX7
             // 
@@ -2555,19 +2555,19 @@ namespace nManager.Helpful.Forms
             this.labelX7.TabIndex = 14;
             this.labelX7.Text = "Flying";
             // 
-            // groundName
+            // GroundMountName
             // 
-            this.groundName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.GroundMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
-            this.groundName.Border.Class = "TextBoxBorder";
-            this.groundName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.groundName.ForeColor = System.Drawing.Color.Black;
-            this.groundName.Location = new System.Drawing.Point(169, 66);
-            this.groundName.Name = "groundName";
-            this.groundName.Size = new System.Drawing.Size(150, 22);
-            this.groundName.TabIndex = 13;
+            this.GroundMountName.Border.Class = "TextBoxBorder";
+            this.GroundMountName.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.GroundMountName.ForeColor = System.Drawing.Color.Black;
+            this.GroundMountName.Location = new System.Drawing.Point(169, 66);
+            this.GroundMountName.Name = "GroundMountName";
+            this.GroundMountName.Size = new System.Drawing.Size(150, 22);
+            this.GroundMountName.TabIndex = 13;
             // 
             // labelX6
             // 
@@ -3023,9 +3023,9 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel2;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
         private DevComponents.DotNetBar.LabelX labelX8;
-        private DevComponents.DotNetBar.Controls.TextBoxX flyingMountName;
+        private DevComponents.DotNetBar.Controls.TextBoxX FlyingMountName;
         private DevComponents.DotNetBar.LabelX labelX7;
-        private DevComponents.DotNetBar.Controls.TextBoxX groundName;
+        private DevComponents.DotNetBar.Controls.TextBoxX GroundMountName;
         private DevComponents.DotNetBar.LabelX labelX6;
         private DevComponents.DotNetBar.LabelX labelX5;
         private DevComponents.DotNetBar.Controls.SwitchButton useGroundMount;
@@ -3170,7 +3170,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton restingMana;
         private DevComponents.DotNetBar.LabelX labelX65;
         private DevComponents.DotNetBar.Controls.SwitchButton prospectingInTown;
-        private DevComponents.DotNetBar.Controls.TextBoxX aquaticName;
+        private DevComponents.DotNetBar.Controls.TextBoxX AquaticMountName;
         private DevComponents.DotNetBar.LabelX labelX66;
         private DevComponents.DotNetBar.Controls.TextBoxX bNetName;
         private DevComponents.DotNetBar.LabelX labelX67;

@@ -186,11 +186,11 @@ namespace nManager
         public bool dontStartFighting;
         public bool useSpiritHealer;
         public bool useGroundMount = true;
-        public string groundName = "";
+        public string GroundMountName = "";
         public float mountDistance = 80;
         public bool ignoreFightGoundMount = true;
-        public string flyingMountName = "";
-        public string aquaticName = "";
+        public string FlyingMountName = "";
+        public string AquaticMountName = "";
         public string foodName = "";
         public int foodPercent = 35;
         public string drinkName = "";
