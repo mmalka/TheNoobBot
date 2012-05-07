@@ -42,7 +42,7 @@ namespace nManager.Wow.Helpers
                     _fightLoop = true;
 
                     if (!ObjectManager.ObjectManager.Me.IsCast)
-                        Interact.InteractGameObjectBeta22(targetNpc.GetBaseAddress);
+                        Interact.InteractGameObjectBeta23(targetNpc.GetBaseAddress);
                     Thread.Sleep(100);
                     if (ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -113,7 +113,7 @@ namespace nManager.Wow.Helpers
                         MovementManager.StopMove();
                     }
                     if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
-                        Interact.InteractGameObjectBeta22(targetNpc.GetBaseAddress);
+                        Interact.InteractGameObjectBeta23(targetNpc.GetBaseAddress);
 
                     _fightLoop = true;
                     Thread.Sleep(500);
@@ -134,7 +134,7 @@ namespace nManager.Wow.Helpers
                         // Target mob if not target
                         if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead && !ObjectManager.ObjectManager.Me.IsCast)
                         {
-                            Interact.InteractGameObjectBeta22(targetNpc.GetBaseAddress);
+                            Interact.InteractGameObjectBeta23(targetNpc.GetBaseAddress);
                         }
 
                         // Move to target if out of range

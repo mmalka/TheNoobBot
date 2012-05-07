@@ -160,9 +160,9 @@ namespace nManager.Wow.Bot.States
                 {
                     Logging.Write("Training " + trainer.Type);
 
-                    Interact.InteractGameObjectBeta22(tTrainer.GetBaseAddress);
+                    Interact.InteractGameObjectBeta23(tTrainer.GetBaseAddress);
                     Thread.Sleep(5000);
-                    Interact.InteractGameObjectBeta22(tTrainer.GetBaseAddress);
+                    Interact.InteractGameObjectBeta23(tTrainer.GetBaseAddress);
                     Trainer.TrainingSpell();
                     Thread.Sleep(5000);
                     // Update spell list

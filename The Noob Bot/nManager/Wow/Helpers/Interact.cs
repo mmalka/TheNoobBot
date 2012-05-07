@@ -9,7 +9,7 @@ namespace nManager.Wow.Helpers
 {
     public class Interact
     {
-        public static void InteractGameObjectBeta22(uint baseAddress)
+        public static void InteractGameObjectBeta23(uint baseAddress)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("InteractGameObjectBeta22(uint baseAddress): " + exception);
+                Logging.WriteError("InteractGameObjectBeta23(uint baseAddress): " + exception);
             }
         }
 

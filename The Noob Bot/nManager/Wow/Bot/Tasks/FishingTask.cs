@@ -120,7 +120,7 @@ namespace nManager.Wow.Bot.Tasks
                                     if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
                                         (int)objBobber.GetBaseAddress > 0)
                                     {
-                                        Interact.InteractGameObjectBeta22(objBobber.GetBaseAddress);
+                                        Interact.InteractGameObjectBeta23(objBobber.GetBaseAddress);
                                         Statistics.Farms++;
                                         Others.Wait(1000);
                                     }
