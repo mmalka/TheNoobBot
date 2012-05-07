@@ -106,7 +106,7 @@ namespace nManager.Wow.Class
 
                             if (MaxRange < 3.6f)
                                 MaxRange = 3.6f;
-                            KnownSpell = SpellManager.SpellBookName().Contains(Name);
+                            KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
                             Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                             Ids.Add(Id);
                             return;
@@ -133,17 +133,34 @@ namespace nManager.Wow.Class
             Spell tSpell = null;
             try
             {
-                foreach (Spell s in SpellManager.SpellBook())
+                uint.TryParse(spellName, out Id);
+                if (Id > 0)
                 {
-                    if (s.Name == spellName)
-                        tSpell = s;
+                    tSpell = SpellManager.GetSpellInfoLUA(spellName);
+                    if (tSpell == null)
+                    {
+                        tSpell = new Spell(SpellManager.SpellListManager.SpellIdByName(spellName)[0]); // en
+                    }
                 }
-
+                else
+                {
+                    foreach (Spell s in SpellManager.SpellBook())
+                    {
+                        if (s.Name == spellName)
+                        {
+                            tSpell = s; // Check à partir du nom en anglais, version string de Spell
+                            break; // On sort du foreach si on a un résultat.
+                        }
+                    }
+                }
+                //Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " Id found: " + tSpell.Id + " Name found: " + tSpell.Name + " NameInGame found: " + tSpell.NameInGame);
                 if (tSpell == null)
                 {
-                    tSpell = new Spell(SpellManager.SpellListManager.SpellIdByName(spellName)[0]);
+                    Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " => Failed");
+                    return;
                 }
-
+                else
+                    Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id + ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
                 Id = tSpell.Id;
                 CastTime = tSpell.CastTime;
                 Cost = tSpell.Cost;
@@ -157,8 +174,8 @@ namespace nManager.Wow.Class
                 Rank = tSpell.Rank;
                 if (MaxRange < 3.6f)
                     MaxRange = 3.6f;
-                KnownSpell = SpellManager.SpellBookName().Contains(Name);
-                Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
+                KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
+                Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name)); // check de tout le fichier Spell.txt
                 Ids.Add(Id);
             }
             catch (Exception exception)
@@ -351,7 +368,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                KnownSpell = SpellManager.SpellBookName().Contains(Name);
+                KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
             }
             catch (Exception exception)
             {

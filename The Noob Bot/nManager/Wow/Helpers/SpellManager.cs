@@ -127,8 +127,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
                         {
-                            var s = new Spell(sIdt);
-                            return s.NameInGame;
+                            return SpellListManager.SpellNameByIdExperimental(sIdt);
                         }
                     }
                 }
@@ -308,6 +307,53 @@ namespace nManager.Wow.Helpers
             return new Spell("");
         }
 
+        public static Spell GetSpellInfoLUA(string spellNameInGame)
+        {
+            try
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString("_, " + randomStringResult + " = GetSpellBookItemInfo(\""+spellNameInGame+"\")");
+                string sResult = Lua.GetLocalizedText(randomStringResult);
+                return new Spell(sResult);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetSpellInfoLUA(string spellNameInGame): " + exception);
+            }
+            return new Spell("");
+        }
+
+        public static uint GetSpellIdBySpellNameInGame(string spellName)
+        {
+            try
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString("_, " + randomStringResult + " = GetSpellBookItemInfo(\"" + spellName + "\")");
+                uint sResult = uint.Parse(Lua.GetLocalizedText(randomStringResult));
+                return sResult;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetSpellInfoLUA(string spellNameInGame): " + exception);
+            }
+            return 0;
+        }
+
+        public static bool ExistSpellBookLUA(string spellName)
+        {
+            try
+            {
+                var ret =
+                    Lua.LuaDoString(
+                    "ret = \"\"; nameclient = \"" + spellName + "\"; if (GetSpellBookItemInfo(nameclient)) then ret = \"true\" else ret = \"false\" end", "ret");
+                return ret == "true";
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("ExistSpellBookLUA(string spellName): " + e);
+                return false;
+            }
+        }
 
         static List<UInt32> _spellBookID = new List<UInt32>();
         static bool _usedSbid;
@@ -379,7 +425,7 @@ namespace nManager.Wow.Helpers
                 if (_spellBookName.Count <= 0)
                 {
                     _usedSbn = true;
-                    var spellBook = SpellBookID().Select(SpellListManager.SpellNameById).ToList();
+                    var spellBook = SpellBookID().Select(SpellListManager.SpellNameByIdExperimental).ToList();
                     _spellBookName = spellBook;
                     _usedSbn = false;
                 }
@@ -429,7 +475,7 @@ namespace nManager.Wow.Helpers
                         if (!_spellBookID.Contains(id))
                         {
                             _spellBookID.Add(id);
-                            _spellBookName.Add(SpellListManager.SpellNameById(id));
+                            _spellBookName.Add(SpellListManager.SpellNameByIdExperimental(id));
                             _spellBookSpell.Add(SpellInfoLUA(id));
                         }
                     }
@@ -639,7 +685,23 @@ namespace nManager.Wow.Helpers
                 }
                 return "";
             }
-
+            public static string SpellNameByIdExperimental(UInt32 spellId)
+            {
+                try
+                {
+                    _spellId = spellId;
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
+                    string sResult = Lua.GetLocalizedText(randomStringResult);
+                    Logging.Write(sResult + ";" + SpellNameById(spellId) + ";"+ spellId);
+                    return sResult;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("SpellNameByIdExperimental(UInt32 spellId): " + exception);
+                }
+                return "";
+            }
             private static uint _spellId;
             private static bool FindById(SpellList tempsSpell)
             {

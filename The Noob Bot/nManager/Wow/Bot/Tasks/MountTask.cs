@@ -23,7 +23,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.GroundMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.GroundMountName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.GroundMountName) && !SpellManager.ExistSpellBookLUA(nManagerSetting.CurrentSetting.GroundMountName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.GroundMountName + "\" does not exist !");
                     if (stopMove)
@@ -88,7 +88,7 @@ namespace nManager.Wow.Bot.Tasks
                     return;
                 }
 
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.AquaticMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.AquaticMountName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.AquaticMountName) && !SpellManager.ExistSpellBookLUA(nManagerSetting.CurrentSetting.AquaticMountName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.AquaticMountName + "\" does not exist !");
                     if (stopMove)
@@ -169,8 +169,7 @@ namespace nManager.Wow.Bot.Tasks
                     nManager.Products.Products.ProductStop();
                     return;
                 }
-
-                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.FlyingMountName) && !SpellManager.SpellUsableLUA(nManagerSetting.CurrentSetting.FlyingMountName))
+                if (!SpellManager.ExistMountLUA(nManagerSetting.CurrentSetting.FlyingMountName) && !SpellManager.ExistSpellBookLUA(nManagerSetting.CurrentSetting.FlyingMountName))
                 {
                     Logging.Write("The mount \"" + nManagerSetting.CurrentSetting.FlyingMountName + "\" does not exist !");
                     if (stopMove)
