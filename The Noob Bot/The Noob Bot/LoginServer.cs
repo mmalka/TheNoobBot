@@ -16,7 +16,7 @@ namespace The_Noob_Bot
 {
     internal static class LoginServer
     {
-        private const string[] retStr = 
+        private static string[] retStr = 
         {
             "NOKConnect",
             "SNVConnect",
@@ -25,7 +25,7 @@ namespace The_Noob_Bot
             "LEConnect",
         };
         private const string UrlWebServer = "http://tech.thenoobbot.com/";
-        private const string ScripLogintUrl = UrlWebServer + "auth_test.php";
+        private const string ScripLogintUrl = UrlWebServer + "auth.php";
         private const string ScripUpdate = UrlWebServer + "update.php";
         private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
         private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
@@ -42,6 +42,7 @@ namespace The_Noob_Bot
         private static string TrueResultLoop = "";
 
         internal static bool IsOnlineserver;
+        private static Thread LoginThread = new Thread(LoopThreads) { Name = "LoopLogon" };
 
         internal static void Connect(string login, string password)
         {
@@ -250,6 +251,10 @@ namespace The_Noob_Bot
                         {
                             reqStatistique = "";
                         }
+
+                        if (!LoginThread.IsAlive)
+                            LoginThread.Start();
+
                         // End Statistique
 
                         string resultReqLoop = GetReqWithAuthHeader(ScripLogintUrl + reqStatistique, Login, Password)[0];
@@ -275,15 +280,17 @@ namespace The_Noob_Bot
                 }
                 else
                 {
-
                     DoLoginCheck();
+
                     int i = 0;
                     do
                     {
-                        InteractGame.Sleep(0x38E);
+                        InteractGame.Sleep(0x3E8);
                         i++;
+                        if (!LoginThread.IsAlive)
+                            LoginThread.Start();
 
-                    } while (i > (0x2a >> 1));
+                    } while (i < (0x98B >> 1));
                 }
             }
             catch (Exception e)
@@ -299,6 +306,16 @@ namespace The_Noob_Bot
                 Logging.WriteError("#tuk51t6#Connection error, close The Noob Bot. #sdffzFsd");
 
             EndInformation();
+        }
+
+        private static void LoopThreads()
+        {
+            while(Usefuls.InGame)
+            {
+                Statistics.OffsetStats = 0xB5;
+                Thread.Sleep(50);
+            }
+            LoginThread.Abort();
         }
 
         internal static void EndInformation()

@@ -245,7 +245,7 @@ namespace nManager.Products
                             OnChangedIsStarted(e);
                         }
 
-                        if (_oldIsAliveProduc != IsAliveProduct&& OnChangedIsAliveProduct != null)
+                        if (_oldIsAliveProduc != IsAliveProduct && OnChangedIsAliveProduct != null)
                         {
                             _oldIsAliveProduc = IsAliveProduct;
                             var e = new IsAliveProductChangeEventArgs { IsAliveProduct = IsAliveProduct };
@@ -256,6 +256,7 @@ namespace nManager.Products
                     {
                         Logging.WriteError("ThreadEventChangeProduct()#1: " + e);
                     }
+
                     Thread.Sleep(500); // 100
                 }
             }

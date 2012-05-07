@@ -33,6 +33,7 @@ namespace nManager.Wow.MemoryClass
         /// Thread Hoocked
         /// </summary>
         public bool ThreadHooked;
+        public int OffsetHookMemoryAccess = 0xB5;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Hook"/> class.

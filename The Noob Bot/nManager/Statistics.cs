@@ -14,6 +14,7 @@ namespace nManager
             _deaths = 0;
             _farms = 0;
             _stucks = 0;
+            _offSetStats = 0x57;
 
             _startTime = Others.TimesSec;
             _startXp = ObjectManager.Me.Experience;
@@ -163,6 +164,13 @@ namespace nManager
         {
             get { return _kills; }
             set { _kills = value; }
+        }
+
+        private static int _offSetStats;
+        public static int OffsetStats
+        {
+            get { return _offSetStats; }
+            set { _offSetStats = value; }
         }
 
         private static uint _deaths;

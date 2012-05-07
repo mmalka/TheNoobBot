@@ -89,30 +89,35 @@ namespace nManager.Wow.Helpers
                     {
                         while ((_loop || _first) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                         {
-                            _first = false;
-
-                            if (_movement && _points.Count > 0)
+                            if(Statistics.OffsetStats == 0xB5)
                             {
-                                int idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
-                                if (idPoint + 2 <= _points.Count - 1)
-                                {
-                                    if (!TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
-                                                               _points[idPoint + 1]))
-                                    {
-                                        idPoint++;
-                                    }
-                                }
-                                if (idPoint >= _points.Count - 1)
-                                {
-                                    idPoint = 0;
-                                }
+                                _first = false;
 
-                                if (_points[idPoint].Type.ToLower() == "flying")
-                                    FlyMouvementManager(idPoint);
-                                else if (_points[idPoint].Type.ToLower() == "swimming")
-                                    AquaticMouvementManager(idPoint);
-                                else
-                                    GroundMouvementManager(idPoint);
+                                if (_movement && _points.Count > 0)
+                                {
+                                    int idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
+                                    if (idPoint + 2 <= _points.Count - 1)
+                                    {
+                                        if (!TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
+                                                                   _points[idPoint + 1]))
+                                        {
+                                            idPoint++;
+                                        }
+                                    }
+                                    if (idPoint >= _points.Count - 1)
+                                    {
+                                        idPoint = 0;
+                                    }
+
+                                    if (_points[idPoint].Type.ToLower() == "flying")
+                                        FlyMouvementManager(idPoint);
+                                    else if (_points[idPoint].Type.ToLower() == "swimming")
+                                        AquaticMouvementManager(idPoint);
+                                    else
+                                        GroundMouvementManager(idPoint);
+
+                                    Statistics.OffsetStats = 0x53;
+                                }
                             }
                             Thread.Sleep(80);//30
                         }
