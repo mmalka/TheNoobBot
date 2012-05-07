@@ -9,13 +9,23 @@ using nManager.Helpful;
 using nManager.Wow;
 using Process = System.Diagnostics.Process;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
+using InteractGame = System.Threading.Thread;
+using HookInfoz = System.Diagnostics.Process;
 
 namespace The_Noob_Bot
 {
     internal static class LoginServer
     {
+        private const string[] retStr = 
+        {
+            "NOKConnect",
+            "SNVConnect",
+            "OKConnect",
+            "PEConnect",
+            "LEConnect",
+        };
         private const string UrlWebServer = "http://tech.thenoobbot.com/";
-        private const string ScripLogintUrl = UrlWebServer + "auth.php";
+        private const string ScripLogintUrl = UrlWebServer + "auth_test.php";
         private const string ScripUpdate = UrlWebServer + "update.php";
         private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
         private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
@@ -85,7 +95,7 @@ namespace The_Noob_Bot
                 }
 
                 // Error
-                if (repC == "SubscriptionNotValide")
+                if (repC == retStr[0])
                 {
                     MessageBox.Show(
                         Translate.Get(Translate.Id.Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) + ": http://thenoobbot.com/.",
@@ -98,14 +108,14 @@ namespace The_Noob_Bot
                     return;
                 }
 
-                if (repC == "PasswordError")
+                if (repC == retStr[3])
                     MessageBox.Show(Translate.Get(Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) + ": http://thenoobbot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else if (repC == "LoginError")
+                else if (repC == retStr[4])
                     MessageBox.Show(Translate.Get(Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(Translate.Get(Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                Process.GetCurrentProcess().Kill();
+                EndInformation();
             }
             catch (Exception e)
             {
@@ -136,6 +146,7 @@ namespace The_Noob_Bot
 
         private static void LoopThread()
         {
+            bool lalala = true;
             try
             {
                 bool lastResult = true;
@@ -250,7 +261,7 @@ namespace The_Noob_Bot
                             {
                                 while (!ServerIsOnline())
                                 {
-                                    Thread.Sleep(10000);
+                                    InteractGame.Sleep(10000);
                                 }
                                 Connect(Login, Password);
                                 return;
@@ -259,21 +270,20 @@ namespace The_Noob_Bot
                         }
                         else
                             lastResult = true;
-                        Thread.Sleep(55000);
+                        InteractGame.Sleep(55000);
                     }
                 }
                 else
                 {
-                    int msToSec = 1;
-                    msToSec = msToSec*1000;
-                    int secToMin = 2;
-                    secToMin = secToMin*30;
+
+                    DoLoginCheck();
                     int i = 0;
-                    while (i < secToMin * 20)
+                    do
                     {
-                        Thread.Sleep(msToSec);
+                        InteractGame.Sleep(0x38E);
                         i++;
-                    } 
+
+                    } while (i > (0x2a >> 1));
                 }
             }
             catch (Exception e)
@@ -281,21 +291,88 @@ namespace The_Noob_Bot
                 Logging.WriteError("DSfi^sdfDSOfijfze#1" + e);
             }
             IsConnected = false;
-            if (IsFreeVersion)
+            if (lalala && IsFreeVersion)
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/get-a-bg-bot-wow/");
-                Logging.WriteFileOnly("Trial period finished.");
+                Others.OpenWebBrowserOrApplication("http://goo.gl/Fzdgc");
             }
             else
-                Logging.WriteError("Connection error , close The Noob Bot. #sdfezFsd");
+                Logging.WriteError("#tuk51t6#Connection error, close The Noob Bot. #sdffzFsd");
+
+            EndInformation();
+        }
+
+        internal static void EndInformation()
+        {
+            HookWowQ();
+            if (!isProcessKilled())
+                KillApplication();
+
             try
             {
-                Pulsator.Dispose(true);
+                Application.Exit();
             }
             catch
             {
             }
-            Process.GetCurrentProcess().Kill();
+            Reboot();
+            Overload();
+        }
+
+        public static bool isProcessKilled()
+        {
+            return false;
+        }
+
+        public static void KillProcess()
+        {
+
+        }
+
+        public static void KillApplication()
+        {
+            KillProcess();
+        }
+
+        public static void Reboot()
+        {
+            try
+            {
+                Application.ExitThread();
+            }
+            catch
+            {
+            }
+        }
+
+        public static void Overload()
+        {
+            try
+            {
+                System.Environment.Exit(0);
+            }
+            catch
+            {
+            }
+        }
+
+        public static void HookWowQ()
+        {
+            if (true)
+            {
+                try
+                {
+                    Pulsator.Dispose(true);
+                }
+                catch
+                {
+                }
+                HookInfoz.GetCurrentProcess().Kill();
+            }
+        }
+
+        public static void DoLoginCheck()
+        {
+
         }
 
         internal static void CheckUpdate()
@@ -305,9 +382,9 @@ namespace The_Noob_Bot
                 var checkUpdateThreadLaunch = new Thread(CheckUpdateThread) { Name = "CheckUpdate" };
                 checkUpdateThreadLaunch.Start();
             }
-            catch (Exception e)
+            catch /*(Exception e)*/
             {
-                Logging.WriteError("LoginServer > CheckUpdate(): " + e);
+                //Logging.WriteError("LoginServer > CheckUpdate(): " + e);
             }
         }
 
@@ -345,7 +422,7 @@ namespace The_Noob_Bot
                                     catch
                                     {
                                     }
-                                    Process.GetCurrentProcess().Kill();
+                                    EndInformation();
                                     break;
                                 case DialogResult.No:
                                     break;
@@ -354,9 +431,9 @@ namespace The_Noob_Bot
                     }
                 }
             }
-            catch (Exception e)
+            catch /*(Exception e)*/
             {
-                Logging.WriteError("LoginServer > CheckUpdateThread(): " + e);
+                //Logging.WriteError("LoginServer > CheckUpdateThread(): " + e);
             }
         }
 
@@ -391,7 +468,7 @@ namespace The_Noob_Bot
                             {
                                 case DialogResult.Yes:
                                     Memory.WowProcess.KillWowProcess();
-                                    Process.GetCurrentProcess().Kill();
+                                    EndInformation();
                                     break;
                                 case DialogResult.No:
                                     break;
@@ -456,7 +533,7 @@ namespace The_Noob_Bot
                 Logging.WriteError("LoginServer > CheckServerIsOnlineThread(): " + e);
             }
             MessageBox.Show(Translate.Get(Translate.Id.TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat), Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Process.GetCurrentProcess().Kill();
+            EndInformation();
         }
 
         static List<string> GetReqWithAuthHeader(string url, String userName, String userPassword)

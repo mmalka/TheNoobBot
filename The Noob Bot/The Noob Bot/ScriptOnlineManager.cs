@@ -106,8 +106,8 @@ namespace The_Noob_Bot
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
                 {
-                    String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
-                    MessageBox.Show(text);
+                    //String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
+                    //MessageBox.Show(text);
                     return;
                 }
 
@@ -119,12 +119,12 @@ namespace The_Noob_Bot
 
                 if (_instanceFromOtherAssembly != null)
                     _instanceFromOtherAssembly.Initialize();
-                else
-                    Logging.WriteError("grzGRDSFfezfsgfvsdg error");
+                //else
+                    //Logging.WriteError("grzGRDSFfezfsgfvsdg error");
             }
-            catch (Exception e)
+            catch /*(Exception e)*/
             {
-                Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
+                //Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
             }
         }
     }

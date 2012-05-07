@@ -153,7 +153,7 @@ namespace nManager.Wow.Bot.States
                                 return;
                             }
                             Thread.Sleep(1000);
-                            Interact.InteractGameObject(t.GetBaseAddress);
+                            Interact.InteractGameObjectBeta22(t.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency);
                             if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                             {

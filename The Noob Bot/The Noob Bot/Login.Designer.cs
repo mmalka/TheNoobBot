@@ -46,8 +46,8 @@ namespace The_Noob_Bot
             this.requiredFieldValidator2 = new DevComponents.DotNetBar.Validator.RequiredFieldValidator("Your error message here.");
             this.bar1 = new DevComponents.DotNetBar.Bar();
             this.labelItem1 = new DevComponents.DotNetBar.LabelItem();
-            this.buttonItem1 = new DevComponents.DotNetBar.ButtonItem();
-            this.buttonItem2 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonLaunchWoWDX9 = new DevComponents.DotNetBar.ButtonItem();
+            this.buttonLaunchWoWDX11 = new DevComponents.DotNetBar.ButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -221,8 +221,8 @@ namespace The_Noob_Bot
             this.bar1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.bar1.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.labelItem1,
-            this.buttonItem1,
-            this.buttonItem2});
+            this.buttonLaunchWoWDX9,
+            this.buttonLaunchWoWDX11});
             this.bar1.Location = new System.Drawing.Point(246, 60);
             this.bar1.Name = "bar1";
             this.bar1.Size = new System.Drawing.Size(94, 19);
@@ -237,17 +237,17 @@ namespace The_Noob_Bot
             this.labelItem1.Name = "labelItem1";
             this.labelItem1.Text = "Launch Game";
             // 
-            // buttonItem1
+            // buttonLaunchWoWDX9
             // 
-            this.buttonItem1.Name = "buttonItem1";
-            this.buttonItem1.Text = "With DirectX9";
-            this.buttonItem1.Click += new System.EventHandler(this.buttonItem1_Click);
+            this.buttonLaunchWoWDX9.Name = "buttonLaunchWoWDX9";
+            this.buttonLaunchWoWDX9.Text = "With DirectX9";
+            this.buttonLaunchWoWDX9.Click += new System.EventHandler(this.buttonLaunchWoWDX9_Click);
             // 
-            // buttonItem2
+            // buttonLaunchWoWDX11
             // 
-            this.buttonItem2.Name = "buttonItem2";
-            this.buttonItem2.Text = "With DirectX11";
-            this.buttonItem2.Click += new System.EventHandler(this.buttonItem2_Click);
+            this.buttonLaunchWoWDX11.Name = "buttonLaunchWoWDX11";
+            this.buttonLaunchWoWDX11.Text = "With DirectX11";
+            this.buttonLaunchWoWDX11.Click += new System.EventHandler(this.buttonLaunchWoWDX11_Click);
             // 
             // Login
             // 
@@ -298,8 +298,8 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator2;
         private DevComponents.DotNetBar.Validator.RequiredFieldValidator requiredFieldValidator1;
         private DevComponents.DotNetBar.Bar bar1;
-        private DevComponents.DotNetBar.ButtonItem buttonItem1;
-        private DevComponents.DotNetBar.ButtonItem buttonItem2;
+        private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX9;
+        private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX11;
         private DevComponents.DotNetBar.LabelItem labelItem1;
     }
 }

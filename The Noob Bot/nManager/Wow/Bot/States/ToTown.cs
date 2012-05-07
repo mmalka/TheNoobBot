@@ -158,7 +158,7 @@ namespace nManager.Wow.Bot.States
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(mailBoxObj.Position) < 5 && Products.Products.IsStarted &&
                         !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                     {
-                        Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
+                        Interact.InteractGameObjectBeta22(mailBoxObj.GetBaseAddress);
                         Thread.Sleep(500);
                         var mQuality = new List<WoWItemQuality>();
                         if (nManagerSetting.CurrentSetting.mailGray)
@@ -175,7 +175,7 @@ namespace nManager.Wow.Bot.States
                         var needRunAgain = true;
                         for (var i = 7; i > 0 && needRunAgain; i--)
                         {
-                            Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
+                            Interact.InteractGameObjectBeta22(mailBoxObj.GetBaseAddress);
                             Thread.Sleep(1000);
                             Mail.SendMessage(nManagerSetting.CurrentSetting.mailRecipient, nManagerSetting.CurrentSetting.mailSubject, "",
                                              nManagerSetting.CurrentSetting.forceMailList, nManagerSetting.CurrentSetting.doNotMailList, mQuality, out needRunAgain);
@@ -269,7 +269,7 @@ namespace nManager.Wow.Bot.States
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(vendorObj.Position) < 5 && Products.Products.IsStarted &&
                             !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                         {
-                            Interact.InteractGameObject(vendorObj.GetBaseAddress);
+                            Interact.InteractGameObjectBeta22(vendorObj.GetBaseAddress);
                             Thread.Sleep(1500);
 
                             // Repair:

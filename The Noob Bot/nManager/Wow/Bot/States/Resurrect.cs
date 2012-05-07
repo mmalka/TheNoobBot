@@ -180,7 +180,7 @@ namespace nManager.Wow.Bot.States
                             stuckTemps--;
                         }
                     }
-                    Interact.InteractGameObject(objectSpiritHealer.GetBaseAddress);
+                    Interact.InteractGameObjectBeta22(objectSpiritHealer.GetBaseAddress);
                     Thread.Sleep(2000);
                     Interact.SpiritHealerAccept();
                     Thread.Sleep(1000);

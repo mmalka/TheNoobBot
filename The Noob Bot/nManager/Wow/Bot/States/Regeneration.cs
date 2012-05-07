@@ -145,7 +145,7 @@ namespace nManager.Wow.Bot.States
                         // Use macro food
                         if (Config.Bot.FormConfig.RegenUsePetMacro)
                         {
-                            Interact.InteractGameObject(ObjectManager.ObjectManager.Pet.GetBaseAddress);
+                            Interact.InteractGameObjectBeta22(ObjectManager.ObjectManager.Pet.GetBaseAddress);
                             Thread.Sleep(500);
                             Keyboard.PressBarAndSlotKey(Config.Bot.FormConfig.PetBar + ";" + Config.Bot.FormConfig.PetSlot);
                             Thread.Sleep(500);

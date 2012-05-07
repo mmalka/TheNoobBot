@@ -61,8 +61,8 @@ namespace The_Noob_Bot
                 refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
                 Text = nManager.Translate.Get(nManager.Translate.Id.Login);
                 labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
-                buttonItem1.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
-                buttonItem2.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
+                buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
+                buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
             }
             catch (Exception ex)
             {
@@ -377,14 +377,14 @@ namespace The_Noob_Bot
             }
         }
 
-        private void buttonItem1_Click(object sender, EventArgs e)
+        private void buttonLaunchWoWDX9_Click(object sender, EventArgs e)
         {
             nManager.Wow.Helpers.Usefuls.LaunchWow("-d3d9");
             Thread.Sleep(1000);
             RefreshProcessList();
         }
 
-        private void buttonItem2_Click(object sender, EventArgs e)
+        private void buttonLaunchWoWDX11_Click(object sender, EventArgs e)
         {
             nManager.Wow.Helpers.Usefuls.LaunchWow("-d3d11");
             Thread.Sleep(1000);
