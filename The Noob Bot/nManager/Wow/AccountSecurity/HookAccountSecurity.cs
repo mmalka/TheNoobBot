@@ -386,8 +386,8 @@ namespace nManager.Wow.AccountSecurity
                     timeFindAddressAccountSecurity = new Timer(1000 * 60);
                     lastProcessId = Memory.WowProcess.ProcessId;
 
-                    const uint MaxAddress = 0x10000000;
-                    uint address = 0x01000000;
+                    //const uint MaxAddress = 0x10000000;
+                    //uint address = 0x01000000;
 
                     var timerFindAccountSecurity = new Timer(15 * 1000);
 

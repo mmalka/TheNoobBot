@@ -133,7 +133,7 @@ namespace nManager.Wow.Bot.Tasks
                     {
                     }
 
-                    Thread.Sleep(600);
+                    Thread.Sleep(400);
                 }
             }
             catch (Exception e)

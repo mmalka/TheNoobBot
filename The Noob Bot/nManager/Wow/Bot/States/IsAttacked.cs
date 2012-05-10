@@ -68,7 +68,7 @@ namespace nManager.Wow.Bot.States
             if (_unit.IsDead)
             {
                 Statistics.Kills++;
-                Thread.Sleep(Usefuls.Latency + 1000);
+                Thread.Sleep(Usefuls.Latency + 800);
                 while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
                 {
                     Thread.Sleep(10);

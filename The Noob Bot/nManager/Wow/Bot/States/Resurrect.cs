@@ -79,7 +79,7 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.IsMounted)
                 {
                     Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
                     Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
                     tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
                     tPointCorps.Z = tPointCorps.Z + 10;

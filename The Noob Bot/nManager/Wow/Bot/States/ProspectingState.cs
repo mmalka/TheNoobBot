@@ -69,7 +69,7 @@ namespace nManager.Wow.Bot.States
         {
             lastTimeRunning = Others.Times;
             MovementManager.StopMove();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             Tasks.MountTask.DismountMount();
             Logging.Write("Prospecting in progress");
             var timer = new Helpful.Timer(15*60*1000);
@@ -77,16 +77,16 @@ namespace nManager.Wow.Bot.States
             while (Prospecting.NeedRun(nManagerSetting.CurrentSetting.prospectingList) && Products.Products.IsStarted && Usefuls.InGame &&
                        !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer.IsReady)
             {
-                Thread.Sleep(300);
+                Thread.Sleep(200);
                 Prospecting.Pulse(nManagerSetting.CurrentSetting.prospectingList);
-                Thread.Sleep(1000);
+                Thread.Sleep(750);
                 while (ObjectManager.ObjectManager.Me.IsCast && Products.Products.IsStarted && Usefuls.InGame &&
                        !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer.IsReady)
                 {
                     Thread.Sleep(100);
                 }
 
-                Thread.Sleep(Others.Random(700, 1500) + Usefuls.Latency);
+                Thread.Sleep(Others.Random(600, 1600) + Usefuls.Latency);
             }
         }
     }

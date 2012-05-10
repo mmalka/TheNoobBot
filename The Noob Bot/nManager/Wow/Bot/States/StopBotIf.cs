@@ -65,7 +65,7 @@ namespace nManager.Wow.Bot.States
             {
                if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                {
-                   Thread.Sleep(1000);
+                   Thread.Sleep(800);
                    if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                    {
                        closeWow(Translate.Get(Translate.Id.Bag_is_full));
@@ -79,7 +79,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(800);
                     if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     {
                         closeWow(Translate.Get(Translate.Id.Reached_4000_Honor_Points));
@@ -142,7 +142,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if(_inPause)
                 {
-                    Thread.Sleep(1000);
+                    Thread.Sleep(800);
                     if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     {
                         _inPause = false;

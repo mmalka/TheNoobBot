@@ -63,7 +63,7 @@ namespace nManager.Wow.Bot.Tasks
                                         MovementManager.StopMove();
                                         MovementManager.StopMove();
                                         MountTask.DismountMount();
-                                        Thread.Sleep(500);
+                                        Thread.Sleep(250);
                                         while (ObjectManager.ObjectManager.Me.GetMove)
                                         {
                                             Thread.Sleep(50);
@@ -76,7 +76,7 @@ namespace nManager.Wow.Bot.Tasks
                                             {
                                                 return;
                                             }
-                                            Thread.Sleep(1500);
+                                            Thread.Sleep(1250);
                                             if (nManagerSetting.CurrentSetting.skinMobs && ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                 return;
                                             Statistics.Loots++;
@@ -90,7 +90,7 @@ namespace nManager.Wow.Bot.Tasks
                                         }
                                         if (nManagerSetting.CurrentSetting.skinMobs && ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
-                                            Thread.Sleep(2000);
+                                            Thread.Sleep(1500);
                                             if (wowUnit.Skinnable)
                                             {
                                                 Logging.Write("Skin " + wowUnit.Name);

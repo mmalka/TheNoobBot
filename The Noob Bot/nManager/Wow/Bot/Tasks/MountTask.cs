@@ -46,9 +46,9 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMoveTo();
                     Logging.Write("Mounting " + nManagerSetting.CurrentSetting.GroundMountName);
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.GroundMountName);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(800);
                     Thread.Sleep(Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -111,9 +111,9 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMoveTo();
                     Logging.Write("Mounting " + nManagerSetting.CurrentSetting.AquaticMountName);
 
-                    Thread.Sleep(500);
+                    Thread.Sleep(250);
                     SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.AquaticMountName);
-                    Thread.Sleep(1000);
+                    Thread.Sleep(800);
                     Thread.Sleep(Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -194,7 +194,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (Usefuls.IsSwimming)
                     {
                         Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-                        Thread.Sleep(2000);
+                        Thread.Sleep(1750);
                         Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
                     }
                     if (Usefuls.IsOutdoors)
@@ -223,7 +223,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(800);
+                        Thread.Sleep(500);
                     }
                     if (!ObjectManager.ObjectManager.Me.IsMounted && Products.Products.IsStarted)
                     {
@@ -231,7 +231,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(700);
+                        Thread.Sleep(500);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;

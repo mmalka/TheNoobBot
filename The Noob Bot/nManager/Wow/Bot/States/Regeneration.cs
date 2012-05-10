@@ -76,7 +76,7 @@ namespace nManager.Wow.Bot.States
                 {
                     Logging.Write("Regen started");
                     MovementManager.StopMove();
-                    Thread.Sleep(1000);
+                    Thread.Sleep(500);
 
                     // Use food:
                     if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.foodPercent &&

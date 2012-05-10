@@ -557,7 +557,7 @@ namespace nManager.Wow.Helpers
                     if (current == 0 || (current & 0x1) == 0x1)
                         return "";
                     testGUID = Memory.WowMemory.Memory.ReadUInt(current);
-                    Thread.Sleep(1);
+                    Thread.Sleep(5);
                 }
 
                 return Memory.WowMemory.Memory.ReadUTF8String(current + (uint)Addresses.PlayerNameStore.nameStringOffset);

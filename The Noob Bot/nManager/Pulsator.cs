@@ -2,7 +2,6 @@
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow.AccountSecurity;
 using nManager.Wow.Helpers;
 using nManager.Wow.MemoryClass;
 using Timer = nManager.Helpful.Timer;
@@ -28,7 +27,7 @@ namespace nManager
                 if (Wow.Helpers.Usefuls.WowVersion == Information.ForBuildWowVersion)
                 {
                     Wow.ObjectManager.Pulsator.Initialize();
-                    AccountSecurity.Pulse();
+                    //AccountSecurity.Pulse();
                 }
 
                 
@@ -76,7 +75,7 @@ namespace nManager
                 
                     Products.Products.DisposeProduct();
                     Wow.ObjectManager.Pulsator.Shutdown();
-                    AccountSecurity.Dispose();
+                    //AccountSecurity.Dispose();
                     Wow.Memory.WowMemory.DisposeHooking();
                     Wow.Memory.WowProcess = new Process();
 

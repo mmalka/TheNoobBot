@@ -177,7 +177,7 @@ namespace nManager.Wow.Bot.Tasks
                                     {
                                     */
                                         Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                                        var t = new Timer(850);
+                                        var t = new Timer(700);
                                         while (Usefuls.IsFlying && !t.IsReady)
                                         {
                                             Thread.Sleep(3);
@@ -200,13 +200,13 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                                 if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)).Contains(node.Entry)))
                                     Usefuls.DisMount();
-                                Thread.Sleep(Usefuls.Latency + 400);
+                                Thread.Sleep(Usefuls.Latency + 300);
                                 Interact.InteractGameObjectBeta23(node.GetBaseAddress);
                                 Thread.Sleep(Usefuls.Latency + 200); // tauren cast plus vite
                                 if (!ObjectManager.ObjectManager.Me.IsCast)
                                 {
                                     Interact.InteractGameObjectBeta23(node.GetBaseAddress);
-                                    Thread.Sleep(750);
+                                    Thread.Sleep(Usefuls.Latency + 200);
                                 }
                                 while (ObjectManager.ObjectManager.Me.IsCast)
                                 {
@@ -218,8 +218,7 @@ namespace nManager.Wow.Bot.Tasks
                                         Lua.RunMacroText("/cancelform");
                                     return;
                                 }
-                                Thread.Sleep(Usefuls.Latency);
-                                Thread.Sleep(100);
+                                Thread.Sleep(Usefuls.Latency + 100);
                                 Statistics.Farms++;
                                 if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                                 {
@@ -316,7 +315,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                Thread.Sleep(1000);
+                                Thread.Sleep(800);
                                 if (ObjectManager.ObjectManager.Me.InCombat)
                                 {
                                     return;
@@ -343,8 +342,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                Thread.Sleep(Usefuls.Latency);
-                                Thread.Sleep(1500);
+                                Thread.Sleep(Usefuls.Latency + 1250);
                                 if (ObjectManager.ObjectManager.Me.InCombat)
                                 {
                                     return;
