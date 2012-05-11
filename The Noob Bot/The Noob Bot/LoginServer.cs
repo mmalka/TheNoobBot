@@ -520,7 +520,7 @@ namespace The_Noob_Bot
                 string resultReq = Others.GetRequest(ScripServerIsOnline, "null=null");
                 if (resultReq != null)
                 {
-                    if (resultReq.Count() < 100)
+                    if (resultReq.Count() < 10)
                     {
                         if (resultReq == "true")
                         {

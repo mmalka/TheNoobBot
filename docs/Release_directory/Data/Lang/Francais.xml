@@ -895,4 +895,181 @@
       <Id>Product_Settings</Id>
     </Translation>
   </Translations>
+   <Translation>
+      <Text>Inverser le sens du profil</Text>
+      <Id>Pathing_Reverse_Direction</Id>
+    </Translation>
+    <Translation>
+      <Text>Configuration</Text>
+      <Id>Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Veuilez sélectionner un profil</Text>
+      <Id>Please_select_an_profile</Id>
+    </Translation>
+    <Translation>
+      <Text>Fichier introuvable</Text>
+      <Id>File_not_found</Id>
+    </Translation>
+    <Translation>
+      <Text>succes</Text>
+      <Id>success</Id>
+    </Translation>
+    <Translation>
+      <Text>erreurs</Text>
+      <Id>errors</Id>
+    </Translation>
+    <Translation>
+      <Text>Npc faction list</Text>
+      <Id>Npc_faction_list</Id>
+    </Translation>
+    <Translation>
+      <Text>Translate Tools</Text>
+      <Id>Translate_Tools</Id>
+    </Translation>
+    <Translation>
+      <Text>Whisper Egal at</Text>
+      <Id>Whisper_Egal_at</Id>
+    </Translation>
+    <Translation>
+      <Text>TNB started since</Text>
+      <Id>tnb_started_since</Id>
+    </Translation>
+    <Translation>
+      <Text>Vous êtes désormais level</Text>
+      <Id>Your_player_is_now_level</Id>
+    </Translation>
+    <Translation>
+      <Text>level upper</Text>
+      <Id>level_upper</Id>
+    </Translation>
+    <Translation>
+      <Text>Player Teleported</Text>
+      <Id>Player_Teleported</Id>
+    </Translation>
+    <Translation>
+      <Text>Reached 4000 Honor Points</Text>
+      <Id>Reached_4000_Honor_Points</Id>
+    </Translation>
+    <Translation>
+      <Text>Bag is full</Text>
+      <Id>Bag_is_full</Id>
+    </Translation>
+    <Translation>
+      <Text>After</Text>
+      <Id>After</Id>
+    </Translation>
+    <Translation>
+      <Text>Add</Text>
+      <Id>Add</Id>
+    </Translation>
+    <Translation>
+      <Text>Launch C# script</Text>
+      <Id>Launch_C__script</Id>
+    </Translation>
+    <Translation>
+      <Text>Auto Make Elemental</Text>
+      <Id>Auto_Make_Elemental</Id>
+    </Translation>
+    <Translation>
+      <Text>Nodes List Manager</Text>
+      <Id>Nodes_List_Manager</Id>
+    </Translation>
+    <Translation>
+      <Text>(Ore)</Text>
+      <Id>Smelting_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Ore)</Text>
+      <Id>Prospecting_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(WowRobot/Pirox/HonorBuddy et plus)</Text>
+      <Id>Profiles_Converters_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(EXP, Dépeuçage, Reputation et loots)</Text>
+      <Id>Grinder_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Minage et herboriste)</Text>
+      <Id>Gatherer_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Fisherbot_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Archaeologist_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>By npc name</Text>
+      <Id>By_npc_name</Id>
+    </Translation>
+    <Translation>
+      <Text>Object type</Text>
+      <Id>Object_type</Id>
+    </Translation>
+    <Translation>
+      <Text>Creature type</Text>
+      <Id>Creature_type</Id>
+    </Translation>
+    <Translation>
+      <Text>Tracker</Text>
+      <Id>Tracker</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Tracker_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>With</Text>
+      <Id>With</Id>
+    </Translation>
+    <Translation>
+      <Text>Lancer le jeu</Text>
+      <Id>Launch_Game</Id>
+    </Translation>
+    <Translation>
+      <Text>Battlegrounder Settings</Text>
+      <Id>Settings_Battlegrounder</Id>
+    </Translation>
+    <Translation>
+      <Text>WarsongGulch</Text>
+      <Id>WarsongGulch</Id>
+    </Translation>
+    <Translation>
+      <Text>Arathi Basin</Text>
+      <Id>ArathiBasin</Id>
+    </Translation>
+    <Translation>
+      <Text>Alterac Valley</Text>
+      <Id>AlteracValley</Id>
+    </Translation>
+    <Translation>
+      <Text>Eye of the Storm</Text>
+      <Id>EyeoftheStorm</Id>
+    </Translation>
+    <Translation>
+      <Text>Strand of the Ancients</Text>
+      <Id>StrandoftheAncients</Id>
+    </Translation>
+    <Translation>
+      <Text>Isle of Conquest</Text>
+      <Id>IsleofConquest</Id>
+    </Translation>
+    <Translation>
+      <Text>Battle for Gilneas</Text>
+      <Id>BattleforGilneas</Id>
+    </Translation>
+    <Translation>
+      <Text>Twin Peaks</Text>
+      <Id>TwinPeaks</Id>
+    </Translation>
+    <Translation>
+      <Text>Random Battleground</Text>
+      <Id>RandomBattleground</Id>
+    </Translation>
+  </Translations>
 </Language>

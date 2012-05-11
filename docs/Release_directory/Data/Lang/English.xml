@@ -902,7 +902,7 @@
       <Id>Settings</Id>
     </Translation>
     <Translation>
-      <Text>Please select an profile</Text>
+      <Text>Please select a profile</Text>
       <Id>Please_select_an_profile</Id>
     </Translation>
     <Translation>
@@ -930,11 +930,11 @@
       <Id>Whisper_Egal_at</Id>
     </Translation>
     <Translation>
-      <Text>tnb started since</Text>
+      <Text>TNB started since</Text>
       <Id>tnb_started_since</Id>
     </Translation>
     <Translation>
-      <Text>Your player is now level</Text>
+      <Text>Your are now level</Text>
       <Id>Your_player_is_now_level</Id>
     </Translation>
     <Translation>
@@ -1028,6 +1028,46 @@
     <Translation>
       <Text>Launch Game</Text>
       <Id>Launch_Game</Id>
+    </Translation>
+    <Translation>
+      <Text>Battlegrounder Settings</Text>
+      <Id>Settings_Battlegrounder</Id>
+    </Translation>
+    <Translation>
+      <Text>WarsongGulch</Text>
+      <Id>WarsongGulch</Id>
+    </Translation>
+    <Translation>
+      <Text>Arathi Basin</Text>
+      <Id>ArathiBasin</Id>
+    </Translation>
+    <Translation>
+      <Text>Alterac Valley</Text>
+      <Id>AlteracValley</Id>
+    </Translation>
+    <Translation>
+      <Text>Eye of the Storm</Text>
+      <Id>EyeoftheStorm</Id>
+    </Translation>
+    <Translation>
+      <Text>Strand of the Ancients</Text>
+      <Id>StrandoftheAncients</Id>
+    </Translation>
+    <Translation>
+      <Text>Isle of Conquest</Text>
+      <Id>IsleofConquest</Id>
+    </Translation>
+    <Translation>
+      <Text>Battle for Gilneas</Text>
+      <Id>BattleforGilneas</Id>
+    </Translation>
+    <Translation>
+      <Text>Twin Peaks</Text>
+      <Id>TwinPeaks</Id>
+    </Translation>
+    <Translation>
+      <Text>Random Battleground</Text>
+      <Id>RandomBattleground</Id>
     </Translation>
   </Translations>
 </Language>

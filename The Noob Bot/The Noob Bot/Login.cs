@@ -261,8 +261,9 @@ namespace The_Noob_Bot
                 LoginServer.CheckServerIsOnline();
                 while (!LoginServer.IsOnlineserver)
                 {
-                    Application.DoEvents();
-                    Thread.Sleep(100);
+                    Thread.Sleep(10);
+                    Application.DoEvents(); 
+                    Thread.Sleep(50);
                 }
                 LoginServer.CheckAccountSecurity();
                 launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);

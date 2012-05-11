@@ -315,6 +315,7 @@ namespace nManager
             Grinder_Product_Description,
             Gatherer_Product_Description,
             Fisherbot_Product_Description,
+            Battlegrounder_Product_Description,
             Archaeologist_Product_Description,
             By_npc_name,
             Object_type,
@@ -323,6 +324,16 @@ namespace nManager
             Tracker_Product_Description,
             With,
             Launch_Game,
+            Settings_Battlegrounder,
+            WarsongGulch,
+            ArathiBasin,
+            AlteracValley,
+            EyeoftheStorm,
+            StrandoftheAncients,
+            IsleofConquest,
+            BattleforGilneas,
+            TwinPeaks,
+            RandomBattleground,
         };
 
         [Serializable]

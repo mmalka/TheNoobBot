@@ -853,7 +853,7 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.Metro.MetroShell metroShell1;
         private DevComponents.DotNetBar.Metro.MetroTabPanel metroTabPanel1;
         private DevComponents.DotNetBar.Metro.MetroTabPanel tLogging;
-        private DevComponents.DotNetBar.Metro.MetroTabItem metroTabItem1;
+
         private DevComponents.DotNetBar.Metro.MetroTabItem trer;
         private DevComponents.DotNetBar.ButtonItem playerNameB;
         private DevComponents.DotNetBar.QatCustomizeItem qatCustomizeItem1;

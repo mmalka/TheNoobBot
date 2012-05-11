@@ -139,7 +139,7 @@ namespace nManager.Wow.Bot.States
                     if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp)
                     {
                         Logging.Write("Regen Pet");
-                        WowManager.Navigation.MovementManager.StopMove();
+                        nManager.Navigation.MovementManager.StopMove();
                         Thread.Sleep(1000);
 
                         // Use macro food

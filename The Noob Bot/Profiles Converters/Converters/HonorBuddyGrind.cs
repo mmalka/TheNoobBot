@@ -93,7 +93,7 @@ namespace Profiles_Converters.Converters
                                     if (childSubProfile.Name == "Mailboxes" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].Mailboxes =
-                                            new List<WowManager.MiscStructs.Point>();
+                                            new List<nManager.MiscStructs.Point>();
 
                                         foreach (XElement childMailBoxs in childSubProfile.Elements())
                                         {
@@ -116,7 +116,7 @@ namespace Profiles_Converters.Converters
                                                         if (z != null)
                                                         {
                                                             var pT =
-                                                                new WowManager.MiscStructs.Point(
+                                                                new nManager.MiscStructs.Point(
                                                                    System.Convert.ToSingle(x.Value.Replace(".", ",")),
                                                                    System.Convert.ToSingle(y.Value.Replace(".", ",")),
                                                                    System.Convert.ToSingle(z.Value.Replace(".", ",")));
@@ -156,7 +156,7 @@ namespace Profiles_Converters.Converters
                                                         if (z != null)
                                                         {
                                                             var pT =
-                                                                new WowManager.MiscStructs.Point(
+                                                                new nManager.MiscStructs.Point(
                                                                    System.Convert.ToSingle(x.Value.Replace(".", ",")),
                                                                    System.Convert.ToSingle(y.Value.Replace(".", ",")),
                                                                    System.Convert.ToSingle(z.Value.Replace(".", ",")));
