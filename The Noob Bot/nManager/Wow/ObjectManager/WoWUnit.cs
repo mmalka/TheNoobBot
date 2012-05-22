@@ -731,6 +731,21 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e); return 0;
             }
         }
+        public int BuffStack(UInt32 idBuff)
+        {
+            try
+            {
+                List<UInt32> idBuffs = new List<UInt32>();
+                idBuffs.Add(idBuff);
+                return BuffManager.AuraStack(BaseAddress, idBuffs);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e); return 0;
+            }
+
+        }
+
         public bool HaveBuff(List<UInt32> idBuffs)
         {
             try
