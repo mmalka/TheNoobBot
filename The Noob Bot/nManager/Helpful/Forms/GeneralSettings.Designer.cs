@@ -3013,6 +3013,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.mountDistance)).EndInit();
             this.expandablePanel1.ResumeLayout(false);
+            this.labelsToolTip = new System.Windows.Forms.ToolTip(new System.ComponentModel.Container());
             this.ResumeLayout(false);
 
         }
@@ -3176,5 +3177,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX labelX67;
         private DevComponents.DotNetBar.LabelX labelX68;
         private DevComponents.DotNetBar.Controls.SwitchButton autoMakeElemental;
+
+        private System.Windows.Forms.ToolTip labelsToolTip;
     }
 }

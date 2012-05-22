@@ -27,6 +27,19 @@ namespace The_Noob_Bot
                 Logging.WriteError("Login(): " + ex);
             }
         }
+
+        void SetToolTypeIfNeeded(Control label)
+        {
+            using (System.Drawing.Graphics g = CreateGraphics())
+            {
+                System.Drawing.SizeF size = g.MeasureString(label.Text, label.Font);
+                if (size.Width > label.Width)
+                {
+                    this.labelsToolTip.SetToolTip(label, label.Text);
+                }
+            }
+        }
+
         void Translate()
         {
             try
@@ -54,15 +67,25 @@ namespace The_Noob_Bot
 
                 // Translate text:
                 labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.User_Name) + "";
+                SetToolTypeIfNeeded(labelX1);
                 labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Password);
+                SetToolTypeIfNeeded(labelX2);
                 saveCb.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+                SetToolTypeIfNeeded(saveCb);
                 createB.Text = nManager.Translate.Get(nManager.Translate.Id.Create);
+                SetToolTypeIfNeeded(createB);
                 launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
+                SetToolTypeIfNeeded(launchBotB);
                 refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
+                SetToolTypeIfNeeded(refreshB);
                 Text = nManager.Translate.Get(nManager.Translate.Id.Login);
+                
                 labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
+                
                 buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
+                
                 buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
+                
             }
             catch (Exception ex)
             {

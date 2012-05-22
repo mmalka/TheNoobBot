@@ -844,6 +844,7 @@ namespace The_Noob_Bot
             this.metroTabPanel2.ResumeLayout(false);
             this.expandablePanel2.ResumeLayout(false);
             this.metroStatusBar1.ResumeLayout(false);
+            this.labelsToolTip = new System.Windows.Forms.ToolTip(new System.ComponentModel.Container());
             this.ResumeLayout(false);
 
         }
@@ -896,6 +897,7 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.ButtonX buttonX1;
         private DevComponents.DotNetBar.LabelX usageProcessL;
 
+        private System.Windows.Forms.ToolTip labelsToolTip;
     }
 }
 

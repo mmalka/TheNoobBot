@@ -277,6 +277,7 @@ namespace The_Noob_Bot
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Login_FormClosed);
             this.Shown += new System.EventHandler(this.Login_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.bar1)).EndInit();
+            this.labelsToolTip = new System.Windows.Forms.ToolTip(new System.ComponentModel.Container());
             this.ResumeLayout(false);
 
         }
@@ -301,5 +302,7 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX9;
         private DevComponents.DotNetBar.ButtonItem buttonLaunchWoWDX11;
         private DevComponents.DotNetBar.LabelItem labelItem1;
+
+        private System.Windows.Forms.ToolTip labelsToolTip;
     }
 }

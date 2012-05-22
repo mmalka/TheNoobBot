@@ -152,35 +152,72 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > InitializeUI(): " + ex);
             }
         }
+
+        void SetToolTypeIfNeeded(Control label)
+        {
+            using (Graphics g = CreateGraphics())
+            {
+                SizeF size = g.MeasureString(label.Text, label.Font);
+                if (size.Width > label.Width)
+                {
+                    this.labelsToolTip.SetToolTip(label, label.Text);
+                }
+            }
+        }
+
         void Translate()
         {
             metroShell1.HelpButtonText = nManager.Translate.Get(nManager.Translate.Id.WEBSITE);
             expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations);
             devToolsB.Text = nManager.Translate.Get(nManager.Translate.Id.Dev_Tools);
             targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name);
+            SetToolTypeIfNeeded(targetName);
             lastLogL.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log);
+            SetToolTypeIfNeeded(lastLogL);
             labelX13.Text = nManager.Translate.Get(nManager.Translate.Id.Last_log) + ":";
+            SetToolTypeIfNeeded(labelX13);
             targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Level);
+            SetToolTypeIfNeeded(targetLevelL);
             labelX11.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Health);
+            SetToolTypeIfNeeded(labelX11);
             farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            SetToolTypeIfNeeded(farmsL);
             honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": 0";
+            SetToolTypeIfNeeded(honorHrL);
             lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            SetToolTypeIfNeeded(lootL);
             deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            SetToolTypeIfNeeded(deathsL);
             killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            SetToolTypeIfNeeded(killsL);
             xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": 0";
+            SetToolTypeIfNeeded(xpHrL);
             levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level);
+            SetToolTypeIfNeeded(levelL);
             labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Health);
+            SetToolTypeIfNeeded(labelX3);
             expandablePanel2.TitleText = nManager.Translate.Get(nManager.Translate.Id.Account_Informations);
+            SetToolTypeIfNeeded(expandablePanel2);
             accountInfoL.Text = nManager.Translate.Get(nManager.Translate.Id.Information_account);
+            SetToolTypeIfNeeded(accountInfoL);
             labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Remote) + ":";
+            SetToolTypeIfNeeded(labelX1);
             tHome.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Home);
+
             trer.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.Log);
+
             playerNameB.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Name);
+
             labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Product);
+            SetToolTypeIfNeeded(labelX2);
             settingsB.Text = nManager.Translate.Get(nManager.Translate.Id.General_Settings);
+            SetToolTypeIfNeeded(settingsB);
             startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
+            SetToolTypeIfNeeded(startB);
             productSettingsB.Text = nManager.Translate.Get(nManager.Translate.Id.Product_Settings);
+            SetToolTypeIfNeeded(productSettingsB);
             buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
+            SetToolTypeIfNeeded(buttonX1);
             metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);
         }
 
