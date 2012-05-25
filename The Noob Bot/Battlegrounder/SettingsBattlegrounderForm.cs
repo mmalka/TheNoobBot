@@ -47,7 +47,7 @@ namespace Battlegrounder
             Dispose();
         }
 
-        void Load()
+        new void Load()
         {
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
             ArathiBasinSwitch.Value = BattlegrounderSetting.CurrentSetting.ArathiBasin;

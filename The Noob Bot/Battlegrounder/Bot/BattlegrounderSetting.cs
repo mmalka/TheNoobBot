@@ -52,6 +52,6 @@ namespace Battlegrounder.Bot
         public bool RandomBattleground = false;
 
         internal Point BattlegrounderPosition = new Point();
-        internal float BattlegrounderRotation;
+        internal float BattlegrounderRotation = 0;
     }
 }
