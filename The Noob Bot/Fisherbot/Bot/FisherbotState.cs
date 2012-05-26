@@ -88,51 +88,55 @@ namespace Fisherbot.Bot
                 Logging.Write("Fish " + _node.Name + " > " + _node.Position);
             }
 
-            Point whereToGo = Fishing.FindTheUltimatePoint(_node.Position);
-            if (whereToGo.Type == "invalid")
+            if (FisherbotSetting.CurrentSetting.fishSchool)
             {
-                Logging.Write("invalide donc stop");
-                nManagerSetting.AddBlackList(_node.Guid);
-                return;
-            }
-            var points = new List<Point>();
-            bool r;
-            points = PathFinder.FindPath(whereToGo, out r);
-            if (points.Count <= 1 || points.Count >= 15)
-            {
-                points.Clear();
-                points.Add(ObjectManager.Me.Position);
-                points.Add(whereToGo);
-            }
-            if (Usefuls.IsFlying)
-            {
-                for (int i = 0; i <= points.Count - 1; i++)
+                Point whereToGo = Fishing.FindTheUltimatePoint(_node.Position);
+                if (whereToGo.Type == "invalid")
                 {
-                    points[i].Z = points[i].Z + 10;
-                    points[i].Type = "Flying";
+                    Logging.Write("invalide donc stop");
+                    nManagerSetting.AddBlackList(_node.Guid);
+                    return;
                 }
-            }
-            Logging.Write("Going to point > " + whereToGo.X + " ; " + whereToGo.Y +  " ; " + whereToGo.Z + " ; " + points[0].Type);
-            MovementManager.Go(points);
-            timer = new nManager.Helpful.Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
-            while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
-                    !(ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
-                    !timer.IsReady && MovementManager.InMovement)
-            {
-                if (ObjectManager.Me.Position.DistanceTo2D(whereToGo) <= 0.2f)
+                var points = new List<Point>();
+                bool r;
+                points = PathFinder.FindPath(whereToGo, out r);
+                if (points.Count <= 1 || points.Count >= 15)
                 {
-                    MovementManager.StopMove();
-                    break;
+                    points.Clear();
+                    points.Add(ObjectManager.Me.Position);
+                    points.Add(whereToGo);
                 }
-                Thread.Sleep(50);
-            }
+                if (Usefuls.IsFlying)
+                {
+                    for (int i = 0; i <= points.Count - 1; i++)
+                    {
+                        points[i].Z = points[i].Z + 10;
+                        points[i].Type = "Flying";
+                    }
+                }
+                Logging.Write("Going to point > " + whereToGo.X + " ; " + whereToGo.Y +  " ; " + whereToGo.Z + " ; " + points[0].Type);
+                MovementManager.Go(points);
 
-            if (timer.IsReady && _node.GetDistance2D > DistanceMax)
-            {
-                Logging.Write("Fishing failed - No found nearby point (distance near position = " + ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition).ToString() + ")");
-                MovementManager.StopMove();
-                nManagerSetting.AddBlackList(_node.Guid);
-                return;
+                timer = new nManager.Helpful.Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
+                        !(ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                        !timer.IsReady && MovementManager.InMovement)
+                {
+                    if (ObjectManager.Me.Position.DistanceTo2D(whereToGo) <= 0.2f)
+                    {
+                        MovementManager.StopMove();
+                        break;
+                    }
+                    Thread.Sleep(50);
+                }
+
+                if (timer.IsReady && _node.GetDistance2D > DistanceMax)
+                {
+                    Logging.Write("Fishing failed - No found nearby point (distance near position = " + ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition).ToString() + ")");
+                    MovementManager.StopMove();
+                    nManagerSetting.AddBlackList(_node.Guid);
+                   return;
+                }
             }
 
             // Stop move
