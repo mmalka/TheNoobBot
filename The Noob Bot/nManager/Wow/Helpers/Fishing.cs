@@ -252,5 +252,95 @@ namespace nManager.Wow.Helpers
             }
             return 0;
         }
+
+        /// <summary>
+        /// Find a point around the fishing hole from where we can land to fish
+        /// </summary>
+        /// <typeparam></typeparam>
+        /// <param></param>
+        /// <param name="fishingHole"> </param>
+        /// <returns name="TheBestPoint"></returns>
+        public static Point FindTheUltimatePoint(Point fishingHole)
+        {
+            float MinRing = 13.0f; //13
+            float MaxRing = 20.0f;  //19
+
+            Enums.CGWorldFrameHitFlags hitFlags =
+                Enums.CGWorldFrameHitFlags.HitTestBoundingModels |
+                Enums.CGWorldFrameHitFlags.HitTestWMO |
+                Enums.CGWorldFrameHitFlags.HitTestUnknown |
+                Enums.CGWorldFrameHitFlags.HitTestGround;
+
+            bool res;
+            Point from, to;
+            for (float diameter = MinRing; diameter <= MaxRing; diameter = diameter + 3.0f)
+            {
+                for (double angle = 0; angle <= System.Math.PI / 2; angle = angle + System.Math.PI / 10)
+                {
+                    float offset1 = diameter * (float)System.Math.Sin(angle);
+                    float offset2 = diameter * (float)System.Math.Cos(angle);
+                    to = new Point(fishingHole.X + offset1, fishingHole.Y - offset2, fishingHole.Z);
+                    to.Z = to.Z - 0.8f;
+                    from = new Point(to);
+                    from.Z = fishingHole.Z + 20.0f;
+                    res = TraceLine.TraceLineGo(from, to, hitFlags);
+                    if (res)
+                    {
+                        float nz = PathFinder.GetZPosition(to);
+                        if (nz == 0)
+                            continue;
+                        else
+                            to.Z = nz + 1.0f;
+                        return to;
+                    }
+
+                    to = new Point(fishingHole.X + offset2, fishingHole.Y + offset1, fishingHole.Z);
+                    to.Z = to.Z - 1.0f;
+                    from = new Point(to);
+                    from.Z = fishingHole.Z + 20.0f;
+                    res = TraceLine.TraceLineGo(from, to, hitFlags);
+                    if (res)
+                    {
+                        float nz = PathFinder.GetZPosition(to);
+                        if (nz == 0)
+                            continue;
+                        else
+                            to.Z = nz + 1.0f;
+                        return to;
+                    }
+                    to = new Point(fishingHole.X - offset1, fishingHole.Y + offset2, fishingHole.Z);
+                    to.Z = to.Z - 1.0f;
+                    from = new Point(to);
+                    from.Z = fishingHole.Z + 20.0f;
+                    res = TraceLine.TraceLineGo(from, to, hitFlags);
+                    if (res)
+                    {
+                        float nz = PathFinder.GetZPosition(to);
+                        if (nz == 0)
+                            continue;
+                        else
+                            to.Z = nz + 1.0f;
+                        return to;
+                    }
+                    to = new Point(fishingHole.X - offset2, fishingHole.Y - offset1, fishingHole.Z);
+                    to.Z = to.Z - 1.0f;
+                    from = new Point(to);
+                    from.Z = fishingHole.Z + 20.0f;
+                    res = TraceLine.TraceLineGo(from, to, hitFlags);
+                    if (res)
+                    {
+                        float nz = PathFinder.GetZPosition(to);
+                        if (nz == 0)
+                            continue;
+                        else
+                            to.Z = nz + 1.0f;
+                        return to;
+                    }
+                }
+            }
+
+            Point pt = new Point(0, 0, 0, "invalid");
+            return pt;
+        }
     }
 }

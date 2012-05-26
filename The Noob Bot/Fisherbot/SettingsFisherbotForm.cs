@@ -46,7 +46,7 @@ namespace Fisherbot
             Dispose();
         }
 
-        void Load()
+        new void Load()
         {
             RefreshProfilesList();
 

@@ -105,8 +105,8 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (objBobber.GetBaseAddress > 0)
                                 {
-                                    var nobe = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
-                                    if (nobe.Position.DistanceTo2D(objBobber.Position) > distanceBobber && nobe.IsValid && _guidNode > 0 && _precision)
+                                    var node = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
+                                    if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid && _guidNode > 0 && _precision)
                                         continue;
 
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
