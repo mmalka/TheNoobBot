@@ -894,8 +894,7 @@
       <Text>Configuration Produit</Text>
       <Id>Product_Settings</Id>
     </Translation>
-  </Translations>
-   <Translation>
+    <Translation>
       <Text>Inverser le sens du profil</Text>
       <Id>Pathing_Reverse_Direction</Id>
     </Translation>

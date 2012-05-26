@@ -5,9 +5,7 @@ using System.Text;
 namespace nManager.Helpful
 {
     /// <summary>
-
     /// Create a New INI file to store or load data
-
     /// </summary>
     public class IniFile
     {

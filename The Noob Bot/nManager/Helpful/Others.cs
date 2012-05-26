@@ -450,7 +450,7 @@ namespace nManager.Helpful
         }
 
         /// <summary>
-        /// Return the code source of the page. Sample: GetRequest("http://www.google.com/index.php", "a=5&b=10" )
+        /// Return the code source of the page. Sample: GetRequest("http://www.google.com/index.php", "a=5&amp;b=10" )
         /// </summary>
         /// <param name ="url"></param>
         /// <param name ="data"></param>
@@ -488,7 +488,7 @@ namespace nManager.Helpful
         }
 
         /// <summary>
-        /// Return the code source of the page. Sample: PostRequest("http://www.google.com/index.php", "a=5&b=10" )
+        /// Return the code source of the page. Sample: PostRequest("http://www.google.com/index.php", "a=5&amp;b=10" )
         /// </summary>
         /// <param name ="url"></param>
         /// <param name ="parameters"></param>
