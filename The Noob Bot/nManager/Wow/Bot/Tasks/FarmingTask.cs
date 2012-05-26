@@ -176,6 +176,7 @@ namespace nManager.Wow.Bot.Tasks
                                     else
                                     {
                                     */
+
                                         Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
                                         var t = new Timer(700);
                                         while (Usefuls.IsFlying && !t.IsReady)
@@ -285,6 +286,11 @@ namespace nManager.Wow.Bot.Tasks
                             points = PathFinder.FindPath(node.Position, out r);
                             if (nManagerSetting.CurrentSetting.FlyingMountName != string.Empty && (!r || ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= 15.0f))
                             {
+                                if (SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName))
+                                {
+                                    Fly(nodes);
+                                    return;
+                                }
                                 MountTask.MountingFlyingMount();
                                 if (Usefuls.IsFlying)
                                 {
