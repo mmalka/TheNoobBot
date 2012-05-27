@@ -2,6 +2,7 @@
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
+using nManager.Wow.Enums;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -110,6 +111,23 @@ namespace nManager.Wow.ObjectManager
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > ParentRotation: " + e);
+                }
+                return 0;
+            }
+        }
+
+        public WoWGameObjectType GOType
+        {
+            get
+            {
+                try
+                {
+                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.GAMEOBJECT_BYTES_1);
+                    return (WoWGameObjectType)((bype1 >> 8) & 0xFF);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > Type: " + e);
                 }
                 return 0;
             }

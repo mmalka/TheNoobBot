@@ -50,11 +50,8 @@ namespace Fisherbot.Bot
                 if (FisherbotSetting.CurrentSetting.fishSchool)
                 {
                     // Get farm:
-                    var _listDisplayIdFarm = new List<int>();
-                    _listDisplayIdFarm.AddRange(NodesList.GetListId("Fish", 9999999));
-
                     _node = new WoWGameObject(0);
-                    _node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(_listDisplayIdFarm));
+                    _node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(nManager.Wow.Enums.WoWGameObjectType.FishingHole));
 
                     if (_node.IsValid && _node.GetBaseAddress > 0)
                         if (!nManagerSetting.IsBlackListedZone(_node.Position) && _node.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(_node.Guid) && _node.IsValid)

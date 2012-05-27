@@ -1,0 +1,41 @@
+﻿namespace nManager.Wow.Enums
+{
+    public enum WoWGameObjectType : uint
+    {
+        Door = 0,
+        Button = 1,
+        Questgiver = 2,
+        Chest = 3,
+        Binder = 4,
+        Generic = 5,
+        Trap = 6,
+        SpellFocus = 7,
+        Chair = 8,
+        Text = 9,
+        Goober = 10,
+        Transport = 11,
+        AreaDamage = 12,
+        Camera = 13,
+        MapObject = 14,
+        MoTransport = 15,
+        DuelArbiter = 16,
+        FishingNode = 17,
+        Ritual = 18,
+        Mailbox = 19,
+        AuctionHouse = 20,
+        GuardPost = 21,
+        SpellCaster = 22,
+        MeetingStone = 23,
+        FlagStand = 24,
+        FishingHole = 25,
+        FlagDrop = 26,
+        MiniGame = 27,
+        LotteryKiosk = 28,
+        CapturePoint = 29,
+        AuraGenerator = 30,
+        DungeonDifficulty = 31,
+        DestructiveBuilding = 32,
+        GuildBank = 34,
+        TrapDoor = 35
+    }
+}

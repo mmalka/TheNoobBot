@@ -328,6 +328,27 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static List<WoWGameObject> GetWoWGameObjectOfType(WoWGameObjectType reqtype)
+        {
+            try
+            {
+                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
+                List<WoWGameObject> retList = new List<WoWGameObject>();
+                foreach (WoWObject a in tempsListObj)
+                {
+                    WoWGameObject b = new WoWGameObject(a.GetBaseAddress);
+                    if (b.GOType == reqtype)
+                        retList.Add(b);
+                }
+                return retList;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWGameObject(): " + e);
+                return new List<WoWGameObject>();
+            }
+        }
+
         public static List<WoWGameObject> GetObjectWoWGameObject()
         {
             try

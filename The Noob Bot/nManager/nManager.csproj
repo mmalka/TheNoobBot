@@ -143,6 +143,7 @@
     <Compile Include="Wow\Class\Npc.cs" />
     <Compile Include="Wow\Class\Point.cs" />
     <Compile Include="Wow\Class\Spell.cs" />
+    <Compile Include="Wow\Enums\WoWGameObjectType.cs" />
     <Compile Include="Wow\Enums\WoWPowerType.cs" />
     <Compile Include="Wow\Helpers\Archaeology.cs" />
     <Compile Include="Wow\Helpers\Bag.cs" />
