@@ -21,7 +21,7 @@ namespace Grinder.Bot
         internal static int ZoneIdProfile;
 
         internal static MovementLoop _movementLoop = new MovementLoop { Priority = 1 };
-        internal static Grinding _grinding = new Grinding { Priority = 6 };
+        internal static Grinding _grinding = new Grinding { Priority = 5 };
 
         internal static bool Pulse()
         {
