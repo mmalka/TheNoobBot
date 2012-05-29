@@ -25,7 +25,7 @@ namespace nManager.Wow.ObjectManager
 
                     if (InTransport)
                     {
-                        var t = (WoWUnit)ObjectManager.GetObjectByGuid(TransportGuid);
+                        var t = new WoWUnit(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
                         if (t.IsValid && t.IsAlive)
                         {
                             return t.Position;
