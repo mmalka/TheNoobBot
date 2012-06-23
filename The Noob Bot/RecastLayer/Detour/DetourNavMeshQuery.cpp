@@ -27,6 +27,7 @@
 #include "DetourAssert.h"
 #include <new>
 
+
 dtQueryFilter::dtQueryFilter() :
 	m_includeFlags(0xffff),
 	m_excludeFlags(0)
@@ -66,8 +67,9 @@ inline float dtQueryFilter::getCost(const float* pa, const float* pb,
 	return dtVdist(pa, pb) * m_areaCost[curPoly->getArea()];
 }
 #endif	
-	
-static const float H_SCALE = 0.999f; // Search heuristic scale.
+
+// Change the original 0.99 to 2.0 to weight the A* search and then go a lot deeper in the search tree
+static const float H_SCALE = 2.0f; // Search heuristic scale.
 
 
 dtNavMeshQuery* dtAllocNavMeshQuery()
@@ -170,6 +172,9 @@ dtStatus dtNavMeshQuery::closestPointOnPoly(dtPolyRef ref, const float* pos, flo
 	if (!tile)
 		return DT_FAILURE | DT_INVALID_PARAM;
 	
+//	if (poly->getType() == DT_POLYTYPE_OFFMESH_CONNECTION)
+//	    return DT_FAILURE;
+
 	closestPointOnPolyInTile(tile, poly, pos, closest);
 	
 	return DT_SUCCESS;
@@ -724,16 +729,16 @@ dtStatus dtNavMeshQuery::findPath(DetourLayer::NavMeshQueryCallback^ callback, d
 			{
 				lastBestNodeCost = heuristic;
 				lastBestNode = neighbourNode;
+            }
 
-				if (callback)
-				{
-					array<float>^ best = gcnew array<float>(3);
-					best[0] = lastBestNode->pos[0];
-					best[1] = lastBestNode->pos[1];
-					best[2] = lastBestNode->pos[2];
-					callback->PathfinderUpdate(best);
-				}
-			}
+            if (callback) // call-back for everypoint, not only the best
+		    {
+			    array<float>^ cpoint = gcnew array<float>(3);
+			    cpoint[0] = neighbourNode->pos[0];
+			    cpoint[1] = neighbourNode->pos[1];
+			    cpoint[2] = neighbourNode->pos[2];
+			    callback->PathfinderUpdate(cpoint);
+		    }
 		}
 	}
 	
@@ -821,7 +826,7 @@ dtStatus dtNavMeshQuery::initSlicedFindPath(dtPolyRef startRef, dtPolyRef endRef
 	return m_query.status;
 }
 	
-dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter)
+dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter, int* doneIters)
 {
 	if (!dtStatusInProgress(m_query.status))
 		return m_query.status;
@@ -849,6 +854,8 @@ dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter)
 			m_query.lastBestNode = bestNode;
 			const dtStatus details = m_query.status & DT_STATUS_DETAIL_MASK;
 			m_query.status = DT_SUCCESS | details;
+			if (doneIters)
+				*doneIters = iter;
 			return m_query.status;
 		}
 		
@@ -861,6 +868,8 @@ dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter)
 		{
 			// The polygon has disappeared during the sliced query, fail.
 			m_query.status = DT_FAILURE;
+			if (doneIters)
+				*doneIters = iter;
 			return m_query.status;
 		}
 		
@@ -876,6 +885,8 @@ dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter)
 			{
 				// The polygon has disappeared during the sliced query, fail.
 				m_query.status = DT_FAILURE;
+				if (doneIters)
+					*doneIters = iter;
 				return m_query.status;
 			}
 		}
@@ -986,6 +997,9 @@ dtStatus dtNavMeshQuery::updateSlicedFindPath(const int maxIter)
 		const dtStatus details = m_query.status & DT_STATUS_DETAIL_MASK;
 		m_query.status = DT_SUCCESS | details;
 	}
+
+	if (doneIters)
+		*doneIters = iter;
 
 	return m_query.status;
 }
@@ -2352,11 +2366,12 @@ dtStatus dtNavMeshQuery::findLocalNeighbourhood(dtPolyRef startRef, const float*
 
 struct dtSegInterval
 {
+	dtPolyRef ref;
 	short tmin, tmax;
 };
 
 static void insertInterval(dtSegInterval* ints, int& nints, const int maxInts,
-						   const short tmin, const short tmax)
+						   const short tmin, const short tmax, const dtPolyRef ref)
 {
 	if (nints+1 > maxInts) return;
 	// Find insertion point.
@@ -2371,13 +2386,15 @@ static void insertInterval(dtSegInterval* ints, int& nints, const int maxInts,
 	if (nints-idx)
 		memmove(ints+idx+1, ints+idx, sizeof(dtSegInterval)*(nints-idx));
 	// Store
+	ints[idx].ref = ref;
 	ints[idx].tmin = tmin;
 	ints[idx].tmax = tmax;
 	nints++;
 }
 
 dtStatus dtNavMeshQuery::getPolyWallSegments(dtPolyRef ref, const dtQueryFilter* filter,
-											 float* segments, int* segmentCount, const int maxSegments) const
+											 float* segmentVerts, dtPolyRef* segmentRefs, int* segmentCount,
+											 const int maxSegments) const
 {
 	dtAssert(m_nav);
 	
@@ -2392,6 +2409,8 @@ dtStatus dtNavMeshQuery::getPolyWallSegments(dtPolyRef ref, const dtQueryFilter*
 	static const int MAX_INTERVAL = 16;
 	dtSegInterval ints[MAX_INTERVAL];
 	int nints;
+
+	const bool storePortals = segmentRefs != 0;
 	
 	dtStatus status = DT_SUCCESS;
 	
@@ -2414,58 +2433,91 @@ dtStatus dtNavMeshQuery::getPolyWallSegments(dtPolyRef ref, const dtQueryFilter*
 						m_nav->getTileAndPolyByRefUnsafe(link->ref, &neiTile, &neiPoly);
 						if (filter->passFilter(link->ref, neiTile, neiPoly))
 						{
-							insertInterval(ints, nints, MAX_INTERVAL, link->bmin, link->bmax);
+							insertInterval(ints, nints, MAX_INTERVAL, link->bmin, link->bmax, link->ref);
 						}
 					}
 				}
 			}
 		}
-		else if (poly->neis[j])
+		else
 		{
 			// Internal edge
-			const unsigned int idx = (unsigned int)(poly->neis[j]-1);
-			const dtPolyRef ref = m_nav->getPolyRefBase(tile) | idx;
-			if (filter->passFilter(ref, tile, &tile->polys[idx]))
+			dtPolyRef ref = 0;
+			if (poly->neis[j])
+			{
+				const unsigned int idx = (unsigned int)(poly->neis[j]-1);
+				ref = m_nav->getPolyRefBase(tile) | idx;
+				if (!filter->passFilter(ref, tile, &tile->polys[idx]))
+					ref = 0;
+			}
+
+			// If the edge leads to another polygon and portals are not stored, skip.
+			if (ref != 0 && !storePortals)
 				continue;
+
+			if (n < maxSegments)
+			{
+				const float* vj = &tile->verts[poly->verts[j]*3];
+				const float* vi = &tile->verts[poly->verts[i]*3];
+				float* seg = &segmentVerts[n*6];
+				dtVcopy(seg+0, vj);
+				dtVcopy(seg+3, vi);
+				if (segmentRefs)
+					segmentRefs[n] = ref;
+				n++;
+			}
+			else
+			{
+				status |= DT_BUFFER_TOO_SMALL;
+			}
+
+			continue;
 		}
-		
+
 		// Add sentinels
-		insertInterval(ints, nints, MAX_INTERVAL, -1, 0);
-		insertInterval(ints, nints, MAX_INTERVAL, 255, 256);
-		
-		// Store segment.
+		insertInterval(ints, nints, MAX_INTERVAL, -1, 0, 0);
+		insertInterval(ints, nints, MAX_INTERVAL, 255, 256, 0);
+
+		// Store segments.
 		const float* vj = &tile->verts[poly->verts[j]*3];
 		const float* vi = &tile->verts[poly->verts[i]*3];
 		for (int k = 1; k < nints; ++k)
 		{
-			// Find the space inbetween the opening areas.
-			const int imin = ints[k-1].tmax;
-			const int imax = ints[k].tmin;
-			if (imin == imax) continue;
-			if (imin == 0 && imax == 255)
+			// Portal segment.
+			if (storePortals && ints[k].ref)
 			{
+				const float tmin = ints[k].tmin/255.0f;
+				const float tmax = ints[k].tmax/255.0f;
 				if (n < maxSegments)
 				{
-					float* seg = &segments[n*6];
+					float* seg = &segmentVerts[n*6];
+					dtVlerp(seg+0, vj,vi, tmin);
+					dtVlerp(seg+3, vj,vi, tmax);
+					if (segmentRefs)
+						segmentRefs[n] = ints[k].ref;
 					n++;
-					dtVcopy(seg+0, vj);
-					dtVcopy(seg+3, vi);
 				}
 				else
 				{
 					status |= DT_BUFFER_TOO_SMALL;
 				}
 			}
-			else
+
+			// Wall segment.
+			const int imin = ints[k-1].tmax;
+			const int imax = ints[k].tmin;
+			if (imin != imax)
 			{
 				const float tmin = imin/255.0f; 
 				const float tmax = imax/255.0f; 
 				if (n < maxSegments)
 				{
-					float* seg = &segments[n*6];
-					n++;
+					float* seg = &segmentVerts[n*6];
 					dtVlerp(seg+0, vj,vi, tmin);
 					dtVlerp(seg+3, vj,vi, tmax);
+					if (segmentRefs)
+						segmentRefs[n] = 0;
+					n++;
 				}
 				else
 				{

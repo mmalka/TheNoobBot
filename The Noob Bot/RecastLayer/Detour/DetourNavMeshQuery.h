@@ -168,9 +168,10 @@ public:
 
 	// Updates sliced path find query.
 	// Params:
-	//  maxIter - (in) max number of iterations to update.
+	//  maxIter - (in) Max number of iterations to update.
+	//  doneIters - (out,opt) Number of iterations done during the update.
 	// Returns: Path query state.
-	dtStatus updateSlicedFindPath(const int maxIter);
+	dtStatus updateSlicedFindPath(const int maxIter, int* doneIters);
 
 	// Finalizes sliced path find query and returns found path.
 	//	path - (out) array holding the search result.
@@ -304,14 +305,18 @@ public:
 									int* resultCount, const int maxResult) const;
 	
 	// Returns wall segments of specified polygon.
+	// If 'segmentRefs' is specified, both the wall and portal segments are returned.
+	// Wall segments will have null (0) polyref, and portal segments store the polygon they lead to.
 	// Params:
 	//  ref - (in) ref to the polygon.
 	//  filter - (in) path polygon filter.
-	//  segments[6*maxSegments] - (out) wall segments (2 endpoints per segment).
+	//  segmentVerts[6*maxSegments] - (out) wall segments (2 endpoints per segment).
+	//  segmentRefs[maxSegments] - (out,opt) reference to a neighbour.
 	//  segmentCount - (out) number of wall segments.
 	//  maxSegments - (in) max number of segments that can be stored in 'segments'.
 	dtStatus getPolyWallSegments(dtPolyRef ref, const dtQueryFilter* filter,
-								 float* segments, int* segmentCount, const int maxSegments) const;
+								 float* segmentVerts, dtPolyRef* segmentRefs, int* segmentCount,
+								 const int maxSegments) const;
 	
 	// Returns closest point on navigation polygon.
 	// Uses detail polygons to find the closest point to the navigation polygon surface. 
@@ -332,15 +337,6 @@ public:
 	// Returns: true if closest point found.
 	dtStatus closestPointOnPolyBoundary(dtPolyRef ref, const float* pos, float* closest) const;
 	
-	// Returns start and end location of an off-mesh link polygon.
-	// Params:
-	//	prevRef - (in) ref to the polygon before the link (used to select direction).
-	//	polyRef - (in) ref to the off-mesh link polygon.
-	//	startPos[3] - (out) start point of the link.
-	//	endPos[3] - (out) end point of the link.
-	// Returns: true if link is found.
-	dtStatus getOffMeshConnectionPolyEndPoints(dtPolyRef prevRef, dtPolyRef polyRef, float* startPos, float* endPos) const;
-	
 	// Returns height of the polygon at specified location.
 	// Params:
 	//	ref - (in) ref to the polygon.
@@ -354,6 +350,8 @@ public:
 	
 	class dtNodePool* getNodePool() const { return m_nodePool; }
 	
+	const dtNavMesh* getAttachedNavMesh() const { return m_nav; }
+
 private:
 	
 	// Returns neighbour tile based on side. 

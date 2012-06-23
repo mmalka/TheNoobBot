@@ -46,29 +46,30 @@ namespace DetourLayer
 		// Generate off mesh connection data
 		if (offMeshCons != nullptr)
 		{
-			params.offMeshConCount = offMeshCons->Length;
-			auto offMeshConAreas = new unsigned char[offMeshCons->Length];
-			for (int i = 0; i < offMeshCons->Length; i++)
-				offMeshConAreas[i] = (unsigned char)offMeshCons[i]->AreaId;
-			params.offMeshConAreas = offMeshConAreas;
-			auto offMeshConDir = new unsigned char[offMeshCons->Length];
-			for (int i = 0; i < offMeshCons->Length; i++)
-				offMeshConDir[i] = (unsigned char)offMeshCons[i]->Type;
-			params.offMeshConDir = offMeshConDir;
-			auto offMeshConFlags = new unsigned short[offMeshCons->Length];
-			for (int i = 0; i< offMeshCons->Length; i++)
-				offMeshConFlags[i] = (unsigned short)offMeshCons[i]->Flags;
-			params.offMeshConFlags = offMeshConFlags;
-			auto offMeshConRad = new float[offMeshCons->Length];
-			for (int i = 0; i < offMeshCons->Length; i++)
-				offMeshConRad[i] = offMeshCons[i]->Radius;
-			params.offMeshConRad = offMeshConRad;
-			auto offMeshConUserID = new unsigned int[offMeshCons->Length];
-			for (int i = 0; i < offMeshCons->Length; i++)
+			params.offMeshConCount  = offMeshCons->Length;
+			auto offMeshConAreas    = new unsigned char[offMeshCons->Length];
+			auto offMeshConDir      = new unsigned char[offMeshCons->Length];
+			auto offMeshConFlags    = new unsigned short[offMeshCons->Length];
+			auto offMeshConRad      = new float[offMeshCons->Length];
+
+			auto offMeshConUserID   = new unsigned int[offMeshCons->Length];
+			auto offMeshConVerts    = new float[3 * 2 * offMeshCons->Length];
+
+            for (int i = 0; i < offMeshCons->Length; i++)
+            {
+				offMeshConAreas[i]  = (unsigned char)offMeshCons[i]->AreaId;
+				offMeshConDir[i]    = (unsigned char)offMeshCons[i]->Type;
+				offMeshConFlags[i]  = (unsigned short)offMeshCons[i]->Flags;
+				offMeshConRad[i]    = offMeshCons[i]->Radius;
 				offMeshConUserID[i] = offMeshCons[i]->UserID;
+            }
+            params.offMeshConAreas  = offMeshConAreas;
+			params.offMeshConDir    = offMeshConDir;
+			params.offMeshConFlags  = offMeshConFlags;
+			params.offMeshConRad    = offMeshConRad;
 			params.offMeshConUserID = offMeshConUserID;
-			auto offMeshConVerts = new float[3 * 2 * offMeshCons->Length];
-			for (int i = 0; i < offMeshCons->Length; i++)
+
+            for (int i = 0; i < offMeshCons->Length; i++)
 			{
 					offMeshConVerts[(i*6) + 0] = offMeshCons[i]->From[0];
 					offMeshConVerts[(i*6) + 1] = offMeshCons[i]->From[1];

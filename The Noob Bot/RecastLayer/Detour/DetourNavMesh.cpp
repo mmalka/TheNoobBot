@@ -204,11 +204,14 @@ dtStatus dtNavMesh::init(const dtNavMeshParams* params)
 	}
 	
 	// Init ID generator values.
-	m_tileBits = dtIlog2(dtNextPow2((unsigned int)params->maxTiles));
-	m_polyBits = dtIlog2(dtNextPow2((unsigned int)params->maxPolys));
-	m_saltBits = 32 - m_tileBits - m_polyBits;
-	if (m_saltBits < 2)
-		return DT_FAILURE | DT_INVALID_PARAM;
+	// let's fix all this, we need to balance them the best possible to make big path
+	// I wish we had 64bits here... I will try to make it 64 bits later
+	m_tileBits = 9;  //dtIlog2(dtNextPow2((unsigned int)params->maxTiles));
+	m_polyBits = 15; //dtIlog2(dtNextPow2((unsigned int)params->maxPolys));
+	// Only allow 31 salt bits, since the salt mask is calculated using 32bit uint and it will overflow.
+	m_saltBits = 8;  //dtMin((unsigned int)31, 32 - m_tileBits - m_polyBits);
+	//if (m_saltBits < 10)
+	//	return DT_FAILURE | DT_INVALID_PARAM;
 	
 	return DT_SUCCESS;
 }

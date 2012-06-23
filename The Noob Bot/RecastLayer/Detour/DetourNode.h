@@ -21,16 +21,14 @@
 
 #include "DetourNavMesh.h"
 
-// Change this to allow for a higher maxNodes. Also change DT_NULL_IDX.
-typedef unsigned short dtNodeRef;
-
 enum dtNodeFlags
 {
 	DT_NODE_OPEN = 0x01,
 	DT_NODE_CLOSED = 0x02,
 };
 
-static const dtNodeRef DT_NULL_IDX = 0xffff;
+typedef unsigned short dtNodeIndex;
+static const dtNodeIndex DT_NULL_IDX = ~0;
 
 struct dtNode
 {
@@ -41,6 +39,7 @@ struct dtNode
 	unsigned int flags : 2;		// Node flags 0/open/closed.
 	dtPolyRef id;				// Polygon ref the node corresponds to.
 };
+
 
 class dtNodePool
 {
@@ -73,22 +72,22 @@ public:
 	inline int getMemUsed() const
 	{
 		return sizeof(*this) +
-		sizeof(dtNode)*m_maxNodes +
-		sizeof(dtNodeRef)*m_maxNodes +
-		sizeof(dtNodeRef)*m_hashSize;
+			sizeof(dtNode)*m_maxNodes +
+			sizeof(dtNodeIndex)*m_maxNodes +
+			sizeof(dtNodeIndex)*m_hashSize;
 	}
 	
 	inline int getMaxNodes() const { return m_maxNodes; }
 	
 	inline int getHashSize() const { return m_hashSize; }
-	inline dtNodeRef getFirst(int bucket) const { return m_first[bucket]; }
-	inline dtNodeRef getNext(int i) const { return m_next[i]; }
+	inline dtNodeIndex getFirst(int bucket) const { return m_first[bucket]; }
+	inline dtNodeIndex getNext(int i) const { return m_next[i]; }
 	
 private:
 	
 	dtNode* m_nodes;
-	dtNodeRef* m_first;
-	dtNodeRef* m_next;
+	dtNodeIndex* m_first;
+	dtNodeIndex* m_next;
 	const int m_maxNodes;
 	const int m_hashSize;
 	int m_nodeCount;

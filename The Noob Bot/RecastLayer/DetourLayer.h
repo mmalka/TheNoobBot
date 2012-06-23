@@ -1089,13 +1089,11 @@ error:
 
 		~NavMesh()
 		{
-			dtFreeNavMesh(_mesh);
-			_mesh = 0;
 		}
 
 		!NavMesh()
 		{
-			//dtFreeNavMesh(_mesh);
+			dtFreeNavMesh(_mesh);
 		}
 
 		dtNavMesh* GetNativeObject()
@@ -1339,13 +1337,12 @@ error:
 
 		~NavMeshQuery()
 		{
-			dtFreeNavMeshQuery(_query);
-			_query = 0;
+
 		}
 
 		!NavMeshQuery()
 		{
-			//dtFreeNavMeshQuery(_query);
+			dtFreeNavMeshQuery(_query);
 		}
 
 		float GetPolyHeight(dtPolyRef polyRef, array<float>^ pos)
@@ -1414,11 +1411,11 @@ exit:
 			pin_ptr<dtPolyRef> pathPointer = &pathCorridor[0];
 
 			int resultHopCount;
-			float* nativeStraightPath = new float[2048*3];
-			unsigned char* pathFlags = new unsigned char[2048];
-			dtPolyRef* pathRefs = new dtPolyRef[2048];
+			float* nativeStraightPath = new float[1024*3];
+			unsigned char* pathFlags = new unsigned char[1024];
+			dtPolyRef* pathRefs = new dtPolyRef[1024];
 
-			dtStatus status = _query->findStraightPath(startPointer, endPointer, pathPointer, pathCorridor->Length, nativeStraightPath, pathFlags, pathRefs, &resultHopCount, 2048);
+			dtStatus status = _query->findStraightPath(startPointer, endPointer, pathPointer, pathCorridor->Length, nativeStraightPath, pathFlags, pathRefs, &resultHopCount, 1024);
 			if (!dtStatusSucceed(status))
 			{
 				delete[] nativeStraightPath;
@@ -1455,8 +1452,8 @@ exit:
 			pin_ptr<float> startPosPointer = &startPos[0];
 			pin_ptr<float> endPosPointer = &endPos[0];
 			int hops;
-			dtPolyRef* hopBuffer = new dtPolyRef[8192];
-			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 8192);
+			dtPolyRef* hopBuffer = new dtPolyRef[1024];
+			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 1024);
 			if (dtStatusSucceed(status))
 			{
 				polyRefHops = gcnew array<dtPolyRef>(hops);
@@ -2053,7 +2050,7 @@ exit:
 
 	public ref class Detour
 	{
-	public:
+	  public:
 		static bool CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, int tileSize, array<OffMeshConnection^>^ offMeshCons);
 	};
 

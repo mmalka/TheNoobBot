@@ -190,7 +190,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public void GetTileByLocation(Point loc, out int x, out int y)
+        public void GetTileByLocation(Point loc, out float x, out float y)
         {
             try
             {
@@ -199,8 +199,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 var input = loc.ToRecast().ToFloatArray();
                 float fx, fy;
                 GetTileByLocation(input, out fx, out fy);
-                x = (int)Math.Floor(fx);
-                y = (int)Math.Floor(fy);
+                x = fx;
+                y = fy;
             }
             catch (Exception exception)
             {
@@ -248,21 +248,30 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        public void LoadAround(Point loc, int extent)
+        public void LoadAround(Point loc)
         {
             try
             {
                 CheckDungeon();
 
-                int tx, ty;
+                float tx, ty;
                 GetTileByLocation(loc, out tx, out ty);
-                for (int y = ty - extent; y <= ty + extent; y++)
-                {
-                    for (int x = tx - extent; x <= tx + extent; x++)
-                    {
-                        LoadTile(x, y);
-                    }
-                }
+                int x = (int)Math.Floor(tx);
+                int y = (int)Math.Floor(ty);
+                int thirdx, thirdy;
+
+                LoadTile(x, y);
+                if (tx < x + 0.5f)
+                    thirdx = x - 1;
+                else
+                    thirdx = x + 1;
+                if (ty < y + 0.5f)
+                    thirdy = y - 1;
+                else
+                    thirdy = y + 1;
+                LoadTile(thirdx, y);
+                LoadTile(x, thirdy);
+                LoadTile(thirdx, thirdy);
             }
             catch (Exception exception)
             {
@@ -417,8 +426,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 if (!IsDungeon)
                 {
-                    LoadAround(startVec, 1);
-                    LoadAround(endVec, 1);
+                    LoadAround(startVec);
+                    LoadAround(endVec);
                 }
 
                 var startRef = _query.FindNearestPolygon(start, extents, Filter);
@@ -566,7 +575,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     return;
 
                 var point = best.ToWoW();
-                LoadAround(new Point(point[0], point[1], point[2]), 1);
+                LoadAround(new Point(point[0], point[1], point[2]));
 
                 /*float tx, ty;
                 GetTileByLocation(best, out tx, out ty);
