@@ -279,6 +279,18 @@
         }
 
         /// <summary>
+        /// Quest related
+        /// </summary>
+        public enum Quests
+        {
+            ActiveQuests = 0x274,
+            SelectedQuestId = 0xB436F0,
+            TitleText = 0xB434D0,
+            GossipQuests = 0xB70F08,
+            GossipQuestNext = 0x214,
+        }
+
+        /// <summary>
         /// Get Buff CGUnit_C__GetAura
         /// </summary>
         public enum UnitBaseGetUnitAura

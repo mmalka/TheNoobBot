@@ -18,6 +18,7 @@ namespace nManager.Wow.Class
             set { _name = value; }
         }
         string _name = "";
+        public int SelectGossipOption = 1;
 
         public Point Position
         {

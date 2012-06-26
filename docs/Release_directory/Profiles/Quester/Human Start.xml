@@ -1,0 +1,1699 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Quests>
+<!-- Quest 1 -->
+        <!--Beating Them Back! (Mage)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28757</Id>
+            <ClassMask>128</ClassMask> <!-- Mage -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Mage)-->
+
+        <!--Beating Them Back! (Paladin)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28762</Id>
+            <ClassMask>2 </ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Paladin)-->
+
+        <!--Beating Them Back! (Priest)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28763</Id>
+            <ClassMask>16</ClassMask> <!-- Priest -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Priest)-->
+
+        <!--Beating Them Back! (Rogue)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28764</Id>
+            <ClassMask>8</ClassMask> <!-- Rogue -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Rogue)-->
+
+        <!--Beating Them Back! (Warlock)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28765</Id>
+            <ClassMask>256</ClassMask> <!-- Warlock -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Warlock)-->
+
+        <!--Beating Them Back! (Warrior)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28766</Id>
+            <ClassMask>1</ClassMask> <!-- Warrior -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Warrior)-->
+
+        <!--Beating Them Back! (Hunter)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>28767</Id>
+            <ClassMask>4</ClassMask> <!-- Hunter -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Hunter)-->
+
+        <!--Beating Them Back! (Druid + Shaman + DK most probably)-->
+        <Quest>
+            <Name>Beating Them Back!</Name>
+            <Id>29078</Id>
+            <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>6</Count>
+                    <Entry>
+                        <int>49871</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Beating Them Back! (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 2 -->
+
+        <!--Lions for Lambs (Mage)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28769</Id>
+            <ClassMask>128</ClassMask> <!-- Mage -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28757</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Mage)-->
+
+        <!--Lions for Lambs (Paladin)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28770</Id>
+            <ClassMask>2 </ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28762</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Paladin)-->
+
+        <!--Lions for Lambs (Priest)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28771</Id>
+            <ClassMask>16</ClassMask> <!-- Priest -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28763</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Priest)-->
+
+        <!--Lions for Lambs (Rogue)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28772</Id>
+            <ClassMask>8</ClassMask> <!-- Rogue -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28764</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Rogue)-->
+
+        <!--Lions for Lambs (Warlock)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28773</Id>
+            <ClassMask>256</ClassMask> <!-- Warlock -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28765</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Warlock)-->
+
+        <!--Lions for Lambs (Warrior)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28774</Id>
+            <ClassMask>1</ClassMask> <!-- Warrior -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28766</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Warrior)-->
+
+        <!--Lions for Lambs (Hunter)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>28759</Id>
+            <ClassMask>4</ClassMask> <!-- Hunter -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28767</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Hunter)-->
+
+        <!--Lions for Lambs (Druid + Shaman + DK most probably)-->
+        <Quest>
+            <Name>Lions for Lambs</Name>
+            <Id>29079</Id>
+            <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>5</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>29078</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>49874</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                            <X>-8802.342</X>
+                            <Y>-100.5617</Y>
+                            <Z>82.90696</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Lions for Lambs (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 3 -->
+
+        <!--Glyphic Letter (Mage)-->
+        <Quest>
+            <Name>Glyphic Letter</Name>
+            <Id>3104</Id>
+            <ClassMask>128</ClassMask> <!-- Mage -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28769</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Khelden Bremen</Name>
+                <Entry>198</Entry>
+                <Position>
+                    <X>-8851.673</X>
+                    <Y>-188.2821</Y>
+                    <Z>89.31502</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Glyphic Letter (Mage)-->
+
+        <!--Consecrated Letter (Paladin)-->
+        <Quest>
+            <Name>Consecrated Letter</Name>
+            <Id>3101</Id>
+            <ClassMask>2 </ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28770</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Brother Sammuel</Name>
+                <Entry>925</Entry>
+                <Position>
+                    <X>-8914.645</X>
+                    <Y>-215.0427</Y>
+                    <Z>82.11885</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Consecrated Letter (Paladin)-->
+
+        <!--Hallowed Letter (Priest)-->
+        <Quest>
+            <Name>Hallowed Letter</Name>
+            <Id>3103</Id>
+            <ClassMask>16</ClassMask> <!-- Priest -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28771</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Priestess Anetta</Name>
+                <Entry>375</Entry>
+                <Position>
+                    <X>-8853.5</X>
+                    <Y>-193.4498</Y>
+                    <Z>81.93213</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Hallowed Letter (Priest)-->
+
+        <!--Encrypted Letter (Rogue)-->
+        <Quest>
+            <Name>Encrypted Letter</Name>
+            <Id>3102</Id>
+            <ClassMask>8</ClassMask> <!-- Rogue -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28772</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Jorik Kerridan</Name>
+                <Entry>915</Entry>
+                <Position>
+                    <X>-8863.427</X>
+                    <Y>-211.0484</Y>
+                    <Z>80.5799</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Encrypted Letter (Rogue)-->
+
+        <!--Tainted Letter (Warlock)-->
+        <Quest>
+            <Name>Tainted Letter</Name>
+            <Id>3105</Id>
+            <ClassMask>256</ClassMask> <!-- Warlock -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28773</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Drusilla La Salle</Name>
+                <Entry>459</Entry>
+                <Position>
+                    <X>-8926.925</X>
+                    <Y>-195.6243</Y>
+                    <Z>80.58209</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Tainted Letter (Warlock)-->
+
+        <!--Simple Letter (Warrior)-->
+        <Quest>
+            <Name>Simple Letter</Name>
+            <Id>3100</Id>
+            <ClassMask>1</ClassMask> <!-- Warrior -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28774</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Llane Beshere</Name>
+                <Entry>911</Entry>
+                <Position>
+                    <X>-8918.371</X>
+                    <Y>-208.3983</Y>
+                    <Z>82.1265</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Simple Letter (Warrior)-->
+
+        <!--Etched Letter (Hunter)-->
+        <Quest>
+            <Name>Etched Letter</Name>
+            <Id>28759</Id>
+            <ClassMask>4</ClassMask> <!-- Hunter -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28759</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Ashley Blank</Name>
+                <Entry>43278</Entry>
+                <Position>
+                    <X>-8924.773</X>
+                    <Y>-149.8822</Y>
+                    <Z>81.36666</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--Etched Letter (Hunter)-->
+
+        <!-- No Quest 3 for Druid + Shaman + DK most probably -->
+
+<!-- Quest 4 -->
+
+        <!-- Mastering the Arcane (Mage)-->
+        <Quest>
+            <Name>Mastering the Arcane</Name>
+            <Id>26916</Id>
+            <ClassMask>128</ClassMask> <!-- Mage -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3104</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Khelden Bremen</Name>
+                <Entry>198</Entry>
+                <Position>
+                    <X>-8851.673</X>
+                    <Y>-188.2821</Y>
+                    <Z>89.31502</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Khelden Bremen</Name>
+                <Entry>198</Entry>
+                <Position>
+                    <X>-8851.673</X>
+                    <Y>-188.2821</Y>
+                    <Z>89.31502</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>198</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8851.673</X>
+                        <Y>-188.2821</Y>
+                        <Z>89.31502</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective>
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>7268</UseSpellId>
+                    <Count>2</Count>
+                    <Hotspots>
+                        <Point>
+                        <X>-8967.869</X>
+                        <Y>-153.1475</Y>
+                        <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- Mastering the Arcane (Mage)-->
+
+        <!-- The Power of the Light (Paladin)-->
+        <Quest>
+            <Name>The Power of the Light</Name>
+            <Id>26918</Id>
+            <ClassMask>2 </ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3101</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Brother Sammuel</Name>
+                <Entry>925</Entry>
+                <Position>
+                    <X>-8914.645</X>
+                    <Y>-215.0427</Y>
+                    <Z>82.11885</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Brother Sammuel</Name>
+                <Entry>925</Entry>
+                <Position>
+                    <X>-8914.645</X>
+                    <Y>-215.0427</Y>
+                    <Z>82.11885</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Seal of Righteousness -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>925</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8914.645</X>
+                        <Y>-215.0427</Y>
+                        <Z>82.11885</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Buy Judgement -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>925</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8914.645</X>
+                        <Y>-215.0427</Y>
+                        <Z>82.11885</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Use Seal of Righteousness on self -->
+                    <Objective>UseSpell</Objective>
+                    <UseSpellId>20154</UseSpellId>
+                    <Count>1</Count>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Judgement on Target Dummy -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>20271</UseSpellId>
+                    <Count>1</Count>
+                    <Hotspots>
+                        <Point>
+                            <X>-8967.869</X>
+                            <Y>-153.1475</Y>
+                            <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- The Power of the Light (Paladin)-->
+
+        <!-- Healing the Wounded (Priest)-->
+        <Quest>
+            <Name>Healing the Wounded</Name>
+            <Id>26919</Id>
+            <ClassMask>16</ClassMask> <!-- Priest -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3103</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Priestess Anetta</Name>
+                <Entry>375</Entry>
+                <Position>
+                    <X>-8853.5</X>
+                    <Y>-193.4498</Y>
+                    <Z>81.93213</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Priestess Anetta</Name>
+                <Entry>375</Entry>
+                <Position>
+                    <X>-8853.5</X>
+                    <Y>-193.4498</Y>
+                    <Z>81.93213</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Flash Heal -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>375</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8853.5</X>
+                        <Y>-193.4498</Y>
+                        <Z>81.93213</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Flash Heal on Wounded Trainee -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44564</EntryAOE>
+                    <UseSpellId>2061</UseSpellId>
+                    <Count>5</Count>
+                    <WaitMsUseSpell>3000</WaitMsUseSpell>
+                    <Hotspots>
+                        <Point>
+                            <X>-8856.279</X>
+                            <Y>-189.4424</Y>
+                            <Z>81.93826</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- Healing the Wounded (Priest)-->
+       
+        <!-- The Deepest Cut (Rogue)-->
+        <Quest>
+            <Name>The Deepest Cut</Name>
+            <Id>26915</Id>
+            <ClassMask>8</ClassMask> <!-- Rogue -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3102</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Jorik Kerridan</Name>
+                <Entry>915</Entry>
+                <Position>
+                    <X>-8863.427</X>
+                    <Y>-211.0484</Y>
+                    <Z>80.5799</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Jorik Kerridan</Name>
+                <Entry>915</Entry>
+                <Position>
+                    <X>-8863.427</X>
+                    <Y>-211.0484</Y>
+                    <Z>80.5799</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Eviscerate -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>915</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8863.427</X>
+                        <Y>-211.0484</Y>
+                        <Z>80.5799</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Eviscerate on Training Dummy -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>2098</UseSpellId>
+                    <Count>3</Count>
+                    <Hotspots>
+                        <Point>
+                            <X>-8967.869</X>
+                            <Y>-153.1475</Y>
+                            <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- The Deepest Cut (Rogue)-->
+
+        <!-- Immolation (Warlock)-->
+        <Quest>
+            <Name>Immolation</Name>
+            <Id>26914</Id>
+            <ClassMask>256</ClassMask> <!-- Warlock -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3105</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Drusilla La Salle</Name>
+                <Entry>459</Entry>
+                <Position>
+                    <X>-8926.925</X>
+                    <Y>-195.6243</Y>
+                    <Z>80.58209</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Drusilla La Salle</Name>
+                <Entry>459</Entry>
+                <Position>
+                    <X>-8926.925</X>
+                    <Y>-195.6243</Y>
+                    <Z>80.58209</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Immolate -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>459</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                    <X>-8926.925</X>
+                    <Y>-195.6243</Y>
+                    <Z>80.58209</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Immolate on Training Dummy -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>348</UseSpellId>
+                    <Count>5</Count>
+                    <Hotspots>
+                        <Point>
+                            <X>-8967.869</X>
+                            <Y>-153.1475</Y>
+                            <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- Immolation (Warlock)-->
+
+        <!-- Charging into Battle (Warrior)-->
+        <Quest>
+            <Name>Charging into Battle</Name>
+            <Id>26913</Id>
+            <ClassMask>1</ClassMask> <!-- Warrior -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>3100</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Llane Beshere</Name>
+                <Entry>911</Entry>
+                <Position>
+                    <X>-8918.371</X>
+                    <Y>-208.3983</Y>
+                    <Z>82.1265</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Llane Beshere</Name>
+                <Entry>911</Entry>
+                <Position>
+                    <X>-8918.371</X>
+                    <Y>-208.3983</Y>
+                    <Z>82.1265</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Charge -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>911</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8918.371</X>
+                        <Y>-208.3983</Y>
+                        <Z>82.1265</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Charge on Training Dummy -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>100</UseSpellId>
+                    <Count>1</Count>
+                    <Hotspots>
+                        <Point>
+                            <X>-8967.869</X>
+                            <Y>-153.1475</Y>
+                            <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- Charging into Battle (Warrior)-->
+
+        <!-- The Hunter's Path (Hunter)-->
+        <Quest>
+            <Name>The Hunter's Path</Name>
+            <Id>26917</Id>
+            <ClassMask>4</ClassMask> <!-- Hunter -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28759</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Ashley Blank</Name>
+                <Entry>43278</Entry>
+                <Position>
+                    <X>-8924.773</X>
+                    <Y>-149.8822</Y>
+                    <Z>81.36666</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Ashley Blank</Name>
+                <Entry>43278</Entry>
+                <Position>
+                    <X>-8924.773</X>
+                    <Y>-149.8822</Y>
+                    <Z>81.36666</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective> <!-- Buy Steady Shot -->
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>43287</EntryInteractWith>
+                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
+                    <PositionInteractWith>
+                        <X>-8924.773</X>
+                        <Y>-149.8822</Y>
+                        <Z>81.36666</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective> <!-- Cast Steady Shot on Training Dummy -->
+                    <Objective>UseSpell</Objective>
+                    <EntryAOE>44548</EntryAOE>
+                    <UseSpellId>56641</UseSpellId>
+                    <Count>5</Count>
+                    <Hotspots>
+                        <Point>
+                            <X>-8967.869</X>
+                            <Y>-153.1475</Y>
+                            <Z>81.50401</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- The Hunter's Path (Hunter)-->
+        
+        <!-- No quest 4 for Druid + Shaman + DK most probably -->
+
+<!-- Quest 5 -->
+
+        <!-- Join the Battle! (Mage)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28784</Id>
+            <ClassMask>128</ClassMask> <!-- Mage -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26916</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Khelden Bremen</Name>
+                <Entry>198</Entry>
+                <Position>
+                    <X>-8851.673</X>
+                    <Y>-188.2821</Y>
+                    <Z>89.31502</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Mage)-->
+        
+        <!-- Join the Battle! (Paladin)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28785</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26918</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Brother Sammuel</Name>
+                <Entry>925</Entry>
+                <Position>
+                    <X>-8914.645</X>
+                    <Y>-215.0427</Y>
+                    <Z>82.11885</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Paladin)-->
+      
+        <!-- Join the Battle! (Priest)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28786</Id>
+            <ClassMask>16</ClassMask> <!-- Priest -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26919</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Priestess Anetta</Name>
+                <Entry>375</Entry>
+                <Position>
+                    <X>-8853.5</X>
+                    <Y>-193.4498</Y>
+                    <Z>81.93213</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Priest)-->
+
+        <!-- Join the Battle! (Rogue)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28787</Id>
+            <ClassMask>8</ClassMask> <!-- Rogue -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26915</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Jorik Kerridan</Name>
+                <Entry>915</Entry>
+                <Position>
+                    <X>-8863.427</X>
+                    <Y>-211.0484</Y>
+                    <Z>80.5799</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Rogue)-->
+
+        <!-- Join the Battle! (Warlock)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28784</Id>
+            <ClassMask>256</ClassMask> <!-- Warlock -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26914</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Drusilla La Salle</Name>
+                <Entry>459</Entry>
+                <Position>
+                    <X>-8926.925</X>
+                    <Y>-195.6243</Y>
+                    <Z>80.58209</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Warlock)-->
+
+        <!-- Join the Battle! (Warrior)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28789</Id>
+            <ClassMask>1</ClassMask> <!-- Warrior -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26913</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Llane Beshere</Name>
+                <Entry>911</Entry>
+                <Position>
+                    <X>-8918.371</X>
+                    <Y>-208.3983</Y>
+                    <Z>82.1265</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Warrior)-->
+        
+        <!-- Join the Battle! (Hunter)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>28780</Id>
+            <ClassMask>4</ClassMask> <!-- Hunter -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26917</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Ashley Blank</Name>
+                <Entry>43278</Entry>
+                <Position>
+                    <X>-8924.773</X>
+                    <Y>-149.8822</Y>
+                    <Z>81.36666</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Hunter)-->
+        
+        <!-- Join the Battle! (Druid + Shaman + DK most probably)-->
+        <Quest>
+            <Name>Join the Battle!</Name>
+            <Id>29080</Id>
+            <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>3</MinLevel>
+            <MaxLevel>6</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>29079</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!-- Join the Battle! (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 6 : They Sent Assassins - Kill 8 Goblin Assassins. (50039) -->
+
+        <!-- They Sent Assassins (Mage)-->
+        <!-- They Sent Assassins (Paladin)-->
+        <!-- They Sent Assassins (Priest)-->
+        <!-- They Sent Assassins (Rogue)-->
+        <!-- They Sent Assassins (Warlock)-->
+        <!-- They Sent Assassins (Warrior)-->
+        <!-- They Sent Assassins (Hunter)-->
+        <!-- They Sent Assassins (Druid + Shaman + DK most probably)-->
+
+    </Quests>
+    <Blackspots />
+</QuesterProfile>

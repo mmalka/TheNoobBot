@@ -987,7 +987,7 @@
       <Id>Profiles_Converters_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text>(EXP, Dépeuçage, Reputation et loots)</Text>
+      <Text>(EXP, Dépeçage, Réputation et loots)</Text>
       <Id>Grinder_Product_Description</Id>
     </Translation>
     <Translation>
@@ -1001,6 +1001,14 @@
     <Translation>
       <Text />
       <Id>Archaeologist_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <id>Battlegrounder_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(XP en quêtant)</Text>
+      <Id>Quester_Product_Description</Id>
     </Translation>
     <Translation>
       <Text>By npc name</Text>

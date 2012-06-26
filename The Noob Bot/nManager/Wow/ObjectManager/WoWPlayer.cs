@@ -19,14 +19,29 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return (WoWClass)BitConverter.GetBytes(GetDescriptor<Int32>((uint)Descriptors.UnitFields.UNIT_FIELD_BYTES_0))[1]; }
+                { return (WoWClass)BitConverter.GetBytes(GetDescriptor<Int32>(Descriptors.UnitFields.UNIT_FIELD_BYTES_0))[1]; }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > PlayerFaction: " + e);
+                    Logging.WriteError("WoWPlayer > WowClass: " + e);
                     return WoWClass.None;
                 }
             }
         }
+
+        public WoWRace WowRace
+        {
+            get
+            {
+                try
+                { return (WoWRace)BitConverter.GetBytes(GetDescriptor<Int32>(Descriptors.UnitFields.UNIT_FIELD_BYTES_0))[0]; }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > WowRace: " + e);
+                    return WoWRace.None;
+                }
+            }
+        }
+
         public string PlayerFaction
         {
             get

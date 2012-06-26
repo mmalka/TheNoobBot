@@ -1002,6 +1002,14 @@
       <Id>Archaeologist_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text />
+      <id>Battlegrounder_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(XP while questing)</Text>
+      <Id>Quester_Product_Description</Id>
+    </Translation>
+    <Translation>
       <Text>By npc name</Text>
       <Id>By_npc_name</Id>
     </Translation>
