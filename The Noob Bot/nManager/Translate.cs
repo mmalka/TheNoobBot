@@ -316,6 +316,7 @@ namespace nManager
             Gatherer_Product_Description,
             Fisherbot_Product_Description,
             Battlegrounder_Product_Description,
+            Quester_Product_Description,
             Archaeologist_Product_Description,
             By_npc_name,
             Object_type,
