@@ -66,7 +66,7 @@ namespace nManager.Wow.Helpers
                                 return 0;
                         }
                     }
-                    if (TraceLine.TraceLineGo(targetNpc.Position)) // If obastacle
+                    if (TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle
                     {
                         List<Point> points = PathFinder.FindPath(targetNpc.Position);
                         MovementManager.Go(points);
@@ -74,7 +74,9 @@ namespace nManager.Wow.Helpers
 
                         while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable && targetNpc.Health > 0 && targetNpc.IsValid &&
                                MovementManager.InMovement && _fightLoop && Usefuls.InGame &&
-                               TraceLine.TraceLineGo(targetNpc.Position))
+                               TraceLine.TraceLineGo(targetNpc.Position) &&
+                               targetNpc.GetDistance > (CustomClass.GetRange - 1)
+                              )
                         {
                             // Mob already in fight
                             if (targetNpc.Type != Enums.WoWObjectType.Player &&
@@ -138,7 +140,7 @@ namespace nManager.Wow.Helpers
                         }
 
                         // Move to target if out of range
-                        if (targetNpc.GetDistance > CustomClass.GetRange + 1 && !ObjectManager.ObjectManager.Me.IsCast)
+                        if (targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast)
                         {
                             int rJump = Others.Random(1, 30);
                             if (rJump == 5)
@@ -146,7 +148,7 @@ namespace nManager.Wow.Helpers
                             MovementManager.MoveTo(targetNpc);
                         }
                         // Create path if mob out of view
-                        if (targetNpc.GetDistance > CustomClass.GetRange + 1 && !ObjectManager.ObjectManager.Me.IsCast)// && Useful.TraceLine.TraceLineGo(targetNpc.Position))
+                        if (targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast)// && Useful.TraceLine.TraceLineGo(targetNpc.Position))
                         {
                             goto figthStart;
                         }

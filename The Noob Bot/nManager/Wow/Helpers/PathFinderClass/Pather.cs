@@ -275,7 +275,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadAround(Point loc, int extent): " + exception);
+                Logging.WriteError("LoadAround(Point loc): " + exception);
             }
         }
 
