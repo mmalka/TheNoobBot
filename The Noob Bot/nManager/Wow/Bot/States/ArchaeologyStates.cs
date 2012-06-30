@@ -132,8 +132,8 @@ namespace nManager.Wow.Bot.States
                     {
                         Tasks.MountTask.DismountMount();
 
-                        var t = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
-                        if (t.GetBaseAddress > 0) // If found loot
+                        ObjectManager.WoWGameObject t = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
+                        if (t.GetBaseAddress > 0) // If found then loot
                         {
                             var points = PathFinder.FindPath(t.Position);
                             MovementManager.Go(points);
@@ -257,10 +257,12 @@ namespace nManager.Wow.Bot.States
                                     if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) || nbStuck >= 2)
                                     // Use fly mount
                                     {
-                                        p.Z = PathFinder.GetZPosition(p) + 10;
+                                        p.Z = PathFinder.GetZPosition(p);
 
                                         if (p.Z == 0)
                                             p.Z = ObjectManager.ObjectManager.Me.Position.Z + 35;
+                                        else
+                                            p.Z = p.Z + 10;
 
                                         if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                                         {

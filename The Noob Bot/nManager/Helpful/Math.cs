@@ -148,9 +148,10 @@ namespace nManager.Helpful
 
                 foreach (Point pointTemp in listPoint)
                 {
-                    if (pointTemp.DistanceTo(point) < distance)
+                    float dist = pointTemp.DistanceTo(point);
+                    if (dist < distance)
                     {
-                        distance = pointTemp.DistanceTo(point);
+                        distance = dist;
                         id = i;
                     }
                     i++;
