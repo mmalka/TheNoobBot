@@ -68,8 +68,8 @@ inline float dtQueryFilter::getCost(const float* pa, const float* pb,
 }
 #endif	
 
-// Change the original 0.99 to 2.0 to weight the A* search and then go a lot deeper in the search tree
-static const float H_SCALE = 2.0f; // Search heuristic scale.
+// Change the original 0.999 to 2.2 to weight the A* search and then go a lot deeper in the search tree
+static const float H_SCALE = 2.2f; // Search heuristic scale.
 
 
 dtNavMeshQuery* dtAllocNavMeshQuery()

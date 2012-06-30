@@ -420,7 +420,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 resultSuccess = true;
-                var extents = new Point(8f, 100f, 8f).ToFloatArray();
+                var extents = new Point(5.0f, 75.0f, 5.0f).ToFloatArray();
                 var start = startVec.ToRecast().ToFloatArray();
                 var end = endVec.ToRecast().ToFloatArray();
 
@@ -522,15 +522,20 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     AddMemoryPressure(data.Length);
                     IsDungeon = true;
                 }
-                else
-                    status = _mesh.Initialize(32768, 4096, Utility.Origin, Utility.TileSize, Utility.TileSize);
+                else //                       15bits 9bits
+                    status = _mesh.Initialize(32767, 511, Utility.Origin, Utility.TileSize, Utility.TileSize);
 
                 if (status.HasFailed())
                     Logging.WriteNavigator(status + " Failed to initialize the mesh");
 
-                _query = new NavMeshQuery();//new PatherCallback(this));
+                _query = new NavMeshQuery();
                 _query.Initialize(_mesh, 65536);
                 Filter = new QueryFilter { IncludeFlags = 0xFFFF, ExcludeFlags = 0x0 };
+                // Add the costs
+                Filter.SetAreaCost((int)PolyArea.Water, 4);
+                Filter.SetAreaCost((int)PolyArea.Terrain, 1);
+                Filter.SetAreaCost((int)PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
+                Filter.SetAreaCost((int)PolyArea.Danger, 20);
             }
             catch (Exception exception)
             {

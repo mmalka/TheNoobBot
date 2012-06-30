@@ -1452,8 +1452,8 @@ exit:
 			pin_ptr<float> startPosPointer = &startPos[0];
 			pin_ptr<float> endPosPointer = &endPos[0];
 			int hops;
-			dtPolyRef* hopBuffer = new dtPolyRef[1024];
-			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 1024);
+			dtPolyRef* hopBuffer = new dtPolyRef[4096];
+			dtStatus status = _query->findPath(_callback, startRef, endRef, startPosPointer, endPosPointer, filter->GetNativeObject(), hopBuffer, &hops, 4096);
 			if (dtStatusSucceed(status))
 			{
 				polyRefHops = gcnew array<dtPolyRef>(hops);
