@@ -20,6 +20,7 @@ namespace nManager.Wow.Bot.States
             set { _priority = value; }
         }
         private int _priority;
+        private float _loopPathId = -1f;
 
         public override bool NeedToRun
         {
@@ -57,13 +58,27 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            var nearPointId = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
-            if (PathLoop[nearPointId].Type.ToLower() != "flying" && PathLoop[nearPointId].Type.ToLower() != "swimming" && PathLoop[nearPointId].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 && PathLoop[nearPointId].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200)
+            int _currentPoint;
+            float PathIdentity = Math.DistanceListPoint(PathLoop);
+            if (_loopPathId != PathIdentity) // If path changed, then we need to find the nearest point
             {
-                var points = PathFinder.FindPath(PathLoop[nearPointId]);
-                MovementManager.Go(points);
+                _currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
+            }
+            else // If the path did not change, let's return to the last point we were using
+            {
+                _currentPoint = MovementManager.PointId + 1;
+                if (_currentPoint > PathLoop.Count - 1)
+                    _currentPoint = 0;
+            }
+            // Too far away, then we don't care for fly/swim but we need pathfinder to go by foot before anything else
+            if (PathLoop[_currentPoint].Type.ToLower() != "flying" && PathLoop[_currentPoint].Type.ToLower() != "swimming" && PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 && PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200)
+            {
+                var npoints = PathFinder.FindPath(PathLoop[_currentPoint]);
+                MovementManager.Go(npoints);
                 return;
             }
+            // We are near enough or flying/swimming then restore the loop
+            _loopPathId = PathIdentity;
             MovementManager.GoLoop(PathLoop);
         }
     }

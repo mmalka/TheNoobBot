@@ -25,6 +25,7 @@ namespace nManager.Wow.Helpers
 
         private static bool _first;
         private static int _lastNbStuck;
+        private static int _currentTargetedPoint; // let's remember where we are instead of searching point and doing mess
         private static List<Point> _pointsOrigine = new List<Point>();
 
         /// <summary>
@@ -57,6 +58,22 @@ namespace nManager.Wow.Helpers
                     Logging.WriteError("InMovement: " + exception);
                 }
                 return false;
+            }
+        }
+
+        public static int PointId
+        {
+            get
+            {
+                try
+                {
+                    return _currentTargetedPoint;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("PointId: " + exception);
+                }
+                return 0;
             }
         }
 
@@ -95,36 +112,32 @@ namespace nManager.Wow.Helpers
 
                                 if (_movement && _points.Count > 0)
                                 {
-                                    int idPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
-                                    if (idPoint + 2 <= _points.Count - 1)
+                                    if (_points[_currentTargetedPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 0.5f)
                                     {
-                                        if (!TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
-                                                                   _points[idPoint + 1]))
-                                        {
-                                            idPoint++;
-                                        }
-                                    }
-                                    if (idPoint >= _points.Count - 1)
-                                    {
-                                        idPoint = 0;
+                                        _currentTargetedPoint++;
                                     }
 
-                                    if (_points[idPoint].Type.ToLower() == "flying")
-                                        FlyMouvementManager(idPoint);
-                                    else if (_points[idPoint].Type.ToLower() == "swimming")
-                                        AquaticMouvementManager(idPoint);
+                                    if (_currentTargetedPoint >= _points.Count - 1)
+                                    {
+                                        _currentTargetedPoint = 0;
+                                    }
+
+                                    if (_points[_currentTargetedPoint].Type.ToLower() == "flying")
+                                        FlyMouvementManager(_currentTargetedPoint);
+                                    else if (_points[_currentTargetedPoint].Type.ToLower() == "swimming")
+                                        AquaticMouvementManager(_currentTargetedPoint);
                                     else
-                                        GroundMouvementManager(idPoint);
+                                        GroundMouvementManager(_currentTargetedPoint);
 
                                     Statistics.OffsetStats = 0x53;
                                 }
                             }
-                            Thread.Sleep(80);//30
+                            Thread.Sleep(80);
                         }
                         if (!_loop && !_first)
                             _movement = false;
                     }
-                    Thread.Sleep(150); // 100
+                    Thread.Sleep(150);
                 }
             }
             catch (Exception exception)
@@ -141,27 +154,6 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    // Clean Path
-                    /*
-                    for (int i = 0; i <= _points.Count - 1; i++)
-                    {
-                        if (_points.Count <= 1)
-                            break;
-
-                        int inext = i + 1;
-                        if (inext >= _points.Count - 1)
-                        {
-                            inext = 0;
-                        }
-
-                        if (_points[i].DistanceTo(_points[inext]) < 0.3f)
-                        {
-                            _points.RemoveAt(inext);
-                            i--;
-                        }
-                    }
-                    */
-
                     if (_points[firstIdPoint].Type.ToLower() == "flying" || _points[firstIdPoint].Type.ToLower() == "swimming")
                     {
                         return;
@@ -213,7 +205,6 @@ namespace nManager.Wow.Helpers
 
                     MoveTo(_points[idPoint]);
 
-
                     bool end = false;
                     while ((_movement && !end) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                     {
@@ -223,9 +214,8 @@ namespace nManager.Wow.Helpers
                             {
                                 return;
                             }
-
                             // GoTo next Point
-                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.5f &&
+                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 2.0f &&
                                    ObjectManager.ObjectManager.Me.IsMounted) ||
                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 2.0f) &&
                                  ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) && _movement)
@@ -253,23 +243,8 @@ namespace nManager.Wow.Helpers
                                     _lastNbStuck = StuckCount;
 
                                     StopMoveTo();
-
-                                    _points = new List<Point>();
-                                    _points.AddRange(_pointsOrigine);
-                                    var pointsT = new List<Point>();
-
-                                    for (int i = 0;
-                                         i <
-                                         Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
-                                         i++)
-                                    {
-                                        pointsT.Add(_points[i]);
-                                    }
-                                    pointsT.Add(ObjectManager.ObjectManager.Me.Position);
-                                    pointsT.AddRange(PathFinder.FindPath(_points[_points.Count - 1]));
-                                    _points = pointsT;
-                                    idPoint = Math.NearestPointOfListPoints(_points,
-                                                                                     ObjectManager.ObjectManager.Me.Position);
+                                    _points.AddRange(PathFinder.FindPath(_pointsOrigine[_points.Count - 1]));
+                                    idPoint = 0;
                                 }
                                 catch (Exception exception)
                                 {
@@ -281,7 +256,7 @@ namespace nManager.Wow.Helpers
                             // Move to point
                             MoveTo(_points[idPoint]);
 
-                            Thread.Sleep(5);
+                            Thread.Sleep(50);
 
                             int rJump = Others.Random(1, 5000);
                             if (rJump == 5)
@@ -315,7 +290,7 @@ namespace nManager.Wow.Helpers
                     Bot.Tasks.MountTask.MountingFlyingMount(false);
                     if (!_movement)
                         return;
-                    int idPoint = firstIdPoint; // Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
+                    int idPoint = firstIdPoint;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) > 200 || _points.Count == 1)
                     {
                         bool result;
@@ -339,23 +314,7 @@ namespace nManager.Wow.Helpers
                             LongMove.StopLongMove();
                         }
                     }
-                    //else
-                    //{
-                    //    if (idPoint + 1 <= _points.Count - 1)
-                    //    {
-                    // if (!TraceLine.TraceLineGo(ObjectManager.Me.Position,
-                    //                           _points[idPoint + 1]))
-                    //{
-                    //         idPoint++;
-                    //         if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) < 30)
-                    //             if (idPoint + 1 <= _points.Count - 1)
-                    //                 idPoint++;
-                    //         //}
-                    //     }
-                    // }
 
-                    //MoveTo(_points[idPoint]);
-                    //Thread.Sleep(300);
                     bool end = false;
                     while ((_movement && !end) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                     {
@@ -387,7 +346,7 @@ namespace nManager.Wow.Helpers
                                     idPoint = 0;
                                 }
                             }
-
+                            _currentTargetedPoint = idPoint;
                             MoveTo(_points[idPoint]);
                         }
                         MoveTo(_points[idPoint]);
@@ -412,39 +371,7 @@ namespace nManager.Wow.Helpers
                     Bot.Tasks.MountTask.MountingAquaticMount(false);
                     if (!_movement)
                         return;
-                    int idPoint = firstIdPoint; // Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
-                    /*
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) > 200 || _points.Count == 1)
-                    {
-                        Logging.WriteNavigator("Long Move distance: " +
-                                               ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]));
-                        LongMove.LongMoveByNewThread(_points[idPoint]);
-                        Thread.Sleep(100);
-                        while (LongMove.IsLongMove && _movement)
-                        {
-                            Thread.Sleep(50);
-                        }
-                        LongMove.StopLongMove();
-                    }
-                     * */
-                    //else
-                    //{
-                    //    if (idPoint + 1 <= _points.Count - 1)
-                    //    {
-                    // if (!TraceLine.TraceLineGo(ObjectManager.Me.Position,
-                    //                           _points[idPoint + 1]))
-                    //{
-                    //         idPoint++;
-                    //         if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) < 30)
-                    //             if (idPoint + 1 <= _points.Count - 1)
-                    //                 idPoint++;
-                    //         //}
-                    //     }
-                    // }
-
-                    //MoveTo(_points[idPoint]);
-                    //Thread.Sleep(300);
-
+                    int idPoint = firstIdPoint;
                     if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
                     {
                         bool result;
@@ -490,7 +417,7 @@ namespace nManager.Wow.Helpers
                                     idPoint = 0;
                                 }
                             }
-
+                            _currentTargetedPoint = idPoint;
                             MoveTo(_points[idPoint]);
                         }
                         MoveTo(_points[idPoint]);
@@ -540,14 +467,8 @@ namespace nManager.Wow.Helpers
                 {
                     int j = Others.Random(1, 8);
 
-
-                    float disX = lastPost.X - ObjectManager.ObjectManager.Me.Position.X;
-                    if (disX < 0)
-                        disX = -disX;
-
-                    float disY = lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y;
-                    if (disY < 0)
-                        disY = -disY;
+                    float disX = System.Math.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
+                    float disY = System.Math.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
 
                     if (disX < 2.5f || disY < 2.5f)
                     //we likely don't need to run this if we are 5+ units from from our stuck point
@@ -630,17 +551,10 @@ namespace nManager.Wow.Helpers
                 for (int i = 0; i < iR; i++)
                 {
                     int j = Others.Random(1, 8);
-
-
                     int z = Others.Random(-15, 15);
 
-                    float disX = lastPost.X - ObjectManager.ObjectManager.Me.Position.X;
-                    if (disX < 0)
-                        disX = -disX;
-
-                    float disY = lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y;
-                    if (disY < 0)
-                        disY = -disY;
+                    float disX = System.Math.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
+                    float disY = System.Math.Abs(lastPost.Y - ObjectManager.ObjectManager.Me.Position.Y);
 
                     if (disX < 5 || disY < 5)
                     {
@@ -736,6 +650,7 @@ namespace nManager.Wow.Helpers
                         _pointsOrigine.AddRange(points);
                         _points = new List<Point>();
                         _points.AddRange(points);
+                        _currentTargetedPoint = 0;
 
                         _movement = true;
                         _first = true;
@@ -762,6 +677,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                // We are returning here. We had a current point, then we return to it, or the current point is the nearest one if we just start the GoLoop on a new points list
                 if (Math.DistanceListPoint(_points) != Math.DistanceListPoint(points))
                 {
                     _loop = false;
@@ -775,6 +691,7 @@ namespace nManager.Wow.Helpers
                         _pointsOrigine.AddRange(points);
                         _points = new List<Point>();
                         _points.AddRange(points);
+                        _currentTargetedPoint = Math.NearestPointOfListPoints(_points, ObjectManager.ObjectManager.Me.Position);
                         _loop = true;
                         _movement = true;
                     }
@@ -906,6 +823,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                while (ObjectManager.ObjectManager.Me.IsCast)
+                {
+                    Thread.Sleep(100);
+                }
+
                 var timer = new Timer(1 * 1000 * 2);
                 var timerWaypoint = new Timer(1 * 1000 * (30 / 3));
                 double distance = (double)position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
@@ -926,7 +848,7 @@ namespace nManager.Wow.Helpers
 
                 while (!timerWaypoint.IsReady && Usefuls.InGame)
                 {
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(position) <= 1.5)
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(position) <= 0.6)
                         return true;
 
                     Point posP = ObjectManager.ObjectManager.Me.Position;
