@@ -133,6 +133,18 @@ namespace Quester.Tasks
                     questObjective.IsUsedWaitMs = false;
                     return true;
                 }
+                return false;
+            }
+
+            // TRAIN ALL SPELLS
+            if (questObjective.Objective == Objective.TrainSpells)
+            {
+                if (questObjective.IsUsedTrainSpells)
+                {
+                    questObjective.IsUsedTrainSpells = false;
+                    return true;
+                }
+                return false;
             }
 
             // INTERACT WITH
@@ -143,6 +155,7 @@ namespace Quester.Tasks
                     questObjective.IsUsedInteractWith = false;
                     return true;
                 }
+                return false;
             }
 
             // USE SPELL
@@ -425,6 +438,48 @@ namespace Quester.Tasks
             {
                 Thread.Sleep(questObjective.WaitMs);
                 questObjective.IsUsedWaitMs = true;
+            }
+
+            // TRAIN ALL SPELLS
+            if (questObjective.Objective == Objective.TrainSpells)
+            {
+                if (!MovementManager.InMovement)
+                {
+                    if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.searchRadius &&
+                        questObjective.PositionInteractWith.X != 0)
+                    {
+                        //MountTask.MountingFlyingMount();
+                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionInteractWith));
+                    }
+                    else
+                    {
+                        var unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryInteractWith }));
+                        Point pos = new Point();
+                        uint baseAddress;
+                        if (unit.IsValid)
+                        {
+                            pos = new Point(unit.Position);
+                            baseAddress = unit.GetBaseAddress;
+                        }
+                        else
+                        {
+                            return;
+                        }
+                        MovementManager.Go(PathFinder.FindPath(pos));
+                        Thread.Sleep(1000);
+                        while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
+                        {
+                            if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
+                                return;
+                            Thread.Sleep(100);
+                        }
+                        MountTask.DismountMount(true);
+                        Interact.InteractGameObject(baseAddress);
+
+                        Trainer.TrainingSpell();
+                        questObjective.IsUsedTrainSpells = true;
+                    }
+                }
             }
 
             // INTERACT WITH

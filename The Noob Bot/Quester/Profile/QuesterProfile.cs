@@ -102,6 +102,9 @@ namespace Quester.Profile
         public bool IsUsedInteractWith;
         public int GossipOptionsInteractWith = -1;
 
+        // Train all Spells
+        internal bool IsUsedTrainSpells = false;
+
         // UseSpell
         internal bool IsUsedUseSpell = false;
         public int WaitMsUseSpell = 0;
@@ -147,6 +150,7 @@ namespace Quester.Profile
         MoveTo,
         Wait,
         InteractWith,
+        TrainSpells,
         UseSpell,
         EquipItem,
         PickUpQuest,

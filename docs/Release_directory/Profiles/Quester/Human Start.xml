@@ -1023,9 +1023,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective>
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>198</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                         <X>-8851.673</X>
                         <Y>-188.2821</Y>
@@ -1080,7 +1079,16 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Seal of Righteousness -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
+                    <EntryInteractWith>925</EntryInteractWith>
+                    <PositionInteractWith>
+                        <X>-8914.645</X>
+                        <Y>-215.0427</Y>
+                        <Z>82.11885</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <!-- <QuestObjective>  Buy Judgement
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>925</EntryInteractWith>
                     <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
@@ -1088,17 +1096,7 @@
                         <Y>-215.0427</Y>
                         <Z>82.11885</Z>
                     </PositionInteractWith>
-                </QuestObjective>
-                <QuestObjective> <!-- Buy Judgement -->
-                    <Objective>InteractWith</Objective>
-                    <EntryInteractWith>925</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
-                    <PositionInteractWith>
-                        <X>-8914.645</X>
-                        <Y>-215.0427</Y>
-                        <Z>82.11885</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
+                </QuestObjective> -->
                 <QuestObjective> <!-- Use Seal of Righteousness on self -->
                     <Objective>UseSpell</Objective>
                     <UseSpellId>20154</UseSpellId>
@@ -1152,9 +1150,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Flash Heal -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>375</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                         <X>-8853.5</X>
                         <Y>-193.4498</Y>
@@ -1210,9 +1207,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Eviscerate -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>915</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                         <X>-8863.427</X>
                         <Y>-211.0484</Y>
@@ -1267,9 +1263,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Immolate -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>459</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                     <X>-8926.925</X>
                     <Y>-195.6243</Y>
@@ -1324,9 +1319,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Charge -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>911</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                         <X>-8918.371</X>
                         <Y>-208.3983</Y>
@@ -1381,9 +1375,8 @@
             </TurnIn>
             <Objectives>
                 <QuestObjective> <!-- Buy Steady Shot -->
-                    <Objective>InteractWith</Objective>
+                    <Objective>TrainSpells</Objective>
                     <EntryInteractWith>43287</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
                     <PositionInteractWith>
                         <X>-8924.773</X>
                         <Y>-149.8822</Y>
