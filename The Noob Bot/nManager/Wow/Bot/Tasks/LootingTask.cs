@@ -71,7 +71,7 @@ namespace nManager.Wow.Bot.Tasks
 
                                         if (wowUnit.IsLootable)
                                         {
-                                            Interact.InteractGameObjectBeta23(wowUnit.GetBaseAddress);
+                                            Interact.InteractGameObject(wowUnit.GetBaseAddress);
                                             if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                                             {
                                                 return;
@@ -94,7 +94,7 @@ namespace nManager.Wow.Bot.Tasks
                                             if (wowUnit.Skinnable)
                                             {
                                                 Logging.Write("Skin " + wowUnit.Name);
-                                                Interact.InteractGameObjectBeta23(wowUnit.GetBaseAddress);
+                                                Interact.InteractGameObject(wowUnit.GetBaseAddress);
                                                 Thread.Sleep(500);
                                                 while (ObjectManager.ObjectManager.Me.IsCast)
                                                 {

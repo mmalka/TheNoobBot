@@ -382,7 +382,7 @@ namespace Quester.Tasks
                         else if (unit.IsValid)
                         {
                             questObjective.PositionUseItem = new Point(unit.Position);
-                            Interact.InteractGameObjectBeta23(unit.GetBaseAddress);
+                            Interact.InteractGameObject(unit.GetBaseAddress);
                         }
                         else
                         {
@@ -469,7 +469,7 @@ namespace Quester.Tasks
                             Thread.Sleep(100);
                         }
                         MountTask.DismountMount(true);
-                        Interact.InteractGameObjectBeta23(baseAddress);
+                        Interact.InteractGameObject(baseAddress);
 
                         if (questObjective.GossipOptionsInteractWith != -1)
                         {
@@ -498,7 +498,7 @@ namespace Quester.Tasks
                         }
                         else if (unit.IsValid)
                         {
-                            Interact.InteractGameObjectBeta23(unit.GetBaseAddress);
+                            Interact.InteractGameObject(unit.GetBaseAddress);
                             questObjective.PositionUseSpell = new Point(unit.Position);
                         }
                         else
@@ -594,7 +594,7 @@ namespace Quester.Tasks
                             Thread.Sleep(100);
                         }
                         MountTask.DismountMount(true);
-                        Interact.InteractGameObjectBeta23(unit.GetBaseAddress);
+                        Interact.InteractGameObject(unit.GetBaseAddress);
                         Thread.Sleep(Usefuls.Latency + 500);
                     }
                 }
@@ -838,7 +838,7 @@ namespace Quester.Tasks
 
                     MovementManager.MoveTo(position);
                     if (position.DistanceTo(ObjectManager.Me.Position) < 7)
-                        Interact.InteractGameObjectBeta23(baseAddress);
+                        Interact.InteractGameObject(baseAddress);
                     Thread.Sleep(300);
                 }
                 MovementManager.StopMove();
@@ -854,9 +854,9 @@ namespace Quester.Tasks
                 if (position.DistanceTo(ObjectManager.Me.Position) < 6)
                 {
                     Quest.CloseQuestWindow();
-                    Interact.InteractGameObjectBeta23(baseAddress);
+                    Interact.InteractGameObject(baseAddress);
                     Thread.Sleep(Usefuls.Latency + 200);
-                    Interact.InteractGameObjectBeta23(baseAddress);
+                    Interact.InteractGameObject(baseAddress);
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
@@ -868,7 +868,7 @@ namespace Quester.Tasks
 
                             //int countQuestInLog = Quest.GetLogQuestId().Count;
 
-                            Interact.InteractGameObjectBeta23(baseAddress);
+                            Interact.InteractGameObject(baseAddress);
                             Thread.Sleep(Usefuls.Latency + 1000);
                             Quest.SelectGossipAvailableQuest(i);
                             Thread.Sleep(Usefuls.Latency + 1000);
@@ -890,7 +890,7 @@ namespace Quester.Tasks
                             if (i <= 0)
                                 i = 1;
 
-                            Interact.InteractGameObjectBeta23(baseAddress);
+                            Interact.InteractGameObject(baseAddress);
                             Thread.Sleep(Usefuls.Latency + 200);
                             Quest.SelectGossipActiveQuest(i);
                             Thread.Sleep(Usefuls.Latency + 200);

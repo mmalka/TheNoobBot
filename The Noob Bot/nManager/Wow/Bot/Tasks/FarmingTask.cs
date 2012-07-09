@@ -202,11 +202,11 @@ namespace nManager.Wow.Bot.Tasks
                                 if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)).Contains(node.Entry)))
                                     Usefuls.DisMount();
                                 Thread.Sleep(Usefuls.Latency + 300);
-                                Interact.InteractGameObjectBeta23(node.GetBaseAddress);
+                                Interact.InteractGameObject(node.GetBaseAddress);
                                 Thread.Sleep(Usefuls.Latency + 200); // tauren cast plus vite
                                 if (!ObjectManager.ObjectManager.Me.IsCast)
                                 {
-                                    Interact.InteractGameObjectBeta23(node.GetBaseAddress);
+                                    Interact.InteractGameObject(node.GetBaseAddress);
                                     Thread.Sleep(Usefuls.Latency + 200);
                                 }
                                 while (ObjectManager.ObjectManager.Me.IsCast)
@@ -334,7 +334,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                Interact.InteractGameObjectBeta23(node.GetBaseAddress);
+                                Interact.InteractGameObject(node.GetBaseAddress);
                                 if (ObjectManager.ObjectManager.Me.InCombat)
                                 {
                                     return;
