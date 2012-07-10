@@ -431,22 +431,16 @@ namespace nManager.Helpful
         /// <returns></returns>
         public static List<String> GetFilesDirectory(string pathDirectory, string searchPattern = "")
         {
-            try
+            string path = "";
+            if (!pathDirectory.Contains(":"))
+                path = Application.StartupPath;
+            if (!Directory.Exists(path + pathDirectory))
+                return new List<string>();
+            return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
             {
-                string path = "";
-                if (!pathDirectory.Contains(":"))
-                    path = Application.StartupPath;
-                return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
-                {
-                    var name = Path.GetFileName(subfolder);
-                    return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
-                }).ToList();
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetFilesDirectory(string pathDirectory, string searchPattern = \"\"): " + exception);
-            }
-            return new List<string>();
+                var name = Path.GetFileName(subfolder);
+                return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
+            }).ToList();
         }
 
         /// <summary>

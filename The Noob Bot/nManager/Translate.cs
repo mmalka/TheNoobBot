@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -10,55 +11,54 @@ namespace nManager
     {
         private static Language _translate = new Language();
 
-        public static void Load(string fileName = "English.xml")
+        public static bool Load(string fileName = "English.xml")
         {
-            try
+            if (!File.Exists(Application.StartupPath + "\\Data\\Lang\\" + fileName))
+                fileName = "English.xml";
+
+            // Even English.xml file does not exist
+            if (!File.Exists(Application.StartupPath + "\\Data\\Lang\\" + fileName))
             {
-                if (!Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + fileName))
-                    fileName = "English.xml";
-
-                _translate = new Language();
-
-                _translate =
-                    XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\" + fileName);
-
-                if (_translate == null)
-                    _translate = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
+                Logging.WriteError("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' does not exist!!!");
+                Form error = new Helpful.Forms.Error_Popup("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' not found!!\n\nPlease install all the required file for TheNoobBot to work properly.");
+                error.ShowDialog();
+                return false;
             }
-            catch (Exception e)
-            {
-                Logging.WriteError("LoadTranslation(string fileName = \"English.xml\"): " + e);
-            }
+            _translate = new Language();
+
+            _translate =
+                XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\" + fileName);
+
+            if (_translate == null)
+                _translate = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
+
+            return true;
         }
 
         public static string Get(Id id)
         {
-            try
+            if (_translate == null || _translate.Translations.Count == 0)
+                return "";
+                
+            if (_translate.Translations.Count == 0)
+                Load();
+
+            foreach (var v in _translate.Translations.Where(v => v.Id == id))
             {
-                if (_translate.Translations.Count == 0)
-                    Load();
-
-                foreach (var v in _translate.Translations.Where(v => v.Id == id))
-                {
-                    if (!string.IsNullOrWhiteSpace(v.Text))
-                        return v.Text;
-                }
-
-                var translateTemp = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
-
-                foreach (var v in translateTemp.Translations)
-                {
-                    if (id == v.Id && !string.IsNullOrWhiteSpace(v.Text))
-                    {
-                        _translate.Translations.Add(v);
-                        return v.Text;
-                    }
-                }
-            }
-            catch
-            {
+                if (!string.IsNullOrWhiteSpace(v.Text))
+                    return v.Text;
             }
 
+            var translateTemp = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
+
+            foreach (var v in translateTemp.Translations)
+            {
+                if (id == v.Id && !string.IsNullOrWhiteSpace(v.Text))
+                {
+                    _translate.Translations.Add(v);
+                    return v.Text;
+                }
+            }
             return "";
         }
 

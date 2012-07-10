@@ -168,14 +168,12 @@ namespace nManager.Helpful
                         if (_log.Count > 300)
                             _log.RemoveAt(0);
 
-                        //Save();
-                        try
-                        {
-                            var sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true, Encoding.UTF8);
-                            sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" + LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
-                            sw.Close();
-                        }
-                        catch { }
+                        if (!Directory.Exists(Application.StartupPath + "\\Logs"))
+                            Directory.CreateDirectory(Application.StartupPath + "\\Logs");
+
+                        var sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true, Encoding.UTF8);
+                        sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" + LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
+                        sw.Close();
 
                         try
                         {

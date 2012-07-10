@@ -14,18 +14,9 @@ namespace The_Noob_Bot
     {
         public Login()
         {
-            try
-            {
-
-
-                InitializeComponent();
-                InitializeProgram();
-                Translate();
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Login(): " + ex);
-            }
+            InitializeComponent();
+            InitializeProgram();
+            Translate();
         }
 
         void SetToolTypeIfNeeded(Control label)
@@ -42,56 +33,51 @@ namespace The_Noob_Bot
 
         void Translate()
         {
-            try
+            // Choose lang:
+            langChooseCb.Items.Clear();
+            foreach (var l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
             {
-                // Choose lang:
-                langChooseCb.Items.Clear();
-                foreach (var l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
-                {
-                    langChooseCb.Items.Add(l.Remove(l.Length - 1 - 3));
-                }
-
-                var langChoosed = "English.xml";
-                if (Others.ExistFile(Application.StartupPath + "\\Settings\\lang.txt"))
-                {
-                    var langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
-                    if (!string.IsNullOrEmpty(langTemp))
-                    {
-                        if (Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + langTemp))
-                            langChoosed = langTemp;
-                    }
-                }
-                nManager.Translate.Load(langChoosed);
-                langChooseCb.Text = langChoosed.Remove(langChoosed.Length - 1 - 3);
-                langChooseCb.SelectedIndexChanged += langChooseCb_SelectedIndexChanged;
-
-                // Translate text:
-                labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.User_Name) + "";
-                SetToolTypeIfNeeded(labelX1);
-                labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Password);
-                SetToolTypeIfNeeded(labelX2);
-                saveCb.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-                SetToolTypeIfNeeded(saveCb);
-                createB.Text = nManager.Translate.Get(nManager.Translate.Id.Create);
-                SetToolTypeIfNeeded(createB);
-                launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
-                SetToolTypeIfNeeded(launchBotB);
-                refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
-                SetToolTypeIfNeeded(refreshB);
-                Text = nManager.Translate.Get(nManager.Translate.Id.Login);
-                
-                labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
-                
-                buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
-                
-                buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
-                
+                langChooseCb.Items.Add(l.Remove(l.Length - 1 - 3));
             }
-            catch (Exception ex)
+
+            var langChoosed = "English.xml";
+            if (Others.ExistFile(Application.StartupPath + "\\Settings\\lang.txt"))
             {
-                Logging.WriteError("Login > Translate(): " + ex);
+                var langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
+                if (!string.IsNullOrEmpty(langTemp))
+                {
+                    if (Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + langTemp))
+                        langChoosed = langTemp;
+                }
             }
+            if (!nManager.Translate.Load(langChoosed))
+                return;
+
+            langChooseCb.Text = langChoosed.Remove(langChoosed.Length - 1 - 3);
+            langChooseCb.SelectedIndexChanged += langChooseCb_SelectedIndexChanged;
+
+            // Translate text:
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.User_Name) + "";
+            SetToolTypeIfNeeded(labelX1);
+            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Password);
+            SetToolTypeIfNeeded(labelX2);
+            saveCb.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+            SetToolTypeIfNeeded(saveCb);
+            createB.Text = nManager.Translate.Get(nManager.Translate.Id.Create);
+            SetToolTypeIfNeeded(createB);
+            launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
+            SetToolTypeIfNeeded(launchBotB);
+            refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
+            SetToolTypeIfNeeded(refreshB);
+            Text = nManager.Translate.Get(nManager.Translate.Id.Login);
+                
+            labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
+                
+            buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
+                
+            buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";               
         }
+
         void InitializeProgram()
         {
             try

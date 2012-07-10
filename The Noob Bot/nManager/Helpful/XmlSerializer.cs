@@ -63,29 +63,14 @@ namespace nManager.Helpful
         /// <returns></returns>
         public static T Deserialize<T>(String path)
         {
-            FileStream fs = null;
-            try
-            {
-                fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-                var s = new System.Xml.Serialization.XmlSerializer(typeof(T));
-                var result = (T)s.Deserialize(fs);
-                fs.Close();
-                return result;
-            }
-            catch (Exception ex)
-            {
-                try
-                {
-                    if (fs != null)
-                        fs.Close();
-                }
-                catch
-                {
-                }
-                Logging.WriteError("Deserialize<T>(String path): " + ex);
-                MessageBox.Show("XML Deserialize: " + ex);
+            if (!File.Exists(path))
                 return default(T);
-            }
+
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            var s = new System.Xml.Serialization.XmlSerializer(typeof(T));
+            var result = (T)s.Deserialize(fs);
+            fs.Close();
+            return result;
         }
     }
 }

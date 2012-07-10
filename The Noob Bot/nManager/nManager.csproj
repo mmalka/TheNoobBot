@@ -24,8 +24,10 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x86</PlatformTarget>
-    <DocumentationFile>bin\Debug\nManager.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
     <NoWarn>1591</NoWarn>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -76,6 +78,12 @@
     </Compile>
     <Compile Include="Helpful\Forms\Translate Tools.Designer.cs">
       <DependentUpon>Translate Tools.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpful\Forms\Error Popup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Helpful\Forms\Error Popup.Designer.cs">
+      <DependentUpon>Error Popup.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpful\Forms\GeneralSettings.cs">
       <SubType>Form</SubType>
@@ -242,6 +250,9 @@
     <EmbeddedResource Include="Helpful\Forms\DeveloperTools.resx">
       <DependentUpon>DeveloperTools.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Helpful\Forms\Error Popup.resx">
+      <DependentUpon>Error Popup.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\NodesListManager.resx">
       <DependentUpon>NodesListManager.cs</DependentUpon>
