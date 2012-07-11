@@ -88,115 +88,6 @@ namespace nManager.Wow.Bot.States
                     (listVendor.Count <= 0 || NeededBuyFood() || NeededBuyDrink() || (Usefuls.GetContainerNumFreeSlots <= 2 && listVendor.Count <= 0)))
                 listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Vendor));
 
-            #region Mail
-
-            if (mailBox != null)
-            {
-                Logging.Write("Go to mailbox");
-                var pointsMail = new List<Point>();
-                if ((mailBox.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
-                {
-                    pointsMail.Add(mailBox.Position);
-                }
-                else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
-                {
-                    mailBox.Position.Type = "Swimming";
-                    pointsMail.Add(mailBox.Position);
-                }
-                else
-                {
-                    pointsMail = PathFinder.FindPath(mailBox.Position);
-                }
-                
-
-                MovementManager.Go(pointsMail);
-                var timer = new Timer(((int)Math.DistanceListPoint(pointsMail) / 3 * 1000) + 5000);
-                Thread.Sleep(700);
-                while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                       !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
-                {
-                    if (timer.IsReady)
-                        MovementManager.StopMove();
-                    if (mailBox.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                        MovementManager.StopMove();
-                    Thread.Sleep(100);
-                }
-
-                // Prospection
-                if (nManagerSetting.CurrentSetting.prospectingInTown && nManagerSetting.CurrentSetting.prospecting && nManagerSetting.CurrentSetting.prospectingList.Count > 0)
-                {
-                    if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.prospectingList))
-                    {
-                        var prospectingState = new ProspectingState();
-                        prospectingState.Run();
-                    }
-                }
-                // End Prospection
-
-                WoWGameObject mailBoxObj = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(mailBox.Entry));
-                if (mailBoxObj.IsValid)
-                {
-                    Thread.Sleep(500);
-                    MovementManager.StopMoveTo();
-                    Thread.Sleep(1000);
-                    List<Point> listPoint = PathFinder.FindPath(mailBoxObj.Position);
-
-                    Logging.Write("MailBox found");
-
-                    MovementManager.Go(listPoint);
-                    timer = new Timer(((int)Math.DistanceListPoint(listPoint) / 3 * 1000) + 5000);
-                    while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
-                    {
-                        if (timer.IsReady)
-                            MovementManager.StopMove();
-                        if (mailBoxObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                            MovementManager.StopMove();
-                        Thread.Sleep(100);
-                    }
-
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(mailBoxObj.Position) < 5 && Products.Products.IsStarted &&
-                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
-                    {
-                        Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
-                        Thread.Sleep(500);
-                        var mQuality = new List<WoWItemQuality>();
-                        if (nManagerSetting.CurrentSetting.mailGray)
-                            mQuality.Add(WoWItemQuality.Poor);
-                        if (nManagerSetting.CurrentSetting.mailWhite)
-                            mQuality.Add(WoWItemQuality.Common);
-                        if (nManagerSetting.CurrentSetting.mailGreen)
-                            mQuality.Add(WoWItemQuality.Uncommon);
-                        if (nManagerSetting.CurrentSetting.mailBlue)
-                            mQuality.Add(WoWItemQuality.Rare);
-                        if (nManagerSetting.CurrentSetting.mailPurple)
-                            mQuality.Add(WoWItemQuality.Epic);
-
-                        var needRunAgain = true;
-                        for (var i = 7; i > 0 && needRunAgain; i--)
-                        {
-                            Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
-                            Thread.Sleep(1000);
-                            Mail.SendMessage(nManagerSetting.CurrentSetting.mailRecipient, nManagerSetting.CurrentSetting.mailSubject, "",
-                                             nManagerSetting.CurrentSetting.forceMailList, nManagerSetting.CurrentSetting.doNotMailList, mQuality, out needRunAgain);
-                            Thread.Sleep(500);
-                        }
-                        Logging.Write("Mail sending at " + nManagerSetting.CurrentSetting.mailRecipient);
-                    }
-                    else
-                    {
-                        Logging.Write("Unable to reach the mail box");
-                    }
-                }
-                else
-                {
-                    Logging.Write("MailBox not found");
-                }
-            }
-
-            #endregion Mail
-
-
             #region Vendor
 
             if (listVendor.Count > 0)
@@ -320,11 +211,115 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-
+            }
             #endregion Vendor
 
+            #region Mail
 
+            if (mailBox != null)
+            {
+                Logging.Write("Go to mailbox");
+                var pointsMail = new List<Point>();
+                if ((mailBox.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
+                {
+                    pointsMail.Add(mailBox.Position);
+                }
+                else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
+                {
+                    mailBox.Position.Type = "Swimming";
+                    pointsMail.Add(mailBox.Position);
+                }
+                else
+                {
+                    pointsMail = PathFinder.FindPath(mailBox.Position);
+                }
+
+
+                MovementManager.Go(pointsMail);
+                var timer = new Timer(((int)Math.DistanceListPoint(pointsMail) / 3 * 1000) + 5000);
+                Thread.Sleep(700);
+                while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
+                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                {
+                    if (timer.IsReady)
+                        MovementManager.StopMove();
+                    if (mailBox.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
+                        MovementManager.StopMove();
+                    Thread.Sleep(100);
+                }
+
+                // Prospection
+                if (nManagerSetting.CurrentSetting.prospectingInTown && nManagerSetting.CurrentSetting.prospecting && nManagerSetting.CurrentSetting.prospectingList.Count > 0)
+                {
+                    if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.prospectingList))
+                    {
+                        var prospectingState = new ProspectingState();
+                        prospectingState.Run();
+                    }
+                }
+                // End Prospection
+
+                WoWGameObject mailBoxObj = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(mailBox.Entry));
+                if (mailBoxObj.IsValid)
+                {
+                    Thread.Sleep(500);
+                    MovementManager.StopMoveTo();
+                    Thread.Sleep(1000);
+                    List<Point> listPoint = PathFinder.FindPath(mailBoxObj.Position);
+
+                    Logging.Write("MailBox found");
+
+                    MovementManager.Go(listPoint);
+                    timer = new Timer(((int)Math.DistanceListPoint(listPoint) / 3 * 1000) + 5000);
+                    while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
+                            !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                    {
+                        if (timer.IsReady)
+                            MovementManager.StopMove();
+                        if (mailBoxObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
+                            MovementManager.StopMove();
+                        Thread.Sleep(100);
+                    }
+
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(mailBoxObj.Position) < 5 && Products.Products.IsStarted &&
+                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                    {
+                        Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
+                        Thread.Sleep(500);
+                        var mQuality = new List<WoWItemQuality>();
+                        if (nManagerSetting.CurrentSetting.mailGray)
+                            mQuality.Add(WoWItemQuality.Poor);
+                        if (nManagerSetting.CurrentSetting.mailWhite)
+                            mQuality.Add(WoWItemQuality.Common);
+                        if (nManagerSetting.CurrentSetting.mailGreen)
+                            mQuality.Add(WoWItemQuality.Uncommon);
+                        if (nManagerSetting.CurrentSetting.mailBlue)
+                            mQuality.Add(WoWItemQuality.Rare);
+                        if (nManagerSetting.CurrentSetting.mailPurple)
+                            mQuality.Add(WoWItemQuality.Epic);
+
+                        var needRunAgain = true;
+                        for (var i = 7; i > 0 && needRunAgain; i--)
+                        {
+                            Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
+                            Thread.Sleep(1000);
+                            Mail.SendMessage(nManagerSetting.CurrentSetting.mailRecipient, nManagerSetting.CurrentSetting.mailSubject, "",
+                                                nManagerSetting.CurrentSetting.forceMailList, nManagerSetting.CurrentSetting.doNotMailList, mQuality, out needRunAgain);
+                            Thread.Sleep(500);
+                        }
+                        Logging.Write("Mail sending at " + nManagerSetting.CurrentSetting.mailRecipient);
+                    }
+                    else
+                    {
+                        Logging.Write("Unable to reach the mail box");
+                    }
+                }
+                else
+                {
+                    Logging.Write("MailBox not found");
+                }
             }
+            #endregion Mail
         }
 
         bool NeededBuyFood()
