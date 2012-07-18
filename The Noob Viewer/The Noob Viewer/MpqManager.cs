@@ -11,7 +11,7 @@ namespace meshDatabase
 
     public static class MpqManager
     {
-        private static readonly List<string> Languages = new List<string>{"enUS", "enGB", "deDE", "frFR"};
+        private static readonly List<string> Languages = new List<string>{"enUS", "enGB", "deDE", "frFR", "esES", "ruRU", "esMX"};
         private static readonly List<string> IgnoredMPQs = new List<string> {  };
 
         private static bool _initialized;
@@ -38,7 +38,7 @@ namespace meshDatabase
             else
                 root = path;
 
-            var files = Directory.GetFiles(root + "\\Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
+            var files = Directory.GetFiles(root + "Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
             
             foreach (var file in files)
             {
