@@ -1,4 +1,4 @@
-﻿namespace TheNoobViewer
+namespace TheNoobViewer
 {
     partial class TheNoobViewer
     {
@@ -36,10 +36,13 @@
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.Azeroth = new System.Windows.Forms.ToolStripMenuItem();
+            this.Vashjir = new System.Windows.Forms.ToolStripMenuItem();
             this.Kalimdor = new System.Windows.Forms.ToolStripMenuItem();
             this.Outland = new System.Windows.Forms.ToolStripMenuItem();
             this.Northrend = new System.Windows.Forms.ToolStripMenuItem();
             this.TolBarad = new System.Windows.Forms.ToolStripMenuItem();
+            this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
+            this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
             this.ZoomCombo = new System.Windows.Forms.ToolStripComboBox();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuWebLink = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,9 +52,6 @@
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusContinent = new System.Windows.Forms.ToolStripStatusLabel();
-            this.Vashjir = new System.Windows.Forms.ToolStripMenuItem();
-            this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
-            this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -122,6 +122,13 @@
             this.Azeroth.Text = "Azeroth";
             this.Azeroth.Click += new System.EventHandler(this.Azeroth_Click);
             // 
+            // Vashjir
+            // 
+            this.Vashjir.Name = "Vashjir";
+            this.Vashjir.Size = new System.Drawing.Size(119, 22);
+            this.Vashjir.Text = "Vashj\'ir";
+            this.Vashjir.Click += new System.EventHandler(this.Vashjir_Click);
+            // 
             // Kalimdor
             // 
             this.Kalimdor.Name = "Kalimdor";
@@ -150,11 +157,25 @@
             this.TolBarad.Text = "Tol Barad";
             this.TolBarad.Click += new System.EventHandler(this.TolBarad_Click);
             // 
+            // Deepholm
+            // 
+            this.Deepholm.Name = "Deepholm";
+            this.Deepholm.Size = new System.Drawing.Size(165, 22);
+            this.Deepholm.Text = "Deepholm";
+            this.Deepholm.Click += new System.EventHandler(this.Deepholm_Click);
+            // 
+            // Darkmoon
+            // 
+            this.Darkmoon.Name = "Darkmoon";
+            this.Darkmoon.Size = new System.Drawing.Size(165, 22);
+            this.Darkmoon.Text = "Darkmoon Island";
+            this.Darkmoon.Click += new System.EventHandler(this.Darkmoon_Click);
+            // 
             // ZoomCombo
             // 
             this.ZoomCombo.CausesValidation = false;
             this.ZoomCombo.Name = "ZoomCombo";
-            this.ZoomCombo.Size = new System.Drawing.Size(85, 21);
+            this.ZoomCombo.Size = new System.Drawing.Size(90, 21);
             this.ZoomCombo.SelectedIndexChanged += new System.EventHandler(this.ZoomCombo_SelectedIndexChanged);
             // 
             // helpToolStripMenuItem
@@ -225,27 +246,6 @@
             this.toolStripStatusContinent.Name = "toolStripStatusContinent";
             this.toolStripStatusContinent.Size = new System.Drawing.Size(27, 17);
             this.toolStripStatusContinent.Text = "toto";
-            // 
-            // Vashjir
-            // 
-            this.Vashjir.Name = "Vashjir";
-            this.Vashjir.Size = new System.Drawing.Size(152, 22);
-            this.Vashjir.Text = "Vashj\'ir";
-            this.Vashjir.Click += new System.EventHandler(this.Vashjir_Click);
-            // 
-            // Deepholm
-            // 
-            this.Deepholm.Name = "Deepholm";
-            this.Deepholm.Size = new System.Drawing.Size(165, 22);
-            this.Deepholm.Text = "Deepholm";
-            this.Deepholm.Click += new System.EventHandler(this.Deepholm_Click);
-            // 
-            // Darkmoon
-            // 
-            this.Darkmoon.Name = "Darkmoon";
-            this.Darkmoon.Size = new System.Drawing.Size(165, 22);
-            this.Darkmoon.Text = "Darkmoon Island";
-            this.Darkmoon.Click += new System.EventHandler(this.Darkmoon_Click);
             // 
             // TheNoobViewer
             // 
