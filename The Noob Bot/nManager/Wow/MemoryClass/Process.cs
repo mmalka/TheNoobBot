@@ -227,7 +227,16 @@ namespace nManager.Wow.MemoryClass
                     return lastCurrentRAMUsage;
                 timerCurrentRAMUsage = new Timer(1000);
                 if (ramCounter == null)
-                    ramCounter = new PerformanceCounter("Process", "Working Set - Private", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+                {
+                    try
+                    {
+                        ramCounter = new PerformanceCounter("Process", "Working Set - Private", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+                    }
+                    catch (System.InvalidOperationException)
+                    {
+                        ramCounter = new PerformanceCounter("Process", "Working Set", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
+                    }
+                }
                 lastCurrentRAMUsage = (ramCounter.RawValue / 1024).ToString("#,#", CultureInfo.InvariantCulture) + " K";
                 return lastCurrentRAMUsage;
             }
