@@ -10,11 +10,16 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Lua.RunMacroText("/click GossipTitleButton3");
                 Thread.Sleep(1000);
-                Lua.LuaDoString("LoadAddOn\"Blizzard_TrainerUI\" f=ClassTrainerTrainButton f.e = 0 if f:GetScript\"OnUpdate\" then f:SetScript(\"OnUpdate\", nil)else f:SetScript(\"OnUpdate\", function(f,e) f.e=f.e+e if f.e>.01 then f.e=0 f:Click() end end)end");
+                Lua.LuaDoString("for i=1,GetNumGossipOptions() do local _,n=GetGossipOptions(); if n == \"trainer\" then SelectGossipOption(i) end end");
                 Thread.Sleep(1000);
-                Lua.RunMacroText("/click ClassTrainerFrameCloseButton");
+                Lua.LuaDoString("SetTrainerServiceTypeFilter(\"available\",1);");
+                Lua.LuaDoString("SetTrainerServiceTypeFilter(\"unavailable\",0);");
+                Lua.LuaDoString("SetTrainerServiceTypeFilter(\"used\",0);");
+                Thread.Sleep(1000);
+                Lua.LuaDoString("for i=0,GetNumTrainerServices(),1 do BuyTrainerService(1); end");
+                Thread.Sleep(500);
+                Lua.LuaDoString("CloseTrainer()");
             }
             catch (Exception exception)
             {
