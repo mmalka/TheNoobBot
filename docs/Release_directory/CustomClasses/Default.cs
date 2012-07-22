@@ -5167,7 +5167,15 @@ public class Paladin
     private readonly Spell _layOnHands = new Spell("Lay on Hands");
     private readonly Spell _wordOfGlory = new Spell("Word of Glory");    
     #endregion
-
+    // profession & racials
+    Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    Spell Lifeblood = new Spell("Lifeblood");
+    Spell Stoneform = new Spell("Stoneform");
+    Spell Tailoring = new Spell("Tailoring");
+    Spell Leatherworking = new Spell("Leatherworking");
+    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    Spell War_Stomp = new Spell("War Stomp");
+    Spell Berserking = new Spell("Berserking");
     #endregion InitializeSpell
 
     public Paladin()
@@ -5215,6 +5223,8 @@ public class Paladin
         Heal();
 
         DPS_Burst();
+        
+        Thread.Sleep(100);
     }
 
     private void Patrolling()
@@ -5281,7 +5291,6 @@ public class Paladin
 
     private void Heal()
     {
-        
         if (_divineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && _divineShield.IsSpellUsable)
         {
             _divineShield.Launch();
@@ -5334,12 +5343,22 @@ public class Paladin
                 return;
             }
         }
+        if(GetUnitMana() < 5000)
+        {
+            if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
+                Arcane_Torrent.Launch();
+            if (_divineplea.KnownSpell && _divineplea.IsSpellUsable)
+            {
+                _divineplea.Launch();
+                return;
+            }
+        }
     }
     private void DPS_Burst()
     {
         if(_guardianOfAncientKings.HaveBuff || !_guardianOfAncientKings.IsSpellUsable)
         {
-            if (_zealotry.KnownSpell && _zealotry.IsSpellUsable)
+            if (_zealotry.KnownSpell && _zealotry.IsSpellUsable && ObjectManager.Me.GetHolyPowerStack() == 3)
             {
                 _zealotry.Launch();
                 if(!_inquisition.HaveBuff && _inquisition.KnownSpell && _inquisition.IsSpellUsable)
@@ -5347,7 +5366,7 @@ public class Paladin
                 _avengingWrath.Launch();
                 return;
             }
-            if (_avengingWrath.KnownSpell && _avengingWrath.IsSpellUsable)
+            if (!_zealotry.KnownSpell && _avengingWrath.KnownSpell && _avengingWrath.IsSpellUsable)
             {
                 _avengingWrath.Launch();
                 return;
@@ -5369,9 +5388,10 @@ public class Paladin
             _hammerOfJustice.Launch();
             return;
         }*/
-        if (_inquisition.KnownSpell && !_inquisition.HaveBuff && _inquisition.IsSpellUsable && ObjectManager.Me.GetHolyPowerStack() == 3)
+        if (_inquisition.KnownSpell && !_inquisition.HaveBuff && _inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
         {
             _inquisition.Launch();
+            return;
         }
         
         if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
@@ -5401,7 +5421,7 @@ public class Paladin
             _exorcism.Launch();
             return;
         }
-        if (_templarsVerdict.KnownSpell && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
+        if (_templarsVerdict.KnownSpell && _inquisition.HaveBuff && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
         {
             _templarsVerdict.Launch();
             return;
