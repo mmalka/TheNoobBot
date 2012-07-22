@@ -58,7 +58,7 @@ public class Main : ICustomClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Deathknight Unholy class...");
-                        new Unholy();
+                        new Deathknight_Unholy();
                     }
                     break;
                 #endregion
@@ -341,7 +341,7 @@ public class Deathknight_Blood
 
     #endregion InitializeSpell
 
-    public Blood()
+    public Deathknight_Blood()
     {
         Main.range = 3.6f;
         UInt64 lastTarget = 0;
@@ -871,7 +871,7 @@ public class Deathknight_Unholy
 
     #endregion InitializeSpell
 
-    public Unholy()
+    public Deathknight_Unholy()
     {
         Main.range = 3.6f;
 
@@ -1388,7 +1388,7 @@ public class Deathknight_Frost
 
     #endregion InitializeSpell
 
-    public Frostdk()
+    public Deathknight_Frost()
     {
         Main.range = 3.6f; // Range
 
@@ -1793,7 +1793,7 @@ public class Mage_Frost
 
     #endregion InitializeSpell
 
-    public Frost()
+    public Mage_Frost()
     {
         Main.range = 28.0f; // Range
 
@@ -2184,7 +2184,7 @@ public class Mage_Arcane
 
     #endregion InitializeSpell
 
-    public Arcane()
+    public Mage_Arcane()
     {
         Main.range = 40.0f;
         UInt64 lastTarget = 0;
@@ -2611,7 +2611,7 @@ public class Mage_Fire
 
     #endregion InitializeSpell
 
-    public Fire()
+    public Mage_Fire()
     {
         Main.range = 40.0f;
         UInt64 lastTarget = 0;
@@ -5263,9 +5263,7 @@ public class Paladin
 
     private void JudgementManager()
     {
-        if (_judgement.KnownSpell &&
-            _judgement.IsDistanceGood &&
-            _judgement.IsSpellUsable)
+        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
         {
             _judgement.Launch();
         }
@@ -5281,7 +5279,6 @@ public class Paladin
             _retributionAura.Launch();
         else if (!_devotionAura.HaveBuff && _devotionAura.IsSpellUsable)
             _devotionAura.Launch();
-        }
     }
 
     private void Heal()
@@ -5314,7 +5311,7 @@ public class Paladin
             if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
             {
                 _holyLight.Launch();
-                return
+                return;
             }
         }                
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
@@ -5331,7 +5328,7 @@ public class Paladin
             if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
             {
                 _holyLight.Launch();
-                return
+                return;
             }
             if (_divineLight.KnownSpell && _divineLight.IsSpellUsable)
             {
@@ -5350,7 +5347,7 @@ public class Paladin
                 if(!_inquisition.HaveBuff && _inquisition.KnownSpell && _inquisition.IsSpellUsable)
                     _inquisition.Launch();
                 _avengingWrath.Launch();
-                return
+                return;
             }
             if (_avengingWrath.KnownSpell && _avengingWrath.IsSpellUsable)
             {
@@ -5413,17 +5410,17 @@ public class Paladin
         if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
         {
             _judgement.Launch();
-            return
+            return;
         }
         if (_holyWrath.KnownSpell && _holyWrath.IsSpellUsable)
         {
             _holyWrath.Launch();
-            return
+            return;
         }
         if (_consecration.KnownSpell && _consecration.IsSpellUsable)
         {
             _consecration.Launch();
-            return
+            return;
         }
     }
 }
