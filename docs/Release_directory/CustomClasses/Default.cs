@@ -5160,6 +5160,7 @@ public class Paladin
     private readonly Spell _avengersShield = new Spell("Avenger's Shield");
     #endregion
     #region Heal
+    private readonly Spell _divineplea = new Spell("Divine Plea");
     private readonly Spell _divineShield = new Spell("Divine Shield");
     private readonly Spell _divineLight = new Spell("Divine Light");
     private readonly Spell _flashOfLight = new Spell("Flash of Light");
@@ -5168,14 +5169,14 @@ public class Paladin
     private readonly Spell _wordOfGlory = new Spell("Word of Glory");    
     #endregion
     // profession & racials
-    Spell Arcane_Torrent = new Spell("Arcane Torrent");
-    Spell Lifeblood = new Spell("Lifeblood");
-    Spell Stoneform = new Spell("Stoneform");
-    Spell Tailoring = new Spell("Tailoring");
-    Spell Leatherworking = new Spell("Leatherworking");
-    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    Spell War_Stomp = new Spell("War Stomp");
-    Spell Berserking = new Spell("Berserking");
+    private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell Tailoring = new Spell("Tailoring");
+    private readonly Spell Leatherworking = new Spell("Leatherworking");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    private readonly Spell War_Stomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking");
     #endregion InitializeSpell
 
     public Paladin()
@@ -5343,7 +5344,7 @@ public class Paladin
                 return;
             }
         }
-        if(GetUnitMana() < 5000)
+        if(ObjectManager.Me.GetUnitMana() < 5000)
         {
             if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
                 Arcane_Torrent.Launch();
@@ -5361,6 +5362,7 @@ public class Paladin
             if (_zealotry.KnownSpell && _zealotry.IsSpellUsable && ObjectManager.Me.GetHolyPowerStack() == 3)
             {
                 _zealotry.Launch();
+                Thread.Sleep(250);
                 if(!_inquisition.HaveBuff && _inquisition.KnownSpell && _inquisition.IsSpellUsable)
                     _inquisition.Launch();
                 _avengingWrath.Launch();
