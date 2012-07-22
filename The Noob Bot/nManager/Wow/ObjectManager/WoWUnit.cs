@@ -746,6 +746,21 @@ namespace nManager.Wow.ObjectManager
 
         }
 
+        public int GetHolyPowerStack()
+        {
+            try
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult + " = UnitPower(\"player\", 9)");
+                string sResult = Lua.GetLocalizedText(randomStringResult);
+                return int.Parse(sResult);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWUnit > GetHolyPowerStack(): " + e); return 0;
+            }
+        }
+
         public bool HaveBuff(List<UInt32> idBuffs)
         {
             try

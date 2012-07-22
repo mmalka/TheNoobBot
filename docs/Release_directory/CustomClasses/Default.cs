@@ -5149,6 +5149,7 @@ public class Paladin
     private readonly Spell _avengingWrath = new Spell("Avenging Wrath");
     private readonly Spell _zealotry = new Spell("Zealotry");
     private readonly Spell _ExoProc = new Spell("The Art of War");
+    private readonly Spell _HPProc = new Spell("Divine Purpose");
     private readonly Spell _exorcism = new Spell("Exorcism");
     #endregion
     #region Tank
@@ -5156,7 +5157,6 @@ public class Paladin
     private readonly Spell _holyShield = new Spell("Holy Shield");
     private readonly Spell _ardentDefender = new Spell("Ardent defender");
     private readonly Spell _divineGuardian = new Spell("Divine Guardian");
-    private readonly Spell _divineProtection = new Spell("Divine Protection");
     private readonly Spell _hammerOfTheRighteous = new Spell("Hammer of the Righteous");
     private readonly Spell _shieldOfTheRighteous = new Spell("Shield of the Righteous");
     private readonly Spell _avengersShield = new Spell("Avenger's Shield");
@@ -5277,7 +5277,7 @@ public class Paladin
             _crusaderAura.Launch();
         else if (!_retributionAura.HaveBuff && _retributionAura.IsSpellUsable)
             _retributionAura.Launch();
-        else if (!_devotionAura.HaveBuff && _devotionAura.IsSpellUsable)
+        else if (!_devotionAura.HaveBuff && !_retributionAura.HaveBuff && _devotionAura.IsSpellUsable)
             _devotionAura.Launch();
     }
 
@@ -5339,7 +5339,7 @@ public class Paladin
     }
     private void DPS_Burst()
     {
-        if(_guardianOfAncientKings.HaveBuff)
+        if(_guardianOfAncientKings.HaveBuff || !_guardianOfAncientKings.IsSpellUsable)
         {
             if (_zealotry.KnownSpell && _zealotry.IsSpellUsable)
             {
@@ -5366,16 +5366,17 @@ public class Paladin
     }
     private void DPS_Cycle()
     {
-        if (_hammerOfJustice.KnownSpell && _hammerOfJustice.IsDistanceGood && _hammerOfJustice.IsSpellUsable)
+        /*if (_hammerOfJustice.KnownSpell && _hammerOfJustice.IsDistanceGood && _hammerOfJustice.IsSpellUsable)
         {
             _hammerOfJustice.Launch();
             return;
-        }
-        if (_inquisition.KnownSpell && !_inquisition.HabeBuff && _inquisition.IsSpellUsable)
+        }*/
+        if (_inquisition.KnownSpell && !_inquisition.HaveBuff && _inquisition.IsSpellUsable && ObjectManager.Me.GetHolyPowerStack() == 3)
         {
-            _inquisition.Launch(); // Todo: Vérifier qu'il y a 3 stack de Holy Power pour lancer Inquisition
+            _inquisition.Launch();
         }
-        if(!zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3)
+        
+        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
         {
             if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
             {
@@ -5385,7 +5386,7 @@ public class Paladin
         }
         else
         {
-            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable)
+            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
             {
                 _crusaderStrike.Launch();
                 return;
@@ -5397,14 +5398,14 @@ public class Paladin
             _hammerOfWrath.Launch();
             return;
         }
-        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && _ExoProc.HaveBuff)
+        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && ObjectManager.Me.HaveBuff(59578))
         {
             _exorcism.Launch();
             return;
         }
-        if (_templarsVerdict.KnownSpell && _templarsVerdict.IsSpellUsable && !_templarsVerdict.IsDistanceGood)
+        if (_templarsVerdict.KnownSpell && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
         {
-            _templarsVerdict.Launch(); // Todo: Vérifier qu'il y a 3 stack de Holy Power pour lancer Templar's Verdict
+            _templarsVerdict.Launch();
             return;
         }
         if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
