@@ -142,8 +142,33 @@ public class Main : ICustomClass
 
                 #region Paladin Specialisation checking
                 case WoWClass.Paladin:
-                    Logging.WriteFight("Loading Paladin custom class...");
-                    new Paladin();
+                    var Retribution_Spell = new Spell("Templar's Verdict");
+                    var Protection_Spell = new Spell("Avenger's Shield");
+                    var Holy_Spell = new Spell("Holy Shock");
+                    if (Retribution_Spell.KnownSpell)
+                    {
+                        Logging.WriteFight("Loading Paladin Retribution class...");
+                        new Paladin_Retribution();
+                        break;
+                    }
+                    else if (Protection_Spell.KnownSpell)
+                    {
+                        Logging.WriteFight("Loading Paladin Protection class...");
+                        new Paladin_Protection();
+                        break;
+                    }
+                    else if (Holy_Spell.KnownSpell)
+                    {
+                        Logging.WriteFight("Paladin Holy found, but no class available.");
+                        Logging.WriteFight("Loading Paladin Retribution class...");
+                        new Paladin_Retribution();
+                        break;
+                    }
+                    else
+                    {
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Paladin Retribution class...");
+                    }
                     break;                
                 #endregion
 
@@ -5118,59 +5143,9 @@ public class DruidFeral
 #endregion
 
 #region Paladin
-public class Paladin
+public class Paladin_Retribution
 {
-    #region InitializeSpell
-    #region Aura
-    private readonly Spell _devotionAura = new Spell("Devotion Aura");
-    private readonly Spell _retributionAura = new Spell("Retribution Aura");
-    private readonly Spell _concentrationAura = new Spell("Concentration Aura");
-    private readonly Spell _resistanceAura = new Spell("Resistance Aura");
-    private readonly Spell _crusaderAura = new Spell("Crusader Aura");
-    #endregion
-    #region Buffs
-    private readonly Spell _blessingOfMight = new Spell("Blessing of Might");
-    private readonly Spell _blessingOfKings = new Spell("Blessing of Kings");
-    private readonly Spell _sealOfRighteousness = new Spell("Seal of Righteousness");
-    private readonly Spell _sealOfTruth = new Spell("Seal of Truth");
-    private readonly Spell _sealOfJustice = new Spell("Seal of Justice");
-    #endregion
-    #region DPS
-    Timer InquisitionToUseInPriotiy = new Timer(0);
-    Timer BurstTime = new Timer(0);
-    private readonly Spell _inquisition = new Spell("Inquisition");
-    private readonly Spell _crusaderStrike = new Spell("Crusader Strike");
-    private readonly Spell _divineStorm = new Spell("Divine Storm");
-    private readonly Spell _consecration = new Spell("Consecration");
-    private readonly Spell _holyWrath = new Spell("Holy Wrath");
-    private readonly Spell _judgement = new Spell("Judgement");
-    private readonly Spell _templarsVerdict = new Spell("Templar's Verdict");
-    private readonly Spell _hammerOfJustice = new Spell("Hammer of Justice");
-    private readonly Spell _hammerOfWrath = new Spell("Hammer of Wrath");
-    private readonly Spell _guardianOfAncientKings = new Spell("Guardian of Ancient Kings");
-    private readonly Spell _avengingWrath = new Spell("Avenging Wrath");
-    private readonly Spell _zealotry = new Spell("Zealotry");
-    private readonly Spell _exorcism = new Spell("Exorcism");
-    #endregion
-    #region Tank
-    private readonly Spell _divineProtection = new Spell("Divine Protection");
-    private readonly Spell _holyShield = new Spell("Holy Shield");
-    private readonly Spell _ardentDefender = new Spell("Ardent defender");
-    private readonly Spell _divineGuardian = new Spell("Divine Guardian");
-    private readonly Spell _hammerOfTheRighteous = new Spell("Hammer of the Righteous");
-    private readonly Spell _shieldOfTheRighteous = new Spell("Shield of the Righteous");
-    private readonly Spell _avengersShield = new Spell("Avenger's Shield");
-    #endregion
-    #region Heal
-    private readonly Spell _divineplea = new Spell("Divine Plea");
-    private readonly Spell _divineShield = new Spell("Divine Shield");
-    private readonly Spell _divineLight = new Spell("Divine Light");
-    private readonly Spell _flashOfLight = new Spell("Flash of Light");
-    private readonly Spell _holyLight = new Spell("Holy Light");
-    private readonly Spell _layOnHands = new Spell("Lay on Hands");
-    private readonly Spell _wordOfGlory = new Spell("Word of Glory");    
-    #endregion
-    // profession & racials
+    #region Professions & Racial
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
@@ -5179,9 +5154,61 @@ public class Paladin
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
     private readonly Spell Berserking = new Spell("Berserking");
-    #endregion InitializeSpell
+    #endregion
 
-    public Paladin()
+    #region Paladin Aura
+    private readonly Spell DevotionAura = new Spell("Devotion Aura");
+    private readonly Spell RetributionAura = new Spell("Retribution Aura");
+    private readonly Spell ResistanceAura = new Spell("Resistance Aura");
+    private readonly Spell CrusaderAura = new Spell("Crusader Aura");
+    #endregion
+
+    #region Paladin Seals & Buffs
+    private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
+    private readonly Spell SealOfTruth = new Spell("Seal of Truth");
+    private readonly Spell SealOfJustice = new Spell("Seal of Justice");
+    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
+    #endregion
+
+    #region Offensive Spell
+    private readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
+    private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell DivineStorm = new Spell("Divine Storm");
+    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
+    private readonly Spell Consecration = new Spell("Consecration");
+    private readonly Spell HolyWrath = new Spell("Holy Wrath");
+    private readonly Spell Judgement = new Spell("Judgement");
+    private readonly Spell Exorcism = new Spell("Exorcism");
+    #endregion
+
+    #region Offensive Cooldown
+    private readonly Spell Inquisition = new Spell("Inquisition");
+    Timer InquisitionToUseInPriotiy = new Timer(0);
+    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
+    Timer BurstTime = new Timer(0);
+    private readonly Spell Zealotry = new Spell("Zealotry"); 
+    private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
+    #endregion
+
+    #region Defensive Cooldown
+    private readonly Spell DivineProtection = new Spell("Divine Protection");
+    private readonly Spell DivineShield = new Spell("Divine Shield");
+    private readonly Spell HandOfProtection = new Spell("Hand Of Protection");
+    // 25771 = Forbearance
+    #endregion
+        
+    #region Healing Spell
+    private readonly Spell DivinePlea = new Spell("Divine Plea");
+    private readonly Spell DivineLight = new Spell("Divine Light");
+    private readonly Spell FlashOfLight = new Spell("Flash of Light");
+    private readonly Spell HolyLight = new Spell("Holy Light");
+    private readonly Spell LayOnHands = new Spell("Lay on Hands");
+    private readonly Spell WorldOfGlory = new Spell("Word of Glory");
+    #endregion
+
+    public Paladin_Retribution()
     {
         Main.range = 3.6f; // Range
 
@@ -5197,7 +5224,7 @@ public class Paladin
 
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
-                        if (ObjectManager.Me.Target != lastTarget && _judgement.IsDistanceGood)
+                        if (ObjectManager.Me.Target != lastTarget && Judgement.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -5216,9 +5243,9 @@ public class Paladin
 
     private void Pull()
     {
-        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
+        if (Judgement.KnownSpell && Judgement.IsDistanceGood && Judgement.IsSpellUsable)
         {
-            _judgement.Launch();
+            Judgement.Launch();
         }
     }
 
@@ -5246,18 +5273,18 @@ public class Paladin
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (_sealOfTruth.KnownSpell)
+        if (SealOfTruth.KnownSpell)
         {
-            if (!_sealOfTruth.HaveBuff && _sealOfTruth.IsSpellUsable)
+            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
             {
-                _sealOfTruth.Launch();
+                SealOfTruth.Launch();
             }
         }
-        else if (_sealOfRighteousness.KnownSpell)
-            if (!_sealOfRighteousness.HaveBuff && _sealOfRighteousness.IsSpellUsable)
+        else if (SealOfTheRighteousness.KnownSpell)
+            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
             {
                 {
-                    _sealOfRighteousness.Launch();
+                    SealOfTheRighteousness.Launch();
                 }
             }
     }
@@ -5267,198 +5294,527 @@ public class Paladin
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (_blessingOfMight.KnownSpell && !_blessingOfMight.HaveBuff && _blessingOfMight.IsSpellUsable)
+        if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
         {
-            _blessingOfMight.Launch();
+            BlessingOfMight.Launch();
         }
     }
 
     private void Aura()
     {
-        if (ObjectManager.Me.IsMounted && !_crusaderAura.IsSpellUsable)
+        if (ObjectManager.Me.IsMounted && !CrusaderAura.IsSpellUsable)
             return;
-        else if (ObjectManager.Me.IsMounted && !_crusaderAura.HaveBuff && _crusaderAura.IsSpellUsable)
-            _crusaderAura.Launch();
-        else if (!_retributionAura.HaveBuff && _retributionAura.IsSpellUsable)
-            _retributionAura.Launch();
-        else if (!_devotionAura.HaveBuff && !_retributionAura.HaveBuff && _devotionAura.IsSpellUsable)
-            _devotionAura.Launch();
+        else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
+            CrusaderAura.Launch();
+        else if (!RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+            RetributionAura.Launch();
+        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
+            DevotionAura.Launch();
     }
 
     private void Heal()
     {
-        if (_divineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && _divineShield.IsSpellUsable)
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable)
         {
-            _divineShield.Launch();
+            DivineShield.Launch();
             return;
         }
-        if (_layOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && _layOnHands.IsSpellUsable)
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable)
         {
-            _layOnHands.Launch();
+            LayOnHands.Launch();
             return;
         }
         if (ObjectManager.Me.BarTwoPercentage < 10)
         {
             if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
                 Arcane_Torrent.Launch();
-            if (_divineplea.KnownSpell && _divineplea.IsSpellUsable)
+            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable)
             {
-                _divineplea.Launch();
+                DivinePlea.Launch();
                 return;
             }
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
-            if (_wordOfGlory.KnownSpell && _wordOfGlory.IsSpellUsable)
-                _wordOfGlory.Launch();
-            if (_divineLight.KnownSpell && _divineLight.IsSpellUsable)
+            if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable)
+                WorldOfGlory.Launch();
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
             {
-                _divineLight.Launch();
+                DivineLight.Launch();
                 return;
             }
-            if (_flashOfLight.KnownSpell && _flashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
-            _flashOfLight.Launch();
-            return;
-            }
-            if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
-            {
-                _holyLight.Launch();
+                FlashOfLight.Launch();
                 return;
             }
-        }                
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
+            {
+                HolyLight.Launch();
+                return;
+            }
+        }
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
-            if (_wordOfGlory.KnownSpell && _wordOfGlory.IsSpellUsable)
-                _wordOfGlory.Launch();
-            if (_divineProtection.KnownSpell && _divineProtection.IsSpellUsable)
-                _divineProtection.Launch();
-            if (_flashOfLight.KnownSpell && _flashOfLight.IsSpellUsable)
+            if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable)
+                WorldOfGlory.Launch();
+            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
+                DivineProtection.Launch();
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
-                _flashOfLight.Launch();
+                FlashOfLight.Launch();
                 return;
             }
-            if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
             {
-                _holyLight.Launch();
+                HolyLight.Launch();
                 return;
             }
-            if (_divineLight.KnownSpell && _divineLight.IsSpellUsable)
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
             {
-                _divineLight.Launch();
+                DivineLight.Launch();
                 return;
             }
         }
     }
     private void DPS_Burst()
     {
-        if(_guardianOfAncientKings.HaveBuff || !_guardianOfAncientKings.IsSpellUsable)
+        if (GuardianOfAncientKings.HaveBuff || !GuardianOfAncientKings.IsSpellUsable)
         {
-            if (((_guardianOfAncientKings.HaveBuff && BurstTime.IsReady) || !_guardianOfAncientKings.IsSpellUsable) && _zealotry.KnownSpell && _zealotry.IsSpellUsable && ObjectManager.Me.HolyPower == 3)
+            if (((GuardianOfAncientKings.HaveBuff && BurstTime.IsReady) || !GuardianOfAncientKings.IsSpellUsable) && Zealotry.KnownSpell && Zealotry.IsSpellUsable && ObjectManager.Me.HolyPower == 3)
             {
-                _zealotry.Launch();
+                Zealotry.Launch();
                 Thread.Sleep(250);
-                if ((!_inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && _inquisition.KnownSpell && _inquisition.IsSpellUsable)
+                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell && Inquisition.IsSpellUsable)
                 {
-                    _inquisition.Launch();
+                    Inquisition.Launch();
                     InquisitionToUseInPriotiy = new Timer(1000 * (12 * 3 - 6));
                 }
-                _avengingWrath.Launch();
+                AvengingWrath.Launch();
                 return;
             }
-            if (!_zealotry.KnownSpell && _avengingWrath.KnownSpell && _avengingWrath.IsSpellUsable)
+            if (!Zealotry.KnownSpell && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
             {
-                _avengingWrath.Launch();
+                AvengingWrath.Launch();
                 return;
             }
         }
         else
-        if (_guardianOfAncientKings.KnownSpell && _guardianOfAncientKings.IsSpellUsable && _zealotry.IsSpellUsable)
-        {
-            _guardianOfAncientKings.Launch();
-            BurstTime = new Timer(1000 * 6);
-            return;
-        }
+            if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && Zealotry.IsSpellUsable)
+            {
+                GuardianOfAncientKings.Launch();
+                BurstTime = new Timer(1000 * 6);
+                return;
+            }
     }
     private void DPS_Cycle()
     {
-        /*if (_hammerOfJustice.KnownSpell && _hammerOfJustice.IsDistanceGood && _hammerOfJustice.IsSpellUsable)
+        /*if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable)
         {
-            _hammerOfJustice.Launch();
+           // TODO : If target can be stun, if not, it will be a pure loss of DPS.
+            HammerOfJustice.Launch();
             return;
         }*/
-        if (_inquisition.KnownSpell && (!_inquisition.HaveBuff ||  InquisitionToUseInPriotiy.IsReady) && _inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
+        if (Inquisition.KnownSpell && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
         {
-            if(_zealotry.IsSpellUsable && _guardianOfAncientKings.HaveBuff)
+            if (Zealotry.IsSpellUsable && (GuardianOfAncientKings.HaveBuff || !GuardianOfAncientKings.IsSpellUsable))
             {
                 DPS_Burst();
                 return;
             }
             else
-            _inquisition.Launch();
+                Inquisition.Launch();
             InquisitionToUseInPriotiy = new Timer(1000 * (12 * 3 - 6));
             return;
         }
-        if (_templarsVerdict.KnownSpell && _inquisition.HaveBuff && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
+        if (TemplarsVerdict.KnownSpell && Inquisition.HaveBuff && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
         {
-            _templarsVerdict.Launch();
+            TemplarsVerdict.Launch();
             return;
         }
-        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        if (!Zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
         {
-            if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
+            if (DivineStorm.KnownSpell && DivineStorm.IsDistanceGood && DivineStorm.IsSpellUsable)
             {
-                _divineStorm.Launch();
+                DivineStorm.Launch();
                 return;
             }
         }
         else
         {
-            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+            if (CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood && CrusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
             {
-                _crusaderStrike.Launch();
+                CrusaderStrike.Launch();
                 return;
             }
         }
-        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && ObjectManager.Me.HaveBuff(59578) && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable && ObjectManager.Me.HaveBuff(59578) && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && Inquisition.HaveBuff)
         {
-            _exorcism.Launch();
-            return;
-        }        
-        if (_hammerOfWrath.KnownSpell && _hammerOfWrath.IsDistanceGood && _hammerOfWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
-        {
-            _hammerOfWrath.Launch();
+            Exorcism.Launch();
             return;
         }
-        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && Inquisition.HaveBuff)
         {
-            if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
+            HammerOfWrath.Launch();
+            return;
+        }
+        if (!Zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        {
+            if (DivineStorm.KnownSpell && DivineStorm.IsDistanceGood && DivineStorm.IsSpellUsable)
             {
-                _divineStorm.Launch();
+                DivineStorm.Launch();
                 return;
             }
         }
         else
         {
-            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+            if (CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood && CrusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
             {
-                _crusaderStrike.Launch();
+                CrusaderStrike.Launch();
                 return;
             }
         }
-        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        if (Judgement.KnownSpell && Judgement.IsDistanceGood && Judgement.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
         {
-            _judgement.Launch();
+            Judgement.Launch();
             return;
         }
-        if (_holyWrath.KnownSpell && _holyWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !_judgement.IsSpellUsable && !_crusaderStrike.IsSpellUsable)
+        if (HolyWrath.KnownSpell && HolyWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !Judgement.IsSpellUsable && !CrusaderStrike.IsSpellUsable && !Zealotry.HaveBuff && Inquisition.HaveBuff)
         {
-            _holyWrath.Launch();
+            HolyWrath.Launch();
             return;
         }
-        if (_consecration.KnownSpell && _consecration.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !_judgement.IsSpellUsable && !_crusaderStrike.IsSpellUsable)
+        if (Consecration.KnownSpell && Consecration.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !Judgement.IsSpellUsable && !CrusaderStrike.IsSpellUsable && !Zealotry.HaveBuff && Inquisition.HaveBuff)
         {
-            _consecration.Launch();
+            Consecration.Launch();
+            return;
+        }
+    }
+}
+public class Paladin_Protection
+{
+    #region Professions & Racial
+    private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell Tailoring = new Spell("Tailoring");
+    private readonly Spell Leatherworking = new Spell("Leatherworking");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    private readonly Spell War_Stomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking");
+    #endregion
+
+    #region Paladin Aura
+    private readonly Spell DevotionAura = new Spell("Devotion Aura");
+    private readonly Spell RetributionAura = new Spell("Retribution Aura");
+    private readonly Spell ResistanceAura = new Spell("Resistance Aura");
+    private readonly Spell CrusaderAura = new Spell("Crusader Aura");
+    #endregion
+
+    #region Paladin Seals & Buffs
+    private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
+    private readonly Spell SealOfTruth = new Spell("Seal of Truth");
+    private readonly Spell SealOfJustice = new Spell("Seal of Justice");
+    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
+    #endregion
+
+    #region Offensive Spell
+    private readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous");
+    private readonly Spell ShieldOfTheRighteous = new Spell("Shield of the Righteous");
+    private readonly Spell AvengersShield = new Spell("Avenger's Shield");
+    private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
+    private readonly Spell Consecration = new Spell("Consecration");
+    private readonly Spell HolyWrath = new Spell("Holy Wrath");
+    private readonly Spell Judgement = new Spell("Judgement");
+    private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell Exorcism = new Spell("Exorcism");
+    #endregion
+
+    #region Offensive Cooldown
+    private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
+    private readonly Spell Inquisition = new Spell("Inquisition");
+    #endregion
+
+    #region Defensive Cooldown
+    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
+    private readonly Spell HolyShield = new Spell("Holy Shield");
+    private readonly Spell ArdentDefender = new Spell("Ardent defender");
+    private readonly Spell DivineGuardian = new Spell("Divine Guardian");
+    private readonly Spell DivineProtection = new Spell("Divine Protection");
+    private readonly Spell DivineShield = new Spell("Divine Shield");
+    private readonly Spell HandOfProtection = new Spell("Hand Of Protection");
+    // 25771 = Forbearance
+    #endregion
+    
+    #region Healing Spell
+    private readonly Spell DivinePlea = new Spell("Divine Plea");
+    private readonly Spell DivineLight = new Spell("Divine Light");
+    private readonly Spell FlashOfLight = new Spell("Flash of Light");
+    private readonly Spell HolyLight = new Spell("Holy Light");
+    private readonly Spell LayOnHands = new Spell("Lay on Hands");
+    private readonly Spell WorldOfGlory = new Spell("Word of Glory");
+    #endregion
+
+    public Paladin_Protection()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsMounted)
+                {
+                    Patrolling();
+
+                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    {
+                        if (ObjectManager.Me.Target != lastTarget && Exorcism.IsDistanceGood)
+                        {
+                            Pull();
+                            lastTarget = ObjectManager.Me.Target;
+                        }
+
+                        Combat();
+                    }
+                }
+            }
+            catch
+            {
+            }
+            Thread.Sleep(250);
+        }
+    }
+
+    private void Pull()
+    {
+        if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable)
+        {
+            DivinePlea.Launch();
+            Thread.Sleep(250);
+        }
+        if (Inquisition.KnownSpell && Inquisition.IsSpellUsable)
+        {
+            Inquisition.Launch();
+            Thread.Sleep(250);
+        }
+        if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+        {
+            AvengingWrath.Launch();
+        }
+        if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable)
+        {
+            Exorcism.Launch();
+            Thread.Sleep(250);
+        }
+        if (Judgement.KnownSpell && Judgement.IsDistanceGood && Judgement.IsSpellUsable)
+        {
+            Judgement.Launch();
+            Thread.Sleep(250);
+        }
+        if (AvengersShield.KnownSpell && AvengersShield.IsDistanceGood && AvengersShield.IsSpellUsable)
+        {
+            AvengersShield.Launch();
+        }
+    }
+
+    private void Combat()
+    {
+        DPS_Cycle();
+
+        Heal();
+
+        DPS_Burst();
+    }
+
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Seal();
+            Blessing();
+            Aura();
+        }
+    }
+
+    private void Seal()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (SealOfTruth.KnownSpell)
+        {
+            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
+            {
+                SealOfTruth.Launch();
+            }
+        }
+        else if (SealOfTheRighteousness.KnownSpell)
+            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            {
+                {
+                    SealOfTheRighteousness.Launch();
+                }
+            }
+    }
+
+    private void Blessing()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+        {
+            BlessingOfMight.Launch();
+        }
+    }
+
+    private void Aura()
+    {
+        if (ObjectManager.Me.IsMounted && !CrusaderAura.IsSpellUsable)
+            return;
+        else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
+            CrusaderAura.Launch();
+        else if (!RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+            RetributionAura.Launch();
+        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
+            DevotionAura.Launch();
+    }
+
+    private void Heal()
+    {
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable)
+        {
+            DivineShield.Launch();
+            return;
+        }
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable)
+        {
+            LayOnHands.Launch();
+            return;
+        }
+        if (ObjectManager.Me.BarTwoPercentage < 10)
+        {
+            if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
+                Arcane_Torrent.Launch();
+            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable)
+            {
+                DivinePlea.Launch();
+                return;
+            }
+        }
+        if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
+        {
+            if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable)
+                WorldOfGlory.Launch();
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
+            {
+                DivineLight.Launch();
+                return;
+            }
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            {
+                FlashOfLight.Launch();
+                return;
+            }
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
+            {
+                HolyLight.Launch();
+                return;
+            }
+        }
+        if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
+        {
+            if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable)
+                WorldOfGlory.Launch();
+            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
+                DivineProtection.Launch();
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            {
+                FlashOfLight.Launch();
+                return;
+            }
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
+            {
+                HolyLight.Launch();
+                return;
+            }
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
+            {
+                DivineLight.Launch();
+                return;
+            }
+        }
+    }
+    private void DPS_Burst()
+    {
+        if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && ObjectManager.Me.HolyPower == 3)
+        {
+            AvengingWrath.Launch();
+            if (!Inquisition.HaveBuff && Inquisition.KnownSpell && Inquisition.IsSpellUsable)
+            {
+                Inquisition.Launch();
+            }
+            return;
+        }
+    }
+    private void DPS_Cycle()
+    {
+        /*if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable)
+        {
+           // TODO : If target can be stun, if not, it will be a pure loss of DPS.
+            HammerOfJustice.Launch();
+            return;
+        }*/
+        //SotR>CS>AS>HoW(if active)>J>Cons*>HW* 
+        if (ShieldOfTheRighteous.KnownSpell && ShieldOfTheRighteous.IsSpellUsable && ShieldOfTheRighteous.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
+        {
+            ShieldOfTheRighteous.Launch();
+            return;
+        }
+        if (ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        {
+            if (HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsDistanceGood && HammerOfTheRighteous.IsSpellUsable)
+            {
+                HammerOfTheRighteous.Launch();
+                return;
+            }
+        }
+        else
+        {
+            if (CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood && CrusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+            {
+                CrusaderStrike.Launch();
+                return;
+            }
+        }
+        if (AvengersShield.KnownSpell && AvengersShield.IsDistanceGood && AvengersShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        {
+            AvengersShield.Launch();
+            return;
+        }
+        if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        {
+            HammerOfWrath.Launch();
+            return;
+        }
+        if (Judgement.KnownSpell && Judgement.IsDistanceGood && Judgement.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3)
+        {
+            Judgement.Launch();
+            return;
+        }
+        if (Consecration.KnownSpell && Consecration.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !Judgement.IsSpellUsable && !CrusaderStrike.IsSpellUsable)
+        {
+            Consecration.Launch();
+            return;
+        }
+        if (HolyWrath.KnownSpell && HolyWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower != 3 && !Judgement.IsSpellUsable && !CrusaderStrike.IsSpellUsable)
+        {
+            HolyWrath.Launch();
             return;
         }
     }
