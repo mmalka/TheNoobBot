@@ -5214,7 +5214,10 @@ public class Paladin
 
     private void Pull()
     {
-        JudgementManager();
+        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
+        {
+            _judgement.Launch();
+        }
     }
 
     private void Combat()
@@ -5265,14 +5268,6 @@ public class Paladin
         if (_blessingOfMight.KnownSpell && !_blessingOfMight.HaveBuff && _blessingOfMight.IsSpellUsable)
         {
             _blessingOfMight.Launch();
-        }
-    }
-
-    private void JudgementManager()
-    {
-        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
-        {
-            _judgement.Launch();
         }
     }
 
@@ -5342,7 +5337,7 @@ public class Paladin
                 return;
             }
         }
-        if(ObjectManager.Me.GetUnitMana() < 5000)
+        if(ObjectManager.Me.BarTwoPercentage() < 5)
         {
             if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
                 Arcane_Torrent.Launch();
@@ -5357,7 +5352,7 @@ public class Paladin
     {
         if(_guardianOfAncientKings.HaveBuff || !_guardianOfAncientKings.IsSpellUsable)
         {
-            if (_zealotry.KnownSpell && _zealotry.IsSpellUsable && ObjectManager.Me.GetHolyPowerStack() == 3)
+            if (_zealotry.KnownSpell && _zealotry.IsSpellUsable && ObjectManager.Me.HolyPower() == 3)
             {
                 _zealotry.Launch();
                 Thread.Sleep(250);
@@ -5372,14 +5367,12 @@ public class Paladin
                 return;
             }
         }
-        if (_guardianOfAncientKings.KnownSpell && _guardianOfAncientKings.IsSpellUsable)
+        else
+        if (_guardianOfAncientKings.KnownSpell && _guardianOfAncientKings.IsSpellUsable && _zealotry.IsSpellUsable)
         {
             _guardianOfAncientKings.Launch();
             return;
         }
-
-
-
     }
     private void DPS_Cycle()
     {
@@ -5388,17 +5381,17 @@ public class Paladin
             _hammerOfJustice.Launch();
             return;
         }*/
-        if (_inquisition.KnownSpell && !_inquisition.HaveBuff && _inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
+        if (_inquisition.KnownSpell && !_inquisition.HaveBuff && _inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower() == 3))
         {
             _inquisition.Launch();
             return;
         }
-        if (_templarsVerdict.KnownSpell && _inquisition.HaveBuff && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.GetHolyPowerStack() == 3))
+        if (_templarsVerdict.KnownSpell && _inquisition.HaveBuff && _templarsVerdict.IsSpellUsable && _templarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower() == 3))
         {
             _templarsVerdict.Launch();
             return;
         }
-        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
+        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
             {
@@ -5408,23 +5401,23 @@ public class Paladin
         }
         else
         {
-            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
+            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
             {
                 _crusaderStrike.Launch();
                 return;
             }
         }
-        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && ObjectManager.Me.HaveBuff(59578))
+        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && ObjectManager.Me.HaveBuff(59578) && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3))
         {
             _exorcism.Launch();
             return;
         }        
-        if (_hammerOfWrath.KnownSpell && _hammerOfWrath.IsDistanceGood && _hammerOfWrath.IsSpellUsable)
+        if (_hammerOfWrath.KnownSpell && _hammerOfWrath.IsDistanceGood && _hammerOfWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             _hammerOfWrath.Launch();
             return;
         }
-        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
+        if(!_zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3 && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
             {
@@ -5434,23 +5427,23 @@ public class Paladin
         }
         else
         {
-            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.GetHolyPowerStack() < 3)
+            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
             {
                 _crusaderStrike.Launch();
                 return;
             }
         }
-        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
+        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             _judgement.Launch();
             return;
         }
-        if (_holyWrath.KnownSpell && _holyWrath.IsSpellUsable)
+        if (_holyWrath.KnownSpell && _holyWrath.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             _holyWrath.Launch();
             return;
         }
-        if (_consecration.KnownSpell && _consecration.IsSpellUsable)
+        if (_consecration.KnownSpell && _consecration.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower() != 3)
         {
             _consecration.Launch();
             return;
