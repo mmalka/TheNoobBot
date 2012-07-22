@@ -1,6 +1,7 @@
 /*
-Thanks at Geesus, Enelya and marstor
-Rival 14/02/2012
+* CustomClass for TheNoobBot
+* Credit : Rival, Geesus, Enelya, Marstor, Vesper
+* Thanks you !
 */
 
 using System;
@@ -29,79 +30,92 @@ public class Main : ICustomClass
     {
         try
         {
-            Logging.WriteFight("Loading Custom Class");
+            Logging.WriteFight("Loading combat system.");
 
             switch (ObjectManager.Me.WowClass)
             {
+                #region DeathKnight Specialisation checking
                 case WoWClass.DeathKnight:
                     var Heart_Strike = new Spell("Heart Strike");
                     var Scourge_Strike = new Spell("Scourge Strike");
                     var Frost_Strike = new Spell("Frost Strike");
                     if (Heart_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Blood Deathknight Found");
-                        new Blood();
+                        Logging.WriteFight("Loading Deathknight Blood class...");
+                        new Deathknight_Blood();
                     }
                     if (Scourge_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Unholy Deathknight Found");
-                        new Unholy();
+                        Logging.WriteFight("Loading Deathknight Unholy class...");
+                        new Deathknight_Unholy();
                     }
                     if (Frost_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Frost Deathknight Found");
-                        new Frostdk();
+                        Logging.WriteFight("Loading Deathknight Frost class...");
+                        new Deathknight_Frost();
                     }
                     if (!Heart_Strike.KnownSpell && !Scourge_Strike.KnownSpell && !Frost_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Deathknight without Spec");
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Deathknight Unholy class...");
                         new Unholy();
                     }
                     break;
+                #endregion
+
+                #region Mage Specialisation checking
                 case WoWClass.Mage:
                     var Summon_Water_Elemental = new Spell("Summon Water Elemental");
                     var Arcane_Barrage = new Spell("Arcane Barrage");
                     var Pyroblast = new Spell("Pyroblast");
                     if (Summon_Water_Elemental.KnownSpell)
                     {
-                        Logging.WriteFight("Frost Mage Found");
-                        new Frost();
+                        Logging.WriteFight("Loading Mage Frost class...");
+                        new Mage_Frost();
                     }
                     if (Arcane_Barrage.KnownSpell)
                     {
-                        Logging.WriteFight("Arcane Mage found");
-                        new Arcane();
+                        Logging.WriteFight("Loading Arcane Mage class...");
+                        new Mage_Arcane();
                     }
                     if (Pyroblast.KnownSpell)
                     {
-                        Logging.WriteFight("Fire Mage found");
-                        new Fire();
+                        Logging.WriteFight("Loading Mage Fire class...");
+                        new Mage_Fire();
                     }
                     if (!Summon_Water_Elemental.KnownSpell && !Arcane_Barrage.KnownSpell && !Pyroblast.KnownSpell)
                     {
-                        Logging.WriteFight("Mage without Spec");
-                        new Frost();
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Mage frost class...");
+                        new Mage_Frost();
                     }
                     break;
+                #endregion
+
+                #region Warlock Specialisation checking
                 case WoWClass.Warlock:
                     var Summon_Felguard = new Spell("Summon Felguard");
                     var Unstable_Affliction = new Spell("Unstable Affliction");
                     if (Unstable_Affliction.KnownSpell)
                     {
-                        Logging.WriteFight("Affli Warlock Found");
+                        Logging.WriteFight("Loading Affliction Warlock class...");
                         new Affli();
                     }
                     if (Summon_Felguard.KnownSpell)
                     {
-                        Logging.WriteFight("Demo Warlock Found");
+                        Logging.WriteFight("Loading Demonology Warlock class...");
                         new Demo();
                     }
                     if (!Unstable_Affliction.KnownSpell && !Summon_Felguard.KnownSpell)
                     {
-                        Logging.WriteFight("Warlock without Spec");
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Demonology Warlock class...");
                         new Demo();
                     }
                     break;
+                #endregion
+
+                #region Druid Specialisation checking
                 case WoWClass.Druid:
                     var Mangle = new Spell("Mangle");
                     if (Mangle.KnownSpell)
@@ -124,10 +138,16 @@ public class Main : ICustomClass
                         break;
                     }
                     break;
+                #endregion
+
+                #region Paladin Specialisation checking
                 case WoWClass.Paladin:
-                    Logging.WriteFight("Paladin Found");
+                    Logging.WriteFight("Loading Paladin custom class...");
                     new Paladin();
-                    break;
+                    break;                
+                #endregion
+
+                #region Shaman Specialisation checking
                 case WoWClass.Shaman:
                     var Thunderstorm = new Spell("Thunderstorm");
                     if (Thunderstorm.KnownSpell)
@@ -141,6 +161,9 @@ public class Main : ICustomClass
                         new Ele();
                     }
                     break;
+                #endregion
+
+                #region Priest Specialisation checking
                 case WoWClass.Priest:
                     var Mind_Flay = new Spell("Mind Flay");
                     if (Mind_Flay.KnownSpell)
@@ -154,6 +177,9 @@ public class Main : ICustomClass
                         new Shadow();
                     }
                     break;
+                #endregion
+
+                #region Rogue Specialisation checking
                 case WoWClass.Rogue:
                 var Blade_Flurry = new Spell("Blade Flurry");
                 var Mutilate = new Spell("Mutilate");
@@ -173,6 +199,9 @@ public class Main : ICustomClass
                     new Rogue();
                 }
                     break;
+                #endregion
+
+                #region Warrior Specialisation checking
                 case WoWClass.Warrior:
                     var Mortal_Strike = new Spell("Mortal Strike");
                     if (Mortal_Strike.KnownSpell)
@@ -202,6 +231,9 @@ public class Main : ICustomClass
                         break;
                     }
                     break;
+                #endregion
+
+                #region Hunter Specialisation checking
                 case WoWClass.Hunter:
                     var Explosive_Shot = new Spell("Explosive Shot");
                     if (Explosive_Shot.KnownSpell)
@@ -221,336 +253,33 @@ public class Main : ICustomClass
                         new Survival();
                     }
                     break;
+                #endregion
                 default:
                     Dispose();
                     break;
             }
         }
         catch { }
-        Logging.WriteFight("Custom Class closed.");
+        Logging.WriteFight("Combat system stopped.");
     }
 
     public void Dispose()
     {
-        Logging.WriteFight("Closing Custom Class");
+        Logging.WriteFight("Combat system stopped.");
         loop = false;
     }
 
     public void ShowConfiguration()
     {
-        MessageBox.Show("No setting for this custom class");
+        MessageBox.Show("This CustomClass has no settings available.");
     }
 }
 
-#region CustomClass
-
-public class Paladin
-{
-    #region InitializeSpell
-
-    private readonly Spell _avengingWrath = new Spell("Avenging Wrath");
-    private readonly Spell _blessingOfMight = new Spell("Blessing of Might");
-    private readonly Spell _consecration = new Spell("Consecration");
-    private readonly Spell _crusaderStrike = new Spell("Crusader Strike");
-
-    private readonly Spell _devotionAura = new Spell("Devotion Aura");
-
-    private readonly Spell _divineLight = new Spell("Divine Light");
+#region Deathknight
 
 
-    private readonly Spell _divineProtection = new Spell("Divine Protection");
-    private readonly Spell _divineStorm = new Spell("Divine Storm");
-    private readonly Spell _flashOfLight = new Spell("Flash of Light");
-    private readonly Spell _guardianOfAncientKings = new Spell("Guardian of Ancient Kings");
-    private readonly Spell _hammerOfJustice = new Spell("Hammer of Justice");
-    private readonly Spell _hammerOfWrath = new Spell("Hammer of Wrath");
-    private readonly Spell _holyLight = new Spell("Holy Light");
 
-    private readonly Spell _inquisition = new Spell("Inquisition");
-    private readonly Spell _judgement = new Spell("Judgement");
-    private readonly Spell _layOnHands = new Spell("Lay on Hands");
-    private readonly Spell _retributionAura = new Spell("Retribution Aura");
-    private readonly Spell _sealOfRighteousness = new Spell("Seal of Righteousness");
-    private readonly Spell _sealOfTruth = new Spell("Seal of Truth");
-    private readonly Spell _templarsVerdict = new Spell("Templar's Verdict");
-    private readonly Spell _wordOfGlory = new Spell("Word of Glory");
-    private readonly Spell _zealotry = new Spell("Zealotry");
-
-    #endregion InitializeSpell
-
-    public Paladin()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            try
-            {
-                if (!ObjectManager.Me.IsMounted)
-                {
-                    Patrolling();
-
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
-                    {
-                        if (ObjectManager.Me.Target != lastTarget && _judgement.IsDistanceGood)
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
-
-                        Combat();
-                    }
-                }
-            }
-            catch
-            {
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    private void Pull()
-    {
-        JudgementManager();
-    }
-
-    private void Combat()
-    {
-        JudgementManager();
-
-        Heal();
-
-        Others();
-    }
-
-    private void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Seal();
-            Blessing();
-            Aura();
-        }
-    }
-
-    private void Seal()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (_sealOfTruth.KnownSpell)
-        {
-            if (!_sealOfTruth.HaveBuff && _sealOfTruth.IsSpellUsable)
-            {
-                _sealOfTruth.Launch();
-            }
-        }
-        else if (_sealOfRighteousness.KnownSpell)
-            if (!_sealOfRighteousness.HaveBuff && _sealOfRighteousness.IsSpellUsable)
-            {
-                {
-                    _sealOfRighteousness.Launch();
-                }
-            }
-    }
-
-    private void Blessing()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (_blessingOfMight.KnownSpell && !_blessingOfMight.HaveBuff && _blessingOfMight.IsSpellUsable)
-        {
-            _blessingOfMight.Launch();
-        }
-    }
-
-    private void JudgementManager()
-    {
-        if (_judgement.KnownSpell &&
-            _judgement.IsDistanceGood &&
-            _judgement.IsSpellUsable)
-        {
-            _judgement.Launch();
-        }
-    }
-
-    private void Aura()
-    {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
-        if (_retributionAura.KnownSpell)
-        {
-            if (!_retributionAura.HaveBuff &&
-                _retributionAura.IsSpellUsable)
-            {
-                _retributionAura.Launch();
-            }
-        }
-        else if (_devotionAura.KnownSpell)
-        {
-            if (!_devotionAura.HaveBuff &&
-                _devotionAura.IsSpellUsable)
-            {
-                _devotionAura.Launch();
-            }
-        }
-    }
-
-    private void Heal()
-    {
-        if (_layOnHands.KnownSpell &&
-            ObjectManager.Me.HealthPercent > 0 &&
-            ObjectManager.Me.HealthPercent < 20 &&
-            ObjectManager.Me.Level < 70 &&
-            _layOnHands.IsSpellUsable)
-        {
-            _layOnHands.Launch();
-            return;
-        }
-
-        if (_flashOfLight.KnownSpell &&
-            ObjectManager.Me.HealthPercent > 50 &&
-            ObjectManager.Me.HealthPercent < 70 &&
-            _flashOfLight.IsSpellUsable)
-        {
-            _flashOfLight.Launch();
-            return;
-        }
-
-        if (ObjectManager.Me.HealthPercent > 0 &&
-            ObjectManager.Me.HealthPercent < 50)
-        {
-            if (_wordOfGlory.KnownSpell &&
-                _wordOfGlory.IsSpellUsable)
-            {
-                _wordOfGlory.Launch();
-                return;
-            }
-            if (_divineLight.KnownSpell &&
-                _divineLight.IsSpellUsable)
-            {
-                _divineLight.Launch();
-                return;
-            }
-            if (_holyLight.KnownSpell &&
-                _holyLight.IsSpellUsable)
-            {
-                _holyLight.Launch();
-            }
-        }
-    }
-
-    private void Others()
-    {
-        if (_hammerOfWrath.KnownSpell &&
-            _hammerOfWrath.IsDistanceGood &&
-            _hammerOfWrath.IsSpellUsable)
-        {
-            _hammerOfWrath.Launch();
-            return;
-        }
-
-        if (_avengingWrath.KnownSpell &&
-            _avengingWrath.IsSpellUsable)
-        {
-            _avengingWrath.Launch();
-            return;
-        }
-
-        if (_guardianOfAncientKings.KnownSpell &&
-            _guardianOfAncientKings.IsSpellUsable)
-        {
-            _guardianOfAncientKings.Launch();
-            return;
-        }
-
-        if (_zealotry.KnownSpell &&
-            _zealotry.IsSpellUsable &&
-            !_zealotry.HaveBuff)
-        {
-            _zealotry.Launch();
-            return;
-        }
-
-        if (_inquisition.KnownSpell &&
-            _inquisition.IsSpellUsable &&
-            !_inquisition.HaveBuff)
-        {
-            _inquisition.Launch();
-            return;
-        }
-
-        if (_templarsVerdict.KnownSpell &&
-            _templarsVerdict.IsSpellUsable &&
-            !_templarsVerdict.IsDistanceGood)
-        {
-            _templarsVerdict.Launch();
-            return;
-        }
-
-        if (_crusaderStrike.KnownSpell &&
-            _crusaderStrike.IsDistanceGood &&
-            _crusaderStrike.IsSpellUsable)
-        {
-            _crusaderStrike.Launch();
-            return;
-        }
-
-        if (_hammerOfJustice.KnownSpell &&
-            _hammerOfJustice.IsDistanceGood &&
-            _hammerOfJustice.IsSpellUsable)
-        {
-            _hammerOfJustice.Launch();
-            return;
-        }
-
-        /*
-        if (Exorcism.KnownSpell &&
-            Exorcism.IsDistanceGood &&
-            Exorcism.IsSpellUsable)
-        {
-            Exorcism.Launch();
-            return;
-        }
-        */
-
-        if (_divineStorm.KnownSpell &&
-            ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            _divineStorm.IsSpellUsable)
-        {
-            _divineStorm.Launch();
-            return;
-        }
-
-        if (_divineProtection.KnownSpell &&
-            _divineProtection.IsDistanceGood &&
-            _divineProtection.IsSpellUsable)
-        {
-            if (ObjectManager.GetNumberAttackPlayer() > 1)
-            {
-                _divineProtection.Launch();
-                return;
-            }
-        }
-
-        if (_consecration.KnownSpell &&
-            _consecration.IsDistanceGood &&
-            _consecration.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage > 65)
-        {
-            if (ObjectManager.GetNumberAttackPlayer() > 1)
-            {
-                _consecration.Launch();
-            }
-        }
-    }
-}
-
-public class Blood
+public class Deathknight_Blood
 {
     #region InitializeSpell
 
@@ -1067,7 +796,7 @@ public class Blood
     }
 }
 
-public class Unholy
+public class Deathknight_Unholy
 {
     #region InitializeSpell
 
@@ -1606,7 +1335,8 @@ public class Unholy
     }
 }
 
-public class Frostdk {
+public class Deathknight_Frost 
+{
     #region InitializeSpell
 
     Spell Frost_Presence = new Spell("Frost Presence");
@@ -2018,7 +1748,10 @@ public class Frostdk {
 
 }
 
-public class Frost
+#endregion
+
+#region Mage
+public class Mage_Frost
 {
     #region InitializeSpell
 
@@ -2390,7 +2123,7 @@ public class Frost
 
 }
 
-public class Arcane
+public class Mage_Arcane
 {
     #region InitializeSpell
 
@@ -2814,7 +2547,7 @@ public class Arcane
     }
 }
 
-public class Fire
+public class Mage_Fire
 {
     #region InitializeSpell
 
@@ -3246,7 +2979,9 @@ public class Fire
         return false;
     }
 }
+#endregion
 
+#region Warlock
 public class Demo
 {
     #region InitializeSpell
@@ -3707,7 +3442,6 @@ public class Demo
         return false;
     }
 }
-
 public class Affli
 {
     #region InitializeSpell
@@ -4140,336 +3874,9 @@ public class Affli
         return false;
     }
 }
+#endregion
 
-public class Ele
-{
-    #region InitializeSpell
-
-    // ELE ONLY
-    Spell Thunderstorm = new Spell("Thunderstorm");
-    Spell Lava_Burst = new Spell("Lava Burst");
-    Spell Elemental_Mastery = new Spell("Elemental Mastery");
-    Spell Flametongue_Weapon = new Spell("Flametongue Weapon");
-
-    // SKILL
-    Spell Lightning_Bolt = new Spell("Lightning Bolt");
-    Spell Chain_Lightning = new Spell("Chain Lightning");
-    Spell Flame_Shock = new Spell("Flame Shock");
-    Spell Earth_Shock = new Spell("Earth Shock");
-    Spell Lightning_Shield = new Spell("Lightning Shield");
-    Spell Water_Shield = new Spell("Water Shield");
-    Spell Unleash_Elements = new Spell("Unleash Elements");
-
-    // TIMER
-    Timer look = new Timer(0);
-    Timer fighttimer = new Timer(0);
-    Timer weaponbuff = new Timer(30000);
-
-    // BUFF & HELPING
-    Spell Stoneclaw_Totem = new Spell("Stoneclaw Totem");
-    Spell Call_of_the_Elements = new Spell("Call of the Elements");
-    Spell Bloodlust = new Spell("Bloodlust");
-    Spell Heroism = new Spell("Heroism");
-    Spell Wind_Shear = new Spell("Wind Shear");
-    Spell Healing_Wave = new Spell("Healing Wave");
-    Spell Healing_Surge = new Spell("Healing Surge");
-    Spell Earth_Elemental_Totem = new Spell("Earth Elemental Totem");
-
-    // profession & racials
-    Spell Arcane_Torrent = new Spell("Arcane Torrent");
-    Spell Lifeblood = new Spell("Lifeblood");
-    Spell Stoneform = new Spell("Stoneform");
-    Spell Tailoring = new Spell("Tailoring");
-    Spell Leatherworking = new Spell("Leatherworking");
-    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    Spell War_Stomp = new Spell("War Stomp");
-    Spell Berserking = new Spell("Berserking");
-
-    #endregion InitializeSpell
-
-    public Ele()
-    {
-        Main.range = 35.0f;
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                buffoutfight();
-
-                if (ItemsManager.GetItemCountByIdLUA(67495) > 0) Logging.WriteFight("/use item:67495");
-
-                if (!Fight.InFight && look.IsReady)
-                {
-                    look = new Timer(5000);
-                    Lua.RunMacroText("/targetfriendplayer");
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
-                {
-                    fighttimer = new Timer(60000);
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
-                    {
-                        pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-                    fight();
-                    if (!Fight.InFight)
-                    {
-                        Logging.WriteFight(" - Target Down - ");
-                        look = new Timer(5000);
-                    }
-
-                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0)
-                    {
-                        Logging.WriteFight(" - Target Evading - ");
-                        break;
-                    }
-                }
-            }
-            Thread.Sleep(350);
-        }
-
-    }
-
-    public void pull()
-    {
-        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
-        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
-        Lua.RunMacroText("/petattack");
-        fighttimer = new Timer(60000);
-    }
-
-    public void buffoutfight()
-    {
-
-        selfheal();
-
-        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
-
-        if (!ObjectManager.Me.HaveBuff(79640) &&
-            ItemsManager.GetItemCountByIdLUA(58149) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:58149");
-        }
-
-        if (!Call_of_the_Elements.KnownSpell && !ObjectManager.Me.HaveBuff(77747))
-        {
-            SpellManager.CastSpellByIdLUA(8227);
-            // Flametongue_Totem.Launch();
-        }
-
-    }
-
-    public void fight()
-    {
-        selfheal();
-        buffinfight();
-        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
-
-        if (!ObjectManager.Target.IsTargetingMe && Lightning_Bolt.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(403);
-            // Lightning_Bolt.Launch();
-            return;
-        }
-
-        if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 80 &&
-            ObjectManager.Target.GetDistance < 10)
-        {
-            SpellManager.CastSpellByIdLUA(51490);
-            // Thunderstorm.Launch();
-        }
-
-        if (!Flame_Shock.TargetHaveBuff && Flame_Shock.IsSpellUsable && Flame_Shock.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(8050);
-            Thread.Sleep(50);
-            SpellManager.CastSpellByIdLUA(51505);
-            // Flame_Shock.Launch();
-        }
-
-        if (Lava_Burst.KnownSpell && Lava_Burst.IsSpellUsable && Lava_Burst.IsDistanceGood && Flame_Shock.TargetHaveBuff)
-        {
-            SpellManager.CastSpellByIdLUA(51505);
-            // Lava_Burst.Launch();
-            return;
-        }
-
-        if (Chain_Lightning.KnownSpell && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood &&
-            ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-            SpellManager.CastSpellByIdLUA(421);
-            // Chain_Lightning.Launch();
-        }
-
-        if (ObjectManager.Target.IsCast && Wind_Shear.KnownSpell && Wind_Shear.IsSpellUsable && Wind_Shear.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(57994);
-            // Wind_Shear.Launch();
-        }
-
-        if (Earth_Shock.IsSpellUsable && Earth_Shock.KnownSpell && Earth_Shock.IsDistanceGood)
-        {
-            if (!Flame_Shock.TargetHaveBuff && Flame_Shock.KnownSpell) return;
-            SpellManager.CastSpellByIdLUA(8042);
-            // Earth_Shock.Launch();
-        }
-
-        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(1454);
-            // Berserking.Launch();
-        }
-
-        if (Unleash_Elements.KnownSpell && Unleash_Elements.IsSpellUsable && Unleash_Elements.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(73680);
-            //Unleash_Elements.Launch();
-        }
-
-        if (Lightning_Bolt.IsSpellUsable && Lightning_Bolt.IsDistanceGood && !Lava_Burst.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(403);
-            // Lightning_Bolt.Launch();
-        }
-
-    }
-
-    private void buffinfight()
-    {
-
-        if (Flametongue_Weapon.KnownSpell && Flametongue_Weapon.IsSpellUsable && weaponbuff.IsReady)
-        {
-            Flametongue_Weapon.Launch();
-            weaponbuff = new Timer(1800000);
-
-        }
-
-        if (Call_of_the_Elements.KnownSpell && Call_of_the_Elements.IsSpellUsable && !ObjectManager.Me.HaveBuff(77747))
-        {
-            SpellManager.CastSpellByIdLUA(66842);
-            // Call_of_the_Elements.Launch();
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 3 || hardmob())
-        {
-            if (Elemental_Mastery.KnownSpell && Elemental_Mastery.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIdLUA(16166);
-                // Elemental_Mastery.Launch();
-            }
-
-            if (Heroism.KnownSpell && Heroism.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIdLUA(32182);
-                // Heroism.Launch();
-            }
-
-            if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIdLUA(2825);
-                // Bloodlust.Launch();
-            }
-
-            if (Earth_Elemental_Totem.KnownSpell && Earth_Elemental_Totem.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 4)
-            {
-                SpellManager.CastSpellByIdLUA(2062);
-                // Earth_Elemental_Totem.Launch();
-            }
-        }
-
-        if (!Lightning_Shield.HaveBuff && Lightning_Shield.KnownSpell && Lightning_Shield.IsSpellUsable && Water_Shield.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50)
-        {
-            SpellManager.CastSpellByIdLUA(324);
-            // Lightning_Shield.Launch();
-        }
-
-        if (!Water_Shield.HaveBuff && Water_Shield.KnownSpell && Water_Shield.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 20)
-        {
-            SpellManager.CastSpellByIdLUA(52127);
-            // Water_Shield.Launch();
-        }
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20594);
-            // Stoneform.Launch();
-        }
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20549);
-            // War_Stomp.Launch();
-        }
-
-    }
-
-    private void selfheal()
-    {
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
-        {
-            Gift_of_the_Naaru.Launch();
-        }
-
-        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
-            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
-        {
-            Arcane_Torrent.Launch();
-        }
-
-        if (Stoneclaw_Totem.KnownSpell && Stoneclaw_Totem.IsSpellUsable && ObjectManager.Me.HealthPercent < 50 &&
-            ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-            SpellManager.CastSpellByIdLUA(5730);
-            // Stoneclaw_Totem.Launch();
-        }
-
-        if (Healing_Surge.KnownSpell && Healing_Surge.IsSpellUsable && ObjectManager.Me.HealthPercent < 75)
-        {
-            SpellManager.CastSpellByIdLUA(8004);
-            // Healing_Surge.Launch();
-            return;
-        }
-
-        if (!Healing_Surge.KnownSpell && Healing_Wave.KnownSpell && Healing_Wave.IsSpellUsable && ObjectManager.Me.HealthPercent < 75)
-        {
-            SpellManager.CastSpellByIdLUA(331);
-            // Healing_Wave.Launch();
-        }
-
-    }
-
-    public bool hardmob()
-    {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
-        {
-            return true;
-        }
-        return false;
-    }
-}
-
+#region Druid
 public class Balance
 {
     Int32 firemode;
@@ -4849,7 +4256,6 @@ public class Balance
         return false;
     }
 }
-
 public class DruidFeral
 {
     #region Inits
@@ -5709,7 +5115,3017 @@ public class DruidFeral
 
     #endregion Shortcuts
 }
+#endregion
 
+#region Paladin
+public class Paladin
+{
+    #region InitializeSpell
+    #region Aura
+    private readonly Spell _devotionAura = new Spell("Devotion Aura");
+    private readonly Spell _retributionAura = new Spell("Retribution Aura");
+    private readonly Spell _concentrationAura = new Spell("Concentration Aura");
+    private readonly Spell _resistanceAura = new Spell("Resistance Aura");
+    private readonly Spell _crusaderAura = new Spell("Crusader Aura");
+    #endregion
+    #region Buffs
+    private readonly Spell _blessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell _blessingOfKings = new Spell("Blessing of Kings");
+    private readonly Spell _sealOfRighteousness = new Spell("Seal of Righteousness");
+    private readonly Spell _sealOfTruth = new Spell("Seal of Truth");
+    private readonly Spell _sealOfJustice = new Spell("Seal of Justice");
+    #endregion
+    #region DPS
+    private readonly Spell _inquisition = new Spell("Inquisition");
+    private readonly Spell _crusaderStrike = new Spell("Crusader Strike");
+    private readonly Spell _divineStorm = new Spell("Divine Storm");
+    private readonly Spell _consecration = new Spell("Consecration");
+    private readonly Spell _holyWrath = new Spell("Holy Wrath");
+    private readonly Spell _judgement = new Spell("Judgement");
+    private readonly Spell _templarsVerdict = new Spell("Templar's Verdict");
+    private readonly Spell _hammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell _hammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell _guardianOfAncientKings = new Spell("Guardian of Ancient Kings");
+    private readonly Spell _avengingWrath = new Spell("Avenging Wrath");
+    private readonly Spell _zealotry = new Spell("Zealotry");
+    private readonly Spell _ExoProc = new Spell("The Art of War");
+    private readonly Spell _exorcism = new Spell("Exorcism");
+    #endregion
+    #region Tank
+    private readonly Spell _divineProtection = new Spell("Divine Protection");
+    private readonly Spell _holyShield = new Spell("Holy Shield");
+    private readonly Spell _ardentDefender = new Spell("Ardent defender");
+    private readonly Spell _divineGuardian = new Spell("Divine Guardian");
+    private readonly Spell _divineProtection = new Spell("Divine Protection");
+    private readonly Spell _hammerOfTheRighteous = new Spell("Hammer of the Righteous");
+    private readonly Spell _shieldOfTheRighteous = new Spell("Shield of the Righteous");
+    private readonly Spell _avengersShield = new Spell("Avenger's Shield");
+    #endregion
+    #region Heal
+    private readonly Spell _divineShield = new Spell("Divine Shield");
+    private readonly Spell _divineLight = new Spell("Divine Light");
+    private readonly Spell _flashOfLight = new Spell("Flash of Light");
+    private readonly Spell _holyLight = new Spell("Holy Light");
+    private readonly Spell _layOnHands = new Spell("Lay on Hands");
+    private readonly Spell _wordOfGlory = new Spell("Word of Glory");    
+    #endregion
+
+    #endregion InitializeSpell
+
+    public Paladin()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsMounted)
+                {
+                    Patrolling();
+
+                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    {
+                        if (ObjectManager.Me.Target != lastTarget && _judgement.IsDistanceGood)
+                        {
+                            Pull();
+                            lastTarget = ObjectManager.Me.Target;
+                        }
+
+                        Combat();
+                    }
+                }
+            }
+            catch
+            {
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    private void Pull()
+    {
+        JudgementManager();
+    }
+
+    private void Combat()
+    {
+        DPS_Cycle();
+
+        Heal();
+
+        DPS_Burst();
+    }
+
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Seal();
+            Blessing();
+            Aura();
+        }
+    }
+
+    private void Seal()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (_sealOfTruth.KnownSpell)
+        {
+            if (!_sealOfTruth.HaveBuff && _sealOfTruth.IsSpellUsable)
+            {
+                _sealOfTruth.Launch();
+            }
+        }
+        else if (_sealOfRighteousness.KnownSpell)
+            if (!_sealOfRighteousness.HaveBuff && _sealOfRighteousness.IsSpellUsable)
+            {
+                {
+                    _sealOfRighteousness.Launch();
+                }
+            }
+    }
+
+    private void Blessing()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (_blessingOfMight.KnownSpell && !_blessingOfMight.HaveBuff && _blessingOfMight.IsSpellUsable)
+        {
+            _blessingOfMight.Launch();
+        }
+    }
+
+    private void JudgementManager()
+    {
+        if (_judgement.KnownSpell &&
+            _judgement.IsDistanceGood &&
+            _judgement.IsSpellUsable)
+        {
+            _judgement.Launch();
+        }
+    }
+
+    private void Aura()
+    {
+        if (ObjectManager.Me.IsMounted && !_crusaderAura.IsSpellUsable)
+            return;
+        else if (ObjectManager.Me.IsMounted && !_crusaderAura.HaveBuff && _crusaderAura.IsSpellUsable)
+            _crusaderAura.Launch();
+        else if (!_retributionAura.HaveBuff && _retributionAura.IsSpellUsable)
+            _retributionAura.Launch();
+        else if (!_devotionAura.HaveBuff && _devotionAura.IsSpellUsable)
+            _devotionAura.Launch();
+        }
+    }
+
+    private void Heal()
+    {
+        
+        if (_divineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && _divineShield.IsSpellUsable)
+        {
+            _divineShield.Launch();
+            return;
+        }
+        if (_layOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && _layOnHands.IsSpellUsable)
+        {
+            _layOnHands.Launch();
+            return;
+        }
+        if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 60)
+        {
+            if (_wordOfGlory.KnownSpell && _wordOfGlory.IsSpellUsable)
+                _wordOfGlory.Launch();
+            if (_divineLight.KnownSpell && _divineLight.IsSpellUsable)
+            {
+                _divineLight.Launch();
+                return;
+            }
+            if (_flashOfLight.KnownSpell && _flashOfLight.IsSpellUsable)
+            {
+            _flashOfLight.Launch();
+            return;
+            }
+            if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
+            {
+                _holyLight.Launch();
+                return
+            }
+        }                
+        if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
+        {
+            if (_wordOfGlory.KnownSpell && _wordOfGlory.IsSpellUsable)
+                _wordOfGlory.Launch();
+            if (_divineProtection.KnownSpell && _divineProtection.IsSpellUsable)
+                _divineProtection.Launch();
+            if (_flashOfLight.KnownSpell && _flashOfLight.IsSpellUsable)
+            {
+                _flashOfLight.Launch();
+                return;
+            }
+            if (_holyLight.KnownSpell && _holyLight.IsSpellUsable)
+            {
+                _holyLight.Launch();
+                return
+            }
+            if (_divineLight.KnownSpell && _divineLight.IsSpellUsable)
+            {
+                _divineLight.Launch();
+                return;
+            }
+        }
+    }
+    private void DPS_Burst()
+    {
+        if(_guardianOfAncientKings.HaveBuff)
+        {
+            if (_zealotry.KnownSpell && _zealotry.IsSpellUsable)
+            {
+                _zealotry.Launch();
+                if(!_inquisition.HaveBuff && _inquisition.KnownSpell && _inquisition.IsSpellUsable)
+                    _inquisition.Launch();
+                _avengingWrath.Launch();
+                return
+            }
+            if (_avengingWrath.KnownSpell && _avengingWrath.IsSpellUsable)
+            {
+                _avengingWrath.Launch();
+                return;
+            }
+        }
+        if (_guardianOfAncientKings.KnownSpell && _guardianOfAncientKings.IsSpellUsable)
+        {
+            _guardianOfAncientKings.Launch();
+            return;
+        }
+
+
+
+    }
+    private void DPS_Cycle()
+    {
+        if (_hammerOfJustice.KnownSpell && _hammerOfJustice.IsDistanceGood && _hammerOfJustice.IsSpellUsable)
+        {
+            _hammerOfJustice.Launch();
+            return;
+        }
+        if (_inquisition.KnownSpell && !_inquisition.HabeBuff && _inquisition.IsSpellUsable)
+        {
+            _inquisition.Launch(); // Todo: Vérifier qu'il y a 3 stack de Holy Power pour lancer Inquisition
+        }
+        if(!zealotry.HaveBuff && ObjectManager.GetNumberAttackPlayer() >= 3)
+        {
+            if (_divineStorm.KnownSpell && _divineStorm.IsDistanceGood && _divineStorm.IsSpellUsable)
+            {
+                _divineStorm.Launch();
+                return;
+            }
+        }
+        else
+        {
+            if (_crusaderStrike.KnownSpell && _crusaderStrike.IsDistanceGood && _crusaderStrike.IsSpellUsable)
+            {
+                _crusaderStrike.Launch();
+                return;
+            }
+        }
+
+        if (_hammerOfWrath.KnownSpell && _hammerOfWrath.IsDistanceGood && _hammerOfWrath.IsSpellUsable)
+        {
+            _hammerOfWrath.Launch();
+            return;
+        }
+        if (_exorcism.KnownSpell && _exorcism.IsDistanceGood && _exorcism.IsSpellUsable && _ExoProc.HaveBuff)
+        {
+            _exorcism.Launch();
+            return;
+        }
+        if (_templarsVerdict.KnownSpell && _templarsVerdict.IsSpellUsable && !_templarsVerdict.IsDistanceGood)
+        {
+            _templarsVerdict.Launch(); // Todo: Vérifier qu'il y a 3 stack de Holy Power pour lancer Templar's Verdict
+            return;
+        }
+        if (_judgement.KnownSpell && _judgement.IsDistanceGood && _judgement.IsSpellUsable)
+        {
+            _judgement.Launch();
+            return
+        }
+        if (_holyWrath.KnownSpell && _holyWrath.IsSpellUsable)
+        {
+            _holyWrath.Launch();
+            return
+        }
+        if (_consecration.KnownSpell && _consecration.IsSpellUsable)
+        {
+            _consecration.Launch();
+            return
+        }
+    }
+}
+#endregion
+
+#region Shaman
+public class Ele
+{
+    #region InitializeSpell
+
+    // ELE ONLY
+    Spell Thunderstorm = new Spell("Thunderstorm");
+    Spell Lava_Burst = new Spell("Lava Burst");
+    Spell Elemental_Mastery = new Spell("Elemental Mastery");
+    Spell Flametongue_Weapon = new Spell("Flametongue Weapon");
+
+    // SKILL
+    Spell Lightning_Bolt = new Spell("Lightning Bolt");
+    Spell Chain_Lightning = new Spell("Chain Lightning");
+    Spell Flame_Shock = new Spell("Flame Shock");
+    Spell Earth_Shock = new Spell("Earth Shock");
+    Spell Lightning_Shield = new Spell("Lightning Shield");
+    Spell Water_Shield = new Spell("Water Shield");
+    Spell Unleash_Elements = new Spell("Unleash Elements");
+
+    // TIMER
+    Timer look = new Timer(0);
+    Timer fighttimer = new Timer(0);
+    Timer weaponbuff = new Timer(30000);
+
+    // BUFF & HELPING
+    Spell Stoneclaw_Totem = new Spell("Stoneclaw Totem");
+    Spell Call_of_the_Elements = new Spell("Call of the Elements");
+    Spell Bloodlust = new Spell("Bloodlust");
+    Spell Heroism = new Spell("Heroism");
+    Spell Wind_Shear = new Spell("Wind Shear");
+    Spell Healing_Wave = new Spell("Healing Wave");
+    Spell Healing_Surge = new Spell("Healing Surge");
+    Spell Earth_Elemental_Totem = new Spell("Earth Elemental Totem");
+
+    // profession & racials
+    Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    Spell Lifeblood = new Spell("Lifeblood");
+    Spell Stoneform = new Spell("Stoneform");
+    Spell Tailoring = new Spell("Tailoring");
+    Spell Leatherworking = new Spell("Leatherworking");
+    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    Spell War_Stomp = new Spell("War Stomp");
+    Spell Berserking = new Spell("Berserking");
+
+    #endregion InitializeSpell
+
+    public Ele()
+    {
+        Main.range = 35.0f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                buffoutfight();
+
+                if (ItemsManager.GetItemCountByIdLUA(67495) > 0) Logging.WriteFight("/use item:67495");
+
+                if (!Fight.InFight && look.IsReady)
+                {
+                    look = new Timer(5000);
+                    Lua.RunMacroText("/targetfriendplayer");
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
+                {
+                    fighttimer = new Timer(60000);
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
+                    {
+                        pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+                    fight();
+                    if (!Fight.InFight)
+                    {
+                        Logging.WriteFight(" - Target Down - ");
+                        look = new Timer(5000);
+                    }
+
+                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0)
+                    {
+                        Logging.WriteFight(" - Target Evading - ");
+                        break;
+                    }
+                }
+            }
+            Thread.Sleep(350);
+        }
+
+    }
+
+    public void pull()
+    {
+        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
+        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
+        Lua.RunMacroText("/petattack");
+        fighttimer = new Timer(60000);
+    }
+
+    public void buffoutfight()
+    {
+
+        selfheal();
+
+        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
+
+        if (!ObjectManager.Me.HaveBuff(79640) &&
+            ItemsManager.GetItemCountByIdLUA(58149) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:58149");
+        }
+
+        if (!Call_of_the_Elements.KnownSpell && !ObjectManager.Me.HaveBuff(77747))
+        {
+            SpellManager.CastSpellByIdLUA(8227);
+            // Flametongue_Totem.Launch();
+        }
+
+    }
+
+    public void fight()
+    {
+        selfheal();
+        buffinfight();
+        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
+
+        if (!ObjectManager.Target.IsTargetingMe && Lightning_Bolt.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(403);
+            // Lightning_Bolt.Launch();
+            return;
+        }
+
+        if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 80 &&
+            ObjectManager.Target.GetDistance < 10)
+        {
+            SpellManager.CastSpellByIdLUA(51490);
+            // Thunderstorm.Launch();
+        }
+
+        if (!Flame_Shock.TargetHaveBuff && Flame_Shock.IsSpellUsable && Flame_Shock.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(8050);
+            Thread.Sleep(50);
+            SpellManager.CastSpellByIdLUA(51505);
+            // Flame_Shock.Launch();
+        }
+
+        if (Lava_Burst.KnownSpell && Lava_Burst.IsSpellUsable && Lava_Burst.IsDistanceGood && Flame_Shock.TargetHaveBuff)
+        {
+            SpellManager.CastSpellByIdLUA(51505);
+            // Lava_Burst.Launch();
+            return;
+        }
+
+        if (Chain_Lightning.KnownSpell && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood &&
+            ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+            SpellManager.CastSpellByIdLUA(421);
+            // Chain_Lightning.Launch();
+        }
+
+        if (ObjectManager.Target.IsCast && Wind_Shear.KnownSpell && Wind_Shear.IsSpellUsable && Wind_Shear.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(57994);
+            // Wind_Shear.Launch();
+        }
+
+        if (Earth_Shock.IsSpellUsable && Earth_Shock.KnownSpell && Earth_Shock.IsDistanceGood)
+        {
+            if (!Flame_Shock.TargetHaveBuff && Flame_Shock.KnownSpell) return;
+            SpellManager.CastSpellByIdLUA(8042);
+            // Earth_Shock.Launch();
+        }
+
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(1454);
+            // Berserking.Launch();
+        }
+
+        if (Unleash_Elements.KnownSpell && Unleash_Elements.IsSpellUsable && Unleash_Elements.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(73680);
+            //Unleash_Elements.Launch();
+        }
+
+        if (Lightning_Bolt.IsSpellUsable && Lightning_Bolt.IsDistanceGood && !Lava_Burst.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(403);
+            // Lightning_Bolt.Launch();
+        }
+
+    }
+
+    private void buffinfight()
+    {
+
+        if (Flametongue_Weapon.KnownSpell && Flametongue_Weapon.IsSpellUsable && weaponbuff.IsReady)
+        {
+            Flametongue_Weapon.Launch();
+            weaponbuff = new Timer(1800000);
+
+        }
+
+        if (Call_of_the_Elements.KnownSpell && Call_of_the_Elements.IsSpellUsable && !ObjectManager.Me.HaveBuff(77747))
+        {
+            SpellManager.CastSpellByIdLUA(66842);
+            // Call_of_the_Elements.Launch();
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() > 3 || hardmob())
+        {
+            if (Elemental_Mastery.KnownSpell && Elemental_Mastery.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIdLUA(16166);
+                // Elemental_Mastery.Launch();
+            }
+
+            if (Heroism.KnownSpell && Heroism.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIdLUA(32182);
+                // Heroism.Launch();
+            }
+
+            if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIdLUA(2825);
+                // Bloodlust.Launch();
+            }
+
+            if (Earth_Elemental_Totem.KnownSpell && Earth_Elemental_Totem.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 4)
+            {
+                SpellManager.CastSpellByIdLUA(2062);
+                // Earth_Elemental_Totem.Launch();
+            }
+        }
+
+        if (!Lightning_Shield.HaveBuff && Lightning_Shield.KnownSpell && Lightning_Shield.IsSpellUsable && Water_Shield.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50)
+        {
+            SpellManager.CastSpellByIdLUA(324);
+            // Lightning_Shield.Launch();
+        }
+
+        if (!Water_Shield.HaveBuff && Water_Shield.KnownSpell && Water_Shield.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 20)
+        {
+            SpellManager.CastSpellByIdLUA(52127);
+            // Water_Shield.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20594);
+            // Stoneform.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20549);
+            // War_Stomp.Launch();
+        }
+
+    }
+
+    private void selfheal()
+    {
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        {
+            Lifeblood.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        {
+            Gift_of_the_Naaru.Launch();
+        }
+
+        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
+        }
+
+        if (Stoneclaw_Totem.KnownSpell && Stoneclaw_Totem.IsSpellUsable && ObjectManager.Me.HealthPercent < 50 &&
+            ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+            SpellManager.CastSpellByIdLUA(5730);
+            // Stoneclaw_Totem.Launch();
+        }
+
+        if (Healing_Surge.KnownSpell && Healing_Surge.IsSpellUsable && ObjectManager.Me.HealthPercent < 75)
+        {
+            SpellManager.CastSpellByIdLUA(8004);
+            // Healing_Surge.Launch();
+            return;
+        }
+
+        if (!Healing_Surge.KnownSpell && Healing_Wave.KnownSpell && Healing_Wave.IsSpellUsable && ObjectManager.Me.HealthPercent < 75)
+        {
+            SpellManager.CastSpellByIdLUA(331);
+            // Healing_Wave.Launch();
+        }
+
+    }
+
+    public bool hardmob()
+    {
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+#endregion
+
+#region Priest
+public class Shadow
+{
+    #region InitializeSpell
+
+    // Shadow Only
+    Spell Mind_Flay = new Spell("Mind Flay");
+    Spell Shadowform = new Spell("Shadowform");
+    Spell Devouring_Plague = new Spell("Devouring Plague");
+    Spell Vampiric_Touch = new Spell("Vampiric Touch");
+    Spell Vampiric_Embrace = new Spell("Vampiric Embrace");
+    Spell Silence = new Spell("Silence");
+    Spell Dispersion = new Spell("Dispersion");
+
+    // HEAL
+    Spell Renew = new Spell("Renew");
+    Spell Flash_Heal = new Spell("Flash Heal");
+    Spell Greater_Heal = new Spell("Greater Heal");
+    Spell Inner_Focus = new Spell("Inner Focus");
+    Spell Power_Word_Shield = new Spell("Power Word: Shield");
+    Spell Prayer_of_Mending = new Spell("Prayer of Mending");
+
+    // DPS
+    Spell Mind_Blast = new Spell("Mind Blast");
+    Spell Shadow_Word_Pain = new Spell("Shadow Word: Pain");
+    Spell Shadow_Word_Death = new Spell("Shadow Word: Death");
+    Spell Mind_Spike = new Spell("Mind Spike");
+    Spell Smite = new Spell("Smite");
+
+    // BUFF & HELPING
+    Spell Inner_Fire = new Spell("Inner Fire");
+    Spell Psychic_Scream = new Spell("Psychic Scream");
+    Spell Psychic_Horror = new Spell("Psychic Horror");
+    Spell Shadowfiend = new Spell("Shadowfiend");
+    Spell Fade = new Spell("Fade");
+    Spell Power_Word_Fortitude = new Spell("Power Word: Fortitude");
+
+    // TIMER
+    Timer look = new Timer(0);
+    Timer fighttimer = new Timer(0);
+    Timer shadowfiendrota = new Timer(0);
+    Timer renewchill = new Timer(0);
+    Timer vtouchchill = new Timer(0);
+    Timer painchill = new Timer(0);
+    Timer plaguechill = new Timer(0);
+
+    // Profession & Racials
+    Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    Spell Lifeblood = new Spell("Lifeblood");
+    Spell Stoneform = new Spell("Stoneform");
+    Spell Tailoring = new Spell("Tailoring");
+    Spell Leatherworking = new Spell("Leatherworking");
+    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    Spell War_Stomp = new Spell("War Stomp");
+    Spell Berserking = new Spell("Berserking");
+
+    #endregion InitializeSpell
+
+    public Shadow()
+    {
+        Main.range = 40f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+
+            if (!ObjectManager.Me.IsMounted)
+            {
+                buffoutfight();
+
+                if (!Fight.InFight && look.IsReady)
+                {
+                    look = new Timer(5000);
+                    Lua.RunMacroText("/targetfriendplayer");
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
+                {
+                    fighttimer = new Timer(60000);
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
+                    {
+                        pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+                    fight();
+                    if (!Fight.InFight)
+                    {
+                        Logging.WriteFight(" - Target Down - ");
+                        look = new Timer(5000);
+                    }
+
+                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 && ObjectManager.GetNumberAttackPlayer() < 2)
+                    {
+                        Logging.WriteFight(" - Target Evading - ");
+                        break;
+                    }
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void pull()
+    {
+
+        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
+        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
+        fighttimer = new Timer(60000);
+
+    }
+
+    public void buffoutfight()
+    {
+
+        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
+
+        if (!ObjectManager.Me.HaveBuff(79640) &&
+            ItemsManager.GetItemCountByIdLUA(58149) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:58149");
+        }
+
+        if (Power_Word_Fortitude.KnownSpell && Power_Word_Fortitude.IsSpellUsable &&
+            !Power_Word_Fortitude.HaveBuff)
+        {
+            Power_Word_Fortitude.Launch();
+        }
+
+        if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.HaveBuff)
+        {
+            Inner_Fire.Launch();
+        }
+
+        if (Vampiric_Embrace.KnownSpell && Vampiric_Embrace.IsSpellUsable && !Vampiric_Embrace.HaveBuff)
+        {
+            Vampiric_Embrace.Launch();
+        }
+
+        if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable)
+        {
+            Shadowform.Launch();
+        }
+
+    }
+
+    public void fight()
+    {
+        selfheal();
+        buffinfight();
+        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
+
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(1454);
+            // Berserking.Launch();
+        }
+
+        if (Mind_Spike.KnownSpell && Mind_Spike.IsSpellUsable && Mind_Spike.IsDistanceGood && (Vampiric_Touch.TargetHaveBuff || Shadow_Word_Pain.TargetHaveBuff) &&
+            ObjectManager.Target.HealthPercent < 30)
+        {
+            SpellManager.CastSpellByIdLUA(73510);
+            // Mind_Spike.Launch();
+        }
+
+        if (Shadow_Word_Death.IsSpellUsable && Shadow_Word_Death.IsDistanceGood && !Mind_Blast.IsSpellUsable && ObjectManager.Target.HealthPercent < 26)
+        {
+            SpellManager.CastSpellByIdLUA(32379);
+            // Shadow_Word_Death.Launch();
+        }
+
+        if (Vampiric_Touch.KnownSpell && Vampiric_Touch.IsSpellUsable && Vampiric_Touch.IsDistanceGood && !Vampiric_Touch.TargetHaveBuff && ObjectManager.Target.HealthPercent > 30 && vtouchchill.IsReady)
+        {
+            vtouchchill = new Timer(2500);
+            SpellManager.CastSpellByIdLUA(34914);
+            // Vampiric_Touch.Launch();
+        }
+
+        if (Shadow_Word_Pain.KnownSpell && Shadow_Word_Pain.IsSpellUsable && Shadow_Word_Pain.IsDistanceGood && !Shadow_Word_Pain.TargetHaveBuff && ObjectManager.Target.HealthPercent > 30 && painchill.IsReady)
+        {
+            painchill = new Timer(2500);
+            SpellManager.CastSpellByIdLUA(589);
+            // Shadow_Word_Pain.Launch();
+        }
+
+        if (Mind_Blast.KnownSpell && Mind_Blast.IsSpellUsable && Mind_Blast.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(8092);
+            // Mind_Blast.Launch();
+        }
+
+        if (Smite.KnownSpell && Smite.IsSpellUsable && Smite.IsDistanceGood && !Mind_Blast.KnownSpell)
+        {
+            SpellManager.CastSpellByIdLUA(585);
+            // Smite.Launch();
+        }
+
+        if (Mind_Flay.IsSpellUsable && Mind_Flay.IsDistanceGood && !Mind_Blast.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(15407);
+            // Mind_Flay.Launch();
+            Thread.Sleep(200);
+            while (ObjectManager.Me.IsCast)
+            {
+                Fight.StopFight();
+                MovementManager.StopMove();
+                Thread.Sleep(200);
+            }
+        }
+
+        if (Devouring_Plague.KnownSpell && Devouring_Plague.IsSpellUsable && Devouring_Plague.IsDistanceGood && !Devouring_Plague.TargetHaveBuff &&
+            ObjectManager.Target.HealthPercent > 30 && hardmob() && plaguechill.IsReady)
+        {
+            plaguechill = new Timer(2500);
+            SpellManager.CastSpellByIdLUA(2944);
+            // Devouring_Plague.Launch();
+        }
+
+        if (Mind_Blast.KnownSpell && Mind_Blast.IsSpellUsable && Mind_Blast.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(8092);
+            // Mind_Blast.Launch();
+        }
+
+        if (Smite.KnownSpell && Smite.IsSpellUsable && Smite.IsDistanceGood && !Mind_Blast.KnownSpell)
+        {
+            SpellManager.CastSpellByIdLUA(585);
+            // Smite.Launch();
+        }
+
+        if (Mind_Flay.IsSpellUsable && Mind_Flay.IsDistanceGood && !Mind_Blast.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(15407);
+            // Mind_Flay.Launch();
+            Thread.Sleep(200);
+            while (ObjectManager.Me.IsCast)
+            {
+                Fight.StopFight();
+                MovementManager.StopMove();
+                Thread.Sleep(200);
+            }
+        }
+
+        if (Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsDistanceGood &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.HealthPercent > 30)
+        {
+            SpellManager.CastSpellByIdLUA(15487);
+            // Silence.Launch();
+        }
+
+        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
+        }
+
+        if (Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood &&
+            ObjectManager.Target.HealthPercent > 30 && ObjectManager.Me.HealthPercent < 80)
+        {
+            SpellManager.CastSpellByIdLUA(64044);
+            // Psychic_Horror.Launch();
+        }
+    }
+
+    private void buffinfight()
+    {
+
+        if (!Fight.InFight) return;
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20594);
+            // Stoneform.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20549);
+            // War_Stomp.Launch();
+        }
+
+        if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 20)
+        {
+            Shadowform.Launch();
+        }
+
+        if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable && !Power_Word_Shield.HaveBuff &&
+            (ObjectManager.Me.HealthPercent < 80 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+        {
+            SpellManager.CastSpellByIdLUA(17);
+            // Power_Word_Shield.Launch();
+        }
+
+        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50 &&
+            !hardmob() && ObjectManager.GetNumberAttackPlayer() < 2)
+        {
+            SpellManager.CastSpellByIdLUA(47585);
+            // Dispersion.Launch();
+        }
+
+        if (Shadowfiend.KnownSpell && Shadowfiend.IsSpellUsable && !Dispersion.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50 && ObjectManager.Target.HealthPercent > 60)
+        {
+            shadowfiendrota = new Timer(2200);
+            while (!shadowfiendrota.IsReady)
+            {
+                Shadowfiend.Launch();
+                Thread.Sleep(1000);
+                if (Fade.KnownSpell && Fade.IsSpellUsable)
+                {
+                    Fade.Launch();
+                }
+            }
+        }
+
+    }
+
+    private void selfheal()
+    {
+
+        if (Shadowfiend.KnownSpell && Shadowfiend.IsSpellUsable && ObjectManager.Me.HealthPercent < 25 && ObjectManager.Target.HealthPercent > 50 &&
+            (hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+        {
+            shadowfiendrota = new Timer(3000);
+            while (!shadowfiendrota.IsReady)
+            {
+                Shadowfiend.Launch();
+                Thread.Sleep(1000);
+                if (Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable)
+                {
+                    Lua.RunMacroText("/cast [@player] Prayer of Mending");
+                    Lua.RunMacroText("/cast [@player] Gebet der Besserung");
+                    Lua.RunMacroText("/cast [@player] Prière de guérison");
+                    Lua.RunMacroText("/cast [@player] Молитва восстановления");
+                    Lua.RunMacroText("/cast [@player] Prece da Recomposição");
+                    Lua.RunMacroText("/cast [@player] Rezo de alivio");
+                    // Prayer_of_Mending.Launch();
+                }
+                if (Fade.KnownSpell && Fade.IsSpellUsable)
+                {
+                    Fade.Launch();
+                }
+            }
+        }
+
+        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.HealthPercent > 0 &&
+            ObjectManager.Me.HealthPercent < 35 && ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+            SpellManager.CastSpellByIdLUA(47585);
+            // Dispersion.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        {
+            Lifeblood.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        {
+            Gift_of_the_Naaru.Launch();
+        }
+
+        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && renewchill.IsReady &&
+            ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage < 20)
+        {
+            renewchill = new Timer(2500);
+            SpellManager.CastSpellByIdLUA(139);
+            // Renew.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage > 25)
+        {
+            if (Inner_Focus.KnownSpell && Inner_Focus.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIdLUA(89485);
+                // Inner_Focus.Launch();
+            }
+
+            while (ObjectManager.Me.HealthPercent < 70)
+            {
+                if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && renewchill.IsReady)
+                {
+                    renewchill = new Timer(2500);
+                    SpellManager.CastSpellByIdLUA(139);
+                    // Renew.Launch();
+                }
+
+                if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable && !Power_Word_Shield.HaveBuff)
+                {
+                    SpellManager.CastSpellByIdLUA(17);
+                    // Power_Word_Shield.Launch();
+                }
+
+                if (Renew.HaveBuff && ObjectManager.GetNumberAttackPlayer() < 2)
+                {
+                    if (Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable)
+                    {
+                        SpellManager.CastSpellByIdLUA(2060);
+                        // Greater_Heal.Launch();
+                        Thread.Sleep(2000);
+                    }
+
+                    if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && !Greater_Heal.KnownSpell)
+                    {
+                        SpellManager.CastSpellByIdLUA(2061);
+                        // Flash_Heal.Launch();
+                        Thread.Sleep(1200);
+                    }
+                }
+
+                if (Renew.HaveBuff && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
+                {
+                    SpellManager.CastSpellByIdLUA(2061);
+                    // Flash_Heal.Launch();
+                    Thread.Sleep(1200);
+                }
+
+                if (ObjectManager.Me.BarTwoPercentage < 10) return;
+            }
+        }
+
+    }
+
+    public bool hardmob()
+    {
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+#endregion
+
+#region Rogue
+public class RogueCom
+{
+    #region InitializeSpell
+
+    Spell Blade_Flurry = new Spell("Blade Flurry");
+    Spell Sinister_Strike = new Spell("Sinister Strike");
+    Spell Slice_and_Dice = new Spell("Slice and Dice");
+    Spell Premeditation = new Spell("Premeditation");
+    Spell Revealing_Strike = new Spell("Revealing Strike");
+    Spell Rupture = new Spell("Rupture");
+    Spell Eviscerate = new Spell("Eviscerate");
+    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
+    Spell Killing_Spree = new Spell("Killing Spree");
+    Spell Kick = new Spell("Kick");
+    Spell Evasion = new Spell("Evasion");
+    Spell Sprint = new Spell("Sprint");
+    Spell Combat_Readiness = new Spell("Combat Readiness");
+    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
+    Spell Stealth = new Spell("Stealth");
+    Spell Sap = new Spell("Sap");
+    Spell Pick_Pocket = new Spell("Pick Pocket");
+    Spell Recuperate = new Spell("Recuperate");
+    Spell Vanish = new Spell("Vanish");
+    Spell Kidney_Shot = new Spell("Kidney Shot");
+    Spell Cheap_Shot = new Spell("Cheap Shot");
+
+    Spell Deadly_Poison = new Spell("Deadly Poison");
+    Spell Wound_Poison = new Spell("Wound Poison");
+    Spell Instant_Poison = new Spell("Instant Poison");
+    Spell Crippling_Poison = new Spell("Crippling Poison");
+    Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
+
+    Timer Main_Poison_Timer = new Timer(0);
+    Timer Off_Poison_Timer = new Timer(0);
+    #endregion InitializeSpell
+
+    public RogueCom()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= 50.0f)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+        if (!Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
+            Stealth.Launch();
+    }
+
+    public void Patrolling()
+    {
+        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
+        {
+            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            {
+                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 || ItemsManager.GetItemCountByIdLUA(10918) > 0)
+                    Poisons();
+            }
+        }
+    }
+
+    public void Combat()
+    {
+        AvoidMelee();
+        Heal();
+        BuffCombat();
+        Decast();
+
+        while (Stealth.HaveBuff && Cheap_Shot.KnownSpell && !Cheap_Shot.TargetHaveBuff)
+        {
+            if (!Sap.TargetHaveBuff && Sap.KnownSpell && Sap.IsSpellUsable && Sap.IsDistanceGood)
+                Sap.Launch();
+
+            if (Cheap_Shot.IsSpellUsable && Cheap_Shot.IsDistanceGood)
+            {
+                Cheap_Shot.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 && Blade_Flurry.KnownSpell && Blade_Flurry.IsSpellUsable && Blade_Flurry.IsDistanceGood)
+            Blade_Flurry.Launch();
+
+        if (ObjectManager.Me.HealthPercent <= 35 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood)
+            Kidney_Shot.Launch();
+
+        if (ObjectManager.Me.ComboPoint > 1 && ObjectManager.Me.ComboPoint <= 3 && Slice_and_Dice.KnownSpell && !Slice_and_Dice.HaveBuff)
+        {
+            if (Slice_and_Dice.IsSpellUsable && Slice_and_Dice.IsDistanceGood)
+            {
+                Slice_and_Dice.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.ComboPoint >= 4 && Eviscerate.KnownSpell)
+        {
+            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
+            {
+                Eviscerate.Launch();
+                return;
+            }
+        }
+
+        if (Sinister_Strike.KnownSpell && Sinister_Strike.IsSpellUsable && Sinister_Strike.IsDistanceGood)
+        {
+            Sinister_Strike.Launch();
+            return;
+        }
+    }
+
+    public void Heal()
+    {
+
+        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 0 &&
+            ObjectManager.Me.HealthPercent <= 50 && Recuperate.KnownSpell && Recuperate.IsSpellUsable && Recuperate.IsDistanceGood)
+        {
+            Recuperate.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
+        {
+            Vanish.Launch();
+            Thread.Sleep(5000);
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() > 3 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
+        {
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
+        }
+
+    }
+
+    public void Poisons()
+    {
+        if (Off_Poison_Timer.IsReady)
+        {
+            ObjectManager.Me.forceIsCast = true;
+
+            if (ObjectManager.Me.GetMove)
+            {
+                MovementManager.StopMove();
+                Thread.Sleep(2000);
+            }
+
+            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
+            {
+                Lua.RunMacroText("/use item:2892");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Deadly Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
+            {
+                Lua.RunMacroText("/use item:6947");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Instant Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
+            {
+                Lua.RunMacroText("/use item:10918");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Wound Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            ObjectManager.Me.forceIsCast = false;
+        }
+
+        if (Main_Poison_Timer.IsReady)
+        {
+            ObjectManager.Me.forceIsCast = true;
+
+            if (ObjectManager.Me.GetMove)
+            {
+                MovementManager.StopMove();
+                Thread.Sleep(2000);
+            }
+
+            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
+            {
+                Lua.RunMacroText("/use item:6947");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Instant Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
+            {
+                Lua.RunMacroText("/use item:2892");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Deadly Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
+            {
+                Lua.RunMacroText("/use item:10918");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Wound Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            ObjectManager.Me.forceIsCast = false;
+        }
+    }
+
+    public void BuffCombat()
+    {
+        if (ObjectManager.Target.GetDistance < 5 && Adrenaline_Rush.KnownSpell && Adrenaline_Rush.IsSpellUsable)
+            Adrenaline_Rush.Launch();
+
+        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
+            Evasion.Launch();
+
+        if (Combat_Readiness.KnownSpell && Combat_Readiness.IsSpellUsable)
+            Combat_Readiness.Launch();
+
+        Lua.RunMacroText("/use 13");
+        Lua.RunMacroText("/use 14");
+    }
+
+    private void Decast()
+    {
+        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable && Kick.IsDistanceGood)
+            Kick.Launch();
+
+        if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable)
+            Cloak_of_Shadows.Launch();
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+    }
+}
+public class RogueAssa
+{
+    #region InitializeSpell
+
+    Spell Blade_Flurry = new Spell("Blade Flurry");
+    Spell Sinister_Strike = new Spell("Sinister Strike");
+    Spell Slice_and_Dice = new Spell("Slice and Dice");
+    Spell Premeditation = new Spell("Premeditation");
+    Spell Revealing_Strike = new Spell("Revealing Strike");
+    Spell Rupture = new Spell("Rupture");
+    Spell Eviscerate = new Spell("Eviscerate");
+    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
+    Spell Killing_Spree = new Spell("Killing Spree");
+    Spell Kick = new Spell("Kick");
+    Spell Evasion = new Spell("Evasion");
+    Spell Sprint = new Spell("Sprint");
+    Spell Combat_Readiness = new Spell("Combat Readiness");
+    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
+    Spell Stealth = new Spell("Stealth");
+    Spell Sap = new Spell("Sap");
+    Spell Pick_Pocket = new Spell("Pick Pocket");
+    Spell Recuperate = new Spell("Recuperate");
+    Spell Vanish = new Spell("Vanish");
+    Spell Kidney_Shot = new Spell("Kidney Shot");
+    Spell Cheap_Shot = new Spell("Cheap Shot");
+    Spell Mutilate = new Spell("Mutilate");
+    Spell Envenom = new Spell("Envenom");
+    Spell Vendetta = new Spell("Vendetta");
+    Spell Cold_Blood = new Spell("Cold Blood");
+
+    Spell Deadly_Poison = new Spell("Deadly Poison");
+    Spell Wound_Poison = new Spell("Wound Poison");
+    Spell Instant_Poison = new Spell("Instant Poison");
+    Spell Crippling_Poison = new Spell("Crippling Poison");
+    Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
+
+    Timer Main_Poison_Timer = new Timer(0);
+    Timer Off_Poison_Timer = new Timer(0);
+
+    #endregion InitializeSpell
+
+    public RogueAssa()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= 50.0f)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+        if (!Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
+            Stealth.Launch();
+    }
+
+    public void Patrolling()
+    {
+        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
+        {
+            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            {
+                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 || ItemsManager.GetItemCountByIdLUA(10918) > 0)
+                    Poisons();
+            }
+        }
+    }
+
+    public void Combat()
+    {
+        AvoidMelee();
+        Heal();
+        BuffCombat();
+        Decast();
+
+        if ((Stealth.HaveBuff || Vanish.HaveBuff) && Cheap_Shot.KnownSpell && !Cheap_Shot.TargetHaveBuff)
+        {
+            if (!Sap.TargetHaveBuff && Sap.KnownSpell && Sap.IsSpellUsable && Sap.IsDistanceGood)
+                Sap.Launch();
+
+            if (Cheap_Shot.IsSpellUsable && Cheap_Shot.IsDistanceGood)
+            {
+                Cheap_Shot.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.HealthPercent <= 30 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood)
+            Kidney_Shot.Launch();
+
+        if (ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 && Slice_and_Dice.KnownSpell && !Slice_and_Dice.HaveBuff)
+        {
+            if (Slice_and_Dice.IsSpellUsable && Slice_and_Dice.IsDistanceGood)
+            {
+                Slice_and_Dice.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 && Rupture.KnownSpell && Slice_and_Dice.HaveBuff && !Rupture.TargetHaveBuff)
+        {
+            if (Rupture.IsSpellUsable && Rupture.IsDistanceGood)
+            {
+                Rupture.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.ComboPoint >= 4 && Envenom.KnownSpell)
+        {
+            if (Envenom.IsSpellUsable && Envenom.IsDistanceGood)
+            {
+                Envenom.Launch();
+                return;
+            }
+
+            if (ObjectManager.Me.BarTwoPercentage > 35 && !Envenom.IsSpellUsable && Envenom.IsDistanceGood)
+            {
+                Eviscerate.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.ComboPoint >= 4 && !Envenom.KnownSpell && Eviscerate.KnownSpell)
+        {
+            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
+            {
+                Eviscerate.Launch();
+                return;
+            }
+        }
+
+        if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && Mutilate.IsDistanceGood)
+            Mutilate.Launch();
+    }
+
+    public void Heal()
+    {
+        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 &&
+            ObjectManager.Me.HealthPercent <= 50 && Recuperate.KnownSpell && Recuperate.IsSpellUsable && Recuperate.IsDistanceGood)
+        {
+            Recuperate.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
+        {
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
+        {
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
+        }
+    }
+
+    public void Poisons()
+    {
+        if (Off_Poison_Timer.IsReady)
+        {
+            ObjectManager.Me.forceIsCast = true;
+
+            if (ObjectManager.Me.GetMove)
+            {
+                MovementManager.StopMove();
+                Thread.Sleep(2000);
+            }
+
+            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
+            {
+                Lua.RunMacroText("/use item:2892");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Deadly Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
+            {
+                Lua.RunMacroText("/use item:6947");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Instant Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
+            {
+                Lua.RunMacroText("/use item:10918");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 17");
+                Logging.WriteFight("Wound Poison");
+                Thread.Sleep(5000);
+                Off_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            ObjectManager.Me.forceIsCast = false;
+        }
+
+        if (Main_Poison_Timer.IsReady)
+        {
+            ObjectManager.Me.forceIsCast = true;
+
+            if (ObjectManager.Me.GetMove)
+            {
+                MovementManager.StopMove();
+                Thread.Sleep(2000);
+            }
+
+            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
+            {
+                Lua.RunMacroText("/use item:6947");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Instant Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
+            {
+                Lua.RunMacroText("/use item:2892");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Deadly Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
+            {
+                Lua.RunMacroText("/use item:10918");
+                Thread.Sleep(20);
+                Lua.RunMacroText("/use 16");
+                Logging.WriteFight("Wound Poison");
+                Thread.Sleep(5000);
+                Main_Poison_Timer = new Timer(1000 * 3600);
+            }
+
+            ObjectManager.Me.forceIsCast = false;
+        }
+    }
+
+    public void BuffCombat()
+    {
+        if (ObjectManager.Me.BarTwoPercentage < 75 && Cold_Blood.KnownSpell && !Cold_Blood.HaveBuff && Cold_Blood.IsSpellUsable)
+            Cold_Blood.Launch();
+
+        if (ObjectManager.Target.GetDistance < 5 && Adrenaline_Rush.KnownSpell && Adrenaline_Rush.IsSpellUsable)
+            Adrenaline_Rush.Launch();
+
+        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
+            Evasion.Launch();
+
+        if (Combat_Readiness.KnownSpell && Combat_Readiness.IsSpellUsable)
+            Combat_Readiness.Launch();
+
+        if (Vendetta.KnownSpell && Vendetta.IsSpellUsable)
+            Vendetta.Launch();
+    }
+
+    private void Decast()
+    {
+        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable && Kick.IsDistanceGood)
+            Kick.Launch();
+
+        if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable)
+            Cloak_of_Shadows.Launch();
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+    }
+}
+public class Rogue
+{
+    #region InitializeSpell
+
+    Spell Blade_Flurry = new Spell("Blade Flurry");
+    Spell Sinister_Strike = new Spell("Sinister Strike");
+    Spell Slice_and_Dice = new Spell("Slice and Dice");
+    Spell Premeditation = new Spell("Premeditation");
+    Spell Revealing_Strike = new Spell("Revealing Strike");
+    Spell Rupture = new Spell("Rupture");
+    Spell Eviscerate = new Spell("Eviscerate");
+    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
+    Spell Killing_Spree = new Spell("Killing Spree");
+    Spell Kick = new Spell("Kick");
+    Spell Evasion = new Spell("Evasion");
+    Spell Sprint = new Spell("Sprint");
+    Spell Combat_Readiness = new Spell("Combat Readiness");
+    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
+    Spell Stealth = new Spell("Stealth");
+    Spell Sap = new Spell("Sap");
+    Spell Pick_Pocket = new Spell("Pick Pocket");
+    Spell Recuperate = new Spell("Recuperate");
+    Spell Vanish = new Spell("Vanish");
+    Spell Kidney_Shot = new Spell("Kidney Shot");
+    Spell Cheap_Shot = new Spell("Cheap Shot");
+
+    #endregion InitializeSpell
+
+    public Rogue()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && Sap.IsDistanceGood)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+        if (ObjectManager.Target.GetDistance <= 20 && !Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
+        {
+            Stealth.Launch();
+            Thread.Sleep(1500);
+        }
+    }
+
+    public void Combat()
+    {
+        AvoidMelee();
+        Heal();
+        BuffCombat();
+        Decast();
+
+        while (ObjectManager.Me.ComboPoint >= 4 && Eviscerate.KnownSpell)
+        {
+            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
+            {
+                Eviscerate.Launch();
+                return;
+            }
+        }
+
+        if (Sinister_Strike.KnownSpell && Sinister_Strike.IsSpellUsable && Sinister_Strike.IsDistanceGood)
+        {
+            Sinister_Strike.Launch();
+            return;
+        }
+
+    }
+
+    public void Patrolling()
+    {
+
+    }
+
+    public void Heal()
+    {
+
+    }
+
+    public void BuffCombat()
+    {
+        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
+            Evasion.Launch();
+    }
+
+    private void Decast()
+    {
+
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+    }
+
+}
+#endregion
+
+#region Warrior
+public class Arms
+{
+    #region InitializeSpell
+
+    // ARMS ONLY
+    Spell Mortal_Strike = new Spell("Mortal Strike");
+    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
+    Spell Deadly_Calm = new Spell("Deadly Calm");
+    Spell Juggernaut = new Spell("Juggernaut");
+    Spell Throwdown = new Spell("Throwdown");
+    Spell Bladestorm = new Spell("Bladestorm");
+
+    // DPS
+    Spell Strike = new Spell("Strike");
+    Spell Rend = new Spell("Rend");
+    Spell Victory_Rush = new Spell("Victory Rush");
+    Spell Heroic_Strike = new Spell("Heroic Strike");
+    Spell Overpower = new Spell("Overpower");
+    Spell Heroic_Throw = new Spell("Heroic Throw");
+    Spell Execute = new Spell("Execute");
+    Spell Cleave = new Spell("Cleave");
+    Spell Slam = new Spell("Slam");
+
+
+    // BUFF & HELPING
+    Spell Battle_Stance = new Spell("Battle Stance");
+    Spell Defensive_Stance = new Spell("Defensive Stance");
+    Spell Berserker_Stance = new Spell("Berserker Stance");
+    Spell Battle_Shout = new Spell("Battle Shout");
+    Spell Demoralizing_Shout = new Spell("Demoralizing Shout");
+    Spell Commanding_Shout = new Spell("Commanding Shout");
+    Spell Thunder_Clap = new Spell("Thunder Clap");
+    Spell Charge = new Spell("Charge");
+    Spell Pummel = new Spell("Pummel");
+    Spell Berserker_Rage = new Spell("Berserker Rage");
+    Spell Inner_Rage = new Spell("Inner Rage");
+    Spell Colossus_Smash = new Spell("Colossus Smash");
+
+    // TIMER
+    Timer look = new Timer(0);
+    Timer fighttimer = new Timer(0);
+    Timer rendchill = new Timer(0);
+
+
+    // Profession & Racials
+    Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    Spell Lifeblood = new Spell("Lifeblood");
+    Spell Stoneform = new Spell("Stoneform");
+    Spell Tailoring = new Spell("Tailoring");
+    Spell Leatherworking = new Spell("Leatherworking");
+    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    Spell War_Stomp = new Spell("War Stomp");
+    Spell Berserking = new Spell("Berserking");
+
+    #endregion InitializeSpell
+
+    public Arms()
+    {
+        Main.range = 3.6f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+
+            if (!ObjectManager.Me.IsMounted)
+            {
+                buffoutfight();
+
+                if (!Fight.InFight && look.IsReady)
+                {
+                    look = new Timer(5000);
+                    Lua.RunMacroText("/targetfriendplayer");
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
+                {
+                    fighttimer = new Timer(60000);
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
+                    {
+                        pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+                    fight();
+                    if (!Fight.InFight)
+                    {
+                        Logging.WriteFight(" - Target Down - ");
+                        look = new Timer(5000);
+                    }
+
+                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 && ObjectManager.GetNumberAttackPlayer() < 2)
+                    {
+                        Logging.WriteFight(" - Target Evading - ");
+                        break;
+                    }
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void pull()
+    {
+
+        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
+        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
+        fighttimer = new Timer(60000);
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
+        {
+            Charge.Launch();
+        }
+
+    }
+
+    public void buffoutfight()
+    {
+
+        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
+
+        if (!ObjectManager.Me.HaveBuff(79640) &&
+            ItemsManager.GetItemCountByIdLUA(58149) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:58149");
+        }
+
+        if (Battle_Shout.KnownSpell && Battle_Shout.IsSpellUsable && !Battle_Shout.HaveBuff)
+        {
+            Battle_Shout.Launch();
+        }
+
+    }
+
+    public void fight()
+    {
+        selfheal();
+        buffinfight();
+        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
+
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(1454);
+            // Berserking.Launch();
+        }
+
+        if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50)
+        {
+
+            Berserker_Rage.Launch();
+        }
+
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
+        {
+            Charge.Launch();
+        }
+
+        if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsDistanceGood)
+        {
+            Execute.Launch();
+        }
+
+        if (Rend.KnownSpell && Rend.IsSpellUsable && Rend.IsDistanceGood && !Rend.TargetHaveBuff && rendchill.IsReady)
+        {
+            rendchill = new Timer(2500);
+
+            Rend.Launch();
+        }
+
+        if (Sweeping_Strikes.KnownSpell && Sweeping_Strikes.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+
+            Sweeping_Strikes.Launch();
+        }
+
+        if (Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood)
+        {
+
+            Colossus_Smash.Launch();
+        }
+
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
+        {
+            Heroic_Throw.Launch();
+        }
+
+        if (Mortal_Strike.KnownSpell && Mortal_Strike.IsSpellUsable && Mortal_Strike.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+        {
+
+            Mortal_Strike.Launch();
+        }
+
+        if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+        {
+
+            Overpower.Launch();
+        }
+
+        if (!Mortal_Strike.KnownSpell && Strike.IsSpellUsable && Strike.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+        {
+
+            Strike.Launch();
+        }
+
+        if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+
+            Cleave.Launch();
+        }
+
+        if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood && ObjectManager.Me.BarTwoPercentage > 70)
+        {
+
+            Heroic_Strike.Launch();
+        }
+
+
+        if (Pummel.KnownSpell && Pummel.IsSpellUsable && Pummel.IsDistanceGood &&
+            ObjectManager.Target.IsCast)
+        {
+
+            Pummel.Launch();
+        }
+
+        if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsDistanceGood && !Overpower.IsSpellUsable && !Mortal_Strike.IsSpellUsable &&
+            (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+        {
+
+            Slam.Launch();
+        }
+
+        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
+        }
+
+    }
+
+    private void buffinfight()
+    {
+
+        if (!Fight.InFight) return;
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20594);
+            // Stoneform.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20549);
+            // War_Stomp.Launch();
+        }
+
+        if (!Battle_Stance.HaveBuff && Battle_Stance.IsSpellUsable)
+        {
+            Battle_Stance.Launch();
+        }
+
+        if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && !Thunder_Clap.TargetHaveBuff && !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
+            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+        {
+
+            Thunder_Clap.Launch();
+        }
+
+        if (Demoralizing_Shout.KnownSpell && Demoralizing_Shout.IsSpellUsable && !Demoralizing_Shout.TargetHaveBuff && !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
+            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+        {
+
+            Demoralizing_Shout.Launch();
+        }
+
+    }
+
+    private void selfheal()
+    {
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        {
+            Lifeblood.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        {
+            Gift_of_the_Naaru.Launch();
+        }
+
+        if (Victory_Rush.KnownSpell && Victory_Rush.IsSpellUsable && Victory_Rush.IsDistanceGood)
+        {
+            Victory_Rush.Launch();
+        }
+
+    }
+
+    public bool hardmob()
+    {
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+public class WarriorProt
+{
+    #region InitializeSpell
+
+    Spell Berserker_Stance = new Spell("Berserker Stance");
+    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
+    Spell Battle_Shout = new Spell("Battle Shout");
+    Spell Colossus_Smash = new Spell("Colossus Smash");
+    Spell Bloodthirst = new Spell("Bloodthirst");
+    Spell Raging_Blow = new Spell("Raging Blow");
+    Spell Slam = new Spell("Slam");
+    Spell Death_Wish = new Spell("Death Wish");
+    Spell Recklessness = new Spell("Recklessness");
+    Spell Execute = new Spell("Execute");
+    Spell Heroic_Strike = new Spell("Heroic Strike");
+    Spell Intercept = new Spell("Intercept");
+    Spell Enrage = new Spell("Enrage");
+    Spell Bloodsurge = new Spell("Bloodsurge");
+    Spell Heroic_Throw = new Spell("Heroic Throw");
+    Spell Heroic_Leap = new Spell("Heroic Leap");
+    Spell Cleave = new Spell("Cleave");
+    Spell Whirlwind = new Spell("Whirlwind");
+    Spell Victory_Rush = new Spell("Victory Rush");
+    Spell Hamstring = new Spell("Hamstring");
+    Spell Pummel = new Spell("Pummel");
+    Spell Shield_Slam = new Spell("Shield Slam");
+    Spell Concussion_Blow = new Spell("Concussion Blow");
+    Timer Rend_Timer = new Timer(0);
+    Timer Recklessness_Timer = new Timer(0);
+    Timer Enraged_Regeneration_Timer = new Timer(0);
+    Spell Rend = new Spell("Rend");
+    Spell Shockwave = new Spell("Shockwave");
+    Spell Devastate = new Spell("Devastate");
+    Spell Shield_Bash = new Spell("Shield Bash");
+    Spell Last_Stand = new Spell("Last Stand");
+    Spell Shield_Block = new Spell("Shield Block");
+    Spell Shield_Wall = new Spell("Shield Wall");
+    Spell Spell_Reflection = new Spell("Spell Reflection");
+    Spell Charge = new Spell("Charge");
+    Spell Revenge = new Spell("Revenge");
+    Spell Thunder_Clap = new Spell("Thunder Clap");
+    Spell Defensive_Stance = new Spell("Defensive Stance");
+    Spell Sunder_Armor = new Spell("Sunder Armor");
+    Spell Strike = new Spell("Strike");
+    Spell Battle_Stance = new Spell("Battle Stance");
+    Spell Intimidating_Shout = new Spell("Intimidating_Shout");
+    Spell Piercing_Howl = new Spell("Piercing_Howl");
+    Spell Berserker_Rage = new Spell("Berserker_Rage");
+
+    #endregion InitializeSpell
+
+    public WarriorProt()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && Intercept.IsDistanceGood)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+
+        if (!Defensive_Stance.HaveBuff)
+            Defensive_Stance.Launch();
+
+        if (Heroic_Throw.KnownSpell &&
+            ObjectManager.Target.GetDistance < 30 &&
+            Heroic_Throw.IsSpellUsable &&
+            Heroic_Throw.IsDistanceGood)
+        {
+            Heroic_Throw.Launch();
+        }
+    }
+
+    public void Combat()
+    {
+        Charges();
+        Def();
+        AvoidMelee();
+        Heal();
+        BuffCombat();
+        Decast();
+        Fear();
+        Burst();
+
+        if ((ObjectManager.Me.HaveBuff(46951) ||
+            ObjectManager.Me.HaveBuff(46952) ||
+            ObjectManager.Me.HaveBuff(46953)) &&
+            Shield_Slam.KnownSpell && Shield_Slam.IsSpellUsable && Shield_Slam.IsDistanceGood)
+        {
+            Shield_Slam.Launch();
+            return;
+        }
+
+        if (Rend_Timer.IsReady && Rend.KnownSpell && Rend.IsDistanceGood && Rend.IsSpellUsable)
+        {
+            Rend.Launch();
+            Rend_Timer = new Timer(1000 * 10);
+            return;
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            Cleave.KnownSpell &&
+            Cleave.IsSpellUsable &&
+            Cleave.IsDistanceGood)
+        {
+            Cleave.Launch();
+            return;
+        }
+
+        if (Victory_Rush.KnownSpell && Victory_Rush.IsSpellUsable && Victory_Rush.IsDistanceGood)
+        {
+            Victory_Rush.Launch();
+            return;
+        }
+
+        if (Shield_Slam.KnownSpell && Shield_Slam.IsSpellUsable && Shield_Slam.IsDistanceGood)
+        {
+            Shield_Slam.Launch();
+            return;
+        }
+
+        if (Revenge.KnownSpell && Revenge.IsDistanceGood && Revenge.IsSpellUsable)
+        {
+            Revenge.Launch();
+            return;
+        }
+
+        if (!Recklessness_Timer.IsReady &&
+            Concussion_Blow.KnownSpell && Concussion_Blow.IsSpellUsable && Concussion_Blow.IsDistanceGood)
+        {
+
+            Concussion_Blow.Launch();
+            return;
+        }
+
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsDistanceGood)
+        {
+            Shockwave.Launch();
+            return;
+        }
+
+        if (Devastate.KnownSpell && Devastate.IsSpellUsable && Devastate.IsDistanceGood)
+        {
+            if (Sunder_Armor.TargetHaveBuff)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+
+            Devastate.Launch();
+            return;
+        }
+
+    }
+
+    public void Patrolling()
+    {
+        if (!Defensive_Stance.HaveBuff)
+            Defensive_Stance.Launch();
+    }
+
+    public void Heal()
+    {
+        if (ObjectManager.Me.HealthPercent < 75 &&
+            Berserker_Rage.KnownSpell && Enraged_Regeneration_Timer.IsReady &&
+            Berserker_Rage.IsSpellUsable && Enraged_Regeneration.KnownSpell)
+        {
+            Berserker_Rage.Launch();
+            Thread.Sleep(200);
+
+            if (Berserker_Rage.HaveBuff)
+            {
+
+                int i = 0;
+                while (i < 3)
+                {
+                    i++;
+                    Enraged_Regeneration.Launch();
+                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
+
+                    if (Enraged_Regeneration.HaveBuff)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void Burst()
+    {
+        if (Rend.TargetHaveBuff && Shield_Block.HaveBuff && Concussion_Blow.KnownSpell &&
+            Concussion_Blow.IsSpellUsable && Colossus_Smash.KnownSpell &&
+            ObjectManager.Me.HealthPercent > 50 &&
+            Recklessness.KnownSpell && Recklessness_Timer.IsReady)
+        {
+            if (!Berserker_Stance.HaveBuff)
+            {
+                int i = 0;
+                while (i < 3)
+                {
+                    i++;
+                    Berserker_Stance.Launch();
+
+                    if (Berserker_Stance.HaveBuff)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (Berserker_Stance.HaveBuff &&
+                Concussion_Blow.KnownSpell &&
+                Concussion_Blow.IsSpellUsable &&
+                Concussion_Blow.IsDistanceGood)
+            {
+                int l = 0;
+                while (l < 0)
+                {
+                    l++;
+                    Concussion_Blow.Launch();
+
+                    if (!Concussion_Blow.IsSpellUsable)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            if (Berserker_Stance.HaveBuff)
+            {
+                if (!Recklessness.HaveBuff)
+                {
+                    int j = 0;
+                    while (j < 3)
+                    {
+                        j++;
+                        Recklessness.Launch();
+                        Lua.RunMacroText("/use 13");
+                        Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                        Lua.RunMacroText("/use 14");
+                        Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                        Recklessness_Timer = new Timer(1000 * 60 * 5);
+
+                        if (!Recklessness.IsSpellUsable)
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+
+            if (Berserker_Stance.HaveBuff &&
+                Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood)
+            {
+                int m = 0;
+                while (m < 0)
+                {
+                    m++;
+                    Colossus_Smash.Launch();
+
+                    if (!Colossus_Smash.IsSpellUsable)
+                    {
+                        break;
+                    }
+                }
+
+            }
+
+            if (!Defensive_Stance.HaveBuff)
+            {
+                int k = 0;
+                while (k < 0)
+                {
+                    k++;
+                    Defensive_Stance.Launch();
+
+                    if (Defensive_Stance.HaveBuff)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void BuffCombat()
+    {
+        if (!Defensive_Stance.HaveBuff)
+            Defensive_Stance.Launch();
+
+        if (Shield_Block.KnownSpell &&
+            Shield_Block.IsSpellUsable)
+        {
+            Shield_Block.Launch();
+        }
+
+        if (Battle_Shout.KnownSpell &&
+            Battle_Shout.IsSpellUsable &&
+            ObjectManager.Me.BarTwoPercentage < 70)
+        {
+            Battle_Shout.Launch();
+        }
+    }
+
+    private void Def()
+    {
+        if (ObjectManager.Me.HealthPercent < 60 &&
+            Shield_Wall.KnownSpell && Shield_Wall.IsSpellUsable)
+        {
+            Shield_Wall.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 60 &&
+            Last_Stand.KnownSpell && Last_Stand.IsSpellUsable)
+        {
+            Last_Stand.Launch();
+        }
+    }
+
+    private void Decast()
+    {
+        if (ObjectManager.Target.IsCast &&
+            Spell_Reflection.KnownSpell &&
+            Spell_Reflection.IsSpellUsable &&
+            Spell_Reflection.IsDistanceGood)
+        {
+            Spell_Reflection.Launch();
+        }
+
+        if (ObjectManager.Target.IsCast &&
+            Shield_Bash.KnownSpell &&
+            Shield_Bash.IsSpellUsable &&
+            Shield_Bash.IsDistanceGood)
+        {
+            Shield_Bash.Launch();
+        }
+    }
+
+    private void Fear()
+    {
+        if (ObjectManager.Target.GetMove &&
+            ObjectManager.Target.GetDistance <= 8 &&
+            !Piercing_Howl.TargetHaveBuff &&
+            Intimidating_Shout.KnownSpell &&
+            Intimidating_Shout.IsSpellUsable)
+        {
+            Intimidating_Shout.Launch();
+        }
+    }
+
+    private void Charges()
+    {
+        if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood)
+        {
+            Intercept.Launch();
+        }
+
+        if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+        }
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+        {
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        }
+    }
+
+}
+public class WarriorFury
+{
+    #region InitializeSpell
+
+    Spell Berserker_Stance = new Spell("Berserker Stance");
+    Spell Battle_Stance = new Spell("Battle Stance");
+
+    Spell Inner_Rage = new Spell("Inner Rage");
+    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
+    Spell Battle_Shout = new Spell("Battle Shout");
+    Spell Colossus_Smash = new Spell("Colossus Smash");
+    Spell Bloodthirst = new Spell("Bloodthirst");
+    Spell Raging_Blow = new Spell("Raging Blow");
+    Spell Slam = new Spell("Slam");
+    Spell Death_Wish = new Spell("Death Wish");
+    Spell Recklessness = new Spell("Recklessness");
+    Spell Execute = new Spell("Execute");
+    Spell Heroic_Strike = new Spell("Heroic Strike");
+    Spell Intercept = new Spell("Intercept");
+    Spell Enrage = new Spell("Enrage");
+    Spell Bloodsurge = new Spell("Bloodsurge");
+    Spell Heroic_Throw = new Spell("Heroic Throw");
+    Spell Heroic_Leap = new Spell("Heroic Leap");
+    Spell Cleave = new Spell("Cleave");
+    Spell Whirlwind = new Spell("Whirlwind");
+    Spell Victory_Rush = new Spell("Victory Rush");
+    Spell Hamstring = new Spell("Hamstring");
+    Spell Pummel = new Spell("Pummel");
+    Spell Rend = new Spell("Rend");
+    Spell Mortal_Strike = new Spell("Mortal Strike");
+    Spell Overpower = new Spell("Overpower");
+    Spell Deadly_Calm = new Spell("Deadly Calm");
+    Spell Bladestorm = new Spell("Bladestorm");
+    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
+    Spell Thunder_Clap = new Spell("Thunder Clap");
+    Spell Throwdown = new Spell("Throwdown");
+    Spell Charge = new Spell("Charge");
+    Spell Strike = new Spell("Strike");
+    Spell Intimidating_Shout = new Spell("Intimidating Shout");
+    Spell Commanding_Shout = new Spell("Commanding Shout");
+    Spell Piercing_Howl = new Spell("Piercing Howl");
+    Spell Taste_for_Blood = new Spell("Taste for Blood");
+    Spell Berserker_Rage = new Spell("Berserker Rage");
+    Spell Victorious = new Spell("Victorious");
+    Spell Retaliation = new Spell("Retaliation");
+
+    Timer Rend_Timer = new Timer(0);
+    Timer Charge_Timer = new Timer(0);
+    Timer Recklessness_Timer = new Timer(0);
+    Timer Enraged_Regeneration_Timer = new Timer(0);
+    Timer Death_Wish_Timer = new Timer(0);
+    Timer Inner_Rage_Timer = new Timer(0);
+    Timer Intercept_leap_Timer = new Timer(0);
+
+    #endregion InitializeSpell
+
+    public WarriorFury()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && Intercept.IsDistanceGood)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+        if (!Berserker_Stance.HaveBuff)
+            Berserker_Stance.Launch();
+
+        Charges();
+    }
+
+    public void Combat()
+    {
+        Charges();
+        AvoidMelee();
+        Heal();
+        BuffCombat();
+        TargetMoving();
+        Decast();
+        Fear();
+
+        if (Victory_Rush.KnownSpell &&
+            Victory_Rush.IsSpellUsable &&
+            Victory_Rush.IsDistanceGood)
+        {
+            Victory_Rush.Launch();
+
+            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+                Heroic_Strike.KnownSpell &&
+                Heroic_Strike.IsSpellUsable)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+        }
+
+        if (Colossus_Smash.KnownSpell &&
+            Colossus_Smash.IsSpellUsable &&
+            Colossus_Smash.IsDistanceGood)
+        {
+            Colossus_Smash.Launch();
+
+            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+                Heroic_Strike.KnownSpell &&
+                Heroic_Strike.IsSpellUsable)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+        }
+
+        if (Bloodthirst.KnownSpell &&
+            Bloodthirst.IsDistanceGood &&
+            Bloodthirst.IsSpellUsable)
+        {
+            Bloodthirst.Launch();
+
+            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+                Heroic_Strike.KnownSpell &&
+                Heroic_Strike.IsSpellUsable)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+        }
+
+        if (Raging_Blow.KnownSpell &&
+            Raging_Blow.IsSpellUsable &&
+            Raging_Blow.IsDistanceGood)
+        {
+            Raging_Blow.Launch();
+
+            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+                Heroic_Strike.KnownSpell &&
+                Heroic_Strike.IsSpellUsable)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+        }
+
+        if (ObjectManager.Me.HaveBuff(46916) &&
+            Slam.KnownSpell &&
+            Slam.IsDistanceGood)
+        {
+
+            Slam.Launch();
+
+            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+                Heroic_Strike.KnownSpell &&
+                Heroic_Strike.IsSpellUsable)
+            {
+                Heroic_Strike.Launch();
+                return;
+            }
+        }
+
+        if ((ObjectManager.Me.BarTwoPercentage > 60 || Inner_Rage.HaveBuff) &&
+            Heroic_Strike.KnownSpell &&
+            Heroic_Strike.IsSpellUsable)
+        {
+            Heroic_Strike.Launch();
+            return;
+        }
+
+        if (Heroic_Throw.KnownSpell &&
+            Heroic_Throw.IsSpellUsable &&
+            Heroic_Throw.IsDistanceGood)
+        {
+            Heroic_Throw.Launch();
+        }
+
+    }
+
+    public void Patrolling()
+    {
+        if (!Berserker_Stance.HaveBuff)
+            Berserker_Stance.Launch();
+    }
+
+    private void Charges()
+    {
+        if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood && Intercept_leap_Timer.IsReady)
+        {
+            Intercept.Launch();
+            Intercept_leap_Timer = new Timer(1000 * 3);
+        }
+
+        if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood && Intercept_leap_Timer.IsReady)
+        {
+            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+            Intercept_leap_Timer = new Timer(1000 * 3);
+        }
+    }
+
+    public void Heal()
+    {
+        if (ObjectManager.Me.HealthPercent < 75 &&
+            Berserker_Rage.KnownSpell && Enraged_Regeneration_Timer.IsReady &&
+            Berserker_Rage.IsSpellUsable && Enraged_Regeneration.KnownSpell)
+        {
+            Berserker_Rage.Launch();
+            Thread.Sleep(200);
+
+            if (Berserker_Rage.HaveBuff)
+            {
+
+                int i = 0;
+                while (i < 3)
+                {
+                    i++;
+                    Enraged_Regeneration.Launch();
+                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
+
+                    if (Enraged_Regeneration.HaveBuff)
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public void BuffCombat()
+    {
+
+        if (!Berserker_Stance.HaveBuff)
+            Berserker_Stance.Launch();
+
+        if (!Berserker_Stance.KnownSpell)
+        {
+            Battle_Stance.Launch();
+        }
+
+        if (Battle_Shout.KnownSpell &&
+            Battle_Shout.IsSpellUsable &&
+            ObjectManager.Me.BarTwoPercentage < 70)
+        {
+            Battle_Shout.Launch();
+        }
+
+        if (Inner_Rage_Timer.IsReady &&
+            Inner_Rage.KnownSpell &&
+            Inner_Rage.IsSpellUsable)
+        {
+            Inner_Rage.Launch();
+            Inner_Rage_Timer = new Timer(1000 * 40);
+        }
+
+        if (Recklessness.KnownSpell || Death_Wish.KnownSpell)
+        {
+            if (Recklessness.KnownSpell && Death_Wish.KnownSpell &&
+                Recklessness.IsSpellUsable && Recklessness_Timer.IsReady &&
+                Death_Wish.IsSpellUsable && Death_Wish_Timer.IsReady)
+            {
+                int j = 0;
+                while (j < 3)
+                {
+                    j++;
+                    Recklessness.Launch();
+                    Recklessness_Timer = new Timer(1000 * 300);
+
+                    Death_Wish.Launch();
+                    Death_Wish_Timer = new Timer(1000 * 150);
+
+                    Lua.RunMacroText("/use 13");
+                    Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                    Lua.RunMacroText("/use 14");
+                    Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+
+                    if (!Recklessness.IsSpellUsable &&
+                        !Death_Wish.IsSpellUsable)
+                    {
+                        break;
+                    }
+                }
+            }
+
+            else if (Death_Wish.KnownSpell && Death_Wish.IsSpellUsable && Death_Wish_Timer.IsReady)
+            {
+                Death_Wish.Launch();
+                Lua.RunMacroText("/use 13");
+                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                Lua.RunMacroText("/use 14");
+                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                Death_Wish_Timer = new Timer(1000 * 150);
+            }
+
+            else if (!Death_Wish.KnownSpell && Recklessness.IsSpellUsable && Recklessness_Timer.IsReady)
+            {
+                Recklessness.Launch();
+                Lua.RunMacroText("/use 13");
+                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                Lua.RunMacroText("/use 14");
+                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+                Recklessness_Timer = new Timer(1000 * 300);
+            }
+        }
+    }
+
+    private void TargetMoving()
+    {
+        if (ObjectManager.Target.GetMove &&
+            !Hamstring.TargetHaveBuff &&
+            Hamstring.KnownSpell &&
+            Hamstring.IsDistanceGood &&
+            Hamstring.IsSpellUsable)
+        {
+            Hamstring.Launch();
+        }
+
+        if (ObjectManager.Target.GetDistance <= 15 &&
+            (ObjectManager.GetNumberAttackPlayer() >= 2 ||
+            ObjectManager.Target.GetMove) &&
+            !Piercing_Howl.TargetHaveBuff &&
+            !Intimidating_Shout.TargetHaveBuff &&
+            Piercing_Howl.KnownSpell &&
+            Piercing_Howl.IsDistanceGood &&
+            Piercing_Howl.IsSpellUsable)
+        {
+            Piercing_Howl.Launch();
+        }
+
+    }
+
+    private void Decast()
+    {
+        if (ObjectManager.Target.IsCast &&
+            Pummel.KnownSpell &&
+            Pummel.IsSpellUsable &&
+            Pummel.IsDistanceGood)
+        {
+            Pummel.Launch();
+        }
+    }
+
+    private void Fear()
+    {
+        if (ObjectManager.Target.GetMove &&
+            ObjectManager.Target.GetDistance <= 8 &&
+            !Throwdown.TargetHaveBuff &&
+            !Piercing_Howl.TargetHaveBuff &&
+            Intimidating_Shout.KnownSpell &&
+            Intimidating_Shout.IsSpellUsable)
+        {
+            Intimidating_Shout.Launch();
+        }
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+        {
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        }
+    }
+
+}
+public class Warrior
+{
+    #region InitializeSpell
+
+    Spell Berserker_Stance = new Spell("Berserker Stance");
+    Spell Battle_Stance = new Spell("Battle Stance");
+
+    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
+    Spell Battle_Shout = new Spell("Battle Shout");
+    Spell Colossus_Smash = new Spell("Colossus Smash");
+    Spell Bloodthirst = new Spell("Bloodthirst");
+    Spell Raging_Blow = new Spell("Raging Blow");
+    Spell Slam = new Spell("Slam");
+    Spell Death_Wish = new Spell("Death Wish");
+    Spell Recklessness = new Spell("Recklessness");
+    Spell Execute = new Spell("Execute");
+    Spell Heroic_Strike = new Spell("Heroic Strike");
+    Spell Intercept = new Spell("Intercept");
+    Spell Enrage = new Spell("Enrage");
+    Spell Bloodsurge = new Spell("Bloodsurge");
+    Spell Heroic_Throw = new Spell("Heroic Throw");
+    Spell Heroic_Leap = new Spell("Heroic Leap");
+    Spell Cleave = new Spell("Cleave");
+    Spell Whirlwind = new Spell("Whirlwind");
+    Spell Victory_Rush = new Spell("Victory Rush");
+    Spell Hamstring = new Spell("Hamstring");
+    Spell Pummel = new Spell("Pummel");
+    Spell Rend = new Spell("Rend");
+    Spell Mortal_Strike = new Spell("Mortal Strike");
+    Spell Overpower = new Spell("Overpower");
+    Spell Deadly_Calm = new Spell("Deadly Calm");
+    Spell Bladestorm = new Spell("Bladestorm");
+    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
+    Spell Thunder_Clap = new Spell("Thunder Clap");
+    Spell Throwdown = new Spell("Throwdown");
+    Spell Charge = new Spell("Charge");
+    Spell Strike = new Spell("Strike");
+    Timer Rend_Timer = new Timer(0);
+
+    #endregion InitializeSpell
+
+    public Warrior()
+    {
+        Main.range = 3.6f; // Range
+
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            if (!ObjectManager.Me.IsMounted)
+            {
+                Patrolling();
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && Charge.IsDistanceGood)
+                    {
+                        Pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+
+                    Combat();
+                }
+            }
+            Thread.Sleep(350);
+        }
+    }
+
+    public void Pull()
+    {
+        if (!Battle_Stance.HaveBuff)
+            Battle_Stance.Launch();
+
+        if (Charge.KnownSpell &&
+            ObjectManager.Target.GetDistance > 8 &&
+            Charge.IsSpellUsable &&
+            Charge.IsDistanceGood)
+        {
+            Charge.Launch();
+        }
+
+    }
+
+    public void Combat()
+    {
+        AvoidMelee();
+
+        if (Strike.KnownSpell &&
+            Strike.IsSpellUsable &&
+            Strike.IsDistanceGood)
+        {
+            Strike.Launch();
+            return;
+        }
+
+        if (Victory_Rush.KnownSpell &&
+            Victory_Rush.IsSpellUsable &&
+            Victory_Rush.IsDistanceGood)
+        {
+            Victory_Rush.Launch();
+            return;
+        }
+
+        if (Rend_Timer.IsReady &&
+            Rend.KnownSpell &&
+            Rend.IsDistanceGood &&
+            Rend.IsSpellUsable)
+        {
+            Rend.Launch();
+            Rend_Timer = new Timer(1000 * 10);
+            return;
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() > 3 &&
+            Thunder_Clap.KnownSpell &&
+            Thunder_Clap.IsSpellUsable &&
+            Thunder_Clap.IsDistanceGood)
+        {
+            Thunder_Clap.Launch();
+            return;
+        }
+
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 1)
+        {
+            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        }
+    }
+
+    public void Patrolling()
+    {
+
+    }
+
+}
+#endregion
+
+#region Hunter
 public class Survival
 {
     #region InitializeSpell
@@ -6241,7 +8657,6 @@ public class Survival
         return false;
     }
 }
-
 public class Marks
 {
     #region InitializeSpell
@@ -6781,2369 +9196,4 @@ public class Marks
         return false;
     }
 }
-
-public class Shadow
-{
-    #region InitializeSpell
-
-    // Shadow Only
-    Spell Mind_Flay = new Spell("Mind Flay");
-    Spell Shadowform = new Spell("Shadowform");
-    Spell Devouring_Plague = new Spell("Devouring Plague");
-    Spell Vampiric_Touch = new Spell("Vampiric Touch");
-    Spell Vampiric_Embrace = new Spell("Vampiric Embrace");
-    Spell Silence = new Spell("Silence");
-    Spell Dispersion = new Spell("Dispersion");
-
-    // HEAL
-    Spell Renew = new Spell("Renew");
-    Spell Flash_Heal = new Spell("Flash Heal");
-    Spell Greater_Heal = new Spell("Greater Heal");
-    Spell Inner_Focus = new Spell("Inner Focus");
-    Spell Power_Word_Shield = new Spell("Power Word: Shield");
-    Spell Prayer_of_Mending = new Spell("Prayer of Mending");
-
-    // DPS
-    Spell Mind_Blast = new Spell("Mind Blast");
-    Spell Shadow_Word_Pain = new Spell("Shadow Word: Pain");
-    Spell Shadow_Word_Death = new Spell("Shadow Word: Death");
-    Spell Mind_Spike = new Spell("Mind Spike");
-    Spell Smite = new Spell("Smite");
-
-    // BUFF & HELPING
-    Spell Inner_Fire = new Spell("Inner Fire");
-    Spell Psychic_Scream = new Spell("Psychic Scream");
-    Spell Psychic_Horror = new Spell("Psychic Horror");
-    Spell Shadowfiend = new Spell("Shadowfiend");
-    Spell Fade = new Spell("Fade");
-    Spell Power_Word_Fortitude = new Spell("Power Word: Fortitude");
-
-    // TIMER
-    Timer look = new Timer(0);
-    Timer fighttimer = new Timer(0);
-    Timer shadowfiendrota = new Timer(0);
-    Timer renewchill = new Timer(0);
-    Timer vtouchchill = new Timer(0);
-    Timer painchill = new Timer(0);
-    Timer plaguechill = new Timer(0);
-
-    // Profession & Racials
-    Spell Arcane_Torrent = new Spell("Arcane Torrent");
-    Spell Lifeblood = new Spell("Lifeblood");
-    Spell Stoneform = new Spell("Stoneform");
-    Spell Tailoring = new Spell("Tailoring");
-    Spell Leatherworking = new Spell("Leatherworking");
-    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    Spell War_Stomp = new Spell("War Stomp");
-    Spell Berserking = new Spell("Berserking");
-
-    #endregion InitializeSpell
-
-    public Shadow()
-    {
-        Main.range = 40f;
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-
-            if (!ObjectManager.Me.IsMounted)
-            {
-                buffoutfight();
-
-                if (!Fight.InFight && look.IsReady)
-                {
-                    look = new Timer(5000);
-                    Lua.RunMacroText("/targetfriendplayer");
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
-                {
-                    fighttimer = new Timer(60000);
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
-                    {
-                        pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-                    fight();
-                    if (!Fight.InFight)
-                    {
-                        Logging.WriteFight(" - Target Down - ");
-                        look = new Timer(5000);
-                    }
-
-                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 && ObjectManager.GetNumberAttackPlayer() < 2)
-                    {
-                        Logging.WriteFight(" - Target Evading - ");
-                        break;
-                    }
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void pull()
-    {
-
-        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
-        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
-        fighttimer = new Timer(60000);
-
-    }
-
-    public void buffoutfight()
-    {
-
-        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
-
-        if (!ObjectManager.Me.HaveBuff(79640) &&
-            ItemsManager.GetItemCountByIdLUA(58149) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:58149");
-        }
-
-        if (Power_Word_Fortitude.KnownSpell && Power_Word_Fortitude.IsSpellUsable &&
-            !Power_Word_Fortitude.HaveBuff)
-        {
-            Power_Word_Fortitude.Launch();
-        }
-
-        if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.HaveBuff)
-        {
-            Inner_Fire.Launch();
-        }
-
-        if (Vampiric_Embrace.KnownSpell && Vampiric_Embrace.IsSpellUsable && !Vampiric_Embrace.HaveBuff)
-        {
-            Vampiric_Embrace.Launch();
-        }
-
-        if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable)
-        {
-            Shadowform.Launch();
-        }
-
-    }
-
-    public void fight()
-    {
-        selfheal();
-        buffinfight();
-        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
-
-        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(1454);
-            // Berserking.Launch();
-        }
-
-        if (Mind_Spike.KnownSpell && Mind_Spike.IsSpellUsable && Mind_Spike.IsDistanceGood && (Vampiric_Touch.TargetHaveBuff || Shadow_Word_Pain.TargetHaveBuff) &&
-            ObjectManager.Target.HealthPercent < 30)
-        {
-            SpellManager.CastSpellByIdLUA(73510);
-            // Mind_Spike.Launch();
-        }
-
-        if (Shadow_Word_Death.IsSpellUsable && Shadow_Word_Death.IsDistanceGood && !Mind_Blast.IsSpellUsable && ObjectManager.Target.HealthPercent < 26)
-        {
-            SpellManager.CastSpellByIdLUA(32379);
-            // Shadow_Word_Death.Launch();
-        }
-
-        if (Vampiric_Touch.KnownSpell && Vampiric_Touch.IsSpellUsable && Vampiric_Touch.IsDistanceGood && !Vampiric_Touch.TargetHaveBuff && ObjectManager.Target.HealthPercent > 30 && vtouchchill.IsReady)
-        {
-            vtouchchill = new Timer(2500);
-            SpellManager.CastSpellByIdLUA(34914);
-            // Vampiric_Touch.Launch();
-        }
-
-        if (Shadow_Word_Pain.KnownSpell && Shadow_Word_Pain.IsSpellUsable && Shadow_Word_Pain.IsDistanceGood && !Shadow_Word_Pain.TargetHaveBuff && ObjectManager.Target.HealthPercent > 30 && painchill.IsReady)
-        {
-            painchill = new Timer(2500);
-            SpellManager.CastSpellByIdLUA(589);
-            // Shadow_Word_Pain.Launch();
-        }
-
-        if (Mind_Blast.KnownSpell && Mind_Blast.IsSpellUsable && Mind_Blast.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(8092);
-            // Mind_Blast.Launch();
-        }
-
-        if (Smite.KnownSpell && Smite.IsSpellUsable && Smite.IsDistanceGood && !Mind_Blast.KnownSpell)
-        {
-            SpellManager.CastSpellByIdLUA(585);
-            // Smite.Launch();
-        }
-
-        if (Mind_Flay.IsSpellUsable && Mind_Flay.IsDistanceGood && !Mind_Blast.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(15407);
-            // Mind_Flay.Launch();
-            Thread.Sleep(200);
-            while (ObjectManager.Me.IsCast)
-            {
-                Fight.StopFight();
-                MovementManager.StopMove();
-                Thread.Sleep(200);
-            }
-        }
-
-        if (Devouring_Plague.KnownSpell && Devouring_Plague.IsSpellUsable && Devouring_Plague.IsDistanceGood && !Devouring_Plague.TargetHaveBuff &&
-            ObjectManager.Target.HealthPercent > 30 && hardmob() && plaguechill.IsReady)
-        {
-            plaguechill = new Timer(2500);
-            SpellManager.CastSpellByIdLUA(2944);
-            // Devouring_Plague.Launch();
-        }
-
-        if (Mind_Blast.KnownSpell && Mind_Blast.IsSpellUsable && Mind_Blast.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIdLUA(8092);
-            // Mind_Blast.Launch();
-        }
-
-        if (Smite.KnownSpell && Smite.IsSpellUsable && Smite.IsDistanceGood && !Mind_Blast.KnownSpell)
-        {
-            SpellManager.CastSpellByIdLUA(585);
-            // Smite.Launch();
-        }
-
-        if (Mind_Flay.IsSpellUsable && Mind_Flay.IsDistanceGood && !Mind_Blast.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(15407);
-            // Mind_Flay.Launch();
-            Thread.Sleep(200);
-            while (ObjectManager.Me.IsCast)
-            {
-                Fight.StopFight();
-                MovementManager.StopMove();
-                Thread.Sleep(200);
-            }
-        }
-
-        if (Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsDistanceGood &&
-            ObjectManager.Target.IsCast && ObjectManager.Target.HealthPercent > 30)
-        {
-            SpellManager.CastSpellByIdLUA(15487);
-            // Silence.Launch();
-        }
-
-        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
-            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
-        {
-            Arcane_Torrent.Launch();
-        }
-
-        if (Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood &&
-            ObjectManager.Target.HealthPercent > 30 && ObjectManager.Me.HealthPercent < 80)
-        {
-            SpellManager.CastSpellByIdLUA(64044);
-            // Psychic_Horror.Launch();
-        }
-    }
-
-    private void buffinfight()
-    {
-
-        if (!Fight.InFight) return;
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20594);
-            // Stoneform.Launch();
-        }
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20549);
-            // War_Stomp.Launch();
-        }
-
-        if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 20)
-        {
-            Shadowform.Launch();
-        }
-
-        if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable && !Power_Word_Shield.HaveBuff &&
-            (ObjectManager.Me.HealthPercent < 80 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
-        {
-            SpellManager.CastSpellByIdLUA(17);
-            // Power_Word_Shield.Launch();
-        }
-
-        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50 &&
-            !hardmob() && ObjectManager.GetNumberAttackPlayer() < 2)
-        {
-            SpellManager.CastSpellByIdLUA(47585);
-            // Dispersion.Launch();
-        }
-
-        if (Shadowfiend.KnownSpell && Shadowfiend.IsSpellUsable && !Dispersion.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50 && ObjectManager.Target.HealthPercent > 60)
-        {
-            shadowfiendrota = new Timer(2200);
-            while (!shadowfiendrota.IsReady)
-            {
-                Shadowfiend.Launch();
-                Thread.Sleep(1000);
-                if (Fade.KnownSpell && Fade.IsSpellUsable)
-                {
-                    Fade.Launch();
-                }
-            }
-        }
-
-    }
-
-    private void selfheal()
-    {
-
-        if (Shadowfiend.KnownSpell && Shadowfiend.IsSpellUsable && ObjectManager.Me.HealthPercent < 25 && ObjectManager.Target.HealthPercent > 50 &&
-            (hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
-        {
-            shadowfiendrota = new Timer(3000);
-            while (!shadowfiendrota.IsReady)
-            {
-                Shadowfiend.Launch();
-                Thread.Sleep(1000);
-                if (Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable)
-                {
-                    Lua.RunMacroText("/cast [@player] Prayer of Mending");
-                    Lua.RunMacroText("/cast [@player] Gebet der Besserung");
-                    Lua.RunMacroText("/cast [@player] Prière de guérison");
-                    Lua.RunMacroText("/cast [@player] Молитва восстановления");
-                    Lua.RunMacroText("/cast [@player] Prece da Recomposição");
-                    Lua.RunMacroText("/cast [@player] Rezo de alivio");
-                    // Prayer_of_Mending.Launch();
-                }
-                if (Fade.KnownSpell && Fade.IsSpellUsable)
-                {
-                    Fade.Launch();
-                }
-            }
-        }
-
-        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.HealthPercent > 0 &&
-            ObjectManager.Me.HealthPercent < 35 && ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-            SpellManager.CastSpellByIdLUA(47585);
-            // Dispersion.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
-        {
-            Gift_of_the_Naaru.Launch();
-        }
-
-        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && renewchill.IsReady &&
-            ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage < 20)
-        {
-            renewchill = new Timer(2500);
-            SpellManager.CastSpellByIdLUA(139);
-            // Renew.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage > 25)
-        {
-            if (Inner_Focus.KnownSpell && Inner_Focus.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIdLUA(89485);
-                // Inner_Focus.Launch();
-            }
-
-            while (ObjectManager.Me.HealthPercent < 70)
-            {
-                if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && renewchill.IsReady)
-                {
-                    renewchill = new Timer(2500);
-                    SpellManager.CastSpellByIdLUA(139);
-                    // Renew.Launch();
-                }
-
-                if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable && !Power_Word_Shield.HaveBuff)
-                {
-                    SpellManager.CastSpellByIdLUA(17);
-                    // Power_Word_Shield.Launch();
-                }
-
-                if (Renew.HaveBuff && ObjectManager.GetNumberAttackPlayer() < 2)
-                {
-                    if (Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable)
-                    {
-                        SpellManager.CastSpellByIdLUA(2060);
-                        // Greater_Heal.Launch();
-                        Thread.Sleep(2000);
-                    }
-
-                    if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && !Greater_Heal.KnownSpell)
-                    {
-                        SpellManager.CastSpellByIdLUA(2061);
-                        // Flash_Heal.Launch();
-                        Thread.Sleep(1200);
-                    }
-                }
-
-                if (Renew.HaveBuff && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
-                {
-                    SpellManager.CastSpellByIdLUA(2061);
-                    // Flash_Heal.Launch();
-                    Thread.Sleep(1200);
-                }
-
-                if (ObjectManager.Me.BarTwoPercentage < 10) return;
-            }
-        }
-
-    }
-
-    public bool hardmob()
-    {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
-        {
-            return true;
-        }
-        return false;
-    }
-}
-
-public class Arms
-{
-    #region InitializeSpell
-
-    // ARMS ONLY
-    Spell Mortal_Strike = new Spell("Mortal Strike");
-    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
-    Spell Deadly_Calm = new Spell("Deadly Calm");
-    Spell Juggernaut = new Spell("Juggernaut");
-    Spell Throwdown = new Spell("Throwdown");
-    Spell Bladestorm = new Spell("Bladestorm");
-
-    // DPS
-    Spell Strike = new Spell("Strike");
-    Spell Rend = new Spell("Rend");
-    Spell Victory_Rush = new Spell("Victory Rush");
-    Spell Heroic_Strike = new Spell("Heroic Strike");
-    Spell Overpower = new Spell("Overpower");
-    Spell Heroic_Throw = new Spell("Heroic Throw");
-    Spell Execute = new Spell("Execute");
-    Spell Cleave = new Spell("Cleave");
-    Spell Slam = new Spell("Slam");
-
-
-    // BUFF & HELPING
-    Spell Battle_Stance = new Spell("Battle Stance");
-    Spell Defensive_Stance = new Spell("Defensive Stance");
-    Spell Berserker_Stance = new Spell("Berserker Stance");
-    Spell Battle_Shout = new Spell("Battle Shout");
-    Spell Demoralizing_Shout = new Spell("Demoralizing Shout");
-    Spell Commanding_Shout = new Spell("Commanding Shout");
-    Spell Thunder_Clap = new Spell("Thunder Clap");
-    Spell Charge = new Spell("Charge");
-    Spell Pummel = new Spell("Pummel");
-    Spell Berserker_Rage = new Spell("Berserker Rage");
-    Spell Inner_Rage = new Spell("Inner Rage");
-    Spell Colossus_Smash = new Spell("Colossus Smash");
-
-    // TIMER
-    Timer look = new Timer(0);
-    Timer fighttimer = new Timer(0);
-    Timer rendchill = new Timer(0);
-
-
-    // Profession & Racials
-    Spell Arcane_Torrent = new Spell("Arcane Torrent");
-    Spell Lifeblood = new Spell("Lifeblood");
-    Spell Stoneform = new Spell("Stoneform");
-    Spell Tailoring = new Spell("Tailoring");
-    Spell Leatherworking = new Spell("Leatherworking");
-    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    Spell War_Stomp = new Spell("War Stomp");
-    Spell Berserking = new Spell("Berserking");
-
-    #endregion InitializeSpell
-
-    public Arms()
-    {
-        Main.range = 3.6f;
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-
-            if (!ObjectManager.Me.IsMounted)
-            {
-                buffoutfight();
-
-                if (!Fight.InFight && look.IsReady)
-                {
-                    look = new Timer(5000);
-                    Lua.RunMacroText("/targetfriendplayer");
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
-                {
-                    fighttimer = new Timer(60000);
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
-                    {
-                        pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-                    fight();
-                    if (!Fight.InFight)
-                    {
-                        Logging.WriteFight(" - Target Down - ");
-                        look = new Timer(5000);
-                    }
-
-                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 && ObjectManager.GetNumberAttackPlayer() < 2)
-                    {
-                        Logging.WriteFight(" - Target Evading - ");
-                        break;
-                    }
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void pull()
-    {
-
-        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
-        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
-        fighttimer = new Timer(60000);
-        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
-        {
-            Charge.Launch();
-        }
-
-    }
-
-    public void buffoutfight()
-    {
-
-        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
-
-        if (!ObjectManager.Me.HaveBuff(79640) &&
-            ItemsManager.GetItemCountByIdLUA(58149) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:58149");
-        }
-
-        if (Battle_Shout.KnownSpell && Battle_Shout.IsSpellUsable && !Battle_Shout.HaveBuff)
-        {
-            Battle_Shout.Launch();
-        }
-
-    }
-
-    public void fight()
-    {
-        selfheal();
-        buffinfight();
-        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
-
-        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(1454);
-            // Berserking.Launch();
-        }
-
-        if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50)
-        {
-
-            Berserker_Rage.Launch();
-        }
-
-        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
-        {
-            Charge.Launch();
-        }
-
-        if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsDistanceGood)
-        {
-            Execute.Launch();
-        }
-
-        if (Rend.KnownSpell && Rend.IsSpellUsable && Rend.IsDistanceGood && !Rend.TargetHaveBuff && rendchill.IsReady)
-        {
-            rendchill = new Timer(2500);
-
-            Rend.Launch();
-        }
-
-        if (Sweeping_Strikes.KnownSpell && Sweeping_Strikes.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-
-            Sweeping_Strikes.Launch();
-        }
-
-        if (Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood)
-        {
-
-            Colossus_Smash.Launch();
-        }
-
-        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
-        {
-            Heroic_Throw.Launch();
-        }
-
-        if (Mortal_Strike.KnownSpell && Mortal_Strike.IsSpellUsable && Mortal_Strike.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
-        {
-
-            Mortal_Strike.Launch();
-        }
-
-        if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
-        {
-
-            Overpower.Launch();
-        }
-
-        if (!Mortal_Strike.KnownSpell && Strike.IsSpellUsable && Strike.IsDistanceGood && (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
-        {
-
-            Strike.Launch();
-        }
-
-        if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-
-            Cleave.Launch();
-        }
-
-        if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood && ObjectManager.Me.BarTwoPercentage > 70)
-        {
-
-            Heroic_Strike.Launch();
-        }
-
-
-        if (Pummel.KnownSpell && Pummel.IsSpellUsable && Pummel.IsDistanceGood &&
-            ObjectManager.Target.IsCast)
-        {
-
-            Pummel.Launch();
-        }
-
-        if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsDistanceGood && !Overpower.IsSpellUsable && !Mortal_Strike.IsSpellUsable &&
-            (ObjectManager.GetNumberAttackPlayer() < 2 || (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
-        {
-
-            Slam.Launch();
-        }
-
-        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
-            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
-        {
-            Arcane_Torrent.Launch();
-        }
-
-    }
-
-    private void buffinfight()
-    {
-
-        if (!Fight.InFight) return;
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20594);
-            // Stoneform.Launch();
-        }
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20549);
-            // War_Stomp.Launch();
-        }
-
-        if (!Battle_Stance.HaveBuff && Battle_Stance.IsSpellUsable)
-        {
-            Battle_Stance.Launch();
-        }
-
-        if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && !Thunder_Clap.TargetHaveBuff && !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
-            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
-        {
-
-            Thunder_Clap.Launch();
-        }
-
-        if (Demoralizing_Shout.KnownSpell && Demoralizing_Shout.IsSpellUsable && !Demoralizing_Shout.TargetHaveBuff && !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
-            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
-        {
-
-            Demoralizing_Shout.Launch();
-        }
-
-    }
-
-    private void selfheal()
-    {
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
-        {
-            Lifeblood.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
-        {
-            Gift_of_the_Naaru.Launch();
-        }
-
-        if (Victory_Rush.KnownSpell && Victory_Rush.IsSpellUsable && Victory_Rush.IsDistanceGood)
-        {
-            Victory_Rush.Launch();
-        }
-
-    }
-
-    public bool hardmob()
-    {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
-        {
-            return true;
-        }
-        return false;
-    }
-}
-
-public class WarriorProt
-{
-    #region InitializeSpell
-
-    Spell Berserker_Stance = new Spell("Berserker Stance");
-    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
-    Spell Battle_Shout = new Spell("Battle Shout");
-    Spell Colossus_Smash = new Spell("Colossus Smash");
-    Spell Bloodthirst = new Spell("Bloodthirst");
-    Spell Raging_Blow = new Spell("Raging Blow");
-    Spell Slam = new Spell("Slam");
-    Spell Death_Wish = new Spell("Death Wish");
-    Spell Recklessness = new Spell("Recklessness");
-    Spell Execute = new Spell("Execute");
-    Spell Heroic_Strike = new Spell("Heroic Strike");
-    Spell Intercept = new Spell("Intercept");
-    Spell Enrage = new Spell("Enrage");
-    Spell Bloodsurge = new Spell("Bloodsurge");
-    Spell Heroic_Throw = new Spell("Heroic Throw");
-    Spell Heroic_Leap = new Spell("Heroic Leap");
-    Spell Cleave = new Spell("Cleave");
-    Spell Whirlwind = new Spell("Whirlwind");
-    Spell Victory_Rush = new Spell("Victory Rush");
-    Spell Hamstring = new Spell("Hamstring");
-    Spell Pummel = new Spell("Pummel");
-    Spell Shield_Slam = new Spell("Shield Slam");
-    Spell Concussion_Blow = new Spell("Concussion Blow");
-    Timer Rend_Timer = new Timer(0);
-    Timer Recklessness_Timer = new Timer(0);
-    Timer Enraged_Regeneration_Timer = new Timer(0);
-    Spell Rend = new Spell("Rend");
-    Spell Shockwave = new Spell("Shockwave");
-    Spell Devastate = new Spell("Devastate");
-    Spell Shield_Bash = new Spell("Shield Bash");
-    Spell Last_Stand = new Spell("Last Stand");
-    Spell Shield_Block = new Spell("Shield Block");
-    Spell Shield_Wall = new Spell("Shield Wall");
-    Spell Spell_Reflection = new Spell("Spell Reflection");
-    Spell Charge = new Spell("Charge");
-    Spell Revenge = new Spell("Revenge");
-    Spell Thunder_Clap = new Spell("Thunder Clap");
-    Spell Defensive_Stance = new Spell("Defensive Stance");
-    Spell Sunder_Armor = new Spell("Sunder Armor");
-    Spell Strike = new Spell("Strike");
-    Spell Battle_Stance = new Spell("Battle Stance");
-    Spell Intimidating_Shout = new Spell("Intimidating_Shout");
-    Spell Piercing_Howl = new Spell("Piercing_Howl");
-    Spell Berserker_Rage = new Spell("Berserker_Rage");
-
-    #endregion InitializeSpell
-
-    public WarriorProt()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Intercept.IsDistanceGood)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-
-        if (!Defensive_Stance.HaveBuff)
-            Defensive_Stance.Launch();
-
-        if (Heroic_Throw.KnownSpell &&
-            ObjectManager.Target.GetDistance < 30 &&
-            Heroic_Throw.IsSpellUsable &&
-            Heroic_Throw.IsDistanceGood)
-        {
-            Heroic_Throw.Launch();
-        }
-    }
-
-    public void Combat()
-    {
-        Charges();
-        Def();
-        AvoidMelee();
-        Heal();
-        BuffCombat();
-        Decast();
-        Fear();
-        Burst();
-
-        if ((ObjectManager.Me.HaveBuff(46951) ||
-            ObjectManager.Me.HaveBuff(46952) ||
-            ObjectManager.Me.HaveBuff(46953)) &&
-            Shield_Slam.KnownSpell && Shield_Slam.IsSpellUsable && Shield_Slam.IsDistanceGood)
-        {
-            Shield_Slam.Launch();
-            return;
-        }
-
-        if (Rend_Timer.IsReady && Rend.KnownSpell && Rend.IsDistanceGood && Rend.IsSpellUsable)
-        {
-            Rend.Launch();
-            Rend_Timer = new Timer(1000 * 10);
-            return;
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-            Cleave.KnownSpell &&
-            Cleave.IsSpellUsable &&
-            Cleave.IsDistanceGood)
-        {
-            Cleave.Launch();
-            return;
-        }
-
-        if (Victory_Rush.KnownSpell && Victory_Rush.IsSpellUsable && Victory_Rush.IsDistanceGood)
-        {
-            Victory_Rush.Launch();
-            return;
-        }
-
-        if (Shield_Slam.KnownSpell && Shield_Slam.IsSpellUsable && Shield_Slam.IsDistanceGood)
-        {
-            Shield_Slam.Launch();
-            return;
-        }
-
-        if (Revenge.KnownSpell && Revenge.IsDistanceGood && Revenge.IsSpellUsable)
-        {
-            Revenge.Launch();
-            return;
-        }
-
-        if (!Recklessness_Timer.IsReady &&
-            Concussion_Blow.KnownSpell && Concussion_Blow.IsSpellUsable && Concussion_Blow.IsDistanceGood)
-        {
-
-            Concussion_Blow.Launch();
-            return;
-        }
-
-        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsDistanceGood)
-        {
-            Shockwave.Launch();
-            return;
-        }
-
-        if (Devastate.KnownSpell && Devastate.IsSpellUsable && Devastate.IsDistanceGood)
-        {
-            if (Sunder_Armor.TargetHaveBuff)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-
-            Devastate.Launch();
-            return;
-        }
-
-    }
-
-    public void Patrolling()
-    {
-        if (!Defensive_Stance.HaveBuff)
-            Defensive_Stance.Launch();
-    }
-
-    public void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 75 &&
-            Berserker_Rage.KnownSpell && Enraged_Regeneration_Timer.IsReady &&
-            Berserker_Rage.IsSpellUsable && Enraged_Regeneration.KnownSpell)
-        {
-            Berserker_Rage.Launch();
-            Thread.Sleep(200);
-
-            if (Berserker_Rage.HaveBuff)
-            {
-
-                int i = 0;
-                while (i < 3)
-                {
-                    i++;
-                    Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
-
-                    if (Enraged_Regeneration.HaveBuff)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void Burst()
-    {
-        if (Rend.TargetHaveBuff && Shield_Block.HaveBuff && Concussion_Blow.KnownSpell &&
-            Concussion_Blow.IsSpellUsable && Colossus_Smash.KnownSpell &&
-            ObjectManager.Me.HealthPercent > 50 &&
-            Recklessness.KnownSpell && Recklessness_Timer.IsReady)
-        {
-            if (!Berserker_Stance.HaveBuff)
-            {
-                int i = 0;
-                while (i < 3)
-                {
-                    i++;
-                    Berserker_Stance.Launch();
-
-                    if (Berserker_Stance.HaveBuff)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (Berserker_Stance.HaveBuff &&
-                Concussion_Blow.KnownSpell &&
-                Concussion_Blow.IsSpellUsable &&
-                Concussion_Blow.IsDistanceGood)
-            {
-                int l = 0;
-                while (l < 0)
-                {
-                    l++;
-                    Concussion_Blow.Launch();
-
-                    if (!Concussion_Blow.IsSpellUsable)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            if (Berserker_Stance.HaveBuff)
-            {
-                if (!Recklessness.HaveBuff)
-                {
-                    int j = 0;
-                    while (j < 3)
-                    {
-                        j++;
-                        Recklessness.Launch();
-                        Lua.RunMacroText("/use 13");
-                        Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                        Lua.RunMacroText("/use 14");
-                        Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                        Recklessness_Timer = new Timer(1000 * 60 * 5);
-
-                        if (!Recklessness.IsSpellUsable)
-                        {
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (Berserker_Stance.HaveBuff &&
-                Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood)
-            {
-                int m = 0;
-                while (m < 0)
-                {
-                    m++;
-                    Colossus_Smash.Launch();
-
-                    if (!Colossus_Smash.IsSpellUsable)
-                    {
-                        break;
-                    }
-                }
-
-            }
-
-            if (!Defensive_Stance.HaveBuff)
-            {
-                int k = 0;
-                while (k < 0)
-                {
-                    k++;
-                    Defensive_Stance.Launch();
-
-                    if (Defensive_Stance.HaveBuff)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void BuffCombat()
-    {
-        if (!Defensive_Stance.HaveBuff)
-            Defensive_Stance.Launch();
-
-        if (Shield_Block.KnownSpell &&
-            Shield_Block.IsSpellUsable)
-        {
-            Shield_Block.Launch();
-        }
-
-        if (Battle_Shout.KnownSpell &&
-            Battle_Shout.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 70)
-        {
-            Battle_Shout.Launch();
-        }
-    }
-
-    private void Def()
-    {
-        if (ObjectManager.Me.HealthPercent < 60 &&
-            Shield_Wall.KnownSpell && Shield_Wall.IsSpellUsable)
-        {
-            Shield_Wall.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent < 60 &&
-            Last_Stand.KnownSpell && Last_Stand.IsSpellUsable)
-        {
-            Last_Stand.Launch();
-        }
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast &&
-            Spell_Reflection.KnownSpell &&
-            Spell_Reflection.IsSpellUsable &&
-            Spell_Reflection.IsDistanceGood)
-        {
-            Spell_Reflection.Launch();
-        }
-
-        if (ObjectManager.Target.IsCast &&
-            Shield_Bash.KnownSpell &&
-            Shield_Bash.IsSpellUsable &&
-            Shield_Bash.IsDistanceGood)
-        {
-            Shield_Bash.Launch();
-        }
-    }
-
-    private void Fear()
-    {
-        if (ObjectManager.Target.GetMove &&
-            ObjectManager.Target.GetDistance <= 8 &&
-            !Piercing_Howl.TargetHaveBuff &&
-            Intimidating_Shout.KnownSpell &&
-            Intimidating_Shout.IsSpellUsable)
-        {
-            Intimidating_Shout.Launch();
-        }
-    }
-
-    private void Charges()
-    {
-        if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood)
-        {
-            Intercept.Launch();
-        }
-
-        if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood)
-        {
-            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-        {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-        }
-    }
-
-}
-
-public class WarriorFury
-{
-    #region InitializeSpell
-
-    Spell Berserker_Stance = new Spell("Berserker Stance");
-    Spell Battle_Stance = new Spell("Battle Stance");
-
-    Spell Inner_Rage = new Spell("Inner Rage");
-    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
-    Spell Battle_Shout = new Spell("Battle Shout");
-    Spell Colossus_Smash = new Spell("Colossus Smash");
-    Spell Bloodthirst = new Spell("Bloodthirst");
-    Spell Raging_Blow = new Spell("Raging Blow");
-    Spell Slam = new Spell("Slam");
-    Spell Death_Wish = new Spell("Death Wish");
-    Spell Recklessness = new Spell("Recklessness");
-    Spell Execute = new Spell("Execute");
-    Spell Heroic_Strike = new Spell("Heroic Strike");
-    Spell Intercept = new Spell("Intercept");
-    Spell Enrage = new Spell("Enrage");
-    Spell Bloodsurge = new Spell("Bloodsurge");
-    Spell Heroic_Throw = new Spell("Heroic Throw");
-    Spell Heroic_Leap = new Spell("Heroic Leap");
-    Spell Cleave = new Spell("Cleave");
-    Spell Whirlwind = new Spell("Whirlwind");
-    Spell Victory_Rush = new Spell("Victory Rush");
-    Spell Hamstring = new Spell("Hamstring");
-    Spell Pummel = new Spell("Pummel");
-    Spell Rend = new Spell("Rend");
-    Spell Mortal_Strike = new Spell("Mortal Strike");
-    Spell Overpower = new Spell("Overpower");
-    Spell Deadly_Calm = new Spell("Deadly Calm");
-    Spell Bladestorm = new Spell("Bladestorm");
-    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
-    Spell Thunder_Clap = new Spell("Thunder Clap");
-    Spell Throwdown = new Spell("Throwdown");
-    Spell Charge = new Spell("Charge");
-    Spell Strike = new Spell("Strike");
-    Spell Intimidating_Shout = new Spell("Intimidating Shout");
-    Spell Commanding_Shout = new Spell("Commanding Shout");
-    Spell Piercing_Howl = new Spell("Piercing Howl");
-    Spell Taste_for_Blood = new Spell("Taste for Blood");
-    Spell Berserker_Rage = new Spell("Berserker Rage");
-    Spell Victorious = new Spell("Victorious");
-    Spell Retaliation = new Spell("Retaliation");
-
-    Timer Rend_Timer = new Timer(0);
-    Timer Charge_Timer = new Timer(0);
-    Timer Recklessness_Timer = new Timer(0);
-    Timer Enraged_Regeneration_Timer = new Timer(0);
-    Timer Death_Wish_Timer = new Timer(0);
-    Timer Inner_Rage_Timer = new Timer(0);
-    Timer Intercept_leap_Timer = new Timer(0);
-
-    #endregion InitializeSpell
-
-    public WarriorFury()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Intercept.IsDistanceGood)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (!Berserker_Stance.HaveBuff)
-            Berserker_Stance.Launch();
-
-        Charges();
-    }
-
-    public void Combat()
-    {
-        Charges();
-        AvoidMelee();
-        Heal();
-        BuffCombat();
-        TargetMoving();
-        Decast();
-        Fear();
-
-        if (Victory_Rush.KnownSpell &&
-            Victory_Rush.IsSpellUsable &&
-            Victory_Rush.IsDistanceGood)
-        {
-            Victory_Rush.Launch();
-
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
-                Heroic_Strike.KnownSpell &&
-                Heroic_Strike.IsSpellUsable)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-        }
-
-        if (Colossus_Smash.KnownSpell &&
-            Colossus_Smash.IsSpellUsable &&
-            Colossus_Smash.IsDistanceGood)
-        {
-            Colossus_Smash.Launch();
-
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
-                Heroic_Strike.KnownSpell &&
-                Heroic_Strike.IsSpellUsable)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-        }
-
-        if (Bloodthirst.KnownSpell &&
-            Bloodthirst.IsDistanceGood &&
-            Bloodthirst.IsSpellUsable)
-        {
-            Bloodthirst.Launch();
-
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
-                Heroic_Strike.KnownSpell &&
-                Heroic_Strike.IsSpellUsable)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-        }
-
-        if (Raging_Blow.KnownSpell &&
-            Raging_Blow.IsSpellUsable &&
-            Raging_Blow.IsDistanceGood)
-        {
-            Raging_Blow.Launch();
-
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
-                Heroic_Strike.KnownSpell &&
-                Heroic_Strike.IsSpellUsable)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.HaveBuff(46916) &&
-            Slam.KnownSpell &&
-            Slam.IsDistanceGood)
-        {
-
-            Slam.Launch();
-
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
-                Heroic_Strike.KnownSpell &&
-                Heroic_Strike.IsSpellUsable)
-            {
-                Heroic_Strike.Launch();
-                return;
-            }
-        }
-
-        if ((ObjectManager.Me.BarTwoPercentage > 60 || Inner_Rage.HaveBuff) &&
-            Heroic_Strike.KnownSpell &&
-            Heroic_Strike.IsSpellUsable)
-        {
-            Heroic_Strike.Launch();
-            return;
-        }
-
-        if (Heroic_Throw.KnownSpell &&
-            Heroic_Throw.IsSpellUsable &&
-            Heroic_Throw.IsDistanceGood)
-        {
-            Heroic_Throw.Launch();
-        }
-
-    }
-
-    public void Patrolling()
-    {
-        if (!Berserker_Stance.HaveBuff)
-            Berserker_Stance.Launch();
-    }
-
-    private void Charges()
-    {
-        if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood && Intercept_leap_Timer.IsReady)
-        {
-            Intercept.Launch();
-            Intercept_leap_Timer = new Timer(1000 * 3);
-        }
-
-        if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood && Intercept_leap_Timer.IsReady)
-        {
-            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Intercept_leap_Timer = new Timer(1000 * 3);
-        }
-    }
-
-    public void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 75 &&
-            Berserker_Rage.KnownSpell && Enraged_Regeneration_Timer.IsReady &&
-            Berserker_Rage.IsSpellUsable && Enraged_Regeneration.KnownSpell)
-        {
-            Berserker_Rage.Launch();
-            Thread.Sleep(200);
-
-            if (Berserker_Rage.HaveBuff)
-            {
-
-                int i = 0;
-                while (i < 3)
-                {
-                    i++;
-                    Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
-
-                    if (Enraged_Regeneration.HaveBuff)
-                    {
-                        break;
-                    }
-                }
-            }
-        }
-    }
-
-    public void BuffCombat()
-    {
-
-        if (!Berserker_Stance.HaveBuff)
-            Berserker_Stance.Launch();
-
-        if (!Berserker_Stance.KnownSpell)
-        {
-            Battle_Stance.Launch();
-        }
-
-        if (Battle_Shout.KnownSpell &&
-            Battle_Shout.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 70)
-        {
-            Battle_Shout.Launch();
-        }
-
-        if (Inner_Rage_Timer.IsReady &&
-            Inner_Rage.KnownSpell &&
-            Inner_Rage.IsSpellUsable)
-        {
-            Inner_Rage.Launch();
-            Inner_Rage_Timer = new Timer(1000 * 40);
-        }
-
-        if (Recklessness.KnownSpell || Death_Wish.KnownSpell)
-        {
-            if (Recklessness.KnownSpell && Death_Wish.KnownSpell &&
-                Recklessness.IsSpellUsable && Recklessness_Timer.IsReady &&
-                Death_Wish.IsSpellUsable && Death_Wish_Timer.IsReady)
-            {
-                int j = 0;
-                while (j < 3)
-                {
-                    j++;
-                    Recklessness.Launch();
-                    Recklessness_Timer = new Timer(1000 * 300);
-
-                    Death_Wish.Launch();
-                    Death_Wish_Timer = new Timer(1000 * 150);
-
-                    Lua.RunMacroText("/use 13");
-                    Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                    Lua.RunMacroText("/use 14");
-                    Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-
-                    if (!Recklessness.IsSpellUsable &&
-                        !Death_Wish.IsSpellUsable)
-                    {
-                        break;
-                    }
-                }
-            }
-
-            else if (Death_Wish.KnownSpell && Death_Wish.IsSpellUsable && Death_Wish_Timer.IsReady)
-            {
-                Death_Wish.Launch();
-                Lua.RunMacroText("/use 13");
-                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Lua.RunMacroText("/use 14");
-                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Death_Wish_Timer = new Timer(1000 * 150);
-            }
-
-            else if (!Death_Wish.KnownSpell && Recklessness.IsSpellUsable && Recklessness_Timer.IsReady)
-            {
-                Recklessness.Launch();
-                Lua.RunMacroText("/use 13");
-                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Lua.RunMacroText("/use 14");
-                Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Recklessness_Timer = new Timer(1000 * 300);
-            }
-        }
-    }
-
-    private void TargetMoving()
-    {
-        if (ObjectManager.Target.GetMove &&
-            !Hamstring.TargetHaveBuff &&
-            Hamstring.KnownSpell &&
-            Hamstring.IsDistanceGood &&
-            Hamstring.IsSpellUsable)
-        {
-            Hamstring.Launch();
-        }
-
-        if (ObjectManager.Target.GetDistance <= 15 &&
-            (ObjectManager.GetNumberAttackPlayer() >= 2 ||
-            ObjectManager.Target.GetMove) &&
-            !Piercing_Howl.TargetHaveBuff &&
-            !Intimidating_Shout.TargetHaveBuff &&
-            Piercing_Howl.KnownSpell &&
-            Piercing_Howl.IsDistanceGood &&
-            Piercing_Howl.IsSpellUsable)
-        {
-            Piercing_Howl.Launch();
-        }
-
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast &&
-            Pummel.KnownSpell &&
-            Pummel.IsSpellUsable &&
-            Pummel.IsDistanceGood)
-        {
-            Pummel.Launch();
-        }
-    }
-
-    private void Fear()
-    {
-        if (ObjectManager.Target.GetMove &&
-            ObjectManager.Target.GetDistance <= 8 &&
-            !Throwdown.TargetHaveBuff &&
-            !Piercing_Howl.TargetHaveBuff &&
-            Intimidating_Shout.KnownSpell &&
-            Intimidating_Shout.IsSpellUsable)
-        {
-            Intimidating_Shout.Launch();
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-        {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-        }
-    }
-
-}
-
-public class Warrior
-{
-    #region InitializeSpell
-
-    Spell Berserker_Stance = new Spell("Berserker Stance");
-    Spell Battle_Stance = new Spell("Battle Stance");
-
-    Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
-    Spell Battle_Shout = new Spell("Battle Shout");
-    Spell Colossus_Smash = new Spell("Colossus Smash");
-    Spell Bloodthirst = new Spell("Bloodthirst");
-    Spell Raging_Blow = new Spell("Raging Blow");
-    Spell Slam = new Spell("Slam");
-    Spell Death_Wish = new Spell("Death Wish");
-    Spell Recklessness = new Spell("Recklessness");
-    Spell Execute = new Spell("Execute");
-    Spell Heroic_Strike = new Spell("Heroic Strike");
-    Spell Intercept = new Spell("Intercept");
-    Spell Enrage = new Spell("Enrage");
-    Spell Bloodsurge = new Spell("Bloodsurge");
-    Spell Heroic_Throw = new Spell("Heroic Throw");
-    Spell Heroic_Leap = new Spell("Heroic Leap");
-    Spell Cleave = new Spell("Cleave");
-    Spell Whirlwind = new Spell("Whirlwind");
-    Spell Victory_Rush = new Spell("Victory Rush");
-    Spell Hamstring = new Spell("Hamstring");
-    Spell Pummel = new Spell("Pummel");
-    Spell Rend = new Spell("Rend");
-    Spell Mortal_Strike = new Spell("Mortal Strike");
-    Spell Overpower = new Spell("Overpower");
-    Spell Deadly_Calm = new Spell("Deadly Calm");
-    Spell Bladestorm = new Spell("Bladestorm");
-    Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
-    Spell Thunder_Clap = new Spell("Thunder Clap");
-    Spell Throwdown = new Spell("Throwdown");
-    Spell Charge = new Spell("Charge");
-    Spell Strike = new Spell("Strike");
-    Timer Rend_Timer = new Timer(0);
-
-    #endregion InitializeSpell
-
-    public Warrior()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Charge.IsDistanceGood)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (!Battle_Stance.HaveBuff)
-            Battle_Stance.Launch();
-
-        if (Charge.KnownSpell &&
-            ObjectManager.Target.GetDistance > 8 &&
-            Charge.IsSpellUsable &&
-            Charge.IsDistanceGood)
-        {
-            Charge.Launch();
-        }
-
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-
-        if (Strike.KnownSpell &&
-            Strike.IsSpellUsable &&
-            Strike.IsDistanceGood)
-        {
-            Strike.Launch();
-            return;
-        }
-
-        if (Victory_Rush.KnownSpell &&
-            Victory_Rush.IsSpellUsable &&
-            Victory_Rush.IsDistanceGood)
-        {
-            Victory_Rush.Launch();
-            return;
-        }
-
-        if (Rend_Timer.IsReady &&
-            Rend.KnownSpell &&
-            Rend.IsDistanceGood &&
-            Rend.IsSpellUsable)
-        {
-            Rend.Launch();
-            Rend_Timer = new Timer(1000 * 10);
-            return;
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 3 &&
-            Thunder_Clap.KnownSpell &&
-            Thunder_Clap.IsSpellUsable &&
-            Thunder_Clap.IsDistanceGood)
-        {
-            Thunder_Clap.Launch();
-            return;
-        }
-
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-        {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-        }
-    }
-
-    public void Patrolling()
-    {
-
-    }
-
-}
-
-public class RogueCom
-{
-    #region InitializeSpell
-
-    Spell Blade_Flurry = new Spell("Blade Flurry");
-    Spell Sinister_Strike = new Spell("Sinister Strike");
-    Spell Slice_and_Dice = new Spell("Slice and Dice");
-    Spell Premeditation = new Spell("Premeditation");
-    Spell Revealing_Strike = new Spell("Revealing Strike");
-    Spell Rupture = new Spell("Rupture");
-    Spell Eviscerate = new Spell("Eviscerate");
-    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
-    Spell Killing_Spree = new Spell("Killing Spree");
-    Spell Kick = new Spell("Kick");
-    Spell Evasion = new Spell("Evasion");
-    Spell Sprint = new Spell("Sprint");
-    Spell Combat_Readiness = new Spell("Combat Readiness");
-    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
-    Spell Stealth = new Spell("Stealth");
-    Spell Sap = new Spell("Sap");
-    Spell Pick_Pocket = new Spell("Pick Pocket");
-    Spell Recuperate = new Spell("Recuperate");
-    Spell Vanish = new Spell("Vanish");
-    Spell Kidney_Shot = new Spell("Kidney Shot");
-    Spell Cheap_Shot = new Spell("Cheap Shot");
-
-    Spell Deadly_Poison = new Spell("Deadly Poison");
-    Spell Wound_Poison = new Spell("Wound Poison");
-    Spell Instant_Poison = new Spell("Instant Poison");
-    Spell Crippling_Poison = new Spell("Crippling Poison");
-    Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
-
-    Timer Main_Poison_Timer = new Timer(0);
-    Timer Off_Poison_Timer = new Timer(0);
-    #endregion InitializeSpell
-
-    public RogueCom()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= 50.0f)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (!Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
-            Stealth.Launch();
-    }
-
-    public void Patrolling()
-    {
-        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
-        {
-            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-            {
-                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 || ItemsManager.GetItemCountByIdLUA(10918) > 0)
-                    Poisons();
-            }
-        }
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-        Heal();
-        BuffCombat();
-        Decast();
-
-        while (Stealth.HaveBuff && Cheap_Shot.KnownSpell && !Cheap_Shot.TargetHaveBuff)
-        {
-            if (!Sap.TargetHaveBuff && Sap.KnownSpell && Sap.IsSpellUsable && Sap.IsDistanceGood)
-                Sap.Launch();
-
-            if (Cheap_Shot.IsSpellUsable && Cheap_Shot.IsDistanceGood)
-            {
-                Cheap_Shot.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() >= 2 && Blade_Flurry.KnownSpell && Blade_Flurry.IsSpellUsable && Blade_Flurry.IsDistanceGood)
-            Blade_Flurry.Launch();
-
-        if (ObjectManager.Me.HealthPercent <= 35 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood)
-            Kidney_Shot.Launch();
-
-        if (ObjectManager.Me.ComboPoint > 1 && ObjectManager.Me.ComboPoint <= 3 && Slice_and_Dice.KnownSpell && !Slice_and_Dice.HaveBuff)
-        {
-            if (Slice_and_Dice.IsSpellUsable && Slice_and_Dice.IsDistanceGood)
-            {
-                Slice_and_Dice.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.ComboPoint >= 4 && Eviscerate.KnownSpell)
-        {
-            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
-            {
-                Eviscerate.Launch();
-                return;
-            }
-        }
-
-        if (Sinister_Strike.KnownSpell && Sinister_Strike.IsSpellUsable && Sinister_Strike.IsDistanceGood)
-        {
-            Sinister_Strike.Launch();
-            return;
-        }
-    }
-
-    public void Heal()
-    {
-
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 0 &&
-            ObjectManager.Me.HealthPercent <= 50 && Recuperate.KnownSpell && Recuperate.IsSpellUsable && Recuperate.IsDistanceGood)
-        {
-            Recuperate.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 3 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            return;
-        }
-
-    }
-
-    public void Poisons()
-    {
-        if (Off_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-
-        if (Main_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-    }
-
-    public void BuffCombat()
-    {
-        if (ObjectManager.Target.GetDistance < 5 && Adrenaline_Rush.KnownSpell && Adrenaline_Rush.IsSpellUsable)
-            Adrenaline_Rush.Launch();
-
-        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
-            Evasion.Launch();
-
-        if (Combat_Readiness.KnownSpell && Combat_Readiness.IsSpellUsable)
-            Combat_Readiness.Launch();
-
-        Lua.RunMacroText("/use 13");
-        Lua.RunMacroText("/use 14");
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable && Kick.IsDistanceGood)
-            Kick.Launch();
-
-        if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable)
-            Cloak_of_Shadows.Launch();
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-    }
-}
-
-public class RogueAssa
-{
-    #region InitializeSpell
-
-    Spell Blade_Flurry = new Spell("Blade Flurry");
-    Spell Sinister_Strike = new Spell("Sinister Strike");
-    Spell Slice_and_Dice = new Spell("Slice and Dice");
-    Spell Premeditation = new Spell("Premeditation");
-    Spell Revealing_Strike = new Spell("Revealing Strike");
-    Spell Rupture = new Spell("Rupture");
-    Spell Eviscerate = new Spell("Eviscerate");
-    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
-    Spell Killing_Spree = new Spell("Killing Spree");
-    Spell Kick = new Spell("Kick");
-    Spell Evasion = new Spell("Evasion");
-    Spell Sprint = new Spell("Sprint");
-    Spell Combat_Readiness = new Spell("Combat Readiness");
-    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
-    Spell Stealth = new Spell("Stealth");
-    Spell Sap = new Spell("Sap");
-    Spell Pick_Pocket = new Spell("Pick Pocket");
-    Spell Recuperate = new Spell("Recuperate");
-    Spell Vanish = new Spell("Vanish");
-    Spell Kidney_Shot = new Spell("Kidney Shot");
-    Spell Cheap_Shot = new Spell("Cheap Shot");
-    Spell Mutilate = new Spell("Mutilate");
-    Spell Envenom = new Spell("Envenom");
-    Spell Vendetta = new Spell("Vendetta");
-    Spell Cold_Blood = new Spell("Cold Blood");
-
-    Spell Deadly_Poison = new Spell("Deadly Poison");
-    Spell Wound_Poison = new Spell("Wound Poison");
-    Spell Instant_Poison = new Spell("Instant Poison");
-    Spell Crippling_Poison = new Spell("Crippling Poison");
-    Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
-
-    Timer Main_Poison_Timer = new Timer(0);
-    Timer Off_Poison_Timer = new Timer(0);
-
-    #endregion InitializeSpell
-
-    public RogueAssa()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= 50.0f)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (!Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
-            Stealth.Launch();
-    }
-
-    public void Patrolling()
-    {
-        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
-        {
-            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-            {
-                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 || ItemsManager.GetItemCountByIdLUA(10918) > 0)
-                    Poisons();
-            }
-        }
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-        Heal();
-        BuffCombat();
-        Decast();
-
-        if ((Stealth.HaveBuff || Vanish.HaveBuff) && Cheap_Shot.KnownSpell && !Cheap_Shot.TargetHaveBuff)
-        {
-            if (!Sap.TargetHaveBuff && Sap.KnownSpell && Sap.IsSpellUsable && Sap.IsDistanceGood)
-                Sap.Launch();
-
-            if (Cheap_Shot.IsSpellUsable && Cheap_Shot.IsDistanceGood)
-            {
-                Cheap_Shot.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.HealthPercent <= 30 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood)
-            Kidney_Shot.Launch();
-
-        if (ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 && Slice_and_Dice.KnownSpell && !Slice_and_Dice.HaveBuff)
-        {
-            if (Slice_and_Dice.IsSpellUsable && Slice_and_Dice.IsDistanceGood)
-            {
-                Slice_and_Dice.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 && Rupture.KnownSpell && Slice_and_Dice.HaveBuff && !Rupture.TargetHaveBuff)
-        {
-            if (Rupture.IsSpellUsable && Rupture.IsDistanceGood)
-            {
-                Rupture.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.ComboPoint >= 4 && Envenom.KnownSpell)
-        {
-            if (Envenom.IsSpellUsable && Envenom.IsDistanceGood)
-            {
-                Envenom.Launch();
-                return;
-            }
-
-            if (ObjectManager.Me.BarTwoPercentage > 35 && !Envenom.IsSpellUsable && Envenom.IsDistanceGood)
-            {
-                Eviscerate.Launch();
-                return;
-            }
-        }
-
-        if (ObjectManager.Me.ComboPoint >= 4 && !Envenom.KnownSpell && Eviscerate.KnownSpell)
-        {
-            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
-            {
-                Eviscerate.Launch();
-                return;
-            }
-        }
-
-        if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && Mutilate.IsDistanceGood)
-            Mutilate.Launch();
-    }
-
-    public void Heal()
-    {
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint <= 3 && ObjectManager.Me.ComboPoint > 1 &&
-            ObjectManager.Me.HealthPercent <= 50 && Recuperate.KnownSpell && Recuperate.IsSpellUsable && Recuperate.IsDistanceGood)
-        {
-            Recuperate.Launch();
-        }
-
-        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            return;
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable && Vanish.IsDistanceGood)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            return;
-        }
-    }
-
-    public void Poisons()
-    {
-        if (Off_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-
-        if (Main_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-    }
-
-    public void BuffCombat()
-    {
-        if (ObjectManager.Me.BarTwoPercentage < 75 && Cold_Blood.KnownSpell && !Cold_Blood.HaveBuff && Cold_Blood.IsSpellUsable)
-            Cold_Blood.Launch();
-
-        if (ObjectManager.Target.GetDistance < 5 && Adrenaline_Rush.KnownSpell && Adrenaline_Rush.IsSpellUsable)
-            Adrenaline_Rush.Launch();
-
-        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
-            Evasion.Launch();
-
-        if (Combat_Readiness.KnownSpell && Combat_Readiness.IsSpellUsable)
-            Combat_Readiness.Launch();
-
-        if (Vendetta.KnownSpell && Vendetta.IsSpellUsable)
-            Vendetta.Launch();
-    }
-
-    private void Decast()
-    {
-        if (ObjectManager.Target.IsCast && Kick.KnownSpell && Kick.IsSpellUsable && Kick.IsDistanceGood)
-            Kick.Launch();
-
-        if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable)
-            Cloak_of_Shadows.Launch();
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-    }
-}
-
-public class Rogue
-{
-    #region InitializeSpell
-
-    Spell Blade_Flurry = new Spell("Blade Flurry");
-    Spell Sinister_Strike = new Spell("Sinister Strike");
-    Spell Slice_and_Dice = new Spell("Slice and Dice");
-    Spell Premeditation = new Spell("Premeditation");
-    Spell Revealing_Strike = new Spell("Revealing Strike");
-    Spell Rupture = new Spell("Rupture");
-    Spell Eviscerate = new Spell("Eviscerate");
-    Spell Adrenaline_Rush = new Spell("Adrenaline Rush");
-    Spell Killing_Spree = new Spell("Killing Spree");
-    Spell Kick = new Spell("Kick");
-    Spell Evasion = new Spell("Evasion");
-    Spell Sprint = new Spell("Sprint");
-    Spell Combat_Readiness = new Spell("Combat Readiness");
-    Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
-    Spell Stealth = new Spell("Stealth");
-    Spell Sap = new Spell("Sap");
-    Spell Pick_Pocket = new Spell("Pick Pocket");
-    Spell Recuperate = new Spell("Recuperate");
-    Spell Vanish = new Spell("Vanish");
-    Spell Kidney_Shot = new Spell("Kidney Shot");
-    Spell Cheap_Shot = new Spell("Cheap Shot");
-
-    #endregion InitializeSpell
-
-    public Rogue()
-    {
-        Main.range = 3.6f; // Range
-
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Sap.IsDistanceGood)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (ObjectManager.Target.GetDistance <= 20 && !Stealth.HaveBuff && Stealth.KnownSpell && Stealth.IsSpellUsable)
-        {
-            Stealth.Launch();
-            Thread.Sleep(1500);
-        }
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-        Heal();
-        BuffCombat();
-        Decast();
-
-        while (ObjectManager.Me.ComboPoint >= 4 && Eviscerate.KnownSpell)
-        {
-            if (Eviscerate.IsSpellUsable && Eviscerate.IsDistanceGood)
-            {
-                Eviscerate.Launch();
-                return;
-            }
-        }
-
-        if (Sinister_Strike.KnownSpell && Sinister_Strike.IsSpellUsable && Sinister_Strike.IsDistanceGood)
-        {
-            Sinister_Strike.Launch();
-            return;
-        }
-
-    }
-
-    public void Patrolling()
-    {
-
-    }
-
-    public void Heal()
-    {
-
-    }
-
-    public void BuffCombat()
-    {
-        if (ObjectManager.Target.GetDistance < 5 && Evasion.KnownSpell && Evasion.IsSpellUsable)
-            Evasion.Launch();
-    }
-
-    private void Decast()
-    {
-
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-    }
-
-}
-
-#endregion CustomClass
+#endregion
