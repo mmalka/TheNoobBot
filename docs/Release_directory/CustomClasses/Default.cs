@@ -5148,8 +5148,6 @@ public class Paladin
     private readonly Spell _guardianOfAncientKings = new Spell("Guardian of Ancient Kings");
     private readonly Spell _avengingWrath = new Spell("Avenging Wrath");
     private readonly Spell _zealotry = new Spell("Zealotry");
-    private readonly Spell _ExoProc = new Spell("The Art of War");
-    private readonly Spell _HPProc = new Spell("Divine Purpose");
     private readonly Spell _exorcism = new Spell("Exorcism");
     #endregion
     #region Tank
