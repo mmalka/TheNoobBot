@@ -159,7 +159,7 @@ public class Main : ICustomClass
                     }
                     else if (Holy_Spell.KnownSpell)
                     {
-                        Logging.WriteFight("Paladin Holy found, but no class available.");
+                        Logging.WriteFight("Paladin Holy found, but no Paladin Holy class available.");
                         Logging.WriteFight("Loading Paladin Retribution class...");
                         new Paladin_Retribution();
                         break;
@@ -168,8 +168,9 @@ public class Main : ICustomClass
                     {
                         Logging.WriteFight("No specialisation detected.");
                         Logging.WriteFight("Loading Paladin Retribution class...");
-                    }
-                    break;                
+                        new Paladin_Retribution();
+                        break;
+                    }             
                 #endregion
 
                 #region Shaman Specialisation checking
@@ -5314,12 +5315,12 @@ public class Paladin_Retribution
 
     private void Heal()
     {
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable)
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();
             return;
         }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable)
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
         {
             LayOnHands.Launch();
             return;
@@ -5538,14 +5539,14 @@ public class Paladin_Protection
     #endregion
 
     #region Defensive Cooldown
+    Timer OnCD = new Timer(0);
     private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
     private readonly Spell HolyShield = new Spell("Holy Shield");
-    private readonly Spell ArdentDefender = new Spell("Ardent defender");
+    private readonly Spell ArdentDefender = new Spell("Ardent Defender");
     private readonly Spell DivineGuardian = new Spell("Divine Guardian");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
     private readonly Spell HandOfProtection = new Spell("Hand Of Protection");
-    // 25771 = Forbearance
     #endregion
     
     #region Healing Spell
@@ -5624,6 +5625,8 @@ public class Paladin_Protection
 
     private void Combat()
     {
+        Defense_Cycle();
+
         DPS_Cycle();
 
         Heal();
@@ -5679,20 +5682,20 @@ public class Paladin_Protection
             return;
         else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
             CrusaderAura.Launch();
-        else if (!RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
-            RetributionAura.Launch();
-        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
+        else if (!DevotionAura.HaveBuff && DevotionAura.IsSpellUsable)
             DevotionAura.Launch();
+        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+            RetributionAura.Launch();
     }
 
     private void Heal()
     {
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable)
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
         {
             DivineShield.Launch();
             return;
         }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable)
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
         {
             LayOnHands.Launch();
             return;
@@ -5762,6 +5765,63 @@ public class Paladin_Protection
             return;
         }
     }
+    private void Defense_Cycle()
+    {
+        if (HolyShield.KnownSpell && HolyShield.IsSpellUsable && OnCD.IsReady)
+        {
+            HolyShield.Launch();
+            OnCD = new Timer(1000 * 10);
+            return;
+        }
+        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && OnCD.IsReady)
+        {
+            HammerOfJustice.Launch();
+            OnCD = new Timer(1000 * 6); 
+            return;
+        }
+        if (DivineShield.KnownSpell && DivineShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        {
+            DivineShield.Launch();
+            OnCD = new Timer(1000 * 8);
+            return;
+        }
+        if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && OnCD.IsReady)
+        {
+            DivineProtection.Launch();
+            OnCD = new Timer(1000 * 10);
+            return;
+        }
+        if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && OnCD.IsReady)
+        {
+            GuardianOfAncientKings.Launch();
+            OnCD = new Timer(1000 * 12);
+            return;
+        }
+        if (ArdentDefender.KnownSpell && ArdentDefender.IsSpellUsable && OnCD.IsReady)
+        {
+            ArdentDefender.Launch();
+            OnCD = new Timer(1000 * 10);
+            return;
+        }
+        if (LayOnHands.KnownSpell && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        {
+            LayOnHands.Launch();
+            OnCD = new Timer(1000 * 5);
+            return;
+        }
+        if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable && OnCD.IsReady)
+        {
+            WorldOfGlory.Launch();
+            OnCD = new Timer(1000 * 5);
+            return;
+        }
+        if (HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        {
+            HandOfProtection.Launch();
+            OnCD = new Timer(1000 * 8);
+            return;
+        }
+    }
     private void DPS_Cycle()
     {
         /*if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable)
@@ -5770,7 +5830,6 @@ public class Paladin_Protection
             HammerOfJustice.Launch();
             return;
         }*/
-        //SotR>CS>AS>HoW(if active)>J>Cons*>HW* 
         if (ShieldOfTheRighteous.KnownSpell && ShieldOfTheRighteous.IsSpellUsable && ShieldOfTheRighteous.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 3))
         {
             ShieldOfTheRighteous.Launch();
