@@ -5625,7 +5625,8 @@ public class Paladin_Protection
 
     private void Combat()
     {
-        Defense_Cycle();
+        if (OnCD.IsReady)
+            Defense_Cycle();
 
         DPS_Cycle();
 
@@ -5767,55 +5768,55 @@ public class Paladin_Protection
     }
     private void Defense_Cycle()
     {
-        if (HolyShield.KnownSpell && HolyShield.IsSpellUsable && OnCD.IsReady)
+        if (HolyShield.KnownSpell && HolyShield.IsSpellUsable)
         {
             HolyShield.Launch();
             OnCD = new Timer(1000 * 10);
             return;
         }
-        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && OnCD.IsReady)
+        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable)
         {
             HammerOfJustice.Launch();
-            OnCD = new Timer(1000 * 6); 
+            OnCD = new Timer(1000 * 6);
             return;
         }
-        if (DivineShield.KnownSpell && DivineShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        if (DivineShield.KnownSpell && DivineShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
         {
             DivineShield.Launch();
             OnCD = new Timer(1000 * 8);
             return;
         }
-        if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && OnCD.IsReady)
+        if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
         {
             DivineProtection.Launch();
             OnCD = new Timer(1000 * 10);
             return;
         }
-        if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && OnCD.IsReady)
+        if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable)
         {
             GuardianOfAncientKings.Launch();
             OnCD = new Timer(1000 * 12);
             return;
         }
-        if (ArdentDefender.KnownSpell && ArdentDefender.IsSpellUsable && OnCD.IsReady)
+        if (ArdentDefender.KnownSpell && ArdentDefender.IsSpellUsable)
         {
             ArdentDefender.Launch();
             OnCD = new Timer(1000 * 10);
             return;
         }
-        if (LayOnHands.KnownSpell && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        if (LayOnHands.KnownSpell && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
         {
             LayOnHands.Launch();
             OnCD = new Timer(1000 * 5);
             return;
         }
-        if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable && OnCD.IsReady)
+        if (WorldOfGlory.KnownSpell && WorldOfGlory.IsSpellUsable)
         {
             WorldOfGlory.Launch();
             OnCD = new Timer(1000 * 5);
             return;
         }
-        if (HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && OnCD.IsReady)
+        if (HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
         {
             HandOfProtection.Launch();
             OnCD = new Timer(1000 * 8);
