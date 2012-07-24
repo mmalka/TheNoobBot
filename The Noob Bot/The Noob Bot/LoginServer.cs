@@ -96,7 +96,7 @@ namespace The_Noob_Bot
                 }
 
                 // Error
-                if (repC == retStr[0])
+                if (repC == retStr[1])
                 {
                     MessageBox.Show(
                         Translate.Get(Translate.Id.Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) + ": http://thenoobbot.com/.",

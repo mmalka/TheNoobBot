@@ -142,13 +142,15 @@ function getSessionKey($userName, $password)
             $kill = intval($_GET['kill']);
             if($kill > 1000 or $kill < 0)
               $kill = 0;
-            echo $sql = "UPDATE `$tableStats` SET `onlineTime` = `onlineTime`+$onlineTime, `level` = `level`+$level, `honnor` = honnor+$honnor, `exp` = `exp`+$exp, `farm` = `farm`+$farm, `kill` = `kill`+$kill WHERE idUser = $idUser;";
+            $sql = "UPDATE `$tableStats` SET `onlineTime` = `onlineTime`+$onlineTime, `level` = `level`+$level, `honnor` = honnor+$honnor, `exp` = `exp`+$exp, `farm` = `farm`+$farm, `kill` = `kill`+$kill WHERE idUser = $idUser;";
             mysql_query($sql);
 			closeMysql();			
 			return $row['sessionKey'];
 		}
 		closeMysql();
 	}
+    else
+      echo "SNVConnect";
 	return "";
 }
 function createSessionKey($userName, $password)
@@ -175,15 +177,15 @@ function createSessionKey($userName, $password)
 			mysql_query("DELETE FROM $tableCurrentConnection WHERE idUser=$idUser");
 			mysql_query("INSERT INTO $tableCurrentConnection VALUES(NULL, 'trial', $idUser, ".(time()+(20*60)).")");
 			closeMysql();
-			echo "SubscriptionNotValide";
+			echo "SNVConnect";
 		}
 	}
 	else
 	{
 		if(!existUserName($userName))
-			echo "LoginError";
+			echo "LEConnect";
 		else
-			echo "PasswordError";
+			echo "PEConnect";
 	}
 	return "";
 }
