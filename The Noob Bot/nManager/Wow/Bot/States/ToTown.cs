@@ -157,6 +157,18 @@ namespace nManager.Wow.Bot.States
                         }
                         // End Prospection
 
+
+                        // Milling
+                        if (nManagerSetting.CurrentSetting.millingInTown && nManagerSetting.CurrentSetting.milling && nManagerSetting.CurrentSetting.millingList.Count > 0)
+                        {
+                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.millingList))
+                            {
+                                var millingState = new MillingState();
+                                millingState.Run();
+                            }
+                        }
+                        // End Milling
+
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(vendorObj.Position) < 5 && Products.Products.IsStarted &&
                             !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                         {

@@ -152,6 +152,14 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX63);
             labelX62.Text = Translate.Get(Translate.Id.Prospecting_list__one_item_by_line);
             SetToolTypeIfNeeded(labelX62);
+            labelX69.Text = Translate.Get(Translate.Id.Milling_only_in_town);
+            SetToolTypeIfNeeded(labelX69);
+            labelX70.Text = Translate.Get(Translate.Id.Milling_Every__in_minute);
+            SetToolTypeIfNeeded(labelX70);
+            labelX71.Text = Translate.Get(Translate.Id.Milling);
+            SetToolTypeIfNeeded(labelX71);
+            labelX72.Text = Translate.Get(Translate.Id.Milling_list__one_item_by_line);
+            SetToolTypeIfNeeded(labelX72);
             labelX61.Text = Translate.Get(Translate.Id.Smelting);
             SetToolTypeIfNeeded(labelX61);
             delBlackListHarvest.Text = Translate.Get(Translate.Id.Del);
@@ -270,6 +278,11 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.prospectingInTown = prospectingInTown.Value;
                 nManagerSetting.CurrentSetting.prospectingList.Clear();
                 nManagerSetting.CurrentSetting.prospectingList.AddRange(Others.TextToArrayByLine(prospectingList.Text));
+                nManagerSetting.CurrentSetting.milling = milling.Value;
+                nManagerSetting.CurrentSetting.millingTime = millingTime.Value;
+                nManagerSetting.CurrentSetting.millingInTown = millingInTown.Value;
+                nManagerSetting.CurrentSetting.millingList.Clear();
+                nManagerSetting.CurrentSetting.millingList.AddRange(Others.TextToArrayByLine(millingList.Text));
                 nManagerSetting.CurrentSetting.blackListHarvest.Clear();
                 try
                 {
@@ -375,6 +388,10 @@ namespace nManager.Helpful.Forms
                 prospectingInTown.Value = managerSetting.prospectingInTown;
                 prospectingTime.Value = managerSetting.prospectingTime;
                 prospectingList.Text = Others.ArrayToTextByLine(managerSetting.prospectingList.ToArray());
+                milling.Value = managerSetting.milling;
+                millingInTown.Value = managerSetting.millingInTown;
+                millingTime.Value = managerSetting.millingTime;
+                millingList.Text = Others.ArrayToTextByLine(managerSetting.millingList.ToArray());
                 blackListHarvest.Items.Clear();
                 try
                 {

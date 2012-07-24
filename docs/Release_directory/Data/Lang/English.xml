@@ -286,8 +286,12 @@
       <Id>No_setting_for_this_product</Id>
     </Translation>
     <Translation>
-      <Text>Please add items at prospected in 'General Settings' &gt; 'Looting' &gt; 'Prospecting List'</Text>
-      <Id>Please_add_items_at_prospected_in__General_Settings_____Looting_____Prospecting_List</Id>
+      <Text>Please add items to prospect in 'General Settings' &gt; 'Looting' &gt; 'Prospecting List'</Text>
+      <Id>Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List</Id>
+    </Translation>
+    <Translation>
+      <Text>Please add items to mil in 'General Settings' &gt; 'Looting' &gt; 'Milling List'</Text>
+      <Id>Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List</Id>
     </Translation>
     <Translation>
       <Text>Convertion finish</Text>
@@ -708,6 +712,22 @@
     <Translation>
       <Text>Prospecting list (one item by line)</Text>
       <Id>Prospecting_list__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling only in town</Text>
+      <Id>Milling_only_in_town</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling Every (in minute)</Text>
+      <Id>Milling_Every__in_minute</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling</Text>
+      <Id>Milling</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling list (one item by line)</Text>
+      <Id>Milling_list__one_item_by_line</Id>
     </Translation>
     <Translation>
       <Text>Smelting</Text>

@@ -5,13 +5,13 @@ using nManager.Wow.Class;
 
 namespace nManager.Wow.Helpers
 {
-    public static class Prospecting
+    public static class Milling
     {
         public static void Pulse(List<string> items)
         {
             try
             {
-                var spell = new Spell("Prospecting");
+                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return;
 
@@ -25,8 +25,8 @@ namespace nManager.Wow.Helpers
                 var macro =
                     "myTable = {" + itemArray + "} " +
                     "for key,value in pairs(myTable) do " +
-                    "	itemsToProspect = value " +
-                    "	_, itemLink = GetItemInfo(itemsToProspect) " +
+                    "	itemsToMil = value " +
+                    "	_, itemLink = GetItemInfo(itemsToMil) " +
                     "	_, _, Color, Ltype, Id, Enchant, Gem1, Gem2, Gem3, Gem4, Suffix, Unique, LinkLvl, Name = string.find(itemLink, \"|?c?f?f?(%x*)|?H?([^:]*):?(%d+):?(%d*):?(%d*):?(%d*):?(%d*):?(%d*):?(%-?%d*):?(%-?%d*):?(%d*)|?h?%[?([^%[%]]*)%]?|?h?|?r?\") " +
                     "	fisrtI = -1 " +
                     "	fisrtJ = -1 " +
@@ -50,7 +50,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("Prospecting > Pulse(List<string> items): " + exception);
+                Logging.WriteError("Milling > Pulse(List<string> items): " + exception);
             }
         }
 
@@ -58,7 +58,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spell = new Spell("Prospecting");
+                var spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return false;
 
@@ -73,8 +73,8 @@ namespace nManager.Wow.Helpers
                     "myTable = {" + itemArray + "} " +
                     "needRun = \"false\" " +
                     "for key,value in pairs(myTable) do " +
-                    "	itemsToProspect = value " +
-                    "	_, itemLink = GetItemInfo(itemsToProspect) " +
+                    "	itemsToMil = value " +
+                    "	_, itemLink = GetItemInfo(itemsToMil) " +
                     "	_, _, Color, Ltype, Id, Enchant, Gem1, Gem2, Gem3, Gem4, Suffix, Unique, LinkLvl, Name = string.find(itemLink, \"|?c?f?f?(%x*)|?H?([^:]*):?(%d+):?(%d*):?(%d*):?(%d*):?(%d*):?(%d*):?(%-?%d*):?(%-?%d*):?(%d*)|?h?%[?([^%[%]]*)%]?|?h?|?r?\") " +
                     "	fisrtI = -1 " +
                     "	fisrtJ = -1 " +
@@ -98,7 +98,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("Prospecting > NeedRun(List<string> items): " + exception);
+                Logging.WriteError("Milling > NeedRun(List<string> items): " + exception);
                 return false;
             }
         }

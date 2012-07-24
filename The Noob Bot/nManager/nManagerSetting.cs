@@ -211,6 +211,10 @@ namespace nManager
         public bool prospectingInTown;
         public int prospectingTime = 15;
         public List<string> prospectingList = new List<string>();
+        public bool milling;
+        public bool millingInTown;
+        public int millingTime = 15;
+        public List<string> millingList = new List<string>();
         public List<int> blackListHarvest = new List<int>();
         public bool autoMakeElemental;
         public bool reloger;

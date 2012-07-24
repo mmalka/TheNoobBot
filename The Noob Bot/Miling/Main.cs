@@ -14,12 +14,12 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Smelting Complete";
-            Logging.Write("Initialize Smelting Complete");
+            Logging.Status = "Initialize Milling Complete";
+            Logging.Write("Initialize Milling Complete");
         }
         catch (Exception e)
         {
-            Logging.WriteError("Smelting > Main > Initialize(): " + e);
+            Logging.WriteError("Milling > Main > Initialize(): " + e);
         }
     }
 
@@ -28,12 +28,12 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Smelting Complete";
-            Logging.Write("Dispose Smelting Complete");
+            Logging.Status = "Dispose Milling Complete";
+            Logging.Write("Dispose Milling Complete");
         }
         catch (Exception e)
         {
-            Logging.WriteError("Smelting > Main > Dispose(): " + e);
+            Logging.WriteError("Milling > Main > Dispose(): " + e);
         }
     }
 
@@ -41,13 +41,13 @@ public class Main : IProduct
     {
         try
         {
-            Smelting.Smelting.Pulse();
+            Milling.Milling.Pulse();
             _isStarted = true;
-            Logging.Status = "Smelting started";
+            Logging.Status = "Milling started";
         }
         catch (Exception e)
         {
-            Logging.WriteError("Smelting > Main > Start(): " + e);
+            Logging.WriteError("Milling > Main > Start(): " + e);
         }
     }
 
@@ -56,11 +56,11 @@ public class Main : IProduct
         try
         {
             _isStarted = false;
-            Logging.Status = "Smelting stoped";
+            Logging.Status = "Milling stoped";
         }
         catch (Exception e)
         {
-            Logging.WriteError("Smelting > Main > Stop(): " + e);
+            Logging.WriteError("Milling > Main > Stop(): " + e);
         }
     }
 
@@ -69,12 +69,12 @@ public class Main : IProduct
         try
         {
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Smelting Complete";
-            Logging.Write("Settings Smelting Complete");
+            Logging.Status = "Settings Milling Complete";
+            Logging.Write("Settings Milling Complete");
         }
         catch (Exception e)
         {
-            Logging.WriteError("Smelting > Main > Settings(): " + e);
+            Logging.WriteError("Milling > Main > Settings(): " + e);
         }
     }
 

@@ -130,6 +130,7 @@
     <Compile Include="Wow\Bot\States\Idle.cs" />
     <Compile Include="Wow\Bot\States\IsAttacked.cs" />
     <Compile Include="Wow\Bot\States\Looting.cs" />
+    <Compile Include="Wow\Bot\States\MilingState.cs" />
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\Pause.cs" />
     <Compile Include="Wow\Bot\States\ProspectingState.cs" />
@@ -183,6 +184,7 @@
     <Compile Include="Wow\Enums\WoWObjectType.cs" />
     <Compile Include="Wow\Helpers\DBCReading.cs" />
     <Compile Include="Wow\Helpers\Fishing.cs" />
+    <Compile Include="Wow\Helpers\Milling.cs" />
     <Compile Include="Wow\Helpers\NodesList.cs" />
     <Compile Include="Wow\Helpers\NpcDB.cs" />
     <Compile Include="Wow\Helpers\Elemental.cs" />
