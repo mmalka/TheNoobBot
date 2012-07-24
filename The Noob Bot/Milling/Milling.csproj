@@ -8,8 +8,8 @@
     <ProjectGuid>{00462F13-F999-46DD-87A6-79123A3E678C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Miling</RootNamespace>
-    <AssemblyName>Miling</AssemblyName>
+    <RootNamespace>Milling</RootNamespace>
+    <AssemblyName>Milling</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -39,7 +39,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Miling.cs" />
+    <Compile Include="Milling.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nManager\nManager.csproj">

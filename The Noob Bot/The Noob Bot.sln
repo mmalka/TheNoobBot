@@ -35,7 +35,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battlegrounder", "Battlegro
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Quester", "Quester\Quester.csproj", "{96CA8810-5B34-47A7-8253-EDCA42FA02C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Miling", "Miling\Miling.csproj", "{00462F13-F999-46DD-87A6-79123A3E678C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Milling", "Milling\Milling.csproj", "{00462F13-F999-46DD-87A6-79123A3E678C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -130,7 +130,7 @@
     <Compile Include="Wow\Bot\States\Idle.cs" />
     <Compile Include="Wow\Bot\States\IsAttacked.cs" />
     <Compile Include="Wow\Bot\States\Looting.cs" />
-    <Compile Include="Wow\Bot\States\MilingState.cs" />
+    <Compile Include="Wow\Bot\States\MillingState.cs" />
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\Pause.cs" />
     <Compile Include="Wow\Bot\States\ProspectingState.cs" />
