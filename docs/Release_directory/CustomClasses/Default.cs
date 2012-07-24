@@ -1,6 +1,6 @@
 /*
 * CustomClass for TheNoobBot
-* Credit : Rival, Geesus, Enelya, Marstor, Vesper
+* Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003
 * Thanks you !
 */
 
@@ -273,10 +273,16 @@ public class Main : ICustomClass
                         Logging.WriteFight("Marksman Hunter Found");
                         new Marks();
                     }
-                    if (!Explosive_Shot.KnownSpell && !Aimed_Shot.KnownSpell)
+                    var FocusFire = new Spell("Focus Fire");
+                    if (FocusFire.KnownSpell)
+                    {
+                        Logging.WriteFight("Beast Master Hunter Found");
+                        new BeastMaster();
+                    }
+                    if (!Explosive_Shot.KnownSpell && !Aimed_Shot.KnownSpell && !FocusFire.KnownSpell)
                     {
                         Logging.WriteFight("Hunter without Spec");
-                        new Survival();
+                        new BeastMaster();
                     }
                     break;
                 #endregion
@@ -9642,6 +9648,523 @@ public class Marks
     public bool hardmob()
     {
         if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        {
+            return true;
+        }
+        return false;
+    }
+}
+public class BeastMaster
+{
+    #region InitializeSpell
+
+    // Beast Mastery only
+    Spell Beastial_Wrath = new Spell("Beastial Wrath");
+    Spell Focus_Fire = new Spell("Focus Fire");
+    Spell Intimidation = new Spell("Intimidation");
+    // Beast master with a Spirit Beast only
+    Spell Spirit_Mend = new Spell("Spirit Mend");
+
+    // DPS
+    Spell Raptor_Strike = new Spell("Raptor Strike");
+    Spell Arcane_Shot = new Spell("Arcane Shot");
+    Spell Steady_Shot = new Spell("Steady Shot");
+    Spell Serpent_Sting = new Spell("Serpent Sting");
+    Spell Multi_Shot = new Spell("Multi-Shot");
+    Spell Kill_Shot = new Spell("Kill Shot");
+    Spell Explosive_Trap = new Spell("Explosive Trap");
+    Spell Cobra_Shot = new Spell("Cobra Shot");
+    Spell Immolation_Trap = new Spell("Immolation Trap");
+
+    // BUFF & HELPING
+    Spell Concussive_Shot = new Spell("Concussive Shot");
+    Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
+    Spell Disengage = new Spell("Disengage");
+    Spell Hunters_Mark = new Spell("Hunter's Mark");
+    Spell Scatter_Shot = new Spell("Scatter Shot");	// 19503
+    Spell Feign_Death = new Spell("Feign Death");	//	5384
+    Spell Snake_Trap = new Spell("Snake Trap");
+    Spell Ice_Trap = new Spell("Ice Trap");
+    Spell Freezing_Trap = new Spell("Freezing Trap");
+    Spell Trap_Launcher = new Spell("Trap Launcher");	//	77769
+    Spell Rapid_Fire = new Spell("Rapid Fire");	//	3045
+    Spell Misdirection = new Spell("Misdirection");
+    Spell Deterrence = new Spell("Deterrence");	//	19263
+    Spell Wing_Clip = new Spell("Wing Clip");
+
+    // PET
+    Spell Kill_Command = new Spell("Kill Command");
+    Spell Mend_Pet = new Spell("Mend Pet");	//	136
+    Spell Revive_Pet = new Spell("Revive Pet");	//	982
+    Spell Call_Pet = new Spell("Call Pet 1");	//	883
+
+    // TIMER
+    Timer look = new Timer(0);
+    Timer fighttimer = new Timer(0);
+    Timer petheal = new Timer(0);
+    Timer traplaunchertimer = new Timer(0);
+    Timer disengagetimer = new Timer(0);
+    Timer Serpent_Sting_debuff = new Timer(0);
+    Timer mountchill = new Timer(0);
+
+    // Profession & Racials
+    Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    Spell Lifeblood = new Spell("Lifeblood");
+    Spell Stoneform = new Spell("Stoneform");
+    Spell Tailoring = new Spell("Tailoring");
+    Spell Leatherworking = new Spell("Leatherworking");
+    Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    Spell War_Stomp = new Spell("War Stomp");
+    Spell Berserking = new Spell("Berserking");
+
+    #endregion InitializeSpell
+
+    public BeastMaster()
+    {
+        Main.range = 40.0f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+
+            if (!ObjectManager.Me.IsMounted)
+            {
+                buffoutfight();
+
+                if (!Fight.InFight && look.IsReady)
+                {
+                    look = new Timer(5000);
+                    Lua.RunMacroText("/targetfriendplayer");
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
+                {
+                    fighttimer = new Timer(60000);
+                }
+
+                if (Fight.InFight && ObjectManager.Me.Target > 0)
+                {
+                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
+                    {
+                        pull();
+                        lastTarget = ObjectManager.Me.Target;
+                    }
+                    fight();
+                    if (!Fight.InFight)
+                    {
+                        Logging.WriteFight(" - Target Down - ");
+                        look = new Timer(5000);
+                    }
+
+                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 && ObjectManager.GetNumberAttackPlayer() < 2)
+                    {
+                        Logging.WriteFight(" - Target Evading - ");
+                        break;
+                    }
+                }
+            }
+            if (ObjectManager.Me.IsMounted) mountchill = new Timer(2000);
+            Thread.Sleep(350);
+        }
+    }
+
+    public void pull()
+    {
+
+        if (hardmob())
+            Logging.WriteFight(" -  Pull Hard Mob - ");
+        else
+            Logging.WriteFight(" -  Pull Easy Mob - ");
+        fighttimer = new Timer(60000);
+
+        if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(5116);
+            // Concussive_Shot.Launch();
+        }
+    }
+
+    public void buffoutfight()
+    {
+
+        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
+
+        pet();
+
+        if (!ObjectManager.Me.HaveBuff(79640) &&
+            ItemsManager.GetItemCountByIdLUA(58149) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:58149");
+        }
+
+        if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Hawk.HaveBuff)
+        {
+            SpellManager.CastSpellByIdLUA(13165);
+            // Aspect_of_the_Hawk.Launch();
+        }
+
+    }
+
+    public void fight()
+    {
+        pet();
+        selfheal();
+        buffinfight();
+        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
+
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Explosive_Trap.IsSpellUsable && Trap_Launcher.IsSpellUsable && Arcane_Shot.IsDistanceGood)
+        {
+            traplaunchertimer = new Timer(1100);
+            Trap_Launcher.Launch();
+            while (!traplaunchertimer.IsReady)
+            {
+                if (Explosive_Trap.KnownSpell && Explosive_Trap.IsSpellUsable)
+                {
+                    SpellManager.CastSpellByIDAndPosition(13813, ObjectManager.Target.Position);
+                }
+            }
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() < 2 && Immolation_Trap.IsSpellUsable && Trap_Launcher.IsSpellUsable && Arcane_Shot.IsDistanceGood &&
+            !ObjectManager.Target.IsTargetingMe && ObjectManager.Target.HealthPercent > 70)
+        {
+            traplaunchertimer = new Timer(1100);
+            Trap_Launcher.Launch();
+            while (!traplaunchertimer.IsReady)
+            {
+                if (Immolation_Trap.KnownSpell && Immolation_Trap.IsSpellUsable)
+                {
+                    SpellManager.CastSpellByIDAndPosition(13795, ObjectManager.Target.Position);
+                }
+            }
+        }
+
+        if (ObjectManager.GetNumberAttackPlayer() < 2 && Immolation_Trap.IsSpellUsable && !Trap_Launcher.KnownSpell && Arcane_Shot.IsDistanceGood)
+        {
+            Immolation_Trap.Launch();
+        }
+
+        if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(53351);
+            // Kill_Shot.Launch();
+        }
+
+        if (Hunters_Mark.KnownSpell && Hunters_Mark.IsSpellUsable && Hunters_Mark.IsDistanceGood && !Hunters_Mark.TargetHaveBuff)
+        {
+            SpellManager.CastSpellByIdLUA(1130);
+            // Hunters_Mark.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 2 || hardmob()) && Misdirection.KnownSpell && Misdirection.IsSpellUsable)
+        {
+            Lua.RunMacroText("/cast [@pet] Misdirection");
+            Lua.RunMacroText("/cast [@pet] Irreführung");
+            Lua.RunMacroText("/cast [@pet] Détournement");
+            Lua.RunMacroText("/cast [@pet] Перенаправление");
+            Lua.RunMacroText("/cast [@pet] Redirección");
+            Lua.RunMacroText("/cast [@pet] Redirecionar");
+        }
+
+        if (Focus_Fire.KnownSpell && Focus_Fire.IsSpellUsable && ObjectManager.Pet.BuffStack(19615) == 5) // Frenzy Effect
+        {
+            SpellManager.CastSpellByIdLUA(82692);
+            // Focus_Fire.Launch();
+        }
+
+        if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood && !ObjectManager.Target.HaveBuff(1978))
+        {
+            SpellManager.CastSpellByIdLUA(5116);
+            // Concussive_Shot.Launch();
+        }
+
+        if (!ObjectManager.Target.HaveBuff(1978) && Serpent_Sting_debuff.IsReady && Arcane_Shot.IsDistanceGood)
+        {
+            Serpent_Sting_debuff = new Timer(2500);
+            Serpent_Sting.Launch();
+        }
+
+        if (!ObjectManager.Target.HaveBuff(1978) && !Serpent_Sting_debuff.IsReady)
+        {
+            if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
+            {
+                Kill_Shot.Launch();
+            }
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) && Snake_Trap.IsSpellUsable && Arcane_Shot.IsDistanceGood && !ObjectManager.Target.GetMove && Trap_Launcher.KnownSpell)
+        {
+            traplaunchertimer = new Timer(1100);
+            Trap_Launcher.Launch();
+            while (!traplaunchertimer.IsReady)
+            {
+                if (Snake_Trap.KnownSpell && Snake_Trap.IsSpellUsable && Trap_Launcher.HaveBuff)
+                {
+                    SpellManager.CastSpellByIDAndPosition(34600, ObjectManager.Target.Position);
+                }
+            }
+        }
+
+        if (Freezing_Trap.KnownSpell && Freezing_Trap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
+        {
+            SpellManager.CastSpellByIdLUA(1499);
+            // Freezing_Trap.Launch();
+        }
+
+        if (ObjectManager.Target.HaveBuff(1978))
+        {
+            if (Multi_Shot.KnownSpell && Multi_Shot.IsSpellUsable && Multi_Shot.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1)
+            {
+                SpellManager.CastSpellByIdLUA(2643);
+                // Multi_Shot.Launch();
+            }
+
+            if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIdLUA(34026);
+                // Kill_Command.Launch();
+            }
+
+            if (Arcane_Shot.KnownSpell && Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood)
+            {
+                SpellManager.CastSpellByIdLUA(3044);
+                // Arcane_Shot.Launch();
+            }
+        }
+
+        if (ObjectManager.Me.BarTwoPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
+        {
+            if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood && !Cobra_Shot.KnownSpell)
+            {
+                SpellManager.CastSpellByIdLUA(56641);
+                // Steady_Shot.Launch();
+            }
+            else if (Cobra_Shot.KnownSpell && Cobra_Shot.IsSpellUsable && Cobra_Shot.IsDistanceGood && ObjectManager.Target.HaveBuff(1978))
+            {
+                SpellManager.CastSpellByIdLUA(77767);
+                // Cobra_Shot.Launch();
+            }
+        }
+
+        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
+        }
+
+    }
+
+    private void pet()
+    {
+
+        if (ObjectManager.Me.IsMounted || !mountchill.IsReady) return;
+
+        if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
+            !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
+        {
+            Call_Pet.Launch();
+            Thread.Sleep(1000);
+            if (!ObjectManager.Pet.IsAlive)
+            {
+                Revive_Pet.Launch();
+                Thread.Sleep(1000);
+            }
+        }
+
+        if (Mend_Pet.KnownSpell && Mend_Pet.IsSpellUsable && petheal.IsReady &&
+            ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 70)
+        {
+            petheal = new Timer(9000);
+            Mend_Pet.Launch();
+        }
+
+        if (Fight.InFight) Lua.RunMacroText("/petattack");
+
+    }
+
+    private void buffinfight()
+    {
+
+        if (!Fight.InFight) return;
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Intimidation.KnownSpell && Intimidation.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(19577);
+            // Intimidation.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20594);
+            // Stoneform.Launch();
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+        {
+            SpellManager.CastSpellByIdLUA(20549);
+            // War_Stomp.Launch();
+        }
+
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable && Arcane_Shot.IsDistanceGood)
+        {
+            SpellManager.CastSpellByIdLUA(1454);
+            // Berserking.Launch();
+        }
+
+        if (Rapid_Fire.KnownSpell && Rapid_Fire.IsSpellUsable && (hardmob() || ObjectManager.GetNumberAttackPlayer() > 2) && Arcane_Shot.IsDistanceGood)
+        {
+            Rapid_Fire.Launch();
+        }
+
+    }
+
+    private void selfheal()
+    {
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        {
+            Lifeblood.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        {
+            Gift_of_the_Naaru.Launch();
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Spirit_Mend.KnownSpell && Spirit_Mend.IsSpellUsable)
+        {
+            Lua.RunMacroText("/target " + ObjectManager.Me.Name);
+            SpellManager.CastSpellByIdLUA(90361);
+            Lua.RunMacroText("/targetlasttarget");
+        }
+
+        if (Disengage.KnownSpell && Disengage.IsSpellUsable && Disengage.IsDistanceGood &&
+            ObjectManager.Target.HealthPercent > 30 && ObjectManager.Target.GetDistance < 5)
+        {
+            disengagetimer = new Timer(2000);
+            while (ObjectManager.Target.GetDistance < 5 && !disengagetimer.IsReady)
+                if (Wing_Clip.KnownSpell && Wing_Clip.IsSpellUsable && Wing_Clip.IsDistanceGood && !Wing_Clip.TargetHaveBuff)
+                {
+                    SpellManager.CastSpellByIdLUA(2974);
+                    // Wing_Clip.Launch();
+                }
+            SpellManager.CastSpellByIdLUA(781);
+            // Disengage.Launch();
+            if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood)
+            {
+                SpellManager.CastSpellByIdLUA(5116);
+                // Concussive_Shot.Launch();
+            }
+            return;
+        }
+
+        if (ObjectManager.Target.GetDistance < 10 && ((Disengage.KnownSpell && !Disengage.IsSpellUsable) || !Disengage.KnownSpell))
+        {
+            disengagetimer = new Timer(5000);
+            while (ObjectManager.Target.GetDistance < 10 || !disengagetimer.IsReady)
+            {
+                if (!Fight.InFight) return;
+                Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "S");
+                Thread.Sleep(100);
+
+                if (Mend_Pet.KnownSpell && Mend_Pet.IsSpellUsable && petheal.IsReady &&
+                    ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 70)
+                {
+                    petheal = new Timer(9000);
+                    Mend_Pet.Launch();
+                }
+
+                if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable && Kill_Command.IsDistanceGood)
+                {
+                    SpellManager.CastSpellByIdLUA(34026);
+                    // Kill_Command.Launch();
+                }
+
+                if (Wing_Clip.KnownSpell && Wing_Clip.IsSpellUsable && Wing_Clip.IsDistanceGood && !Wing_Clip.TargetHaveBuff)
+                {
+                    SpellManager.CastSpellByIdLUA(2974);
+                    // Wing_Clip.Launch();
+                }
+
+                if (Raptor_Strike.KnownSpell && Raptor_Strike.IsSpellUsable && Raptor_Strike.IsDistanceGood)
+                {
+                    SpellManager.CastSpellByIdLUA(2973);
+                    // Raptor_Strike.Launch();
+                }
+
+                if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
+                {
+                    SpellManager.CastSpellByIdLUA(53351);
+                    // Kill_Shot.Launch();
+                }
+
+                if (Arcane_Shot.KnownSpell && Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood)
+                {
+                    SpellManager.CastSpellByIdLUA(3044);
+                    // Arcane_Shot.Launch();
+                }
+
+                if (Feign_Death.KnownSpell && Feign_Death.IsSpellUsable)
+                {
+                    Feign_Death.Launch();
+                    Thread.Sleep(3000);
+                }
+
+                if (Freezing_Trap.KnownSpell && Freezing_Trap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
+                {
+                    SpellManager.CastSpellByIdLUA(1499);
+                    // Freezing_Trap.Launch();
+                }
+
+                if (Scatter_Shot.KnownSpell && Scatter_Shot.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
+                {
+                    Scatter_Shot.Launch();
+                }
+
+                if (ObjectManager.Me.HealthPercent < 30 && ObjectManager.Target.IsTargetingMe)
+                {
+                    if (!Feign_Death.IsSpellUsable && !Scatter_Shot.IsSpellUsable && Deterrence.KnownSpell && Deterrence.KnownSpell)
+                    {
+                        Deterrence.Launch();
+                    }
+                }
+
+                Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{SPACE}");
+            }
+        }
+
+        if (Feign_Death.KnownSpell && Feign_Death.IsSpellUsable && ObjectManager.Me.HealthPercent < 15 && ObjectManager.Pet.Health > 10)
+        {
+            Feign_Death.Launch();
+            Thread.Sleep(3000);
+        }
+
+        if (Feign_Death.KnownSpell && Feign_Death.IsSpellUsable && ObjectManager.Me.HealthPercent < 15 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Feign_Death.Launch();
+            Lua.RunMacroText("/cleartarget");
+            Thread.Sleep(30000);
+        }
+
+    }
+
+    public bool hardmob()
+    {
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 130)
         {
             return true;
         }
