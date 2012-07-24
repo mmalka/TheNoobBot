@@ -399,6 +399,14 @@
       <Id>Clear</Id>
     </Translation>
     <Translation>
+      <Text>Ids des cibles</Text>
+      <Id>Target_Ids</Id>
+    </Translation>
+    <Translation>
+      <Text>points</Text>
+      <Id>Nodes</Id>
+    </Translation>
+    <Translation>
       <Text>Charger un profil</Text>
       <Id>Load_Profile</Id>
     </Translation>

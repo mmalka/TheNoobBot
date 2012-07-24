@@ -555,7 +555,7 @@ namespace Grinder.Profile
             this.labelX8.Name = "labelX8";
             this.labelX8.Size = new System.Drawing.Size(70, 23);
             this.labelX8.TabIndex = 37;
-            this.labelX8.Text = "Player Lvl Min";
+            this.labelX8.Text = "Ids of targets";
             // 
             // pathFinderDroidz
             // 
@@ -570,7 +570,7 @@ namespace Grinder.Profile
             this.pointsL.Name = "pointsL";
             this.pointsL.Size = new System.Drawing.Size(49, 13);
             this.pointsL.TabIndex = 38;
-            this.pointsL.Text = "0 points";
+            this.pointsL.Text = "0 nodes";
             // 
             // clearB
             // 

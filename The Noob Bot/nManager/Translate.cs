@@ -165,6 +165,8 @@ namespace nManager
             Add_Target,
             points,
             Clear,
+            Target_Ids,
+            Nodes,
             Load_Profile,
             Profile,
             Use_Lure,

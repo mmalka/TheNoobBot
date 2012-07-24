@@ -398,6 +398,14 @@
       <Id>Clear</Id>
     </Translation>
     <Translation>
+      <Text>Ids of Targets</Text>
+      <Id>Target_Ids</Id>
+    </Translation>
+    <Translation>
+      <Text>nodes</Text>
+      <Id>Nodes</Id>
+    </Translation>
+    <Translation>
       <Text>Load Profile</Text>
       <Id>Load_Profile</Id>
     </Translation>

@@ -56,9 +56,9 @@ namespace Grinder.Profile
             labelX6.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
             labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " + nManager.Translate.Get(nManager.Translate.Id.Min);
             addTargetEntryB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target);
-            labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Lvl) + " " + nManager.Translate.Get(nManager.Translate.Id.Min);
+            labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Ids);
             pointsL.Text = "";// "0 points";
-            clearB.Text = "";//"Clear";
+            clearB.Text = nManager.Translate.Get(nManager.Translate.Id.Clear);
             Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
         }
         private void saveB_Click(object sender, EventArgs ex)
@@ -594,7 +594,7 @@ namespace Grinder.Profile
                     ObjectManager.Me.Position.DistanceZ(ObjectManager.Me.Position) > 1.5)
                     _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
 
-                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " points";
+                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " " + nManager.Translate.Get(nManager.Translate.Id.Nodes);
             }
         }
 
