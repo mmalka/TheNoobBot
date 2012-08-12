@@ -210,7 +210,7 @@ namespace nManager.Wow.Helpers
                     {
                         try
                         {
-                            if (_points[idPoint].Type.ToLower() == "flying" || _points[firstIdPoint].Type.ToLower() == "swimming")
+                            if (_points[firstIdPoint].Type.ToLower() == "flying" || _points[firstIdPoint].Type.ToLower() == "swimming")
                             {
                                 return;
                             }
@@ -244,7 +244,7 @@ namespace nManager.Wow.Helpers
 
                                     StopMoveTo();
                                     _points.AddRange(PathFinder.FindPath(_pointsOrigine[_points.Count - 1]));
-                                    idPoint = 0;
+                                    //idPoint = 0; // no: do not reset the id after a stuck
                                 }
                                 catch (Exception exception)
                                 {
@@ -254,6 +254,8 @@ namespace nManager.Wow.Helpers
                             }
 
                             // Move to point
+                            if (_loop)
+                                _currentTargetedPoint = idPoint;
                             MoveTo(_points[idPoint]);
 
                             Thread.Sleep(50);
@@ -346,7 +348,8 @@ namespace nManager.Wow.Helpers
                                     idPoint = 0;
                                 }
                             }
-                            _currentTargetedPoint = idPoint;
+                            if (_loop)
+                                _currentTargetedPoint = idPoint;
                             MoveTo(_points[idPoint]);
                         }
                         MoveTo(_points[idPoint]);
