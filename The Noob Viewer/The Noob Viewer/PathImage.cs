@@ -45,6 +45,17 @@ namespace meshPathVisualizer
                 if (tY > maxY)
                     maxY = (int) tY;
             }
+            // Prevent only 1 tile width or height and extend to 3 tiles in this case
+            if (minX == maxX)
+            {
+                minX = System.Math.Max(0, minX - 1);
+                maxX = System.Math.Min(64, maxX + 1);
+            }
+            if (minY == maxY)
+            {
+                minY = System.Math.Max(0, minY - 1);
+                maxY = System.Math.Min(64, maxY + 1);
+            }
 
             int baseWidth = (maxX - minX + 1) * 128;
             int baseHeight = (maxY - minY + 1) * 128;
