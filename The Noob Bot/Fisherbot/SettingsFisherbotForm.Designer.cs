@@ -52,7 +52,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.useLure.BackgroundStyle.Class = "";
             this.useLure.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.useLure.ForeColor = System.Drawing.Color.Black;
             this.useLure.Location = new System.Drawing.Point(135, 12);
@@ -67,7 +66,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.fishSchool.BackgroundStyle.Class = "";
             this.fishSchool.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.fishSchool.ForeColor = System.Drawing.Color.Black;
             this.fishSchool.Location = new System.Drawing.Point(135, 51);
@@ -82,7 +80,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.ForeColor = System.Drawing.Color.Black;
             this.labelX1.Location = new System.Drawing.Point(12, 12);
@@ -97,7 +94,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
             this.labelX2.Location = new System.Drawing.Point(12, 51);
@@ -136,7 +132,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(12, 144);
@@ -151,14 +146,13 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
             this.labelX4.Location = new System.Drawing.Point(12, 177);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(117, 23);
             this.labelX4.TabIndex = 16;
-            this.labelX4.Text = "Fisherbot Pool Name";
+            this.labelX4.Text = "Fishing pole Name";
             // 
             // FisherbotPoolName
             // 
@@ -180,7 +174,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX5.BackgroundStyle.Class = "";
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.ForeColor = System.Drawing.Color.Black;
             this.labelX5.Location = new System.Drawing.Point(12, 210);
@@ -209,7 +202,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.ForeColor = System.Drawing.Color.Black;
             this.labelX6.Location = new System.Drawing.Point(12, 239);
@@ -249,7 +241,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.labelX7.BackgroundStyle.Class = "";
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(12, 106);
@@ -264,7 +255,6 @@ namespace Fisherbot
             // 
             // 
             // 
-            this.precisionMode.BackgroundStyle.Class = "";
             this.precisionMode.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.precisionMode.ForeColor = System.Drawing.Color.Black;
             this.precisionMode.Location = new System.Drawing.Point(226, 107);

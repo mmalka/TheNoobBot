@@ -19,7 +19,7 @@ namespace Fisherbot
             labelX1.Text = Translate.Get(Translate.Id.Use_Lure);
             labelX2.Text = Translate.Get(Translate.Id.Fish_School);
             labelX3.Text = Translate.Get(Translate.Id.Lure_Name) + "*";
-            labelX4.Text = Translate.Get(Translate.Id.Fisherbot_Pool_Name);
+            labelX4.Text = Translate.Get(Translate.Id.Fishing_Pole_Name);
             labelX5.Text = Translate.Get(Translate.Id.Weapon_Name);
             labelX6.Text = "* = " + Translate.Get(Translate.Id.If_special__If_empty__default_items_is_used);
             saveB.Text = Translate.Get(Translate.Id.Save_and_Close);

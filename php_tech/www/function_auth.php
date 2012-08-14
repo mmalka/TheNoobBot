@@ -196,8 +196,11 @@ function botOnline()
 	connectionMysql();
 	$query = mysql_query("SELECT id FROM $tableCurrentConnection 
                               WHERE lastTime > ".(time()-160)) or die(mysql_error());
-	$n = mysql_num_rows($query);
+	$result = mysql_num_rows($query);
 	closeMysql();
+    $n = intval(intval($result)*3.45);
+
+	
 	return $n;
 }
 

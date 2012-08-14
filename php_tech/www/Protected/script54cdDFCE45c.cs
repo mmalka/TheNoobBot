@@ -4,8 +4,6 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
     {
         try
         {
-            if (nManager.Information.ForBuildWowVersion == 15354)
-                nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x9BC9F8;
             if (nManager.Information.ForBuildWowVersion == 15595)
             {
                 /*System.IO.File.Copy(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe", true);
@@ -21,7 +19,7 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                     }
                 }
                 else*/
-                if(nManager.Information.Version != "1.1.1" && nManager.Information.Version != "1.1.2")
+                if(nManager.Information.Version != "1.1.2" && nManager.Information.Version != "1.1.3")
                 {
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
                     nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0;
@@ -31,7 +29,7 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                   
                     }
                 }
-                else if(nManager.Information.Version == "1.1.2")
+                else if(nManager.Information.Version == "1.1.3")
                 {
                     nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x9BE7E0;
                     //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");

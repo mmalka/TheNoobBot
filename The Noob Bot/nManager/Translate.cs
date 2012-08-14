@@ -173,7 +173,7 @@ namespace nManager
             Use_Lure,
             Fish_School,
             Lure_Name,
-            Fisherbot_Pool_Name,
+            Fishing_Pole_Name,
             Weapon_Name,
             If_special__If_empty__default_items_is_used,
             Profile_Creator,
