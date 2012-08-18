@@ -27,6 +27,11 @@ namespace Quester.Tasks
             CurrentQuest = new Profile.Quest();
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
+            Quester.Bot.Bot.Profile.Quests.Sort(delegate(Profile.Quest q1, Profile.Quest q2)
+                {
+                    return q1.PickUp.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(q2.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
+                }
+            );
 
             foreach (var quest in Quester.Bot.Bot.Profile.Quests)
             {
@@ -477,6 +482,7 @@ namespace Quester.Tasks
                         Interact.InteractGameObject(baseAddress);
 
                         Trainer.TrainingSpell();
+                        SpellManager.UpdateSpellBook();
                         questObjective.IsUsedTrainSpells = true;
                     }
                 }
@@ -778,8 +784,8 @@ namespace Quester.Tasks
             Npc npc = null;
             if (pickUp)
             {
-                npc = CurrentQuest.PickUp;
                 QuestStatus = "Pick-Up Quest";
+                npc = CurrentQuest.PickUp;
             }
             if (turnIn)
             {
@@ -796,7 +802,7 @@ namespace Quester.Tasks
             // Launch script
             //Script.Run(npc.Script); ToDo: probably add this
             // Mounting Mount
-            //MountTask.MountingFlyingMount(); :: not good at begining
+            //MountTask.MountingFlyingMount(); // not good yet
 
             // Find path
             if (npc.Position.DistanceTo(ObjectManager.Me.Position) < nManagerSetting.CurrentSetting.searchRadius)
@@ -929,8 +935,8 @@ namespace Quester.Tasks
                             Thread.Sleep(Usefuls.Latency + 1000);
                             Quest.AcceptQuest();
                             Thread.Sleep(Usefuls.Latency + 1000);
-                            Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 1000);
+                            //Quest.CloseQuestWindow(); // no need to do this
+                            //Thread.Sleep(Usefuls.Latency + 1000);
                             
                             //if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id) && Quest.GetLogQuestId().Count > countQuestInLog)
                             //    Quest.AbandonLastQuest();
@@ -953,10 +959,10 @@ namespace Quester.Tasks
                             Thread.Sleep(Usefuls.Latency + 200);
                             Quest.CompleteQuest();
                             Thread.Sleep(Usefuls.Latency + 200);
-                            Quest.CloseQuestWindow();
-                            Thread.Sleep(Usefuls.Latency + 200);
+                            //Quest.CloseQuestWindow(); // no need to do this
+                            //Thread.Sleep(Usefuls.Latency + 200);
                         }
-                        Quest.FinishQuestForceSet.Add(CurrentQuest.Id);
+                        Quest.FinishedQuestSet.Add(CurrentQuest.Id);
                     }
                     Thread.Sleep(Usefuls.Latency);
                 }
