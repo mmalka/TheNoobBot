@@ -420,7 +420,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 resultSuccess = true;
-                var extents = new Point(5.0f, 75.0f, 5.0f).ToFloatArray();
+                var extents = new Point(5.0f, 85.0f, 5.0f).ToFloatArray();
                 var start = startVec.ToRecast().ToFloatArray();
                 var end = endVec.ToRecast().ToFloatArray();
 

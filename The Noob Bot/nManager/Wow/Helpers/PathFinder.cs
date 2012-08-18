@@ -141,14 +141,6 @@ namespace nManager.Wow.Helpers
                     return locList;
                 }
 
-
-                from = new Point(Convert.ToSingle(String.Format("{0:.#}", from.X)),
-                                 Convert.ToSingle(String.Format("{0:.#}", from.Y)),
-                                 Convert.ToSingle(String.Format("{0:.#}", from.Z)));
-                to = new Point(Convert.ToSingle(String.Format("{0:.#}", to.X)),
-                               Convert.ToSingle(String.Format("{0:.#}", to.Y)),
-                               Convert.ToSingle(String.Format("{0:.#}", to.Z)));
-
                 if (_pather == null)
                     _pather = new Pather(continentNameMpq);
                 if (_pather.Continent != continentNameMpq)
@@ -177,12 +169,17 @@ namespace nManager.Wow.Helpers
                         i--;
                     }
                 }
-
-
+                // Offset all points except origin and end to pass around obstacles by some distance.
+                // We stop at 2.0 before each point in MovementManager and the meshes are done for a player of 0.6 in diameter.
+                // So 2.0-0.6=1.4 is the strick minimum offset needed. Since 'click to point' has a precision of 0.5, 
+                // 1.4+0.5=1.9 is a pretty good value here.
+                for (int i = locList.Count - 2; i > 0; i--)
+                {
+                    Point offset = nManager.Helpful.Math.GetPostionOffsetBy3DDistance(locList[i - 1], locList[i], 1.9f);
+                    locList[i] = offset;
+                }
 
                 Logging.WriteNavigator("Path Count: " + locList.Count());
-
-                //pather.Dispose();
 
                 return locList;
             }

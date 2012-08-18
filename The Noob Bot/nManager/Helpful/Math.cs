@@ -185,13 +185,29 @@ namespace nManager.Helpful
                 var xc = a.X + x * distance / d;
                 var yc = a.Y + y * distance / d;
 
-                return new Point(xc, yc, 0.0f);
+                return new Point(xc, yc, System.Math.Max(a.Z, b.Z));
             }
             catch (Exception exception)
             {
                 Logging.WriteError("GetPostion2dOfLineByDistance(Point a, Point b, float distance): " + exception);
             }
             return new Point(0, 0, 0);
+        }
+
+        public static Point GetPostionOffsetBy3DDistance(Point a, Point b, float distance)
+        {
+            if (a.X == b.X && a.Y == b.Y)
+                return a;
+
+            var x = b.X - a.X;
+            var y = b.Y - a.Y;
+            var z = b.Z - a.Z;
+            var d = (float)System.Math.Sqrt((double)(x * x) + (double)(y * y) + (double)(z * z));
+            var xc = b.X + x/d * distance;
+            var yc = b.Y + y/d * distance;
+            var zc = b.Z + z/d * distance;
+
+            return new Point(xc, yc, zc);
         }
 
         public static float PitchAngle(Point a, Point b)
