@@ -87,14 +87,23 @@
         /// </summary>
         public enum UnitRelation
         {
-            FACTION_POINTER = 0x99911C,
-            FACTION_TOTAL = FACTION_POINTER + 0x4,
-            FACTION_START_INDEX = FACTION_POINTER + 0xC,
+            FACTION_TEMPLATE_POINTER = 0x999110,
+            FACTION_TEMPLATE_REC_COUNT = FACTION_TEMPLATE_POINTER + 0x4,
+            FACTION_TEMPLATE_FIELD_COUNT = FACTION_TEMPLATE_POINTER + 0x8,
+            FACTION_TEMPLATE_START_INDEX = FACTION_TEMPLATE_POINTER + 0xC,
+        }
 
-            HOSTILE_OFFSET_1 = 0x14,
-            HOSTILE_OFFSET_2 = 0x0C,
-            FRIENDLY_OFFSET_1 = 0x10,
-            FRIENDLY_OFFSET_2 = 0x0C,
+        public enum Lock
+        {
+            LOCK_POINTER = 0x999A48,
+            LOCK_REC_COUNT = LOCK_POINTER + 0x4,
+            LOCK_FIELD_COUNT = LOCK_POINTER + 0x8,
+            LOCK_START_INDEX = LOCK_POINTER + 0xC,
+        }
+
+        public enum WDB_GameObject
+        {
+            CACHE_GAMEOBJECT = 0x997F88,
         }
 
         /// <summary>

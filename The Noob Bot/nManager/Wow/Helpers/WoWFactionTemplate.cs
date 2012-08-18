@@ -20,7 +20,7 @@ namespace nManager.Wow.Helpers
 
         public static WoWFactionTemplate FromId(uint id)
         {
-            uint row = DBCReading.GetAddressByIndex((int)id, DBCReading.GetWoWClientDBByAddress((uint)Addresses.UnitRelation.FACTION_POINTER));
+            uint row = DBCReading.GetAddressByIndex((int)id, DBCReading.GetWoWClientDBByAddress((uint)Addresses.UnitRelation.FACTION_TEMPLATE_START_INDEX));
             if (row == 0)
             {
                 return null;
@@ -80,77 +80,7 @@ namespace nManager.Wow.Helpers
             uint num4 = (~(record.FactionFlags >> 12) & 2) | 1;
             return (Reaction)num4;
         }
-/*
-        public Reaction GetReactionTowards(WoWUnit unit)
-        {
-            WoWFactionTemplate factionTemplate = unit.FactionTemplate;
-            if (factionTemplate != null)
-            {
-                WoWPlayer player;
-                if ((unit.PlayerControlled && ((player = unit.ControllingPlayer) != null)) && player.IsMe)
-                {
-                    Reaction reaction;
-                    FactionStanding standing;
-                    if (((this.Record.FactionFlags & 0x1000) != 0) && player.ContestedPvPFlagged)
-                    {
-                        return Reaction.Hostile;
-                    }
-                    if (ObjectManager.Me.method_10(this.Record.FactionId, out reaction))
-                    {
-                        return reaction;
-                    }
-                    if (!unit.HasFlag(Enum10.flag_2) && ObjectManager.Me.GetFactionStanding(this.Faction, out standing))
-                    {
-                        return this.method_0(standing);
-                    }
-                }
-                return this.GetReactionTowards(factionTemplate);
-            }
-            return Reaction.Neutral;
-        }
 
-        private Reaction method_0(FactionStanding standing)
-        {
-            int totalReputation = standing.TotalReputation;
-            if (totalReputation >= 0xa410)
-            {
-                return Reaction.Exalted;
-            }
-            if (totalReputation >= 0x5208)
-            {
-                return Reaction.Revered;
-            }
-            if (totalReputation >= 0x2328)
-            {
-                return Reaction.Honored;
-            }
-            if (totalReputation >= 0xbb8)
-            {
-                return Reaction.Friendly;
-            }
-            if (totalReputation >= 0)
-            {
-                return Reaction.Neutral;
-            }
-            if (totalReputation >= -3000)
-            {
-                return Reaction.Unfriendly;
-            }
-            if (totalReputation >= -6000)
-            {
-                return Reaction.Hostile;
-            }
-            return Reaction.Hated;
-        }
-
-        public WoWFaction Faction
-        {
-            get
-            {
-                return WoWFaction.FromId(this.Record.FactionId);
-            }
-        }
-        */
         public uint Id
         {
             [CompilerGenerated]
