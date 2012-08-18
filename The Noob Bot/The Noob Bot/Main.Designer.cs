@@ -74,6 +74,7 @@ namespace The_Noob_Bot
             this.productSettingsB = new DevComponents.DotNetBar.ButtonX();
             this.gameInformationTimer = new System.Windows.Forms.Timer(this.components);
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
+            this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.metroShell1.SuspendLayout();
             this.metroTabPanel1.SuspendLayout();
             this.expandablePanel1.SuspendLayout();
@@ -88,7 +89,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.metroShell1.BackgroundStyle.Class = "";
             this.metroShell1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroShell1.CaptionVisible = true;
             this.metroShell1.Controls.Add(this.metroTabPanel1);
@@ -141,17 +141,14 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.metroTabPanel1.Style.Class = "";
             this.metroTabPanel1.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.metroTabPanel1.StyleMouseDown.Class = "";
             this.metroTabPanel1.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.metroTabPanel1.StyleMouseOver.Class = "";
             this.metroTabPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroTabPanel1.TabIndex = 1;
             // 
@@ -212,7 +209,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.targetHealthL.BackgroundStyle.Class = "";
             this.targetHealthL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.targetHealthL.Font = new System.Drawing.Font("Segoe UI Semibold", 7F, System.Drawing.FontStyle.Italic);
             this.targetHealthL.ForeColor = System.Drawing.Color.Black;
@@ -230,7 +226,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.healthL.BackgroundStyle.Class = "";
             this.healthL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.healthL.Font = new System.Drawing.Font("Segoe UI Semibold", 7F, System.Drawing.FontStyle.Italic);
             this.healthL.ForeColor = System.Drawing.Color.Black;
@@ -248,7 +243,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.targetName.BackgroundStyle.Class = "";
             this.targetName.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.targetName.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.targetName.ForeColor = System.Drawing.Color.Black;
@@ -265,7 +259,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.lastLogL.BackgroundStyle.Class = "";
             this.lastLogL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lastLogL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lastLogL.ForeColor = System.Drawing.Color.Black;
@@ -282,7 +275,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.labelX13.BackgroundStyle.Class = "";
             this.labelX13.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX13.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX13.ForeColor = System.Drawing.Color.Black;
@@ -299,7 +291,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.targetLevelL.BackgroundStyle.Class = "";
             this.targetLevelL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.targetLevelL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.targetLevelL.ForeColor = System.Drawing.Color.Black;
@@ -316,7 +307,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.labelX11.BackgroundStyle.Class = "";
             this.labelX11.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX11.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX11.ForeColor = System.Drawing.Color.Black;
@@ -333,7 +323,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.targetHealthB.BackgroundStyle.Class = "";
             this.targetHealthB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.targetHealthB.ForeColor = System.Drawing.Color.Black;
             this.targetHealthB.Location = new System.Drawing.Point(331, 64);
@@ -349,7 +338,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.farmsL.BackgroundStyle.Class = "";
             this.farmsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.farmsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.farmsL.ForeColor = System.Drawing.Color.Black;
@@ -366,7 +354,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.honorHrL.BackgroundStyle.Class = "";
             this.honorHrL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.honorHrL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.honorHrL.ForeColor = System.Drawing.Color.Black;
@@ -383,7 +370,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.lootL.BackgroundStyle.Class = "";
             this.lootL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.lootL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lootL.ForeColor = System.Drawing.Color.Black;
@@ -400,7 +386,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.deathsL.BackgroundStyle.Class = "";
             this.deathsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.deathsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.deathsL.ForeColor = System.Drawing.Color.Black;
@@ -417,7 +402,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.killsL.BackgroundStyle.Class = "";
             this.killsL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.killsL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.killsL.ForeColor = System.Drawing.Color.Black;
@@ -434,7 +418,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.xpHrL.BackgroundStyle.Class = "";
             this.xpHrL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.xpHrL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xpHrL.ForeColor = System.Drawing.Color.Black;
@@ -451,7 +434,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.levelL.BackgroundStyle.Class = "";
             this.levelL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.levelL.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.levelL.ForeColor = System.Drawing.Color.Black;
@@ -468,7 +450,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX3.ForeColor = System.Drawing.Color.Black;
@@ -485,7 +466,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.healthB.BackgroundStyle.Class = "";
             this.healthB.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.healthB.ForeColor = System.Drawing.Color.Black;
             this.healthB.Location = new System.Drawing.Point(48, 40);
@@ -509,17 +489,14 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.metroTabPanel2.Style.Class = "";
             this.metroTabPanel2.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.metroTabPanel2.StyleMouseDown.Class = "";
             this.metroTabPanel2.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.metroTabPanel2.StyleMouseOver.Class = "";
             this.metroTabPanel2.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroTabPanel2.TabIndex = 3;
             this.metroTabPanel2.Visible = false;
@@ -553,7 +530,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.accountInfoL.BackgroundStyle.Class = "";
             this.accountInfoL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.accountInfoL.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.accountInfoL.ForeColor = System.Drawing.Color.Black;
@@ -570,7 +546,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.remoteCb.BackgroundStyle.Class = "";
             this.remoteCb.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.remoteCb.ForeColor = System.Drawing.Color.Black;
             this.remoteCb.Location = new System.Drawing.Point(171, 7);
@@ -586,7 +561,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX1.ForeColor = System.Drawing.Color.Black;
@@ -607,17 +581,14 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.tLogging.Style.Class = "";
             this.tLogging.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.tLogging.StyleMouseDown.Class = "";
             this.tLogging.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.tLogging.StyleMouseOver.Class = "";
             this.tLogging.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tLogging.TabIndex = 2;
             this.tLogging.Visible = false;
@@ -658,7 +629,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.metroStatusBar1.BackgroundStyle.Class = "";
             this.metroStatusBar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroStatusBar1.ContainerControlProcessDialogKey = true;
             this.metroStatusBar1.Controls.Add(this.usageProcessL);
@@ -678,7 +648,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.usageProcessL.BackgroundStyle.Class = "";
             this.usageProcessL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.usageProcessL.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usageProcessL.ForeColor = System.Drawing.Color.Black;
@@ -696,7 +665,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.statusBarText.BackgroundStyle.Class = "";
             this.statusBarText.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.statusBarText.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.statusBarText.ForeColor = System.Drawing.Color.Black;
@@ -734,7 +702,6 @@ namespace The_Noob_Bot
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelX2.ForeColor = System.Drawing.Color.Black;
@@ -844,7 +811,6 @@ namespace The_Noob_Bot
             this.metroTabPanel2.ResumeLayout(false);
             this.expandablePanel2.ResumeLayout(false);
             this.metroStatusBar1.ResumeLayout(false);
-            this.labelsToolTip = new System.Windows.Forms.ToolTip(new System.ComponentModel.Container());
             this.ResumeLayout(false);
 
         }

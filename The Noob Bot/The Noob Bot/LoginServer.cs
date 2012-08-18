@@ -115,7 +115,6 @@ namespace The_Noob_Bot
                     MessageBox.Show(Translate.Get(Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                     MessageBox.Show(Translate.Get(Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
-
                 EndInformation();
             }
             catch (Exception e)
