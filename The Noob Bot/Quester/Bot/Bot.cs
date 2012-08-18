@@ -67,6 +67,9 @@ namespace Quester.Bot
 
                     if (Profile.Quests.Count <= 0)
                         return false;
+
+                    nManager.Wow.Helpers.Quest.ConsumeQuestsCompletedRequest();
+                    Logging.Write("received " + nManager.Wow.Helpers.Quest.FinishedQuestSet.Count + " quests.");
                 }
                 else
                 {
@@ -92,7 +95,7 @@ namespace Quester.Bot
                 //PathFinderDroidz.AddRangeListPointForPath(Profile.PointsPathFinderDroidz);
                 //PathFinderDroidz.AddRangeListPointForPath(Profile.Points);
 
-                int QuesterStatePriority = 6;
+                int QuesterStatePriority = 5;
 
                 // FSM
                 Fsm.States.Clear();
@@ -108,11 +111,10 @@ namespace Quester.Bot
                 Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 3 });
                 Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 2 });
                 Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 1 });
-
                 Fsm.AddState(new nManager.Wow.Bot.States.Idle { Priority = 0 });
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6); // Fsm.StartEngine(25);
+                Fsm.StartEngine(6);
 
                 return true;
             }
