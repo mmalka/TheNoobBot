@@ -100,14 +100,19 @@ namespace nManager.Wow.Bot.States
             MovementManager.StopMove();
             MovementManager.StopMove();
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
-            Fight.StartFight(_unit.Guid);
-            if (_unit.IsDead)
+            ulong UnkillableMob = Fight.StartFight(_unit.Guid);
+            if (!_unit.IsDead && UnkillableMob != 0)
+            {
+                Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
+                nManagerSetting.AddBlackList(UnkillableMob, 2 * 60 * 1000); // 2 minutes
+            }
+            else if (_unit.IsDead)
             {
                 Statistics.Kills++;
                 Thread.Sleep(Usefuls.Latency + 1000);
                 while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(50);
                 }
                 Fight.StopFight();
             }

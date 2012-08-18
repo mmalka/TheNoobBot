@@ -413,7 +413,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (point.DistanceTo(a.Position) < tempDistance)
+                    if (point.DistanceTo(a.Position) < tempDistance &&!nManagerSetting.IsBlackListed(a.Guid))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -436,7 +436,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance)
+                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -480,10 +480,14 @@ namespace nManager.Wow.ObjectManager
             {
                 var objectReturn = new WoWGameObject(0);
                 float tempDistance = 9999999.0f;
-                foreach (var a in listWoWGameObject.Where(a => a.Position.DistanceTo(point) < tempDistance))
+                //foreach (var a in listWoWGameObject.Where(a => a.Position.DistanceTo(point) < tempDistance))
+                foreach (WoWGameObject a in listWoWGameObject)
                 {
-                    objectReturn = a;
-                    tempDistance = a.Position.DistanceTo(point);
+                    if (a.Position.DistanceTo(point) < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    {
+                        objectReturn = a;
+                        tempDistance = a.Position.DistanceTo(point);
+                    }
                 }
                 return objectReturn;
             }
@@ -500,10 +504,14 @@ namespace nManager.Wow.ObjectManager
             {
                 var objectReturn = new WoWGameObject(0);
                 var tempDistance = 9999999.0f;
-                foreach (var a in listWoWGameObject.Where(a => a.GetDistance < tempDistance))
+                //foreach (var a in listWoWGameObject.Where(a => a.GetDistance < tempDistance))
+                foreach (WoWGameObject a in listWoWGameObject)
                 {
-                    objectReturn = a;
-                    tempDistance = a.GetDistance;
+                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    {
+                        objectReturn = a;
+                        tempDistance = a.GetDistance;
+                    }
                 }
                 return objectReturn;
             }
