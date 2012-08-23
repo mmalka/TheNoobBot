@@ -1,0 +1,1109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Language xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Translations>
+    <Translation>
+      <Text>none</Text>
+      <Id>none</Id>
+    </Translation>
+    <Translation>
+      <Text>Wird benutzt</Text>
+      <Id>In_progress</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte wählen Sie den Spielprozess und verbinden Sie mit dem Spiel.</Text>
+      <Id>Please_select_game_Process_and_connect_to_the_game</Id>
+    </Translation>
+    <Translation>
+      <Text>Stop</Text>
+      <Id>Stop</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte verbinden Sie mit dem Spiel</Text>
+      <Id>Please_connect_to_the_game</Id>
+    </Translation>
+    <Translation>
+      <Text>Das Spiel wird bereits benutzt, wollen Sie diesen Prozess benutzen</Text>
+      <Id>The_Game_is_already_used__do_you_wish_to_use_the_current_process</Id>
+    </Translation>
+    <Translation>
+      <Text>Verwende dieses Spiel</Text>
+      <Id>Use_this_Game</Id>
+    </Translation>
+    <Translation>
+      <Text>Wähle Spiel Prozess aus</Text>
+      <Id>Select_game_process</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte geben Sie Ihren Benutzername und Ihr Passwort ein</Text>
+      <Id>Please_enter_your_user_name_and_password</Id>
+    </Translation>
+    <Translation>
+      <Text>Fehler!</Text>
+      <Id>Error</Id>
+    </Translation>
+    <Translation>
+      <Text>Login - The Noob Bot version</Text>
+      <Id>Login___The_Noob_Bot_version</Id>
+    </Translation>
+    <Translation>
+      <Text>Serververbindung</Text>
+      <Id>Server_connection</Id>
+    </Translation>
+    <Translation>
+      <Text>In verwendung</Text>
+      <Id>In_use</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutzername</Text>
+      <Id>User_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Passwort</Text>
+      <Id>Password</Id>
+    </Translation>
+    <Translation>
+      <Text>Speichern</Text>
+      <Id>Save</Id>
+    </Translation>
+    <Translation>
+      <Text>Erstelle</Text>
+      <Id>Create</Id>
+    </Translation>
+    <Translation>
+      <Text>Start TNB</Text>
+      <Id>Launch_Tnb</Id>
+    </Translation>
+    <Translation>
+      <Text>Updaten</Text>
+      <Id>Refresh</Id>
+    </Translation>
+    <Translation>
+      <Text>Login</Text>
+      <Id>Login</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutzername oder Passwort fehlerhaft</Text>
+      <Id>User_name_or_Password_error</Id>
+    </Translation>
+    <Translation>
+      <Text>Falsches Passwort, bitte gehen Sie auf diese Adresse wenn Sie es vergessen haben</Text>
+      <Id>Incorrect_password__go_to_this_address_if_you_have_forget_your_password</Id>
+    </Translation>
+    <Translation>
+      <Text>Falscher Benutzername, bitte gehen Sie auf diese Adresse um einen Account zu erstellen und TNB zu kaufen</Text>
+      <Id>Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot</Id>
+    </Translation>
+    <Translation>
+      <Text>Login Fehler, versuchen Sie Ihren Anti-Virus zu deaktivieren. Gehen Sie auf die website wenn Sie Hilfe benötigen</Text>
+      <Id>Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help</Id>
+    </Translation>
+    <Translation>
+      <Text>Abonnement abgelaufen, erneuern Sie es um weiterhin die unlimitierte Version von TNB zu benutzen</Text>
+      <Id>Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here</Id>
+    </Translation>
+    <Translation>
+      <Text>Sie starten die Testversion, TNB wird sich automatisch in 20 Minuten schließen.</Text>
+      <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
+    </Translation>
+    <Translation>
+      <Text>Neues Update verfügbar</Text>
+      <Id>New_update</Id>
+    </Translation>
+    <Translation>
+      <Text>Wollen Sie jetzt Updaten</Text>
+      <Id>Do_you_want_to_update_now</Id>
+    </Translation>
+    <Translation>
+      <Text>Update</Text>
+      <Id>Update</Id>
+    </Translation>
+    <Translation>
+      <Text>Das Spiel hat eine Verdächtige Aktivität festgestellt, es wird empfohlen das Spiel und TNB zu schließen. Klicken Sie auf "Ja" um TNB zu schließen</Text>
+      <Id>The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb</Id>
+    </Translation>
+    <Translation>
+      <Text>Verdächtige Aktivität</Text>
+      <Id>Suspect_Activity</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot's Server scheinen Offline zu sein, versuchen Sie Ihren Anti-virus oder Ihre Firewall zu deaktivieren und probieren Sie den Vorgang nochmals. Tipp: Diese Version von TNB könnte von unseren Servern geblockt werden, da es bei dieser Verdächtige Spiel Aktivität festgestellt worden ist. Sie können auf unserer Website oder in unserem Forum überprüfen, ob eine neue Version verfügbar ist</Text>
+      <Id>TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat</Id>
+    </Translation>
+    <Translation>
+      <Text>Das Spiel ist Minimiert, TNB funktioniert nicht wenn Sie das Spiel minimiert lassen</Text>
+      <Id>The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window</Id>
+    </Translation>
+    <Translation>
+      <Text>Information</Text>
+      <Id>Information</Id>
+    </Translation>
+    <Translation>
+      <Text>Testversion</Text>
+      <Id>Trial_version</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutzername</Text>
+      <Id>UserName</Id>
+    </Translation>
+    <Translation>
+      <Text>Testversion, Zeit verbleibend</Text>
+      <Id>Trial_version__time_left</Id>
+    </Translation>
+    <Translation>
+      <Text>Abonnement Zeit verbleibend</Text>
+      <Id>Subscription_time_left</Id>
+    </Translation>
+    <Translation>
+      <Text>TNB online</Text>
+      <Id>Tnb_online</Id>
+    </Translation>
+    <Translation>
+      <Text>Start</Text>
+      <Id>Start</Id>
+    </Translation>
+    <Translation>
+      <Text>Level</Text>
+      <Id>Level</Id>
+    </Translation>
+    <Translation>
+      <Text>XP/std</Text>
+      <Id>XP_HR</Id>
+    </Translation>
+    <Translation>
+      <Text>Ehre/std</Text>
+      <Id>Honor_HR</Id>
+    </Translation>
+    <Translation>
+      <Text>Geplündert</Text>
+      <Id>Loots</Id>
+    </Translation>
+    <Translation>
+      <Text>Getötet</Text>
+      <Id>Kills</Id>
+    </Translation>
+    <Translation>
+      <Text>Tode</Text>
+      <Id>Deaths</Id>
+    </Translation>
+    <Translation>
+      <Text>Farms</Text>
+      <Id>Farms</Id>
+    </Translation>
+    <Translation>
+      <Text>std</Text>
+      <Id>hr</Id>
+    </Translation>
+    <Translation>
+      <Text>Spielinformationen</Text>
+      <Id>Game_Informations</Id>
+    </Translation>
+    <Translation>
+      <Text>Running time</Text>
+      <Id>Running_time</Id>
+    </Translation>
+    <Translation>
+      <Text>Ziel Name</Text>
+      <Id>Target_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Gesundheit</Text>
+      <Id>Health</Id>
+    </Translation>
+    <Translation>
+      <Text>Letzter log</Text>
+      <Id>Last_log</Id>
+    </Translation>
+    <Translation>
+      <Text>Maximier Fenster</Text>
+      <Id>Maximize_window</Id>
+    </Translation>
+    <Translation>
+      <Text>WEBSITE</Text>
+      <Id>WEBSITE</Id>
+    </Translation>
+    <Translation>
+      <Text>Dev Tools</Text>
+      <Id>Dev_Tools</Id>
+    </Translation>
+    <Translation>
+      <Text>Ziel Level</Text>
+      <Id>Target_Level</Id>
+    </Translation>
+    <Translation>
+      <Text>Ziel Gesundheit</Text>
+      <Id>Target_Health</Id>
+    </Translation>
+    <Translation>
+      <Text>Accountinformationen</Text>
+      <Id>Account_Informations</Id>
+    </Translation>
+    <Translation>
+      <Text>Information account</Text>
+      <Id>Information_account</Id>
+    </Translation>
+    <Translation>
+      <Text>Remote</Text>
+      <Id>Remote</Id>
+    </Translation>
+    <Translation>
+      <Text>Home</Text>
+      <Id>Home</Id>
+    </Translation>
+    <Translation>
+      <Text>Log</Text>
+      <Id>Log</Id>
+    </Translation>
+    <Translation>
+      <Text>Mein TNB Account</Text>
+      <Id>My_tnb_Account</Id>
+    </Translation>
+    <Translation>
+      <Text>Spieler Name</Text>
+      <Id>Player_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Produkt</Text>
+      <Id>Product</Id>
+    </Translation>
+    <Translation>
+      <Text>Anti Afk</Text>
+      <Id>Anti_Afk</Id>
+    </Translation>
+    <Translation>
+      <Text>Minimieren</Text>
+      <Id>Minimise</Id>
+    </Translation>
+    <Translation>
+      <Text>Verhüttung hier</Text>
+      <Id>Smelting_here</Id>
+    </Translation>
+    <Translation>
+      <Text>Verhüttung Zone nicht gefunden in</Text>
+      <Id>Smelting_zone_not_found_in</Id>
+    </Translation>
+    <Translation>
+      <Text>Keine Einstellungen für dieses Produkt vorhanden</Text>
+      <Id>No_setting_for_this_product</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte fügen Sie Gegenstände zum Sondieren im Reiter 'Allgemeine Einstellungen' &gt; 'Plündern' &gt; 'Sondierliste' hinzu.</Text>
+      <Id>Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List</Id>
+    </Translation>
+    <Translation>
+      <Text>Please add items to mil in 'General Settings' &gt; 'Looting' &gt; 'Milling List'</Text>
+      <Id>Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List</Id>
+    </Translation>
+    <Translation>
+      <Text>Konvertierung erfolgreich</Text>
+      <Id>Convertion_finish</Id>
+    </Translation>
+    <Translation>
+      <Text>Konvertiere Profile</Text>
+      <Id>Convert_Profiles</Id>
+    </Translation>
+    <Translation>
+      <Text>zu</Text>
+      <Id>to</Id>
+    </Translation>
+    <Translation>
+      <Text>profile</Text>
+      <Id>profiles</Id>
+    </Translation>
+    <Translation>
+      <Text>Profile Konvertieren</Text>
+      <Id>Profiles_Converters</Id>
+    </Translation>
+    <Translation>
+      <Text>Weg aufnehmen</Text>
+      <Id>Record_Way</Id>
+    </Translation>
+    <Translation>
+      <Text>Weg aufnehmen stoppen</Text>
+      <Id>Stop_Record_Way</Id>
+    </Translation>
+    <Translation>
+      <Text>Name Leer</Text>
+      <Id>Name_Empty</Id>
+    </Translation>
+    <Translation>
+      <Text>Nichts gefunden</Text>
+      <Id>No_found</Id>
+    </Translation>
+    <Translation>
+      <Text>Abstands Aufnahme</Text>
+      <Id>Separation_distance_record</Id>
+    </Translation>
+    <Translation>
+      <Text>Del</Text>
+      <Id>Del</Id>
+    </Translation>
+    <Translation>
+      <Text>Füge diese Position zur Blacklist hinzu</Text>
+      <Id>Add_this_position_to_Black_list_Radius</Id>
+    </Translation>
+    <Translation>
+      <Text>Füge Ziel zur NPC liste hinzu</Text>
+      <Id>Add_Target_to_Npc_list</Id>
+    </Translation>
+    <Translation>
+      <Text>Lade</Text>
+      <Id>Load</Id>
+    </Translation>
+    <Translation>
+      <Text>Name</Text>
+      <Id>Name</Id>
+    </Translation>
+    <Translation>
+      <Text>NPC Name zur Liste hinzufügen</Text>
+      <Id>Add_by_Name_to_Npc_list</Id>
+    </Translation>
+    <Translation>
+      <Text>Liste Zonen</Text>
+      <Id>List_Zones</Id>
+    </Translation>
+    <Translation>
+      <Text>Zone hinzufügen</Text>
+      <Id>Add_Zone</Id>
+    </Translation>
+    <Translation>
+      <Text>Zone löschen</Text>
+      <Id>Del_Zone</Id>
+    </Translation>
+    <Translation>
+      <Text>Zone Name</Text>
+      <Id>Zone_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Spieler LVL</Text>
+      <Id>Player_Lvl</Id>
+    </Translation>
+    <Translation>
+      <Text>Min</Text>
+      <Id>Min</Id>
+    </Translation>
+    <Translation>
+      <Text>Max</Text>
+      <Id>Max</Id>
+    </Translation>
+    <Translation>
+      <Text>Ziel LVL</Text>
+      <Id>Target_Lvl</Id>
+    </Translation>
+    <Translation>
+      <Text>ZIel hinzufügen</Text>
+      <Id>Add_Target</Id>
+    </Translation>
+    <Translation>
+      <Text>punkte</Text>
+      <Id>points</Id>
+    </Translation>
+    <Translation>
+      <Text>Leeren</Text>
+      <Id>Clear</Id>
+    </Translation>
+    <Translation>
+      <Text>Ids of Targets</Text>
+      <Id>Target_Ids</Id>
+    </Translation>
+    <Translation>
+      <Text>nodes</Text>
+      <Id>Nodes</Id>
+    </Translation>
+    <Translation>
+      <Text>Lade Profil</Text>
+      <Id>Load_Profile</Id>
+    </Translation>
+    <Translation>
+      <Text>Profil</Text>
+      <Id>Profile</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutze Angelköder</Text>
+      <Id>Use_Lure</Id>
+    </Translation>
+    <Translation>
+      <Text>Fischschwarm</Text>
+      <Id>Fish_School</Id>
+    </Translation>
+    <Translation>
+      <Text>Ködername</Text>
+      <Id>Lure_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Angel benutzen</Text>
+      <Id>Fishing_Pole_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Waffe Name</Text>
+      <Id>Weapon_Name</Id>
+    </Translation>
+    <Translation>
+      <Text>Wenn nichts angegeben ist, werden die Standarditems benutzt</Text>
+      <Id>If_special__If_empty__default_items_is_used</Id>
+    </Translation>
+    <Translation>
+      <Text>Profil Erstellen</Text>
+      <Id>Profile_Creator</Id>
+    </Translation>
+    <Translation>
+      <Text>Fischschwarm präzision</Text>
+      <Id>Precision_Mode__fish_school</Id>
+    </Translation>
+    <Translation>
+      <Text>Fisherbot Einstellungen</Text>
+      <Id>Settings_Fisherbot</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte wählen Sie ein Profil aus oder deaktivieren Sie die Fischschwarm Option</Text>
+      <Id>Please_select_an_profile_or_disable_School_Fish_option</Id>
+    </Translation>
+    <Translation>
+      <Text>Zauber 'Untersuchung' nicht gefunden, TNB wird gestoppt.</Text>
+      <Id>Survey_spell_not_found__stopping_tnb</Id>
+    </Translation>
+    <Translation>
+      <Text>Löse jedes</Text>
+      <Id>Solving_Every</Id>
+    </Translation>
+    <Translation>
+      <Text>Maximale Versuche bei der Ausgrabungsstätte</Text>
+      <Id>Max_Try_By_Digsite</Id>
+    </Translation>
+    <Translation>
+      <Text>min</Text>
+      <Id>min</Id>
+    </Translation>
+    <Translation>
+      <Text>Ausgrabungsstätte Liste</Text>
+      <Id>DigSites_list_Management</Id>
+    </Translation>
+    <Translation>
+      <Text>Normal</Text>
+      <Id>Normal</Id>
+    </Translation>
+    <Translation>
+      <Text>Debug</Text>
+      <Id>Debug</Id>
+    </Translation>
+    <Translation>
+      <Text>Navigator</Text>
+      <Id>Navigator</Id>
+    </Translation>
+    <Translation>
+      <Text>Kampf</Text>
+      <Id>Fight</Id>
+    </Translation>
+    <Translation>
+      <Text>Bekomme jede Information von allen Objekten</Text>
+      <Id>Get_informations_of_all_ingame_objects</Id>
+    </Translation>
+    <Translation>
+      <Text>Bekomme Zielinformationen</Text>
+      <Id>Get_Taget_informations</Id>
+    </Translation>
+    <Translation>
+      <Text>Bekomme meine Position</Text>
+      <Id>Get_My_Position</Id>
+    </Translation>
+    <Translation>
+      <Text>NPC typ Liste</Text>
+      <Id>Npc_type_list</Id>
+    </Translation>
+    <Translation>
+      <Text>Bekomme Informationen durch Namen</Text>
+      <Id>Get_infomations_by_name</Id>
+    </Translation>
+    <Translation>
+      <Text>Starte Lua script</Text>
+      <Id>Launch_Lua_script</Id>
+    </Translation>
+    <Translation>
+      <Text>Entwickler Tools</Text>
+      <Id>Developer_Tools</Id>
+    </Translation>
+    <Translation>
+      <Text>Weitere Optionen</Text>
+      <Id>Other_options</Id>
+    </Translation>
+    <Translation>
+      <Text>Npc/Briefkasten Suchradius</Text>
+      <Id>Npc_Mailbox_Search_Radius</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutze Wegfinder</Text>
+      <Id>Use_Paths_Finder</Id>
+    </Translation>
+    <Translation>
+      <Text>Stop game / TNB / Security</Text>
+      <Id>Stop_game___tnb___Security</Id>
+    </Translation>
+    <Translation>
+      <Text>Sound bei flüstern</Text>
+      <Id>Song_if_New_Whisper</Id>
+    </Translation>
+    <Translation>
+      <Text>Security</Text>
+      <Id>Security</Id>
+    </Translation>
+    <Translation>
+      <Text>NEIN</Text>
+      <Id>NO</Id>
+    </Translation>
+    <Translation>
+      <Text>JA</Text>
+      <Id>YES</Id>
+    </Translation>
+    <Translation>
+      <Text>Schließe Spiel</Text>
+      <Id>Close_game</Id>
+    </Translation>
+    <Translation>
+      <Text>Schreibe flüster in Log file</Text>
+      <Id>Record_whisper_in_Log_file</Id>
+    </Translation>
+    <Translation>
+      <Text>Blockaden</Text>
+      <Id>Blockages</Id>
+    </Translation>
+    <Translation>
+      <Text>Wenn Spieler Teleportiert</Text>
+      <Id>If_Player_Teleported</Id>
+    </Translation>
+    <Translation>
+      <Text>Pausiere TNB wenn Spieler in der Nähe</Text>
+      <Id>Pause_tnb_if_Nearby_Player</Id>
+    </Translation>
+    <Translation>
+      <Text>Wenn 4000 Ehren Punkte erreicht</Text>
+      <Id>If_reached______Honor_Points</Id>
+    </Translation>
+    <Translation>
+      <Text>Wenn flüster länger oder gleich lang wie</Text>
+      <Id>If_Whisper_bigger_or_equal_to</Id>
+    </Translation>
+    <Translation>
+      <Text>Wenn Taschen voll</Text>
+      <Id>If_full_Bag</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail (Sende Gegenstände zu Twinks)</Text>
+      <Id>Mail__Send_Items_to_alts</Id>
+    </Translation>
+    <Translation>
+      <Text>Empfänger</Text>
+      <Id>Mail_Recipient</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Liste (ein Gegenstand pro Zeile)</Text>
+      <Id>Force_Mail_List__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Violette Gegenstände</Text>
+      <Id>Mail_Purple_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Blaue Gegenstände</Text>
+      <Id>Mail_Blue_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Grüne Gegenstände</Text>
+      <Id>Mail_Green_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Weiße Gegenstände</Text>
+      <Id>Mail_White_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Mail Graue Gegenstände</Text>
+      <Id>Mail_Gray_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Betreff</Text>
+      <Id>Subject</Id>
+    </Translation>
+    <Translation>
+      <Text>benutze Mail</Text>
+      <Id>Use_Mail</Id>
+    </Translation>
+    <Translation>
+      <Text>'Sende nicht' Liste(ein Gegenstand pro Zeile)</Text>
+      <Id>Do_not_Mail_List__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Händler (Verkaufen der Kaufen)</Text>
+      <Id>Vendor__Selling_or_Buying</Id>
+    </Translation>
+    <Translation>
+      <Text>Zwinge zu Verkaufen (ein Gegenstand pro Zeile)</Text>
+      <Id>Force_Sell_List__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufe Violette Gegenstände</Text>
+      <Id>Sell_Purple_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufe Blaue Gegenstände</Text>
+      <Id>Sell_Blue_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufe Grüne Gegenstände</Text>
+      <Id>Sell_Green_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufe Weiße Gegenstände</Text>
+      <Id>Sell_White_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufe Graue Gegenstände</Text>
+      <Id>Sell_Gray_items</Id>
+    </Translation>
+    <Translation>
+      <Text>Verkaufen</Text>
+      <Id>Selling</Id>
+    </Translation>
+    <Translation>
+      <Text>Reparatur</Text>
+      <Id>Repair</Id>
+    </Translation>
+    <Translation>
+      <Text>Anzahl Essen</Text>
+      <Id>Food_Amount</Id>
+    </Translation>
+    <Translation>
+      <Text>Anzahl Trinken</Text>
+      <Id>Drink_Amount</Id>
+    </Translation>
+    <Translation>
+      <Text>'Verkaufe nicht' Liste (ein Gegenstand pro Zeile)</Text>
+      <Id>Do_not_Sell_List__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Relogger</Text>
+      <Id>Relogger</Id>
+    </Translation>
+    <Translation>
+      <Text>BattleNet Account</Text>
+      <Id>BattleNet_Account</Id>
+    </Translation>
+    <Translation>
+      <Text>Account Passwort</Text>
+      <Id>Account_Password</Id>
+    </Translation>
+    <Translation>
+      <Text>Account Email</Text>
+      <Id>Account_Email</Id>
+    </Translation>
+    <Translation>
+      <Text>Plünder &amp;&amp; Farm optionen</Text>
+      <Id>Looting____Farming_options</Id>
+    </Translation>
+    <Translation>
+      <Text>Sondieren nur in Stadt</Text>
+      <Id>Prospecting_only_in_town</Id>
+    </Translation>
+    <Translation>
+      <Text>Sondieren jede (Minuten)</Text>
+      <Id>Prospecting_Every__in_minute</Id>
+    </Translation>
+    <Translation>
+      <Text>Sondieren</Text>
+      <Id>Prospecting</Id>
+    </Translation>
+    <Translation>
+      <Text>Sondierliste (ein Gegenstand pro Zeile)</Text>
+      <Id>Prospecting_list__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling only in town</Text>
+      <Id>Milling_only_in_town</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling Every (in minute)</Text>
+      <Id>Milling_Every__in_minute</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling</Text>
+      <Id>Milling</Id>
+    </Translation>
+    <Translation>
+      <Text>Milling list (one item by line)</Text>
+      <Id>Milling_list__one_item_by_line</Id>
+    </Translation>
+    <Translation>
+      <Text>Verhüttung</Text>
+      <Id>Smelting</Id>
+    </Translation>
+    <Translation>
+      <Text>Nicht Ernten</Text>
+      <Id>Don_t_harvest</Id>
+    </Translation>
+    <Translation>
+      <Text>Ernten während langen Bewegungen</Text>
+      <Id>Harvest_During_Long_Move</Id>
+    </Translation>
+    <Translation>
+      <Text>Ninja</Text>
+      <Id>Ninja</Id>
+    </Translation>
+    <Translation>
+      <Text>Suchradius</Text>
+      <Id>Search_Radius</Id>
+    </Translation>
+    <Translation>
+      <Text>Max Einheiten in Nähe</Text>
+      <Id>Max_Units_Near</Id>
+    </Translation>
+    <Translation>
+      <Text>Ernte Kräuter</Text>
+      <Id>Harvest_Herbs</Id>
+    </Translation>
+    <Translation>
+      <Text>Ernte Mineralien</Text>
+      <Id>Harvest_Minerals</Id>
+    </Translation>
+    <Translation>
+      <Text>Kürschner Monster</Text>
+      <Id>Skin_Mobs</Id>
+    </Translation>
+    <Translation>
+      <Text>Plünder Kisten</Text>
+      <Id>Loot_Chests</Id>
+    </Translation>
+    <Translation>
+      <Text>Spielerradius vermeide Ernten</Text>
+      <Id>Harvest_Avoid_Players_Radius</Id>
+    </Translation>
+    <Translation>
+      <Text>Plündere Monster</Text>
+      <Id>Loot_Mobs</Id>
+    </Translation>
+    <Translation>
+      <Text>Essen / Trinken &amp;&amp; Prozent zum benutzen</Text>
+      <Id>Food___Drink____percentage_to_be_used</Id>
+    </Translation>
+    <Translation>
+      <Text>on</Text>
+      <Id>on</Id>
+    </Translation>
+    <Translation>
+      <Text>Trinken</Text>
+      <Id>Drink</Id>
+    </Translation>
+    <Translation>
+      <Text>Essen</Text>
+      <Id>Food</Id>
+    </Translation>
+    <Translation>
+      <Text>Reittier Optionen</Text>
+      <Id>Mount_options</Id>
+    </Translation>
+    <Translation>
+      <Text>Aquatic</Text>
+      <Id>Aquatic</Id>
+    </Translation>
+    <Translation>
+      <Text>Ignoriere Kämpfe während auf Bodenreittier</Text>
+      <Id>Ignore_Fight_if_in_Gound_Mount</Id>
+    </Translation>
+    <Translation>
+      <Text>Reittier Distanz</Text>
+      <Id>Mount_Distance</Id>
+    </Translation>
+    <Translation>
+      <Text>Flügreittier</Text>
+      <Id>Flying</Id>
+    </Translation>
+    <Translation>
+      <Text>Bodenreittier</Text>
+      <Id>Ground</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutze Bodenreittier</Text>
+      <Id>Use_Ground_Mount</Id>
+    </Translation>
+    <Translation>
+      <Text>Klasse / Eigene Zauber Eigentschaften</Text>
+      <Id>Class___Custom_spell_sequence_Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Benutze Geistheiler</Text>
+      <Id>Use_Spirit_Healer</Id>
+    </Translation>
+    <Translation>
+      <Text>Lehre neue Zauber</Text>
+      <Id>Train_New_Spells</Id>
+    </Translation>
+    <Translation>
+      <Text>Lehre neue Skills</Text>
+      <Id>Train_New_Skills</Id>
+    </Translation>
+    <Translation>
+      <Text>Vermeide Kämpfe</Text>
+      <Id>Don_t_start_fighting</Id>
+    </Translation>
+    <Translation>
+      <Text>Attackiere Einheiten, die Im Kampf sind</Text>
+      <Id>Can_attack_units_already_in_fight</Id>
+    </Translation>
+    <Translation>
+      <Text>Talente vergeben</Text>
+      <Id>Assign_Talents</Id>
+    </Translation>
+    <Translation>
+      <Text>Custom Class</Text>
+      <Id>Custom_Class</Id>
+    </Translation>
+    <Translation>
+      <Text>Schließen ohne speichern</Text>
+      <Id>Close_without_save</Id>
+    </Translation>
+    <Translation>
+      <Text>Einstellungen zurücksetzen</Text>
+      <Id>Reset_Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Speichern und verlassen</Text>
+      <Id>Save_and_Close</Id>
+    </Translation>
+    <Translation>
+      <Text>Allgemeine Einstellungen</Text>
+      <Id>General_Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Wollen Sie diese Einstellungen speichern</Text>
+      <Id>Do_you_want_save_this_setting</Id>
+    </Translation>
+    <Translation>
+      <Text>erforderlich</Text>
+      <Id>Requis</Id>
+    </Translation>
+    <Translation>
+      <Text>Visual C++ 2010 redistributable X86 package wird für TNB benötigt. Es ist auf Ihrem System nicht installiert, wollen Sie es jetzt installieren? (Wenn es auf Ihrem System nicht installiert ist, wird TNB nicht funktionieren)</Text>
+      <Id>Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly</Id>
+    </Translation>
+    <Translation>
+      <Text>Neue Nachricht</Text>
+      <Id>New_whisper</Id>
+    </Translation>
+    <Translation>
+      <Text>Stop TNB wenn</Text>
+      <Id>Stop_tnb_if</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte Konfigurieren Sie ein Flugreittier in Allgemeine Einstellungen</Text>
+      <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
+    </Translation>
+	<Translation>
+      <Text>This mount does not exist</Text>
+      <Id>This_mount_does_not_exist</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte öffnen Sie die .exe im Installationsverzeichnis des Spiels</Text>
+      <Id>Please_select_exe_in_the_install_folder_of_the_game</Id>
+    </Translation>
+    <Translation>
+      <Text>Dieses Programm ist für das Spiel</Text>
+      <Id>This_Programme_is_for_The_Game</Id>
+    </Translation>
+    <Translation>
+      <Text>Please_change_your_game_version_or_change_this_programme_version</Text>
+      <Id>Please_change_your_game_version_or_change_this_programme_version</Id>
+    </Translation>
+    <Translation>
+      <Text>Verdächtige Aktivität von dem Spiel, welche noch nicht verifiziert wurde. Spiel und TNB wird beendet</Text>
+      <Id>Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb</Id>
+    </Translation>
+    <Translation>
+      <Text>Klicken SIe auf "Ja" um TNB zu schließen</Text>
+      <Id>Click_on__Yes__to_close_tnb</Id>
+    </Translation>
+    <Translation>
+      <Text>Produkt Einstellungen</Text>
+      <Id>Product_Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Wege Rückwarts Folgen</Text>
+      <Id>Pathing_Reverse_Direction</Id>
+    </Translation>
+    <Translation>
+      <Text>Einstellungen</Text>
+      <Id>Settings</Id>
+    </Translation>
+    <Translation>
+      <Text>Bitte wählen Sie ein Profil aus</Text>
+      <Id>Please_select_an_profile</Id>
+    </Translation>
+    <Translation>
+      <Text>Datei nicht gefunden</Text>
+      <Id>File_not_found</Id>
+    </Translation>
+    <Translation>
+      <Text>erfolg</Text>
+      <Id>success</Id>
+    </Translation>
+    <Translation>
+      <Text>fehler</Text>
+      <Id>errors</Id>
+    </Translation>
+    <Translation>
+      <Text>Npc Fraktionsliste</Text>
+      <Id>Npc_faction_list</Id>
+    </Translation>
+    <Translation>
+      <Text>Übersetzungs Werkzeug</Text>
+      <Id>Translate_Tools</Id>
+    </Translation>
+    <Translation>
+      <Text>Nachricht zu</Text>
+      <Id>Whisper_Egal_at</Id>
+    </Translation>
+    <Translation>
+      <Text>TNB gestartet seit</Text>
+      <Id>tnb_started_since</Id>
+    </Translation>
+    <Translation>
+      <Text>Dein Charakter ist nun Level</Text>
+      <Id>Your_player_is_now_level</Id>
+    </Translation>
+    <Translation>
+      <Text>Stufenaufstieg</Text>
+      <Id>level_upper</Id>
+    </Translation>
+    <Translation>
+      <Text>Charakter Teleportiert</Text>
+      <Id>Player_Teleported</Id>
+    </Translation>
+    <Translation>
+      <Text>4000 Ehrenpunkte erreicht</Text>
+      <Id>Reached_4000_Honor_Points</Id>
+    </Translation>
+    <Translation>
+      <Text>Taschen sind voll</Text>
+      <Id>Bag_is_full</Id>
+    </Translation>
+    <Translation>
+      <Text>Nach</Text>
+      <Id>After</Id>
+    </Translation>
+    <Translation>
+      <Text>Add</Text>
+      <Id>Add</Id>
+    </Translation>
+    <Translation>
+      <Text>Starte C# script</Text>
+      <Id>Launch_C__script</Id>
+    </Translation>
+    <Translation>
+      <Text>Erstelle Element</Text>
+      <Id>Auto_Make_Elemental</Id>
+    </Translation>
+    <Translation>
+      <Text>Einheitenliste</Text>
+      <Id>Nodes_List_Manager</Id>
+    </Translation>
+    <Translation>
+      <Text>(Erz)</Text>
+      <Id>Smelting_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Erz)</Text>
+      <Id>Prospecting_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(WowRobot/Pirox/HonorBuddy und mehr)</Text>
+      <Id>Profiles_Converters_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(XP, Kürschnern, Ruf and Gegenstände)</Text>
+      <Id>Grinder_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Bergbau und Kräuterkunde)</Text>
+      <Id>Gatherer_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Fisherbot_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Archaeologist_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Battlegrounder_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(XP while questing)</Text>
+      <Id>Quester_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>Durch NPC Name</Text>
+      <Id>By_npc_name</Id>
+    </Translation>
+    <Translation>
+      <Text>Objekttyp</Text>
+      <Id>Object_type</Id>
+    </Translation>
+    <Translation>
+      <Text>Kreaturtyp</Text>
+      <Id>Creature_type</Id>
+    </Translation>
+    <Translation>
+      <Text>Tracker</Text>
+      <Id>Tracker</Id>
+    </Translation>
+    <Translation>
+      <Text />
+      <Id>Tracker_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>Mit</Text>
+      <Id>With</Id>
+    </Translation>
+    <Translation>
+      <Text>Starte Spiel</Text>
+      <Id>Launch_Game</Id>
+    </Translation>
+    <Translation>
+      <Text>Battlegrounder Settings</Text>
+      <Id>Settings_Battlegrounder</Id>
+    </Translation>
+    <Translation>
+      <Text>WarsongGulch</Text>
+      <Id>WarsongGulch</Id>
+    </Translation>
+    <Translation>
+      <Text>Arathi Basin</Text>
+      <Id>ArathiBasin</Id>
+    </Translation>
+    <Translation>
+      <Text>Alterac Valley</Text>
+      <Id>AlteracValley</Id>
+    </Translation>
+    <Translation>
+      <Text>Eye of the Storm</Text>
+      <Id>EyeoftheStorm</Id>
+    </Translation>
+    <Translation>
+      <Text>Strand of the Ancients</Text>
+      <Id>StrandoftheAncients</Id>
+    </Translation>
+    <Translation>
+      <Text>Isle of Conquest</Text>
+      <Id>IsleofConquest</Id>
+    </Translation>
+    <Translation>
+      <Text>Battle for Gilneas</Text>
+      <Id>BattleforGilneas</Id>
+    </Translation>
+    <Translation>
+      <Text>Twin Peaks</Text>
+      <Id>TwinPeaks</Id>
+    </Translation>
+    <Translation>
+      <Text>Random Battleground</Text>
+      <Id>RandomBattleground</Id>
+    </Translation>
+  </Translations>
+</Language>
