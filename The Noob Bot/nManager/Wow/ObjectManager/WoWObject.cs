@@ -59,7 +59,7 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     if (BaseAddress > 0)
-                        return GetDescriptor<UInt64>(Descriptors.ObjectFields.OBJECT_FIELD_GUID);
+                        return GetDescriptor<UInt64>(Descriptors.ObjectFields.guid);
                     return 0;
                 }
                 catch (Exception e)
@@ -74,7 +74,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return (WoWObjectType)Memory.WowMemory.Memory.ReadInt(BaseAddress + 0x14); }
+                try { return (WoWObjectType)Memory.WowMemory.Memory.ReadInt(BaseAddress + 0x10); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Type: " + e);
@@ -86,7 +86,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.ObjectFields.OBJECT_FIELD_ENTRY); }
+                try { return GetDescriptor<int>(Descriptors.ObjectFields.entryID); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Entry: " + e);
@@ -98,7 +98,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<float>(Descriptors.ObjectFields.OBJECT_FIELD_SCALE_X); }
+                try { return GetDescriptor<float>(Descriptors.ObjectFields.scale); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Scale: " + e);

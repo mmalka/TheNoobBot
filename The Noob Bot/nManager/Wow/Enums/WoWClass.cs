@@ -13,5 +13,6 @@
         Mage = 8,
         Warlock = 9,
         Druid = 11,
+        Monk = 10,
     }
 }

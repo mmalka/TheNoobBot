@@ -26,7 +26,7 @@ public class Main : IProduct
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FisherbotPoolName))
                 FisherbotSetting.CurrentSetting.FisherbotPoolName = Fishing.FishingPolesName();
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.weaponName))
-                FisherbotSetting.CurrentSetting.weaponName = ItemsManager.GetNameById(ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.PLAYER_VISIBLE_ITEM_16_ENTRYID));
+                FisherbotSetting.CurrentSetting.weaponName = ItemsManager.GetNameById(ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2));
 
             Logging.Status = "Initialize Fisherbot Complete";
             Logging.Write("Initialize Fisherbot Complete");

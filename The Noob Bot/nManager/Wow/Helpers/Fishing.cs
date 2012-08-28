@@ -217,7 +217,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var idEquiped = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.PLAYER_VISIBLE_ITEM_16_ENTRYID);
+                var idEquiped = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
                 if (fishingPoleName != string.Empty)
                     if (ItemsManager.GetNameById(idEquiped) == fishingPoleName)
                         return true;

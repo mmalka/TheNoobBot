@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.PLAYER_SKILL_LINEID_0 * Descriptors.multiplicator);
+                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator); // TODO Check for MoP
                 uint v2 = 0;
                 uint id = 0;
                 do
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                     ++id;
                     v2 += 2;
                 }
-                while (v2 < 0x898);
+                while (v2 < 0x1074);
 
                 return id;
             }
@@ -44,8 +44,12 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.PLAYER_SKILL_RANK_0 * Descriptors.multiplicator);
-                    return Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD);
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);// TODO: Check for MoP
+                    var result = Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD + 0x200);
+                    var t = CGUnit_C__GetFacing.GetFacing(
+                        ObjectManager.ObjectManager.GetNearestWoWGameObject(
+                            ObjectManager.ObjectManager.GetObjectWoWGameObject()).GetBaseAddress);
+                    return result;
                 }
                 return 0;
             }
@@ -64,7 +68,7 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.PLAYER_SKILL_MAX_RANK_0 * Descriptors.multiplicator);
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator); // TODO Check for MoP
                     return Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD);
                 }
                 return 0;

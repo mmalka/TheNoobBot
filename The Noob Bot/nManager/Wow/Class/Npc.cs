@@ -95,6 +95,7 @@ namespace nManager.Wow.Class
             ArchaeologyTrainers,
             RidingTrainer,
             Smelting,
+            MonkTrainer,
         }
     }
 }

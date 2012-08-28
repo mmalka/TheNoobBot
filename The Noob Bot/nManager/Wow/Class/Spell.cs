@@ -1,6 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
@@ -29,6 +33,12 @@ namespace nManager.Wow.Class
 
         #region Constructors
 
+        static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
+
+        static DBC<DBCStruct.SpellMiscRec> DBCSpellMisc = new DBC<DBCStruct.SpellMiscRec>((int)Addresses.DBC.SpellMisc);
+        static DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes = new DBC<DBCStruct.SpellCastTimesRec>((int)Addresses.DBC.SpellCastTimes);
+        static DBC<DBCStruct.SpellRangeRec> DBCSpellRange = new DBC<DBCStruct.SpellRangeRec>((int)Addresses.DBC.SpellRange);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.
         /// </summary>
@@ -40,23 +50,18 @@ namespace nManager.Wow.Class
                 try
                 {
                     Id = spellId;
+                    
+                    var spellRec = DBCSpell.GetRow((int)Id);
 
-                    var dbclient = DBCReading.GetWoWClientDBByAddress((uint)Addresses.DBC.spell);
-                    var baseAdressSpell = DBCReading.GetAddressByIndex((int)spellId, dbclient);
-
-                    if (baseAdressSpell > 0)
+                    if (spellRec.SpellId >= 0)
                     {
-                        if (spellId == Memory.WowMemory.Memory.ReadUInt(baseAdressSpell))
+                        if (spellId == spellRec.SpellId)
                         {
-                            var castTimeIndex = Memory.WowMemory.Memory.ReadUInt(baseAdressSpell + 0x30);
-                            var dbclientCastTime =
-                                DBCReading.GetWoWClientDBByAddress((uint)Addresses.DBC.SpellCastTimes);
-                            var baseCastTime = DBCReading.GetAddressByIndex((int)castTimeIndex,
-                                                                                    dbclientCastTime);
+                            var castTimeRec = DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
                             try
                             {
 
-                                CastTime = Convert.ToSingle(Memory.WowMemory.Memory.ReadInt(baseCastTime + 0x4)) /
+                                CastTime = Convert.ToSingle(castTimeRec.CastTime) /
                                            1000;
                             }
                             catch
@@ -64,15 +69,12 @@ namespace nManager.Wow.Class
                                 CastTime = 0;
                             }
 
-                            var rangeIndex = Memory.WowMemory.Memory.ReadUInt(baseAdressSpell + 0x3C);
-                            var dbclientRange =
-                                DBCReading.GetWoWClientDBByAddress((uint)Addresses.DBC.SpellRange);
-                            var baseRange = DBCReading.GetAddressByIndex((int)rangeIndex, dbclientRange);
+                            var range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
 
                             try
                             {
-                                var tMaxRange = Memory.WowMemory.Memory.ReadFloat(baseRange + 0x10);
-                                MaxRange = Memory.WowMemory.Memory.ReadFloat(baseRange + 0xC);
+                                var tMaxRange = range.RangeMax[0];
+                                MaxRange = range.RangeMax[1];
                                 if (tMaxRange > MaxRange)
                                     MaxRange = tMaxRange;
                             }
@@ -82,8 +84,8 @@ namespace nManager.Wow.Class
                             }
                             try
                             {
-                                var tMinRange = Memory.WowMemory.Memory.ReadFloat(baseRange + 0x8);
-                                MinRange = Memory.WowMemory.Memory.ReadFloat(baseRange + 0x4);
+                                var tMinRange = range.RangeMin[0];
+                                MinRange = range.RangeMin[0];
                                 if (tMinRange > MinRange)
                                     MinRange = tMinRange;
                             }
@@ -94,10 +96,7 @@ namespace nManager.Wow.Class
                             Name = SpellManager.SpellListManager.SpellNameById(spellId);
                             try
                             {
-                                NameInGame =
-                                    Memory.WowMemory.Memory.ReadUTF8String(
-                                        Memory.WowMemory.Memory.ReadUInt(baseAdressSpell + 84));
-                                // Script_GetSpellInfo
+                                NameInGame = Memory.WowMemory.Memory.ReadUTF8String(spellRec.Name);
                             }
                             catch
                             {

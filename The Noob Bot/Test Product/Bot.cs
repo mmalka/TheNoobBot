@@ -1,11 +1,34 @@
-﻿namespace Test_Product
+﻿using System;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
+using nManager.Wow;
+using nManager.Wow.Class;
+using nManager.Wow.Helpers;
+using nManager.Wow.Patchables;
+
+namespace Test_Product
 {
     class Bot
     {
         public static bool Pulse()
         {
+            var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
+            /*
+            DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
+            var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+            for (int i = 0; i < DBCSpell.MaxIndex - 1; i++)
+            {
+                if (DBCSpell.HasRow(i))
+                {
+                    var t = DBCSpell.GetRow(i);
 
-            Cheat.AntiAfkPulse();
+                    sw.Write(t.SpellId + ";" + Memory.WowMemory.Memory.ReadUTF8String(t.Name) + Environment.NewLine);
+                }
+            }
+            sw.Close();
+
+            //Cheat.AntiAfkPulse();
             /*
             //D3D9
             const int VMT_ENDSCENE = 42;

@@ -12,20 +12,19 @@ namespace nManager.Wow.Helpers
         [CompilerGenerated]
         private uint uint_0;
 
-        private WoWFactionTemplate(uint id, uint row)
+        private static DBC<FactionTemplateDbcRecord> factionTemplateDBC;
+
+        private WoWFactionTemplate(uint id)
         {
             Id = id;
-            Record = (FactionTemplateDbcRecord)Memory.WowMemory.Memory.ReadObject(row, typeof(FactionTemplateDbcRecord));
+            if (factionTemplateDBC == null)
+                factionTemplateDBC = new DBC<FactionTemplateDbcRecord>((int)Addresses.DBC.FactionTemplate);
+            Record = factionTemplateDBC.GetRow((int)id);
         }
 
         public static WoWFactionTemplate FromId(uint id)
         {
-            uint row = DBCReading.GetAddressByIndex((int)id, DBCReading.GetWoWClientDBByAddress((uint)Addresses.UnitRelation.FACTION_TEMPLATE_START_INDEX));
-            if (row == 0)
-            {
-                return null;
-            }
-            return new WoWFactionTemplate(id, row);
+            return new WoWFactionTemplate(id);
         }
 
         public Reaction GetReactionTowards(WoWFactionTemplate otherFaction)

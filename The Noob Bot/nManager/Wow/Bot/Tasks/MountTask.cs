@@ -80,10 +80,10 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.AquaticMountName == string.Empty || (nManager.Wow.Helpers.Usefuls.AreaId != 5146 
-                     && nManager.Wow.Helpers.Usefuls.AreaId != 4815
-                     && nManager.Wow.Helpers.Usefuls.AreaId != 5145
-                     && nManager.Wow.Helpers.Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.AquaticMountName)[0] == 75207))
+                if (nManagerSetting.CurrentSetting.AquaticMountName == string.Empty || (Usefuls.AreaId != 5146 
+                     && Usefuls.AreaId != 4815
+                     && Usefuls.AreaId != 5145
+                     && Usefuls.AreaId != 5144 && SpellManager.SpellListManager.SpellIdByName(nManagerSetting.CurrentSetting.AquaticMountName)[0] == 75207))
                 {
                     return;
                 }
@@ -147,8 +147,8 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (nManager.Wow.Helpers.Usefuls.AreaId == 5389
-                     || nManager.Wow.Helpers.Usefuls.AreaId == 5095)
+                if (Usefuls.AreaId == 5389
+                     || Usefuls.AreaId == 5095)
                 {
                     MountingGroundMount(false);
                     return;

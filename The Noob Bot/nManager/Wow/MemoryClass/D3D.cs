@@ -60,10 +60,10 @@ namespace nManager.Wow.MemoryClass
         public static uint D3D9Adresse(int processId)
         {
             var memory = new Magic.BlackMagic(processId);
-            uint pDevice = memory.ReadUInt((uint)memory.GetModule("Wow.exe").BaseAddress + Patchables.Addresses.Hooking.DX_DEVICE);
-            uint pEnd = memory.ReadUInt(pDevice + Patchables.Addresses.Hooking.DX_DEVICE_IDX);
+            uint pDevice = memory.ReadUInt((uint)memory.GetModule("Wow.exe").BaseAddress + (uint)Patchables.Addresses.Hooking.DX_DEVICE);
+            uint pEnd = memory.ReadUInt(pDevice + (uint)Patchables.Addresses.Hooking.DX_DEVICE_IDX);
             uint pScene = memory.ReadUInt(pEnd);
-            d3d9Adresse = memory.ReadUInt(pScene + Patchables.Addresses.Hooking.ENDSCENE_IDX);
+            d3d9Adresse = memory.ReadUInt(pScene + (uint)Patchables.Addresses.Hooking.ENDSCENE_IDX);
 
             return d3d9Adresse;
         }

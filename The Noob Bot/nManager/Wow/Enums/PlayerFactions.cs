@@ -14,5 +14,6 @@
         Undead = 5,
         Worgen = 2203,
         Goblin = 2204,
+        Pandaren = 26,
     }
 }

@@ -57,7 +57,7 @@ namespace nManager.Wow.ObjectManager
                         if (Memory.WowMemory.ThreadHooked && Memory.WowMemory.Memory.IsProcessOpen && Usefuls.InGame)
                         {
                             ObjectManager.Pulse();
-                            if (!ObjectManager.Me.IsValid && Usefuls.InGame)
+                            if (Usefuls.InGame && !ObjectManager.Me.IsValid)
                             {
                                 nManager.Pulsator.Reset();
                             }

@@ -20,6 +20,7 @@
         Outland = 530,
         Northrend = 571,
         Maelstrom = 646,
+        Pandarie = 870, // MoP
 
 
         None = 9999999,

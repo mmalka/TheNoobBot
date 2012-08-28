@@ -49,14 +49,14 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextBar)
+                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
                 {
                     uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint)i);
                     if (sIdt != 0)
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
                         {
-                            int j = ((i - ((int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar)) / (int)Addresses.BarManager.nextBar);
+                            int j = ((i - ((int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar)) / (int)Addresses.BarManager.nextSlot);
                             int k = 0;
                             while (true)
                             {
@@ -84,12 +84,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextBar)
+                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
                 {
 
                     if (Memory.WowMemory.Memory.ReadUInt((uint)i) == spellId)
                     {
-                        int j = (i - (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar) / (int)Addresses.BarManager.nextBar;
+                        int j = (i - (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar) / (int)Addresses.BarManager.nextSlot;
                         int k = 0;
                         while (true)
                         {
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextBar)
+                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
                 {
                     uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint)i);
                     if (sIdt != 0)
@@ -153,7 +153,7 @@ namespace nManager.Wow.Helpers
                 {
 
                     int numBarOne = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint)Addresses.BarManager.nbBarOne);
+                                                         (uint)Addresses.BarManager.startBar);
                     if (numBarOne > 0)
                         keySlot[0] = (6 + (numBarOne)).ToString(CultureInfo.InvariantCulture);
                 }

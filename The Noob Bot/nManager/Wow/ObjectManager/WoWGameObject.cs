@@ -17,7 +17,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<ulong>((uint)Addresses.GameObject.GAMEOBJECT_CREATED_BY); }
+                try { return GetDescriptor<ulong>((uint)Descriptors.GameObjectFields.createdBy); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > CreatedBy: " + e);
@@ -29,7 +29,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.GameObjectFields.GAMEOBJECT_DISPLAYID); }
+                try { return GetDescriptor<int>(Descriptors.GameObjectFields.displayID); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > DisplayId: " + e);
@@ -85,29 +85,12 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
-        public bool IsLootable
-        {
-            get
-            {
-                try
-                {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.GameObjectFields.GAMEOBJECT_DYNAMIC);
-                    if (dynFlags == 13 || dynFlags == 1)
-                        return true;
-                    return false;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("GameObjectFields > IsLootable: " + e);
-                }
-                return false;
-            }
-        }
+
         public float ParentRotation
         {
             get
             {
-                try { return GetDescriptor<float>(Descriptors.GameObjectFields.GAMEOBJECT_PARENTROTATION); }
+                try { return GetDescriptor<float>(Descriptors.GameObjectFields.parentRotation); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > ParentRotation: " + e);
@@ -122,7 +105,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.GAMEOBJECT_BYTES_1);
+                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.flags); // TODO Check for MoP .GAMEOBJECT_BYTES_1);
                     return (WoWGameObjectType)((bype1 >> 8) & 0xFF);
                 }
                 catch (Exception e)

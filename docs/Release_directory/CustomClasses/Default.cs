@@ -2217,7 +2217,7 @@ public class Mage_Arcane
 
     public Mage_Arcane()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -2644,7 +2644,7 @@ public class Mage_Fire
 
     public Mage_Fire()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -3070,7 +3070,7 @@ public class Demo
 
     public Demo()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -3528,7 +3528,7 @@ public class Affli
 
     public Affli()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -3959,7 +3959,7 @@ public class Balance
 
     public Balance()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -5237,15 +5237,11 @@ public class Paladin_Holy
                         Combat();
                     }
                 }
-                else if(ObjectManager.Me.IsMounted)
-                {
-                    Aura();
-                }
             }
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(50);
         }
     }
 
@@ -5320,11 +5316,11 @@ public class Paladin_Holy
             return;
         else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
             CrusaderAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !ConcentrationAura.HaveBuff && ConcentrationAura.IsSpellUsable)
+        else if (!ConcentrationAura.HaveBuff && ConcentrationAura.IsSpellUsable)
             ConcentrationAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !ConcentrationAura.HaveBuff && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+        else if (!ConcentrationAura.HaveBuff && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
             RetributionAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !ConcentrationAura.HaveBuff && !DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
+        else if (!ConcentrationAura.HaveBuff && !DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
             DevotionAura.Launch();
     }
 
@@ -5517,10 +5513,6 @@ public class Paladin_Protection
                         Combat();
                     }
                 }
-                else if (ObjectManager.Me.IsMounted)
-                {
-                    Aura();
-                }
             }
             catch
             {
@@ -5621,9 +5613,9 @@ public class Paladin_Protection
             return;
         else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
             CrusaderAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !DevotionAura.HaveBuff && DevotionAura.IsSpellUsable)
+        else if (!DevotionAura.HaveBuff && DevotionAura.IsSpellUsable)
             DevotionAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !DevotionAura.HaveBuff && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
             RetributionAura.Launch();
     }
 
@@ -5908,10 +5900,6 @@ public class Paladin_Retribution
                         Combat();
                     }
                 }
-                else if (ObjectManager.Me.IsMounted)
-                {
-                    Aura();
-                }
             }
             catch
             {
@@ -5985,9 +5973,9 @@ public class Paladin_Retribution
             return;
         else if (ObjectManager.Me.IsMounted && !CrusaderAura.HaveBuff && CrusaderAura.IsSpellUsable)
             CrusaderAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
+        else if (!RetributionAura.HaveBuff && RetributionAura.IsSpellUsable)
             RetributionAura.Launch();
-        else if (!ObjectManager.Me.IsMounted && !DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
+        else if (!DevotionAura.HaveBuff && !RetributionAura.HaveBuff && DevotionAura.IsSpellUsable)
             DevotionAura.Launch();
     }
 
@@ -6563,7 +6551,7 @@ public class Shadow
 
     public Shadow()
     {
-        Main.range = 30f;
+        Main.range = 40f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -8934,7 +8922,7 @@ public class Survival
 
     public Survival()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -9466,7 +9454,7 @@ public class Marks
 
     public Marks()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -10006,7 +9994,7 @@ public class BeastMaster
 
     public BeastMaster()
     {
-        Main.range = 30f;
+        Main.range = 40.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)

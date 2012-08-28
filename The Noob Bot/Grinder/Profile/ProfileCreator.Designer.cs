@@ -456,13 +456,13 @@ namespace Grinder.Profile
             this.maxLevelTarget.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.maxLevelTarget.ForeColor = System.Drawing.Color.Black;
             this.maxLevelTarget.Location = new System.Drawing.Point(329, 107);
-            this.maxLevelTarget.MaxValue = 90;
+            this.maxLevelTarget.MaxValue = 100;
             this.maxLevelTarget.MinValue = 1;
             this.maxLevelTarget.Name = "maxLevelTarget";
             this.maxLevelTarget.ShowUpDown = true;
             this.maxLevelTarget.Size = new System.Drawing.Size(43, 22);
             this.maxLevelTarget.TabIndex = 34;
-            this.maxLevelTarget.Value = 90;
+            this.maxLevelTarget.Value = 100;
             this.maxLevelTarget.ValueChanged += new System.EventHandler(this.Level_ValueChanged);
             // 
             // labelX6
@@ -491,7 +491,7 @@ namespace Grinder.Profile
             this.minLevelTarget.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.minLevelTarget.ForeColor = System.Drawing.Color.Black;
             this.minLevelTarget.Location = new System.Drawing.Point(259, 106);
-            this.minLevelTarget.MaxValue = 90;
+            this.minLevelTarget.MaxValue = 100;
             this.minLevelTarget.MinValue = 1;
             this.minLevelTarget.Name = "minLevelTarget";
             this.minLevelTarget.ShowUpDown = true;

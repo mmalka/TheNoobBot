@@ -201,6 +201,8 @@ namespace nManager.Wow.Bot.States
                     return Npc.NpcType.WarlockTrainer;
                 case WoWClass.Druid:
                     return Npc.NpcType.DruidTrainer;
+                case WoWClass.Monk:
+                    return Npc.NpcType.MonkTrainer;
             }
             return Npc.NpcType.None;
         }

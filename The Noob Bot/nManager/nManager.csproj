@@ -146,6 +146,7 @@
     <Compile Include="Wow\Bot\Tasks\FishingTask.cs" />
     <Compile Include="Wow\Bot\Tasks\LootingTask.cs" />
     <Compile Include="Wow\Bot\Tasks\MountTask.cs" />
+    <Compile Include="Wow\Class\DBCStruct.cs" />
     <Compile Include="Wow\Class\Digsite.cs" />
     <Compile Include="Wow\Class\ItemInfo.cs" />
     <Compile Include="Wow\Class\Node.cs" />
@@ -182,7 +183,7 @@
     <Compile Include="Wow\Enums\WoWItemQuality.cs" />
     <Compile Include="Wow\Enums\WoWItemTradeGoodsClass.cs" />
     <Compile Include="Wow\Enums\WoWObjectType.cs" />
-    <Compile Include="Wow\Helpers\DBCReading.cs" />
+    <Compile Include="Wow\Helpers\DBC.cs" />
     <Compile Include="Wow\Helpers\Fishing.cs" />
     <Compile Include="Wow\Helpers\Milling.cs" />
     <Compile Include="Wow\Helpers\NodesList.cs" />

@@ -67,8 +67,8 @@ namespace nManager.Wow.Helpers
                         {
                             if (o.Type == Enums.WoWObjectType.Item)
                             {
-                                var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint)Descriptors.ObjectFields.OBJECT_FIELD_ENTRY);
-                                var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint)Descriptors.ItemFields.ITEM_FIELD_OWNER);
+                                var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint)Descriptors.ObjectFields.entryID);
+                                var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint)Descriptors.ItemFields.owner);
 
                                 if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid && !emptyBlackList.Contains(o.Entry))
                                 {

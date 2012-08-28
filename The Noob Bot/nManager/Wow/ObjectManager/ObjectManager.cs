@@ -102,7 +102,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                lock (Locker)
+                lock (Locker) 
                 {
                     // Remove invalid objects.
                     foreach (var o in ObjectDictionary)
@@ -132,6 +132,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+
         internal static void ReadObjectList()
         {
             try
@@ -143,28 +144,26 @@ namespace nManager.Wow.ObjectManager
                 ObjectManagerAddress =
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         Addresses.ObjectManager.clientConnection) +
-                        Addresses.ObjectManager.objectManager);
+                                                         (uint)Addresses.ObjectManager.clientConnection) +
+                        (uint)Addresses.ObjectManager.objectManager);
 
                 // These are 'hard coded' in the client. I don't remember the last time they changed.
-                uint firstObject = Addresses.ObjectManager.firstObject;
-                uint nextObject = Addresses.ObjectManager.nextObject;
+                uint firstObject = (uint)Addresses.ObjectManager.firstObject;
+                uint nextObject = (uint)Addresses.ObjectManager.nextObject;
                 ulong localPlayerGuid =
-                    Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + Addresses.ObjectManager.localGuid);
+                    Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint)Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + firstObject);
-
+                
                 while (currentObject != 0)
                 {
                     try
                     {
-                        // The GUID of the object. This will help us figure out whether we need to add, or update
-                        // the object later.
                         ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint)currentObject + 0x30);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
-                            var objType = (WoWObjectType)Memory.WowMemory.Memory.ReadInt((uint)currentObject + 0x14);
+                            var objType = (WoWObjectType)Memory.WowMemory.Memory.ReadInt((uint)currentObject + 0x10);
 
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE

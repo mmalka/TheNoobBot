@@ -297,7 +297,7 @@ namespace The_Noob_Bot
                 Logging.WriteError("DSfi^sdfDSOfijfze#1" + e);
             }
             IsConnected = false;
-            if (lalala && IsFreeVersion)
+            if (lalala && IsFreeVersion) 
             {
                 Others.OpenWebBrowserOrApplication("http://goo.gl/Fzdgc");
             }
