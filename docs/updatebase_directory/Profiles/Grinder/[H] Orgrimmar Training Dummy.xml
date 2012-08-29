@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GrinderProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GrinderZones>
+    <GrinderZone>
+      <Name>Orgrimmar</Name>
+      <Hotspots>false</Hotspots>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>90</MaxLevel>
+      <MinTargetLevel>1</MinTargetLevel>
+      <MaxTargetLevel>90</MaxTargetLevel>
+      <TargetEntry />
+      <TargetFactions />
+      <Points />
+      <Npc />
+      <BlackListRadius />
+    </GrinderZone>
+    <GrinderZone>
+      <Name>Orgrimmar</Name>
+      <Hotspots>false</Hotspots>
+      <MinLevel>1</MinLevel>
+      <MaxLevel>90</MaxLevel>
+      <MinTargetLevel>1</MinTargetLevel>
+      <MaxTargetLevel>90</MaxTargetLevel>
+      <TargetEntry>
+        <int>31146</int>
+      </TargetEntry>
+      <TargetFactions />
+      <Points>
+        <Point>
+          <X>2101.86548</X>
+          <Y>-4618.256</Y>
+          <Z>49.2530327</Z>
+          <Type>None</Type>
+        </Point>
+      </Points>
+      <Npc />
+      <BlackListRadius />
+    </GrinderZone>
+  </GrinderZones>
+  <PointsPathFinderDroidz>
+    <Point>
+      <X>2100.00537</X>
+      <Y>-4621.325</Y>
+      <Z>49.2530327</Z>
+      <Type>None</Type>
+    </Point>
+  </PointsPathFinderDroidz>
+</GrinderProfile>
