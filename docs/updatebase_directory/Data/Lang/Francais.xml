@@ -1106,5 +1106,13 @@
       <Text>Random Battleground</Text>
       <Id>RandomBattleground</Id>
     </Translation>
+	<Translation>
+      <Text>Erreur : World of Warcraft 64bit trouvé Attention: TheNoobBot n'est pas compatible avec Wow x64. WoWLauncher.exe => Options => Préfèrences du jeu => "Lancer le client 32-bit".</Text>
+      <Id>WoW_Client_64bit</Id>
+    </Translation>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
+      <Id>Title_WoW_Client_64bit</Id>
+    </Translation>
   </Translations>
 </Language>

@@ -304,6 +304,9 @@ namespace The_Noob_Bot
         {
             try
             {
+                if (System.Diagnostics.Process.GetProcessesByName("WoW-64").Length > 0)
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.WoW_Client_64bit), nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
                 listProcessLb.Items.Clear();
                 //ProcessList.SelectedIndex = -1;
                 var usedProcess = new List<string>();

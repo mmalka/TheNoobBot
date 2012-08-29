@@ -521,6 +521,9 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
+                if (!IsInGame(processId))
+                    return Translate.Get(Translate.Id.Please_connect_to_the_game);
+
                 // init memory
                 var memory = new BlackMagic(processId);
                 // 
@@ -530,6 +533,7 @@ namespace nManager.Wow.MemoryClass
                 {
                     baseModule = (uint)v.BaseAddress;
                 }
+                
                 return memory.ReadUTF8String(baseModule + (uint)Addresses.Player.playerName);
             }
             catch (Exception e)

@@ -111,7 +111,7 @@
             unitName2 = 0x64, // CGUnit_C__GetUnitName // OK
             CastingSpellID = 0xC08, // Script_UnitCastingInfo // OK
             ChannelSpellID = 0xC20, // Script_UnitChannelInfo // OK
-            TransportGUID = 0x0, // CGUnit_C__GetTransportGUID // Not Update
+            TransportGUID = 0x7D8, // CGUnit_C__GetTransportGUID // OK
         }
 
         /// <summary>

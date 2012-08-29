@@ -58,11 +58,14 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return m_rows[index];
+                if (HasRow(index))
+                    return m_rows[index];
+                else
+                    return default(T);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("DBC(uint offset): " + exception);
+                Logging.WriteError("GetRow(int index): " + exception);
             }
             return default(T);
         }

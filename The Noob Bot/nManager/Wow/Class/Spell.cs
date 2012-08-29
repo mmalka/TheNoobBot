@@ -135,11 +135,7 @@ namespace nManager.Wow.Class
                 uint.TryParse(spellName, out Id);
                 if (Id > 0)
                 {
-                    tSpell = SpellManager.GetSpellInfoLUA(spellName);
-                    if (tSpell == null)
-                    {
-                        tSpell = new Spell(SpellManager.SpellListManager.SpellIdByName(spellName)[0]); // en
-                    }
+                    tSpell = new Spell(Id); // en
                 }
                 else
                 {
