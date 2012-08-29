@@ -112,7 +112,7 @@ namespace nManager.Wow.Bot.Tasks
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
                                            (int)objBobber.GetBaseAddress > 0 &&
                                            1 !=
-                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + 0xD4))
+                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + 0xC0))
                                     {
                                         Thread.Sleep(50);
                                         Application.DoEvents();

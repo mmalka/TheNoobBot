@@ -90,7 +90,7 @@
         /// </summary>
         public enum BarManager
         {
-            slotIsEnable = 0xCDBCA0,// OK
+            slotIsEnable = 0xCDBF70,// OK
             startBar = 0xCDC510,// OK
             nbBar = 0xCDBF70, // OK
             nextSlot = 0x4,// OK
@@ -218,7 +218,7 @@
         public enum Login
         {
             realmName = 0xDC9460 + 0x6, // OK
-            battlerNetWindow = 0xBC4328, // ?
+            battlerNetWindow = 0xBC4328, // OK
         }
 
         /// <summary>

@@ -460,7 +460,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x4000000);
                 }
                 catch (Exception e)
@@ -475,7 +475,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00004000);
                 }
                 catch (Exception e)
@@ -490,7 +490,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00001000);
                 }
                 catch (Exception e)
@@ -505,7 +505,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00000080);
                 }
                 catch (Exception e)
@@ -520,7 +520,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00010000);
                 }
                 catch (Exception e)
@@ -535,7 +535,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00000200);
                 }
                 catch (Exception e)
@@ -551,7 +551,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
                     return Convert.ToBoolean(flags & 0x00000020) || Convert.ToBoolean(flags & 0x00000040);
                 }
                 catch (Exception e)
@@ -695,8 +695,6 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    // TODO return value don't works MoP
-                    return 0;
                     return Memory.WowMemory.Memory.ReadUInt64(GetBaseAddress + (uint)Addresses.UnitField.TransportGUID);
                 }
                 catch (Exception e)
