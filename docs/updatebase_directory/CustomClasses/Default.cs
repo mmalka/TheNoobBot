@@ -57,8 +57,8 @@ public class Main : ICustomClass
                     if (!Heart_Strike.KnownSpell && !Scourge_Strike.KnownSpell && !Frost_Strike.KnownSpell)
                     {
                         Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Deathknight Unholy class...");
-                        new Deathknight_Unholy();
+                        Logging.WriteFight("Loading Deathknight Apprentice class...");
+                        new Deathknight_Apprentice();
                     }
                     break;
                 #endregion
@@ -309,6 +309,211 @@ public class Main : ICustomClass
 #region Deathknight
 
 
+public class Deathknight_Apprentice
+{
+    /**
+      * Author : VesperCore
+      * Utility : Apprentice Deathkight 55-58 / Starting Area
+    **/
+    #region InitializeSpell
+
+    // Default Presence
+    private readonly Spell Frost_Presence = new Spell("Frost Presence");
+    
+    // Default Spells
+    private readonly Spell Death_Grip = new Spell("Death Grip");
+    private readonly Spell Icy_Touch = new Spell("Icy Touch");
+    private readonly Spell Plague_Strike = new Spell("Plague Strike");
+    private readonly Spell Blood_Strike = new Spell("Blood Strike");
+    private readonly Spell Death_Coil = new Spell("Death Coil");
+    
+    // Level 56 Spells
+    private readonly Spell Blood_Boil = new Spell("Blood Boil");
+    private readonly Spell Death_Strike = new Spell("Death Strike");
+    private readonly Spell Pestilence = new Spell("Pestilence");
+    private readonly Timer Timer_Pestilence = new Timer(0);
+    private readonly Spell Raise_Dead = new Spell("Raise Dead");
+    
+    // Level 57 Spells
+    private readonly Spell Mind_Freeze = new Spell("Mind Freeze");
+    
+    // Level 58 Spells
+    private readonly Spell Strangulate = new Spell("Strangulate");
+    
+    // Racials
+    private readonly Spell Every_Man_for_Himself = new Spell("Every Man for Himself");
+    private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    private readonly Spell War_Stomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking");
+
+    #endregion InitializeSpell
+
+    public Deathknight_Apprentice()
+    {
+        Main.range = 3.6f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            try
+            {
+                if (!ObjectManager.Me.IsMounted)
+                {
+                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    {
+                        if (ObjectManager.Me.Target != lastTarget && Death_Grip.IsDistanceGood)
+                        {
+                            Pull();
+                            lastTarget = ObjectManager.Me.Target;
+                        }
+                        Combat();
+                    }
+                }
+            }
+            catch
+            {
+                // Bug
+            }
+            Thread.Sleep(50);
+        }
+    }
+
+    public void Pull()
+    {
+        if (Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood)
+        {
+            Death_Grip.Launch();
+            MovementManager.StopMove();
+        }
+    }
+    public void Combat()
+    {
+        Defense_Cycle();
+        DPS_Cooldown();
+        DPS_Cycle();
+        InFightBuffs();
+        Spell_Interrupt();
+    }
+    private void Defense_Cycle()
+    {
+        if (ObjectManager.Me.HealthPercent < 80 &&
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        {
+            Gift_of_the_Naaru.Launch();
+            return;
+        }
+
+        if (ObjectManager.Me.HaveBuff(44572) 
+            || ObjectManager.Me.HaveBuff(5782) 
+            || ObjectManager.Me.HaveBuff(8122)
+            || ObjectManager.Me.HaveBuff(853)
+            || ObjectManager.Me.HaveBuff(1833))
+        {
+            if (Every_Man_for_Himself.KnownSpell && Every_Man_for_Himself.IsSpellUsable)
+            {
+                Every_Man_for_Himself.Launch();
+                return;
+            }
+        }
+        if ((ObjectManager.GetNumberAttackPlayer() > 1) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+        {
+            Stoneform.Launch();
+            return;
+        }
+
+        if ((ObjectManager.GetNumberAttackPlayer() > 1) &&
+            ObjectManager.Me.HealthPercent < 65 &&
+            ObjectManager.Target.GetDistance < 5 &&
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+        {
+            War_Stomp.Launch();
+            return;
+        }
+    }
+    private void DPS_Cooldown()
+    {
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
+        {
+            Berserking.Launch();
+        }
+        if (Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable)
+        {
+            Raise_Dead.Launch();
+        }
+    }
+    private void DPS_Cycle()
+    {
+        if (ObjectManager.Target.GetDistance > 10 && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood)
+        {
+            Death_Grip.Launch();
+            MovementManager.StopMove();
+        }
+        if (!ObjectManager.Target.HaveBuff(55095) && Icy_Touch.IsSpellUsable && Icy_Touch.IsDistanceGood)
+        {
+            Icy_Touch.Launch();
+            return;
+        }
+        if (!ObjectManager.Target.HaveBuff(55078) && Plague_Strike.IsSpellUsable && Plague_Strike.IsDistanceGood)
+        {
+            Plague_Strike.Launch();
+            return;
+        }
+        if(ObjectManager.Target.HaveBuff(55078) && ObjectManager.Target.HaveBuff(55095) && Pestilence.KnownSpell 
+          && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1 && Timer_Pestilence.IsReady)
+        {
+            Pestilence.Launch();
+            Timer_Pestilence = new Timer(1000 * 30);
+            return;
+        }
+        if(ObjectManager.Target.HaveBuff(55078) && ObjectManager.Target.HaveBuff(55095) && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1 && !Timer_Pestilence.IsReady)
+        {
+            Blood_Boil.Launch();
+            return;
+        }
+        if (Death_Coil.IsDistanceGood && Death_Coil.IsSpellUsable)
+        {
+            Death_Coil.Launch();
+            return;
+        }
+        if (Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
+        {
+            Blood_Strike.Launch();
+            return;
+        }
+    }
+    private void InFightBuffs()
+    {
+        if (!Frost_Presence.HaveBuff && Frost_Presence.IsSpellUsable)
+        {
+            Frost_Presence.Launch();
+        }
+    }
+    private void Spell_Interrupt()
+    {
+        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
+            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
+            return;
+        }
+        if (ObjectManager.Target.IsCast && Mind_Freeze.KnownSpell && Mind_Freeze.IsSpellUsable && Mind_Freeze.IsDistanceGood)
+        {
+            Mind_Freeze.Launch();
+            return;
+        }
+        if (ObjectManager.Target.IsCast && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood)
+        {
+            Strangulate.Launch();
+            return;
+        }
+
+    }
+}
 
 public class Deathknight_Blood
 {
