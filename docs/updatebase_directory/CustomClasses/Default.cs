@@ -331,7 +331,7 @@ public class Deathknight_Apprentice
     private readonly Spell Blood_Boil = new Spell("Blood Boil");
     private readonly Spell Death_Strike = new Spell("Death Strike");
     private readonly Spell Pestilence = new Spell("Pestilence");
-    private readonly Timer Timer_Pestilence = new Timer(0);
+    private Timer Timer_Pestilence = new Timer(0);
     private readonly Spell Raise_Dead = new Spell("Raise Dead");
     
     // Level 57 Spells

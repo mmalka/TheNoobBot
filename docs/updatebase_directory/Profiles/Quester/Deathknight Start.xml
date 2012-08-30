@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Quests>
+<!-- Quest 1 -->
+        <!--In Service Of The Lich King (Deathknight)-->
+        <Quest>
+            <Name>In Service Of The Lich King</Name>
+            <Id>12593</Id>
+            <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <MinLevel>55</MinLevel>
+            <MaxLevel>58</MaxLevel>
+            <PickUp>
+                <Entry>25462</Entry>
+                <Name>The Lich King</Name>
+                <Position>
+                  <X>2345.299</X>
+                  <Y>-5671.679</Y>
+                  <Z>426.0314</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Entry>28357</Entry>
+                <Name>Instructor Razuvious</Name>
+                <Position>
+                  <X>2482.108</X>
+                  <Y>-5553.094</Y>
+                  <Z>420.6425</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+        <!--In Service Of The Lich King (Deathknight)-->
+<!-- Quest 2 -->
+
+        <!--The Emblazoned Runeblade (Deathknight)-->
+        <Quest>
+            <Name>The Emblazoned Runeblade</Name>
+            <Id>12619</Id>
+            <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <MinLevel>55</MinLevel>
+            <MaxLevel>58</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>12593</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Entry>28357</Entry>
+                <Name>Instructor Razuvious</Name>
+                <Position>
+                  <X>2482.108</X>
+                  <Y>-5553.094</Y>
+                  <Z>420.6425</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Entry>28357</Entry>
+                <Name>Instructor Razuvious</Name>
+                <Position>
+                  <X>2482.108</X>
+                  <Y>-5553.094</Y>
+                  <Z>420.6425</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>InteractWith</Objective>
+                    <EntryInteractWith>190584</EntryInteractWith>
+                    <PositionInteractWith>
+                         <X>2535.668</X>
+                         <Y>-5607.533</Y>
+                         <Z>420.6514</Z>
+                    </PositionInteractWith>
+                </QuestObjective>
+                <QuestObjective>
+                    <Objective>UseItem</Objective>
+                    <UseItemId>38631</UseItemId>
+                    <PositionUseItem>
+                             <X>2505.863</X>
+                             <Y>-5562.321</Y>
+                             <Z>420.6461</Z>
+                    </PositionUseItem>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--The Emblazoned Runeblade (Deathknight)-->
+    </Quests>
+    <Blackspots />
+</QuesterProfile>
