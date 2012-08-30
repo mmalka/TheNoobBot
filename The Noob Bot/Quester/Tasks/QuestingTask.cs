@@ -470,6 +470,8 @@ namespace Quester.Tasks
                         {
                             return;
                         }
+
+                        Thread.Sleep(500);
                         MovementManager.Go(PathFinder.FindPath(pos));
                         Thread.Sleep(1000);
                         while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
@@ -491,6 +493,7 @@ namespace Quester.Tasks
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
+                Thread.Sleep(500);
                 if (!MovementManager.InMovement)
                 {
                     if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.searchRadius &&
@@ -501,7 +504,6 @@ namespace Quester.Tasks
                     }
                     else
                     {
-
                         var node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryInteractWith }));
                         var unit = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryInteractWith }));
                         Point pos = new Point();
@@ -537,7 +539,6 @@ namespace Quester.Tasks
                             Thread.Sleep(Usefuls.Latency + 500);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
-
                         questObjective.IsUsedInteractWith = true;
                     }
                 }
@@ -825,6 +826,15 @@ namespace Quester.Tasks
                     MovementManager.StopMove();
                 if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 3.8f)
                     MovementManager.StopMove();
+                /*
+                 * We need to check here if the NPC is still at "points", because NPC who are patrolling wont be at the original "points",
+                 * this is HALF supported, the FIRST TIME, the NPC real position is not checked, so we just go to "points".
+                 * We need to check if the NPC appear in the memory even before arriving to the original "points" (<Position> of the NPC in the profile.xml).
+                 * 
+                 * Currently, once we arrived to the <Position>, we start trying to get the real&current position of the NPC, then we go to him, and refresh
+                 * his position everytime. That is good, but we must do this for the first <Position> too. It will reduce "strange comportement" issues, 
+                 * as well as loss of time.
+                */
                 Thread.Sleep(100);
             }
 
