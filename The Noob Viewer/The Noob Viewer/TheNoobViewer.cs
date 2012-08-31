@@ -202,6 +202,7 @@ namespace TheNoobViewer
             Kalimdor.Checked = false;
             Outland.Checked = false;
             Northrend.Checked = false;
+            Pandaria.Checked = false;
             TolBarad.Checked = false;
             Vashjir.Checked = false;
             Deepholm.Checked = false;
@@ -239,6 +240,15 @@ namespace TheNoobViewer
             Northrend.Checked = true;
             continent = "Northrend";
             toolStripStatusContinent.Text = "Current continent: Northrend";
+        }
+
+        private void Pandaria_Click(object sender, EventArgs e)
+        {
+            uncheckAll();
+            Pandaria.Checked = true;
+            continent = "HawaiiMainLand";
+            toolStripStatusContinent.Text = "Current continent: Pandaria";
+
         }
 
         private void TolBarad_Click(object sender, EventArgs e)

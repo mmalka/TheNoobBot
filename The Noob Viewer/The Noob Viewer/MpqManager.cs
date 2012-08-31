@@ -39,14 +39,29 @@ namespace meshDatabase
                 root = path;
 
             var files = Directory.GetFiles(root + "Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
-            
+
+            List<string> PatchFiles = new List<string> { };
             foreach (var file in files)
             {
                 if (IgnoredMPQs.Contains(Path.GetFileName(file)))
                     continue;
+                if (file.Contains("-update-"))
+                {
+                    PatchFiles.Add(file);
+                    continue;
+                }
                 var archive = new CArchive(file);
                 Console.WriteLine("Opened " + file + " with " + archive.FileCount + " files...");
                 _archives.Add(Path.GetFileNameWithoutExtension(file), archive);
+            }
+            foreach (var file in PatchFiles)
+            {
+                foreach (var arc in _archives)
+                {
+                    CArchive mainArch = arc.Value;
+                    Console.WriteLine("Patching " + arc.Key + " with " + file);
+                    mainArch.Patch(file);
+                }
             }
 
             InitializeDBC(root);
@@ -75,6 +90,16 @@ namespace meshDatabase
 
                 _locale = new CArchive(file);
 
+                var allfiles = Directory.GetFiles(dir + "\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
+
+                foreach (var patchfile in allfiles)
+                {
+                    if (patchfile.Contains("-update-"))
+                    {
+                        _locale.Patch(patchfile);
+                        Console.WriteLine("Patching " + _locale.FileName + " with " + patchfile);
+                    }
+                }
                 Console.WriteLine("Using locale: " + file);
                 break;
             }

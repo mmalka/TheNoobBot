@@ -40,6 +40,7 @@ namespace TheNoobViewer
             this.Kalimdor = new System.Windows.Forms.ToolStripMenuItem();
             this.Outland = new System.Windows.Forms.ToolStripMenuItem();
             this.Northrend = new System.Windows.Forms.ToolStripMenuItem();
+            this.Pandaria = new System.Windows.Forms.ToolStripMenuItem();
             this.TolBarad = new System.Windows.Forms.ToolStripMenuItem();
             this.Deepholm = new System.Windows.Forms.ToolStripMenuItem();
             this.Darkmoon = new System.Windows.Forms.ToolStripMenuItem();
@@ -106,11 +107,12 @@ namespace TheNoobViewer
             this.Kalimdor,
             this.Outland,
             this.Northrend,
+            this.Pandaria,
             this.TolBarad,
             this.Deepholm,
             this.Darkmoon});
             this.mapToolStripMenuItem.Name = "mapToolStripMenuItem";
-            this.mapToolStripMenuItem.Size = new System.Drawing.Size(39, 21);
+            this.mapToolStripMenuItem.Size = new System.Drawing.Size(94, 21);
             this.mapToolStripMenuItem.Text = "Map";
             // 
             // Azeroth
@@ -149,6 +151,13 @@ namespace TheNoobViewer
             this.Northrend.Size = new System.Drawing.Size(165, 22);
             this.Northrend.Text = "Northrend";
             this.Northrend.Click += new System.EventHandler(this.Northrend_Click);
+            //
+            // Pandaria
+            //
+            this.Pandaria.Name = "Pandaria";
+            this.Pandaria.Size = new System.Drawing.Size(165, 22);
+            this.Pandaria.Text = "Pandaria";
+            this.Pandaria.Click += new System.EventHandler(this.Pandaria_Click);
             // 
             // TolBarad
             // 
@@ -298,6 +307,7 @@ namespace TheNoobViewer
         private System.Windows.Forms.ToolStripMenuItem Vashjir;
         private System.Windows.Forms.ToolStripMenuItem Deepholm;
         private System.Windows.Forms.ToolStripMenuItem Darkmoon;
+        private System.Windows.Forms.ToolStripMenuItem Pandaria;
     }
 }
 
