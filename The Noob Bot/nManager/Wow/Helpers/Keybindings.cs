@@ -31,7 +31,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 // Create if don't exist:
-                SetKeyByAction(action, "K");
+                SetKeyByAction(action, "VK_F13");
             }
             catch (Exception exception)
             {
