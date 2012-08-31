@@ -362,9 +362,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags);
-                    if (dynFlags == 8 || dynFlags == 13 || dynFlags == 1 || dynFlags == 12)
+                    if (base.Guid == ObjectManager.Me.Target)
                         return true;
+                    return false;
                 }
                 catch (Exception e)
                 {
@@ -552,7 +552,7 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
-                    return Convert.ToBoolean(flags & 0x00000020) || Convert.ToBoolean(flags & 0x00000040);
+                    return Convert.ToBoolean(flags & 0x00000010);
                 }
                 catch (Exception e)
                 {

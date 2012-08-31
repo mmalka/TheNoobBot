@@ -169,8 +169,8 @@ namespace nManager.Wow.Class
                 Rank = tSpell.Rank;
                 if (MaxRange < 3.6f)
                     MaxRange = 3.6f;
-                KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
-                Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name)); // check de tout le fichier Spell.txt
+                KnownSpell = tSpell.KnownSpell;
+                Ids.AddRange(tSpell.Ids);
                 Ids.Add(Id);
             }
             catch (Exception exception)

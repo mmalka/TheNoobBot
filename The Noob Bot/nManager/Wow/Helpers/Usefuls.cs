@@ -240,8 +240,18 @@ namespace nManager.Wow.Helpers
 
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, " + randomString + " = GetCurrencyInfo(392);");
-                         _lastHonorPoint = Convert.ToInt32(Lua.GetLocalizedText(randomString));
-                        return _lastHonorPoint;
+
+                        int t = -1;
+                        try
+                        {
+                            t = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                        }
+                        catch {}
+
+                        if (t >= 0 || t <= 20000) // TODO We must set it back to 4000 on Myst Of Pandaria release.
+                            _lastHonorPoint = t;
+
+                    return _lastHonorPoint;
                     }
                     catch (Exception e) { Logging.WriteError("GetHonorPoint: " + e); return 0; }
                 }

@@ -101,7 +101,7 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x80C, // ?
+            UNIT_SPEED = 0x850, // OK
             UNIT_FIELD_X = 0x7E0, // OK
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // OK
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // OK
@@ -131,9 +131,9 @@
         /// </summary>
         public enum Battleground
         {
-            statPvp = 0x0, // Not Update
-            pvpExitWindow = 0x0, // Not Update
-            selectedBattleGroundID = 0x0, // Not Update
+            statPvp = 0xA8BC80, // OK
+            pvpExitWindow = 0xCC8930, // OK
+            selectedBattleGroundID = 0xCC88D4,  // OK
         }
 
         /// <summary>
@@ -173,7 +173,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 36, // ?
+            CGUnit_C__GetFacing = 36, // OK
         }
 
         /// <summary>
@@ -206,10 +206,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xBB6C50 + 0x8, // ?
-            nameMaskOffset = 0x024, // ?
-            nameBaseOffset = 0x01c, // ?
-            nameStringOffset = 0x020, // ?
+            nameStorePtr = 0xBB6C50 + 0x8, // OK
+            nameMaskOffset = 0x024, // OK
+            nameBaseOffset = 0x01c, // OK
+            nameStringOffset = 0x021, // OK
         }
 
         /// <summary>
