@@ -819,6 +819,7 @@ namespace Quester.Tasks
 
             MovementManager.Go(points);
             var timer = new Timer(((int)nManager.Helpful.Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+            var timerNpc = new Timer(1000);
             while (MovementManager.InMovement && Usefuls.InGame &&
                    !(ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted) && !ObjectManager.Me.IsDeadMe)
             {
@@ -826,15 +827,21 @@ namespace Quester.Tasks
                     MovementManager.StopMove();
                 if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 3.8f)
                     MovementManager.StopMove();
-                /*
-                 * We need to check here if the NPC is still at "points", because NPC who are patrolling wont be at the original "points",
-                 * this is HALF supported, the FIRST TIME, the NPC real position is not checked, so we just go to "points".
-                 * We need to check if the NPC appear in the memory even before arriving to the original "points" (<Position> of the NPC in the profile.xml).
-                 * 
-                 * Currently, once we arrived to the <Position>, we start trying to get the real&current position of the NPC, then we go to him, and refresh
-                 * his position everytime. That is good, but we must do this for the first <Position> too. It will reduce "strange comportement" issues, 
-                 * as well as loss of time.
-                */
+
+                if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 80 && timerNpc.IsReady)
+                {
+                    var listUnit = ObjectManager.GetWoWUnitByEntry(npc.Entry);
+                    if (listUnit.Count > 0)
+                    {
+                        WoWUnit nNpc = ObjectManager.GetNearestWoWUnit(listUnit, npc.Position);
+                        if (nNpc.IsValid)
+                        {
+                            MovementManager.StopMove();
+                        }
+                    }
+                    timerNpc.Reset();
+                }
+
                 Thread.Sleep(100);
             }
 

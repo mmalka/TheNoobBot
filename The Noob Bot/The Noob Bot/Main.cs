@@ -114,6 +114,7 @@ namespace The_Noob_Bot
                 {
                     nManager.nManagerSetting.CurrentSetting.doNotMailList.AddRange(items);
                 }
+                SpellManager.SpellBook(); // Initialize SpeelBook
             }
             catch (Exception ex)
             {
