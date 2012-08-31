@@ -460,7 +460,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
                     return Convert.ToBoolean(flags & 0x4000000);
                 }
                 catch (Exception e)
