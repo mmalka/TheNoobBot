@@ -1626,7 +1626,7 @@ public class Deathknight_Frost
 
     public Deathknight_Frost()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -2031,7 +2031,7 @@ public class Mage_Frost
 
     public Mage_Frost()
     {
-        Main.range = 28.0f; // Range
+        Main.range = 28.0f;
 
         UInt64 lastTarget = 0;
 
@@ -2422,7 +2422,7 @@ public class Mage_Arcane
 
     public Mage_Arcane()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -2849,7 +2849,7 @@ public class Mage_Fire
 
     public Mage_Fire()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -3275,7 +3275,7 @@ public class Demo
 
     public Demo()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -3733,7 +3733,7 @@ public class Affli
 
     public Affli()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -4164,7 +4164,7 @@ public class Balance
 
     public Balance()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -5412,7 +5412,7 @@ public class Paladin_Holy
 
     public Paladin_Holy()
     {
-        Main.range = 20f; // Range
+        Main.range = 20f;
 
         UInt64 lastTarget = 0;
 
@@ -5664,7 +5664,7 @@ public class Paladin_Protection
 
     public Paladin_Protection()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -6003,7 +6003,7 @@ public class Paladin_Retribution
 
     public Paladin_Retribution()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -6271,7 +6271,7 @@ public class Ele
 
     public Ele()
     {
-        Main.range = 35.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -6613,7 +6613,7 @@ public class Shadow
 
     public Shadow()
     {
-        Main.range = 40f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -7037,7 +7037,7 @@ public class RogueCom
 
     public RogueCom()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -7316,7 +7316,7 @@ public class RogueAssa
 
     public RogueAssa()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -7602,7 +7602,7 @@ public class Rogue
 
     public Rogue()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -8060,7 +8060,7 @@ public class WarriorProt
 
     public WarriorProt()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -8458,7 +8458,7 @@ public class WarriorFury
 
     public WarriorFury()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -8821,7 +8821,7 @@ public class Warrior
 
     public Warrior()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 3.6f;
 
         UInt64 lastTarget = 0;
 
@@ -8984,7 +8984,7 @@ public class Survival
 
     public Survival()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -9516,7 +9516,7 @@ public class Marks
 
     public Marks()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -10056,7 +10056,7 @@ public class BeastMaster
 
     public BeastMaster()
     {
-        Main.range = 40.0f;
+        Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
