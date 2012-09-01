@@ -13,7 +13,7 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                 {
                     System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                     System.IO.File.Delete("nManager2.dll");
-                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0;
+                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0;
                     System.Threading.Thread.Sleep(1000*60*3);
                     while(true)
                     {
@@ -21,24 +21,25 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                     }
                 }
                 else*/
-                if(nManager.Information.Version != "1.2.2 Beta" && nManager.Information.Version != "1.2.1 Beta")
+                if (nManager.Information.Version != "1.2.4" && nManager.Information.Version != "1.2.5")
                 {
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
-                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0;
-                    System.Threading.Thread.Sleep(1000*60*3);
-                    while(true)
+                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0; // wrong value
+                    System.Threading.Thread.Sleep(1000 * 60 * 3);
+                    while (true)
                     {
-                  
+
                     }
                 }
-                else if(nManager.Information.Version == "1.2.2a Beta")
+                else if (nManager.Information.Version == "1.2.5")
                 {
                     //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                     //System.IO.File.Delete("nManager2.dll");
-                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0xDC9298;
+                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xDC9298;
                 }
                 else
                 {
+                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0; // wrong value
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
                     System.Threading.Thread.Sleep(30000);
                     System.Diagnostics.Process.GetCurrentProcess().Kill();
