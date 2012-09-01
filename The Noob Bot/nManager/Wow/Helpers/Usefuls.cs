@@ -427,6 +427,9 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.Outland:
                             retS = "Expansion01";
                             break;
+                        case Enums.ContinentId.Pandarie:
+                            retS = "HawaiiMainLand";
+                            break;
                         case Enums.ContinentId.SOTA:
                             retS = "NorthrendBG";
                             break;
@@ -442,8 +445,29 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.WSG:
                             retS = "PVPZone03";
                             break;
+                        case Enums.ContinentId.Acherus:
+                            retS = "DeathKnightStart";
+                            break;
+                        case Enums.ContinentId.Gilneas:
+                            retS = "Gilneas2";
+                            break;
+                        case Enums.ContinentId.Sunwell:
+                            retS = "SunwellPlateau";
+                            break;
+                        case Enums.ContinentId.DarkmoonFaire:
+                            retS = "DarkmoonFaire";
+                            break;
+                        case Enums.ContinentId.TolBarad:
+                            retS = "TolBarad";
+                            break;
+                        case Enums.ContinentId.Maelstrom:
+                            retS = "Deephome";
+                            break;
+                        case Enums.ContinentId.LostIsles:
+                            retS = "LostIsles";
+                            break;
                         default:
-                            retS = "None";
+                            retS = "MapId_" + cId;
                             break;
                     }
                     return retS;

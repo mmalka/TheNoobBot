@@ -3,8 +3,6 @@
     public enum ContinentId : uint
     {
         // BattleGround
-        
-        
         AV = 30,
         WSG = 489,
         AB = 529,
@@ -22,6 +20,13 @@
         Maelstrom = 646,
         Pandarie = 870, // MoP
 
+        // Smaller ones
+        Sunwell = 580,
+        Gilneas = 654,
+        Acherus = 609, // dk zone
+        DarkmoonFaire = 974,
+        TolBarad = 732,
+        LostIsles = 648,
 
         None = 9999999,
     }
