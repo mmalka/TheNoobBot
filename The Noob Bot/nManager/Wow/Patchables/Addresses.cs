@@ -10,7 +10,7 @@
         /// </summary>
         public enum ObjectManager
         {
-            clientConnection = 0x0, //  OK (Server side defined: 0xDC9298)
+            clientConnection = 0xDC9298, //  OK (Server side defined: 0xDC9298)
             objectManager = 0x462C, // OK
             firstObject = 0xCC, // OK
             nextObject = 0x3C, // OK

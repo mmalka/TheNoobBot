@@ -76,7 +76,6 @@ namespace The_Noob_Bot
                         return;
                     }
                     sr = Decrypt(srCrypted, random);
-
                     if (sr.Replace(" ", "") == string.Empty)
                     {
                         Logging.WriteError("grzGRDSFfezfsgfvsdg decrypt.");

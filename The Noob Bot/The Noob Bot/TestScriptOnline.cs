@@ -4,15 +4,15 @@
     {
         try
         {
-            if (nManager.Information.ForBuildWowVersion == 15354)
-                nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x9BC9F8;
-            if (nManager.Information.ForBuildWowVersion == 15595)
+            if (nManager.Information.ForBuildWowVersion == 16016)
             {
-                System.IO.File.Copy(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe", true);
+                /*System.IO.File.Copy(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe", true);
                 System.IO.File.Copy("nManager.dll", "nManager2.dll", true);
-                if (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe") != "453CB7D817ABBD3F7F1A7C31C0E9EAAB" ||
-                    nManager.Helpful.Others.GetFileMd5CheckSum("nManager2.dll") != "C3078A0536B72FBE551A8E6AE44CF8E4" && nManager.Information.Version == "1.0 Beta 21")
+                if (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe") != "0769B9087DE14057994B5972EEAFFE75" ||
+                    nManager.Helpful.Others.GetFileMd5CheckSum("nManager2.dll") != "44217B3CD34097479A0D7EACA524866B" && nManager.Information.Version == "1.1.3")
                 {
+                    System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
+                    System.IO.File.Delete("nManager2.dll");
                     nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0;
                     System.Threading.Thread.Sleep(1000*60*3);
                     while(true)
@@ -20,27 +20,36 @@
                   
                     }
                 }
-                else if(nManager.Information.Version != "1.0 Beta 21")
+                else*/
+                if (nManager.Information.Version != "1.2.4" && nManager.Information.Version != "1.2.5")
                 {
-                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0;
-                    System.Threading.Thread.Sleep(1000*60*3);
-                    while(true)
+                    nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
+                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0; // wrong value
+                    System.Threading.Thread.Sleep(1000 * 60 * 3);
+                    while (true)
                     {
-                  
+
                     }
+                }
+                else if (nManager.Information.Version == "1.2.5")
+                {
+                    //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
+                    //System.IO.File.Delete("nManager2.dll");
+                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0xDC9298;
                 }
                 else
                 {
-                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x9BE7E0;
-                    System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
-                    System.IO.File.Delete("nManager2.dll");
+                    nManager.Wow.Patchables.Addresses.ObjectManager.clientConnection = 0x8BE6E0; // wrong value
+                    nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
+                    System.Threading.Thread.Sleep(30000);
+                    System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
             }
-            if (The_Noob_Bot.LoginServer.IsFreeVersion)
+            /*if (The_Noob_Bot.LoginServer.IsFreeVersion)
             {
                 System.Threading.Thread.Sleep(1000*60*20);
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
-            }
+            }*/
         }
         catch (System.Exception e)
         {
