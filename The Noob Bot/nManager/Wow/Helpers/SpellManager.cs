@@ -693,7 +693,7 @@ namespace nManager.Wow.Helpers
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
-                    Logging.Write(sResult + ";" + SpellNameById(spellId) + ";"+ spellId);
+                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): "+ sResult + ";" + SpellNameById(spellId) + ";" + spellId);
                     return sResult;
                 }
                 catch (Exception exception)

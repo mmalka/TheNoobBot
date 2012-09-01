@@ -161,23 +161,102 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int MaximumSoulShards
+        public uint Mana
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.power); }
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Mana); }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaximumSoulShards: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Mana: " + e); return 0;
                 }
             }
         }
 
-        public int SoulShards
+        public uint Rage
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.maxPower); }
+                try { return GetPowerByPowerType(Enums.PowerType.Rage); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Rage: " + e); return 0;
+                }
+            }
+        }
+
+        public uint Focus
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Focus); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Focus: " + e); return 0;
+                }
+            }
+        }
+
+        public uint Energy
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.HolyPower); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Energy: " + e); return 0;
+                }
+            }
+        }
+
+        public uint Chi
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Chi); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Chi: " + e); return 0;
+                }
+            }
+        }
+
+        public uint Runes
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Runes); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Runes: " + e); return 0;
+                }
+            }
+        }
+
+        public uint RunicPower
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.RunicPower); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > RunicPower: " + e); return 0;
+                }
+            }
+        }
+
+        public uint SoulShards
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.SoulShards); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > SoulShards: " + e); return 0;
@@ -185,28 +264,137 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int MaxHolyPower
+        public uint Eclipse
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.maxPower); }
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Eclipse); }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaxHolyPower: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Eclipse: " + e); return 0;
                 }
             }
         }
 
-        public int HolyPower
+        public uint HolyPower
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.power); }
+                try
+                { return GetPowerByPowerType(Enums.PowerType.HolyPower); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > HolyPower: " + e); return 0;
                 }
             }
+        }
+
+        public uint Alternate
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Alternate); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Alternate: " + e); return 0;
+                }
+            }
+        }
+
+        public uint DarkForce
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.DarkForce); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > DarkForce: " + e); return 0;
+                }
+            }
+        }
+
+        public uint LightForce
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.LightForce); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > LightForce: " + e); return 0;
+                }
+            }
+        }
+
+        public uint ShadowOrbs
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.ShadowOrbs); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > ShadowOrbs: " + e); return 0;
+                }
+            }
+        }
+
+        public uint BurningEmbers
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.BurningEmbers); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > BurningEmbers: " + e); return 0;
+                }
+            }
+        }
+
+        public uint DemonicFury
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.DemonicFury); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > DemonicFury: " + e); return 0;
+                }
+            }
+        }
+
+        public uint ArcaneCharges
+        {
+            get
+            {
+                try
+                { return GetPowerByPowerType(Enums.PowerType.ArcaneCharges); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > ArcaneCharges: " + e); return 0;
+                }
+            }
+        }
+
+        private uint GetPowerIndexByPowerType(Enums.PowerType PowerType)
+        {
+            uint Index = Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(BaseAddress + 0xDC) + 0x49) + (uint)PowerType + 16 * (uint)Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(BaseAddress + 0xDC) + 0x49);
+            uint Result = Memory.WowMemory.Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + 0xC2B68C + Index * 4); // TODO : Reference this offset
+            return Result;
+        }
+
+        private uint GetPowerByPowerType(Enums.PowerType PowerType)
+        {
+
+            uint index = GetPowerIndexByPowerType(PowerType);
+
+            return Memory.WowMemory.Memory.ReadUInt(BaseAddress + index * 4 + 0x1298);
+
         }
 
         public uint Faction

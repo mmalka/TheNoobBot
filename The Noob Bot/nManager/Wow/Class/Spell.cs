@@ -148,7 +148,6 @@ namespace nManager.Wow.Class
                         }
                     }
                 }
-                //Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " Id found: " + tSpell.Id + " Name found: " + tSpell.Name + " NameInGame found: " + tSpell.NameInGame);
                 if (tSpell == null)
                 {
                     Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " => Failed");
