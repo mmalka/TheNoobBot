@@ -160,7 +160,8 @@ namespace The_Noob_Bot
                     {
                         DialogResult resulMb =
                             MessageBox.Show(
-                                nManager.Translate.Get(nManager.Translate.Id.The_Game_is_already_used__do_you_wish_to_use_the_current_process) + "?",
+                                nManager.Translate.Get(nManager.Translate.Id.The_Game_is_currently_used_by_TheNoobBot_or_contains_traces) + "\n\n" +
+                                nManager.Translate.Get(nManager.Translate.Id.If_no_others_session_of_TheNoobBot_is_currently_active),
                                 nManager.Translate.Get(nManager.Translate.Id.Use_this_Game) + "?" + @" - " + Hook.PlayerName(idProcess), MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if (resulMb == DialogResult.No)

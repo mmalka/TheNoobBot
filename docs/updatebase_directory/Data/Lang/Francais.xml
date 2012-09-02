@@ -22,11 +22,15 @@
       <Id>Please_connect_to_the_game</Id>
     </Translation>
     <Translation>
-      <Text>Ce personnage est déjà attaché à TheNoobBot, êtes vous sûr de vouloir utiliser ce personnage </Text>
-      <Id>The_Game_is_already_used__do_you_wish_to_use_the_current_process</Id>
+      <Text>Le jeu est actuellement utilisé par TheNoobBot ou contient des traces d'une utilisation récente de TheNoobBot, êtes-vous sûr de vouloir utiliser ce processus ?</Text>
+      <Id>The_Game_is_currently_used_by_TheNoobBot_or_contains_traces</Id>
     </Translation>
     <Translation>
-      <Text>Utiliser ce personnage </Text>
+      <Text>Si aucune session de TheNoobBot utilise cette session du jeu, il est grandement recommandé de relancer le jeu.</Text>
+      <Id>If_no_others_session_of_TheNoobBot_is_currently_active</Id>
+    </Translation>
+    <Translation>
+      <Text>Utiliser ce personnage</Text>
       <Id>Use_this_Game</Id>
     </Translation>
     <Translation>
