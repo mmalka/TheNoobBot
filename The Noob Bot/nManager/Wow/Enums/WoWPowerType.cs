@@ -1,28 +1,5 @@
 ﻿namespace nManager.Wow.Enums
 {
-    public enum WoWPowerType
-    {
-        Mana,
-        Rage,
-        Focus,
-        Energy,
-        Chi,
-        Happiness,
-        Runes,
-        RunicPower,
-        SoulShards,
-        Eclipse,
-        HolyPower,
-        Alternate,
-        DarkForce,
-        LightForce,
-        ShadowOrbs,
-        BurningEmbers,
-        DemonicFury,
-        ArcaneCharges,
-        Health,
-        UNKNOWN
-    }
     public enum PowerType : int
     {
         Mana = 0x0,
