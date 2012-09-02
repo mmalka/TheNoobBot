@@ -5069,9 +5069,7 @@ public class DruidFeral
     #region DruidRestoSpells
     public void DoMark_Of_The_Wild()
     {
-        if (!Mark_of_the_Wild.HaveBuff &&
-            Mark_of_the_Wild.IsSpellUsable &&
-            Mark_of_the_Wild.KnownSpell)
+        if (!Mark_of_the_Wild.HaveBuff && Mark_of_the_Wild.IsSpellUsable && Mark_of_the_Wild.KnownSpell)
             Mark_of_the_Wild.Launch();
     }
     public void DoNourish()
@@ -6066,6 +6064,7 @@ public class Paladin_Retribution
         {
             Seal();
             Blessing();
+			Heal();
         }
     }
 
@@ -6096,6 +6095,14 @@ public class Paladin_Retribution
 
     private void Heal()
     {
+		if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight)
+		{
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            {
+                FlashOfLight.Launch();
+                return;
+            }
+		}
         if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();

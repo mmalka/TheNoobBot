@@ -558,7 +558,6 @@ namespace nManager.Wow.ObjectManager
                 {
                     Logging.WriteError("WoWUnit > IsTaggedByYou: " + e); return false;
                 }
-                return false;
             }
         }
         public bool IsTargetingMe
