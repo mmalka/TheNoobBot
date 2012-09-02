@@ -178,7 +178,8 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetPowerByPowerType(Enums.PowerType.Rage); }
+                try
+                { return GetPowerByPowerType(Enums.PowerType.Rage); }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > Rage: " + e); return 0;
