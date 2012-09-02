@@ -6012,8 +6012,6 @@ public class Paladin_Retribution
             {
                 if (!ObjectManager.Me.IsMounted)
                 {
-                    Patrolling();
-
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget && (Judgment.IsDistanceGood || Exorcism.IsDistanceGood))
@@ -6021,9 +6019,14 @@ public class Paladin_Retribution
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
                         }
-
                         Combat();
+						Seal();
+						Blessing();
                     }
+					else
+					{
+						Patrolling();
+					}
                 }
             }
             catch
@@ -6089,19 +6092,27 @@ public class Paladin_Retribution
     {
         if (ObjectManager.Me.IsMounted)
             return;
-		else if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
-            BlessingOfMight.Launch();
+		else if (BlessingOfMight.KnownSpell)
+		{
+			if(!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+				BlessingOfMight.Launch();
+		}
+		else if (BlessingOfKings.KnownSpell)
+		{
+			if(!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+				BlessingOfKings.Launch();
+		}
     }
 
     private void Heal()
     {
 		if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight)
 		{
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
-            {
-                FlashOfLight.Launch();
-                return;
-            }
+			if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+			{
+				FlashOfLight.Launch();
+				return;
+			}
 		}
         if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
