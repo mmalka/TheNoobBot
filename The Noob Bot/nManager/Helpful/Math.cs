@@ -113,26 +113,6 @@ namespace nManager.Helpful
         }
 
         /// <summary>
-        /// Return Angle Z.
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="point"></param>
-        /// <returns></returns>
-        public static float GetAngleZ(Point player, Point point)
-        {
-            try
-            {
-                var pitchAngleShould = (float)(System.Math.PI / 2 - System.Math.Atan((player.Z - point.Z) / System.Math.Sqrt(System.Math.Pow((player.X - point.X), 2) + System.Math.Pow((player.Y - point.Y), 2))));
-                return (float)(System.Math.PI / 2 - pitchAngleShould);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetAngleZ(Point player, Point point): " + exception);
-            }
-            return 0;
-        }
-
-        /// <summary>
         /// Find the nearest Point in the list of Point (return a id).
         /// </summary>
         /// <param name="listPoint"></param>
@@ -210,25 +190,6 @@ namespace nManager.Helpful
             return new Point(xc, yc, zc);
         }
 
-        public static float PitchAngle(Point a, Point b)
-        {
-            try
-            {
-                var nextWayPointDistanceZ = b.Z - a.Z;
-                var nextWayPointDistanceX = b.X - a.X;
-                var nextWayPointDistanceY = b.Y - a.Y;
-                var nextWayPointDistance2D =
-                    (float)(System.Math.Sqrt(System.Math.Pow(nextWayPointDistanceX, 2) + System.Math.Pow(nextWayPointDistanceY, 2)));
-                var va = (float)(System.Math.Atan(nextWayPointDistanceZ / nextWayPointDistance2D));
-                return va;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("PitchAngle(Point a, Point b): " + exception);
-            }
-            return 0;
-        }
-
         public static float DistanceListPoint(List<Point> listPoints)
         {
             try
@@ -249,7 +210,7 @@ namespace nManager.Helpful
             }
             catch (Exception exception)
             {
-                Logging.WriteError("PitchAngle(Point a, Point b): " + exception);
+                Logging.WriteError("DistanceListPoint(List<Point> listPoints): " + exception);
             }
             return 0;
         }

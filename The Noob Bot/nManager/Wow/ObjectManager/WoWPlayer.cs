@@ -352,28 +352,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-        public float Pitch
-        {
-            get
-            {
-                try
-                { return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.UnitField.UNIT_FIELD_H); }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > Pitch get: " + e);
-                }
-                return 0;
-            }
-            set
-            {
-                try
-                { Memory.WowMemory.Memory.WriteFloat(BaseAddress + (uint)Addresses.UnitField.UNIT_FIELD_H, value); }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > Pitch set: " + e);
-                }
-            }
-        }
         public int Experience
         {
             get

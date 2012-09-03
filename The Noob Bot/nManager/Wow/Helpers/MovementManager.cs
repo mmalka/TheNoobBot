@@ -1118,34 +1118,5 @@ namespace nManager.Wow.Helpers
 
         #endregion
 
-        #region Pitch
-
-        /// <summary>
-        /// Pitches position.
-        /// </summary>
-        /// <param name="point">The point.</param>
-        public static void PitchWrite(Point point)
-        {
-            try
-            {
-                int angle =
-                    Convert.ToInt32(Math.RadianToDegree(ObjectManager.ObjectManager.Me.Pitch) -
-                                    Math.RadianToDegree(Math.PitchAngle(ObjectManager.ObjectManager.Me.Position, point)));
-                if (angle < 0)
-                {
-                    angle = -angle;
-                }
-                if (angle > 5)
-                {
-                    ObjectManager.ObjectManager.Me.Pitch = Math.PitchAngle(ObjectManager.ObjectManager.Me.Position, point);
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("PitchWrite(Point point): " + exception);
-            }
-        }
-
-        #endregion Pitch
     }
 }
