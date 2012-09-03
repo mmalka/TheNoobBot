@@ -109,7 +109,6 @@
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // OK
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // OK
             UNIT_FIELD_R = 0x7F0, // OK
-            UNIT_FIELD_H = 0x8AC, // ?
             unitName1 = 0x968, // CGUnit_C__GetUnitName // OK
             unitName2 = 0x64, // CGUnit_C__GetUnitName // OK
             CastingSpellID = 0xC08, // Script_UnitCastingInfo // OK
