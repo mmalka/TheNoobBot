@@ -1,5 +1,67 @@
 ﻿namespace nManager.Helpful.Win32
 {
+    public enum UnreservedVK
+    {
+        A,  // A key
+        B,  // B key
+        C,  // C key
+        D,  // D key
+        E,  // E key
+        F,  // F key
+        G,  // G key
+        H,  // H key
+        I,  // I key
+        J,  // J key
+        K,  // K key
+        L,  // L key
+        M,  // M key
+        N,  // N key
+        O,  // O key
+        P,  // P key
+        Q,  // Q key
+        R,  // R key
+        S,  // S key
+        T,  // T key
+        U,  // U key
+        V,  // V key
+        W,  // W key
+        X,  // X key
+        Y,  // Y key
+        Z,  // Z key
+        NUMPAD0,  // Numeric keypad 0 key
+        NUMPAD1,  // Numeric keypad 1 key
+        NUMPAD2,  // Numeric keypad 2 key
+        NUMPAD3,  // Numeric keypad 3 key
+        NUMPAD4,  // Numeric keypad 4 key
+        NUMPAD5,  // Numeric keypad 5 key
+        NUMPAD6,  // Numeric keypad 6 key
+        NUMPAD7,  // Numeric keypad 7 key
+        NUMPAD8,  // Numeric keypad 8 key
+        NUMPAD9,  // Numeric keypad 9 key
+        F1,  // F1 key
+        F2,  // F2 key
+        F3,  // F3 key
+        F4,  // F4 key
+        F5,  // F5 key
+        F6,  // F6 key
+        F7,  // F7 key
+        F8,  // F8 key
+        F9,  // F9 key
+        F10,  // F10 key
+        F11,  // F11 key
+        F12,  // F12 key
+        F13,  // F13 key
+        F14,  // F14 key
+        F15,  // F15 key
+        F16,  // F16 key
+        F17,  // F17 key
+        F18,  // F18 key
+        F19,  // F19 key
+        F20,  // F20 key
+        F21,  // F21 key
+        F23,  // F23 key
+        F24,  // F24 key
+    }
     public enum VK
     {
         LBUTTON = 0x01,  // Left mouse button

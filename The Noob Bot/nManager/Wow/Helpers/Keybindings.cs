@@ -31,14 +31,79 @@ namespace nManager.Wow.Helpers
                 }
 
                 // Create if don't exist:
-                Logging.WriteDebug(action + " was not bind, currently binding it to F13.");
-                SetKeyByAction(action, "F13");
+                if (autoAssignKeyIfNull)
+                {
+                    string key = GetAFreeKey();
+                    if (!string.IsNullOrEmpty(key))
+                    {
+                        Logging.WriteDebug(action + " were not bind, currently trying to bind it with key: " + key + ".");
+                        SetKeyByAction(action, key);
+                        return key;
+                    }
+                    else
+                    {
+                        Logging.WriteDebug("No free keys found on 236 possible bindings, if you got that line, you mainly have a problem with your WoW keybindings.");
+                        return "";
+                    }
+                }
+                else
+                    return "";
             }
             catch (Exception exception)
             {
                 Logging.WriteError("GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true): " + exception);
+                return "";
             }
-            return "F13";
+        }
+        public static string GetAFreeKey()
+        {
+            try
+            {
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"" + key + "\")");
+                    string result = Lua.GetLocalizedText(randomStringResult);
+                    if(string.IsNullOrEmpty(result))
+                    {
+                        return key.ToString();
+                    }
+                }
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-" + key + "\")");
+                    if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
+                    {
+                        return "CTRL-" + key;
+                    }
+                }
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"SHIFT-" + key + "\")");
+                    if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
+                    {
+                        return "SHIFT-" + key;
+                    }
+                }
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-SHIFT-" + key + "\")");
+                    if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
+                    {
+                        return "CTRL-SHIFT-" + key;
+                    }
+                }
+                return ""; // No key found. Quite impossible since we try 236 bindings.
+       
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetAFreeKey(): " + exception);
+                return "";
+            }
         }
         public static void SetKeyByAction(Enums.Keybindings action, string key)
         {
