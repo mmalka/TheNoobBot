@@ -382,20 +382,31 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        private uint GetPowerIndexByPowerType(Enums.PowerType PowerType)
+        private uint GetPowerIndexByPowerType(Enums.PowerType powerType)
         {
-            uint Index = Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(BaseAddress + 0xDC) + 0x49) + (uint)PowerType + 16 * (uint)Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.Memory.ReadUInt(BaseAddress + 0xDC) + 0x49);
-            uint Result = Memory.WowMemory.Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + 0xC2B68C + Index * 4); // TODO : Reference this offset
-            return Result;
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.displayPower * Descriptors.multiplicator);
+            uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint)powerType + (uint)Addresses.PowerIndex.Multiplicator * Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
+            uint result = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.PowerIndex.PowerIndexArrays + index * 4);
+            return result;
         }
 
-        private uint GetPowerByPowerType(Enums.PowerType PowerType)
+        public uint GetPowerByPowerType(Enums.PowerType powerType)
         {
 
-            uint index = GetPowerIndexByPowerType(PowerType);
+            uint index = GetPowerIndexByPowerType(powerType);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint powerValue = Memory.WowMemory.Memory.ReadUInt(descriptorsArray + ((uint)Descriptors.UnitFields.power * Descriptors.multiplicator + index * 4));
+            return powerValue;
+        }
 
-            return Memory.WowMemory.Memory.ReadUInt(BaseAddress + index * 4 + 0x1298);
+        public uint GetMaxPowerByPowerType(Enums.PowerType powerType)
+        {
 
+            uint index = GetPowerIndexByPowerType(powerType);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint powerValue = Memory.WowMemory.Memory.ReadUInt(descriptorsArray + ((uint)Descriptors.UnitFields.maxPower * Descriptors.multiplicator + index * 4));
+            return powerValue;
         }
 
         public uint Faction
