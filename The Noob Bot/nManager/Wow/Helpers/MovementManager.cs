@@ -161,33 +161,8 @@ namespace nManager.Wow.Helpers
 
                     if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop && !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                     {
-                        bool result;
-                        var path = PathFinder.FindPath(_points[firstIdPoint], out result);
-                        if (result)
-                        {
-                            for (int i = 0; i <= path.Count-1; i++)
-                            {
-                                path[i].Type = "Flying";
-                            }
-                            _points = path;
-                            _loop = false;
-                            firstIdPoint = 0;
-                            FlyMouvementManager(firstIdPoint);
-                            return;
-                        }
-                        else
-                        {
-                            Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[firstIdPoint]));
-                            LongMove.LongMoveByNewThread(_points[firstIdPoint]);
-                            Thread.Sleep(100);
-                            while (LongMove.IsLongMove && _movement)
-                            {
-                                Thread.Sleep(50);
-                            }
-                            LongMove.StopLongMove();
-                        }
-                        if (!_movement)
-                            return;
+                        FlyMouvementManager(firstIdPoint);
+                        return;
                     }
 
                     if (nManagerSetting.CurrentSetting.useGroundMount)
@@ -295,26 +270,15 @@ namespace nManager.Wow.Helpers
                     int idPoint = firstIdPoint;
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) > 200 || _points.Count == 1)
                     {
-                        bool result;
-                        var path = PathFinder.FindPath(_points[idPoint], out result);
-                        if (result)
+                        Logging.WriteNavigator("Long Move distance: " +
+                                            ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]));
+                        LongMove.LongMoveByNewThread(_points[idPoint]);
+                        Thread.Sleep(100);
+                        while (LongMove.IsLongMove && _movement)
                         {
-                            _points = path;
-                            _loop = false;
-                            idPoint = 0;
+                            Thread.Sleep(50);
                         }
-                        else
-                        {
-                            Logging.WriteNavigator("Long Move distance: " +
-                                               ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]));
-                            LongMove.LongMoveByNewThread(_points[idPoint]);
-                            Thread.Sleep(100);
-                            while (LongMove.IsLongMove && _movement)
-                            {
-                                Thread.Sleep(50);
-                            }
-                            LongMove.StopLongMove();
-                        }
+                        LongMove.StopLongMove();
                     }
 
                     bool end = false;
