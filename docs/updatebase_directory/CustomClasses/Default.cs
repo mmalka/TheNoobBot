@@ -5341,8 +5341,6 @@ public class Paladin_Protection
             {
                 if (!ObjectManager.Me.IsMounted)
                 {
-                    Patrolling();
-
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget && Judgment.IsDistanceGood)
@@ -5350,15 +5348,20 @@ public class Paladin_Protection
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
                         }
-
                         Combat();
+						Seal();
+						Blessing();
                     }
+					else
+					{
+						Patrolling();
+					}
                 }
             }
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
@@ -5394,6 +5397,7 @@ public class Paladin_Protection
         {
             Seal();
             Blessing();
+			Heal();
         }
     }
 
@@ -5405,38 +5409,47 @@ public class Paladin_Protection
         if (SealOfTruth.KnownSpell)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
-            {
                 SealOfTruth.Launch();
-            }
         }
         else if (SealOfTheRighteousness.KnownSpell)
-            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
-            {
-                {
-                    SealOfTheRighteousness.Launch();
-                }
-            }
+        {
+			if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+				SealOfTheRighteousness.Launch();
+        }
     }
 
     private void Blessing()
     {
         if (ObjectManager.Me.IsMounted)
             return;
-
-        if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
-        {
-            BlessingOfMight.Launch();
-        }
+		else if (BlessingOfMight.KnownSpell)
+		{
+			if(!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+				BlessingOfMight.Launch();
+		}
+		else if (BlessingOfKings.KnownSpell)
+		{
+			if(!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+				BlessingOfKings.Launch();
+		}
     }
 
     private void Heal()
     {
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && DivineShield.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
+		if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight)
+		{
+			if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+			{
+				FlashOfLight.Launch();
+				return;
+			}
+		}
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();
             return;
         }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
         {
             LayOnHands.Launch();
             return;
@@ -5444,8 +5457,10 @@ public class Paladin_Protection
         if (ObjectManager.Me.BarTwoPercentage < 10)
         {
             if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
-                Arcane_Torrent.Launch();
+            {
+				Arcane_Torrent.Launch();
 				return;
+			}
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
