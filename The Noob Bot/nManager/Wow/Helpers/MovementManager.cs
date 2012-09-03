@@ -85,7 +85,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (_worker == null)
                     {
-                        _worker = new Thread(ThreadMovementManager) {IsBackground = true, Name = "MovementManager"};
+                        _worker = new Thread(ThreadMovementManager) { IsBackground = true, Name = "MovementManager" };
                         _worker.Start();
                     }
                 }
@@ -106,7 +106,7 @@ namespace nManager.Wow.Helpers
                     {
                         while ((_loop || _first) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                         {
-                            if(Statistics.OffsetStats == 0xB5)
+                            if (Statistics.OffsetStats == 0xB5)
                             {
                                 _first = false;
 
@@ -161,8 +161,17 @@ namespace nManager.Wow.Helpers
 
                     if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop && !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                     {
-                        FlyMouvementManager(firstIdPoint);
-                        return;
+                        Logging.WriteNavigator("Long Move distance: " + ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[firstIdPoint]));
+                        LongMove.LongMoveByNewThread(_points[firstIdPoint]);
+                        Thread.Sleep(100);
+                        while (LongMove.IsLongMove && _movement)
+                        {
+                            Thread.Sleep(50);
+                        }
+                        LongMove.StopLongMove();
+
+                        if (!_movement)
+                            return;
                     }
 
                     if (nManagerSetting.CurrentSetting.useGroundMount)
