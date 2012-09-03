@@ -273,8 +273,6 @@ namespace Gatherer.Bot
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 495);
-            this.Controls.Add(this.clearB);
-            this.Controls.Add(this.pointsL);
             this.Controls.Add(this.addByNameNpcB);
             this.Controls.Add(this.nameNpcTb);
             this.Controls.Add(this.loadB);
@@ -328,7 +326,5 @@ namespace Gatherer.Bot
         private DevComponents.DotNetBar.ButtonX loadB;
         private DevComponents.DotNetBar.Controls.TextBoxX nameNpcTb;
         private DevComponents.DotNetBar.ButtonX addByNameNpcB;
-        private DevComponents.DotNetBar.ButtonX clearB;
-        private System.Windows.Forms.Label pointsL;
     }
 }
