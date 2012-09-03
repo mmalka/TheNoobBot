@@ -125,7 +125,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 bool tr;
-                locList = PathFinderDroidz.FindPath(to, out tr);
+                locList = PathFinder.FindPath(to, out tr);
                 if (tr)
                 {
                     resultSuccess = true;

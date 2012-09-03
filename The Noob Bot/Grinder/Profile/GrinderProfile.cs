@@ -8,7 +8,6 @@ namespace Grinder.Profile
     public class GrinderProfile
     {
         public List<GrinderZone> GrinderZones = new List<GrinderZone>();
-        public List<Point> PointsPathFinderDroidz = new List<Point>();
     }
     [Serializable]
     public class GrinderZone

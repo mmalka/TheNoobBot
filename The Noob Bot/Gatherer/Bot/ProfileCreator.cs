@@ -91,7 +91,6 @@ namespace Gatherer.Bot
         {
             try
             {
-                pathFinderDroidz.Enabled = false;
                 _loopRecordPoint = false;
             }
             catch (Exception e)
@@ -355,31 +354,6 @@ namespace Gatherer.Bot
             catch (Exception ex)
             {
                 Logging.WriteError("addByNameNpcB_Click(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private void clearB_Click(object sender, EventArgs e)
-        {
-            lock ("pointsForPathFinder")
-            {
-                _profile.PointsPathFinderDroidz.Clear();
-            }
-        }
-
-        private void pathFinderDroidz_Tick(object sender, EventArgs e)
-        {
-            lock ("pointsForPathFinder")
-            {
-                if (_profile.PointsPathFinderDroidz.Count <= 0)
-                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
-
-                if (
-                    _profile.PointsPathFinderDroidz[_profile.PointsPathFinderDroidz.Count - 1].DistanceTo2D(
-                        ObjectManager.Me.Position) > 3 ||
-                    ObjectManager.Me.Position.DistanceZ(ObjectManager.Me.Position) > 1.5)
-                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
-
-                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " points";
             }
         }
     }

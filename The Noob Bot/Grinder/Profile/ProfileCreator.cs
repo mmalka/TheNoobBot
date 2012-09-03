@@ -57,8 +57,6 @@ namespace Grinder.Profile
             labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " + nManager.Translate.Get(nManager.Translate.Id.Min);
             addTargetEntryB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target);
             labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Ids);
-            pointsL.Text = "";// "0 points";
-            clearB.Text = nManager.Translate.Get(nManager.Translate.Id.Clear);
             Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
         }
         private void saveB_Click(object sender, EventArgs ex)
@@ -107,7 +105,6 @@ namespace Grinder.Profile
         {
             try
             {
-                pathFinderDroidz.Enabled = false;
                 _loopRecordPoint = false;
             }
             catch (Exception e)
@@ -578,31 +575,6 @@ namespace Grinder.Profile
             catch (Exception ex)
             {
                 Logging.WriteError("addTargetEntryB_Click(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private void pathFinderDroidz_Tick(object sender, EventArgs e)
-        {
-            lock ("pointsForPathFinder")
-            {
-                if (_profile.PointsPathFinderDroidz.Count <= 0)
-                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
-
-                if (
-                    _profile.PointsPathFinderDroidz[_profile.PointsPathFinderDroidz.Count - 1].DistanceTo2D(
-                        ObjectManager.Me.Position) > 3 ||
-                    ObjectManager.Me.Position.DistanceZ(ObjectManager.Me.Position) > 1.5)
-                    _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
-
-                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " " + nManager.Translate.Get(nManager.Translate.Id.Nodes);
-            }
-        }
-
-        private void clearB_Click(object sender, EventArgs e)
-        {
-            lock ("pointsForPathFinder")
-            {
-                _profile.PointsPathFinderDroidz.Clear();
             }
         }
     }

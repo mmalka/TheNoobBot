@@ -12,8 +12,6 @@ namespace Gatherer
         public List<Npc> Npc = new List<Npc>();
 
         public List<GathererBlackListRadius> BlackListRadius = new List<GathererBlackListRadius>();
-
-        public List<Point> PointsPathFinderDroidz = new List<Point>();
     }
     [Serializable]
     public class GathererBlackListRadius

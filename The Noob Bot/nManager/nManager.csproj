@@ -203,7 +203,6 @@
     <Compile Include="Wow\Helpers\PathFinderClass\Hop.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Pather.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Utility.cs" />
-    <Compile Include="Wow\Helpers\PathFinderDroidz.cs" />
     <Compile Include="Wow\Helpers\Prospecting.cs" />
     <Compile Include="Wow\Helpers\Quest.cs" />
     <Compile Include="Wow\Helpers\Skill.cs" />

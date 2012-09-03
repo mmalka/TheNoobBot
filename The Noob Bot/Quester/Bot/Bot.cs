@@ -91,10 +91,6 @@ namespace Quester.Bot
                 // Load CC:
                 CustomClass.LoadCustomClass();
 
-                // PathFinder:
-                //PathFinderDroidz.AddRangeListPointForPath(Profile.PointsPathFinderDroidz);
-                //PathFinderDroidz.AddRangeListPointForPath(Profile.Points);
-
                 int QuesterStatePriority = 5;
 
                 // FSM

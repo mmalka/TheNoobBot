@@ -26,10 +26,6 @@ namespace Battlegrounder.Bot
                 // Load CC:
                 CustomClass.LoadCustomClass();
 
-                // PathFinder:
-                //PathFinderDroidz.AddRangeListPointForPath(Profile.PointsPathFinderDroidz);
-                //PathFinderDroidz.AddRangeListPointForPath(Profile.Points);
-
                 int battlegrounderStatePriority = 6;
 
                 // FSM

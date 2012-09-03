@@ -162,7 +162,7 @@ namespace nManager.Wow.Helpers
                     if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop && !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                     {
                         bool result;
-                        var path = PathFinderDroidz.FindPath(_points[firstIdPoint], out result, "Flying");
+                        var path = PathFinder.FindPath(_points[firstIdPoint], out result);
                         if (result)
                         {
                             for (int i = 0; i <= path.Count-1; i++)
@@ -296,7 +296,7 @@ namespace nManager.Wow.Helpers
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) > 200 || _points.Count == 1)
                     {
                         bool result;
-                        var path = PathFinderDroidz.FindPath(_points[idPoint], out result, "Flying");
+                        var path = PathFinder.FindPath(_points[idPoint], out result);
                         if (result)
                         {
                             _points = path;
@@ -378,7 +378,7 @@ namespace nManager.Wow.Helpers
                     if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
                     {
                         bool result;
-                        var path = PathFinderDroidz.FindPath(_points[idPoint], out result, "Swimming");
+                        var path = PathFinder.FindPath(_points[idPoint], out result);
                         if (result)
                         {
                             for (int i = 0; i <= path.Count - 1; i++)

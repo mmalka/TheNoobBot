@@ -46,9 +46,6 @@ namespace Gatherer.Bot
             this.loadB = new DevComponents.DotNetBar.ButtonX();
             this.nameNpcTb = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.addByNameNpcB = new DevComponents.DotNetBar.ButtonX();
-            this.clearB = new DevComponents.DotNetBar.ButtonX();
-            this.pointsL = new System.Windows.Forms.Label();
-            this.pathFinderDroidz = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radiusN)).BeginInit();
             this.SuspendLayout();
@@ -271,35 +268,6 @@ namespace Gatherer.Bot
             this.addByNameNpcB.Text = "Add by Name to Npc list";
             this.addByNameNpcB.Click += new System.EventHandler(this.addByNameNpcB_Click);
             // 
-            // clearB
-            // 
-            this.clearB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.clearB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.clearB.Location = new System.Drawing.Point(1, 480);
-            this.clearB.Name = "clearB";
-            this.clearB.Size = new System.Drawing.Size(37, 15);
-            this.clearB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.clearB.TabIndex = 41;
-            this.clearB.Text = "Clear";
-            this.clearB.Click += new System.EventHandler(this.clearB_Click);
-            // 
-            // pointsL
-            // 
-            this.pointsL.AutoSize = true;
-            this.pointsL.BackColor = System.Drawing.Color.White;
-            this.pointsL.ForeColor = System.Drawing.Color.Black;
-            this.pointsL.Location = new System.Drawing.Point(44, 482);
-            this.pointsL.Name = "pointsL";
-            this.pointsL.Size = new System.Drawing.Size(49, 13);
-            this.pointsL.TabIndex = 40;
-            this.pointsL.Text = "0 points";
-            // 
-            // pathFinderDroidz
-            // 
-            this.pathFinderDroidz.Enabled = true;
-            this.pathFinderDroidz.Interval = 200;
-            this.pathFinderDroidz.Tick += new System.EventHandler(this.pathFinderDroidz_Tick);
-            // 
             // ProfileCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,6 +330,5 @@ namespace Gatherer.Bot
         private DevComponents.DotNetBar.ButtonX addByNameNpcB;
         private DevComponents.DotNetBar.ButtonX clearB;
         private System.Windows.Forms.Label pointsL;
-        private System.Windows.Forms.Timer pathFinderDroidz;
     }
 }

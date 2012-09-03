@@ -28,7 +28,6 @@ namespace Grinder.Profile
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.recordWayB = new DevComponents.DotNetBar.ButtonX();
             this.saveB = new DevComponents.DotNetBar.ButtonX();
             this.listPoint = new System.Windows.Forms.ListBox();
@@ -63,9 +62,6 @@ namespace Grinder.Profile
             this.listEntryTb = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.addTargetEntryB = new DevComponents.DotNetBar.ButtonX();
             this.labelX8 = new DevComponents.DotNetBar.LabelX();
-            this.pathFinderDroidz = new System.Windows.Forms.Timer(this.components);
-            this.pointsL = new System.Windows.Forms.Label();
-            this.clearB = new DevComponents.DotNetBar.ButtonX();
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radiusN)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minLevelPlayer)).BeginInit();
@@ -133,7 +129,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.Class = "";
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX1.ForeColor = System.Drawing.Color.Black;
             this.labelX1.Location = new System.Drawing.Point(1, 4);
@@ -312,7 +307,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX2.BackgroundStyle.Class = "";
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
             this.labelX2.Location = new System.Drawing.Point(1, 34);
@@ -366,7 +360,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX3.BackgroundStyle.Class = "";
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
             this.labelX3.Location = new System.Drawing.Point(1, 71);
@@ -381,7 +374,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX4.BackgroundStyle.Class = "";
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
             this.labelX4.Location = new System.Drawing.Point(1, 105);
@@ -416,7 +408,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX5.BackgroundStyle.Class = "";
             this.labelX5.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX5.ForeColor = System.Drawing.Color.Black;
             this.labelX5.Location = new System.Drawing.Point(115, 105);
@@ -471,7 +462,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX6.BackgroundStyle.Class = "";
             this.labelX6.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX6.ForeColor = System.Drawing.Color.Black;
             this.labelX6.Location = new System.Drawing.Point(306, 106);
@@ -506,7 +496,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX7.BackgroundStyle.Class = "";
             this.labelX7.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX7.ForeColor = System.Drawing.Color.Black;
             this.labelX7.Location = new System.Drawing.Point(187, 105);
@@ -548,7 +537,6 @@ namespace Grinder.Profile
             // 
             // 
             // 
-            this.labelX8.BackgroundStyle.Class = "";
             this.labelX8.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX8.ForeColor = System.Drawing.Color.Black;
             this.labelX8.Location = new System.Drawing.Point(1, 135);
@@ -557,40 +545,11 @@ namespace Grinder.Profile
             this.labelX8.TabIndex = 37;
             this.labelX8.Text = "Ids of targets";
             // 
-            // pathFinderDroidz
-            // 
-            this.pathFinderDroidz.Enabled = true;
-            this.pathFinderDroidz.Interval = 200;
-            this.pathFinderDroidz.Tick += new System.EventHandler(this.pathFinderDroidz_Tick);
-            // 
-            // pointsL
-            // 
-            this.pointsL.AutoSize = true;
-            this.pointsL.Location = new System.Drawing.Point(44, 547);
-            this.pointsL.Name = "pointsL";
-            this.pointsL.Size = new System.Drawing.Size(49, 13);
-            this.pointsL.TabIndex = 38;
-            this.pointsL.Text = "0 nodes";
-            // 
-            // clearB
-            // 
-            this.clearB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.clearB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.clearB.Location = new System.Drawing.Point(1, 545);
-            this.clearB.Name = "clearB";
-            this.clearB.Size = new System.Drawing.Size(37, 15);
-            this.clearB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.clearB.TabIndex = 39;
-            this.clearB.Text = "Clear";
-            this.clearB.Click += new System.EventHandler(this.clearB_Click);
-            // 
             // ProfileCreator
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(379, 562);
-            this.Controls.Add(this.clearB);
-            this.Controls.Add(this.pointsL);
             this.Controls.Add(this.labelX8);
             this.Controls.Add(this.addTargetEntryB);
             this.Controls.Add(this.listEntryTb);
@@ -640,7 +599,6 @@ namespace Grinder.Profile
             ((System.ComponentModel.ISupportInitialize)(this.maxLevelTarget)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minLevelTarget)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -680,8 +638,5 @@ namespace Grinder.Profile
         private DevComponents.DotNetBar.Controls.TextBoxX listEntryTb;
         private DevComponents.DotNetBar.ButtonX addTargetEntryB;
         private DevComponents.DotNetBar.LabelX labelX8;
-        private System.Windows.Forms.Timer pathFinderDroidz;
-        private System.Windows.Forms.Label pointsL;
-        private DevComponents.DotNetBar.ButtonX clearB;
     }
 }

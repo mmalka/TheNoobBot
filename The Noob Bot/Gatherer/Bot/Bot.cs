@@ -32,10 +32,6 @@ namespace Gatherer.Bot
                 if (GathererSetting.CurrentSetting.pathingReverseDirection)
                     Profile.Points.Reverse();
 
-                // PathFinder:
-                PathFinderDroidz.AddRangeListPointForPath(Profile.PointsPathFinderDroidz);
-                PathFinderDroidz.AddRangeListPointForPath(Profile.Points);
-
                 NpcDB.AddNpcRange(Profile.Npc);
                 var blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
                 nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);

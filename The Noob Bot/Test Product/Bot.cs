@@ -97,7 +97,7 @@ namespace Test_Product
                 }
             }
             var time = nManager.Helpful.Others.Times;
-            var path = nManager.Wow.Helpers.PathFinderDroidz.FindPath(new Point(-10, 31, 0), new Point(61, 14, 0), listP, 10f, 10f);
+            var path = nManager.Wow.Helpers.PathFinder.FindPath(new Point(-10, 31, 0), new Point(61, 14, 0), listP, 10f, 10f);
             time = nManager.Helpful.Others.Times - time;
             var n = 0;
             foreach (var point in path)

@@ -47,12 +47,6 @@ namespace Grinder.Bot
 
                 SelectZone();
 
-                // Pathfinder
-                PathFinderDroidz.AddRangeListPointForPath(Profile.PointsPathFinderDroidz);
-                foreach (var g in Profile.GrinderZones)
-                {
-                    PathFinderDroidz.AddRangeListPointForPath(g.Points);
-                }
 
                 // Black List:
                 var blackListDic = new Dictionary<Point, float>();
