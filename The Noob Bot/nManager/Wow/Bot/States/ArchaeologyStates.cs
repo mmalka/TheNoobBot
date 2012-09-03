@@ -30,7 +30,7 @@ namespace nManager.Wow.Bot.States
         private Spell surveySpell;
         private Helpful.Timer timerAutoSolving;
 
-        public int SolvingEveryXMin = 30;
+        public int SolvingEveryXMin = 20;
         public int MaxTryByDigsite = 30;
 
         public override bool NeedToRun
@@ -152,6 +152,8 @@ namespace nManager.Wow.Bot.States
                             {
                                 return;
                             }
+                            Thread.Sleep(500);
+                            MovementManager.StopMove(); // avoid a red wow error
                             Thread.Sleep(500);
                             Interact.InteractGameObject(t.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency);
