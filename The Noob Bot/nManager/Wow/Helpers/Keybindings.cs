@@ -31,13 +31,14 @@ namespace nManager.Wow.Helpers
                 }
 
                 // Create if don't exist:
-                SetKeyByAction(action, "VK_F13");
+                Logging.WriteDebug(action + " was not bind, currently binding it to F13.");
+                SetKeyByAction(action, "F13");
             }
             catch (Exception exception)
             {
                 Logging.WriteError("GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true): " + exception);
             }
-            return "k";
+            return "F13";
         }
         public static void SetKeyByAction(Enums.Keybindings action, string key)
         {
