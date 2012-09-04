@@ -63,7 +63,6 @@ namespace The_Noob_Bot
             this.playerNameB = new DevComponents.DotNetBar.ButtonItem();
             this.qatCustomizeItem1 = new DevComponents.DotNetBar.QatCustomizeItem();
             this.metroStatusBar1 = new DevComponents.DotNetBar.Metro.MetroStatusBar();
-            this.usageProcessL = new DevComponents.DotNetBar.LabelX();
             this.statusBarText = new DevComponents.DotNetBar.LabelX();
             this.myBotAccountTabTimer = new System.Windows.Forms.Timer(this.components);
             this.listProductsCb = new DevComponents.DotNetBar.Controls.ComboBoxEx();
@@ -631,7 +630,6 @@ namespace The_Noob_Bot
             // 
             this.metroStatusBar1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.metroStatusBar1.ContainerControlProcessDialogKey = true;
-            this.metroStatusBar1.Controls.Add(this.usageProcessL);
             this.metroStatusBar1.Controls.Add(this.statusBarText);
             this.metroStatusBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.metroStatusBar1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -641,23 +639,6 @@ namespace The_Noob_Bot
             this.metroStatusBar1.Size = new System.Drawing.Size(444, 21);
             this.metroStatusBar1.TabIndex = 1;
             this.metroStatusBar1.Text = "StatusBar";
-            // 
-            // usageProcessL
-            // 
-            this.usageProcessL.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.usageProcessL.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.usageProcessL.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usageProcessL.ForeColor = System.Drawing.Color.Black;
-            this.usageProcessL.Location = new System.Drawing.Point(234, 2);
-            this.usageProcessL.Name = "usageProcessL";
-            this.usageProcessL.Size = new System.Drawing.Size(199, 18);
-            this.usageProcessL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.usageProcessL.TabIndex = 1;
-            this.usageProcessL.Text = "usageProcess";
-            this.usageProcessL.TextAlignment = System.Drawing.StringAlignment.Far;
             // 
             // statusBarText
             // 
@@ -861,7 +842,6 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.LabelX statusBarText;
         private DevComponents.DotNetBar.ButtonX devToolsB;
         private DevComponents.DotNetBar.ButtonX buttonX1;
-        private DevComponents.DotNetBar.LabelX usageProcessL;
 
         private System.Windows.Forms.ToolTip labelsToolTip;
     }

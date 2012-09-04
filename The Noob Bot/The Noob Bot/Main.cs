@@ -478,9 +478,6 @@ namespace The_Noob_Bot
                     }
                 }
 
-                usageProcessL.Text = "CPU: " + nManager.Wow.MemoryClass.Process.getCurrentCpuUsage() + " - Memory: " +
-                                     nManager.Wow.MemoryClass.Process.getCurrentRAMUsage();
-
                 if (ObjectManager.Me.IsValid)
                 {
                     healthB.Value = (int) ObjectManager.Me.HealthPercent;

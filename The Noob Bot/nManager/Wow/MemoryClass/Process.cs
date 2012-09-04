@@ -68,7 +68,8 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
-                System.Diagnostics.Process[] processesByNameList = System.Diagnostics.Process.GetProcessesByName(processName);
+                System.Diagnostics.Process[] processesByNameList =
+                    System.Diagnostics.Process.GetProcessesByName(processName);
                 return processesByNameList;
             }
             catch (Exception e)
@@ -111,7 +112,7 @@ namespace nManager.Wow.MemoryClass
                 {
                     if (modules[i].ModuleName.ToLower() == moduleName.ToLower())
                     {
-                        return (uint)modules[i].BaseAddress;
+                        return (uint) modules[i].BaseAddress;
                     }
                 }
             }
@@ -162,7 +163,7 @@ namespace nManager.Wow.MemoryClass
                 System.Diagnostics.Process.LeaveDebugMode();
                 ProcessHandle = IntPtr.Zero;
                 MainWindowHandle = IntPtr.Zero;
-                ProcessId = (int)IntPtr.Zero;
+                ProcessId = (int) IntPtr.Zero;
             }
             catch (Exception e)
             {
@@ -189,81 +190,24 @@ namespace nManager.Wow.MemoryClass
         }
 
 
-        protected static PerformanceCounter cpuCurrentCounter;
-        protected static PerformanceCounter cpuCounter;
-        protected static PerformanceCounter ramCounter;
-
-        private static string lastResultCurrentCpuUsage = "";
-        private static string lastCurrentRAMUsage = "";
-        private static Timer timerResultCurrentCpuUsage = new Timer(0);
-        private static Timer timerCurrentRAMUsage = new Timer(0);
-        public static string getCurrentCpuUsage()
-        {
-            try
-            {
-                if (!timerResultCurrentCpuUsage.IsReady)
-                    return lastResultCurrentCpuUsage;
-                timerResultCurrentCpuUsage = new Timer(1000);
-                if (cpuCounter == null || cpuCurrentCounter == null)
-                {
-                    cpuCurrentCounter = new PerformanceCounter("Process", "% Processor Time", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
-                    cpuCounter = new PerformanceCounter("Processor", "% Processor Time", "_Total");
-                }
-                var result = System.Math.Round((cpuCounter.NextValue() * cpuCurrentCounter.NextValue() / 100), 2);
-                lastResultCurrentCpuUsage = result + " %";
-                return lastResultCurrentCpuUsage;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("getCurrentCpuUsage(): " + e);
-                return "-%";
-            }
-        }
-        public static string getCurrentRAMUsage()
-        {
-            try
-            {
-                if (!timerCurrentRAMUsage.IsReady)
-                    return lastCurrentRAMUsage;
-                timerCurrentRAMUsage = new Timer(1000);
-                if (ramCounter == null)
-                {
-                    try
-                    {
-                        ramCounter = new PerformanceCounter("Process", "Working Set - Private", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
-                    }
-                    catch (System.InvalidOperationException)
-                    {
-                        ramCounter = new PerformanceCounter("Process", "Working Set", System.Diagnostics.Process.GetCurrentProcess().ProcessName);
-                    }
-                }
-                lastCurrentRAMUsage = (ramCounter.RawValue / 1024).ToString("#,#", CultureInfo.InvariantCulture) + " K";
-                return lastCurrentRAMUsage;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("getCurrentRAMUsage(): " + e);
-                return "-K";
-            }
-        }
-
         internal static List<int> InjectionCount = new List<int>();
+
         public static int GetInjectionBySec()
         {
-             try
+            try
             {
-            for (int i = InjectionCount.Count - 1; i >= 0; i--)
+                for (int i = InjectionCount.Count - 1; i >= 0; i--)
+                {
+                    if (InjectionCount[i] < Others.Times - (1000*1))
+                        InjectionCount.RemoveAt(i);
+                }
+                return InjectionCount.Count;
+            }
+            catch (Exception e)
             {
-                if (InjectionCount[i] < Others.Times - (1000*1))
-                    InjectionCount.RemoveAt(i);
+                Logging.WriteError("GetInjectionByMin(): " + e);
+                return 0;
             }
-            return InjectionCount.Count;
-            }
-             catch (Exception e)
-             {
-                 Logging.WriteError("GetInjectionByMin(): " + e);
-                 return 0;
-             }
         }
     }
 }
