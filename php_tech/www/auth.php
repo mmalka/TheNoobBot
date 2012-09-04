@@ -1,8 +1,6 @@
 <?php
 include "function_auth.php";
 cleanBDD();
-if($_SERVER['REMOTE_ADDRESS'] == '87.58.238.23')
-exit();
 // Login
 if (mysql_escape_string($_SERVER['PHP_AUTH_USER']) != "" && mysql_escape_string($_SERVER['PHP_AUTH_PW']) != "")
 {
@@ -31,7 +29,6 @@ if (mysql_escape_string($_SERVER['PHP_AUTH_USER']) != "" && mysql_escape_string(
 		die;
 	}
 }
-
 // Bot online
 if ($_GET['botOnline'])
 {

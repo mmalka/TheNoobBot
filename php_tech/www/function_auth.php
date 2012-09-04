@@ -20,7 +20,7 @@ $DHMS = secondeToStringDayHourMin($time);
 */
 
 
-$dbServer = "localhost";
+$dbServer = "thenoobbot.com";
 $dbName = "thenoobbot_site";
 $dbUser = "thenoobbot_chk";
 $dbPassword = "AFjuVhFmKXsQ2wAj";
@@ -37,8 +37,8 @@ $mysql = NULL;
  
 function connectionMysql()
 {
-	global $dbServe, $dbUser, $dbPassword, $dbName, $mysql;
-	$mysql = mysql_connect($dbServer,$dbUser,$dbPassword);
+	global $dbServer, $dbUser, $dbPassword, $dbName, $mysql;
+	$mysql = mysql_connect($dbServer,$dbUser,$dbPassword) or die(mysql_error());
 	if (!$mysql)
 	  die ("Connection error");
 	mysql_select_db($dbName) or die ("Connection error");
@@ -51,7 +51,6 @@ function closeMysql()
 		mysql_close($mysql);
 	$mysql = NULL;
 }
-
 function existUserName($userName)
 {
 	global $tableUsersName;
@@ -198,7 +197,7 @@ function botOnline()
                               WHERE lastTime > ".(time()-160)) or die(mysql_error());
 	$result = mysql_num_rows($query);
 	closeMysql();
-    $n = intval(intval($result)*3.45);
+    $n = intval(intval($result)*2.9)-2;
 
 	
 	return $n;
