@@ -21,7 +21,7 @@
                     }
                 }
                 else*/
-                if (nManager.Information.Version != "1.2.4" && nManager.Information.Version != "1.2.5")
+                if (nManager.Information.Version != "1.2.6" && nManager.Information.Version != "1.2.7")
                 {
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
                     nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0; // wrong value
@@ -31,7 +31,7 @@
 
                     }
                 }
-                else if (nManager.Information.Version == "1.2.5")
+                else if (nManager.Information.Version == "1.2.7")
                 {
                     //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                     //System.IO.File.Delete("nManager2.dll");

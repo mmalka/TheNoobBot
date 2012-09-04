@@ -23,7 +23,7 @@ namespace Test_Product
 
 
             var skill = nManager.Wow.Helpers.Skill.GetMaxValue(SkillLine.Fishing);
-            var tbreak = 1;
+            //var tbreak = 1;
 
             //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
             /*

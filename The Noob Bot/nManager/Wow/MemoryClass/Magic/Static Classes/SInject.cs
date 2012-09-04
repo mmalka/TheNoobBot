@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using Fasm;
+using nManager.Helpful;
 
 namespace nManager.Wow.MemoryClass.Magic
 {
@@ -202,13 +203,10 @@ namespace nManager.Wow.MemoryClass.Magic
 			{
 				bBytecode = ManagedFasm.Assemble(szAssembly);
 			}
-			catch (Exception ex)
+			catch (Exception e)
 			{
-				#if DEBUG
-				Console.WriteLine(ex.Message);
-				#endif
-
-				return false;
+				Logging.WriteError(e.Message);
+                return false;
 			}
 
 			return SMemory.WriteBytes(hProcess, dwAddress, bBytecode, bBytecode.Length);
