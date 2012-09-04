@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using nManager.Wow;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 
@@ -13,7 +14,10 @@ namespace Test_Product
     {
         public static bool Pulse()
         {
-            var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
+            var t = nManager.Wow.ObjectManager.ObjectManager.Me.GetPowerByPowerType(PowerType.Energy);
+            var tMax = nManager.Wow.ObjectManager.ObjectManager.Me.GetMaxPowerByPowerType(PowerType.Energy);
+
+            //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
             /*
             DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
             var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);

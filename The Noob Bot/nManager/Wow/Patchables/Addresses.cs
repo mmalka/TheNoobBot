@@ -277,5 +277,14 @@
             AURA_STACK = 0xE, // ? // TODO Check for AURA_STACK offset
         }
 
+        /// <summary>
+        /// Get Power Index
+        /// </summary>
+        public enum PowerIndex
+        {
+            PowerIndexArrays = 0xC2B68C, // OK
+            Multiplicator = 0x10, // OK
+        }
+
     }
 }
