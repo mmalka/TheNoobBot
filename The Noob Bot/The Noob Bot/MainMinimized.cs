@@ -11,7 +11,8 @@ namespace The_Noob_Bot
             InitializeComponent();
             Translate();
         }
-        void Translate()
+
+        private void Translate()
         {
             startB.Text = nManager.Translate.Get(nManager.Translate.Id.Start);
         }
@@ -102,7 +103,8 @@ namespace The_Noob_Bot
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Main >  MainMinimized_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e): " + ex);
+                Logging.WriteError(
+                    "Main >  MainMinimized_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e): " + ex);
             }
         }
     }

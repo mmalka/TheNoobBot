@@ -11,6 +11,7 @@ namespace Battlegrounder.Profile
 
         public List<BattlegrounderBlackListRadius> BlackListRadius = new List<BattlegrounderBlackListRadius>();
     }
+
     [Serializable]
     public class BattlegrounderBlackListRadius
     {

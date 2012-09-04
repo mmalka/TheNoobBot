@@ -15,6 +15,7 @@ namespace Gatherer
 
         public List<Point> PointsPathFinderDroidz = new List<Point>();
     }
+
     [Serializable]
     public class GathererBlackListRadius
     {

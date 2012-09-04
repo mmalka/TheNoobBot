@@ -22,10 +22,10 @@ namespace Archaeologist
             catch (Exception e)
             {
                 Logging.WriteError("DigSites_List_Management > DigSites_List_Management(): " + e);
-
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
             labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Solving_Every);
@@ -42,16 +42,13 @@ namespace Archaeologist
                 Bot.ArchaeologistSetting.CurrentSetting.maxTryByDigsite = maxTryByDigsite.Value;
                 Bot.ArchaeologistSetting.CurrentSetting.Save();
                 XmlSerializer.Serialize(
-                                                Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
-                                                listDigsitesDGV.DataSource);
+                    Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
+                    listDigsitesDGV.DataSource);
             }
             catch (Exception ex)
             {
                 Logging.WriteError("DigSites_List_Management > saveB_Click(object sender, EventArgs e): " + ex);
-
             }
         }
-
-
     }
 }

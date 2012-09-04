@@ -7,7 +7,6 @@ namespace Grinder.Bot
 {
     internal class SelectProfileState : State
     {
-
         public override string DisplayName
         {
             get { return "SelectProfileState"; }
@@ -42,6 +41,7 @@ namespace Grinder.Bot
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             Bot.SelectZone();

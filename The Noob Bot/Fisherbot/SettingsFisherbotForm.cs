@@ -14,7 +14,8 @@ namespace Fisherbot
             fishSchoolProfil.DropDownStyle = ComboBoxStyle.DropDownList;
             Load();
         }
-        void translate()
+
+        private void translate()
         {
             labelX1.Text = Translate.Get(Translate.Id.Use_Lure);
             labelX2.Text = Translate.Get(Translate.Id.Fish_School);
@@ -33,7 +34,7 @@ namespace Fisherbot
             Save();
         }
 
-        void Save()
+        private void Save()
         {
             FisherbotSetting.CurrentSetting.useLure = useLure.Value;
             FisherbotSetting.CurrentSetting.fishSchool = fishSchool.Value;
@@ -46,7 +47,7 @@ namespace Fisherbot
             Dispose();
         }
 
-        new void Load()
+        private new void Load()
         {
             RefreshProfilesList();
 
@@ -59,7 +60,7 @@ namespace Fisherbot
             precisionMode.Value = FisherbotSetting.CurrentSetting.precisionMode;
         }
 
-        void RefreshProfilesList()
+        private void RefreshProfilesList()
         {
             fishSchoolProfil.Items.Clear();
             foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Fisherbot\\", "*.xml"))

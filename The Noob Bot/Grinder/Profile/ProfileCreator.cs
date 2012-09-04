@@ -12,7 +12,8 @@ namespace Grinder.Profile
 {
     public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
     {
-        GrinderProfile _profile = new GrinderProfile();
+        private GrinderProfile _profile = new GrinderProfile();
+
         public ProfileCreator()
         {
             try
@@ -21,7 +22,7 @@ namespace Grinder.Profile
                 Translate();
                 listZoneCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 npcTypeC.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach (var t in Enum.GetValues(typeof(Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                foreach (var t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
                 {
                     npcTypeC.Items.Add(t.ToString());
                 }
@@ -34,11 +35,12 @@ namespace Grinder.Profile
                 Logging.WriteError("Grinder > Bot > ProfileCreator > ProfileCreator(): " + e);
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record)+":";
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record) + ":";
             delB.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             delBlackRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
             addBlackB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
@@ -47,20 +49,23 @@ namespace Grinder.Profile
             loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
             nameNpcTb.Text = nManager.Translate.Get(nManager.Translate.Id.Name);
             addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
-            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.List_Zones)+":";
+            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.List_Zones) + ":";
             addZoneB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Zone);
             delZoneB.Text = nManager.Translate.Get(nManager.Translate.Id.Del_Zone);
-            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Zone_Name)+":";
-            labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Lvl) + " " + nManager.Translate.Get(nManager.Translate.Id.Min);
+            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Zone_Name) + ":";
+            labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Player_Lvl) + " " +
+                           nManager.Translate.Get(nManager.Translate.Id.Min);
             labelX5.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
             labelX6.Text = nManager.Translate.Get(nManager.Translate.Id.Max);
-            labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " + nManager.Translate.Get(nManager.Translate.Id.Min);
+            labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Lvl) + " " +
+                           nManager.Translate.Get(nManager.Translate.Id.Min);
             addTargetEntryB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_Target);
             labelX8.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Ids);
-            pointsL.Text = "";// "0 points";
+            pointsL.Text = ""; // "0 points";
             clearB.Text = nManager.Translate.Get(nManager.Translate.Id.Clear);
             Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
         }
+
         private void saveB_Click(object sender, EventArgs ex)
         {
             try
@@ -112,14 +117,17 @@ namespace Grinder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Grinder > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " + e);
+                Logging.WriteError(
+                    "Grinder > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " +
+                    e);
             }
         }
 
         private int idZone;
-        void refreshListZones()
+
+        private void refreshListZones()
         {
-            lock (typeof(ProfileCreator))
+            lock (typeof (ProfileCreator))
             {
                 try
                 {
@@ -146,14 +154,15 @@ namespace Grinder.Profile
                 }
             }
         }
-        void refreshForm()
+
+        private void refreshForm()
         {
-            lock (typeof(ProfileCreator))
+            lock (typeof (ProfileCreator))
             {
                 try
                 {
                     // Target entry
-                    var text =  "";
+                    var text = "";
                     foreach (var entry in _profile.GrinderZones[idZone].TargetEntry)
                     {
                         if (text != "")
@@ -168,8 +177,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Player Level
-                    maxLevelPlayer.ValueObject = (int)_profile.GrinderZones[idZone].MaxLevel;
-                    minLevelPlayer.ValueObject = (int)_profile.GrinderZones[idZone].MinLevel;
+                    maxLevelPlayer.ValueObject = (int) _profile.GrinderZones[idZone].MaxLevel;
+                    minLevelPlayer.ValueObject = (int) _profile.GrinderZones[idZone].MinLevel;
                 }
                 catch
                 {
@@ -177,8 +186,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    maxLevelTarget.ValueObject = (int)_profile.GrinderZones[idZone].MaxTargetLevel;
-                    minLevelTarget.ValueObject = (int)_profile.GrinderZones[idZone].MinTargetLevel;
+                    maxLevelTarget.ValueObject = (int) _profile.GrinderZones[idZone].MaxTargetLevel;
+                    minLevelTarget.ValueObject = (int) _profile.GrinderZones[idZone].MinTargetLevel;
                 }
                 catch
                 {
@@ -238,6 +247,7 @@ namespace Grinder.Profile
 
         // WAY
         private bool _loopRecordPoint;
+
         private void recordWayB_Click(object sender, EventArgs ex)
         {
             try
@@ -256,7 +266,8 @@ namespace Grinder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Grinder > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError("Grinder > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " +
+                                   e);
             }
         }
 
@@ -277,11 +288,11 @@ namespace Grinder.Profile
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
-                         lastRotation != (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                         lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.GrinderZones[idZone].Points.Add(ObjectManager.Me.Position);
-                        lastRotation = (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
                         refreshForm();
                     }
                     Application.DoEvents();
@@ -298,9 +309,9 @@ namespace Grinder.Profile
         {
             try
             {
-                    if (listPoint.SelectedIndex >= 0)
-                        _profile.GrinderZones[idZone].Points.RemoveAt(listPoint.SelectedIndex);
-                    refreshForm();
+                if (listPoint.SelectedIndex >= 0)
+                    _profile.GrinderZones[idZone].Points.RemoveAt(listPoint.SelectedIndex);
+                refreshForm();
             }
             catch (Exception e)
             {
@@ -313,13 +324,14 @@ namespace Grinder.Profile
         {
             try
             {
-                    if (listBlackRadius.SelectedIndex >= 0)
-                        _profile.GrinderZones[idZone].BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
+                if (listBlackRadius.SelectedIndex >= 0)
+                    _profile.GrinderZones[idZone].BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
                 refreshForm();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Grinder > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError(
+                    "Grinder > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
             }
         }
 
@@ -327,7 +339,11 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones[idZone].BlackListRadius.Add(new GrinderBlackListRadius { Position = ObjectManager.Me.Position, Radius = radiusN.Value });
+                _profile.GrinderZones[idZone].BlackListRadius.Add(new GrinderBlackListRadius
+                                                                      {
+                                                                          Position = ObjectManager.Me.Position,
+                                                                          Radius = radiusN.Value
+                                                                      });
                 refreshForm();
             }
             catch (Exception ex)
@@ -359,17 +375,17 @@ namespace Grinder.Profile
                     return;
 
                 var npc = new Npc
-                {
-                    ContinentId =
-                        (nManager.Wow.Enums.ContinentId)(nManager.Wow.Helpers.Usefuls.ContinentId),
-                    Entry = ObjectManager.Target.Entry,
-                    Faction =
-                        (Npc.FactionType)
-                        Enum.Parse(typeof(Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
-                    Name = ObjectManager.Target.Name,
-                    Position = ObjectManager.Target.Position,
-                    Type = (Npc.NpcType)Enum.Parse(typeof(Npc.NpcType), npcTypeC.Text, true)
-                };
+                              {
+                                  ContinentId =
+                                      (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
+                                  Entry = ObjectManager.Target.Entry,
+                                  Faction =
+                                      (Npc.FactionType)
+                                      Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
+                                  Name = ObjectManager.Target.Name,
+                                  Position = ObjectManager.Target.Position,
+                                  Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                              };
                 _profile.GrinderZones[idZone].Npc.Add(npc);
                 refreshForm();
             }
@@ -429,11 +445,11 @@ namespace Grinder.Profile
                 }
 
                 npc.ContinentId =
-                    (nManager.Wow.Enums.ContinentId)(nManager.Wow.Helpers.Usefuls.ContinentId);
+                    (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId);
                 npc.Faction =
                     (Npc.FactionType)
-                    Enum.Parse(typeof(Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
-                npc.Type = (Npc.NpcType)Enum.Parse(typeof(Npc.NpcType), npcTypeC.Text, true);
+                    Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                npc.Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true);
 
                 if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
@@ -465,7 +481,7 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones.Add(new GrinderZone { Name = nManager.Wow.Helpers.Usefuls.MapZoneName });
+                _profile.GrinderZones.Add(new GrinderZone {Name = nManager.Wow.Helpers.Usefuls.MapZoneName});
                 idZone = _profile.GrinderZones.Count - 1;
                 refreshListZones();
             }
@@ -504,13 +520,13 @@ namespace Grinder.Profile
 
         private void Level_ValueChanged(object sender, EventArgs e)
         {
-            lock (typeof(ProfileCreator))
+            lock (typeof (ProfileCreator))
             {
                 try
                 {
                     // Player Level
-                    _profile.GrinderZones[idZone].MaxLevel = (uint)maxLevelPlayer.Value;
-                    _profile.GrinderZones[idZone].MinLevel = (uint)minLevelPlayer.Value;
+                    _profile.GrinderZones[idZone].MaxLevel = (uint) maxLevelPlayer.Value;
+                    _profile.GrinderZones[idZone].MinLevel = (uint) minLevelPlayer.Value;
                 }
                 catch
                 {
@@ -518,8 +534,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    _profile.GrinderZones[idZone].MaxTargetLevel = (uint)maxLevelTarget.Value;
-                    _profile.GrinderZones[idZone].MinTargetLevel = (uint)minLevelTarget.Value;
+                    _profile.GrinderZones[idZone].MaxTargetLevel = (uint) maxLevelTarget.Value;
+                    _profile.GrinderZones[idZone].MinTargetLevel = (uint) minLevelTarget.Value;
                 }
                 catch
                 {
@@ -531,7 +547,7 @@ namespace Grinder.Profile
         {
             try
             {
-                lock (typeof(ProfileCreator))
+                lock (typeof (ProfileCreator))
                 {
                     if (ObjectManager.Target.IsValid)
                     {
@@ -554,7 +570,7 @@ namespace Grinder.Profile
             try
             {
                 var text = listEntryTb.Text;
-                lock (typeof(ProfileCreator))
+                lock (typeof (ProfileCreator))
                 {
                     if (text.Replace(" ", "").Replace(";", "").Length > 0)
                     {
@@ -594,7 +610,8 @@ namespace Grinder.Profile
                     ObjectManager.Me.Position.DistanceZ(ObjectManager.Me.Position) > 1.5)
                     _profile.PointsPathFinderDroidz.Add(ObjectManager.Me.Position);
 
-                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " " + nManager.Translate.Get(nManager.Translate.Id.Nodes);
+                pointsL.Text = _profile.PointsPathFinderDroidz.Count + " " +
+                               nManager.Translate.Get(nManager.Translate.Id.Nodes);
             }
         }
 

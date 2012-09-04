@@ -12,7 +12,7 @@ using nManager.Helpful.Interface;
 
 namespace The_Noob_Bot
 {
-    static class ScriptOnlineManager
+    internal static class ScriptOnlineManager
     {
         private static IScriptOnlineManager _instanceFromOtherAssembly;
         private static Assembly _assembly;
@@ -30,10 +30,12 @@ namespace The_Noob_Bot
                 int keyDecrypt = 0;
                 for (int i = 0; i <= ip.Length - 1; i++)
                 {
-                    if (ip[i].ToString() == "0" || ip[i].ToString() == "1" || ip[i].ToString() == "2" || ip[i].ToString() == "3" || ip[i].ToString() == "4" || ip[i].ToString() == "5" || ip[i].ToString() == "6" || ip[i].ToString() == "7" || ip[i].ToString() == "8" || ip[i].ToString() == "9")
+                    if (ip[i].ToString() == "0" || ip[i].ToString() == "1" || ip[i].ToString() == "2" ||
+                        ip[i].ToString() == "3" || ip[i].ToString() == "4" || ip[i].ToString() == "5" ||
+                        ip[i].ToString() == "6" || ip[i].ToString() == "7" || ip[i].ToString() == "8" ||
+                        ip[i].ToString() == "9")
                         keyDecrypt += Convert.ToInt32(ip[i].ToString());
                 }
-
 
 
                 string[] listByteS = cipherString.Split(Convert.ToChar(" "));
@@ -43,7 +45,7 @@ namespace The_Noob_Bot
                     try
                     {
                         if (s != string.Empty)
-                            retList.Add(Convert.ToByte(Convert.ToInt64(s) - keyDecrypt - (random * 2)));
+                            retList.Add(Convert.ToByte(Convert.ToInt64(s) - keyDecrypt - (random*2)));
                     }
                     catch (Exception e)
                     {
@@ -119,7 +121,7 @@ namespace The_Noob_Bot
                 if (_instanceFromOtherAssembly != null)
                     _instanceFromOtherAssembly.Initialize();
                 //else
-                    //Logging.WriteError("grzGRDSFfezfsgfvsdg error");
+                //Logging.WriteError("grzGRDSFfezfsgfvsdg error");
             }
             catch /*(Exception e)*/
             {

@@ -14,7 +14,7 @@ namespace The_Noob_Bot
 {
     internal partial class Main : DevComponents.DotNetBar.Metro.MetroAppForm
     {
-        MainMinimized _minimizedWindow;
+        private MainMinimized _minimizedWindow;
         public static string MinimizesWindowToolTip = "";
         public static string MinimizesWindowBoutonText = "";
         public static bool MinimizesWindowBoutonActive;
@@ -38,12 +38,13 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > Main(): " + ex);
             }
         }
-        void InitializeInterface()
+
+        private void InitializeInterface()
         {
             try
             {
                 // Logging tab:
-                var loggingUc = new LoggingUC { Size = new Size(tLogging.Size.Width, tLogging.Size.Height - 0) };
+                var loggingUc = new LoggingUC {Size = new Size(tLogging.Size.Width, tLogging.Size.Height - 0)};
                 tLogging.Controls.Add(loggingUc);
             }
             catch (Exception ex)
@@ -51,7 +52,8 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > InitializeInterface(): " + ex);
             }
         }
-        void InitializeBot()
+
+        private void InitializeBot()
         {
             try
             {
@@ -69,7 +71,7 @@ namespace The_Noob_Bot
 
                 new Remote();
 
-                var spellBook = new Thread(ThreadSpellBook) { Name = "Spell Book Update" };
+                var spellBook = new Thread(ThreadSpellBook) {Name = "Spell Book Update"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
 
@@ -80,7 +82,8 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > InitializeBot(): " + ex);
             }
         }
-        void ThreadSpellBook()
+
+        private void ThreadSpellBook()
         {
             try
             {
@@ -98,7 +101,8 @@ namespace The_Noob_Bot
                     nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
                 var items = new List<string>();
-                if (nManager.nManagerSetting.CurrentSetting.doNotSellList.Count == 0 || nManager.nManagerSetting.CurrentSetting.doNotMailList.Count == 0)
+                if (nManager.nManagerSetting.CurrentSetting.doNotSellList.Count == 0 ||
+                    nManager.nManagerSetting.CurrentSetting.doNotMailList.Count == 0)
                 {
                     foreach (var item in Bag.GetBagItem())
                     {
@@ -121,7 +125,8 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > ThreadSpellBook(): " + ex);
             }
         }
-        void InitializeUI()
+
+        private void InitializeUI()
         {
             try
             {
@@ -154,7 +159,7 @@ namespace The_Noob_Bot
             }
         }
 
-        void SetToolTypeIfNeeded(Control label)
+        private void SetToolTypeIfNeeded(Control label)
         {
             using (Graphics g = CreateGraphics())
             {
@@ -166,7 +171,7 @@ namespace The_Noob_Bot
             }
         }
 
-        void Translate()
+        private void Translate()
         {
             metroShell1.HelpButtonText = nManager.Translate.Get(nManager.Translate.Id.WEBSITE);
             expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations);
@@ -181,15 +186,19 @@ namespace The_Noob_Bot
             SetToolTypeIfNeeded(targetLevelL);
             labelX11.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Health);
             SetToolTypeIfNeeded(labelX11);
-            farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": 0 (0/" +
+                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
             SetToolTypeIfNeeded(farmsL);
             honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": 0";
             SetToolTypeIfNeeded(honorHrL);
-            lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": 0 (0/" +
+                         nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
             SetToolTypeIfNeeded(lootL);
-            deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": 0 (0/" +
+                           nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
             SetToolTypeIfNeeded(deathsL);
-            killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+            killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": 0 (0/" +
+                          nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
             SetToolTypeIfNeeded(killsL);
             xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": 0";
             SetToolTypeIfNeeded(xpHrL);
@@ -225,6 +234,7 @@ namespace The_Noob_Bot
         private string _playerName = "";
 
         private string _status = "";
+
         private void SynchroniseStatus(object sender, Logging.StatusChangeEventArgs e)
         {
             try
@@ -241,7 +251,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var worker = new Thread(GetSubcriptionInfoThread) { Name = "Get Subcription Info" };
+                var worker = new Thread(GetSubcriptionInfoThread) {Name = "Get Subcription Info"};
                 worker.Start();
             }
             catch (Exception ex)
@@ -251,6 +261,7 @@ namespace The_Noob_Bot
         }
 
         private string _subscriptionInfo;
+
         private void GetSubcriptionInfoThread()
         {
             try
@@ -260,16 +271,25 @@ namespace The_Noob_Bot
                 {
                     while (LoginServer.IsFreeVersion)
                     {
-                        var timeLeftSec = (LoginServer.StartTime + 1000 * 60 * 20) - Others.Times;
-                        string timeLeft = Others.SecToHour(timeLeftSec / 1000);
-                        _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " + LoginServer.Login + " " + Environment.NewLine + Environment.NewLine + nManager.Translate.Get(nManager.Translate.Id.Trial_version__time_left) + ": " + timeLeft + " " + Environment.NewLine + Environment.NewLine + nManager.Translate.Get(nManager.Translate.Id.Tnb_online) + ": " + botOnline;
+                        var timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
+                        string timeLeft = Others.SecToHour(timeLeftSec/1000);
+                        _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
+                                            LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
+                                            nManager.Translate.Get(nManager.Translate.Id.Trial_version__time_left) +
+                                            ": " + timeLeft + " " + Environment.NewLine + Environment.NewLine +
+                                            nManager.Translate.Get(nManager.Translate.Id.Tnb_online) + ": " + botOnline;
                         Thread.Sleep(1000);
                     }
                 }
                 else
                 {
-                    string timeLeft = Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true", LoginServer.Login, LoginServer.Password)[0];
-                    _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName)+": " + LoginServer.Login + " " + Environment.NewLine + Environment.NewLine + "Subscription time left: " + timeLeft + " " + Environment.NewLine + Environment.NewLine + "Bot online: " + botOnline;
+                    string timeLeft =
+                        Others.GetReqWithAuthHeader("http://tech.thenoobbot.com/auth.php?TimeSubscription=true",
+                                                    LoginServer.Login, LoginServer.Password)[0];
+                    _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
+                                        LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
+                                        "Subscription time left: " + timeLeft + " " + Environment.NewLine +
+                                        Environment.NewLine + "Bot online: " + botOnline;
                 }
             }
             catch (Exception ex)
@@ -431,8 +451,8 @@ namespace The_Noob_Bot
                 }
 
                 MinimizesWindowBoutonText = startB.Text;
-                    MinimizesWindowBoutonActive = startB.Enabled;
-                    MinimizesWindowBoutonImage = startB.Image;
+                MinimizesWindowBoutonActive = startB.Enabled;
+                MinimizesWindowBoutonImage = startB.Image;
             }
             catch (Exception ex)
             {
@@ -441,25 +461,29 @@ namespace The_Noob_Bot
         }
 
         private bool _wowInTaskBarre;
+
         private void gameInformationTimer_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (_playerName != ObjectManager.Me.Name && !string.IsNullOrEmpty(ObjectManager.Me.Name) && ObjectManager.Me.IsValid)
+                if (_playerName != ObjectManager.Me.Name && !string.IsNullOrEmpty(ObjectManager.Me.Name) &&
+                    ObjectManager.Me.IsValid)
                 {
                     Thread.Sleep(1000);
-                    if (_playerName != ObjectManager.Me.Name && !string.IsNullOrEmpty(ObjectManager.Me.Name) && ObjectManager.Me.IsValid)
+                    if (_playerName != ObjectManager.Me.Name && !string.IsNullOrEmpty(ObjectManager.Me.Name) &&
+                        ObjectManager.Me.IsValid)
                     {
                         Logging.WriteError("Character changed, closing bot.");
                         nManager.Pulsator.Dispose(true);
                     }
                 }
 
-                usageProcessL.Text = "CPU: " + nManager.Wow.MemoryClass.Process.getCurrentCpuUsage() + " - Memory: " + nManager.Wow.MemoryClass.Process.getCurrentRAMUsage();
+                usageProcessL.Text = "CPU: " + nManager.Wow.MemoryClass.Process.getCurrentCpuUsage() + " - Memory: " +
+                                     nManager.Wow.MemoryClass.Process.getCurrentRAMUsage();
 
                 if (ObjectManager.Me.IsValid)
                 {
-                    healthB.Value = (int)ObjectManager.Me.HealthPercent;
+                    healthB.Value = (int) ObjectManager.Me.HealthPercent;
                     healthL.Text = ObjectManager.Me.Health + "/" +
                                    ObjectManager.Me.MaxHealth;
                     levelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " " + ObjectManager.Me.Level;
@@ -472,22 +496,36 @@ namespace The_Noob_Bot
                 }
                 if (nManager.Products.Products.IsStarted && ObjectManager.Me.IsValid)
                 {
-                    xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": " + nManager.Statistics.ExperienceByHr();
-                    honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": " + nManager.Statistics.HonorByHr();
-                    lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": " + nManager.Statistics.Loots + " (" + nManager.Statistics.LootsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": " + nManager.Statistics.Kills + " (" + nManager.Statistics.KillsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": " + nManager.Statistics.Deaths + " (" + nManager.Statistics.DeathsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
-                    farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": " + nManager.Statistics.Farms + " (" + nManager.Statistics.FarmsByHr() + "/" + nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    xpHrL.Text = nManager.Translate.Get(nManager.Translate.Id.XP_HR) + ": " +
+                                 nManager.Statistics.ExperienceByHr();
+                    honorHrL.Text = nManager.Translate.Get(nManager.Translate.Id.Honor_HR) + ": " +
+                                    nManager.Statistics.HonorByHr();
+                    lootL.Text = nManager.Translate.Get(nManager.Translate.Id.Loots) + ": " + nManager.Statistics.Loots +
+                                 " (" + nManager.Statistics.LootsByHr() + "/" +
+                                 nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    killsL.Text = nManager.Translate.Get(nManager.Translate.Id.Kills) + ": " + nManager.Statistics.Kills +
+                                  " (" + nManager.Statistics.KillsByHr() + "/" +
+                                  nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    deathsL.Text = nManager.Translate.Get(nManager.Translate.Id.Deaths) + ": " +
+                                   nManager.Statistics.Deaths + " (" + nManager.Statistics.DeathsByHr() + "/" +
+                                   nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
+                    farmsL.Text = nManager.Translate.Get(nManager.Translate.Id.Farms) + ": " + nManager.Statistics.Farms +
+                                  " (" + nManager.Statistics.FarmsByHr() + "/" +
+                                  nManager.Translate.Get(nManager.Translate.Id.hr) + ")";
                 }
                 if (nManager.Products.Products.IsStarted)
-                    expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations) + " - " + nManager.Translate.Get(nManager.Translate.Id.Running_time) + ": " + Others.SecToHour(nManager.Statistics.RunningTimeInSec());
+                    expandablePanel1.TitleText = "  " + nManager.Translate.Get(nManager.Translate.Id.Game_Informations) +
+                                                 " - " + nManager.Translate.Get(nManager.Translate.Id.Running_time) +
+                                                 ": " + Others.SecToHour(nManager.Statistics.RunningTimeInSec());
 
                 if (ObjectManager.Target.IsValid)
                 {
-                    targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name) + ": " + ObjectManager.Target.Name;
-                    targetHealthB.Value = (int)ObjectManager.Target.HealthPercent;
+                    targetName.Text = nManager.Translate.Get(nManager.Translate.Id.Target_Name) + ": " +
+                                      ObjectManager.Target.Name;
+                    targetHealthB.Value = (int) ObjectManager.Target.HealthPercent;
                     targetHealthL.Text = ObjectManager.Target.Health + "/" + ObjectManager.Target.MaxHealth;
-                    targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " " + ObjectManager.Target.Level;
+                    targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " " +
+                                        ObjectManager.Target.Level;
                 }
                 else
                 {
@@ -506,21 +544,33 @@ namespace The_Noob_Bot
                                              Others.SecToHour(nManager.Statistics.RunningTimeInSec()) + " " +
                                              Environment.NewLine;
 
-                MinimizesWindowToolTip = MinimizesWindowToolTip + " " + nManager.Translate.Get(nManager.Translate.Id.Health) + " " + healthB.Value + "% " + Environment.NewLine + " " + levelL.Text + " " + Environment.NewLine + " " + xpHrL.Text + " " + Environment.NewLine + " " +
-                                         honorHrL.Text + " " + Environment.NewLine + " " + lootL.Text + " " + Environment.NewLine + " " + killsL.Text + " " + Environment.NewLine + " " + deathsL.Text +
-                                         " " + Environment.NewLine + " " + farmsL.Text + " " + Environment.NewLine + " " + nManager.Translate.Get(nManager.Translate.Id.Last_log) + ": " + lastLogL.Text;
+                MinimizesWindowToolTip = MinimizesWindowToolTip + " " +
+                                         nManager.Translate.Get(nManager.Translate.Id.Health) + " " + healthB.Value +
+                                         "% " + Environment.NewLine + " " + levelL.Text + " " + Environment.NewLine +
+                                         " " + xpHrL.Text + " " + Environment.NewLine + " " +
+                                         honorHrL.Text + " " + Environment.NewLine + " " + lootL.Text + " " +
+                                         Environment.NewLine + " " + killsL.Text + " " + Environment.NewLine + " " +
+                                         deathsL.Text +
+                                         " " + Environment.NewLine + " " + farmsL.Text + " " + Environment.NewLine + " " +
+                                         nManager.Translate.Get(nManager.Translate.Id.Last_log) + ": " + lastLogL.Text;
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Main > gameInformationTimer_Tick(object sender, EventArgs e): " + ex);
             }
 
-            if (Display.WindowInTaskBarre(nManager.Wow.Memory.WowProcess.MainWindowHandle) && nManager.Products.Products.IsStarted)
+            if (Display.WindowInTaskBarre(nManager.Wow.Memory.WowProcess.MainWindowHandle) &&
+                nManager.Products.Products.IsStarted)
             {
                 if (!_wowInTaskBarre)
                 {
                     _wowInTaskBarre = true;
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window) + ".",nManager.Translate.Get(nManager.Translate.Id.Information), MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(
+                        nManager.Translate.Get(
+                            nManager.Translate.Id.
+                                The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window) +
+                        ".", nManager.Translate.Get(nManager.Translate.Id.Information), MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
                 }
             }
             else
@@ -533,7 +583,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var t = new Thread(DevToolsThread) { Name = "DevTools Form"};
+                var t = new Thread(DevToolsThread) {Name = "DevTools Form"};
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
             }
@@ -542,6 +592,7 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > devToolsB_Click(object sender, EventArgs e): " + ex);
             }
         }
+
         private void DevToolsThread()
         {
             try

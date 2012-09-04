@@ -11,6 +11,7 @@ namespace Fisherbot.Profile
 
         public List<FisherbotBlackListRadius> BlackListRadius = new List<FisherbotBlackListRadius>();
     }
+
     [Serializable]
     public class FisherbotBlackListRadius
     {

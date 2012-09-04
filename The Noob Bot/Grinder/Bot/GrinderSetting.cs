@@ -21,6 +21,7 @@ namespace Grinder.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -35,7 +36,6 @@ namespace Grinder.Bot
             catch (Exception e)
             {
                 Logging.WriteError("GrinderSetting > Load(): " + e);
-
             }
             return false;
         }

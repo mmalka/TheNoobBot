@@ -38,7 +38,7 @@ namespace The_Noob_Bot
             {
                 if (_work == null)
                 {
-                    _work = new Thread(ThreadBotRemote) { Name = "remote" };
+                    _work = new Thread(ThreadBotRemote) {Name = "remote"};
                     _work.Start();
                 }
             }
@@ -59,7 +59,7 @@ namespace The_Noob_Bot
                     {
                         while (!RemoteActive)
                         {
-                            Thread.Sleep(1000 * 3);
+                            Thread.Sleep(1000*3);
                             _firstActive = false;
                         }
                         if (!_firstActive)
@@ -74,7 +74,7 @@ namespace The_Noob_Bot
                     {
                         Logging.WriteError("Remote > ThreadBotRemote()#1: " + e);
                     }
-                    Thread.Sleep(1000 * 5);
+                    Thread.Sleep(1000*5);
                 }
             }
             catch (Exception e)
@@ -83,9 +83,11 @@ namespace The_Noob_Bot
             }
             // ReSharper disable FunctionNeverReturns
         }
+
         // ReSharper restore FunctionNeverReturns
         private Channel channel;
-        List<string> channelWhisper = new List<string>();
+        private List<string> channelWhisper = new List<string>();
+
         private void SendGetToServer()
         {
             try
@@ -106,14 +108,15 @@ namespace The_Noob_Bot
                             break;
                         }
                     }
-
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("Remote > SendGetToServer()#1: " + e);
                 }
 
-                var whisper = channelWhisper.Aggregate("", (current, cw) => cw.Replace("~", "-").Replace("|", "-") + "~" + current);
+                var whisper = channelWhisper.Aggregate("",
+                                                       (current, cw) =>
+                                                       cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
                 Logging.LogType flag = Logging.LogType.Normal;
@@ -123,26 +126,23 @@ namespace The_Noob_Bot
                 flag |= Logging.LogType.Navigator;
 
                 var packetClient = new PacketClient
-                {
-                    Name = ObjectManager.Me.Name,
-                    Level = (int)ObjectManager.Me.Level,
-                    Health = (int)ObjectManager.Me.HealthPercent,
-                    X = ObjectManager.Me.Position.X,
-                    Y = ObjectManager.Me.Position.Y,
-                    Z = ObjectManager.Me.Position.Z,
-
-
-
-                    LastLog = Logging.ReadLastString(flag),
-                    TargetName = ObjectManager.Target.Name,
-                    TargetLevel = (int)ObjectManager.Target.Level,
-                    TargetHealth = (int)ObjectManager.Target.HealthPercent,
-                    InGame = Usefuls.InGame,
-                    SubMapName = Usefuls.SubMapZoneName,
-                    ClassPlayer = ObjectManager.Me.WowClass.ToString(),
-                    BagSpace = Usefuls.GetContainerNumFreeSlots,
-                    LastWhisper = whisper,
-                };
+                                       {
+                                           Name = ObjectManager.Me.Name,
+                                           Level = (int) ObjectManager.Me.Level,
+                                           Health = (int) ObjectManager.Me.HealthPercent,
+                                           X = ObjectManager.Me.Position.X,
+                                           Y = ObjectManager.Me.Position.Y,
+                                           Z = ObjectManager.Me.Position.Z,
+                                           LastLog = Logging.ReadLastString(flag),
+                                           TargetName = ObjectManager.Target.Name,
+                                           TargetLevel = (int) ObjectManager.Target.Level,
+                                           TargetHealth = (int) ObjectManager.Target.HealthPercent,
+                                           InGame = Usefuls.InGame,
+                                           SubMapName = Usefuls.SubMapZoneName,
+                                           ClassPlayer = ObjectManager.Me.WowClass.ToString(),
+                                           BagSpace = Usefuls.GetContainerNumFreeSlots,
+                                           LastWhisper = whisper,
+                                       };
 
 
                 string req = packetClient.Name + "|" + packetClient.Level + "|" + packetClient.Health + "|" +
@@ -150,10 +150,13 @@ namespace The_Noob_Bot
                              packetClient.Y + "|" + packetClient.Z + "|" + packetClient.LastLog + "|" +
                              packetClient.TargetName + "|" +
                              packetClient.TargetLevel + "|" + packetClient.TargetHealth + "|" + packetClient.InGame +
-                             "|" + packetClient.SubMapName + "|" + packetClient.ClassPlayer + "| |" + packetClient.BagSpace + "|" + packetClient.LastWhisper;
+                             "|" + packetClient.SubMapName + "|" + packetClient.ClassPlayer + "| |" +
+                             packetClient.BagSpace + "|" + packetClient.LastWhisper;
 
 
-                var result = Others.GetReqWithAuthHeader(RemoteScript + "?sessionId=" + _sessionKey + "&forServer=" + req, LoginServer.Login, LoginServer.Password);
+                var result =
+                    Others.GetReqWithAuthHeader(RemoteScript + "?sessionId=" + _sessionKey + "&forServer=" + req,
+                                                LoginServer.Login, LoginServer.Password);
                 if (result[0] == null)
                     result[0] = "";
 
@@ -161,7 +164,6 @@ namespace The_Noob_Bot
                 string whisperFor = "";
                 if (result[0].Contains("|"))
                 {
-
                     try
                     {
                         string[] t = result[0].Split(Convert.ToChar("|"));
@@ -181,7 +183,7 @@ namespace The_Noob_Bot
                 {
                     if (result[0] == "")
                         result[0] = "0";
-                    switch ((FlagRequest)Convert.ToInt32(result[0]))
+                    switch ((FlagRequest) Convert.ToInt32(result[0]))
                     {
                         case FlagRequest.CloseBot:
                             Logging.WriteDebug("Remote: Close bot.");
@@ -243,5 +245,4 @@ namespace The_Noob_Bot
 
         #endregion
     }
-
 }
