@@ -11,7 +11,8 @@ namespace Gatherer.Bot
 {
     public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
     {
-        GathererProfile _profile = new GathererProfile();
+        private GathererProfile _profile = new GathererProfile();
+
         public ProfileCreator()
         {
             try
@@ -19,7 +20,7 @@ namespace Gatherer.Bot
                 InitializeComponent();
                 Translate();
                 npcTypeC.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach (var t in Enum.GetValues(typeof(Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                foreach (var t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
                 {
                     npcTypeC.Items.Add(t.ToString());
                 }
@@ -30,7 +31,8 @@ namespace Gatherer.Bot
                 Logging.WriteError("Gatherer > Bot > ProfileCreator > ProfileCreator(): " + e);
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
@@ -45,6 +47,7 @@ namespace Gatherer.Bot
             addByNameNpcB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_by_Name_to_Npc_list);
             Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
         }
+
         private void saveB_Click(object sender, EventArgs ex)
         {
             try
@@ -95,11 +98,13 @@ namespace Gatherer.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Gatherer > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " + e);
+                Logging.WriteError(
+                    "Gatherer > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " +
+                    e);
             }
         }
 
-        void refreshForm()
+        private void refreshForm()
         {
             try
             {
@@ -147,6 +152,7 @@ namespace Gatherer.Bot
 
         // WAY
         private bool _loopRecordPoint;
+
         private void recordWayB_Click(object sender, EventArgs ex)
         {
             try
@@ -165,7 +171,8 @@ namespace Gatherer.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Gatherer > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " +
+                                   e);
             }
         }
 
@@ -186,11 +193,11 @@ namespace Gatherer.Bot
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
-                         lastRotation != (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                         lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.Points.Add(ObjectManager.Me.Position);
-                        lastRotation = (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
                         refreshForm();
                     }
                     Application.DoEvents();
@@ -228,7 +235,8 @@ namespace Gatherer.Bot
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Gatherer > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError(
+                    "Gatherer > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
             }
         }
 
@@ -236,12 +244,14 @@ namespace Gatherer.Bot
         {
             try
             {
-                _profile.BlackListRadius.Add(new GathererBlackListRadius { Position = ObjectManager.Me.Position, Radius = radiusN.Value });
+                _profile.BlackListRadius.Add(new GathererBlackListRadius
+                                                 {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
                 refreshForm();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Gatherer > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("Gatherer > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " +
+                                   ex);
             }
         }
 
@@ -304,7 +314,7 @@ namespace Gatherer.Bot
                 var npc = new Npc();
 
                 var gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
-                
+
                 if (gameObjects.Count > 0)
                 {
                     var gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
@@ -338,11 +348,11 @@ namespace Gatherer.Bot
                 }
 
                 npc.ContinentId =
-                    (nManager.Wow.Enums.ContinentId)(nManager.Wow.Helpers.Usefuls.ContinentId);
+                    (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId);
                 npc.Faction =
                     (Npc.FactionType)
-                    Enum.Parse(typeof(Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
-                npc.Type = (Npc.NpcType)Enum.Parse(typeof(Npc.NpcType), npcTypeC.Text, true);
+                    Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                npc.Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true);
 
                 if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";

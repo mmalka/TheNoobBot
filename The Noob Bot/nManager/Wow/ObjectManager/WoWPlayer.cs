@@ -20,10 +20,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    // *(_BYTE *)(*(_DWORD *)(v10 + 220) + 72)
-                    var t =
-                        Memory.WowMemory.Memory.ReadBytes(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + 220) + 72, 4);
-                    return (WoWClass)Memory.WowMemory.Memory.ReadBytes(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + 220) + 72, 4)[1];
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+                    uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.displayPower * Descriptors.multiplicator);
+                    return (WoWClass)Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
                 }
                 catch (Exception e)
                 {
@@ -39,8 +38,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    // *(_BYTE *)(*(_DWORD *)(v10 + 220) + 72)
-                    return (WoWRace)Memory.WowMemory.Memory.ReadBytes(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + 220) + 72, 4)[0];
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+                    uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.displayPower * Descriptors.multiplicator);
+                    return (WoWRace)Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[0];
                 }
                 catch (Exception e)
                 {

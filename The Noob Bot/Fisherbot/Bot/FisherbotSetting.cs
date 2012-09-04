@@ -22,6 +22,7 @@ namespace Fisherbot.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -36,7 +37,6 @@ namespace Fisherbot.Bot
             catch (Exception e)
             {
                 Logging.WriteError("FisherbotSetting > Load(): " + e);
-
             }
             return false;
         }

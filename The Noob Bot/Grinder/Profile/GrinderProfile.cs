@@ -9,6 +9,7 @@ namespace Grinder.Profile
     {
         public List<GrinderZone> GrinderZones = new List<GrinderZone>();
     }
+
     [Serializable]
     public class GrinderZone
     {
@@ -36,6 +37,7 @@ namespace Grinder.Profile
             }
         }
     }
+
     [Serializable]
     public class GrinderBlackListRadius
     {

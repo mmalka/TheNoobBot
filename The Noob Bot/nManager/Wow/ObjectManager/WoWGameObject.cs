@@ -105,7 +105,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.flags); // TODO Check for MoP .GAMEOBJECT_BYTES_1);
+                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.percentHealth); // TODO Check for MoP .GAMEOBJECT_BYTES_1); // Edit2: Found mailbox but not Chair, need fix.
                     return (WoWGameObjectType)((bype1 >> 8) & 0xFF);
                 }
                 catch (Exception e)

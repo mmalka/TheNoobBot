@@ -13,15 +13,15 @@ using nManager.Wow.ObjectManager;
 
 namespace Grinder.Bot
 {
-    class Bot
+    internal class Bot
     {
-        static readonly Engine Fsm = new Engine();
+        private static readonly Engine Fsm = new Engine();
 
         internal static GrinderProfile Profile = new GrinderProfile();
         internal static int ZoneIdProfile;
 
-        internal static MovementLoop _movementLoop = new MovementLoop { Priority = 1 };
-        internal static Grinding _grinding = new Grinding { Priority = 5 };
+        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 1};
+        internal static Grinding _grinding = new Grinding {Priority = 5};
 
         internal static bool Pulse()
         {
@@ -31,7 +31,9 @@ namespace Grinder.Bot
                 var f = new LoadProfile();
                 f.ShowDialog();
                 // If grinder School Load Profile
-                if (!string.IsNullOrWhiteSpace(GrinderSetting.CurrentSetting.profileName) && File.Exists(Application.StartupPath + "\\Profiles\\Grinder\\" + GrinderSetting.CurrentSetting.profileName))
+                if (!string.IsNullOrWhiteSpace(GrinderSetting.CurrentSetting.profileName) &&
+                    File.Exists(Application.StartupPath + "\\Profiles\\Grinder\\" +
+                                GrinderSetting.CurrentSetting.profileName))
                 {
                     Profile =
                         XmlSerializer.Deserialize<GrinderProfile>(Application.StartupPath + "\\Profiles\\Grinder\\" +
@@ -73,27 +75,26 @@ namespace Grinder.Bot
 
                 // FSM
                 Fsm.States.Clear();
-                
-                Fsm.AddState(new Pause { Priority = 12 });
-                Fsm.AddState(new SelectProfileState { Priority = 11 });
-                Fsm.AddState(new Resurrect { Priority = 10 });
-                Fsm.AddState(new IsAttacked { Priority = 9 });
-                Fsm.AddState(new Regeneration { Priority = 8 });
-                Fsm.AddState(new Looting { Priority = 7 });
-                Fsm.AddState(new Farming { Priority = 6 });
+
+                Fsm.AddState(new Pause {Priority = 12});
+                Fsm.AddState(new SelectProfileState {Priority = 11});
+                Fsm.AddState(new Resurrect {Priority = 10});
+                Fsm.AddState(new IsAttacked {Priority = 9});
+                Fsm.AddState(new Regeneration {Priority = 8});
+                Fsm.AddState(new Looting {Priority = 7});
+                Fsm.AddState(new Farming {Priority = 6});
                 Fsm.AddState(_grinding);
-                Fsm.AddState(new ProspectingState { Priority = 5 });
-                Fsm.AddState(new ToTown { Priority = 4 });
-                Fsm.AddState(new Talents { Priority = 3 });
-                Fsm.AddState(new Trainers { Priority = 2 });
+                Fsm.AddState(new ProspectingState {Priority = 5});
+                Fsm.AddState(new ToTown {Priority = 4});
+                Fsm.AddState(new Talents {Priority = 3});
+                Fsm.AddState(new Trainers {Priority = 2});
                 Fsm.AddState(_movementLoop);
-                Fsm.AddState(new Idle { Priority = 0 });
+                Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6); // Fsm.StartEngine(25);
 
                 return true;
-
             }
             catch (Exception e)
             {
@@ -127,8 +128,7 @@ namespace Grinder.Bot
 
         internal static void SelectZone()
         {
-
-            for (int i = 0; i <= Profile.GrinderZones.Count-1; i++)
+            for (int i = 0; i <= Profile.GrinderZones.Count - 1; i++)
             {
                 if (Profile.GrinderZones[i].MaxLevel >= ObjectManager.Me.Level &&
                     Profile.GrinderZones[i].MinLevel <= ObjectManager.Me.Level &&
@@ -146,10 +146,10 @@ namespace Grinder.Bot
                 {
                     if (i + 1 > Profile.GrinderZones[ZoneIdProfile].Points.Count - 1)
                         pointsTemps.AddRange(PathFinder.FindPath(Profile.GrinderZones[ZoneIdProfile].Points[i],
-                                        Profile.GrinderZones[ZoneIdProfile].Points[0]));
+                                                                 Profile.GrinderZones[ZoneIdProfile].Points[0]));
                     else
                         pointsTemps.AddRange(PathFinder.FindPath(Profile.GrinderZones[ZoneIdProfile].Points[i],
-                                        Profile.GrinderZones[ZoneIdProfile].Points[i + 1]));
+                                                                 Profile.GrinderZones[ZoneIdProfile].Points[i + 1]));
                 }
                 Profile.GrinderZones[ZoneIdProfile].Hotspots = false;
                 Profile.GrinderZones[ZoneIdProfile].Points.Clear();

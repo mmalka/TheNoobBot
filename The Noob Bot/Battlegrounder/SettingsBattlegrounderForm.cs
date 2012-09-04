@@ -13,7 +13,8 @@ namespace Battlegrounder
             translate();
             Load();
         }
-        void translate()
+
+        private void translate()
         {
             WarsongGulchLabel.Text = Translate.Get(Translate.Id.WarsongGulch);
             ArathiBasinLabel.Text = Translate.Get(Translate.Id.ArathiBasin);
@@ -33,7 +34,7 @@ namespace Battlegrounder
             Save();
         }
 
-        void Save()
+        private void Save()
         {
             BattlegrounderSetting.CurrentSetting.WarsongGulch = WarsongGulchSwitch.Value;
             BattlegrounderSetting.CurrentSetting.ArathiBasin = ArathiBasinSwitch.Value;
@@ -47,7 +48,7 @@ namespace Battlegrounder
             Dispose();
         }
 
-        new void Load()
+        private new void Load()
         {
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
             ArathiBasinSwitch.Value = BattlegrounderSetting.CurrentSetting.ArathiBasin;

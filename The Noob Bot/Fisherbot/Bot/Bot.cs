@@ -10,9 +10,9 @@ using nManager.Wow.ObjectManager;
 
 namespace Fisherbot.Bot
 {
-    class Bot
+    internal class Bot
     {
-        static readonly Engine Fsm = new Engine();
+        private static readonly Engine Fsm = new Engine();
 
         internal static FisherbotProfile Profile = new FisherbotProfile();
 
@@ -25,17 +25,22 @@ namespace Fisherbot.Bot
                 // If Fish School Load Profile
                 if (FisherbotSetting.CurrentSetting.fishSchool)
                 {
-                    if (!string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FisherbotPoolName) && File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\"+ FisherbotSetting.CurrentSetting.fishSchoolProfil))
+                    if (!string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FisherbotPoolName) &&
+                        File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +
+                                    FisherbotSetting.CurrentSetting.fishSchoolProfil))
                     {
                         Profile =
-                            XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath + "\\Profiles\\Fisherbot\\" +
-                                                                      FisherbotSetting.CurrentSetting.fishSchoolProfil);
+                            XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath +
+                                                                        "\\Profiles\\Fisherbot\\" +
+                                                                        FisherbotSetting.CurrentSetting.fishSchoolProfil);
                         if (Profile.Points.Count <= 0)
                             return false;
                     }
                     else
                     {
-                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_select_an_profile_or_disable_School_Fish_option));
+                        MessageBox.Show(
+                            nManager.Translate.Get(
+                                nManager.Translate.Id.Please_select_an_profile_or_disable_School_Fish_option));
                         return false;
                     }
                 }
@@ -65,26 +70,25 @@ namespace Fisherbot.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 11 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect { Priority = 10 });
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 9 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration { Priority = 8 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Looting { Priority = 7 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Farming { Priority = 6 });
-                Fsm.AddState(new FisherbotState { Priority = fisherbotStatePriority });
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 5 });
-                Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 4 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 3 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 2 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Pause {Priority = 11});
+                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect {Priority = 10});
+                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked {Priority = 9});
+                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration {Priority = 8});
+                Fsm.AddState(new nManager.Wow.Bot.States.Looting {Priority = 7});
+                Fsm.AddState(new nManager.Wow.Bot.States.Farming {Priority = 6});
+                Fsm.AddState(new FisherbotState {Priority = fisherbotStatePriority});
+                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState {Priority = 5});
+                Fsm.AddState(new nManager.Wow.Bot.States.ToTown {Priority = 4});
+                Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
+                Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
 
-                Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1, PathLoop = Profile.Points });
-                Fsm.AddState(new nManager.Wow.Bot.States.Idle { Priority = 0 });
+                Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop {Priority = 1, PathLoop = Profile.Points});
+                Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6); // Fsm.StartEngine(25);
 
                 return true;
-
             }
             catch (Exception e)
             {

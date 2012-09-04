@@ -19,7 +19,7 @@ namespace The_Noob_Bot
             Translate();
         }
 
-        void SetToolTypeIfNeeded(Control label)
+        private void SetToolTypeIfNeeded(Control label)
         {
             using (System.Drawing.Graphics g = CreateGraphics())
             {
@@ -31,7 +31,7 @@ namespace The_Noob_Bot
             }
         }
 
-        void Translate()
+        private void Translate()
         {
             // Choose lang:
             langChooseCb.Items.Clear();
@@ -70,15 +70,15 @@ namespace The_Noob_Bot
             refreshB.Text = nManager.Translate.Get(nManager.Translate.Id.Refresh);
             SetToolTypeIfNeeded(refreshB);
             Text = nManager.Translate.Get(nManager.Translate.Id.Login);
-                
+
             labelItem1.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Game);
-                
+
             buttonLaunchWoWDX9.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 9";
-                
-            buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";               
+
+            buttonLaunchWoWDX11.Text = nManager.Translate.Get(nManager.Translate.Id.With) + " DirectX 11";
         }
 
-        void InitializeProgram()
+        private void InitializeProgram()
         {
             try
             {
@@ -110,6 +110,7 @@ namespace The_Noob_Bot
                 Logging.WriteError("Login > InitializeProgram(): " + ex);
             }
         }
+
         private const string keyNManager = "dfs,kl,se8JDè__fs_vcss454fzdse&é";
 
         private void launchBotB_Click(object sender, EventArgs e)
@@ -135,34 +136,43 @@ namespace The_Noob_Bot
             }
         }
 
-        bool AttachProcess()
+        private bool AttachProcess()
         {
             try
             {
                 if (listProcessLb.SelectedIndex < 0)
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_select_game_Process_and_connect_to_the_game) + ".", nManager.Translate.Get(nManager.Translate.Id.Stop),
-                                    MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    MessageBox.Show(
+                        nManager.Translate.Get(nManager.Translate.Id.Please_select_game_Process_and_connect_to_the_game) +
+                        ".", nManager.Translate.Get(nManager.Translate.Id.Stop),
+                        MessageBoxButtons.OK, MessageBoxIcon.Stop);
 
                 nManager.Pulsator.Dispose();
 
                 if (listProcessLb.SelectedIndex >= 0)
                 {
-                    string[] idStringArray = listProcessLb.SelectedItem.ToString().Replace(" ", "").Split(Convert.ToChar("-"));
+                    string[] idStringArray =
+                        listProcessLb.SelectedItem.ToString().Replace(" ", "").Split(Convert.ToChar("-"));
 
                     var idProcess = Convert.ToInt32(idStringArray[0]);
 
                     if (!Hook.IsInGame(idProcess))
                     {
-                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game) + ".", nManager.Translate.Get(nManager.Translate.Id.Stop), MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_connect_to_the_game) + ".",
+                                        nManager.Translate.Get(nManager.Translate.Id.Stop), MessageBoxButtons.OK,
+                                        MessageBoxIcon.Stop);
                         return false;
                     }
                     if (Hook.WowIsUsed(idProcess))
                     {
                         DialogResult resulMb =
                             MessageBox.Show(
-                                nManager.Translate.Get(nManager.Translate.Id.The_Game_is_currently_used_by_TheNoobBot_or_contains_traces) + "\n\n" +
-                                nManager.Translate.Get(nManager.Translate.Id.If_no_others_session_of_TheNoobBot_is_currently_active),
-                                nManager.Translate.Get(nManager.Translate.Id.Use_this_Game) + "?" + @" - " + Hook.PlayerName(idProcess), MessageBoxButtons.YesNo,
+                                nManager.Translate.Get(
+                                    nManager.Translate.Id.The_Game_is_currently_used_by_TheNoobBot_or_contains_traces) +
+                                "\n\n" +
+                                nManager.Translate.Get(
+                                    nManager.Translate.Id.If_no_others_session_of_TheNoobBot_is_currently_active),
+                                nManager.Translate.Get(nManager.Translate.Id.Use_this_Game) + "?" + @" - " +
+                                Hook.PlayerName(idProcess), MessageBoxButtons.YesNo,
                                 MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                         if (resulMb == DialogResult.No)
                         {
@@ -184,10 +194,9 @@ namespace The_Noob_Bot
                 Logging.WriteError("AttachProcess(): " + ex);
             }
             return false;
-
         }
 
-        bool LoginOnServer()
+        private bool LoginOnServer()
         {
             try
             {
@@ -230,7 +239,9 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("LoginOnServer(): " + ex);
             }
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_enter_your_user_name_and_password) + ".", nManager.Translate.Get(nManager.Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                nManager.Translate.Get(nManager.Translate.Id.Please_enter_your_user_name_and_password) + ".",
+                nManager.Translate.Get(nManager.Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             return false;
         }
 
@@ -238,7 +249,8 @@ namespace The_Noob_Bot
         {
             try
             {
-                Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " + nManager.Information.Version;
+                Text = nManager.Translate.Get(nManager.Translate.Id.Login___The_Noob_Bot_version) + " " +
+                       nManager.Information.Version;
 
                 // Load email and password
                 if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
@@ -272,7 +284,7 @@ namespace The_Noob_Bot
                 while (!LoginServer.IsOnlineserver)
                 {
                     Thread.Sleep(10);
-                    Application.DoEvents(); 
+                    Application.DoEvents();
                     Thread.Sleep(50);
                 }
                 LoginServer.CheckAccountSecurity();
@@ -306,7 +318,9 @@ namespace The_Noob_Bot
             try
             {
                 if (System.Diagnostics.Process.GetProcessesByName("WoW-64").Length > 0)
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.WoW_Client_64bit), nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.WoW_Client_64bit),
+                                    nManager.Translate.Get(nManager.Translate.Id.Title_WoW_Client_64bit),
+                                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
 
                 listProcessLb.Items.Clear();
                 //ProcessList.SelectedIndex = -1;
@@ -314,10 +328,10 @@ namespace The_Noob_Bot
 
                 for (var i = Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
                 {
-
                     if (listProcessLb.SelectedIndex == -1 && !Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
                     {
-                        listProcessLb.Items.Add(Process.ListeProcessIdByName()[i].Id + " - " + Hook.PlayerName(Process.ListeProcessIdByName()[i].Id));
+                        listProcessLb.Items.Add(Process.ListeProcessIdByName()[i].Id + " - " +
+                                                Hook.PlayerName(Process.ListeProcessIdByName()[i].Id));
                         listProcessLb.SelectedIndex = 0;
                     }
                     else
@@ -325,7 +339,8 @@ namespace The_Noob_Bot
                         var used = "";
                         if (Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
                             used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
-                        usedProcess.Add(Process.ListeProcessIdByName()[i].Id + " - " + Hook.PlayerName(Process.ListeProcessIdByName()[i].Id) + used);
+                        usedProcess.Add(Process.ListeProcessIdByName()[i].Id + " - " +
+                                        Hook.PlayerName(Process.ListeProcessIdByName()[i].Id) + used);
                     }
                 }
 

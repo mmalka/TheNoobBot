@@ -10,9 +10,9 @@ using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Bot
 {
-    class Bot
+    internal class Bot
     {
-        static readonly Engine Fsm = new Engine();
+        private static readonly Engine Fsm = new Engine();
 
         internal static BattlegrounderProfile Profile = new BattlegrounderProfile();
 
@@ -31,20 +31,20 @@ namespace Battlegrounder.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 11 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect { Priority = 10 });
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 9 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration { Priority = 8 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Looting { Priority = 7 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Farming { Priority = 6 });
-                Fsm.AddState(new BattlegrounderState { Priority = battlegrounderStatePriority });
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 5 });
-                Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 4 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 3 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 2 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Pause {Priority = 11});
+                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect {Priority = 10});
+                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked {Priority = 9});
+                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration {Priority = 8});
+                Fsm.AddState(new nManager.Wow.Bot.States.Looting {Priority = 7});
+                Fsm.AddState(new nManager.Wow.Bot.States.Farming {Priority = 6});
+                Fsm.AddState(new BattlegrounderState {Priority = battlegrounderStatePriority});
+                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState {Priority = 5});
+                Fsm.AddState(new nManager.Wow.Bot.States.ToTown {Priority = 4});
+                Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
+                Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
 
                 //Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1, PathLoop = Profile.Points });
-                Fsm.AddState(new nManager.Wow.Bot.States.Idle { Priority = 0 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6); // Fsm.StartEngine(25);

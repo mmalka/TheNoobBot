@@ -21,6 +21,7 @@ namespace Archaeologist.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -35,7 +36,6 @@ namespace Archaeologist.Bot
             catch (Exception e)
             {
                 Logging.WriteError("ArchaeologistSetting > Load(): " + e);
-
             }
             return false;
         }

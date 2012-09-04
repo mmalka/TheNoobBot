@@ -12,9 +12,8 @@ using Keybindings = nManager.Wow.Helpers.Keybindings;
 
 namespace Fisherbot.Bot
 {
-    class FisherbotState : State
+    internal class FisherbotState : State
     {
-
         public override string DisplayName
         {
             get { return "FisherbotState"; }
@@ -43,7 +42,9 @@ namespace Fisherbot.Bot
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.Me.InCombat &&
+                     !(ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
                     !Products.IsStarted)
                     return false;
 
@@ -51,10 +52,14 @@ namespace Fisherbot.Bot
                 {
                     // Get farm:
                     _node = new WoWGameObject(0);
-                    _node = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectOfType(nManager.Wow.Enums.WoWGameObjectType.FishingHole));
+                    _node =
+                        ObjectManager.GetNearestWoWGameObject(
+                            ObjectManager.GetWoWGameObjectOfType(nManager.Wow.Enums.WoWGameObjectType.FishingHole));
 
                     if (_node.IsValid && _node.GetBaseAddress > 0)
-                        if (!nManagerSetting.IsBlackListedZone(_node.Position) && _node.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(_node.Guid) && _node.IsValid)
+                        if (!nManagerSetting.IsBlackListedZone(_node.Position) &&
+                            _node.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius &&
+                            !nManagerSetting.IsBlackListed(_node.Guid) && _node.IsValid)
                             return true;
                 }
                 else
@@ -75,6 +80,7 @@ namespace Fisherbot.Bot
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             nManager.Helpful.Timer timer;
@@ -111,13 +117,17 @@ namespace Fisherbot.Bot
                         points[i].Type = "Flying";
                     }
                 }
-                Logging.Write("Going to point > " + whereToGo.X + " ; " + whereToGo.Y +  " ; " + whereToGo.Z + " ; " + points[0].Type);
+                Logging.Write("Going to point > " + whereToGo.X + " ; " + whereToGo.Y + " ; " + whereToGo.Z + " ; " +
+                              points[0].Type);
                 MovementManager.Go(points);
 
-                timer = new nManager.Helpful.Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
-                while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
-                        !(ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
-                        !timer.IsReady && MovementManager.InMovement)
+                timer = new nManager.Helpful.Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
+                while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted &&
+                       !ObjectManager.Me.IsDeadMe &&
+                       !(ObjectManager.Me.InCombat &&
+                         !(ObjectManager.Me.IsMounted &&
+                           (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                       !timer.IsReady && MovementManager.InMovement)
                 {
                     if (ObjectManager.Me.Position.DistanceTo2D(whereToGo) <= 0.2f)
                     {
@@ -129,10 +139,12 @@ namespace Fisherbot.Bot
 
                 if (timer.IsReady && _node.GetDistance2D > DistanceMax)
                 {
-                    Logging.Write("Fishing failed - No found nearby point (distance near position = " + ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition).ToString() + ")");
+                    Logging.Write("Fishing failed - No found nearby point (distance near position = " +
+                                  ObjectManager.Me.Position.DistanceTo2D(
+                                      FisherbotSetting.CurrentSetting.FisherbotPosition).ToString() + ")");
                     MovementManager.StopMove();
                     nManagerSetting.AddBlackList(_node.Guid);
-                   return;
+                    return;
                 }
             }
 
@@ -155,8 +167,9 @@ namespace Fisherbot.Bot
             {
                 int nbIsSwimming = 0;
                 timer = new nManager.Helpful.Timer(1000*8);
-                while ((Usefuls.IsSwimming || _node.GetDistance > DistanceMax || _node.GetDistance < DistanceMin) && (int)_node.GetBaseAddress > 0 && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
-                   !ObjectManager.Me.InCombat && !timer.IsReady)
+                while ((Usefuls.IsSwimming || _node.GetDistance > DistanceMax || _node.GetDistance < DistanceMin) &&
+                       (int) _node.GetBaseAddress > 0 && Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
+                       !ObjectManager.Me.InCombat && !timer.IsReady)
                 {
                     if (nbIsSwimming*100 > TimeTryFindGoodPos)
                     {
@@ -198,19 +211,24 @@ namespace Fisherbot.Bot
             // Fish
             Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FisherbotPoolName);
             if (FisherbotSetting.CurrentSetting.fishSchool)
-                FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.useLure, FisherbotSetting.CurrentSetting.lureName, FisherbotSetting.CurrentSetting.precisionMode);
+                FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.useLure,
+                                     FisherbotSetting.CurrentSetting.lureName,
+                                     FisherbotSetting.CurrentSetting.precisionMode);
             else
-                FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.useLure, FisherbotSetting.CurrentSetting.lureName);
+                FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.useLure,
+                                     FisherbotSetting.CurrentSetting.lureName);
 
             if (FisherbotSetting.CurrentSetting.fishSchool)
-                timer = new nManager.Helpful.Timer(2 * 60 * 1000);
+                timer = new nManager.Helpful.Timer(2*60*1000);
             else
                 timer = new nManager.Helpful.Timer(1000*120);
-            while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool)&& Products.IsStarted && !ObjectManager.Me.IsDeadMe &&
+            while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted &&
+                   !ObjectManager.Me.IsDeadMe &&
                    !ObjectManager.Me.InCombat && !timer.IsReady &&
                    FishingTask.IsLaunched)
             {
-                if (ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition) > 3.5f && !FisherbotSetting.CurrentSetting.fishSchool)
+                if (ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition) > 3.5f &&
+                    !FisherbotSetting.CurrentSetting.fishSchool)
                 {
                     break;
                 }
@@ -222,4 +240,3 @@ namespace Fisherbot.Bot
         }
     }
 }
-

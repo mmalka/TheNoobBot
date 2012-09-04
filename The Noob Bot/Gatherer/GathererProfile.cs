@@ -13,6 +13,7 @@ namespace Gatherer
 
         public List<GathererBlackListRadius> BlackListRadius = new List<GathererBlackListRadius>();
     }
+
     [Serializable]
     public class GathererBlackListRadius
     {

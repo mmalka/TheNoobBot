@@ -22,6 +22,7 @@ namespace Battlegrounder.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -36,7 +37,6 @@ namespace Battlegrounder.Bot
             catch (Exception e)
             {
                 Logging.WriteError("BattlegrounderSetting > Load(): " + e);
-
             }
             return false;
         }

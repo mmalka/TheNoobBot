@@ -11,9 +11,8 @@ using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Bot
 {
-    class BattlegrounderState : State
+    internal class BattlegrounderState : State
     {
-
         public override string DisplayName
         {
             get { return "BattlegrounderState"; }
@@ -29,10 +28,7 @@ namespace Battlegrounder.Bot
 
         public override bool NeedToRun
         {
-            get
-            {
-                return false;
-            }
+            get { return false; }
         }
 
         public override List<State> NextStates
@@ -44,10 +40,9 @@ namespace Battlegrounder.Bot
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
-
         }
     }
 }
-

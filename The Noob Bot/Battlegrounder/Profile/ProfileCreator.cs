@@ -9,7 +9,8 @@ namespace Battlegrounder.Profile
 {
     public partial class ProfileCreator : DevComponents.DotNetBar.Metro.MetroForm
     {
-        BattlegrounderProfile _profile = new BattlegrounderProfile();
+        private BattlegrounderProfile _profile = new BattlegrounderProfile();
+
         public ProfileCreator()
         {
             try
@@ -22,7 +23,8 @@ namespace Battlegrounder.Profile
                 Logging.WriteError("Battlegrounder > Bot > ProfileCreator > ProfileCreator(): " + e);
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
@@ -48,7 +50,8 @@ namespace Battlegrounder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > saveB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > saveB_Click(object sender, EventArgs ex): " + e);
             }
         }
 
@@ -70,7 +73,8 @@ namespace Battlegrounder.Profile
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " +
+                                   ex);
                 refreshForm();
             }
         }
@@ -83,11 +87,13 @@ namespace Battlegrounder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " + e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > ProfileCreator_FormClosing(object sender, FormClosingEventArgs ex): " +
+                    e);
             }
         }
 
-        void refreshForm()
+        private void refreshForm()
         {
             try
             {
@@ -121,6 +127,7 @@ namespace Battlegrounder.Profile
 
         // WAY
         private bool _loopRecordPoint;
+
         private void recordWayB_Click(object sender, EventArgs ex)
         {
             try
@@ -139,7 +146,8 @@ namespace Battlegrounder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > recordWayB_Click(object sender, EventArgs ex): " + e);
             }
         }
 
@@ -184,7 +192,8 @@ namespace Battlegrounder.Profile
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > delB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > delB_Click(object sender, EventArgs ex): " +
+                                   e);
             }
         }
 
@@ -199,7 +208,8 @@ namespace Battlegrounder.Profile
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
             }
         }
 
@@ -207,12 +217,14 @@ namespace Battlegrounder.Profile
         {
             try
             {
-                _profile.BlackListRadius.Add(new BattlegrounderBlackListRadius { Position = ObjectManager.Me.Position, Radius = radiusN.Value });
+                _profile.BlackListRadius.Add(new BattlegrounderBlackListRadius
+                                                 {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
                 refreshForm();
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " + ex);
             }
         }
     }

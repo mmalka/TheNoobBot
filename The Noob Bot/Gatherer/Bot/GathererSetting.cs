@@ -9,7 +9,7 @@ namespace Gatherer.Bot
     [Serializable]
     public class GathererSetting : Settings
     {
-        GathererSetting()
+        private GathererSetting()
         {
             ConfigWinForm(new Point(400, 100), "Gatherer " + Translate.Get(Translate.Id.Settings));
             AddControlInWinForm(Translate.Get(Translate.Id.Pathing_Reverse_Direction), "pathingReverseDirection");
@@ -29,6 +29,7 @@ namespace Gatherer.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -43,7 +44,6 @@ namespace Gatherer.Bot
             catch (Exception e)
             {
                 Logging.WriteError("GathererSetting > Load(): " + e);
-
             }
             return false;
         }

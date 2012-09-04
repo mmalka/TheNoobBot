@@ -16,14 +16,15 @@ namespace The_Noob_Bot
 {
     internal static class LoginServer
     {
-        private static string[] retStr = 
-        {
-            "NOKConnect",
-            "SNVConnect",
-            "OKConnect",
-            "PEConnect",
-            "LEConnect",
-        };
+        private static string[] retStr =
+            {
+                "NOKConnect",
+                "SNVConnect",
+                "OKConnect",
+                "PEConnect",
+                "LEConnect",
+            };
+
         private const string UrlWebServer = "http://tech.thenoobbot.com/";
         private const string ScripLogintUrl = UrlWebServer + "auth.php";
         private const string ScripUpdate = UrlWebServer + "update.php";
@@ -42,7 +43,7 @@ namespace The_Noob_Bot
         private static string TrueResultLoop = "";
 
         internal static bool IsOnlineserver;
-        private static Thread LoginThread = new Thread(LoopThreads) { Name = "LoopLogon" };
+        private static Thread LoginThread = new Thread(LoopThreads) {Name = "LoopLogon"};
 
         internal static void Connect(string login, string password)
         {
@@ -50,14 +51,15 @@ namespace The_Noob_Bot
             {
                 if (login == "" || password == "")
                 {
-                    MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Translate.Get(Translate.Id.User_name_or_Password_error) + ".",
+                                    Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                     Process.GetCurrentProcess().Kill();
                     return;
                 }
                 Login = login.ToLower();
                 Password = password;
 
-                var connectThreadLaunch = new Thread(ConnectThread) { Name = "ConnectThread" };
+                var connectThreadLaunch = new Thread(ConnectThread) {Name = "ConnectThread"};
                 connectThreadLaunch.Start();
             }
             catch (Exception e)
@@ -79,13 +81,15 @@ namespace The_Noob_Bot
                     repC = resultConnectReq[1];
 
                     var randomKey = Others.Random(1, 9999);
-                    var resultRandom = GetReqWithAuthHeader(ScripLogintUrl + "?random=true", randomKey.ToString(CultureInfo.InvariantCulture), randomKey.ToString(CultureInfo.InvariantCulture));
-                    string goodResultRandomTry = Others.EncrypterMD5((randomKey * 4) + Secret);
+                    var resultRandom = GetReqWithAuthHeader(ScripLogintUrl + "?random=true",
+                                                            randomKey.ToString(CultureInfo.InvariantCulture),
+                                                            randomKey.ToString(CultureInfo.InvariantCulture));
+                    string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
 
                     if (resultRandom[0] == goodResultRandomTry && resultConnectReq[0] == goodResultConnectReq)
                     {
                         TrueResultLoop = goodResultConnectReq;
-                        var connectThreadLaunch = new Thread(LoopThread) { Name = "LoopLogin" };
+                        var connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
                         connectThreadLaunch.Start();
                         return;
                     }
@@ -99,10 +103,14 @@ namespace The_Noob_Bot
                 if (repC == retStr[1])
                 {
                     MessageBox.Show(
-                        Translate.Get(Translate.Id.Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) + ": http://thenoobbot.com/.",
+                        Translate.Get(
+                            Translate.Id.
+                                Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) +
+                        ": http://thenoobbot.com/.",
                         Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(
-                        Translate.Get(Translate.Id.You_starting_trial_version__the_tnb_will_automatically_stopped_after____min),
+                        Translate.Get(
+                            Translate.Id.You_starting_trial_version__the_tnb_will_automatically_stopped_after____min),
                         Translate.Get(Translate.Id.Trial_version), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     IsFreeVersion = true;
                     Trial();
@@ -110,11 +118,23 @@ namespace The_Noob_Bot
                 }
 
                 if (repC == retStr[3])
-                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) + ": http://thenoobbot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Translate.Get(
+                            Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) +
+                        ": http://thenoobbot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error),
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (repC == retStr[4])
-                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Translate.Get(
+                            Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) +
+                        ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(Translate.Get(Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(
+                        Translate.Get(
+                            Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) +
+                        ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 EndInformation();
             }
             catch (Exception e)
@@ -124,12 +144,13 @@ namespace The_Noob_Bot
         }
 
         private static bool _trial;
+
         internal static void Trial()
         {
             try
             {
                 _trial = true;
-                var connectThreadLaunch = new Thread(LoopThread) { Name = "LoopLogin" };
+                var connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
                 connectThreadLaunch.Start();
             }
             catch (Exception e)
@@ -152,7 +173,7 @@ namespace The_Noob_Bot
                 bool lastResult = true;
                 IsConnected = true;
                 StartTime = Others.Times;
-                
+
                 if (!_trial)
                 {
                     Thread.Sleep(10000);
@@ -177,9 +198,9 @@ namespace The_Noob_Bot
                             {
                                 _honnorStat = Usefuls.GetHonorPoint;
                                 _expStat = nManager.Wow.ObjectManager.ObjectManager.Me.Experience;
-                                _farmStat = (int)Statistics.Farms;
-                                _killStat = (int)Statistics.Kills;
-                                _levelStat = (int)nManager.Wow.ObjectManager.ObjectManager.Me.Level;
+                                _farmStat = (int) Statistics.Farms;
+                                _killStat = (int) Statistics.Kills;
+                                _levelStat = (int) nManager.Wow.ObjectManager.ObjectManager.Me.Level;
                             }
                             // Level
                             if (nManager.Wow.ObjectManager.ObjectManager.Me.Level - _levelStat > 0)
@@ -245,8 +266,8 @@ namespace The_Noob_Bot
 
                                 reqStatistique += "&kill=0";
                             }
-                            
-                        } catch
+                        }
+                        catch
                         {
                             reqStatistique = "";
                         }
@@ -288,7 +309,6 @@ namespace The_Noob_Bot
                         i++;
                         if (!LoginThread.IsAlive)
                             LoginThread.Start();
-
                     } while (i < (0x98B >> 1));
                 }
             }
@@ -297,7 +317,7 @@ namespace The_Noob_Bot
                 Logging.WriteError("DSfi^sdfDSOfijfze#1" + e);
             }
             IsConnected = false;
-            if (lalala && IsFreeVersion) 
+            if (lalala && IsFreeVersion)
             {
                 Others.OpenWebBrowserOrApplication("http://goo.gl/Fzdgc");
             }
@@ -309,7 +329,7 @@ namespace The_Noob_Bot
 
         private static void LoopThreads()
         {
-            while(Usefuls.InGame)
+            while (Usefuls.InGame)
             {
                 Statistics.OffsetStats = 0xB5;
                 Thread.Sleep(50);
@@ -341,7 +361,6 @@ namespace The_Noob_Bot
 
         public static void KillProcess()
         {
-
         }
 
         public static void KillApplication()
@@ -388,14 +407,13 @@ namespace The_Noob_Bot
 
         public static void DoLoginCheck()
         {
-
         }
 
         internal static void CheckUpdate()
         {
             try
             {
-                var checkUpdateThreadLaunch = new Thread(CheckUpdateThread) { Name = "CheckUpdate" };
+                var checkUpdateThreadLaunch = new Thread(CheckUpdateThread) {Name = "CheckUpdate"};
                 checkUpdateThreadLaunch.Start();
             }
             catch /*(Exception e)*/
@@ -417,23 +435,29 @@ namespace The_Noob_Bot
                         {
                             DialogResult dr =
                                 MessageBox.Show(
-                                    string.Format(Translate.Get(Translate.Id.New_update) + ": \"{0}\". " + Translate.Get(Translate.Id.Do_you_want_to_update_now) + "? {1}", resultReq, Environment.NewLine), " " + Translate.Get(Translate.Id.Update) + "", MessageBoxButtons.YesNo,
+                                    string.Format(
+                                        Translate.Get(Translate.Id.New_update) + ": \"{0}\". " +
+                                        Translate.Get(Translate.Id.Do_you_want_to_update_now) + "? {1}", resultReq,
+                                        Environment.NewLine), " " + Translate.Get(Translate.Id.Update) + "",
+                                    MessageBoxButtons.YesNo,
                                     MessageBoxIcon.Question);
 
                             switch (dr)
                             {
                                 case DialogResult.Yes:
                                     Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
+                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" +
+                                                                       resultReq + ".rar");
 
                                     try
                                     {
-                                        foreach (var process in Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
+                                        foreach (
+                                            var process in
+                                                Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
                                         {
                                             if (process.Id != Process.GetCurrentProcess().Id)
                                                 process.Kill();
                                         }
-
                                     }
                                     catch
                                     {
@@ -458,7 +482,8 @@ namespace The_Noob_Bot
         {
             try
             {
-                var checkAccountSecurityThreadLaunch = new Thread(CheckAccountSecurityThread) { Name = "CheckAccountSecurity" };
+                var checkAccountSecurityThreadLaunch = new Thread(CheckAccountSecurityThread)
+                                                           {Name = "CheckAccountSecurity"};
                 checkAccountSecurityThreadLaunch.Start();
             }
             catch (Exception e)
@@ -478,7 +503,13 @@ namespace The_Noob_Bot
                     {
                         if (resultReq != Information.Version)
                         {
-                            var dr = MessageBox.Show(Translate.Get(Translate.Id.The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb) + ". ", "/!\\ " + Translate.Get(Translate.Id.Suspect_Activity) + " /!\\", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                            var dr =
+                                MessageBox.Show(
+                                    Translate.Get(
+                                        Translate.Id.
+                                            The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb) +
+                                    ". ", "/!\\ " + Translate.Get(Translate.Id.Suspect_Activity) + " /!\\",
+                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                             switch (dr)
                             {
@@ -503,7 +534,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var checkUpdateThreadLaunch = new Thread(CheckServerIsOnlineThread) { Name = "CheckIsOnline" };
+                var checkUpdateThreadLaunch = new Thread(CheckServerIsOnlineThread) {Name = "CheckIsOnline"};
                 checkUpdateThreadLaunch.Start();
             }
             catch (Exception e)
@@ -534,6 +565,7 @@ namespace The_Noob_Bot
             }
             return false;
         }
+
         private static void CheckServerIsOnlineThread()
         {
             try
@@ -548,11 +580,15 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("LoginServer > CheckServerIsOnlineThread(): " + e);
             }
-            MessageBox.Show(Translate.Get(Translate.Id.TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat), Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show(
+                Translate.Get(
+                    Translate.Id.
+                        TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat),
+                Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             EndInformation();
         }
 
-        static List<string> GetReqWithAuthHeader(string url, String userName, String userPassword)
+        private static List<string> GetReqWithAuthHeader(string url, String userName, String userPassword)
         {
             try
             {
@@ -565,5 +601,4 @@ namespace The_Noob_Bot
             }
         }
     }
-
 }
