@@ -124,16 +124,6 @@ namespace nManager.Wow.Helpers
             resultSuccess = true;
             try
             {
-                bool tr;
-                locList = PathFinder.FindPath(to, out tr);
-                if (tr)
-                {
-                    resultSuccess = true;
-                    return locList;
-                }
-                else
-                    locList = new List<Point>();
-
                 if (!UsePatherFind || continentNameMpq == "None")
                 {
                     locList.Add(from);
