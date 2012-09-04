@@ -6,6 +6,7 @@ using Quester.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Bot;
@@ -96,17 +97,19 @@ namespace Quester.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 10 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect { Priority = 9 });
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 8 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration { Priority = 7 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Looting { Priority = 6 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Farming { Priority = 5 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 13 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect { Priority = 12 });
+                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 11 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration { Priority = 10 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Looting { Priority = 9 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Farming { Priority = 8 });
+                Fsm.AddState(new nManager.Wow.Bot.States.MillingState { Priority = 7 });
+                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 6 });
                 Fsm.AddState(new QuesterState { Priority = QuesterStatePriority });
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 4 });
-                Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 3 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 2 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 1 });
+                Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 4 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 3 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 2 });
+                Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1 }); 
                 Fsm.AddState(new nManager.Wow.Bot.States.Idle { Priority = 0 });
 
                 Fsm.States.Sort();

@@ -76,15 +76,16 @@ namespace Grinder.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 12});
-                Fsm.AddState(new SelectProfileState {Priority = 11});
-                Fsm.AddState(new Resurrect {Priority = 10});
-                Fsm.AddState(new IsAttacked {Priority = 9});
-                Fsm.AddState(new Regeneration {Priority = 8});
-                Fsm.AddState(new Looting {Priority = 7});
-                Fsm.AddState(new Farming {Priority = 6});
+                Fsm.AddState(new Pause {Priority = 14});
+                Fsm.AddState(new SelectProfileState {Priority = 13});
+                Fsm.AddState(new Resurrect {Priority = 12});
+                Fsm.AddState(new IsAttacked {Priority = 11});
+                Fsm.AddState(new Regeneration {Priority = 10});
+                Fsm.AddState(new Looting {Priority = 9});
+                Fsm.AddState(new Farming {Priority = 8});
+                Fsm.AddState(new MillingState { Priority = 7 });
+                Fsm.AddState(new ProspectingState { Priority = 6 });
                 Fsm.AddState(_grinding);
-                Fsm.AddState(new ProspectingState {Priority = 5});
                 Fsm.AddState(new ToTown {Priority = 4});
                 Fsm.AddState(new Talents {Priority = 3});
                 Fsm.AddState(new Trainers {Priority = 2});
