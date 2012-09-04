@@ -17,6 +17,14 @@ namespace Test_Product
             var t = nManager.Wow.ObjectManager.ObjectManager.Me.GetPowerByPowerType(PowerType.Energy);
             var tMax = nManager.Wow.ObjectManager.ObjectManager.Me.GetMaxPowerByPowerType(PowerType.Energy);
 
+            var obj = nManager.Wow.ObjectManager.ObjectManager.GetNearestWoWGameObject(
+                nManager.Wow.ObjectManager.ObjectManager.GetObjectWoWGameObject());
+            var test = obj.GOType;
+
+
+            var skill = nManager.Wow.Helpers.Skill.GetMaxValue(SkillLine.Fishing);
+            var tbreak = 1;
+
             //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
             /*
             DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);

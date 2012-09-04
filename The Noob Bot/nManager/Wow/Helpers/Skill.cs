@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator); // TODO Check for MoP
+                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
                 uint v2 = 0;
                 uint id = 0;
                 do
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                     ++id;
                     v2 += 2;
                 }
-                while (v2 < 0x1074);
+                while (v2 <= 0x200);
 
                 return id;
             }
@@ -44,11 +44,8 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);// TODO: Check for MoP
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
                     var result = Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD + 0x200);
-                    var t = CGUnit_C__GetFacing.GetFacing(
-                        ObjectManager.ObjectManager.GetNearestWoWGameObject(
-                            ObjectManager.ObjectManager.GetObjectWoWGameObject()).GetBaseAddress);
                     return result;
                 }
                 return 0;
@@ -68,8 +65,8 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator); // TODO Check for MoP
-                    return Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD);
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
+                    return Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD + 0x400);
                 }
                 return 0;
             }
