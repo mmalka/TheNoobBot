@@ -33,7 +33,7 @@ namespace nManager.Wow.Class
 
         #region Constructors
 
-        static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
+        static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.Spell);
 
         static DBC<DBCStruct.SpellMiscRec> DBCSpellMisc = new DBC<DBCStruct.SpellMiscRec>((int)Addresses.DBC.SpellMisc);
         static DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes = new DBC<DBCStruct.SpellCastTimesRec>((int)Addresses.DBC.SpellCastTimes);
