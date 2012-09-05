@@ -246,7 +246,7 @@
             animProgress = ObjectFields.End + 0x8,
             factionTemplate = ObjectFields.End + 0x9,
             level = ObjectFields.End + 0xA,
-            percentHealth = ObjectFields.End + 0xB,
+            bytes_1 = ObjectFields.End + 0xB,
             End = ObjectFields.End + 0xC
         };
 

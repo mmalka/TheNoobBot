@@ -53,7 +53,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.objName1) + (uint)Addresses.GameObject.objName2)); }
+                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedName)); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > Name: " + e);
@@ -105,8 +105,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var bype1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.percentHealth); // TODO Check for MoP .GAMEOBJECT_BYTES_1); // Edit2: Found mailbox but not Chair, need fix.
-                    return (WoWGameObjectType)((bype1 >> 8) & 0xFF);
+                    var bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.bytes_1);
+                    return (WoWGameObjectType)((bytes1 >> 8) & 0xFF);
                 }
                 catch (Exception e)
                 {

@@ -55,11 +55,15 @@
         /// </summary>
         public enum DBC
         {
-            spell = 0xBBC10C, // OK
+            Spell = 0xBBC10C, // OK
             SpellCastTimes = 0xBBBB8C, // OK
             SpellRange = 0xBBC088, // OK
             SpellMisc = 0xBBBFAC, // OK
             FactionTemplate = 0xBBA010, // OK
+            Lock = 0xBBB060, // OK
+            Map = 0xBBCE04, // Futur usage
+            ResearchSite = 0xBBB740, // Futur usage
+            QuestPOIPoint = 0xBBB588, // Futur usage
         }
 
         /// <summary>
@@ -109,11 +113,11 @@
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // OK
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // OK
             UNIT_FIELD_R = 0x7F0, // OK
-            unitName1 = 0x968, // CGUnit_C__GetUnitName // OK
-            unitName2 = 0x64, // CGUnit_C__GetUnitName // OK
             CastingSpellID = 0xC08, // Script_UnitCastingInfo // OK
             ChannelSpellID = 0xC20, // Script_UnitChannelInfo // OK
             TransportGUID = 0x7D8, // CGUnit_C__GetTransportGUID // OK
+            DBCacheRow = 0x968, // CGUnit_C__GetUnitName // OK
+            CachedName = 0x64, // CGUnit_C__GetUnitName // OK
         }
 
         /// <summary>
@@ -124,8 +128,10 @@
             GAMEOBJECT_FIELD_X = 0xF0, // OK
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // OK
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // OK
-            objName1 = 0x1B8, // OK
-            objName2 = 0xB4, // OK
+            DBCacheRow = 0x1B8, // OK
+            CachedName = 0xB4, // OK
+            CachedData0 = 0x14, // Ok
+            CachedData1 = 0x18, // Ok
         }
 
         /// <summary>

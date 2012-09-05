@@ -643,8 +643,8 @@ namespace nManager.Wow.ObjectManager
                             Memory.WowMemory.Memory.ReadUInt(
                                 Memory.WowMemory.Memory.ReadUInt(BaseAddress +
                                                                  (uint)
-                                                                 Addresses.UnitField.unitName1) +
-                                (uint)Addresses.UnitField.unitName2));
+                                                                 Addresses.UnitField.DBCacheRow) +
+                                (uint)Addresses.UnitField.CachedName));
                 }
                 catch (Exception e)
                 {
