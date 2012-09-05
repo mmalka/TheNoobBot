@@ -22,6 +22,7 @@ namespace nManager
                 Logging.WriteError("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' does not exist!!!");
                 Form error = new Helpful.Forms.Error_Popup("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' not found!!\n\nPlease install all the required file for TheNoobBot to work properly.");
                 error.ShowDialog();
+                System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return false;
             }
             _translate = new Language();
