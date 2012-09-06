@@ -5,6 +5,7 @@
 */
 
 using System;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -25,8 +26,11 @@ public class Main : ICustomClass
         get { return range; }
         set { range = value; }
     }
-
     public void Initialize()
+    {
+        Initialize(false);
+    }
+    public void Initialize(bool ConfigOnly)
     {
         try
         {
@@ -41,24 +45,52 @@ public class Main : ICustomClass
                     var Frost_Strike = new Spell("Frost Strike");
                     if (Heart_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Deathknight Blood class...");
-                        new Deathknight_Blood();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Deathknight Blood class...");
+                            new Deathknight_Blood();
+                        }
                     }
                     if (Scourge_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Deathknight Unholy class...");
-                        new Deathknight_Unholy();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Deathknight Unholy class...");
+                            new Deathknight_Unholy();
+                        }
                     }
                     if (Frost_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Deathknight Frost class...");
-                        new Deathknight_Frost();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Deathknight Frost class...");
+                            new Deathknight_Frost();
+                        }
                     }
                     if (!Heart_Strike.KnownSpell && !Scourge_Strike.KnownSpell && !Frost_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Deathknight Apprentice class...");
-                        new Deathknight_Apprentice();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Deathknight Apprentice class...");
+                            new Deathknight_Apprentice();
+                        }
                     }
                     break;
                 #endregion
@@ -70,24 +102,52 @@ public class Main : ICustomClass
                     var Pyroblast = new Spell("Pyroblast");
                     if (Summon_Water_Elemental.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Mage Frost class...");
-                        new Mage_Frost();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Mage Frost class...");
+                            new Mage_Frost();
+                        }
                     }
                     if (Arcane_Barrage.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Arcane Mage class...");
-                        new Mage_Arcane();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Arcane Mage class...");
+                            new Mage_Arcane();
+                        }
                     }
                     if (Pyroblast.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Mage Fire class...");
-                        new Mage_Fire();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Mage Fire class...");
+                            new Mage_Fire();
+                        }
                     }
                     if (!Summon_Water_Elemental.KnownSpell && !Arcane_Barrage.KnownSpell && !Pyroblast.KnownSpell)
                     {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Mage frost class...");
-                        new Mage_Frost();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Mage frost class...");
+                            new Mage_Frost();
+                        }
                     }
                     break;
                 #endregion
@@ -98,19 +158,40 @@ public class Main : ICustomClass
                     var Unstable_Affliction = new Spell("Unstable Affliction");
                     if (Unstable_Affliction.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Affliction Warlock class...");
-                        new Affli();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Affliction Warlock class...");
+                            new Affli();
+                        }
                     }
                     if (Summon_Felguard.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Demonology Warlock class...");
-                        new Demo();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Demonology Warlock class...");
+                            new Demo();
+                        }
                     }
                     if (!Unstable_Affliction.KnownSpell && !Summon_Felguard.KnownSpell)
                     {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Demonology Warlock class...");
-                        new Demo();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Demonology Warlock class...");
+                            new Demo();
+                        }
                     }
                     break;
                 #endregion
@@ -120,22 +201,43 @@ public class Main : ICustomClass
                     var Mangle = new Spell("Mangle");
                     if (Mangle.KnownSpell)
                     {
-                        Logging.WriteFight("Feral Druid Found");
-                        new DruidFeral();
-                        break;
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Feral Druid Found");
+                            new DruidFeral();
+
+                        } break;
                     }
                     var Starsurge = new Spell("Starsurge");
                     if (Starsurge.KnownSpell)
                     {
-                        Logging.WriteFight("Balance Dudu Found");
-                        new Balance();
-                        break;
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Balance Dudu Found");
+                            new Balance();
+
+                        } break;
                     }
                     if (!Starsurge.KnownSpell)
                     {
-                        Logging.WriteFight("Dudu without Spec");
-                        new Balance();
-                        break;
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Dudu without Spec");
+                            new Balance();
+
+                        } break;
                     }
                     break;
                 #endregion
@@ -147,27 +249,89 @@ public class Main : ICustomClass
                     var Holy_Spell = new Spell("Holy Shock");
                     if (Retribution_Spell.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Paladin Retribution class...");
-                        new Paladin_Retribution();
+                        if (ConfigOnly)
+                        {
+                            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+                            Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
+                            CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Paladin Retribution class...");
+                            new Paladin_Retribution();
+                        }
                         break;
                     }
                     else if (Protection_Spell.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Paladin Protection class...");
-                        new Paladin_Protection();
+                        if (ConfigOnly)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Your specification haven't be found, loading Paladin Retribution Settings");
+                            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+                            Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
+                            CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Paladin Protection class...");
+                            new Paladin_Protection();
+                        }
                         break;
                     }
                     else if (Holy_Spell.KnownSpell)
                     {
-                        Logging.WriteFight("Loading Paladin Holy class...");
-                        new Paladin_Holy();
+                        if (ConfigOnly)
+                        {
+                            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
+                            Paladin_Holy.PaladinHolySettings CurrentSetting;
+                            CurrentSetting = new Paladin_Holy.PaladinHolySettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Paladin Holy class...");
+                            new Paladin_Holy();
+                        }
                         break;
                     }
                     else
                     {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Paladin Retribution class...");
-                        new Paladin_Retribution();
+                        if (ConfigOnly)
+                        {
+                            System.Windows.Forms.MessageBox.Show("Your specification haven't be found, loading Paladin Retribution Settings");
+                            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+                            Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
+                            CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Paladin Retribution class...");
+                            new Paladin_Retribution();
+                        }
                         break;
                     }
                 #endregion
@@ -177,13 +341,27 @@ public class Main : ICustomClass
                     var Thunderstorm = new Spell("Thunderstorm");
                     if (Thunderstorm.KnownSpell)
                     {
-                        Logging.WriteFight("Ele Shaman Found");
-                        new Ele();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Ele Shaman Found");
+                            new Ele();
+                        }
                     }
                     if (!Thunderstorm.KnownSpell)
                     {
-                        Logging.WriteFight("Shaman without Spec");
-                        new Ele();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Shaman without Spec");
+                            new Ele();
+                        }
                     }
                     break;
                 #endregion
@@ -193,13 +371,27 @@ public class Main : ICustomClass
                     var Mind_Flay = new Spell("Mind Flay");
                     if (Mind_Flay.KnownSpell)
                     {
-                        Logging.WriteFight("Shadow Priest Found");
-                        new Shadow();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Shadow Priest Found");
+                            new Shadow();
+                        }
                     }
                     if (!Mind_Flay.KnownSpell)
                     {
-                        Logging.WriteFight("Priest without Spec");
-                        new Shadow();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Priest without Spec");
+                            new Shadow();
+                        }
                     }
                     break;
                 #endregion
@@ -210,18 +402,39 @@ public class Main : ICustomClass
                     var Mutilate = new Spell("Mutilate");
                     if (Blade_Flurry.KnownSpell)
                     {
-                        Logging.WriteFight("Combat Rogue found");
-                        new RogueCom();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Combat Rogue found");
+                            new RogueCom();
+                        }
                     }
                     if (Mutilate.KnownSpell)
                     {
-                        Logging.WriteFight("Assassination Rogue found");
-                        new RogueAssa();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Assassination Rogue found");
+                            new RogueAssa();
+                        }
                     }
                     else
                     {
-                        Logging.WriteFight("Rogue without Spec");
-                        new Rogue();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Rogue without Spec");
+                            new Rogue();
+                        }
                     }
                     break;
                 #endregion
@@ -231,28 +444,56 @@ public class Main : ICustomClass
                     var Mortal_Strike = new Spell("Mortal Strike");
                     if (Mortal_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Arms Warrior Found");
-                        new Arms();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Arms Warrior Found");
+                            new Arms();
+                        }
                         break;
                     }
                     var Shield_Slam = new Spell("Shield Slam");
                     if (Shield_Slam.KnownSpell)
                     {
-                        Logging.WriteFight("Def Warrior Found");
-                        new WarriorProt();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Def Warrior Found");
+                            new WarriorProt();
+                        }
                         break;
                     }
                     var Bloodthirst = new Spell("Bloodthirst");
                     if (Bloodthirst.KnownSpell)
                     {
-                        Logging.WriteFight("Fury Warrior Found");
-                        new WarriorFury();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Fury Warrior Found");
+                            new WarriorFury();
+                        }
                         break;
                     }
                     if (!Mortal_Strike.KnownSpell)
                     {
-                        Logging.WriteFight("Warrior without Spec");
-                        new Warrior();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Warrior without Spec");
+                            new Warrior();
+                        }
                         break;
                     }
                     break;
@@ -263,25 +504,53 @@ public class Main : ICustomClass
                     var Explosive_Shot = new Spell("Explosive Shot");
                     if (Explosive_Shot.KnownSpell)
                     {
-                        Logging.WriteFight("Survival Hunter Found");
-                        new Survival();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Survival Hunter Found");
+                            new Survival();
+                        }
                     }
                     var Aimed_Shot = new Spell("Aimed Shot");
                     if (Aimed_Shot.KnownSpell)
                     {
-                        Logging.WriteFight("Marksman Hunter Found");
-                        new Marks();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Marksman Hunter Found");
+                            new Marks();
+                        }
                     }
                     var FocusFire = new Spell("Focus Fire");
                     if (FocusFire.KnownSpell)
                     {
-                        Logging.WriteFight("Beast Master Hunter Found");
-                        new BeastMaster();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Beast Master Hunter Found");
+                            new BeastMaster();
+                        }
                     }
                     if (!Explosive_Shot.KnownSpell && !Aimed_Shot.KnownSpell && !FocusFire.KnownSpell)
                     {
-                        Logging.WriteFight("Hunter without Spec");
-                        new BeastMaster();
+                        if (ConfigOnly)
+                        {
+                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Hunter without Spec");
+                            new BeastMaster();
+                        }
                     }
                     break;
                 #endregion
@@ -302,12 +571,12 @@ public class Main : ICustomClass
 
     public void ShowConfiguration()
     {
-        MessageBox.Show("This CustomClass has no settings available.");
+        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Initialize(true);
     }
 }
 
 #region Deathknight
-
 
 public class Deathknight_Apprentice
 {
@@ -5021,8 +5290,21 @@ public class DruidFeral
 #endregion
 
 #region Paladin
+
+
 public class Paladin_Holy
 {
+    [Serializable]
+    public class PaladinHolySettings : nManager.Helpful.Settings
+    {
+        public bool UseDivineProtection = true;
+
+        public PaladinHolySettings()
+        {
+            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Holy Settings");
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Protection Cycle");
+        }
+    }
     #region Professions & Racial
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
@@ -5173,6 +5455,15 @@ public class Paladin_Holy
 
     private void Heal()
     {
+        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        {
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            {
+                FlashOfLight.Launch();
+                MovementManager.StopMove();
+                return;
+            }
+        }
         if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();
@@ -5425,7 +5716,7 @@ public class Paladin_Protection
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (SealOfTruth.KnownSpell)
+        if (SealOfTruth.KnownSpell && ObjectManager.GetNumberAttackPlayer() <= 7)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
@@ -5455,11 +5746,12 @@ public class Paladin_Protection
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight)
+        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
+                MovementManager.StopMove();
                 return;
             }
         }
@@ -5648,12 +5940,108 @@ public class Paladin_Protection
 
 public class Paladin_Retribution
 {
-    #region Professions & Racial
+    [Serializable]
+    public class PaladinRetributionSettings : nManager.Helpful.Settings
+    {
+        /* Professions & Racials */
+        public bool UseArcaneTorrent = true;
+        public bool UseLifeblood = true;
+        public bool UseStoneform = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseWarStomp = true;
+        public bool UseBerserking = true;
+        /* Paladin Seals & Buffs */
+        public bool UseSealOfTheRighteousness = true;
+        public bool UseSealOfTruth = true;
+        public bool UseSealOfJustice = false;
+        public bool UseBlessingOfMight = true;
+        public bool UseBlessingOfKings = true;
+        /* Offensive Spell */
+        public bool UseTemplarsVerdict = true;
+        public bool UseDivineStorm = true;
+        public bool UseExorcism = true;
+        public bool UseHammerOfWrath = true;
+        public bool UseCrusaderStrike = true;
+        public bool UseHammerOfTheRighteous = true;
+        public bool UseJudgment = true;
+        public bool UseHammerOfJustice = true;
+        /* Offensive Cooldown */
+        public bool UseInquisition = true;
+        public bool UseGuardianOfAncientKings = true;
+        public bool UseHolyAvenger = true;
+        public bool UseAvengingWrath = true;
+        /* Defensive Cooldown */
+        public bool UseDivineProtection = true;
+        public bool UseDevotionAura = true;
+        public bool UseSacredShield = true;
+        public bool UseDivineShield = true;
+        public bool UseHandOfProtection = false;
+        /* Healing Spell */
+        public bool UseFlashOfLight = true;
+        public bool UseLayOnHands = true;
+        public bool UseWordOfGlory = true;
+
+        public PaladinRetributionSettings()
+        {
+            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Retribution Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            /* Paladin Seals & Buffs */
+            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
+            AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
+            AddControlInWinForm("Use Exorcism", "UseExorcism", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
+            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
+            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Inquisition", "UseInquisition", "Offensive Cooldown");
+            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Offensive Cooldown");
+            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
+            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Offensive Cooldown");
+            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Offensive Cooldown");
+            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Offensive Cooldown");
+            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Offensive Cooldown");
+            AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Offensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
+            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
+            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+        }
+        public static PaladinRetributionSettings CurrentSetting { get; set; }
+        public static PaladinRetributionSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+            if (System.IO.File.Exists(CurrentSettingsFile))
+            {
+                return CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new Paladin_Retribution.PaladinRetributionSettings();
+            }
+        }
+    }
+
+    private readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
+    #region Professions & Racials
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Tailoring = new Spell("Tailoring");
-    private readonly Spell Leatherworking = new Spell("Leatherworking");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
     private readonly Spell Berserking = new Spell("Berserking");
@@ -5741,11 +6129,11 @@ public class Paladin_Retribution
 
     private void Pull()
     {
-        if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable)
+        if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable && MySettings.UseExorcism)
         {
             Exorcism.Launch();
         }
-        else if (Judgment.KnownSpell && Judgment.IsDistanceGood && Judgment.IsSpellUsable)
+        else if (Judgment.KnownSpell && Judgment.IsDistanceGood && Judgment.IsSpellUsable && MySettings.UseJudgment)
         {
             Judgment.Launch();
         }
@@ -5779,12 +6167,12 @@ public class Paladin_Retribution
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (SealOfTruth.KnownSpell)
+        if (SealOfTruth.KnownSpell && ObjectManager.GetNumberAttackPlayer() <= 7 && MySettings.UseSealOfTruth)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
         }
-        else if (SealOfTheRighteousness.KnownSpell)
+        else if (SealOfTheRighteousness.KnownSpell && MySettings.UseSealOfTheRighteousness)
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
@@ -5797,39 +6185,40 @@ public class Paladin_Retribution
             return;
         else if (BlessingOfMight.KnownSpell)
         {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable && MySettings.UseBlessingOfMight)
                 BlessingOfMight.Launch();
         }
         else if (BlessingOfKings.KnownSpell)
         {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable && MySettings.UseBlessingOfKings)
                 BlessingOfKings.Launch();
         }
     }
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight)
+        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
+                MovementManager.StopMove();
                 return;
             }
         }
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable && MySettings.UseDivineShield)
         {
             DivineShield.Launch();
             return;
         }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
+        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
         {
             LayOnHands.Launch();
             return;
         }
         if (ObjectManager.Me.BarTwoPercentage < 10)
         {
-            if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable)
+            if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable && MySettings.UseArcaneTorrent)
             {
                 Arcane_Torrent.Launch();
                 return;
@@ -5837,9 +6226,9 @@ public class Paladin_Retribution
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
                 return;
@@ -5847,11 +6236,11 @@ public class Paladin_Retribution
         }
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
+            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
-            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
+            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && MySettings.UseDivineProtection)
                 DivineProtection.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
                 return;
@@ -5864,31 +6253,32 @@ public class Paladin_Retribution
         {
             if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
             {
-                AvengingWrath.Launch();
-                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+                if (MySettings.UseAvengingWrath)
+                    AvengingWrath.Launch();
+                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell && MySettings.UseInquisition && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
                     InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
                 }
-                if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
+                if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
                     HolyAvenger.Launch();
                 return;
             }
-            else if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
+            else if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
             {
                 HolyAvenger.Launch();
-                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell && MySettings.UseInquisition && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
                     InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
                 }
-                if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+                if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
                     AvengingWrath.Launch();
                 return;
             }
         }
         else
-            if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
+            if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && MySettings.UseGuardianOfAncientKings && AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
             {
                 GuardianOfAncientKings.Launch();
                 BurstTime = new Timer(1000 * 6.5);
@@ -5897,72 +6287,70 @@ public class Paladin_Retribution
     }
     private void DPS_Cycle()
     {
-        /*if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable)
+        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable && MySettings.UseHammerOfJustice)
         {
-           // TODO : If target can be stun, if not, it will be a pure loss of DPS.
+            // TODO : If target can be stun, if not, it will be a pure loss of DPS.
             HammerOfJustice.Launch();
             return;
-        }*/
-        if (Inquisition.KnownSpell && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.IsSpellUsable && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        }
+        if (Inquisition.KnownSpell && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.IsSpellUsable && MySettings.UseInquisition && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             Inquisition.Launch();
             InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() <= 1 && TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 1 || (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             TemplarsVerdict.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && DivineStorm.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && DivineStorm.IsSpellUsable && DivineStorm.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+        else if ((ObjectManager.GetNumberAttackPlayer() >= 2 || (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell && MySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && DivineStorm.IsSpellUsable && DivineStorm.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 || (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             DivineStorm.Launch();
             return;
         }
-        else if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable)
+        else if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable && MySettings.UseHammerOfWrath)
         {
             HammerOfWrath.Launch();
             return;
         }
-        else if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable)
+        else if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable && MySettings.UseExorcism)
         {
             Exorcism.Launch();
             return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || ObjectManager.Target.HaveBuff(115798)) && CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood && CrusaderStrike.IsSpellUsable)
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || ObjectManager.Target.HaveBuff(115798) || (MySettings.UseCrusaderStrike && !MySettings.UseHammerOfTheRighteous)) && CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood && CrusaderStrike.IsSpellUsable)
         {
             CrusaderStrike.Launch();
             return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() >= 4 || !ObjectManager.Target.HaveBuff(115798)) && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsDistanceGood && HammerOfTheRighteous.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174))
+        else if ((ObjectManager.GetNumberAttackPlayer() >= 4 || !ObjectManager.Target.HaveBuff(115798) || (!MySettings.UseCrusaderStrike && !MySettings.UseHammerOfTheRighteous)) && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsDistanceGood && HammerOfTheRighteous.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174))
         {
             HammerOfTheRighteous.Launch();
             return;
         }
-        else if (Judgment.KnownSpell && Judgment.IsDistanceGood && Judgment.IsSpellUsable)
+        else if (Judgment.KnownSpell && Judgment.IsDistanceGood && Judgment.IsSpellUsable && MySettings.UseJudgment)
         {
             Judgment.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() <= 1 && TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 1 || (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             TemplarsVerdict.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && DivineStorm.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && DivineStorm.IsSpellUsable && DivineStorm.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        else if ((ObjectManager.GetNumberAttackPlayer() >= 2 || (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell && (!Inquisition.KnownSpell || Inquisition.HaveBuff) && DivineStorm.IsSpellUsable && DivineStorm.IsDistanceGood && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
             return;
         }
-        else if (SacredShield.KnownSpell && SacredShield.IsDistanceGood && SacredShield.IsSpellUsable
+        else if (MySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsDistanceGood && SacredShield.IsSpellUsable
         && (!Inquisition.KnownSpell || Inquisition.HaveBuff)
         && (!TemplarsVerdict.KnownSpell || TemplarsVerdict.IsSpellUsable)
         && (!Judgment.KnownSpell || Judgment.IsSpellUsable)
         && (!Judgment.KnownSpell || Judgment.IsSpellUsable)
         && (!CrusaderStrike.KnownSpell || CrusaderStrike.IsSpellUsable)
         && (!HammerOfWrath.KnownSpell || HammerOfWrath.IsSpellUsable)
-        && (!Exorcism.KnownSpell || Exorcism.IsSpellUsable)
-        && (!Exorcism.KnownSpell || Exorcism.IsSpellUsable)
         && (!Exorcism.KnownSpell || Exorcism.IsSpellUsable))
         {
             // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
