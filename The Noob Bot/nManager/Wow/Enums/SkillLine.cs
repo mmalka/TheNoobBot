@@ -2,6 +2,8 @@
 {
     public enum SkillLine
     {
+        None = 0,
+
         Frost = 6,
         Fire = 8,
         Arms = 26,

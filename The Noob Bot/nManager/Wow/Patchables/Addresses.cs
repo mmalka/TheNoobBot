@@ -132,6 +132,7 @@
             CachedName = 0xB4, // OK
             CachedData0 = 0x14, // Ok
             CachedData1 = 0x18, // Ok
+            CachedData8 = 0x34, // Ok (Data0 + 8 * 0x04)
         }
 
         /// <summary>

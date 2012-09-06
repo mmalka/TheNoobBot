@@ -19,11 +19,6 @@ namespace nManager.Helpful.Forms
                 {
                     customClass.Items.Add(f);
                 }
-                listHarvestCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach (var n in NodesList.LoadList())
-                {
-                    listHarvestCb.Items.Add(n.Id + " - " + n.Name);
-                }
             }
             catch (Exception e)
             {
@@ -398,7 +393,7 @@ namespace nManager.Helpful.Forms
                     foreach (var id in managerSetting.blackListHarvest)
                     {
                         if (id >= 0)
-                            blackListHarvest.Items.Add(id + " - " + NodesList.GetNameById(id));
+                            blackListHarvest.Items.Add(id);
                     }
                 }
                 catch{}
@@ -532,20 +527,6 @@ namespace nManager.Helpful.Forms
             catch (Exception ex)
             {
                 Logging.WriteError("GeneralSettings > delBlackListHarvest_Click(object sender, EventArgs e): " + ex);
-
-            }
-        }
-
-        private void addBlackListHarvest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (!string.IsNullOrEmpty(listHarvestCb.Text))
-                    blackListHarvest.Items.Add(listHarvestCb.Text);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("GeneralSettings > addBlackListHarvest_Click(object sender, EventArgs e): " + ex);
 
             }
         }
