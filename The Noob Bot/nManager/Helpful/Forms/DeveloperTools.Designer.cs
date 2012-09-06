@@ -40,7 +40,6 @@ namespace nManager.Helpful.Forms
             this.launchLuaB = new DevComponents.DotNetBar.ButtonX();
             this.launchCSharpScriptB = new DevComponents.DotNetBar.ButtonX();
             this.translateToolsB = new DevComponents.DotNetBar.ButtonX();
-            this.nodesListManagerB = new DevComponents.DotNetBar.ButtonX();
             this.SuspendLayout();
             // 
             // getAllInfo
@@ -182,24 +181,11 @@ namespace nManager.Helpful.Forms
             this.translateToolsB.Text = "Translate Tools";
             this.translateToolsB.Click += new System.EventHandler(this.translateToolsB_Click);
             // 
-            // nodesListManagerB
-            // 
-            this.nodesListManagerB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.nodesListManagerB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.nodesListManagerB.Location = new System.Drawing.Point(163, 373);
-            this.nodesListManagerB.Name = "nodesListManagerB";
-            this.nodesListManagerB.Size = new System.Drawing.Size(82, 54);
-            this.nodesListManagerB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.nodesListManagerB.TabIndex = 32;
-            this.nodesListManagerB.Text = "Nodes List Manager";
-            this.nodesListManagerB.Click += new System.EventHandler(this.nodesListManagerB_Click);
-            // 
             // Developer_Tools
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(546, 426);
-            this.Controls.Add(this.nodesListManagerB);
             this.Controls.Add(this.translateToolsB);
             this.Controls.Add(this.launchCSharpScriptB);
             this.Controls.Add(this.launchLuaB);
@@ -236,6 +222,5 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.ButtonX launchLuaB;
         private DevComponents.DotNetBar.ButtonX launchCSharpScriptB;
         private DevComponents.DotNetBar.ButtonX translateToolsB;
-        private DevComponents.DotNetBar.ButtonX nodesListManagerB;
     }
 }

@@ -3,6 +3,7 @@ using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
 using nManager.Wow.Enums;
+using nManager.Wow.Helpers;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -99,6 +100,44 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public uint Data0
+        {
+            get
+            {
+                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData0); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObject > data0: " + e);
+                }
+                return 0;
+            }
+        }
+        public uint Data1
+        {
+            get
+            {
+                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData1); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObject > data1: " + e);
+                }
+                return 0;
+            }
+        }
+
+        public uint Data8
+        {
+            get
+            {
+                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData8); }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObject > data8: " + e);
+                }
+                return 0;
+            }
+        }
+
         public WoWGameObjectType GOType
         {
             get
@@ -113,6 +152,124 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("GameObjectFields > Type: " + e);
                 }
                 return 0;
+            }
+        }
+
+        public uint LockEntry
+        {
+            get
+            {
+                try
+                {
+                    switch (GOType)
+                    {
+                        case WoWGameObjectType.Door:        // 0
+                        case WoWGameObjectType.Button:      // 1
+                            return Data1;
+                        case WoWGameObjectType.Questgiver:  // 2
+                        case WoWGameObjectType.Chest:       // 3
+                        case WoWGameObjectType.Trap:        // 6  This lock is generaly a check for DISARM_TRAP capacity
+                        case WoWGameObjectType.Goober:      // 10
+                        case WoWGameObjectType.FlagStand:   // 24
+                        case WoWGameObjectType.FlagDrop:    // 26
+                            return Data0;
+                        default:
+                            return 0;
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > LockType: " + e);
+                }
+                return 0;
+            }
+        }
+
+        private SkillLine SkillByLockType(WoWGameObjectLockType lType)
+        {
+            switch (lType)
+            {
+                case WoWGameObjectLockType.LOCKTYPE_PICKLOCK:
+                    return SkillLine.Lockpicking;
+                case WoWGameObjectLockType.LOCKTYPE_HERBALISM:
+                    return SkillLine.Herbalism;
+                case WoWGameObjectLockType.LOCKTYPE_MINING:
+                    return SkillLine.Mining;
+                case WoWGameObjectLockType.LOCKTYPE_FISHING:
+                    return SkillLine.Fishing;
+                case WoWGameObjectLockType.LOCKTYPE_INSCRIPTION:
+                    return SkillLine.Inscription;
+                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                //    return SkillLine.Lockpicking;
+                default: break;
+            }
+            return SkillLine.None;
+        }
+
+        public bool CanOpen
+        {
+            get
+            {
+                if (LockEntry != 0)
+                {
+                    WoWLock Row = WoWLock.FromId(LockEntry);
+                    if (Row == null)
+                        return false;
+
+                    for (int j = 0; j < 8; j++)
+                    {
+                        switch ((WoWGameObjectLockKeyType)Row.Record.KeyType[j])
+                        {
+                            case WoWGameObjectLockKeyType.LOCK_KEY_NONE:
+                                break;
+
+                            case WoWGameObjectLockKeyType.LOCK_KEY_ITEM: // Do we have the key(s) ?
+                                uint itemId = Row.Record.LockType[j];
+                                if (ItemsManager.GetItemCountByIdLUA(itemId) < 0)
+                                    return false;
+                                break;
+
+                            case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
+                                SkillLine skill = SkillByLockType((WoWGameObjectLockType)Row.Record.LockType[j]);
+                                if (skill == SkillLine.None) // Lock Type unsupported by now
+                                    return false;
+
+                                // Prevent herbing when the setting is off
+                                if (skill == SkillLine.Herbalism && !nManagerSetting.CurrentSetting.harvestHerbs)
+                                    return false;
+                                // Prevent mining when the setting is off
+                                if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.harvestMinerals)
+                                    return false;
+
+                                uint reqSkillValue = Row.Record.Skill[j];
+                                //Logging.Write("Requires " + skill + " level " + reqSkillValue);
+                                if (Skill.GetValue(skill) < reqSkillValue)
+                                    return false;
+
+                                return true;
+
+                            default:
+                                break;
+                        }
+                    }
+                }
+                // No lock = no gathering GameObject, then obey to lootChests setting
+                if (!nManagerSetting.CurrentSetting.lootChests)
+                    return false;
+
+                // Finaly we check is a quest is required
+                if (GOType == WoWGameObjectType.Goober)// && Data1 != 0)
+                {
+                    //Logging.Write("This Goober has quest " + Data1);
+                    //if (!Quest.GetLogQuestId().Contains((int)Data1))
+                        return false;
+                }
+                if (GOType == WoWGameObjectType.Chest && Data8 != 0)
+                {
+                    if (!Quest.GetLogQuestId().Contains((int)Data8))
+                        return false;
+                }
+                return true;
             }
         }
 

@@ -129,7 +129,6 @@ namespace nManager.Helpful.Forms
             this.labelX36 = new DevComponents.DotNetBar.LabelX();
             this.blackListHarvest = new System.Windows.Forms.ListBox();
             this.addBlackListHarvest = new DevComponents.DotNetBar.ButtonX();
-            this.listHarvestCb = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.labelX35 = new DevComponents.DotNetBar.LabelX();
             this.harvestDuringLongMove = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX23 = new DevComponents.DotNetBar.LabelX();
@@ -1536,7 +1535,6 @@ namespace nManager.Helpful.Forms
             this.expandablePanel4.Controls.Add(this.labelX36);
             this.expandablePanel4.Controls.Add(this.blackListHarvest);
             this.expandablePanel4.Controls.Add(this.addBlackListHarvest);
-            this.expandablePanel4.Controls.Add(this.listHarvestCb);
             this.expandablePanel4.Controls.Add(this.labelX35);
             this.expandablePanel4.Controls.Add(this.harvestDuringLongMove);
             this.expandablePanel4.Controls.Add(this.labelX23);
@@ -1929,31 +1927,6 @@ namespace nManager.Helpful.Forms
             this.blackListHarvest.Name = "blackListHarvest";
             this.blackListHarvest.Size = new System.Drawing.Size(193, 82);
             this.blackListHarvest.TabIndex = 37;
-            // 
-            // addBlackListHarvest
-            // 
-            this.addBlackListHarvest.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.addBlackListHarvest.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addBlackListHarvest.Location = new System.Drawing.Point(500, 262);
-            this.addBlackListHarvest.Name = "addBlackListHarvest";
-            this.addBlackListHarvest.Size = new System.Drawing.Size(40, 22);
-            this.addBlackListHarvest.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.addBlackListHarvest.TabIndex = 36;
-            this.addBlackListHarvest.Text = "Add";
-            this.addBlackListHarvest.Click += new System.EventHandler(this.addBlackListHarvest_Click);
-            // 
-            // listHarvestCb
-            // 
-            this.listHarvestCb.DisplayMember = "Text";
-            this.listHarvestCb.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.listHarvestCb.ForeColor = System.Drawing.Color.Black;
-            this.listHarvestCb.FormattingEnabled = true;
-            this.listHarvestCb.ItemHeight = 16;
-            this.listHarvestCb.Location = new System.Drawing.Point(347, 262);
-            this.listHarvestCb.Name = "listHarvestCb";
-            this.listHarvestCb.Size = new System.Drawing.Size(147, 22);
-            this.listHarvestCb.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.listHarvestCb.TabIndex = 35;
             // 
             // labelX35
             // 
@@ -3192,7 +3165,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX labelX35;
         private DevComponents.DotNetBar.Controls.SwitchButton harvestDuringLongMove;
         private DevComponents.DotNetBar.ButtonX addBlackListHarvest;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx listHarvestCb;
         private DevComponents.DotNetBar.LabelX labelX36;
         private System.Windows.Forms.ListBox blackListHarvest;
         private DevComponents.DotNetBar.ButtonX delBlackListHarvest;

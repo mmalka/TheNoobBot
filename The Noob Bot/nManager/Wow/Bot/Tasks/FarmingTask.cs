@@ -199,7 +199,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     Thread.Sleep(50);
                                 }
-                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)).Contains(node.Entry)))
+                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && node.CanOpen))
                                     Usefuls.DisMount();
                                 Thread.Sleep(Usefuls.Latency + 300);
                                 Interact.InteractGameObject(node.GetBaseAddress);
@@ -314,7 +314,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 MovementManager.StopMove();
 
-                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)).Contains(node.Entry)))
+                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && node.CanOpen))
                                     MountTask.DismountMount();
 
                                 if (ObjectManager.ObjectManager.Me.InCombat)

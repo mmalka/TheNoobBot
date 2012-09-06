@@ -146,7 +146,8 @@ namespace nManager.Helpful.Forms
                 if (ObjectManager.Me.IsValid)
                 {
                     infoTb.Text =
-                        ObjectManager.Me.Position + Environment.NewLine +
+                        "Internal Map name: " + Usefuls.ContinentNameMpq + Environment.NewLine +
+                        "" + ObjectManager.Me.Position + Environment.NewLine +
                         "" + Environment.NewLine +
                         "" + Environment.NewLine +
                         "<Position>" + Environment.NewLine +
@@ -345,12 +346,6 @@ namespace nManager.Helpful.Forms
             {
                 Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
             }
-        }
-
-        private void nodesListManagerB_Click(object sender, EventArgs e)
-        {
-            var f = new NodesListManager();
-            f.Show();
         }
     }
 }

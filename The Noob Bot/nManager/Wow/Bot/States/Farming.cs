@@ -50,23 +50,8 @@ namespace nManager.Wow.Bot.States
                 if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.harvestDuringLongMove)
                     return false;
 
-                // Get farm:
-                _listDisplayIdFarm = new List<int>();
-                if (nManagerSetting.CurrentSetting.harvestHerbs)
-                {
-                    _listDisplayIdFarm.AddRange(NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)));
-                }
-                if (nManagerSetting.CurrentSetting.harvestMinerals)
-                {
-                    _listDisplayIdFarm.AddRange(NodesList.GetListId("Mineral", Skill.GetValue(SkillLine.Mining)));
-                }
-                if (nManagerSetting.CurrentSetting.lootChests)
-                {
-                    _listDisplayIdFarm.AddRange(NodesList.GetListId("Chest", 9999));
-                }
-
                 _nodes = new List<WoWGameObject>();
-                List<WoWGameObject> tNodes = ObjectManager.ObjectManager.GetWoWGameObjectById(_listDisplayIdFarm);
+                List<WoWGameObject> tNodes = ObjectManager.ObjectManager.GetWoWGameObjectForFarm();
 
                 foreach (var node in tNodes)
                 {

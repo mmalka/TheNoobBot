@@ -869,6 +869,19 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
+        public static List<WoWGameObject> GetWoWGameObjectForFarm()
+        {
+            try
+            {
+                return GetObjectWoWGameObject().Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober) && a.CanOpen).ToList();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetWoWGameObjectByyId(int id): " + e);
+            }
+            return new List<WoWGameObject>();
+        }
+
         public static List<WoWGameObject> GetWoWGameObjectByyId(int id)
         {
             try

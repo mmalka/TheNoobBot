@@ -67,12 +67,6 @@
     <Compile Include="Helpful\Forms\DeveloperTools.Designer.cs">
       <DependentUpon>DeveloperTools.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpful\Forms\NodesListManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Helpful\Forms\NodesListManager.Designer.cs">
-      <DependentUpon>NodesListManager.cs</DependentUpon>
-    </Compile>
     <Compile Include="Helpful\Forms\Translate Tools.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -153,6 +147,7 @@
     <Compile Include="Wow\Class\Npc.cs" />
     <Compile Include="Wow\Class\Point.cs" />
     <Compile Include="Wow\Class\Spell.cs" />
+    <Compile Include="Wow\Enums\WoWGameObjectLockType.cs" />
     <Compile Include="Wow\Enums\WoWGameObjectType.cs" />
     <Compile Include="Wow\Enums\WoWPowerType.cs" />
     <Compile Include="Wow\Enums\WoWRace.cs" />
@@ -186,7 +181,6 @@
     <Compile Include="Wow\Helpers\DBC.cs" />
     <Compile Include="Wow\Helpers\Fishing.cs" />
     <Compile Include="Wow\Helpers\Milling.cs" />
-    <Compile Include="Wow\Helpers\NodesList.cs" />
     <Compile Include="Wow\Helpers\NpcDB.cs" />
     <Compile Include="Wow\Helpers\Elemental.cs" />
     <Compile Include="Wow\Helpers\EquippedItems.cs" />
@@ -216,6 +210,7 @@
     <Compile Include="Wow\Helpers\Usefuls.cs" />
     <Compile Include="Wow\Helpers\Vendor.cs" />
     <Compile Include="Wow\Helpers\WoWFactionTemplate.cs" />
+    <Compile Include="Wow\Helpers\WoWLock.cs" />
     <Compile Include="Wow\Memory.cs" />
     <Compile Include="Wow\MemoryClass\D3D.cs" />
     <Compile Include="Wow\MemoryClass\Dictionnary.cs" />
@@ -255,9 +250,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\Error Popup.resx">
       <DependentUpon>Error Popup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Helpful\Forms\NodesListManager.resx">
-      <DependentUpon>NodesListManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Helpful\Forms\Translate Tools.resx">
       <DependentUpon>Translate Tools.cs</DependentUpon>
