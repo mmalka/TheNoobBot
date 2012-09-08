@@ -53,7 +53,7 @@ namespace nManager.Wow.Bot.States
                 if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.foodPercent)
                     return true;
                 // Mana:
-                if (ObjectManager.ObjectManager.Me.BarTwoPercentage <= nManagerSetting.CurrentSetting.drinkPercent && nManagerSetting.CurrentSetting.restingMana)
+                if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.drinkPercent && nManagerSetting.CurrentSetting.restingMana)
                     return true;
                 // Pet:
                 //if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid && Config.Bot.FormConfig.RegenPet)
@@ -71,7 +71,7 @@ namespace nManager.Wow.Bot.States
             {
                 if ((ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.foodPercent) ||
                     // HP
-                    (ObjectManager.ObjectManager.Me.BarTwoPercentage <= nManagerSetting.CurrentSetting.drinkPercent && nManagerSetting.CurrentSetting.restingMana))
+                    (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.drinkPercent && nManagerSetting.CurrentSetting.restingMana))
                     // MANA
                 {
                     Logging.Write("Regen started");
@@ -88,7 +88,7 @@ namespace nManager.Wow.Bot.States
                     }
 
                     // Use Water:
-                    if (ObjectManager.ObjectManager.Me.BarTwoPercentage <= nManagerSetting.CurrentSetting.drinkPercent &&
+                    if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.drinkPercent &&
                         nManagerSetting.CurrentSetting.drinkName != "" && nManagerSetting.CurrentSetting.restingMana)
                     {
                         ObjectManager.ObjectManager.Me.forceIsCast = true;
@@ -108,7 +108,7 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(500);
                     }
 
-                    while (ObjectManager.ObjectManager.Me.BarTwoPercentage <= 95 &&
+                    while (ObjectManager.ObjectManager.Me.ManaPercentage <= 95 &&
                            Products.Products.IsStarted && nManagerSetting.CurrentSetting.restingMana) // Wait Mana
                     {
                         if (ObjectManager.ObjectManager.Me.IsDeadMe || ObjectManager.ObjectManager.Me.InCombat)

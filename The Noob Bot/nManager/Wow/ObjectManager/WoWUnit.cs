@@ -22,7 +22,6 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-
                     if (InTransport)
                     {
                         var t = new WoWUnit(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
@@ -35,11 +34,11 @@ namespace nManager.Wow.ObjectManager
                     var ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                                  (uint)Addresses.UnitField.UNIT_FIELD_X),
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_X),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                                  (uint)Addresses.UnitField.UNIT_FIELD_Y),
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_Y),
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
-                                                                  (uint)Addresses.UnitField.UNIT_FIELD_Z));
+                                                              (uint) Addresses.UnitField.UNIT_FIELD_Z));
 
                     if (Guid == ObjectManager.Me.Guid)
                     {
@@ -63,38 +62,51 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.health); }
+                try
+                {
+                    return GetDescriptor<int>(Descriptors.UnitFields.health);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Health: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Health: " + e);
+                    return 0;
                 }
             }
         }
+
         public int MaxHealth
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.maxHealth); }
+                try
+                {
+                    return GetDescriptor<int>(Descriptors.UnitFields.maxHealth);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MaxHealth: " + e); return 0;
+                    Logging.WriteError("WoWUnit > MaxHealth: " + e);
+                    return 0;
                 }
             }
         }
+
         public double HealthPercent
         {
             get
             {
                 try
                 {
-                    var p = (int)((Health * 100) / (double)MaxHealth);
+                    var p = (int) ((Health*100)/(double) MaxHealth);
                     if (p < 0 || p > 100)
-                    { return 0; }
+                    {
+                        return 0;
+                    }
                     return p;
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > HealthPercent: " + e); return 0;
+                    Logging.WriteError("WoWUnit > HealthPercent: " + e);
+                    return 0;
                 }
             }
         }
@@ -108,11 +120,11 @@ namespace nManager.Wow.ObjectManager
                     int num = 20;
                     if (ObjectManager.Me.Level > Level)
                     {
-                        num -= Math.Abs((int)(ObjectManager.Me.Level - Level));
+                        num -= Math.Abs((int) (ObjectManager.Me.Level - Level));
                     }
                     if (ObjectManager.Me.Level < Level)
                     {
-                        num += Math.Abs((int)(ObjectManager.Me.Level - Level));
+                        num += Math.Abs((int) (ObjectManager.Me.Level - Level));
                     }
                     if (num < 5)
                     {
@@ -122,7 +134,8 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > AggroDistance: " + e); return 20;
+                    Logging.WriteError("WoWUnit > AggroDistance: " + e);
+                    return 20;
                 }
             }
         }
@@ -133,10 +146,16 @@ namespace nManager.Wow.ObjectManager
             {
                 lock (this)
                 {
-                    try { string randomStringResult = Others.GetRandomString(Others.Random(4, 10)); Lua.LuaDoString(randomStringResult + " = UnitCreatureType(\"target\")"); return Lua.GetLocalizedText(randomStringResult); }
+                    try
+                    {
+                        string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                        Lua.LuaDoString(randomStringResult + " = UnitCreatureType(\"target\")");
+                        return Lua.GetLocalizedText(randomStringResult);
+                    }
                     catch (Exception e)
                     {
-                        Logging.WriteError("WoWUnit > CreatureTypeTarget: " + e); return "";
+                        Logging.WriteError("WoWUnit > CreatureTypeTarget: " + e);
+                        return "";
                     }
                 }
             }
@@ -156,7 +175,8 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > FactionTemplate: " + e); return null;
+                    Logging.WriteError("WoWUnit > FactionTemplate: " + e);
+                    return null;
                 }
             }
         }
@@ -166,10 +186,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Mana); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Mana);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Mana: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Mana: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxMana
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Mana);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxMana: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ManaPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Mana*100/MaxMana;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > RageMana: " + e);
+                    return 0;
                 }
             }
         }
@@ -179,10 +234,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Rage); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Rage);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Rage: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Rage: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxRage
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Rage);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxRage: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint RagePercentage
+        {
+            get
+            {
+                try
+                {
+                    return Rage*100/MaxRage;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > RagePercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -192,23 +282,94 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Focus); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Focus);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Focus: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Focus: " + e);
+                    return 0;
                 }
             }
         }
+
+        public uint MaxFocus
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Focus);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxFocus: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint FocusPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Focus*100/MaxFocus;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > FocusPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
 
         public uint Energy
         {
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.HolyPower); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Energy);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Energy: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Energy: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxEnergy
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Energy);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxEnergy: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint EnergyPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Energy*100/MaxEnergy;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > EnergyPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -218,10 +379,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Chi); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Chi);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Chi: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Chi: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxChi
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Chi);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxChi: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ChiPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Chi*100/MaxChi;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > ChiPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -231,23 +427,94 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Runes); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Runes);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Runes: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Runes: " + e);
+                    return 0;
                 }
             }
         }
+
+        public uint MaxRunes
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Runes);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxRunes: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint RunesPercentage
+        {
+            get
+            {
+                try
+                {
+                    return Runes*100/MaxRunes;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > RunesPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
 
         public uint RunicPower
         {
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.RunicPower); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.RunicPower);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > RunicPower: " + e); return 0;
+                    Logging.WriteError("WoWUnit > RunicPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxRunicPower
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.RunicPower);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxRunicPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint RunicPowerPercentage
+        {
+            get
+            {
+                try
+                {
+                    return RunicPower*100/MaxRunicPower;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > RunicPowerPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -257,23 +524,94 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.SoulShards); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.SoulShards);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > SoulShards: " + e); return 0;
+                    Logging.WriteError("WoWUnit > SoulShards: " + e);
+                    return 0;
                 }
             }
         }
+
+        public uint MaxSoulShards
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.SoulShards);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxSoulShards: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint SoulShardsPercentage
+        {
+            get
+            {
+                try
+                {
+                    return SoulShards*100/MaxSoulShards;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > SoulShardsPercentage: " + e);
+                    return 0;
+                }
+            }
+        }
+
 
         public uint Eclipse
         {
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Eclipse); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Eclipse);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Eclipse: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Eclipse: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxEclipse
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Eclipse);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxEclipse: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint EclipsePercentage
+        {
+            get
+            {
+                try
+                {
+                    return Eclipse*100/MaxEclipse;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > EclipsePercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -283,10 +621,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.HolyPower); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.HolyPower);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > HolyPower: " + e); return 0;
+                    Logging.WriteError("WoWUnit > HolyPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxHolyPower
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.HolyPower);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxHolyPower: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint HolyPowerPercentage
+        {
+            get
+            {
+                try
+                {
+                    return HolyPower*100/MaxHolyPower;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > HolyPowerPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -296,10 +669,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.Alternate); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.Alternate);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Alternate: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Alternate: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxAlternate
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.Alternate);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxAlternate: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint AlternatePercentage
+        {
+            get
+            {
+                try
+                {
+                    return Alternate*100/MaxAlternate;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > AlternatePercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -309,10 +717,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.DarkForce); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.DarkForce);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > DarkForce: " + e); return 0;
+                    Logging.WriteError("WoWUnit > DarkForce: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxDarkForce
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.DarkForce);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxDarkForce: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint DarkForcePercentage
+        {
+            get
+            {
+                try
+                {
+                    return DarkForce*100/MaxDarkForce;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > DarkForcePercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -322,10 +765,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.LightForce); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.LightForce);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > LightForce: " + e); return 0;
+                    Logging.WriteError("WoWUnit > LightForce: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxLightForce
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.LightForce);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxLightForce: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint LightForcePercentage
+        {
+            get
+            {
+                try
+                {
+                    return LightForce*100/MaxLightForce;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > LightForcePercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -335,10 +813,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.ShadowOrbs); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.ShadowOrbs);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > ShadowOrbs: " + e); return 0;
+                    Logging.WriteError("WoWUnit > ShadowOrbs: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxShadowOrbs
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.ShadowOrbs);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxShadowOrbs: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ShadowOrbsPercentage
+        {
+            get
+            {
+                try
+                {
+                    return ShadowOrbs*100/MaxShadowOrbs;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > ShadowOrbsPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -348,10 +861,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.BurningEmbers); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.BurningEmbers);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > BurningEmbers: " + e); return 0;
+                    Logging.WriteError("WoWUnit > BurningEmbers: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxBurningEmbers
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.BurningEmbers);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxBurningEmbers: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint BurningEmbersPercentage
+        {
+            get
+            {
+                try
+                {
+                    return BurningEmbers*100/MaxBurningEmbers;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > BurningEmbersPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -361,10 +909,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.DemonicFury); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.DemonicFury);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > DemonicFury: " + e); return 0;
+                    Logging.WriteError("WoWUnit > DemonicFury: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxDemonicFury
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.DemonicFury);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxDemonicFury: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ArcaneChargesPercentage
+        {
+            get
+            {
+                try
+                {
+                    return DemonicFury*100/MaxDemonicFury;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > DemonicFuryPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -374,10 +957,45 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return GetPowerByPowerType(Enums.PowerType.ArcaneCharges); }
+                {
+                    return GetPowerByPowerType(Enums.PowerType.ArcaneCharges);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > ArcaneCharges: " + e); return 0;
+                    Logging.WriteError("WoWUnit > ArcaneCharges: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint MaxArcaneCharges
+        {
+            get
+            {
+                try
+                {
+                    return GetMaxPowerByPowerType(Enums.PowerType.ArcaneCharges);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > MaxArcaneCharges: " + e);
+                    return 0;
+                }
+            }
+        }
+
+        public uint ArcaneChargesPercentage
+        {
+            get
+            {
+                try
+                {
+                    return ArcaneCharges*100/MaxArcaneCharges;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWPlayer > ArcaneChargesPercentage: " + e);
+                    return 0;
                 }
             }
         }
@@ -385,27 +1003,35 @@ namespace nManager.Wow.ObjectManager
         private uint GetPowerIndexByPowerType(Enums.PowerType powerType)
         {
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
-            uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.displayPower * Descriptors.multiplicator);
-            uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint)powerType + (uint)Addresses.PowerIndex.Multiplicator * Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
-            uint result = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.PowerIndex.PowerIndexArrays + index * 4);
+            uint displayPower = descriptorsArray +
+                                ((uint) Descriptors.UnitFields.displayPower*Descriptors.multiplicator);
+            uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint) powerType +
+                         (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
+            uint result =
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                 (uint) Addresses.PowerIndex.PowerIndexArrays + index*4);
             return result;
         }
 
         public uint GetPowerByPowerType(Enums.PowerType powerType)
         {
-
             uint index = GetPowerIndexByPowerType(powerType);
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
-            uint powerValue = Memory.WowMemory.Memory.ReadUInt(descriptorsArray + ((uint)Descriptors.UnitFields.power * Descriptors.multiplicator + index * 4));
+            uint powerValue =
+                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
+                                                 ((uint) Descriptors.UnitFields.power*Descriptors.multiplicator +
+                                                  index*4));
             return powerValue;
         }
 
         public uint GetMaxPowerByPowerType(Enums.PowerType powerType)
         {
-
             uint index = GetPowerIndexByPowerType(powerType);
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
-            uint powerValue = Memory.WowMemory.Memory.ReadUInt(descriptorsArray + ((uint)Descriptors.UnitFields.maxPower * Descriptors.multiplicator + index * 4));
+            uint powerValue =
+                Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
+                                                 ((uint) Descriptors.UnitFields.maxPower*Descriptors.multiplicator +
+                                                  index*4));
             return powerValue;
         }
 
@@ -413,13 +1039,18 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<uint>(Descriptors.UnitFields.factionTemplate); }
+                try
+                {
+                    return GetDescriptor<uint>(Descriptors.UnitFields.factionTemplate);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Faction: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Faction: " + e);
+                    return 0;
                 }
             }
         }
+
         public uint DisplayId
         {
             get
@@ -435,7 +1066,9 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-        Point _lastPosMove = new Point();
+
+        private Point _lastPosMove = new Point();
+
         public bool GetMove
         {
             get
@@ -446,12 +1079,16 @@ namespace nManager.Wow.ObjectManager
 
                     _lastPosMove = ObjectManager.Me.Position;
                     Thread.Sleep(50);
-                    if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) || Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) || Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
+                    if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) ||
+                        Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) ||
+                        Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
                         bResult = true;
                     if (!bResult)
                     {
                         Thread.Sleep(30);
-                        if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) || Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) || Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
+                        if (Math.Round(_lastPosMove.X, 1) != Math.Round(ObjectManager.Me.Position.X, 1) ||
+                            Math.Round(_lastPosMove.Z, 1) != Math.Round(ObjectManager.Me.Position.Z, 1) ||
+                            Math.Round(_lastPosMove.Y, 1) != Math.Round(ObjectManager.Me.Position.Y, 1))
                             bResult = true;
                     }
                     return bResult;
@@ -463,65 +1100,89 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public float SpeedMoving
         {
             get
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.UnitField.UNIT_SPEED);
+                    return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.UnitField.UNIT_SPEED);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > SpeedMoving: " + e); return 0;
+                    Logging.WriteError("WoWUnit > SpeedMoving: " + e);
+                    return 0;
                 }
-
             }
         }
+
         public override float GetDistance
         {
             get
             {
-                try { return Position.DistanceTo(ObjectManager.Me.Position); }
+                try
+                {
+                    return Position.DistanceTo(ObjectManager.Me.Position);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > GetDistance: " + e); return 0;
+                    Logging.WriteError("WoWUnit > GetDistance: " + e);
+                    return 0;
                 }
             }
         }
+
         public float GetDistance2D
         {
             get
             {
-                try { return Position.DistanceTo2D(ObjectManager.Me.Position); }
+                try
+                {
+                    return Position.DistanceTo2D(ObjectManager.Me.Position);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > GetDistance2D: " + e); return 0;
+                    Logging.WriteError("WoWUnit > GetDistance2D: " + e);
+                    return 0;
                 }
             }
         }
+
         public bool IsAlive
         {
             get
             {
-                try { return (Health > 0); }
+                try
+                {
+                    return (Health > 0);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsAlive: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsAlive: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsDead
         {
             get
             {
-                try { return (Health <= 0 || Health == 0.01 || GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags) == 0x20) || (Health == 1 && GetMove); }
+                try
+                {
+                    return (Health <= 0 || Health == 0.01 ||
+                            GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags) == 0x20) ||
+                           (Health == 1 && GetMove);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsDead: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsDead: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsLootable
         {
             get
@@ -534,11 +1195,13 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsLootable: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsLootable: " + e);
+                    return false;
                 }
                 return false;
             }
         }
+
         public bool IsTagged
         {
             get
@@ -551,11 +1214,13 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTagged: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsTagged: " + e);
+                    return false;
                 }
                 return false;
             }
         }
+
         public bool IsTaggedByYou
         {
             get
@@ -568,10 +1233,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTaggedByYou: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsTaggedByYou: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsTargetingMe
         {
             get
@@ -584,25 +1251,33 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTargetingMe: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsTargetingMe: " + e);
+                    return false;
                 }
             }
         }
+
         public UInt64 Target
         {
             get
             {
-                try { return GetDescriptor<ulong>(Descriptors.UnitFields.target); }
+                try
+                {
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.target);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > : Target get" + e); return 0;
+                    Logging.WriteError("WoWUnit > : Target get" + e);
+                    return 0;
                 }
             }
             set
             {
                 try
                 {
-                    Memory.WowMemory.Memory.WriteUInt64(Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors) + (uint)Descriptors.UnitFields.target * Descriptors.multiplicator, value);
+                    Memory.WowMemory.Memory.WriteUInt64(
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors) +
+                        (uint) Descriptors.UnitFields.target*Descriptors.multiplicator, value);
                 }
                 catch (Exception e)
                 {
@@ -610,17 +1285,23 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public uint Level
         {
             get
             {
-                try { return GetDescriptor<uint>(Descriptors.UnitFields.level); }
+                try
+                {
+                    return GetDescriptor<uint>(Descriptors.UnitFields.level);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Level: " + e); return 0;
+                    Logging.WriteError("WoWUnit > Level: " + e);
+                    return 0;
                 }
             }
         }
+
         public override string Name
         {
             get
@@ -630,8 +1311,8 @@ namespace nManager.Wow.ObjectManager
                     if (BaseAddress == ObjectManager.Me.GetBaseAddress)
                     {
                         return
-                                Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
-                                                                            (uint)Addresses.Player.playerName);
+                            Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
+                                                                   (uint) Addresses.Player.playerName);
                     }
                     if (Type == Enums.WoWObjectType.Player)
                     {
@@ -644,7 +1325,7 @@ namespace nManager.Wow.ObjectManager
                                 Memory.WowMemory.Memory.ReadUInt(BaseAddress +
                                                                  (uint)
                                                                  Addresses.UnitField.DBCacheRow) +
-                                (uint)Addresses.UnitField.CachedName));
+                                (uint) Addresses.UnitField.CachedName));
                 }
                 catch (Exception e)
                 {
@@ -653,6 +1334,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public bool Skinnable
         {
             get
@@ -664,10 +1346,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Skinnable: " + e); return false;
+                    Logging.WriteError("WoWUnit > Skinnable: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsNpcSpiritHealer
         {
             get
@@ -679,10 +1363,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsNpcSpiritHealer: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsNpcSpiritHealer: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsNpcRepair
         {
             get
@@ -694,10 +1380,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsNpcRepair: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsNpcRepair: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsNpcVendor
         {
             get
@@ -709,10 +1397,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsNpcVendor: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsNpcVendor: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsNpcInnkeeper
         {
             get
@@ -724,10 +1414,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsNpcInnkeeper: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsNpcInnkeeper: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsNpcVendorFood
         {
             get
@@ -744,6 +1436,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public bool IsNpcTrainer
         {
             get
@@ -760,17 +1453,23 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public ulong SummonedBy
         {
             get
             {
-                try { return GetDescriptor<ulong>(Descriptors.UnitFields.summonedBy); }
+                try
+                {
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.summonedBy);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > SummonedBy: " + e); return 0;
+                    Logging.WriteError("WoWUnit > SummonedBy: " + e);
+                    return 0;
                 }
             }
         }
+
         public bool AutoAttack
         {
             get
@@ -782,10 +1481,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > AutoAttack: " + e); return false;
+                    Logging.WriteError("WoWUnit > AutoAttack: " + e);
+                    return false;
                 }
             }
         }
+
         public bool InCombat
         {
             get
@@ -807,55 +1508,79 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > InCombat: " + e); return false;
+                    Logging.WriteError("WoWUnit > InCombat: " + e);
+                    return false;
                 }
             }
         }
+
         public bool InCombatWithMe
         {
             get
             {
-                try { return InCombat && IsTargetingMe && !IsDead; }
+                try
+                {
+                    return InCombat && IsTargetingMe && !IsDead;
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > InCombatWithMe: " + e); return false;
+                    Logging.WriteError("WoWUnit > InCombatWithMe: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsCast
         {
             get
             {
-                try { return (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.CastingSpellID) > 0 || Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.ChannelSpellID) > 0); }
+                try
+                {
+                    return
+                        (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID) > 0 ||
+                         Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID) > 0);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsCast: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsCast: " + e);
+                    return false;
                 }
             }
         }
+
         public bool IsMounted
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID) > 0 || HaveBuff(SpellManager.MountDruidId()) || InTransport; }
+                try
+                {
+                    return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID) > 0 ||
+                           HaveBuff(SpellManager.MountDruidId()) || InTransport;
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsMounted: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsMounted: " + e);
+                    return false;
                 }
             }
         }
+
         public int MountDisplayId
         {
             get
             {
                 try
-                { return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID); }
+                {
+                    return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > MountDisplayId: " + e); return 0;
+                    Logging.WriteError("WoWUnit > MountDisplayId: " + e);
+                    return 0;
                 }
             }
         }
+
         public bool InPVP
         {
             get
@@ -867,10 +1592,12 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > InPVP: " + e); return false;
+                    Logging.WriteError("WoWUnit > InPVP: " + e);
+                    return false;
                 }
             }
         }
+
         public bool PVP
         {
             get
@@ -882,30 +1609,30 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > PVP: " + e); return false;
+                    Logging.WriteError("WoWUnit > PVP: " + e);
+                    return false;
                 }
             }
         }
 
         public ulong TransportGuid
         {
-
             get
             {
                 try
                 {
-                    return Memory.WowMemory.Memory.ReadUInt64(GetBaseAddress + (uint)Addresses.UnitField.TransportGUID);
+                    return Memory.WowMemory.Memory.ReadUInt64(GetBaseAddress + (uint) Addresses.UnitField.TransportGUID);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > TransportGuid: " + e); return 0;
+                    Logging.WriteError("WoWUnit > TransportGuid: " + e);
+                    return 0;
                 }
             }
         }
 
         public bool InTransport
         {
-
             get
             {
                 try
@@ -914,7 +1641,8 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > InTransport: " + e); return false;
+                    Logging.WriteError("WoWUnit > InTransport: " + e);
+                    return false;
                 }
             }
         }
@@ -927,9 +1655,11 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e); return 0;
+                Logging.WriteError("WoWUnit > BuffStack(List<UInt32> idBuffs): " + e);
+                return 0;
             }
         }
+
         public int BuffStack(UInt32 idBuff)
         {
             try
@@ -940,9 +1670,9 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e); return 0;
+                Logging.WriteError("WoWUnit > BuffStack(UInt32 idBuffs): " + e);
+                return 0;
             }
-
         }
 
         public bool HaveBuff(List<UInt32> idBuffs)
@@ -953,9 +1683,11 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("WoWUnit > HaveBuff(List<UInt32> idBuffs): " + e); return false;
+                Logging.WriteError("WoWUnit > HaveBuff(List<UInt32> idBuffs): " + e);
+                return false;
             }
         }
+
         public bool HaveBuff(UInt32 idBuffs)
         {
             try
@@ -964,24 +1696,29 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("WoWUnit > HaveBuff(UInt32 idBuffs): " + e); return false;
+                Logging.WriteError("WoWUnit > HaveBuff(UInt32 idBuffs): " + e);
+                return false;
             }
         }
+
         public Enums.Reaction Reaction
         {
             get
             {
                 try
-                { return UnitRelation.GetReaction(ObjectManager.Me.Faction, Faction); }
+                {
+                    return UnitRelation.GetReaction(ObjectManager.Me.Faction, Faction);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Reaction: " + e); return Enums.Reaction.Neutral;
+                    Logging.WriteError("WoWUnit > Reaction: " + e);
+                    return Enums.Reaction.Neutral;
                 }
             }
         }
+
         public bool IsTracked
         {
-
             get
             {
                 try
@@ -990,7 +1727,8 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTracked get: " + e); return false;
+                    Logging.WriteError("WoWUnit > IsTracked get: " + e);
+                    return false;
                 }
             }
             set
@@ -1008,8 +1746,10 @@ namespace nManager.Wow.ObjectManager
                         t = descriptor & -3L;
                     }
 
-                    var descriptorsArray = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
-                    var addressGD = descriptorsArray + ((uint)Descriptors.UnitFields.dynamicFlags * Descriptors.multiplicator);
+                    var descriptorsArray =
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                    var addressGD = descriptorsArray +
+                                    ((uint) Descriptors.UnitFields.dynamicFlags*Descriptors.multiplicator);
                     Memory.WowMemory.Memory.WriteInt64(addressGD, t);
                 }
                 catch (Exception e)
@@ -1023,7 +1763,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetDescriptor<T>((uint)field);
+                return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)
             {
@@ -1032,5 +1772,4 @@ namespace nManager.Wow.ObjectManager
             }
         }
     }
-
 }

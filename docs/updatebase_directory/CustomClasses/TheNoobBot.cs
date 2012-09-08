@@ -1291,7 +1291,7 @@ public class Deathknight_Unholy
             return;
         }
 
-        if (ObjectManager.Me.BarTwoPercentage > 63)
+        if (ObjectManager.Me.RunicPowerPercentage > 63)
         {
             if (Summon_Gargoyle.KnownSpell && Summon_Gargoyle.IsSpellUsable && Summon_Gargoyle.IsDistanceGood &&
                 (hardmob() || ObjectManager.GetNumberAttackPlayer() > 2))
@@ -1769,7 +1769,7 @@ public class Deathknight_Frost
             return;
         }
 
-        if (ObjectManager.Me.BarTwoPercentage == 100 &&
+        if (ObjectManager.Me.RunicPowerPercentage == 100 &&
             Frost_Strike.KnownSpell && Frost_Strike.IsSpellUsable && Frost_Strike.IsDistanceGood)
         {
             if (!Lichborne.HaveBuff && Rune_Strike.KnownSpell && Rune_Strike.IsSpellUsable && Rune_Strike.IsDistanceGood)
@@ -2460,7 +2460,7 @@ public class Mage_Arcane
 
         if (Evocation.KnownSpell && Evocation.IsSpellUsable &&
             ObjectManager.Me.HealthPercent < 40 ||
-            ObjectManager.Me.BarTwoPercentage < 40)
+            ObjectManager.Me.ManaPercentage < 40)
         {
             SpellManager.CastSpellByIdLUA(12051);
             // Evocation.Launch();
@@ -2695,7 +2695,7 @@ public class Mage_Arcane
             // Mage_Ward.Launch();
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 40 &&
+        if (ObjectManager.Me.ManaPercentage < 40 &&
             ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
             Lua.RunMacroText("/use item:36799");
@@ -2732,7 +2732,7 @@ public class Mage_Arcane
         if (Evocation.KnownSpell && Evocation.IsSpellUsable &&
             ObjectManager.Me.HealthPercent > 0 &&
             ObjectManager.Me.HealthPercent < 30 ||
-            ObjectManager.Me.BarTwoPercentage < 20)
+            ObjectManager.Me.ManaPercentage < 20)
         {
             SpellManager.CastSpellByIdLUA(12051);
             // Evocation.Launch();
@@ -2884,7 +2884,7 @@ public class Mage_Fire
 
         if (Evocation.KnownSpell && Evocation.IsSpellUsable &&
             ObjectManager.Me.HealthPercent < 40 ||
-            ObjectManager.Me.BarTwoPercentage < 40)
+            ObjectManager.Me.ManaPercentage < 40)
         {
             SpellManager.CastSpellByIdLUA(12051);
             // Evocation.Launch();
@@ -3123,7 +3123,7 @@ public class Mage_Fire
             // Mage_Ward.Launch();
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 40 &&
+        if (ObjectManager.Me.ManaPercentage < 40 &&
             ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
             Lua.RunMacroText("/use item:36799");
@@ -3160,7 +3160,7 @@ public class Mage_Fire
         if (Evocation.KnownSpell && Evocation.IsSpellUsable &&
             ObjectManager.Me.HealthPercent > 0 &&
             ObjectManager.Me.HealthPercent < 30 ||
-            ObjectManager.Me.BarTwoPercentage < 20)
+            ObjectManager.Me.ManaPercentage < 20)
         {
             SpellManager.CastSpellByIdLUA(12051);
             // Evocation.Launch();
@@ -3344,7 +3344,7 @@ public class Demo
             Thread.Sleep(200);
             Fight.StopFight();
             MovementManager.StopMove();
-            if (ObjectManager.Me.BarTwoPercentage < 50) SpellManager.CastSpellByIdLUA(1454);
+            if (ObjectManager.Me.ManaPercentage < 50) SpellManager.CastSpellByIdLUA(1454);
             Soul_Harvest.Launch();
             Thread.Sleep(200);
             Fight.StopFight();
@@ -3453,7 +3453,7 @@ public class Demo
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent > 79 && ObjectManager.Me.BarTwoPercentage < 50 && Life_Tap.KnownSpell)
+        if (ObjectManager.Me.HealthPercent > 79 && ObjectManager.Me.ManaPercentage < 50 && Life_Tap.KnownSpell)
         {
             SpellManager.CastSpellByIdLUA(1454);
             // Life_Tap.Launch();
@@ -3798,7 +3798,7 @@ public class Affli
             Thread.Sleep(200);
             Fight.StopFight();
             MovementManager.StopMove();
-            if (ObjectManager.Me.BarTwoPercentage < 50) SpellManager.CastSpellByIdLUA(1454);
+            if (ObjectManager.Me.ManaPercentage < 50) SpellManager.CastSpellByIdLUA(1454);
             Soul_Harvest.Launch();
             Thread.Sleep(200);
             Fight.StopFight();
@@ -3887,7 +3887,7 @@ public class Affli
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent > 79 && ObjectManager.Me.BarTwoPercentage < 50 && Life_Tap.KnownSpell)
+        if (ObjectManager.Me.HealthPercent > 79 && ObjectManager.Me.ManaPercentage < 50 && Life_Tap.KnownSpell)
         {
             SpellManager.CastSpellByIdLUA(1454);
             // Life_Tap.Launch();
@@ -4323,7 +4323,7 @@ public class Balance
             // War_Stomp.Launch();
         }
 
-        if (Innervate.KnownSpell && Innervate.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 40)
+        if (Innervate.KnownSpell && Innervate.IsSpellUsable && ObjectManager.Me.ManaPercentage < 40)
         {
             SpellManager.CastSpellByIdLUA(29166);
             // Innervate.Launch();
@@ -4363,7 +4363,7 @@ public class Balance
             // Solar_Beam.Launch();
         }
 
-        if (ObjectManager.Me.HealthPercent < 60 && ObjectManager.Me.BarTwoPercentage < 25 && Regrowth.KnownSpell &&
+        if (ObjectManager.Me.HealthPercent < 60 && ObjectManager.Me.ManaPercentage < 25 && Regrowth.KnownSpell &&
             Regrowth.IsSpellUsable && !Regrowth.HaveBuff)
         {
             if (Barkskin.KnownSpell && Barkskin.IsSpellUsable) Barkskin.Launch();
@@ -4372,7 +4372,7 @@ public class Balance
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent < 50 && ObjectManager.Me.BarTwoPercentage > 25)
+        if (ObjectManager.Me.HealthPercent < 50 && ObjectManager.Me.ManaPercentage > 25)
         {
             if (Barkskin.KnownSpell && Barkskin.IsSpellUsable) Barkskin.Launch();
             while (ObjectManager.Me.HealthPercent < 70)
@@ -4415,7 +4415,7 @@ public class Balance
                     SpellManager.CastSpellByIdLUA(33763);
                     // Lifebloom.Launch();
                 }
-                if (ObjectManager.Me.BarTwoPercentage < 10) return;
+                if (ObjectManager.Me.ManaPercentage < 10) return;
             }
         }
     }
@@ -4624,7 +4624,7 @@ public class DruidFeral
     public void Combat()
     {
         CheckForm();
-        if ((Cat_Form.HaveBuff && Me.BarTwoPercentage > (2 * interupt_cost)) || Bear_Form.HaveBuff)
+        if ((Cat_Form.HaveBuff && Me.EnergyPercentage > (2 * interupt_cost)) || Bear_Form.HaveBuff)
         {
             DoFFF();
 
@@ -5246,7 +5246,7 @@ public class DruidFeral
 
     public void Mana()
     {
-        if (!Cat_Form.HaveBuff && !Bear_Form.HaveBuff && Me.BarTwoPercentage < 50.0f)
+        if (!Cat_Form.HaveBuff && !Bear_Form.HaveBuff && Me.ManaPercentage < 50.0f)
             DoInnervate();
     }
 
@@ -5688,7 +5688,7 @@ public class Paladin_Holy
             HandOfProtection.Launch();
             return;
         }
-        if (ObjectManager.Me.BarTwoPercentage < 30)
+        if (ObjectManager.Me.ManaPercentage < 30)
         {
             if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent)
                 ArcaneTorrent.Launch();
@@ -6109,7 +6109,7 @@ public class Paladin_Protection
             HandOfProtection.Launch();
             return;
         }
-        if (ObjectManager.Me.BarTwoPercentage < 10)
+        if (ObjectManager.Me.ManaPercentage < 10)
         {
             if (ArcaneTorrent.KnownSpell && MySettings.UseArcaneTorrent && ArcaneTorrent.IsSpellUsable)
             {
@@ -6584,7 +6584,7 @@ public class Paladin_Retribution
             LayOnHands.Launch();
             return;
         }
-        if (ObjectManager.Me.BarTwoPercentage < 10)
+        if (ObjectManager.Me.ManaPercentage < 10)
         {
             if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent)
             {
@@ -6914,7 +6914,7 @@ public class Ele
             return;
         }
 
-        if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 80 &&
+        if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Me.ManaPercentage < 80 &&
             ObjectManager.Target.GetDistance < 10)
         {
             SpellManager.CastSpellByIdLUA(51490);
@@ -7019,14 +7019,14 @@ public class Ele
         }
 
         if (!Lightning_Shield.HaveBuff && Lightning_Shield.KnownSpell && Lightning_Shield.IsSpellUsable &&
-            Water_Shield.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 50)
+            Water_Shield.IsSpellUsable && ObjectManager.Me.ManaPercentage > 50)
         {
             SpellManager.CastSpellByIdLUA(324);
             // Lightning_Shield.Launch();
         }
 
         if (!Water_Shield.HaveBuff && Water_Shield.KnownSpell && Water_Shield.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 20)
+            ObjectManager.Me.ManaPercentage < 20)
         {
             SpellManager.CastSpellByIdLUA(52127);
             // Water_Shield.Launch();
@@ -7398,7 +7398,7 @@ public class Shadow
         }
 
         if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage > 20)
+            ObjectManager.Me.ManaPercentage > 20)
         {
             Shadowform.Launch();
         }
@@ -7410,7 +7410,7 @@ public class Shadow
             // Power_Word_Shield.Launch();
         }
 
-        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50 &&
+        if (Dispersion.KnownSpell && Dispersion.IsSpellUsable && ObjectManager.Me.ManaPercentage < 50 &&
             !hardmob() && ObjectManager.GetNumberAttackPlayer() < 2)
         {
             SpellManager.CastSpellByIdLUA(47585);
@@ -7418,7 +7418,7 @@ public class Shadow
         }
 
         if (Shadowfiend.KnownSpell && Shadowfiend.IsSpellUsable && !Dispersion.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 50 && ObjectManager.Target.HealthPercent > 60)
+            ObjectManager.Me.ManaPercentage < 50 && ObjectManager.Target.HealthPercent > 60)
         {
             shadowfiendrota = new Timer(2200);
             while (!shadowfiendrota.IsReady)
@@ -7481,14 +7481,14 @@ public class Shadow
         }
 
         if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && renewchill.IsReady &&
-            ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage < 20)
+            ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.ManaPercentage < 20)
         {
             renewchill = new Timer(2500);
             SpellManager.CastSpellByIdLUA(139);
             // Renew.Launch();
         }
 
-        if (ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.BarTwoPercentage > 25)
+        if (ObjectManager.Me.HealthPercent < 45 && ObjectManager.Me.ManaPercentage > 25)
         {
             if (Inner_Focus.KnownSpell && Inner_Focus.IsSpellUsable)
             {
@@ -7536,7 +7536,7 @@ public class Shadow
                     Thread.Sleep(1200);
                 }
 
-                if (ObjectManager.Me.BarTwoPercentage < 10) return;
+                if (ObjectManager.Me.ManaPercentage < 10) return;
             }
         }
     }
@@ -7973,7 +7973,7 @@ public class RogueAssa
                 return;
             }
 
-            if (ObjectManager.Me.BarTwoPercentage > 35 && !Envenom.IsSpellUsable && Envenom.IsDistanceGood)
+            if (ObjectManager.Me.EnergyPercentage > 35 && !Envenom.IsSpellUsable && Envenom.IsDistanceGood)
             {
                 Eviscerate.Launch();
                 return;
@@ -8109,7 +8109,7 @@ public class RogueAssa
 
     public void BuffCombat()
     {
-        if (ObjectManager.Me.BarTwoPercentage < 75 && Cold_Blood.KnownSpell && !Cold_Blood.HaveBuff &&
+        if (ObjectManager.Me.EnergyPercentage < 75 && Cold_Blood.KnownSpell && !Cold_Blood.HaveBuff &&
             Cold_Blood.IsSpellUsable)
             Cold_Blood.Launch();
 
@@ -8401,7 +8401,7 @@ public class Arms
             // Berserking.Launch();
         }
 
-        if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.BarTwoPercentage < 50)
+        if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50)
         {
             Berserker_Rage.Launch();
         }
@@ -8466,7 +8466,7 @@ public class Arms
         }
 
         if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood &&
-            ObjectManager.Me.BarTwoPercentage > 70)
+            ObjectManager.Me.RagePercentage > 70)
         {
             Heroic_Strike.Launch();
         }
@@ -8522,14 +8522,14 @@ public class Arms
 
         if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && !Thunder_Clap.TargetHaveBuff &&
             !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
-            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+            (ObjectManager.Me.RagePercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
         {
             Thunder_Clap.Launch();
         }
 
         if (Demoralizing_Shout.KnownSpell && Demoralizing_Shout.IsSpellUsable && !Demoralizing_Shout.TargetHaveBuff &&
             !Strike.IsSpellUsable && ObjectManager.Target.GetDistance < 9 &&
-            (ObjectManager.Me.BarTwoPercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+            (ObjectManager.Me.RagePercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
         {
             Demoralizing_Shout.Launch();
         }
@@ -8879,7 +8879,7 @@ public class WarriorProt
 
         if (Battle_Shout.KnownSpell &&
             Battle_Shout.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 70)
+            ObjectManager.Me.RagePercentage < 70)
         {
             Battle_Shout.Launch();
         }
@@ -9060,7 +9060,7 @@ public class WarriorFury
         {
             Victory_Rush.Launch();
 
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+            if ((ObjectManager.Me.RagePercentage > 70 || Inner_Rage.HaveBuff) &&
                 Heroic_Strike.KnownSpell &&
                 Heroic_Strike.IsSpellUsable)
             {
@@ -9075,7 +9075,7 @@ public class WarriorFury
         {
             Colossus_Smash.Launch();
 
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+            if ((ObjectManager.Me.RagePercentage > 70 || Inner_Rage.HaveBuff) &&
                 Heroic_Strike.KnownSpell &&
                 Heroic_Strike.IsSpellUsable)
             {
@@ -9090,7 +9090,7 @@ public class WarriorFury
         {
             Bloodthirst.Launch();
 
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+            if ((ObjectManager.Me.RagePercentage > 70 || Inner_Rage.HaveBuff) &&
                 Heroic_Strike.KnownSpell &&
                 Heroic_Strike.IsSpellUsable)
             {
@@ -9105,7 +9105,7 @@ public class WarriorFury
         {
             Raging_Blow.Launch();
 
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+            if ((ObjectManager.Me.RagePercentage > 70 || Inner_Rage.HaveBuff) &&
                 Heroic_Strike.KnownSpell &&
                 Heroic_Strike.IsSpellUsable)
             {
@@ -9120,7 +9120,7 @@ public class WarriorFury
         {
             Slam.Launch();
 
-            if ((ObjectManager.Me.BarTwoPercentage > 70 || Inner_Rage.HaveBuff) &&
+            if ((ObjectManager.Me.RagePercentage > 70 || Inner_Rage.HaveBuff) &&
                 Heroic_Strike.KnownSpell &&
                 Heroic_Strike.IsSpellUsable)
             {
@@ -9129,7 +9129,7 @@ public class WarriorFury
             }
         }
 
-        if ((ObjectManager.Me.BarTwoPercentage > 60 || Inner_Rage.HaveBuff) &&
+        if ((ObjectManager.Me.RagePercentage > 60 || Inner_Rage.HaveBuff) &&
             Heroic_Strike.KnownSpell &&
             Heroic_Strike.IsSpellUsable)
         {
@@ -9206,7 +9206,7 @@ public class WarriorFury
 
         if (Battle_Shout.KnownSpell &&
             Battle_Shout.IsSpellUsable &&
-            ObjectManager.Me.BarTwoPercentage < 70)
+            ObjectManager.Me.RagePercentage < 70)
         {
             Battle_Shout.Launch();
         }
@@ -9744,7 +9744,7 @@ public class Survival
                 // Multi_Shot.Launch();
             }
             if (Explosive_Shot.KnownSpell && Explosive_Shot.IsSpellUsable && Explosive_Shot.IsDistanceGood &&
-                ObjectManager.Me.BarTwoPercentage > 70)
+                ObjectManager.Me.FocusPercentage > 70)
             {
                 SpellManager.CastSpellByIdLUA(53301);
                 // Explosive_Shot.Launch();
@@ -9765,7 +9765,7 @@ public class Survival
             }
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Me.FocusPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
         {
             if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood &&
                 !Cobra_Shot.KnownSpell)
@@ -9933,7 +9933,7 @@ public class Survival
                 }
 
                 if (Explosive_Shot.KnownSpell && Explosive_Shot.IsSpellUsable && Explosive_Shot.IsDistanceGood &&
-                    ObjectManager.Me.BarTwoPercentage > 70)
+                    ObjectManager.Me.FocusPercentage > 70)
                 {
                     SpellManager.CastSpellByIdLUA(53301);
                     // Explosive_Shot.Launch();
@@ -10283,7 +10283,7 @@ public class Marks
             Scatter_Shot.Launch();
         }
 
-        if (ObjectManager.Me.BarTwoPercentage > 44 && ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Me.FocusPercentage > 44 && ObjectManager.Target.HaveBuff(1978))
         {
             if (Multi_Shot.KnownSpell && Multi_Shot.IsSpellUsable && Multi_Shot.IsDistanceGood &&
                 ObjectManager.GetNumberAttackPlayer() > 1)
@@ -10312,7 +10312,7 @@ public class Marks
             }
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 50 && ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Me.FocusPercentage < 50 && ObjectManager.Target.HaveBuff(1978))
         {
             if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood)
             {
@@ -10486,14 +10486,14 @@ public class Marks
                 }
 
                 if (Chimera_Shot.KnownSpell && Chimera_Shot.IsSpellUsable && Chimera_Shot.IsDistanceGood &&
-                    ObjectManager.Me.BarTwoPercentage > 70)
+                    ObjectManager.Me.FocusPercentage > 70)
                 {
                     SpellManager.CastSpellByIdLUA(53209);
                     // Chimera_Shot.Launch();
                 }
 
                 if (Arcane_Shot.KnownSpell && Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood &&
-                    !Chimera_Shot.IsSpellUsable && ObjectManager.Me.BarTwoPercentage > 70)
+                    !Chimera_Shot.IsSpellUsable && ObjectManager.Me.FocusPercentage > 70)
                 {
                     SpellManager.CastSpellByIdLUA(3044);
                     // Arcane_Shot.Launch();
@@ -10841,7 +10841,7 @@ public class BeastMaster
             }
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Me.FocusPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
         {
             if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood &&
                 !Cobra_Shot.KnownSpell)
