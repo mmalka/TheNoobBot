@@ -936,7 +936,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint ArcaneChargesPercentage
+        public uint DemonicFuryPercentage
         {
             get
             {
