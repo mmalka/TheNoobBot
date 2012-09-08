@@ -73,7 +73,7 @@ namespace Quester.Profile
         public Objective Objective = Objective.None;
         public int Count = 0;
         internal int CurrentCount = 0;
-        internal List<Point> PathHotsports = null;
+        internal List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
         public List<uint> Factions = new List<uint>();
         public int CollectItemId = 0;
