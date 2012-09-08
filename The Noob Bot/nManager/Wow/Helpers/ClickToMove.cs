@@ -13,7 +13,7 @@ namespace nManager.Wow.Helpers
             {
                 if (x == 0 && y == 0 && z == 0 && guid == 0)
                     return;
-                //Console.WriteLine("CGPlayer_C__ClickToMove(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision + ")");
+                Logging.WriteDebug("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision + ")");
 
                 // Allocate Memory:
                 var posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4 * 3);

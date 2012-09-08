@@ -519,9 +519,9 @@ namespace nManager.Wow.Helpers
                 Statistics.Stucks++;
                 Logging.WriteNavigator("Unstuck character > flying mode.");
 
-                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-                Thread.Sleep(Others.Random(300, 900));
                 Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                Thread.Sleep(Others.Random(300, 900));
+                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
 
                 var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 var iR = Others.Random(2, 3);
@@ -584,15 +584,15 @@ namespace nManager.Wow.Helpers
                             int k = Others.Random(1, 4);
                             if (k == 2)
                             {
-                                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                                Keybindings.UpKeybindings(Enums.Keybindings.JUMP); 
                                 Thread.Sleep(Others.Random(350, 800));
-                                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
                             }
                             if (k == 3)
                             {
-                                Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                                Thread.Sleep(Others.Random(350, 800));
                                 Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                                Thread.Sleep(Others.Random(350, 800));
+                                Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
                             }
                         }
                     }
