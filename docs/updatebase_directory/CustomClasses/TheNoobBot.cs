@@ -40,7 +40,7 @@ public class Main : ICustomClass
 
             switch (ObjectManager.Me.WowClass)
             {
-                    #region DeathKnight Specialisation checking
+                #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var Heart_Strike = new Spell("Heart Strike");
@@ -97,9 +97,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Mage Specialisation checking
+                #region Mage Specialisation checking
 
                 case WoWClass.Mage:
                     var Summon_Water_Elemental = new Spell("Summon Water Elemental");
@@ -156,9 +156,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Warlock Specialisation checking
+                #region Warlock Specialisation checking
 
                 case WoWClass.Warlock:
                     var Summon_Felguard = new Spell("Summon Felguard");
@@ -202,13 +202,13 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Druid Specialisation checking
+                #region Druid Specialisation checking
 
                 case WoWClass.Druid:
-                    var Mangle = new Spell("Mangle");
-                    if (Mangle.KnownSpell)
+                    var SavageRoar = new Spell("Savage Roar");
+                    if (SavageRoar.KnownSpell)
                     {
                         if (ConfigOnly)
                         {
@@ -230,7 +230,7 @@ public class Main : ICustomClass
                         }
                         else
                         {
-                            Logging.WriteFight("Balance Dudu Found");
+                            Logging.WriteFight("Balance Druid Found");
                             new Balance();
                         }
                         break;
@@ -243,16 +243,16 @@ public class Main : ICustomClass
                         }
                         else
                         {
-                            Logging.WriteFight("Dudu without Spec");
+                            Logging.WriteFight("Druid without Spec");
                             new Balance();
                         }
                         break;
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Paladin Specialisation checking
+                #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
                     var Retribution_Spell = new Spell("Templar's Verdict");
@@ -353,9 +353,9 @@ public class Main : ICustomClass
                         break;
                     }
 
-                    #endregion
+                #endregion
 
-                    #region Shaman Specialisation checking
+                #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
                     var Thunderstorm = new Spell("Thunderstorm");
@@ -385,9 +385,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Priest Specialisation checking
+                #region Priest Specialisation checking
 
                 case WoWClass.Priest:
                     var Mind_Flay = new Spell("Mind Flay");
@@ -417,9 +417,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Rogue Specialisation checking
+                #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
                     var Blade_Flurry = new Spell("Blade Flurry");
@@ -462,9 +462,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Warrior Specialisation checking
+                #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
                     var Mortal_Strike = new Spell("Mortal Strike");
@@ -524,9 +524,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Hunter Specialisation checking
+                #region Hunter Specialisation checking
 
                 case WoWClass.Hunter:
                     var Explosive_Shot = new Spell("Explosive Shot");
@@ -582,7 +582,7 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
                 default:
                     Dispose();
@@ -774,7 +774,7 @@ public class Deathknight_Apprentice
             Timer_Pestilence.IsReady)
         {
             Pestilence.Launch();
-            Timer_Pestilence = new Timer(1000*30);
+            Timer_Pestilence = new Timer(1000 * 30);
             return;
         }
         if (ObjectManager.Target.HaveBuff(55078) && ObjectManager.Target.HaveBuff(55095) && Blood_Boil.IsSpellUsable &&
@@ -973,19 +973,19 @@ public class Deathknight_Blood
         if (!Icebound_Fortitude.HaveBuff && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
         {
             Icebound_Fortitude.Launch();
-            OnCD = new Timer(1000*12);
+            OnCD = new Timer(1000 * 12);
             return;
         }
         if (!AntiMagic_Shell.HaveBuff && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
         {
             AntiMagic_Shell.Launch();
-            OnCD = new Timer(1000*5);
+            OnCD = new Timer(1000 * 5);
             return;
         }
         if (!ArmyOfTheDeath.HaveBuff && ArmyOfTheDeath.KnownSpell && ArmyOfTheDeath.IsSpellUsable)
         {
             ArmyOfTheDeath.Launch(true);
-            OnCD = new Timer(1000*30);
+            OnCD = new Timer(1000 * 30);
             return;
         }
     }
@@ -1193,7 +1193,7 @@ public class Deathknight_Unholy
             ObjectManager.Target.HaveBuff(55095) &&
             Pestilence.IsSpellUsable && Pestilence.IsDistanceGood && Pestilence.KnownSpell && Pest.IsReady)
         {
-            Pest = new Timer(1000*8);
+            Pest = new Timer(1000 * 8);
             gcd = new Timer(2000);
             SpellManager.CastSpellByIdLUA(50842);
             // Pestilence.Launch();
@@ -1545,7 +1545,7 @@ public class Deathknight_Unholy
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -1685,7 +1685,7 @@ public class Deathknight_Frost
             if (Plague_Strike.IsSpellUsable)
             {
                 Plague_Strike.Launch();
-                Plague_Strike_Timer = new Timer(1000*14);
+                Plague_Strike_Timer = new Timer(1000 * 14);
                 return;
             }
         }
@@ -1693,7 +1693,7 @@ public class Deathknight_Frost
         if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood)
         {
             Outbreak.Launch();
-            Plague_Strike_Timer = new Timer(1000*14);
+            Plague_Strike_Timer = new Timer(1000 * 14);
             return;
         }
 
@@ -2748,7 +2748,7 @@ public class Mage_Arcane
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 140)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 140)
         {
             return true;
         }
@@ -3176,7 +3176,7 @@ public class Mage_Fire
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -3638,7 +3638,7 @@ public class Demo
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -4065,7 +4065,7 @@ public class Affli
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -4454,7 +4454,7 @@ public class Balance
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -4624,7 +4624,7 @@ public class DruidFeral
     public void Combat()
     {
         CheckForm();
-        if ((Cat_Form.HaveBuff && Me.BarTwoPercentage > (2*interupt_cost)) || Bear_Form.HaveBuff)
+        if ((Cat_Form.HaveBuff && Me.BarTwoPercentage > (2 * interupt_cost)) || Bear_Form.HaveBuff)
         {
             DoFFF();
 
@@ -5393,22 +5393,111 @@ public class Paladin_Holy
     [Serializable]
     public class PaladinHolySettings : nManager.Helpful.Settings
     {
+        /* Professions & Racials */
+        public bool UseArcaneTorrent = true;
+        public bool UseLifeblood = true;
+        public bool UseStoneform = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseWarStomp = true;
+        public bool UseBerserking = true;
+        /* Paladin Seals & Buffs */
+        public bool UseSealOfTheRighteousness = true;
+        public bool UseSealOfTruth = true;
+        public bool UseSealOfInsight = true;
+        public bool UseBlessingOfMight = true;
+        public bool UseBlessingOfKings = true;
+        /* Offensive Spell */
+        public bool UseHolyShock = true;
+        public bool UseDenounce = true;
+        public bool UseHammerOfJustice = true;
+        public bool UseHammerOfWrath = true;
+        /* Offensive Cooldown */
+        public bool UseDivineFavor = true;
+        public bool UseHolyAvenger = true;
+        public bool UseAvengingWrath = true;
+        /* Defensive Cooldown */
+        public bool UseSacredShield = true;
+        public bool UseHandOfPurity = true;
+        public bool UseDevotionAura = true;
         public bool UseDivineProtection = true;
+        public bool UseDivineShield = true;
+        public bool UseHandOfProtection = true;
+        /* Healing Spell */
+        public bool UseDivinePlea = true;
+        public bool UseDivineLight = true;
+        public bool UseHolyRadiance = true;
+        public bool UseFlashOfLight = true;
+        public bool UseHolyLight = true;
+        public bool UseLayOnHands = true;
+        public bool UseWordOfGlory = true;
+        public bool UseBeaconOfLight = true;
 
         public PaladinHolySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Holy Settings");
-            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Protection Cycle");
+            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Protection Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            /* Paladin Seals & Buffs */
+            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spell");
+            AddControlInWinForm("Use Denounce", "UseDenounce", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Divine Favor", "UseDivineFavor", "Offensive Cooldown");
+            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
+            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
+            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
+            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Divine Plea", "UseDivinePlea", "Healing Spell");
+            AddControlInWinForm("Use Divine Light", "UseDivineLight", "Healing Spell");
+            AddControlInWinForm("Use Holy Radiance", "UseHolyRadiance", "Healing Spell");
+            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
+            AddControlInWinForm("Use Holy Light", "UseHolyLight", "Healing Spell");
+            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
+            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+            AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
+        }
+
+        public static PaladinHolySettings CurrentSetting { get; set; }
+
+        public static PaladinHolySettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
+            if (System.IO.File.Exists(CurrentSettingsFile))
+            {
+                return CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new Paladin_Holy.PaladinHolySettings();
+            }
         }
     }
+
+    private readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
 
     #region Professions & Racial
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Tailoring = new Spell("Tailoring");
-    private readonly Spell Leatherworking = new Spell("Leatherworking");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
     private readonly Spell Berserking = new Spell("Berserking");
@@ -5420,30 +5509,32 @@ public class Paladin_Holy
     private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
     private readonly Spell SealOfTruth = new Spell("Seal of Truth");
     private readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    private readonly Spell SealOfJustice = new Spell("Seal of Justice");
     private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
+    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
 
     #endregion
 
     #region Offensive Spell
 
-    private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
-    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     private readonly Spell HolyShock = new Spell("Holy Shock");
     private readonly Spell Denounce = new Spell("Denounce");
+    private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
 
     #endregion
 
     #region Offensive Cooldown
 
+    private readonly Spell DivineFavor = new Spell("Divine Favor");
     private readonly Spell HolyAvenger = new Spell("HolyAvenger");
     private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
-    private readonly Spell DivineFavor = new Spell("Divine Favor");
 
     #endregion
 
     #region Defensive Cooldown
 
+    private readonly Spell SacredShield = new Spell("Sacred Shield");
+    private readonly Spell HandOfPurity = new Spell("Hand of Purity");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
@@ -5461,12 +5552,13 @@ public class Paladin_Holy
     private readonly Spell LayOnHands = new Spell("Lay on Hands");
     private readonly Spell WordOfGlory = new Spell("Word of Glory");
     private readonly Spell GlyphOfHarshWords = new Spell("Glyph of Harsh Words");
+    private readonly Spell BeaconOfLight = new Spell("Beacon of Light");
 
     #endregion
 
     public Paladin_Holy()
     {
-        Main.range = 20f;
+        Main.range = 30f;
 
         UInt64 lastTarget = 0;
 
@@ -5499,7 +5591,7 @@ public class Paladin_Holy
 
     private void Pull()
     {
-        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable)
+        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
         {
             HolyShock.Launch();
             return;
@@ -5528,27 +5620,21 @@ public class Paladin_Holy
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        if (SealOfInsight.KnownSpell)
+        else if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
-            {
                 SealOfInsight.Launch();
-            }
         }
-        else if (SealOfTruth.KnownSpell)
+        else if (SealOfTruth.KnownSpell && MySettings.UseSealOfTruth)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
-            {
                 SealOfTruth.Launch();
-            }
         }
-        else if (SealOfTheRighteousness.KnownSpell)
+        else if (SealOfTheRighteousness.KnownSpell && MySettings.UseSealOfTheRighteousness)
+        {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
-            {
-                {
-                    SealOfTheRighteousness.Launch();
-                }
-            }
+                SealOfTheRighteousness.Launch();
+        }
     }
 
     private void Blessing()
@@ -5556,9 +5642,20 @@ public class Paladin_Holy
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (BlessingOfKings.KnownSpell && !BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+        if (BlessingOfKings.KnownSpell && !BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable &&
+            MySettings.UseBlessingOfKings)
         {
             BlessingOfKings.Launch();
+        }
+        else if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
+                 MySettings.UseBlessingOfMight)
+        {
+            BlessingOfMight.Launch();
+        }
+        if (BeaconOfLight.KnownSpell && !BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable &&
+            MySettings.UseBeaconOfLight)
+        {
+            BeaconOfLight.Launch();
         }
     }
 
@@ -5566,30 +5663,36 @@ public class Paladin_Holy
     {
         if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
                 MovementManager.StopMove();
                 return;
             }
         }
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 &&
-            !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
+        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+            !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable && MySettings.UseDivineShield)
         {
             DivineShield.Launch();
             return;
         }
         if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-            !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
+            !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
         {
             LayOnHands.Launch();
             return;
         }
-        if (ObjectManager.Me.BarTwoPercentage < 10)
+        if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+            !ObjectManager.Me.HaveBuff(25771) && HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
         {
-            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable)
+            HandOfProtection.Launch();
+            return;
+        }
+        if (ObjectManager.Me.BarTwoPercentage < 30)
+        {
+            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent)
                 ArcaneTorrent.Launch();
-            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable)
+            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable && MySettings.UseHandOfProtection)
             {
                 DivinePlea.Launch();
                 return;
@@ -5598,19 +5701,19 @@ public class Paladin_Holy
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
             if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */))
+                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
             {
                 DivineLight.Launch();
                 return;
             }
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
                 return;
             }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
             {
                 HolyLight.Launch();
                 return;
@@ -5619,21 +5722,21 @@ public class Paladin_Holy
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
             if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */))
+                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
-            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
+            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && MySettings.UseDivineProtection)
                 DivineProtection.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
                 return;
             }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable)
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
             {
                 HolyLight.Launch();
                 return;
             }
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable)
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
             {
                 DivineLight.Launch();
                 return;
@@ -5645,22 +5748,23 @@ public class Paladin_Holy
     {
         if (DivineFavor.KnownSpell && DivineFavor.IsSpellUsable)
         {
-            if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
+            if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
             {
                 AvengingWrath.Launch();
             }
-            if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+            if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
             {
                 Lifeblood.Launch();
             }
-            if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
+            if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
             {
                 HolyAvenger.Launch();
             }
-            DivineFavor.Launch();
+            if (MySettings.UseDivineFavor)
+                DivineFavor.Launch();
             return;
         }
-        else if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        else if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
@@ -5669,28 +5773,24 @@ public class Paladin_Holy
 
     private void DPS_Cycle()
     {
-        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable)
+        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable && MySettings.UseHolyShock)
         {
             HolyShock.Launch();
             return;
         }
-        if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable)
+        if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable &&
+            MySettings.UseHammerOfWrath)
         {
             HammerOfWrath.Launch();
             return;
         }
-        if (GlyphOfHarshWords.KnownSpell && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-            ObjectManager.Me.HolyPower >= 3)
-        {
-            WordOfGlory.Launch();
-            return;
-        }
-        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable)
+        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable &&
+            MySettings.UseHammerOfJustice)
         {
             HammerOfJustice.Launch();
             return;
         }
-        if (Denounce.KnownSpell && Denounce.IsDistanceGood && Denounce.IsSpellUsable)
+        if (Denounce.KnownSpell && Denounce.IsDistanceGood && Denounce.IsSpellUsable && MySettings.UseDenounce)
         {
             Denounce.Launch();
             return;
@@ -5737,7 +5837,7 @@ public class Paladin_Protection
         public bool UseDevotionAura = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
-        public bool UseHandOfProtection = false;
+        public bool UseHandOfProtection = true;
         /* Healing Spell */
         public bool UseFlashOfLight = true;
         public bool UseLayOnHands = true;
@@ -5946,8 +6046,8 @@ public class Paladin_Protection
     {
         if (ObjectManager.Me.IsMounted)
             return;
-
-        if (SealOfTruth.KnownSpell && MySettings.UseSealOfTruth && ObjectManager.GetNumberAttackPlayer() <= 7)
+        else if (SealOfTruth.KnownSpell && MySettings.UseSealOfTruth &&
+                 (ObjectManager.GetNumberAttackPlayer() <= 7 || !MySettings.UseSealOfTheRighteousness))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
@@ -5956,6 +6056,11 @@ public class Paladin_Protection
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
+        }
+        else if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
+        {
+            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+                SealOfInsight.Launch();
         }
     }
 
@@ -5987,7 +6092,7 @@ public class Paladin_Protection
             }
         }
         if (DivineShield.KnownSpell && MySettings.UseDivineShield && ObjectManager.Me.HealthPercent > 0 &&
-            ObjectManager.Me.HealthPercent <= 5 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
+            ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable)
         {
             DivineShield.Launch();
             return;
@@ -5996,6 +6101,12 @@ public class Paladin_Protection
             ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable)
         {
             LayOnHands.Launch();
+            return;
+        }
+        if (HandOfProtection.KnownSpell && MySettings.UseHandOfProtection && ObjectManager.Me.HealthPercent > 0 &&
+            ObjectManager.Me.HealthPercent <= 20 && !ObjectManager.Me.HaveBuff(25771) && HandOfProtection.IsSpellUsable)
+        {
+            HandOfProtection.Launch();
             return;
         }
         if (ObjectManager.Me.BarTwoPercentage < 10)
@@ -6060,65 +6171,44 @@ public class Paladin_Protection
                  !HandOfPurity.HaveBuff)
         {
             HandOfPurity.Launch();
-            OnCD = new Timer(1000*6);
+            OnCD = new Timer(1000 * 6);
         }
         else if (HammerOfJustice.KnownSpell && MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable)
         {
             HammerOfJustice.Launch();
-            OnCD = new Timer(1000*6);
-            return;
-        }
-        else if (DivineShield.KnownSpell && MySettings.UseDivineShield && DivineShield.IsSpellUsable &&
-                 !ObjectManager.Me.HaveBuff(25771))
-        {
-            DivineShield.Launch();
-            OnCD = new Timer(1000*8);
+            OnCD = new Timer(1000 * 6);
             return;
         }
         else if (DivineProtection.KnownSpell && MySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
         {
             DivineProtection.Launch();
-            OnCD = new Timer(1000*10);
+            OnCD = new Timer(1000 * 10);
             return;
         }
         else if (DevotionAura.KnownSpell && MySettings.UseDevotionAura && DevotionAura.IsSpellUsable)
         {
             DevotionAura.Launch();
-            OnCD = new Timer(1000*6);
+            OnCD = new Timer(1000 * 6);
             return;
         }
         else if (GuardianOfAncientKings.KnownSpell && MySettings.UseGuardianOfAncientKings &&
                  GuardianOfAncientKings.IsSpellUsable)
         {
             GuardianOfAncientKings.Launch();
-            OnCD = new Timer(1000*12);
+            OnCD = new Timer(1000 * 12);
             return;
         }
         else if (ArdentDefender.KnownSpell && MySettings.UseArdentDefender &&
                  ArdentDefender.IsSpellUsable)
         {
             ArdentDefender.Launch();
-            OnCD = new Timer(1000*10);
-            return;
-        }
-        else if (LayOnHands.KnownSpell && MySettings.UseLayOnHands && LayOnHands.IsSpellUsable &&
-                 !ObjectManager.Me.HaveBuff(25771))
-        {
-            LayOnHands.Launch();
-            OnCD = new Timer(1000*5);
+            OnCD = new Timer(1000 * 10);
             return;
         }
         else if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
         {
             WordOfGlory.Launch();
-            OnCD = new Timer(1000*5);
-            return;
-        }
-        else if (HandOfProtection.KnownSpell && MySettings.UseHandOfProtection &&
-                 HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
-        {
-            HandOfProtection.Launch();
-            OnCD = new Timer(1000*8);
+            OnCD = new Timer(1000 * 5);
             return;
         }
     }
@@ -6131,7 +6221,7 @@ public class Paladin_Protection
             ShieldOfTheRighteous.Launch();
             return;
         }
-        if ((ObjectManager.GetNumberAttackPlayer() >= 3 || !ObjectManager.Target.HaveBuff(115798)) &&
+        if ((ObjectManager.GetNumberAttackPlayer() >= 2 || !ObjectManager.Target.HaveBuff(115798)) &&
             !ObjectManager.Me.HaveBuff(90174) && ObjectManager.Me.HolyPower < 3)
         {
             if (HammerOfTheRighteous.KnownSpell && MySettings.UseHammerOfTheRighteous &&
@@ -6201,6 +6291,7 @@ public class Paladin_Retribution
         public bool UseSealOfTheRighteousness = true;
         public bool UseSealOfTruth = true;
         public bool UseSealOfJustice = false;
+        public bool UseSealOfInsight = false;
         public bool UseBlessingOfMight = true;
         public bool UseBlessingOfKings = true;
         /* Offensive Spell */
@@ -6242,6 +6333,7 @@ public class Paladin_Retribution
             AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
@@ -6305,6 +6397,7 @@ public class Paladin_Retribution
     private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
     private readonly Spell SealOfTruth = new Spell("Seal of Truth");
     private readonly Spell SealOfJustice = new Spell("Seal of Justice");
+    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
     private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
     private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
 
@@ -6440,21 +6533,31 @@ public class Paladin_Retribution
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
         }
+        else if (SealOfJustice.KnownSpell && MySettings.UseSealOfJustice)
+        {
+            if (!SealOfJustice.HaveBuff && SealOfJustice.IsSpellUsable)
+                SealOfJustice.Launch();
+        }
+        else if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
+        {
+            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+                SealOfInsight.Launch();
+        }
     }
 
     private void Blessing()
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        else if (BlessingOfMight.KnownSpell)
+        else if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings && !MySettings.UseBlessingOfMight)
+        {
+            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+                BlessingOfKings.Launch();
+        }
+        else if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
         {
             if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable && MySettings.UseBlessingOfMight)
                 BlessingOfMight.Launch();
-        }
-        else if (BlessingOfKings.KnownSpell)
-        {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable && MySettings.UseBlessingOfKings)
-                BlessingOfKings.Launch();
         }
     }
 
@@ -6528,7 +6631,7 @@ public class Paladin_Retribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+                    InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
                 }
                 if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
                     HolyAvenger.Launch();
@@ -6543,7 +6646,7 @@ public class Paladin_Retribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+                    InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
                 }
                 if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
                     AvengingWrath.Launch();
@@ -6555,7 +6658,7 @@ public class Paladin_Retribution
                  (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
         {
             GuardianOfAncientKings.Launch();
-            BurstTime = new Timer(1000*6.5);
+            BurstTime = new Timer(1000 * 6.5);
             return;
         }
     }
@@ -6574,7 +6677,7 @@ public class Paladin_Retribution
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             Inquisition.Launch();
-            InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+            InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
             return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
@@ -6992,7 +7095,7 @@ public class Ele
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -7440,7 +7543,7 @@ public class Shadow
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 100)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
         {
             return true;
         }
@@ -7631,7 +7734,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Deadly Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
@@ -7641,7 +7744,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Instant Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
@@ -7651,7 +7754,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Wound Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             ObjectManager.Me.forceIsCast = false;
@@ -7674,7 +7777,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Instant Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
@@ -7684,7 +7787,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Deadly Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
@@ -7694,7 +7797,7 @@ public class RogueCom
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Wound Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             ObjectManager.Me.forceIsCast = false;
@@ -7934,7 +8037,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Deadly Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
@@ -7944,7 +8047,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Instant Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
@@ -7954,7 +8057,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 17");
                 Logging.WriteFight("Wound Poison");
                 Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000*3600);
+                Off_Poison_Timer = new Timer(1000 * 3600);
             }
 
             ObjectManager.Me.forceIsCast = false;
@@ -7977,7 +8080,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Instant Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
@@ -7987,7 +8090,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Deadly Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
@@ -7997,7 +8100,7 @@ public class RogueAssa
                 Lua.RunMacroText("/use 16");
                 Logging.WriteFight("Wound Poison");
                 Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000*3600);
+                Main_Poison_Timer = new Timer(1000 * 3600);
             }
 
             ObjectManager.Me.forceIsCast = false;
@@ -8454,7 +8557,7 @@ public class Arms
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 100)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
         {
             return true;
         }
@@ -8577,7 +8680,7 @@ public class WarriorProt
         if (Rend_Timer.IsReady && Rend.KnownSpell && Rend.IsDistanceGood && Rend.IsSpellUsable)
         {
             Rend.Launch();
-            Rend_Timer = new Timer(1000*10);
+            Rend_Timer = new Timer(1000 * 10);
             return;
         }
 
@@ -8656,7 +8759,7 @@ public class WarriorProt
                 {
                     i++;
                     Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000*60*3);
+                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
 
                     if (Enraged_Regeneration.HaveBuff)
                     {
@@ -8720,7 +8823,7 @@ public class WarriorProt
                         Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                         Lua.RunMacroText("/use 14");
                         Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                        Recklessness_Timer = new Timer(1000*60*5);
+                        Recklessness_Timer = new Timer(1000 * 60 * 5);
 
                         if (!Recklessness.IsSpellUsable)
                         {
@@ -9053,14 +9156,14 @@ public class WarriorFury
         if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood && Intercept_leap_Timer.IsReady)
         {
             Intercept.Launch();
-            Intercept_leap_Timer = new Timer(1000*3);
+            Intercept_leap_Timer = new Timer(1000 * 3);
         }
 
         if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood &&
             Intercept_leap_Timer.IsReady)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Intercept_leap_Timer = new Timer(1000*3);
+            Intercept_leap_Timer = new Timer(1000 * 3);
         }
     }
 
@@ -9080,7 +9183,7 @@ public class WarriorFury
                 {
                     i++;
                     Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000*60*3);
+                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
 
                     if (Enraged_Regeneration.HaveBuff)
                     {
@@ -9113,7 +9216,7 @@ public class WarriorFury
             Inner_Rage.IsSpellUsable)
         {
             Inner_Rage.Launch();
-            Inner_Rage_Timer = new Timer(1000*40);
+            Inner_Rage_Timer = new Timer(1000 * 40);
         }
 
         if (Recklessness.KnownSpell || Death_Wish.KnownSpell)
@@ -9127,10 +9230,10 @@ public class WarriorFury
                 {
                     j++;
                     Recklessness.Launch();
-                    Recklessness_Timer = new Timer(1000*300);
+                    Recklessness_Timer = new Timer(1000 * 300);
 
                     Death_Wish.Launch();
-                    Death_Wish_Timer = new Timer(1000*150);
+                    Death_Wish_Timer = new Timer(1000 * 150);
 
                     Lua.RunMacroText("/use 13");
                     Lua.RunMacroText("/script UIErrorsFrame:Clear()");
@@ -9152,7 +9255,7 @@ public class WarriorFury
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                 Lua.RunMacroText("/use 14");
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Death_Wish_Timer = new Timer(1000*150);
+                Death_Wish_Timer = new Timer(1000 * 150);
             }
 
             else if (!Death_Wish.KnownSpell && Recklessness.IsSpellUsable && Recklessness_Timer.IsReady)
@@ -9162,7 +9265,7 @@ public class WarriorFury
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                 Lua.RunMacroText("/use 14");
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Recklessness_Timer = new Timer(1000*300);
+                Recklessness_Timer = new Timer(1000 * 300);
             }
         }
     }
@@ -9332,7 +9435,7 @@ public class Warrior
             Rend.IsSpellUsable)
         {
             Rend.Launch();
-            Rend_Timer = new Timer(1000*10);
+            Rend_Timer = new Timer(1000 * 10);
             return;
         }
 
@@ -9897,7 +10000,7 @@ public class Survival
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -10444,7 +10547,7 @@ public class Marks
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -10669,7 +10772,7 @@ public class BeastMaster
         }
 
         if (Focus_Fire.KnownSpell && Focus_Fire.IsSpellUsable && ObjectManager.Pet.BuffStack(19615) == 5)
-            // Frenzy Effect
+        // Frenzy Effect
         {
             SpellManager.CastSpellByIdLUA(82692);
             // Focus_Fire.Launch();
@@ -10970,7 +11073,7 @@ public class BeastMaster
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 130)
+        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 130)
         {
             return true;
         }

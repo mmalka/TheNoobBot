@@ -1,0 +1,72 @@
+/*
+* CustomClass for TheNoobBot
+* Credit : Vesper
+*/
+
+using System;
+using System.Threading;
+using System.Windows.Forms;
+using nManager.Helpful;
+using nManager.Wow.Helpers;
+
+public class Main : ICustomClass
+{
+    internal static float range = 3.6f;
+    internal static bool loop = true;
+
+    #region ICustomClass Members
+
+    public float Range
+    {
+        get { return range; }
+        set { range = value; }
+    }
+
+    public void Initialize()
+    {
+        try
+        {
+            Logging.WriteFight("Loading Anti AFK system.");
+
+            new Anti_AFK_NOOB();
+        }
+        catch
+        {
+        }
+        Logging.WriteFight("Anti AFK system stopped.");
+    }
+
+    public void Dispose()
+    {
+        Logging.WriteFight("Anti AFK system stopped.");
+        loop = false;
+    }
+
+    public void ShowConfiguration()
+    {
+        MessageBox.Show("There is no settings available");
+    }
+
+    #endregion
+}
+
+public class Anti_AFK_NOOB
+{
+    /**
+      * Author : VesperCore
+      * Utility : Anti_AFK; to be used with a profile with only 1 point.
+    **/
+
+    public Anti_AFK_NOOB()
+    {
+        Main.range = 3.6f;
+        UInt64 lastTarget = 0;
+
+        while (Main.loop)
+        {
+            Thread.Sleep(200);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Thread.Sleep(55212);
+        }
+    }
+}
