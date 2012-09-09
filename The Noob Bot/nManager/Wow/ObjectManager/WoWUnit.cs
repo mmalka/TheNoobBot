@@ -219,7 +219,12 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Mana*100/MaxMana;
+                    if(MaxMana > 0)
+                        return Mana*100/MaxMana;
+                    else
+                    {
+                        return 100;
+                    }
                 }
                 catch (Exception e)
                 {
