@@ -1,5 +1,4 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
 using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -54,16 +53,20 @@ namespace Profiles_Converters.Converters
 
                             if (tempsPosition.Replace(" ", "").Length > 0)
                             {
-                                var positionTempsString = tempsPosition.Replace("  ", " ").Split(System.Convert.ToChar(" "));
+                                var positionTempsString =
+                                    tempsPosition.Replace("  ", " ").Split(System.Convert.ToChar(" "));
                                 if (positionTempsString.Length == 3)
                                 {
                                     try
                                     {
                                         _profile.Points.Add(new Point(
-                                                 System.Convert.ToSingle(positionTempsString[0].Replace(".", ",")),
-                                                 System.Convert.ToSingle(positionTempsString[1].Replace(".", ",")),
-                                                 System.Convert.ToSingle(positionTempsString[2].Replace(".", ",")),
-                                                 "Flying"));
+                                                                System.Convert.ToSingle(
+                                                                    positionTempsString[0].Replace(".", ",")),
+                                                                System.Convert.ToSingle(
+                                                                    positionTempsString[1].Replace(".", ",")),
+                                                                System.Convert.ToSingle(
+                                                                    positionTempsString[2].Replace(".", ",")),
+                                                                "Flying"));
                                     }
                                     catch
                                     {
@@ -149,11 +152,14 @@ namespace Profiles_Converters.Converters
                                     float xF;
                                     float yF;
                                     float zF;
-                                    if (float.TryParse(x.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out xF))
+                                    if (float.TryParse(x.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
+                                                       out xF))
                                     {
-                                        if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out yF))
+                                        if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
+                                                           out yF))
                                         {
-                                            if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
+                                            if (float.TryParse(z.Value, NumberStyles.Number,
+                                                               CultureInfo.InvariantCulture, out zF))
                                             {
                                                 var pT = new Point(xF, yF, zF, "Flying");
                                                 _profile.Points.Add(pT);
@@ -167,14 +173,13 @@ namespace Profiles_Converters.Converters
 
                     #endregion LoadProfileBuddy
 
-
                     var fileName = Path.GetFileNameWithoutExtension(path);
-                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml", _profile))
+                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
+                                                _profile))
                     {
                         Logging.Write("Conversion Success (GatherBuddy to Gatherer bot): " + fileName);
                         return true;
                     }
-
                 }
             }
             catch
