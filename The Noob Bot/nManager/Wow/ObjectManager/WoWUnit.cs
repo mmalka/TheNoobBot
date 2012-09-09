@@ -223,7 +223,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWPlayer > RageMana: " + e);
+                    Logging.WriteError("WoWPlayer > ManaPercentage: " + e);
                     return 0;
                 }
             }

@@ -1,6 +1,6 @@
 ﻿namespace nManager.Wow.Enums
 {
-    public enum PowerType : int
+    public enum PowerType
     {
         Mana = 0x0,
         Rage = 0x1,
