@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿
+using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Gatherer;
@@ -57,8 +59,7 @@ namespace Profiles_Converters.Converters
                                 {
                                     try
                                     {
-                                        _profile.Points.Add(
-                                            new Point(
+                                        _profile.Points.Add(new Point(
                                                  System.Convert.ToSingle(positionTempsString[0].Replace(".", ",")),
                                                  System.Convert.ToSingle(positionTempsString[1].Replace(".", ",")),
                                                  System.Convert.ToSingle(positionTempsString[2].Replace(".", ",")),
@@ -145,19 +146,16 @@ namespace Profiles_Converters.Converters
                                     XAttribute z = childHotspots.Attribute("Z");
                                     if (z == null)
                                         z = childHotspots.Attribute("z");
-
-                                    if (x != null)
+                                    float xF;
+                                    float yF;
+                                    float zF;
+                                    if (float.TryParse(x.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out xF))
                                     {
-                                        if (y != null)
+                                        if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out yF))
                                         {
-                                            if (z != null)
+                                            if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
                                             {
-                                                var pT =
-                                                    new Point(
-                                                         System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                         System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                         System.Convert.ToSingle(z.Value.Replace(".", ",")),
-                                                         "Flying");
+                                                var pT = new Point(xF, yF, zF, "Flying");
                                                 _profile.Points.Add(pT);
                                             }
                                         }
