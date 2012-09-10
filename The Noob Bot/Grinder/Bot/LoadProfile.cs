@@ -15,6 +15,7 @@ namespace Grinder.Bot
                 Translate();
                 // Complete List Profiles
                 RefreshProfileList();
+                TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 listProfileCb.Text = GrinderSetting.CurrentSetting.profileName;
             }

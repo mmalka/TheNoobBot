@@ -14,6 +14,7 @@ namespace Gatherer.Bot
                 Translate();
                 // Complete List Profiles
                 RefreshProfileList();
+                TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 listProfileCb.Text = GathererSetting.CurrentSetting.profileName;
             }

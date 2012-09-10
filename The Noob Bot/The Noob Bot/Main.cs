@@ -622,5 +622,10 @@ namespace The_Noob_Bot
                 Logging.WriteError("Main > MinimizedVisivleChange(object sender, EventArgs e): " + ex);
             }
         }
+
+        private void OnTop_CheckedChanged(object sender, EventArgs e)
+        {
+            this.TopMost = OnTop.Checked;
+        }
     }
 }

@@ -15,6 +15,7 @@ namespace Quester.Bot
                 Translate();
                 // Complete List Profiles
                 RefreshProfileList();
+                TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 listProfileCb.Text = QuesterSetting.CurrentSetting.profileName;
             }
