@@ -3307,15 +3307,9 @@ public class Demo
 
         pet();
 
-        if (ObjectManager.Pet.HealthPercent > 0 && !Dark_Intent.HaveBuff && Dark_Intent.KnownSpell)
+        if (!Dark_Intent.HaveBuff && Dark_Intent.KnownSpell)
         {
-            Logging.WriteFight("Buff Dark Intent");
-            Lua.RunMacroText("/cast [@pet] Dark Intent");
-            Lua.RunMacroText("/cast [@pet] Finstere Absichten");
-            Lua.RunMacroText("/cast [@pet] Sombre intention");
-            Lua.RunMacroText("/cast [@pet] Узы Тьмы");
-            Lua.RunMacroText("/cast [@pet] Propósito oscuro");
-            Lua.RunMacroText("/cast [@pet] Intenção Sombria");
+            Dark_Intent.Launch();
         }
 
         if (!ObjectManager.Me.HaveBuff(79640) &&
@@ -3762,15 +3756,9 @@ public class Affli
 
         pet();
 
-        if (ObjectManager.Pet.HealthPercent > 0 && !Dark_Intent.HaveBuff && Dark_Intent.KnownSpell)
+        if (!Dark_Intent.HaveBuff && Dark_Intent.KnownSpell)
         {
-            Logging.WriteFight("Buff Dark Intent");
-            Lua.RunMacroText("/cast [@pet] Dark Intent");
-            Lua.RunMacroText("/cast [@pet] Finstere Absichten");
-            Lua.RunMacroText("/cast [@pet] Sombre intention");
-            Lua.RunMacroText("/cast [@pet] Узы Тьмы");
-            Lua.RunMacroText("/cast [@pet] Propósito oscuro");
-            Lua.RunMacroText("/cast [@pet] Intenção Sombria");
+            Dark_Intent.Launch();
         }
 
         if (!ObjectManager.Me.HaveBuff(79640) &&
