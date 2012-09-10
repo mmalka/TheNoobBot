@@ -562,12 +562,13 @@ namespace The_Noob_Bot
                 if (!_wowInTaskBarre)
                 {
                     _wowInTaskBarre = true;
-                    MessageBox.Show(
+                    Display.ShowWindow(nManager.Wow.Memory.WowProcess.MainWindowHandle);
+                    /*MessageBox.Show(
                         nManager.Translate.Get(
                             nManager.Translate.Id.
                                 The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window) +
                         ".", nManager.Translate.Get(nManager.Translate.Id.Information), MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
+                        MessageBoxIcon.Information);*/
                 }
             }
             else
