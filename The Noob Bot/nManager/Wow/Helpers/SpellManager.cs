@@ -127,7 +127,12 @@ namespace nManager.Wow.Helpers
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
                         {
-                            return SpellListManager.SpellNameByIdExperimental(sIdt);
+                            var s = new Spell(sIdt);
+                            return s.NameInGame;
+                            /**
+                             * return SpellListManager.SpellNameById(sIdt);
+                             * Temporary fix the KnownSpell detection.
+                            **/
                         }
                     }
                 }
@@ -425,7 +430,7 @@ namespace nManager.Wow.Helpers
                 if (_spellBookName.Count <= 0)
                 {
                     _usedSbn = true;
-                    var spellBook = SpellBookID().Select(SpellListManager.SpellNameByIdExperimental).ToList();
+                    var spellBook = SpellBookID().Select(SpellListManager.SpellNameById).ToList();
                     _spellBookName = spellBook;
                     _usedSbn = false;
                 }
@@ -475,7 +480,7 @@ namespace nManager.Wow.Helpers
                         if (!_spellBookID.Contains(id))
                         {
                             _spellBookID.Add(id);
-                            _spellBookName.Add(SpellListManager.SpellNameByIdExperimental(id));
+                            _spellBookName.Add(SpellListManager.SpellNameById(id));
                             _spellBookSpell.Add(SpellInfoLUA(id));
                         }
                     }
@@ -693,7 +698,7 @@ namespace nManager.Wow.Helpers
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
-                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): "+ sResult + ";" + SpellNameById(spellId) + ";" + spellId);
+                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): " + sResult + ";" + SpellNameById(spellId) + ";" + spellId);
                     return sResult;
                 }
                 catch (Exception exception)
