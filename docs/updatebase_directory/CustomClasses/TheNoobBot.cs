@@ -9476,8 +9476,8 @@ public class Survival
 
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
-    private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
-	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
+    private Spell Aspect_of_the_Hawk = new Spell(13165);
+	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -9593,13 +9593,14 @@ public class Survival
             Lua.RunMacroText("/use item:58149");
         }
 
-        if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
+		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
+		{
+			Aspect_of_the_Iron_Hawk.Launch();
+		}
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
-		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
@@ -9785,7 +9786,9 @@ public class Survival
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-            Call_Pet.Launch();
+			Thread.Sleep(1000);
+			SpellManager.CastSpellByIdLUA(883);
+            //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
             {
@@ -10021,8 +10024,8 @@ public class Marks
 
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
-    private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
-	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
+    private Spell Aspect_of_the_Hawk = new Spell(13165);
+	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10138,13 +10141,14 @@ public class Marks
             Lua.RunMacroText("/use item:58149");
         }
 
-        if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
+		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
+		{
+			Aspect_of_the_Iron_Hawk.Launch();
+		}
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
-		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
@@ -10333,7 +10337,9 @@ public class Marks
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-            Call_Pet.Launch();
+			Thread.Sleep(1000);
+			SpellManager.CastSpellByIdLUA(883);
+            //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
             {
@@ -10571,8 +10577,8 @@ public class BeastMaster
 
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
-    private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
-	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
+    private Spell Aspect_of_the_Hawk = new Spell(13165);
+	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10680,23 +10686,21 @@ public class BeastMaster
     public void buffoutfight()
     {
         if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
-
         pet();
-
         if (!ObjectManager.Me.HaveBuff(79640) &&
             ItemsManager.GetItemCountByIdLUA(58149) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:58149");
         }
-
-        if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
+		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
+		{
+			Aspect_of_the_Iron_Hawk.Launch();
+		}
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
-		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
@@ -10865,7 +10869,9 @@ public class BeastMaster
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-            Call_Pet.Launch();
+			Thread.Sleep(1000);
+			SpellManager.CastSpellByIdLUA(883);
+            //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
             {
@@ -10882,6 +10888,7 @@ public class BeastMaster
         }
 
         if (Fight.InFight) Lua.RunMacroText("/petattack");
+		return;
     }
 
     private void buffinfight()
