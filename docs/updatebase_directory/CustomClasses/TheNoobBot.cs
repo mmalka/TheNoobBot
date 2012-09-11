@@ -9477,6 +9477,7 @@ public class Survival
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
+	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -9593,11 +9594,12 @@ public class Survival
         }
 
         if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff)
+            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
         {
-            SpellManager.CastSpellByIdLUA(13165);
-            // Aspect_of_the_Hawk.Launch();
+            Aspect_of_the_Hawk.Launch();
         }
+		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
@@ -10020,6 +10022,7 @@ public class Marks
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
+	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10136,11 +10139,12 @@ public class Marks
         }
 
         if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff)
+            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
         {
-            SpellManager.CastSpellByIdLUA(13165);
-            // Aspect_of_the_Hawk.Launch();
+            Aspect_of_the_Hawk.Launch();
         }
+		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
@@ -10568,6 +10572,7 @@ public class BeastMaster
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell("Aspect of the Hawk");
+	private Spell Aspect_of_the_Iron_Hawk = new Spell("Aspect of the Iron Hawk");
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10686,11 +10691,12 @@ public class BeastMaster
         }
 
         if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable &&
-            !Aspect_of_the_Hawk.HaveBuff)
+            !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.KnownSpell)
         {
-            SpellManager.CastSpellByIdLUA(13165);
-            // Aspect_of_the_Hawk.Launch();
+            Aspect_of_the_Hawk.Launch();
         }
+		else if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
     }
 
     public void fight()
