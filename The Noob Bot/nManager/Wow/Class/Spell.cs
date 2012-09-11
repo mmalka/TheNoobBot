@@ -105,11 +105,7 @@ namespace nManager.Wow.Class
 
                             if (MaxRange < 3.6f)
                                 MaxRange = 3.6f;
-                            KnownSpell = SpellManager.SpellBookName().Contains(Name); 
-                            /**
-                             * KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
-                             * Blizzard did not updated the list of spell managed by the LUA function yet. 
-                            **/
+                            KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
                             Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                             Ids.Add(Id);
                             return;
