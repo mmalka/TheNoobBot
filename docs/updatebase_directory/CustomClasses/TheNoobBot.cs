@@ -40,7 +40,7 @@ public class Main : ICustomClass
 
             switch (ObjectManager.Me.WowClass)
             {
-                #region DeathKnight Specialisation checking
+                    #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var Heart_Strike = new Spell("Heart Strike");
@@ -97,9 +97,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Mage Specialisation checking
+                    #region Mage Specialisation checking
 
                 case WoWClass.Mage:
                     var Summon_Water_Elemental = new Spell("Summon Water Elemental");
@@ -156,9 +156,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Warlock Specialisation checking
+                    #region Warlock Specialisation checking
 
                 case WoWClass.Warlock:
                     var Summon_Felguard = new Spell("Summon Felguard");
@@ -202,9 +202,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Druid Specialisation checking
+                    #region Druid Specialisation checking
 
                 case WoWClass.Druid:
                     var SavageRoar = new Spell("Savage Roar");
@@ -250,9 +250,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Paladin Specialisation checking
+                    #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
                     var Retribution_Spell = new Spell("Templar's Verdict");
@@ -353,9 +353,9 @@ public class Main : ICustomClass
                         break;
                     }
 
-                #endregion
+                    #endregion
 
-                #region Shaman Specialisation checking
+                    #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
                     var Thunderstorm = new Spell("Thunderstorm");
@@ -385,9 +385,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Priest Specialisation checking
+                    #region Priest Specialisation checking
 
                 case WoWClass.Priest:
                     var Mind_Flay = new Spell("Mind Flay");
@@ -417,9 +417,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Rogue Specialisation checking
+                    #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
                     var Blade_Flurry = new Spell("Blade Flurry");
@@ -462,9 +462,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Warrior Specialisation checking
+                    #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
                     var Mortal_Strike = new Spell("Mortal Strike");
@@ -524,9 +524,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
-                #region Hunter Specialisation checking
+                    #region Hunter Specialisation checking
 
                 case WoWClass.Hunter:
                     var Explosive_Shot = new Spell("Explosive Shot");
@@ -582,7 +582,7 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
                 default:
                     Dispose();
@@ -774,7 +774,7 @@ public class Deathknight_Apprentice
             Timer_Pestilence.IsReady)
         {
             Pestilence.Launch();
-            Timer_Pestilence = new Timer(1000 * 30);
+            Timer_Pestilence = new Timer(1000*30);
             return;
         }
         if (ObjectManager.Target.HaveBuff(55078) && ObjectManager.Target.HaveBuff(55095) && Blood_Boil.IsSpellUsable &&
@@ -973,19 +973,19 @@ public class Deathknight_Blood
         if (!Icebound_Fortitude.HaveBuff && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
         {
             Icebound_Fortitude.Launch();
-            OnCD = new Timer(1000 * 12);
+            OnCD = new Timer(1000*12);
             return;
         }
         if (!AntiMagic_Shell.HaveBuff && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
         {
             AntiMagic_Shell.Launch();
-            OnCD = new Timer(1000 * 5);
+            OnCD = new Timer(1000*5);
             return;
         }
         if (!ArmyOfTheDeath.HaveBuff && ArmyOfTheDeath.KnownSpell && ArmyOfTheDeath.IsSpellUsable)
         {
             ArmyOfTheDeath.Launch(true);
-            OnCD = new Timer(1000 * 30);
+            OnCD = new Timer(1000*30);
             return;
         }
     }
@@ -1193,7 +1193,7 @@ public class Deathknight_Unholy
             ObjectManager.Target.HaveBuff(55095) &&
             Pestilence.IsSpellUsable && Pestilence.IsDistanceGood && Pestilence.KnownSpell && Pest.IsReady)
         {
-            Pest = new Timer(1000 * 8);
+            Pest = new Timer(1000*8);
             gcd = new Timer(2000);
             SpellManager.CastSpellByIdLUA(50842);
             // Pestilence.Launch();
@@ -1545,7 +1545,7 @@ public class Deathknight_Unholy
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -1685,7 +1685,7 @@ public class Deathknight_Frost
             if (Plague_Strike.IsSpellUsable)
             {
                 Plague_Strike.Launch();
-                Plague_Strike_Timer = new Timer(1000 * 14);
+                Plague_Strike_Timer = new Timer(1000*14);
                 return;
             }
         }
@@ -1693,7 +1693,7 @@ public class Deathknight_Frost
         if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood)
         {
             Outbreak.Launch();
-            Plague_Strike_Timer = new Timer(1000 * 14);
+            Plague_Strike_Timer = new Timer(1000*14);
             return;
         }
 
@@ -2748,7 +2748,7 @@ public class Mage_Arcane
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 140)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 140)
         {
             return true;
         }
@@ -3176,7 +3176,7 @@ public class Mage_Fire
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -3632,7 +3632,7 @@ public class Demo
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -4053,7 +4053,7 @@ public class Affli
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 120)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 120)
         {
             return true;
         }
@@ -4442,7 +4442,7 @@ public class Balance
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -4612,7 +4612,7 @@ public class DruidFeral
     public void Combat()
     {
         CheckForm();
-        if ((Cat_Form.HaveBuff && Me.EnergyPercentage > (2 * interupt_cost)) || Bear_Form.HaveBuff)
+        if ((Cat_Form.HaveBuff && Me.EnergyPercentage > (2*interupt_cost)) || Bear_Form.HaveBuff)
         {
             DoFFF();
 
@@ -6159,44 +6159,44 @@ public class Paladin_Protection
                  !HandOfPurity.HaveBuff)
         {
             HandOfPurity.Launch();
-            OnCD = new Timer(1000 * 6);
+            OnCD = new Timer(1000*6);
         }
         else if (HammerOfJustice.KnownSpell && MySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable)
         {
             HammerOfJustice.Launch();
-            OnCD = new Timer(1000 * 6);
+            OnCD = new Timer(1000*6);
             return;
         }
         else if (DivineProtection.KnownSpell && MySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
         {
             DivineProtection.Launch();
-            OnCD = new Timer(1000 * 10);
+            OnCD = new Timer(1000*10);
             return;
         }
         else if (DevotionAura.KnownSpell && MySettings.UseDevotionAura && DevotionAura.IsSpellUsable)
         {
             DevotionAura.Launch();
-            OnCD = new Timer(1000 * 6);
+            OnCD = new Timer(1000*6);
             return;
         }
         else if (GuardianOfAncientKings.KnownSpell && MySettings.UseGuardianOfAncientKings &&
                  GuardianOfAncientKings.IsSpellUsable)
         {
             GuardianOfAncientKings.Launch();
-            OnCD = new Timer(1000 * 12);
+            OnCD = new Timer(1000*12);
             return;
         }
         else if (ArdentDefender.KnownSpell && MySettings.UseArdentDefender &&
                  ArdentDefender.IsSpellUsable)
         {
             ArdentDefender.Launch();
-            OnCD = new Timer(1000 * 10);
+            OnCD = new Timer(1000*10);
             return;
         }
         else if (WordOfGlory.KnownSpell && MySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
         {
             WordOfGlory.Launch();
-            OnCD = new Timer(1000 * 5);
+            OnCD = new Timer(1000*5);
             return;
         }
     }
@@ -6619,7 +6619,7 @@ public class Paladin_Retribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
+                    InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
                 }
                 if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
                     HolyAvenger.Launch();
@@ -6634,7 +6634,7 @@ public class Paladin_Retribution
                     (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
-                    InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
+                    InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
                 }
                 if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
                     AvengingWrath.Launch();
@@ -6646,7 +6646,7 @@ public class Paladin_Retribution
                  (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
         {
             GuardianOfAncientKings.Launch();
-            BurstTime = new Timer(1000 * 6.5);
+            BurstTime = new Timer(1000*6.5);
             return;
         }
     }
@@ -6665,7 +6665,7 @@ public class Paladin_Retribution
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             Inquisition.Launch();
-            InquisitionToUseInPriotiy = new Timer(1000 * (10 * 3 - 6));
+            InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
             return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
@@ -7083,7 +7083,7 @@ public class Ele
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -7531,7 +7531,7 @@ public class Shadow
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 100)
         {
             return true;
         }
@@ -7547,6 +7547,11 @@ public class RogueCom
 {
     #region InitializeSpell
 
+    private Spell DeadlyPoison = new Spell(2823);
+    private Spell CripplingPoison = new Spell(3408);
+    private Spell MindNumbingPoison = new Spell(5761);
+    private Spell WoundPoison = new Spell(8679);
+    private Spell MasterPoisoner = new Spell(58410);
     private Spell Blade_Flurry = new Spell("Blade Flurry");
     private Spell Sinister_Strike = new Spell("Sinister Strike");
     private Spell Slice_and_Dice = new Spell("Slice and Dice");
@@ -7574,9 +7579,6 @@ public class RogueCom
     private Spell Instant_Poison = new Spell("Instant Poison");
     private Spell Crippling_Poison = new Spell("Crippling Poison");
     private Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
-
-    private Timer Main_Poison_Timer = new Timer(0);
-    private Timer Off_Poison_Timer = new Timer(0);
 
     #endregion InitializeSpell
 
@@ -7615,13 +7617,35 @@ public class RogueCom
 
     public void Patrolling()
     {
-        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
+        if (DeadlyPoison.KnownSpell)
         {
-            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if (!DeadlyPoison.HaveBuff && DeadlyPoison.IsSpellUsable)
             {
-                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 ||
-                    ItemsManager.GetItemCountByIdLUA(10918) > 0)
-                    Poisons();
+                DeadlyPoison.Launch();
+                return;
+            }
+            else if (MasterPoisoner.KnownSpell && MasterPoisoner.IsSpellUsable && !MasterPoisoner.HaveBuff)
+            {
+                MasterPoisoner.Launch();
+                return;
+            }
+            else if (WoundPoison.KnownSpell && WoundPoison.IsSpellUsable && !WoundPoison.HaveBuff &&
+                     !MasterPoisoner.HaveBuff)
+            {
+                WoundPoison.Launch();
+                return;
+            }
+            else if (MindNumbingPoison.KnownSpell && MindNumbingPoison.IsSpellUsable && !MindNumbingPoison.HaveBuff &&
+                     !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                MindNumbingPoison.Launch();
+                return;
+            }
+            else if (CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff &&
+                     !MindNumbingPoison.HaveBuff && !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                CripplingPoison.Launch();
+                return;
             }
         }
     }
@@ -7703,95 +7727,6 @@ public class RogueCom
         }
     }
 
-    public void Poisons()
-    {
-        if (Off_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-
-        if (Main_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-    }
-
     public void BuffCombat()
     {
         if (ObjectManager.Target.GetDistance < 5 && Adrenaline_Rush.KnownSpell && Adrenaline_Rush.IsSpellUsable)
@@ -7827,6 +7762,11 @@ public class RogueAssa
 {
     #region InitializeSpell
 
+    private Spell DeadlyPoison = new Spell(2823);
+    private Spell CripplingPoison = new Spell(3408);
+    private Spell MindNumbingPoison = new Spell(5761);
+    private Spell WoundPoison = new Spell(8679);
+    private Spell MasterPoisoner = new Spell(58410);
     private Spell Blade_Flurry = new Spell("Blade Flurry");
     private Spell Sinister_Strike = new Spell("Sinister Strike");
     private Spell Slice_and_Dice = new Spell("Slice and Dice");
@@ -7858,9 +7798,6 @@ public class RogueAssa
     private Spell Instant_Poison = new Spell("Instant Poison");
     private Spell Crippling_Poison = new Spell("Crippling Poison");
     private Spell MindNumbing_Poison = new Spell("Mind-Numbing Poison");
-
-    private Timer Main_Poison_Timer = new Timer(0);
-    private Timer Off_Poison_Timer = new Timer(0);
 
     #endregion InitializeSpell
 
@@ -7899,13 +7836,35 @@ public class RogueAssa
 
     public void Patrolling()
     {
-        if (Off_Poison_Timer.IsReady && Main_Poison_Timer.IsReady)
+        if (DeadlyPoison.KnownSpell)
         {
-            if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if (!DeadlyPoison.HaveBuff && DeadlyPoison.IsSpellUsable)
             {
-                if (ItemsManager.GetItemCountByIdLUA(2892) > 0 || ItemsManager.GetItemCountByIdLUA(6947) > 0 ||
-                    ItemsManager.GetItemCountByIdLUA(10918) > 0)
-                    Poisons();
+                DeadlyPoison.Launch();
+                return;
+            }
+            else if (MasterPoisoner.KnownSpell && MasterPoisoner.IsSpellUsable && !MasterPoisoner.HaveBuff)
+            {
+                MasterPoisoner.Launch();
+                return;
+            }
+            else if (WoundPoison.KnownSpell && WoundPoison.IsSpellUsable && !WoundPoison.HaveBuff &&
+                     !MasterPoisoner.HaveBuff)
+            {
+                WoundPoison.Launch();
+                return;
+            }
+            else if (MindNumbingPoison.KnownSpell && MindNumbingPoison.IsSpellUsable && !MindNumbingPoison.HaveBuff &&
+                     !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                MindNumbingPoison.Launch();
+                return;
+            }
+            else if (CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff &&
+                     !MindNumbingPoison.HaveBuff && !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                CripplingPoison.Launch();
+                return;
             }
         }
     }
@@ -8006,95 +7965,6 @@ public class RogueAssa
         }
     }
 
-    public void Poisons()
-    {
-        if (Off_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 17");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Off_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-
-        if (Main_Poison_Timer.IsReady)
-        {
-            ObjectManager.Me.forceIsCast = true;
-
-            if (ObjectManager.Me.GetMove)
-            {
-                MovementManager.StopMove();
-                Thread.Sleep(2000);
-            }
-
-            if (ItemsManager.GetItemCountByIdLUA(6947) > 0)
-            {
-                Lua.RunMacroText("/use item:6947");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Instant Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(2892) > 0)
-            {
-                Lua.RunMacroText("/use item:2892");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Deadly Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            else if (ItemsManager.GetItemCountByIdLUA(10918) > 0)
-            {
-                Lua.RunMacroText("/use item:10918");
-                Thread.Sleep(20);
-                Lua.RunMacroText("/use 16");
-                Logging.WriteFight("Wound Poison");
-                Thread.Sleep(5000);
-                Main_Poison_Timer = new Timer(1000 * 3600);
-            }
-
-            ObjectManager.Me.forceIsCast = false;
-        }
-    }
-
     public void BuffCombat()
     {
         if (ObjectManager.Me.EnergyPercentage < 75 && Cold_Blood.KnownSpell && !Cold_Blood.HaveBuff &&
@@ -8134,6 +8004,11 @@ public class Rogue
 {
     #region InitializeSpell
 
+    private Spell DeadlyPoison = new Spell(2823);
+    private Spell CripplingPoison = new Spell(3408);
+    private Spell MindNumbingPoison = new Spell(5761);
+    private Spell WoundPoison = new Spell(8679);
+    private Spell MasterPoisoner = new Spell(58410);
     private Spell Blade_Flurry = new Spell("Blade Flurry");
     private Spell Sinister_Strike = new Spell("Sinister Strike");
     private Spell Slice_and_Dice = new Spell("Slice and Dice");
@@ -8218,6 +8093,37 @@ public class Rogue
 
     public void Patrolling()
     {
+        if (DeadlyPoison.KnownSpell)
+        {
+            if (!DeadlyPoison.HaveBuff && DeadlyPoison.IsSpellUsable)
+            {
+                DeadlyPoison.Launch();
+                return;
+            }
+            else if (MasterPoisoner.KnownSpell && MasterPoisoner.IsSpellUsable && !MasterPoisoner.HaveBuff)
+            {
+                MasterPoisoner.Launch();
+                return;
+            }
+            else if (WoundPoison.KnownSpell && WoundPoison.IsSpellUsable && !WoundPoison.HaveBuff &&
+                     !MasterPoisoner.HaveBuff)
+            {
+                WoundPoison.Launch();
+                return;
+            }
+            else if (MindNumbingPoison.KnownSpell && MindNumbingPoison.IsSpellUsable && !MindNumbingPoison.HaveBuff &&
+                     !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                MindNumbingPoison.Launch();
+                return;
+            }
+            else if (CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable && !CripplingPoison.HaveBuff &&
+                     !MindNumbingPoison.HaveBuff && !WoundPoison.HaveBuff && !MasterPoisoner.HaveBuff)
+            {
+                CripplingPoison.Launch();
+                return;
+            }
+        }
     }
 
     public void Heal()
@@ -8545,7 +8451,7 @@ public class Arms
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 100)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 100)
         {
             return true;
         }
@@ -8668,7 +8574,7 @@ public class WarriorProt
         if (Rend_Timer.IsReady && Rend.KnownSpell && Rend.IsDistanceGood && Rend.IsSpellUsable)
         {
             Rend.Launch();
-            Rend_Timer = new Timer(1000 * 10);
+            Rend_Timer = new Timer(1000*10);
             return;
         }
 
@@ -8747,7 +8653,7 @@ public class WarriorProt
                 {
                     i++;
                     Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
+                    Enraged_Regeneration_Timer = new Timer(1000*60*3);
 
                     if (Enraged_Regeneration.HaveBuff)
                     {
@@ -8811,7 +8717,7 @@ public class WarriorProt
                         Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                         Lua.RunMacroText("/use 14");
                         Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                        Recklessness_Timer = new Timer(1000 * 60 * 5);
+                        Recklessness_Timer = new Timer(1000*60*5);
 
                         if (!Recklessness.IsSpellUsable)
                         {
@@ -9144,14 +9050,14 @@ public class WarriorFury
         if (Intercept.KnownSpell && Intercept.IsSpellUsable && Intercept.IsDistanceGood && Intercept_leap_Timer.IsReady)
         {
             Intercept.Launch();
-            Intercept_leap_Timer = new Timer(1000 * 3);
+            Intercept_leap_Timer = new Timer(1000*3);
         }
 
         if (Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable && Heroic_Leap.IsDistanceGood &&
             Intercept_leap_Timer.IsReady)
         {
             SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-            Intercept_leap_Timer = new Timer(1000 * 3);
+            Intercept_leap_Timer = new Timer(1000*3);
         }
     }
 
@@ -9171,7 +9077,7 @@ public class WarriorFury
                 {
                     i++;
                     Enraged_Regeneration.Launch();
-                    Enraged_Regeneration_Timer = new Timer(1000 * 60 * 3);
+                    Enraged_Regeneration_Timer = new Timer(1000*60*3);
 
                     if (Enraged_Regeneration.HaveBuff)
                     {
@@ -9204,7 +9110,7 @@ public class WarriorFury
             Inner_Rage.IsSpellUsable)
         {
             Inner_Rage.Launch();
-            Inner_Rage_Timer = new Timer(1000 * 40);
+            Inner_Rage_Timer = new Timer(1000*40);
         }
 
         if (Recklessness.KnownSpell || Death_Wish.KnownSpell)
@@ -9218,10 +9124,10 @@ public class WarriorFury
                 {
                     j++;
                     Recklessness.Launch();
-                    Recklessness_Timer = new Timer(1000 * 300);
+                    Recklessness_Timer = new Timer(1000*300);
 
                     Death_Wish.Launch();
-                    Death_Wish_Timer = new Timer(1000 * 150);
+                    Death_Wish_Timer = new Timer(1000*150);
 
                     Lua.RunMacroText("/use 13");
                     Lua.RunMacroText("/script UIErrorsFrame:Clear()");
@@ -9243,7 +9149,7 @@ public class WarriorFury
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                 Lua.RunMacroText("/use 14");
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Death_Wish_Timer = new Timer(1000 * 150);
+                Death_Wish_Timer = new Timer(1000*150);
             }
 
             else if (!Death_Wish.KnownSpell && Recklessness.IsSpellUsable && Recklessness_Timer.IsReady)
@@ -9253,7 +9159,7 @@ public class WarriorFury
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
                 Lua.RunMacroText("/use 14");
                 Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-                Recklessness_Timer = new Timer(1000 * 300);
+                Recklessness_Timer = new Timer(1000*300);
             }
         }
     }
@@ -9423,7 +9329,7 @@ public class Warrior
             Rend.IsSpellUsable)
         {
             Rend.Launch();
-            Rend_Timer = new Timer(1000 * 10);
+            Rend_Timer = new Timer(1000*10);
             return;
         }
 
@@ -9477,7 +9383,7 @@ public class Survival
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell(13165);
-	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
+    private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -9593,11 +9499,13 @@ public class Survival
             Lua.RunMacroText("/use item:58149");
         }
 
-		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
-		{
-			Aspect_of_the_Iron_Hawk.Launch();
-		}
-        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
+        if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
+        {
+            Aspect_of_the_Iron_Hawk.Launch();
+        }
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff &&
+                 !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
@@ -9786,8 +9694,8 @@ public class Survival
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-			Thread.Sleep(1000);
-			SpellManager.CastSpellByIdLUA(883);
+            Thread.Sleep(1000);
+            SpellManager.CastSpellByIdLUA(883);
             //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
@@ -9993,7 +9901,7 @@ public class Survival
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -10025,7 +9933,7 @@ public class Marks
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell(13165);
-	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
+    private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10141,11 +10049,13 @@ public class Marks
             Lua.RunMacroText("/use item:58149");
         }
 
-		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
-		{
-			Aspect_of_the_Iron_Hawk.Launch();
-		}
-        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
+        if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
+        {
+            Aspect_of_the_Iron_Hawk.Launch();
+        }
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff &&
+                 !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
@@ -10337,8 +10247,8 @@ public class Marks
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-			Thread.Sleep(1000);
-			SpellManager.CastSpellByIdLUA(883);
+            Thread.Sleep(1000);
+            SpellManager.CastSpellByIdLUA(883);
             //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
@@ -10545,7 +10455,7 @@ public class Marks
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 110)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 110)
         {
             return true;
         }
@@ -10578,7 +10488,7 @@ public class BeastMaster
     // BUFF & HELPING
     private Spell Concussive_Shot = new Spell("Concussive Shot");
     private Spell Aspect_of_the_Hawk = new Spell(13165);
-	private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
+    private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
     private Spell Disengage = new Spell("Disengage");
     private Spell Hunters_Mark = new Spell("Hunter's Mark");
     private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
@@ -10693,11 +10603,13 @@ public class BeastMaster
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:58149");
         }
-		if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable && !Aspect_of_the_Iron_Hawk.HaveBuff)
-		{
-			Aspect_of_the_Iron_Hawk.Launch();
-		}
-        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff && !Aspect_of_the_Iron_Hawk.HaveBuff)
+        if (Aspect_of_the_Iron_Hawk.KnownSpell && Aspect_of_the_Iron_Hawk.IsSpellUsable &&
+            !Aspect_of_the_Iron_Hawk.HaveBuff)
+        {
+            Aspect_of_the_Iron_Hawk.Launch();
+        }
+        else if (Aspect_of_the_Hawk.KnownSpell && Aspect_of_the_Hawk.IsSpellUsable && !Aspect_of_the_Hawk.HaveBuff &&
+                 !Aspect_of_the_Iron_Hawk.HaveBuff)
         {
             Aspect_of_the_Hawk.Launch();
         }
@@ -10770,7 +10682,7 @@ public class BeastMaster
         }
 
         if (Focus_Fire.KnownSpell && Focus_Fire.IsSpellUsable && ObjectManager.Pet.BuffStack(19615) == 5)
-        // Frenzy Effect
+            // Frenzy Effect
         {
             SpellManager.CastSpellByIdLUA(82692);
             // Focus_Fire.Launch();
@@ -10869,8 +10781,8 @@ public class BeastMaster
         if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
-			Thread.Sleep(1000);
-			SpellManager.CastSpellByIdLUA(883);
+            Thread.Sleep(1000);
+            SpellManager.CastSpellByIdLUA(883);
             //Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
@@ -10888,7 +10800,7 @@ public class BeastMaster
         }
 
         if (Fight.InFight) Lua.RunMacroText("/petattack");
-		return;
+        return;
     }
 
     private void buffinfight()
@@ -11074,7 +10986,7 @@ public class BeastMaster
 
     public bool hardmob()
     {
-        if (((ObjectManager.Target.MaxHealth * 100) / ObjectManager.Me.MaxHealth) > 130)
+        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 130)
         {
             return true;
         }

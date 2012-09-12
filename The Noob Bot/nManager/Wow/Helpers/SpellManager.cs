@@ -343,10 +343,13 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var ret =
-                    Lua.LuaDoString(
-                    "ret = \"\"; nameclient = \"" + spellName + "\"; if (GetSpellBookItemInfo(nameclient)) then ret = \"true\" else ret = \"false\" end", "ret");
-                return ret == "true";
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                string randomStringNameClient = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult + " = \"\"; " + randomStringNameClient + " = \"" + spellName + "\"; if (GetSpellBookItemInfo(" + randomStringNameClient + ")) then " + randomStringResult + " = \"true\" else " + randomStringResult + " = \"false\" end");
+                string sResult = Lua.GetLocalizedText(randomStringResult);
+                if(sResult == "true")
+                    return true;
+                return false;
             }
             catch (Exception e)
             {
