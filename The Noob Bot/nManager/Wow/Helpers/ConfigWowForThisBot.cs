@@ -34,9 +34,8 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.AutoSelfCast.AutoSelfCast_Activate_Pointer) + (uint)Addresses.AutoSelfCast.AutoSelfCast_Activate_Offset, 1);
                 Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.AutoLoot.AutoLoot_Activate_Pointer) + (uint)Addresses.AutoLoot.AutoLoot_Activate_Offset, 1);
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
-                Lua.LuaDoString("ConsoleExec(\"maxfpsbk 0\")");
-                Lua.LuaDoString("ConsoleExec(\"MaxFPS 0\")");
-
+                Lua.LuaDoString("ConsoleExec(\"maxfpsbk 50\")");
+                Lua.LuaDoString("ConsoleExec(\"MaxFPS 100\")");
             }
             catch (Exception exception)
             {
