@@ -28,14 +28,29 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                while (ObjectManager.ObjectManager.Me.InCombat) { Thread.Sleep(10); }
+                while (ObjectManager.ObjectManager.Me.InCombat)
+                {
+                    Thread.Sleep(10);
+                }
                 Thread.Sleep(50);
-                Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.AutoInteract.AutoInteract_Activate_Pointer) + (uint)Addresses.AutoInteract.AutoInteract_Activate_Offset, 1);
-                Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.AutoSelfCast.AutoSelfCast_Activate_Pointer) + (uint)Addresses.AutoSelfCast.AutoSelfCast_Activate_Offset, 1);
-                Memory.WowMemory.Memory.WriteInt(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.AutoLoot.AutoLoot_Activate_Pointer) + (uint)Addresses.AutoLoot.AutoLoot_Activate_Offset, 1);
+                Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.AutoInteract.AutoInteract_Activate_Pointer) +
+                    (uint) Addresses.AutoInteract.AutoInteract_Activate_Offset, 1);
+                Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.AutoSelfCast.AutoSelfCast_Activate_Pointer) +
+                    (uint) Addresses.AutoSelfCast.AutoSelfCast_Activate_Offset, 1);
+                Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.AutoLoot.AutoLoot_Activate_Pointer) +
+                    (uint) Addresses.AutoLoot.AutoLoot_Activate_Offset, 1);
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
-                Lua.LuaDoString("ConsoleExec(\"maxfpsbk 50\")");
-                Lua.LuaDoString("ConsoleExec(\"MaxFPS 100\")");
+                if (nManagerSetting.CurrentSetting.MaxFPSSwitch)
+                {
+                    Lua.LuaDoString("ConsoleExec(\"maxfpsbk 60\")");
+                    Lua.LuaDoString("ConsoleExec(\"MaxFPS 60\")");
+                }
             }
             catch (Exception exception)
             {

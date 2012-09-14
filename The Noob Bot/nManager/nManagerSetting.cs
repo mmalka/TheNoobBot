@@ -248,13 +248,14 @@ namespace nManager
         public bool closeIfReached4000HonorPoints;
         public bool closeIfPlayerTeleported = true;
         public int closeAfterXLevel = 90;
-        public int closeIfWhisperBiggerOrEgalAt = 5;
+        public int closeIfWhisperBiggerOrEgalAt = 10;
         public int closeAfterXBlockages = 80;
         public int closeAfterXMin = 1440;
         public bool securityPauseBotIfNerbyPlayer;
         public bool securityRecordWhisperInLogFile = true;
-        public bool securitySongIfNewWhisper = true;
+        public bool securitySongIfNewWhisper = false;
         public bool usePathsFinder = true;
+        public bool MaxFPSSwitch = true;
         public float npcMailboxSearchRadius = 600;
     }
 }

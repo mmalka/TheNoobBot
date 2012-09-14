@@ -1117,5 +1117,9 @@
       <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
+	<Translation>
+      <Text>Uncap MaxFPS (recommended)</Text>
+      <Id>Uncap_MaxFPS</Id>
+    </Translation>
   </Translations>
 </Language>

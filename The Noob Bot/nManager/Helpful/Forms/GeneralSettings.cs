@@ -232,6 +232,8 @@ namespace nManager.Helpful.Forms
             labelX68.Text = Translate.Get(Translate.Id.Auto_Make_Elemental);
             SetToolTypeIfNeeded(labelX68);
             Text = Translate.Get(Translate.Id.General_Settings);
+            labelX73.Text = Translate.Get(Translate.Id.Uncap_MaxFPS);
+            SetToolTypeIfNeeded(labelX73);
             
         }
 
@@ -336,6 +338,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.securityRecordWhisperInLogFile = securityRecordWhisperInLogFile.Value;
                 nManagerSetting.CurrentSetting.securitySongIfNewWhisper = securitySongIfNewWhisper.Value;
                 nManagerSetting.CurrentSetting.usePathsFinder = usePathsFinder.Value;
+                nManagerSetting.CurrentSetting.MaxFPSSwitch = MaxFPSSwitch.Value;
                 nManagerSetting.CurrentSetting.npcMailboxSearchRadius = npcMailboxSearchRadius.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
@@ -436,6 +439,7 @@ namespace nManager.Helpful.Forms
                 securityRecordWhisperInLogFile.Value = managerSetting.securityRecordWhisperInLogFile;
                 securitySongIfNewWhisper.Value = managerSetting.securitySongIfNewWhisper;
                 usePathsFinder.Value = managerSetting.usePathsFinder;
+                MaxFPSSwitch.Value = managerSetting.MaxFPSSwitch;
                 npcMailboxSearchRadius.Value = (int)nManagerSetting.CurrentSetting.npcMailboxSearchRadius;
             }
             catch (Exception ex)

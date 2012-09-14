@@ -31,6 +31,8 @@ namespace nManager.Helpful.Forms
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.expandablePanel7 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.labelX73 = new DevComponents.DotNetBar.LabelX();
+            this.MaxFPSSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.npcMailboxSearchRadius = new DevComponents.Editors.IntegerInput();
             this.labelX60 = new DevComponents.DotNetBar.LabelX();
             this.labelX42 = new DevComponents.DotNetBar.LabelX();
@@ -247,13 +249,15 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel7.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel7.Controls.Add(this.labelX73);
+            this.expandablePanel7.Controls.Add(this.MaxFPSSwitch);
             this.expandablePanel7.Controls.Add(this.npcMailboxSearchRadius);
             this.expandablePanel7.Controls.Add(this.labelX60);
             this.expandablePanel7.Controls.Add(this.labelX42);
             this.expandablePanel7.Controls.Add(this.usePathsFinder);
             this.expandablePanel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel7.Expanded = false;
-            this.expandablePanel7.ExpandedBounds = new System.Drawing.Rectangle(0, 208, 560, 99);
+            this.expandablePanel7.ExpandedBounds = new System.Drawing.Rectangle(0, 208, 560, 127);
             this.expandablePanel7.ExpandOnTitleClick = true;
             this.expandablePanel7.Location = new System.Drawing.Point(0, 208);
             this.expandablePanel7.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -273,9 +277,40 @@ namespace nManager.Helpful.Forms
             this.expandablePanel7.TitleStyle.GradientAngle = 90;
             this.expandablePanel7.TitleText = "Other options";
             // 
+            // labelX73
+            // 
+            this.labelX73.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.labelX73.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX73.ForeColor = System.Drawing.Color.Black;
+            this.labelX73.Location = new System.Drawing.Point(3, 93);
+            this.labelX73.Name = "labelX73";
+            this.labelX73.Size = new System.Drawing.Size(160, 23);
+            this.labelX73.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.labelX73.TabIndex = 28;
+            this.labelX73.Text = "Uncap MaxFPS (recommended)";
+            // 
+            // MaxFPSSwitch
+            // 
+            this.MaxFPSSwitch.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            // 
+            // 
+            // 
+            this.MaxFPSSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.MaxFPSSwitch.ForeColor = System.Drawing.Color.Black;
+            this.MaxFPSSwitch.Location = new System.Drawing.Point(169, 93);
+            this.MaxFPSSwitch.Name = "MaxFPSSwitch";
+            this.MaxFPSSwitch.OffText = "NO";
+            this.MaxFPSSwitch.OnText = "YES";
+            this.MaxFPSSwitch.Size = new System.Drawing.Size(66, 22);
+            this.MaxFPSSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.MaxFPSSwitch.TabIndex = 27;
+            // 
             // npcMailboxSearchRadius
             // 
-            this.npcMailboxSearchRadius.BackColor = System.Drawing.Color.White;
+            this.npcMailboxSearchRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -323,7 +358,7 @@ namespace nManager.Helpful.Forms
             // 
             // usePathsFinder
             // 
-            this.usePathsFinder.BackColor = System.Drawing.Color.White;
+            this.usePathsFinder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -421,7 +456,7 @@ namespace nManager.Helpful.Forms
             // 
             // securitySongIfNewWhisper
             // 
-            this.securitySongIfNewWhisper.BackColor = System.Drawing.Color.White;
+            this.securitySongIfNewWhisper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -513,7 +548,7 @@ namespace nManager.Helpful.Forms
             // 
             // securityRecordWhisperInLogFile
             // 
-            this.securityRecordWhisperInLogFile.BackColor = System.Drawing.Color.White;
+            this.securityRecordWhisperInLogFile.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -544,7 +579,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeIfPlayerTeleported
             // 
-            this.closeIfPlayerTeleported.BackColor = System.Drawing.Color.White;
+            this.closeIfPlayerTeleported.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -590,7 +625,7 @@ namespace nManager.Helpful.Forms
             // 
             // securityPauseBotIfNerbyPlayer
             // 
-            this.securityPauseBotIfNerbyPlayer.BackColor = System.Drawing.Color.White;
+            this.securityPauseBotIfNerbyPlayer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -606,7 +641,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeIfReached4000HonorPoints
             // 
-            this.closeIfReached4000HonorPoints.BackColor = System.Drawing.Color.White;
+            this.closeIfReached4000HonorPoints.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -622,7 +657,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeAfterXMin
             // 
-            this.closeAfterXMin.BackColor = System.Drawing.Color.White;
+            this.closeAfterXMin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -655,7 +690,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeAfterXBlockages
             // 
-            this.closeAfterXBlockages.BackColor = System.Drawing.Color.White;
+            this.closeAfterXBlockages.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -688,7 +723,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeIfWhisperBiggerOrEgalAt
             // 
-            this.closeIfWhisperBiggerOrEgalAt.BackColor = System.Drawing.Color.White;
+            this.closeIfWhisperBiggerOrEgalAt.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -721,7 +756,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeAfterXLevel
             // 
-            this.closeAfterXLevel.BackColor = System.Drawing.Color.White;
+            this.closeAfterXLevel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -770,7 +805,7 @@ namespace nManager.Helpful.Forms
             // 
             // closeIfFullBag
             // 
-            this.closeIfFullBag.BackColor = System.Drawing.Color.White;
+            this.closeIfFullBag.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -827,7 +862,7 @@ namespace nManager.Helpful.Forms
             // 
             // mailRecipient
             // 
-            this.mailRecipient.BackColor = System.Drawing.Color.White;
+            this.mailRecipient.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -856,7 +891,7 @@ namespace nManager.Helpful.Forms
             // 
             // mailSubject
             // 
-            this.mailSubject.BackColor = System.Drawing.Color.White;
+            this.mailSubject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -870,7 +905,7 @@ namespace nManager.Helpful.Forms
             // 
             // forceMailList
             // 
-            this.forceMailList.BackColor = System.Drawing.Color.White;
+            this.forceMailList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1006,7 +1041,7 @@ namespace nManager.Helpful.Forms
             // 
             // useMail
             // 
-            this.useMail.BackColor = System.Drawing.Color.White;
+            this.useMail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1022,7 +1057,7 @@ namespace nManager.Helpful.Forms
             // 
             // doNotMailList
             // 
-            this.doNotMailList.BackColor = System.Drawing.Color.White;
+            this.doNotMailList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1096,7 +1131,7 @@ namespace nManager.Helpful.Forms
             // 
             // forceSellList
             // 
-            this.forceSellList.BackColor = System.Drawing.Color.White;
+            this.forceSellList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1217,7 +1252,7 @@ namespace nManager.Helpful.Forms
             // 
             // selling
             // 
-            this.selling.BackColor = System.Drawing.Color.White;
+            this.selling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1248,7 +1283,7 @@ namespace nManager.Helpful.Forms
             // 
             // repair
             // 
-            this.repair.BackColor = System.Drawing.Color.White;
+            this.repair.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1264,7 +1299,7 @@ namespace nManager.Helpful.Forms
             // 
             // foodAmount
             // 
-            this.foodAmount.BackColor = System.Drawing.Color.White;
+            this.foodAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1296,7 +1331,7 @@ namespace nManager.Helpful.Forms
             // 
             // drinkAmount
             // 
-            this.drinkAmount.BackColor = System.Drawing.Color.White;
+            this.drinkAmount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1328,7 +1363,7 @@ namespace nManager.Helpful.Forms
             // 
             // doNotSellList
             // 
-            this.doNotSellList.BackColor = System.Drawing.Color.White;
+            this.doNotSellList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1393,7 +1428,7 @@ namespace nManager.Helpful.Forms
             // 
             // bNetName
             // 
-            this.bNetName.BackColor = System.Drawing.Color.White;
+            this.bNetName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1437,7 +1472,7 @@ namespace nManager.Helpful.Forms
             // 
             // reloger
             // 
-            this.reloger.BackColor = System.Drawing.Color.White;
+            this.reloger.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1451,7 +1486,7 @@ namespace nManager.Helpful.Forms
             // 
             // accountPassword
             // 
-            this.accountPassword.BackColor = System.Drawing.Color.White;
+            this.accountPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1480,7 +1515,7 @@ namespace nManager.Helpful.Forms
             // 
             // accountEmail
             // 
-            this.accountEmail.BackColor = System.Drawing.Color.White;
+            this.accountEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1594,7 +1629,7 @@ namespace nManager.Helpful.Forms
             // 
             // millingInTown
             // 
-            this.millingInTown.BackColor = System.Drawing.Color.White;
+            this.millingInTown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1610,7 +1645,7 @@ namespace nManager.Helpful.Forms
             // 
             // millingTime
             // 
-            this.millingTime.BackColor = System.Drawing.Color.White;
+            this.millingTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1658,7 +1693,7 @@ namespace nManager.Helpful.Forms
             // 
             // milling
             // 
-            this.milling.BackColor = System.Drawing.Color.White;
+            this.milling.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1674,7 +1709,7 @@ namespace nManager.Helpful.Forms
             // 
             // millingList
             // 
-            this.millingList.BackColor = System.Drawing.Color.White;
+            this.millingList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1720,7 +1755,7 @@ namespace nManager.Helpful.Forms
             // 
             // autoMakeElemental
             // 
-            this.autoMakeElemental.BackColor = System.Drawing.Color.White;
+            this.autoMakeElemental.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1751,7 +1786,7 @@ namespace nManager.Helpful.Forms
             // 
             // prospectingInTown
             // 
-            this.prospectingInTown.BackColor = System.Drawing.Color.White;
+            this.prospectingInTown.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1767,7 +1802,7 @@ namespace nManager.Helpful.Forms
             // 
             // prospectingTime
             // 
-            this.prospectingTime.BackColor = System.Drawing.Color.White;
+            this.prospectingTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1815,7 +1850,7 @@ namespace nManager.Helpful.Forms
             // 
             // prospecting
             // 
-            this.prospecting.BackColor = System.Drawing.Color.White;
+            this.prospecting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1831,7 +1866,7 @@ namespace nManager.Helpful.Forms
             // 
             // prospectingList
             // 
-            this.prospectingList.BackColor = System.Drawing.Color.White;
+            this.prospectingList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1877,7 +1912,7 @@ namespace nManager.Helpful.Forms
             // 
             // smelting
             // 
-            this.smelting.BackColor = System.Drawing.Color.White;
+            this.smelting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1920,13 +1955,21 @@ namespace nManager.Helpful.Forms
             // 
             // blackListHarvest
             // 
-            this.blackListHarvest.BackColor = System.Drawing.Color.White;
+            this.blackListHarvest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             this.blackListHarvest.ForeColor = System.Drawing.Color.Black;
             this.blackListHarvest.FormattingEnabled = true;
             this.blackListHarvest.Location = new System.Drawing.Point(347, 173);
             this.blackListHarvest.Name = "blackListHarvest";
             this.blackListHarvest.Size = new System.Drawing.Size(193, 82);
             this.blackListHarvest.TabIndex = 37;
+            // 
+            // addBlackListHarvest
+            // 
+            this.addBlackListHarvest.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.addBlackListHarvest.Location = new System.Drawing.Point(0, 0);
+            this.addBlackListHarvest.Name = "addBlackListHarvest";
+            this.addBlackListHarvest.Size = new System.Drawing.Size(0, 0);
+            this.addBlackListHarvest.TabIndex = 60;
             // 
             // labelX35
             // 
@@ -1945,7 +1988,7 @@ namespace nManager.Helpful.Forms
             // 
             // harvestDuringLongMove
             // 
-            this.harvestDuringLongMove.BackColor = System.Drawing.Color.White;
+            this.harvestDuringLongMove.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1976,7 +2019,7 @@ namespace nManager.Helpful.Forms
             // 
             // skinNinja
             // 
-            this.skinNinja.BackColor = System.Drawing.Color.White;
+            this.skinNinja.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -1992,7 +2035,7 @@ namespace nManager.Helpful.Forms
             // 
             // searchRadius
             // 
-            this.searchRadius.BackColor = System.Drawing.Color.White;
+            this.searchRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2025,7 +2068,7 @@ namespace nManager.Helpful.Forms
             // 
             // maxUnitsNear
             // 
-            this.maxUnitsNear.BackColor = System.Drawing.Color.White;
+            this.maxUnitsNear.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2073,7 +2116,7 @@ namespace nManager.Helpful.Forms
             // 
             // harvestHerbs
             // 
-            this.harvestHerbs.BackColor = System.Drawing.Color.White;
+            this.harvestHerbs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2104,7 +2147,7 @@ namespace nManager.Helpful.Forms
             // 
             // harvestMinerals
             // 
-            this.harvestMinerals.BackColor = System.Drawing.Color.White;
+            this.harvestMinerals.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2135,7 +2178,7 @@ namespace nManager.Helpful.Forms
             // 
             // skinMobs
             // 
-            this.skinMobs.BackColor = System.Drawing.Color.White;
+            this.skinMobs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2166,7 +2209,7 @@ namespace nManager.Helpful.Forms
             // 
             // lootChests
             // 
-            this.lootChests.BackColor = System.Drawing.Color.White;
+            this.lootChests.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2182,7 +2225,7 @@ namespace nManager.Helpful.Forms
             // 
             // harvestAvoidPlayersRadius
             // 
-            this.harvestAvoidPlayersRadius.BackColor = System.Drawing.Color.White;
+            this.harvestAvoidPlayersRadius.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2230,7 +2273,7 @@ namespace nManager.Helpful.Forms
             // 
             // lootMobs
             // 
-            this.lootMobs.BackColor = System.Drawing.Color.White;
+            this.lootMobs.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2283,7 +2326,7 @@ namespace nManager.Helpful.Forms
             // 
             // restingMana
             // 
-            this.restingMana.BackColor = System.Drawing.Color.White;
+            this.restingMana.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2329,7 +2372,7 @@ namespace nManager.Helpful.Forms
             // 
             // drinkPercent
             // 
-            this.drinkPercent.BackColor = System.Drawing.Color.White;
+            this.drinkPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2348,7 +2391,7 @@ namespace nManager.Helpful.Forms
             // 
             // drinkName
             // 
-            this.drinkName.BackColor = System.Drawing.Color.White;
+            this.drinkName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2407,7 +2450,7 @@ namespace nManager.Helpful.Forms
             // 
             // foodPercent
             // 
-            this.foodPercent.BackColor = System.Drawing.Color.White;
+            this.foodPercent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2426,7 +2469,7 @@ namespace nManager.Helpful.Forms
             // 
             // foodName
             // 
-            this.foodName.BackColor = System.Drawing.Color.White;
+            this.foodName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2493,7 +2536,7 @@ namespace nManager.Helpful.Forms
             // 
             // AquaticMountName
             // 
-            this.AquaticMountName.BackColor = System.Drawing.Color.White;
+            this.AquaticMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2537,7 +2580,7 @@ namespace nManager.Helpful.Forms
             // 
             // ignoreFightGoundMount
             // 
-            this.ignoreFightGoundMount.BackColor = System.Drawing.Color.White;
+            this.ignoreFightGoundMount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2553,7 +2596,7 @@ namespace nManager.Helpful.Forms
             // 
             // mountDistance
             // 
-            this.mountDistance.BackColor = System.Drawing.Color.White;
+            this.mountDistance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2586,7 +2629,7 @@ namespace nManager.Helpful.Forms
             // 
             // FlyingMountName
             // 
-            this.FlyingMountName.BackColor = System.Drawing.Color.White;
+            this.FlyingMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2615,7 +2658,7 @@ namespace nManager.Helpful.Forms
             // 
             // GroundMountName
             // 
-            this.GroundMountName.BackColor = System.Drawing.Color.White;
+            this.GroundMountName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2659,7 +2702,7 @@ namespace nManager.Helpful.Forms
             // 
             // useGroundMount
             // 
-            this.useGroundMount.BackColor = System.Drawing.Color.White;
+            this.useGroundMount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2730,7 +2773,7 @@ namespace nManager.Helpful.Forms
             // 
             // useSpiritHealer
             // 
-            this.useSpiritHealer.BackColor = System.Drawing.Color.White;
+            this.useSpiritHealer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2761,7 +2804,7 @@ namespace nManager.Helpful.Forms
             // 
             // trainNewSpells
             // 
-            this.trainNewSpells.BackColor = System.Drawing.Color.White;
+            this.trainNewSpells.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2792,7 +2835,7 @@ namespace nManager.Helpful.Forms
             // 
             // trainNewSkills
             // 
-            this.trainNewSkills.BackColor = System.Drawing.Color.White;
+            this.trainNewSkills.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2823,7 +2866,7 @@ namespace nManager.Helpful.Forms
             // 
             // dontStartFighting
             // 
-            this.dontStartFighting.BackColor = System.Drawing.Color.White;
+            this.dontStartFighting.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2854,7 +2897,7 @@ namespace nManager.Helpful.Forms
             // 
             // canAttackUnitsAlreadyInFight
             // 
-            this.canAttackUnitsAlreadyInFight.BackColor = System.Drawing.Color.White;
+            this.canAttackUnitsAlreadyInFight.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -2885,7 +2928,7 @@ namespace nManager.Helpful.Forms
             // 
             // assignTalents
             // 
-            this.assignTalents.BackColor = System.Drawing.Color.White;
+            this.assignTalents.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
@@ -3195,5 +3238,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton prospecting;
         private DevComponents.DotNetBar.Controls.TextBoxX prospectingList;
         private DevComponents.DotNetBar.LabelX labelX62;
+        private DevComponents.DotNetBar.LabelX labelX73;
+        private DevComponents.DotNetBar.Controls.SwitchButton MaxFPSSwitch;
     }
 }
