@@ -183,7 +183,42 @@ namespace nManager.Wow.Helpers
                     {
                         return false;
                     }
-                    if ((tickCount + 45000) < Environment.TickCount)
+                    string loggingIn = "if (WoWAccountSelectDialog and WoWAccountSelectDialog:IsShown()) then " +
+                                        "for i = 0, GetNumGameAccounts() do " +
+                                        "if GetGameAccountInfo(i) == '" + settings.BNetName + "' then " +
+                                        "WoWAccountSelect_SelectAccount(i) " +
+                                        "end " +
+                                        "end " +
+                                        "elseif (AccountLoginUI and AccountLoginUI:IsVisible()) then " +
+                                        "DefaultServerLogin('" + settings.Login + "', '" + settings.Password + "') " +
+                                        "AccountLoginUI:Hide() " +
+                                        "elseif (RealmList and RealmList:IsVisible()) then " +
+                                        "for i = 1, select('#',GetRealmCategories()) do " +
+                                        "for j = 1, GetNumRealms(i) do " +
+                                        "if GetRealmInfo(i, j) == '" + settings.Realm.Replace("'", @"\'") + "' then " +
+                                        "RealmList:Hide() " +
+                                        "ChangeRealm(i, j) " +
+                                        "end " +
+                                        "end " +
+                                        "end " +
+                                        "end ";
+                    string charLoggingIn = "if (CharacterSelectUI and CharacterSelectUI:IsVisible()) then " +
+                                             "if GetServerName() ~= '" + settings.Realm.Replace("'", @"\'") +
+                                             "' and (not RealmList or not RealmList:IsVisible()) then " +
+                                             "RequestRealmList(1) " +
+                                             "else " +
+                                             "for i = 0,GetNumCharacters() do " +
+                                             "if (GetCharacterInfo(i) == '" + settings.Character + "') then " +
+                                             "CharacterSelect_SelectCharacter(i) " +
+                                             "EnterWorld(); " +
+                                             "end " +
+                                             "end " +
+                                             "end " +
+                                             "end ";
+                    Lua.LuaDoString(loggingIn, true);
+                    Thread.Sleep(2500);
+                    Lua.LuaDoString(charLoggingIn, true);
+                    /*if ((tickCount + 45000) < Environment.TickCount)
                     {
                         Lua.LuaDoString(Others.ToUtf8("SetCVar(\"realmName\",\"" + settings.Realm.Replace("'", @"\'") + "\"); SetCVar(\"accountList\", \"\");"), true);
                         Lua.LuaDoString(Others.ToUtf8("DefaultServerLogin(\"" + settings.Login + "\",\"" + settings.Password + "\");"), true);
@@ -192,7 +227,8 @@ namespace nManager.Wow.Helpers
                     Lua.LuaDoString(Others.ToUtf8("if (CharacterSelectUI:IsShown()) then for i=0,GetNumCharacters() do local name = GetCharacterInfo(i); if (name ~= nil and string.lower(name) == '" + settings.Character.ToLower() + "') then CharacterSelect_SelectCharacter(i); EnterWorld(); end end end"), true);
                     Thread.Sleep(500);
                     Lua.LuaDoString(Others.ToUtf8("if (WoWAccountSelectDialog:IsShown()) then for i=0, GetNumGameAccounts() do local name = GetGameAccountInfo(i); if (name ~= nil and string.lower(name) == '" + settings.BNetName.ToLower() + "') then selectedIndex = i; WoWAccountSelect_SelectAccount(selectedIndex); WoWAccountSelect_Accept(); end end end"), true);
-                    Thread.Sleep(500);
+                    */
+                    Thread.Sleep(10000);
                     Application.DoEvents();
                 }
                 return true;
