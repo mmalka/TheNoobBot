@@ -210,14 +210,16 @@ namespace nManager.Wow.Helpers
                                              "for i = 0,GetNumCharacters() do " +
                                              "if (GetCharacterInfo(i) == '" + settings.Character + "') then " +
                                              "CharacterSelect_SelectCharacter(i) " +
-                                             "EnterWorld(); " +
+                                             //"EnterWorld(); " +
                                              "end " +
                                              "end " +
                                              "end " +
                                              "end ";
                     Lua.LuaDoString(loggingIn, true);
-                    Thread.Sleep(2500);
+                    Thread.Sleep(5000);
                     Lua.LuaDoString(charLoggingIn, true);
+                    Thread.Sleep(2500);
+                    Keyboard.PressKey(Memory.WowProcess.MainWindowHandle, Keys.Enter);
                     /*if ((tickCount + 45000) < Environment.TickCount)
                     {
                         Lua.LuaDoString(Others.ToUtf8("SetCVar(\"realmName\",\"" + settings.Realm.Replace("'", @"\'") + "\"); SetCVar(\"accountList\", \"\");"), true);
@@ -228,7 +230,7 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(500);
                     Lua.LuaDoString(Others.ToUtf8("if (WoWAccountSelectDialog:IsShown()) then for i=0, GetNumGameAccounts() do local name = GetGameAccountInfo(i); if (name ~= nil and string.lower(name) == '" + settings.BNetName.ToLower() + "') then selectedIndex = i; WoWAccountSelect_SelectAccount(selectedIndex); WoWAccountSelect_Accept(); end end end"), true);
                     */
-                    Thread.Sleep(10000);
+                    Thread.Sleep(8000);
                     Application.DoEvents();
                 }
                 return true;
