@@ -82,7 +82,7 @@ namespace nManager.Wow.Bot.States
                         Logging.Write("Relog Player Finished, Restarting bot");
                         _reloger = false;
                         ConfigWowForThisBot.ConfigWow();
-                        Products.Products.ProductRestart();
+                        //Products.Products.ProductRestart();
                         break;
                     }
                 }

@@ -182,7 +182,7 @@ namespace nManager.FiniteStateMachine
                 {
                     try
                     {
-                        _workerThread.Abort();
+                        //_workerThread.Abort(); // TODO NEED CHECK
                     }
                     catch
                     {
@@ -191,13 +191,20 @@ namespace nManager.FiniteStateMachine
             }
             catch (Exception e)
             {
-                Logging.WriteError("Engine > StopEngine(): " + e);
+                try
+                {
+                    Logging.WriteError("Engine > StopEngine(): " + e);
+                }
+                catch { }
             }
-            // Clear out the thread object.
-            _workerThread = null;
-            // Make sure we let everyone know, we're not running anymore!
-            Running = false;
-            CurrentState = "Stopped";
+            finally 
+            {
+                // Clear out the thread object.
+                _workerThread = null;
+                // Make sure we let everyone know, we're not running anymore!
+                Running = false;
+                CurrentState = "Stopped";
+            }
         }
 
         /// <summary>

@@ -108,7 +108,7 @@ namespace nManager.Wow.MemoryClass
                             DisposeHooking();
                         }
 
-                        if (Memory.ReadByte(JumpAddress) != 0xE9) // check if wow is already hooked
+                        if (Memory.ReadByte(JumpAddress) != 0xE9 || true) // check if wow is already hooked // TODO try fix error rehook
                         {
                             try
                             {
@@ -267,6 +267,8 @@ namespace nManager.Wow.MemoryClass
                                 if (D3D.OriginalBytes == null)
                                 {
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
+                                    if (D3D.OriginalBytes[0] == 0xE9)
+                                        D3D.OriginalBytes = new byte[] { 139, 255, 85, 139, 236 };
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);

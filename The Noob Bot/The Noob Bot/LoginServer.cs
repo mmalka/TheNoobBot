@@ -329,12 +329,16 @@ namespace The_Noob_Bot
 
         private static void LoopThreads()
         {
-            while (Usefuls.InGame)
+            while (true)
             {
-                Statistics.OffsetStats = 0xB5;
+                while (Usefuls.InGame)
+                {
+                    Statistics.OffsetStats = 0xB5;
+                    Thread.Sleep(50);
+                }
                 Thread.Sleep(50);
             }
-            LoginThread.Abort();
+            //LoginThread.Abort();
         }
 
         internal static void EndInformation()
