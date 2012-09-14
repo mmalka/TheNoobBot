@@ -27,7 +27,7 @@ namespace The_Noob_Bot
 
         private const string UrlWebServer = "http://tech.thenoobbot.com/";
         private const string ScripLogintUrl = UrlWebServer + "auth.php";
-        private const string ScripUpdate = UrlWebServer + "update.php";
+        private const string ScriptUpdate = UrlWebServer + "update.php";
         private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
         private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
         private const string ScripServerMyIp = UrlWebServer + "myIp.php";
@@ -430,17 +430,18 @@ namespace The_Noob_Bot
         {
             try
             {
-                string resultReq = Others.GetRequest(ScripUpdate, "null=null");
+                string resultReq = Others.GetRequest(ScriptUpdate, "null=null");
                 if (resultReq != null)
                 {
                     if (resultReq.Count() < 100 && resultReq.Any())
                     {
                         if (resultReq != Information.Version)
                         {
+                            string resultDesc = Others.GetRequest(ScriptUpdate, "show=desc");
                             DialogResult dr =
                                 MessageBox.Show(
                                     string.Format(
-                                        Translate.Get(Translate.Id.New_update) + ": \"{0}\". " +
+                                        Translate.Get(Translate.Id.New_update) + ": \"{0}\" " + resultDesc + ". " +
                                         Translate.Get(Translate.Id.Do_you_want_to_update_now) + "? {1}", resultReq,
                                         Environment.NewLine), " " + Translate.Get(Translate.Id.Update) + "",
                                     MessageBoxButtons.YesNo,
