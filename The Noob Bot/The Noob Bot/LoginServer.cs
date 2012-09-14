@@ -431,8 +431,7 @@ namespace The_Noob_Bot
                 {
                     if (resultReq.Count() < 100 && resultReq.Any())
                     {
-                        //if (resultReq != Information.Version)
-                        if (resultReq.StartsWith(Information.Version))
+                        if (resultReq != Information.Version)
                         {
                             DialogResult dr =
                                 MessageBox.Show(
@@ -462,7 +461,6 @@ namespace The_Noob_Bot
                                     }
                                     catch
                                     {
-                                        Logging.WriteError("#Error465");
                                     }
                                     EndInformation();
                                     break;
