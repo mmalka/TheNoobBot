@@ -75,7 +75,7 @@ namespace The_Noob_Bot
             {
                 try
                 {
-                    _ip = GetReqWithAuthHeader(ScriptServerMyIp + "?p=" + Login, "", "")[1];
+                    _ip = GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1];
                     var resultConnectReq = GetReqWithAuthHeader(ScriptLogintUrl + "?create=true", Login, Password);
                     var goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
                     repC = resultConnectReq[1];
@@ -282,7 +282,7 @@ namespace The_Noob_Bot
                         {
                             if (!lastResult)
                                 break;
-                            if (_ip != GetReqWithAuthHeader(ScriptServerMyIp, "p=" + Login, "")[1])
+                            if (_ip != GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1])
                             {
                                 while (!ServerIsOnline())
                                 {

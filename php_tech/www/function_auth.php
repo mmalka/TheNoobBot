@@ -27,6 +27,7 @@ $dbPassword = "AFjuVhFmKXsQ2wAj";
 
 $tableUsersName = "wp_users";
 $tableSubscription = "wp_SWW_Subscription";
+$tableSubscriptionPLATINIUM = "wp_SWW_SubscriptionPLATINIUM";
 $tableCurrentConnection = "wp_SWW_Current_Connection";
 $tableRemote = "wp_SWW_Remote";
 $tableStats = "wp_SWW_Stats";
@@ -109,6 +110,27 @@ function getEndTimeSubscription($userName, $password)
 	closeMysql();
 	return 0;
 }
+function getEndTimeSubscriptionPLATINIUM($userName, $password)
+{
+	global $tableSubscriptionPLATINIUM;
+	$userId = verifUserNameAndPassword($userName, $password);
+	if ($userId > 0)
+	{
+		connectionMysql();
+		$query = mysql_query("SELECT * FROM $tableSubscriptionPLATINIUM 
+                              WHERE idMember = $userId ") or die(mysql_error());
+		$row = mysql_fetch_array($query);
+		if ($row)
+		{
+			$result = $row['endDate'];
+			closeMysql();
+			return $result;
+		}
+		
+	}
+	closeMysql();
+	return 0;
+}
 
 function getSessionKey($userName, $password)
 {
@@ -160,7 +182,10 @@ function createSessionKey($userName, $password)
 	{
 		if (getEndTimeSubscription($userName, $password) >= time())
 		{
-			$sessionKey = md5($secret . $_SERVER['REMOTE_ADDR'] . $userName);
+			if(getEndTimeSubscriptionPLATINIUM($userName, $password) >= time())
+				$sessionKey = md5($secret . "PLATINIUM" . $userName);
+			else
+				$sessionKey = md5($secret . $_SERVER['REMOTE_ADDR'] . $userName);
 			connectionMysql();
 			mysql_query("DELETE FROM $tableCurrentConnection WHERE idUser=$idUser");
 			mysql_query("INSERT INTO $tableCurrentConnection VALUES(NULL, '$sessionKey', $idUser, ".time().")");
@@ -197,7 +222,7 @@ function botOnline()
                               WHERE lastTime > ".(time()-160)) or die(mysql_error());
 	$result = mysql_num_rows($query);
 	closeMysql();
-    $n = intval(intval($result)*2.9)-2;
+    $n = intval(intval($result)*2)-1;
 
 	
 	return $n;
