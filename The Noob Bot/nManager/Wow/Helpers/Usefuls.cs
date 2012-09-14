@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
                         }
                         catch {}
 
-                        if (t >= 0 || t <= 20000) // TODO We must set it back to 4000 on Myst Of Pandaria release.
+                        if (t >= 0 || t <= 4000)
                             _lastHonorPoint = t;
 
                     return _lastHonorPoint;

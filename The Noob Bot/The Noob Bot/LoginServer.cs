@@ -26,11 +26,11 @@ namespace The_Noob_Bot
             };
 
         private const string UrlWebServer = "http://tech.thenoobbot.com/";
-        private const string ScripLogintUrl = UrlWebServer + "auth.php";
+        private const string ScriptLogintUrl = UrlWebServer + "auth.php";
         private const string ScriptUpdate = UrlWebServer + "update.php";
-        private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
+        private const string ScriptServerIsOnline = UrlWebServer + "isOnline.php";
         private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
-        private const string ScripServerMyIp = UrlWebServer + "myIp.php";
+        private const string ScriptServerMyIp = UrlWebServer + "myIp.php";
         internal static int StartTime;
 
         private static string _ip;
@@ -75,13 +75,13 @@ namespace The_Noob_Bot
             {
                 try
                 {
-                    _ip = GetReqWithAuthHeader(ScripServerMyIp + "?p=" + Login, "", "")[1];
-                    var resultConnectReq = GetReqWithAuthHeader(ScripLogintUrl + "?create=true", Login, Password);
+                    _ip = GetReqWithAuthHeader(ScriptServerMyIp + "?p=" + Login, "", "")[1];
+                    var resultConnectReq = GetReqWithAuthHeader(ScriptLogintUrl + "?create=true", Login, Password);
                     var goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
                     repC = resultConnectReq[1];
 
                     var randomKey = Others.Random(1, 9999);
-                    var resultRandom = GetReqWithAuthHeader(ScripLogintUrl + "?random=true",
+                    var resultRandom = GetReqWithAuthHeader(ScriptLogintUrl + "?random=true",
                                                             randomKey.ToString(CultureInfo.InvariantCulture),
                                                             randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
@@ -277,12 +277,12 @@ namespace The_Noob_Bot
 
                         // End Statistique
 
-                        string resultReqLoop = GetReqWithAuthHeader(ScripLogintUrl + reqStatistique, Login, Password)[0];
+                        string resultReqLoop = GetReqWithAuthHeader(ScriptLogintUrl + reqStatistique, Login, Password)[0];
                         if (TrueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
                                 break;
-                            if (_ip != GetReqWithAuthHeader(ScripServerMyIp + "?p=" + Login, "", "")[1])
+                            if (_ip != GetReqWithAuthHeader(ScriptServerMyIp, "p=" + Login, "")[1])
                             {
                                 while (!ServerIsOnline())
                                 {
@@ -552,7 +552,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                string resultReq = Others.GetRequest(ScripServerIsOnline, "null=null");
+                string resultReq = Others.GetRequest(ScriptServerIsOnline, "null=null");
                 if (resultReq != null)
                 {
                     if (resultReq.Count() < 10)

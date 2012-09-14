@@ -23,10 +23,10 @@ namespace The_Noob_Bot
             try
             {
                 const string UrlWebServer = "http://tech.thenoobbot.com/";
-                const string ScripServerMyIp = UrlWebServer + "myIp.php";
+                const string ScriptServerMyIp = UrlWebServer + "myIp.php";
 
                 // KeyDecrypt
-                string ip = Others.GetRequest(ScripServerMyIp, "null=null").Replace(".", "");
+                string ip = Others.GetRequest(ScriptServerMyIp, "null=null").Replace(".", "");
                 int keyDecrypt = 0;
                 for (int i = 0; i <= ip.Length - 1; i++)
                 {

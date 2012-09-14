@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
 namespace nManager
@@ -16,7 +17,7 @@ namespace nManager
         {
             get
             {
-                if (_currentSetting == null || ObjectManager.Me.Name != _lastName)
+                if (_currentSetting == null || ObjectManager.Me.Name != _lastName && Usefuls.InGame)
                 {
                     Load();
                     _lastName = ObjectManager.Me.Name;
