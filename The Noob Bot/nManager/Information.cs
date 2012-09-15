@@ -4,6 +4,6 @@
     {
         public const string ForWow = "5.0.5";
         public const int ForBuildWowVersion = 16057;
-        public const string Version = "1.2.10";
+        public const string Version = "1.2.10a";
     }
 }
