@@ -177,7 +177,7 @@ namespace nManager.Products
                 if (instanceFromOtherAssembly != null)
                 {
                     instanceFromOtherAssembly.Stop();
-                    Thread.Sleep(700);
+                    Thread.Sleep(500);
                     MovementManager.StopMove();
                     Fight.StopFight();
                     CustomClass.DisposeCustomClass();

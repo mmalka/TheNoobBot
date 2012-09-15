@@ -182,7 +182,7 @@ namespace nManager.FiniteStateMachine
                 {
                     try
                     {
-                        //_workerThread.Abort(); // TODO NEED CHECK
+                        _workerThread.Abort(); // TODO NEED CHECK
                     }
                     catch
                     {
