@@ -218,7 +218,7 @@ namespace nManager
         public List<string> millingList = new List<string>();
         public List<int> blackListHarvest = new List<int>();
         public bool autoMakeElemental;
-        public bool reloger;
+        public bool relogger;
         public string accountEmail = "";
         public string accountPassword = "";
         public string bNetName = "";

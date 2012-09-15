@@ -32,7 +32,7 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        private static List<int> _listDisplayIdFarm;
+        //private static List<int> _listDisplayIdFarm;
         private List<WoWGameObject> _nodes;
 
         public override bool NeedToRun

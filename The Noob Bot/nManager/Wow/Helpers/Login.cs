@@ -175,7 +175,6 @@ namespace nManager.Wow.Helpers
             try
             {
                 _login = true;
-                int tickCount = 0;
                 var timeout = new Helpful.Timer(120000);
                 while ((ObjectManager.ObjectManager.Me.GetBaseAddress == 0 || ObjectManager.ObjectManager.Me.Guid == 0L || !ObjectManager.ObjectManager.Me.IsValid) && _login)
                 {

@@ -101,7 +101,7 @@ namespace nManager.Helpful.Forms
             this.bNetName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX67 = new DevComponents.DotNetBar.LabelX();
             this.labelX38 = new DevComponents.DotNetBar.LabelX();
-            this.reloger = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.relogger = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.accountPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX37 = new DevComponents.DotNetBar.LabelX();
             this.accountEmail = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -1399,7 +1399,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel6.Controls.Add(this.bNetName);
             this.expandablePanel6.Controls.Add(this.labelX67);
             this.expandablePanel6.Controls.Add(this.labelX38);
-            this.expandablePanel6.Controls.Add(this.reloger);
+            this.expandablePanel6.Controls.Add(this.relogger);
             this.expandablePanel6.Controls.Add(this.accountPassword);
             this.expandablePanel6.Controls.Add(this.labelX37);
             this.expandablePanel6.Controls.Add(this.accountEmail);
@@ -1470,19 +1470,19 @@ namespace nManager.Helpful.Forms
             this.labelX38.TabIndex = 13;
             this.labelX38.Text = "Relogger";
             // 
-            // reloger
+            // relogger
             // 
-            this.reloger.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            this.relogger.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
             // 
             // 
             // 
-            this.reloger.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.reloger.ForeColor = System.Drawing.Color.Black;
-            this.reloger.Location = new System.Drawing.Point(169, 29);
-            this.reloger.Name = "reloger";
-            this.reloger.Size = new System.Drawing.Size(66, 22);
-            this.reloger.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.reloger.TabIndex = 12;
+            this.relogger.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.relogger.ForeColor = System.Drawing.Color.Black;
+            this.relogger.Location = new System.Drawing.Point(169, 29);
+            this.relogger.Name = "relogger";
+            this.relogger.Size = new System.Drawing.Size(66, 22);
+            this.relogger.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.relogger.TabIndex = 12;
             // 
             // accountPassword
             // 
@@ -3128,7 +3128,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.TextBoxX accountEmail;
         private DevComponents.DotNetBar.LabelX labelX40;
         private DevComponents.DotNetBar.LabelX labelX38;
-        private DevComponents.DotNetBar.Controls.SwitchButton reloger;
+        private DevComponents.DotNetBar.Controls.SwitchButton relogger;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel8;
         private DevComponents.Editors.IntegerInput drinkAmount;
         private DevComponents.DotNetBar.LabelX labelX41;

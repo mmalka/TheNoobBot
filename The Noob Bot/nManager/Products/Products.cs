@@ -129,7 +129,7 @@ namespace nManager.Products
                     
                     // Fsm
                     Fsm.States.Clear();
-                    Fsm.AddState(new Wow.Bot.States.Reloger { Priority = 10 });
+                    Fsm.AddState(new Wow.Bot.States.relogger { Priority = 10 });
                     Fsm.AddState(new Wow.Bot.States.StopBotIf { Priority = 5 });
                     Fsm.AddState(new Wow.Bot.States.Idle { Priority = 1 });
                     Fsm.States.Sort();

@@ -7,11 +7,11 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Bot.States
 {
-    class Reloger : State
+    class relogger : State
     {
         public override string DisplayName
         {
-            get { return "Reloger"; }
+            get { return "relogger"; }
         }
 
         public override int Priority
@@ -29,8 +29,8 @@ namespace nManager.Wow.Bot.States
                 if (!Products.Products.IsStarted)
                     return false;
 
-                // Need Reloger
-                if (nManagerSetting.CurrentSetting.reloger && nManagerSetting.CurrentSetting.accountEmail != string.Empty && nManagerSetting.CurrentSetting.accountPassword != string.Empty)
+                // Need relogger
+                if (nManagerSetting.CurrentSetting.relogger && nManagerSetting.CurrentSetting.accountEmail != string.Empty && nManagerSetting.CurrentSetting.accountPassword != string.Empty)
                     if (!Usefuls.InGame)
                         return true;
 
@@ -48,19 +48,19 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        private bool _reloger;
+        private bool _relogger;
         public override void Run()
         {
             if (Usefuls.InGame)
                 return;
 
-            if (!_reloger)
+            if (!_relogger)
                 Logging.Write("Relog Player");
 
             while (Products.Products.IsStarted)
             {
-                if (Logging.Status != "Reloger")
-                    Logging.Status = "Reloger";
+                if (Logging.Status != "relogger")
+                    Logging.Status = "relogger";
 
                 var s = new Login.SettingsLogin
                 { 
@@ -73,14 +73,14 @@ namespace nManager.Wow.Bot.States
                 };
 
                 Login.Pulse(s);
-                _reloger = true;
-                if (_reloger && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                _relogger = true;
+                if (_relogger && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 {
                     Thread.Sleep(5000);
                     if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     {
                         Logging.Write("Relog Player Finished, Restarting bot");
-                        _reloger = false;
+                        _relogger = false;
                         ConfigWowForThisBot.ConfigWow();
                         //Products.Products.ProductRestart();
                         break;

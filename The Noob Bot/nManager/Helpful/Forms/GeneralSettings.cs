@@ -296,7 +296,7 @@ namespace nManager.Helpful.Forms
                 }
                 catch { }
                 nManagerSetting.CurrentSetting.autoMakeElemental = autoMakeElemental.Value;
-                nManagerSetting.CurrentSetting.reloger = reloger.Value;
+                nManagerSetting.CurrentSetting.relogger = relogger.Value;
                 nManagerSetting.CurrentSetting.accountEmail = accountEmail.Text;
                 nManagerSetting.CurrentSetting.accountPassword = accountPassword.Text;
                 nManagerSetting.CurrentSetting.bNetName = bNetName.Text;
@@ -401,7 +401,7 @@ namespace nManager.Helpful.Forms
                 }
                 catch{}
                 autoMakeElemental.Value = managerSetting.autoMakeElemental;
-                reloger.Value = managerSetting.reloger;
+                relogger.Value = managerSetting.relogger;
                 accountEmail.Text = managerSetting.accountEmail;
                 accountPassword.Text = managerSetting.accountPassword;
                 bNetName.Text = managerSetting.bNetName;
