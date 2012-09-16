@@ -1011,6 +1011,10 @@
       <Id>Smelting_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text>(Herbe)</Text>
+      <Id>Milling_Product_Description</Id>
+    </Translation>
+    <Translation>
       <Text>(Ore)</Text>
       <Id>Prospecting_Product_Description</Id>
     </Translation>

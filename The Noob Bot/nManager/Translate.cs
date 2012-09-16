@@ -319,6 +319,7 @@ namespace nManager
             Auto_Make_Elemental,
             Nodes_List_Manager,
             Smelting_Product_Description,
+            Milling_Product_Description,
             Prospecting_Product_Description,
             Profiles_Converters_Product_Description,
             Grinder_Product_Description,
