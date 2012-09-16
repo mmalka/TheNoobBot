@@ -150,17 +150,12 @@ namespace nManager.Products
             try
             {
                 ProductStop();
-            }
-            catch 
-            {
-            }
-             try
-            {
                 ProductStart();
             }
-             catch
-             {
-             }
+            catch (Exception e)
+            {
+                Logging.WriteError("ProductRestart(): " + e);
+            }
             return false;
         }
 
@@ -168,12 +163,7 @@ namespace nManager.Products
         {
             try
             {
-                try
-                {
-                    Fsm.StopEngine();
-                } catch
-                {
-                }
+                Fsm.StopEngine();
                 if (instanceFromOtherAssembly != null)
                 {
                     instanceFromOtherAssembly.Stop();
