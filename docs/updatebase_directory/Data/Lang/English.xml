@@ -1125,5 +1125,9 @@
       <Text>Uncap MaxFPS (recommended)</Text>
       <Id>Uncap_MaxFPS</Id>
     </Translation>
+	<Translation>
+      <Text>Always on Top</Text>
+      <Id>AlwaysOnTop</Id>
+    </Translation>
   </Translations>
 </Language>

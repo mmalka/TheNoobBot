@@ -229,6 +229,8 @@ namespace The_Noob_Bot
             buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
             SetToolTypeIfNeeded(buttonX1);
             metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);
+            OnTop.Text = nManager.Translate.Get(nManager.Translate.Id.AlwaysOnTop) + "";
+            SetToolTypeIfNeeded(OnTop);
         }
 
         private string _playerName = "";

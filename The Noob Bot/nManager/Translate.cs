@@ -347,7 +347,8 @@ namespace nManager
             RandomBattleground,
             WoW_Client_64bit,
             Title_WoW_Client_64bit,
-            Uncap_MaxFPS
+            Uncap_MaxFPS,
+            AlwaysOnTop
         };
 
         [Serializable]

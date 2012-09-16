@@ -1126,5 +1126,9 @@
       <Text>Ne pas limiter les IPS (recommandé)</Text>
       <Id>Uncap_MaxFPS</Id>
     </Translation>
+	<Translation>
+      <Text>Garder au dessus</Text>
+      <Id>AlwaysOnTop</Id>
+    </Translation>
   </Translations>
 </Language>
