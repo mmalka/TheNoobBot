@@ -205,7 +205,7 @@ namespace nManager
         public bool harvestHerbs = true;
         public float harvestAvoidPlayersRadius = 10;
         public int maxUnitsNear = 3;
-        public float searchRadius = 80;
+        public float searchRadius = 100;
         public bool harvestDuringLongMove;
         public bool smelting;
         public bool prospecting;
@@ -257,6 +257,6 @@ namespace nManager
         public bool securitySongIfNewWhisper = false;
         public bool usePathsFinder = true;
         public bool MaxFPSSwitch = true;
-        public float npcMailboxSearchRadius = 600;
+        public float npcMailboxSearchRadius = 1000;
     }
 }

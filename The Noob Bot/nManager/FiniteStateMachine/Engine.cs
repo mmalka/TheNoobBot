@@ -168,34 +168,20 @@ namespace nManager.FiniteStateMachine
         {
             try
             {
-                if (_workerThread == null)
-                {
-                    // Nothing to do.
-                    return;
-                }
-                if (!Running)
-                {
-                    // Nothing to do.
-                    return;
-                }
                 if (_workerThread.IsAlive)
                 {
-                    try
+                    _workerThread.Abort();
+                } 
+                /*
+                    if (_workerThread == null || !Running)
                     {
-                        _workerThread.Abort(); // TODO NEED CHECK
+                        return;
                     }
-                    catch
-                    {
-                    }
-                }
+                */
             }
             catch (Exception e)
             {
-                try
-                {
-                    Logging.WriteError("Engine > StopEngine(): " + e);
-                }
-                catch { }
+                Logging.WriteError("Engine > StopEngine(): " + e);
             }
             finally 
             {
