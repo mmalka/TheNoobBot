@@ -40,7 +40,7 @@ public class Main : ICustomClass
 
             switch (ObjectManager.Me.WowClass)
             {
-                    #region DeathKnight Specialisation checking
+                #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var Heart_Strike = new Spell("Heart Strike");
@@ -97,9 +97,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Mage Specialisation checking
+                #region Mage Specialisation checking
 
                 case WoWClass.Mage:
                     var Summon_Water_Elemental = new Spell("Summon Water Elemental");
@@ -156,9 +156,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Warlock Specialisation checking
+                #region Warlock Specialisation checking
 
                 case WoWClass.Warlock:
                     var Summon_Felguard = new Spell("Summon Felguard");
@@ -202,9 +202,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Druid Specialisation checking
+                #region Druid Specialisation checking
 
                 case WoWClass.Druid:
                     var SavageRoar = new Spell("Savage Roar");
@@ -250,9 +250,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Paladin Specialisation checking
+                #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
                     var Retribution_Spell = new Spell("Templar's Verdict");
@@ -353,9 +353,9 @@ public class Main : ICustomClass
                         break;
                     }
 
-                    #endregion
+                #endregion
 
-                    #region Shaman Specialisation checking
+                #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
                     var Thunderstorm = new Spell("Thunderstorm");
@@ -385,9 +385,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Priest Specialisation checking
+                #region Priest Specialisation checking
 
                 case WoWClass.Priest:
                     var Mind_Flay = new Spell("Mind Flay");
@@ -417,9 +417,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Rogue Specialisation checking
+                #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
                     var Blade_Flurry = new Spell("Blade Flurry");
@@ -462,9 +462,9 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Warrior Specialisation checking
+                #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
                     var Mortal_Strike = new Spell("Mortal Strike");
@@ -524,12 +524,14 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Hunter Specialisation checking
+                #region Hunter Specialisation checking
 
                 case WoWClass.Hunter:
                     var Explosive_Shot = new Spell("Explosive Shot");
+                    var Aimed_Shot = new Spell("Aimed Shot");
+                    var FocusFire = new Spell("Focus Fire");
                     if (Explosive_Shot.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -541,9 +543,9 @@ public class Main : ICustomClass
                             Logging.WriteFight("Survival Hunter Found");
                             new Survival();
                         }
+                        break;
                     }
-                    var Aimed_Shot = new Spell("Aimed Shot");
-                    if (Aimed_Shot.KnownSpell)
+                    else if (Aimed_Shot.KnownSpell)
                     {
                         if (ConfigOnly)
                         {
@@ -554,35 +556,57 @@ public class Main : ICustomClass
                             Logging.WriteFight("Marksman Hunter Found");
                             new Marks();
                         }
+                        break;
                     }
-                    var FocusFire = new Spell("Focus Fire");
-                    if (FocusFire.KnownSpell)
+                    else if (FocusFire.KnownSpell)
                     {
                         if (ConfigOnly)
                         {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
+                            Hunter_BeastMaster.HunterBeastMasterSettings CurrentSetting;
+                            CurrentSetting = new Hunter_BeastMaster.HunterBeastMasterSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
                         }
                         else
                         {
                             Logging.WriteFight("Beast Master Hunter Found");
-                            new BeastMaster();
+                            new Hunter_BeastMaster();
                         }
+                        break;
                     }
-                    if (!Explosive_Shot.KnownSpell && !Aimed_Shot.KnownSpell && !FocusFire.KnownSpell)
+                    else
                     {
                         if (ConfigOnly)
                         {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
+                            Hunter_BeastMaster.HunterBeastMasterSettings CurrentSetting;
+                            CurrentSetting = new Hunter_BeastMaster.HunterBeastMasterSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
                         }
                         else
                         {
-                            Logging.WriteFight("Hunter without Spec");
-                            new BeastMaster();
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Hunter Beast Master class...");
+                            new Hunter_BeastMaster();
                         }
                     }
                     break;
 
-                    #endregion
+                #endregion
 
                 default:
                     Dispose();
@@ -10463,50 +10487,132 @@ public class Marks
     }
 }
 
-public class BeastMaster
+public class Hunter_BeastMaster
 {
-    #region InitializeSpell
+    [Serializable]
+    public class HunterBeastMasterSettings : nManager.Helpful.Settings
+    {
+        /* Professions & Racials */
+        public bool UseArcaneTorrent = true;
+        public bool UseLifeblood = true;
+        public bool UseStoneform = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseWarStomp = true;
+        public bool UseBerserking = true;
+        /* Hunter aspects */
+        // To be done
+        /* Offensive Spell */
+
+        /* Offensive Cooldown */
+
+        /* Defensive Cooldown */
+
+        /* Healing Spell */
+
+        public HunterBeastMasterSettings()
+        {
+            ConfigWinForm(new System.Drawing.Point(400, 400), "Hunter Beast Master Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            /* Hunter aspects */
+            /* ... */
+        }
+
+        public static HunterBeastMasterSettings CurrentSetting { get; set; }
+
+        public static HunterBeastMasterSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
+            if (System.IO.File.Exists(CurrentSettingsFile))
+            {
+                return
+                    CurrentSetting = Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new Hunter_BeastMaster.HunterBeastMasterSettings();
+            }
+        }
+    }
+
+    private readonly HunterBeastMasterSettings MySettings = HunterBeastMasterSettings.GetSettings();
+
+    #region Profession & Racials
+
+    private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
+    private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    private readonly Spell War_Stomp = new Spell("War Stomp");
+    private readonly Spell Berserking = new Spell("Berserking");
+
+    #endregion
+
+    #region Others
 
     // Beast Mastery only
-    private Spell Beastial_Wrath = new Spell("Beastial Wrath");
-    private Spell Focus_Fire = new Spell("Focus Fire");
-    private Spell Intimidation = new Spell("Intimidation");
+    private readonly Spell Beastial_Wrath = new Spell("Beastial Wrath");
+    private readonly Spell Focus_Fire = new Spell(82692); //"Focus Fire");
+    private readonly Spell Intimidation = new Spell("Intimidation");
     // Beast master with a Spirit Beast only
-    private Spell Spirit_Mend = new Spell("Spirit Mend");
+    private readonly Spell Spirit_Mend = new Spell("Spirit Mend");
 
     // DPS
-    private Spell Raptor_Strike = new Spell("Raptor Strike");
-    private Spell Arcane_Shot = new Spell("Arcane Shot");
-    private Spell Steady_Shot = new Spell("Steady Shot");
-    private Spell Serpent_Sting = new Spell("Serpent Sting");
-    private Spell Multi_Shot = new Spell("Multi-Shot");
-    private Spell Kill_Shot = new Spell("Kill Shot");
-    private Spell Explosive_Trap = new Spell("Explosive Trap");
-    private Spell Cobra_Shot = new Spell("Cobra Shot");
-    private Spell Immolation_Trap = new Spell("Immolation Trap");
+    private readonly Spell Arcane_Shot = new Spell("Arcane Shot");
+    private readonly Spell Steady_Shot = new Spell("Steady Shot");
+    private readonly Spell Serpent_Sting = new Spell("Serpent Sting");
+    private readonly Spell Multi_Shot = new Spell("Multi-Shot");
+    private readonly Spell Kill_Shot = new Spell("Kill Shot");
+    private readonly Spell Explosive_Trap = new Spell("Explosive Trap");
+    private readonly Spell Cobra_Shot = new Spell("Cobra Shot");
+    private readonly Spell Immolation_Trap = new Spell("Immolation Trap");
+    // New talents to implement
+    // #1 - none
+    // #2
+    private readonly Spell Binding_Shot = new Spell(109248); // *
+    private readonly Spell Silencing_Shot = new Spell(34490); // *
+    private readonly Spell Wyvern_Sting = new Spell(19386); // *
+    // #3
+    private readonly Spell Aspect_of_the_Iron_Hawk = new Spell(109260); // *
+    private readonly Spell Exhilaration = new Spell(109304); // *
+    // #4
+    private readonly Spell Dire_Beast = new Spell(120679); // *
+    private readonly Spell Fervor = new Spell(82726); // *
+    // #5
+    private readonly Spell A_Murder_of_Crows = new Spell(131894); // *
+    private readonly Spell Blink_Strike = new Spell(130392); // *
+    private readonly Spell Lynx_Rush = new Spell(120697); // *
+    // #6
+    private readonly Spell Barrage = new Spell(120360); // *
+    private readonly Spell Glaive_Toss = new Spell(117050); // *
+    private readonly Spell Powershot = new Spell("Powershot"); // 109259
 
     // BUFF & HELPING
-    private Spell Concussive_Shot = new Spell("Concussive Shot");
-    private Spell Aspect_of_the_Hawk = new Spell(13165);
-    private Spell Aspect_of_the_Iron_Hawk = new Spell(109260);
-    private Spell Disengage = new Spell("Disengage");
-    private Spell Hunters_Mark = new Spell("Hunter's Mark");
-    private Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
-    private Spell Feign_Death = new Spell("Feign Death"); //	5384
-    private Spell Snake_Trap = new Spell("Snake Trap");
-    private Spell Ice_Trap = new Spell("Ice Trap");
-    private Spell Freezing_Trap = new Spell("Freezing Trap");
-    private Spell Trap_Launcher = new Spell("Trap Launcher"); //	77769
-    private Spell Rapid_Fire = new Spell("Rapid Fire"); //	3045
-    private Spell Misdirection = new Spell("Misdirection");
-    private Spell Deterrence = new Spell("Deterrence"); //	19263
-    private Spell Wing_Clip = new Spell("Wing Clip");
+    private readonly Spell Concussive_Shot = new Spell("Concussive Shot");
+    private readonly Spell Aspect_of_the_Hawk = new Spell(13165);
+    private readonly Spell Disengage = new Spell("Disengage");
+    private readonly Spell Hunters_Mark = new Spell("Hunter's Mark");
+    private readonly Spell Scatter_Shot = new Spell("Scatter Shot"); // 19503
+    private readonly Spell Feign_Death = new Spell("Feign Death"); // 5384
+    private readonly Spell Snake_Trap = new Spell("Snake Trap");
+    private readonly Spell Ice_Trap = new Spell("Ice Trap");
+    private readonly Spell Freezing_Trap = new Spell("Freezing Trap");
+    private readonly Spell Trap_Launcher = new Spell("Trap Launcher"); // 77769 - we need to manage the toggle
+    private readonly Spell Rapid_Fire = new Spell("Rapid Fire"); // 3045
+    private readonly Spell Misdirection = new Spell("Misdirection");
+    private readonly Spell Deterrence = new Spell("Deterrence"); // 19263
 
     // PET
-    private Spell Kill_Command = new Spell("Kill Command");
-    private Spell Mend_Pet = new Spell("Mend Pet"); //	136
-    private Spell Revive_Pet = new Spell("Revive Pet"); //	982
-    private Spell Call_Pet = new Spell("Call Pet 1"); //	883
+    private readonly Spell Kill_Command = new Spell("Kill Command");
+    private readonly Spell Mend_Pet = new Spell("Mend Pet"); //	136
+    private readonly Spell Revive_Pet = new Spell("Revive Pet"); //	982
+    private readonly Spell Call_Pet = new Spell("Call Pet 1"); //	883
+    // (*) : many spells exist with this name, so we have to use the spell id
 
     // TIMER
     private Timer look = new Timer(0);
@@ -10517,25 +10623,22 @@ public class BeastMaster
     private Timer Serpent_Sting_debuff = new Timer(0);
     private Timer mountchill = new Timer(0);
 
-    // Profession & Racials
-    private Spell ArcaneTorrent = new Spell("Arcane Torrent");
-    private Spell Lifeblood = new Spell("Lifeblood");
-    private Spell Stoneform = new Spell("Stoneform");
-    private Spell Tailoring = new Spell("Tailoring");
-    private Spell Leatherworking = new Spell("Leatherworking");
-    private Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    private Spell War_Stomp = new Spell("War Stomp");
-    private Spell Berserking = new Spell("Berserking");
+    #endregion Others
 
-    #endregion InitializeSpell
+    internal static bool reporting = true;
 
-    public BeastMaster()
+    public Hunter_BeastMaster()
     {
         Main.range = 30.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
         {
+            if (reporting)
+            {
+                Logging.WriteFight("Arcane ? : " + Arcane_Shot.KnownSpell);
+                reporting = false;
+            }
             if (!ObjectManager.Me.IsMounted)
             {
                 buffoutfight();
@@ -10588,8 +10691,8 @@ public class BeastMaster
 
         if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood)
         {
-            SpellManager.CastSpellByIdLUA(5116);
-            // Concussive_Shot.Launch();
+            //SpellManager.CastSpellByIdLUA(5116);
+            Concussive_Shot.Launch();
         }
     }
 
@@ -10659,15 +10762,15 @@ public class BeastMaster
 
         if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
         {
-            SpellManager.CastSpellByIdLUA(53351);
-            // Kill_Shot.Launch();
+            //SpellManager.CastSpellByIdLUA(53351);
+            Kill_Shot.Launch();
         }
 
         if (Hunters_Mark.KnownSpell && Hunters_Mark.IsSpellUsable && Hunters_Mark.IsDistanceGood &&
             !Hunters_Mark.TargetHaveBuff)
         {
-            SpellManager.CastSpellByIdLUA(1130);
-            // Hunters_Mark.Launch();
+            //SpellManager.CastSpellByIdLUA(1130);
+            Hunters_Mark.Launch();
         }
 
         if ((ObjectManager.GetNumberAttackPlayer() > 2 || hardmob()) && Misdirection.KnownSpell &&
@@ -10684,24 +10787,24 @@ public class BeastMaster
         if (Focus_Fire.KnownSpell && Focus_Fire.IsSpellUsable && ObjectManager.Pet.BuffStack(19615) == 5)
             // Frenzy Effect
         {
-            SpellManager.CastSpellByIdLUA(82692);
-            // Focus_Fire.Launch();
+            //SpellManager.CastSpellByIdLUA(82692);
+            Focus_Fire.Launch();
         }
 
         if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood &&
-            !ObjectManager.Target.HaveBuff(1978))
+            !ObjectManager.Target.HaveBuff(118253))
         {
-            SpellManager.CastSpellByIdLUA(5116);
-            // Concussive_Shot.Launch();
+            //SpellManager.CastSpellByIdLUA(5116);
+            Concussive_Shot.Launch();
         }
 
-        if (!ObjectManager.Target.HaveBuff(1978) && Serpent_Sting_debuff.IsReady && Arcane_Shot.IsDistanceGood)
+        if (!ObjectManager.Target.HaveBuff(118253) && Serpent_Sting_debuff.IsReady && Serpent_Sting.IsDistanceGood)
         {
             Serpent_Sting_debuff = new Timer(2500);
             Serpent_Sting.Launch();
         }
 
-        if (!ObjectManager.Target.HaveBuff(1978) && !Serpent_Sting_debuff.IsReady)
+        if (!ObjectManager.Target.HaveBuff(118253) && !Serpent_Sting_debuff.IsReady)
         {
             if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
             {
@@ -10725,49 +10828,49 @@ public class BeastMaster
 
         if (Freezing_Trap.KnownSpell && Freezing_Trap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
         {
-            SpellManager.CastSpellByIdLUA(1499);
-            // Freezing_Trap.Launch();
+            //SpellManager.CastSpellByIdLUA(1499);
+            Freezing_Trap.Launch();
         }
 
-        if (ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Target.HaveBuff(118253))
         {
             if (Multi_Shot.KnownSpell && Multi_Shot.IsSpellUsable && Multi_Shot.IsDistanceGood &&
                 ObjectManager.GetNumberAttackPlayer() > 1)
             {
-                SpellManager.CastSpellByIdLUA(2643);
-                // Multi_Shot.Launch();
+                //SpellManager.CastSpellByIdLUA(2643);
+                Multi_Shot.Launch();
             }
 
             if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable)
             {
-                SpellManager.CastSpellByIdLUA(34026);
-                // Kill_Command.Launch();
+                //SpellManager.CastSpellByIdLUA(34026);
+                Kill_Command.Launch();
             }
 
             if (Arcane_Shot.KnownSpell && Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood)
             {
-                SpellManager.CastSpellByIdLUA(3044);
-                // Arcane_Shot.Launch();
+                //SpellManager.CastSpellByIdLUA(3044);
+                Arcane_Shot.Launch();
             }
         }
 
-        if (ObjectManager.Me.FocusPercentage < 70 && ObjectManager.Target.HaveBuff(1978))
+        if (ObjectManager.Me.FocusPercentage < 70 && ObjectManager.Target.HaveBuff(118253))
         {
             if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood &&
                 !Cobra_Shot.KnownSpell)
             {
-                SpellManager.CastSpellByIdLUA(56641);
-                // Steady_Shot.Launch();
+                //SpellManager.CastSpellByIdLUA(56641);
+                Steady_Shot.Launch();
             }
             else if (Cobra_Shot.KnownSpell && Cobra_Shot.IsSpellUsable && Cobra_Shot.IsDistanceGood &&
-                     ObjectManager.Target.HaveBuff(1978))
+                     ObjectManager.Target.HaveBuff(118253))
             {
-                SpellManager.CastSpellByIdLUA(77767);
-                // Cobra_Shot.Launch();
+                //SpellManager.CastSpellByIdLUA(77767);
+                Cobra_Shot.Launch();
             }
         }
 
-        if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable &&
+        if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent &&
             ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
         {
             ArcaneTorrent.Launch();
@@ -10782,8 +10885,8 @@ public class BeastMaster
             !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
         {
             Thread.Sleep(1000);
-            SpellManager.CastSpellByIdLUA(883);
-            //Call_Pet.Launch();
+            //SpellManager.CastSpellByIdLUA(883);
+            Call_Pet.Launch();
             Thread.Sleep(1000);
             if (!ObjectManager.Pet.IsAlive)
             {
@@ -10812,32 +10915,32 @@ public class BeastMaster
             ObjectManager.Target.GetDistance < 5 &&
             Intimidation.KnownSpell && Intimidation.IsSpellUsable)
         {
-            SpellManager.CastSpellByIdLUA(19577);
-            // Intimidation.Launch();
+            //SpellManager.CastSpellByIdLUA(19577);
+            Intimidation.Launch();
         }
 
         if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
             ObjectManager.Me.HealthPercent < 65 &&
             ObjectManager.Target.GetDistance < 5 &&
-            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
+            Stoneform.KnownSpell && Stoneform.IsSpellUsable && MySettings.UseStoneform)
         {
-            SpellManager.CastSpellByIdLUA(20594);
-            // Stoneform.Launch();
+            //SpellManager.CastSpellByIdLUA(20594);
+            Stoneform.Launch();
         }
 
         if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
             ObjectManager.Me.HealthPercent < 65 &&
             ObjectManager.Target.GetDistance < 5 &&
-            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable)
+            War_Stomp.KnownSpell && War_Stomp.IsSpellUsable && MySettings.UseWarStomp)
         {
-            SpellManager.CastSpellByIdLUA(20549);
-            // War_Stomp.Launch();
+            //SpellManager.CastSpellByIdLUA(20549);
+            War_Stomp.Launch();
         }
 
-        if (Berserking.KnownSpell && Berserking.IsSpellUsable && Arcane_Shot.IsDistanceGood)
+        if (Berserking.KnownSpell && Berserking.IsSpellUsable && MySettings.UseBerserking && Arcane_Shot.IsDistanceGood)
         {
-            SpellManager.CastSpellByIdLUA(1454);
-            // Berserking.Launch();
+            //SpellManager.CastSpellByIdLUA(1454);
+            Berserking.Launch();
         }
 
         if (Rapid_Fire.KnownSpell && Rapid_Fire.IsSpellUsable &&
@@ -10850,13 +10953,13 @@ public class BeastMaster
     private void selfheal()
     {
         if (ObjectManager.Me.HealthPercent < 80 &&
-            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
         }
 
         if (ObjectManager.Me.HealthPercent < 80 &&
-            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
         }
@@ -10865,7 +10968,8 @@ public class BeastMaster
             Spirit_Mend.KnownSpell && Spirit_Mend.IsSpellUsable)
         {
             Lua.RunMacroText("/target " + ObjectManager.Me.Name);
-            SpellManager.CastSpellByIdLUA(90361);
+            //SpellManager.CastSpellByIdLUA(90361);
+            Spirit_Mend.Launch();
             Lua.RunMacroText("/targetlasttarget");
         }
 
@@ -10873,19 +10977,12 @@ public class BeastMaster
             ObjectManager.Target.HealthPercent > 30 && ObjectManager.Target.GetDistance < 5)
         {
             disengagetimer = new Timer(2000);
-            while (ObjectManager.Target.GetDistance < 5 && !disengagetimer.IsReady)
-                if (Wing_Clip.KnownSpell && Wing_Clip.IsSpellUsable && Wing_Clip.IsDistanceGood &&
-                    !Wing_Clip.TargetHaveBuff)
-                {
-                    SpellManager.CastSpellByIdLUA(2974);
-                    // Wing_Clip.Launch();
-                }
-            SpellManager.CastSpellByIdLUA(781);
-            // Disengage.Launch();
+            //SpellManager.CastSpellByIdLUA(781);
+            Disengage.Launch();
             if (Concussive_Shot.KnownSpell && Concussive_Shot.IsSpellUsable && Concussive_Shot.IsDistanceGood)
             {
-                SpellManager.CastSpellByIdLUA(5116);
-                // Concussive_Shot.Launch();
+                //SpellManager.CastSpellByIdLUA(5116);
+                Concussive_Shot.Launch();
             }
             return;
         }
@@ -10909,45 +11006,32 @@ public class BeastMaster
 
                 if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable && Kill_Command.IsDistanceGood)
                 {
-                    SpellManager.CastSpellByIdLUA(34026);
-                    // Kill_Command.Launch();
-                }
-
-                if (Wing_Clip.KnownSpell && Wing_Clip.IsSpellUsable && Wing_Clip.IsDistanceGood &&
-                    !Wing_Clip.TargetHaveBuff)
-                {
-                    SpellManager.CastSpellByIdLUA(2974);
-                    // Wing_Clip.Launch();
-                }
-
-                if (Raptor_Strike.KnownSpell && Raptor_Strike.IsSpellUsable && Raptor_Strike.IsDistanceGood)
-                {
-                    SpellManager.CastSpellByIdLUA(2973);
-                    // Raptor_Strike.Launch();
+                    //SpellManager.CastSpellByIdLUA(34026);
+                    Kill_Command.Launch();
                 }
 
                 if (Kill_Shot.KnownSpell && Kill_Shot.IsSpellUsable && Kill_Shot.IsDistanceGood)
                 {
-                    SpellManager.CastSpellByIdLUA(53351);
-                    // Kill_Shot.Launch();
+                    //SpellManager.CastSpellByIdLUA(53351);
+                    Kill_Shot.Launch();
                 }
 
                 if (Arcane_Shot.KnownSpell && Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood)
                 {
-                    SpellManager.CastSpellByIdLUA(3044);
-                    // Arcane_Shot.Launch();
+                    //SpellManager.CastSpellByIdLUA(3044);
+                    Arcane_Shot.Launch();
                 }
 
                 if (Feign_Death.KnownSpell && Feign_Death.IsSpellUsable)
                 {
                     Feign_Death.Launch();
-                    Thread.Sleep(3000);
+                    Thread.Sleep(5000);
                 }
 
                 if (Freezing_Trap.KnownSpell && Freezing_Trap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
                 {
-                    SpellManager.CastSpellByIdLUA(1499);
-                    // Freezing_Trap.Launch();
+                    //SpellManager.CastSpellByIdLUA(1499);
+                    Freezing_Trap.Launch();
                 }
 
                 if (Scatter_Shot.KnownSpell && Scatter_Shot.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
@@ -10972,7 +11056,7 @@ public class BeastMaster
             ObjectManager.Pet.Health > 10)
         {
             Feign_Death.Launch();
-            Thread.Sleep(3000);
+            Thread.Sleep(5000);
         }
 
         if (Feign_Death.KnownSpell && Feign_Death.IsSpellUsable && ObjectManager.Me.HealthPercent < 15 &&
