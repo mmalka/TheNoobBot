@@ -27,8 +27,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (_instanceFromOtherAssembly != null)
                         return _instanceFromOtherAssembly.Range < 3.6f ? 3.6f : _instanceFromOtherAssembly.Range;
-                    else
-                        return 3.6f;
+                    return 3.6f;
                 }
                 catch (Exception exception)
                 {
@@ -134,23 +133,20 @@ namespace nManager.Wow.Helpers
                 {
                     _instanceFromOtherAssembly.Dispose();
                 }
-                try
+                if (_worker.IsAlive)
                 {
                     _worker.Abort();
-                }
-                catch
-                {
-                }
-                finally
-                {
-                    _instanceFromOtherAssembly = null;
-                    _assembly = null;
-                    _obj = null;
                 }
             }
             catch (Exception exception)
             {
                 Logging.WriteError("DisposeCustomClass(): " + exception);
+            }
+            finally
+            {
+                _instanceFromOtherAssembly = null;
+                _assembly = null;
+                _obj = null;
             }
         }
 
