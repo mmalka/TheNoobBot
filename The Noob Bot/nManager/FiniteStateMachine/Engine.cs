@@ -168,22 +168,21 @@ namespace nManager.FiniteStateMachine
         {
             try
             {
+                if (_workerThread == null || !Running)
+                {
+                    return;
+                }
                 if (_workerThread.IsAlive)
                 {
                     _workerThread.Abort();
-                } 
-                /*
-                    if (_workerThread == null || !Running)
-                    {
-                        return;
-                    }
-                */
+                }
+
             }
             catch (Exception e)
             {
                 Logging.WriteError("Engine > StopEngine(): " + e);
             }
-            finally 
+            finally
             {
                 // Clear out the thread object.
                 _workerThread = null;
