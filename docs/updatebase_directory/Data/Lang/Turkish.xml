@@ -46,7 +46,7 @@
       <Id>Error</Id>
     </Translation>
     <Translation>
-      <Text>Giriş yapılıyor    TheNoobBot version</Text>
+      <Text>Giriş Yap  TheNoobBot version</Text>
       <Id>Login___The_Noob_Bot_version</Id>
     </Translation>
     <Translation>
@@ -114,7 +114,7 @@
       <Id>New_update</Id>
     </Translation>
     <Translation>
-      <Text>Şimdi güncellemek istermisiniz?</Text>
+      <Text>Şimdi güncellemek istermisiniz</Text>
       <Id>Do_you_want_to_update_now</Id>
     </Translation>
     <Translation>
@@ -178,15 +178,15 @@
       <Id>Honor_HR</Id>
     </Translation>
     <Translation>
-      <Text>Toplandı</Text>
+      <Text>Yağmalar</Text>
       <Id>Loots</Id>
     </Translation>
     <Translation>
-      <Text>Öldürüldü</Text>
+      <Text>Öldürdün</Text>
       <Id>Kills</Id>
     </Translation>
     <Translation>
-      <Text>Ölümler</Text>
+      <Text>Öldün</Text>
       <Id>Deaths</Id>
     </Translation>
     <Translation>
@@ -222,7 +222,7 @@
       <Id>Maximize_window</Id>
     </Translation>
     <Translation>
-      <Text>Web</Text>
+      <Text>Website</Text>
       <Id>WEBSITE</Id>
     </Translation>
     <Translation>
@@ -290,7 +290,7 @@
       <Id>No_setting_for_this_product</Id>
     </Translation>
     <Translation>
-      <Text>Lütfen prospek edilecek eşyaları içine ekleyin  Genel Ayarlar     Toplanan   Prospek Listesi</Text>
+      <Text>Lütfen prospek edilecek eşyaları ekleyin. Genel Ayarlar > Toplama Farmlama Seçenekleri > Prospek Listesi</Text>
       <Id>Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List</Id>
     </Translation>
     <Translation>
@@ -382,7 +382,7 @@
       <Id>Player_Lvl</Id>
     </Translation>
     <Translation>
-      <Text>Min</Text>
+      <Text>Dakika</Text>
       <Id>Min</Id>
     </Translation>
     <Translation>
@@ -442,15 +442,15 @@
       <Id>Weapon_Name</Id>
     </Translation>
     <Translation>
-      <Text>Özelse  Boşsa  varsayılan eşya kullan</Text>
+      <Text>Özelse veya Boşsa  varsayılanı kullan</Text>
       <Id>If_special__If_empty__default_items_is_used</Id>
     </Translation>
     <Translation>
-      <Text>Profil Oluşturucu</Text>
+      <Text>Profil Oluştur</Text>
       <Id>Profile_Creator</Id>
     </Translation>
     <Translation>
-      <Text>Hassas Mod  Balık Sürüsü</Text>
+      <Text>Balık Sürüsü  Hassas Mod</Text>
       <Id>Precision_Mode__fish_school</Id>
     </Translation>
     <Translation>
@@ -462,7 +462,7 @@
       <Id>Please_select_an_profile_or_disable_School_Fish_option</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Kazı büyüsü bulunamadı  tnb durduruldu</Text>
       <Id>Survey_spell_not_found__stopping_tnb</Id>
     </Translation>
     <Translation>
@@ -478,7 +478,7 @@
       <Id>min</Id>
     </Translation>
     <Translation>
-      <Text>DigSites Liste Yönetimi</Text>
+      <Text>Kazıalanı Yönetim Listesi</Text>
       <Id>DigSites_list_Management</Id>
     </Translation>
     <Translation>
@@ -538,11 +538,11 @@
       <Id>Use_Paths_Finder</Id>
     </Translation>
     <Translation>
-      <Text>Oyunu durdur   tnb   Gügenlik</Text>
+      <Text>Oyunu durdur - TNB Gügenlik</Text>
       <Id>Stop_game___tnb___Security</Id>
     </Translation>
     <Translation>
-      <Text>ÖM geldiğinde ses çıkart</Text>
+      <Text>ÖM geldiğinde ses çal</Text>
       <Id>Song_if_New_Whisper</Id>
     </Translation>
     <Translation>
@@ -578,7 +578,7 @@
       <Id>Pause_tnb_if_Nearby_Player</Id>
     </Translation>
     <Translation>
-      <Text>Honor puanı aşılırsa</Text>
+      <Text>Eğer aşılırsa    Honor puanı</Text>
       <Id>If_reached______Honor_Points</Id>
     </Translation>
     <Translation>
@@ -590,11 +590,11 @@
       <Id>If_full_Bag</Id>
     </Translation>
     <Translation>
-      <Text>Posta   Eşyaları alt karaktere yolla</Text>
+      <Text>Posta - Eşyaları Alt Karaktere Gönder</Text>
       <Id>Mail__Send_Items_to_alts</Id>
     </Translation>
     <Translation>
-      <Text>Posta alıcısı</Text>
+      <Text>Alıcı Adı</Text>
       <Id>Mail_Recipient</Id>
     </Translation>
     <Translation>
@@ -602,23 +602,23 @@
       <Id>Force_Mail_List__one_item_by_line</Id>
     </Translation>
     <Translation>
-      <Text>Mor eşyaları yolla</Text>
+      <Text>Mor eşyalar</Text>
       <Id>Mail_Purple_items</Id>
     </Translation>
     <Translation>
-      <Text>Mavi eşyaları yolla</Text>
+      <Text>Mavi eşyalar</Text>
       <Id>Mail_Blue_items</Id>
     </Translation>
     <Translation>
-      <Text>Yeşil eşyaları yolla</Text>
+      <Text>Yeşil eşyalar</Text>
       <Id>Mail_Green_items</Id>
     </Translation>
     <Translation>
-      <Text>Beyaz eşyaları yolla</Text>
+      <Text>Beyaz eşyalar</Text>
       <Id>Mail_White_items</Id>
     </Translation>
     <Translation>
-      <Text>Gri eşyaları yolla</Text>
+      <Text>Gri eşyalar</Text>
       <Id>Mail_Gray_items</Id>
     </Translation>
     <Translation>
@@ -630,35 +630,35 @@
       <Id>Use_Mail</Id>
     </Translation>
     <Translation>
-      <Text>Gönderilmeyen Listesi  Tek satır için tek eşya</Text>
+      <Text>Gönderilmeyen Listesi. Her satıra bir eşya</Text>
       <Id>Do_not_Mail_List__one_item_by_line</Id>
     </Translation>
     <Translation>
-      <Text>Satıcı   Satım yada Alım</Text>
+      <Text>Satıcı - Sat yada Al</Text>
       <Id>Vendor__Selling_or_Buying</Id>
     </Translation>
     <Translation>
-      <Text>Zorunlu Satım Listesi   Tek satır için tek eşya</Text>
+      <Text>Zorunlu Satım Listesi . Her satıra bir eşya</Text>
       <Id>Force_Sell_List__one_item_by_line</Id>
     </Translation>
     <Translation>
-      <Text>Mor eşyaları sat</Text>
+      <Text>Mor eşyalar</Text>
       <Id>Sell_Purple_items</Id>
     </Translation>
     <Translation>
-      <Text>Mavi eşyaları sat</Text>
+      <Text>Mavi eşyalar</Text>
       <Id>Sell_Blue_items</Id>
     </Translation>
     <Translation>
-      <Text>Yeşil eşyaları sat</Text>
+      <Text>Yeşil eşyalar</Text>
       <Id>Sell_Green_items</Id>
     </Translation>
     <Translation>
-      <Text>Beyaz eşyaları sat</Text>
+      <Text>Beyaz eşyalar</Text>
       <Id>Sell_White_items</Id>
     </Translation>
     <Translation>
-      <Text>Gri eşyaları sat</Text>
+      <Text>Gri eşyalar</Text>
       <Id>Sell_Gray_items</Id>
     </Translation>
     <Translation>
@@ -670,23 +670,23 @@
       <Id>Repair</Id>
     </Translation>
     <Translation>
-      <Text>Yiyedek Ölçeği</Text>
+      <Text>Yiyedek Adedi</Text>
       <Id>Food_Amount</Id>
     </Translation>
     <Translation>
-      <Text>İçecek Ölçeği</Text>
+      <Text>İçecek Adedi</Text>
       <Id>Drink_Amount</Id>
     </Translation>
     <Translation>
-      <Text>Satmamak Listesi  Tek satır için tek eşya</Text>
+      <Text>Satmamak Listesi. Her satıra bir eşya</Text>
       <Id>Do_not_Sell_List__one_item_by_line</Id>
     </Translation>
     <Translation>
-      <Text>Yeniden Giriş</Text>
+      <Text>Tekrar Giriş</Text>
       <Id>Relogger</Id>
     </Translation>
     <Translation>
-      <Text>B.Net Hesap</Text>
+      <Text>B.Net Adı</Text>
       <Id>BattleNet_Account</Id>
     </Translation>
     <Translation>
@@ -694,27 +694,27 @@
       <Id>Account_Password</Id>
     </Translation>
     <Translation>
-      <Text>Hesap Posta</Text>
+      <Text>Hesap Eposta</Text>
       <Id>Account_Email</Id>
     </Translation>
     <Translation>
-      <Text>Toplama Farmlama Seçenekleri</Text>
+      <Text>Toplama - Farmlama Seçenekleri</Text>
       <Id>Looting____Farming_options</Id>
     </Translation>
     <Translation>
-      <Text>Sadece Townda Prospek</Text>
+      <Text>Sadece Townda Prospek Et</Text>
       <Id>Prospecting_only_in_town</Id>
     </Translation>
     <Translation>
-      <Text>Dakika İçerisinde Prospek</Text>
+      <Text>Dakika İçerisinde Prospek Et</Text>
       <Id>Prospecting_Every__in_minute</Id>
     </Translation>
     <Translation>
-      <Text>Prospek</Text>
+      <Text>Prospek Et</Text>
       <Id>Prospecting</Id>
     </Translation>
     <Translation>
-      <Text>Prospek Listesi  Tek satır için tek eşya</Text>
+      <Text>Prospek Listesi. Her satıra bir eşya</Text>
       <Id>Prospecting_list__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -730,7 +730,7 @@
       <Id>Milling</Id>
     </Translation>
     <Translation>
-      <Text>Öğütüm Listesi  Tek satır için tek eşya</Text>
+      <Text>Öğütüm Listesi. Her satıra bir eşya</Text>
       <Id>Milling_list__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -742,7 +742,7 @@
       <Id>Don_t_harvest</Id>
     </Translation>
     <Translation>
-      <Text>Uzun uçuşlarda hasat</Text>
+      <Text>Uzun uçuşlarda hasat yap</Text>
       <Id>Harvest_During_Long_Move</Id>
     </Translation>
     <Translation>
@@ -754,7 +754,7 @@
       <Id>Search_Radius</Id>
     </Translation>
     <Translation>
-      <Text>Takındaki Maks Ünite</Text>
+      <Text>Yakındaki En fazla Ünite</Text>
       <Id>Max_Units_Near</Id>
     </Translation>
     <Translation>
@@ -766,11 +766,11 @@
       <Id>Harvest_Minerals</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Mobları Yüz</Text>
       <Id>Skin_Mobs</Id>
     </Translation>
     <Translation>
-      <Text>Yaratık Loot</Text>
+      <Text>Sandıkları Yağmala</Text>
       <Id>Loot_Chests</Id>
     </Translation>
     <Translation>
@@ -778,11 +778,11 @@
       <Id>Harvest_Avoid_Players_Radius</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Mobları Yağmala</Text>
       <Id>Loot_Mobs</Id>
     </Translation>
     <Translation>
-      <Text>Yiyecek İçecek kullanımı için yüzdeler</Text>
+      <Text>Yiyecek İçecek Kullanımı İçin Yüzdeler</Text>
       <Id>Food___Drink____percentage_to_be_used</Id>
     </Translation>
     <Translation>
@@ -798,27 +798,27 @@
       <Id>Food</Id>
     </Translation>
     <Translation>
-      <Text>Binek ayarları</Text>
+      <Text>Binek Ayarları</Text>
       <Id>Mount_options</Id>
     </Translation>
     <Translation>
-      <Text>Akuatik</Text>
+      <Text>Sualtı Bineğin</Text>
       <Id>Aquatic</Id>
     </Translation>
     <Translation>
-      <Text>Yer bineği üstündeyken dövüşme</Text>
+      <Text>Yer bineğindeyken dövüş</Text>
       <Id>Ignore_Fight_if_in_Gound_Mount</Id>
     </Translation>
     <Translation>
-      <Text>Binek mesafesi</Text>
+      <Text>Binek Mesafe</Text>
       <Id>Mount_Distance</Id>
     </Translation>
     <Translation>
-      <Text>Uçan Binek</Text>
+      <Text>Uçan Bineğin</Text>
       <Id>Flying</Id>
     </Translation>
     <Translation>
-      <Text>Yer Bineği</Text>
+      <Text>Yer Bineğin</Text>
       <Id>Ground</Id>
     </Translation>
     <Translation>
@@ -826,7 +826,7 @@
       <Id>Use_Ground_Mount</Id>
     </Translation>
     <Translation>
-      <Text>Sınıf   Farklı büyü sıra ayarları</Text>
+      <Text>Sınıf Tercihleri - Büyü Sıra Ayarı Tercihleri</Text>
       <Id>Class___Custom_spell_sequence_Settings</Id>
     </Translation>
     <Translation>
@@ -842,7 +842,7 @@
       <Id>Train_New_Skills</Id>
     </Translation>
     <Translation>
-      <Text>Dövüşe başlama</Text>
+      <Text>Dövüşme</Text>
       <Id>Don_t_start_fighting</Id>
     </Translation>
     <Translation>
@@ -854,7 +854,7 @@
       <Id>Assign_Talents</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Sınıf Tercihleri</Text>
       <Id>Custom_Class</Id>
     </Translation>
     <Translation>
@@ -894,7 +894,7 @@
       <Id>Stop_tnb_if</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Lütfen uçan bineğinizi Genel Ayarlardan değiştirin</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
     <Translation>
@@ -926,7 +926,7 @@
       <Id>Product_Settings</Id>
     </Translation>
     <Translation>
-      <Text>Yol sürüş güzergahını ters çevir</Text>
+      <Text>Gidiş yolu güzergahını ters çevir</Text>
       <Id>Pathing_Reverse_Direction</Id>
     </Translation>
     <Translation>
@@ -950,7 +950,7 @@
       <Id>errors</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>NPC gurup listesi</Text>
       <Id>Npc_faction_list</Id>
     </Translation>
     <Translation>
@@ -1006,39 +1006,39 @@
       <Id>Nodes_List_Manager</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Smelting Ürün Tanımla</Text>
       <Id>Smelting_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Prospek Ürün Tanımla</Text>
       <Id>Prospecting_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Profil Dönüştürücü Ürün Tanımla</Text>
       <Id>Profiles_Converters_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Grinder Ürün Tanımla</Text>
       <Id>Grinder_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Gatherer Ürün Tanımla</Text>
       <Id>Gatherer_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Fisherbot Ürün Tanımla</Text>
       <Id>Fisherbot_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Battlegrounder Ürün Tanımla</Text>
       <Id>Battlegrounder_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Quester Ürün Tanımla</Text>
       <Id>Quester_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text />
+      <Text>Archaeologist Ürün Tanımla</Text>
       <Id>Archaeologist_Product_Description</Id>
     </Translation>
     <Translation>
@@ -1054,11 +1054,11 @@
       <Id>Creature_type</Id>
     </Translation>
     <Translation>
-      <Text>İzsürücü</Text>
+      <Text>İzsürme</Text>
       <Id>Tracker</Id>
     </Translation>
     <Translation>
-      <Text>İzsürücü ürün açıklama</Text>
+      <Text>İzsürücü ürün açıklaması</Text>
       <Id>Tracker_Product_Description</Id>
     </Translation>
     <Translation>
@@ -1116,6 +1116,10 @@
     <Translation>
       <Text />
       <Id>Title_WoW_Client_64bit</Id>
+    </Translation>
+    <Translation>
+      <Text>FPS Sınırı</Text>
+      <Id>Uncap_MaxFPS</Id>
     </Translation>
   </Translations>
 </Language>
