@@ -109,12 +109,7 @@ namespace Quester.Tasks
             // USE ITEM
             if (questObjective.Objective == Objective.UseItem)
             {
-                if (questObjective.IsUsedUseItem)
-                {
-                    questObjective.IsUsedUseItem = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedUseItem;
             }
 
             // MOVE TO
@@ -133,78 +128,43 @@ namespace Quester.Tasks
             // WAIT
             if (questObjective.Objective == Objective.Wait)
             {
-                if (questObjective.IsUsedWaitMs)
-                {
-                    questObjective.IsUsedWaitMs = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedWaitMs;
             }
 
             // TRAIN ALL SPELLS
             if (questObjective.Objective == Objective.TrainSpells)
             {
-                if (questObjective.IsUsedTrainSpells)
-                {
-                    questObjective.IsUsedTrainSpells = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedTrainSpells;
             }
 
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
-                if (questObjective.IsUsedInteractWith)
-                {
-                    questObjective.IsUsedInteractWith = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedInteractWith;
             }
 
             // USE SPELL
             if (questObjective.Objective == Objective.UseSpell)
             {
-                if (questObjective.IsUsedUseSpell)
-                {
-                    questObjective.IsUsedUseSpell = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedUseSpell;
             }
 
             // EQUIP ITEM
             if (questObjective.Objective == Objective.EquipItem)
             {
-                if (questObjective.IsUsedEquipItem)
-                {
-                    questObjective.IsUsedEquipItem = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedEquipItem;
             }
 
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                if (questObjective.IsUsedPickUpQuest)
-                {
-                    questObjective.IsUsedPickUpQuest = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedPickUpQuest;
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                if (questObjective.IsUsedTurnInQuest)
-                {
-                    questObjective.IsUsedTurnInQuest = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedTurnInQuest;
             }
 
             // USE VEHICLE
@@ -222,34 +182,19 @@ namespace Quester.Tasks
             // PRESS KEY
             if (questObjective.Objective == Objective.PressKey)
             {
-                if (questObjective.IsUsedPressKey)
-                {
-                    questObjective.IsUsedPressKey = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedPressKey;
             }
 
             // USE SPELL AOE
             if (questObjective.Objective == Objective.UseSpellAOE)
             {
-                if (questObjective.IsUsedUseSpellAOE)
-                {
-                    questObjective.IsUsedUseSpellAOE = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedUseSpellAOE;
             }
 
             // USE ITEM AOE
             if (questObjective.Objective == Objective.UseItemAOE)
             {
-                if (questObjective.IsUsedUseItemAOE)
-                {
-                    questObjective.IsUsedUseItemAOE = false;
-                    return true;
-                }
-                return false;
+                return questObjective.IsUsedUseItemAOE;
             }
 
             return false;
@@ -340,7 +285,7 @@ namespace Quester.Tasks
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
                     // Mounting Mount
-                    //MountTask.MountingFlyingMount(); // not yet
+                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
@@ -369,7 +314,7 @@ namespace Quester.Tasks
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
                     // Mounting Mount
-                    //MountTask.MountingFlyingMount();
+                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
@@ -411,15 +356,16 @@ namespace Quester.Tasks
                     if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
                         questObjective.PositionUseItem.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseItem));
                     }
                     else
                     {
                         MountTask.DismountMount(true);
+                        MovementManager.StopMove();
                         ItemsManager.UseItem(ItemsManager.GetNameById((uint)questObjective.UseItemId));
-                        Thread.Sleep(questObjective.WaitMsUseItem);
                         questObjective.IsUsedUseItem = true;
+                        Thread.Sleep(questObjective.WaitMsUseItem);
                     }
                 }
             }
@@ -432,7 +378,7 @@ namespace Quester.Tasks
                     if (questObjective.MoveTo.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
                         questObjective.MoveTo.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.MoveTo));
                     }
                 }
@@ -453,7 +399,7 @@ namespace Quester.Tasks
                     if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.searchRadius &&
                         questObjective.PositionInteractWith.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionInteractWith));
                     }
                     else
@@ -499,7 +445,7 @@ namespace Quester.Tasks
                     if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.searchRadius &&
                         questObjective.PositionInteractWith.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionInteractWith));
                     }
                     else
@@ -532,6 +478,7 @@ namespace Quester.Tasks
                             Thread.Sleep(100);
                         }
                         MountTask.DismountMount(true);
+                        MovementManager.StopMove();
                         Interact.InteractGameObject(baseAddress);
 
                         if (questObjective.GossipOptionsInteractWith != -1)
@@ -572,7 +519,7 @@ namespace Quester.Tasks
                     if (questObjective.PositionUseSpell.X != 0 &&
                         questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > 3.5f)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
                     }
                     else
@@ -590,7 +537,7 @@ namespace Quester.Tasks
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
                     // Mounting Mount
-                    //MountTask.MountingFlyingMount(); // not yet
+                    MountTask.Mount(); // not yet
                     // Need GoTo Zone:
                     if (questObjective.PathHotspots[nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots, ObjectManager.Me.Position)].DistanceTo(ObjectManager.Me.Position) > 5)
                     {
@@ -635,7 +582,7 @@ namespace Quester.Tasks
                     if (questObjective.PositionVehicle.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.searchRadius &&
                         questObjective.PositionVehicle.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionVehicle));
                     }
                     else
@@ -677,7 +624,7 @@ namespace Quester.Tasks
                     if (questObjective.PositionPressKey.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
                         questObjective.PositionPressKey.X != 0)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionPressKey));
                     }
                     else
@@ -717,7 +664,7 @@ namespace Quester.Tasks
 
                     if (questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
                     }
                     else
@@ -756,7 +703,7 @@ namespace Quester.Tasks
 
                     if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
-                        //MountTask.MountingFlyingMount();
+                        MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseItem));
                     }
                     else
@@ -803,7 +750,7 @@ namespace Quester.Tasks
             // Launch script
             //Script.Run(npc.Script); ToDo: probably add this
             // Mounting Mount
-            //MountTask.MountingFlyingMount(); // not good yet
+            MountTask.Mount(); // not good yet
 
             // Find path
             if (npc.Position.DistanceTo(ObjectManager.Me.Position) < nManagerSetting.CurrentSetting.searchRadius)
