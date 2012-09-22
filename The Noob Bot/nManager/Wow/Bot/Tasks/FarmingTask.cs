@@ -292,7 +292,7 @@ namespace nManager.Wow.Bot.Tasks
                                     Fly(nodes);
                                     return;
                                 }
-                                MountTask.MountingFlyingMount();
+                                MountTask.Mount();
                                 if (Usefuls.IsFlying)
                                 {
                                     Fly(nodes);

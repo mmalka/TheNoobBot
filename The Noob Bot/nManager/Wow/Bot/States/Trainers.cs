@@ -101,7 +101,7 @@ namespace nManager.Wow.Bot.States
             if (trainer.Type == MyTrainerClass())
                 Logging.Write(SpellManager.SpellAvailable() + " Spell Available");
             // Mounting Mount
-            MountTask.MountingGroundMount();
+            MountTask.Mount();
 
             // Find path
             var points = new List<Point>();

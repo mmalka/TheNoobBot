@@ -185,7 +185,7 @@ namespace nManager.Wow.Helpers
                     if (nManagerSetting.CurrentSetting.useGroundMount)
                     {
                         if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.mountDistance || _loop)
-                            Bot.Tasks.MountTask.MountingGroundMount(false);
+                            Bot.Tasks.MountTask.Mount(false);
                     }
                     _lastNbStuck = StuckCount;
                     int idPoint = firstIdPoint;
@@ -284,7 +284,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    Bot.Tasks.MountTask.MountingFlyingMount(false);
+                    Bot.Tasks.MountTask.Mount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;
@@ -356,7 +356,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    Bot.Tasks.MountTask.MountingAquaticMount(false);
+                    Bot.Tasks.MountTask.Mount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;

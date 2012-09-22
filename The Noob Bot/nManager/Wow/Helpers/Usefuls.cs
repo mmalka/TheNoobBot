@@ -134,6 +134,26 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool IsFlyableArea
+        {
+            get
+            {
+                lock (typeof(Usefuls))
+                {
+                    try
+                    {
+                        string randomString = Others.GetRandomString(Others.Random(4, 10));
+                        Lua.LuaDoString(randomString + " = IsFlyableArea()");
+                        return Lua.GetLocalizedText(randomString) == "1";
+                    }
+                    catch (Exception e)
+                    {
+                        Logging.WriteError("IsFlyableArea: " + e); return false;
+                    }
+                }
+            }
+        }
+
         public static bool IsOutdoors
         {
             get
