@@ -73,12 +73,13 @@
                 </QuestObjective>
                 <QuestObjective>
                     <Objective>UseItem</Objective>
-                    <UseItemId>38631</UseItemId>
+                    <UseItemId>38607</UseItemId>
                     <PositionUseItem>
                              <X>2505.863</X>
                              <Y>-5562.321</Y>
                              <Z>420.6461</Z>
                     </PositionUseItem>
+                    <WaitMsUseItem>11000</WaitMsUseItem>
                 </QuestObjective>
             </Objectives>
         </Quest>
