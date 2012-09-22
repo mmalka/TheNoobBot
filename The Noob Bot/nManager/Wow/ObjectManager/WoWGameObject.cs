@@ -213,7 +213,7 @@ namespace nManager.Wow.ObjectManager
                 if (LockEntry != 0)
                 {
                     WoWLock Row = WoWLock.FromId(LockEntry);
-                    if (Row == null)
+                    if (Row.Record.KeyType == null)
                         return false;
 
                     for (int j = 0; j < 8; j++)
