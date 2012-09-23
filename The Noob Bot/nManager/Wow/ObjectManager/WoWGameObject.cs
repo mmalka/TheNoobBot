@@ -242,6 +242,20 @@ namespace nManager.Wow.ObjectManager
                                     return false;
 
                                 uint reqSkillValue = Row.Record.Skill[j];
+
+                                if (skill == SkillLine.Lockpicking && !nManagerSetting.CurrentSetting.lootChests)
+                                    return false;
+
+                                // special case for rogues and lockpicking since the skill does not exist anymore
+                                if (skill == SkillLine.Lockpicking)
+                                {
+                                    Spell lockpick = new Spell(1804); // Pick lock
+                                    if (lockpick.KnownSpell && ObjectManager.Me.Level * 5 >= reqSkillValue)
+                                        return true;
+                                    else
+                                        return false;
+                                }
+
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue);
                                 if (Skill.GetValue(skill) < reqSkillValue)
                                     return false;
