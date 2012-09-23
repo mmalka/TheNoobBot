@@ -138,6 +138,10 @@ namespace Quester.Profile
         internal bool IsUsedUseItemAOE = false;
         // UseSpellAOE
         internal bool IsUsedUseSpellAOE = false;
+        // Use RuneForge
+        internal bool IsUsedUseRuneForge = false;
+        public int WaitMsUseRuneForge = 0;
+        public Point PositionUseRuneForge = new Point();
     }
 
     [Serializable]
@@ -160,6 +164,7 @@ namespace Quester.Profile
         PressKey,
         UseItemAOE,
         UseSpellAOE,
+        UseRuneForge,
     }
 
     [Serializable]

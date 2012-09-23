@@ -84,6 +84,53 @@
             </Objectives>
         </Quest>
         <!--The Emblazoned Runeblade (Deathknight)-->
+<!-- Quest 3 -->
+
+        <!--Runeforging: Preparation For Battle (Deathknight)-->
+        <Quest>
+            <Name>Runeforging: Preparation For Battle</Name>
+            <Id>12842</Id>
+            <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <MinLevel>55</MinLevel>
+            <MaxLevel>58</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>12619</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Entry>28357</Entry>
+                <Name>Instructor Razuvious</Name>
+                <Position>
+                  <X>2482.108</X>
+                  <Y>-5553.094</Y>
+                  <Z>420.6425</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Entry>28357</Entry>
+                <Name>Instructor Razuvious</Name>
+                <Position>
+                  <X>2482.108</X>
+                  <Y>-5553.094</Y>
+                  <Z>420.6425</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>EquipItem</Objective>
+                    <EquipItemId>38707</EquipItemId>
+                </QuestObjective>
+                <QuestObjective>
+                    <Objective>UseRuneForge</Objective>
+                    <PositionUseRuneForge>
+                             <X>2505.863</X>
+                             <Y>-5562.321</Y>
+                             <Z>420.6461</Z>
+                    </PositionUseRuneForge>
+                    <WaitMsUseRuneForge>7500</WaitMsUseRuneForge>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!--Runeforging: Preparation For Battle (Deathknight)-->
     </Quests>
     <Blackspots />
 </QuesterProfile>
