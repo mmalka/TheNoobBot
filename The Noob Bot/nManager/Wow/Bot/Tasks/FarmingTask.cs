@@ -86,8 +86,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                         }
                         */
-
-                        /*var n = new Point(node.Position);
+                        var n = new Point(node.Position);
                         n.Z = n.Z + 2.5f;
                         var n2 = new Point(n);
                         n2.Z = n2.Z + 100;
@@ -96,7 +95,7 @@ namespace nManager.Wow.Bot.Tasks
                             Logging.Write("Node stuck");
                             nManagerSetting.AddBlackList(node.Guid, 1000*120);
                             return;
-                        }*/
+                        }
 
 
                         MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
