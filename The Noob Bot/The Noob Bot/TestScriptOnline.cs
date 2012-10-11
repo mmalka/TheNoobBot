@@ -4,7 +4,7 @@
     {
         try
         {
-            if (nManager.Information.ForBuildWowVersion == 16016 || nManager.Information.ForBuildWowVersion == 16057)
+            if (nManager.Information.ForBuildWowVersion == 16057 || nManager.Information.ForBuildWowVersion == 16135)
             {
                 /*System.IO.File.Copy(System.Diagnostics.Process.GetCurrentProcess().ProcessName + ".exe", System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe", true);
                 System.IO.File.Copy("nManager.dll", "nManager2.dll", true);
@@ -21,7 +21,7 @@
                     }
                 }
                 else*/
-                if (nManager.Information.Version != "1.2.8a" && nManager.Information.Version != "1.2.9a" && nManager.Information.Version != "1.2.10")
+                if (nManager.Information.Version != "1.2.10a" && nManager.Information.Version != "1.2.11")
                 {
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
                     nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0; // wrong value
@@ -31,17 +31,11 @@
 
                     }
                 }
-                else if (nManager.Information.Version == "1.2.10")
+                else if (nManager.Information.Version == "1.2.10a" || nManager.Information.Version == "1.2.11")
                 {
                     //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                     //System.IO.File.Delete("nManager2.dll");
                     nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xDC9598;
-                }
-                else if (nManager.Information.Version == "1.2.8a")
-                {
-                    //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
-                    //System.IO.File.Delete("nManager2.dll");
-                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xDC9298;
                 }
                 else
                 {
