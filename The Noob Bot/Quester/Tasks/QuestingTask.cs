@@ -813,9 +813,11 @@ namespace Quester.Tasks
                         Spell runeforging = new Spell("Runeforging");
                         Lua.RunMacroText("/cast " + runeforging.NameInGame);
                         Thread.Sleep(500);
+                        Lua.RunMacroText("/script DoTradeSkill(GetTradeSkillSelectionIndex())");
                         Lua.LuaDoString("DoTradeSkill(GetTradeSkillSelectionIndex())"); // bug
+                        Thread.Sleep(500);
                         // selectionne le premier dans la liste, donc OK
-                        Lua.RunMacroText("/click CharacterMainHandSlot;");
+                        Lua.RunMacroText("/click CharacterMainHandSlot");
                         Thread.Sleep(500);
                         Lua.LuaDoString("ReplaceEnchant()");
                         Thread.Sleep(questObjective.WaitMsUseRuneForge);
