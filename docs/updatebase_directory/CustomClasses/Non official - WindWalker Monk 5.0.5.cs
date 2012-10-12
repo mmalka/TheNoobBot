@@ -1,3 +1,8 @@
+/*
+* CustomClass for TheNoobBot
+* Credit :  Marcellolo
+* Thanks you !
+*/
 using System;
 using System.Threading;
 using System.Windows.Forms;
@@ -28,7 +33,7 @@ public class Main : ICustomClass
 
     public void Initialize()
     {
-        Logging.WriteFight("Loading WoW-RoboT CC");
+        Logging.WriteFight("Loading combat system.");
 
         switch (ObjectManager.Me.WowClass)
         {

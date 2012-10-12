@@ -1,6 +1,6 @@
 /*
 * CustomClass for TheNoobBot
-* Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003
+* Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, DreadLocks
 * Thanks you !
 */
 
