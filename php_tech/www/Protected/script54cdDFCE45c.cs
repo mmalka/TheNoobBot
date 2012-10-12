@@ -21,7 +21,7 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                     }
                 }
                 else*/
-                if (nManager.Information.Version != "1.2.10a" && nManager.Information.Version != "1.2.11")
+                if (nManager.Information.Version != "1.2.11" && nManager.Information.Version != "1.2.12")
                 {
                     nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version.");
                     nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0; // wrong value
@@ -31,17 +31,11 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
 
                     }
                 }
-                else if (nManager.Information.Version == "1.2.10a" || nManager.Information.Version == "1.2.11")
+                else if (nManager.Information.Version == "1.2.11" || nManager.Information.Version == "1.2.12")
                 {
                     //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                     //System.IO.File.Delete("nManager2.dll");
                     nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xDC9598;
-                }
-                else if (nManager.Information.Version == "1.2.8a")
-                {
-                    //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
-                    //System.IO.File.Delete("nManager2.dll");
-                    nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xDC9298;
                 }
                 else
                 {
