@@ -1,7 +1,8 @@
 /*
 * CustomClass for TheNoobBot
-* Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003
+* Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
+* 10/13/2012
 */
 
 using System;
@@ -307,7 +308,7 @@ public class Deathknight_Apprentice
 
     public Deathknight_Apprentice()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -583,8 +584,6 @@ public class Deathknight_Blood
         public bool UseGiftoftheNaaru = true;
         public bool UseWarStomp = true;
         /* Deathknight Presence & Buffs */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
         public bool UseFrostPresence = true;
         public bool UseBloodPresence = true;
         public bool UseHornofWinter = true;
@@ -628,6 +627,11 @@ public class Deathknight_Blood
         public bool UseDeathSiphon = true;
         public bool UseLichborne = true;
         public bool UseRuneTap = true;
+        /* Game Settings */
+        public bool UseLowCombat = true;
+        public bool UseTrinket = true;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
 
         public DeathknightBloodSettings()
         {
@@ -641,8 +645,6 @@ public class Deathknight_Blood
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Deathknight Presence & Buffs */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Trinket", "UseTrinket", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Frost Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Blood Presence", "UseBloodPresence", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Horn of Winter", "UseHornofWinter", "Deathknight Presence & Buffs");
@@ -686,6 +688,11 @@ public class Deathknight_Blood
             AddControlInWinForm("Use Death Siphon", "UseDeathSiphon", "Healing Spell");
             AddControlInWinForm("Use Lichborne", "UseLichborne", "Healing Spell");
             AddControlInWinForm("Use Rune Tap", "UseRuneTap", "Healing Spell");
+            /* Game Settings */
+            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineer Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
         public static DeathknightBloodSettings CurrentSetting { get; set; }
@@ -793,12 +800,13 @@ public class Deathknight_Blood
     #endregion
 
     private Timer Trinket_Timer = new Timer(0);
+    private Timer AlchFlask_Timer = new Timer(0);
     public int DRW = 1;
     public int LC = 0;
 
     public Deathknight_Blood()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 
@@ -806,7 +814,7 @@ public class Deathknight_Blood
         {
             try
             {
-                Buff_path();
+                Buff_Path();
                 if (!ObjectManager.Me.IsMounted)
                 {
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
@@ -856,7 +864,7 @@ public class Deathknight_Blood
         }
     }
 
-    private void Buff_path()
+    private void Buff_Path()
     {
         if (!Fight.InFight && Path_of_Frost.KnownSpell && Path_of_Frost.IsSpellUsable && MySettings.UsePathofFrost
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
@@ -941,6 +949,12 @@ public class Deathknight_Blood
         if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
+        }
+
+        if (MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
         }
 
         if (Dancing_Rune_Weapon_Timer.IsReady && DRW == 0)
@@ -1183,7 +1197,8 @@ public class Deathknight_Blood
     private void Grip()
     {
         if (ObjectManager.Target.GetDistance > 5 &&
-            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood)
+            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood
+            && MySettings.UseDeathGrip)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -1365,6 +1380,14 @@ public class Deathknight_Blood
             Deaths_Advance.Launch();
             return;
         }
+
+        if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
+            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:75525");
+            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+        }
     }
 
     private void AvoidMelee()
@@ -1390,8 +1413,6 @@ public class Deathknight_Unholy
         public bool UseGiftoftheNaaru = true;
         public bool UseWarStomp = true;
         /* Deathknight Presence & Buffs */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
         public bool UseFrostPresence = true;
         public bool UseBloodPresence = true;
         public bool UseHornofWinter = true;
@@ -1434,6 +1455,11 @@ public class Deathknight_Unholy
         public bool UseDeathSiphon = true;
         public bool UseDeathStrike = true;
         public bool UseLichborne = true;
+        /* Game Settings */
+        public bool UseLowCombat = true;
+        public bool UseTrinket = true;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
 
         public DeathknightUnholySettings()
         {
@@ -1447,8 +1473,6 @@ public class Deathknight_Unholy
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Deathknight Presence & Buffs */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Trinket", "UseTrinket", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Frost Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Blood Presence", "UseBloodPresence", "Deathknight Presence & Buffs");
             AddControlInWinForm("Use Horn of Winter", "UseHornofWinter", "Deathknight Presence & Buffs");
@@ -1491,6 +1515,11 @@ public class Deathknight_Unholy
             AddControlInWinForm("Use Death Siphon", "UseDeathSiphon", "Healing Spell");
             AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell");
             AddControlInWinForm("Use Lichborne", "UseLichborne", "Healing Spell");
+            /* Game Settings */
+            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
         public static DeathknightUnholySettings CurrentSetting { get; set; }
@@ -1604,7 +1633,7 @@ public class Deathknight_Unholy
 
     public Deathknight_Unholy()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 
@@ -1612,7 +1641,7 @@ public class Deathknight_Unholy
         {
             try
             {
-                Buff_path();
+                Buff_Path();
                 if (!ObjectManager.Me.IsMounted)
                 {
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
@@ -1662,7 +1691,7 @@ public class Deathknight_Unholy
         }
     }
 
-    private void Buff_path()
+    private void Buff_Path()
     {
         if (!Fight.InFight && Path_of_Frost.KnownSpell && Path_of_Frost.IsSpellUsable && MySettings.UsePathofFrost
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
@@ -1749,6 +1778,12 @@ public class Deathknight_Unholy
         if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
+        }
+
+        if (MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
         }
 
         if (Unholy_Frenzy.IsSpellUsable && Unholy_Frenzy.KnownSpell)
@@ -2007,7 +2042,8 @@ public class Deathknight_Unholy
     private void Grip()
     {
         if (ObjectManager.Target.GetDistance > 5 &&
-            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood)
+            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood
+            && MySettings.UseDeathGrip)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -2182,6 +2218,14 @@ public class Deathknight_Unholy
             Deaths_Advance.Launch();
             return;
         }
+
+        if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
+            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:75525");
+            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+        }
     }
 
     private void AvoidMelee()
@@ -2251,6 +2295,8 @@ public class Deathknight_Frost
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
         public bool UseDuelWield = false;
         public bool UseTwoHander = true;
 
@@ -2313,6 +2359,8 @@ public class Deathknight_Frost
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Duel Wield", "UseDuelWield", "Game Settings");
             AddControlInWinForm("Use Two Hander", "UseTwoHander", "Game Settings");
         }
@@ -2425,7 +2473,7 @@ public class Deathknight_Frost
 
     public Deathknight_Frost()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 
@@ -2433,7 +2481,7 @@ public class Deathknight_Frost
         {
             try
             {
-                Buff_path();
+                Buff_Path();
                 if (!ObjectManager.Me.IsMounted)
                 {
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
@@ -2483,7 +2531,7 @@ public class Deathknight_Frost
         }
     }
 
-    private void Buff_path()
+    private void Buff_Path()
     {
         if (!Fight.InFight && Path_of_Frost.KnownSpell && Path_of_Frost.IsSpellUsable && MySettings.UsePathofFrost
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
@@ -2571,6 +2619,12 @@ public class Deathknight_Frost
         if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
+        }
+
+        if (MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
         }
 
         if (Pillar_of_Frost.IsSpellUsable && Pillar_of_Frost.KnownSpell && MySettings.UsePillarofFrost)
@@ -2698,6 +2752,7 @@ public class Deathknight_Frost
             return;
         }
 
+        // Blizzard API Calls for Frost Strike using Blood Strike Function
         else if (ObjectManager.Me.RunicPowerPercentage >= 90 && MySettings.UseFrostStrike
             && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
         {
@@ -2865,7 +2920,8 @@ public class Deathknight_Frost
     private void Grip()
     {
         if (ObjectManager.Target.GetDistance > 5 &&
-            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood)
+            Death_Grip.KnownSpell && Death_Grip.IsSpellUsable && Death_Grip.IsDistanceGood
+            && MySettings.UseDeathGrip)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -3017,6 +3073,14 @@ public class Deathknight_Frost
         {
             Deaths_Advance.Launch();
             return;
+        }
+
+        if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
+            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+        {
+            Logging.WriteFight("Use Alchi Flask");
+            Lua.RunMacroText("/use item:75525");
+            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
         }
     }
 
