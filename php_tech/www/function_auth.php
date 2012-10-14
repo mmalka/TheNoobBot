@@ -222,7 +222,7 @@ function botOnline()
                               WHERE lastTime > ".(time()-160)) or die(mysql_error());
 	$result = mysql_num_rows($query);
 	closeMysql();
-    $n = intval(intval($result)*1.6)-1;
+    $n = intval(intval($result)*1.2)-1;
 
 	
 	return $n;
