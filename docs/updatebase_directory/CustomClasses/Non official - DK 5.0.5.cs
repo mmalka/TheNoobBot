@@ -2,7 +2,6 @@
 * CustomClass for TheNoobBot
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
-* 10/13/2012
 */
 
 using System;
@@ -41,7 +40,7 @@ public class Main : ICustomClass
 
             switch (ObjectManager.Me.WowClass)
             {
-                    #region DeathKnight Specialisation checking
+                #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var Blood_Rites = new Spell("Blood Rites");
@@ -141,7 +140,7 @@ public class Main : ICustomClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
                 default:
                     Dispose();
@@ -630,8 +629,8 @@ public class Deathknight_Blood
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEngGlove = false;
+        public bool UseAlchFlask = false;
 
         public DeathknightBloodSettings()
         {
@@ -968,7 +967,7 @@ public class Deathknight_Blood
             DRW = 0;
         }
     }
-    
+
     public void DPS_Cycle()
     {
         Grip();
@@ -1134,7 +1133,7 @@ public class Deathknight_Blood
             Blood_Strike.Launch();
             return;
         }
-        
+
         else if (Empower_Rune_Weapon.IsSpellUsable && Empower_Rune_Weapon.KnownSpell && MySettings.UseEmpowerRuneWeapon)
         {
             Empower_Rune_Weapon.Launch();
@@ -1207,6 +1206,9 @@ public class Deathknight_Blood
 
     private void Heal()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
@@ -1349,7 +1351,7 @@ public class Deathknight_Blood
 
         else
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && AntiMagic_Zone.KnownSpell 
+            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && AntiMagic_Zone.KnownSpell
                 && MySettings.UseAntiMagicZone && AntiMagic_Zone.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(51052, ObjectManager.Me.Position);
@@ -1367,6 +1369,9 @@ public class Deathknight_Blood
 
     private void Buff()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
             && MySettings.UseHornofWinter)
         {
@@ -1458,8 +1463,8 @@ public class Deathknight_Unholy
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEngGlove = false;
+        public bool UseAlchFlask = false;
 
         public DeathknightUnholySettings()
         {
@@ -1925,7 +1930,7 @@ public class Deathknight_Unholy
             return;
         }
 
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable && Army_of_the_Dead.IsDistanceGood 
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable && Army_of_the_Dead.IsDistanceGood
             && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
         {
             Army_of_the_Dead.Launch();
@@ -2052,6 +2057,9 @@ public class Deathknight_Unholy
 
     private void Heal()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
@@ -2173,7 +2181,7 @@ public class Deathknight_Unholy
 
         else
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && AntiMagic_Zone.KnownSpell 
+            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && AntiMagic_Zone.KnownSpell
                 && MySettings.UseAntiMagicZone && AntiMagic_Zone.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(51052, ObjectManager.Me.Position);
@@ -2205,6 +2213,9 @@ public class Deathknight_Unholy
 
     private void Buff()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         Ghoul();
         if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
             && MySettings.UseHornofWinter)
@@ -2295,8 +2306,8 @@ public class Deathknight_Frost
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEngGlove = false;
+        public bool UseAlchFlask = false;
         public bool UseDuelWield = false;
         public bool UseTwoHander = true;
 
@@ -2930,6 +2941,9 @@ public class Deathknight_Frost
 
     private void Heal()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
@@ -3062,6 +3076,9 @@ public class Deathknight_Frost
 
     private void Buff()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
             && MySettings.UseHornofWinter)
         {
