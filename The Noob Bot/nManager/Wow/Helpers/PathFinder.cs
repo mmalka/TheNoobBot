@@ -146,7 +146,7 @@ namespace nManager.Wow.Helpers
                     _pather.LoadAllTiles();
 
                 locList = _pather.FindPath(from, to, out resultSuccess);
-                if (addFromAndStart)
+                if (addFromAndStart && resultSuccess)
                     locList.Add(to);
 
                 // Clean list:
