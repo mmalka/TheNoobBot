@@ -1402,7 +1402,7 @@ public class Deathknight_Unholy
                 Lua.RunMacroText("/cast [@player] Unholy Frenzy");
                 Lua.RunMacroText("/cast [@player] Unheilige Raserei");
                 Lua.RunMacroText("/cast [@player] Frénésie impie");
-                Lua.RunMacroText("/cast [@player] ???????Лик смерти???");
+                Lua.RunMacroText("/cast [@player] Нечестивое бешенство");
                 Lua.RunMacroText("/cast [@player] Frenesí profano");
                 Lua.RunMacroText("/cast [@player] Frenesi Profano");
                 Summon_Gargoyle.Launch();
@@ -6611,9 +6611,6 @@ public class Paladin_Retribution
 
     private void Seal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-
         if (SealOfTruth.KnownSpell && ObjectManager.GetNumberAttackPlayer() <= 7 && MySettings.UseSealOfTruth)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
@@ -7241,7 +7238,7 @@ public class Priest_Shadow
         public bool UseVoidTendrils = true;
         /* Healing Spell */
         public bool UseDesperatePrayer = true;
-        public bool UseFlashHeal = true;
+        public bool UseFlash_Heal = true;
         public bool UseHymnofHope = true;
         public bool UsePrayerofMending = true;
         public bool UseRenew = true;
@@ -7249,8 +7246,8 @@ public class Priest_Shadow
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEngGlove = false;
+        public bool UseAlchFlask = false;
 
         public PriestShadowSettings()
         {
@@ -7293,7 +7290,7 @@ public class Priest_Shadow
             AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
-            AddControlInWinForm("Use Flash Heal", "UseFlashHeal", "Healing Spell");
+            AddControlInWinForm("Use Flash Heal", "UseFlash_Heal", "Healing Spell");
             AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
             AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
             AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell");
@@ -7332,7 +7329,8 @@ public class Priest_Shadow
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-	private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -7352,7 +7350,7 @@ public class Priest_Shadow
     private readonly Spell Devouring_Plague = new Spell("Devouring Plague");
     private Timer Devouring_Plague_Timer = new Timer(0);
     private readonly Spell Mind_Blast = new Spell("Mind Blast");
-    private readonly Spell Mind_Flay = new Spell("Mind Flay");
+    private readonly Spell Mind_Flay = new Spell(15407);
     private readonly Spell Mind_Sear = new Spell("Mind Sear");
     private readonly Spell Mind_Spike = new Spell("Mind Spike");
     private readonly Spell Shadow_Word_Death = new Spell("Shadow Word: Death");
@@ -7398,7 +7396,7 @@ public class Priest_Shadow
     #endregion
 
     private Timer Trinket_Timer = new Timer(0);
-	private Timer Engineering_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
     private Timer AlchFlask_Timer = new Timer(0);
     public int LC = 0;
 
@@ -7435,7 +7433,6 @@ public class Priest_Shadow
                             Combat();
                         }
                     }
-
                     else
                         Patrolling();
                 }
@@ -7479,6 +7476,9 @@ public class Priest_Shadow
 
     public void Buff()
     {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
         if (Power_Word_Fortitude.KnownSpell && Power_Word_Fortitude.IsSpellUsable &&
             !Power_Word_Fortitude.HaveBuff && MySettings.UsePowerWordFortitude)
         {
@@ -7569,7 +7569,7 @@ public class Priest_Shadow
 
     public void DPS_Burst()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
+        if (MySettings.UseTrinket && Alchemy.KnownSpell && Trinket_Timer.IsReady)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
@@ -7599,7 +7599,7 @@ public class Priest_Shadow
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-			Engineering_Timer = new Timer(1000*60*1);
+            Engineering_Timer = new Timer(1000*60*1);
         }
 
         if (Power_Infusion.IsSpellUsable && Power_Infusion.KnownSpell && Power_Infusion.IsDistanceGood
@@ -7696,6 +7696,7 @@ public class Priest_Shadow
             return;
         }
 
+            // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
                  && MySettings.UseMindFlay)
         {
@@ -7725,21 +7726,21 @@ public class Priest_Shadow
 
     private void Heal()
     {
-        if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
-            Hymn_of_Hope.IsSpellUsable
-            && ObjectManager.Target.IsDead && MySettings.UseHymnofHope)
+        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
-            MovementManager.StopMove();
-            Hymn_of_Hope.Launch();
-            Thread.Sleep(8000);
+            if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlash_Heal)
+            {
+                Flash_Heal.Launch(false);
+                return;
+            }
         }
 
-        if (!Fight.InFight && ObjectManager.Me.HealthPercent < 100 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-            && ObjectManager.Target.IsDead && MySettings.UseFlashHeal)
+        if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
+            Hymn_of_Hope.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
-            MovementManager.StopMove();
-            Flash_Heal.Launch();
-            Thread.Sleep(1500);
+            Hymn_of_Hope.Launch(false);
+            return;
         }
 
         if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
@@ -7763,15 +7764,23 @@ public class Priest_Shadow
             return;
         }
 
+        if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
+            && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
+            && !ObjectManager.Me.HaveBuff(6788))
+        {
+            Power_Word_Shield.Launch();
+            return;
+        }
+
         if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff && Renew_Timer.IsReady &&
-            ObjectManager.Me.HealthPercent < 75 && MySettings.UseRenew)
+            ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
         {
             Renew.Launch();
             Renew_Timer = new Timer(1000*12);
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent < 70 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+        if (ObjectManager.Me.HealthPercent < 75 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
             && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
@@ -7785,15 +7794,8 @@ public class Priest_Shadow
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent < 75 && Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
-            && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield)
-        {
-            Power_Word_Shield.Launch();
-            return;
-        }
-
         if (ObjectManager.Me.HealthPercent < 55 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-            && MySettings.UseFlashHeal)
+            && MySettings.UseFlash_Heal)
         {
             Flash_Heal.Launch();
             Thread.Sleep(1200);

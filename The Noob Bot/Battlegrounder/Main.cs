@@ -7,9 +7,6 @@ using Battlegrounder;
 using Battlegrounder.Bot;
 using nManager.Helpful;
 using nManager.Products;
-using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
-using nManager.Wow.Patchables;
 
 public class Main : IProduct
 // ReSharper restore CheckNamespace

@@ -325,10 +325,10 @@ namespace nManager.Wow.Class
         /// <summary>
         /// Cast Spell.
         /// </summary>
-        /// <param name="dontStopMove">if set to <c>true</c> [Don't move during cast].</param>
+        /// <param name="StopMove">if set to <c>true</c> [Don't move during cast].</param>
         /// <param name="waitIsCast">if set to <c>true</c> [Wait the cast end].</param>
         /// <param name="ignoreIfCast"> </param>
-        public void Launch(bool dontStopMove, bool waitIsCast = true, bool ignoreIfCast = false)
+        public void Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace nManager.Wow.Class
                     if (t < 0) return;
                 }
                 Logging.WriteFight("Cast " + NameInGame);
-                if (!dontStopMove)
+                if (StopMove)
                 {
                     if (ObjectManager.ObjectManager.Me.GetMove)
                         MovementManager.StopMoveTo();
@@ -354,7 +354,7 @@ namespace nManager.Wow.Class
             }
             catch (Exception exception)
             {
-                Logging.WriteError("Spell > Launch(bool dontStopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
+                Logging.WriteError("Spell > Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
         }
 
