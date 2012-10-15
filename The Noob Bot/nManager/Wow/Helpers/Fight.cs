@@ -143,12 +143,12 @@ namespace nManager.Wow.Helpers
                             Keybindings.PressKeybindings(Enums.Keybindings.JUMP);
                         MovementManager.MoveTo(targetNpc);
                     }
-                    // Create path if mob out of view
-                    if (targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast)// && Useful.TraceLine.TraceLineGo(targetNpc.Position))
+                    // Create path if the mob is out of sight or out of range
+                    if ((targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast) || TraceLine.TraceLineGo(targetNpc.Position))
                     {
                         goto figthStart;
                     }
-                    // Stope move if in range
+                    // Stop move if in range
                     if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         MovementManager.StopMoveTo();
