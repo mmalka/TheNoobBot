@@ -128,11 +128,11 @@ namespace Quester.Profile
         // PressKey
         internal bool IsUsedPressKey = false;
         public int WaitMsPressKey = 0;
-        public nManager.Wow.Enums.Keybindings Keys = nManager.Wow.Enums.Keybindings.NONE;
+        public Keybindings Keys = Keybindings.NONE;
         public Point PositionPressKey = new Point();
 
         // UseItemAOE & UseSpellAOE & AOE ATTACK MOB
-        public float Range = 3.5f;
+        public float Range = 5.0f;
         public int EntryAOE = 0;
         // UseItemAOE
         internal bool IsUsedUseItemAOE = false;

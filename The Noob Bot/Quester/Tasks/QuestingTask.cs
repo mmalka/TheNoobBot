@@ -369,7 +369,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseItem)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseItem) < 3.5f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseItem) < 5.0f)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -395,7 +395,7 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
+                    if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
                         questObjective.PositionUseItem.X != 0)
                     {
                         MountTask.Mount();
@@ -417,7 +417,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.MoveTo.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
+                    if (questObjective.MoveTo.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
                         questObjective.MoveTo.X != 0)
                     {
                         MountTask.Mount();
@@ -545,7 +545,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseSpell)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseSpell) < 3.5f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseSpell) < 5.0f)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -572,7 +572,7 @@ namespace Quester.Tasks
                     }
 
                     if (questObjective.PositionUseSpell.X != 0 &&
-                        questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > 3.5f)
+                        questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > 5.0f)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
@@ -688,9 +688,9 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.PressKey)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionPressKey) < 3.5f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionPressKey) < 5.0f)
                 {
-                    if (questObjective.PositionPressKey.DistanceTo(ObjectManager.Me.Position) > 3.5f &&
+                    if (questObjective.PositionPressKey.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
                         questObjective.PositionPressKey.X != 0)
                     {
                         MountTask.Mount();

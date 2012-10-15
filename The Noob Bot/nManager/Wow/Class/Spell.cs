@@ -103,8 +103,8 @@ namespace nManager.Wow.Class
                                 NameInGame = "";
                             }
 
-                            if (MaxRange < 3.6f)
-                                MaxRange = 3.6f;
+                            if (MaxRange < 5.0f)
+                                MaxRange = 5.0f;
                             KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
                             Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                             Ids.Add(Id);
@@ -117,16 +117,16 @@ namespace nManager.Wow.Class
                     Logging.WriteError("Spell(uint spellId): " + exception);
                 }
                 CastTime = 0;
-                MaxRange = 3.6f;
-                MinRange = 0;
+                MaxRange = 5.0f;
+                MinRange = 5.0f;
                 NameInGame = "";
             }
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.
+        /// Initializes a new instance of the <see cref="Spell"/> class. This class manage spells of your wow player.
         /// </summary>
-        /// <param name="spellName">Name of the spell.</param>
+        /// <param name="spellName">English name of the spell.</param>
         public Spell(string spellName)
         {
             Spell tSpell = null;
@@ -135,7 +135,7 @@ namespace nManager.Wow.Class
                 uint.TryParse(spellName, out Id);
                 if (Id > 0)
                 {
-                    tSpell = new Spell(Id); // en
+                    tSpell = new Spell(Id);
                 }
                 else
                 {
@@ -143,8 +143,8 @@ namespace nManager.Wow.Class
                     {
                         if (s.Name == spellName)
                         {
-                            tSpell = s; // Check à partir du nom en anglais, version string de Spell
-                            break; // On sort du foreach si on a un résultat.
+                            tSpell = s;
+                            break;
                         }
                     }
                 }
@@ -153,8 +153,7 @@ namespace nManager.Wow.Class
                     Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " => Failed");
                     return;
                 }
-                else
-                    Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id + ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
+                Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id + ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
                 Id = tSpell.Id;
                 CastTime = tSpell.CastTime;
                 Cost = tSpell.Cost;
@@ -166,8 +165,8 @@ namespace nManager.Wow.Class
                 NameInGame = tSpell.NameInGame;
                 PowerType = tSpell.PowerType;
                 Rank = tSpell.Rank;
-                if (MaxRange < 3.6f)
-                    MaxRange = 3.6f;
+                if (MaxRange < 5.0f)
+                    MaxRange = 5.0f;
                 KnownSpell = tSpell.KnownSpell;
                 Ids.AddRange(tSpell.Ids);
                 Ids.Add(Id);
@@ -183,10 +182,10 @@ namespace nManager.Wow.Class
         #region Methods
 
         /// <summary>
-        /// Gets if the player can use this spell.
+        /// Check if the spell is currently available for use.
         /// </summary>
         /// <value>
-        /// 	<c>true</c> if spell usable; otherwise, <c>false</c>.
+        /// Return <c>true</c> if spell usable; otherwise, <c>false</c>.
         /// </value>
         public bool IsSpellUsable
         {
@@ -213,8 +212,8 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    if (MaxRange < 4.5f)
-                        MaxRange = 4.5f;
+                    if (MaxRange < 5.0f)
+                        MaxRange = 5.0f;
 
                     if (ObjectManager.ObjectManager.Target.GetDistance <= MaxRange && (ObjectManager.ObjectManager.Target.GetDistance >= MinRange))
                     {
