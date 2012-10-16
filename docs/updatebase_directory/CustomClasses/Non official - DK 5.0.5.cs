@@ -629,8 +629,8 @@ public class Deathknight_Blood
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = false;
-        public bool UseAlchFlask = false;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
 
         public DeathknightBloodSettings()
         {
@@ -799,6 +799,7 @@ public class Deathknight_Blood
     #endregion
 
     private Timer Trinket_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
     private Timer AlchFlask_Timer = new Timer(0);
     public int DRW = 1;
     public int LC = 0;
@@ -869,7 +870,7 @@ public class Deathknight_Blood
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
         {
             Path_of_Frost.Launch();
-            Path_of_Frost_Timer = new Timer(1000 * 60 * 9);
+            Path_of_Frost_Timer = new Timer(1000*60*9);
         }
     }
 
@@ -932,7 +933,7 @@ public class Deathknight_Blood
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000 * 60 * 2);
+            Trinket_Timer = new Timer(1000*60*2);
         }
 
         if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
@@ -950,10 +951,11 @@ public class Deathknight_Blood
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000 * 60 * 1);
         }
 
         if (Dancing_Rune_Weapon_Timer.IsReady && DRW == 0)
@@ -1391,7 +1393,7 @@ public class Deathknight_Blood
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
-            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+            AlchFlask_Timer = new Timer(1000*60*60*2);
         }
     }
 
@@ -1463,8 +1465,8 @@ public class Deathknight_Unholy
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = false;
-        public bool UseAlchFlask = false;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
 
         public DeathknightUnholySettings()
         {
@@ -1767,7 +1769,7 @@ public class Deathknight_Unholy
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000 * 60 * 2);
+            Trinket_Timer = new Timer(1000*60*2);
         }
 
         if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
@@ -1785,10 +1787,11 @@ public class Deathknight_Unholy
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000*60*1);
         }
 
         if (Unholy_Frenzy.IsSpellUsable && Unholy_Frenzy.KnownSpell)
@@ -2235,15 +2238,20 @@ public class Deathknight_Unholy
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
-            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+            AlchFlask_Timer = new Timer(1000*60*60*2);
         }
     }
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        }
+
+        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }
@@ -2306,8 +2314,8 @@ public class Deathknight_Frost
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = false;
-        public bool UseAlchFlask = false;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
         public bool UseDuelWield = false;
         public bool UseTwoHander = true;
 
@@ -2614,7 +2622,7 @@ public class Deathknight_Frost
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000 * 60 * 2);
+            Trinket_Timer = new Timer(1000*60*2);
         }
 
         if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
@@ -2632,10 +2640,11 @@ public class Deathknight_Frost
             Lifeblood.Launch();
         }
 
-        if (MySettings.UseEngGlove)
+        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000*60*1);
         }
 
         if (Pillar_of_Frost.IsSpellUsable && Pillar_of_Frost.KnownSpell && MySettings.UsePillarofFrost)
@@ -3097,15 +3106,20 @@ public class Deathknight_Frost
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
-            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+            AlchFlask_Timer = new Timer(1000*60*60*2);
         }
     }
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        }
+
+        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }

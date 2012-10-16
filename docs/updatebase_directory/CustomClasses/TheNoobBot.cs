@@ -7246,8 +7246,8 @@ public class Priest_Shadow
         /* Game Settings */
         public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = false;
-        public bool UseAlchFlask = false;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
 
         public PriestShadowSettings()
         {
@@ -7292,6 +7292,7 @@ public class Priest_Shadow
             AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
             AddControlInWinForm("Use Flash Heal", "UseFlash_Heal", "Healing Spell");
             AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
+            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
             AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
             AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell");
             /* Game Settings */
@@ -7569,7 +7570,7 @@ public class Priest_Shadow
 
     public void DPS_Burst()
     {
-        if (MySettings.UseTrinket && Alchemy.KnownSpell && Trinket_Timer.IsReady)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
@@ -7696,7 +7697,7 @@ public class Priest_Shadow
             return;
         }
 
-            // Blizzard API Calls for Mind Flay using Smite Function
+        // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
                  && MySettings.UseMindFlay)
         {
