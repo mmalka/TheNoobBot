@@ -72,7 +72,7 @@ namespace nManager.Wow.Bot.States
             {
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
-                    Thread.Sleep(10);
+                    Thread.Sleep(100);
                 }
                 Thread.Sleep(1000);
                 Point tPointCorps;
@@ -108,14 +108,7 @@ namespace nManager.Wow.Bot.States
 
                 if (Usefuls.IsFlying)
                 {
-                    Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                    var t = new Helpful.Timer(5500);
-                    while (Usefuls.IsFlying && !t.IsReady)
-                    {
-                        Thread.Sleep(50);
-                    }
-                    Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                    Thread.Sleep(10);
+                    Tasks.MountTask.Land();
                 }
 
                 if (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +

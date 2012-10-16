@@ -70,7 +70,7 @@ namespace nManager.Wow.Bot.Tasks
                         if (TraceLine.TraceLineGo(n2, n))
                         {
                             Logging.Write("Node stuck");
-                            nManagerSetting.AddBlackList(node.Guid, 1000*120);
+                            nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 2);
                             return;
                         }
 
@@ -135,18 +135,13 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(150);
                                 MovementManager.StopMove();
-                                if (Usefuls.IsFlying || ObjectManager.ObjectManager.Me.IsMounted)
+                                if (Usefuls.IsFlying ) //|| ObjectManager.ObjectManager.Me.IsMounted)
                                 {
-                                    Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                                    var t = new Timer(700);
-                                    while (Usefuls.IsFlying && !t.IsReady)
-                                    {
-                                        Thread.Sleep(50);
-                                    }
-                                    Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                                    Thread.Sleep(10);
+                                    MountTask.Land();
                                 }
 
+                                if (ObjectManager.ObjectManager.Me.GetMove)
+                                    Logging.Write("Still moving !!!");
                                 while (ObjectManager.ObjectManager.Me.GetMove)
                                 {
                                     Thread.Sleep(50);
@@ -179,7 +174,7 @@ namespace nManager.Wow.Bot.Tasks
                                         Lua.RunMacroText("/cancelform");
                                     return;
                                 }
-                                nManagerSetting.AddBlackList(node.Guid);
+                                nManagerSetting.AddBlackList(node.Guid, 1000 * 20);
                                 Logging.Write("Farm successful");
                                 if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
@@ -194,12 +189,10 @@ namespace nManager.Wow.Bot.Tasks
 
                             if (States.Farming.PlayerNearest(node))
                             {
-                                Logging.Write("Player Nearest of the node, farm failed");
+                                Logging.Write("Player near the node, farm canceled");
                                 nManagerSetting.AddBlackList(node.Guid, 15 * 1000);
                                 return;
                             }
-
-                            //Thread.Sleep(10);
                         }
                         if (Others.Times > timer)
                             nManagerSetting.AddBlackList(node.Guid);
@@ -225,34 +218,47 @@ namespace nManager.Wow.Bot.Tasks
                     if ((int)node.GetBaseAddress > 0)
                     {
                         var points = new List<Point>();
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.0f)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.5f)
                         {
-                            bool r;
-                            points = PathFinder.FindPath(node.Position, out r);
-                            if (nManagerSetting.CurrentSetting.FlyingMountName != string.Empty && (!r || ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= 15.0f))
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.mountDistance ||
+                                !nManagerSetting.CurrentSetting.useGroundMount)
                             {
-                                if (SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName) ||
-                                    SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName))
+                                if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                                 {
+                                    if (!MountTask.onFlyMount())
+                                        MountTask.Mount();
+                                    else
+                                        MountTask.Takeof();
                                     Fly(nodes);
                                     return;
                                 }
-                                MountTask.Mount();
-                                if (Usefuls.IsFlying)
+                                else if (MountTask.GetMountCapacity() == MountCapacity.Swimm)
                                 {
+                                    if (!MountTask.onAquaticMount())
+                                        MountTask.Mount();
                                     Fly(nodes);
                                     return;
                                 }
                             }
-                            MovementManager.Go(points);
+                            // fallback to ground mount or feet
+                            bool r;
+                            points = PathFinder.FindPath(node.Position, out r);
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.mountDistance &&
+                                nManagerSetting.CurrentSetting.useGroundMount)
+                            {
+                                if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
+                                    MountTask.Mount();
+                            }
                         }
                         if (points.Count <= 0)
                         {
                             points.Add(ObjectManager.ObjectManager.Me.Position);
                             points.Add(node.Position);
                         }
+                        MovementManager.Go(points);
+
                         Logging.Write("Farm " + node.Name + " > " + node.Position);
-                        var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                        var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                         while ((int)node.GetBaseAddress > 0 && Products.Products.IsStarted && !ObjectManager.ObjectManager.Me.IsDeadMe &&
                                !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !timer.IsReady)
                         {
@@ -300,7 +306,7 @@ namespace nManager.Wow.Bot.Tasks
                                     return;
                                 }
                                 Statistics.Farms++;
-                                nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 5);
+                                nManagerSetting.AddBlackList(node.Guid, 1000 * 20); //60 * 5); // 20 sec instead of 5 min
                                 Logging.Write("Farm successful");
                                 if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();

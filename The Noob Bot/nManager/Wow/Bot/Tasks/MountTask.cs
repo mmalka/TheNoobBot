@@ -101,6 +101,21 @@ namespace nManager.Wow.Bot.Tasks
             return MountCapacity.Feet;
         }
 
+        public static bool onGroundMount()
+        {
+            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.GroundMountName);
+        }
+
+        public static bool onFlyMount()
+        {
+            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName);
+        }
+
+        public static bool onAquaticMount()
+        {
+            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName);
+        }
+
         public static void Mount(bool stopMove = true)
         {
             switch (GetMountCapacity())
@@ -123,7 +138,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.GroundMountName))
+                if (ObjectManager.ObjectManager.Me.IsMounted && !onGroundMount())
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted && nManagerSetting.CurrentSetting.useGroundMount && Usefuls.IsOutdoors)
@@ -167,7 +182,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName))
+                if (ObjectManager.ObjectManager.Me.IsMounted && !onAquaticMount())
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -219,7 +234,7 @@ namespace nManager.Wow.Bot.Tasks
                         return;
                 TimerMount = new Timer(1*300);
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && !SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName) && !Usefuls.IsFlying)
+                if (ObjectManager.ObjectManager.Me.IsMounted && !onFlyMount() && !Usefuls.IsFlying)
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -301,14 +316,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
                         tryMounting = 0;
-                        Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-                        var t = new Timer(500);
-                        while (!Usefuls.IsFlying && !t.IsReady)
-                        {
-                            Thread.Sleep(50);
-                        }
-                        Thread.Sleep(100);
-                        Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                        Takeof();
                     }
                 }
             }
@@ -318,6 +326,29 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
+        public static void Takeof()
+        {
+            Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+            var t = new Timer(700);
+            while (!Usefuls.IsFlying && !t.IsReady)
+            {
+                Thread.Sleep(50);
+            }
+            Thread.Sleep(100);
+            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+        }
+
+        public static void Land()
+        {
+            Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+            var t = new Timer(15000);
+            while (Usefuls.IsFlying && !t.IsReady)
+            {
+                Thread.Sleep(50);
+            }
+            Thread.Sleep(100);
+            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+        }
 
         public static void DismountMount(bool stopMove = true, bool stand = true)
         {
@@ -335,16 +366,7 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         Logging.Write("Dismount");
                         if (Usefuls.IsFlying && stand)
-                        {
-                            Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                            var t = new Timer(15500);
-                            while (Usefuls.IsFlying && !t.IsReady)
-                            {
-                                Thread.Sleep(50);
-                            }
-                            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                            //Thread.Sleep(10);
-                        }
+                            Land();
 
                         Usefuls.DisMount();
                         Thread.Sleep(300 + Usefuls.Latency);
