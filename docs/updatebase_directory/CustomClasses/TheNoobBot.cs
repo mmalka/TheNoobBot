@@ -7351,7 +7351,7 @@ public class Priest_Shadow
     private readonly Spell Devouring_Plague = new Spell("Devouring Plague");
     private Timer Devouring_Plague_Timer = new Timer(0);
     private readonly Spell Mind_Blast = new Spell("Mind Blast");
-    private readonly Spell Mind_Flay = new Spell(15407);
+    private readonly Spell Mind_Flay = new Spell("Mind Flay");
     private readonly Spell Mind_Sear = new Spell("Mind Sear");
     private readonly Spell Mind_Spike = new Spell("Mind Spike");
     private readonly Spell Shadow_Word_Death = new Spell("Shadow Word: Death");
@@ -7744,6 +7744,20 @@ public class Priest_Shadow
             return;
         }
 
+        if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
+            && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
+        {
+            Dispersion.Launch();
+            return;
+        }
+
+        if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
+            && MySettings.UseFlash_Heal)
+        {
+            Flash_Heal.Launch();
+            return;
+        }
+
         if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
@@ -7780,14 +7794,7 @@ public class Priest_Shadow
             Renew_Timer = new Timer(1000*12);
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 75 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
-            && MySettings.UsePrayerofMending)
-        {
-            Prayer_of_Mending.Launch();
-            return;
-        }
-
+        
         if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
             && MySettings.UseDesperatePrayer)
         {
@@ -7795,11 +7802,10 @@ public class Priest_Shadow
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent < 55 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-            && MySettings.UseFlash_Heal)
+        if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+            && MySettings.UsePrayerofMending)
         {
-            Flash_Heal.Launch();
-            Thread.Sleep(1200);
+            Prayer_of_Mending.Launch();
             return;
         }
     }
@@ -7823,12 +7829,6 @@ public class Priest_Shadow
         if (ObjectManager.Me.HealthPercent < 20 && Dispersion.KnownSpell && Dispersion.IsSpellUsable
             && MySettings.UseDispersion)
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
-            {
-                Renew_Timer = new Timer(1000*12);
-                Renew.Launch();
-            }
-            Thread.Sleep(200);
             Dispersion.Launch();
             return;
         }
