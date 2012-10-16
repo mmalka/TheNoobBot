@@ -132,12 +132,11 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.GroundMountName);
+                    Logging.Write("Mounting gound mount " + nManagerSetting.CurrentSetting.GroundMountName);
 
                     Thread.Sleep(250);
                     SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.GroundMountName);
-                    Thread.Sleep(800);
-                    Thread.Sleep(Usefuls.Latency);
+                    Thread.Sleep(500 + Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Thread.Sleep(50);
@@ -177,12 +176,11 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.AquaticMountName);
+                    Logging.Write("Mounting aquatic mount " + nManagerSetting.CurrentSetting.AquaticMountName);
 
                     Thread.Sleep(250);
                     SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.AquaticMountName);
-                    Thread.Sleep(800);
-                    Thread.Sleep(Usefuls.Latency);
+                    Thread.Sleep(500 + Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Thread.Sleep(50);
@@ -230,7 +228,7 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting " + nManagerSetting.CurrentSetting.FlyingMountName);
+                    Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
                     Thread.Sleep(100);
                     if (Usefuls.IsSwimming)
                     {
@@ -254,8 +252,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(800);
-                        Thread.Sleep(Usefuls.Latency);
+                        Thread.Sleep(500 + Usefuls.Latency);
                         while (ObjectManager.ObjectManager.Me.IsCast && !ObjectManager.ObjectManager.Me.InCombat)
                         {
                             Thread.Sleep(50);
@@ -308,7 +305,7 @@ namespace nManager.Wow.Bot.Tasks
                         var t = new Timer(500);
                         while (!Usefuls.IsFlying && !t.IsReady)
                         {
-                            Thread.Sleep(30);
+                            Thread.Sleep(50);
                         }
                         Thread.Sleep(100);
                         Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
@@ -326,30 +323,32 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && Products.Products.IsStarted)
+                if (Products.Products.IsStarted)
                 {
-                    Logging.Write("Dismount");
                     if (stopMove)
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
                     Thread.Sleep(200);
 
-                    if (Usefuls.IsFlying && stand)
+                    if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
-                        Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                        var t = new Timer(15500);
-                        while (Usefuls.IsFlying && !t.IsReady)
+                        Logging.Write("Dismount");
+                        if (Usefuls.IsFlying && stand)
                         {
-                            Thread.Sleep(50);
+                            Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+                            var t = new Timer(15500);
+                            while (Usefuls.IsFlying && !t.IsReady)
+                            {
+                                Thread.Sleep(50);
+                            }
+                            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                            //Thread.Sleep(10);
                         }
-                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                        Thread.Sleep(10);
-                    }
 
-                    Usefuls.DisMount();
-                    Thread.Sleep(500);
-                    Thread.Sleep(Usefuls.Latency);
+                        Usefuls.DisMount();
+                        Thread.Sleep(300 + Usefuls.Latency);
+                    }
                 }
             }
             catch (Exception ex)

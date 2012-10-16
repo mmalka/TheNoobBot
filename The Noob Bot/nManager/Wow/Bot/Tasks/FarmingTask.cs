@@ -17,7 +17,6 @@ namespace nManager.Wow.Bot.Tasks
     {
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
-
             try
             {
                 if (Usefuls.IsFlying)
@@ -64,28 +63,6 @@ namespace nManager.Wow.Bot.Tasks
                         else
                             zT = node.Position.Z + 2.5f;
 
-
-
-                        // Try way
-                        /*
-                        if (Bot.ConfigBot.Skipnode)
-                        {
-                            pt = node.Position;
-                            pt.Z = zT;
-                            if (TraceLine.TraceLineGo(pt) || TraceLine.TraceLineGo(pt, node.Position))
-                            {
-                                pt.Z = node.Position.Z + 1.5f;
-                                pt.X = node.Position.X + 1.0f;
-                                zT = node.Position.Z + 1.5f;
-                                if (TraceLine.TraceLineGo(pt) || TraceLine.TraceLineGo(pt, node.Position))
-                                {
-                                    Log.AddLog(Translation.GetText(Translation.Text.Node_stuck));
-                                    Bot.ConfigBot.BlackListnode.Add(node.Guid);
-                                    return;
-                                }
-                            }
-                        }
-                        */
                         var n = new Point(node.Position);
                         n.Z = n.Z + 2.5f;
                         var n2 = new Point(n);
@@ -96,7 +73,6 @@ namespace nManager.Wow.Bot.Tasks
                             nManagerSetting.AddBlackList(node.Guid, 1000*120);
                             return;
                         }
-
 
                         MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
 
@@ -144,7 +120,7 @@ namespace nManager.Wow.Bot.Tasks
                                 zT = node.Position.Z + 1.5f;
                                 var temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, node.Position, ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) + 0.9f);
                                 MovementManager.MoveTo(temps.X, temps.Y, zT);
-                                //Thread.Sleep(700);
+
                                 if (TraceLine.TraceLineGo(node.Position) && node.GetDistance > 4.0f)
                                 {
                                     Logging.Write("Node outside view");
@@ -161,38 +137,14 @@ namespace nManager.Wow.Bot.Tasks
                                 MovementManager.StopMove();
                                 if (Usefuls.IsFlying || ObjectManager.ObjectManager.Me.IsMounted)
                                 {
-                                    /*if (NodesList.GetListId("Herb", Skill.GetValue(SkillLine.Herbalism)).Contains(node.Entry) && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                                    Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+                                    var t = new Timer(700);
+                                    while (Usefuls.IsFlying && !t.IsReady)
                                     {
-                                        Thread.Sleep(100);
-                                        Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                                        var t = new Timer(5500);
-                                        while (Usefuls.IsFlying && !t.IsReady)
-                                        {
-                                            Thread.Sleep(50);
-                                        }
-                                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                                        Thread.Sleep(10);
+                                        Thread.Sleep(50);
                                     }
-                                    else
-                                    {
-                                    */
-
-                                        Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
-                                        var t = new Timer(700);
-                                        while (Usefuls.IsFlying && !t.IsReady)
-                                        {
-                                            Thread.Sleep(3);
-                                        }
-                                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                                        Thread.Sleep(10);
-                                    /*
-                                        if (Usefuls.IsFlying || ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                        {
-                                            MountTask.DismountMount();
-                                            Thread.Sleep(500);
-                                        }
-                                    }
-                                     */
+                                    Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                                    Thread.Sleep(10);
                                 }
 
                                 while (ObjectManager.ObjectManager.Me.GetMove)
@@ -232,13 +184,6 @@ namespace nManager.Wow.Bot.Tasks
                                 if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
 
-                                /*if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                {
-                                    Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-                                    Thread.Sleep(500);
-                                    Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
-                                }*/
-
                                 return;
                             }
                             else if (!ObjectManager.ObjectManager.Me.GetMove)
@@ -254,7 +199,7 @@ namespace nManager.Wow.Bot.Tasks
                                 return;
                             }
 
-                            Thread.Sleep(10);
+                            //Thread.Sleep(10);
                         }
                         if (Others.Times > timer)
                             nManagerSetting.AddBlackList(node.Guid);
@@ -286,7 +231,8 @@ namespace nManager.Wow.Bot.Tasks
                             points = PathFinder.FindPath(node.Position, out r);
                             if (nManagerSetting.CurrentSetting.FlyingMountName != string.Empty && (!r || ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= 15.0f))
                             {
-                                if (SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName))
+                                if (SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName) ||
+                                    SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName))
                                 {
                                     Fly(nodes);
                                     return;

@@ -26,13 +26,13 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 3.6f ? 3.6f : _instanceFromOtherAssembly.Range;
-                    return 3.6f;
+                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
+                    return 5.0f;
                 }
                 catch (Exception exception)
                 {
                     Logging.WriteError("CustomClass > GetRange: " + exception);
-                    return 3.6f;
+                    return 5.0f;
                 }
             }
         }

@@ -87,7 +87,7 @@ namespace nManager.Wow.ObjectManager
                 if (_worker != null)
                 {
                     _worker.Abort();
-                    while (_worker.IsAlive)// || _worker.ThreadState != ThreadState.Aborted)
+                    while (_worker != null  && _worker.IsAlive)// || _worker.ThreadState != ThreadState.Aborted)
                     {
                         // Wait for the thread to actually die.
                         // This avoids crashing WoW at shutdown.
