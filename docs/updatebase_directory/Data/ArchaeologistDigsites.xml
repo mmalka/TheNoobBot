@@ -2638,4 +2638,60 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Site de fouilles des jardins du Temple de jade</name>
+    <continentId>870</continentId>
+    <position>
+      <X>913</X>
+      <Y>-2289</Y>
+      <Z>141</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.71380251646042</px>
+    <py>0.55814158916473</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles des ruines de Gan Shi</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2955</X>
+      <Y>-1649</Y>
+      <Z>253</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.66907250881195</px>
+    <py>0.36072373390198</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du Grand Pont</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1104</X>
+      <Y>-2100</Y>
+      <Z>87</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.69936513900757</px>
+    <py>0.53938591480255</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles de Tian</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2516</X>
+      <Y>-1427</Y>
+      <Z>389</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.6553441286087</px>
+    <py>0.40190881490707</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
