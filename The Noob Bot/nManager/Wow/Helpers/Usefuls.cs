@@ -447,7 +447,7 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.Outland:
                             retS = "Expansion01";
                             break;
-                        case Enums.ContinentId.Pandarie:
+                        case Enums.ContinentId.Pandaria:
                             retS = "HawaiiMainLand";
                             break;
                         case Enums.ContinentId.SOTA:

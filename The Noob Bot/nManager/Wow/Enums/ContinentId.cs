@@ -18,7 +18,7 @@
         Outland = 530,
         Northrend = 571,
         Maelstrom = 646,
-        Pandarie = 870, // MoP
+        Pandaria = 870, // MoP
 
         // Smaller ones
         Sunwell = 580,
