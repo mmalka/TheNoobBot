@@ -89,7 +89,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
                     Spell Wisdom4Winds = new Spell(115913);
-                    if (cont == Enums.ContinentId.Pandarie &&
+                    if (cont == Enums.ContinentId.Pandaria &&
                         Wisdom4Winds.KnownSpell)
                         return MountCapacity.Fly;
 
