@@ -3282,4 +3282,32 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>West Summer Fields Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>897</X>
+      <Y>980</Y>
+      <Z>465</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.50117373466492</px>
+    <py>0.55862498283386</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Kun-Lai Peak Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3562</X>
+      <Y>2130</Y>
+      <Z>1029</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.42711782455444</px>
+    <py>0.3002028465271</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
