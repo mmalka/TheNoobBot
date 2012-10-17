@@ -3198,4 +3198,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>North Ruins of Dojan Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1119</X>
+      <Y>326</Y>
+      <Z>40</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.54287445545197</px>
+    <py>0.75362592935562</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
