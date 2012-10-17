@@ -3255,7 +3255,7 @@
     <Active>true</Active>
   </Digsite>
   <Digsite>
-    <name>Site de fouilles du temple de Niuzao</name>
+    <name>Niuzao Temple Digsite</name>
     <continentId>870</continentId>
     <position>
       <X>2229</X>
@@ -3265,6 +3265,20 @@
     </position>
     <px>0.24033445119858</px>
     <py>0.43071907758713</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Valley of Kings Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3632</X>
+      <Y>1307</Y>
+      <Z>750</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.47964656352997</px>
+    <py>0.29469215869904</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
