@@ -2639,34 +2639,6 @@
     <Active>true</Active>
   </Digsite>
   <Digsite>
-    <name>Site de fouilles des jardins du Temple de jade</name>
-    <continentId>870</continentId>
-    <position>
-      <X>913</X>
-      <Y>-2289</Y>
-      <Z>141</Z>
-      <Type>Flying</Type>
-    </position>
-    <px>0.71380251646042</px>
-    <py>0.55814158916473</py>
-    <PriorityDigsites>1</PriorityDigsites>
-    <Active>true</Active>
-  </Digsite>
-  <Digsite>
-    <name>Site de fouilles des ruines de Gan Shi</name>
-    <continentId>870</continentId>
-    <position>
-      <X>2955</X>
-      <Y>-1649</Y>
-      <Z>253</Z>
-      <Type>Flying</Type>
-    </position>
-    <px>0.66907250881195</px>
-    <py>0.36072373390198</py>
-    <PriorityDigsites>1</PriorityDigsites>
-    <Active>true</Active>
-  </Digsite>
-  <Digsite>
     <name>Site de fouilles du Grand Pont</name>
     <continentId>870</continentId>
     <position>
@@ -2684,13 +2656,545 @@
     <name>Site de fouilles de Tian</name>
     <continentId>870</continentId>
     <position>
-      <X>2516</X>
-      <Y>-1427</Y>
-      <Z>389</Z>
+      <X>2495.24</X>
+      <Y>-1448.241</Y>
+      <Z>388.5864</Z>
       <Type>Flying</Type>
     </position>
     <px>0.6553441286087</px>
     <py>0.40190881490707</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du sanctuaire de l'Aube</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1915.88</X>
+      <Y>-2255.421</Y>
+      <Z>237.4133</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.70948421955109</px>
+    <py>0.45759576559067</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles de l'Arboretum</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1581.18</X>
+      <Y>-2231.49</Y>
+      <Z>155.0716</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.70793735980988</px>
+    <py>0.49307686090469</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles des jardins du Temple de jade</name>
+    <continentId>870</continentId>
+    <position>
+      <X>913.3074</X>
+      <Y>-2287.51</Y>
+      <Z>140.6816</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.71380251646042</px>
+    <py>0.55814158916473</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du bois du Tigre</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1735.894</X>
+      <Y>-736.9385</Y>
+      <Z>321.8712</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.6111296415329</px>
+    <py>0.47635143995285</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du Gong de l’Espoir </name>
+    <continentId>870</continentId>
+    <position>
+      <X>1790.135</X>
+      <Y>-1299.541</Y>
+      <Z>235.6269</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.64851212501526</px>
+    <py>0.4731610417366</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du Présage de l’empereur</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2456.814</X>
+      <Y>-2052.393</Y>
+      <Z>213.1021</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.69904291629791</px>
+    <py>0.40693610906601</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Ruins of Gan Shi Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2890.623</X>
+      <Y>-1570.029</Y>
+      <Z>267.1259</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.66907250881195</px>
+    <py>0.36072373390198</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Den of Sorrow Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-167.6498</X>
+      <Y>-3075.286</Y>
+      <Z>34.39472</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.76401102542877</px>
+    <py>0.66187787055969</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>South Orchard Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>292.6052</X>
+      <Y>-1657.529</Y>
+      <Z>68.44505</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.67358416318893</px>
+    <py>0.62165951728821</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Zhu Province Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-447.2483</X>
+      <Y>-509.373</Y>
+      <Z>101.4979</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.60113954544067</px>
+    <py>0.68885123729706</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>The Spring Road Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>937.8208</X>
+      <Y>-196.1178</Y>
+      <Z>435.0754</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.57432729005814</px>
+    <py>0.55533790588379</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Krasarang Wilds Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1444.263</X>
+      <Y>844.7557</Y>
+      <Z>18.44296</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.50897246599197</px>
+    <py>0.78349965810776</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>North Temple of the Red Crane</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1690.842</X>
+      <Y>983.3719</Y>
+      <Z>13.18308</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.50233387947083</px>
+    <py>0.80960291624069</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Paoquan Hollow Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>309.1171</X>
+      <Y>2025.367</Y>
+      <Z>168.1274</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.43259626626968</px>
+    <py>0.62301301956177</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>East Snow Covered Hills Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3436.687</X>
+      <Y>2394.833</Y>
+      <Z>818.0618</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.41139137744904</px>
+    <py>0.31721830368042</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>South Great Wall Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-654.0433</X>
+      <Y>2332.832</Y>
+      <Z>196.8077</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.41429173946381</px>
+    <py>0.71118402481079</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Pools of Purity Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>418.6236</X>
+      <Y>227.4661</Y>
+      <Z>208.3347</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.55292904376984</px>
+    <py>0.60493409633636</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>North Summer Fields Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1299.037</X>
+      <Y>327.5853</Y>
+      <Z>445.4651</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.54332566261292</px>
+    <py>0.52063024044037</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Mistfall Village Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>769.9207</X>
+      <Y>1519.88</Y>
+      <Z>378.78</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.46591824293137</px>
+    <py>0.57177329063416</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Forest Heart Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1973.401</X>
+      <Y>-1759.331</Y>
+      <Z>191.2586</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.67751574516296</px>
+    <py>0.45498543977737</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>South Fruited Fields Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-242.0289</X>
+      <Y>1432.464</Y>
+      <Z>231.1805</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.47333019971848</px>
+    <py>0.67231917381287</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>South Ruins of Dojan Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1294.946</X>
+      <Y>393.642</Y>
+      <Z>43.98715</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.53920066356659</px>
+    <py>0.77131813764572</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Lost Dynasty Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-782.5609</X>
+      <Y>-210.2414</Y>
+      <Z>56.69416</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.57851672172546</px>
+    <py>0.72075521945953</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Orchard Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1424.311</X>
+      <Y>-2446.664</Y>
+      <Z>149.33</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.72379267215729</px>
+    <py>0.50796538591385</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Tu Shen Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>796.5198</X>
+      <Y>1236.882</Y>
+      <Z>478.3566</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.4845449924469</px>
+    <py>0.56925964355469</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Chow Farmstead Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2011.548</X>
+      <Y>1156.117</Y>
+      <Z>486.5655</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.49157029390335</px>
+    <py>0.45363193750381</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Remote Village Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>4285.457</X>
+      <Y>956.7798</Y>
+      <Z>122.0535</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.50336509943008</px>
+    <py>0.23475134372711</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Thunderwood Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>154.3454</X>
+      <Y>-1327.642</Y>
+      <Z>62.42374</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.65128362178802</px>
+    <py>0.62968385219574</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Fallsong Village Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1210.444</X>
+      <Y>1589.721</Y>
+      <Z>18.8225</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.46185773611069</px>
+    <py>0.76261705160141</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Ruins of Korja Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1533.738</X>
+      <Y>1870.086</Y>
+      <Z>-2.513868</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.44490671157837</px>
+    <py>0.79297417402267</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Small Gate Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3072.967</X>
+      <Y>2848.234</Y>
+      <Z>460.8809</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.37652260065079</px>
+    <py>0.35231268405914</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>North Ruins of Guo-Lai Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1522.746</X>
+      <Y>1648.247</Y>
+      <Z>373.9676</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.41667652130127</px>
+    <py>0.6588808298111</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>South Ruins of Guo-Lai Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1265.315</X>
+      <Y>1915.725</Y>
+      <Z>350.2404</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.44116848707199</px>
+    <py>0.52382063865662</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>North Great Wall Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-163.1225</X>
+      <Y>2316.03</Y>
+      <Z>169.5089</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.41667652130127</px>
+    <py>0.6588808298111</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Lake of Stars Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-824.8358</X>
+      <Y>2523.544</Y>
+      <Z>132.588</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.40088564157486</px>
+    <py>0.72558915615082</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Writhingwood Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-155</X>
+      <Y>2558</Y>
+      <Z>153</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.39895206689835</px>
+    <py>0.6596542596817</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Hatred's Vice Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1945</X>
+      <Y>2511</Y>
+      <Z>427</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.40172350406647</px>
+    <py>0.4584658741951</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Torjari Pit Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-915</X>
+      <Y>1931</Y>
+      <Z>153</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.43968605995178</px>
+    <py>0.73400020599365</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
