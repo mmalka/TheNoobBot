@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
                 if (archaeologySpell == null)
                     archaeologySpell = new Spell("Archaeology");
 
-                for (int i = 1; i <= 10; i++)
+                for (int i = 1; i <= 12; i++)
                 {
                     Lua.RunMacroText("/cast " + archaeologySpell.NameInGame);
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryButton");
