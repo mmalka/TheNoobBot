@@ -2639,7 +2639,7 @@
     <Active>true</Active>
   </Digsite>
   <Digsite>
-    <name>Site de fouilles du Grand Pont</name>
+    <name>Great Bridge Digsite</name>
     <continentId>870</continentId>
     <position>
       <X>1104</X>
@@ -2859,6 +2859,20 @@
     </position>
     <px>0.43259626626968</px>
     <py>0.62301301956177</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Snow Covered Hills Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3341.687</X>
+      <Y>2556.833</Y>
+      <Z>720.0618</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.39888763427734</px>
+    <py>0.32321238517761</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
@@ -3209,6 +3223,48 @@
     </position>
     <px>0.54287445545197</px>
     <py>0.75362592935562</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Gate to Golden Valley Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1800</X>
+      <Y>1350</Y>
+      <Z>469</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.47655284404755</px>
+    <py>0.47045403718948</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Grumblepaw Ranch Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2692</X>
+      <Y>473</Y>
+      <Z>516</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.53372222185135</px>
+    <py>0.3847000002861</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du temple de Niuzao</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2229</X>
+      <Y>5021</Y>
+      <Z>168</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.24033445119858</px>
+    <py>0.43071907758713</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
