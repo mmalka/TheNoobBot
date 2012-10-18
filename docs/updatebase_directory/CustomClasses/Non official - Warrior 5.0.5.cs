@@ -43,49 +43,85 @@ public class Main : ICustomClass
                     #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
-                    var Mortal_Strike = new Spell("Mortal Strike");
-                    if (Mortal_Strike.KnownSpell)
+                    var Warrior_Arms_Spell = new Spell("Mortal Strike");
+                    var Warrior_Fury_Spell = new Spell("Bloodthirst");
+                    var Warrior_Protection_Spell = new Spell("Shield Slam");
+
+                    if (Warrior_Arms_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
                         {
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+                            Warrior_Arms.WarriorArmsSettings CurrentSetting;
+                            CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
+                        }
+                        else
+                        {
+                            Logging.WriteFight("Loading Warrior Arms class...");
+                            new Warrior_Arms();
+                        }
+                        break;
+                    }
+
+                    else if (Warrior_Fury_Spell.KnownSpell)
+                    {
+                        if (ConfigOnly)
+                        {
+                            /*string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Warrior_Fury.xml";
+                            Warrior_Fury.WarriorFurySettings CurrentSetting;
+                            CurrentSetting = new Warrior_Fury.WarriorFurySettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Warrior_Fury.WarriorFurySettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);*/
                             MessageBox.Show("There is no settings available for your Class/Specialisation.");
                         }
                         else
                         {
-                            Logging.WriteFight("Arms Warrior Found");
-                            new Arms();
+                            Logging.WriteFight("Loading Warrior Fury class...");
+                            new Warrior_Fury();
                         }
                         break;
                     }
-                    var Shield_Slam = new Spell("Shield Slam");
-                    if (Shield_Slam.KnownSpell)
+
+                    else if (Warrior_Protection_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
                         {
+                            /*string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Warrior_Protection.xml";
+                            Warrior_Protection.WarriorProtectionSettings CurrentSetting;
+                            CurrentSetting = new Warrior_Protection.WarriorProtectionSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Warrior_Protection.WarriorProtectionSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);*/
                             MessageBox.Show("There is no settings available for your Class/Specialisation.");
                         }
                         else
                         {
-                            Logging.WriteFight("Def Warrior Found");
-                            new WarriorProt();
+                            Logging.WriteFight("Loading Warrior Protection class...");
+                            new Warrior_Protection();
                         }
                         break;
                     }
-                    var Bloodthirst = new Spell("Bloodthirst");
-                    if (Bloodthirst.KnownSpell)
-                    {
-                        if (ConfigOnly)
-                        {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
-                        }
-                        else
-                        {
-                            Logging.WriteFight("Fury Warrior Found");
-                            new WarriorFury();
-                        }
-                        break;
-                    }
-                    if (!Mortal_Strike.KnownSpell)
+
+                    else
                     {
                         if (ConfigOnly)
                         {
@@ -98,9 +134,9 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-                    break;
 
                     #endregion
+
                 default:
                     Dispose();
                     break;
@@ -127,289 +163,763 @@ public class Main : ICustomClass
 
 #region Warrior
 
-public class Arms
+public class Warrior_Arms
 {
-    #region InitializeSpell
-
-    private Spell Battle_Shout = new Spell("Battle Shout");
-    private Spell Battle_Stance = new Spell("Battle Stance");
-    private Spell Berserker_Rage = new Spell("Berserker Rage");
-    private Spell Berserker_Stance = new Spell("Berserker Stance");
-    private Spell Bladestorm = new Spell("Bladestorm");
-    private Spell Charge = new Spell("Charge");
-    private Spell Cleave = new Spell("Cleave");
-    private Spell Colossus_Smash = new Spell("Colossus Smash");
-    private Spell Commanding_Shout = new Spell("Commanding Shout");
-    private Spell Deadly_Calm = new Spell("Deadly Calm");
-    private Spell Defensive_Stance = new Spell("Defensive Stance");
-    private Spell Die_by_the_Sword = new Spell("Die by the Sword");
-    private Spell Disarm = new Spell("Disarm");
-    private Spell Disrupting_Shout = new Spell("Disrupting Shout");
-    private Spell Dragon_Roar = new Spell("Dragon Roar");
-    private Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
-    private Spell Execute = new Spell("Execute");
-    private Spell Hamstring = new Spell("Hamstring");
-    private Spell Heroic_Leap = new Spell("Heroic Leap");
-    private Spell Heroic_Strike = new Spell("Heroic Strike");
-    private Spell Heroic_Throw = new Spell("Heroic Throw");
-    private Spell Impending_Victory = new Spell("Impending Victory");
-    private Spell Intervene = new Spell("Intervene");
-    private Spell Intimidating_Shout = new Spell("Intimidating Shout");
-    private Spell Mass_Spell_Reflection = new Spell("Mass Spell Reflection");
-    private Spell Mortal_Strike = new Spell("Mortal Strike");
-    private Spell Overpower = new Spell("Overpower");
-    private Spell Piercing_Howl = new Spell("Piercing Howl");
-    private Spell Pummel = new Spell("Pummel");
-    private Spell Rallying_Cry = new Spell("Rallying Cry");
-    private Spell Recklessness = new Spell("Recklessness");
-    private Spell Safeguard = new Spell("Safeguard");
-    private Spell Shattering_Throw = new Spell("Shattering Throw");
-    private Spell Shield_Wall = new Spell("Shield Wall");
-    private Spell Shockwave = new Spell("Shockwave");
-    private Spell Slam = new Spell("Slam");
-    private Spell Spell_Reflection = new Spell("Spell Reflection");
-    private Spell Sunder_Armor = new Spell("Sunder Armor");
-    private Spell Staggering_Shout = new Spell("Staggering Shout");
-    private Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
-    private Spell Taunt = new Spell("Taunt");
-    private Spell Throw = new Spell("Throw");
-    private Spell Thunder_Clap = new Spell("Thunder Clap");
-    private Spell Vigilence = new Spell("Vigilence");
-    private Spell Whirlwind = new Spell("Whirlwind");
-
-    // TIMER
-    private Timer look = new Timer(0);
-    private Timer fighttimer = new Timer(0);
-    private Timer rendchill = new Timer(0);
-
-
-    // Profession & Racials
-    private Spell Arcane_Torrent = new Spell("Arcane Torrent");
-    private Spell Berserking = new Spell("Berserking");
-    private Spell Blood_Fury = new Spell("Blood Fury");
-    private Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
-    private Spell Lifeblood = new Spell("Lifeblood");
-    private Spell Stoneform = new Spell("Stoneform");
-
-    #endregion InitializeSpell
-
-    public Arms()
+    [Serializable]
+    public class WarriorArmsSettings : nManager.Helpful.Settings
     {
-        Main.range = 3.6f;
+        /* Professions & Racials */
+        public bool UseArcaneTorrent = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseLifeblood = true;
+        public bool UseStoneform = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseWarStomp = true;
+        /* Warrior Buffs */
+        public bool UseBattleShout = true;
+        public bool UseBattleStance = true;
+        public bool UseBerserkerStance = false;
+        public bool UseCommandingShout = false;
+        public bool UseDefensiveStance = true;
+        /* Offensive Spell */
+        public bool UseAvatar = true;
+        public bool UseBladestorm = true;
+        public bool UseBloodbath = true;
+        public bool UseCharge = true;
+        public bool UseCleave = true;
+        public bool UseColossusSmash = true;
+        public bool UseDragonRoar = true;
+        public bool UseExecute = true;
+        public bool UseHeroicLeap = true;
+        public bool UseHeroicStrike = true;
+        public bool UseHeroicThrow = true;
+        public bool UseMortalStrike = true;
+        public bool UseOverpower = true;
+        public bool UseShockwave = true;
+        public bool UseSlam = true;
+        public bool UseStormBolt = true;
+        public bool UseTaunt = true;
+        public bool UseThrow = true;
+        public bool UseThunderClap = true;
+        public bool UseWhirlwind = true;
+        /* Offensive Cooldown */
+        public bool UseBerserkerRage = true;
+        public bool UseDeadlyCalm = true;
+        public bool UseRecklessness = true;
+        public bool UseShatteringThrow = true;
+        public bool UseSweepingStrikes = true;
+        public bool UseSkullBanner = true;
+        /* Defensive Cooldown */
+        public bool UseDiebytheSword = true;
+        public bool UseDisarm = true;
+        public bool UseDisruptingShout = true;
+        public bool UseHamstring = false;
+        public bool UseIntimidatingShout = true;
+        public bool UseMassSpellReflection = true;
+        public bool UsePiercingHowl = false;
+        public bool UsePummel = true;
+        public bool UseStaggeringShout = true;
+        public bool UseDemoralizingBanner = true;
+        /* Healing Spell */
+        public bool UseEnragedRegeneration = true;
+        public bool UseRallyingCry = true;
+        public bool UseVictoryRush = true;
+        /* Game Settings */
+        public bool UseLowCombat = true;
+        public bool UseTrinket = true;
+        public bool UseEngGlove = true;
+        public bool UseAlchFlask = true;
+
+        public WarriorArmsSettings()
+        {
+            ConfigWinForm(new System.Drawing.Point(400, 400), "Warrior Arms Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            /* Warrior Buffs */
+            AddControlInWinForm("Use Battle Shout", "UseBattleShout", "Warrior Buffs");
+            AddControlInWinForm("Use Battle Stance", "UseBattleStance", "Warrior Buffs");
+            AddControlInWinForm("Use Berserker Stance", "UseBerserkerStance", "Warrior Buffs");
+            AddControlInWinForm("Use Commanding Shout", "UseCommandingShout", "Warrior Buffs");
+            AddControlInWinForm("Use Defensive Stance", "UseDefensiveStance", "Warrior Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Avatar", "UseAvatar", "Offensive Spell");
+            AddControlInWinForm("Use Bladestorm", "UseBladestorm", "Offensive Spell");
+            AddControlInWinForm("Use Bloodbath", "UseBloodbath", "Offensive Spell");
+            AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
+            AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
+            AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
+            AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
+            AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Strike", "UseHeroicStrike", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Offensive Spell");
+            AddControlInWinForm("Use Mortal Strike", "UseMortalStrike", "Offensive Spell");
+            AddControlInWinForm("Use Overpower", "UseOverpower", "Offensive Spell");
+            AddControlInWinForm("Use Shockwave", "UseShockwave", "Offensive Spell");
+            AddControlInWinForm("Use Slam", "UseSlam", "Offensive Spell");
+            AddControlInWinForm("Use Storm Bolt", "UseStormBolt", "Offensive Spell");
+            AddControlInWinForm("Use Taunt", "UseTaunt", "Offensive Spell");
+            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
+            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
+            AddControlInWinForm("Use Thunder Clap", "UseThunderClap", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Berserker Rage", "UseBerserkerRage", "Offensive Cooldown");
+            AddControlInWinForm("Use Deadly Calm", "UseDeadlyCalm", "Offensive Cooldown");
+            AddControlInWinForm("Use Recklessness", "UseRecklessness", "Offensive Cooldown");
+            AddControlInWinForm("Use Shattering Throw", "UseShatteringThrow", "Offensive Cooldown");
+            AddControlInWinForm("Use Sweeping Strikes", "UseSweepingStrikes", "Offensive Cooldown");
+            AddControlInWinForm("Use Skull Banner", "UseSkullBanner", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Use Die by the Sword", "UseDiebytheSword", "Defensive Cooldown");
+            AddControlInWinForm("Use Disarm", "UseDisarm", "Defensive Cooldown");
+            AddControlInWinForm("Use Disrupting Shout", "UseDisruptingShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Hamstring", "UseHamstring", "Defensive Cooldown");
+            AddControlInWinForm("Use Intimidating Shout", "UseIntimidatingShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
+            AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
+            AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
+            AddControlInWinForm("Use Shield Wall", "UseShieldWall", "Defensive Cooldown");
+            AddControlInWinForm("Use Spell Reflection", "UseSpellReflection", "Defensive Cooldown");
+            AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Demoralizing Banner", "UseDemoralizingBanner", "Defensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
+            AddControlInWinForm("Use Rallying Cry", "UseRallyingCry", "Healing Spell");
+            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spell");
+            /* Game Settings */
+            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+        }
+
+        public static WarriorArmsSettings CurrentSetting { get; set; }
+
+        public static WarriorArmsSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+            if (System.IO.File.Exists(CurrentSettingsFile))
+            {
+                return
+                    CurrentSetting = Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new Warrior_Arms.WarriorArmsSettings();
+            }
+        }
+    }
+
+    private readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
+
+    #region Professions & Racials
+
+    private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly Spell Stoneform = new Spell("Stoneform");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
+    private readonly Spell War_Stomp = new Spell("War Stomp");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Alchemy = new Spell("Alchemy");
+
+    #endregion
+
+    #region Warrior Buffs
+
+    private readonly Spell Battle_Shout = new Spell("Battle Shout");
+    private readonly Spell Battle_Stance = new Spell("Battle Stance");
+    private readonly Spell Berserker_Stance = new Spell("Berserker Stance");
+    private readonly Spell Commanding_Shout = new Spell("Commanding Shout");
+    private readonly Spell Defensive_Stance = new Spell("Defensive Stance");
+
+    #endregion
+
+    #region Offensive Spell
+
+    private readonly Spell Avatar = new Spell("Avatar");
+    private readonly Spell Bladestorm = new Spell("Bladestorm");
+    private readonly Spell Bloodbath = new Spell("Bloodbath");
+    private readonly Spell Charge = new Spell("Charge");
+    private readonly Spell Cleave = new Spell("Cleave");
+    private readonly Spell Colossus_Smash = new Spell("Colossus Smash");
+    private readonly Spell Dragon_Roar = new Spell("Dragon Roar");
+    private readonly Spell Execute = new Spell("Execute");
+    private readonly Spell Heroic_Leap = new Spell("Heroic Leap");
+    private readonly Spell Heroic_Strike = new Spell("Heroic Strike");
+    private readonly Spell Heroic_Throw = new Spell("Heroic Throw");
+    private readonly Spell Impending_Victory = new Spell("Impending Victory");
+    private readonly Spell Mortal_Strike = new Spell("Mortal Strike");
+    private readonly Spell Overpower = new Spell("Overpower");
+    private readonly Spell Shockwave = new Spell("Shockwave");
+    private readonly Spell Slam = new Spell("Slam");
+    private readonly Spell Storm_Bolt = new Spell("Storm Bolt");
+    private readonly Spell Taunt = new Spell("Taunt");
+    private readonly Spell Throw = new Spell("Throw");
+    private readonly Spell Thunder_Clap = new Spell("Thunder Clap");
+    private readonly Spell Whirlwind = new Spell("Whirlwind");
+
+    #endregion
+
+    #region Offensive Cooldown
+
+    private readonly Spell Berserker_Rage = new Spell("Berserker Rage");
+    private readonly Spell Deadly_Calm = new Spell("Deadly Calm");
+    private readonly Spell Recklessness = new Spell("Recklessness");
+    private readonly Spell Shattering_Throw = new Spell("Shattering Throw");
+    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
+    private readonly Spell Skull_Banner = new Spell("Skull Banner");
+
+    #endregion
+
+    #region Defensive Cooldown
+
+    private readonly Spell Die_by_the_Sword = new Spell("Die by the Sword");
+    private readonly Spell Disarm = new Spell("Disarm");
+    private Timer Disarm_Timer = new Timer(0);
+    private readonly Spell Disrupting_Shout = new Spell("Disrupting Shout");
+    private readonly Spell Hamstring = new Spell("Hamstring");
+    private readonly Spell Intimidating_Shout = new Spell("Intimidating Shout");
+    private readonly Spell Mass_Spell_Reflection = new Spell("Mass Spell Reflection");
+    private readonly Spell Piercing_Howl = new Spell("Piercing Howl");
+    private readonly Spell Pummel = new Spell("Pummel");
+    private readonly Spell Staggering_Shout = new Spell("Staggering Shout");
+    private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
+
+    #endregion
+
+    #region Healing Spell
+
+    private readonly Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
+    private readonly Spell Rallying_Cry = new Spell("Rallying Cry");
+    private readonly Spell Victory_Rush = new Spell("Victory Rush");
+
+    #endregion
+
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int LC = 0;
+
+    public Warrior_Arms()
+    {
+        Main.range = 5.0f;
         UInt64 lastTarget = 0;
 
         while (Main.loop)
         {
-            if (!ObjectManager.Me.IsMounted)
+            try
             {
-                buffoutfight();
-
-                if (!Fight.InFight && look.IsReady)
+                if (!ObjectManager.Me.IsMounted)
                 {
-                    look = new Timer(5000);
-                    Lua.RunMacroText("/targetfriendplayer");
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0 && ObjectManager.Target.GetDistance > Main.range)
-                {
-                    fighttimer = new Timer(60000);
-                }
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && ObjectManager.Target.GetDistance <= Main.range)
+                    if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
-                        pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-                    fight();
-                    if (!Fight.InFight)
-                    {
-                        Logging.WriteFight(" - Target Down - ");
-                        look = new Timer(5000);
-                    }
+                        if (ObjectManager.Me.Target != lastTarget &&
+                            (Charge.IsDistanceGood || Heroic_Throw.IsDistanceGood))
+                        {
+                            Pull();
+                            lastTarget = ObjectManager.Me.Target;
+                        }
 
-                    if (fighttimer.IsReady && ObjectManager.Target.HealthPercent > 90 && ObjectManager.Me.Target > 0 &&
-                        ObjectManager.GetNumberAttackPlayer() < 2)
-                    {
-                        Logging.WriteFight(" - Target Evading - ");
-                        break;
+                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            && MySettings.UseLowCombat)
+                        {
+                            LC = 1;
+                            LowCombat();
+                        }
+                        else
+                        {
+                            LC = 0;
+                            Combat();
+                        }
                     }
+                    else
+                        Patrolling();
                 }
             }
-            Thread.Sleep(350);
+            catch
+            {
+            }
+            Thread.Sleep(250);
         }
     }
 
-    public void pull()
+    public void Pull()
     {
-        if (hardmob()) Logging.WriteFight(" -  Pull Hard Mob - ");
-        if (!hardmob()) Logging.WriteFight(" -  Pull Easy Mob - ");
-        fighttimer = new Timer(60000);
-        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
+        if (ObjectManager.Target.GetDistance > 15 && Charge.KnownSpell && Charge.IsSpellUsable)
         {
             Charge.Launch();
+            return;
         }
-    }
-
-    public void buffoutfight()
-    {
-        if (Fight.InFight || ObjectManager.Me.IsDeadMe) return;
-
-        if (!ObjectManager.Me.HaveBuff(79640) &&
-            ItemsManager.GetItemCountByIdLUA(58149) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:58149");
-        }
-
-        if (Battle_Shout.KnownSpell && Battle_Shout.IsSpellUsable && !Battle_Shout.HaveBuff)
-        {
-            Battle_Shout.Launch();
-        }
-    }
-
-    public void fight()
-    {
-        selfheal();
-        buffinfight();
-        if (ObjectManager.GetNumberAttackPlayer() > 1) fighttimer = new Timer(60000);
-
-        if (Berserking.KnownSpell && Berserking.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(1454);
-            // Berserking.Launch();
-        }
-
-        if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50)
-        {
-            Berserker_Rage.Launch();
-        }
-
-        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood)
-        {
-            Charge.Launch();
-        }
-
-        if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsDistanceGood)
-        {
-            Execute.Launch();
-        }
-
-        if (Sweeping_Strikes.KnownSpell && Sweeping_Strikes.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1)
-        {
-            Sweeping_Strikes.Launch();
-        }
-
-        if (Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood)
-        {
-            Colossus_Smash.Launch();
-        }
-
-        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
+        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
         {
             Heroic_Throw.Launch();
+            return;
         }
+        else
+        {
+            if (ObjectManager.Target.GetDistance > 15 && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+                return;
+            }
+        }
+    }
 
-        if (Mortal_Strike.KnownSpell && Mortal_Strike.IsSpellUsable && Mortal_Strike.IsDistanceGood &&
-            (ObjectManager.GetNumberAttackPlayer() < 2 ||
-             (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+    public void Combat()
+    {
+        AvoidMelee();
+        if (OnCD.IsReady)
+            Defense_Cycle();
+        Heal();
+        Decast();
+        Buff();
+        DPS_Burst();
+        DPS_Cycle();
+    }
+
+    public void LowCombat()
+    {
+        AvoidMelee();
+        Heal();
+        Defense_Cycle();
+        Buff();
+
+        if (Mortal_Strike.KnownSpell && Mortal_Strike.IsSpellUsable && Mortal_Strike.IsDistanceGood
+            && MySettings.UseMortalStrike)
         {
             Mortal_Strike.Launch();
+            return;
         }
-
-        if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsDistanceGood &&
-            (ObjectManager.GetNumberAttackPlayer() < 2 ||
-             (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
+        else if (Colossus_Smash.KnownSpell && Colossus_Smash.IsDistanceGood && Colossus_Smash.IsSpellUsable
+            && MySettings.UseColossusSmash)
         {
-            Overpower.Launch();
+            Colossus_Smash.Launch();
+            return;
         }
-
-        if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsDistanceGood &&
-            ObjectManager.GetNumberAttackPlayer() > 1)
+        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && MySettings.UseShockwave)
         {
-            Cleave.Launch();
+            Shockwave.Launch();
+            return;
         }
-
-        if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood &&
-            ObjectManager.Me.RagePercentage > 70)
+        else if (Dragon_Roar.KnownSpell && Dragon_Roar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && MySettings.UseDragonRoar)
         {
-            Heroic_Strike.Launch();
+            Dragon_Roar.Launch();
+            return;
         }
-
-
-        if (Pummel.KnownSpell && Pummel.IsSpellUsable && Pummel.IsDistanceGood &&
-            ObjectManager.Target.IsCast)
+        else
         {
-            Pummel.Launch();
+            if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+                && MySettings.UseBladestorm)
+            {
+                Bladestorm.Launch();
+                return;
+            }
         }
 
-        if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsDistanceGood && !Overpower.IsSpellUsable &&
-            !Mortal_Strike.IsSpellUsable &&
-            (ObjectManager.GetNumberAttackPlayer() < 2 ||
-             (ObjectManager.GetNumberAttackPlayer() > 1 && !Cleave.KnownSpell)))
-        {
-            Slam.Launch();
-        }
-
-        if (Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable &&
-            ObjectManager.Target.IsCast && ObjectManager.Target.GetDistance < 8)
-        {
-            Arcane_Torrent.Launch();
-        }
-    }
-
-    private void buffinfight()
-    {
-        if (!Fight.InFight) return;
-
-        if ((ObjectManager.GetNumberAttackPlayer() > 1 || hardmob()) &&
-            ObjectManager.Me.HealthPercent < 65 &&
-            ObjectManager.Target.GetDistance < 5 &&
-            Stoneform.KnownSpell && Stoneform.IsSpellUsable)
-        {
-            SpellManager.CastSpellByIdLUA(20594);
-            // Stoneform.Launch();
-        }
-
-        if (!Battle_Stance.HaveBuff && Battle_Stance.IsSpellUsable)
-        {
-            Battle_Stance.Launch();
-        }
-
-        if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && !Thunder_Clap.TargetHaveBuff && ObjectManager.Target.GetDistance < 9 &&
-            (ObjectManager.Me.RagePercentage > 50 || hardmob() || ObjectManager.GetNumberAttackPlayer() > 1))
+        if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && Thunder_Clap.IsDistanceGood
+            && MySettings.UseThunderClap)
         {
             Thunder_Clap.Launch();
+            return;
         }
     }
 
-    private void selfheal()
+    public void DPS_Burst()
     {
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Lifeblood.KnownSpell && Lifeblood.IsSpellUsable)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
+        {
+            Logging.WriteFight("Use Trinket 1.");
+            Lua.RunMacroText("/use 13");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Logging.WriteFight("Use Trinket 2.");
+            Lua.RunMacroText("/use 14");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Trinket_Timer = new Timer(1000 * 60 * 2);
+            return;
+        }
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
+        {
+            Berserking.Launch();
+            return;
+        }
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury)
+        {
+            Blood_Fury.Launch();
+            return;
+        }
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
         {
             Lifeblood.Launch();
+            return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 &&
-            Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable)
+        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
         {
-            Gift_of_the_Naaru.Launch();
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000 * 60 * 1);
+            return;
+        }
+        else if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
+            && MySettings.UseBerserkerRage)
+        {
+            Berserker_Rage.Launch();
+            return;
+        }
+        else if (Battle_Shout.KnownSpell && Battle_Shout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
+            && MySettings.UseBattleShout)
+        {
+            Battle_Shout.Launch();
+            return;
+        }
+        else if (Commanding_Shout.KnownSpell && Commanding_Shout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
+            && MySettings.UseCommandingShout && !MySettings.UseBattleShout)
+        {
+            Commanding_Shout.Launch();
+            return;
+        }
+        else if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && MySettings.UseRecklessness)
+        {
+            Recklessness.Launch();
+            return;
+        }
+        else if (Shattering_Throw.KnownSpell && Shattering_Throw.IsSpellUsable && Shattering_Throw.IsDistanceGood
+            && MySettings.UseShatteringThrow)
+        {
+            Shattering_Throw.Launch();
+            return;
+        }
+        else
+        {
+            if (Skull_Banner.KnownSpell && Skull_Banner.IsSpellUsable
+                && MySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
+            {
+                Skull_Banner.Launch();
+                return;
+            }
         }
     }
 
-    public bool hardmob()
+    public void DPS_Cycle()
     {
-        if (((ObjectManager.Target.MaxHealth*100)/ObjectManager.Me.MaxHealth) > 100)
+        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
+            && MySettings.UseTaunt)
         {
-            return true;
+            Taunt.Launch();
+            return;
         }
-        return false;
+
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood && ObjectManager.Target.GetDistance > 8
+            && MySettings.UseCharge)
+        {
+            Charge.Launch();
+            return;
+        }
+
+        if (Sweeping_Strikes.KnownSpell && Sweeping_Strikes.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 1
+            && MySettings.UseSweepingStrikes)
+        {
+            Sweeping_Strikes.Launch();
+            return;
+        }
+        else if (Thunder_Clap.KnownSpell && Thunder_Clap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && MySettings.UseThunderClap)
+        {
+            Thunder_Clap.Launch();
+            return;
+        }
+        else if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
+            && MySettings.UseWhirlwind)
+        {
+            Whirlwind.Launch();
+            return;
+        }
+        else if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsDistanceGood
+            && ObjectManager.GetNumberAttackPlayer() == 3 && MySettings.UseCleave)
+        {
+            if (Deadly_Calm.KnownSpell && Deadly_Calm.IsSpellUsable && MySettings.UseDeadlyCalm)
+            {
+                Deadly_Calm.Launch();
+                Thread.Sleep(200);
+            }
+
+            Cleave.Launch();
+            return;
+        }
+        else if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood
+            && MySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
+            && (ObjectManager.Me.RagePercentage > 90 || ObjectManager.Me.HaveBuff(125831)))
+        {
+            if (Deadly_Calm.KnownSpell && Deadly_Calm.IsSpellUsable && MySettings.UseDeadlyCalm)
+            {
+                Deadly_Calm.Launch();
+                Thread.Sleep(200);
+            }
+
+            Heroic_Strike.Launch();
+            return;
+        }
+        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && MySettings.UseShockwave)
+        {
+            Shockwave.Launch();
+            return;
+        }
+        else if (Dragon_Roar.KnownSpell && Dragon_Roar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && MySettings.UseDragonRoar)
+        {
+            Dragon_Roar.Launch();
+            return;
+        }
+        else if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && MySettings.UseBladestorm)
+        {
+            Bladestorm.Launch();
+            return;
+        }
+        else if (Mortal_Strike.KnownSpell && Mortal_Strike.IsSpellUsable && Mortal_Strike.IsDistanceGood
+            && MySettings.UseMortalStrike && ObjectManager.Me.RagePercentage < 100)
+        {
+            Mortal_Strike.Launch();
+            return;
+        }
+        else if (Colossus_Smash.KnownSpell && Colossus_Smash.IsSpellUsable && Colossus_Smash.IsDistanceGood
+            && MySettings.UseColossusSmash)
+        {
+            Colossus_Smash.Launch();
+            return;
+        }
+        else if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsDistanceGood
+            && MySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
+        {
+            Execute.Launch();
+            return;
+        }
+        else if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsDistanceGood
+            && MySettings.UseOverpower && ObjectManager.Me.RagePercentage < 100)
+        {
+            Overpower.Launch();
+            return;
+        }
+        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow)
+        {
+            Heroic_Throw.Launch();
+            return;
+        }
+        else
+        {
+            if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsDistanceGood && MySettings.UseSlam
+                && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.Target.HealthPercent > 20)
+            {
+                Slam.Launch();
+                return;
+            }
+        }
+    }
+
+    public void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Heal();
+            Buff();
+        }
+    }
+
+    private void Buff()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (ObjectManager.Me.HealthPercent < 30 && MySettings.UseDefensiveStance
+            && Defensive_Stance.KnownSpell && Defensive_Stance.IsSpellUsable)
+        {
+            Defensive_Stance.Launch();
+            return;
+        }
+        else if (!Battle_Stance.HaveBuff && Battle_Stance.KnownSpell && Battle_Stance.IsSpellUsable
+            && MySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
+        {
+            Battle_Stance.Launch();
+            return;
+        }
+        else if (!Berserker_Stance.HaveBuff && Berserker_Stance.KnownSpell && Berserker_Stance.IsSpellUsable
+            && MySettings.UseBerserkerStance && !MySettings.UseBattleStance)
+        {
+            Berserker_Stance.Launch();
+            return;
+        }
+        else if (Battle_Shout.KnownSpell && Battle_Shout.IsSpellUsable && !Battle_Shout.HaveBuff
+            && MySettings.UseBattleShout)
+        {
+            Battle_Shout.Launch();
+            return;
+        }
+        else
+        {
+            if (Commanding_Shout.KnownSpell && Commanding_Shout.IsSpellUsable && !Commanding_Shout.HaveBuff
+                && MySettings.UseCommandingShout && !MySettings.UseBattleShout)
+            {
+                Commanding_Shout.Launch();
+                return;
+            }
+        }
+    }
+
+    private void Heal()
+    {
+        if (ObjectManager.Me.IsMounted)
+            return;
+
+        if (Victory_Rush.KnownSpell && Victory_Rush.IsSpellUsable && Victory_Rush.IsDistanceGood
+            && MySettings.UseVictoryRush && ObjectManager.Me.HealthPercent < 90)
+        {
+            Victory_Rush.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 30 && Rallying_Cry.IsSpellUsable && Rallying_Cry.KnownSpell
+            && MySettings.UseRallyingCry && Fight.InFight)
+        {
+            Rallying_Cry.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+            && MySettings.UseGiftoftheNaaru)
+        {
+            Gift_of_the_Naaru.Launch();
+            return;
+        }
+        else 
+        {
+            if (ObjectManager.Me.HealthPercent < 80 && Enraged_Regeneration.IsSpellUsable && Enraged_Regeneration.KnownSpell
+                && MySettings.UseEnragedRegeneration)
+            {
+                Enraged_Regeneration.Launch();
+                return;
+            }
+        }
+    }
+
+    private void Defense_Cycle()
+    {
+        if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseDisarm && Disarm.IsDistanceGood
+            && Disarm.KnownSpell && Disarm.IsSpellUsable && Disarm_Timer.IsReady)
+        {
+            Disarm.Launch();
+            Disarm_Timer = new Timer(1000*60);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseIntimidatingShout
+            && Intimidating_Shout.KnownSpell && Intimidating_Shout.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        {
+            Intimidating_Shout.Launch();
+            OnCD = new Timer(1000*8);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDiebytheSword
+            && Die_by_the_Sword.KnownSpell && Die_by_the_Sword.IsSpellUsable)
+        {
+            Die_by_the_Sword.Launch();
+            OnCD = new Timer(1000*8);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDemoralizingBanner
+            && Demoralizing_Banner.KnownSpell && Demoralizing_Banner.IsSpellUsable && ObjectManager.Target.GetDistance < 30)
+        {
+            Demoralizing_Banner.Launch();
+            OnCD = new Timer(1000*15);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            && MySettings.UseWarStomp)
+        {
+            War_Stomp.Launch();
+            OnCD = new Timer(1000*2);
+            return;
+        }
+        else
+        {
+            if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+                && MySettings.UseStoneform)
+            {
+                Stoneform.Launch();
+                OnCD = new Timer(1000*8);
+                return;
+            }
+        }
+    }
+
+    private void Decast()
+    {
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8
+            && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable && MySettings.UseArcaneTorrent)
+        {
+            Arcane_Torrent.Launch();
+            return;
+        }
+        else if (!Hamstring.TargetHaveBuff && MySettings.UseHamstring && Hamstring.KnownSpell
+            && Hamstring.IsSpellUsable && Hamstring.IsDistanceGood)
+        {
+            Hamstring.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsDistanceGood
+            && Pummel.KnownSpell && Pummel.IsSpellUsable && MySettings.UsePummel)
+        {
+            Pummel.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 10
+            && Disrupting_Shout.KnownSpell && Disrupting_Shout.IsSpellUsable && MySettings.UseDisruptingShout)
+        {
+            Disrupting_Shout.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.GetMove && !Piercing_Howl.TargetHaveBuff && MySettings.UsePiercingHowl
+            && Piercing_Howl.KnownSpell && Piercing_Howl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
+        {
+            Piercing_Howl.Launch();
+            return;
+        }
+        else if (Hamstring.TargetHaveBuff && MySettings.UseStaggeringShout && Staggering_Shout.KnownSpell 
+            && Staggering_Shout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
+        {
+            Staggering_Shout.Launch();
+            return;
+        }
+        else
+        {
+            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseMassSpellReflection
+                && Mass_Spell_Reflection.KnownSpell && Mass_Spell_Reflection.IsSpellUsable)
+            {
+                Mass_Spell_Reflection.Launch();
+                return;
+            }
+        }
+    }
+
+    private void AvoidMelee()
+    {
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        }
     }
 }
 
-public class WarriorProt
+public class Warrior_Protection
 {
     #region InitializeSpell
 
@@ -472,9 +982,9 @@ public class WarriorProt
 
     #endregion InitializeSpell
 
-    public WarriorProt()
+    public Warrior_Protection()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 
@@ -829,7 +1339,7 @@ public class WarriorProt
     }
 }
 
-public class WarriorFury
+public class Warrior_Fury
 {
     #region InitializeSpell
 
@@ -885,9 +1395,9 @@ public class WarriorFury
 
     #endregion InitializeSpell
 
-    public WarriorFury()
+    public Warrior_Fury()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 
@@ -1246,7 +1756,7 @@ public class Warrior
 
     public Warrior()
     {
-        Main.range = 3.6f;
+        Main.range = 5.0f;
 
         UInt64 lastTarget = 0;
 

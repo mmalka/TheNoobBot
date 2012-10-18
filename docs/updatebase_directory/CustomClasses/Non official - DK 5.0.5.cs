@@ -1399,9 +1399,9 @@ public class Deathknight_Blood
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -2247,11 +2247,6 @@ public class Deathknight_Unholy
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
             nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-        }
-
-        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
-        {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }
@@ -3115,11 +3110,6 @@ public class Deathknight_Frost
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
             nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-        }
-
-        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
-        {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }

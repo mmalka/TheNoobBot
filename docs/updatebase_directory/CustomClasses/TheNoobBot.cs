@@ -421,15 +421,15 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             System.Windows.Forms.MessageBox.Show(
-                                "Priest Discipline found, but no Discipline class available, loading Priest Shadow Settings");
+                                "Priest Discipline found, but no Discipline class available, loading Priest Discipline Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
-                            Priest_Shadow.PriestShadowSettings CurrentSetting;
-                            CurrentSetting = new Priest_Shadow.PriestShadowSettings();
+                                                         "\\CustomClasses\\Settings\\Priest_Discipline.xml";
+                            Priest_Discipline.PriestDisciplineSettings CurrentSetting;
+                            CurrentSetting = new Priest_Discipline.PriestDisciplineSettings();
                             if (System.IO.File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
+                                    Settings.Load<Priest_Discipline.PriestDisciplineSettings>(CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);
@@ -447,15 +447,15 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             System.Windows.Forms.MessageBox.Show(
-                                "Priest Holy found, but no Holy class available, loading Priest Shadow Settings");
+                                "Priest Holy found, but no Holy class available, loading Priest Holy Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
-                            Priest_Shadow.PriestShadowSettings CurrentSetting;
-                            CurrentSetting = new Priest_Shadow.PriestShadowSettings();
+                                                         "\\CustomClasses\\Settings\\Priest_Holy.xml";
+                            Priest_Holy.PriestHolySettings CurrentSetting;
+                            CurrentSetting = new Priest_Holy.PriestHolySettings();
                             if (System.IO.File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
+                                    Settings.Load<Priest_Holy.PriestHolySettings>(CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);
@@ -7534,7 +7534,6 @@ public class Priest_Shadow
             Devouring_Plague.Launch();
             return;
         }
-
         else if (Mind_Spike.KnownSpell && Mind_Spike.IsSpellUsable && Mind_Spike.IsDistanceGood
                  && MySettings.UseMindSpike)
         {
@@ -7546,7 +7545,6 @@ public class Priest_Shadow
             }
             return;
         }
-
         else
         {
             if (Mind_Sear.KnownSpell && Mind_Sear.IsSpellUsable && Mind_Sear.IsDistanceGood
@@ -7714,6 +7712,7 @@ public class Priest_Shadow
                 return;
             }
         }
+
         if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
             Hymn_of_Hope.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
@@ -7721,6 +7720,7 @@ public class Priest_Shadow
             Hymn_of_Hope.Launch(false);
             return;
         }
+
         if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
             && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
         {
@@ -7734,7 +7734,6 @@ public class Priest_Shadow
             Desperate_Prayer.Launch();
             return;
         }
-
 
         if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
             && MySettings.UseFlash_Heal)
@@ -7778,6 +7777,7 @@ public class Priest_Shadow
             Prayer_of_Mending.Launch();
             return;
         }
+
         if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
             ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
         {
@@ -7845,6 +7845,14 @@ public class Priest_Shadow
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
+            return;
+        }
+
+        if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            && MySettings.UseWarStomp)
+        {
+            War_Stomp.Launch();
+            OnCD = new Timer(1000 * 2);
             return;
         }
     }
