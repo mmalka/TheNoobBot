@@ -3310,4 +3310,32 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Fire Camp Osul Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2943</X>
+      <Y>3346</Y>
+      <Z>416</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.34880799055099</px>
+    <py>0.36178719997406</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles des Cinq Sœurs</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1154</X>
+      <Y>2050</Y>
+      <Z>325</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.43195176124573</px>
+    <py>0.53513205051422</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
