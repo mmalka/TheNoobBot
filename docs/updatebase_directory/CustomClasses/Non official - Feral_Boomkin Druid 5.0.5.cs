@@ -535,7 +535,8 @@ public class Druid_Balance
         }
 
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
-            && MySettings.UseAquatic_Form && Object.Me.IsSwimming)
+            && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
+            && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Aquatic_Form.Launch();
             return;
@@ -544,7 +545,8 @@ public class Druid_Balance
         else
         {
             if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
-                && MySettings.UseTravel_Form && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+                && MySettings.UseTravelForm && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
+                && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
             {
                 Travel_Form.Launch();
                 return;
@@ -824,7 +826,7 @@ public class Druid_Balance
         }
 
         else if (ObjectManager.Me.HealthPercent < 90 && Cenarion_Ward.IsSpellUsable && Cenarion_Ward.KnownSpell
-            && MySettings.UseCenarion_Ward)
+            && MySettings.UseCenarionWard)
         {
             Cenarion_Ward.Launch();
             return;
@@ -1271,7 +1273,7 @@ public class Druid_Feral
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            (Moonfire.IsDistanceGood || Sunfire.IsDistanceGood))
+                            (Faerie_Fire.IsDistanceGood || Wild_Charge.IsDistanceGood))
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -1348,7 +1350,8 @@ public class Druid_Feral
         }
 
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
-            && MySettings.UseAquatic_Form && Object.Me.IsSwimming)
+            && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
+            && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Aquatic_Form.Launch();
             return;
@@ -1357,7 +1360,8 @@ public class Druid_Feral
         else
         {
             if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
-                && MySettings.UseTravel_Form && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+                && MySettings.UseTravelForm && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
+                && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
             {
                 Travel_Form.Launch();
                 return;
@@ -1621,7 +1625,7 @@ public class Druid_Feral
             }
 
             if (Ferocious_Bite.IsSpellUsable && Ferocious_Bite.KnownSpell && Ferocious_Bite.IsDistanceGood 
-                && MySettings.FerociousBite && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
+                && MySettings.UseFerociousBite && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
             {
                 Ferocious_Bite.Launch();
                 Rip_Timer = new Timer(1000 * 13);
@@ -1681,7 +1685,7 @@ public class Druid_Feral
         }
 
         else if (ObjectManager.Me.HealthPercent < 90 && Cenarion_Ward.IsSpellUsable && Cenarion_Ward.KnownSpell
-            && MySettings.UseCenarion_Ward)
+            && MySettings.UseCenarionWard)
         {
             Cenarion_Ward.Launch();
             return;
@@ -1705,7 +1709,7 @@ public class Druid_Feral
         }
 
         else if (ObjectManager.Me.HealthPercent < 70 && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell
-            && ObjectManager.Me.HaveBuff(69369) && MySettings.UseHealTouch)
+            && ObjectManager.Me.HaveBuff(69369) && MySettings.UseHealingTouch)
         {
             Healing_Touch.Launch();
             return;
@@ -1779,7 +1783,7 @@ public class Druid_Feral
             return;
         }
 
-        else if (ObjectManager.Me.HealthPercent < 70 && MySettings.UseSurvialInstincts
+        else if (ObjectManager.Me.HealthPercent < 70 && MySettings.UseSurvivalInstincts
             && Survival_Instincts.KnownSpell && Survival_Instincts.IsSpellUsable)
         {
             Survival_Instincts.Launch();
@@ -1873,11 +1877,6 @@ public class Druid_Feral
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
             nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-        }
-
-        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
-        {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }
