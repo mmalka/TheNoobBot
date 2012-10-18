@@ -324,6 +324,7 @@ namespace nManager
             Profiles_Converters_Product_Description,
             Grinder_Product_Description,
             Gatherer_Product_Description,
+            Damage_Dealer_Product_Description,
             Fisherbot_Product_Description,
             Battlegrounder_Product_Description,
             Quester_Product_Description,

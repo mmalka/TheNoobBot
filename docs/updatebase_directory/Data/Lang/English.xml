@@ -1030,6 +1030,10 @@
       <Id>Gatherer_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text>(DPS your target - BETA)</Text>
+      <Id>Damage_Dealer_Product_Description</Id>
+    </Translation>
+    <Translation>
       <Text />
       <Id>Fisherbot_Product_Description</Id>
     </Translation>
