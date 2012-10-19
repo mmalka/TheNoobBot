@@ -7558,7 +7558,7 @@ public class Priest_Shadow
 
     public void DPS_Burst()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
@@ -7567,42 +7567,48 @@ public class Priest_Shadow
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             Trinket_Timer = new Timer(1000*60*2);
+            return;
         }
-
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
+            && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
+            return;
         }
-
-        if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury)
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
+            && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
+            return;
         }
-
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
+            && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
+            return;
         }
-
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
+        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
+            && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60*1);
+            Engineering_Timer = new Timer(1000*60);
+            return;
         }
-
-        if (Power_Infusion.IsSpellUsable && Power_Infusion.KnownSpell && Power_Infusion.IsDistanceGood
-            && MySettings.UsePowerInfusion)
+        else if (Power_Infusion.IsSpellUsable && Power_Infusion.KnownSpell
+            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 30)
         {
             Power_Infusion.Launch();
             return;
         }
-
-        if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
-            && MySettings.UseShadowfiend)
+        else
         {
-            Shadowfiend.Launch();
-            return;
+            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
+                && MySettings.UseShadowfiend)
+            {
+                Shadowfiend.Launch();
+                return;
+            }
         }
     }
 
@@ -7675,7 +7681,7 @@ public class Priest_Shadow
             Mind_Flay.Launch();
             return;
         }
-            // Blizzard API Calls for Mind Flay using Smite Function
+        // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
                  && MySettings.UseMindFlay)
         {
@@ -7712,77 +7718,70 @@ public class Priest_Shadow
                 return;
             }
         }
-
-        if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
+        else if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
             Hymn_of_Hope.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
             Hymn_of_Hope.Launch(false);
             return;
         }
-
-        if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
+        else if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
             && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
         {
             Dispersion.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
             && MySettings.UseDesperatePrayer)
         {
             Desperate_Prayer.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
             && MySettings.UseFlash_Heal)
         {
             Flash_Heal.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
             && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
         {
             War_Stomp.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 && Vampiric_Embrace.IsSpellUsable && Vampiric_Embrace.KnownSpell
+        else if (ObjectManager.Me.HealthPercent < 80 && Vampiric_Embrace.IsSpellUsable && Vampiric_Embrace.KnownSpell
             && MySettings.UseVampiricEmbrace)
         {
             Vampiric_Embrace.Launch();
             return;
         }
-
-        if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
+        else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
             && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
             && !ObjectManager.Me.HaveBuff(6788))
         {
             Power_Word_Shield.Launch();
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
             && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
             return;
         }
-
-        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-            ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+        else
         {
-            Renew.Launch();
-            return;
+            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+            {
+                Renew.Launch();
+                return;
+            }
         }
     }
 
@@ -7795,8 +7794,7 @@ public class Priest_Shadow
             OnCD = new Timer(1000*8);
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 20 && Dispersion.KnownSpell && Dispersion.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent < 20 && Dispersion.KnownSpell && Dispersion.IsSpellUsable
             && MySettings.UseDispersion)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
@@ -7808,8 +7806,7 @@ public class Priest_Shadow
             OnCD = new Timer(1000*6);
             return;
         }
-
-        if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
             Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
             && MySettings.UseVoidTendrils)
         {
@@ -7817,8 +7814,7 @@ public class Priest_Shadow
             OnCD = new Timer(1000*10);
             return;
         }
-
-        if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 && Psyfiend.IsSpellUsable &&
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 && Psyfiend.IsSpellUsable &&
             Psyfiend.KnownSpell
             && MySettings.UsePsyfiend)
         {
@@ -7826,8 +7822,7 @@ public class Priest_Shadow
             OnCD = new Timer(1000*10);
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
+        else if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
             && MySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
@@ -7839,21 +7834,22 @@ public class Priest_Shadow
             OnCD = new Timer(1000*3);
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
-            OnCD = new Timer(1000*8);
+            OnCD = new Timer(1000 * 8);
             return;
         }
-
-        if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-            && MySettings.UseWarStomp)
+        else
         {
-            War_Stomp.Launch();
-            OnCD = new Timer(1000 * 2);
-            return;
+            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+                && MySettings.UseWarStomp)
+            {
+                War_Stomp.Launch();
+                OnCD = new Timer(1000 * 2);
+                return;
+            }
         }
     }
 
@@ -7865,12 +7861,14 @@ public class Priest_Shadow
             Silence.Launch();
             return;
         }
-
-        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UsePsychicHorror
-            && Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood)
+        else
         {
-            Psychic_Horror.Launch();
-            return;
+            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UsePsychicHorror
+                && Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood)
+            {
+                Psychic_Horror.Launch();
+                return;
+            }
         }
     }
 

@@ -399,6 +399,7 @@ public class Druid_Balance
 
     #endregion
 
+    private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer AlchFlask_Timer = new Timer(0);
@@ -458,17 +459,16 @@ public class Druid_Balance
             && MySettings.UseMoonfire)
         {
             Moonfire.Launch();
-            Moonfire_Timer = new Timer(1000 * 11);
+            Moonfire_Timer = new Timer(1000*11);
             return;
         }
-
         else
         {
             if (Sunfire.KnownSpell && Sunfire.IsDistanceGood && Sunfire.IsSpellUsable
                 && MySettings.UseSunfire)
             {
                 Sunfire.Launch();
-                Sunfire_Timer = new Timer(1000 * 11);
+                Sunfire_Timer = new Timer(1000*11);
                 return;
             }
         }
@@ -499,7 +499,6 @@ public class Druid_Balance
             }
             return;
         }
-
         else if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask && Alchemy.KnownSpell 
             && ItemsManager.GetItemCountByIdLUA(75525) == 1)
         {
@@ -508,14 +507,12 @@ public class Druid_Balance
             AlchFlask_Timer = new Timer(1000*60*60*2);
             return;
         }
-
         else if (Mark_of_the_Wild.KnownSpell && Mark_of_the_Wild.IsSpellUsable && !Mark_of_the_Wild.HaveBuff
             && MySettings.UseMarkoftheWild)
         {
             Mark_of_the_Wild.Launch();
             return;
         }
-
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash)
         {
             if (Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
@@ -524,7 +521,6 @@ public class Druid_Balance
                 return;
             }
         }
-
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar)
         {
             if (Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
@@ -533,7 +529,6 @@ public class Druid_Balance
                 return;
             }
         }
-
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
             && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
             && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
@@ -541,7 +536,6 @@ public class Druid_Balance
             Aquatic_Form.Launch();
             return;
         }
-
         else
         {
             if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
@@ -579,35 +573,30 @@ public class Druid_Balance
             Starsurge.Launch();
             return;
         }
-
         else if (Moonfire.KnownSpell && Moonfire.IsDistanceGood && Moonfire.IsSpellUsable
             && !Moonfire.TargetHaveBuff && MySettings.UseMoonfire)
         {
             Moonfire.Launch();
             return;
         }
-
         else if (Sunfire.KnownSpell && Sunfire.IsDistanceGood && Sunfire.IsSpellUsable
             && !Sunfire.TargetHaveBuff && MySettings.UseSunfire)
         {
             Sunfire.Launch();
             return;
         }
-
         else if (Starsurge.KnownSpell && Starsurge.IsDistanceGood && Starsurge.IsSpellUsable
             && MySettings.UseStarsurge)
         {
             Starsurge.Launch();
             return;
         }
-
         else if (Starfire.KnownSpell && Starfire.IsDistanceGood && Starfire.IsSpellUsable
             && StarfireUse && MySettings.UseStarfire)
         {
             Starfire.Launch();
             return;
         }
-
         else
         {
             if (Wrath.KnownSpell && Wrath.IsDistanceGood && Wrath.IsSpellUsable
@@ -617,12 +606,20 @@ public class Druid_Balance
                 return;
             }
         }
+
+        if (Hurricane.KnownSpell && Hurricane.IsDistanceGood && Hurricane.IsSpellUsable
+            && MySettings.UseHurricane)
+        {
+            Hurricane.Launch();
+            return;
+        }
     }
 
     public void Combat()
     {
         AvoidMelee();
-        Defense_Cycle();
+        if (OnCD.IsReady)
+            Defense_Cycle();
         Heal();
         Decast();
         Buff();
@@ -632,7 +629,7 @@ public class Druid_Balance
 
     public void DPS_Burst()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
@@ -641,46 +638,49 @@ public class Druid_Balance
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             Trinket_Timer = new Timer(1000*60*2);
+            return;
         }
-
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
+            && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
+            return;
         }
-
-        if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury)
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
+            && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
+            return;
         }
-
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
+            && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
+            return;
         }
-
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
+        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
+            && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60*1);
+            Engineering_Timer = new Timer(1000*60);
+            return;
         }
-
-        if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
+        else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
             && MySettings.UseForceofNature)
         {
             Force_of_Nature.Launch();
             return;
         }
-
-        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation)
+        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 30)
         {
             Incarnation.Launch();
             return;
         }
-
         else 
         {
-            if (Celestial_Alignment.KnownSpell && MySettings.UseCelestialAlignment
+            if (Celestial_Alignment.KnownSpell && MySettings.UseCelestialAlignment && ObjectManager.Target.GetDistance < 30
                 && (Celestial_Alignment.IsSpellUsable || ObjectManager.Me.HaveBuff(112071)))
             {
                 if (!ObjectManager.Me.HaveBuff(112071))
@@ -710,37 +710,32 @@ public class Druid_Balance
             Arcane_Torrent.Launch();
             return;
         }
-
         else if (Moonfire.KnownSpell && Moonfire.IsDistanceGood && Moonfire.IsSpellUsable
             && MySettings.UseMoonfire && (!Moonfire.TargetHaveBuff || Moonfire_Timer.IsReady))
         {
             Moonfire.Launch();
-            Moonfire_Timer = new Timer(1000 * 11);
+            Moonfire_Timer = new Timer(1000*11);
             return;
         }
-
         else if (Sunfire.KnownSpell && Sunfire.IsDistanceGood && Sunfire.IsSpellUsable
             && MySettings.UseSunfire && (!Sunfire.TargetHaveBuff || Sunfire_Timer.IsReady))
         {
             Sunfire.Launch();
-            Sunfire_Timer = new Timer(1000 * 11);
+            Sunfire_Timer = new Timer(1000*11);
             return;
         }
-
         else if (Starsurge.IsDistanceGood && Starsurge.IsSpellUsable
             && Starsurge.KnownSpell && MySettings.UseStarsurge)
         {
             Starsurge.Launch();
             return;
         }
-
         else if (Starfall.KnownSpell && Starfall.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
             ObjectManager.Target.GetDistance < 40 && MySettings.UseStarfall)
         {
             Starfall.Launch();
             return;
         }
-
         else if (Wild_Mushroom.KnownSpell && Wild_Mushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
             && ObjectManager.Target.GetDistance < 40 && Wild_Mushroom_Detonate.KnownSpell && Wild_Mushroom.IsSpellUsable
             && MySettings.UseWildMushroom)
@@ -754,21 +749,18 @@ public class Druid_Balance
             Wild_Mushroom_Detonate.Launch();
             return;
         }
-
         else if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
             ObjectManager.Target.GetDistance < 30 && MySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
         }
-
         else if (Starfire.KnownSpell && Starfire.IsSpellUsable && Starfire.IsDistanceGood
             && StarfireUse && MySettings.UseStarfire)
         {
             Starfire.Launch();
             return;
         }
-
         else
         {
             if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsDistanceGood
@@ -787,8 +779,8 @@ public class Druid_Balance
             if (!Moonfire.TargetHaveBuff || Moonfire_Timer.IsReady || !Sunfire.TargetHaveBuff || Sunfire_Timer.IsReady)
             {
                 Moonfire.Launch();
-                Moonfire_Timer = new Timer(1000 * 11);
-                Sunfire_Timer = new Timer(1000 * 11);
+                Moonfire_Timer = new Timer(1000*11);
+                Sunfire_Timer = new Timer(1000*11);
             }
 
             if (Wrath.KnownSpell && Wrath.IsDistanceGood && Wrath.IsSpellUsable)
@@ -810,64 +802,50 @@ public class Druid_Balance
             Healing_Touch.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
             && MySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
             && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell && MySettings.UseHealingTouch)
         {
             Healing_Touch.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 90 && Cenarion_Ward.IsSpellUsable && Cenarion_Ward.KnownSpell
             && MySettings.UseCenarionWard)
         {
             Cenarion_Ward.Launch();
             return;
         }
-
-        else if (ObjectManager.Me.ManaPercentage < 50 && MySettings.UseInnervate)
-        {
-            Innervate.Launch();
-            return;
-        }
-
         else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
             && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
             && Rejuvenation_Timer.IsReady && MySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
-            Rejuvenation_Timer = new Timer(1000 * 12);
+            Rejuvenation_Timer = new Timer(1000*12);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 40 && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell
             && Healing_Touch_Timer.IsReady && MySettings.UseHealingTouch)
         {
             Healing_Touch.Launch();
-            Healing_Touch_Timer = new Timer(1000 * 15);
+            Healing_Touch_Timer = new Timer(1000*15);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 35 && Might_of_Ursoc.IsSpellUsable && Might_of_Ursoc.KnownSpell
             && MySettings.UseMightofUrsoc)
         {
             Might_of_Ursoc.Launch();
             return;
         }
-
         else
         {
             if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
@@ -882,6 +860,12 @@ public class Druid_Balance
                 return;
             }
         }
+
+        if (ObjectManager.Me.ManaPercentage < 50 && MySettings.UseInnervate)
+        {
+            Innervate.Launch();
+            return;
+        }
     }
 
     public void Defense_Cycle()
@@ -895,23 +879,23 @@ public class Druid_Balance
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
+            OnCD = new Timer(1000*8);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 80 && Barkskin.KnownSpell && Barkskin.IsSpellUsable
             && MySettings.UseBarkskin)
         {
             Barkskin.Launch();
+            OnCD = new Timer(1000*12);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 80 && Mighty_Bash.KnownSpell && Mighty_Bash.IsSpellUsable
             && MySettings.UseMightyBash && Mighty_Bash.IsDistanceGood)
         {
             Mighty_Bash.Launch();
+            OnCD = new Timer(1000*5);
             return;
         }
-
         else if (Mass_Entanglement.KnownSpell && Mass_Entanglement.IsSpellUsable && Mass_Entanglement.IsDistanceGood
             && MySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
         {
@@ -925,9 +909,8 @@ public class Druid_Balance
             }
             return;
         }
-
         else if (Ursols_Vortex.KnownSpell && Ursols_Vortex.IsSpellUsable && Ursols_Vortex.IsDistanceGood
-        && MySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
+            && MySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
         {
             Ursols_Vortex.Launch();
 
@@ -939,9 +922,8 @@ public class Druid_Balance
             }
             return;
         }
-
-        else if (Natures_Grasp.KnownSpell && Natures_Grasp.IsSpellUsable &&
-            ObjectManager.Target.IsCast && MySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
+        else if (Natures_Grasp.KnownSpell && Natures_Grasp.IsSpellUsable
+            && ObjectManager.Target.IsCast && MySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             Natures_Grasp.Launch();
 
@@ -953,7 +935,6 @@ public class Druid_Balance
             }
             return;
         }
-
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
@@ -961,21 +942,21 @@ public class Druid_Balance
             Typhoon.Launch();
             return;
         }
-
         else if (Disorienting_Roar.KnownSpell && Disorienting_Roar.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseDisorientingRoar)
         {
             Disorienting_Roar.Launch();
+            OnCD = new Timer(1000*3);
             return;
         }
-
         else
         {
             if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
+                OnCD = new Timer(1000*2);
                 return;
             }
         }
@@ -1253,6 +1234,7 @@ public class Druid_Feral
 
     #endregion
 
+    private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer AlchFlask_Timer = new Timer(0);
@@ -1321,16 +1303,14 @@ public class Druid_Feral
             Mark_of_the_Wild.Launch();
             return;
         }
-
         else if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask && Alchemy.KnownSpell
             && ItemsManager.GetItemCountByIdLUA(75525) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
-            AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+            AlchFlask_Timer = new Timer(1000*60*60*2);
             return;
         }
-
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash)
         {
             if (Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
@@ -1339,7 +1319,6 @@ public class Druid_Feral
                 return;
             }
         }
-
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar)
         {
             if (Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
@@ -1348,7 +1327,6 @@ public class Druid_Feral
                 return;
             }
         }
-
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
             && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
             && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
@@ -1356,7 +1334,6 @@ public class Druid_Feral
             Aquatic_Form.Launch();
             return;
         }
-
         else
         {
             if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
@@ -1372,9 +1349,7 @@ public class Druid_Feral
     public void Pull()
     {
         if (!ObjectManager.Me.HaveBuff(768) && MySettings.UseCatForm)
-        {
             Cat_Form.Launch();
-        }
 
         if (Prowl.IsSpellUsable && Prowl.KnownSpell && Prowl.IsDistanceGood
             && MySettings.UseProwl && !ObjectManager.Me.InCombat)
@@ -1393,7 +1368,6 @@ public class Druid_Feral
                 return;
             }
         }
-
         else
         {
             if (Wild_Charge.KnownSpell && Wild_Charge.IsSpellUsable && Wild_Charge.IsDistanceGood
@@ -1438,19 +1412,22 @@ public class Druid_Feral
                 return;
             }
         }
-
-        if (Swipe.IsSpellUsable && Swipe.KnownSpell && Swipe.IsDistanceGood
-            && MySettings.UseSwipe)
+        else
         {
-            Swipe.Launch();
-            return;
+            if (Swipe.IsSpellUsable && Swipe.KnownSpell && Swipe.IsDistanceGood
+            && MySettings.UseSwipe)
+            {
+                Swipe.Launch();
+                return;
+            }
         }
     }
 
     public void Combat()
     {
         AvoidMelee();
-        Defense_Cycle();
+        if (OnCD.IsReady)
+            Defense_Cycle();
         Heal();
         Decast();
         Buff();
@@ -1460,7 +1437,7 @@ public class Druid_Feral
 
     public void DPS_Burst()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
@@ -1468,54 +1445,57 @@ public class Druid_Feral
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000 * 60 * 2);
+            Trinket_Timer = new Timer(1000*60*2);
+            return;
         }
-
-        if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking)
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
+            && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
+            return;
         }
-
-        if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury)
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
+            && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
+            return;
         }
-
-        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood)
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
+            && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
+            return;
         }
-
-        if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady)
+        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
+            && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000 * 60 * 1);
+            Engineering_Timer = new Timer(1000*60);
+            return;
         }
-
-        if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
+        else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
             && MySettings.UseForceofNature)
         {
             Force_of_Nature.Launch();
             return;
         }
-
-        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation)
+        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 30)
         {
             Incarnation.Launch();
             return;
         }
-
         else if (Tigers_Fury.KnownSpell && Tigers_Fury.IsSpellUsable && ObjectManager.Me.Energy < 35
-            && !Berserk.HaveBuff && MySettings.UseTigersFury)
+            && !Berserk.HaveBuff && MySettings.UseTigersFury && ObjectManager.Target.GetDistance < 30)
         {
             Tigers_Fury.Launch();
             return;
         }
-
         else
         {
-            if (Berserk.KnownSpell && Berserk.IsSpellUsable && MySettings.UseBerserk)
+            if (Berserk.KnownSpell && Berserk.IsSpellUsable && MySettings.UseBerserk
+                && ObjectManager.Target.GetDistance < 30)
             {
                 Berserk.Launch();
                 return;
@@ -1537,46 +1517,44 @@ public class Druid_Feral
             Faerie_Fire.Launch();
             return;
         }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 2 && Thrash.IsSpellUsable && Thrash.KnownSpell
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Thrash.IsSpellUsable && Thrash.KnownSpell
             && Thrash.IsDistanceGood && !Thrash.TargetHaveBuff && MySettings.UseThrash)
         {
             Thrash.Launch();
             return;
         }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 2 && Swipe.IsSpellUsable && Swipe.KnownSpell
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Swipe.IsSpellUsable && Swipe.KnownSpell
             && Swipe.IsDistanceGood && MySettings.UseSwipe)
         {
             Swipe.Launch();
             return;
         }
-
-        if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood && !FivePtSav
+        else if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood && !FivePtSav
             && ObjectManager.Me.ComboPoint == 5 && MySettings.UseSavageRoar)
         {
             CP = ObjectManager.Me.ComboPoint;
             Savage_Roar.Launch();
-            Savage_Roar_Timer = new Timer(1000 * (9 + (6 * CP)));
+            Savage_Roar_Timer = new Timer(1000*(9 + (6*CP)));
             FivePtSav = true;
             return;
         }
-
-        if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood
+        else if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood
             && (!ObjectManager.Me.HaveBuff(127538) || Savage_Roar_Timer.IsReady) && MySettings.UseSavageRoar)
         {
             CP = ObjectManager.Me.ComboPoint;
             Savage_Roar.Launch();
-            Savage_Roar_Timer = new Timer(1000 * (9 + (6 * CP)));
+            Savage_Roar_Timer = new Timer(1000*(9 + (6*CP)));
             FivePtSav = false;
             return;
         }
-
-        if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsDistanceGood && !Rake.TargetHaveBuff
-            && MySettings.UseRake)
+        else
         {
-            Rake.Launch();
-            return;
+            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsDistanceGood && !Rake.TargetHaveBuff
+                && MySettings.UseRake)
+            {
+                Rake.Launch();
+                return;
+            }
         }
 
         if (ObjectManager.Target.HealthPercent > 24)
@@ -1585,7 +1563,7 @@ public class Druid_Feral
                 && ObjectManager.Me.ComboPoint == 5 && MySettings.UseRip)
             {
                 Rip.Launch();
-                Rip_Timer = new Timer(1000 * 13);
+                Rip_Timer = new Timer(1000*13);
                 FivePtRip = true;
                 return;
             }
@@ -1594,12 +1572,11 @@ public class Druid_Feral
                 && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
             {
                 Rip.Launch();
-                Rip_Timer = new Timer(1000 * 13);
+                Rip_Timer = new Timer(1000*13);
                 FivePtRip = false;
                 return;
             }
         }
-
         else
         {
             if (Rip.IsSpellUsable && Rip.KnownSpell && Rip.IsDistanceGood && !Rip.TargetHaveBuff
@@ -1607,7 +1584,7 @@ public class Druid_Feral
             {
                 CP = ObjectManager.Me.ComboPoint;
                 Rip.Launch();
-                Rip_Timer = new Timer(1000 * 13);
+                Rip_Timer = new Timer(1000*13);
                 if (CP == 5)
                     FivePtFer = true;
                 else
@@ -1619,7 +1596,7 @@ public class Druid_Feral
                 && !FivePtFer && ObjectManager.Me.ComboPoint == 5 && MySettings.UseFerociousBite)
             {
                 Ferocious_Bite.Launch();
-                Rip_Timer = new Timer(1000 * 13);
+                Rip_Timer = new Timer(1000*13);
                 FivePtFer = true;
                 return;
             }
@@ -1628,7 +1605,7 @@ public class Druid_Feral
                 && MySettings.UseFerociousBite && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
             {
                 Ferocious_Bite.Launch();
-                Rip_Timer = new Timer(1000 * 13);
+                Rip_Timer = new Timer(1000*13);
                 FivePtFer = false;
                 return;
             }
@@ -1643,7 +1620,6 @@ public class Druid_Feral
                 return;
             }
         }
-
         else if (Shred.KnownSpell && Shred.IsSpellUsable && Shred.IsDistanceGood
             && MySettings.UseShred && MySettings.UseGlyphofShred 
             && (Tigers_Fury.HaveBuff || Berserk.HaveBuff))
@@ -1651,7 +1627,6 @@ public class Druid_Feral
             Shred.Launch();
             return;
         }
-
         else
         {
             if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsDistanceGood
@@ -1676,21 +1651,18 @@ public class Druid_Feral
             Healing_Touch.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
-        && MySettings.UseRenewal)
+            && MySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 90 && Cenarion_Ward.IsSpellUsable && Cenarion_Ward.KnownSpell
             && MySettings.UseCenarionWard)
         {
             Cenarion_Ward.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 50 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
             && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell && MySettings.UseHealingTouch)
         {
@@ -1701,43 +1673,37 @@ public class Druid_Feral
             }
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell
             && ObjectManager.Me.HaveBuff(69369) && MySettings.UseHealingTouch)
         {
             Healing_Touch.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 50 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
             && Rejuvenation_Timer.IsReady && MySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
-            Rejuvenation_Timer = new Timer(1000 * 12);
+            Rejuvenation_Timer = new Timer(1000*12);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 40 && Healing_Touch.IsSpellUsable && Healing_Touch.KnownSpell
             && Healing_Touch_Timer.IsReady && MySettings.UseHealingTouch)
         {
             Healing_Touch.Launch();
-            Healing_Touch_Timer = new Timer(1000 * 15);
+            Healing_Touch_Timer = new Timer(1000*15);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 35 && Might_of_Ursoc.IsSpellUsable && Might_of_Ursoc.KnownSpell
             && MySettings.UseMightofUrsoc)
         {
             Might_of_Ursoc.Launch();
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
             && MySettings.UseTranquility)
         {
@@ -1749,7 +1715,6 @@ public class Druid_Feral
             }
             return;
         }
-
         else
         {
             if (ObjectManager.Me.ManaPercentage < 10 && MySettings.UseInnervate)
@@ -1766,37 +1731,38 @@ public class Druid_Feral
             && Barkskin.KnownSpell && Barkskin.IsSpellUsable)
         {
             Barkskin.Launch();
+            OnCD = new Timer(1000*12);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 90 && Mighty_Bash.IsDistanceGood
             && Mighty_Bash.KnownSpell && Mighty_Bash.IsSpellUsable && MySettings.UseMightyBash)
         {
             Mighty_Bash.Launch();
+            OnCD = new Timer(1000*5);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && ObjectManager.Me.ComboPoint > 2
             && Maim.KnownSpell && Maim.IsSpellUsable && MySettings.UseMaim)
         {
+            CP = ObjectManager.Me.ComboPoint;
             Maim.Launch();
+            OnCD = new Timer(1000*CP);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 70 && MySettings.UseSurvivalInstincts
             && Survival_Instincts.KnownSpell && Survival_Instincts.IsSpellUsable)
         {
             Survival_Instincts.Launch();
+            OnCD = new Timer(1000*12);
             return;
         }
-
         else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
             && MySettings.UseStoneform)
         {
             Stoneform.Launch();
+            OnCD = new Timer(1000*8);
             return;
         }
-
         else if (Mass_Entanglement.KnownSpell && Mass_Entanglement.IsSpellUsable && Mass_Entanglement.IsDistanceGood
             && ObjectManager.Target.IsCast && MySettings.UseMassEntanglement && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Me.HealthPercent < 70)
@@ -1811,7 +1777,6 @@ public class Druid_Feral
             Mass_Entanglement.Launch();
             return;
         }
-
         else if (Ursols_Vortex.KnownSpell && Ursols_Vortex.IsSpellUsable && Ursols_Vortex.IsDistanceGood
             && MySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80 
             && ObjectManager.GetNumberAttackPlayer() > 2)
@@ -1826,14 +1791,12 @@ public class Druid_Feral
             }
             return;
         }
-
         else if (Natures_Grasp.KnownSpell && Natures_Grasp.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Target.IsCast && MySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             Natures_Grasp.Launch();
             return;
         }
-
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseTyphoon)
@@ -1841,21 +1804,21 @@ public class Druid_Feral
             Typhoon.Launch();
             return;
         }
-
         else if (Disorienting_Roar.KnownSpell && Disorienting_Roar.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
             && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
             && MySettings.UseDisorientingRoar)
         {
             Disorienting_Roar.Launch();
+            OnCD = new Timer(1000*3);
             return;
         }
-
         else 
         {
             if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
+                OnCD = new Timer(1000*2);
                 return;
             }
         }
