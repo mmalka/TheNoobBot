@@ -2,16 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using meshDatabase.Database;
 using Microsoft.Win32;
 using MpqLib.Mpq;
-using meshDatabase.Database;
 
 namespace meshDatabase
 {
 
     public static class MpqManager
     {
-        private static readonly List<string> Languages = new List<string>{"enUS", "enGB", "deDE", "frFR", "esES", "ruRU", "esMX"};
+        private static readonly List<string> Languages = new List<string> {"enUS", "koKR", "frFR", "deDE", "zhTW", "esES", "esMX", "ruRU", "enGB", "enTW"};
         private static readonly List<string> IgnoredMPQs = new List<string> {  };
 
         private static bool _initialized;
@@ -40,7 +40,7 @@ namespace meshDatabase
 
             var files = Directory.GetFiles(root + "Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
 
-            List<string> PatchFiles = new List<string> { };
+            List<string> PatchFiles = new List<string> {};
             foreach (var file in files)
             {
                 if (IgnoredMPQs.Contains(Path.GetFileName(file)))
@@ -60,7 +60,7 @@ namespace meshDatabase
                 {
                     CArchive mainArch = arc.Value;
                     Console.WriteLine("Patching " + arc.Key + " with " + file);
-                    mainArch.Patch(file);
+                    mainArch.Patch(file, "base");
                 }
             }
 
@@ -80,7 +80,7 @@ namespace meshDatabase
 
             foreach (var language in Languages)
             {
-                var dir = root + "\\Data\\" + language;
+                var dir = root + "Data\\" + language;
                 if (!Directory.Exists(dir))
                     continue;
 
@@ -96,7 +96,7 @@ namespace meshDatabase
                 {
                     if (patchfile.Contains("-update-"))
                     {
-                        _locale.Patch(patchfile);
+                        _locale.Patch(patchfile, language);
                         Console.WriteLine("Patching " + _locale.FileName + " with " + patchfile);
                     }
                 }
