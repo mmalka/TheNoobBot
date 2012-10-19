@@ -718,6 +718,7 @@ public class Deathknight_Blood
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
@@ -1399,9 +1400,9 @@ public class Deathknight_Blood
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -1553,6 +1554,7 @@ public class Deathknight_Unholy
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
@@ -1634,6 +1636,8 @@ public class Deathknight_Unholy
     #endregion
 
     private Timer Trinket_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private Timer AlchFlask_Timer = new Timer(0);
     public int SG = 1;
     public int DT = 1;
     public int LC = 0;
@@ -2248,11 +2252,6 @@ public class Deathknight_Unholy
         {
             nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
-
-        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
-        {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-        }
     }
 }
 
@@ -2408,6 +2407,7 @@ public class Deathknight_Frost
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
@@ -2425,7 +2425,6 @@ public class Deathknight_Frost
     private Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
     private readonly Spell Horn_of_Winter = new Spell("Horn of Winter");
-    private readonly Spell Killing_Machine = new Spell("Killing Machine");
     private readonly Spell Path_of_Frost = new Spell("Path of Frost");
     private Timer Path_of_Frost_Timer = new Timer(0);
     private readonly Spell Roiling_Blood = new Spell("Roiling Blood");
@@ -2488,6 +2487,8 @@ public class Deathknight_Frost
     #endregion
 
     private Timer Trinket_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private Timer AlchFlask_Timer = new Timer(0);
     public int LC = 0;
 
     public Deathknight_Frost()
@@ -2532,7 +2533,7 @@ public class Deathknight_Frost
             catch
             {
             }
-            Thread.Sleep(150);
+            Thread.Sleep(250);
         }
     }
 
@@ -2780,17 +2781,20 @@ public class Deathknight_Frost
             return;
         }
 
-        else if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood && Soul_Reaper.IsSpellUsable
+        else 
+        {
+            if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood && Soul_Reaper.IsSpellUsable
             && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 80
             && MySettings.UseSoulReaper)
-        {
-            Soul_Reaper.Launch();
-            return;
+            {
+                Soul_Reaper.Launch();
+                return;
+            }
         }
 
-        else if (MySettings.UseDuelWield)
+        if (MySettings.UseDuelWield)
         {
-            if (Killing_Machine.HaveBuff && MySettings.UseFrostStrike
+            if (ObjectManager.Me.HaveBuff(51124) && MySettings.UseFrostStrike
                 && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
             {
                 if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
@@ -2805,7 +2809,7 @@ public class Deathknight_Frost
 
             else
             {
-                if (Killing_Machine.HaveBuff && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
+                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
                     && MySettings.UseObliterate)
                 {
                     if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
@@ -2820,39 +2824,42 @@ public class Deathknight_Frost
             }
         }
 
-        else if (MySettings.UseTwoHander)
+        else 
         {
-            if (Killing_Machine.HaveBuff && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
-                    && MySettings.UseObliterate)
+            if (MySettings.UseTwoHander)
             {
-                if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
-                    && Death_Strike.KnownSpell && Death_Strike.IsSpellUsable && Death_Strike.IsDistanceGood)
+                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
+                    && MySettings.UseObliterate)
                 {
-                    Death_Strike.Launch();
+                    if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
+                        && Death_Strike.KnownSpell && Death_Strike.IsSpellUsable && Death_Strike.IsDistanceGood)
+                    {
+                        Death_Strike.Launch();
+                        return;
+                    }
+                    Obliterate.Launch();
                     return;
                 }
-                Obliterate.Launch();
-                return;
-            }
 
-            else
-            {
-                if (Killing_Machine.HaveBuff && MySettings.UseFrostStrike
-                && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
+                else
                 {
-                    if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                        || (Conversion.KnownSpell && MySettings.UseConversion)))
-                        return;
-                    else
+                    if (ObjectManager.Me.HaveBuff(51124) && MySettings.UseFrostStrike
+                        && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
                     {
-                        Blood_Strike.Launch();
-                        return;
+                        if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
+                            || (Conversion.KnownSpell && MySettings.UseConversion)))
+                            return;
+                        else
+                        {
+                            Blood_Strike.Launch();
+                            return;
+                        }
                     }
                 }
             }
         }
 
-        else if (Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
+        if (Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
             && MySettings.UseObliterate)
         {
             if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
@@ -3115,11 +3122,6 @@ public class Deathknight_Frost
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
             nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-        }
-
-        if (ObjectManager.Target.GetDistance > 5 && ObjectManager.Target.InCombat)
-        {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
         }
     }
 }
