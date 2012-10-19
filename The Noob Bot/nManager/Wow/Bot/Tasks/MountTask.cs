@@ -316,7 +316,7 @@ namespace nManager.Wow.Bot.Tasks
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
                         tryMounting = 0;
-                        Takeof();
+                        Takeoff();
                     }
                 }
             }
@@ -326,15 +326,15 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        public static void Takeof()
+        public static void Takeoff()
         {
             Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-            var t = new Timer(700);
+            var t = new Timer(850);
             while (!Usefuls.IsFlying && !t.IsReady)
             {
                 Thread.Sleep(50);
             }
-            Thread.Sleep(100);
+            Thread.Sleep(150);
             Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
         }
 
@@ -346,11 +346,11 @@ namespace nManager.Wow.Bot.Tasks
             {
                 Thread.Sleep(50);
             }
-            Thread.Sleep(100);
+            Thread.Sleep(150);
             Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
         }
 
-        public static void DismountMount(bool stopMove = true, bool stand = true)
+        public static void DismountMount(bool stopMove = true)
         {
             try
             {
@@ -365,9 +365,8 @@ namespace nManager.Wow.Bot.Tasks
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
                         Logging.Write("Dismount");
-                        if (Usefuls.IsFlying && stand)
+                        if (Usefuls.IsFlying)
                             Land();
-
                         Usefuls.DisMount();
                         Thread.Sleep(300 + Usefuls.Latency);
                     }

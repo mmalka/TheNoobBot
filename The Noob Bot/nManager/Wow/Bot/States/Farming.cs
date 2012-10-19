@@ -73,7 +73,7 @@ namespace nManager.Wow.Bot.States
             List<WoWPlayer> players = ObjectManager.ObjectManager.GetObjectWoWPlayer();
             if (players.Any(p => p.Position.DistanceTo2D(node.Position) <= nManagerSetting.CurrentSetting.harvestAvoidPlayersRadius))
             {
-                Logging.Write("Player Nearest of the node");
+                Logging.Write("Player near the node");
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);
                 return true;
             }
@@ -93,7 +93,7 @@ namespace nManager.Wow.Bot.States
             if (r)
             {
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);
-                Logging.Write(i + " Units hostile Near " + node.Name);
+                Logging.Write(i + " hostil Units near " + node.Name);
             }
             return r;
         }
