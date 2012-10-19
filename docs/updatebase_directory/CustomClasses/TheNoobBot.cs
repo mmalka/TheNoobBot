@@ -5737,7 +5737,7 @@ public class Paladin_Holy
         {
             BlessingOfKings.Launch();
         }
-        else if (BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
+        else if ((!MySettings.UseBlessingOfKings || !BlessingOfKings.KnownSpell || !BlessingOfKings.HaveBuff) && BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
                  MySettings.UseBlessingOfMight)
         {
             BlessingOfMight.Launch();
@@ -5760,24 +5760,27 @@ public class Paladin_Holy
                 return;
             }
         }
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-            !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable && MySettings.UseDivineShield)
-        {
-            DivineShield.Launch();
-            return;
-        }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-            !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
-        {
-            LayOnHands.Launch();
-            return;
-        }
-        if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-            !ObjectManager.Me.HaveBuff(25771) && HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
-        {
-            HandOfProtection.Launch();
-            return;
-        }
+        if(!ObjectManager.Me.HaveBuff(25771))
+		{
+			if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+				DivineShield.IsSpellUsable && MySettings.UseDivineShield)
+			{
+				DivineShield.Launch();
+				return;
+			}
+			if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+				LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
+			{
+				LayOnHands.Launch();
+				return;
+			}
+			if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+				HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
+			{
+				HandOfProtection.Launch();
+				return;
+			}
+		}
         if (ObjectManager.Me.ManaPercentage < 30)
         {
             if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent)
