@@ -3338,4 +3338,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Winterbough Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>979</X>
+      <Y>1749</Y>
+      <Z>354</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.45148086547852</px>
+    <py>0.55185747146606</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
