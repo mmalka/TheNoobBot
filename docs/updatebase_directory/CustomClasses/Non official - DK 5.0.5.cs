@@ -1992,7 +1992,7 @@ public class Deathknight_Unholy
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (Unholy_Presence.KnownSpell && MySettings.UseUnholyPresence && ObjectManager.Me.HeathPercent > 50)
+        if (Unholy_Presence.KnownSpell && MySettings.UseUnholyPresence && ObjectManager.Me.HealthPercent > 50)
         {
             if (!Unholy_Presence.HaveBuff && Unholy_Presence.IsSpellUsable)
                 Unholy_Presence.Launch();
