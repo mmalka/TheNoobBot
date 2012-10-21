@@ -798,7 +798,6 @@ public class Deathknight_Blood
     public Deathknight_Blood()
     {
         Main.range = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -1620,7 +1619,6 @@ public class Deathknight_Unholy
     public Deathknight_Unholy()
     {
         Main.range = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.loop)

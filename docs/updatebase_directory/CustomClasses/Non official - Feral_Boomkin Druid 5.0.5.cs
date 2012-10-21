@@ -195,7 +195,7 @@ public class Druid_Balance
         public bool UseMarkoftheWild = true;
         public bool UseMoonkinForm = true;
         public bool UseStampedingRoar = true;
-        public bool UseTravelForm = true;
+        public bool UseTravelForm = false;
         /* Offensive Spell */
         public bool UseHurricane = true;
         public bool UseMoonfire = true;
@@ -513,21 +513,17 @@ public class Druid_Balance
             Mark_of_the_Wild.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash)
+        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
         {
-            if (Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-            {
-                Dash.Launch();
-                return;
-            }
+            Dash.Launch();
+            return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar)
+        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+            && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
         {
-            if (Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-            {
-                Stampeding_Roar.Launch();
-                return;
-            }
+            Stampeding_Roar.Launch();
+            return;
         }
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
             && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
@@ -1012,7 +1008,7 @@ public class Druid_Feral
         public bool UseProwl = false;
         public bool UseSavageRoar = true;
         public bool UseStampedingRoar = true;
-        public bool UseTravelForm = true;
+        public bool UseTravelForm = false;
         /* Offensive Spell */
         public bool UseFerociousBite = true;
         public bool UseMaim = true;
@@ -1311,21 +1307,17 @@ public class Druid_Feral
             AlchFlask_Timer = new Timer(1000*60*60*2);
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash)
+        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
         {
-            if (Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-            {
-                Dash.Launch();
-                return;
-            }
+            Dash.Launch();
+            return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar)
+        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+            && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
         {
-            if (Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-            {
-                Stampeding_Roar.Launch();
-                return;
-            }
+            Stampeding_Roar.Launch();
+            return;
         }
         else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
             && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
@@ -1534,7 +1526,7 @@ public class Druid_Feral
         {
             CP = ObjectManager.Me.ComboPoint;
             Savage_Roar.Launch();
-            Savage_Roar_Timer = new Timer(1000*(9 + (6*CP)));
+            Savage_Roar_Timer = new Timer(1000*(12 + (6*CP)));
             FivePtSav = true;
             return;
         }
