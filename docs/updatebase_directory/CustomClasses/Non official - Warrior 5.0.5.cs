@@ -1217,7 +1217,6 @@ public class Warrior_Protection
     public Warrior_Protection()
     {
         Main.range = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -2051,7 +2050,6 @@ public class Warrior_Fury
     public Warrior_Fury()
     {
         Main.range = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.loop)
@@ -2420,7 +2418,7 @@ public class Warrior_Fury
             return;
 
         if (ObjectManager.Me.HealthPercent < 30 && MySettings.UseDefensiveStance
-            && Defensive_Stance.KnownSpell && Defensive_Stance.IsSpellUsable)
+            && Defensive_Stance.KnownSpell && Defensive_Stance.IsSpellUsable && !Defensive_Stance.HaveBuff)
         {
             Defensive_Stance.Launch();
             return;
@@ -2639,7 +2637,6 @@ public class Warrior
     public Warrior()
     {
         Main.range = 5.0f;
-
         UInt64 lastTarget = 0;
 
         while (Main.loop)
