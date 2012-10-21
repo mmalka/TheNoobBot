@@ -537,7 +537,7 @@
       </Position>
       <Faction>Alliance</Faction>
       <Type>Repair</Type>
-      <ContinentId>Pandarie</ContinentId>
+      <ContinentId>Pandaria</ContinentId>
     </Npc>
   </Npc>
   <BlackListRadius>

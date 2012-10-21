@@ -421,15 +421,15 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             System.Windows.Forms.MessageBox.Show(
-                                "Priest Discipline found, but no Discipline class available, loading Priest Discipline Settings");
+                                "Priest Discipline found, but no Discipline class available, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Discipline.xml";
-                            Priest_Discipline.PriestDisciplineSettings CurrentSetting;
-                            CurrentSetting = new Priest_Discipline.PriestDisciplineSettings();
+                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+                            Priest_Shadow.PriestShadowSettings CurrentSetting;
+                            CurrentSetting = new Priest_Shadow.PriestShadowSettings();
                             if (System.IO.File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Priest_Discipline.PriestDisciplineSettings>(CurrentSettingsFile);
+                                    Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);
@@ -447,15 +447,15 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             System.Windows.Forms.MessageBox.Show(
-                                "Priest Holy found, but no Holy class available, loading Priest Holy Settings");
+                                "Priest Holy found, but no Holy class available, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Holy.xml";
-                            Priest_Holy.PriestHolySettings CurrentSetting;
-                            CurrentSetting = new Priest_Holy.PriestHolySettings();
+                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+                            Priest_Shadow.PriestShadowSettings CurrentSetting;
+                            CurrentSetting = new Priest_Shadow.PriestShadowSettings();
                             if (System.IO.File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Priest_Holy.PriestHolySettings>(CurrentSettingsFile);
+                                    Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);

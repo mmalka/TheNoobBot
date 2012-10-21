@@ -59,7 +59,7 @@ namespace nManager.Wow.Bot.Tasks
                         */
                         // Replace code:
                         if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z)
-                            zT = ObjectManager.ObjectManager.Me.Position.Z + 5.5f;
+                            zT = /*ObjectManager.ObjectManager.Me*/ node.Position.Z + 5.5f;
                         else
                             zT = node.Position.Z + 2.5f;
 
@@ -76,8 +76,7 @@ namespace nManager.Wow.Bot.Tasks
 
                         MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
 
-                        int timer = Others.Times + ((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) +
-                                    5000;
+                        int timer = Others.Times + ((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) + 4000;
                         bool toMine = false;
 
                         while (node.IsValid && Products.Products.IsStarted &&
@@ -141,7 +140,10 @@ namespace nManager.Wow.Bot.Tasks
                                 }
 
                                 if (ObjectManager.ObjectManager.Me.GetMove)
-                                    Logging.Write("Still moving !!!");
+                                {
+                                    MovementManager.StopMove();
+                                    //Logging.Write("Still moving !!!");
+                                }
                                 while (ObjectManager.ObjectManager.Me.GetMove)
                                 {
                                     Thread.Sleep(50);
@@ -228,7 +230,7 @@ namespace nManager.Wow.Bot.Tasks
                                     if (!MountTask.onFlyMount())
                                         MountTask.Mount();
                                     else
-                                        MountTask.Takeof();
+                                        MountTask.Takeoff();
                                     Fly(nodes);
                                     return;
                                 }

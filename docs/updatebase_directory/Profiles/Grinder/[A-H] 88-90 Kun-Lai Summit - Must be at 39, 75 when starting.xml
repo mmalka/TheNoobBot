@@ -703,7 +703,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -717,7 +717,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -731,7 +731,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -745,7 +745,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -759,7 +759,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -773,7 +773,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -787,7 +787,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -801,7 +801,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -815,7 +815,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -829,7 +829,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
         <Npc>
           <SelectGossipOption>1</SelectGossipOption>
@@ -843,7 +843,7 @@
           </Position>
           <Faction>Alliance</Faction>
           <Type>None</Type>
-          <ContinentId>Pandarie</ContinentId>
+          <ContinentId>Pandaria</ContinentId>
         </Npc>
       </Npc>
       <BlackListRadius />
