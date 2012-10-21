@@ -188,14 +188,12 @@ public class Druid_Balance
         public bool UseGiftoftheNaaru = true;
         public bool UseWarStomp = true;
         /* Druid Buffs */
-        public bool UseAquaticForm = true;
         public bool UseCatForm = true;
         public bool UseDash = true;
         public bool UseFaerieFire = true;
         public bool UseMarkoftheWild = true;
         public bool UseMoonkinForm = true;
         public bool UseStampedingRoar = true;
-        public bool UseTravelForm = false;
         /* Offensive Spell */
         public bool UseHurricane = true;
         public bool UseMoonfire = true;
@@ -248,14 +246,12 @@ public class Druid_Balance
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
-            AddControlInWinForm("Use Aquatic Form", "UseAquaticForm", "Druid Buffs");
             AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
             AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
             AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
             AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
             AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
-            AddControlInWinForm("Use Travel Form", "UseTravelForm", "Druid Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Hurricane", "UseHurricane", "Offensive Spell");
             AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spell");
@@ -332,14 +328,12 @@ public class Druid_Balance
 
     #region Druid Buffs
 
-    private readonly Spell Aquatic_Form = new Spell("Aquatic Form");
     private readonly Spell Cat_Form = new Spell("Cat Form");
     private readonly Spell Dash = new Spell("Dash");
     private readonly Spell Faerie_Fire = new Spell("Faerie Fire");
     private readonly Spell Mark_of_the_Wild = new Spell("Mark of the Wild");
     private readonly Spell Moonkin_Form = new Spell("Moonkin Form");
     private readonly Spell Stampeding_Roar = new Spell("Stampeding Roar");
-    private readonly Spell Travel_Form = new Spell("Travel Form");
 
     #endregion
 
@@ -519,26 +513,12 @@ public class Druid_Balance
             Dash.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
-            && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-        {
-            Stampeding_Roar.Launch();
-            return;
-        }
-        else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
-            && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
-            && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
-        {
-            Aquatic_Form.Launch();
-            return;
-        }
         else
         {
-            if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
-                && MySettings.UseTravelForm && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
-                && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
+            if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
             {
-                Travel_Form.Launch();
+                Stampeding_Roar.Launch();
                 return;
             }
         }
@@ -999,7 +979,6 @@ public class Druid_Feral
         public bool UseGiftoftheNaaru = true;
         public bool UseWarStomp = true;
         /* Druid Buffs */
-        public bool UseAquaticForm = true;
         public bool UseCatForm = true;
         public bool UseDash = true;
         public bool UseDisplacerBeast = false;
@@ -1008,7 +987,6 @@ public class Druid_Feral
         public bool UseProwl = false;
         public bool UseSavageRoar = true;
         public bool UseStampedingRoar = true;
-        public bool UseTravelForm = false;
         /* Offensive Spell */
         public bool UseFerociousBite = true;
         public bool UseMaim = true;
@@ -1064,7 +1042,6 @@ public class Druid_Feral
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
-            AddControlInWinForm("Use Aquatic Form", "UseAquaticForm", "Druid Buffs");
             AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
             AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
             AddControlInWinForm("Use Displacer Beast", "UseDisplacerBeast", "Druid Buffs");
@@ -1073,7 +1050,6 @@ public class Druid_Feral
             AddControlInWinForm("Use Prowl", "UseProwl", "Druid Buffs");
             AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
-            AddControlInWinForm("Use Travel Form", "UseTravelForm", "Druid Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Ferocious Bite", "UseFerociousBite", "Offensive Spell");
             AddControlInWinForm("Use Maim ", "UseMaim ", "Offensive Spell");
@@ -1153,8 +1129,6 @@ public class Druid_Feral
 
     #region Druid Buffs
 
-    private readonly Spell Aquatic_Form = new Spell("Aquatic Form");
-    private readonly Spell Bear_Form = new Spell("Bear Form");
     private readonly Spell Cat_Form = new Spell("Cat Form");
     private readonly Spell Dash = new Spell("Dash");
     private readonly Spell Displacer_Beast = new Spell("Displacer Beast");
@@ -1166,8 +1140,6 @@ public class Druid_Feral
     private Timer Savage_Roar_Timer = new Timer(0);
     bool FivePtSav = false;
     private readonly Spell Stampeding_Roar = new Spell("Stampeding Roar");
-    private readonly Spell Swift_Flight_Form = new Spell("Swift Flight Form");
-    private readonly Spell Travel_Form = new Spell("Travel Form");
 
     #endregion
 
@@ -1313,26 +1285,12 @@ public class Druid_Feral
             Dash.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
-            && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
-        {
-            Stampeding_Roar.Launch();
-            return;
-        }
-        else if (Aquatic_Form.KnownSpell && Aquatic_Form.IsSpellUsable && !Aquatic_Form.HaveBuff
-            && MySettings.UseAquaticForm && nManager.Wow.Helpers.Usefuls.IsSwimming
-            && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
-        {
-            Aquatic_Form.Launch();
-            return;
-        }
         else
         {
-            if (Travel_Form.KnownSpell && Travel_Form.IsSpellUsable && !Travel_Form.HaveBuff
-                && MySettings.UseTravelForm && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
-                && !Fight.InFight && !ObjectManager.Me.InCombat && ObjectManager.GetNumberAttackPlayer() == 0)
+            if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
             {
-                Travel_Form.Launch();
+                Stampeding_Roar.Launch();
                 return;
             }
         }

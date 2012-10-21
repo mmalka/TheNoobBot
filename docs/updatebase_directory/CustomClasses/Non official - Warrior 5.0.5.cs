@@ -586,7 +586,7 @@ public class Warrior_Arms
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60*1);
+            Engineering_Timer = new Timer(1000*60);
             return;
         }
         else if (Berserker_Rage.KnownSpell && Berserker_Rage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
