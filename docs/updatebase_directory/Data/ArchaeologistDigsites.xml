@@ -3115,20 +3115,6 @@
     <Active>true</Active>
   </Digsite>
   <Digsite>
-    <name>North Ruins of Guo-Lai Digsite</name>
-    <continentId>870</continentId>
-    <position>
-      <X>1522.746</X>
-      <Y>1648.247</Y>
-      <Z>373.9676</Z>
-      <Type>Flying</Type>
-    </position>
-    <px>0.41667652130127</px>
-    <py>0.6588808298111</py>
-    <PriorityDigsites>1</PriorityDigsites>
-    <Active>true</Active>
-  </Digsite>
-  <Digsite>
     <name>South Ruins of Guo-Lai Digsite</name>
     <continentId>870</continentId>
     <position>
@@ -3146,9 +3132,9 @@
     <name>North Great Wall Digsite</name>
     <continentId>870</continentId>
     <position>
-      <X>-163.1225</X>
-      <Y>2316.03</Y>
-      <Z>169.5089</Z>
+      <X>-136</X>
+      <Y>2269</Y>
+      <Z>198</Z>
       <Type>Flying</Type>
     </position>
     <px>0.41667652130127</px>
