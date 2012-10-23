@@ -69,6 +69,7 @@ namespace nManager.Wow.Helpers
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
                 var timerSit = new Helpful.Timer(2500);
+                var jump_timer = new Helpful.Timer(0);
 
                 while (Products.Products.IsStarted && ObjectManager.ObjectManager.Me.IsMounted &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
@@ -102,6 +103,9 @@ namespace nManager.Wow.Helpers
                                 }
                                 if (TraceLine.TraceLineGo(meTemps, temps))
                                 {
+                                    jump_timer = new Helpful.Timer(5000);
+                                    while(!jump_timer.IsReady)
+                                        MovementManager.StopMoveTo(false);
                                     MovementManager.StopMoveTo(true);
                                 }
                                 // End Stop move to
