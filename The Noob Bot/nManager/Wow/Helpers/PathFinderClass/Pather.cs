@@ -432,16 +432,22 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 var startRef = _query.FindNearestPolygon(start, extents, Filter);
                 if (startRef == 0)
-                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start");
+                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
 
                 var endRef = _query.FindNearestPolygon(end, extents, Filter);
                 if (endRef == 0)
-                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end");
+                    Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
+
+                if (startRef == 0 || endRef == 0)
+                    return new List<Point>();
 
                 uint[] pathCorridor;
                 var status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
                 if (status.HasFailed() || pathCorridor == null)
+                {
                     Logging.WriteNavigator(status + " FindPath failed, start: " + startRef + " end: " + endRef);
+                    return new List<Point>();
+                }
 
                 if (status.HasFlag(DetourStatus.PartialResult))
                 {

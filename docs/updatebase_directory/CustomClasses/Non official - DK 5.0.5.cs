@@ -492,7 +492,7 @@ public class Deathknight_Apprentice
             Pestilence_Timer.IsReady)
         {
             Pestilence.Launch();
-            Pestilence_Timer = new Timer(1000 * 30);
+            Pestilence_Timer = new Timer(1000*30);
             return;
         }
         else if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Blood_Boil.KnownSpell && MySettings.UseBloodBoil
@@ -961,7 +961,7 @@ public class Deathknight_Blood
             && Dancing_Rune_Weapon.IsDistanceGood && MySettings.UseDancingRuneWeapon)
         {
             Dancing_Rune_Weapon.Launch();
-            Dancing_Rune_Weapon_Timer = new Timer(1000 * 60 * 1.5);
+            Dancing_Rune_Weapon_Timer = new Timer(1000*60*1.5);
             DRW = 0;
             return;
         }
@@ -982,16 +982,16 @@ public class Deathknight_Blood
             && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
             && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
@@ -999,8 +999,8 @@ public class Deathknight_Blood
             && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
@@ -1017,7 +1017,7 @@ public class Deathknight_Blood
             if (Plague_Strike.IsSpellUsable)
             {
                 Plague_Strike.Launch();
-                Blood_Plague_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
                 return;
             }
         }
@@ -1035,7 +1035,7 @@ public class Deathknight_Blood
             if (Icy_Touch.IsSpellUsable)
             {
                 Icy_Touch.Launch();
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Frost_Fever_Timer = new Timer(1000*27);
                 return;
             }
         }
@@ -1045,8 +1045,8 @@ public class Deathknight_Blood
             Blood_Boil.Launch();
             if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Roiling_Blood.KnownSpell)
             {
-                Blood_Plague_Timer = new Timer(1000 * 27);
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
+                Frost_Fever_Timer = new Timer(1000*27);
             }
             return;
         }
@@ -1080,8 +1080,8 @@ public class Deathknight_Blood
             Blood_Boil.Launch();
             if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff)
             {
-                Blood_Plague_Timer = new Timer(1000 * 27);
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
+                Frost_Fever_Timer = new Timer(1000*27);
             }
             return;
         }
@@ -1365,7 +1365,7 @@ public class Deathknight_Blood
             {
                 Logging.WriteFight("Use Alchi Flask");
                 Lua.RunMacroText("/use item:75525");
-                AlchFlask_Timer = new Timer(1000 * 60 * 60 * 2);
+                AlchFlask_Timer = new Timer(1000*60*60*2);
                 return;
             }
         }
@@ -1678,7 +1678,7 @@ public class Deathknight_Unholy
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
         {
             Path_of_Frost.Launch();
-            Path_of_Frost_Timer = new Timer(1000 * 60 * 9);
+            Path_of_Frost_Timer = new Timer(1000*60*9);
         }
     }
 
@@ -1768,7 +1768,7 @@ public class Deathknight_Unholy
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000 * 60);
+            Engineering_Timer = new Timer(1000*60);
             return;
         }
         else
@@ -1800,7 +1800,7 @@ public class Deathknight_Unholy
             && MySettings.UseDarkTransformation)
         {
             Dark_Transformation.Launch();
-            Dark_Transformation_Timer = new Timer(1000 * 30);
+            Dark_Transformation_Timer = new Timer(1000*30);
             DT--;
             return;
         }
@@ -1821,16 +1821,16 @@ public class Deathknight_Unholy
             && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
             && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
@@ -1838,8 +1838,8 @@ public class Deathknight_Unholy
             && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
@@ -1856,7 +1856,7 @@ public class Deathknight_Unholy
             if (Plague_Strike.IsSpellUsable)
             {
                 Plague_Strike.Launch();
-                Blood_Plague_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
                 return;
             }
         }
@@ -1874,7 +1874,7 @@ public class Deathknight_Unholy
             if (Icy_Touch.IsSpellUsable)
             {
                 Icy_Touch.Launch();
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Frost_Fever_Timer = new Timer(1000*27);
                 return;
             }
         }
@@ -1918,8 +1918,8 @@ public class Deathknight_Unholy
             Blood_Boil.Launch();
             if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Roiling_Blood.KnownSpell)
             {
-                Blood_Plague_Timer = new Timer(1000 * 27);
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
+                Frost_Fever_Timer = new Timer(1000*27);
             }
             return;
         }
@@ -2511,7 +2511,7 @@ public class Deathknight_Frost
             && (!Path_of_Frost.HaveBuff || Path_of_Frost_Timer.IsReady))
         {
             Path_of_Frost.Launch();
-            Path_of_Frost_Timer = new Timer(1000 * 60 * 9);
+            Path_of_Frost_Timer = new Timer(1000*60*9);
         }
     }
 
@@ -2631,16 +2631,16 @@ public class Deathknight_Frost
             && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
             && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
@@ -2648,8 +2648,8 @@ public class Deathknight_Frost
             && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
-            Blood_Plague_Timer = new Timer(1000 * 27);
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Blood_Plague_Timer = new Timer(1000*27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
@@ -2666,7 +2666,7 @@ public class Deathknight_Frost
             if (Plague_Strike.IsSpellUsable)
             {
                 Plague_Strike.Launch();
-                Blood_Plague_Timer = new Timer(1000 * 27);
+                Blood_Plague_Timer = new Timer(1000*27);
                 return;
             }
         }
@@ -2684,7 +2684,7 @@ public class Deathknight_Frost
             if (Howling_Blast.IsSpellUsable && MySettings.UseHowlingBlast)
             {
                 Howling_Blast.Launch();
-                Frost_Fever_Timer = new Timer(1000 * 27);
+                Frost_Fever_Timer = new Timer(1000*27);
                 return;
             }
 
@@ -2693,7 +2693,7 @@ public class Deathknight_Frost
                 if (Icy_Touch.IsSpellUsable && MySettings.UseIcyTouch)
                 {
                     Icy_Touch.Launch();
-                    Frost_Fever_Timer = new Timer(1000 * 27);
+                    Frost_Fever_Timer = new Timer(1000*27);
                     return;
                 }
             }
@@ -2708,7 +2708,7 @@ public class Deathknight_Frost
             && MySettings.UseHowlingBlast)
         {
             Howling_Blast.Launch();
-            Frost_Fever_Timer = new Timer(1000 * 27);
+            Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseDeathandDecay

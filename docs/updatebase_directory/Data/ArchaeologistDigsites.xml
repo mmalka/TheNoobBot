@@ -3352,4 +3352,32 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Site de fouilles des marais Chantants</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-122</X>
+      <Y>1717</Y>
+      <Z>238</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.45418787002563</px>
+    <py>0.65482032299042</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles du vieux village</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1854</X>
+      <Y>433</Y>
+      <Z>489</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.53713822364807</px>
+    <py>0.46571677923203</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
