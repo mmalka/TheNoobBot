@@ -19,7 +19,7 @@ namespace nManager.Wow.Bot.Tasks
     public class MountTask
     {
         private static int _nbTry;
-
+        private static int _noMountsInSettings;
         public static MountCapacity GetMountCapacity()
         {
             string aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
@@ -44,7 +44,12 @@ namespace nManager.Wow.Bot.Tasks
             }
             if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty)
             {
-                MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
+
+                if(_noMountsInSettings != 1)
+                {
+                    MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
+                    _noMountsInSettings++;
+                }
                 return MountCapacity.Feet;
             }
 
@@ -334,6 +339,7 @@ namespace nManager.Wow.Bot.Tasks
 
         public static void Takeoff()
         {
+            Logging.WriteNavigator("Take-off in progress.");
             Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
             var t = new Timer(850);
             while (!Usefuls.IsFlying && !t.IsReady)
@@ -346,6 +352,7 @@ namespace nManager.Wow.Bot.Tasks
 
         public static void Land()
         {
+            Logging.WriteNavigator("Landing in progress.");
             Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
             var t = new Timer(15000);
             while (Usefuls.IsFlying && !t.IsReady)
@@ -370,7 +377,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                     {
-                        Logging.Write("Dismount");
+                        Logging.Write("Dismount in progress.");
                         if (Usefuls.IsFlying)
                             Land();
                         Usefuls.DisMount();
