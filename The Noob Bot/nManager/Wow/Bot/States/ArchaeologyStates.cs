@@ -31,6 +31,8 @@ namespace nManager.Wow.Bot.States
         private Helpful.Timer timerAutoSolving;
 
         public int SolvingEveryXMin = 20;
+        public bool ForceSolving;
+        private int nbLootAttempt;
         public int MaxTryByDigsite = 30;
 
         public override bool NeedToRun
@@ -105,12 +107,17 @@ namespace nManager.Wow.Bot.States
                 // Solving Every X Min
                 if (timerAutoSolving == null)
                     timerAutoSolving = new Helpful.Timer(SolvingEveryXMin * 1000 * 60);
-                if (timerAutoSolving.IsReady && !ObjectManager.ObjectManager.Me.IsDeadMe && !ObjectManager.ObjectManager.Me.InCombat)
+                if (ForceSolving || (timerAutoSolving.IsReady && !ObjectManager.ObjectManager.Me.IsDeadMe && !ObjectManager.ObjectManager.Me.InCombat))
                 {
+                    if (ForceSolving)
+                    {
+                        ForceSolving = false;
+                        nbLootAttempt = 0;
+                    }
                     MovementManager.StopMove();
                     LongMove.StopLongMove();
                     Archaeology.SolveAllArtifact();
-                    timerAutoSolving = new Helpful.Timer(SolvingEveryXMin*1000*60);
+                    timerAutoSolving = new Helpful.Timer(SolvingEveryXMin * 1000 * 60);
                 }
 
                 // Go To Zone
@@ -119,7 +126,7 @@ namespace nManager.Wow.Bot.States
                 if (digsitesZone.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 1000)
                 {
                     Logging.Write("Go to Digsite " + digsitesZone.name);
-                    MovementManager.Go(new List<Point>(new[]{digsitesZone.position})); // MoveTo Digsite
+                    MovementManager.Go(new List<Point>(new[] { digsitesZone.position })); // MoveTo Digsite
                     return;
                 }
 
@@ -137,6 +144,8 @@ namespace nManager.Wow.Bot.States
                         {
                             var points = PathFinder.FindPath(t.Position);
                             MovementManager.Go(points);
+                            if (nbLootAttempt > 5)
+                                ForceSolving = true;
                             Logging.Write("Loot " + t.Name);
                             var timer = new Helpful.Timer(1000 * Math.DistanceListPoint(points) / 3);
                             Thread.Sleep(300);
@@ -171,6 +180,7 @@ namespace nManager.Wow.Bot.States
                                 Thread.Sleep(500);
                             }
                             Statistics.Farms++;
+                            nbLootAttempt++;
                             if (ObjectManager.ObjectManager.Me.InCombat)
                             {
                                 return;
@@ -179,12 +189,14 @@ namespace nManager.Wow.Bot.States
                         }
                         else if (_nbTryFarmInThisZone > MaxTryByDigsite) // If try > config try black list
                         {
+                            nbLootAttempt = 0;
                             BlackListDigsites.Add(digsitesZone.px + digsitesZone.py + digsitesZone.continentId);
                             Logging.Write("Black List Digsite: " + digsitesZone.name);
                             return;
                         }
                         else // Find loot with Survey
                         {
+                            nbLootAttempt = 0;
                             if (!Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                             {
                                 return;
