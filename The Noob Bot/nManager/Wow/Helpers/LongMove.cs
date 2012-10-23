@@ -104,8 +104,11 @@ namespace nManager.Wow.Helpers
                                 if (TraceLine.TraceLineGo(meTemps, temps))
                                 {
                                     jump_timer = new Helpful.Timer(5000);
-                                    while(!jump_timer.IsReady)
+                                    while (!jump_timer.IsReady)
+                                    {
                                         MovementManager.StopMoveTo(false);
+                                        Thread.Sleep(1000);
+                                    }
                                     MovementManager.StopMoveTo(true);
                                 }
                                 // End Stop move to
