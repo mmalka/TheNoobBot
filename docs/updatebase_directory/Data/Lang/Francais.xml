@@ -1131,7 +1131,7 @@
       <Id>AlwaysOnTop</Id>
     </Translation>
 	<Translation>
-	  <Text>Vous n'avez ni configurer de monture terreste, ni de monture volante, cela peut affecter les performances du bot en jeu, soyez sûr d'au moins définir l'une d'entre elle selon votre niveau/compétence de monte.</Text>
+	  <Text>Vous n'avez configuré ni monture terrestre, ni monture volante, cela peut affecter les performances du bot en jeu. Soyez sûre de définir au moins l'une d'entre elle selon votre niveau et votre compétence de monte.</Text>
       <Id>No_mounts_in_settings</Id>
     </Translation>
   </Translations>
