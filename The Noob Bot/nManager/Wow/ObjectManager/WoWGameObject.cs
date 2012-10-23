@@ -299,6 +299,12 @@ namespace nManager.Wow.ObjectManager
                     if (!Quest.GetLogQuestId().Contains((int)Data8))
                         return false;
                 }
+                if (Data0 == 1995 && Data1 == 40536 && Data8 == 0
+                    && !Quest.GetLogQuestId().Contains((int)Data8))
+                    return false;
+                if (Data0 == 1994 && Data1 == 40537 && Data8 == 0
+                    && !Quest.GetLogQuestId().Contains((int)Data8))
+                    return false;
                 return true;
             }
         }
