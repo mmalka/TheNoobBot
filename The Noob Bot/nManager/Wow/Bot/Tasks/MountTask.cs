@@ -42,6 +42,12 @@ namespace nManager.Wow.Bot.Tasks
                 MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
                 flyMount = string.Empty;
             }
+            if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty)
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
+                return MountCapacity.Feet;
+            }
+
             System.Collections.Generic.List<uint> aquaMountId = SpellManager.SpellListManager.SpellIdByName(aquaMount);
 
             // The Abyssal Seahorse is selected
@@ -62,7 +68,7 @@ namespace nManager.Wow.Bot.Tasks
                 !(aquaMountId.Count > 0 && aquaMountId[0] == 75207))
                 return MountCapacity.Swimm;
 
-            nManager.Wow.Enums.ContinentId cont = (nManager.Wow.Enums.ContinentId)Usefuls.ContinentId;
+            Enums.ContinentId cont = (Enums.ContinentId)Usefuls.ContinentId;
 
             if (Usefuls.IsOutdoors)
             {

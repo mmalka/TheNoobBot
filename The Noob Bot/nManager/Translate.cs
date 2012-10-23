@@ -349,7 +349,8 @@ namespace nManager
             WoW_Client_64bit,
             Title_WoW_Client_64bit,
             Uncap_MaxFPS,
-            AlwaysOnTop
+            AlwaysOnTop,
+            No_mounts_in_settings
         };
 
         [Serializable]

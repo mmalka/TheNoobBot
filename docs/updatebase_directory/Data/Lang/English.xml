@@ -1133,5 +1133,9 @@
       <Text>Always on Top</Text>
       <Id>AlwaysOnTop</Id>
     </Translation>
+	<Translation>
+      <Text>There is neither Ground mount nor Flying mount set in your general settings, this may impact your botting experience, make sure to at least define one of them.</Text>
+      <Id>No_mounts_in_settings</Id>
+    </Translation>
   </Translations>
 </Language>
