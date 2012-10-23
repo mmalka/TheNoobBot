@@ -102,7 +102,7 @@ namespace nManager.Wow.Helpers
                                 }
                                 if (TraceLine.TraceLineGo(meTemps, temps))
                                 {
-                                    MovementManager.StopMoveTo(false);
+                                    MovementManager.StopMoveTo(true);
                                 }
                                 // End Stop move to
                                 Thread.Sleep(1300);
