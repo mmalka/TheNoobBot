@@ -3380,4 +3380,32 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Shanze'Dao Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>4071</X>
+      <Y>5249</Y>
+      <Z>206</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.22576820850372</px>
+    <py>0.25350701808929</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Terrace of Gurthan Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>674</X>
+      <Y>2191</Y>
+      <Z>335</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.42299282550812</px>
+    <py>0.58037769794464</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
