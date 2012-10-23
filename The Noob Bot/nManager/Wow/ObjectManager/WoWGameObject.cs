@@ -231,6 +231,8 @@ namespace nManager.Wow.ObjectManager
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType)Row.Record.LockType[j]);
+                                if (Data0 == 1690 && Data1 == 41367 && Data8 == 0)
+                                    return true;
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
                                     return false;
 
