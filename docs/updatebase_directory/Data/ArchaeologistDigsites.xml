@@ -3366,4 +3366,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Destroyed Village Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3288</X>
+      <Y>354</Y>
+      <Z>456</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.54210102558136</px>
+    <py>0.32717621326447</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
