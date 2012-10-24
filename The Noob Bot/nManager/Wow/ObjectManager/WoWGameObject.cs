@@ -299,8 +299,6 @@ namespace nManager.Wow.ObjectManager
                     if (!Quest.GetLogQuestId().Contains((int)Data8))
                         return false;
                 }
-                if ((Entry == 209953 || Entry == 209954 || Entry == 210520) && !Quest.GetLogQuestId().Contains((int)Data8))
-                    return false; // Disable loot by default for: Emperor Tern Egg && Whitefisher Crane Egg && Crane Egg
                 return true;
             }
         }
