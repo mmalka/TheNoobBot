@@ -114,6 +114,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Mage Frost class...");
+                            range = 30.0f
                             new Mage_Frost();
                         }
                     }
@@ -126,6 +127,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Arcane Mage class...");
+                            range = 30.0f
                             new Mage_Arcane();
                         }
                     }
@@ -138,6 +140,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Mage Fire class...");
+                            range = 30.0f
                             new Mage_Fire();
                         }
                     }
@@ -151,6 +154,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Mage frost class...");
+                            range = 30.0f
                             new Mage_Frost();
                         }
                     }
@@ -172,6 +176,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Affliction Warlock class...");
+                            range = 30.0f
                             new Affli();
                         }
                     }
@@ -184,6 +189,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Demonology Warlock class...");
+                            range = 30.0f
                             new Demo();
                         }
                     }
@@ -197,6 +203,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Demonology Warlock class...");
+                            range = 30.0f
                             new Demo();
                         }
                     }
@@ -231,6 +238,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Balance Druid Found");
+                            range = 30.0f
                             new Balance();
                         }
                         break;
@@ -244,6 +252,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Druid without Spec");
+                            range = 30.0f
                             new Balance();
                         }
                         break;
@@ -322,6 +331,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Paladin Holy class...");
+                            range = 30.0f
                             new Paladin_Holy();
                         }
                         break;
@@ -368,6 +378,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Ele Shaman Found");
+                            range = 30.0f
                             new Ele();
                         }
                     }
@@ -380,6 +391,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Shaman without Spec");
+                            range = 30.0f
                             new Ele();
                         }
                     }
@@ -412,6 +424,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Priest Shadow class...");
+                            range = 30.0f
                             new Priest_Shadow();
                         }
                         break;
@@ -438,6 +451,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("Priest Discipline found, but no Discipline class available...");
                             Logging.WriteFight("Loading Priest Shadow class...");
+                            range = 30.0f
                             new Priest_Shadow();
                         }
                         break;
@@ -464,6 +478,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("Priest Holy found, but no Holy class available...");
                             Logging.WriteFight("Loading Priest Shadow class...");
+                            range = 30.0f
                             new Priest_Shadow();
                         }
                         break;
@@ -619,6 +634,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Survival Hunter Found");
+                            range = 30.0f
                             new Survival();
                         }
                         break;
@@ -632,6 +648,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Marksman Hunter Found");
+                            range = 30.0f
                             new Marks();
                         }
                         break;
@@ -655,6 +672,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Beast Master Hunter Found");
+                            range = 30.0f
                             new Hunter_BeastMaster();
                         }
                         break;
@@ -679,6 +697,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Hunter Beast Master class...");
+                            range = 30.0f
                             new Hunter_BeastMaster();
                         }
                     }

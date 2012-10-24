@@ -18,7 +18,7 @@ public class Main : ICustomClass
 {
     #region Initialize_CustomClass
 
-    internal static float range = 3.5f;
+    internal static float range = 5.0f;
     public static bool loop = true;
 
     public float Range
@@ -128,7 +128,7 @@ public class MonkWW
 
     public MonkWW()
     {
-        Main.range = 3.6f; // Range
+        Main.range = 5.0f; // Range
 
         UInt64 lastTarget = 0;
 

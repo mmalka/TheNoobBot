@@ -18,7 +18,7 @@ using Timer = nManager.Helpful.Timer;
 
 public class Main : ICustomClass
 {
-    internal static float range = 3.5f;
+    internal static float range = 5.0f;
     internal static bool loop = true;
 
     public float Range
@@ -115,6 +115,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Balance Druid Found");
+                            range = 30.0f;
                             new Druid_Balance();
                         }
                         break;
@@ -140,6 +141,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Druid Balance class...");
+                            range = 30.0f;
                             new Druid_Balance();
                         }
                         break;

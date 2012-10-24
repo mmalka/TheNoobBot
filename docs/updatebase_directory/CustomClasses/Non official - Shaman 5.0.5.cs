@@ -18,7 +18,7 @@ using Timer = nManager.Helpful.Timer;
 
 public class Main : ICustomClass
 {
-    internal static float range = 3.5f;
+    internal static float range = 5.0f;
     internal static bool loop = true;
 
     public float Range
@@ -54,6 +54,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Ele Shaman Found");
+                            range = 30.0f;
                             new Ele();
                         }
                     }
@@ -80,6 +81,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Shaman without Spec");
+                            range = 30.0f;
                             new Ele();
                         }
                     }
