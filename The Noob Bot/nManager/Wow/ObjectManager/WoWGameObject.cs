@@ -231,7 +231,7 @@ namespace nManager.Wow.ObjectManager
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType)Row.Record.LockType[j]);
-                                if (Data0 == 1690 && Data1 == 41367 && Data8 == 0)
+                                if (Entry == 210565 || Entry == 214945) // Hardcoding for Dark Soil & Onyx Egg
                                     return true;
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
                                     return false;
@@ -292,19 +292,15 @@ namespace nManager.Wow.ObjectManager
                 {
                     //Logging.Write("This Goober has quest " + Data1);
                     //if (!Quest.GetLogQuestId().Contains((int)Data1))
-                        return false;
+                    return false;
                 }
                 if (GOType == WoWGameObjectType.Chest && Data8 != 0)
                 {
                     if (!Quest.GetLogQuestId().Contains((int)Data8))
                         return false;
                 }
-                if (Data0 == 1995 && Data1 == 40536 && Data8 == 0
-                    && !Quest.GetLogQuestId().Contains((int)Data8))
-                    return false;
-                if (Data0 == 1994 && Data1 == 40537 && Data8 == 0
-                    && !Quest.GetLogQuestId().Contains((int)Data8))
-                    return false;
+                if ((Entry == 209953 || Entry == 209954 || Entry == 210520) && !Quest.GetLogQuestId().Contains((int)Data8))
+                    return false; // Disable loot by default for: Emperor Tern Egg && Whitefisher Crane Egg && Crane Egg
                 return true;
             }
         }
