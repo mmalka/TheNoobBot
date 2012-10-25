@@ -714,14 +714,11 @@ public class Mage_Frost
 
     private void Pet()
     {
-        if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
+        if (Summon_Water_Elemental.IsSpellUsable && Summon_Water_Elemental.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            Logging.WriteFight(" - PET DEAD - ");
-            if (Summon_Water_Elemental.KnownSpell && Summon_Water_Elemental.IsSpellUsable)
-            {
-                Summon_Water_Elemental.Launch();
-                return;
-            }
+			Logging.WriteFight(" - PET DEAD - ");
+			Summon_Water_Elemental.Launch();
+			return;
         }
     }
 

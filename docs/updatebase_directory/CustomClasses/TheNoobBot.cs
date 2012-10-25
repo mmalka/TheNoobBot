@@ -2273,14 +2273,11 @@ public class Mage_Frost
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) &&
-            !ObjectManager.Me.IsMounted && !ObjectManager.Me.IsDeadMe)
+        if (Summon_Water_Elemental.IsSpellUsable && Summon_Water_Elemental.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            if (Summon_Water_Elemental.KnownSpell &&
-                Summon_Water_Elemental.IsSpellUsable)
-            {
-                Summon_Water_Elemental.Launch();
-            }
+			Logging.WriteFight(" - PET DEAD - ");
+			Summon_Water_Elemental.Launch();
+			return;
         }
     }
 
