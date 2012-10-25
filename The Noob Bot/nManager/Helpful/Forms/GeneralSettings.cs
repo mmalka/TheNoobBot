@@ -234,6 +234,8 @@ namespace nManager.Helpful.Forms
             Text = Translate.Get(Translate.Id.General_Settings);
             labelX73.Text = Translate.Get(Translate.Id.Uncap_MaxFPS);
             SetToolTypeIfNeeded(labelX73);
+            AutoConfirmBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmBopItems);
+            SetToolTypeIfNeeded(AutoConfirmBoPItemsLabel);
             
         }
 
@@ -300,8 +302,6 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.accountEmail = accountEmail.Text;
                 nManagerSetting.CurrentSetting.accountPassword = accountPassword.Text;
                 nManagerSetting.CurrentSetting.bNetName = bNetName.Text;
-                //nManagerSetting.CurrentSetting.characterName = characterName.Text;
-                //nManagerSetting.CurrentSetting.realmServer = realmServer.Text;
                 nManagerSetting.CurrentSetting.foodAmount = foodAmount.Value;
                 nManagerSetting.CurrentSetting.drinkAmount = drinkAmount.Value;
                 nManagerSetting.CurrentSetting.repair = repair.Value;
@@ -340,6 +340,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.usePathsFinder = usePathsFinder.Value;
                 nManagerSetting.CurrentSetting.MaxFPSSwitch = MaxFPSSwitch.Value;
                 nManagerSetting.CurrentSetting.npcMailboxSearchRadius = npcMailboxSearchRadius.Value;
+                nManagerSetting.CurrentSetting.AutoConfirmBoPItems = AutoConfirmBoPItems.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -405,8 +406,6 @@ namespace nManager.Helpful.Forms
                 accountEmail.Text = managerSetting.accountEmail;
                 accountPassword.Text = managerSetting.accountPassword;
                 bNetName.Text = managerSetting.bNetName;
-                //characterName.Text = managerSetting.characterName;
-                //realmServer.Text = managerSetting.realmServer;
                 foodAmount.Value = managerSetting.foodAmount;
                 drinkAmount.Value = managerSetting.drinkAmount;
                 repair.Value = managerSetting.repair;
@@ -440,7 +439,8 @@ namespace nManager.Helpful.Forms
                 securitySongIfNewWhisper.Value = managerSetting.securitySongIfNewWhisper;
                 usePathsFinder.Value = managerSetting.usePathsFinder;
                 MaxFPSSwitch.Value = managerSetting.MaxFPSSwitch;
-                npcMailboxSearchRadius.Value = (int)nManagerSetting.CurrentSetting.npcMailboxSearchRadius;
+                npcMailboxSearchRadius.Value = (int)managerSetting.npcMailboxSearchRadius;
+                AutoConfirmBoPItems.Value = managerSetting.AutoConfirmBoPItems;
             }
             catch (Exception ex)
             {

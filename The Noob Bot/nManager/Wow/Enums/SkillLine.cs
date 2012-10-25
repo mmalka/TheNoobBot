@@ -152,6 +152,6 @@
         PetWasp = 785,
         PetExoticRhino = 786,
         PetExoticCoreHound = 787,
+        Free = 9999 // Custom for us
     }
-
 }

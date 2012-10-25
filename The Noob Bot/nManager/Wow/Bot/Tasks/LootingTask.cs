@@ -134,5 +134,28 @@ namespace nManager.Wow.Bot.Tasks
                 Logging.WriteError("LootingTask > Pulse(IEnumerable<WoWUnit> woWUnits): " + ex);
             }
         }
+
+        public static void ConfirmBoP()
+        {
+            try
+            {
+                Thread.Sleep(Usefuls.Latency + 500);
+                Lua.LuaDoString(
+                    "for slot = 1, GetNumLootItems() do" +
+                    "  if GetLootSlotType(slot) == LOOT_SLOT_ITEM then" +
+                    "    ConfirmLootSlot(slot)" +
+                    "  end" +
+                    "end");
+                /* TODO : We need to handle properly the event OR We need to check if the current Slot is a BoP item or not.
+                 * Currently, we count how many loots we've got, and check one by one if the loot is an "item" (and not golds, etc).
+                 * Note: AutoConfirmBoPItems is false per default.
+                 */
+                Thread.Sleep(Usefuls.Latency);
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("LootingTask > ConfirmBoP(): " + ex);
+            }
+        }
     }
 }

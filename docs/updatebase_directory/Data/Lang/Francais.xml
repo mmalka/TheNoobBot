@@ -1134,5 +1134,9 @@
 	  <Text>Vous n'avez configuré ni monture terrestre, ni monture volante, cela peut affecter les performances du bot en jeu. Soyez sûr de définir au moins l'une d'entre elle selon votre niveau et votre compétence de monte.</Text>
       <Id>No_mounts_in_settings</Id>
     </Translation>
+	<Translation>
+      <Text>Confirmer automatiquement les items LQR</Text>
+      <Id>AutoConfirmBopItems</Id>
+    </Translation>
   </Translations>
 </Language>

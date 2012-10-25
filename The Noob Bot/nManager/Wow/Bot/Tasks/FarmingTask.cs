@@ -169,10 +169,8 @@ namespace nManager.Wow.Bot.Tasks
                                     return;
                                 }
                                 Thread.Sleep(Usefuls.Latency + 100);
-                                Lua.LuaDoString(
-                                    "for i = 1, 2 do" +
-                                    "  ConfirmLootSlot(i)" +
-                                    "end");
+                                if (nManagerSetting.CurrentSetting.AutoConfirmBoPItems)
+                                    LootingTask.ConfirmBoP();
                                 Statistics.Farms++;
                                 if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                                 {
@@ -311,10 +309,8 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                Lua.LuaDoString(
-                                    "for i = 1, 2 do" +
-                                    "  ConfirmLootSlot(i)" +
-                                    "end");
+                                if(nManagerSetting.CurrentSetting.AutoConfirmBoPItems)
+                                    LootingTask.ConfirmBoP();
                                 Statistics.Farms++;
                                 nManagerSetting.AddBlackList(node.Guid, 1000 * 20); //60 * 5); // 20 sec instead of 5 min
                                 Logging.Write("Farm successful");

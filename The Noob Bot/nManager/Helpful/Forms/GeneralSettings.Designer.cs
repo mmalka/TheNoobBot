@@ -107,6 +107,8 @@ namespace nManager.Helpful.Forms
             this.accountEmail = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX40 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel4 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.AutoConfirmBoPItems = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.AutoConfirmBoPItemsLabel = new DevComponents.DotNetBar.LabelX();
             this.labelX69 = new DevComponents.DotNetBar.LabelX();
             this.millingInTown = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.millingTime = new DevComponents.Editors.IntegerInput();
@@ -1546,6 +1548,8 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel4.Controls.Add(this.AutoConfirmBoPItems);
+            this.expandablePanel4.Controls.Add(this.AutoConfirmBoPItemsLabel);
             this.expandablePanel4.Controls.Add(this.labelX69);
             this.expandablePanel4.Controls.Add(this.millingInTown);
             this.expandablePanel4.Controls.Add(this.millingTime);
@@ -1611,6 +1615,37 @@ namespace nManager.Helpful.Forms
             this.expandablePanel4.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.expandablePanel4.TitleStyle.GradientAngle = 90;
             this.expandablePanel4.TitleText = "Looting && Farming options";
+            // 
+            // AutoConfirmBoPItems
+            // 
+            this.AutoConfirmBoPItems.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(229)))), ((int)(((byte)(230)))));
+            // 
+            // 
+            // 
+            this.AutoConfirmBoPItems.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoConfirmBoPItems.ForeColor = System.Drawing.Color.Black;
+            this.AutoConfirmBoPItems.Location = new System.Drawing.Point(428, 30);
+            this.AutoConfirmBoPItems.Name = "AutoConfirmBoPItems";
+            this.AutoConfirmBoPItems.OffText = "NO";
+            this.AutoConfirmBoPItems.OnText = "YES";
+            this.AutoConfirmBoPItems.Size = new System.Drawing.Size(66, 22);
+            this.AutoConfirmBoPItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.AutoConfirmBoPItems.TabIndex = 61;
+            // 
+            // AutoConfirmBoPItemsLabel
+            // 
+            this.AutoConfirmBoPItemsLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.AutoConfirmBoPItemsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AutoConfirmBoPItemsLabel.ForeColor = System.Drawing.Color.Black;
+            this.AutoConfirmBoPItemsLabel.Location = new System.Drawing.Point(262, 29);
+            this.AutoConfirmBoPItemsLabel.Name = "AutoConfirmBoPItemsLabel";
+            this.AutoConfirmBoPItemsLabel.Size = new System.Drawing.Size(160, 23);
+            this.AutoConfirmBoPItemsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.AutoConfirmBoPItemsLabel.TabIndex = 62;
+            this.AutoConfirmBoPItemsLabel.Text = "Auto Confirm on BoP Items";
             // 
             // labelX69
             // 
@@ -2010,7 +2045,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX23.ForeColor = System.Drawing.Color.Black;
-            this.labelX23.Location = new System.Drawing.Point(244, 88);
+            this.labelX23.Location = new System.Drawing.Point(262, 88);
             this.labelX23.Name = "labelX23";
             this.labelX23.Size = new System.Drawing.Size(34, 23);
             this.labelX23.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -2025,7 +2060,7 @@ namespace nManager.Helpful.Forms
             // 
             this.skinNinja.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.skinNinja.ForeColor = System.Drawing.Color.Black;
-            this.skinNinja.Location = new System.Drawing.Point(284, 88);
+            this.skinNinja.Location = new System.Drawing.Point(302, 88);
             this.skinNinja.Name = "skinNinja";
             this.skinNinja.OffText = "NO";
             this.skinNinja.OnText = "YES";
@@ -3240,5 +3275,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX labelX62;
         private DevComponents.DotNetBar.LabelX labelX73;
         private DevComponents.DotNetBar.Controls.SwitchButton MaxFPSSwitch;
+        private DevComponents.DotNetBar.LabelX AutoConfirmBoPItemsLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton AutoConfirmBoPItems;
     }
 }

@@ -4,7 +4,8 @@
     {
         LOCK_KEY_NONE = 0,
         LOCK_KEY_ITEM = 1,
-        LOCK_KEY_SKILL = 2
+        LOCK_KEY_SKILL = 2,
+        LOCK_KEY_UNKNOWN = 3
     }
 
     public enum WoWGameObjectLockType
