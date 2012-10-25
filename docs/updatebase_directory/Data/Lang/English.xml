@@ -1139,7 +1139,7 @@
     </Translation>
 	<Translation>
       <Text>Auto Confirm on BoP Items</Text>
-      <Id>AutoConfirmBopItems</Id>
+      <Id>AutoConfirmOnBoPItems</Id>
     </Translation>
   </Translations>
 </Language>

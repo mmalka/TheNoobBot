@@ -234,8 +234,8 @@ namespace nManager.Helpful.Forms
             Text = Translate.Get(Translate.Id.General_Settings);
             labelX73.Text = Translate.Get(Translate.Id.Uncap_MaxFPS);
             SetToolTypeIfNeeded(labelX73);
-            AutoConfirmBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmBopItems);
-            SetToolTypeIfNeeded(AutoConfirmBoPItemsLabel);
+            AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
+            SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
             
         }
 
@@ -340,7 +340,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.usePathsFinder = usePathsFinder.Value;
                 nManagerSetting.CurrentSetting.MaxFPSSwitch = MaxFPSSwitch.Value;
                 nManagerSetting.CurrentSetting.npcMailboxSearchRadius = npcMailboxSearchRadius.Value;
-                nManagerSetting.CurrentSetting.AutoConfirmBoPItems = AutoConfirmBoPItems.Value;
+                nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -440,7 +440,7 @@ namespace nManager.Helpful.Forms
                 usePathsFinder.Value = managerSetting.usePathsFinder;
                 MaxFPSSwitch.Value = managerSetting.MaxFPSSwitch;
                 npcMailboxSearchRadius.Value = (int)managerSetting.npcMailboxSearchRadius;
-                AutoConfirmBoPItems.Value = managerSetting.AutoConfirmBoPItems;
+                AutoConfirmOnBoPItems.Value = managerSetting.AutoConfirmOnBoPItems;
             }
             catch (Exception ex)
             {

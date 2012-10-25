@@ -169,8 +169,8 @@ namespace nManager.Wow.Bot.Tasks
                                     return;
                                 }
                                 Thread.Sleep(Usefuls.Latency + 100);
-                                if (nManagerSetting.CurrentSetting.AutoConfirmBoPItems)
-                                    LootingTask.ConfirmBoP();
+                                if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
+                                    LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
                                 if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
                                 {
@@ -309,8 +309,8 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                if(nManagerSetting.CurrentSetting.AutoConfirmBoPItems)
-                                    LootingTask.ConfirmBoP();
+                                if(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
+                                    LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
                                 nManagerSetting.AddBlackList(node.Guid, 1000 * 20); //60 * 5); // 20 sec instead of 5 min
                                 Logging.Write("Farm successful");

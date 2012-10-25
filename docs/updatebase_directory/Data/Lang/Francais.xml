@@ -1136,7 +1136,7 @@
     </Translation>
 	<Translation>
       <Text>Confirmer automatiquement les items LQR</Text>
-      <Id>AutoConfirmBopItems</Id>
+      <Id>AutoConfirmOnBoPItems</Id>
     </Translation>
   </Translations>
 </Language>

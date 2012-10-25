@@ -351,7 +351,7 @@ namespace nManager
             Uncap_MaxFPS,
             AlwaysOnTop,
             No_mounts_in_settings,
-            AutoConfirmBopItems
+            AutoConfirmOnBoPItems
         };
 
         [Serializable]
