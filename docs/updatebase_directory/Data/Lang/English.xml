@@ -1137,5 +1137,9 @@
       <Text>There is neither Ground mount nor Flying mount set in your general settings, this may impact your botting experience, make sure to at least define one of them.</Text>
       <Id>No_mounts_in_settings</Id>
     </Translation>
+	<Translation>
+      <Text>Auto Confirm on BoP Items</Text>
+      <Id>AutoConfirmBopItems</Id>
+    </Translation>
   </Translations>
 </Language>

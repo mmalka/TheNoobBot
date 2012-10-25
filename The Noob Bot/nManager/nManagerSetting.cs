@@ -222,8 +222,6 @@ namespace nManager
         public string accountEmail = "";
         public string accountPassword = "";
         public string bNetName = "";
-        //public string characterName = "";
-        //public string realmServer = "";
         public int foodAmount;
         public int drinkAmount;
         public bool repair = true;
@@ -254,9 +252,10 @@ namespace nManager
         public int closeAfterXMin = 1440;
         public bool securityPauseBotIfNerbyPlayer;
         public bool securityRecordWhisperInLogFile = true;
-        public bool securitySongIfNewWhisper = false;
+        public bool securitySongIfNewWhisper;
         public bool usePathsFinder = true;
         public bool MaxFPSSwitch = true;
         public float npcMailboxSearchRadius = 1000;
+        public bool AutoConfirmBoPItems;
     }
 }
