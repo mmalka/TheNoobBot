@@ -152,7 +152,7 @@ namespace nManager.Wow.Bot.Tasks
                                     Usefuls.DisMount();
                                 Thread.Sleep(Usefuls.Latency + 300);
                                 Interact.InteractGameObject(node.GetBaseAddress);
-                                Thread.Sleep(Usefuls.Latency + 200); // tauren cast plus vite
+                                Thread.Sleep(Usefuls.Latency + 200);
                                 if (!ObjectManager.ObjectManager.Me.IsCast)
                                 {
                                     Interact.InteractGameObject(node.GetBaseAddress);
@@ -168,7 +168,7 @@ namespace nManager.Wow.Bot.Tasks
                                         Lua.RunMacroText("/cancelform");
                                     return;
                                 }
-                                Thread.Sleep(Usefuls.Latency + 100);
+                                Thread.Sleep(Usefuls.Latency + 200);
                                 if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
                                     LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;

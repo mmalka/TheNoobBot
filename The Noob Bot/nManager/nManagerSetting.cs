@@ -256,6 +256,6 @@ namespace nManager
         public bool usePathsFinder = true;
         public bool MaxFPSSwitch = true;
         public float npcMailboxSearchRadius = 1000;
-        public bool AutoConfirmOnBoPItems;
+        public bool AutoConfirmOnBoPItems = true;
     }
 }
