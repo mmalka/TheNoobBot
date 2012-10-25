@@ -282,7 +282,6 @@ public class Warrior_Arms
             AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
             AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
-            AddControlInWinForm("Use Spell Reflection", "UseSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
@@ -443,7 +442,7 @@ public class Warrior_Arms
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
@@ -702,7 +701,7 @@ public class Warrior_Arms
         }
         else if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood
             && MySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-            && (ObjectManager.Me.RagePercentage > 90 || ObjectManager.Me.HaveBuff(125831)))
+            && ObjectManager.Me.HaveBuff(125831))
         {
             if (Deadly_Calm.KnownSpell && Deadly_Calm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
@@ -753,12 +752,6 @@ public class Warrior_Arms
             && MySettings.UseOverpower && ObjectManager.Me.RagePercentage < 100)
         {
             Overpower.Launch();
-            return;
-        }
-        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
-            && MySettings.UseHeroicThrow)
-        {
-            Heroic_Throw.Launch();
             return;
         }
         else
@@ -881,7 +874,7 @@ public class Warrior_Arms
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDemoralizingBanner
             && Demoralizing_Banner.KnownSpell && Demoralizing_Banner.IsSpellUsable && ObjectManager.Target.GetDistance < 30)
         {
-            Demoralizing_Banner.Launch();
+            SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
@@ -1695,7 +1688,7 @@ public class Warrior_Protection
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDemoralizingBanner
             && Demoralizing_Banner.KnownSpell && Demoralizing_Banner.IsSpellUsable && ObjectManager.Target.GetDistance < 30)
         {
-            Demoralizing_Banner.Launch();
+            SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
@@ -1925,7 +1918,6 @@ public class Warrior_Fury
             AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
             AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
-            AddControlInWinForm("Use Spell Reflection", "UseSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
@@ -2512,7 +2504,7 @@ public class Warrior_Fury
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDemoralizingBanner
             && Demoralizing_Banner.KnownSpell && Demoralizing_Banner.IsSpellUsable && ObjectManager.Target.GetDistance < 30)
         {
-            Demoralizing_Banner.Launch();
+            SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
