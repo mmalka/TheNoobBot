@@ -199,6 +199,13 @@ namespace nManager.Wow.ObjectManager
                     return SkillLine.Fishing;
                 case WoWGameObjectLockType.LOCKTYPE_INSCRIPTION:
                     return SkillLine.Inscription;
+                case WoWGameObjectLockType.LOCKTYPE_OPEN: // 5
+                case WoWGameObjectLockType.LOCKTYPE_TREASURE: // 6
+                    return SkillLine.Free;
+                case WoWGameObjectLockType.LOCKTYPE_QUICK_OPEN: // 10
+                case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
+                case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
+                    return SkillLine.None;
                 //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
                 //    return SkillLine.Lockpicking;
                 default: break;
@@ -231,10 +238,11 @@ namespace nManager.Wow.ObjectManager
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType)Row.Record.LockType[j]);
-                                if (Entry == 210565 || Entry == 214945) // Hardcoding for Dark Soil & Onyx Egg
-                                    return true;
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
                                     return false;
+                                // Most of quest chests but also treasures
+                                if (skill == SkillLine.Free)
+                                    break; // let's accept it, we check for quest later in code and act like if no lock was set
 
                                 // Prevent herbing when the setting is off
                                 if (skill == SkillLine.Herbalism && !nManagerSetting.CurrentSetting.harvestHerbs)
@@ -283,21 +291,26 @@ namespace nManager.Wow.ObjectManager
                         }
                     }
                 }
-                // No lock = no gathering GameObject, then obey to lootChests setting
+                // No lock = no gathering GameObject, then obey to lootChests setting or all lock passed
                 if (!nManagerSetting.CurrentSetting.lootChests)
                     return false;
 
-                // Finaly we check is a quest is required
+                // Finaly we check if a quest is required
                 if (GOType == WoWGameObjectType.Goober)// && Data1 != 0)
                 {
                     //Logging.Write("This Goober has quest " + Data1);
                     //if (!Quest.GetLogQuestId().Contains((int)Data1))
-                    return false;
+                    return false; // Refuse Goober, they never have the required data
                 }
-                if (GOType == WoWGameObjectType.Chest && Data8 != 0)
+                if (GOType == WoWGameObjectType.Chest)
                 {
-                    if (!Quest.GetLogQuestId().Contains((int)Data8))
-                        return false;
+                    if (Data8 != 0 && !Quest.GetLogQuestId().Contains((int)Data8))
+                        return false; // Quest check
+
+                    if (Entry == 210565 || Entry == 214945)
+                        return true; // Hardcoding for Dark Soil & Onyx Egg
+
+                    return false; // disable everything else for the moment
                 }
                 return true;
             }
