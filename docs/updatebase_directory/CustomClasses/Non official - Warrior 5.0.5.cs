@@ -436,7 +436,8 @@ public class Warrior_Arms
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -1240,7 +1241,8 @@ public class Warrior_Protection
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -2072,7 +2074,8 @@ public class Warrior_Fury
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch

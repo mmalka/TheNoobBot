@@ -431,7 +431,8 @@ public class Rogue_Combat
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -764,7 +765,8 @@ public class Rogue_Combat
         }
 
         if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable)
+            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
+            && ObjectManger.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -772,7 +774,8 @@ public class Rogue_Combat
         else
         {
             if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable)
+                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
+                && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;
@@ -1158,7 +1161,8 @@ public class Rogue_Subtlety
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -1467,7 +1471,8 @@ public class Rogue_Subtlety
         }
 
         if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable)
+            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
+            && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -1475,7 +1480,8 @@ public class Rogue_Subtlety
         else
         {
             if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable)
+                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
+                && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;
@@ -1864,7 +1870,8 @@ public class Rogue_Assassination
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -2189,7 +2196,8 @@ public class Rogue_Assassination
         }
 
         if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable)
+            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
+            && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -2197,7 +2205,8 @@ public class Rogue_Assassination
         else
         {
             if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable)
+                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
+                && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;

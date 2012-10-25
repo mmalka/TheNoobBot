@@ -434,7 +434,8 @@ public class Druid_Balance
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -510,7 +511,8 @@ public class Druid_Balance
             return;
         }
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
-            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
@@ -518,7 +520,8 @@ public class Druid_Balance
         else
         {
             if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
-                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff 
+                && !Stampeding_Roar.HaveBuff && ObjectManager.Me.GetMove)
             {
                 Stampeding_Roar.Launch();
                 return;
@@ -1244,7 +1247,8 @@ public class Druid_Feral
                         }
                     }
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -1282,7 +1286,8 @@ public class Druid_Feral
             return;
         }
         else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
-            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
@@ -1290,7 +1295,8 @@ public class Druid_Feral
         else
         {
             if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
-                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff)
+                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff 
+                && !Stampeding_Roar.HaveBuff && ObjectManager.Me.GetMove)
             {
                 Stampeding_Roar.Launch();
                 return;

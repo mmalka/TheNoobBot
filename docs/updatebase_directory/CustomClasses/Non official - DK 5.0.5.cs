@@ -329,7 +329,8 @@ public class Deathknight_Apprentice
                     }
 
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -830,7 +831,8 @@ public class Deathknight_Blood
                     }
 
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -1353,7 +1355,7 @@ public class Deathknight_Blood
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance)
+            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
@@ -1651,7 +1653,8 @@ public class Deathknight_Unholy
                     }
 
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -2185,7 +2188,7 @@ public class Deathknight_Unholy
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance)
+            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
@@ -2484,7 +2487,8 @@ public class Deathknight_Frost
                     }
 
                     else
-                        Patrolling();
+                        if (ObjectManager.Me.IsCast)
+                            Patrolling();
                 }
             }
             catch
@@ -3040,7 +3044,7 @@ public class Deathknight_Frost
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance)
+            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
