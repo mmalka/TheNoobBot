@@ -990,10 +990,8 @@ public class Deathknight_Blood
                         Combat();
                         Buffs();
                     }
-                    else
-                    {
+                    else if(!ObjectManager.Me.IsCast)
                         Patrolling();
-                    }
                 }
             }
             catch
@@ -6104,10 +6102,8 @@ public class Paladin_Protection
                         Seal();
                         Blessing();
                     }
-                    else
-                    {
+                    else if(!ObjectManager.Me.IsCast)
                         Patrolling();
-                    }
                 }
             }
             catch
@@ -6576,10 +6572,8 @@ public class Paladin_Retribution
                         Seal();
                         Blessing();
                     }
-                    else
-                    {
+                    else if(!ObjectManager.Me.IsCast)
                         Patrolling();
-                    }
                 }
             }
             catch
@@ -7450,7 +7444,7 @@ public class Priest_Shadow
                             Combat();
                         }
                     }
-                    else
+                    else if(!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
