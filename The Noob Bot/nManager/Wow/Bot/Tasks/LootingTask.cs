@@ -139,7 +139,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                Thread.Sleep(Usefuls.Latency + 750);
+                Thread.Sleep(Usefuls.Latency);
                 Lua.LuaDoString(
                     "for slot = 1, GetNumLootItems() do " +
                     "  if GetLootSlotType(slot) == LOOT_SLOT_ITEM then " +
