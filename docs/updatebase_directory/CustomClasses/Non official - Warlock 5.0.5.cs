@@ -68,9 +68,7 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warlock Demonology class...");
                             new Warlock_Demonology();
                         }
-                        break;
                     }
-
                     else if (Warlock_Affliction_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -92,9 +90,7 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warlock Affliction class...");
                             new Warlock_Affliction();
                         }
-                        break;
                     }
-
                     else if (Warlock_Destruction_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -116,9 +112,7 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warlock Destruction class...");
                             new Warlock_Destruction();
                         }
-                        break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
@@ -127,11 +121,12 @@ public class Main : ICustomClass
                         }
                         else
                         {
-                            Logging.WriteFight("Warlock without Spec");
-                            new Warlock();
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Warlock Apprentice class...");
+                            new Warlock_Apprentice();
                         }
-                        break;
                     }
+                    break;
 
                     #endregion
 
@@ -535,25 +530,25 @@ public class Warlock_Demonology
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -561,25 +556,25 @@ public class Warlock_Demonology
             return;
         }
         else if (Dark_Soul.KnownSpell && Dark_Soul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
+                 && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
         {
             Dark_Soul.Launch();
             return;
         }
         else if (Summon_Doomguard.KnownSpell && Summon_Doomguard.IsSpellUsable
-            && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
+                 && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
         {
             Summon_Doomguard.Launch();
             return;
         }
         else if (Summon_Infernal.KnownSpell && Summon_Infernal.IsSpellUsable
-            && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
+                 && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
             return;
         }
         else if (Archimondes_Vengeance.KnownSpell && Archimondes_Vengeance.IsSpellUsable
-            && MySettings.UseArchimondesVengeance)
+                 && MySettings.UseArchimondesVengeance)
         {
             Archimondes_Vengeance.Launch();
             return;
@@ -623,20 +618,22 @@ public class Warlock_Demonology
             Curse_of_the_Elements.Launch();
             return;
         }
-        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable && MySettings.UseCurseofEnfeeblement
-            && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff && !MySettings.UseCurseoftheElements)
+        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable &&
+                 MySettings.UseCurseofEnfeeblement
+                 && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff &&
+                 !MySettings.UseCurseoftheElements)
         {
             Curse_of_Enfeeblement.Launch();
             return;
         }
         else if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
-            && MySettings.UseLifeTap)
+                 && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 4 && Harvest_Life.IsSpellUsable && Harvest_Life.KnownSpell
-            && MySettings.UseHarvestLife && Harvest_Life.IsDistanceGood)
+                 && MySettings.UseHarvestLife && Harvest_Life.IsDistanceGood)
         {
             Harvest_Life.Launch();
             while (ObjectManager.Me.IsCast)
@@ -646,15 +643,15 @@ public class Warlock_Demonology
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && Command_Demon.IsSpellUsable && Command_Demon.KnownSpell
-            && Command_Demon.IsDistanceGood && ObjectManager.Pet.Guid == 207 && ObjectManager.Pet.Health > 0
-            && MySettings.UseCommandDemon)
+                 && Command_Demon.IsDistanceGood && ObjectManager.Pet.Guid == 207 && ObjectManager.Pet.Health > 0
+                 && MySettings.UseCommandDemon)
         {
             Command_Demon.Launch();
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 4 && Hellfire.IsSpellUsable && Hellfire.KnownSpell
-            && MySettings.UseHellfire && ObjectManager.Target.GetDistance < 20 
-            && (!Harvest_Life.KnownSpell || !MySettings.UseHarvestLife))
+                 && MySettings.UseHellfire && ObjectManager.Target.GetDistance < 20
+                 && (!Harvest_Life.KnownSpell || !MySettings.UseHarvestLife))
         {
             Hellfire.Launch();
             Thread.Sleep(200);
@@ -665,20 +662,20 @@ public class Warlock_Demonology
             return;
         }
         else if (Corruption.KnownSpell && Corruption.IsSpellUsable && Corruption.IsDistanceGood
-            && MySettings.UseCorruption && (!Corruption.TargetHaveBuff || Corruption_Timer.IsReady))
+                 && MySettings.UseCorruption && (!Corruption.TargetHaveBuff || Corruption_Timer.IsReady))
         {
             Corruption.Launch();
             Corruption_Timer = new Timer(1000*20);
             return;
         }
         else if (Hand_of_Guldan.KnownSpell && Hand_of_Guldan.IsSpellUsable && Hand_of_Guldan.IsDistanceGood
-            && MySettings.UseHandofGuldan && !ObjectManager.Target.HaveBuff(47960))
+                 && MySettings.UseHandofGuldan && !ObjectManager.Target.HaveBuff(47960))
         {
             Hand_of_Guldan.Launch();
             return;
         }
-        else if (Soul_Fire.KnownSpell && Soul_Fire.IsSpellUsable && Soul_Fire.IsDistanceGood 
-            && MySettings.UseSoulFire && ObjectManager.Me.HaveBuff(122355))
+        else if (Soul_Fire.KnownSpell && Soul_Fire.IsSpellUsable && Soul_Fire.IsDistanceGood
+                 && MySettings.UseSoulFire && ObjectManager.Me.HaveBuff(122355))
         {
             Soul_Fire.Launch();
             return;
@@ -713,7 +710,7 @@ public class Warlock_Demonology
                     Thread.Sleep(200);
                 }
                 else if (Carrion_Swarm.IsSpellUsable && Carrion_Swarm.KnownSpell
-                    && Metamorphosis.HaveBuff && ObjectManager.Target.GetDistance < 20)
+                         && Metamorphosis.HaveBuff && ObjectManager.Target.GetDistance < 20)
                 {
                     Carrion_Swarm.Launch();
                     Thread.Sleep(200);
@@ -781,7 +778,7 @@ public class Warlock_Demonology
             return;
         }
         else if (!Soul_Link.HaveBuff && Soul_Link.KnownSpell && Soul_Link.IsSpellUsable
-            && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Soul_Link.Launch();
             return;
@@ -826,51 +823,47 @@ public class Warlock_Demonology
             }
         }
 
-        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
-            && MySettings.UseGrimoireofSacrifice)
+        if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
-            {
-                Logging.WriteFight(" - PET DEAD - ");
-                if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonFelguard && Summon_Felguard.KnownSpell && Summon_Felguard.IsSpellUsable)
-                    Summon_Felguard.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                Thread.Sleep(200);
-            }
-            if ((ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-                Grimoire_of_Sacrifice.Launch();
-            return;
+            Summon_Felhunter.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonFelguard && Summon_Felguard.KnownSpell && Summon_Felguard.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Felguard.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Imp.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
+                 Summon_Voidwalker.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Voidwalker.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
+                 Summon_Succubus.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Succubus.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
         }
         else
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.KnownSpell)
-            {
-                Logging.WriteFight(" - PET DEAD - ");
-                if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonFelguard && Summon_Felguard.KnownSpell && Summon_Felguard.IsSpellUsable)
-                    Summon_Felguard.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                return;
-            }
+            return;
+        }
+        Thread.Sleep(200);
+        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
+            && MySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        {
+            Grimoire_of_Sacrifice.Launch();
         }
     }
 
@@ -886,20 +879,20 @@ public class Warlock_Demonology
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 65 && Dark_Regeneration.IsSpellUsable && Dark_Regeneration.KnownSpell
-            && MySettings.UseDarkRegeneration)
+                 && MySettings.UseDarkRegeneration)
         {
             Dark_Regeneration.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-            && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
-            && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
+                 && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
         {
             Mortal_Coil.Launch();
             return;
@@ -929,35 +922,35 @@ public class Warlock_Demonology
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseHowlofTerror
-            && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Howl_of_Terror.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 40 && MySettings.UseDarkBargain
-            && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
+                 && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
         {
             Dark_Bargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseSacrificialPact
-            && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Sacrificial_Pact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && MySettings.UseShadowfury
-            && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Shadowfury.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-            && MySettings.UseWarStomp)
+                 && MySettings.UseWarStomp)
         {
             War_Stomp.Launch();
             OnCD = new Timer(1000*2);
@@ -984,7 +977,7 @@ public class Warlock_Demonology
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
+                 && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
         {
             Twilight_Ward.Launch();
             return;
@@ -1347,25 +1340,25 @@ public class Warlock_Destruction
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -1373,25 +1366,25 @@ public class Warlock_Destruction
             return;
         }
         else if (Dark_Soul.KnownSpell && Dark_Soul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
+                 && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
         {
             Dark_Soul.Launch();
             return;
         }
         else if (Summon_Doomguard.KnownSpell && Summon_Doomguard.IsSpellUsable
-            && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
+                 && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
         {
             Summon_Doomguard.Launch();
             return;
         }
         else if (Summon_Infernal.KnownSpell && Summon_Infernal.IsSpellUsable
-            && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
+                 && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
             return;
         }
         else if (Archimondes_Vengeance.KnownSpell && Archimondes_Vengeance.IsSpellUsable
-            && MySettings.UseArchimondesVengeance)
+                 && MySettings.UseArchimondesVengeance)
         {
             Archimondes_Vengeance.Launch();
             return;
@@ -1427,16 +1420,20 @@ public class Warlock_Destruction
             Curse_of_the_Elements.Launch();
             return;
         }
-        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable && MySettings.UseCurseofEnfeeblement
-            && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff && !MySettings.UseCurseoftheElements)
+        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable &&
+                 MySettings.UseCurseofEnfeeblement
+                 && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff &&
+                 !MySettings.UseCurseoftheElements)
         {
             Curse_of_Enfeeblement.Launch();
             return;
         }
-        // Blizzard API Calls for Immolate using Corruption Function
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Fire_and_Brimstone.IsSpellUsable && Fire_and_Brimstone.KnownSpell
-            && !ObjectManager.Target.HaveBuff(348) && Corruption.IsSpellUsable && Corruption.KnownSpell && Corruption.IsDistanceGood
-            && MySettings.UseFireandBrimstone && MySettings.UseImmolate)
+            // Blizzard API Calls for Immolate using Corruption Function
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Fire_and_Brimstone.IsSpellUsable &&
+                 Fire_and_Brimstone.KnownSpell
+                 && !ObjectManager.Target.HaveBuff(348) && Corruption.IsSpellUsable && Corruption.KnownSpell &&
+                 Corruption.IsDistanceGood
+                 && MySettings.UseFireandBrimstone && MySettings.UseImmolate)
         {
             Fire_and_Brimstone.Launch();
             Thread.Sleep(200);
@@ -1445,8 +1442,8 @@ public class Warlock_Destruction
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 4 && ObjectManager.Target.HaveBuff(348)
-            && MySettings.UseHarvestLife && Harvest_Life.KnownSpell && Harvest_Life.IsSpellUsable
-            && Harvest_Life.IsDistanceGood)
+                 && MySettings.UseHarvestLife && Harvest_Life.KnownSpell && Harvest_Life.IsSpellUsable
+                 && Harvest_Life.IsDistanceGood)
         {
             Harvest_Life.Launch();
             while (ObjectManager.Me.IsCast)
@@ -1455,18 +1452,20 @@ public class Warlock_Destruction
             }
             return;
         }
-        // Blizzard API Calls for Incinerate using Shadow Bolt Function
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Fire_and_Brimstone.IsSpellUsable && Fire_and_Brimstone.KnownSpell
-            && Shadow_Bolt.KnownSpell && Shadow_Bolt.IsSpellUsable && Shadow_Bolt.IsDistanceGood
-            && MySettings.UseFireandBrimstone && MySettings.UseIncinerate)
+            // Blizzard API Calls for Incinerate using Shadow Bolt Function
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Fire_and_Brimstone.IsSpellUsable &&
+                 Fire_and_Brimstone.KnownSpell
+                 && Shadow_Bolt.KnownSpell && Shadow_Bolt.IsSpellUsable && Shadow_Bolt.IsDistanceGood
+                 && MySettings.UseFireandBrimstone && MySettings.UseIncinerate)
         {
             Fire_and_Brimstone.Launch();
             Thread.Sleep(200);
             Shadow_Bolt.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Rain_of_Fire.IsSpellUsable && Rain_of_Fire.KnownSpell
-            && Rain_of_Fire.IsDistanceGood && MySettings.UseRainofFire)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Rain_of_Fire.IsSpellUsable &&
+                 Rain_of_Fire.KnownSpell
+                 && Rain_of_Fire.IsDistanceGood && MySettings.UseRainofFire)
         {
             SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
             while (ObjectManager.Me.IsCast)
@@ -1476,7 +1475,7 @@ public class Warlock_Destruction
             return;
         }
         else if (Conflagrate.KnownSpell && Conflagrate.IsSpellUsable && Conflagrate.IsDistanceGood
-            && MySettings.UseConflagrate)
+                 && MySettings.UseConflagrate)
         {
             Conflagrate.Launch();
             return;
@@ -1484,7 +1483,8 @@ public class Warlock_Destruction
         else
         {
             if (Corruption.IsSpellUsable && Corruption.KnownSpell && Corruption.IsDistanceGood
-                && MySettings.UseImmolate && !ObjectManager.Target.HaveBuff(348) || Immolate_Timer.IsReady)
+                && MySettings.UseImmolate && !ObjectManager.Target.HaveBuff(348) ||
+                Immolate_Timer.IsReady)
             {
                 Corruption.Launch();
                 Immolate_Timer = new Timer(1000*12);
@@ -1542,7 +1542,7 @@ public class Warlock_Destruction
             return;
         }
         else if (!Soul_Link.HaveBuff && Soul_Link.KnownSpell && Soul_Link.IsSpellUsable
-            && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Soul_Link.Launch();
             return;
@@ -1587,51 +1587,47 @@ public class Warlock_Destruction
             }
         }
 
-        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
-            && MySettings.UseGrimoireofSacrifice)
+        if (MySettings.UseFlamesofXoroth && Flames_of_Xoroth.KnownSpell && Flames_of_Xoroth.IsSpellUsable &&
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
-            {
-                Logging.WriteFight(" - PET DEAD - ");
-                if (Flames_of_Xoroth.KnownSpell && Flames_of_Xoroth.IsSpellUsable && MySettings.UseFlamesofXoroth)
-                    Flames_of_Xoroth.Launch();
-                else if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                Thread.Sleep(200);
-            }
-            if ((ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-                Grimoire_of_Sacrifice.Launch();
-            return;
+            Flames_of_Xoroth.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Felhunter.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Imp.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
+                 Summon_Voidwalker.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Voidwalker.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
+                 Summon_Succubus.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Succubus.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
         }
         else
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.KnownSpell)
-            {
-                Logging.WriteFight(" - PET DEAD - ");
-                if (Flames_of_Xoroth.KnownSpell && Flames_of_Xoroth.IsSpellUsable && MySettings.UseFlamesofXoroth)
-                    Flames_of_Xoroth.Launch();
-                else if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                return;
-            }
+            return;
+        }
+        Thread.Sleep(200);
+        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
+            && MySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        {
+            Grimoire_of_Sacrifice.Launch();
         }
     }
 
@@ -1647,26 +1643,26 @@ public class Warlock_Destruction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 60 && Ember_Tap.IsSpellUsable && Ember_Tap.KnownSpell
-            && MySettings.UseEmberTap)
+                 && MySettings.UseEmberTap)
         {
             Ember_Tap.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 65 && Dark_Regeneration.IsSpellUsable && Dark_Regeneration.KnownSpell
-            && MySettings.UseDarkRegeneration)
+                 && MySettings.UseDarkRegeneration)
         {
             Dark_Regeneration.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-            && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
-            && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
+                 && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
         {
             Mortal_Coil.Launch();
             return;
@@ -1696,35 +1692,35 @@ public class Warlock_Destruction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseHowlofTerror
-            && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Howl_of_Terror.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 40 && MySettings.UseDarkBargain
-            && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
+                 && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
         {
             Dark_Bargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseSacrificialPact
-            && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Sacrificial_Pact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && MySettings.UseShadowfury
-            && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Shadowfury.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-            && MySettings.UseWarStomp)
+                 && MySettings.UseWarStomp)
         {
             War_Stomp.Launch();
             OnCD = new Timer(1000*2);
@@ -1751,7 +1747,7 @@ public class Warlock_Destruction
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
+                 && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
         {
             Twilight_Ward.Launch();
             return;
@@ -1801,7 +1797,7 @@ public class Warlock_Affliction
         public bool UseAgony = true;
         public bool UseCommandDemon = true;
         public bool UseCorruption = true;
-        public bool UseDrainSoul= true;
+        public bool UseDrainSoul = true;
         public bool UseFelFlame = true;
         public bool UseHarvestLife = true;
         public bool UseHaunt = true;
@@ -1988,7 +1984,7 @@ public class Warlock_Affliction
     private readonly Spell Grimoire_of_Service = new Spell("Grimoire of Service");
     private readonly Spell Summon_Doomguard = new Spell("Summon Doomguard");
     private readonly Spell Summon_Infernal = new Spell("Summon Infernal");
-    
+
     #endregion
 
     #region Defensive Cooldown
@@ -2165,25 +2161,25 @@ public class Warlock_Affliction
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 40)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -2191,25 +2187,25 @@ public class Warlock_Affliction
             return;
         }
         else if (Dark_Soul.KnownSpell && Dark_Soul.IsSpellUsable
-            && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
+                 && MySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
         {
             Dark_Soul.Launch();
             return;
         }
         else if (Summon_Doomguard.KnownSpell && Summon_Doomguard.IsSpellUsable
-            && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
+                 && MySettings.UseSummonDoomguard && Summon_Doomguard.IsDistanceGood)
         {
             Summon_Doomguard.Launch();
             return;
         }
         else if (Summon_Infernal.KnownSpell && Summon_Infernal.IsSpellUsable
-            && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
+                 && MySettings.UseSummonInfernal && Summon_Infernal.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
             return;
         }
         else if (Archimondes_Vengeance.KnownSpell && Archimondes_Vengeance.IsSpellUsable
-            && MySettings.UseArchimondesVengeance)
+                 && MySettings.UseArchimondesVengeance)
         {
             Archimondes_Vengeance.Launch();
             return;
@@ -2233,32 +2229,37 @@ public class Warlock_Affliction
             Curse_of_the_Elements.Launch();
             return;
         }
-        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable && MySettings.UseCurseofEnfeeblement
-            && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff && !MySettings.UseCurseoftheElements)
+        else if (Curse_of_Enfeeblement.KnownSpell && Curse_of_Enfeeblement.IsSpellUsable &&
+                 MySettings.UseCurseofEnfeeblement
+                 && Curse_of_Enfeeblement.IsDistanceGood && !Curse_of_Enfeeblement.TargetHaveBuff &&
+                 !MySettings.UseCurseoftheElements)
         {
             Curse_of_Enfeeblement.Launch();
             return;
         }
-        else if (Curse_of_Exhaustion.KnownSpell && Curse_of_Exhaustion.IsSpellUsable && MySettings.UseCurseofExhaustion
-            && Curse_of_Exhaustion.IsDistanceGood && !Curse_of_Exhaustion.TargetHaveBuff && !MySettings.UseCurseoftheElements
-            && !MySettings.UseCurseofEnfeeblement)
+        else if (Curse_of_Exhaustion.KnownSpell && Curse_of_Exhaustion.IsSpellUsable &&
+                 MySettings.UseCurseofExhaustion
+                 && Curse_of_Exhaustion.IsDistanceGood && !Curse_of_Exhaustion.TargetHaveBuff &&
+                 !MySettings.UseCurseoftheElements
+                 && !MySettings.UseCurseofEnfeeblement)
         {
             Curse_of_Exhaustion.Launch();
             return;
         }
         else if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
-            && MySettings.UseLifeTap)
+                 && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
             return;
         }
         else if (ObjectManager.Target.HealthPercent < 20)
         {
-            if (Drain_Soul.KnownSpell && Drain_Soul.IsSpellUsable && MySettings.UseDrainSoul && Drain_Soul.IsDistanceGood)
+            if (Drain_Soul.KnownSpell && Drain_Soul.IsSpellUsable && MySettings.UseDrainSoul &&
+                Drain_Soul.IsDistanceGood)
             {
                 Drain_Soul.Launch();
                 while (ObjectManager.Me.IsCast && !Agony_Timer.IsReady && !Corruption_Timer.IsReady
-                    && !Unstable_Affliction_Timer.IsReady)
+                       && !Unstable_Affliction_Timer.IsReady)
                 {
                     Thread.Sleep(200);
                 }
@@ -2266,7 +2267,8 @@ public class Warlock_Affliction
 
             if (Agony_Timer.IsReady || Corruption_Timer.IsReady || Unstable_Affliction_Timer.IsReady)
             {
-                if (Soulburn.IsSpellUsable && Soulburn.KnownSpell && Soul_Swap.IsSpellUsable && Soul_Swap.KnownSpell
+                if (Soulburn.IsSpellUsable && Soulburn.KnownSpell && Soul_Swap.IsSpellUsable &&
+                    Soul_Swap.KnownSpell
                     && Soul_Swap.IsDistanceGood && MySettings.UseSoulburn && MySettings.UseSoulSwap)
                 {
                     Soulburn.Launch();
@@ -2279,17 +2281,20 @@ public class Warlock_Affliction
             }
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Soulburn.IsSpellUsable && Soulburn.KnownSpell && !Corruption.TargetHaveBuff
-            && Seed_of_Corruption.IsSpellUsable && Seed_of_Corruption.KnownSpell && Seed_of_Corruption.IsDistanceGood
-            && MySettings.UseSoulburn && MySettings.UseSeedofCorruption)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Soulburn.IsSpellUsable && Soulburn.KnownSpell &&
+                 !Corruption.TargetHaveBuff
+                 && Seed_of_Corruption.IsSpellUsable && Seed_of_Corruption.KnownSpell &&
+                 Seed_of_Corruption.IsDistanceGood
+                 && MySettings.UseSoulburn && MySettings.UseSeedofCorruption)
         {
             Soulburn.Launch();
             Thread.Sleep(200);
             Seed_of_Corruption.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Harvest_Life.IsSpellUsable && Harvest_Life.KnownSpell
-            && Harvest_Life.IsDistanceGood && MySettings.UseHarvestLife)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Harvest_Life.IsSpellUsable &&
+                 Harvest_Life.KnownSpell
+                 && Harvest_Life.IsDistanceGood && MySettings.UseHarvestLife)
         {
             Harvest_Life.Launch();
             while (ObjectManager.Me.IsCast)
@@ -2298,8 +2303,9 @@ public class Warlock_Affliction
             }
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Rain_of_Fire.IsSpellUsable && Rain_of_Fire.KnownSpell
-            && Rain_of_Fire.IsDistanceGood && MySettings.UseRainofFire)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Rain_of_Fire.IsSpellUsable &&
+                 Rain_of_Fire.KnownSpell
+                 && Rain_of_Fire.IsDistanceGood && MySettings.UseRainofFire)
         {
             SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
             while (ObjectManager.Me.IsCast)
@@ -2308,38 +2314,45 @@ public class Warlock_Affliction
             }
             return;
         }
-        else if (Agony.KnownSpell && Agony.IsSpellUsable && Agony.IsDistanceGood && MySettings.UseAgony
-            && (!Agony.TargetHaveBuff || Agony_Timer.IsReady))
+        else if (Agony.KnownSpell && Agony.IsSpellUsable && Agony.IsDistanceGood &&
+                 MySettings.UseAgony
+                 && (!Agony.TargetHaveBuff || Agony_Timer.IsReady))
         {
             Agony.Launch();
             Agony_Timer = new Timer(1000*20);
             return;
         }
         else if (Corruption.KnownSpell && Corruption.IsSpellUsable && Corruption.IsDistanceGood
-            && MySettings.UseCorruption && (!Corruption.TargetHaveBuff || Corruption_Timer.IsReady))
+                 && MySettings.UseCorruption &&
+                 (!Corruption.TargetHaveBuff || Corruption_Timer.IsReady))
         {
             Corruption.Launch();
             Corruption_Timer = new Timer(1000*15);
             return;
         }
-        else if (Unstable_Affliction.KnownSpell && Unstable_Affliction.IsSpellUsable && Unstable_Affliction.IsDistanceGood
-            && MySettings.UseUnstableAffliction && (!Unstable_Affliction.TargetHaveBuff || Unstable_Affliction_Timer.IsReady))
+        else if (Unstable_Affliction.KnownSpell && Unstable_Affliction.IsSpellUsable &&
+                 Unstable_Affliction.IsDistanceGood
+                 && MySettings.UseUnstableAffliction &&
+                 (!Unstable_Affliction.TargetHaveBuff || Unstable_Affliction_Timer.IsReady))
         {
             Unstable_Affliction.Launch();
             Unstable_Affliction_Timer = new Timer(1000*10);
             return;
         }
-        else if (Haunt.KnownSpell && Haunt.IsSpellUsable && Haunt.IsDistanceGood && !Haunt.TargetHaveBuff
-            && MySettings.UseHaunt)
+        else if (Haunt.KnownSpell && Haunt.IsSpellUsable && Haunt.IsDistanceGood &&
+                 !Haunt.TargetHaveBuff
+                 && MySettings.UseHaunt)
         {
             Haunt.Launch();
             return;
         }
-        // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
+            // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
         else
         {
-            if (!ObjectManager.Me.IsCast && Shadow_Bolt.KnownSpell && Shadow_Bolt.IsSpellUsable
-                && !Agony_Timer.IsReady && !Corruption_Timer.IsReady && !Unstable_Affliction_Timer.IsReady
+            if (!ObjectManager.Me.IsCast && Shadow_Bolt.KnownSpell &&
+                Shadow_Bolt.IsSpellUsable
+                && !Agony_Timer.IsReady && !Corruption_Timer.IsReady &&
+                !Unstable_Affliction_Timer.IsReady
                 && Shadow_Bolt.IsDistanceGood && MySettings.UseMaleficGrasp)
             {
                 Shadow_Bolt.Launch();
@@ -2371,7 +2384,7 @@ public class Warlock_Affliction
             return;
         }
         else if (!Soul_Link.HaveBuff && Soul_Link.KnownSpell && Soul_Link.IsSpellUsable
-            && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Soul_Link.Launch();
             return;
@@ -2416,47 +2429,41 @@ public class Warlock_Affliction
             }
         }
 
-        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
-            && MySettings.UseGrimoireofSacrifice)
+        if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
-            {
-                Logging.WriteFight(" - PET DEAD Summon to Sacrifice - ");
-                if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                Thread.Sleep(200);
-            }
-            if ((ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-                Grimoire_of_Sacrifice.Launch();
-            return;
+            Summon_Felhunter.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Imp.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
+                 Summon_Voidwalker.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Voidwalker.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
+        }
+        else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
+                 Summon_Succubus.IsSpellUsable &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        {
+            Summon_Succubus.Launch();
+            Logging.WriteFight(" - PET DEAD - ");
         }
         else
         {
-            if ((ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.KnownSpell)
-            {
-                Logging.WriteFight(" - PET DEAD - ");
-                if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable)
-                    Summon_Felhunter.Launch();
-                else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable)
-                    Summon_Imp.Launch();
-                else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell && Summon_Voidwalker.IsSpellUsable)
-                    Summon_Voidwalker.Launch();
-                else
-                {
-                    if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell && Summon_Succubus.IsSpellUsable)
-                        Summon_Succubus.Launch();
-                }
-                return;
-            }
+            return;
+        }
+        Thread.Sleep(200);
+        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
+            && MySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        {
+            Grimoire_of_Sacrifice.Launch();
         }
     }
 
@@ -2472,20 +2479,20 @@ public class Warlock_Affliction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 65 && Dark_Regeneration.IsSpellUsable && Dark_Regeneration.KnownSpell
-            && MySettings.UseDarkRegeneration)
+                 && MySettings.UseDarkRegeneration)
         {
             Dark_Regeneration.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-            && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
-            && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
+                 && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
         {
             Mortal_Coil.Launch();
             return;
@@ -2515,35 +2522,35 @@ public class Warlock_Affliction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseHowlofTerror
-            && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Howl_of_Terror.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 40 && MySettings.UseDarkBargain
-            && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
+                 && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
         {
             Dark_Bargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseSacrificialPact
-            && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+                 && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Sacrificial_Pact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && MySettings.UseShadowfury
-            && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
         {
             Shadowfury.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-            && MySettings.UseWarStomp)
+                 && MySettings.UseWarStomp)
         {
             War_Stomp.Launch();
             OnCD = new Timer(1000*2);
@@ -2570,7 +2577,7 @@ public class Warlock_Affliction
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
+                 && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
         {
             Twilight_Ward.Launch();
             return;
@@ -2595,7 +2602,7 @@ public class Warlock_Affliction
     }
 }
 
-public class Warlock
+public class Warlock_Apprentice
 {
     #region InitializeSpell
 
@@ -2629,7 +2636,7 @@ public class Warlock
 
     #endregion InitializeSpell
 
-    public Warlock()
+    public Warlock_Apprentice()
     {
         Main.range = 30.0f;
         UInt64 lastTarget = 0;
@@ -2709,7 +2716,7 @@ public class Warlock
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trink_Timer = new Timer(1000 * 60 * 2);
+            Trink_Timer = new Timer(1000*60*2);
             return;
         }
 
@@ -2734,7 +2741,7 @@ public class Warlock
             && (!Corruption.TargetHaveBuff || Corruption_Timer.IsReady))
         {
             Corruption.Launch();
-            Corruption_Timer = new Timer(1000 * 15);
+            Corruption_Timer = new Timer(1000*15);
             return;
         }
 
@@ -2742,11 +2749,12 @@ public class Warlock
             && (!Unstable_Affliction.TargetHaveBuff || Unstable_Affliction_Timer.IsReady))
         {
             Unstable_Affliction.Launch();
-            Unstable_Affliction_Timer = new Timer(1000 * 10);
+            Unstable_Affliction_Timer = new Timer(1000*10);
             return;
         }
 
-        if (Soul_Fire.KnownSpell && Soul_Fire.IsSpellUsable && Soul_Fire.IsDistanceGood && ObjectManager.Me.HaveBuff(122355))
+        if (Soul_Fire.KnownSpell && Soul_Fire.IsSpellUsable && Soul_Fire.IsDistanceGood &&
+            ObjectManager.Me.HaveBuff(122355))
         {
             Soul_Fire.Launch();
             return;
@@ -2806,7 +2814,7 @@ public class Warlock
         {
             Logging.WriteFight("Cast Voidwalker: Suffering.");
             Lua.RunMacroText("/cast Voidwalker: Suffering");
-            Suffering_Timer = new Timer(1000 * 10);
+            Suffering_Timer = new Timer(1000*10);
             return;
         }
     }
