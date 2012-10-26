@@ -68,9 +68,7 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warrior Arms class...");
                             new Warrior_Arms();
                         }
-                        break;
                     }
-
                     else if (Warrior_Fury_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -92,9 +90,7 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warrior Fury class...");
                             new Warrior_Fury();
                         }
-                        break;
                     }
-
                     else if (Warrior_Protection_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -116,22 +112,33 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Warrior Protection class...");
                             new Warrior_Protection();
                         }
-                        break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
                         {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                            MessageBox.Show(
+                                "Your specification haven't be found, loading Warrior Arms Settings");
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+                            Warrior_Arms.WarriorArmsSettings CurrentSetting;
+                            CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
+                            if (File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
                         }
                         else
                         {
-                            Logging.WriteFight("Warrior without Spec");
-                            new Warrior();
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Warrior Arms class...");
+                            new Warrior_Arms();
                         }
-                        break;
                     }
+                    break;
 
                     #endregion
 
@@ -954,9 +961,9 @@ public class Warrior_Arms
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -1805,9 +1812,9 @@ public class Warrior_Protection
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -2598,144 +2605,10 @@ public class Warrior_Fury
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
-    }
-}
-
-public class Warrior
-{
-    #region InitializeSpell
-
-    private Spell Berserker_Stance = new Spell("Berserker Stance");
-    private Spell Battle_Stance = new Spell("Battle Stance");
-
-    private Spell Enraged_Regeneration = new Spell("Enraged Regeneration");
-    private Spell Battle_Shout = new Spell("Battle Shout");
-    private Spell Colossus_Smash = new Spell("Colossus Smash");
-    private Spell Bloodthirst = new Spell("Bloodthirst");
-    private Spell Raging_Blow = new Spell("Raging Blow");
-    private Spell Slam = new Spell("Slam");
-    private Spell Death_Wish = new Spell("Death Wish");
-    private Spell Recklessness = new Spell("Recklessness");
-    private Spell Execute = new Spell("Execute");
-    private Spell Heroic_Strike = new Spell("Heroic Strike");
-    private Spell Intercept = new Spell("Intercept");
-    private Spell Enrage = new Spell("Enrage");
-    private Spell Bloodsurge = new Spell("Bloodsurge");
-    private Spell Heroic_Throw = new Spell("Heroic Throw");
-    private Spell Heroic_Leap = new Spell("Heroic Leap");
-    private Spell Cleave = new Spell("Cleave");
-    private Spell Whirlwind = new Spell("Whirlwind");
-    private Spell Victory_Rush = new Spell("Victory Rush");
-    private Spell Hamstring = new Spell("Hamstring");
-    private Spell Pummel = new Spell("Pummel");
-    private Spell Rend = new Spell("Rend");
-    private Spell Mortal_Strike = new Spell("Mortal Strike");
-    private Spell Overpower = new Spell("Overpower");
-    private Spell Deadly_Calm = new Spell("Deadly Calm");
-    private Spell Bladestorm = new Spell("Bladestorm");
-    private Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
-    private Spell Thunder_Clap = new Spell("Thunder Clap");
-    private Spell Throwdown = new Spell("Throwdown");
-    private Spell Charge = new Spell("Charge");
-    private Spell Strike = new Spell("Strike");
-    private Timer Rend_Timer = new Timer(0);
-
-    #endregion InitializeSpell
-
-    public Warrior()
-    {
-        Main.range = 5.0f;
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Charge.IsDistanceGood)
-                    {
-                        Pull();
-                        lastTarget = ObjectManager.Me.Target;
-                    }
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Pull()
-    {
-        if (!Battle_Stance.HaveBuff)
-            Battle_Stance.Launch();
-
-        if (Charge.KnownSpell &&
-            ObjectManager.Target.GetDistance > 8 &&
-            Charge.IsSpellUsable &&
-            Charge.IsDistanceGood)
-        {
-            Charge.Launch();
-        }
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-
-        if (Strike.KnownSpell &&
-            Strike.IsSpellUsable &&
-            Strike.IsDistanceGood)
-        {
-            Strike.Launch();
-            return;
-        }
-
-        if (Victory_Rush.KnownSpell &&
-            Victory_Rush.IsSpellUsable &&
-            Victory_Rush.IsDistanceGood)
-        {
-            Victory_Rush.Launch();
-            return;
-        }
-
-        if (Rend_Timer.IsReady &&
-            Rend.KnownSpell &&
-            Rend.IsDistanceGood &&
-            Rend.IsSpellUsable)
-        {
-            Rend.Launch();
-            Rend_Timer = new Timer(1000*10);
-            return;
-        }
-
-        if (ObjectManager.GetNumberAttackPlayer() > 3 &&
-            Thunder_Clap.KnownSpell &&
-            Thunder_Clap.IsSpellUsable &&
-            Thunder_Clap.IsDistanceGood)
-        {
-            Thunder_Clap.Launch();
-            return;
-        }
-    }
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-        {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
-        }
-    }
-
-    public void Patrolling()
-    {
     }
 }
 
