@@ -2035,7 +2035,7 @@ public class Deathknight_Blood
             Horn_of_Winter.Launch();
             return;
         }
-        else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
                  && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
@@ -2877,7 +2877,7 @@ public class Deathknight_Unholy
             Horn_of_Winter.Launch();
             return;
         }
-        else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
                  && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
@@ -3739,7 +3739,7 @@ public class Deathknight_Frost
             Horn_of_Winter.Launch();
             return;
         }
-        else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
                  && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();

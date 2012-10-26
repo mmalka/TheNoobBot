@@ -652,6 +652,13 @@ public class Warrior_Arms
                 return;
             }
         }
+
+        if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood
+            && MySettings.UseHeroicStrike && ObjectManager.Me.Level < 10)
+        {
+            Heroic_Strike.Launch();
+            return;
+        }
     }
 
     public void DPS_Cycle()

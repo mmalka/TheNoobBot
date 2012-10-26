@@ -764,16 +764,16 @@ public class Rogue_Combat
             }
         }
 
-        if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
             && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
-            && ObjectManger.Me.GetMove)
+            && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
         }
         else
         {
-            if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
+            if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
                 && MySettings.UseSprint && !ObjectManager.Target.IsLootable
                 && ObjectManager.Me.GetMove)
             {
@@ -1470,7 +1470,7 @@ public class Rogue_Subtlety
             }
         }
 
-        if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
             && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
             && ObjectManager.Me.GetMove)
         {
@@ -1479,7 +1479,7 @@ public class Rogue_Subtlety
         }
         else
         {
-            if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
+            if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
                 && MySettings.UseSprint && !ObjectManager.Target.IsLootable
                 && ObjectManager.Me.GetMove)
             {
@@ -2195,7 +2195,7 @@ public class Rogue_Assassination
             }
         }
 
-        if (!Fight.InFight && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
             && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
             && ObjectManager.Me.GetMove)
         {
@@ -2204,7 +2204,7 @@ public class Rogue_Assassination
         }
         else
         {
-            if (!Fight.InFight && Sprint.IsSpellUsable && Sprint.KnownSpell
+            if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
                 && MySettings.UseSprint && !ObjectManager.Target.IsLootable
                 && ObjectManager.Me.GetMove)
             {

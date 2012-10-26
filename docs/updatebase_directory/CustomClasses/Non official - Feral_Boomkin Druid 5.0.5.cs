@@ -510,7 +510,7 @@ public class Druid_Balance
             Mark_of_the_Wild.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseDash
             && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
             && ObjectManager.Me.GetMove)
         {
@@ -519,7 +519,7 @@ public class Druid_Balance
         }
         else
         {
-            if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+            if (ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseStampedingRoar
                 && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff 
                 && !Stampeding_Roar.HaveBuff && ObjectManager.Me.GetMove)
             {
@@ -1285,7 +1285,7 @@ public class Druid_Feral
             AlchFlask_Timer = new Timer(1000*60*60*2);
             return;
         }
-        else if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseDash
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseDash
             && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
             && ObjectManager.Me.GetMove)
         {
@@ -1294,7 +1294,7 @@ public class Druid_Feral
         }
         else
         {
-            if (!ObjectManager.Me.InCombat && !Fight.InFight && MySettings.UseStampedingRoar
+            if (ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseStampedingRoar
                 && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff 
                 && !Stampeding_Roar.HaveBuff && ObjectManager.Me.GetMove)
             {
