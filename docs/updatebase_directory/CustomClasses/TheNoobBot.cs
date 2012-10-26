@@ -40,7 +40,7 @@ public class Main : ICustomClass
 
             switch (ObjectManager.Me.WowClass)
             {
-                #region DeathKnight Specialisation checking
+                    #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var Blood_Rites = new Spell("Blood Rites");
@@ -126,7 +126,8 @@ public class Main : ICustomClass
                             if (System.IO.File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(CurrentSettingsFile);
+                                    Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(
+                                        CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);
@@ -140,7 +141,7 @@ public class Main : ICustomClass
                     }
                     break;
 
-                #endregion
+                    #endregion
 
                     #region Mage Specialisation checking
 
@@ -841,11 +842,13 @@ public class Deathknight_Apprentice
 
         public static DeathknightApprenticeSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
+            string CurrentSettingsFile = Application.StartupPath +
+                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
             if (System.IO.File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(CurrentSettingsFile);
+                    CurrentSetting =
+                    Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(CurrentSettingsFile);
             }
             else
             {
@@ -934,9 +937,8 @@ public class Deathknight_Apprentice
                         Combat();
                     }
 
-                    else
-                        if (ObjectManager.Me.IsCast)
-                            Patrolling();
+                    else if (ObjectManager.Me.IsCast)
+                        Patrolling();
                 }
             }
             catch
@@ -1089,22 +1091,25 @@ public class Deathknight_Apprentice
             return;
         }
         else if ((!Blood_Plague.TargetHaveBuff || Blood_Plague_Timer.IsReady) && MySettings.UsePlagueStrike
-            && Plague_Strike.IsSpellUsable && Plague_Strike.IsDistanceGood)
+                 && Plague_Strike.IsSpellUsable && Plague_Strike.IsDistanceGood)
         {
             Plague_Strike.Launch();
             return;
         }
-        else if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Pestilence.KnownSpell && MySettings.UsePestilence
-            && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1 &&
-            Pestilence_Timer.IsReady)
+        else if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Pestilence.KnownSpell &&
+                 MySettings.UsePestilence
+                 && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood && ObjectManager.GetNumberAttackPlayer() > 1 &&
+                 Pestilence_Timer.IsReady)
         {
             Pestilence.Launch();
             Pestilence_Timer = new Timer(1000*30);
             return;
         }
-        else if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Blood_Boil.KnownSpell && MySettings.UseBloodBoil
-            && Blood_Boil.IsSpellUsable && ObjectManager.Target.GetDistance < 10 && ObjectManager.GetNumberAttackPlayer() > 2
-            && !Pestilence_Timer.IsReady)
+        else if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Blood_Boil.KnownSpell &&
+                 MySettings.UseBloodBoil
+                 && Blood_Boil.IsSpellUsable && ObjectManager.Target.GetDistance < 10 &&
+                 ObjectManager.GetNumberAttackPlayer() > 2
+                 && !Pestilence_Timer.IsReady)
         {
             Blood_Boil.Launch();
             return;
@@ -1436,9 +1441,8 @@ public class Deathknight_Blood
                         }
                     }
 
-                    else
-                        if (ObjectManager.Me.IsCast)
-                            Patrolling();
+                    else if (ObjectManager.Me.IsCast)
+                        Patrolling();
                 }
             }
             catch
@@ -1491,14 +1495,16 @@ public class Deathknight_Blood
             }
             return;
         }
-        else if (Death_Coil.KnownSpell && Death_Coil.IsSpellUsable && Death_Coil.IsDistanceGood && MySettings.UseDeathCoil)
+        else if (Death_Coil.KnownSpell && Death_Coil.IsSpellUsable && Death_Coil.IsDistanceGood &&
+                 MySettings.UseDeathCoil)
         {
             Death_Coil.Launch();
             return;
         }
         else
         {
-            if (Blood_Boil.IsSpellUsable && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood && MySettings.UseBloodBoil)
+            if (Blood_Boil.IsSpellUsable && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood &&
+                MySettings.UseBloodBoil)
             {
                 Blood_Boil.Launch();
                 return;
@@ -1533,19 +1539,19 @@ public class Deathknight_Blood
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
             return;
@@ -1587,7 +1593,7 @@ public class Deathknight_Blood
             return;
         }
         else if (Unholy_Blight.KnownSpell && Unholy_Blight.IsSpellUsable && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseUnholyBlight)
+                 && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -1595,16 +1601,19 @@ public class Deathknight_Blood
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
-            && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
+                 &&
+                 (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff ||
+                  !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
             Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
-        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
-            && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
+        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff &&
+                 Frost_Fever.TargetHaveBuff
+                 && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
+                 && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -1612,8 +1621,8 @@ public class Deathknight_Blood
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
-            && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
-            && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
+                 && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
+                 && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
         {
             if (!Plague_Strike.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -1630,8 +1639,8 @@ public class Deathknight_Blood
             }
         }
         else if (Icy_Touch.KnownSpell && Icy_Touch.IsDistanceGood && MySettings.UseIcyTouch
-            && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
-            && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
+                 && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
+                 && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
         {
             if (!Icy_Touch.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -1647,8 +1656,9 @@ public class Deathknight_Blood
                 return;
             }
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 3 && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood && Blood_Boil.KnownSpell
-            && MySettings.UseBloodBoil)
+        else if (ObjectManager.GetNumberAttackPlayer() > 3 && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood &&
+                 Blood_Boil.KnownSpell
+                 && MySettings.UseBloodBoil)
         {
             Blood_Boil.Launch();
             if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Roiling_Blood.KnownSpell)
@@ -1658,26 +1668,30 @@ public class Deathknight_Blood
             }
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood
-            && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable &&
+                 Pestilence.IsDistanceGood
+                 && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
         {
             Pestilence.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Death_and_Decay.KnownSpell && MySettings.UseDeathandDecay
-            && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Death_and_Decay.KnownSpell &&
+                 MySettings.UseDeathandDecay
+                 && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1 && Heart_Strike.IsSpellUsable
-            && Heart_Strike.IsDistanceGood && Heart_Strike.KnownSpell && MySettings.UseHeartStrike)
+        else if (ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1 &&
+                 Heart_Strike.IsSpellUsable
+                 && Heart_Strike.IsDistanceGood && Heart_Strike.KnownSpell && MySettings.UseHeartStrike)
         {
             Heart_Strike.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable && Army_of_the_Dead.IsDistanceGood
-            && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable &&
+                 Army_of_the_Dead.IsDistanceGood
+                 && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
         {
             Army_of_the_Dead.Launch();
             Thread.Sleep(4000);
@@ -1693,24 +1707,29 @@ public class Deathknight_Blood
             }
             return;
         }
-        else if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood && Soul_Reaper.IsSpellUsable
-            && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 90
-            && MySettings.UseSoulReaper)
+        else if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood &&
+                 Soul_Reaper.IsSpellUsable
+                 && ObjectManager.Target.HealthPercent < 35 &&
+                 ObjectManager.Me.HealthPercent > 90
+                 && MySettings.UseSoulReaper)
         {
             Soul_Reaper.Launch();
             return;
         }
-        else if (Death_Strike.IsSpellUsable && Death_Strike.IsDistanceGood && Death_Strike.KnownSpell
-             && MySettings.UseDeathStrike)
+        else if (Death_Strike.IsSpellUsable && Death_Strike.IsDistanceGood &&
+                 Death_Strike.KnownSpell
+                 && MySettings.UseDeathStrike)
         {
             Death_Strike.Launch();
             return;
         }
-        else if (Rune_Strike.IsSpellUsable && Rune_Strike.IsDistanceGood && Rune_Strike.KnownSpell && DRW == 0
-            && MySettings.UseRuneStrike)
+        else if (Rune_Strike.IsSpellUsable && Rune_Strike.IsDistanceGood &&
+                 Rune_Strike.KnownSpell && DRW == 0
+                 && MySettings.UseRuneStrike)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                || (Conversion.KnownSpell && MySettings.UseConversion)))
+            if (ObjectManager.Me.HealthPercent < 80 &&
+                ((Lichborne.KnownSpell && MySettings.UseLichborne)
+                 || (Conversion.KnownSpell && MySettings.UseConversion)))
                 return;
             else
             {
@@ -1718,26 +1737,31 @@ public class Deathknight_Blood
                 return;
             }
         }
-        // Blizzard API Calls for Heart Strike using Blood Strike Function
-        else if (Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood && Blood_Strike.KnownSpell
-            && MySettings.UseHeartStrike)
+            // Blizzard API Calls for Heart Strike using Blood Strike Function
+        else if (Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood &&
+                 Blood_Strike.KnownSpell
+                 && MySettings.UseHeartStrike)
         {
             Blood_Strike.Launch();
             return;
         }
-        else if (Empower_Rune_Weapon.IsSpellUsable && Empower_Rune_Weapon.KnownSpell && MySettings.UseEmpowerRuneWeapon)
+        else if (Empower_Rune_Weapon.IsSpellUsable &&
+                 Empower_Rune_Weapon.KnownSpell &&
+                 MySettings.UseEmpowerRuneWeapon)
         {
             Empower_Rune_Weapon.Launch();
             return;
         }
-        else if (Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable &&
+                 MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
         }
         else
         {
-            if (Arcane_Torrent.IsSpellUsable && Arcane_Torrent.KnownSpell && MySettings.UseArcaneTorrent)
+            if (Arcane_Torrent.IsSpellUsable &&
+                Arcane_Torrent.KnownSpell && MySettings.UseArcaneTorrent)
             {
                 Arcane_Torrent.Launch();
                 return;
@@ -1805,8 +1829,8 @@ public class Deathknight_Blood
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 55 && MySettings.UseDeathPact
-            && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
-            && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
+                 && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
+                 && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
         {
             int i = 0;
             while (i < 3)
@@ -1822,8 +1846,8 @@ public class Deathknight_Blood
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseLichborne
-            && Lichborne.KnownSpell && Lichborne.IsSpellUsable
-            && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
+                 && Lichborne.KnownSpell && Lichborne.IsSpellUsable
+                 && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
         {
             if (Lichborne.IsSpellUsable)
             {
@@ -1832,8 +1856,8 @@ public class Deathknight_Blood
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseConversion
-            && Conversion.KnownSpell && Conversion.IsSpellUsable
-            && ObjectManager.Me.RunicPower > 10)
+                 && Conversion.KnownSpell && Conversion.IsSpellUsable
+                 && ObjectManager.Me.RunicPower > 10)
         {
             if (Conversion.IsSpellUsable)
             {
@@ -1844,7 +1868,7 @@ public class Deathknight_Blood
             }
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Death_Siphon.KnownSpell && Death_Siphon.IsSpellUsable
-            && MySettings.UseDeathSiphon)
+                 && MySettings.UseDeathSiphon)
         {
             Death_Siphon.Launch();
             return;
@@ -1882,14 +1906,14 @@ public class Deathknight_Blood
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceboundFortitude
-            && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
+                 && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
         {
             Icebound_Fortitude.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
-            && MySettings.UseStoneform)
+                 && MySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
@@ -1898,7 +1922,7 @@ public class Deathknight_Blood
         else
         {
             if (ObjectManager.Target.GetDistance < 8 && MySettings.UseRemorselessWinter
-            && (ObjectManager.Me.HealthPercent < 70 || ObjectManager.GetNumberAttackPlayer() > 1))
+                && (ObjectManager.Me.HealthPercent < 70 || ObjectManager.GetNumberAttackPlayer() > 1))
             {
                 if (Remorseless_Winter.KnownSpell && Remorseless_Winter.IsSpellUsable)
                 {
@@ -1919,14 +1943,14 @@ public class Deathknight_Blood
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseAntiMagicShell
-            && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
+                 && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
         {
             AntiMagic_Shell.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
-            && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
+                 && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
+                 && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
         {
             Strangulate.Launch();
             return;
@@ -1961,7 +1985,7 @@ public class Deathknight_Blood
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
+                 && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
@@ -1969,7 +1993,7 @@ public class Deathknight_Blood
         else
         {
             if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
             {
                 Logging.WriteFight("Use Alchi Flask");
                 Lua.RunMacroText("/use item:75525");
@@ -2258,9 +2282,8 @@ public class Deathknight_Unholy
                         }
                     }
 
-                    else
-                        if (ObjectManager.Me.IsCast)
-                            Patrolling();
+                    else if (ObjectManager.Me.IsCast)
+                        Patrolling();
                 }
             }
             catch
@@ -2312,7 +2335,7 @@ public class Deathknight_Unholy
             return;
         }
         else if (Death_Coil.KnownSpell && Death_Coil.IsSpellUsable && Death_Coil.IsDistanceGood
-            && MySettings.UseDeathCoil)
+                 && MySettings.UseDeathCoil)
         {
             Death_Coil.Launch();
             return;
@@ -2355,25 +2378,25 @@ public class Deathknight_Unholy
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -2427,7 +2450,7 @@ public class Deathknight_Unholy
             return;
         }
         else if (Unholy_Blight.KnownSpell && Unholy_Blight.IsSpellUsable && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseUnholyBlight)
+                 && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -2435,16 +2458,19 @@ public class Deathknight_Unholy
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
-            && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
+                 &&
+                 (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff ||
+                  !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
             Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
-        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
-            && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
+        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff &&
+                 Frost_Fever.TargetHaveBuff
+                 && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
+                 && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -2452,8 +2478,8 @@ public class Deathknight_Unholy
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
-            && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
-            && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
+                 && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
+                 && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
         {
             if (!Plague_Strike.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -2470,8 +2496,8 @@ public class Deathknight_Unholy
             }
         }
         else if (Icy_Touch.KnownSpell && Icy_Touch.IsDistanceGood && MySettings.UseIcyTouch
-            && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
-            && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
+                 && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
+                 && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
         {
             if (!Icy_Touch.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -2488,7 +2514,7 @@ public class Deathknight_Unholy
             }
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood
-            && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
+                 && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
         {
             Pestilence.Launch();
             return;
@@ -2499,7 +2525,7 @@ public class Deathknight_Unholy
                 && MySettings.UseDeathCoil)
             {
                 if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                    || (Conversion.KnownSpell && MySettings.UseConversion)))
+                                                            || (Conversion.KnownSpell && MySettings.UseConversion)))
                     return;
                 else
                 {
@@ -2509,20 +2535,22 @@ public class Deathknight_Unholy
             }
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseDeathandDecay
-            && Death_and_Decay.KnownSpell && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
+                 && Death_and_Decay.KnownSpell && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable && Army_of_the_Dead.IsDistanceGood
-            && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable &&
+                 Army_of_the_Dead.IsDistanceGood
+                 && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
         {
             Army_of_the_Dead.Launch();
             Thread.Sleep(4000);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Blood_Boil.IsSpellUsable && Blood_Boil.IsDistanceGood && Blood_Boil.KnownSpell
-            && MySettings.UseBloodBoil)
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Blood_Boil.IsSpellUsable &&
+                 Blood_Boil.IsDistanceGood && Blood_Boil.KnownSpell
+                 && MySettings.UseBloodBoil)
         {
             Blood_Boil.Launch();
             if (Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff && Roiling_Blood.KnownSpell)
@@ -2534,27 +2562,31 @@ public class Deathknight_Unholy
         }
 
         else if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood && Soul_Reaper.IsSpellUsable
-            && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 80
-            && MySettings.UseSoulReaper)
+                 && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 80
+                 && MySettings.UseSoulReaper)
         {
             Soul_Reaper.Launch();
             return;
         }
         else if (ObjectManager.Me.RunicPowerPercentage < 90 && MySettings.UseScourgeStrike
-            && Scourge_Strike.KnownSpell && Scourge_Strike.IsSpellUsable && Scourge_Strike.IsDistanceGood)
+                 && Scourge_Strike.KnownSpell && Scourge_Strike.IsSpellUsable &&
+                 Scourge_Strike.IsDistanceGood)
         {
             Scourge_Strike.Launch();
             return;
         }
         else if (ObjectManager.Me.RunicPowerPercentage < 90 && MySettings.UseFesteringStrike
-            && Festering_Strike.KnownSpell && Festering_Strike.IsSpellUsable && Festering_Strike.IsDistanceGood)
+                 && Festering_Strike.KnownSpell && Festering_Strike.IsSpellUsable &&
+                 Festering_Strike.IsDistanceGood)
         {
             Festering_Strike.Launch();
             return;
         }
         else if (ObjectManager.Me.RunicPowerPercentage >= 90 || ObjectManager.Me.HaveBuff(81340)
-            && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable && Death_Coil.IsDistanceGood
-            && MySettings.UseDeathCoil)
+                                                                && Death_Coil.KnownSpell &&
+                                                                Death_Coil.IsSpellUsable &&
+                 Death_Coil.IsDistanceGood
+                 && MySettings.UseDeathCoil)
         {
             if (Blood_Tap.IsSpellUsable && Blood_Tap.KnownSpell)
             {
@@ -2569,7 +2601,8 @@ public class Deathknight_Unholy
             Horn_of_Winter.Launch();
             return;
         }
-        else if (Empower_Rune_Weapon.IsSpellUsable && Empower_Rune_Weapon.KnownSpell && MySettings.UseEmpowerRuneWeapon)
+        else if (Empower_Rune_Weapon.IsSpellUsable && Empower_Rune_Weapon.KnownSpell &&
+                 MySettings.UseEmpowerRuneWeapon)
         {
             Empower_Rune_Weapon.Launch();
             return;
@@ -2642,8 +2675,8 @@ public class Deathknight_Unholy
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 55 && MySettings.UseDeathPact
-            && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
-            && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
+                 && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
+                 && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
         {
             int i = 0;
             while (i < 3)
@@ -2659,8 +2692,8 @@ public class Deathknight_Unholy
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseLichborne
-            && Lichborne.KnownSpell && Lichborne.IsSpellUsable
-            && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
+                 && Lichborne.KnownSpell && Lichborne.IsSpellUsable
+                 && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
         {
             if (Lichborne.IsSpellUsable)
             {
@@ -2669,8 +2702,8 @@ public class Deathknight_Unholy
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseConversion
-            && Conversion.KnownSpell && Conversion.IsSpellUsable
-            && ObjectManager.Me.RunicPower > 10)
+                 && Conversion.KnownSpell && Conversion.IsSpellUsable
+                 && ObjectManager.Me.RunicPower > 10)
         {
             if (Conversion.IsSpellUsable)
             {
@@ -2681,7 +2714,7 @@ public class Deathknight_Unholy
             }
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Death_Siphon.KnownSpell && Death_Siphon.IsSpellUsable
-            && MySettings.UseDeathSiphon)
+                 && MySettings.UseDeathSiphon)
         {
             Death_Siphon.Launch();
             return;
@@ -2706,7 +2739,7 @@ public class Deathknight_Unholy
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceboundFortitude
-            && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
+                 && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
         {
             Icebound_Fortitude.Launch();
             OnCD = new Timer(1000*12);
@@ -2715,7 +2748,7 @@ public class Deathknight_Unholy
         else
         {
             if (ObjectManager.Target.GetDistance < 8 && MySettings.UseRemorselessWinter
-            && (ObjectManager.Me.HealthPercent < 70 || ObjectManager.GetNumberAttackPlayer() > 1))
+                && (ObjectManager.Me.HealthPercent < 70 || ObjectManager.GetNumberAttackPlayer() > 1))
             {
                 if (Remorseless_Winter.KnownSpell && Remorseless_Winter.IsSpellUsable)
                 {
@@ -2736,14 +2769,14 @@ public class Deathknight_Unholy
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseAntiMagicShell
-            && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
+                 && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
         {
             AntiMagic_Shell.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
-            && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
+                 && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
+                 && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
         {
             Strangulate.Launch();
             return;
@@ -2794,7 +2827,7 @@ public class Deathknight_Unholy
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
+                 && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
@@ -2802,7 +2835,7 @@ public class Deathknight_Unholy
         else
         {
             if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
             {
                 Logging.WriteFight("Use Alchi Flask");
                 Lua.RunMacroText("/use item:75525");
@@ -3092,9 +3125,8 @@ public class Deathknight_Frost
                         }
                     }
 
-                    else
-                        if (ObjectManager.Me.IsCast)
-                            Patrolling();
+                    else if (ObjectManager.Me.IsCast)
+                        Patrolling();
                 }
             }
             catch
@@ -3147,7 +3179,7 @@ public class Deathknight_Frost
             return;
         }
         else if (Death_Coil.KnownSpell && Death_Coil.IsSpellUsable && Death_Coil.IsDistanceGood
-            && MySettings.UseDeathCoil)
+                 && MySettings.UseDeathCoil)
         {
             Death_Coil.Launch();
             return;
@@ -3190,32 +3222,32 @@ public class Deathknight_Frost
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             Engineering_Timer = new Timer(1000*60);
             return;
         }
-        else 
+        else
         {
             if (Pillar_of_Frost.IsSpellUsable && Pillar_of_Frost.KnownSpell && MySettings.UsePillarofFrost
                 && ObjectManager.Target.GetDistance < 30)
@@ -3238,7 +3270,7 @@ public class Deathknight_Frost
             return;
         }
         else if (Unholy_Blight.KnownSpell && Unholy_Blight.IsSpellUsable && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseUnholyBlight)
+                 && MySettings.UseUnholyBlight)
         {
             Unholy_Blight.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -3246,16 +3278,19 @@ public class Deathknight_Frost
             return;
         }
         else if (Outbreak.KnownSpell && Outbreak.IsSpellUsable && Outbreak.IsDistanceGood && MySettings.UseOutbreak
-            && (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff || !Frost_Fever.TargetHaveBuff))
+                 &&
+                 (Blood_Plague_Timer.IsReady || Frost_Fever_Timer.IsReady || !Blood_Plague.TargetHaveBuff ||
+                  !Frost_Fever.TargetHaveBuff))
         {
             Outbreak.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
             Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
-        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff && Frost_Fever.TargetHaveBuff
-            && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
-            && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
+        else if (Blood_Plague_Timer.IsReady && Frost_Fever_Timer.IsReady && Blood_Plague.TargetHaveBuff &&
+                 Frost_Fever.TargetHaveBuff
+                 && Blood_Boil.IsSpellUsable && Blood_Boil.KnownSpell && ObjectManager.Target.GetDistance < 9
+                 && MySettings.UseBloodBoil && Roiling_Blood.KnownSpell)
         {
             Blood_Boil.Launch();
             Blood_Plague_Timer = new Timer(1000*27);
@@ -3263,8 +3298,8 @@ public class Deathknight_Frost
             return;
         }
         else if (Plague_Strike.KnownSpell && Plague_Strike.IsDistanceGood && !Outbreak.IsSpellUsable
-            && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
-            && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
+                 && !Unholy_Blight.IsSpellUsable && MySettings.UsePlagueStrike
+                 && (Blood_Plague_Timer.IsReady || !Blood_Plague.TargetHaveBuff))
         {
             if (!Plague_Strike.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -3281,8 +3316,8 @@ public class Deathknight_Frost
             }
         }
         else if (Icy_Touch.KnownSpell && Howling_Blast.IsDistanceGood
-            && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
-            && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
+                 && !Outbreak.IsSpellUsable && !Unholy_Blight.IsSpellUsable
+                 && (Frost_Fever_Timer.IsReady || !Frost_Fever.TargetHaveBuff))
         {
             if (!Howling_Blast.IsSpellUsable && Blood_Tap.KnownSpell && Blood_Tap.IsSpellUsable
                 && MySettings.UseBloodTap)
@@ -3309,43 +3344,44 @@ public class Deathknight_Frost
             }
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && Pestilence.IsSpellUsable && Pestilence.IsDistanceGood
-            && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
+                 && Pestilence.KnownSpell && MySettings.UsePestilence && !Roiling_Blood.KnownSpell)
         {
             Pestilence.Launch();
             return;
         }
         else if (Freezing_Fog.HaveBuff && Howling_Blast.KnownSpell && Howling_Blast.IsDistanceGood
-            && MySettings.UseHowlingBlast)
+                 && MySettings.UseHowlingBlast)
         {
             Howling_Blast.Launch();
             Frost_Fever_Timer = new Timer(1000*27);
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 2 && MySettings.UseDeathandDecay
-            && Death_and_Decay.KnownSpell && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
+                 && Death_and_Decay.KnownSpell && Death_and_Decay.IsSpellUsable && Death_and_Decay.IsDistanceGood)
         {
             SpellManager.CastSpellByIDAndPosition(43265, ObjectManager.Target.Position);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable && Army_of_the_Dead.IsDistanceGood
-            && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
+        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Army_of_the_Dead.IsSpellUsable &&
+                 Army_of_the_Dead.IsDistanceGood
+                 && Army_of_the_Dead.KnownSpell && MySettings.UseArmyoftheDead)
         {
             Army_of_the_Dead.Launch();
             Thread.Sleep(4000);
             return;
         }
-        // Blizzard API Calls for Frost Strike using Blood Strike Function
+            // Blizzard API Calls for Frost Strike using Blood Strike Function
         else if (ObjectManager.Me.RunicPowerPercentage >= 90 && MySettings.UseFrostStrike
-            && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
+                 && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
         {
             Blood_Strike.Launch();
             return;
         }
-        else 
+        else
         {
             if (Soul_Reaper.KnownSpell && Soul_Reaper.IsDistanceGood && Soul_Reaper.IsSpellUsable
-            && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 80
-            && MySettings.UseSoulReaper)
+                && ObjectManager.Target.HealthPercent < 35 && ObjectManager.Me.HealthPercent > 80
+                && MySettings.UseSoulReaper)
             {
                 Soul_Reaper.Launch();
                 return;
@@ -3358,7 +3394,7 @@ public class Deathknight_Frost
                 && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
             {
                 if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                    || (Conversion.KnownSpell && MySettings.UseConversion)))
+                                                            || (Conversion.KnownSpell && MySettings.UseConversion)))
                     return;
                 else
                 {
@@ -3369,7 +3405,8 @@ public class Deathknight_Frost
 
             else
             {
-                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
+                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable &&
+                    Obliterate.IsDistanceGood
                     && MySettings.UseObliterate)
                 {
                     if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
@@ -3383,11 +3420,12 @@ public class Deathknight_Frost
                 }
             }
         }
-        else 
+        else
         {
             if (MySettings.UseTwoHander)
             {
-                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable && Obliterate.IsDistanceGood
+                if (ObjectManager.Me.HaveBuff(51124) && Obliterate.KnownSpell && Obliterate.IsSpellUsable &&
+                    Obliterate.IsDistanceGood
                     && MySettings.UseObliterate)
                 {
                     if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseDeathStrike
@@ -3406,7 +3444,8 @@ public class Deathknight_Frost
                         && Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood)
                     {
                         if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                            || (Conversion.KnownSpell && MySettings.UseConversion)))
+                                                                    ||
+                                                                    (Conversion.KnownSpell && MySettings.UseConversion)))
                             return;
                         else
                         {
@@ -3431,10 +3470,10 @@ public class Deathknight_Frost
             return;
         }
         else if (Blood_Strike.KnownSpell && Blood_Strike.IsSpellUsable && Blood_Strike.IsDistanceGood
-            && MySettings.UseFrostStrike)
+                 && MySettings.UseFrostStrike)
         {
             if (ObjectManager.Me.HealthPercent < 80 && ((Lichborne.KnownSpell && MySettings.UseLichborne)
-                || (Conversion.KnownSpell && MySettings.UseConversion)))
+                                                        || (Conversion.KnownSpell && MySettings.UseConversion)))
                 return;
             else
             {
@@ -3520,8 +3559,8 @@ public class Deathknight_Frost
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 55 && MySettings.UseDeathPact
-            && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
-            && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
+                 && Raise_Dead.KnownSpell && Raise_Dead.IsSpellUsable
+                 && Death_Pact.KnownSpell && Death_Pact.IsSpellUsable)
         {
             int i = 0;
             while (i < 3)
@@ -3537,8 +3576,8 @@ public class Deathknight_Frost
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseLichborne
-            && Lichborne.KnownSpell && Lichborne.IsSpellUsable
-            && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
+                 && Lichborne.KnownSpell && Lichborne.IsSpellUsable
+                 && Death_Coil.KnownSpell && Death_Coil.IsSpellUsable)
         {
             if (Lichborne.IsSpellUsable)
             {
@@ -3547,8 +3586,8 @@ public class Deathknight_Frost
             }
         }
         else if (ObjectManager.Me.HealthPercent < 45 && MySettings.UseConversion
-            && Conversion.KnownSpell && Conversion.IsSpellUsable
-            && ObjectManager.Me.RunicPower > 10)
+                 && Conversion.KnownSpell && Conversion.IsSpellUsable
+                 && ObjectManager.Me.RunicPower > 10)
         {
             if (Conversion.IsSpellUsable)
             {
@@ -3578,7 +3617,7 @@ public class Deathknight_Frost
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceboundFortitude
-            && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
+                 && Icebound_Fortitude.KnownSpell && Icebound_Fortitude.IsSpellUsable)
         {
             Icebound_Fortitude.Launch();
             OnCD = new Timer(1000*12);
@@ -3608,14 +3647,14 @@ public class Deathknight_Frost
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseAntiMagicShell
-            && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
+                 && AntiMagic_Shell.KnownSpell && AntiMagic_Shell.IsSpellUsable)
         {
             AntiMagic_Shell.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
-            && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
+                 && Strangulate.KnownSpell && Strangulate.IsSpellUsable && Strangulate.IsDistanceGood
+                 && (MySettings.UseStrangulate || MySettings.UseAsphyxiate))
         {
             Strangulate.Launch();
             return;
@@ -3650,7 +3689,7 @@ public class Deathknight_Frost
             return;
         }
         else if (!Fight.InFight && Deaths_Advance.KnownSpell && Deaths_Advance.IsSpellUsable
-            && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
+                 && MySettings.UseDeathsAdvance && ObjectManager.Me.GetMove)
         {
             Deaths_Advance.Launch();
             return;
@@ -3658,7 +3697,7 @@ public class Deathknight_Frost
         else
         {
             if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
             {
                 Logging.WriteFight("Use Alchi Flask");
                 Lua.RunMacroText("/use item:75525");
@@ -3864,11 +3903,12 @@ public class Mage_Frost
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (Summon_Water_Elemental.IsSpellUsable && Summon_Water_Elemental.KnownSpell && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        if (Summon_Water_Elemental.IsSpellUsable && Summon_Water_Elemental.KnownSpell &&
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-			Logging.WriteFight(" - PET DEAD - ");
-			Summon_Water_Elemental.Launch();
-			return;
+            Logging.WriteFight(" - PET DEAD - ");
+            Summon_Water_Elemental.Launch();
+            return;
         }
     }
 
@@ -7342,7 +7382,8 @@ public class Paladin_Holy
         {
             BlessingOfKings.Launch();
         }
-        else if ((!MySettings.UseBlessingOfKings || !BlessingOfKings.KnownSpell || !BlessingOfKings.HaveBuff) && BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
+        else if ((!MySettings.UseBlessingOfKings || !BlessingOfKings.KnownSpell || !BlessingOfKings.HaveBuff) &&
+                 BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
                  MySettings.UseBlessingOfMight)
         {
             BlessingOfMight.Launch();
@@ -7365,27 +7406,28 @@ public class Paladin_Holy
                 return;
             }
         }
-        if(!ObjectManager.Me.HaveBuff(25771))
-		{
-			if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-				DivineShield.IsSpellUsable && MySettings.UseDivineShield)
-			{
-				DivineShield.Launch();
-				return;
-			}
-			if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-				LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
-			{
-				LayOnHands.Launch();
-				return;
-			}
-			if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-				HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
-			{
-				HandOfProtection.Launch();
-				return;
-			}
-		}
+        if (!ObjectManager.Me.HaveBuff(25771))
+        {
+            if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+                DivineShield.IsSpellUsable && MySettings.UseDivineShield)
+            {
+                DivineShield.Launch();
+                return;
+            }
+            if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
+                LayOnHands.IsSpellUsable && MySettings.UseLayOnHands)
+            {
+                LayOnHands.Launch();
+                return;
+            }
+            if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 &&
+                ObjectManager.Me.HealthPercent <= 20 &&
+                HandOfProtection.IsSpellUsable && MySettings.UseHandOfProtection)
+            {
+                HandOfProtection.Launch();
+                return;
+            }
+        }
         if (ObjectManager.Me.ManaPercentage < 30)
         {
             if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && MySettings.UseArcaneTorrent)
@@ -7690,7 +7732,7 @@ public class Paladin_Protection
                         Seal();
                         Blessing();
                     }
-                    else if(!ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -8160,7 +8202,7 @@ public class Paladin_Retribution
                         Seal();
                         Blessing();
                     }
-                    else if(!ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -9032,7 +9074,7 @@ public class Priest_Shadow
                             Combat();
                         }
                     }
-                    else if(!ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -9174,25 +9216,25 @@ public class Priest_Shadow
             return;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Berserking.Launch();
             return;
         }
         else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Blood_Fury.Launch();
             return;
         }
         else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Lifeblood.Launch();
             return;
         }
         else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-            && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -9200,7 +9242,7 @@ public class Priest_Shadow
             return;
         }
         else if (Power_Infusion.IsSpellUsable && Power_Infusion.KnownSpell
-            && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 30)
+                 && MySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 30)
         {
             Power_Infusion.Launch();
             return;
@@ -9285,7 +9327,7 @@ public class Priest_Shadow
             Mind_Flay.Launch();
             return;
         }
-        // Blizzard API Calls for Mind Flay using Smite Function
+            // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
                  && MySettings.UseMindFlay)
         {
@@ -9323,57 +9365,57 @@ public class Priest_Shadow
             }
         }
         else if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 40 && Hymn_of_Hope.KnownSpell &&
-            Hymn_of_Hope.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
+                 Hymn_of_Hope.IsSpellUsable
+                 && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
             Hymn_of_Hope.Launch(false);
             return;
         }
         else if (!Fight.InFight && ObjectManager.Me.BarTwoPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
-            && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
+                 && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
         {
             Dispersion.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
-            && MySettings.UseDesperatePrayer)
+                 && MySettings.UseDesperatePrayer)
         {
             Desperate_Prayer.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-            && MySettings.UseFlash_Heal)
+                 && MySettings.UseFlash_Heal)
         {
             Flash_Heal.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
-            && MySettings.UseGiftoftheNaaru)
+                 && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-            && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
+                 && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
         {
             War_Stomp.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Vampiric_Embrace.IsSpellUsable && Vampiric_Embrace.KnownSpell
-            && MySettings.UseVampiricEmbrace)
+                 && MySettings.UseVampiricEmbrace)
         {
             Vampiric_Embrace.Launch();
             return;
         }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
-            && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
-            && !ObjectManager.Me.HaveBuff(6788))
+                 && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
+                 && !ObjectManager.Me.HaveBuff(6788))
         {
             Power_Word_Shield.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
-            && MySettings.UsePrayerofMending)
+                 && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
             return;
@@ -9381,7 +9423,7 @@ public class Priest_Shadow
         else
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-            ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+                ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
             {
                 Renew.Launch();
                 return;
@@ -9399,7 +9441,7 @@ public class Priest_Shadow
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 20 && Dispersion.KnownSpell && Dispersion.IsSpellUsable
-            && MySettings.UseDispersion)
+                 && MySettings.UseDispersion)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
@@ -9411,23 +9453,24 @@ public class Priest_Shadow
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-            Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
-            && MySettings.UseVoidTendrils)
+                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
+                 && MySettings.UseVoidTendrils)
         {
             Void_Tendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 && Psyfiend.IsSpellUsable &&
-            Psyfiend.KnownSpell
-            && MySettings.UsePsyfiend)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
+                 Psyfiend.IsSpellUsable &&
+                 Psyfiend.KnownSpell
+                 && MySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
-            && MySettings.UseSpectralGuise)
+                 && MySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
@@ -9439,10 +9482,10 @@ public class Priest_Shadow
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
-            && MySettings.UseStoneform)
+                 && MySettings.UseStoneform)
         {
             Stoneform.Launch();
-            OnCD = new Timer(1000 * 8);
+            OnCD = new Timer(1000*8);
             return;
         }
         else
@@ -9451,7 +9494,7 @@ public class Priest_Shadow
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
-                OnCD = new Timer(1000 * 2);
+                OnCD = new Timer(1000*2);
                 return;
             }
         }
