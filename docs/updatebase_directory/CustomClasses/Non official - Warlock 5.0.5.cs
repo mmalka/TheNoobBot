@@ -824,33 +824,33 @@ public class Warlock_Demonology
         }
 
         if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Felhunter.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonFelguard && Summon_Felguard.KnownSpell && Summon_Felguard.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Felguard.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Imp.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
                  Summon_Voidwalker.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Voidwalker.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
                  Summon_Succubus.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
@@ -1584,33 +1584,33 @@ public class Warlock_Destruction
         }
 
         if (MySettings.UseFlamesofXoroth && Flames_of_Xoroth.KnownSpell && Flames_of_Xoroth.IsSpellUsable &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Flames_of_Xoroth.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Felhunter.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Imp.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
                  Summon_Voidwalker.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Voidwalker.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
                  Summon_Succubus.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
@@ -2422,27 +2422,27 @@ public class Warlock_Affliction
         }
 
         if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Felhunter.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Imp.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
                  Summon_Voidwalker.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Voidwalker.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
         else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
                  Summon_Succubus.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
         {
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
