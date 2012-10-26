@@ -3408,4 +3408,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Sra'thik Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>2486</X>
+      <Y>4615</Y>
+      <Z>175</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.26669549942017</px>
+    <py>0.40529257059097</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
