@@ -855,10 +855,6 @@ public class Warlock_Demonology
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
-        else
-        {
-            return;
-        }
         Thread.Sleep(200);
         if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
             && MySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
@@ -1618,10 +1614,6 @@ public class Warlock_Destruction
         {
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
-        }
-        else
-        {
-            return;
         }
         Thread.Sleep(200);
         if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
@@ -2454,10 +2446,6 @@ public class Warlock_Affliction
         {
             Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
-        }
-        else
-        {
-            return;
         }
         Thread.Sleep(200);
         if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
