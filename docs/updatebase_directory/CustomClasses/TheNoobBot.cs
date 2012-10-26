@@ -332,7 +332,6 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Paladin Retribution class...");
                             new Paladin_Retribution();
                         }
-                        break;
                     }
                     else if (Paladin_Protection_Spell.KnownSpell)
                     {
@@ -355,7 +354,6 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Paladin Protection class...");
                             new Paladin_Protection();
                         }
-                        break;
                     }
                     else if (Paladin_Holy_Spell.KnownSpell)
                     {
@@ -378,7 +376,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Paladin_Holy();
                         }
-                        break;
                     }
                     else
                     {
@@ -404,8 +401,8 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Paladin Retribution class...");
                             new Paladin_Retribution();
                         }
-                        break;
                     }
+                    break;
 
                     #endregion
 
@@ -471,7 +468,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Priest_Shadow();
                         }
-                        break;
                     }
                     else if (Priest_Discipline_Spell.KnownSpell)
                     {
@@ -498,7 +494,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Priest_Shadow();
                         }
-                        break;
                     }
                     else if (Priest_Holy_Spell.KnownSpell)
                     {
@@ -525,7 +520,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Priest_Shadow();
                         }
-                        break;
                     }
                     else
                     {
@@ -551,8 +545,8 @@ public class Main : ICustomClass
                             Logging.WriteFight("Loading Priest Shadow class...");
                             new Priest_Shadow();
                         }
-                        break;
                     }
+                    break;
 
                     #endregion
 
@@ -681,7 +675,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Survival();
                         }
-                        break;
                     }
                     else if (Aimed_Shot.KnownSpell)
                     {
@@ -695,7 +688,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Marks();
                         }
-                        break;
                     }
                     else if (FocusFire.KnownSpell)
                     {
@@ -719,7 +711,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Hunter_BeastMaster();
                         }
-                        break;
                     }
                     else
                     {
