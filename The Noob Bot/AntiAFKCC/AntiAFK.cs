@@ -1,4 +1,4 @@
-/*
+﻿/*
 * CustomClass for TheNoobBot
 * Credit : Vesper
 */
@@ -11,7 +11,7 @@ using nManager.Wow.Helpers;
 
 public class Main : ICustomClass
 {
-    internal static float range = 3.6f;
+    internal static float range = 5.0f;
     internal static bool loop = true;
 
     #region ICustomClass Members
@@ -19,7 +19,6 @@ public class Main : ICustomClass
     public float Range
     {
         get { return range; }
-        set { range = value; }
     }
 
     public void Initialize()
@@ -28,10 +27,11 @@ public class Main : ICustomClass
         {
             Logging.WriteFight("Loading Anti AFK system.");
 
-            new Anti_AFK_NOOB();
+            new AntiAfk();
         }
-        catch
+        catch (Exception exception)
         {
+            Logging.WriteError("Initialize(): " + exception);
         }
         Logging.WriteFight("Anti AFK system stopped.");
     }
@@ -50,17 +50,16 @@ public class Main : ICustomClass
     #endregion
 }
 
-public class Anti_AFK_NOOB
+public class AntiAfk
 {
     /**
       * Author : VesperCore
       * Utility : Anti_AFK; to be used with a profile with only 1 point.
     **/
 
-    public Anti_AFK_NOOB()
+    public AntiAfk()
     {
-        Main.range = 3.6f;
-        UInt64 lastTarget = 0;
+        Main.range = 5.0f;
 
         while (Main.loop)
         {
