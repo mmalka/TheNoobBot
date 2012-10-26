@@ -14,7 +14,10 @@ namespace nManager.Helpful.Forms
                 TranslateForm();
 
                 LoadSetting(nManagerSetting.CurrentSetting);
-
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.dll"))
+                {
+                    customClass.Items.Add(f);
+                }
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.cs"))
                 {
                     customClass.Items.Add(f);
@@ -41,9 +44,9 @@ namespace nManager.Helpful.Forms
 
         void TranslateForm()
         {
-            labelX45.Text = Translate.Get(Translate.Id.Security) + ":";
+            labelX45.Text = string.Format("{0}:", Translate.Get(Translate.Id.Security));
             SetToolTypeIfNeeded(labelX45);
-            labelX34.Text = Translate.Get(Translate.Id.Close_game) + ":";
+            labelX34.Text = string.Format("{0}:", Translate.Get(Translate.Id.Close_game));
             SetToolTypeIfNeeded(labelX34);
             labelX30.Text = Translate.Get(Translate.Id.If_reached______Honor_Points);
             SetToolTypeIfNeeded(labelX30);

@@ -17,7 +17,7 @@ namespace nManager.Wow.Helpers
         private static Assembly _assembly;
         private static object _obj;
         private static Thread _worker;
-        private static string _pathScriptCShart = "";
+        private static string __pathToCustomClassFile = "";
 
         public static float GetRange
         {
@@ -42,7 +42,9 @@ namespace nManager.Wow.Helpers
             get
             {
                 try
-                { return (_obj != null); }
+                {
+                    return (_obj != null);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("IsAliveCustomClass: " + exception);
@@ -56,7 +58,14 @@ namespace nManager.Wow.Helpers
             try
             {
                 if (nManagerSetting.CurrentSetting.customClass != "")
-                    LoadCustomClass(Application.StartupPath + "\\CustomClasses\\" + nManagerSetting.CurrentSetting.customClass);
+                {
+                    string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" + nManagerSetting.CurrentSetting.customClass;
+                    string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
+                    if (fileExt == "dll")
+                        LoadCustomClass(__pathToCustomClassFile, false, false);
+                    else
+                        LoadCustomClass(__pathToCustomClassFile);
+                }
                 else
                     Logging.Write("No custom class selected");
             }
@@ -66,62 +75,95 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void LoadCustomClass(string pathScriptCShart, bool settingOnly = false)
+        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false, bool CSharpFile = true)
         {
             try
             {
-                _pathScriptCShart = pathScriptCShart;
-                if (_instanceFromOtherAssembly != null)
+                if (CSharpFile)
                 {
-                    _instanceFromOtherAssembly.Dispose();
-                }
-
-                _instanceFromOtherAssembly = null;
-                _assembly = null;
-                _obj = null;
-
-
-                CodeDomProvider cc = new CSharpCodeProvider();
-                var cp = new CompilerParameters();
-                var assemblies = AppDomain.CurrentDomain
-                    .GetAssemblies()
-                    .Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                    .Select(a => a.Location);
-                cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
-                StreamReader sr = File.OpenText(pathScriptCShart);
-                string toCompile = sr.ReadToEnd();
-                CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
-                if (cr.Errors.HasErrors)
-                {
-                    String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
-                    Logging.WriteError(text);
-                    MessageBox.Show(text);
-                    return;
-                }
-
-                _assembly = cr.CompiledAssembly;
-
-                _obj = _assembly.CreateInstance("Main", true);
-                _instanceFromOtherAssembly = _obj as ICustomClass;
-
-                if (_instanceFromOtherAssembly != null)
-                {
-                    if (settingOnly)
+                    __pathToCustomClassFile = pathToCustomClassFile;
+                    if (_instanceFromOtherAssembly != null)
                     {
-                        _instanceFromOtherAssembly.ShowConfiguration();
                         _instanceFromOtherAssembly.Dispose();
+                    }
+
+                    _instanceFromOtherAssembly = null;
+                    _assembly = null;
+                    _obj = null;
+
+
+                    CodeDomProvider cc = new CSharpCodeProvider();
+                    var cp = new CompilerParameters();
+                    var assemblies = AppDomain.CurrentDomain
+                        .GetAssemblies()
+                        .Where(
+                            a =>
+                            !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                        .Select(a => a.Location);
+                    cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
+                    StreamReader sr = File.OpenText(pathToCustomClassFile);
+                    string toCompile = sr.ReadToEnd();
+                    CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
+                    if (cr.Errors.HasErrors)
+                    {
+                        String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n",
+                                                                                (current, err) => current + (err + "\n"));
+                        Logging.WriteError(text);
+                        MessageBox.Show(text);
                         return;
                     }
 
-                    _worker = new Thread(_instanceFromOtherAssembly.Initialize) { IsBackground = true, Name = "Script CS" };
-                    _worker.Start();
+                    _assembly = cr.CompiledAssembly;
+
+                    _obj = _assembly.CreateInstance("Main", true);
+                    _instanceFromOtherAssembly = _obj as ICustomClass;
+
+                    if (_instanceFromOtherAssembly != null)
+                    {
+                        if (settingOnly)
+                        {
+                            _instanceFromOtherAssembly.ShowConfiguration();
+                            _instanceFromOtherAssembly.Dispose();
+                            return;
+                        }
+
+                        _worker = new Thread(_instanceFromOtherAssembly.Initialize)
+                                      {IsBackground = true, Name = "CustomClass CS"};
+                        _worker.Start();
+                    }
+                    else
+                        Logging.WriteError("Custom Class Loading error.");
                 }
-                else
-                    Logging.WriteError("Custom Class Loading error.");
+                else if (!CSharpFile)
+                {
+                    _instanceFromOtherAssembly = null;
+                    _assembly = null;
+                    _obj = null;
+
+                    _assembly = Assembly.LoadFrom(pathToCustomClassFile);
+
+                    _obj = _assembly.CreateInstance("Main", true);
+                    _instanceFromOtherAssembly = _obj as ICustomClass;
+                    if (_instanceFromOtherAssembly != null)
+                    {
+                        if (settingOnly)
+                        {
+                            _instanceFromOtherAssembly.ShowConfiguration();
+                            _instanceFromOtherAssembly.Dispose();
+                            return;
+                        }
+
+                        _worker = new Thread(_instanceFromOtherAssembly.Initialize)
+                                      {IsBackground = true, Name = "CustomClass DLL"};
+                        _worker.Start();
+                    }
+                    else
+                        Logging.WriteError("Custom Class Loading error.");
+                }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadCustomClass(string pathScriptCShart): " + exception);
+                Logging.WriteError("LoadCustomClass(string _pathToCustomClassFile): " + exception);
             }
         }
 
@@ -158,7 +200,11 @@ namespace nManager.Wow.Helpers
                 {
                     DisposeCustomClass();
                     Thread.Sleep(1000);
-                    LoadCustomClass(_pathScriptCShart);
+                    string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
+                    if (fileExt == "dll")
+                        LoadCustomClass(__pathToCustomClassFile, false, false);
+                    else
+                        LoadCustomClass(__pathToCustomClassFile);
                 }
             }
             catch (Exception exception)
@@ -171,7 +217,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                LoadCustomClass(filePath,true);
+                string fileExt = filePath.Substring(filePath.Length - 3);
+                if (fileExt == "dll")
+                    LoadCustomClass(filePath, true, false);
+                else
+                    LoadCustomClass(filePath, true);
             }
             catch (Exception exception)
             {
@@ -185,10 +235,7 @@ namespace nManager.Wow.Helpers
     {
         #region Properties
 
-        float Range
-        {
-            get;
-        }
+        float Range { get; }
 
         #endregion Properties
 
@@ -202,5 +249,4 @@ namespace nManager.Wow.Helpers
 
         #endregion Methods
     }
-
 }
