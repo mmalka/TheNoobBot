@@ -53,9 +53,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)TheNoobBot.cs" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /s /i /y
-xcopy "$(TargetDir)TheNoobBot.dll" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /s /i /y
-xcopy "$(ProjectDir)TheNoobBot.cs" "$(TargetDir)" /s /i /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)TheNoobBot.dll" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i
+xcopy "$(ProjectDir)TheNoobBot.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>xcopy "$(ProjectDir)TheNoobBot.cs" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
