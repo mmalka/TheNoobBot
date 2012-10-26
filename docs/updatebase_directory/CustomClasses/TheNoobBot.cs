@@ -55,7 +55,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
                             Deathknight_Blood.DeathknightBloodSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Blood.DeathknightBloodSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Blood.DeathknightBloodSettings>(CurrentSettingsFile);
@@ -66,7 +66,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Deathknight Blood class...");
-							range = 5.0f;
+                            range = 5.0f;
                             new Deathknight_Blood();
                         }
                     }
@@ -78,7 +78,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
                             Deathknight_Unholy.DeathknightUnholySettings CurrentSetting;
                             CurrentSetting = new Deathknight_Unholy.DeathknightUnholySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Unholy.DeathknightUnholySettings>(CurrentSettingsFile);
@@ -89,7 +89,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Deathknight Unholy class...");
-							range = 5.0f;
+                            range = 5.0f;
                             new Deathknight_Unholy();
                         }
                     }
@@ -101,7 +101,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
                             Deathknight_Frost.DeathknightFrostSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Frost.DeathknightFrostSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Frost.DeathknightFrostSettings>(CurrentSettingsFile);
@@ -112,7 +112,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Deathknight Frost class...");
-							range = 5.0f;
+                            range = 5.0f;
                             new Deathknight_Frost();
                         }
                     }
@@ -120,13 +120,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Your specification haven't be found, loading Deathknight Apprentice Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
                             Deathknight_Apprentice.DeathknightApprenticeSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Apprentice.DeathknightApprenticeSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(
@@ -139,7 +139,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Deathknight Apprentice class...");
-							range = 5.0f;
+                            range = 5.0f;
                             new Deathknight_Apprentice();
                         }
                     }
@@ -225,7 +225,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
@@ -236,7 +236,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Demonology class...");
-							range = 30.0f;
+                            range = 30.0f;
                             new Warlock_Demonology();
                         }
                     }
@@ -248,7 +248,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
                             Warlock_Affliction.WarlockAfflictionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Affliction.WarlockAfflictionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Affliction.WarlockAfflictionSettings>(CurrentSettingsFile);
@@ -259,7 +259,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Affliction class...");
-							range = 30.0f;
+                            range = 30.0f;
                             new Warlock_Affliction();
                         }
                     }
@@ -271,7 +271,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
                             Warlock_Destruction.WarlockDestructionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Destruction.WarlockDestructionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Destruction.WarlockDestructionSettings>(CurrentSettingsFile);
@@ -282,7 +282,7 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Warlock Destruction class...");
-							range = 30.0f;
+                            range = 30.0f;
                             new Warlock_Destruction();
                         }
                     }
@@ -290,13 +290,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Your specification haven't be found, loading Warlock Demonology Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
@@ -379,7 +379,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
                             Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
                             CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
@@ -401,7 +401,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Paladin_Protection.xml";
                             Paladin_Protection.PaladinProtectionSettings CurrentSetting;
                             CurrentSetting = new Paladin_Protection.PaladinProtectionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Protection.PaladinProtectionSettings>(CurrentSettingsFile);
@@ -423,7 +423,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Paladin_Holy.xml";
                             Paladin_Holy.PaladinHolySettings CurrentSetting;
                             CurrentSetting = new Paladin_Holy.PaladinHolySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
                             }
@@ -441,13 +441,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Your specification haven't be found, loading Paladin Retribution Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
                             Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
                             CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
@@ -514,7 +514,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -533,13 +533,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Priest Discipline found, but no Discipline class available, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -559,13 +559,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Priest Holy found, but no Holy class available, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -585,13 +585,13 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            System.Windows.Forms.MessageBox.Show(
+                            MessageBox.Show(
                                 "Your specification haven't be found, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -757,7 +757,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
                             Hunter_BeastMaster.HunterBeastMasterSettings CurrentSetting;
                             CurrentSetting = new Hunter_BeastMaster.HunterBeastMasterSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
@@ -780,7 +780,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
                             Hunter_BeastMaster.HunterBeastMasterSettings CurrentSetting;
                             CurrentSetting = new Hunter_BeastMaster.HunterBeastMasterSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
@@ -895,7 +895,7 @@ public class Deathknight_Apprentice
         {
             string CurrentSettingsFile = Application.StartupPath +
                                          "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting =
@@ -1351,7 +1351,7 @@ public class Deathknight_Blood
         public static DeathknightBloodSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Deathknight_Blood.DeathknightBloodSettings>(CurrentSettingsFile);
@@ -2056,9 +2056,9 @@ public class Deathknight_Blood
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -2191,7 +2191,7 @@ public class Deathknight_Unholy
         public static DeathknightUnholySettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Deathknight_Unholy.DeathknightUnholySettings>(CurrentSettingsFile);
@@ -2898,9 +2898,9 @@ public class Deathknight_Unholy
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -3038,7 +3038,7 @@ public class Deathknight_Frost
         public static DeathknightFrostSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Deathknight_Frost.DeathknightFrostSettings>(CurrentSettingsFile);
@@ -3760,9 +3760,9 @@ public class Deathknight_Frost
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -4127,9 +4127,9 @@ public class Mage_Frost
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -5124,7 +5124,7 @@ public class Warlock_Demonology
         public static WarlockDemonologySettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
@@ -5821,9 +5821,9 @@ public class Warlock_Demonology
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -5959,7 +5959,7 @@ public class Warlock_Destruction
         public static WarlockDestructionSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Warlock_Destruction.WarlockDestructionSettings>(CurrentSettingsFile);
@@ -6587,9 +6587,9 @@ public class Warlock_Destruction
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -6732,7 +6732,7 @@ public class Warlock_Affliction
         public static WarlockAfflictionSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Warlock_Affliction.WarlockAfflictionSettings>(CurrentSettingsFile);
@@ -7413,9 +7413,9 @@ public class Warlock_Affliction
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -8827,7 +8827,7 @@ public class Paladin_Holy
         public static PaladinHolySettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
             }
@@ -9244,7 +9244,7 @@ public class Paladin_Protection
         public static PaladinProtectionSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Protection.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return CurrentSetting = Settings.Load<Paladin_Protection.PaladinProtectionSettings>(CurrentSettingsFile);
             }
@@ -9711,7 +9711,7 @@ public class Paladin_Retribution
         public static PaladinRetributionSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
@@ -10558,7 +10558,7 @@ public class Priest_Shadow
         public static PriestShadowSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Shadow.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -11133,9 +11133,9 @@ public class Priest_Shadow
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -11354,8 +11354,10 @@ public class RogueCom
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+        }
     }
 }
 
@@ -11596,8 +11598,10 @@ public class RogueAssa
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+        }
     }
 }
 
@@ -11743,8 +11747,10 @@ public class Rogue
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        {
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+        }
     }
 }
 
@@ -12441,9 +12447,9 @@ public class WarriorProt
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -12815,9 +12821,9 @@ public class WarriorFury
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 }
@@ -12946,9 +12952,9 @@ public class Warrior
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 1)
+        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
         }
     }
 
@@ -13480,7 +13486,7 @@ public class Survival
                     }
                 }
 
-                Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{SPACE}");
+                nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.JUMP);
             }
         }
 
@@ -14034,7 +14040,7 @@ public class Marks
                     }
                 }
 
-                Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{SPACE}");
+                nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.JUMP);
             }
         }
 
@@ -14105,7 +14111,7 @@ public class Hunter_BeastMaster
         public static HunterBeastMasterSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_BeastMaster.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
                     CurrentSetting = Settings.Load<Hunter_BeastMaster.HunterBeastMasterSettings>(CurrentSettingsFile);
@@ -14625,7 +14631,7 @@ public class Hunter_BeastMaster
                     }
                 }
 
-                Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{SPACE}");
+                nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.JUMP);
             }
         }
 
