@@ -434,7 +434,7 @@ public class Druid_Balance
                         }
                     }
                     else
-                        if (ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                 }
             }
@@ -1247,7 +1247,7 @@ public class Druid_Feral
                         }
                     }
                     else
-                        if (ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                 }
             }

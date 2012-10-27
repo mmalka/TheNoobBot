@@ -431,7 +431,7 @@ public class Rogue_Combat
                         }
                     }
                     else
-                        if (ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                 }
             }
@@ -1162,7 +1162,7 @@ public class Rogue_Subtlety
                         }
                     }
                     else
-                        if (ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                 }
             }
@@ -1872,7 +1872,7 @@ public class Rogue_Assassination
                         }
                     }
                     else
-                        if (ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                 }
             }

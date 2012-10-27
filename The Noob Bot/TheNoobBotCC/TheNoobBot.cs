@@ -1030,7 +1030,7 @@ public class Deathknight_Apprentice
                         Combat();
                     }
 
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -1534,7 +1534,7 @@ public class Deathknight_Blood
                         }
                     }
 
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -2375,7 +2375,7 @@ public class Deathknight_Unholy
                         }
                     }
 
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -3218,7 +3218,7 @@ public class Deathknight_Frost
                         }
                     }
 
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -5302,7 +5302,7 @@ public class Warlock_Demonology
                             Combat();
                         }
                     }
-                    else
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -6135,7 +6135,7 @@ public class Warlock_Destruction
                             Combat();
                         }
                     }
-                    else
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -6912,7 +6912,7 @@ public class Warlock_Affliction
                             Combat();
                         }
                     }
-                    else
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -12058,7 +12058,7 @@ public class Warrior_Arms
                             Combat();
                         }
                     }
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -12875,7 +12875,7 @@ public class Warrior_Protection
                             Combat();
                         }
                     }
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -13716,7 +13716,7 @@ public class Warrior_Fury
                             Combat();
                         }
                     }
-                    else if (ObjectManager.Me.IsCast)
+                    else if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
