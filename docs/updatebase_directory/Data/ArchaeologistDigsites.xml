@@ -3422,4 +3422,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>North Fruited Fields Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>115</X>
+      <Y>1289</Y>
+      <Z>235</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.48125785589218</px>
+    <py>0.63577461242676</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
