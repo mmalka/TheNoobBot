@@ -31,7 +31,6 @@ namespace nManager.Wow.Bot.States
         private Helpful.Timer timerAutoSolving;
 
         public int SolvingEveryXMin = 20;
-        public bool ForceSolving;
         private int nbLootAttempt;
         public int MaxTryByDigsite = 30;
 
@@ -107,13 +106,8 @@ namespace nManager.Wow.Bot.States
                 // Solving Every X Min
                 if (timerAutoSolving == null)
                     timerAutoSolving = new Helpful.Timer(SolvingEveryXMin * 1000 * 60);
-                if (ForceSolving || (timerAutoSolving.IsReady && !ObjectManager.ObjectManager.Me.IsDeadMe && !ObjectManager.ObjectManager.Me.InCombat))
+                if (timerAutoSolving.IsReady && !ObjectManager.ObjectManager.Me.IsDeadMe && !ObjectManager.ObjectManager.Me.InCombat)
                 {
-                    if (ForceSolving)
-                    {
-                        ForceSolving = false;
-                        nbLootAttempt = 0;
-                    }
                     MovementManager.StopMove();
                     LongMove.StopLongMove();
                     Archaeology.SolveAllArtifact();
@@ -144,8 +138,13 @@ namespace nManager.Wow.Bot.States
                         {
                             var points = PathFinder.FindPath(t.Position);
                             MovementManager.Go(points);
-                            if (nbLootAttempt > 5)
-                                ForceSolving = true;
+                            if (nbLootAttempt > 3)
+                            {
+                                MovementManager.StopMove();
+                                LongMove.StopLongMove();
+                                Archaeology.SolveAllArtifact();
+                                nbLootAttempt = 0;
+                            }
                             Logging.Write("Loot " + t.Name);
                             var timer = new Helpful.Timer(1000 * Math.DistanceListPoint(points) / 3);
                             Thread.Sleep(300);
