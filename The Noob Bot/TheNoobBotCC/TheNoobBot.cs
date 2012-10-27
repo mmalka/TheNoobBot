@@ -11061,7 +11061,8 @@ public class Priest_Shadow
         }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
                  && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788))
+                 && !ObjectManager.Me.HaveBuff(6788) && (ObjectManager.GetNumberAttackPlayer() > 0
+                 || ObjectManager.Me.GetMove))
         {
             Power_Word_Shield.Launch();
             return;
