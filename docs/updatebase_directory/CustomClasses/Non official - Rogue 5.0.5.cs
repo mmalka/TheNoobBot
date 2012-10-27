@@ -726,10 +726,10 @@ public class Rogue_Combat
             Deadly_Poison.Launch();
             return;
         }
-        else 
+        else
         {
             if (!Wound_Poison.HaveBuff && Wound_Poison.KnownSpell && Wound_Poison.IsSpellUsable
-                && MySettings.UseWoundPoison)
+                && MySettings.UseWoundPoison && !Deadly_Poison.HaveBuff)
             {
                 Wound_Poison.Launch();
                 return;
@@ -743,13 +743,13 @@ public class Rogue_Combat
             return;
         }
         else if (!Paralytic_Poison.HaveBuff && Paralytic_Poison.KnownSpell && Paralytic_Poison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseParalyticPoison && !Leeching_Poison.HaveBuff)
         {
             Paralytic_Poison.Launch();
             return;
         }
         else if (!Crippling_Poison.HaveBuff && Crippling_Poison.KnownSpell && Crippling_Poison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseCripplingPoison && !Leeching_Poison.HaveBuff && Paralytic_Poison.HaveBuff)
         {
             Crippling_Poison.Launch();
             return;
@@ -757,7 +757,8 @@ public class Rogue_Combat
         else
         {
             if (!Mindnumbing_Poison.HaveBuff && Mindnumbing_Poison.KnownSpell && Mindnumbing_Poison.IsSpellUsable
-                && MySettings.UseMindnumbingPoison)
+                && MySettings.UseMindnumbingPoison && !Crippling_Poison.HaveBuff && !Paralytic_Poison.HaveBuff
+                && !Leeching_Poison.HaveBuff)
             {
                 Mindnumbing_Poison.Launch();
                 return;
@@ -1432,10 +1433,10 @@ public class Rogue_Subtlety
             Deadly_Poison.Launch();
             return;
         }
-        else 
+        else
         {
             if (!Wound_Poison.HaveBuff && Wound_Poison.KnownSpell && Wound_Poison.IsSpellUsable
-                && MySettings.UseWoundPoison)
+                && MySettings.UseWoundPoison && !Deadly_Poison.HaveBuff)
             {
                 Wound_Poison.Launch();
                 return;
@@ -1449,13 +1450,13 @@ public class Rogue_Subtlety
             return;
         }
         else if (!Paralytic_Poison.HaveBuff && Paralytic_Poison.KnownSpell && Paralytic_Poison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseParalyticPoison && !Leeching_Poison.HaveBuff)
         {
             Paralytic_Poison.Launch();
             return;
         }
         else if (!Crippling_Poison.HaveBuff && Crippling_Poison.KnownSpell && Crippling_Poison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseCripplingPoison && !Leeching_Poison.HaveBuff && Paralytic_Poison.HaveBuff)
         {
             Crippling_Poison.Launch();
             return;
@@ -1463,7 +1464,8 @@ public class Rogue_Subtlety
         else
         {
             if (!Mindnumbing_Poison.HaveBuff && Mindnumbing_Poison.KnownSpell && Mindnumbing_Poison.IsSpellUsable
-                && MySettings.UseMindnumbingPoison)
+                && MySettings.UseMindnumbingPoison && !Crippling_Poison.HaveBuff && !Paralytic_Poison.HaveBuff
+                && !Leeching_Poison.HaveBuff)
             {
                 Mindnumbing_Poison.Launch();
                 return;
@@ -2160,7 +2162,7 @@ public class Rogue_Assassination
         else 
         {
             if (!Wound_Poison.HaveBuff && Wound_Poison.KnownSpell && Wound_Poison.IsSpellUsable
-                && MySettings.UseWoundPoison)
+                && MySettings.UseWoundPoison && !Deadly_Poison.HaveBuff)
             {
                 Wound_Poison.Launch();
                 return;
@@ -2174,13 +2176,13 @@ public class Rogue_Assassination
             return;
         }
         else if (!Paralytic_Poison.HaveBuff && Paralytic_Poison.KnownSpell && Paralytic_Poison.IsSpellUsable
-            && MySettings.UseParalyticPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseParalyticPoison && !Leeching_Poison.HaveBuff)
         {
             Paralytic_Poison.Launch();
             return;
         }
         else if (!Crippling_Poison.HaveBuff && Crippling_Poison.KnownSpell && Crippling_Poison.IsSpellUsable
-            && MySettings.UseCripplingPoison && !MySettings.UseMindnumbingPoison)
+            && MySettings.UseCripplingPoison && !Leeching_Poison.HaveBuff && Paralytic_Poison.HaveBuff)
         {
             Crippling_Poison.Launch();
             return;
@@ -2188,7 +2190,8 @@ public class Rogue_Assassination
         else
         {
             if (!Mindnumbing_Poison.HaveBuff && Mindnumbing_Poison.KnownSpell && Mindnumbing_Poison.IsSpellUsable
-                && MySettings.UseMindnumbingPoison)
+                && MySettings.UseMindnumbingPoison && !Crippling_Poison.HaveBuff && !Paralytic_Poison.HaveBuff
+                && !Leeching_Poison.HaveBuff)
             {
                 Mindnumbing_Poison.Launch();
                 return;
