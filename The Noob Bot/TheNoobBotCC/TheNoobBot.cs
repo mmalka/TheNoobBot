@@ -20,6 +20,7 @@ public class Main : ICustomClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
+
     public float Range
     {
         get { return range; }
@@ -35,7 +36,7 @@ public class Main : ICustomClass
     {
         try
         {
-            if(!loop)
+            if (!loop)
                 loop = true;
             Logging.WriteFight("Loading combat system.");
             switch (ObjectManager.Me.WowClass)
@@ -9694,6 +9695,7 @@ public class Paladin_Retribution
         public bool UseHolyAvenger = true;
         public bool UseAvengingWrath = true;
         /* Defensive Cooldown */
+        public bool RefreshWeakenedBlows = true;
         public bool UseDivineProtection = true;
         public bool UseDevotionAura = true;
         public bool UseSacredShield = true;
@@ -9736,6 +9738,7 @@ public class Paladin_Retribution
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
+            AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
             AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
@@ -9757,10 +9760,7 @@ public class Paladin_Retribution
                 return
                     CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
             }
-            else
-            {
-                return new Paladin_Retribution.PaladinRetributionSettings();
-            }
+            return new PaladinRetributionSettings();
         }
     }
 
@@ -9929,7 +9929,7 @@ public class Paladin_Retribution
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        else if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings && !MySettings.UseBlessingOfMight)
+        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings && !MySettings.UseBlessingOfMight)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
@@ -9953,7 +9953,7 @@ public class Paladin_Retribution
             }
         }
         if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 &&
-            !ObjectManager.Me.HaveBuff(25771) && DivineShield.IsSpellUsable && MySettings.UseDivineShield)
+            DivineShield.IsSpellUsable && MySettings.UseDivineShield)
         {
             DivineShield.Launch();
             return;
@@ -9976,6 +9976,8 @@ public class Paladin_Retribution
         {
             if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && MySettings.UseWordOfGlory)
                 WordOfGlory.Launch();
+            if (DevotionAura.KnownSpell && DevotionAura.IsSpellUsable && MySettings.UseDevotionAura)
+                DevotionAura.Launch();
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
@@ -9988,10 +9990,12 @@ public class Paladin_Retribution
                 WordOfGlory.Launch();
             if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && MySettings.UseDivineProtection)
                 DivineProtection.Launch();
+            else if (HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) &&
+                     MySettings.UseHandOfProtection)
+                HandOfProtection.Launch();
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch();
-                return;
             }
         }
     }
@@ -10015,7 +10019,6 @@ public class Paladin_Retribution
                 }
                 if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
                     HolyAvenger.Launch();
-                return;
             }
             else if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && HolyAvenger.KnownSpell &&
                      HolyAvenger.IsSpellUsable && MySettings.UseHolyAvenger)
@@ -10030,7 +10033,6 @@ public class Paladin_Retribution
                 }
                 if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && MySettings.UseAvengingWrath)
                     AvengingWrath.Launch();
-                return;
             }
         }
         else if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable &&
@@ -10039,7 +10041,6 @@ public class Paladin_Retribution
         {
             GuardianOfAncientKings.Launch();
             BurstTime = new Timer(1000*6.5);
-            return;
         }
     }
 
@@ -10058,7 +10059,6 @@ public class Paladin_Retribution
         {
             Inquisition.Launch();
             InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
-            return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
                   (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
@@ -10068,7 +10068,6 @@ public class Paladin_Retribution
                   (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             TemplarsVerdict.Launch();
-            return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() >= 2 ||
                   (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
@@ -10078,42 +10077,37 @@ public class Paladin_Retribution
                   (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             DivineStorm.Launch();
-            return;
         }
         else if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable &&
                  MySettings.UseHammerOfWrath)
         {
             HammerOfWrath.Launch();
-            return;
         }
         else if (Exorcism.KnownSpell && Exorcism.IsDistanceGood && Exorcism.IsSpellUsable &&
                  MySettings.UseExorcism)
         {
             Exorcism.Launch();
-            return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || ObjectManager.Target.HaveBuff(115798) ||
-                  (MySettings.UseCrusaderStrike && !MySettings.UseHammerOfTheRighteous)) &&
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || !MySettings.UseHammerOfTheRighteous ||
+                  ObjectManager.Target.HaveBuff(115798) || !MySettings.RefreshWeakenedBlows) &&
+                 MySettings.UseCrusaderStrike &&
                  CrusaderStrike.KnownSpell && CrusaderStrike.IsDistanceGood &&
                  CrusaderStrike.IsSpellUsable)
         {
             CrusaderStrike.Launch();
-            return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() >= 4 ||
-                  !ObjectManager.Target.HaveBuff(115798) ||
+                  (!ObjectManager.Target.HaveBuff(115798) && MySettings.RefreshWeakenedBlows) ||
                   (!MySettings.UseCrusaderStrike && !MySettings.UseHammerOfTheRighteous)) &&
                  HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsDistanceGood &&
                  HammerOfTheRighteous.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174))
         {
             HammerOfTheRighteous.Launch();
-            return;
         }
         else if (Judgment.KnownSpell && Judgment.IsDistanceGood && Judgment.IsSpellUsable &&
                  MySettings.UseJudgment)
         {
             Judgment.Launch();
-            return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
                   (!MySettings.UseDivineStorm && MySettings.UseTemplarsVerdict)) &&
@@ -10123,7 +10117,6 @@ public class Paladin_Retribution
                  (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             TemplarsVerdict.Launch();
-            return;
         }
         else if ((ObjectManager.GetNumberAttackPlayer() >= 2 ||
                   (MySettings.UseDivineStorm && !MySettings.UseTemplarsVerdict)) &&
@@ -10133,7 +10126,6 @@ public class Paladin_Retribution
                  (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
-            return;
         }
         else if (MySettings.UseSacredShield && SacredShield.KnownSpell &&
                  SacredShield.IsDistanceGood && SacredShield.IsSpellUsable
@@ -10147,10 +10139,7 @@ public class Paladin_Retribution
         {
             // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
             SacredShield.Launch();
-            return;
         }
-        else
-            return;
     }
 }
 
@@ -10975,16 +10964,16 @@ public class Priest_Shadow
             return;
         }
         else if (!ObjectManager.Me.IsCast && Mind_Flay.IsSpellUsable && Mind_Flay.KnownSpell && Mind_Flay.IsDistanceGood
-                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff 
+                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
             Mind_Flay.Launch();
             return;
         }
-        // Blizzard API Calls for Mind Flay using Smite Function
+            // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
-                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff 
+                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
@@ -11058,7 +11047,7 @@ public class Priest_Shadow
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
                  && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
                  && !ObjectManager.Me.HaveBuff(6788) && (ObjectManager.GetNumberAttackPlayer() > 0
-                 || ObjectManager.Me.GetMove))
+                                                         || ObjectManager.Me.GetMove))
         {
             Power_Word_Shield.Launch();
             return;
