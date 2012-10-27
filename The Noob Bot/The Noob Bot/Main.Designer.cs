@@ -74,7 +74,6 @@ namespace The_Noob_Bot
             this.gameInformationTimer = new System.Windows.Forms.Timer(this.components);
             this.buttonX1 = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.OnTop = new DevComponents.DotNetBar.Controls.CheckBoxX();
             this.metroShell1.SuspendLayout();
             this.metroTabPanel1.SuspendLayout();
             this.expandablePanel1.SuspendLayout();
@@ -765,26 +764,11 @@ namespace The_Noob_Bot
             this.buttonX1.TextColor = System.Drawing.Color.Black;
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
-            // OnTop
-            // 
-            // 
-            // 
-            // 
-            this.OnTop.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.OnTop.Location = new System.Drawing.Point(337, 26);
-            this.OnTop.Name = "OnTop";
-            this.OnTop.Size = new System.Drawing.Size(101, 23);
-            this.OnTop.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.OnTop.TabIndex = 22;
-            this.OnTop.Text = "Always on Top";
-            this.OnTop.CheckedChanged += new System.EventHandler(this.OnTop_CheckedChanged);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 330);
-            this.Controls.Add(this.OnTop);
             this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.labelX2);
             this.Controls.Add(this.listProductsCb);
@@ -860,7 +844,6 @@ namespace The_Noob_Bot
         private DevComponents.DotNetBar.ButtonX buttonX1;
 
         private System.Windows.Forms.ToolTip labelsToolTip;
-        private DevComponents.DotNetBar.Controls.CheckBoxX OnTop;
     }
 }
 

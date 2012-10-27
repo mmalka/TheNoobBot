@@ -25,6 +25,8 @@ namespace Gatherer.Bot
                     npcTypeC.Items.Add(t.ToString());
                 }
                 npcTypeC.Text = Npc.NpcType.None.ToString();
+                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                    this.TopMost = true;
             }
             catch (Exception e)
             {

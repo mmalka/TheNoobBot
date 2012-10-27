@@ -10,6 +10,8 @@ namespace The_Noob_Bot
         {
             InitializeComponent();
             Translate();
+            if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
         }
 
         private void Translate()

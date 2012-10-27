@@ -12,6 +12,8 @@ namespace nManager.Helpful.Forms
             {
                 InitializeComponent();
                 TranslateForm();
+                if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                    this.TopMost = true;
 
                 LoadSetting(nManagerSetting.CurrentSetting);
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.dll"))
@@ -239,7 +241,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX73);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
-            
+            AlwaysOnTop.Text = Translate.Get(Translate.Id.AlwaysOnTop);
+            SetToolTypeIfNeeded(AlwaysOnTopLabel);
         }
 
         void SaveSetting()
@@ -344,6 +347,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.MaxFPSSwitch = MaxFPSSwitch.Value;
                 nManagerSetting.CurrentSetting.npcMailboxSearchRadius = npcMailboxSearchRadius.Value;
                 nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
+                nManagerSetting.CurrentSetting.AlwaysOnTop = AlwaysOnTop.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -444,6 +448,7 @@ namespace nManager.Helpful.Forms
                 MaxFPSSwitch.Value = managerSetting.MaxFPSSwitch;
                 npcMailboxSearchRadius.Value = (int)managerSetting.npcMailboxSearchRadius;
                 AutoConfirmOnBoPItems.Value = managerSetting.AutoConfirmOnBoPItems;
+                AlwaysOnTop.Value = managerSetting.AlwaysOnTop;
             }
             catch (Exception ex)
             {

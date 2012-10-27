@@ -14,12 +14,13 @@ namespace nManager.Helpful.Forms
             {
                 InitializeComponent();
                 Translate();
+                if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                    this.TopMost = true;
                 foreach (var id in Enum.GetValues(typeof(Translate.Id)))
                 {
                     _translation.Translations.Add(new Translate.Translation { Id = (Translate.Id)id, Text = "" });
                 }
                 listDigsitesDGV.DataSource = _translation.Translations;
-
             }
             catch (Exception e)
             {

@@ -10,6 +10,8 @@ namespace Profiles_Converters
         {
             InitializeComponent();
             Translate();
+            if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
         }
         void Translate()
         {

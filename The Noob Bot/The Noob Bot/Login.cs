@@ -17,6 +17,8 @@ namespace The_Noob_Bot
             InitializeComponent();
             InitializeProgram();
             Translate();
+            if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
         }
 
         private void SetToolTypeIfNeeded(Control label)

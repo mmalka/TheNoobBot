@@ -257,5 +257,6 @@ namespace nManager
         public bool MaxFPSSwitch = true;
         public float npcMailboxSearchRadius = 1000;
         public bool AutoConfirmOnBoPItems = true;
+        public bool AlwaysOnTop;
     }
 }

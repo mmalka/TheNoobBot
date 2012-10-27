@@ -19,6 +19,8 @@ namespace nManager.Helpful.Forms
             {
                 InitializeComponent();
                 TranslateForm();
+                if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                    this.TopMost = true;
             }
             catch (Exception ex)
             {

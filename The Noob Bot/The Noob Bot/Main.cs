@@ -29,6 +29,8 @@ namespace The_Noob_Bot
                 Translate();
                 InitializeInterface();
                 InitializeUI();
+                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                    this.TopMost = true;
                 _minimizedWindow = new MainMinimized();
                 _minimizedWindow.VisibleChanged += MinimizedVisivleChange;
                 Logging.Status = "Startup Complete";
@@ -230,8 +232,6 @@ namespace The_Noob_Bot
             buttonX1.Text = nManager.Translate.Get(nManager.Translate.Id.Minimise);
             SetToolTypeIfNeeded(buttonX1);
             metroTabItem2.Text = "&" + nManager.Translate.Get(nManager.Translate.Id.My_tnb_Account);
-            OnTop.Text = nManager.Translate.Get(nManager.Translate.Id.AlwaysOnTop) + "";
-            SetToolTypeIfNeeded(OnTop);
         }
 
         private string _playerName = "";
@@ -624,11 +624,6 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("Main > MinimizedVisivleChange(object sender, EventArgs e): " + ex);
             }
-        }
-
-        private void OnTop_CheckedChanged(object sender, EventArgs e)
-        {
-            this.TopMost = OnTop.Checked;
         }
     }
 }

@@ -14,6 +14,8 @@ namespace Tracker
             Translate();
             ConfigForm();
             UpdateTrackInGame();
+            if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
         }
         void Translate()
         {

@@ -9,6 +9,8 @@ namespace nManager.Helpful.Forms
         {
             InitializeComponent();
             ErrorDescription.Text = ErrorMessage;
+            if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
         }
 
         private void OKButton_Click(object sender, EventArgs e)

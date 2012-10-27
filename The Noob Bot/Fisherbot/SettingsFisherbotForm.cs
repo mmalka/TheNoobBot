@@ -12,6 +12,8 @@ namespace Fisherbot
             InitializeComponent();
             translate();
             fishSchoolProfil.DropDownStyle = ComboBoxStyle.DropDownList;
+            if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
             Load();
         }
 

@@ -11,6 +11,8 @@ namespace Battlegrounder
         {
             InitializeComponent();
             translate();
+            if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                this.TopMost = true;
             Load();
         }
 
