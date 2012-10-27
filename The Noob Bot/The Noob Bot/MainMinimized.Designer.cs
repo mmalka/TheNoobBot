@@ -41,7 +41,7 @@ namespace The_Noob_Bot
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::The_Noob_Bot.Properties.Resources.Left_right;
+            this.pictureBox2.Image = global::The_Noob_Bot.Properties.Resources.LeftRight;
             this.pictureBox2.Location = new System.Drawing.Point(158, 40);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(27, 20);

@@ -121,7 +121,7 @@
   <data name="Info" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Info.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Button Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ButtonPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Wrench" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -130,7 +130,7 @@
   <data name="Play" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Play.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Button Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ButtonRefresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Button Refresh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
@@ -142,10 +142,10 @@
   <data name="Stop" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Stop.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Up-down" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="UpDown" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Up-down.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Left-right" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="LeftRight" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Left-right.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
