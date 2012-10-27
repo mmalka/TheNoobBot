@@ -10974,14 +10974,18 @@ public class Priest_Shadow
             return;
         }
         else if (!ObjectManager.Me.IsCast && Mind_Flay.IsSpellUsable && Mind_Flay.KnownSpell && Mind_Flay.IsDistanceGood
-                 && MySettings.UseMindFlay)
+                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff 
+                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
+                 && ObjectManager.Me.ShadowOrbs != 3)
         {
             Mind_Flay.Launch();
             return;
         }
-            // Blizzard API Calls for Mind Flay using Smite Function
+        // Blizzard API Calls for Mind Flay using Smite Function
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood
-                 && MySettings.UseMindFlay)
+                 && MySettings.UseMindFlay && Shadow_Word_Pain.TargetHaveBuff && Vampiric_Touch.TargetHaveBuff 
+                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
+                 && ObjectManager.Me.ShadowOrbs != 3)
         {
             Smite.Launch();
             return;
