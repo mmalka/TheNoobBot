@@ -10733,7 +10733,7 @@ public class Priest_Shadow
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
@@ -10924,6 +10924,12 @@ public class Priest_Shadow
             Mind_Sear.Launch();
             return;
         }
+        else if (Shadow_Word_Death.IsSpellUsable && Shadow_Word_Death.IsDistanceGood && Shadow_Word_Death.KnownSpell
+                 && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath)
+        {
+            Shadow_Word_Death.Launch();
+            return;
+        }
         else if (Shadow_Word_Pain.KnownSpell && Shadow_Word_Pain.IsSpellUsable
                  && Shadow_Word_Pain.IsDistanceGood && MySettings.UseShadowWordPain
                  && (!Shadow_Word_Pain.TargetHaveBuff || Shadow_Word_Pain_Timer.IsReady))
@@ -10945,12 +10951,6 @@ public class Priest_Shadow
         {
             Vampiric_Touch.Launch();
             Vampiric_Touch_Timer = new Timer(1000*11);
-            return;
-        }
-        else if (Shadow_Word_Death.IsSpellUsable && Shadow_Word_Death.IsDistanceGood && Shadow_Word_Death.KnownSpell
-                 && ObjectManager.Target.HealthPercent < 20 && MySettings.UseShadowWordDeath)
-        {
-            Shadow_Word_Death.Launch();
             return;
         }
         else if (Mind_Spike.IsSpellUsable && Mind_Spike.IsDistanceGood && Mind_Spike.KnownSpell &&
@@ -10990,15 +10990,6 @@ public class Priest_Shadow
             Smite.Launch();
             return;
         }
-        else
-        {
-            if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsDistanceGood)
-            {
-                Smite.Launch();
-                return;
-            }
-        }
-        return;
     }
 
     public void Patrolling()
