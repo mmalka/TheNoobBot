@@ -281,7 +281,7 @@
             AURA_TABLE_2 = 0xD60,
             AURA_SIZE = 0x30,
             AURA_SPELL_ID = 0x18,
-            AURA_STACK = 0xE, // ? // TODO Check for AURA_STACK offset
+            AURA_STACK = 0x1D,
         }
 
         /// <summary>
