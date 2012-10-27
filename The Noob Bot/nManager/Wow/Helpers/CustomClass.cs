@@ -17,7 +17,7 @@ namespace nManager.Wow.Helpers
         private static Assembly _assembly;
         private static object _obj;
         private static Thread _worker;
-        private static string __pathToCustomClassFile = "";
+        private static string _pathToCustomClassFile = "";
 
         public static float GetRange
         {
@@ -81,7 +81,7 @@ namespace nManager.Wow.Helpers
             {
                 if (CSharpFile)
                 {
-                    __pathToCustomClassFile = pathToCustomClassFile;
+                    _pathToCustomClassFile = pathToCustomClassFile;
                     if (_instanceFromOtherAssembly != null)
                     {
                         _instanceFromOtherAssembly.Dispose();
@@ -136,13 +136,20 @@ namespace nManager.Wow.Helpers
                 }
                 else if (!CSharpFile)
                 {
+                    _pathToCustomClassFile = pathToCustomClassFile;
+                    if (_instanceFromOtherAssembly != null)
+                    {
+                        _instanceFromOtherAssembly.Dispose();
+                    }
+
                     _instanceFromOtherAssembly = null;
                     _assembly = null;
                     _obj = null;
 
-                    _assembly = Assembly.LoadFrom(pathToCustomClassFile);
+                    _assembly = Assembly.LoadFrom(_pathToCustomClassFile);
 
-                    _obj = _assembly.CreateInstance("Main", true);
+                    _obj = _assembly.CreateInstance("Main", false);
+                    
                     _instanceFromOtherAssembly = _obj as ICustomClass;
                     if (_instanceFromOtherAssembly != null)
                     {
@@ -200,11 +207,11 @@ namespace nManager.Wow.Helpers
                 {
                     DisposeCustomClass();
                     Thread.Sleep(1000);
-                    string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
+                    string fileExt = _pathToCustomClassFile.Substring(_pathToCustomClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(__pathToCustomClassFile, false, false);
+                        LoadCustomClass(_pathToCustomClassFile, false, false);
                     else
-                        LoadCustomClass(__pathToCustomClassFile);
+                        LoadCustomClass(_pathToCustomClassFile);
                 }
             }
             catch (Exception exception)

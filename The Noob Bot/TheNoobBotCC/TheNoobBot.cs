@@ -20,7 +20,6 @@ public class Main : ICustomClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
-
     public float Range
     {
         get { return range; }
@@ -36,8 +35,9 @@ public class Main : ICustomClass
     {
         try
         {
+            if(!loop)
+                loop = true;
             Logging.WriteFight("Loading combat system.");
-
             switch (ObjectManager.Me.WowClass)
             {
                     #region DeathKnight Specialisation checking
@@ -603,6 +603,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Priest Shadow class...");
+                            range = 30.0f;
                             new Priest_Shadow();
                         }
                     }
