@@ -273,7 +273,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(Name);
+                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
 
                 if (woWUnit.Count > 0)
                 {
