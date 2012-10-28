@@ -159,9 +159,12 @@ namespace nManager.Wow.Helpers
                 {
                     _instanceFromOtherAssembly.Dispose();
                 }
-                if (_worker.IsAlive)
+                if (_worker != null)
                 {
-                    _worker.Abort();
+                    if (_worker.IsAlive)
+                    {
+                        _worker.Abort();
+                    }
                 }
             }
             catch (Exception exception)
