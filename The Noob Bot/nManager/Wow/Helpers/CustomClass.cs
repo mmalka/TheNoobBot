@@ -18,6 +18,7 @@ namespace nManager.Wow.Helpers
         private static object _obj;
         private static Thread _worker;
         private static string _pathToCustomClassFile = "";
+        private static string _threadName = "";
 
         public static float GetRange
         {
@@ -79,19 +80,18 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                _pathToCustomClassFile = pathToCustomClassFile;
+                if (_instanceFromOtherAssembly != null)
+                {
+                    _instanceFromOtherAssembly.Dispose();
+                }
+
+                _instanceFromOtherAssembly = null;
+                _assembly = null;
+                _obj = null;
+
                 if (CSharpFile)
                 {
-                    _pathToCustomClassFile = pathToCustomClassFile;
-                    if (_instanceFromOtherAssembly != null)
-                    {
-                        _instanceFromOtherAssembly.Dispose();
-                    }
-
-                    _instanceFromOtherAssembly = null;
-                    _assembly = null;
-                    _obj = null;
-
-
                     CodeDomProvider cc = new CSharpCodeProvider();
                     var cp = new CompilerParameters();
                     var assemblies = AppDomain.CurrentDomain
@@ -114,42 +114,17 @@ namespace nManager.Wow.Helpers
                     }
 
                     _assembly = cr.CompiledAssembly;
-
                     _obj = _assembly.CreateInstance("Main", true);
-                    _instanceFromOtherAssembly = _obj as ICustomClass;
-
-                    if (_instanceFromOtherAssembly != null)
-                    {
-                        if (settingOnly)
-                        {
-                            _instanceFromOtherAssembly.ShowConfiguration();
-                            _instanceFromOtherAssembly.Dispose();
-                            return;
-                        }
-
-                        _worker = new Thread(_instanceFromOtherAssembly.Initialize)
-                                      {IsBackground = true, Name = "CustomClass CS"};
-                        _worker.Start();
-                    }
-                    else
-                        Logging.WriteError("Custom Class Loading error.");
+                    _threadName = 'CustomClass CS';
                 }
                 else if (!CSharpFile)
                 {
-                    _pathToCustomClassFile = pathToCustomClassFile;
-                    if (_instanceFromOtherAssembly != null)
-                    {
-                        _instanceFromOtherAssembly.Dispose();
-                    }
-
-                    _instanceFromOtherAssembly = null;
-                    _assembly = null;
-                    _obj = null;
-
                     _assembly = Assembly.LoadFrom(_pathToCustomClassFile);
-
                     _obj = _assembly.CreateInstance("Main", false);
-                    
+                    _threadName = 'CustomClass DLL';
+                }
+                if (_obj = !null && _assembly != null)
+                {
                     _instanceFromOtherAssembly = _obj as ICustomClass;
                     if (_instanceFromOtherAssembly != null)
                     {
@@ -161,7 +136,7 @@ namespace nManager.Wow.Helpers
                         }
 
                         _worker = new Thread(_instanceFromOtherAssembly.Initialize)
-                                      {IsBackground = true, Name = "CustomClass DLL"};
+                                      {IsBackground = true, Name = _threadName};
                         _worker.Start();
                     }
                     else
