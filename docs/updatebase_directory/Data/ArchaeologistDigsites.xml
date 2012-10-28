@@ -3436,4 +3436,32 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Site de fouilles nord des ruines de Guo-Lai</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1517</X>
+      <Y>1655</Y>
+      <Z>386</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.45715266466141</px>
+    <py>0.49965101480484</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Site de fouilles des champs de l’Été</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1130</X>
+      <Y>205</Y>
+      <Z>489</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.55105996131897</px>
+    <py>0.53696894645691</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
