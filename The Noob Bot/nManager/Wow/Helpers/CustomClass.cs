@@ -60,7 +60,8 @@ namespace nManager.Wow.Helpers
             {
                 if (nManagerSetting.CurrentSetting.customClass != "")
                 {
-                    string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" + nManagerSetting.CurrentSetting.customClass;
+                    string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" +
+                                                     nManagerSetting.CurrentSetting.customClass;
                     string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
                     if (fileExt == "dll")
                         LoadCustomClass(__pathToCustomClassFile, false, false);
@@ -76,7 +77,8 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false, bool CSharpFile = true)
+        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false,
+                                           bool CSharpFile = true)
         {
             try
             {
@@ -115,15 +117,15 @@ namespace nManager.Wow.Helpers
 
                     _assembly = cr.CompiledAssembly;
                     _obj = _assembly.CreateInstance("Main", true);
-                    _threadName = 'CustomClass CS';
+                    _threadName = "CustomClass CS";
                 }
-                else if (!CSharpFile)
+                else
                 {
                     _assembly = Assembly.LoadFrom(_pathToCustomClassFile);
                     _obj = _assembly.CreateInstance("Main", false);
-                    _threadName = 'CustomClass DLL';
+                    _threadName = "CustomClass DLL";
                 }
-                if (_obj = !null && _assembly != null)
+                if (_obj != null && _assembly != null)
                 {
                     _instanceFromOtherAssembly = _obj as ICustomClass;
                     if (_instanceFromOtherAssembly != null)
