@@ -12,7 +12,11 @@ namespace nManager.Wow.Helpers
     {
         private static bool _fightLoop;
 
-        public static bool InFight { get { return _fightLoop; } set { _fightLoop = value; } }
+        public static bool InFight
+        {
+            get { return _fightLoop; }
+            set { _fightLoop = value; }
+        }
 
         public static ulong StartFight(ulong guid = 0, bool inBg = false)
         {
@@ -48,7 +52,7 @@ namespace nManager.Wow.Helpers
                 Point positionStartTarget = targetNpc.Position;
 
                 int timer = 0;
-            figthStart:
+                figthStart:
                 // If pos start is very different
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                     return 0;
@@ -66,20 +70,21 @@ namespace nManager.Wow.Helpers
                 {
                     List<Point> points = PathFinder.FindPath(targetNpc.Position);
                     MovementManager.Go(points);
-                    timer = Others.Times + ((int)Math.DistanceListPoint(points) / 3 * 1000) + 15000;
+                    timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 15000;
 
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable && targetNpc.Health > 0 && targetNpc.IsValid &&
-                            MovementManager.InMovement && _fightLoop && Usefuls.InGame &&
-                            (TraceLine.TraceLineGo(targetNpc.Position) ||
-                             targetNpc.GetDistance > (CustomClass.GetRange - 1))
-                            )
+                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
+                           targetNpc.Health > 0 && targetNpc.IsValid &&
+                           MovementManager.InMovement && _fightLoop && Usefuls.InGame &&
+                           (TraceLine.TraceLineGo(targetNpc.Position) ||
+                            targetNpc.GetDistance > (CustomClass.GetRange - 1))
+                        )
                     {
                         // Mob already in fight
                         if (targetNpc.Type != Enums.WoWObjectType.Player &&
                             !(targetNpc.IsTargetingMe || targetNpc.Target == 0 ||
-                                ((WoWUnit)ObjectManager.ObjectManager.GetObjectByGuid(targetNpc.Target)).
-                                    SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
-                                targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid))
+                              ((WoWUnit) ObjectManager.ObjectManager.GetObjectByGuid(targetNpc.Target)).
+                                  SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
+                              targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid))
                             return targetNpc.Guid;
 
                         // Timer
@@ -103,7 +108,7 @@ namespace nManager.Wow.Helpers
                 }
                 if (timer == 0)
                     timer = Others.Times +
-                            ((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position) / 3 * 1000) +
+                            ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
                             15000;
                 if (MovementManager.InMovement)
                 {
@@ -115,14 +120,18 @@ namespace nManager.Wow.Helpers
 
                 _fightLoop = true;
                 Thread.Sleep(500);
-                if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
+                if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                    !ObjectManager.ObjectManager.Me.IsCast)
                 {
                     MovementManager.StopMoveTo();
                 }
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && _fightLoop && targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && _fightLoop &&
+                       targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
-                    if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe && !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0) && ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                    if (targetNpc.Type != Enums.WoWObjectType.Player && !targetNpc.IsTargetingMe &&
+                        !(targetNpc.Target == ObjectManager.ObjectManager.Pet.Guid && targetNpc.Target > 0) &&
+                        ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                         return 0;
 
                     // Target Pos Verif
@@ -130,7 +139,8 @@ namespace nManager.Wow.Helpers
                         return targetNpc.Guid;
 
                     // Target mob if not target
-                    if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead && !ObjectManager.ObjectManager.Me.IsCast)
+                    if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
+                        !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         Interact.InteractGameObject(targetNpc.GetBaseAddress);
                     }
@@ -144,12 +154,14 @@ namespace nManager.Wow.Helpers
                         MovementManager.MoveTo(targetNpc);
                     }
                     // Create path if the mob is out of sight or out of range
-                    if ((targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast) || TraceLine.TraceLineGo(targetNpc.Position))
+                    if ((targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast) ||
+                        TraceLine.TraceLineGo(targetNpc.Position))
                     {
                         goto figthStart;
                     }
                     // Stop move if in range
-                    if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove && !ObjectManager.ObjectManager.Me.IsCast)
+                    if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                        !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         MovementManager.StopMoveTo();
                     }
@@ -158,7 +170,8 @@ namespace nManager.Wow.Helpers
                     MovementManager.Face(targetNpc);
 
                     // Timer
-                    if (Others.Times > timer && TraceLine.TraceLineGo(targetNpc.Position) && targetNpc.HealthPercent > 90)
+                    if (Others.Times > timer && TraceLine.TraceLineGo(targetNpc.Position) &&
+                        targetNpc.HealthPercent > 90)
                         return targetNpc.Guid;
 
                     if (ObjectManager.ObjectManager.Me.IsMounted)
@@ -172,11 +185,127 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("StartFight(ulong guid = 0, bool inBg = false): " + exception); _fightLoop = false;
+                Logging.WriteError("StartFight(ulong guid = 0, bool inBg = false): " + exception);
+                _fightLoop = false;
             }
             try
             {
-                if (targetNpc != null) 
+                if (targetNpc != null)
+                    return targetNpc.Guid;
+            }
+            catch
+            {
+                return 0;
+            }
+            return 0;
+        }
+
+        public static ulong StartFightDamageDealer(ulong guid = 0, bool inBg = false)
+        {
+            WoWUnit targetNpc = null;
+            try
+            {
+                if (!ObjectManager.ObjectManager.Me.IsMounted)
+                {
+                    if (guid == 0)
+                    {
+                        targetNpc =
+                            new WoWUnit(
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.ObjectManager.GetUnitAttackPlayer()).GetBaseAddress);
+                    }
+                    else
+                    {
+                        targetNpc =
+                            new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
+                    }
+
+                    _fightLoop = true;
+
+                    if (!ObjectManager.ObjectManager.Me.IsCast)
+                    {
+                        Interact.InteractGameObject(targetNpc.GetBaseAddress);
+                        MovementManager.StopMove();
+                    }
+                    Thread.Sleep(100);
+                    Point positionStartTarget = targetNpc.Position;
+                    figthStart:
+                    // If pos start is very different
+                    if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
+                        return 0;
+                    if (inBg)
+                    {
+                        List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
+                        if (tLUnit.Count > 0)
+                        {
+                            if (ObjectManager.ObjectManager.GetNearestWoWUnit(tLUnit).GetDistance <
+                                targetNpc.GetDistance &&
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(tLUnit).SummonedBy == 0)
+                                return 0;
+                        }
+                    }
+                    if (MovementManager.InMovement)
+                    {
+                        MovementManager.StopMove();
+                    }
+ 
+                    _fightLoop = true;
+                    Thread.Sleep(500);
+                    if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                        !ObjectManager.ObjectManager.Me.IsCast)
+                    {
+                        MovementManager.StopMoveTo();
+                    }
+                    if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
+                        !ObjectManager.ObjectManager.Me.IsCast)
+                    {
+
+                        Interact.InteractGameObject(targetNpc.GetBaseAddress);
+                        MovementManager.StopMove();
+                        // Initial Target
+                    }
+                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
+                           _fightLoop &&
+                           targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
+                    {
+                        // Target Pos Verif
+                        if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
+                            return targetNpc.Guid;
+
+                        // Target mob if not target
+                        if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
+                            !ObjectManager.ObjectManager.Me.IsCast)
+                        {
+
+                            Interact.InteractGameObject(ObjectManager.ObjectManager.Target.GetBaseAddress);
+                            MovementManager.StopMove();
+                            // Switch Target
+                            if (ObjectManager.ObjectManager.Target.Guid == 0)
+                            {
+                                targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
+                            }
+                            else
+                            {
+                                targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
+                            }
+                            goto figthStart;
+                        }
+
+                        // Face player to mob
+                        MovementManager.Face(targetNpc);
+                        Thread.Sleep(50);
+                    }
+                }
+                _fightLoop = false;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("StartFightDamageDealer(ulong guid = 0, bool inBg = false): " + exception);
+                _fightLoop = false;
+            }
+            try
+            {
+                if (targetNpc != null)
                     return targetNpc.Guid;
             }
             catch
@@ -194,7 +323,8 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("StopFight(): " + exception); _fightLoop = false;
+                Logging.WriteError("StopFight(): " + exception);
+                _fightLoop = false;
             }
         }
     }

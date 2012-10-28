@@ -2,6 +2,7 @@
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -40,20 +41,15 @@ namespace nManager.Wow.Bot.States
                 if (nManagerSetting.CurrentSetting.dontStartFighting)
                     return false;
 
-                if (!Usefuls.InGame ||
-                    Usefuls.IsLoadingOrConnecting ||
-                    ObjectManager.ObjectManager.Me.IsDeadMe ||
-                    !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) ||
-                    !Products.Products.IsStarted)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
                     return false;
 
                 // Get unit:
-                _unit = new WoWUnit((uint)ObjectManager.ObjectManager.Me.Target);
-                if (_unit.IsValid)
-                    // try to fix _unit to detect friend/ennemy and IsDead
-                    return true;
-
+                _unit = ObjectManager.ObjectManager.Target;
+                
+                if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0)
+                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated || _unit.Reaction == Reaction.Unfriendly || _unit.Reaction == Reaction.Neutral)
+                        return true;
                 _unit = new WoWUnit(0);
                 return false;
             }
@@ -63,7 +59,7 @@ namespace nManager.Wow.Bot.States
         {
             MovementManager.StopMove();
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
-            ulong unkillableMob = Fight.StartFight(_unit.Guid);
+            ulong unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
@@ -72,7 +68,7 @@ namespace nManager.Wow.Bot.States
             {
                 Statistics.Kills++;
                 Thread.Sleep(Usefuls.Latency + 1000);
-                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                while (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count > 0)
                 {
                     Thread.Sleep(50);
                 }
