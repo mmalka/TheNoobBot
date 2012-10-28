@@ -475,7 +475,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-
         public uint RunicPower
         {
             get
@@ -571,7 +570,6 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
-
 
         public uint Eclipse
         {
@@ -1226,7 +1224,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public bool IsTaggedByYou
+        public bool IsTaggedByMe
         {
             get
             {
@@ -1238,7 +1236,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTaggedByYou: " + e);
+                    Logging.WriteError("WoWUnit > IsTaggedByMe: " + e);
                     return false;
                 }
             }
