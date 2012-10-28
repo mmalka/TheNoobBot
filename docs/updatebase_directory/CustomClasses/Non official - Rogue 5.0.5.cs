@@ -123,7 +123,17 @@ public class Main : ICustomClass
                     {
                         if (ConfigOnly)
                         {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Rogue_Combat.xml";
+                            Rogue_Combat.RogueCombatSettings CurrentSetting;
+                            CurrentSetting = new Rogue_Combat.RogueCombatSettings();
+                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
                         }
                         else
                         {

@@ -895,7 +895,7 @@ public class Deathknight_Apprentice
         public bool UsePestilence = true;
         public bool UseRaiseDead = true;
         /* Defensive Cooldown */
-        public bool UseChainsofIce = true;
+        public bool UseChainsofIce = false;
         public bool UseMindFreeze = true;
         /* Healing Spell */
         public bool UseDeathStrike = true;
@@ -1307,7 +1307,7 @@ public class Deathknight_Blood
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
         public bool UseBoneShield = true;
-        public bool UseChainsofIce = true;
+        public bool UseChainsofIce = false;
         public bool UseDeathsAdvance = true;
         public bool UseIceboundFortitude = true;
         public bool UseMindFreeze = true;
@@ -2149,7 +2149,7 @@ public class Deathknight_Unholy
         public bool UseAntiMagicZone = true;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
-        public bool UseChainsofIce = true;
+        public bool UseChainsofIce = false;
         public bool UseDeathsAdvance = true;
         public bool UseIceboundFortitude = true;
         public bool UseMindFreeze = true;
@@ -2990,7 +2990,7 @@ public class Deathknight_Frost
         public bool UseAntiMagicZone = true;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
-        public bool UseChainsofIce = true;
+        public bool UseChainsofIce = false;
         public bool UseDeathsAdvance = true;
         public bool UseIceboundFortitude = true;
         public bool UseMindFreeze = true;
