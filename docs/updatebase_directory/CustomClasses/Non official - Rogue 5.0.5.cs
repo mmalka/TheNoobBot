@@ -776,8 +776,7 @@ public class Rogue_Combat
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
-            && ObjectManager.Me.GetMove)
+            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -785,8 +784,7 @@ public class Rogue_Combat
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
-                && ObjectManager.Me.GetMove)
+                && MySettings.UseSprint && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;
@@ -799,11 +797,20 @@ public class Rogue_Combat
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
         {
-            Recuperate.Launch();
+            Gift_of_the_Naaru.Launch();
             return;
+        }
+        else
+        {
+            if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
+                && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+            {
+                Recuperate.Launch();
+                return;
+            }
         }
     }
 
@@ -847,6 +854,20 @@ public class Rogue_Combat
             Dismantle_Timer = new Timer(1000*60);
             return;
         }
+        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            && MySettings.UseWarStomp)
+        {
+            War_Stomp.Launch();
+            OnCD = new Timer(1000*2);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && MySettings.UseStoneform)
+        {
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
+            return;
+        }
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
@@ -872,6 +893,12 @@ public class Rogue_Combat
             && Kick.IsDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
         {
             Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.IsCast && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
+            && MySettings.UseArcaneTorrent && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable
@@ -1483,8 +1510,7 @@ public class Rogue_Subtlety
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
-            && ObjectManager.Me.GetMove)
+            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -1492,8 +1518,7 @@ public class Rogue_Subtlety
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
-                && ObjectManager.Me.GetMove)
+                && MySettings.UseSprint && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;
@@ -1506,11 +1531,20 @@ public class Rogue_Subtlety
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
         {
-            Recuperate.Launch();
+            Gift_of_the_Naaru.Launch();
             return;
+        }
+        else
+        {
+            if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
+                && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+            {
+                Recuperate.Launch();
+                return;
+            }
         }
     }
 
@@ -1554,6 +1588,20 @@ public class Rogue_Subtlety
             Dismantle_Timer = new Timer(1000*60);
             return;
         }
+        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            && MySettings.UseWarStomp)
+        {
+            War_Stomp.Launch();
+            OnCD = new Timer(1000*2);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && MySettings.UseStoneform)
+        {
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
+            return;
+        }
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
@@ -1579,6 +1627,12 @@ public class Rogue_Subtlety
             && Kick.IsDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
         {
             Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.IsCast && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
+            && MySettings.UseArcaneTorrent && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable
@@ -1716,7 +1770,7 @@ public class Rogue_Assassination
             AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
             AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use UseRedirect", "UseRedirect", "Offensive Cooldown");
+            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
             AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
@@ -2209,8 +2263,7 @@ public class Rogue_Assassination
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Burst_of_Speed.IsSpellUsable && Burst_of_Speed.KnownSpell
-            && MySettings.UseBurstofSpeed && !ObjectManager.Target.IsLootable
-            && ObjectManager.Me.GetMove)
+            && MySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             Burst_of_Speed.Launch();
             return;
@@ -2218,8 +2271,7 @@ public class Rogue_Assassination
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() == 0 && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && MySettings.UseSprint && !ObjectManager.Target.IsLootable
-                && ObjectManager.Me.GetMove)
+                && MySettings.UseSprint && ObjectManager.Me.GetMove)
             {
                 Sprint.Launch();
                 return;
@@ -2232,11 +2284,20 @@ public class Rogue_Assassination
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
-            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
         {
-            Recuperate.Launch();
+            Gift_of_the_Naaru.Launch();
             return;
+        }
+        else
+        {
+            if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && MySettings.UseRecuperate
+                && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
+            {
+                Recuperate.Launch();
+                return;
+            }
         }
     }
 
@@ -2280,6 +2341,20 @@ public class Rogue_Assassination
             Dismantle_Timer = new Timer(1000*60);
             return;
         }
+        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+                && MySettings.UseWarStomp)
+        {
+            War_Stomp.Launch();
+            OnCD = new Timer(1000*2);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && MySettings.UseStoneform)
+        {
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
+            return;
+        }
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
@@ -2305,6 +2380,12 @@ public class Rogue_Assassination
             && Kick.IsDistanceGood && MySettings.UseKick && ObjectManager.Target.IsTargetingMe)
         {
             Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.Target.IsCast && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
+            && MySettings.UseArcaneTorrent && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
+        {
+            Arcane_Torrent.Launch();
             return;
         }
         else if (ObjectManager.Target.IsCast && Cloak_of_Shadows.KnownSpell && Cloak_of_Shadows.IsSpellUsable

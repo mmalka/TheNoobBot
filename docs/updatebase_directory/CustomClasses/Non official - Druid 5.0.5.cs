@@ -715,7 +715,7 @@ public class Druid_Balance
             return;
         }
 
-        if (ObjectManager.Me.BarTwoPercentage < 80 && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
+        if (ObjectManager.Me.ManaPercentage < 80 && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
             && MySettings.UseArcaneTorrent)
         {
             Arcane_Torrent.Launch();
@@ -2231,7 +2231,7 @@ public class Druid_Restoration
 
     public void DPS_Cycle()
     {
-        if (ObjectManager.Me.BarTwoPercentage < 80 && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
+        if (ObjectManager.Me.ManaPercentage < 80 && Arcane_Torrent.KnownSpell && Arcane_Torrent.IsSpellUsable
             && MySettings.UseArcaneTorrent)
         {
             Arcane_Torrent.Launch();
