@@ -991,7 +991,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.Skinnable && !withoutGuid.Contains(a.Guid)).ToList();
+                return listWoWUnit.Where(a => a.IsSkinnable && !withoutGuid.Contains(a.Guid)).ToList();
             }
             catch (Exception e)
             {

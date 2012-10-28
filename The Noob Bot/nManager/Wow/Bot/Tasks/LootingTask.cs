@@ -35,7 +35,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (wowUnit.IsLootable)
                                     Logging.Write("Loot " + wowUnit.Name);
-                                else if (wowUnit.Skinnable && nManagerSetting.CurrentSetting.skinMobs)
+                                else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.skinMobs)
                                     Logging.Write("Skin " + wowUnit.Name);
                                 else
                                     continue;
@@ -91,7 +91,7 @@ namespace nManager.Wow.Bot.Tasks
                                         if (nManagerSetting.CurrentSetting.skinMobs && ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
                                             Thread.Sleep(1500);
-                                            if (wowUnit.Skinnable)
+                                            if (wowUnit.IsSkinnable)
                                             {
                                                 Logging.Write("Skin " + wowUnit.Name);
                                                 Interact.InteractGameObject(wowUnit.GetBaseAddress);

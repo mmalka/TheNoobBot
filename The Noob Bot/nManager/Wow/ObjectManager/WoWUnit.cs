@@ -1104,7 +1104,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public float SpeedMoving
+        public float UnitSpeed
         {
             get
             {
@@ -1114,7 +1114,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > SpeedMoving: " + e);
+                    Logging.WriteError("WoWUnit > UnitSpeed: " + e);
                     return 0;
                 }
             }
@@ -1338,7 +1338,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public bool Skinnable
+        public bool IsSkinnable
         {
             get
             {
@@ -1349,7 +1349,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > Skinnable: " + e);
+                    Logging.WriteError("WoWUnit > IsSkinnable: " + e);
                     return false;
                 }
             }
