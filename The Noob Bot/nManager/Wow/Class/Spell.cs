@@ -33,11 +33,16 @@ namespace nManager.Wow.Class
 
         #region Constructors
 
-        static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.Spell);
+        private static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
 
-        static DBC<DBCStruct.SpellMiscRec> DBCSpellMisc = new DBC<DBCStruct.SpellMiscRec>((int)Addresses.DBC.SpellMisc);
-        static DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes = new DBC<DBCStruct.SpellCastTimesRec>((int)Addresses.DBC.SpellCastTimes);
-        static DBC<DBCStruct.SpellRangeRec> DBCSpellRange = new DBC<DBCStruct.SpellRangeRec>((int)Addresses.DBC.SpellRange);
+        private static DBC<DBCStruct.SpellMiscRec> DBCSpellMisc =
+            new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
+
+        private static DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes =
+            new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
+
+        private static DBC<DBCStruct.SpellRangeRec> DBCSpellRange =
+            new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.
@@ -50,18 +55,18 @@ namespace nManager.Wow.Class
                 try
                 {
                     Id = spellId;
-                    
-                    var spellRec = DBCSpell.GetRow((int)Id);
+
+                    var spellRec = DBCSpell.GetRow((int) Id);
 
                     if (spellRec.SpellId >= 0)
                     {
                         if (spellId == spellRec.SpellId)
                         {
-                            var castTimeRec = DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
+                            var castTimeRec =
+                                DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
                             try
                             {
-
-                                CastTime = Convert.ToSingle(castTimeRec.CastTime) /
+                                CastTime = Convert.ToSingle(castTimeRec.CastTime)/
                                            1000;
                             }
                             catch
@@ -153,7 +158,8 @@ namespace nManager.Wow.Class
                     Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + " => Failed");
                     return;
                 }
-                Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id + ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
+                Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id +
+                                   ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
                 Id = tSpell.Id;
                 CastTime = tSpell.CastTime;
                 Cost = tSpell.Cost;
@@ -191,7 +197,10 @@ namespace nManager.Wow.Class
         {
             get
             {
-                try { return SpellManager.SpellUsableLUA(NameInGame); }
+                try
+                {
+                    return SpellManager.SpellUsableLUA(NameInGame);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("Spell > IsSpellUsable: " + exception);
@@ -215,7 +224,8 @@ namespace nManager.Wow.Class
                     if (MaxRange < 5.0f)
                         MaxRange = 5.0f;
 
-                    if (ObjectManager.ObjectManager.Target.GetDistance <= MaxRange && (ObjectManager.ObjectManager.Target.GetDistance >= MinRange))
+                    if (ObjectManager.ObjectManager.Target.GetDistance <= MaxRange &&
+                        (ObjectManager.ObjectManager.Target.GetDistance >= MinRange))
                     {
                         return true;
                     }
@@ -229,7 +239,6 @@ namespace nManager.Wow.Class
             }
         }
 
-
         /// <summary>
         /// Gets player buff Stack.
         /// </summary>
@@ -238,13 +247,53 @@ namespace nManager.Wow.Class
             get
             {
                 try
-                { return ObjectManager.ObjectManager.Me.BuffStack(Ids); }
+                {
+                    return ObjectManager.ObjectManager.Me.BuffStack(Ids);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("Spell > BuffStack: " + exception);
                 }
                 return 0;
             }
+        }
+
+        /// <summary>
+        /// Gets if the nearest object is summoned by you - by spell name.
+        /// It check both If the Guid is your, and also another way of detection, see below
+        /// This is a special case, totem don't have "SummonedBy GUID" entry.
+        /// We check both faction/level and distance to be sure. But still, not the best way.
+        /// Can conflict if 2 shaman of the same race for example.
+        /// </summary>
+        /// <value>
+        /// return <c>true</c> if [summoned by me]; otherwise, <c>false</c>.
+        /// </value>
+        /// <param name="maxDistance">Max distance between me and the object.</param>
+        public bool SummonedByMeBySpellName(uint maxDistance = 40)
+        {
+            try
+            {
+                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(Name);
+
+                if (woWUnit.Count > 0)
+                {
+                    var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                    if (nearestWoWUnit.IsValid)
+                    {
+                        if (nearestWoWUnit.Guid == ObjectManager.ObjectManager.Me.Guid || (nearestWoWUnit.Faction == ObjectManager.ObjectManager.Me.Faction && nearestWoWUnit.Level == ObjectManager.ObjectManager.Me.Level &&
+                            nearestWoWUnit.GetDistance < maxDistance))
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Spell > SummonedByMeBySpellName: " + e);
+                return false;
+            }
+            return false;
         }
 
         /// <summary>
@@ -255,7 +304,9 @@ namespace nManager.Wow.Class
             get
             {
                 try
-                { return ObjectManager.ObjectManager.Target.BuffStack(Ids); }
+                {
+                    return ObjectManager.ObjectManager.Target.BuffStack(Ids);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("Spell > TargetBuffStack: " + exception);
@@ -275,7 +326,9 @@ namespace nManager.Wow.Class
             get
             {
                 try
-                { return ObjectManager.ObjectManager.Me.HaveBuff(Ids); }
+                {
+                    return ObjectManager.ObjectManager.Me.HaveBuff(Ids);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("Spell > HaveBuff: " + exception);
@@ -353,7 +406,8 @@ namespace nManager.Wow.Class
             }
             catch (Exception exception)
             {
-                Logging.WriteError("Spell > Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
+                Logging.WriteError(
+                    "Spell > Launch(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
         }
 
