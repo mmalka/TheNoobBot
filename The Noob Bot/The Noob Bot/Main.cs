@@ -27,10 +27,10 @@ namespace The_Noob_Bot
                 InitializeBot();
                 InitializeComponent();
                 Translate();
-                InitializeInterface();
-                InitializeUI();
                 if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
                     this.TopMost = true;
+                InitializeInterface();
+                InitializeUI();
                 _minimizedWindow = new MainMinimized();
                 _minimizedWindow.VisibleChanged += MinimizedVisivleChange;
                 Logging.Status = "Startup Complete";
