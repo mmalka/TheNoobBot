@@ -90,11 +90,11 @@ namespace nManager.Wow.MemoryClass
                     if (Memory.IsProcessOpen)
                     {
                         if (Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWowVersion) !=
-                            Information.ForBuildWowVersion)
+                            Information.TargetWowBuild)
                         {
                             if (!System.Diagnostics.Process.GetProcessById(Memory.ProcessId).HasExited)
-                                MessageBox.Show(Translate.Get(Translate.Id.This_Programme_is_for_The_Game) + " " + Information.ForWow + "." +
-                                            Information.ForBuildWowVersion +
+                                MessageBox.Show(Translate.Get(Translate.Id.This_Programme_is_for_The_Game) + " " + Information.TargetWowVersion + "." +
+                                            Information.TargetWowBuild +
                                             " . " + Translate.Get(Translate.Id.Please_change_your_game_version_or_change_this_programme_version) + ".");
                             return;
                         }
