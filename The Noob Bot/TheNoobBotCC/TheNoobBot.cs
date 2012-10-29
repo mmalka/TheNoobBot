@@ -12040,7 +12040,7 @@ public class Warrior_Arms
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            Charge.IsDistanceGood)
+                            Taunt.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -12071,23 +12071,18 @@ public class Warrior_Arms
 
     public void Pull()
     {
-        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Heroic_Leap.IsDistanceGood && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable
+            && MySettings.UseHeroicLeap)
         {
-            Charge.Launch();
-            return;
+            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+            Thread.Sleep(200);
         }
-        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
+
+        if (Taunt.IsDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
+            && MySettings.UseTaunt && ObjectManager.Target.GetDistance > 20)
         {
-            Heroic_Throw.Launch();
+            Taunt.Launch();
             return;
-        }
-        else
-        {
-            if (ObjectManager.Target.GetDistance > 15 && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-                return;
-            }
         }
     }
 
@@ -12110,10 +12105,10 @@ public class Warrior_Arms
         Defense_Cycle();
         Buff();
 
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
@@ -12286,10 +12281,10 @@ public class Warrior_Arms
 
     public void DPS_Cycle()
     {
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
@@ -12864,7 +12859,7 @@ public class Warrior_Protection
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            Charge.IsDistanceGood)
+                            Taunt.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -12895,23 +12890,18 @@ public class Warrior_Protection
 
     public void Pull()
     {
-        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Heroic_Leap.IsDistanceGood && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable
+            && MySettings.UseHeroicLeap)
         {
-            Charge.Launch();
-            return;
+            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+            Thread.Sleep(200);
         }
-        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
+
+        if (Taunt.IsDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
+            && MySettings.UseTaunt && ObjectManager.Target.GetDistance > 20)
         {
-            Heroic_Throw.Launch();
+            Taunt.Launch();
             return;
-        }
-        else
-        {
-            if (ObjectManager.Target.GetDistance > 15 && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-                return;
-            }
         }
     }
 
@@ -12922,10 +12912,10 @@ public class Warrior_Protection
         Defense_Cycle();
         Buff();
 
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
@@ -13112,10 +13102,10 @@ public class Warrior_Protection
 
     public void DPS_Cycle()
     {
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
@@ -13719,7 +13709,7 @@ public class Warrior_Fury
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            Charge.IsDistanceGood)
+                            Taunt.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -13750,23 +13740,18 @@ public class Warrior_Fury
 
     public void Pull()
     {
-        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Heroic_Leap.IsDistanceGood && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable
+            && MySettings.UseHeroicLeap)
         {
-            Charge.Launch();
-            return;
+            SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
+            Thread.Sleep(200);
         }
-        else if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood)
+
+        if (Taunt.IsDistanceGood && Taunt.KnownSpell && Taunt.IsSpellUsable
+            && MySettings.UseTaunt && ObjectManager.Target.GetDistance > 20)
         {
-            Heroic_Throw.Launch();
+            Taunt.Launch();
             return;
-        }
-        else
-        {
-            if (ObjectManager.Target.GetDistance > 15 && Heroic_Leap.KnownSpell && Heroic_Leap.IsSpellUsable)
-            {
-                SpellManager.CastSpellByIDAndPosition(6544, ObjectManager.Target.Position);
-                return;
-            }
         }
     }
 
@@ -13789,10 +13774,10 @@ public class Warrior_Fury
         Defense_Cycle();
         Buff();
 
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
@@ -13958,10 +13943,10 @@ public class Warrior_Fury
 
     public void DPS_Cycle()
     {
-        if (Taunt.IsSpellUsable && Taunt.IsDistanceGood && Taunt.KnownSpell && !ObjectManager.Target.InCombat
-            && MySettings.UseTaunt)
+        if (Heroic_Throw.KnownSpell && Heroic_Throw.IsSpellUsable && Heroic_Throw.IsDistanceGood
+            && MySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
-            Taunt.Launch();
+            Heroic_Throw.Launch();
             return;
         }
 
