@@ -12071,7 +12071,7 @@ public class Warrior_Arms
 
     public void Pull()
     {
-        if (ObjectManager.Target.GetDistance > 15 && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
         {
             Charge.Launch();
             return;
@@ -12114,6 +12114,13 @@ public class Warrior_Arms
             && MySettings.UseTaunt)
         {
             Taunt.Launch();
+            return;
+        }
+
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
+            && MySettings.UseCharge)
+        {
+            Charge.Launch();
             return;
         }
 
@@ -12888,7 +12895,7 @@ public class Warrior_Protection
 
     public void Pull()
     {
-        if (ObjectManager.Target.GetDistance > 15 && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
         {
             Charge.Launch();
             return;
@@ -13109,6 +13116,13 @@ public class Warrior_Protection
             && MySettings.UseTaunt)
         {
             Taunt.Launch();
+            return;
+        }
+
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
+            && MySettings.UseCharge)
+        {
+            Charge.Launch();
             return;
         }
 
@@ -13736,7 +13750,7 @@ public class Warrior_Fury
 
     public void Pull()
     {
-        if (ObjectManager.Target.GetDistance > 15 && Charge.KnownSpell && Charge.IsSpellUsable)
+        if (Charge.IsDistanceGood && Charge.KnownSpell && Charge.IsSpellUsable)
         {
             Charge.Launch();
             return;
@@ -13779,6 +13793,13 @@ public class Warrior_Fury
             && MySettings.UseTaunt)
         {
             Taunt.Launch();
+            return;
+        }
+
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
+            && MySettings.UseCharge)
+        {
+            Charge.Launch();
             return;
         }
 
