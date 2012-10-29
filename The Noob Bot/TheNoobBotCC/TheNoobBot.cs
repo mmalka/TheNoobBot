@@ -12040,7 +12040,7 @@ public class Warrior_Arms
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            (Charge.IsDistanceGood || Heroic_Throw.IsDistanceGood))
+                            Charge.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -12857,7 +12857,7 @@ public class Warrior_Protection
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            (Charge.IsDistanceGood || Heroic_Throw.IsDistanceGood))
+                            Charge.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
@@ -13698,7 +13698,7 @@ public class Warrior_Fury
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget &&
-                            (Charge.IsDistanceGood || Heroic_Throw.IsDistanceGood))
+                            Charge.IsDistanceGood)
                         {
                             Pull();
                             lastTarget = ObjectManager.Me.Target;

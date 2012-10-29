@@ -465,7 +465,7 @@ public class Shaman_Enhancement
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
@@ -1350,7 +1350,7 @@ public class Shaman_Restoration
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
@@ -2219,7 +2219,7 @@ public class Shaman_Elemental
             catch
             {
             }
-            Thread.Sleep(250);
+            Thread.Sleep(150);
         }
     }
 
