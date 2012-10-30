@@ -378,8 +378,7 @@ public class Main : ICustomClass
                         {
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
-                            Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
-                            CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
+                            var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
                             if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
@@ -400,8 +399,7 @@ public class Main : ICustomClass
                         {
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Protection.xml";
-                            Paladin_Protection.PaladinProtectionSettings CurrentSetting;
-                            CurrentSetting = new Paladin_Protection.PaladinProtectionSettings();
+                            var CurrentSetting = new Paladin_Protection.PaladinProtectionSettings();
                             if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
@@ -422,8 +420,7 @@ public class Main : ICustomClass
                         {
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Holy.xml";
-                            Paladin_Holy.PaladinHolySettings CurrentSetting;
-                            CurrentSetting = new Paladin_Holy.PaladinHolySettings();
+                            var CurrentSetting = new Paladin_Holy.PaladinHolySettings();
                             if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
@@ -446,8 +443,7 @@ public class Main : ICustomClass
                                 "Your specification haven't be found, loading Paladin Retribution Settings");
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
-                            Paladin_Retribution.PaladinRetributionSettings CurrentSetting;
-                            CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
+                            var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
                             if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
@@ -8957,8 +8953,6 @@ public class Paladin_Holy
             {
                 if (!ObjectManager.Me.IsMounted)
                 {
-                    Patrolling();
-
                     if (Fight.InFight && ObjectManager.Me.Target > 0)
                     {
                         if (ObjectManager.Me.Target != lastTarget && HolyShock.IsDistanceGood)
@@ -8966,15 +8960,16 @@ public class Paladin_Holy
                             Pull();
                             lastTarget = ObjectManager.Me.Target;
                         }
-
                         Combat();
                     }
+                    else if (!ObjectManager.Me.IsCast)
+                        Patrolling();
                 }
             }
             catch
             {
             }
-            Thread.Sleep(50);
+            Thread.Sleep(150);
         }
     }
 
@@ -8991,25 +8986,38 @@ public class Paladin_Holy
     {
         DPS_Cycle();
 
+        DPS_Burst();
+
+        DPS_Cycle();
+
         Heal();
 
-        DPS_Burst();
+        DPS_Cycle();
+
+        Buffs();
     }
 
     private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Seal();
             Blessing();
+            Heal();
         }
+        
+        Seal();
+    }
+
+    private void Buffs()
+    {
+        if (!ObjectManager.Me.IsMounted)
+            Blessing();
+        Seal();
     }
 
     private void Seal()
     {
-        if (ObjectManager.Me.IsMounted)
-            return;
-        else if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
+        if (SealOfInsight.KnownSpell && MySettings.UseSealOfInsight)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
                 SealOfInsight.Launch();
@@ -9031,21 +9039,20 @@ public class Paladin_Holy
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (BlessingOfKings.KnownSpell && !BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable &&
-            MySettings.UseBlessingOfKings)
+        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings)
         {
-            BlessingOfKings.Launch();
+            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+                BlessingOfKings.Launch();
         }
-        else if ((!MySettings.UseBlessingOfKings || !BlessingOfKings.KnownSpell || !BlessingOfKings.HaveBuff) &&
-                 BlessingOfMight.KnownSpell && !BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable &&
-                 MySettings.UseBlessingOfMight)
+        else if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
         {
-            BlessingOfMight.Launch();
+            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+                BlessingOfMight.Launch();
         }
-        if (BeaconOfLight.KnownSpell && !BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable &&
-            MySettings.UseBeaconOfLight)
+        if (BeaconOfLight.KnownSpell && MySettings.UseBeaconOfLight)
         {
-            BeaconOfLight.Launch();
+            if (!BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable)
+                BeaconOfLight.Launch();
         }
     }
 
@@ -9053,10 +9060,19 @@ public class Paladin_Holy
     {
         if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && MySettings.UseDivineLight)
+            {
+                DivineLight.Launch(true, true, true);
+                return;
+            }
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
-                FlashOfLight.Launch();
-                MovementManager.StopMove();
+                FlashOfLight.Launch(true, true, true);
+                return;
+            }
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && MySettings.UseHolyLight)
+            {
+                HolyLight.Launch(true, true, true);
                 return;
             }
         }
@@ -9383,8 +9399,6 @@ public class Paladin_Protection
                             lastTarget = ObjectManager.Me.Target;
                         }
                         Combat();
-                        Seal();
-                        Blessing();
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -9419,19 +9433,35 @@ public class Paladin_Protection
 
         DPS_Cycle();
 
+        DPS_Burst();
+
+        DPS_Cycle();
+
         Heal();
 
-        DPS_Burst();
+        DPS_Cycle();
+
+        Buffs();
     }
 
     private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Seal();
             Blessing();
             Heal();
         }
+        Seal();
+    }
+
+    private void Buffs()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+           Blessing();
+        }
+        Seal();
+        
     }
 
     private void Seal()
@@ -9460,12 +9490,13 @@ public class Paladin_Protection
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        else if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
+
+        if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
         {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable && MySettings.UseBlessingOfMight)
+            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
                 BlessingOfMight.Launch();
         }
-        else if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings && MySettings.UseBlessingOfKings)
+        else if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
@@ -9478,8 +9509,7 @@ public class Paladin_Protection
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
-                FlashOfLight.Launch();
-                MovementManager.StopMove();
+                FlashOfLight.Launch(true, true, true);
                 return;
             }
         }
@@ -9852,8 +9882,6 @@ public class Paladin_Retribution
                             lastTarget = ObjectManager.Me.Target;
                         }
                         Combat();
-                        Seal();
-                        Blessing();
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -9889,21 +9917,32 @@ public class Paladin_Retribution
         Heal();
 
         DPS_Cycle();
+        
+        Buffs();
     }
 
     private void Patrolling()
     {
         if (!ObjectManager.Me.IsMounted)
         {
-            Seal();
             Blessing();
             Heal();
         }
+        Seal();
+    }
+    
+    private void Buffs()
+    {
+        if (!ObjectManager.Me.IsMounted)
+            Blessing();
+        Seal();
     }
 
     private void Seal()
     {
-        if (SealOfTruth.KnownSpell && ObjectManager.GetNumberAttackPlayer() <= 7 && MySettings.UseSealOfTruth)
+        if (SealOfTruth.KnownSpell &&
+            (ObjectManager.GetNumberAttackPlayer() <= 7 || !MySettings.UseSealOfTheRighteousness) &&
+            MySettings.UseSealOfTruth)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
@@ -9929,14 +9968,15 @@ public class Paladin_Retribution
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings && !MySettings.UseBlessingOfMight)
+
+        if (BlessingOfKings.KnownSpell && MySettings.UseBlessingOfKings)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
         }
         else if (BlessingOfMight.KnownSpell && MySettings.UseBlessingOfMight)
         {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable && MySettings.UseBlessingOfMight)
+            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
                 BlessingOfMight.Launch();
         }
     }
@@ -9947,8 +9987,7 @@ public class Paladin_Retribution
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && MySettings.UseFlashOfLight)
             {
-                FlashOfLight.Launch();
-                MovementManager.StopMove();
+                FlashOfLight.Launch(true, true, true);
                 return;
             }
         }
