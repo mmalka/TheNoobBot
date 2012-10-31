@@ -5252,6 +5252,7 @@ public class Warlock_Demonology
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
+    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Health_Funnel = new Spell("Health Funnel");
@@ -5749,10 +5750,11 @@ public class Warlock_Demonology
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
@@ -6083,6 +6085,7 @@ public class Warlock_Destruction
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
+    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Ember_Tap = new Spell("Ember Tap");
@@ -6515,10 +6518,11 @@ public class Warlock_Destruction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
@@ -6862,6 +6866,7 @@ public class Warlock_Affliction
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
+    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Health_Funnel = new Spell("Health Funnel");
@@ -7341,10 +7346,11 @@ public class Warlock_Affliction
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && MySettings.UseCreateHealthstone)
+                 && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
             nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
