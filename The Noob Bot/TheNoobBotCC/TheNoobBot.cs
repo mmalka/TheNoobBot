@@ -12158,7 +12158,7 @@ public class Warrior_Arms
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
@@ -12306,6 +12306,12 @@ public class Warrior_Arms
             Bloodbath.Launch();
             return;
         }
+        else if (Deadly_Calm.KnownSpell && Deadly_Calm.IsSpellUsable && ObjectManager.Me.RagePercentage > 90
+                 && MySettings.UseDeadlyCalm && Heroic_Strike.IsDistanceGood)
+        {
+            Deadly_Calm.Launch();
+            return;
+        }
         else
         {
             if (Storm_Bolt.KnownSpell && Storm_Bolt.IsSpellUsable
@@ -12334,7 +12340,7 @@ public class Warrior_Arms
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
@@ -12379,7 +12385,7 @@ public class Warrior_Arms
         }
         else if (Heroic_Strike.KnownSpell && Heroic_Strike.IsSpellUsable && Heroic_Strike.IsDistanceGood
                  && MySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-                 && ObjectManager.Me.HaveBuff(125831))
+                 && (ObjectManager.Me.HaveBuff(125831) || ObjectManager.Me.HaveBuff(85730)))
         {
             if (Deadly_Calm.KnownSpell && Deadly_Calm.IsSpellUsable && MySettings.UseDeadlyCalm)
             {
@@ -12965,7 +12971,7 @@ public class Warrior_Protection
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
@@ -13155,7 +13161,7 @@ public class Warrior_Protection
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
@@ -13827,7 +13833,7 @@ public class Warrior_Fury
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
@@ -13996,7 +14002,7 @@ public class Warrior_Fury
         }
 
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsDistanceGood
-            && MySettings.UseCharge)
+            && MySettings.UseCharge && ObjectManager.Target.GetDistance > 14)
         {
             Charge.Launch();
             return;
