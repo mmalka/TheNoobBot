@@ -531,11 +531,10 @@ public class Shaman_Enhancement
         }
         else
         {
-            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && FireTotemReady()
-                && MySettings.UseSearingTotem)
+            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
+                && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
             {
-                if (!Searing_Totem.SummonedByMeBySpellName(5))
-                    Searing_Totem.Launch();
+                Searing_Totem.Launch();
                 return;
             }
         }
@@ -671,8 +670,8 @@ public class Shaman_Enhancement
             Magma_Totem.Launch();
             return;
         }
-        else if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-            && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25))
+        if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
+                && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
         {
             Searing_Totem.Launch();
             return;
@@ -838,7 +837,7 @@ public class Shaman_Enhancement
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
         {
             Ghost_Wolf.Launch();
             return;
@@ -1415,11 +1414,10 @@ public class Shaman_Restoration
         }
         else
         {
-            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && FireTotemReady()
-                && MySettings.UseSearingTotem)
+            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
+                && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
             {
-                if (!Searing_Totem.SummonedByMeBySpellName(5))
-                    Searing_Totem.Launch();
+                Searing_Totem.Launch();
                 return;
             }
         }
@@ -1581,8 +1579,8 @@ public class Shaman_Restoration
             Magma_Totem.Launch();
             return;
         }
-        else if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-            && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25))
+        if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
+                && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
         {
             Searing_Totem.Launch();
             return;
@@ -1697,7 +1695,7 @@ public class Shaman_Restoration
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
         {
             Ghost_Wolf.Launch();
             return;
@@ -2284,11 +2282,10 @@ public class Shaman_Elemental
         }
         else
         {
-            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && FireTotemReady()
-                && MySettings.UseSearingTotem)
+            if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
+                && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
             {
-                if (!Searing_Totem.SummonedByMeBySpellName(5))
-                    Searing_Totem.Launch();
+                Searing_Totem.Launch();
                 return;
             }
         }
@@ -2462,7 +2459,7 @@ public class Shaman_Elemental
             return;
         }
         else if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-            && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25))
+            && FireTotemReady() && !Searing_Totem.SummonedByMeBySpellName(25) && ObjectManager.Target.GetDistance < 31)
         {
             Searing_Totem.Launch();
             return;
@@ -2562,7 +2559,7 @@ public class Shaman_Elemental
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
         {
             Ghost_Wolf.Launch();
             return;
