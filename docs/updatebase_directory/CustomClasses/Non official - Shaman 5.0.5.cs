@@ -2465,7 +2465,8 @@ public class Shaman_Elemental
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 1 && Chain_Lightning.KnownSpell 
-            && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood && MySettings.UseChainLightning)
+            && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood && MySettings.UseChainLightning
+            && Lightning_Shield.BuffStack < 6)
         {
             if (Ancestral_Swiftness.KnownSpell && Ancestral_Swiftness.IsSpellUsable 
                 && MySettings.UseAncestralSwiftness)
@@ -2479,7 +2480,7 @@ public class Shaman_Elemental
         else
         {
             if (Lightning_Bolt.IsDistanceGood && Lightning_Bolt.KnownSpell && Lightning_Bolt.IsSpellUsable
-                && MySettings.UseLightningBolt)
+                && MySettings.UseLightningBolt && Lightning_Shield.BuffStack < 6)
             {
                 if (Ancestral_Swiftness.KnownSpell && Ancestral_Swiftness.IsSpellUsable
                     && MySettings.UseAncestralSwiftness)
