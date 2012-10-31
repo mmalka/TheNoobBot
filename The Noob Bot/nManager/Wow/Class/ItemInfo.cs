@@ -20,9 +20,6 @@ namespace nManager.Wow.Class
         public string ItemSubType { get; private set; }
         public string ItemTexture { get; private set; }
         public string ItemType { get; private set; }
-        public int ItemStartTime { get; private set; }
-        public int ItemDuration { get; private set; }
-        public int ItemEnable { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemInfo"/> class.
@@ -33,7 +30,6 @@ namespace nManager.Wow.Class
             try
             {
                 string sResult;
-                string sResultB;
                 lock (this)
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
@@ -42,13 +38,8 @@ namespace nManager.Wow.Class
                         entryId + ") " + randomString +
                         " = itemName .. \"^\" .. itemLink .. \"^\" .. itemRarity .. \"^\" .. itemLevel .. \"^\" .. itemMinLevel .. \"^\" .. itemType .. \"^\" .. itemSubType .. \"^\" .. itemStackCount .. \"^\" .. itemEquipLoc .. \"^\" .. itemTexture .. \"^\" .. itemSellPrice");
                     sResult = Lua.GetLocalizedText(randomString);
-                    
-                    string randomStringB = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + entryId + ") " + randomStringB + " = startTime .. \"^\" duration .. \"^\" enable");
-                    sResultB = Lua.GetLocalizedText(randomStringB);
                 }
                 string[] itemInfoArray = sResult.Split(Convert.ToChar("^"));
-                string[] itemInfoArrayB = sResultB.Split(Convert.ToChar("^"));
 
                 ItemName = itemInfoArray[0];
                 ItemLink = itemInfoArray[1];
@@ -61,9 +52,6 @@ namespace nManager.Wow.Class
                 ItemEquipLoc = (itemInfoArray[8] != "");
                 ItemTexture = itemInfoArray[9];
                 ItemSellPrice = Convert.ToInt32(itemInfoArray[10]);
-                ItemStartTime = Convert.ToInt32(itemInfoArrayB[0]);
-                ItemDuration = Convert.ToInt32(itemInfoArrayB[1]);
-                ItemEnable = Convert.ToInt32(itemInfoArrayB[2]);
             }
             catch (Exception exception)
             {

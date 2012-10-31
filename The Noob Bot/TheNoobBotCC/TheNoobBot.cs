@@ -5,6 +5,7 @@
 */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -13,6 +14,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using nManager.Wow.Helpers;
 using Keybindings = nManager.Wow.Enums.Keybindings;
 using Timer = nManager.Helpful.Timer;
 
@@ -8782,7 +8784,7 @@ public class DruidFeral
 public class Paladin_Holy
 {
     [Serializable]
-    public class PaladinHolySettings : nManager.Helpful.Settings
+    public class PaladinHolySettings : Settings
     {
         /* Professions & Racials */
         public bool UseArcaneTorrent = true;
@@ -8873,12 +8875,9 @@ public class Paladin_Holy
             string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
-                return CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
+                return CurrentSetting = Load<PaladinHolySettings>(CurrentSettingsFile);
             }
-            else
-            {
-                return new Paladin_Holy.PaladinHolySettings();
-            }
+            return new PaladinHolySettings();
         }
     }
 
@@ -9699,7 +9698,7 @@ public class Paladin_Protection
 public class Paladin_Retribution
 {
     [Serializable]
-    public class PaladinRetributionSettings : nManager.Helpful.Settings
+    public class PaladinRetributionSettings : Settings
     {
         /* Professions & Racials */
         public bool UseArcaneTorrent = true;
@@ -9815,13 +9814,13 @@ public class Paladin_Retribution
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<PaladinRetributionSettings>(CurrentSettingsFile);
             }
             return new PaladinRetributionSettings();
         }
     }
 
-    private readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
+    private static readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
 
     #region Professions & Racials
 
@@ -9890,16 +9889,11 @@ public class Paladin_Retribution
 
     #region Flask & Potion Management
 
-    private readonly ItemInfo FlaskOrBattleElixir =
-        new ItemInfo(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir));
-
-    private readonly ItemInfo GuardianElixir = new ItemInfo(ItemsManager.GetIdByName(MySettings.GuardianElixir));
-    private readonly ItemInfo CombatPotion = new ItemInfo(ItemsManager.GetIdByName(MySettings.CombatPotion));
-
-    private readonly ItemInfo TeasureFindingPotion =
-        new ItemInfo(ItemsManager.GetIdByName(MySettings.TeasureFindingPotion));
-
-    private readonly ItemInfo WellFedBuff = new ItemInfo(ItemsManager.GetIdByName(MySettings.WellFedBuff));
+    private static readonly uint FlaskOrBattleElixir = (uint) ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir);
+    private static readonly uint GuardianElixir = (uint) ItemsManager.GetIdByName(MySettings.GuardianElixir);
+    private static readonly uint CombatPotion = (uint)ItemsManager.GetIdByName(MySettings.CombatPotion);
+    private static readonly uint TeasureFindingPotion = (uint)ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
+    private static readonly uint WellFedBuff = (uint)ItemsManager.GetIdByName(MySettings.WellFedBuff);
 
     #endregion
 
@@ -9965,16 +9959,14 @@ public class Paladin_Retribution
 
     private void Patrolling()
     {
-        if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-            if (FlaskOrBattleElixir.ItemStackCount > 0 &&
-                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir)))
-                ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
-        if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-            if (GuardianElixir.ItemStackCount > 0 &&
-                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.GuardianElixir)))
-                ItemsManager.UseItem(MySettings.GuardianElixir);
         if (!ObjectManager.Me.IsMounted)
         {
+            if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
+                if (!SpellManager.HaveBuffLua(MySettings.FlaskOrBattleElixir) && !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) && ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
+                    ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
+            if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
+                if (!SpellManager.HaveBuffLua(MySettings.GuardianElixir) && !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
+                    ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
             Heal();
         }
@@ -9983,16 +9975,16 @@ public class Paladin_Retribution
 
     private void Buffs()
     {
-        if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-            if (FlaskOrBattleElixir.ItemStackCount > 0 &&
-                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir)))
-                ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
-        if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-            if (GuardianElixir.ItemStackCount > 0 &&
-                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.GuardianElixir)))
-                ItemsManager.UseItem(MySettings.GuardianElixir);
         if (!ObjectManager.Me.IsMounted)
+        {
+            if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
+                if (!SpellManager.HaveBuffLua(MySettings.FlaskOrBattleElixir) && !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) && ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
+                    ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
+            if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
+                if (!SpellManager.HaveBuffLua(MySettings.GuardianElixir) && !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
+                    ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
+        }
         Seal();
     }
 
