@@ -7,7 +7,7 @@ namespace nManager.Wow.Helpers
 {
     public class ClickOnTerrain
     {
-        #region Strut
+        #region Struct
 
         [StructLayout(LayoutKind.Explicit, Size = 0x20)]
         public struct StructClickOnTerrain

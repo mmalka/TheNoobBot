@@ -9010,7 +9010,7 @@ public class Paladin_Holy
             Blessing();
             Heal();
         }
-        
+
         Seal();
     }
 
@@ -9464,10 +9464,9 @@ public class Paladin_Protection
     {
         if (!ObjectManager.Me.IsMounted)
         {
-           Blessing();
+            Blessing();
         }
         Seal();
-        
     }
 
     private void Seal()
@@ -9741,6 +9740,17 @@ public class Paladin_Retribution
         public bool UseFlashOfLight = true;
         public bool UseLayOnHands = true;
         public bool UseWordOfGlory = true;
+        /* Flask & Potion management */
+        public bool UseFlaskOrBattleElixir = false;
+        public string FlaskOrBattleElixir = "Flask of Winter's Bite";
+        public bool UseGuardianElixir = false;
+        public string GuardianElixir = "";
+        public bool UseCombatPotion = false;
+        public string CombatPotion = "Potion of Mogu Power";
+        public bool UseTeasureFindingPotion = false;
+        public string TeasureFindingPotion = "Potion of Luck";
+        public bool UseWellFedBuff = false;
+        public string WellFedBuff = "Black Pepper Ribs and Shrimp";
 
         public PaladinRetributionSettings()
         {
@@ -9784,6 +9794,17 @@ public class Paladin_Retribution
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+            /* Flask & Potion Management */
+            AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
+            AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
+            AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
+            AddControlInWinForm("Guardian Elixir Name", "GuardianElixir", "Flask & Potion Management");
+            AddControlInWinForm("Use Combat Potion", "UseCombatPotion", "Flask & Potion Management");
+            AddControlInWinForm("Combat Potion Name", "CombatPotion", "Flask & Potion Management");
+            AddControlInWinForm("Use Teasure Finding Potion", "UseTeasureFindingPotion", "Flask & Potion Management");
+            AddControlInWinForm("Teasure Finding Potion Name", "TeasureFindingPotion", "Flask & Potion Management");
+            AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
+            AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
         }
 
         public static PaladinRetributionSettings CurrentSetting { get; set; }
@@ -9867,6 +9888,21 @@ public class Paladin_Retribution
 
     #endregion
 
+    #region Flask & Potion Management
+
+    private readonly ItemInfo FlaskOrBattleElixir =
+        new ItemInfo(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir));
+
+    private readonly ItemInfo GuardianElixir = new ItemInfo(ItemsManager.GetIdByName(MySettings.GuardianElixir));
+    private readonly ItemInfo CombatPotion = new ItemInfo(ItemsManager.GetIdByName(MySettings.CombatPotion));
+
+    private readonly ItemInfo TeasureFindingPotion =
+        new ItemInfo(ItemsManager.GetIdByName(MySettings.TeasureFindingPotion));
+
+    private readonly ItemInfo WellFedBuff = new ItemInfo(ItemsManager.GetIdByName(MySettings.WellFedBuff));
+
+    #endregion
+
     public Paladin_Retribution()
     {
         Main.range = 5.0f;
@@ -9923,12 +9959,20 @@ public class Paladin_Retribution
         Heal();
 
         DPS_Cycle();
-        
+
         Buffs();
     }
 
     private void Patrolling()
     {
+        if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
+            if (FlaskOrBattleElixir.ItemStackCount > 0 &&
+                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir)))
+                ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
+        if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
+            if (GuardianElixir.ItemStackCount > 0 &&
+                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.GuardianElixir)))
+                ItemsManager.UseItem(MySettings.GuardianElixir);
         if (!ObjectManager.Me.IsMounted)
         {
             Blessing();
@@ -9936,9 +9980,17 @@ public class Paladin_Retribution
         }
         Seal();
     }
-    
+
     private void Buffs()
     {
+        if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
+            if (FlaskOrBattleElixir.ItemStackCount > 0 &&
+                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir)))
+                ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
+        if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
+            if (GuardianElixir.ItemStackCount > 0 &&
+                !ObjectManager.Me.HaveBuff(ItemsManager.GetIdByName(MySettings.GuardianElixir)))
+                ItemsManager.UseItem(MySettings.GuardianElixir);
         if (!ObjectManager.Me.IsMounted)
             Blessing();
         Seal();

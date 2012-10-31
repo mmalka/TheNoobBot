@@ -20,6 +20,9 @@ namespace nManager.Wow.Class
         public string ItemSubType { get; private set; }
         public string ItemTexture { get; private set; }
         public string ItemType { get; private set; }
+        public int ItemStartTime { get; private set; }
+        public int ItemDuration { get; private set; }
+        public int ItemEnable { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ItemInfo"/> class.
@@ -30,6 +33,7 @@ namespace nManager.Wow.Class
             try
             {
                 string sResult;
+                string sResultB;
                 lock (this)
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
@@ -38,20 +42,28 @@ namespace nManager.Wow.Class
                         entryId + ") " + randomString +
                         " = itemName .. \"^\" .. itemLink .. \"^\" .. itemRarity .. \"^\" .. itemLevel .. \"^\" .. itemMinLevel .. \"^\" .. itemType .. \"^\" .. itemSubType .. \"^\" .. itemStackCount .. \"^\" .. itemEquipLoc .. \"^\" .. itemTexture .. \"^\" .. itemSellPrice");
                     sResult = Lua.GetLocalizedText(randomString);
+                    
+                    string randomStringB = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + entryId + ") " + randomStringB + " = startTime .. \"^\" duration .. \"^\" enable");
+                    sResultB = Lua.GetLocalizedText(randomStringB);
                 }
-                string[] intemInfoArray = sResult.Split(Convert.ToChar("^"));
+                string[] itemInfoArray = sResult.Split(Convert.ToChar("^"));
+                string[] itemInfoArrayB = sResultB.Split(Convert.ToChar("^"));
 
-                ItemName = intemInfoArray[0];
-                ItemLink = intemInfoArray[1];
-                ItemRarity = Convert.ToInt32(intemInfoArray[2]);
-                ItemLevel = Convert.ToInt32(intemInfoArray[3]);
-                ItemMinLevel = Convert.ToInt32(intemInfoArray[4]);
-                ItemType = intemInfoArray[5];
-                ItemSubType = intemInfoArray[6];
-                ItemStackCount = Convert.ToInt32(intemInfoArray[7]);
-                ItemEquipLoc = (intemInfoArray[8] != "");
-                ItemTexture = intemInfoArray[9];
-                ItemSellPrice = Convert.ToInt32(intemInfoArray[10]);
+                ItemName = itemInfoArray[0];
+                ItemLink = itemInfoArray[1];
+                ItemRarity = Convert.ToInt32(itemInfoArray[2]);
+                ItemLevel = Convert.ToInt32(itemInfoArray[3]);
+                ItemMinLevel = Convert.ToInt32(itemInfoArray[4]);
+                ItemType = itemInfoArray[5];
+                ItemSubType = itemInfoArray[6];
+                ItemStackCount = Convert.ToInt32(itemInfoArray[7]);
+                ItemEquipLoc = (itemInfoArray[8] != "");
+                ItemTexture = itemInfoArray[9];
+                ItemSellPrice = Convert.ToInt32(itemInfoArray[10]);
+                ItemStartTime = Convert.ToInt32(itemInfoArrayB[0]);
+                ItemDuration = Convert.ToInt32(itemInfoArrayB[1]);
+                ItemEnable = Convert.ToInt32(itemInfoArrayB[2]);
             }
             catch (Exception exception)
             {
