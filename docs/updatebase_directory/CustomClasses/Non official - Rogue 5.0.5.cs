@@ -816,15 +816,7 @@ public class Rogue_Combat
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            OnCD = new Timer(1000*20);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
             && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood && ObjectManager.Me.ComboPoint <= 3
             && Recuperate.HaveBuff && MySettings.UseKidneyShot)
         {
@@ -1550,15 +1542,7 @@ public class Rogue_Subtlety
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            OnCD = new Timer(1000*20);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
             && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood && ObjectManager.Me.ComboPoint <= 3
             && Recuperate.HaveBuff && MySettings.UseKidneyShot)
         {
@@ -2303,15 +2287,7 @@ public class Rogue_Assassination
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent <= 10 && Vanish.KnownSpell && Vanish.IsSpellUsable
-            && MySettings.UseVanish)
-        {
-            Vanish.Launch();
-            Thread.Sleep(5000);
-            OnCD = new Timer(1000*20);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= 80 && !Kidney_Shot.TargetHaveBuff && Kidney_Shot.KnownSpell
             && Kidney_Shot.IsSpellUsable && Kidney_Shot.IsDistanceGood && ObjectManager.Me.ComboPoint <= 3
             && Recuperate.HaveBuff && MySettings.UseKidneyShot)
         {

@@ -277,7 +277,7 @@ public class Hunter_Marksmanship
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting ", "UseWyvernSting ", "Defensive Cooldown");
+            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
             AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
@@ -730,7 +730,13 @@ public class Hunter_Marksmanship
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
+        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
+        {
+            Gift_of_the_Naaru.Launch();
+            return;
+        }
+        else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
             && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
         {
             Exhilaration.Launch();
@@ -1032,7 +1038,7 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting ", "UseWyvernSting ", "Defensive Cooldown");
+            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
             AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
@@ -1522,7 +1528,7 @@ public class Hunter_BeastMastery
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ObjectManager.Me.HealthPercent < 85 && ObjectManager.Pet.IsAlive //&& ObjectManager.Pet.Guid == 0)
+        if (ObjectManager.Me.HealthPercent < 85 && ObjectManager.Pet.IsAlive
             && MySettings.UseSpiritBeastPet && Spirit_Mend_Timer.IsReady)
         {
             Logging.WriteFight("Cast Spirit Mend.");
@@ -1530,6 +1536,12 @@ public class Hunter_BeastMastery
             Thread.Sleep(200);
             Lua.RunMacroText("/cast Spirit Mend");
             Spirit_Mend_Timer = new Timer(1000*40);
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
+        {
+            Gift_of_the_Naaru.Launch();
+            return;
         }
         else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
             && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
@@ -1832,7 +1844,7 @@ public class Hunter_Survival
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting ", "UseWyvernSting ", "Defensive Cooldown");
+            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
             AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
@@ -2305,7 +2317,13 @@ public class Hunter_Survival
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
+        if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.KnownSpell && Gift_of_the_Naaru.IsSpellUsable
+            && MySettings.UseGiftoftheNaaru)
+        {
+            Gift_of_the_Naaru.Launch();
+            return;
+        }
+        else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
             && MySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
         {
             Exhilaration.Launch();

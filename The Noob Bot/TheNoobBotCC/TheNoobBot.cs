@@ -11269,6 +11269,7 @@ public class Priest_Shadow
 
 #region Rogue
 
+
 public class RogueCom
 {
     #region InitializeSpell
@@ -12119,8 +12120,10 @@ public class Warrior_Arms
 
     #endregion
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
     private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer AlchFlask_Timer = new Timer(0);
     public int LC = 0;
@@ -12275,6 +12278,25 @@ public class Warrior_Arms
 
     public void DPS_Burst()
     {
+        /*if (MySettings.UseTrinket)
+        {
+            if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(FirstTrinket.Name)))
+            {
+                if (ItemsManager.IsUsableItemByName(FirstTrinket.Name) && !ItemsManager.IsItemOnCooldown((uint) FirstTrinket.Entry))
+                {
+                    ItemsManager.UseItem(FirstTrinket.Name);
+                    Logging.WriteFight("Use First Trinket Slot");
+                }
+            }
+            if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(SecondTrinket.Name)))
+            {
+                if (ItemsManager.IsUsableItemByName(SecondTrinket.Name) && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                {
+                    ItemsManager.UseItem(SecondTrinket.Name);
+                    Logging.WriteFight("Use Second Trinket Slot");
+                }
+            }
+        }*/
         if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Trinket 1.");
