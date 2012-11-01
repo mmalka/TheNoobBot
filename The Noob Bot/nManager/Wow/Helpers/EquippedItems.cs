@@ -15,47 +15,47 @@ namespace nManager.Wow.Helpers
             {
                 var listItems = new List<WoWItem>();
 
-                var itemId = new List<uint>          
-                {
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 0 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 1 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 2 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 3 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 4 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 5 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 6 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 7 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 8 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 9 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 10 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 11 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 12 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 13 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 14 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 15 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 16 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 17 * 2),
-                                 ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.visibleItems + 18 * 2)
-                             };
+                var itemId = new List<uint>
+                                 {
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 0*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 1*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 2*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 3*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 4*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 5*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 6*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 7*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 8*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 9*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 10*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 11*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 12*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 13*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 14*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 15*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 16*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 17*2),
+                                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
+                                         Descriptors.PlayerFields.visibleItems + 18*2)
+                                 };
 
                 if (itemId.Count > 0)
                 {
@@ -63,8 +63,14 @@ namespace nManager.Wow.Helpers
 
                     foreach (var o in objects)
                     {
-                        var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint)Descriptors.ObjectFields.entryID);
-                        var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint)Descriptors.ItemFields.owner);
+                        var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
+                                                                                            (uint)
+                                                                                            Descriptors.ObjectFields.
+                                                                                                entryID);
+                        var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress,
+                                                                                                (uint)
+                                                                                                Descriptors.ItemFields.
+                                                                                                    owner);
 
                         if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid)
                         {
@@ -82,16 +88,19 @@ namespace nManager.Wow.Helpers
             return new List<WoWItem>();
         }
 
-        public static WoWItem GetEquippedItem(WoWInventorySlot inventorySlot)
+        public static WoWItem GetEquippedItem(WoWInventorySlot inventorySlot, uint resultNb = 1)
         {
+            uint nb = 1;
             try
             {
                 var itemsTemps = GetEquippedItems();
 
                 foreach (var itemsTemp in itemsTemps)
                 {
-                    if (itemsTemp.GetItemInfo.ItemSubType == inventorySlot.ToString())
+                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && nb == resultNb)
                         return itemsTemp;
+                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && resultNb != 1)
+                        nb++;
                 }
             }
             catch (Exception exception)
@@ -99,7 +108,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetEquippedItem(WoWInventorySlot inventorySlot): " + exception);
             }
             return new WoWItem(0);
-
         }
     }
 }

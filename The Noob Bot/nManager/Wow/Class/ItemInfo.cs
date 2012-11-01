@@ -9,7 +9,7 @@ namespace nManager.Wow.Class
     /// </summary>
     public class ItemInfo
     {
-        public bool ItemEquipLoc { get; private set; }
+        public string ItemEquipLoc { get; private set; }
         public int ItemLevel { get; private set; }
         public string ItemLink { get; private set; }
         public int ItemMinLevel { get; private set; }
@@ -49,7 +49,7 @@ namespace nManager.Wow.Class
                 ItemType = itemInfoArray[5];
                 ItemSubType = itemInfoArray[6];
                 ItemStackCount = Convert.ToInt32(itemInfoArray[7]);
-                ItemEquipLoc = (itemInfoArray[8] != "");
+                ItemEquipLoc = itemInfoArray[8];
                 ItemTexture = itemInfoArray[9];
                 ItemSellPrice = Convert.ToInt32(itemInfoArray[10]);
             }
@@ -87,7 +87,7 @@ namespace nManager.Wow.Class
                 ItemType = intemInfoArray[5];
                 ItemSubType = intemInfoArray[6];
                 ItemStackCount = Convert.ToInt32(intemInfoArray[7]);
-                ItemEquipLoc = (intemInfoArray[8] != "");
+                ItemEquipLoc = intemInfoArray[8];
                 ItemTexture = intemInfoArray[9];
                 ItemSellPrice = Convert.ToInt32(intemInfoArray[10]);
             }

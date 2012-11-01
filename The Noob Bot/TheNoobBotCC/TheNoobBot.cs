@@ -9889,11 +9889,15 @@ public class Paladin_Retribution
 
     #region Flask & Potion Management
 
-    private static readonly uint FlaskOrBattleElixir = (uint) ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir);
-    private static readonly uint GuardianElixir = (uint) ItemsManager.GetIdByName(MySettings.GuardianElixir);
-    private static readonly uint CombatPotion = (uint)ItemsManager.GetIdByName(MySettings.CombatPotion);
-    private static readonly uint TeasureFindingPotion = (uint)ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
-    private static readonly uint WellFedBuff = (uint)ItemsManager.GetIdByName(MySettings.WellFedBuff);
+    private readonly uint FlaskOrBattleElixir = (uint) ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir);
+    private readonly uint GuardianElixir = (uint) ItemsManager.GetIdByName(MySettings.GuardianElixir);
+    private readonly uint CombatPotion = (uint) ItemsManager.GetIdByName(MySettings.CombatPotion);
+    private readonly uint TeasureFindingPotion = (uint) ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
+    private readonly uint WellFedBuff = (uint) ItemsManager.GetIdByName(MySettings.WellFedBuff);
+
+    private readonly WoWItem Hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -9962,10 +9966,13 @@ public class Paladin_Retribution
         if (!ObjectManager.Me.IsMounted)
         {
             if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) && !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) && ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) &&
+                    ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
                     ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
             if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) && !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
                     ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
             Heal();
@@ -9978,10 +9985,13 @@ public class Paladin_Retribution
         if (!ObjectManager.Me.IsMounted)
         {
             if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) && !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) && ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(FlaskOrBattleElixir) &&
+                    ItemsManager.IsUsableItemById(FlaskOrBattleElixir))
                     ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
             if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) && !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
                     ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
         }
