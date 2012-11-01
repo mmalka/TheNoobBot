@@ -1473,6 +1473,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public ulong CreatedBy
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.createdBy);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > CreatedBy: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public bool AutoAttack
         {
             get

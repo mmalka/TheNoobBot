@@ -259,41 +259,38 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        /// Gets if the nearest object is summoned by you - by spell name.
-        /// It check both If the Guid is your, and also another way of detection, see below
-        /// This is a special case, totem don't have "SummonedBy GUID" entry.
-        /// We check both faction/level and distance to be sure. But still, not the best way.
-        /// Can conflict if 2 shaman of the same race for example.
+        /// Gets if the nearest object named like your spell name is your.
         /// </summary>
         /// <value>
-        /// return <c>true</c> if [summoned by me]; otherwise, <c>false</c>.
+        /// return <c>true</c> if [summoned/created by me]; otherwise, <c>false</c>.
         /// </value>
-        /// <param name="maxDistance">Max distance between me and the object.</param>
-        public bool SummonedByMeBySpellName(uint maxDistance = 40)
+        public bool CreatedBySpell
         {
-            try
+            get
             {
-                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
-
-                if (woWUnit.Count > 0)
+                try
                 {
-                    var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
-                    if (nearestWoWUnit.IsValid)
+                    var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
+
+                    if (woWUnit.Count > 0)
                     {
-                        if (nearestWoWUnit.Guid == ObjectManager.ObjectManager.Me.Guid || (nearestWoWUnit.Faction == ObjectManager.ObjectManager.Me.Faction && nearestWoWUnit.Level == ObjectManager.ObjectManager.Me.Level &&
-                            nearestWoWUnit.GetDistance < maxDistance))
+                        var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                        if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
                         {
-                            return true;
+                            if (nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
+                                nearestWoWUnit.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
+                            {
+                                return true;
+                            }
                         }
                     }
                 }
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("Spell > SummonedByMeBySpellName: " + e);
+                catch (Exception e)
+                {
+                    Logging.WriteError("Spell > CreatedBySpell: " + e);
+                }
                 return false;
             }
-            return false;
         }
 
         /// <summary>
