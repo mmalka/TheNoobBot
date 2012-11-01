@@ -665,7 +665,7 @@ public class Shaman_Enhancement
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 5 && Magma_Totem.KnownSpell
             && Magma_Totem.IsSpellUsable && MySettings.UseMagmaTotem
-            && !Fire_Elemental_Totem.CreatedBySpell())
+            && !Fire_Elemental_Totem.CreatedBySpell)
         {
             Magma_Totem.Launch();
             return;
@@ -846,41 +846,41 @@ public class Shaman_Enhancement
 
     public bool FireTotemReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell() || Magma_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell || Magma_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool EarthTotemReady()
     {
-        if (Earthbind_Totem.CreatedBySpell() || Earth_Elemental_Totem.CreatedBySpell()
-            || Stone_Bulwark_Totem.CreatedBySpell())
+        if (Earthbind_Totem.CreatedBySpell || Earth_Elemental_Totem.CreatedBySpell
+            || Stone_Bulwark_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool WaterTotemReady()
     {
-        if (Healing_Stream_Totem.CreatedBySpell() || Healing_Tide_Totem.CreatedBySpell())
+        if (Healing_Stream_Totem.CreatedBySpell || Healing_Tide_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool AirTotemReady()
     {
-        if (Capacitor_Totem.CreatedBySpell() || Grounding_Totem.CreatedBySpell() 
-            || Stormlash_Totem.CreatedBySpell())
+        if (Capacitor_Totem.CreatedBySpell || Grounding_Totem.CreatedBySpell 
+            || Stormlash_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool TotemicRecallReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Earth_Elemental_Totem.CreatedBySpell())
+        else if (Earth_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Searing_Totem.CreatedBySpell())
+        else if (Searing_Totem.CreatedBySpell)
             return true;
         else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
@@ -1415,7 +1415,7 @@ public class Shaman_Restoration
         else
         {
             if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
+                && FireTotemReady() && !Searing_Totem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
             {
                 Searing_Totem.Launch();
                 return;
@@ -1574,13 +1574,13 @@ public class Shaman_Restoration
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 1 && Magma_Totem.KnownSpell
             && Magma_Totem.IsSpellUsable && MySettings.UseMagmaTotem
-            && !Fire_Elemental_Totem.CreatedBySpell())
+            && !Fire_Elemental_Totem.CreatedBySpell)
         {
             Magma_Totem.Launch();
             return;
         }
         if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
+                && FireTotemReady() && !Searing_Totem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
         {
             Searing_Totem.Launch();
             return;
@@ -1704,42 +1704,42 @@ public class Shaman_Restoration
 
     public bool FireTotemReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell() || Magma_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell || Magma_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool EarthTotemReady()
     {
-        if (Earthbind_Totem.CreatedBySpell() || Earth_Elemental_Totem.CreatedBySpell()
-            || Stone_Bulwark_Totem.CreatedBySpell())
+        if (Earthbind_Totem.CreatedBySpell || Earth_Elemental_Totem.CreatedBySpell
+            || Stone_Bulwark_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool WaterTotemReady()
     {
-        if (Healing_Stream_Totem.CreatedBySpell() || Healing_Tide_Totem.CreatedBySpell()
-            || Mana_Tide_Totem.CreatedBySpell())
+        if (Healing_Stream_Totem.CreatedBySpell || Healing_Tide_Totem.CreatedBySpell
+            || Mana_Tide_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool AirTotemReady()
     {
-        if (Capacitor_Totem.CreatedBySpell() || Grounding_Totem.CreatedBySpell() 
-            || Stormlash_Totem.CreatedBySpell() || Spirit_Link_Totem.CreatedBySpell())
+        if (Capacitor_Totem.CreatedBySpell || Grounding_Totem.CreatedBySpell 
+            || Stormlash_Totem.CreatedBySpell || Spirit_Link_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool TotemicRecallReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Earth_Elemental_Totem.CreatedBySpell())
+        else if (Earth_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Searing_Totem.CreatedBySpell())
+        else if (Searing_Totem.CreatedBySpell)
             return true;
         else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
@@ -2283,7 +2283,7 @@ public class Shaman_Elemental
         else
         {
             if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
+                && FireTotemReady() && !Searing_Totem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
             {
                 Searing_Totem.Launch();
                 return;
@@ -2453,13 +2453,13 @@ public class Shaman_Elemental
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 1 && Magma_Totem.KnownSpell
             && Magma_Totem.IsSpellUsable && MySettings.UseMagmaTotem
-            && !Fire_Elemental_Totem.CreatedBySpell())
+            && !Fire_Elemental_Totem.CreatedBySpell)
         {
             Magma_Totem.Launch();
             return;
         }
         else if (Searing_Totem.KnownSpell && Searing_Totem.IsSpellUsable && MySettings.UseSearingTotem
-            && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
+            && FireTotemReady() && !Searing_Totem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
         {
             Searing_Totem.Launch();
             return;
@@ -2569,41 +2569,41 @@ public class Shaman_Elemental
 
     public bool FireTotemReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell() || Magma_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell || Magma_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool EarthTotemReady()
     {
-        if (Earthbind_Totem.CreatedBySpell() || Earth_Elemental_Totem.CreatedBySpell()
-            || Stone_Bulwark_Totem.CreatedBySpell())
+        if (Earthbind_Totem.CreatedBySpell || Earth_Elemental_Totem.CreatedBySpell
+            || Stone_Bulwark_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool WaterTotemReady()
     {
-        if (Healing_Stream_Totem.CreatedBySpell() || Healing_Tide_Totem.CreatedBySpell())
+        if (Healing_Stream_Totem.CreatedBySpell || Healing_Tide_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool AirTotemReady()
     {
-        if (Capacitor_Totem.CreatedBySpell() || Grounding_Totem.CreatedBySpell() 
-            || Stormlash_Totem.CreatedBySpell())
+        if (Capacitor_Totem.CreatedBySpell || Grounding_Totem.CreatedBySpell 
+            || Stormlash_Totem.CreatedBySpell)
             return false;
         return true;
     }
 
     public bool TotemicRecallReady()
     {
-        if (Fire_Elemental_Totem.CreatedBySpell())
+        if (Fire_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Earth_Elemental_Totem.CreatedBySpell())
+        else if (Earth_Elemental_Totem.CreatedBySpell)
             return false;
-        else if (Searing_Totem.CreatedBySpell())
+        else if (Searing_Totem.CreatedBySpell)
             return true;
         else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
