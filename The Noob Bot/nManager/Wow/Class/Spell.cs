@@ -294,6 +294,39 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
+        /// Gets if the nearest object named like your spell name is your.
+        /// Check for the max range prior to recast it.
+        /// </summary>
+        /// <value>
+        /// return <c>true</c> if [summoned/created by me]; otherwise, <c>false</c>.
+        /// </value>
+        public bool CreatedBySpellInRange(uint maxrange = 40)
+        {
+                try
+                {
+                    var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
+
+                    if (woWUnit.Count > 0)
+                    {
+                        var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                        if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
+                        {
+                            if ((nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
+                                nearestWoWUnit.CreatedBy == ObjectManager.ObjectManager.Me.Guid) && nearestWoWUnit.GetDistance <= maxrange)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("Spell > CreatedBySpellInRange: " + e);
+                }
+                return false;
+        }
+
+        /// <summary>
         /// Gets target buff Stack.
         /// </summary>
         public int TargetBuffStack
