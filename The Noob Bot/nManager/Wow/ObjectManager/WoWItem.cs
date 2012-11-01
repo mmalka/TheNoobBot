@@ -72,6 +72,26 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public string SpellName
+        {
+            get
+            {
+                try
+                {
+                    string randomString = Others.GetRandomString(Others.Random(4, 10));
+                    Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + Name + ")");
+                    string sResult = Lua.GetLocalizedText(randomString);
+                    if (sResult != string.Empty && sResult != "nil")
+                        return sResult;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("WoWItem > SpellName: " + exception);
+                }
+                return "";
+            }
+        }
+
         public T GetDescriptor<T>(Descriptors.ItemFields field) where T : struct
         {
             try
