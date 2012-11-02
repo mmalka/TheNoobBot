@@ -9,17 +9,21 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Keybindings = nManager.Wow.Enums.Keybindings;
+using Keybindings = nManager.Wow.Helpers.Keybindings;
+using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
 public class Main : ICustomClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
+
+    #region ICustomClass Members
 
     public float Range
     {
@@ -31,6 +35,20 @@ public class Main : ICustomClass
     {
         Initialize(false);
     }
+
+    public void Dispose()
+    {
+        Logging.WriteFight("Combat system stopped.");
+        loop = false;
+    }
+
+    public void ShowConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Initialize(true);
+    }
+
+    #endregion
 
     public void Initialize(bool ConfigOnly)
     {
@@ -163,7 +181,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Arcane.xml";
                             Mage_Arcane.MageArcaneSettings CurrentSetting;
                             CurrentSetting = new Mage_Arcane.MageArcaneSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Arcane.MageArcaneSettings>(CurrentSettingsFile);
@@ -187,7 +205,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Fire.xml";
                             Mage_Fire.MageFireSettings CurrentSetting;
                             CurrentSetting = new Mage_Fire.MageFireSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Fire.MageFireSettings>(CurrentSettingsFile);
@@ -211,7 +229,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Frost.MageFrostSettings>(CurrentSettingsFile);
@@ -235,7 +253,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Frost.MageFrostSettings>(CurrentSettingsFile);
@@ -377,7 +395,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Feral.xml";
                             Druid_Feral.DruidFeralSettings CurrentSetting;
                             CurrentSetting = new Druid_Feral.DruidFeralSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Feral.DruidFeralSettings>(CurrentSettingsFile);
@@ -399,7 +417,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Guardian.xml";
                             Druid_Guardian.DruidGuardianSettings CurrentSetting;
                             CurrentSetting = new Druid_Guardian.DruidGuardianSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Guardian.DruidGuardianSettings>(CurrentSettingsFile);
@@ -421,7 +439,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Balance.DruidBalanceSettings>(CurrentSettingsFile);
@@ -444,7 +462,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Restoration.xml";
                             Druid_Restoration.DruidRestorationSettings CurrentSetting;
                             CurrentSetting = new Druid_Restoration.DruidRestorationSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Restoration.DruidRestorationSettings>(CurrentSettingsFile);
@@ -467,7 +485,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Balance.DruidBalanceSettings>(CurrentSettingsFile);
@@ -599,7 +617,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
                             Shaman_Enhancement.ShamanEnhancementSettings CurrentSetting;
                             CurrentSetting = new Shaman_Enhancement.ShamanEnhancementSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Enhancement.ShamanEnhancementSettings>(CurrentSettingsFile);
@@ -622,7 +640,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
                             Shaman_Elemental.ShamanElementalSettings CurrentSetting;
                             CurrentSetting = new Shaman_Elemental.ShamanElementalSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Elemental.ShamanElementalSettings>(CurrentSettingsFile);
@@ -646,7 +664,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Restoration.ShamanRestorationSettings>(CurrentSettingsFile);
@@ -670,7 +688,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Restoration.ShamanRestorationSettings>(CurrentSettingsFile);
@@ -815,7 +833,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
@@ -838,7 +856,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
                             Rogue_Assassination.RogueAssassinationSettings CurrentSetting;
                             CurrentSetting = new Rogue_Assassination.RogueAssassinationSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Assassination.RogueAssassinationSettings>(CurrentSettingsFile);
@@ -861,7 +879,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
                             Rogue_Subtlety.RogueSubtletySettings CurrentSetting;
                             CurrentSetting = new Rogue_Subtlety.RogueSubtletySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Subtlety.RogueSubtletySettings>(CurrentSettingsFile);
@@ -884,7 +902,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
@@ -917,7 +935,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Arms.xml";
                             Warrior_Arms.WarriorArmsSettings CurrentSetting;
                             CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
@@ -939,7 +957,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Fury.xml";
                             Warrior_Fury.WarriorFurySettings CurrentSetting;
                             CurrentSetting = new Warrior_Fury.WarriorFurySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Fury.WarriorFurySettings>(CurrentSettingsFile);
@@ -961,7 +979,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Protection.xml";
                             Warrior_Protection.WarriorProtectionSettings CurrentSetting;
                             CurrentSetting = new Warrior_Protection.WarriorProtectionSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Protection.WarriorProtectionSettings>(CurrentSettingsFile);
@@ -1019,7 +1037,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
                             Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
                             CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_Marksmanship.HunterMarksmanshipSettings>(CurrentSettingsFile);
@@ -1043,7 +1061,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_Survival.xml";
                             Hunter_Survival.HunterSurvivalSettings CurrentSetting;
                             CurrentSetting = new Hunter_Survival.HunterSurvivalSettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_Survival.HunterSurvivalSettings>(CurrentSettingsFile);
@@ -1067,7 +1085,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
                             Hunter_BeastMastery.HunterBeastMasterySettings CurrentSetting;
                             CurrentSetting = new Hunter_BeastMastery.HunterBeastMasterySettings();
-                            if (System.IO.File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_BeastMastery.HunterBeastMasterySettings>(CurrentSettingsFile);
@@ -1122,104 +1140,12 @@ public class Main : ICustomClass
         }
         Logging.WriteFight("Combat system stopped.");
     }
-
-    public void Dispose()
-    {
-        Logging.WriteFight("Combat system stopped.");
-        loop = false;
-    }
-
-    public void ShowConfiguration()
-    {
-        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
-        Initialize(true);
-    }
 }
 
 #region Deathknight
 
 public class Deathknight_Apprentice
 {
-    [Serializable]
-    public class DeathknightApprenticeSettings : Settings
-    {
-        /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Deathknight Presence & Buffs */
-        public bool UseFrostPresence = true;
-        public bool UseBloodPresence = true;
-        /* Offensive Spell */
-        public bool UseBloodBoil = true;
-        public bool UseBloodStrike = true;
-        public bool UseDeathCoil = true;
-        public bool UseIcyTouch = true;
-        public bool UsePlagueStrike = true;
-        /* Offensive Cooldown */
-        public bool UseDeathGrip = true;
-        public bool UsePestilence = true;
-        public bool UseRaiseDead = true;
-        /* Defensive Cooldown */
-        public bool UseChainsofIce = false;
-        public bool UseMindFreeze = true;
-        /* Healing Spell */
-        public bool UseDeathStrike = true;
-
-        public DeathknightApprenticeSettings()
-        {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Deathknight Apprentice Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Deathknight Presence & Buffs */
-            AddControlInWinForm("Use Frost Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Blood Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
-            AddControlInWinForm("Use Blood Strike", "UseBloodStrike", "Offensive Spell");
-            AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
-            AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
-            AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
-            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
-            AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Chains of Ice", "UseChainsofIce", "Defensive Cooldown");
-            AddControlInWinForm("Use Mind Freeze", "UseMindFreeze", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell");
-        }
-
-        public static DeathknightApprenticeSettings CurrentSetting { get; set; }
-
-        public static DeathknightApprenticeSettings GetSettings()
-        {
-            string CurrentSettingsFile = Application.StartupPath +
-                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
-            if (File.Exists(CurrentSettingsFile))
-            {
-                return
-                    CurrentSetting =
-                    Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(CurrentSettingsFile);
-            }
-            else
-            {
-                return new Deathknight_Apprentice.DeathknightApprenticeSettings();
-            }
-        }
-    }
-
     private readonly DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
 
     #region Professions & Racials
@@ -1227,9 +1153,9 @@ public class Deathknight_Apprentice
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
 
     #endregion
@@ -1237,10 +1163,10 @@ public class Deathknight_Apprentice
     #region Deathknight Presence & Buffs
 
     private readonly Spell Blood_Plague = new Spell("Blood Plague");
-    private Timer Blood_Plague_Timer = new Timer(0);
+    private readonly Timer Blood_Plague_Timer = new Timer(0);
     private readonly Spell Blood_Presence = new Spell("Blood Presence");
     private readonly Spell Frost_Fever = new Spell("Frost Fever");
-    private Timer Frost_Fever_Timer = new Timer(0);
+    private readonly Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
 
     #endregion
@@ -1259,8 +1185,8 @@ public class Deathknight_Apprentice
 
     private readonly Spell Death_Grip = new Spell("Death Grip");
     private readonly Spell Pestilence = new Spell("Pestilence");
-    private Timer Pestilence_Timer = new Timer(0);
     private readonly Spell Raise_Dead = new Spell("Raise Dead");
+    private Timer Pestilence_Timer = new Timer(0);
 
     #endregion
 
@@ -1531,74 +1457,40 @@ public class Deathknight_Apprentice
             return;
         }
     }
-}
 
-public class Deathknight_Blood
-{
+    #region Nested type: DeathknightApprenticeSettings
+
     [Serializable]
-    public class DeathknightBloodSettings : nManager.Helpful.Settings
+    public class DeathknightApprenticeSettings : Settings
     {
         /* Professions & Racials */
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Deathknight Presence & Buffs */
-        public bool UseFrostPresence = true;
-        public bool UseBloodPresence = true;
-        public bool UseHornofWinter = true;
-        public bool UsePathofFrost = true;
-        public bool UseUnholyPresence = true;
-        /* Offensive Spell */
         public bool UseBloodBoil = true;
-        public bool UseDeathCoil = true;
-        public bool UseDeathandDecay = true;
-        public bool UseDeathStrike = true;
-        public bool UseHeartStrike = true;
-        public bool UseIcyTouch = true;
-        public bool UsePlagueStrike = true;
-        public bool UseRuneStrike = true;
-        public bool UseSoulReaper = true;
-        public bool UseUnholyBlight = true;
-        /* Offensive Cooldown */
-        public bool UseBloodTap = true;
-        public bool UseDancingRuneWeapon = true;
-        public bool UseDeathGrip = true;
-        public bool UseEmpowerRuneWeapon = true;
-        public bool UseOutbreak = true;
-        public bool UsePestilence = true;
-        public bool UseRaiseDead = true;
-        /* Defensive Cooldown */
-        public bool UseAntiMagicShell = true;
-        public bool UseAntiMagicZone = true;
-        public bool UseArmyoftheDead = true;
-        public bool UseAsphyxiate = true;
-        public bool UseBoneShield = true;
+        public bool UseBloodFury = true;
+        public bool UseBloodPresence = true;
+        /* Offensive Spell */
+        public bool UseBloodStrike = true;
         public bool UseChainsofIce = false;
-        public bool UseDeathsAdvance = true;
-        public bool UseIceboundFortitude = true;
+        public bool UseDeathCoil = true;
+        /* Offensive Cooldown */
+        public bool UseDeathGrip = true;
+        public bool UseDeathStrike = true;
+        public bool UseFrostPresence = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseIcyTouch = true;
+        public bool UseLifeblood = true;
         public bool UseMindFreeze = true;
-        public bool UseRemorselessWinter = true;
-        public bool UseStrangulate = true;
-        public bool UseVampiricBlood = true;
-        /* Healing Spell */
-        public bool UseConversion = true;
-        public bool UseDeathPact = true;
-        public bool UseDeathSiphon = true;
-        public bool UseLichborne = true;
-        public bool UseRuneTap = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UsePestilence = true;
+        public bool UsePlagueStrike = true;
+        public bool UseRaiseDead = true;
+        public bool UseStoneform = true;
+        public bool UseWarStomp = true;
+        /* Defensive Cooldown */
 
-        public DeathknightBloodSettings()
+        public DeathknightApprenticeSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Deathknight Blood Settings");
+            ConfigWinForm(new Point(400, 400), "Deathknight Apprentice Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -1609,73 +1501,56 @@ public class Deathknight_Blood
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Deathknight Presence & Buffs */
             AddControlInWinForm("Use Frost Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Blood Presence", "UseBloodPresence", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Horn of Winter", "UseHornofWinter", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Path of Frost", "UsePathofFrost", "Deathknight Presence & Buffs");
-            AddControlInWinForm("Use Unholy Presence", "UseUnholyPresence", "Deathknight Presence & Buffs");
+            AddControlInWinForm("Use Blood Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
+            AddControlInWinForm("Use Blood Strike", "UseBloodStrike", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
-            AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
-            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Offensive Spell");
-            AddControlInWinForm("Use Heart Strike", "UseHeartStrike", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
             AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
-            AddControlInWinForm("Use Rune Strike", "UseRuneStrike", "Offensive Spell");
-            AddControlInWinForm("Use Soul Reaper", "UseSoulReaper", "Offensive Spell");
-            AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Blood Tap", "UseBloodTap", "Offensive Cooldown");
-            AddControlInWinForm("Use Dancing Rune Weapon", "UseDancingRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
-            AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
-            AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
             AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShell", "Defensive Cooldown");
-            AddControlInWinForm("Use Anti-Magic Zone", "UseAntiMagicZone", "Defensive Cooldown");
-            AddControlInWinForm("Use Army of the Dead", "UseArmyoftheDead", "Defensive Cooldown");
-            AddControlInWinForm("Use Asphyxiate", "UseAsphyxiate", "Defensive Cooldown");
-            AddControlInWinForm("Use Bone Shield", "UseBoneShield", "Defensive Cooldown");
             AddControlInWinForm("Use Chains of Ice", "UseChainsofIce", "Defensive Cooldown");
-            AddControlInWinForm("Use Death's Advance", "UseDeathsAdvance", "Defensive Cooldown");
-            AddControlInWinForm("Use Icebound Fortitude", "UseIceboundFortitude", "Defensive Cooldown");
             AddControlInWinForm("Use Mind Freeze", "UseMindFreeze", "Defensive Cooldown");
-            AddControlInWinForm("Use Remorseless Winter", "UseRemorseless Winter", "Defensive Cooldown");
-            AddControlInWinForm("Use Strangulate", "UseStrangulate", "Defensive Cooldown");
-            AddControlInWinForm("Use Vampiric Blood", "UseVampiricBlood", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Conversion", "UseConversion", "Healing Spell");
-            AddControlInWinForm("Use Death Pact", "UseDeathPact", "Healing Spell");
-            AddControlInWinForm("Use Death Siphon", "UseDeathSiphon", "Healing Spell");
-            AddControlInWinForm("Use Lichborne", "UseLichborne", "Healing Spell");
-            AddControlInWinForm("Use Rune Tap", "UseRuneTap", "Healing Spell");
-            /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
-            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
-            AddControlInWinForm("Use Engineer Gloves", "UseEngGlove", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell");
         }
 
-        public static DeathknightBloodSettings CurrentSetting { get; set; }
+        public static DeathknightApprenticeSettings CurrentSetting { get; set; }
 
-        public static DeathknightBloodSettings GetSettings()
+        public static DeathknightApprenticeSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
+            string CurrentSettingsFile = Application.StartupPath +
+                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Deathknight_Blood.DeathknightBloodSettings>(CurrentSettingsFile);
+                    CurrentSetting =
+                    Load<DeathknightApprenticeSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Deathknight_Blood.DeathknightBloodSettings();
+                return new DeathknightApprenticeSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Deathknight_Blood
+{
     private readonly DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int DRW = 1;
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
@@ -1683,9 +1558,9 @@ public class Deathknight_Blood
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
     private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
 
     #endregion
@@ -1693,16 +1568,16 @@ public class Deathknight_Blood
     #region Deathknight Presence & Buffs
 
     private readonly Spell Blood_Plague = new Spell("Blood Plague");
-    private Timer Blood_Plague_Timer = new Timer(0);
     private readonly Spell Blood_Presence = new Spell("Blood Presence");
     private readonly Spell Frost_Fever = new Spell("Frost Fever");
-    private Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
     private readonly Spell Horn_of_Winter = new Spell("Horn of Winter");
     private readonly Spell Path_of_Frost = new Spell("Path of Frost");
-    private Timer Path_of_Frost_Timer = new Timer(0);
     private readonly Spell Roiling_Blood = new Spell("Roiling Blood");
     private readonly Spell Unholy_Presence = new Spell("Unholy Presence");
+    private Timer Blood_Plague_Timer = new Timer(0);
+    private Timer Frost_Fever_Timer = new Timer(0);
+    private Timer Path_of_Frost_Timer = new Timer(0);
 
     #endregion
 
@@ -1710,9 +1585,9 @@ public class Deathknight_Blood
 
     private readonly Spell Blood_Boil = new Spell("Blood Boil");
     private readonly Spell Blood_Strike = new Spell("Blood Strike");
-    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Death_Coil = new Spell("Death Coil");
     private readonly Spell Death_Strike = new Spell("Death Strike");
+    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Heart_Strike = new Spell("Heart Strike");
     private readonly Spell Icy_Touch = new Spell("Icy Touch");
     private readonly Spell Plague_Strike = new Spell("Plague Strike");
@@ -1726,13 +1601,13 @@ public class Deathknight_Blood
 
     private readonly Spell Blood_Tap = new Spell("Blood Tap");
     private readonly Spell Dancing_Rune_Weapon = new Spell("Dancing Rune Weapon");
-    private Timer Dancing_Rune_Weapon_Timer = new Timer(0);
     private readonly Spell Death_Grip = new Spell("Death Grip");
     private readonly Spell Empower_Rune_Weapon = new Spell("Empower Rune Weapon");
     private readonly Spell Outbreak = new Spell("Outbreak");
     private readonly Spell Pestilence = new Spell("Pestilence");
-    private Timer Pestilence_Timer = new Timer(0);
     private readonly Spell Raise_Dead = new Spell("Raise Dead");
+    private Timer Dancing_Rune_Weapon_Timer = new Timer(0);
+    private Timer Pestilence_Timer = new Timer(0);
 
     #endregion
 
@@ -1762,13 +1637,6 @@ public class Deathknight_Blood
     private readonly Spell Rune_Tap = new Spell("Rune Tap");
 
     #endregion
-
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer OnCD = new Timer(0);
-    public int DRW = 1;
-    public int LC = 0;
 
     public Deathknight_Blood()
     {
@@ -2370,76 +2238,73 @@ public class Deathknight_Blood
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Deathknight_Unholy
-{
+    #region Nested type: DeathknightBloodSettings
+
     [Serializable]
-    public class DeathknightUnholySettings : nManager.Helpful.Settings
+    public class DeathknightBloodSettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Deathknight Presence & Buffs */
-        public bool UseFrostPresence = true;
-        public bool UseBloodPresence = true;
-        public bool UseHornofWinter = true;
-        public bool UsePathofFrost = true;
-        public bool UseUnholyPresence = true;
-        /* Offensive Spell */
-        public bool UseBloodBoil = true;
-        public bool UseDarkTransformation = true;
-        public bool UseDeathCoil = true;
-        public bool UseDeathandDecay = true;
-        public bool UseFesteringStrike = true;
-        public bool UseIcyTouch = true;
-        public bool UsePlagueStrike = true;
-        public bool UseSoulReaper = true;
-        public bool UseScourgeStrike = true;
-        public bool UseUnholyBlight = true;
-        /* Offensive Cooldown */
-        public bool UseBloodTap = true;
-        public bool UseDeathGrip = true;
-        public bool UseEmpowerRuneWeapon = true;
-        public bool UseOutbreak = true;
-        public bool UsePestilence = true;
-        public bool UseRaiseDead = true;
-        public bool UseSummonGargoyle = true;
-        public bool UseUnholyFrenzy = true;
-        /* Defensive Cooldown */
+        public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
         public bool UseAntiMagicZone = true;
+        public bool UseArcaneTorrent = true;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
+        public bool UseBerserking = true;
+        public bool UseBloodBoil = true;
+        public bool UseBloodFury = true;
+        public bool UseBloodPresence = true;
+        /* Offensive Cooldown */
+        public bool UseBloodTap = true;
+        public bool UseBoneShield = true;
         public bool UseChainsofIce = false;
-        public bool UseDeathsAdvance = true;
-        public bool UseIceboundFortitude = true;
-        public bool UseMindFreeze = true;
-        public bool UseRemorselessWinter = true;
-        public bool UseStrangulate = true;
-        /* Healing Spell */
         public bool UseConversion = true;
+        public bool UseDancingRuneWeapon = true;
+        public bool UseDeathCoil = true;
+        public bool UseDeathGrip = true;
         public bool UseDeathPact = true;
         public bool UseDeathSiphon = true;
         public bool UseDeathStrike = true;
-        public bool UseLichborne = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseDeathandDecay = true;
+        public bool UseDeathsAdvance = true;
+        public bool UseEmpowerRuneWeapon = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseFrostPresence = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHeartStrike = true;
+        public bool UseHornofWinter = true;
+        public bool UseIceboundFortitude = true;
+        public bool UseIcyTouch = true;
+        public bool UseLichborne = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMindFreeze = true;
+        public bool UseOutbreak = true;
+        public bool UsePathofFrost = true;
+        public bool UsePestilence = true;
+        public bool UsePlagueStrike = true;
+        public bool UseRaiseDead = true;
+        /* Defensive Cooldown */
+        public bool UseRemorselessWinter = true;
+        public bool UseRuneStrike = true;
+        public bool UseRuneTap = true;
+        public bool UseSoulReaper = true;
+        public bool UseStoneform = true;
+        public bool UseStrangulate = true;
+        /* Game Settings */
+        public bool UseTrinket = true;
+        public bool UseUnholyBlight = true;
+        public bool UseUnholyPresence = true;
+        public bool UseVampiricBlood = true;
+        public bool UseWarStomp = true;
 
-        public DeathknightUnholySettings()
+        public DeathknightBloodSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Deathknight Unholy Settings");
+            ConfigWinForm(new Point(400, 400), "Deathknight Blood Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -2456,66 +2321,80 @@ public class Deathknight_Unholy
             AddControlInWinForm("Use Unholy Presence", "UseUnholyPresence", "Deathknight Presence & Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
-            AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
-            AddControlInWinForm("Use Festering Strike", "UseFesteringStrike", "Offensive Spell");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Offensive Spell");
+            AddControlInWinForm("Use Heart Strike", "UseHeartStrike", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
             AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
+            AddControlInWinForm("Use Rune Strike", "UseRuneStrike", "Offensive Spell");
             AddControlInWinForm("Use Soul Reaper", "UseSoulReaper", "Offensive Spell");
-            AddControlInWinForm("Use Scourge Strike", "UseScourgeStrike", "Offensive Spell");
             AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Blood Tap", "UseBloodTap", "Offensive Cooldown");
+            AddControlInWinForm("Use Dancing Rune Weapon", "UseDancingRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
             AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
-            AddControlInWinForm("Use Summon Gargoyle", "UseSummonGargoyle", "Offensive Cooldown");
-            AddControlInWinForm("Use Unholy Frenzy", "UseUnholyFrenzy", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShell", "Defensive Cooldown");
             AddControlInWinForm("Use Anti-Magic Zone", "UseAntiMagicZone", "Defensive Cooldown");
             AddControlInWinForm("Use Army of the Dead", "UseArmyoftheDead", "Defensive Cooldown");
             AddControlInWinForm("Use Asphyxiate", "UseAsphyxiate", "Defensive Cooldown");
+            AddControlInWinForm("Use Bone Shield", "UseBoneShield", "Defensive Cooldown");
             AddControlInWinForm("Use Chains of Ice", "UseChainsofIce", "Defensive Cooldown");
             AddControlInWinForm("Use Death's Advance", "UseDeathsAdvance", "Defensive Cooldown");
             AddControlInWinForm("Use Icebound Fortitude", "UseIceboundFortitude", "Defensive Cooldown");
             AddControlInWinForm("Use Mind Freeze", "UseMindFreeze", "Defensive Cooldown");
             AddControlInWinForm("Use Remorseless Winter", "UseRemorseless Winter", "Defensive Cooldown");
             AddControlInWinForm("Use Strangulate", "UseStrangulate", "Defensive Cooldown");
+            AddControlInWinForm("Use Vampiric Blood", "UseVampiricBlood", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Conversion", "UseConversion", "Healing Spell");
             AddControlInWinForm("Use Death Pact", "UseDeathPact", "Healing Spell");
             AddControlInWinForm("Use Death Siphon", "UseDeathSiphon", "Healing Spell");
-            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell");
             AddControlInWinForm("Use Lichborne", "UseLichborne", "Healing Spell");
+            AddControlInWinForm("Use Rune Tap", "UseRuneTap", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Engineer Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static DeathknightUnholySettings CurrentSetting { get; set; }
+        public static DeathknightBloodSettings CurrentSetting { get; set; }
 
-        public static DeathknightUnholySettings GetSettings()
+        public static DeathknightBloodSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Deathknight_Unholy.DeathknightUnholySettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DeathknightBloodSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Deathknight_Unholy.DeathknightUnholySettings();
+                return new DeathknightBloodSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Deathknight_Unholy
+{
     private readonly DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int DT = 1;
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    public int SG = 1;
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
@@ -2523,9 +2402,9 @@ public class Deathknight_Unholy
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
     private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
 
     #endregion
@@ -2533,16 +2412,16 @@ public class Deathknight_Unholy
     #region Deathknight Presence & Buffs
 
     private readonly Spell Blood_Plague = new Spell("Blood Plague");
-    private Timer Blood_Plague_Timer = new Timer(0);
     private readonly Spell Blood_Presence = new Spell("Blood Presence");
     private readonly Spell Frost_Fever = new Spell("Frost Fever");
-    private Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
     private readonly Spell Horn_of_Winter = new Spell("Horn of Winter");
     private readonly Spell Path_of_Frost = new Spell("Path of Frost");
-    private Timer Path_of_Frost_Timer = new Timer(0);
     private readonly Spell Roiling_Blood = new Spell("Roiling Blood");
     private readonly Spell Unholy_Presence = new Spell("Unholy Presence");
+    private Timer Blood_Plague_Timer = new Timer(0);
+    private Timer Frost_Fever_Timer = new Timer(0);
+    private Timer Path_of_Frost_Timer = new Timer(0);
 
     #endregion
 
@@ -2551,15 +2430,15 @@ public class Deathknight_Unholy
     private readonly Spell Blood_Boil = new Spell("Blood Boil");
     private readonly Spell Blood_Strike = new Spell("Blood Strike");
     private readonly Spell Dark_Transformation = new Spell("Dark Transformation");
-    private Timer Dark_Transformation_Timer = new Timer(0);
-    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Death_Coil = new Spell("Death Coil");
+    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Festering_Strike = new Spell("Festering Strike");
     private readonly Spell Icy_Touch = new Spell("Icy Touch");
     private readonly Spell Plague_Strike = new Spell("Plague Strike");
-    private readonly Spell Soul_Reaper = new Spell("Soul Reaper");
     private readonly Spell Scourge_Strike = new Spell("Scourge Strike");
+    private readonly Spell Soul_Reaper = new Spell("Soul Reaper");
     private readonly Spell Unholy_Blight = new Spell("Unholy Blight");
+    private Timer Dark_Transformation_Timer = new Timer(0);
 
     #endregion
 
@@ -2570,11 +2449,11 @@ public class Deathknight_Unholy
     private readonly Spell Empower_Rune_Weapon = new Spell("Empower Rune Weapon");
     private readonly Spell Outbreak = new Spell("Outbreak");
     private readonly Spell Pestilence = new Spell("Pestilence");
-    private Timer Pestilence_Timer = new Timer(0);
     private readonly Spell Raise_Dead = new Spell("Raise Dead");
     private readonly Spell Summon_Gargoyle = new Spell("Summon Gargoyle");
-    private Timer Summon_Gargoyle_Timer = new Timer(0);
     private readonly Spell Unholy_Frenzy = new Spell("Unholy Frenzy");
+    private Timer Pestilence_Timer = new Timer(0);
+    private Timer Summon_Gargoyle_Timer = new Timer(0);
 
     #endregion
 
@@ -2602,14 +2481,6 @@ public class Deathknight_Unholy
     private readonly Spell Lichborne = new Spell("Lichborne");
 
     #endregion
-
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer OnCD = new Timer(0);
-    public int SG = 1;
-    public int DT = 1;
-    public int LC = 0;
 
     public Deathknight_Unholy()
     {
@@ -3212,77 +3083,70 @@ public class Deathknight_Unholy
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Deathknight_Frost
-{
+    #region Nested type: DeathknightUnholySettings
+
     [Serializable]
-    public class DeathknightFrostSettings : nManager.Helpful.Settings
+    public class DeathknightUnholySettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Deathknight Presence & Buffs */
-        public bool UseFrostPresence = true;
-        public bool UseBloodPresence = true;
-        public bool UseHornofWinter = true;
-        public bool UsePathofFrost = true;
-        public bool UseUnholyPresence = true;
-        /* Offensive Spell */
-        public bool UseBloodBoil = true;
-        public bool UseDeathCoil = true;
-        public bool UseDeathandDecay = true;
-        public bool UseFrostStrike = true;
-        public bool UseHowlingBlast = true;
-        public bool UseIcyTouch = true;
-        public bool UsePlagueStrike = true;
-        public bool UseObliterate = true;
-        public bool UseSoulReaper = true;
-        public bool UseUnholyBlight = true;
-        /* Offensive Cooldown */
-        public bool UseBloodTap = true;
-        public bool UseDeathGrip = true;
-        public bool UseEmpowerRuneWeapon = true;
-        public bool UseOutbreak = true;
-        public bool UsePestilence = true;
-        public bool UsePillarofFrost = true;
-        public bool UseRaiseDead = true;
-        /* Defensive Cooldown */
+        public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
         public bool UseAntiMagicZone = true;
+        public bool UseArcaneTorrent = true;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
+        public bool UseBerserking = true;
+        public bool UseBloodBoil = true;
+        public bool UseBloodFury = true;
+        public bool UseBloodPresence = true;
+        public bool UseBloodTap = true;
         public bool UseChainsofIce = false;
-        public bool UseDeathsAdvance = true;
-        public bool UseIceboundFortitude = true;
-        public bool UseMindFreeze = true;
-        public bool UseRemorselessWinter = true;
-        public bool UseStrangulate = true;
-        /* Healing Spell */
         public bool UseConversion = true;
+        public bool UseDarkTransformation = true;
+        public bool UseDeathCoil = true;
+        public bool UseDeathGrip = true;
         public bool UseDeathPact = true;
         public bool UseDeathSiphon = true;
         public bool UseDeathStrike = true;
-        public bool UseLichborne = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseDeathandDecay = true;
+        public bool UseDeathsAdvance = true;
+        public bool UseEmpowerRuneWeapon = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
-        public bool UseDuelWield = false;
-        public bool UseTwoHander = true;
+        public bool UseFesteringStrike = true;
+        public bool UseFrostPresence = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHornofWinter = true;
+        public bool UseIceboundFortitude = true;
+        public bool UseIcyTouch = true;
+        public bool UseLichborne = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMindFreeze = true;
+        public bool UseOutbreak = true;
+        public bool UsePathofFrost = true;
+        public bool UsePestilence = true;
+        public bool UsePlagueStrike = true;
+        public bool UseRaiseDead = true;
+        public bool UseRemorselessWinter = true;
+        public bool UseScourgeStrike = true;
+        public bool UseSoulReaper = true;
+        public bool UseStoneform = true;
+        public bool UseStrangulate = true;
+        public bool UseSummonGargoyle = true;
+        /* Healing Spell */
+        public bool UseTrinket = true;
+        public bool UseUnholyBlight = true;
+        public bool UseUnholyFrenzy = true;
+        public bool UseUnholyPresence = true;
+        public bool UseWarStomp = true;
 
-        public DeathknightFrostSettings()
+        public DeathknightUnholySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Deathknight Frost Settings");
+            ConfigWinForm(new Point(400, 400), "Deathknight Unholy Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -3302,12 +3166,11 @@ public class Deathknight_Frost
             AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
             AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
             AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
-            AddControlInWinForm("Use Frost Strike", "UseFrostStrike", "Offensive Spell");
-            AddControlInWinForm("Use Howling Blast", "UseHowlingBlast", "Offensive Spell");
+            AddControlInWinForm("Use Festering Strike", "UseFesteringStrike", "Offensive Spell");
             AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
             AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
-            AddControlInWinForm("Use Obliterate", "UseObliterate", "Offensive Spell");
             AddControlInWinForm("Use Soul Reaper", "UseSoulReaper", "Offensive Spell");
+            AddControlInWinForm("Use Scourge Strike", "UseScourgeStrike", "Offensive Spell");
             AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Blood Tap", "UseBloodTap", "Offensive Cooldown");
@@ -3315,7 +3178,6 @@ public class Deathknight_Frost
             AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
             AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
             AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
-            AddControlInWinForm("Use Pillar of Frost", "UsePillarofFrost", "Offensive Cooldown");
             AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Gargoyle", "UseSummonGargoyle", "Offensive Cooldown");
             AddControlInWinForm("Use Unholy Frenzy", "UseUnholyFrenzy", "Offensive Cooldown");
@@ -3341,28 +3203,37 @@ public class Deathknight_Frost
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Duel Wield", "UseDuelWield", "Game Settings");
-            AddControlInWinForm("Use Two Hander", "UseTwoHander", "Game Settings");
         }
 
-        public static DeathknightFrostSettings CurrentSetting { get; set; }
+        public static DeathknightUnholySettings CurrentSetting { get; set; }
 
-        public static DeathknightFrostSettings GetSettings()
+        public static DeathknightUnholySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Deathknight_Frost.DeathknightFrostSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DeathknightUnholySettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Deathknight_Frost.DeathknightFrostSettings();
+                return new DeathknightUnholySettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Deathknight_Frost
+{
     private readonly DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
@@ -3370,9 +3241,9 @@ public class Deathknight_Frost
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
     private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
 
     #endregion
@@ -3380,17 +3251,17 @@ public class Deathknight_Frost
     #region Deathknight Presence & Buffs
 
     private readonly Spell Blood_Plague = new Spell("Blood Plague");
-    private Timer Blood_Plague_Timer = new Timer(0);
     private readonly Spell Blood_Presence = new Spell("Blood Presence");
     private readonly Spell Freezing_Fog = new Spell(59052);
     private readonly Spell Frost_Fever = new Spell("Frost Fever");
-    private Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
     private readonly Spell Horn_of_Winter = new Spell("Horn of Winter");
     private readonly Spell Path_of_Frost = new Spell("Path of Frost");
-    private Timer Path_of_Frost_Timer = new Timer(0);
     private readonly Spell Roiling_Blood = new Spell("Roiling Blood");
     private readonly Spell Unholy_Presence = new Spell("Unholy Presence");
+    private Timer Blood_Plague_Timer = new Timer(0);
+    private Timer Frost_Fever_Timer = new Timer(0);
+    private Timer Path_of_Frost_Timer = new Timer(0);
 
     #endregion
 
@@ -3398,13 +3269,13 @@ public class Deathknight_Frost
 
     private readonly Spell Blood_Boil = new Spell("Blood Boil");
     private readonly Spell Blood_Strike = new Spell("Blood Strike");
-    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Death_Coil = new Spell("Death Coil");
+    private readonly Spell Death_and_Decay = new Spell("Death and Decay");
     private readonly Spell Frost_Strike = new Spell("Frost Strike");
     private readonly Spell Howling_Blast = new Spell("Howling Blast");
     private readonly Spell Icy_Touch = new Spell("Icy Touch");
-    private readonly Spell Plague_Strike = new Spell("Plague Strike");
     private readonly Spell Obliterate = new Spell("Obliterate");
+    private readonly Spell Plague_Strike = new Spell("Plague Strike");
     private readonly Spell Soul_Reaper = new Spell("Soul Reaper");
     private readonly Spell Unholy_Blight = new Spell("Unholy Blight");
 
@@ -3415,11 +3286,11 @@ public class Deathknight_Frost
     private readonly Spell Blood_Tap = new Spell("Blood Tap");
     private readonly Spell Death_Grip = new Spell("Death Grip");
     private readonly Spell Empower_Rune_Weapon = new Spell("Empower Rune Weapon");
-    private readonly Spell Pillar_of_Frost = new Spell("Pillar of Frost");
     private readonly Spell Outbreak = new Spell("Outbreak");
     private readonly Spell Pestilence = new Spell("Pestilence");
-    private Timer Pestilence_Timer = new Timer(0);
+    private readonly Spell Pillar_of_Frost = new Spell("Pillar of Frost");
     private readonly Spell Raise_Dead = new Spell("Raise Dead");
+    private Timer Pestilence_Timer = new Timer(0);
 
     #endregion
 
@@ -3447,12 +3318,6 @@ public class Deathknight_Frost
     private readonly Spell Lichborne = new Spell("Lichborne");
 
     #endregion
-
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer OnCD = new Timer(0);
-    public int LC = 0;
 
     public Deathknight_Frost()
     {
@@ -4074,81 +3939,72 @@ public class Deathknight_Frost
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: DeathknightFrostSettings
 
-#region Mage
-
-public class Mage_Arcane
-{
     [Serializable]
-    public class MageArcaneSettings : nManager.Helpful.Settings
+    public class DeathknightFrostSettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Mage Buffs */
-        public bool UseArcaneBrilliance = true;
-        public bool UseBlazingSpeed = true;
-        public bool UseFrostArmor = false;
-        public bool UseIceFloes = true;
-        public bool UseMageArmor = true;
-        public bool UseMoltenArmor = false;
-        /* Offensive Spell */
-        public bool UseArcaneBarrage = true;
-        public bool UseArcaneBlast = true;
-        public bool UseArcaneExplosion = true;
-        public bool UseArcaneMissiles = true;
-        public bool UseFlamestrike = true;
-        public bool UseScorch = true;
-        /* Offensive Cooldown */
-        public bool UseAlterTime = true;
-        public bool UseArcanePower = true;
-        public bool UseMirrorImage = true;
-        public bool UsePresenceofMind = true;
-        public bool UseTierFive = true;
-        public bool UseTimeWarp = true;
-        /* Defensive Cooldown */
-        public bool UseBlink = true;
-        public bool UseColdSnap = true;
-        public bool UseConeofCold = true;
-        public bool UseCounterspell = true;
-        public bool UseDeepFreeze = true;
-        public bool UseFrostJaw = true;
-        public bool UseFrostNova = true;
-        public bool UseIceBarrier = true;
-        public bool UseIceBlock = true;
-        public bool UseIceWard = true;
-        public bool UseIncantersWard = true;
-        public bool UseInvisibility = true;
-        public bool UseRingofFrost = true;
-        public bool UseSlow = false;
-        public bool UseTemporalShield = true;
-        /* Healing Spell */
-        public bool UseConjureManaGem = true;
-        public bool UseConjureRefreshment = true;
-        public bool UseEvocation = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
         public bool UseAlchFlask = true;
-        public bool UseEvocationGlyph = false;
-        public bool UseInvocationTalent = false;
-        public bool UseRuneofPowerTalent = false;
+        public bool UseAntiMagicShell = true;
+        public bool UseAntiMagicZone = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseArmyoftheDead = true;
+        public bool UseAsphyxiate = true;
+        public bool UseBerserking = true;
+        public bool UseBloodBoil = true;
+        public bool UseBloodFury = true;
+        public bool UseBloodPresence = true;
+        public bool UseBloodTap = true;
+        public bool UseChainsofIce = false;
+        public bool UseConversion = true;
+        public bool UseDeathCoil = true;
+        public bool UseDeathGrip = true;
+        public bool UseDeathPact = true;
+        public bool UseDeathSiphon = true;
+        public bool UseDeathStrike = true;
+        public bool UseDeathandDecay = true;
+        public bool UseDeathsAdvance = true;
+        public bool UseDuelWield = false;
+        public bool UseEmpowerRuneWeapon = true;
+        public bool UseEngGlove = true;
+        public bool UseFrostPresence = true;
+        public bool UseFrostStrike = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHornofWinter = true;
+        public bool UseHowlingBlast = true;
+        public bool UseIceboundFortitude = true;
+        public bool UseIcyTouch = true;
+        public bool UseLichborne = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMindFreeze = true;
+        public bool UseObliterate = true;
+        public bool UseOutbreak = true;
+        public bool UsePathofFrost = true;
+        public bool UsePestilence = true;
+        public bool UsePillarofFrost = true;
+        public bool UsePlagueStrike = true;
+        public bool UseRaiseDead = true;
+        /* Defensive Cooldown */
+        public bool UseRemorselessWinter = true;
+        public bool UseSoulReaper = true;
+        public bool UseStoneform = true;
+        public bool UseStrangulate = true;
+        /* Healing Spell */
+        public bool UseTrinket = true;
+        public bool UseTwoHander = true;
+        public bool UseUnholyBlight = true;
+        public bool UseUnholyPresence = true;
+        public bool UseWarStomp = true;
 
-        public MageArcaneSettings()
+        public DeathknightFrostSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Mage Arcane Settings");
+            ConfigWinForm(new Point(400, 400), "Deathknight Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -4157,87 +4013,106 @@ public class Mage_Arcane
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Mage Buffs */
-            AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
-            AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
-            AddControlInWinForm("Use Frost Armor", "UseFrostArmor", "Mage Buffs");
-            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
-            AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
-            AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
+            /* Deathknight Presence & Buffs */
+            AddControlInWinForm("Use Frost Presence", "UseFrostPresence", "Deathknight Presence & Buffs");
+            AddControlInWinForm("Use Blood Presence", "UseBloodPresence", "Deathknight Presence & Buffs");
+            AddControlInWinForm("Use Horn of Winter", "UseHornofWinter", "Deathknight Presence & Buffs");
+            AddControlInWinForm("Use Path of Frost", "UsePathofFrost", "Deathknight Presence & Buffs");
+            AddControlInWinForm("Use Unholy Presence", "UseUnholyPresence", "Deathknight Presence & Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrage", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Missiles", "UseArcaneMissiles", "Offensive Spell");
-            AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spell");
-            AddControlInWinForm("Use Scorch", "UseScorch", "Offensive Spell");
+            AddControlInWinForm("Use Blood Boil", "UseBloodBoil", "Offensive Spell");
+            AddControlInWinForm("Use Dark Transformation", "UseDarkTransformation", "Offensive Spell");
+            AddControlInWinForm("Use Death Coil", "UseDeathCoil", "Offensive Spell");
+            AddControlInWinForm("Use Death and Decay", "UseDeathandDecay", "Offensive Spell");
+            AddControlInWinForm("Use Frost Strike", "UseFrostStrike", "Offensive Spell");
+            AddControlInWinForm("Use Howling Blast", "UseHowlingBlast", "Offensive Spell");
+            AddControlInWinForm("Use Icy Touch", "UseIcyTouch", "Offensive Spell");
+            AddControlInWinForm("Use Plague Strike", "UsePlagueStrike", "Offensive Spell");
+            AddControlInWinForm("Use Obliterate", "UseObliterate", "Offensive Spell");
+            AddControlInWinForm("Use Soul Reaper", "UseSoulReaper", "Offensive Spell");
+            AddControlInWinForm("Use Unholy Blight", "UseUnholyBlight", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Alter Time", "UseAlterTime", "Offensive Cooldown");
-            AddControlInWinForm("Use Arcane Power", "UseArcanePower", "Offensive Cooldown");
-            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
-            AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
-            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
+            AddControlInWinForm("Use Blood Tap", "UseBloodTap", "Offensive Cooldown");
+            AddControlInWinForm("Use Death Grip", "UseDeathGrip", "Offensive Cooldown");
+            AddControlInWinForm("Use Empower Rune Weapon", "UseEmpowerRuneWeapon", "Offensive Cooldown");
+            AddControlInWinForm("Use Outbreak", "UseOutbreak", "Offensive Cooldown");
+            AddControlInWinForm("Use Pestilence", "UsePestilence", "Offensive Cooldown");
+            AddControlInWinForm("Use Pillar of Frost", "UsePillarofFrost", "Offensive Cooldown");
+            AddControlInWinForm("Use Raise Dead", "UseRaiseDead", "Offensive Cooldown");
+            AddControlInWinForm("Use Summon Gargoyle", "UseSummonGargoyle", "Offensive Cooldown");
+            AddControlInWinForm("Use Unholy Frenzy", "UseUnholyFrenzy", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
-            AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown");
-            AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown");
-            AddControlInWinForm("Use Deep Freeze", "UseDeepFreeze", "Defensive Cooldown");
-            AddControlInWinForm("Use Frost Jaw", "UseFrostJaw", "Defensive Cooldown");
-            AddControlInWinForm("Use Frost Nova", "UseFrostNova", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown");
-            AddControlInWinForm("Use Incanter's Ward", "UseIncantersWard", "Defensive Cooldown");
-            AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown");
-            AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
-            AddControlInWinForm("Use Slow", "UseSlow", "Defensive Cooldown");
-            AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Anti-Magic Shell", "UseAntiMagicShell", "Defensive Cooldown");
+            AddControlInWinForm("Use Anti-Magic Zone", "UseAntiMagicZone", "Defensive Cooldown");
+            AddControlInWinForm("Use Army of the Dead", "UseArmyoftheDead", "Defensive Cooldown");
+            AddControlInWinForm("Use Asphyxiate", "UseAsphyxiate", "Defensive Cooldown");
+            AddControlInWinForm("Use Chains of Ice", "UseChainsofIce", "Defensive Cooldown");
+            AddControlInWinForm("Use Death's Advance", "UseDeathsAdvance", "Defensive Cooldown");
+            AddControlInWinForm("Use Icebound Fortitude", "UseIceboundFortitude", "Defensive Cooldown");
+            AddControlInWinForm("Use Mind Freeze", "UseMindFreeze", "Defensive Cooldown");
+            AddControlInWinForm("Use Remorseless Winter", "UseRemorseless Winter", "Defensive Cooldown");
+            AddControlInWinForm("Use Strangulate", "UseStrangulate", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell");
-            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
-            AddControlInWinForm("Use Evocation", "UseEvocation", "Healing Spell");
+            AddControlInWinForm("Use Conversion", "UseConversion", "Healing Spell");
+            AddControlInWinForm("Use Death Pact", "UseDeathPact", "Healing Spell");
+            AddControlInWinForm("Use Death Siphon", "UseDeathSiphon", "Healing Spell");
+            AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell");
+            AddControlInWinForm("Use Lichborne", "UseLichborne", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
-            AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
-            AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
+            AddControlInWinForm("Use Duel Wield", "UseDuelWield", "Game Settings");
+            AddControlInWinForm("Use Two Hander", "UseTwoHander", "Game Settings");
         }
 
-        public static MageArcaneSettings CurrentSetting { get; set; }
+        public static DeathknightFrostSettings CurrentSetting { get; set; }
 
-        public static MageArcaneSettings GetSettings()
+        public static DeathknightFrostSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Arcane.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Mage_Arcane.MageArcaneSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DeathknightFrostSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Mage_Arcane.MageArcaneSettings();
+                return new DeathknightFrostSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Mage
+
+public class Mage_Arcane
+{
     private readonly MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Steady_Focus_Timer = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -4259,8 +4134,8 @@ public class Mage_Arcane
     private readonly Spell Arcane_Explosion = new Spell("Arcane Explosion");
     private readonly Spell Arcane_Missiles = new Spell("Arcane Missiles");
     private readonly Spell Flamestrike = new Spell("Flamestrike");
-    private Timer Flamestrike_Timer = new Timer(0);
     private readonly Spell Scorch = new Spell("Scorch");
+    private Timer Flamestrike_Timer = new Timer(0);
 
     #endregion
 
@@ -4303,13 +4178,6 @@ public class Mage_Arcane
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer Steady_Focus_Timer = new Timer(0);
-    public int LC = 0;
 
     public Mage_Arcane()
     {
@@ -4808,80 +4676,73 @@ public class Mage_Arcane
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Mage_Frost
-{
+    #region Nested type: MageArcaneSettings
+
     [Serializable]
-    public class MageFrostSettings : nManager.Helpful.Settings
+    public class MageArcaneSettings : Settings
     {
         /* Professions & Racials */
+        /* Offensive Spell */
+        public bool UseAlchFlask = true;
+        public bool UseAlterTime = true;
+        public bool UseArcaneBarrage = true;
+        public bool UseArcaneBlast = true;
+        public bool UseArcaneBrilliance = true;
+        public bool UseArcaneExplosion = true;
+        public bool UseArcaneMissiles = true;
+        public bool UseArcanePower = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Mage Buffs */
-        public bool UseArcaneBrilliance = true;
         public bool UseBlazingSpeed = true;
-        public bool UseFrostArmor = true;
-        public bool UseIceFloes = true;
-        public bool UseMageArmor = false;
-        public bool UseMoltenArmor = false;
-        /* Offensive Spell */
-        public bool UseArcaneExplosion = true;
-        public bool UseBlizzard = true;
-        public bool UseFlamestrike = true;
-        public bool UseFreeze = true;
-        public bool UseFrostbolt = true;
-        public bool UseFrostfireBolt = true;
-        public bool UseIceLance = true;
-        public bool UseScorch = true;
-        public bool UseSummonWaterElemental = true;
-        /* Offensive Cooldown */
-        public bool UseAlterTime = true;
-        public bool UseFrozenOrb = true;
-        public bool UseIcyVeins = true;
-        public bool UseTierFive = true;
-        public bool UseMirrorImage = true;
-        public bool UsePresenceofMind = true;
-        public bool UseTimeWarp = true;
         /* Defensive Cooldown */
         public bool UseBlink = true;
+        public bool UseBloodFury = true;
         public bool UseColdSnap = true;
         public bool UseConeofCold = true;
+        public bool UseConjureManaGem = true;
+        public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
         public bool UseDeepFreeze = true;
+        public bool UseEngGlove = true;
+        public bool UseEvocation = true;
+        public bool UseEvocationGlyph = false;
+        public bool UseFlamestrike = true;
+        public bool UseFrostArmor = false;
         public bool UseFrostJaw = true;
         public bool UseFrostNova = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseIceBarrier = true;
         public bool UseIceBlock = true;
+        public bool UseIceFloes = true;
         public bool UseIceWard = true;
         public bool UseIncantersWard = true;
         public bool UseInvisibility = true;
-        public bool UseRingofFrost = true;
-        public bool UseTemporalShield = true;
-        /* Healing Spell */
-        public bool UseConjureManaGem = true;
-        public bool UseConjureRefreshment = true;
-        public bool UseEvocation = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
-        public bool UseEvocationGlyph = false;
         public bool UseInvocationTalent = false;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMageArmor = true;
+        public bool UseMirrorImage = true;
+        public bool UseMoltenArmor = false;
+        public bool UsePresenceofMind = true;
+        public bool UseRingofFrost = true;
         public bool UseRuneofPowerTalent = false;
+        public bool UseScorch = true;
+        public bool UseSlow = false;
+        public bool UseStoneform = true;
+        public bool UseTemporalShield = true;
+        public bool UseTierFive = true;
+        public bool UseTimeWarp = true;
+        /* Healing Spell */
+        public bool UseTrinket = true;
+        public bool UseWarStomp = true;
 
-        public MageFrostSettings()
+        public MageArcaneSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Mage Frost Settings");
+            ConfigWinForm(new Point(400, 400), "Mage Arcane Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -4898,22 +4759,18 @@ public class Mage_Frost
             AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
             AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
+            AddControlInWinForm("Use Arcane Barrage", "UseArcaneBarrage", "Offensive Spell");
+            AddControlInWinForm("Use Arcane Blast", "UseArcaneBlast", "Offensive Spell");
             AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
-            AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spell");
+            AddControlInWinForm("Use Arcane Missiles", "UseArcaneMissiles", "Offensive Spell");
             AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spell");
-            AddControlInWinForm("Use Pet Freeze Ability", "UseFreeze", "Offensive Spell");
-            AddControlInWinForm("Use Frostbolt", "UseFrostbolt", "Offensive Spell");
-            AddControlInWinForm("Use Frostfire Bolt", "UseFrostfireBolt", "Offensive Spell");
-            AddControlInWinForm("Use Ice Lance", "UseIceLance", "Offensive Spell");
             AddControlInWinForm("Use Scorch", "UseScorch", "Offensive Spell");
-            AddControlInWinForm("Use Summon Water Elemental", "UseSummonWaterElemental", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Alter Time", "UseAlterTime", "Offensive Cooldown");
-            AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldown");
-            AddControlInWinForm("Use Icy Veins", "UseIcyVeins", "Offensive Cooldown");
+            AddControlInWinForm("Use Arcane Power", "UseArcanePower", "Offensive Cooldown");
             AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
             AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Ability", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
@@ -4929,6 +4786,7 @@ public class Mage_Frost
             AddControlInWinForm("Use Incanter's Ward", "UseIncantersWard", "Defensive Cooldown");
             AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown");
             AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
+            AddControlInWinForm("Use Slow", "UseSlow", "Defensive Cooldown");
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell");
@@ -4944,36 +4802,48 @@ public class Mage_Frost
             AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
         }
 
-        public static MageFrostSettings CurrentSetting { get; set; }
+        public static MageArcaneSettings CurrentSetting { get; set; }
 
-        public static MageFrostSettings GetSettings()
+        public static MageArcaneSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Frost.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Arcane.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Mage_Frost.MageFrostSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<MageArcaneSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Mage_Frost.MageFrostSettings();
+                return new MageArcaneSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Mage_Frost
+{
     private readonly MageFrostSettings MySettings = MageFrostSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private Timer Freeze_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -4995,12 +4865,12 @@ public class Mage_Frost
     private readonly Spell Cone_of_Cold = new Spell("Cone of Cold");
     private readonly Spell Fire_Blast = new Spell("Fire Blast");
     private readonly Spell Flamestrike = new Spell("Flamestrike");
-    private Timer Flamestrike_Timer = new Timer(0);
     private readonly Spell Frostbolt = new Spell("Frostbolt");
     private readonly Spell Frostfire_Bolt = new Spell("Frostfire Bolt");
     private readonly Spell Ice_Lance = new Spell("Ice Lance");
     private readonly Spell Scorch = new Spell("Scorch");
     private readonly Spell Summon_Water_Elemental = new Spell("Summon Water Elemental");
+    private Timer Flamestrike_Timer = new Timer(0);
 
     #endregion
 
@@ -5041,13 +4911,6 @@ public class Mage_Frost
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer Freeze_Timer = new Timer(0);
-    public int LC = 0;
 
     public Mage_Frost()
     {
@@ -5600,78 +5463,75 @@ public class Mage_Frost
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Mage_Fire
-{
+    #region Nested type: MageFrostSettings
+
     [Serializable]
-    public class MageFireSettings : nManager.Helpful.Settings
+    public class MageFrostSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAlterTime = true;
+        public bool UseArcaneBrilliance = true;
+        public bool UseArcaneExplosion = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Mage Buffs */
-        public bool UseArcaneBrilliance = true;
         public bool UseBlazingSpeed = true;
-        public bool UseFrostArmor = true;
-        public bool UseIceFloes = false;
-        public bool UseMageArmor = true;
-        public bool UseMoltenArmor = false;
-        /* Offensive Spell */
-        public bool UseArcaneExplosion = true;
-        public bool UseDragonsBreath = true;
-        public bool UseFireball = true;
-        public bool UseFlamestrike = true;
-        public bool UseInfernoBlast = true;
-        public bool UsePyroblast = true;
-        public bool UseScorch = true;
-        /* Offensive Cooldown */
-        public bool UseAlterTime = true;
-        public bool UseCombustion = true;
-        public bool UseFrozenOrb = true;
-        public bool UseMirrorImage = true;
-        public bool UsePresenceofMind = true;
-        public bool UseTierFive = true;
-        public bool UseTimeWarp = true;
         /* Defensive Cooldown */
         public bool UseBlink = true;
+        public bool UseBlizzard = true;
+        public bool UseBloodFury = true;
         public bool UseColdSnap = true;
         public bool UseConeofCold = true;
-        public bool UseCounterspell = true;
-        public bool UseDeepFreeze = true;
-        public bool UseFrostJaw = true;
-        public bool UseFrostNova = true;
-        public bool UseIceBarrier = true;
-        public bool UseIceBlock = true;
-        public bool UseIceWard = true;
-        public bool UseIncantersWard = true;
-        public bool UseInvisibility = true;
-        public bool UseRingofFrost = true;
-        public bool UseTemporalShield = true;
-        /* Healing Spell */
         public bool UseConjureManaGem = true;
         public bool UseConjureRefreshment = true;
-        public bool UseEvocation = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseCounterspell = true;
+        public bool UseDeepFreeze = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEvocation = true;
         public bool UseEvocationGlyph = false;
+        public bool UseFlamestrike = true;
+        public bool UseFreeze = true;
+        public bool UseFrostArmor = true;
+        public bool UseFrostJaw = true;
+        public bool UseFrostNova = true;
+        public bool UseFrostbolt = true;
+        public bool UseFrostfireBolt = true;
+        public bool UseFrozenOrb = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseIceBarrier = true;
+        public bool UseIceBlock = true;
+        public bool UseIceFloes = true;
+        public bool UseIceLance = true;
+        public bool UseIceWard = true;
+        public bool UseIcyVeins = true;
+        public bool UseIncantersWard = true;
+        public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMageArmor = false;
+        public bool UseMirrorImage = true;
+        public bool UseMoltenArmor = false;
+        public bool UsePresenceofMind = true;
+        public bool UseRingofFrost = true;
         public bool UseRuneofPowerTalent = false;
+        public bool UseScorch = true;
+        public bool UseStoneform = true;
+        public bool UseSummonWaterElemental = true;
+        public bool UseTemporalShield = true;
+        public bool UseTierFive = true;
+        public bool UseTimeWarp = true;
+        /* Healing Spell */
+        public bool UseTrinket = true;
+        public bool UseWarStomp = true;
 
-        public MageFireSettings()
+        public MageFrostSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Mage Fire Settings");
+            ConfigWinForm(new Point(400, 400), "Mage Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -5689,28 +5549,30 @@ public class Mage_Fire
             AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
-            AddControlInWinForm("Use Dragon's Breath", "UseDragonsBreath", "Offensive Spell");
-            AddControlInWinForm("Use Fireball", "UseFireball", "Offensive Spell");
+            AddControlInWinForm("Use Blizzard", "UseBlizzard", "Offensive Spell");
             AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spell");
-            AddControlInWinForm("Use Inferno Blast", "UseInfernoBlast", "Offensive Spell");
-            AddControlInWinForm("Use Pyroblast", "UsePyroblast", "Offensive Spell");
+            AddControlInWinForm("Use Pet Freeze Ability", "UseFreeze", "Offensive Spell");
+            AddControlInWinForm("Use Frostbolt", "UseFrostbolt", "Offensive Spell");
+            AddControlInWinForm("Use Frostfire Bolt", "UseFrostfireBolt", "Offensive Spell");
+            AddControlInWinForm("Use Ice Lance", "UseIceLance", "Offensive Spell");
             AddControlInWinForm("Use Scorch", "UseScorch", "Offensive Spell");
+            AddControlInWinForm("Use Summon Water Elemental", "UseSummonWaterElemental", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Alter Time", "UseAlterTime", "Offensive Cooldown");
-            AddControlInWinForm("Use Combustion", "UseCombustion", "Offensive Cooldown");
             AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldown");
+            AddControlInWinForm("Use Icy Veins", "UseIcyVeins", "Offensive Cooldown");
             AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
             AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
-            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Tier Five Ability", "UseTierFive", "Offensive Cooldown");
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
             AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
             AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown");
             AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown");
-            AddControlInWinForm("Use DeepFreeze", "UseDeepFreeze", "Defensive Cooldown");
+            AddControlInWinForm("Use Deep Freeze", "UseDeepFreeze", "Defensive Cooldown");
             AddControlInWinForm("Use Frost Jaw", "UseFrostJaw", "Defensive Cooldown");
-            AddControlInWinForm("Use Fros Nova", "UseFrostNova", "Defensive Cooldown");
+            AddControlInWinForm("Use Frost Nova", "UseFrostNova", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown");
@@ -5732,36 +5594,47 @@ public class Mage_Fire
             AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
         }
 
-        public static MageFireSettings CurrentSetting { get; set; }
+        public static MageFrostSettings CurrentSetting { get; set; }
 
-        public static MageFireSettings GetSettings()
+        public static MageFrostSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Fire.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Frost.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Mage_Fire.MageFireSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<MageFrostSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Mage_Fire.MageFireSettings();
+                return new MageFrostSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Mage_Fire
+{
     private readonly MageFireSettings MySettings = MageFireSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -5780,13 +5653,13 @@ public class Mage_Fire
 
     private readonly Spell Arcane_Explosion = new Spell("Arcane Explosion");
     private readonly Spell DragonsBreath = new Spell("Dragon's Breath");
-    private readonly Spell Fireball = new Spell("Fireball");
     private readonly Spell Fire_Blast = new Spell("Fire Blast");
+    private readonly Spell Fireball = new Spell("Fireball");
     private readonly Spell Flamestrike = new Spell("Flamestrike");
-    private Timer Flamestrike_Timer = new Timer(0);
     private readonly Spell InfernoBlast = new Spell("Inferno Blast");
     private readonly Spell Pyroblast = new Spell("Pyroblast");
     private readonly Spell Scorch = new Spell("Scorch");
+    private Timer Flamestrike_Timer = new Timer(0);
 
     #endregion
 
@@ -5828,12 +5701,6 @@ public class Mage_Fire
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Mage_Fire()
     {
@@ -6349,85 +6216,73 @@ public class Mage_Fire
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: MageFireSettings
 
-#region Warlock
-
-public class Warlock_Demonology
-{
     [Serializable]
-    public class WarlockDemonologySettings : nManager.Helpful.Settings
+    public class MageFireSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAlterTime = true;
+        public bool UseArcaneBrilliance = true;
+        public bool UseArcaneExplosion = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Warlock Buffs */
-        public bool UseCurseofEnfeeblement = false;
-        public bool UseCurseoftheElements = true;
-        public bool UseDarkIntent = true;
-        public bool UseGrimoireofSacrifice = true;
-        public bool UseMetamorphosis = true;
-        public bool UseSoulLink = true;
-        public bool UseSoulstone = true;
-        /* Offensive Spell */
-        public bool UseCarrionSwarm = true;
-        public bool UseCommandDemon = true;
-        public bool UseCorruption = true;
-        public bool UseDoom = true;
-        public bool UseFelFlame = true;
-        public bool UseHandofGuldan = true;
-        public bool UseHarvestLife = true;
-        public bool UseHellfire = true;
-        public bool UseImmolationAura = true;
-        public bool UseShadowBolt = true;
-        public bool UseSoulFire = true;
-        public bool UseSummonImp = false;
-        public bool UseSummonVoidwalker = false;
-        public bool UseSummonFelhunter = false;
-        public bool UseSummonSuccubus = false;
-        public bool UseSummonFelguard = true;
-        public bool UseTouchofChaos = true;
-        public bool UseVoidRay = true;
-        /* Offensive Cooldown */
-        public bool UseArchimondesVengeance = true;
-        public bool UseDarkSoul = true;
-        public bool UseGrimoireofService = true;
-        public bool UseSummonDoomguard = true;
-        public bool UseSummonInfernal = false;
+        public bool UseBlazingSpeed = true;
         /* Defensive Cooldown */
-        public bool UseDarkBargain = true;
-        public bool UseHowlofTerror = true;
-        public bool UseSacrificialPact = true;
-        public bool UseShadowfury = true;
-        public bool UseTwilightWard = true;
-        public bool UseUnboundWill = true;
-        public bool UseUnendingResolve = true;
-        /* Healing Spell */
-        public bool UseCreateHealthstone = true;
-        public bool UseDarkRegeneration = true;
-        public bool UseDrainLife = true;
-        public bool UseHealthFunnel = true;
-        public bool UseLifeTap = true;
-        public bool UseMortalCoil = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseBlink = true;
+        public bool UseBloodFury = true;
+        public bool UseColdSnap = true;
+        public bool UseCombustion = true;
+        public bool UseConeofCold = true;
+        public bool UseConjureManaGem = true;
+        public bool UseConjureRefreshment = true;
+        public bool UseCounterspell = true;
+        public bool UseDeepFreeze = true;
+        public bool UseDragonsBreath = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEvocation = true;
+        public bool UseEvocationGlyph = false;
+        public bool UseFireball = true;
+        public bool UseFlamestrike = true;
+        public bool UseFrostArmor = true;
+        public bool UseFrostJaw = true;
+        public bool UseFrostNova = true;
+        public bool UseFrozenOrb = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseIceBarrier = true;
+        public bool UseIceBlock = true;
+        public bool UseIceFloes = false;
+        public bool UseIceWard = true;
+        public bool UseIncantersWard = true;
+        public bool UseInfernoBlast = true;
+        public bool UseInvisibility = true;
+        public bool UseInvocationTalent = false;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMageArmor = true;
+        public bool UseMirrorImage = true;
+        public bool UseMoltenArmor = false;
+        public bool UsePresenceofMind = true;
+        public bool UsePyroblast = true;
+        public bool UseRingofFrost = true;
+        public bool UseRuneofPowerTalent = false;
+        public bool UseScorch = true;
+        public bool UseStoneform = true;
+        public bool UseTemporalShield = true;
+        public bool UseTierFive = true;
+        public bool UseTimeWarp = true;
+        /* Healing Spell */
+        public bool UseTrinket = true;
+        public bool UseWarStomp = true;
 
-        public WarlockDemonologySettings()
+        public MageFireSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Warlock Demonology Settings");
+            ConfigWinForm(new Point(400, 400), "Mage Fire Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -6436,91 +6291,103 @@ public class Warlock_Demonology
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Warlock Buffs */
-            AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
-            AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
-            AddControlInWinForm("Use Dark Intent", "UseDarkIntent", "Warlock Buffs");
-            AddControlInWinForm("Use Grimoire of Sacrifice", "UseGrimoireofSacrifice", "Warlock Buffs");
-            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosis", "Warlock Buffs");
-            AddControlInWinForm("Use Soul Link ", "UseSoulLink ", "Warlock Buffs");
-            AddControlInWinForm("Use Soulstone", "UseSoulstone", "Warlock Buffs");
+            /* Mage Buffs */
+            AddControlInWinForm("Use Arcane Brilliance", "UseArcaneBrilliance", "Mage Buffs");
+            AddControlInWinForm("Use Blazing Speed", "UseBlazingSpeed", "Mage Buffs");
+            AddControlInWinForm("Use Frost Armor", "UseFrostArmor", "Mage Buffs");
+            AddControlInWinForm("Use Ice Floes", "UseIceFloes", "Mage Buffs");
+            AddControlInWinForm("Use Mage Armor", "UseMageArmor", "Mage Buffs");
+            AddControlInWinForm("Use Molten Armor", "UseMoltenArmor", "Mage Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Carrion Swarm", "UseCarrionSwarm", "Offensive Spell");
-            AddControlInWinForm("Use Command Demon", "UseCommandDemon", "Offensive Spell");
-            AddControlInWinForm("Use Corruption", "UseCorruption", "Offensive Spell");
-            AddControlInWinForm("Use Doom", "UseDoom", "Offensive Spell");
-            AddControlInWinForm("Use Fel Flame", "UseFelFlame", "Offensive Spell");
-            AddControlInWinForm("Use Hand of Guldan", "UseHandofGuldan", "Offensive Spell");
-            AddControlInWinForm("Use Harvest Life", "UseHarvestLife", "Offensive Spell");
-            AddControlInWinForm("Use Hellfire", "UseHellfire", "Offensive Spell");
-            AddControlInWinForm("Use Immolation Aura", "UseImmolationAura", "Offensive Spell");
-            AddControlInWinForm("Use Shadow Bolt", "UseShadowBolt", "Offensive Spell");
-            AddControlInWinForm("Use Soul Fire", "UseSoulFire", "Offensive Spell");
-            AddControlInWinForm("Use Summon Imp", "UseSummonImp", "Offensive Spell");
-            AddControlInWinForm("Use Summon Voidwalker", "UseSummonVoidwalker", "Offensive Spell");
-            AddControlInWinForm("Use Summon Felhunter", "UseSummonFelhunter", "Offensive Spell");
-            AddControlInWinForm("Use Summon Succubus", "UseSummonSuccubus", "Offensive Spell");
-            AddControlInWinForm("Use Summon Felguard", "UseSummonFelguard", "Offensive Spell");
-            AddControlInWinForm("Use Touch of Chaos", "UseTouchofChaos", "Offensive Spell");
-            AddControlInWinForm("Use Void Ray", "UseVoidRay", "Offensive Spell");
+            AddControlInWinForm("Use Arcane Explosion", "UseArcaneExplosion", "Offensive Spell");
+            AddControlInWinForm("Use Dragon's Breath", "UseDragonsBreath", "Offensive Spell");
+            AddControlInWinForm("Use Fireball", "UseFireball", "Offensive Spell");
+            AddControlInWinForm("Use Flamestrike", "UseFlamestrike", "Offensive Spell");
+            AddControlInWinForm("Use Inferno Blast", "UseInfernoBlast", "Offensive Spell");
+            AddControlInWinForm("Use Pyroblast", "UsePyroblast", "Offensive Spell");
+            AddControlInWinForm("Use Scorch", "UseScorch", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Archimonde's Vengeance", "UseArchimondesVengeance", "Offensive Cooldown");
-            AddControlInWinForm("Use Dark Soul", "UseDarkSoul", "Offensive Cooldown");
-            AddControlInWinForm("Use Grimoire of Service", "UseGrimoireofService", "Offensive Cooldown");
-            AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
-            AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
+            AddControlInWinForm("Use Alter Time", "UseAlterTime", "Offensive Cooldown");
+            AddControlInWinForm("Use Combustion", "UseCombustion", "Offensive Cooldown");
+            AddControlInWinForm("Use Frozen Orb", "UseFrozenOrb", "Offensive Cooldown");
+            AddControlInWinForm("Use Mirror Image", "UseMirrorImage", "Offensive Cooldown");
+            AddControlInWinForm("Use Presence of Mind", "UsePresenceofMind", "Offensive Cooldown");
+            AddControlInWinForm("Use Tier Five Talent", "UseTierFive", "Offensive Cooldown");
+            AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown");
-            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown");
-            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown");
-            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown");
-            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown");
-            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown");
+            AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
+            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
+            AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown");
+            AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown");
+            AddControlInWinForm("Use DeepFreeze", "UseDeepFreeze", "Defensive Cooldown");
+            AddControlInWinForm("Use Frost Jaw", "UseFrostJaw", "Defensive Cooldown");
+            AddControlInWinForm("Use Fros Nova", "UseFrostNova", "Defensive Cooldown");
+            AddControlInWinForm("Use Ice Barrier", "UseIceBarrier", "Defensive Cooldown");
+            AddControlInWinForm("Use Ice Block", "UseIceBlock", "Defensive Cooldown");
+            AddControlInWinForm("Use Ice Ward", "UseIceWard", "Defensive Cooldown");
+            AddControlInWinForm("Use Incanter's Ward", "UseIncantersWard", "Defensive Cooldown");
+            AddControlInWinForm("Use Invisibility", "UseInvisibility", "Defensive Cooldown");
+            AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
+            AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
-            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
-            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
-            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
-            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
+            AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell");
+            AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
+            AddControlInWinForm("Use Evocation", "UseEvocation", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
+            AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
+            AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
         }
 
-        public static WarlockDemonologySettings CurrentSetting { get; set; }
+        public static MageFireSettings CurrentSetting { get; set; }
 
-        public static WarlockDemonologySettings GetSettings()
+        public static MageFireSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Fire.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<MageFireSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warlock_Demonology.WarlockDemonologySettings();
+                return new MageFireSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Warlock
+
+public class Warlock_Demonology
+{
     private readonly WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -6541,9 +6408,7 @@ public class Warlock_Demonology
     private readonly Spell Carrion_Swarm = new Spell("Carrion Swarm");
     private readonly Spell Command_Demon = new Spell("Command Demon");
     private readonly Spell Corruption = new Spell("Corruption");
-    private Timer Corruption_Timer = new Timer(0);
     private readonly Spell Doom = new Spell("Doom");
-    private Timer Doom_Timer = new Timer(0);
     private readonly Spell Fel_Flame = new Spell("Fel Flame");
     private readonly Spell Hand_of_Guldan = new Spell("Hand of Gul'dan");
     private readonly Spell Harvest_Life = new Spell("Harvest Life");
@@ -6551,13 +6416,15 @@ public class Warlock_Demonology
     private readonly Spell Immolation_Aura = new Spell("Immolation Aura");
     private readonly Spell Shadow_Bolt = new Spell("Shadow Bolt");
     private readonly Spell Soul_Fire = new Spell("Soul Fire");
-    private readonly Spell Summon_Imp = new Spell("Summon Imp");
-    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
-    private readonly Spell Summon_Felhunter = new Spell("Summon Felhunter");
-    private readonly Spell Summon_Succubus = new Spell("Summon Succubus");
     private readonly Spell Summon_Felguard = new Spell("Summon Felguard");
+    private readonly Spell Summon_Felhunter = new Spell("Summon Felhunter");
+    private readonly Spell Summon_Imp = new Spell("Summon Imp");
+    private readonly Spell Summon_Succubus = new Spell("Summon Succubus");
+    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
     private readonly Spell Touch_of_Chaos = new Spell("Touch of Chaos");
     private readonly Spell Void_Ray = new Spell("Void Ray");
+    private Timer Corruption_Timer = new Timer(0);
+    private Timer Doom_Timer = new Timer(0);
 
     #endregion
 
@@ -6586,20 +6453,14 @@ public class Warlock_Demonology
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
-    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Health_Funnel = new Spell("Health Funnel");
     private readonly Spell Life_Tap = new Spell("Life Tap");
     private readonly Spell Mortal_Coil = new Spell("Mortal Coil");
+    private Timer Healthstone_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warlock_Demonology()
     {
@@ -7087,7 +6948,7 @@ public class Warlock_Demonology
                  && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
-            nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            ItemsManager.UseItem("Healthstone");
             Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
@@ -7197,77 +7058,76 @@ public class Warlock_Demonology
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Warlock_Destruction
-{
+    #region Nested type: WarlockDemonologySettings
+
     [Serializable]
-    public class WarlockDestructionSettings : nManager.Helpful.Settings
+    public class WarlockDemonologySettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Warlock Buffs */
+        /* Offensive Spell */
+        public bool UseCarrionSwarm = true;
+        public bool UseCommandDemon = true;
+        public bool UseCorruption = true;
+        public bool UseCreateHealthstone = true;
         public bool UseCurseofEnfeeblement = false;
         public bool UseCurseoftheElements = true;
+        public bool UseDarkBargain = true;
         public bool UseDarkIntent = true;
+        public bool UseDarkRegeneration = true;
+        public bool UseDarkSoul = true;
+        public bool UseDoom = true;
+        public bool UseDrainLife = true;
+        public bool UseEngGlove = true;
+        public bool UseFelFlame = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseGrimoireofSacrifice = true;
+        public bool UseGrimoireofService = true;
+        public bool UseHandofGuldan = true;
+        public bool UseHarvestLife = true;
+        public bool UseHealthFunnel = true;
+        public bool UseHellfire = true;
+        public bool UseHowlofTerror = true;
+        public bool UseImmolationAura = true;
+        public bool UseLifeTap = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMetamorphosis = true;
+        public bool UseMortalCoil = true;
+        public bool UseSacrificialPact = true;
+        public bool UseShadowBolt = true;
+        public bool UseShadowfury = true;
+        public bool UseSoulFire = true;
         public bool UseSoulLink = true;
         public bool UseSoulstone = true;
-        /* Offensive Spell */
-        public bool UseChaosBolt = true;
-        public bool UseCommandDemon = true;
-        public bool UseConflagrate = true;
-        public bool UseFelFlame = true;
-        public bool UseFireandBrimstone = true;
-        public bool UseHarvestLife = true;
-        public bool UseImmolate = true;
-        public bool UseIncinerate = true;
-        public bool UseRainofFire = true;
-        public bool UseShadowburn = true;
-        public bool UseSummonImp = false;
-        public bool UseSummonVoidwalker = false;
-        public bool UseSummonFelhunter = true;
-        public bool UseSummonSuccubus = false;
-        /* Offensive Cooldown */
-        public bool UseArchimondesVengeance = true;
-        public bool UseDarkSoul = true;
-        public bool UseGrimoireofService = true;
+        public bool UseStoneform = true;
         public bool UseSummonDoomguard = true;
+        public bool UseSummonFelguard = true;
+        public bool UseSummonFelhunter = false;
+        public bool UseSummonImp = false;
         public bool UseSummonInfernal = false;
-        /* Defensive Cooldown */
-        public bool UseDarkBargain = true;
-        public bool UseHowlofTerror = true;
-        public bool UseSacrificialPact = true;
-        public bool UseShadowfury = true;
+        public bool UseSummonSuccubus = false;
+        public bool UseSummonVoidwalker = false;
+        public bool UseTouchofChaos = true;
+        public bool UseTrinket = true;
         public bool UseTwilightWard = true;
         public bool UseUnboundWill = true;
         public bool UseUnendingResolve = true;
+        public bool UseVoidRay = true;
+        public bool UseWarStomp = true;
         /* Healing Spell */
-        public bool UseCreateHealthstone = true;
-        public bool UseDarkRegeneration = true;
-        public bool UseDrainLife = true;
-        public bool UseEmberTap = true;
-        public bool UseFlamesofXoroth = true;
-        public bool UseHealthFunnel = true;
-        public bool UseLifeTap = true;
-        public bool UseMortalCoil = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
 
-        public WarlockDestructionSettings()
+        public WarlockDemonologySettings()
         {
+            ConfigWinForm(new Point(400, 400), "Warlock Demonology Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -7281,23 +7141,28 @@ public class Warlock_Destruction
             AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
             AddControlInWinForm("Use Dark Intent", "UseDarkIntent", "Warlock Buffs");
             AddControlInWinForm("Use Grimoire of Sacrifice", "UseGrimoireofSacrifice", "Warlock Buffs");
+            AddControlInWinForm("Use Metamorphosis", "UseMetamorphosis", "Warlock Buffs");
             AddControlInWinForm("Use Soul Link ", "UseSoulLink ", "Warlock Buffs");
             AddControlInWinForm("Use Soulstone", "UseSoulstone", "Warlock Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Chaos Bolt", "UseChaosBolt", "Offensive Spell");
+            AddControlInWinForm("Use Carrion Swarm", "UseCarrionSwarm", "Offensive Spell");
             AddControlInWinForm("Use Command Demon", "UseCommandDemon", "Offensive Spell");
-            AddControlInWinForm("Use Conflagrate", "UseConflagrate", "Offensive Spell");
+            AddControlInWinForm("Use Corruption", "UseCorruption", "Offensive Spell");
+            AddControlInWinForm("Use Doom", "UseDoom", "Offensive Spell");
             AddControlInWinForm("Use Fel Flame", "UseFelFlame", "Offensive Spell");
-            AddControlInWinForm("Use Fire and Brimstone", "UseFireandBrimstone", "Offensive Spell");
+            AddControlInWinForm("Use Hand of Guldan", "UseHandofGuldan", "Offensive Spell");
             AddControlInWinForm("Use Harvest Life", "UseHarvestLife", "Offensive Spell");
-            AddControlInWinForm("Use Immolate", "UseImmolate", "Offensive Spell");
-            AddControlInWinForm("Use Incinerate", "UseIncinerate", "Offensive Spell");
-            AddControlInWinForm("Use Rain of Fire", "UseRainofFire", "Offensive Spell");
-            AddControlInWinForm("Use Shadowburn", "UseShadowburn", "Offensive Spell");
+            AddControlInWinForm("Use Hellfire", "UseHellfire", "Offensive Spell");
+            AddControlInWinForm("Use Immolation Aura", "UseImmolationAura", "Offensive Spell");
+            AddControlInWinForm("Use Shadow Bolt", "UseShadowBolt", "Offensive Spell");
+            AddControlInWinForm("Use Soul Fire", "UseSoulFire", "Offensive Spell");
             AddControlInWinForm("Use Summon Imp", "UseSummonImp", "Offensive Spell");
             AddControlInWinForm("Use Summon Voidwalker", "UseSummonVoidwalker", "Offensive Spell");
             AddControlInWinForm("Use Summon Felhunter", "UseSummonFelhunter", "Offensive Spell");
             AddControlInWinForm("Use Summon Succubus", "UseSummonSuccubus", "Offensive Spell");
+            AddControlInWinForm("Use Summon Felguard", "UseSummonFelguard", "Offensive Spell");
+            AddControlInWinForm("Use Touch of Chaos", "UseTouchofChaos", "Offensive Spell");
+            AddControlInWinForm("Use Void Ray", "UseVoidRay", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Archimonde's Vengeance", "UseArchimondesVengeance", "Offensive Cooldown");
             AddControlInWinForm("Use Dark Soul", "UseDarkSoul", "Offensive Cooldown");
@@ -7316,8 +7181,6 @@ public class Warlock_Destruction
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
             AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
             AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
-            AddControlInWinForm("Use Ember Tap", "UseEmberTap", "Healing Spell");
-            AddControlInWinForm("Use Flames of Xoroth", "UseFlamesofXoroth", "Healing Spell");
             AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
             AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
             AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
@@ -7328,36 +7191,47 @@ public class Warlock_Destruction
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static WarlockDestructionSettings CurrentSetting { get; set; }
+        public static WarlockDemonologySettings CurrentSetting { get; set; }
 
-        public static WarlockDestructionSettings GetSettings()
+        public static WarlockDemonologySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warlock_Destruction.WarlockDestructionSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarlockDemonologySettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warlock_Destruction.WarlockDestructionSettings();
+                return new WarlockDemonologySettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Warlock_Destruction
+{
     private readonly WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -7382,15 +7256,15 @@ public class Warlock_Destruction
     private readonly Spell Fire_and_Brimstone = new Spell("Fire and Brimstone");
     private readonly Spell Harvest_Life = new Spell("Harvest Life");
     private readonly Spell Immolate = new Spell("Immolate");
-    private Timer Immolate_Timer = new Timer(0);
     private readonly Spell Incinerate = new Spell("Incinerate");
     private readonly Spell Rain_of_Fire = new Spell("Rain of Fire");
     private readonly Spell Shadow_Bolt = new Spell("Shadow Bolt");
     private readonly Spell Shadowburn = new Spell("Shadowburn");
-    private readonly Spell Summon_Imp = new Spell("Summon Imp");
-    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
     private readonly Spell Summon_Felhunter = new Spell("Summon Felhunter");
+    private readonly Spell Summon_Imp = new Spell("Summon Imp");
     private readonly Spell Summon_Succubus = new Spell("Summon Succubus");
+    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
+    private Timer Immolate_Timer = new Timer(0);
 
     #endregion
 
@@ -7419,7 +7293,6 @@ public class Warlock_Destruction
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
-    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Ember_Tap = new Spell("Ember Tap");
@@ -7427,14 +7300,9 @@ public class Warlock_Destruction
     private readonly Spell Health_Funnel = new Spell("Health Funnel");
     private readonly Spell Life_Tap = new Spell("Life Tap");
     private readonly Spell Mortal_Coil = new Spell("Mortal Coil");
+    private Timer Healthstone_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warlock_Destruction()
     {
@@ -7855,7 +7723,7 @@ public class Warlock_Destruction
                  && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
-            nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            ItemsManager.UseItem("Healthstone");
             Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
@@ -7965,81 +7833,73 @@ public class Warlock_Destruction
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Warlock_Affliction
-{
+    #region Nested type: WarlockDestructionSettings
+
     [Serializable]
-    public class WarlockAfflictionSettings : nManager.Helpful.Settings
+    public class WarlockDestructionSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Warlock Buffs */
+        /* Offensive Spell */
+        public bool UseChaosBolt = true;
+        public bool UseCommandDemon = true;
+        public bool UseConflagrate = true;
+        public bool UseCreateHealthstone = true;
         public bool UseCurseofEnfeeblement = false;
-        public bool UseCurseofExhaustion = false;
         public bool UseCurseoftheElements = true;
+        public bool UseDarkBargain = true;
         public bool UseDarkIntent = true;
+        public bool UseDarkRegeneration = true;
+        public bool UseDarkSoul = true;
+        public bool UseDrainLife = true;
+        public bool UseEmberTap = true;
+        public bool UseEngGlove = true;
+        public bool UseFelFlame = true;
+        public bool UseFireandBrimstone = true;
+        public bool UseFlamesofXoroth = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseGrimoireofSacrifice = true;
+        public bool UseGrimoireofService = true;
+        public bool UseHarvestLife = true;
+        public bool UseHealthFunnel = true;
+        public bool UseHowlofTerror = true;
+        public bool UseImmolate = true;
+        public bool UseIncinerate = true;
+        public bool UseLifeTap = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMortalCoil = true;
+        public bool UseRainofFire = true;
+        public bool UseSacrificialPact = true;
+        public bool UseShadowburn = true;
+        public bool UseShadowfury = true;
         public bool UseSoulLink = true;
         public bool UseSoulstone = true;
-        /* Offensive Spell */
-        public bool UseAgony = true;
-        public bool UseCommandDemon = true;
-        public bool UseCorruption = true;
-        public bool UseDrainSoul = true;
-        public bool UseFelFlame = true;
-        public bool UseHarvestLife = true;
-        public bool UseHaunt = true;
-        public bool UseMaleficGrasp = true;
-        public bool UseRainofFire = true;
-        public bool UseSeedofCorruption = true;
-        public bool UseShadowBolt = true;
-        public bool UseSoulSwap = true;
-        public bool UseSoulburn = true;
-        public bool UseSummonImp = false;
-        public bool UseSummonVoidwalker = false;
-        public bool UseSummonFelhunter = true;
-        public bool UseSummonSuccubus = false;
-        public bool UseUnstableAffliction = true;
-        /* Offensive Cooldown */
-        public bool UseArchimondesVengeance = true;
-        public bool UseDarkSoul = true;
-        public bool UseGrimoireofService = true;
+        public bool UseStoneform = true;
         public bool UseSummonDoomguard = true;
+        public bool UseSummonFelhunter = true;
+        public bool UseSummonImp = false;
         public bool UseSummonInfernal = false;
+        public bool UseSummonSuccubus = false;
+        public bool UseSummonVoidwalker = false;
+        public bool UseTrinket = true;
         /* Defensive Cooldown */
-        public bool UseDarkBargain = true;
-        public bool UseHowlofTerror = true;
-        public bool UseSacrificialPact = true;
-        public bool UseShadowfury = true;
         public bool UseTwilightWard = true;
         public bool UseUnboundWill = true;
         public bool UseUnendingResolve = true;
+        public bool UseWarStomp = true;
         /* Healing Spell */
-        public bool UseCreateHealthstone = true;
-        public bool UseDarkRegeneration = true;
-        public bool UseDrainLife = true;
-        public bool UseHealthFunnel = true;
-        public bool UseLifeTap = true;
-        public bool UseMortalCoil = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
 
-        public WarlockAfflictionSettings()
+        public WarlockDestructionSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Warlock Affliction Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -8050,31 +7910,26 @@ public class Warlock_Affliction
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Warlock Buffs */
             AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
-            AddControlInWinForm("Use Curse of Exhaustion", "UseCurseofExhaustion", "Warlock Buffs");
             AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
             AddControlInWinForm("Use Dark Intent", "UseDarkIntent", "Warlock Buffs");
             AddControlInWinForm("Use Grimoire of Sacrifice", "UseGrimoireofSacrifice", "Warlock Buffs");
             AddControlInWinForm("Use Soul Link ", "UseSoulLink ", "Warlock Buffs");
             AddControlInWinForm("Use Soulstone", "UseSoulstone", "Warlock Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Agony", "UseAgony", "Offensive Spell");
+            AddControlInWinForm("Use Chaos Bolt", "UseChaosBolt", "Offensive Spell");
             AddControlInWinForm("Use Command Demon", "UseCommandDemon", "Offensive Spell");
-            AddControlInWinForm("Use Corruption", "UseCorruption", "Offensive Spell");
-            AddControlInWinForm("Use Drain Soul", "UseDrainSoul", "Offensive Spell");
+            AddControlInWinForm("Use Conflagrate", "UseConflagrate", "Offensive Spell");
             AddControlInWinForm("Use Fel Flame", "UseFelFlame", "Offensive Spell");
+            AddControlInWinForm("Use Fire and Brimstone", "UseFireandBrimstone", "Offensive Spell");
             AddControlInWinForm("Use Harvest Life", "UseHarvestLife", "Offensive Spell");
-            AddControlInWinForm("Use Haunt", "UseHaunt", "Offensive Spell");
-            AddControlInWinForm("Use Malefic Grasp", "UseMaleficGrasp", "Offensive Spell");
+            AddControlInWinForm("Use Immolate", "UseImmolate", "Offensive Spell");
+            AddControlInWinForm("Use Incinerate", "UseIncinerate", "Offensive Spell");
             AddControlInWinForm("Use Rain of Fire", "UseRainofFire", "Offensive Spell");
-            AddControlInWinForm("Use Seed of Corruption", "UseSeedofCorruption", "Offensive Spell");
-            AddControlInWinForm("Use Shadow Bolt", "UseShadowBolt", "Offensive Spell");
-            AddControlInWinForm("Use Soul Swap", "UseSoulSwap", "Offensive Spell");
-            AddControlInWinForm("Use Soulburn", "UseSoulburn", "Offensive Spell");
+            AddControlInWinForm("Use Shadowburn", "UseShadowburn", "Offensive Spell");
             AddControlInWinForm("Use Summon Imp", "UseSummonImp", "Offensive Spell");
             AddControlInWinForm("Use Summon Voidwalker", "UseSummonVoidwalker", "Offensive Spell");
             AddControlInWinForm("Use Summon Felhunter", "UseSummonFelhunter", "Offensive Spell");
             AddControlInWinForm("Use Summon Succubus", "UseSummonSuccubus", "Offensive Spell");
-            AddControlInWinForm("Use Unstable Affliction", "UseUnstableAffliction", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Archimonde's Vengeance", "UseArchimondesVengeance", "Offensive Cooldown");
             AddControlInWinForm("Use Dark Soul", "UseDarkSoul", "Offensive Cooldown");
@@ -8093,6 +7948,8 @@ public class Warlock_Affliction
             AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
             AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
             AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
+            AddControlInWinForm("Use Ember Tap", "UseEmberTap", "Healing Spell");
+            AddControlInWinForm("Use Flames of Xoroth", "UseFlamesofXoroth", "Healing Spell");
             AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
             AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
             AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
@@ -8103,36 +7960,47 @@ public class Warlock_Affliction
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static WarlockAfflictionSettings CurrentSetting { get; set; }
+        public static WarlockDestructionSettings CurrentSetting { get; set; }
 
-        public static WarlockAfflictionSettings GetSettings()
+        public static WarlockDestructionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warlock_Affliction.WarlockAfflictionSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarlockDestructionSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warlock_Affliction.WarlockAfflictionSettings();
+                return new WarlockDestructionSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Warlock_Affliction
+{
     private readonly WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -8151,10 +8019,8 @@ public class Warlock_Affliction
     #region Offensive Spell
 
     private readonly Spell Agony = new Spell("Agony");
-    private Timer Agony_Timer = new Timer(0);
     private readonly Spell Command_Demon = new Spell("Command Demon");
     private readonly Spell Corruption = new Spell("Corruption");
-    private Timer Corruption_Timer = new Timer(0);
     private readonly Spell Drain_Soul = new Spell("Drain Soul");
     private readonly Spell Fel_Flame = new Spell("Fel Flame");
     private readonly Spell Harvest_Life = new Spell("Harvest Life");
@@ -8165,12 +8031,14 @@ public class Warlock_Affliction
     private readonly Spell Shadow_Bolt = new Spell("Shadow Bolt");
     private readonly Spell Soul_Swap = new Spell("Soul Swap");
     private readonly Spell Soulburn = new Spell("Soulburn");
-    private readonly Spell Summon_Imp = new Spell("Summon Imp");
-    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
-    private readonly Spell Summon_Felhunter = new Spell("Summon Felhunter");
-    private readonly Spell Summon_Succubus = new Spell("Summon Succubus");
     private readonly Spell Summon_Felguard = new Spell("Summon Felguard");
+    private readonly Spell Summon_Felhunter = new Spell("Summon Felhunter");
+    private readonly Spell Summon_Imp = new Spell("Summon Imp");
+    private readonly Spell Summon_Succubus = new Spell("Summon Succubus");
+    private readonly Spell Summon_Voidwalker = new Spell("Summon Voidwalker");
     private readonly Spell Unstable_Affliction = new Spell("Unstable Affliction");
+    private Timer Agony_Timer = new Timer(0);
+    private Timer Corruption_Timer = new Timer(0);
     private Timer Unstable_Affliction_Timer = new Timer(0);
 
     #endregion
@@ -8200,20 +8068,14 @@ public class Warlock_Affliction
     #region Healing Spell
 
     private readonly Spell Create_Healthstone = new Spell("Create Healthstone");
-    private Timer Healthstone_Timer = new Timer(0);
     private readonly Spell Dark_Regeneration = new Spell("Dark Regeneration");
     private readonly Spell Drain_Life = new Spell("Drain Life");
     private readonly Spell Health_Funnel = new Spell("Health Funnel");
     private readonly Spell Life_Tap = new Spell("Life Tap");
     private readonly Spell Mortal_Coil = new Spell("Mortal Coil");
+    private Timer Healthstone_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warlock_Affliction()
     {
@@ -8683,7 +8545,7 @@ public class Warlock_Affliction
                  && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
-            nManager.Wow.Helpers.ItemsManager.UseItem("Healthstone");
+            ItemsManager.UseItem("Healthstone");
             Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
@@ -8793,79 +8655,77 @@ public class Warlock_Affliction
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: WarlockAfflictionSettings
 
-#region Druid
-
-public class Druid_Balance
-{
     [Serializable]
-    public class DruidBalanceSettings : nManager.Helpful.Settings
+    public class WarlockAfflictionSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAgony = true;
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Druid Buffs */
-        public bool UseDash = true;
-        public bool UseFaerieFire = true;
-        public bool UseMarkoftheWild = true;
-        public bool UseMoonkinForm = true;
-        public bool UseStampedingRoar = true;
-        /* Offensive Spell */
-        public bool UseHurricane = true;
-        public bool UseMoonfire = true;
-        public bool UseStarfall = true;
-        public bool UseStarfire = true;
-        public bool UseStarsurge = true;
-        public bool UseSunfire = true;
-        public bool UseWildMushroom = true;
-        public bool UseWrath = true;
-        /* Offensive Cooldown */
-        public bool UseAstralCommunion = true;
-        public bool UseCelestialAlignment = true;
-        public bool UseForceofNature = true;
-        public bool UseHeartoftheWild = true;
-        public bool UseIncarnation = true;
-        public bool UseNaturesVigil = true;
-        /* Defensive Cooldown */
-        public bool UseBarkskin = true;
-        public bool UseDisorientingRoar = true;
-        public bool UseEntanglingRoots = true;
-        public bool UseMassEntanglement = true;
-        public bool UseMightyBash = true;
-        public bool UseNaturesGrasp = true;
-        public bool UseSolarBeam = true;
-        public bool UseTyphoon = true;
-        public bool UseUrsolsVortex = true;
-        public bool UseWildCharge = true;
-        /* Healing Spell */
-        public bool UseCenarionWard = true;
-        public bool UseHealingTouch = true;
-        public bool UseInnervate = true;
-        public bool UseMightofUrsoc = true;
-        public bool UseNaturesSwiftness = true;
-        public bool UseRejuvenation = true;
-        public bool UseRenewal = true;
-        public bool UseTranquility = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseCommandDemon = true;
+        public bool UseCorruption = true;
+        public bool UseCreateHealthstone = true;
+        /* Warlock Buffs */
+        public bool UseCurseofEnfeeblement = false;
+        public bool UseCurseofExhaustion = false;
+        public bool UseCurseoftheElements = true;
+        public bool UseDarkBargain = true;
+        public bool UseDarkIntent = true;
+        public bool UseDarkRegeneration = true;
+        public bool UseDarkSoul = true;
+        public bool UseDrainLife = true;
+        public bool UseDrainSoul = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseFelFlame = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGrimoireofSacrifice = true;
+        public bool UseGrimoireofService = true;
+        public bool UseHarvestLife = true;
+        public bool UseHaunt = true;
+        public bool UseHealthFunnel = true;
+        public bool UseHowlofTerror = true;
+        public bool UseLifeTap = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMaleficGrasp = true;
+        public bool UseMortalCoil = true;
+        public bool UseRainofFire = true;
+        public bool UseSacrificialPact = true;
+        public bool UseSeedofCorruption = true;
+        public bool UseShadowBolt = true;
+        public bool UseShadowfury = true;
+        public bool UseSoulLink = true;
+        public bool UseSoulSwap = true;
+        public bool UseSoulburn = true;
+        public bool UseSoulstone = true;
+        public bool UseStoneform = true;
+        public bool UseSummonDoomguard = true;
+        public bool UseSummonFelhunter = true;
+        public bool UseSummonImp = false;
+        public bool UseSummonInfernal = false;
+        public bool UseSummonSuccubus = false;
+        public bool UseSummonVoidwalker = false;
+        public bool UseTrinket = true;
+        /* Defensive Cooldown */
+        public bool UseTwilightWard = true;
+        public bool UseUnboundWill = true;
+        public bool UseUnendingResolve = true;
+        public bool UseUnstableAffliction = true;
+        public bool UseWarStomp = true;
+        /* Healing Spell */
 
-        public DruidBalanceSettings()
+        public WarlockAfflictionSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Druid Balance Settings");
+            ConfigWinForm(new Point(400, 400), "Warlock Affliction Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -8874,48 +8734,54 @@ public class Druid_Balance
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Druid Buffs */
-            AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
-            AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
-            AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
-            AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
-            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
+            /* Warlock Buffs */
+            AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
+            AddControlInWinForm("Use Curse of Exhaustion", "UseCurseofExhaustion", "Warlock Buffs");
+            AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
+            AddControlInWinForm("Use Dark Intent", "UseDarkIntent", "Warlock Buffs");
+            AddControlInWinForm("Use Grimoire of Sacrifice", "UseGrimoireofSacrifice", "Warlock Buffs");
+            AddControlInWinForm("Use Soul Link ", "UseSoulLink ", "Warlock Buffs");
+            AddControlInWinForm("Use Soulstone", "UseSoulstone", "Warlock Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Hurricane", "UseHurricane", "Offensive Spell");
-            AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spell");
-            AddControlInWinForm("Use Starfall", "UseStarfall", "Offensive Spell");
-            AddControlInWinForm("Use Starfire", "UseStarfire", "Offensive Spell");
-            AddControlInWinForm("Use Starsurge", "UseStarsurge", "Offensive Spell");
-            AddControlInWinForm("Use Sunfire", "UseSunfire", "Offensive Spell");
-            AddControlInWinForm("Use WildMushroom", "UseWildMushroom", "Offensive Spell");
-            AddControlInWinForm("Use Wrath", "UseWrath", "Offensive Spell");
+            AddControlInWinForm("Use Agony", "UseAgony", "Offensive Spell");
+            AddControlInWinForm("Use Command Demon", "UseCommandDemon", "Offensive Spell");
+            AddControlInWinForm("Use Corruption", "UseCorruption", "Offensive Spell");
+            AddControlInWinForm("Use Drain Soul", "UseDrainSoul", "Offensive Spell");
+            AddControlInWinForm("Use Fel Flame", "UseFelFlame", "Offensive Spell");
+            AddControlInWinForm("Use Harvest Life", "UseHarvestLife", "Offensive Spell");
+            AddControlInWinForm("Use Haunt", "UseHaunt", "Offensive Spell");
+            AddControlInWinForm("Use Malefic Grasp", "UseMaleficGrasp", "Offensive Spell");
+            AddControlInWinForm("Use Rain of Fire", "UseRainofFire", "Offensive Spell");
+            AddControlInWinForm("Use Seed of Corruption", "UseSeedofCorruption", "Offensive Spell");
+            AddControlInWinForm("Use Shadow Bolt", "UseShadowBolt", "Offensive Spell");
+            AddControlInWinForm("Use Soul Swap", "UseSoulSwap", "Offensive Spell");
+            AddControlInWinForm("Use Soulburn", "UseSoulburn", "Offensive Spell");
+            AddControlInWinForm("Use Summon Imp", "UseSummonImp", "Offensive Spell");
+            AddControlInWinForm("Use Summon Voidwalker", "UseSummonVoidwalker", "Offensive Spell");
+            AddControlInWinForm("Use Summon Felhunter", "UseSummonFelhunter", "Offensive Spell");
+            AddControlInWinForm("Use Summon Succubus", "UseSummonSuccubus", "Offensive Spell");
+            AddControlInWinForm("Use Unstable Affliction", "UseUnstableAffliction", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Cooldown");
-            AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Cooldown");
-            AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldown");
-            AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Offensive Cooldown");
-            AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldown");
-            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldown");
+            AddControlInWinForm("Use Archimonde's Vengeance", "UseArchimondesVengeance", "Offensive Cooldown");
+            AddControlInWinForm("Use Dark Soul", "UseDarkSoul", "Offensive Cooldown");
+            AddControlInWinForm("Use Grimoire of Service", "UseGrimoireofService", "Offensive Cooldown");
+            AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
+            AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldown");
-            AddControlInWinForm("Use Disorienting Roar", "UseDisorientingRoar", "Defensive Cooldown");
-            AddControlInWinForm("Use Entangling Roots", "UseEntanglingRoots", "Defensive Cooldown");
-            AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldown");
-            AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldown");
-            AddControlInWinForm("Use Nature's Grasp", "UseNaturesGrasp", "Defensive Cooldown");
-            AddControlInWinForm("Use Solar Beam", "UseSolarBeam", "Defensive Cooldown");
-            AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldown");
-            AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldown");
-            AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldown");
+            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown");
+            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown");
+            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown");
+            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown");
+            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown");
+            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown");
+            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spell");
-            AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spell");
-            AddControlInWinForm("Use Innervate", "UseInnervate", "Healing Spell");
-            AddControlInWinForm("Use Might of Ursoc", "UseMightofUrsoc", "Healing Spell");
-            AddControlInWinForm("Use Nature's Swiftness", "UseNaturesSwiftness", "Healing Spell");
-            AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spell");
-            AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
-            AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
+            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
+            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
+            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
+            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
+            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
+            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -8923,36 +8789,51 @@ public class Druid_Balance
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static DruidBalanceSettings CurrentSetting { get; set; }
+        public static WarlockAfflictionSettings CurrentSetting { get; set; }
 
-        public static DruidBalanceSettings GetSettings()
+        public static WarlockAfflictionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Balance.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Druid_Balance.DruidBalanceSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarlockAfflictionSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Druid_Balance.DruidBalanceSettings();
+                return new WarlockAfflictionSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Druid
+
+public class Druid_Balance
+{
     private readonly DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private int LC;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -8970,16 +8851,16 @@ public class Druid_Balance
 
     private readonly Spell Hurricane = new Spell("Hurricane");
     private readonly Spell Moonfire = new Spell("Moonfire");
-    private Timer Moonfire_Timer = new Timer(0);
     private readonly Spell Starfall = new Spell("Starfall");
     private readonly Spell Starfire = new Spell("Starfire");
-    private bool StarfireUse = false;
     private readonly Spell Starsurge = new Spell("Starsurge");
     private readonly Spell Sunfire = new Spell("Sunfire");
-    private Timer Sunfire_Timer = new Timer(0);
     private readonly Spell Wild_Mushroom = new Spell("Wild Mushroom");
     private readonly Spell Wild_Mushroom_Detonate = new Spell("Wild Mushroom: Detonate");
     private readonly Spell Wrath = new Spell("Wrath");
+    private Timer Moonfire_Timer = new Timer(0);
+    private bool StarfireUse;
+    private Timer Sunfire_Timer = new Timer(0);
 
     #endregion
 
@@ -9013,21 +8894,15 @@ public class Druid_Balance
 
     private readonly Spell Cenarion_Ward = new Spell("Cenarion Ward");
     private readonly Spell Healing_Touch = new Spell("Healing Touch");
-    private Timer Healing_Touch_Timer = new Timer(0);
     private readonly Spell Innervate = new Spell("Innervate");
     private readonly Spell Might_of_Ursoc = new Spell("Might of Ursoc");
     private readonly Spell Natures_Swiftness = new Spell("Nature's Swiftness");
     private readonly Spell Rejuvenation = new Spell("Rejuvenation");
     private readonly Spell Renewal = new Spell("Renewal");
     private readonly Spell Tranquility = new Spell("Tranquility");
+    private Timer Healing_Touch_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private int LC = 0;
 
     public Druid_Balance()
     {
@@ -9606,81 +9481,70 @@ public class Druid_Balance
     {
         if (ObjectManager.Target.GetDistance < 1)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, "{DOWN}");
         }
     }
-}
 
-public class Druid_Feral
-{
+    #region Nested type: DruidBalanceSettings
+
     [Serializable]
-    public class DruidFeralSettings : nManager.Helpful.Settings
+    public class DruidBalanceSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseAstralCommunion = true;
+        public bool UseBarkskin = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Druid Buffs */
-        public bool UseCatForm = true;
-        public bool UseDash = true;
-        public bool UseDisplacerBeast = false;
-        public bool UseFaerieFire = true;
-        public bool UseMarkoftheWild = true;
-        public bool UseProwl = false;
-        public bool UseSavageRoar = true;
-        public bool UseStampedingRoar = true;
-        /* Offensive Spell */
-        public bool UseFerociousBite = true;
-        public bool UseMaim = true;
-        public bool UseMangle = true;
-        public bool UsePounce = true;
-        public bool UseRake = true;
-        public bool UseRavage = true;
-        public bool UseRip = true;
-        public bool UseShred = true;
-        public bool UseSwipe = true;
-        public bool UseThrash = true;
-        /* Offensive Cooldown */
-        public bool UseBerserk = true;
-        public bool UseForceofNature = true;
-        public bool UseHeartoftheWild = true;
-        public bool UseIncarnation = true;
-        public bool UseNaturesVigil = true;
-        public bool UseTigersFury = true;
-        /* Defensive Cooldown */
-        public bool UseBarkskin = true;
-        public bool UseDisorientingRoar = true;
-        public bool UseMassEntanglement = true;
-        public bool UseMightyBash = true;
-        public bool UseNaturesGrasp = true;
-        public bool UseSkullBash = true;
-        public bool UseSurvivalInstincts = true;
-        public bool UseTyphoon = true;
-        public bool UseUrsolsVortex = true;
-        public bool UseWildCharge = true;
-        /* Healing Spell */
+        public bool UseCelestialAlignment = true;
         public bool UseCenarionWard = true;
+        /* Druid Buffs */
+        public bool UseDash = true;
+        public bool UseDisorientingRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEntanglingRoots = true;
+        public bool UseFaerieFire = true;
+        public bool UseForceofNature = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseHealingTouch = true;
+        public bool UseHeartoftheWild = true;
+        public bool UseHurricane = true;
+        public bool UseIncarnation = true;
         public bool UseInnervate = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMarkoftheWild = true;
+        public bool UseMassEntanglement = true;
         public bool UseMightofUrsoc = true;
+        public bool UseMightyBash = true;
+        public bool UseMoonfire = true;
+        public bool UseMoonkinForm = true;
+        public bool UseNaturesGrasp = true;
         public bool UseNaturesSwiftness = true;
+        public bool UseNaturesVigil = true;
         public bool UseRejuvenation = true;
         public bool UseRenewal = true;
+        public bool UseSolarBeam = true;
+        public bool UseStampedingRoar = true;
+        public bool UseStarfall = true;
+        public bool UseStarfire = true;
+        public bool UseStarsurge = true;
+        public bool UseStoneform = true;
+        public bool UseSunfire = true;
         public bool UseTranquility = true;
         /* Game Settings */
-        public bool UseGlyphofShred = false;
-        public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseTyphoon = true;
+        public bool UseUrsolsVortex = true;
+        public bool UseWarStomp = true;
+        public bool UseWildCharge = true;
+        public bool UseWildMushroom = true;
+        public bool UseWrath = true;
 
-        public DruidFeralSettings()
+        public DruidBalanceSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Druid Feral Settings");
+            ConfigWinForm(new Point(400, 400), "Druid Balance Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -9690,40 +9554,35 @@ public class Druid_Feral
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
-            AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
             AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
-            AddControlInWinForm("Use Displacer Beast", "UseDisplacerBeast", "Druid Buffs");
             AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
             AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
-            AddControlInWinForm("Use Prowl", "UseProwl", "Druid Buffs");
-            AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
+            AddControlInWinForm("Use Moonkin Form", "UseMoonkinForm", "Druid Buffs");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Ferocious Bite", "UseFerociousBite", "Offensive Spell");
-            AddControlInWinForm("Use Maim ", "UseMaim ", "Offensive Spell");
-            AddControlInWinForm("Use Mangle", "UseMangle", "Offensive Spell");
-            AddControlInWinForm("Use Pounce", "UsePounce", "Offensive Spell");
-            AddControlInWinForm("Use Rake", "UseRake", "Offensive Spell");
-            AddControlInWinForm("Use Ravage", "UseRavage", "Offensive Spell");
-            AddControlInWinForm("Use Rip", "UseRip", "Offensive Spell");
-            AddControlInWinForm("Use Shred", "UseShred", "Offensive Spell");
-            AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spell");
-            AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spell");
+            AddControlInWinForm("Use Hurricane", "UseHurricane", "Offensive Spell");
+            AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spell");
+            AddControlInWinForm("Use Starfall", "UseStarfall", "Offensive Spell");
+            AddControlInWinForm("Use Starfire", "UseStarfire", "Offensive Spell");
+            AddControlInWinForm("Use Starsurge", "UseStarsurge", "Offensive Spell");
+            AddControlInWinForm("Use Sunfire", "UseSunfire", "Offensive Spell");
+            AddControlInWinForm("Use WildMushroom", "UseWildMushroom", "Offensive Spell");
+            AddControlInWinForm("Use Wrath", "UseWrath", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldown");
+            AddControlInWinForm("Use Astral Communion", "UseAstralCommunion", "Offensive Cooldown");
+            AddControlInWinForm("Use Celestial Alignment", "UseCelestialAlignment", "Offensive Cooldown");
             AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldown");
             AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Offensive Cooldown");
             AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldown");
             AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldown");
-            AddControlInWinForm("Use Tiger's Fury", "UseTigersFury", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldown");
             AddControlInWinForm("Use Disorienting Roar", "UseDisorientingRoar", "Defensive Cooldown");
+            AddControlInWinForm("Use Entangling Roots", "UseEntanglingRoots", "Defensive Cooldown");
             AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldown");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldown");
             AddControlInWinForm("Use Nature's Grasp", "UseNaturesGrasp", "Defensive Cooldown");
-            AddControlInWinForm("Use Skull Bash", "UseSkullBash", "Defensive Cooldown");
-            AddControlInWinForm("Use Survival Instincts", "UseSurvivalInstincts", "Defensive Cooldown");
+            AddControlInWinForm("Use Solar Beam", "UseSolarBeam", "Defensive Cooldown");
             AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldown");
             AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldown");
             AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldown");
@@ -9737,43 +9596,54 @@ public class Druid_Feral
             AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
             AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
             /* Game Settings */
-            AddControlInWinForm("Using Glyph of Shred?", "UseGlyphofShred", "Game Settings");
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static DruidFeralSettings CurrentSetting { get; set; }
+        public static DruidBalanceSettings CurrentSetting { get; set; }
 
-        public static DruidFeralSettings GetSettings()
+        public static DruidBalanceSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Feral.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Balance.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Druid_Feral.DruidFeralSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DruidBalanceSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Druid_Feral.DruidFeralSettings();
+                return new DruidBalanceSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Druid_Feral
+{
     private readonly DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private int CP;
+    private Timer Engineering_Timer = new Timer(0);
+    private int LC;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -9786,28 +9656,28 @@ public class Druid_Feral
     private readonly Spell Mark_of_the_Wild = new Spell("Mark of the Wild");
     private readonly Spell Prowl = new Spell("Prowl");
     private readonly Spell Savage_Roar = new Spell("Savage Roar");
-    private Timer Savage_Roar_Timer = new Timer(0);
-    private bool FivePtSav = false;
     private readonly Spell Stampeding_Roar = new Spell("Stampeding Roar");
+    private bool FivePtSav;
+    private Timer Savage_Roar_Timer = new Timer(0);
 
     #endregion
 
     #region Offensive Spell
 
     private readonly Spell Ferocious_Bite = new Spell("Ferocious Bite");
-    private bool FivePtFer = false;
     private readonly Spell Maim = new Spell("Maim");
     private readonly Spell Mangle = new Spell("Mangle");
     private readonly Spell Pounce = new Spell("Pounce");
     private readonly Spell Rake = new Spell("Rake");
-    private Timer Rake_Timer = new Timer(0);
     private readonly Spell Ravage = new Spell("Ravage");
     private readonly Spell Rip = new Spell("Rip");
-    private Timer Rip_Timer = new Timer(0);
-    private bool FivePtRip = false;
     private readonly Spell Shred = new Spell("Shred");
     private readonly Spell Swipe = new Spell("Swipe");
     private readonly Spell Thrash = new Spell("Thrash");
+    private bool FivePtFer;
+    private bool FivePtRip;
+    private Timer Rake_Timer = new Timer(0);
+    private Timer Rip_Timer = new Timer(0);
 
     #endregion
 
@@ -9841,22 +9711,15 @@ public class Druid_Feral
 
     private readonly Spell Cenarion_Ward = new Spell("Cenarion Ward");
     private readonly Spell Healing_Touch = new Spell("Healing Touch");
-    private Timer Healing_Touch_Timer = new Timer(0);
     private readonly Spell Innervate = new Spell("Innervate");
     private readonly Spell Might_of_Ursoc = new Spell("Might of Ursoc");
     private readonly Spell Natures_Swiftness = new Spell("Nature's Swiftness");
     private readonly Spell Rejuvenation = new Spell("Rejuvenation");
     private readonly Spell Renewal = new Spell("Renewal");
     private readonly Spell Tranquility = new Spell("Tranquility");
+    private Timer Healing_Touch_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private int CP = 0;
-    private int LC = 0;
 
     public Druid_Feral()
     {
@@ -10453,72 +10316,79 @@ public class Druid_Feral
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Druid_Restoration
-{
+    #region Nested type: DruidFeralSettings
+
     [Serializable]
-    public class DruidRestorationSettings : nManager.Helpful.Settings
+    public class DruidFeralSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseBarkskin = true;
+        public bool UseBerserk = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
         /* Druid Buffs */
+        public bool UseCatForm = true;
+        public bool UseCenarionWard = true;
         public bool UseDash = true;
-        public bool UseFaerieFire = true;
-        public bool UseMarkoftheWild = true;
-        public bool UseStampedingRoar = true;
-        /* Offensive Spell */
-        public bool UseHurricane = true;
-        public bool UseMoonfire = true;
-        public bool UseWrath = true;
-        /* Healing Cooldown */
-        public bool UseForceofNature = true;
-        public bool UseIncarnation = true;
-        /* Defensive Cooldown */
-        public bool UseBarkskin = true;
         public bool UseDisorientingRoar = true;
-        public bool UseEntanglingRoots = true;
-        public bool UseIronbark = true;
+        public bool UseDisplacerBeast = false;
+        public bool UseEngGlove = true;
+        public bool UseFaerieFire = true;
+        /* Offensive Spell */
+        public bool UseFerociousBite = true;
+        public bool UseForceofNature = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGlyphofShred = false;
+        public bool UseHealingTouch = true;
+        public bool UseHeartoftheWild = true;
+        public bool UseIncarnation = true;
+        public bool UseInnervate = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMaim = true;
+        public bool UseMangle = true;
+        public bool UseMarkoftheWild = true;
         public bool UseMassEntanglement = true;
+        public bool UseMightofUrsoc = true;
         public bool UseMightyBash = true;
         public bool UseNaturesGrasp = true;
-        public bool UseSolarBeam = true;
-        public bool UseTyphoon = true;
-        public bool UseUrsolsVortex = true;
-        public bool UseWildCharge = true;
-        /* Healing Spell */
-        public bool UseCenarionWard = true;
-        public bool UseHealingTouch = true;
-        public bool UseInnervate = true;
-        public bool UseLifebloom = true;
-        public bool UseMightofUrsoc = true;
         public bool UseNaturesSwiftness = true;
-        public bool UseNourish = false;
-        public bool UseRegrowth = true;
+        public bool UseNaturesVigil = true;
+        public bool UsePounce = true;
+        public bool UseProwl = false;
+        public bool UseRake = true;
+        public bool UseRavage = true;
         public bool UseRejuvenation = true;
         public bool UseRenewal = true;
-        public bool UseSwiftmend = true;
+        public bool UseRip = true;
+        public bool UseSavageRoar = true;
+        public bool UseShred = true;
+        public bool UseSkullBash = true;
+        public bool UseStampedingRoar = true;
+        public bool UseStoneform = true;
+        public bool UseSurvivalInstincts = true;
+        public bool UseSwipe = true;
+        public bool UseThrash = true;
+        /* Offensive Cooldown */
+        public bool UseTigersFury = true;
         public bool UseTranquility = true;
-        public bool UseWildGrowth = true;
-        public bool UseWildMushroom = false;
-        /* Game Settings */
-        public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        /* Defensive Cooldown */
+        public bool UseTyphoon = true;
+        public bool UseUrsolsVortex = true;
+        public bool UseWarStomp = true;
+        public bool UseWildCharge = true;
+        /* Healing Spell */
 
-        public DruidRestorationSettings()
+        public DruidFeralSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Druid Restoration Settings");
+            ConfigWinForm(new Point(400, 400), "Druid Feral Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -10528,26 +10398,40 @@ public class Druid_Restoration
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
+            AddControlInWinForm("Use Cat Form", "UseCatForm", "Druid Buffs");
             AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
+            AddControlInWinForm("Use Displacer Beast", "UseDisplacerBeast", "Druid Buffs");
             AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
             AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
+            AddControlInWinForm("Use Prowl", "UseProwl", "Druid Buffs");
+            AddControlInWinForm("Use Savage Roar", "UseSavageRoar", "Druid Buffs");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Hurricane", "UseHurricane", "Offensive Spell");
-            AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spell");
-            AddControlInWinForm("Use Wrath", "UseWrath", "Offensive Spell");
-            /* Healing Cooldown */
+            AddControlInWinForm("Use Ferocious Bite", "UseFerociousBite", "Offensive Spell");
+            AddControlInWinForm("Use Maim ", "UseMaim ", "Offensive Spell");
+            AddControlInWinForm("Use Mangle", "UseMangle", "Offensive Spell");
+            AddControlInWinForm("Use Pounce", "UsePounce", "Offensive Spell");
+            AddControlInWinForm("Use Rake", "UseRake", "Offensive Spell");
+            AddControlInWinForm("Use Ravage", "UseRavage", "Offensive Spell");
+            AddControlInWinForm("Use Rip", "UseRip", "Offensive Spell");
+            AddControlInWinForm("Use Shred", "UseShred", "Offensive Spell");
+            AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spell");
+            AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldown");
             AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldown");
+            AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Offensive Cooldown");
             AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldown");
+            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldown");
+            AddControlInWinForm("Use Tiger's Fury", "UseTigersFury", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldown");
             AddControlInWinForm("Use Disorienting Roar", "UseDisorientingRoar", "Defensive Cooldown");
-            AddControlInWinForm("Use Entangling Roots", "UseEntanglingRoots", "Defensive Cooldown");
-            AddControlInWinForm("Use Ironbark", "UseIronbark", "Defensive Cooldown");
             AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldown");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldown");
             AddControlInWinForm("Use Nature's Grasp", "UseNaturesGrasp", "Defensive Cooldown");
-            AddControlInWinForm("Use Solar Beam", "UseSolarBeam", "Defensive Cooldown");
+            AddControlInWinForm("Use Skull Bash", "UseSkullBash", "Defensive Cooldown");
+            AddControlInWinForm("Use Survival Instincts", "UseSurvivalInstincts", "Defensive Cooldown");
             AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldown");
             AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldown");
             AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldown");
@@ -10555,54 +10439,59 @@ public class Druid_Restoration
             AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spell");
             AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spell");
             AddControlInWinForm("Use Innervate", "UseInnervate", "Healing Spell");
-            AddControlInWinForm("Use Lifebloom", "UseLifebloom", "Offensive Spell");
             AddControlInWinForm("Use Might of Ursoc", "UseMightofUrsoc", "Healing Spell");
             AddControlInWinForm("Use Nature's Swiftness", "UseNaturesSwiftness", "Healing Spell");
-            AddControlInWinForm("Use Nourish", "UseNourish", "Offensive Spell");
-            AddControlInWinForm("Use Regrowth", "UseRegrowth", "Offensive Spell");
             AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spell");
             AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
-            AddControlInWinForm("Use Swiftmend", "UseSwiftmend", "Offensive Spell");
             AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
-            AddControlInWinForm("Use Wild Growth", "UseWildGrowth", "Offensive Spell");
-            AddControlInWinForm("Use WildMushroom", "UseWildMushroom", "Offensive Spell");
             /* Game Settings */
+            AddControlInWinForm("Using Glyph of Shred?", "UseGlyphofShred", "Game Settings");
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static DruidRestorationSettings CurrentSetting { get; set; }
+        public static DruidFeralSettings CurrentSetting { get; set; }
 
-        public static DruidRestorationSettings GetSettings()
+        public static DruidFeralSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Restoration.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Feral.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Druid_Restoration.DruidRestorationSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DruidFeralSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Druid_Restoration.DruidRestorationSettings();
+                return new DruidFeralSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Druid_Restoration
+{
     private readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -10619,8 +10508,8 @@ public class Druid_Restoration
 
     private readonly Spell Hurricane = new Spell("Hurricane");
     private readonly Spell Moonfire = new Spell("Moonfire");
-    private Timer Moonfire_Timer = new Timer(0);
     private readonly Spell Wrath = new Spell("Wrath");
+    private Timer Moonfire_Timer = new Timer(0);
 
     #endregion
 
@@ -10651,13 +10540,11 @@ public class Druid_Restoration
 
     private readonly Spell Cenarion_Ward = new Spell("Cenarion Ward");
     private readonly Spell Healing_Touch = new Spell("Healing Touch");
-    private Timer Healing_Touch_Timer = new Timer(0);
     private readonly Spell Innervate = new Spell("Innervate");
     private readonly Spell Lifebloom = new Spell("Lifebloom");
     private readonly Spell Might_of_Ursoc = new Spell("Might of Ursoc");
     private readonly Spell Natures_Swiftness = new Spell("Nature's Swiftness");
     private readonly Spell Nourish = new Spell("Nourish");
-    private Timer Nourish_Timer = new Timer(0);
     private readonly Spell Regrowth = new Spell("Regrowth");
     private readonly Spell Rejuvenation = new Spell("Rejuvenation");
     private readonly Spell Renewal = new Spell("Renewal");
@@ -10666,13 +10553,10 @@ public class Druid_Restoration
     private readonly Spell Wild_Growth = new Spell("Wild Growth");
     private readonly Spell Wild_Mushroom = new Spell("Wild Mushroom");
     private readonly Spell Wild_Mushroom_Bloom = new Spell("Wild Mushroom: Bloom");
+    private Timer Healing_Touch_Timer = new Timer(0);
+    private Timer Nourish_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
 
     public Druid_Restoration()
     {
@@ -11090,76 +10974,69 @@ public class Druid_Restoration
     {
         if (ObjectManager.Target.GetDistance < 1)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, "{DOWN}");
         }
     }
-}
 
-public class Druid_Guardian
-{
+    #region Nested type: DruidRestorationSettings
+
     [Serializable]
-    public class DruidGuardianSettings : nManager.Helpful.Settings
+    public class DruidRestorationSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
+        public bool UseBarkskin = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Druid Buffs */
-        public bool UseBearForm = true;
-        public bool UseDash = true;
-        public bool UseFaerieFire = true;
-        public bool UseMarkoftheWild = true;
-        public bool UseStampedingRoar = true;
-        /* Offensive Spell */
-        public bool UseGrowl = true;
-        public bool UseLacerate = true;
-        public bool UseMangle = true;
-        public bool UseMaul = true;
-        public bool UseSwipe = true;
-        public bool UseThrash = true;
-        /* Offensive Cooldown */
-        public bool UseBerserk = true;
-        public bool UseEnrage = true;
-        public bool UseForceofNature = true;
-        public bool UseHeartoftheWild = true;
-        public bool UseIncarnation = true;
-        public bool UseNaturesVigil = true;
-        /* Defensive Cooldown */
-        public bool UseBarkskin = true;
-        public bool UseBearHug = true;
-        public bool UseDisorientingRoar = true;
-        public bool UseMassEntanglement = true;
-        public bool UseMightyBash = true;
-        public bool UseNaturesGrasp = true;
-        public bool UseSavageDefense = true;
-        public bool UseSkullBash = true;
-        public bool UseSurvivalInstincts = true;
-        public bool UseTyphoon = true;
-        public bool UseUrsolsVortex = true;
-        public bool UseWildCharge = true;
-        /* Healing Spell */
         public bool UseCenarionWard = true;
-        public bool UseFrenziedRegeneration = true;
+        /* Druid Buffs */
+        public bool UseDash = true;
+        public bool UseDisorientingRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEntanglingRoots = true;
+        public bool UseFaerieFire = true;
+        /* Healing Cooldown */
+        public bool UseForceofNature = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseHealingTouch = true;
+        public bool UseHurricane = true;
+        public bool UseIncarnation = true;
         public bool UseInnervate = true;
+        /* Defensive Cooldown */
+        public bool UseIronbark = true;
+        public bool UseLifeblood = true;
+        public bool UseLifebloom = true;
+        public bool UseLowCombat = true;
+        public bool UseMarkoftheWild = true;
+        public bool UseMassEntanglement = true;
         public bool UseMightofUrsoc = true;
+        public bool UseMightyBash = true;
+        public bool UseMoonfire = true;
+        public bool UseNaturesGrasp = true;
         public bool UseNaturesSwiftness = true;
+        public bool UseNourish = false;
+        public bool UseRegrowth = true;
         public bool UseRejuvenation = true;
         public bool UseRenewal = true;
+        public bool UseSolarBeam = true;
+        public bool UseStampedingRoar = true;
+        public bool UseStoneform = true;
+        public bool UseSwiftmend = true;
         public bool UseTranquility = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseTyphoon = true;
+        public bool UseUrsolsVortex = true;
+        public bool UseWarStomp = true;
+        public bool UseWildCharge = true;
+        public bool UseWildGrowth = true;
+        public bool UseWildMushroom = false;
+        public bool UseWrath = true;
+        /* Game Settings */
 
-        public DruidGuardianSettings()
+        public DruidRestorationSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Druid Guardian Settings");
+            ConfigWinForm(new Point(400, 400), "Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -11169,86 +11046,92 @@ public class Druid_Guardian
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Druid Buffs */
-            AddControlInWinForm("Use Bear Form", "UseBearForm", "Druid Buffs");
             AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
             AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
             AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
             AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Growl", "UseGrowl", "Offensive Spell");
-            AddControlInWinForm("Use Lacerate", "UseLacerate", "Offensive Spell");
-            AddControlInWinForm("Use Mangle", "UseMangle", "Offensive Spell");
-            AddControlInWinForm("Use Maul", "UseMaul", "Offensive Spell");
-            AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spell");
-            AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldown");
-            AddControlInWinForm("Use Enrage", "UseEnrage", "Offensive Cooldown");
+            AddControlInWinForm("Use Hurricane", "UseHurricane", "Offensive Spell");
+            AddControlInWinForm("Use Moonfire", "UseMoonfire", "Offensive Spell");
+            AddControlInWinForm("Use Wrath", "UseWrath", "Offensive Spell");
+            /* Healing Cooldown */
             AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldown");
-            AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Offensive Cooldown");
             AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldown");
-            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Bear Hug", "UseBearHug", "Defensive Cooldown");
             AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldown");
             AddControlInWinForm("Use Disorienting Roar", "UseDisorientingRoar", "Defensive Cooldown");
+            AddControlInWinForm("Use Entangling Roots", "UseEntanglingRoots", "Defensive Cooldown");
+            AddControlInWinForm("Use Ironbark", "UseIronbark", "Defensive Cooldown");
             AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldown");
             AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldown");
             AddControlInWinForm("Use Nature's Grasp", "UseNaturesGrasp", "Defensive Cooldown");
-            AddControlInWinForm("Use Savage Defense", "UseSavageDefense", "Defensive Cooldown");
-            AddControlInWinForm("Use Skull Bash", "UseSkullBash", "Defensive Cooldown");
-            AddControlInWinForm("Use Survival Instincts", "UseSurvivalInstincts", "Defensive Cooldown");
+            AddControlInWinForm("Use Solar Beam", "UseSolarBeam", "Defensive Cooldown");
             AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldown");
             AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldown");
             AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spell");
-            AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegeneration", "Healing Spell");
             AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spell");
             AddControlInWinForm("Use Innervate", "UseInnervate", "Healing Spell");
+            AddControlInWinForm("Use Lifebloom", "UseLifebloom", "Offensive Spell");
             AddControlInWinForm("Use Might of Ursoc", "UseMightofUrsoc", "Healing Spell");
             AddControlInWinForm("Use Nature's Swiftness", "UseNaturesSwiftness", "Healing Spell");
+            AddControlInWinForm("Use Nourish", "UseNourish", "Offensive Spell");
+            AddControlInWinForm("Use Regrowth", "UseRegrowth", "Offensive Spell");
             AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spell");
             AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
+            AddControlInWinForm("Use Swiftmend", "UseSwiftmend", "Offensive Spell");
             AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
+            AddControlInWinForm("Use Wild Growth", "UseWildGrowth", "Offensive Spell");
+            AddControlInWinForm("Use WildMushroom", "UseWildMushroom", "Offensive Spell");
             /* Game Settings */
-            AddControlInWinForm("Using Glyph of Shred?", "UseGlyphofShred", "Game Settings");
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static DruidGuardianSettings CurrentSetting { get; set; }
+        public static DruidRestorationSettings CurrentSetting { get; set; }
 
-        public static DruidGuardianSettings GetSettings()
+        public static DruidRestorationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Guardian.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Restoration.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Druid_Guardian.DruidGuardianSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<DruidRestorationSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Druid_Guardian.DruidGuardianSettings();
+                return new DruidRestorationSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Druid_Guardian
+{
     private readonly DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private int LC;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -11266,8 +11149,8 @@ public class Druid_Guardian
 
     private readonly Spell Growl = new Spell("Growl");
     private readonly Spell Lacerate = new Spell("Lacerate");
-    private readonly Spell Maul = new Spell("Maul");
     private readonly Spell Mangle = new Spell("Mangle");
+    private readonly Spell Maul = new Spell("Maul");
     private readonly Spell Swipe = new Spell("Swipe");
     private readonly Spell Thrash = new Spell("Thrash");
 
@@ -11286,8 +11169,8 @@ public class Druid_Guardian
 
     #region Defensive Cooldown
 
-    private readonly Spell Bear_Hug = new Spell("Bear Hug");
     private readonly Spell Barkskin = new Spell("Barkskin");
+    private readonly Spell Bear_Hug = new Spell("Bear Hug");
     private readonly Spell Disorienting_Roar = new Spell("Disorienting Roar");
     private readonly Spell Mass_Entanglement = new Spell("Mass Entanglement");
     private readonly Spell Mighty_Bash = new Spell("Mighty Bash");
@@ -11306,21 +11189,15 @@ public class Druid_Guardian
     private readonly Spell Cenarion_Ward = new Spell("Cenarion Ward");
     private readonly Spell Frenzied_Regeneration = new Spell("Frenzied_Regeneration");
     private readonly Spell Healing_Touch = new Spell("Healing Touch");
-    private Timer Healing_Touch_Timer = new Timer(0);
     private readonly Spell Innervate = new Spell("Innervate");
     private readonly Spell Might_of_Ursoc = new Spell("Might of Ursoc");
     private readonly Spell Natures_Swiftness = new Spell("Nature's Swiftness");
     private readonly Spell Rejuvenation = new Spell("Rejuvenation");
     private readonly Spell Renewal = new Spell("Renewal");
     private readonly Spell Tranquility = new Spell("Tranquility");
+    private Timer Healing_Touch_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private int LC = 0;
 
     public Druid_Guardian()
     {
@@ -11830,9 +11707,147 @@ public class Druid_Guardian
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
+
+    #region Nested type: DruidGuardianSettings
+
+    [Serializable]
+    public class DruidGuardianSettings : Settings
+    {
+        /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseBarkskin = true;
+        public bool UseBearForm = true;
+        public bool UseBearHug = true;
+        public bool UseBerserk = true;
+        public bool UseBerserking = true;
+        public bool UseBloodFury = true;
+        public bool UseCenarionWard = true;
+        public bool UseDash = true;
+        public bool UseDisorientingRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEnrage = true;
+        public bool UseFaerieFire = true;
+        public bool UseForceofNature = true;
+        public bool UseFrenziedRegeneration = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGrowl = true;
+        public bool UseHealingTouch = true;
+        public bool UseHeartoftheWild = true;
+        public bool UseIncarnation = true;
+        public bool UseInnervate = true;
+        public bool UseLacerate = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMangle = true;
+        public bool UseMarkoftheWild = true;
+        public bool UseMassEntanglement = true;
+        public bool UseMaul = true;
+        public bool UseMightofUrsoc = true;
+        public bool UseMightyBash = true;
+        public bool UseNaturesGrasp = true;
+        public bool UseNaturesSwiftness = true;
+        public bool UseNaturesVigil = true;
+        public bool UseRejuvenation = true;
+        public bool UseRenewal = true;
+        public bool UseSavageDefense = true;
+        public bool UseSkullBash = true;
+        public bool UseStampedingRoar = true;
+        public bool UseStoneform = true;
+        public bool UseSurvivalInstincts = true;
+        public bool UseSwipe = true;
+        public bool UseThrash = true;
+        public bool UseTranquility = true;
+        public bool UseTrinket = true;
+        public bool UseTyphoon = true;
+        public bool UseUrsolsVortex = true;
+        public bool UseWarStomp = true;
+        public bool UseWildCharge = true;
+        /* Healing Spell */
+
+        public DruidGuardianSettings()
+        {
+            ConfigWinForm(new Point(400, 400), "Druid Guardian Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            /* Druid Buffs */
+            AddControlInWinForm("Use Bear Form", "UseBearForm", "Druid Buffs");
+            AddControlInWinForm("Use Dash", "UseDash", "Druid Buffs");
+            AddControlInWinForm("Use Faerie Fire", "UseFaerieFire", "Druid Buffs");
+            AddControlInWinForm("Use Mark of the Wild", "UseMarkoftheWild", "Druid Buffs");
+            AddControlInWinForm("Use Stampeding Roar", "UseStampedingRoar", "Druid Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Growl", "UseGrowl", "Offensive Spell");
+            AddControlInWinForm("Use Lacerate", "UseLacerate", "Offensive Spell");
+            AddControlInWinForm("Use Mangle", "UseMangle", "Offensive Spell");
+            AddControlInWinForm("Use Maul", "UseMaul", "Offensive Spell");
+            AddControlInWinForm("Use Swipe", "UseSwipe", "Offensive Spell");
+            AddControlInWinForm("Use Thrash", "UseThrash", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Berserk", "UseBerserk", "Offensive Cooldown");
+            AddControlInWinForm("Use Enrage", "UseEnrage", "Offensive Cooldown");
+            AddControlInWinForm("Use Force of Nature", "UseForceofNature", "Offensive Cooldown");
+            AddControlInWinForm("Use Heart of the Wild", "UseHeartoftheWild", "Offensive Cooldown");
+            AddControlInWinForm("Use Incarnation", "UseIncarnation", "Offensive Cooldown");
+            AddControlInWinForm("Use Nature's Vigil", "UseNaturesVigil", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Use Bear Hug", "UseBearHug", "Defensive Cooldown");
+            AddControlInWinForm("Use Barkskin", "UseBarkskin", "Defensive Cooldown");
+            AddControlInWinForm("Use Disorienting Roar", "UseDisorientingRoar", "Defensive Cooldown");
+            AddControlInWinForm("Use Mass Entanglement", "UseMassEntanglement", "Defensive Cooldown");
+            AddControlInWinForm("Use Mighty Bash", "UseMightyBash", "Defensive Cooldown");
+            AddControlInWinForm("Use Nature's Grasp", "UseNaturesGrasp", "Defensive Cooldown");
+            AddControlInWinForm("Use Savage Defense", "UseSavageDefense", "Defensive Cooldown");
+            AddControlInWinForm("Use Skull Bash", "UseSkullBash", "Defensive Cooldown");
+            AddControlInWinForm("Use Survival Instincts", "UseSurvivalInstincts", "Defensive Cooldown");
+            AddControlInWinForm("Use Typhoon", "UseTyphoon", "Defensive Cooldown");
+            AddControlInWinForm("Use Ursol's Vortex", "UseUrsolsVortex", "Defensive Cooldown");
+            AddControlInWinForm("Use Wild Charge", "UseWildCharge", "Defensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Cenarion Ward", "UseCenarionWard", "Healing Spell");
+            AddControlInWinForm("Use Frenzied Regeneration", "UseFrenziedRegeneration", "Healing Spell");
+            AddControlInWinForm("Use Healing Touch", "UseHealingTouch", "Healing Spell");
+            AddControlInWinForm("Use Innervate", "UseInnervate", "Healing Spell");
+            AddControlInWinForm("Use Might of Ursoc", "UseMightofUrsoc", "Healing Spell");
+            AddControlInWinForm("Use Nature's Swiftness", "UseNaturesSwiftness", "Healing Spell");
+            AddControlInWinForm("Use Rejuvenation", "UseRejuvenation", "Healing Spell");
+            AddControlInWinForm("Use Renewal", "UseRenewal", "Healing Spell");
+            AddControlInWinForm("Use Tranquility", "UseTranquility", "Healing Spell");
+            /* Game Settings */
+            AddControlInWinForm("Using Glyph of Shred?", "UseGlyphofShred", "Game Settings");
+            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+        }
+
+        public static DruidGuardianSettings CurrentSetting { get; set; }
+
+        public static DruidGuardianSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Guardian.xml";
+            if (File.Exists(CurrentSettingsFile))
+            {
+                return
+                    CurrentSetting = Load<DruidGuardianSettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new DruidGuardianSettings();
+            }
+        }
+    }
+
+    #endregion
 }
 
 #endregion
@@ -11841,166 +11856,68 @@ public class Druid_Guardian
 
 public class Paladin_Holy
 {
-    [Serializable]
-    public class PaladinHolySettings : Settings
-    {
-        /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        public bool UseBerserking = true;
-        /* Paladin Seals & Buffs */
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
-        public bool UseSealOfInsight = true;
-        public bool UseBlessingOfMight = true;
-        public bool UseBlessingOfKings = true;
-        /* Offensive Spell */
-        public bool UseHolyShock = true;
-        public bool UseDenounce = true;
-        public bool UseHammerOfJustice = true;
-        public bool UseHammerOfWrath = true;
-        /* Offensive Cooldown */
-        public bool UseDivineFavor = true;
-        public bool UseHolyAvenger = true;
-        public bool UseAvengingWrath = true;
-        /* Defensive Cooldown */
-        public bool UseSacredShield = true;
-        public bool UseHandOfPurity = true;
-        public bool UseDevotionAura = true;
-        public bool UseDivineProtection = true;
-        public bool UseDivineShield = true;
-        public bool UseHandOfProtection = true;
-        /* Healing Spell */
-        public bool UseDivinePlea = true;
-        public bool UseDivineLight = true;
-        public bool UseHolyRadiance = true;
-        public bool UseFlashOfLight = true;
-        public bool UseHolyLight = true;
-        public bool UseLayOnHands = true;
-        public bool UseWordOfGlory = true;
-        public bool UseBeaconOfLight = true;
-
-        public PaladinHolySettings()
-        {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Protection Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            /* Paladin Seals & Buffs */
-            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spell");
-            AddControlInWinForm("Use Denounce", "UseDenounce", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Divine Favor", "UseDivineFavor", "Offensive Cooldown");
-            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
-            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
-            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Divine Plea", "UseDivinePlea", "Healing Spell");
-            AddControlInWinForm("Use Divine Light", "UseDivineLight", "Healing Spell");
-            AddControlInWinForm("Use Holy Radiance", "UseHolyRadiance", "Healing Spell");
-            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
-            AddControlInWinForm("Use Holy Light", "UseHolyLight", "Healing Spell");
-            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
-            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
-            AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
-        }
-
-        public static PaladinHolySettings CurrentSetting { get; set; }
-
-        public static PaladinHolySettings GetSettings()
-        {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
-            if (File.Exists(CurrentSettingsFile))
-            {
-                return CurrentSetting = Load<PaladinHolySettings>(CurrentSettingsFile);
-            }
-            return new PaladinHolySettings();
-        }
-    }
-
     private readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
 
     #region Professions & Racial
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Berserking = new Spell("Berserking");
 
     #endregion
 
     #region Paladin Seals & Buffs
 
-    private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
-    private readonly Spell SealOfTruth = new Spell("Seal of Truth");
-    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
     private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
     private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
+    private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
+    private readonly Spell SealOfTruth = new Spell("Seal of Truth");
 
     #endregion
 
     #region Offensive Spell
 
-    private readonly Spell HolyShock = new Spell("Holy Shock");
     private readonly Spell Denounce = new Spell("Denounce");
     private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
     private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell HolyShock = new Spell("Holy Shock");
 
     #endregion
 
     #region Offensive Cooldown
 
+    private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
     private readonly Spell DivineFavor = new Spell("Divine Favor");
     private readonly Spell HolyAvenger = new Spell("HolyAvenger");
-    private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
 
     #endregion
 
     #region Defensive Cooldown
 
-    private readonly Spell SacredShield = new Spell("Sacred Shield");
-    private readonly Spell HandOfPurity = new Spell("Hand of Purity");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
     private readonly Spell HandOfProtection = new Spell("Hand of Protection");
+    private readonly Spell HandOfPurity = new Spell("Hand of Purity");
+    private readonly Spell SacredShield = new Spell("Sacred Shield");
 
     #endregion
 
     #region Healing Spell
 
-    private readonly Spell DivinePlea = new Spell("Divine Plea");
+    private readonly Spell BeaconOfLight = new Spell("Beacon of Light");
     private readonly Spell DivineLight = new Spell("Divine Light");
-    private readonly Spell HolyRadiance = new Spell("Holy Radiance");
+    private readonly Spell DivinePlea = new Spell("Divine Plea");
     private readonly Spell FlashOfLight = new Spell("Flash of Light");
+    private readonly Spell GlyphOfHarshWords = new Spell("Glyph of Harsh Words");
     private readonly Spell HolyLight = new Spell("Holy Light");
+    private readonly Spell HolyRadiance = new Spell("Holy Radiance");
     private readonly Spell LayOnHands = new Spell("Lay on Hands");
     private readonly Spell WordOfGlory = new Spell("Word of Glory");
-    private readonly Spell GlyphOfHarshWords = new Spell("Glyph of Harsh Words");
-    private readonly Spell BeaconOfLight = new Spell("Beacon of Light");
 
     #endregion
 
@@ -12269,56 +12186,51 @@ public class Paladin_Holy
             return;
         }
     }
-}
 
-public class Paladin_Protection
-{
+    #region Nested type: PaladinHolySettings
+
     [Serializable]
-    public class PaladinProtectionSettings : nManager.Helpful.Settings
+    public class PaladinHolySettings : Settings
     {
         /* Professions & Racials */
         public bool UseArcaneTorrent = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
+        public bool UseAvengingWrath = true;
+        public bool UseBeaconOfLight = true;
         public bool UseBerserking = true;
         /* Paladin Seals & Buffs */
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
-        public bool UseSealOfInsight = false;
-        public bool UseBlessingOfMight = true;
         public bool UseBlessingOfKings = true;
+        public bool UseBlessingOfMight = true;
         /* Offensive Spell */
-        public bool UseShieldOfTheRighteous = true;
-        public bool UseConsecration = true;
-        public bool UseAvengersShield = true;
-        public bool UseHammerOfWrath = true;
-        public bool UseCrusaderStrike = true;
-        public bool UseHammerOfTheRighteous = true;
-        public bool UseJudgment = true;
-        public bool UseHammerOfJustice = true;
-        public bool UseHolyWrath = true;
-        /* Offensive Cooldown */
-        public bool UseHolyAvenger = true;
-        public bool UseAvengingWrath = true;
-        /* Defensive Cooldown */
-        public bool UseGuardianOfAncientKings = true;
-        public bool UseArdentDefender = true;
-        public bool UseSacredShield = true;
-        public bool UseHandOfPurity = true;
+        public bool UseDenounce = true;
         public bool UseDevotionAura = true;
+        public bool UseDivineFavor = true;
+        public bool UseDivineLight = true;
+        public bool UseDivinePlea = true;
         public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
-        public bool UseHandOfProtection = true;
-        /* Healing Spell */
         public bool UseFlashOfLight = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHammerOfJustice = true;
+        public bool UseHammerOfWrath = true;
+        public bool UseHandOfProtection = true;
+        public bool UseHandOfPurity = true;
+        public bool UseHolyAvenger = true;
+        public bool UseHolyLight = true;
+        public bool UseHolyRadiance = true;
+        public bool UseHolyShock = true;
         public bool UseLayOnHands = true;
+        public bool UseLifeblood = true;
+        public bool UseSacredShield = true;
+        public bool UseSealOfInsight = true;
+        public bool UseSealOfTheRighteousness = true;
+        public bool UseSealOfTruth = true;
+        public bool UseStoneform = true;
+        public bool UseWarStomp = true;
         public bool UseWordOfGlory = true;
 
-        public PaladinProtectionSettings()
+        public PaladinHolySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Protection Settings");
+            ConfigWinForm(new Point(400, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -12333,21 +12245,15 @@ public class Paladin_Protection
             AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Shield of the Righteous", "UseShieldOfTheRighteous", "Offensive Spell");
-            AddControlInWinForm("Use Consecration", "UseConsecration", "Offensive Spell");
-            AddControlInWinForm("Use Avenger's Shield", "UseAvengersShield", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
-            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
-            AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
-            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
+            AddControlInWinForm("Use Holy Shock", "UseHolyShock", "Offensive Spell");
+            AddControlInWinForm("Use Denounce", "UseDenounce", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
-            AddControlInWinForm("Use Holy Wrath", "UseHolyWrath", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
             /* Offensive Cooldown */
+            AddControlInWinForm("Use Divine Favor", "UseDivineFavor", "Offensive Cooldown");
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Defensive Cooldown");
-            AddControlInWinForm("Use Ardent Defender", "UseArdentDefender", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
             AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
@@ -12355,82 +12261,89 @@ public class Paladin_Protection
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
             /* Healing Spell */
+            AddControlInWinForm("Use Divine Plea", "UseDivinePlea", "Healing Spell");
+            AddControlInWinForm("Use Divine Light", "UseDivineLight", "Healing Spell");
+            AddControlInWinForm("Use Holy Radiance", "UseHolyRadiance", "Healing Spell");
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
+            AddControlInWinForm("Use Holy Light", "UseHolyLight", "Healing Spell");
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+            AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
         }
 
-        public static PaladinProtectionSettings CurrentSetting { get; set; }
+        public static PaladinHolySettings CurrentSetting { get; set; }
 
-        public static PaladinProtectionSettings GetSettings()
+        public static PaladinHolySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Protection.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
-                return CurrentSetting = Settings.Load<Paladin_Protection.PaladinProtectionSettings>(CurrentSettingsFile);
+                return CurrentSetting = Load<PaladinHolySettings>(CurrentSettingsFile);
             }
-            else
-            {
-                return new Paladin_Protection.PaladinProtectionSettings();
-            }
+            return new PaladinHolySettings();
         }
     }
 
+    #endregion
+}
+
+public class Paladin_Protection
+{
     private readonly PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
 
     #region Professions & Racial
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Berserking = new Spell("Berserking");
 
     #endregion
 
     #region Paladin Seals & Buffs
 
+    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
+    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
     private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
     private readonly Spell SealOfTruth = new Spell("Seal of Truth");
-    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
-    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
 
     #endregion
 
     #region Offensive Spell
 
-    private readonly Spell ShieldOfTheRighteous = new Spell("Shield of the Righteous");
-    private readonly Spell Consecration = new Spell("Consecration");
     private readonly Spell AvengersShield = new Spell("Avenger's Shield");
-    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell Consecration = new Spell("Consecration");
     private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
-    private readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous"); // 115798 = Weakened Blows
-    private readonly Spell Judgment = new Spell("Judgment");
     private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous"); // 115798 = Weakened Blows
+    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
     private readonly Spell HolyWrath = new Spell("Holy Wrath");
+    private readonly Spell Judgment = new Spell("Judgment");
+    private readonly Spell ShieldOfTheRighteous = new Spell("Shield of the Righteous");
 
     #endregion
 
     #region Offensive Cooldown
 
-    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
     private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
+    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
 
     #endregion
 
     #region Defensive Cooldown
 
-    private Timer OnCD = new Timer(0);
-    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
     private readonly Spell ArdentDefender = new Spell("Ardent Defender");
-    private readonly Spell SacredShield = new Spell("Sacred Shield");
-    private readonly Spell HandOfPurity = new Spell("Hand Of Purity");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
+    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
     private readonly Spell HandOfProtection = new Spell("Hand of Protection");
+    private readonly Spell HandOfPurity = new Spell("Hand Of Purity");
+    private readonly Spell SacredShield = new Spell("Sacred Shield");
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -12751,67 +12664,53 @@ public class Paladin_Protection
             return;
         }
     }
-}
 
-public class Paladin_Retribution
-{
+    #region Nested type: PaladinProtectionSettings
+
     [Serializable]
-    public class PaladinRetributionSettings : Settings
+    public class PaladinProtectionSettings : Settings
     {
         /* Professions & Racials */
         public bool UseArcaneTorrent = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
+        public bool UseArdentDefender = true;
+        public bool UseAvengersShield = true;
+        public bool UseAvengingWrath = true;
         public bool UseBerserking = true;
         /* Paladin Seals & Buffs */
-        public bool UseSealOfTheRighteousness = true;
-        public bool UseSealOfTruth = true;
-        public bool UseSealOfJustice = false;
-        public bool UseSealOfInsight = false;
-        public bool UseBlessingOfMight = true;
         public bool UseBlessingOfKings = true;
+        public bool UseBlessingOfMight = true;
         /* Offensive Spell */
-        public bool UseTemplarsVerdict = true;
-        public bool UseDivineStorm = true;
-        public bool UseExorcism = true;
-        public bool UseHammerOfWrath = true;
+        public bool UseConsecration = true;
         public bool UseCrusaderStrike = true;
-        public bool UseHammerOfTheRighteous = true;
-        public bool UseJudgment = true;
-        public bool UseHammerOfJustice = true;
-        /* Offensive Cooldown */
-        public bool UseInquisition = true;
-        public bool UseGuardianOfAncientKings = true;
-        public bool UseHolyAvenger = true;
-        public bool UseAvengingWrath = true;
-        /* Defensive Cooldown */
-        public bool RefreshWeakenedBlows = true;
-        public bool UseDivineProtection = true;
         public bool UseDevotionAura = true;
-        public bool UseSacredShield = true;
+        public bool UseDivineProtection = true;
         public bool UseDivineShield = true;
-        public bool UseHandOfProtection = false;
         /* Healing Spell */
         public bool UseFlashOfLight = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGuardianOfAncientKings = true;
+        public bool UseHammerOfJustice = true;
+        public bool UseHammerOfTheRighteous = true;
+        public bool UseHammerOfWrath = true;
+        public bool UseHandOfProtection = true;
+        public bool UseHandOfPurity = true;
+        public bool UseHolyAvenger = true;
+        public bool UseHolyWrath = true;
+        public bool UseJudgment = true;
         public bool UseLayOnHands = true;
+        public bool UseLifeblood = true;
+        public bool UseSacredShield = true;
+        public bool UseSealOfInsight = false;
+        public bool UseSealOfTheRighteousness = true;
+        public bool UseSealOfTruth = true;
+        public bool UseShieldOfTheRighteous = true;
+        public bool UseStoneform = true;
+        public bool UseWarStomp = true;
         public bool UseWordOfGlory = true;
-        /* Flask & Potion management */
-        public bool UseFlaskOrBattleElixir = false;
-        public string FlaskOrBattleElixir = "Flask of Winter's Bite";
-        public bool UseGuardianElixir = false;
-        public string GuardianElixir = "";
-        public bool UseCombatPotion = false;
-        public string CombatPotion = "Potion of Mogu Power";
-        public bool UseTeasureFindingPotion = false;
-        public string TeasureFindingPotion = "Potion of Luck";
-        public bool UseWellFedBuff = false;
-        public string WellFedBuff = "Black Pepper Ribs and Shrimp";
 
-        public PaladinRetributionSettings()
+        public PaladinProtectionSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Paladin Retribution Settings");
+            ConfigWinForm(new Point(400, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -12822,118 +12721,114 @@ public class Paladin_Retribution
             /* Paladin Seals & Buffs */
             AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
-            AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
-            AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
-            AddControlInWinForm("Use Exorcism", "UseExorcism", "Offensive Spell");
+            AddControlInWinForm("Use Shield of the Righteous", "UseShieldOfTheRighteous", "Offensive Spell");
+            AddControlInWinForm("Use Consecration", "UseConsecration", "Offensive Spell");
+            AddControlInWinForm("Use Avenger's Shield", "UseAvengersShield", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
             AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
             AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
             AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
             AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
+            AddControlInWinForm("Use Holy Wrath", "UseHolyWrath", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Inquisition", "UseInquisition", "Offensive Cooldown");
-            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Offensive Cooldown");
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
-            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
-            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
+            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Defensive Cooldown");
+            AddControlInWinForm("Use Ardent Defender", "UseArdentDefender", "Defensive Cooldown");
             AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Hand of Purity", "UseHandOfPurity", "Defensive Cooldown");
+            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
             AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
-            /* Flask & Potion Management */
-            AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
-            AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
-            AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
-            AddControlInWinForm("Guardian Elixir Name", "GuardianElixir", "Flask & Potion Management");
-            AddControlInWinForm("Use Combat Potion", "UseCombatPotion", "Flask & Potion Management");
-            AddControlInWinForm("Combat Potion Name", "CombatPotion", "Flask & Potion Management");
-            AddControlInWinForm("Use Teasure Finding Potion", "UseTeasureFindingPotion", "Flask & Potion Management");
-            AddControlInWinForm("Teasure Finding Potion Name", "TeasureFindingPotion", "Flask & Potion Management");
-            AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
-            AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
         }
 
-        public static PaladinRetributionSettings CurrentSetting { get; set; }
+        public static PaladinProtectionSettings CurrentSetting { get; set; }
 
-        public static PaladinRetributionSettings GetSettings()
+        public static PaladinProtectionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Protection.xml";
             if (File.Exists(CurrentSettingsFile))
             {
-                return
-                    CurrentSetting = Load<PaladinRetributionSettings>(CurrentSettingsFile);
+                return CurrentSetting = Load<PaladinProtectionSettings>(CurrentSettingsFile);
             }
-            return new PaladinRetributionSettings();
+            else
+            {
+                return new PaladinProtectionSettings();
+            }
         }
     }
 
+    #endregion
+}
+
+public class Paladin_Retribution
+{
     private static readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
 
     #region Professions & Racials
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
+    private readonly Spell Berserking = new Spell("Berserking");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Berserking = new Spell("Berserking");
 
     #endregion
 
     #region Paladin Seals & Buffs
 
+    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
+    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
+    private readonly Spell SealOfJustice = new Spell("Seal of Justice");
     private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
     private readonly Spell SealOfTruth = new Spell("Seal of Truth");
-    private readonly Spell SealOfJustice = new Spell("Seal of Justice");
-    private readonly Spell SealOfInsight = new Spell("Seal of Insight");
-    private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
-    private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
 
     #endregion
 
     #region Offensive Spell
 
-    private readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
     private readonly Spell BoundlessConviction = new Spell("Boundless Conviction");
+    private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
     private readonly Spell DivineStorm = new Spell("Divine Storm");
     private readonly Spell Exorcism = new Spell("Exorcism");
-    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
-    private readonly Spell CrusaderStrike = new Spell("Crusader Strike");
-    private readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous");
-    private readonly Spell Judgment = new Spell("Judgment");
     private readonly Spell HammerOfJustice = new Spell("Hammer of Justice");
+    private readonly Spell HammerOfTheRighteous = new Spell("Hammer of the Righteous");
+    private readonly Spell HammerOfWrath = new Spell("Hammer of Wrath");
+    private readonly Spell Judgment = new Spell("Judgment");
+    private readonly Spell TemplarsVerdict = new Spell("Templar's Verdict");
 
     #endregion
 
     #region Offensive Cooldown
 
-    private readonly Spell Inquisition = new Spell("Inquisition");
-    private Timer InquisitionToUseInPriotiy = new Timer(0);
-    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
-    private Timer BurstTime = new Timer(0);
-    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
     private readonly Spell AvengingWrath = new Spell("Avenging Wrath");
+    private readonly Spell GuardianOfAncientKings = new Spell("Guardian of Ancient Kings");
+    private readonly Spell HolyAvenger = new Spell("Holy Avenger");
+    private readonly Spell Inquisition = new Spell("Inquisition");
+    private Timer BurstTime = new Timer(0);
+    private Timer InquisitionToUseInPriotiy = new Timer(0);
 
     #endregion
 
     #region Defensive Cooldown
 
-    private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
-    private readonly Spell SacredShield = new Spell("Sacred Shield");
+    private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
     private readonly Spell HandOfProtection = new Spell("Hand of Protection");
+    private readonly Spell SacredShield = new Spell("Sacred Shield");
 
     #endregion
 
@@ -12947,15 +12842,15 @@ public class Paladin_Retribution
 
     #region Flask & Potion Management
 
+    private readonly uint CombatPotion = (uint) ItemsManager.GetIdByName(MySettings.CombatPotion);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly uint FlaskOrBattleElixir = (uint) ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir);
     private readonly uint GuardianElixir = (uint) ItemsManager.GetIdByName(MySettings.GuardianElixir);
-    private readonly uint CombatPotion = (uint) ItemsManager.GetIdByName(MySettings.CombatPotion);
-    private readonly uint TeasureFindingPotion = (uint) ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
-    private readonly uint WellFedBuff = (uint) ItemsManager.GetIdByName(MySettings.WellFedBuff);
 
     private readonly WoWItem Hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private readonly uint TeasureFindingPotion = (uint) ItemsManager.GetIdByName(MySettings.TeasureFindingPotion);
+    private readonly uint WellFedBuff = (uint) ItemsManager.GetIdByName(MySettings.WellFedBuff);
 
     #endregion
 
@@ -13298,6 +13193,131 @@ public class Paladin_Retribution
             SacredShield.Launch();
         }
     }
+
+    #region Nested type: PaladinRetributionSettings
+
+    [Serializable]
+    public class PaladinRetributionSettings : Settings
+    {
+        /* Professions & Racials */
+        public string CombatPotion = "Potion of Mogu Power";
+        public string FlaskOrBattleElixir = "Flask of Winter's Bite";
+        public string GuardianElixir = "";
+        public bool RefreshWeakenedBlows = true;
+        public string TeasureFindingPotion = "Potion of Luck";
+        public bool UseArcaneTorrent = true;
+        public bool UseAvengingWrath = true;
+        public bool UseBerserking = true;
+        /* Paladin Seals & Buffs */
+        public bool UseBlessingOfKings = true;
+        public bool UseBlessingOfMight = true;
+        public bool UseCombatPotion = false;
+        /* Offensive Spell */
+        public bool UseCrusaderStrike = true;
+        public bool UseDevotionAura = true;
+        public bool UseDivineProtection = true;
+        public bool UseDivineShield = true;
+        public bool UseDivineStorm = true;
+        public bool UseExorcism = true;
+        /* Healing Spell */
+        public bool UseFlashOfLight = true;
+        /* Flask & Potion management */
+        public bool UseFlaskOrBattleElixir = false;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGuardianElixir = false;
+        public bool UseGuardianOfAncientKings = true;
+        public bool UseHammerOfJustice = true;
+        public bool UseHammerOfTheRighteous = true;
+        public bool UseHammerOfWrath = true;
+        public bool UseHandOfProtection = false;
+        public bool UseHolyAvenger = true;
+        public bool UseInquisition = true;
+        public bool UseJudgment = true;
+        public bool UseLayOnHands = true;
+        public bool UseLifeblood = true;
+        public bool UseSacredShield = true;
+        public bool UseSealOfInsight = false;
+        public bool UseSealOfJustice = false;
+        public bool UseSealOfTheRighteousness = true;
+        public bool UseSealOfTruth = true;
+        public bool UseStoneform = true;
+        public bool UseTeasureFindingPotion = false;
+        public bool UseTemplarsVerdict = true;
+        public bool UseWarStomp = true;
+        public bool UseWellFedBuff = false;
+        public bool UseWordOfGlory = true;
+        public string WellFedBuff = "Black Pepper Ribs and Shrimp";
+
+        public PaladinRetributionSettings()
+        {
+            ConfigWinForm(new Point(400, 400), "Paladin Retribution Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            /* Paladin Seals & Buffs */
+            AddControlInWinForm("Use Seal of the Righteousness", "UseSealOfTheRighteousness", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Templar's Verdict", "UseTemplarsVerdict", "Offensive Spell");
+            AddControlInWinForm("Use Divine Storm", "UseDivineStorm", "Offensive Spell");
+            AddControlInWinForm("Use Exorcism", "UseExorcism", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Wrath", "UseHammerOfWrath", "Offensive Spell");
+            AddControlInWinForm("Use Crusader Strike", "UseCrusaderStrike", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of the Righteous", "UseHammerOfTheRighteous", "Offensive Spell");
+            AddControlInWinForm("Use Judgment", "UseJudgment", "Offensive Spell");
+            AddControlInWinForm("Use Hammer of Justice", "UseHammerOfJustice", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use Inquisition", "UseInquisition", "Offensive Cooldown");
+            AddControlInWinForm("Use Guardian of Ancient Kings", "UseGuardianOfAncientKings", "Offensive Cooldown");
+            AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
+            AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
+            AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
+            AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
+            AddControlInWinForm("Use Sacred Shield", "UseSacredShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Divine Shield", "UseDivineShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Hand of Protection", "UseHandOfProtection", "Defensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
+            AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
+            AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+            /* Flask & Potion Management */
+            AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
+            AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
+            AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
+            AddControlInWinForm("Guardian Elixir Name", "GuardianElixir", "Flask & Potion Management");
+            AddControlInWinForm("Use Combat Potion", "UseCombatPotion", "Flask & Potion Management");
+            AddControlInWinForm("Combat Potion Name", "CombatPotion", "Flask & Potion Management");
+            AddControlInWinForm("Use Teasure Finding Potion", "UseTeasureFindingPotion", "Flask & Potion Management");
+            AddControlInWinForm("Teasure Finding Potion Name", "TeasureFindingPotion", "Flask & Potion Management");
+            AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
+            AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
+        }
+
+        public static PaladinRetributionSettings CurrentSetting { get; set; }
+
+        public static PaladinRetributionSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+            if (File.Exists(CurrentSettingsFile))
+            {
+                return
+                    CurrentSetting = Load<PaladinRetributionSettings>(CurrentSettingsFile);
+            }
+            return new PaladinRetributionSettings();
+        }
+    }
+
+    #endregion
 }
 
 #endregion
@@ -13306,171 +13326,25 @@ public class Paladin_Retribution
 
 public class Shaman_Enhancement
 {
-    [Serializable]
-    public class ShamanEnhancementSettings : nManager.Helpful.Settings
-    {
-        /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Shaman Buffs */
-        public bool UseFlametongueWeapon = true;
-        public bool UseFrostbrandWeapon = false;
-        public bool UseGhostWolf = true;
-        public bool UseLightningShield = true;
-        public bool UseRockbiterWeapon = false;
-        public bool UseSpiritwalkersGrace = true;
-        public bool UseWaterShield = true;
-        public bool UseWaterWalking = true;
-        public bool UseWindfuryWeapon = true;
-        /* Offensive Spell */
-        public bool UseChainLightning = true;
-        public bool UseEarthShock = true;
-        public bool UseFireNova = true;
-        public bool UseFlameShock = true;
-        public bool UseFrostShock = false;
-        public bool UseLavaLash = true;
-        public bool UseLightningBolt = true;
-        public bool UseMagmaTotem = true;
-        public bool UseSearingTotem = true;
-        public bool UseStormstrike = true;
-        /* Offensive Cooldown */
-        public bool UseAncestralSwiftness = true;
-        public bool UseAscendance = true;
-        public bool UseBloodlustHeroism = true;
-        public bool UseCalloftheElements = true;
-        public bool UseEarthElementalTotem = true;
-        public bool UseElementalBlast = true;
-        public bool UseElementalMastery = true;
-        public bool UseFeralSpirit = true;
-        public bool UseFireElementalTotem = true;
-        public bool UseStormlashTotem = true;
-        public bool UseTotemicProjection = true;
-        public bool UseUnleashElements = true;
-        /* Defensive Cooldown */
-        public bool UseAstralShift = true;
-        public bool UseCapacitorTotem = true;
-        public bool UseEarthbindTotem = false;
-        public bool UseGroundingTotem = true;
-        public bool UseShamanisticRage = true;
-        public bool UseStoneBulwarkTotem = true;
-        public bool UseWindShear = true;
-        /* Healing Spell */
-        public bool UseAncestralGuidance = true;
-        public bool UseChainHeal = false;
-        public bool UseHealingRain = true;
-        public bool UseHealingSurge = true;
-        public bool UseHealingStreamTotem = true;
-        public bool UseHealingTideTotem = true;
-        public bool UseTotemicRecall = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
-
-        public ShamanEnhancementSettings()
-        {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Shaman Enhancement Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Shaman Buffs */
-            AddControlInWinForm("Use Flametongue Weapon", "UseFlametongueWeapon", "Shaman Buffs");
-            AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrandWeapon", "Shaman Buffs");
-            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
-            AddControlInWinForm("Use Lightning Shield", "UseLightningShield", "Shaman Buffs");
-            AddControlInWinForm("Use Rockbiter Weapon", "UseRockbiterWeapon", "Shaman Buffs");
-            AddControlInWinForm("Use Spiritwalker's Grace", "UseSpiritwalkersGrace", "Shaman Buffs");
-            AddControlInWinForm("Use Water Shield", "UseWaterShield", "Shaman Buffs");
-            AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Shaman Buffs");
-            AddControlInWinForm("Use Windfury Weapon", "UseWindfuryWeapon", "Shaman Buffs");
-            /* Offensive Spell */
-            AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spell");
-            AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spell");
-            AddControlInWinForm("Use Fire Nova", "UseFireNova", "Offensive Spell");
-            AddControlInWinForm("Use Flame Shock", "UseFlameShock", "Offensive Spell");
-            AddControlInWinForm("Use Frost Shock", "UseFrostShock", "Offensive Spell");
-            AddControlInWinForm("Use Lava Lash", "UseLavaLash", "Offensive Spell");
-            AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spell");
-            AddControlInWinForm("Use Magma Totem", "UseMagmaTotem", "Offensive Spell");
-            AddControlInWinForm("Use Searing Totem", "UseSearingTotem", "Offensive Spell");
-            AddControlInWinForm("Use Stormstrike", "UseStormstrike", "Offensive Spell");
-            /* Offensive Cooldown */
-            AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Cooldown");
-            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldown");
-            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldown");
-            AddControlInWinForm("Use Call of the Elements", "UseCalloftheElements", "Offensive Cooldown");
-            AddControlInWinForm("Use Earth Elemental Totem", "UseEarthElementalTotem", "Offensive Cooldown");
-            AddControlInWinForm("Use Elemental Blast", "UseElementalBlast", "Offensive Cooldown");
-            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldown");
-            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Cooldown");
-            AddControlInWinForm("Use Fire Elemental Totem", "UseFireElementalTotem", "Offensive Cooldown");
-            AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Cooldown");
-            AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Cooldown");
-            AddControlInWinForm("Use Unleash Elements", "UseUnleashElements", "Offensive Cooldown");
-            /* Defensive Cooldown */
-            AddControlInWinForm("Use Astral Shift", "UseAstralShift", "Defensive Cooldown");
-            AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Cooldown");
-            AddControlInWinForm("Use Earthbind Totem", "UseEarthbindTotem", "Defensive Cooldown");
-            AddControlInWinForm("Use Grounding Totem", "UseGroundingTotem", "Defensive Cooldown");
-            AddControlInWinForm("Use Shamanistic Rage", "UseShamanisticRage", "Defensive Cooldown");
-            AddControlInWinForm("Use StoneBulwark Totem", "UseStoneBulwarkTotem", "Defensive Cooldown");
-            AddControlInWinForm("Use Wind Shear", "UseWindShear", "Defensive Cooldown");
-            /* Healing Spell */
-            AddControlInWinForm("Use Ancestral Guidance", "UseAncestralGuidance", "Healing Spell");
-            AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spell");
-            AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spell");
-            AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spell");
-            AddControlInWinForm("Use Healing Stream Totem", "UseHealingStream_Totem", "Healing Spell");
-            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTide_Totem", "Healing Spell");
-            AddControlInWinForm("Use Totemic Recall", "UseTotemicRecall", "Healing Spell");
-            /* Game Settings */
-            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
-            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
-            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
-            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-        }
-
-        public static ShamanEnhancementSettings CurrentSetting { get; set; }
-
-        public static ShamanEnhancementSettings GetSettings()
-        {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
-            {
-                return
-                    CurrentSetting = Settings.Load<Shaman_Enhancement.ShamanEnhancementSettings>(CurrentSettingsFile);
-            }
-            else
-            {
-                return new Shaman_Enhancement.ShamanEnhancementSettings();
-            }
-        }
-    }
-
     private readonly ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -13495,7 +13369,6 @@ public class Shaman_Enhancement
     private readonly Spell Earth_Shock = new Spell("Earth Shock");
     private readonly Spell Fire_Nova = new Spell("Fire Nova");
     private readonly Spell Flame_Shock = new Spell("Flame Shock");
-    private Timer Flame_Shock_Timer = new Timer(0);
     private readonly Spell Frost_Shock = new Spell("Frost Shock");
     private readonly Spell Lava_Lash = new Spell("Lava Lash");
     private readonly Spell Lightning_Bolt = new Spell("Lightning Bolt");
@@ -13503,6 +13376,7 @@ public class Shaman_Enhancement
     private readonly Spell Primal_Strike = new Spell("Primal Strike");
     private readonly Spell Searing_Totem = new Spell("Searing Totem");
     private readonly Spell Stormstrike = new Spell("Stormstrike");
+    private Timer Flame_Shock_Timer = new Timer(0);
 
     #endregion
 
@@ -13542,18 +13416,12 @@ public class Shaman_Enhancement
     private readonly Spell Ancestral_Guidance = new Spell("Ancestral Guidance");
     private readonly Spell Chain_Heal = new Spell("Chain Heal");
     private readonly Spell Healing_Rain = new Spell("Healing Rain");
-    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Stream_Totem = new Spell("Healing Stream Totem");
+    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Tide_Totem = new Spell("Healing Tide Totem");
     private readonly Spell Totemic_Recall = new Spell("Totemic Recall");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Shaman_Enhancement()
     {
@@ -14181,86 +14049,77 @@ public class Shaman_Enhancement
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Shaman_Restoration
-{
+    #region Nested type: ShamanEnhancementSettings
+
     [Serializable]
-    public class ShamanRestorationSettings : nManager.Helpful.Settings
+    public class ShamanEnhancementSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAncestralGuidance = true;
+        public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrent = true;
+        public bool UseAscendance = true;
+        public bool UseAstralShift = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Shaman Buffs */
-        public bool UseEarthShield = true;
-        public bool UseEarthlivingWeapon = true;
-        public bool UseFlametongueWeapon = true;
-        public bool UseFrostbrandWeapon = false;
-        public bool UseGhostWolf = true;
-        public bool UseLightningShield = true;
-        public bool UseRockbiterWeapon = false;
-        public bool UseSpiritwalkersGrace = true;
-        public bool UseWaterShield = true;
-        public bool UseWaterWalking = true;
-        /* Offensive Spell */
-        public bool UseChainLightning = true;
-        public bool UseEarthShock = true;
-        public bool UseFlameShock = true;
-        public bool UseFrostShock = false;
-        public bool UseLavaBurst = true;
-        public bool UseLightningBolt = true;
-        public bool UseMagmaTotem = true;
-        public bool UsePrimalStrike = true;
-        public bool UseSearingTotem = true;
-        /* Offensive Cooldown */
-        public bool UseAncestralSwiftness = true;
-        public bool UseAscendance = true;
         public bool UseBloodlustHeroism = true;
         public bool UseCalloftheElements = true;
+        public bool UseCapacitorTotem = true;
+        public bool UseChainHeal = false;
+        public bool UseChainLightning = true;
         public bool UseEarthElementalTotem = true;
+        public bool UseEarthShock = true;
+        public bool UseEarthbindTotem = false;
         public bool UseElementalBlast = true;
         public bool UseElementalMastery = true;
+        public bool UseEngGlove = true;
+        public bool UseFeralSpirit = true;
         public bool UseFireElementalTotem = true;
-        public bool UseStormlashTotem = true;
-        public bool UseTotemicProjection = true;
-        public bool UseUnleashElements = true;
-        /* Defensive Cooldown */
-        public bool UseAstralShift = true;
-        public bool UseCapacitorTotem = true;
-        public bool UseEarthbindTotem = false;
+        public bool UseFireNova = true;
+        public bool UseFlameShock = true;
+        public bool UseFlametongueWeapon = true;
+        public bool UseFrostShock = false;
+        public bool UseFrostbrandWeapon = false;
+        public bool UseGhostWolf = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseGroundingTotem = true;
-        public bool UseStoneBulwarkTotem = true;
-        public bool UseWindShear = true;
-        /* Healing Spell */
-        public bool UseAncestralGuidance = true;
-        public bool UseChainHeal = false;
-        public bool UseGreaterHealingWave = true;
         public bool UseHealingRain = true;
-        public bool UseHealingSurge = true;
         public bool UseHealingStreamTotem = true;
-        public bool UseHealingWave = false;
+        public bool UseHealingSurge = true;
         public bool UseHealingTideTotem = true;
-        public bool UseManaTideTotem = true;
-        public bool UseRiptide = true;
-        public bool UseSpiritLinkTotem = true;
-        public bool UseTotemicRecall = true;
+        public bool UseLavaLash = true;
+        public bool UseLifeblood = true;
+        public bool UseLightningBolt = true;
+        public bool UseLightningShield = true;
         /* Game Settings */
         public bool UseLowCombat = true;
+        public bool UseMagmaTotem = true;
+        public bool UseRockbiterWeapon = false;
+        public bool UseSearingTotem = true;
+        public bool UseShamanisticRage = true;
+        public bool UseSpiritwalkersGrace = true;
+        public bool UseStoneBulwarkTotem = true;
+        public bool UseStoneform = true;
+        public bool UseStormlashTotem = true;
+        public bool UseStormstrike = true;
+        public bool UseTotemicProjection = true;
+        public bool UseTotemicRecall = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseUnleashElements = true;
+        public bool UseWarStomp = true;
+        public bool UseWaterShield = true;
+        public bool UseWaterWalking = true;
+        public bool UseWindShear = true;
+        public bool UseWindfuryWeapon = true;
 
-        public ShamanRestorationSettings()
+        public ShamanEnhancementSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Shaman Restoration Settings");
+            ConfigWinForm(new Point(400, 400), "Shaman Enhancement Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -14270,8 +14129,6 @@ public class Shaman_Restoration
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Shaman Buffs */
-            AddControlInWinForm("Use Earth Shield", "UseEarthShield", "Shaman Buffs");
-            AddControlInWinForm("Use Earthliving Weapon", "UseEarthlivingWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Flametongue Weapon", "UseFlametongueWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrandWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
@@ -14280,15 +14137,18 @@ public class Shaman_Restoration
             AddControlInWinForm("Use Spiritwalker's Grace", "UseSpiritwalkersGrace", "Shaman Buffs");
             AddControlInWinForm("Use Water Shield", "UseWaterShield", "Shaman Buffs");
             AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Shaman Buffs");
+            AddControlInWinForm("Use Windfury Weapon", "UseWindfuryWeapon", "Shaman Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spell");
             AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spell");
+            AddControlInWinForm("Use Fire Nova", "UseFireNova", "Offensive Spell");
             AddControlInWinForm("Use Flame Shock", "UseFlameShock", "Offensive Spell");
             AddControlInWinForm("Use Frost Shock", "UseFrostShock", "Offensive Spell");
-            AddControlInWinForm("Use Lava Burst", "UseLavaBurst", "Offensive Spell");
+            AddControlInWinForm("Use Lava Lash", "UseLavaLash", "Offensive Spell");
             AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spell");
             AddControlInWinForm("Use Magma Totem", "UseMagmaTotem", "Offensive Spell");
             AddControlInWinForm("Use Searing Totem", "UseSearingTotem", "Offensive Spell");
+            AddControlInWinForm("Use Stormstrike", "UseStormstrike", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Cooldown");
             AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldown");
@@ -14297,6 +14157,7 @@ public class Shaman_Restoration
             AddControlInWinForm("Use Earth Elemental Totem", "UseEarthElementalTotem", "Offensive Cooldown");
             AddControlInWinForm("Use Elemental Blast", "UseElementalBlast", "Offensive Cooldown");
             AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldown");
+            AddControlInWinForm("Use Feral Spirit", "UseFeralSpirit", "Offensive Cooldown");
             AddControlInWinForm("Use Fire Elemental Totem", "UseFireElementalTotem", "Offensive Cooldown");
             AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Cooldown");
             AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Cooldown");
@@ -14306,20 +14167,16 @@ public class Shaman_Restoration
             AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Cooldown");
             AddControlInWinForm("Use Earthbind Totem", "UseEarthbindTotem", "Defensive Cooldown");
             AddControlInWinForm("Use Grounding Totem", "UseGroundingTotem", "Defensive Cooldown");
+            AddControlInWinForm("Use Shamanistic Rage", "UseShamanisticRage", "Defensive Cooldown");
             AddControlInWinForm("Use StoneBulwark Totem", "UseStoneBulwarkTotem", "Defensive Cooldown");
             AddControlInWinForm("Use Wind Shear", "UseWindShear", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Ancestral Guidance", "UseAncestralGuidance", "Healing Spell");
             AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spell");
-            AddControlInWinForm("Use Greater Healing Wave", "UseGreaterHealingWave", "Healing Spell");
             AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spell");
             AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spell");
             AddControlInWinForm("Use Healing Stream Totem", "UseHealingStream_Totem", "Healing Spell");
-            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTideTotem", "Healing Spell");
-            AddControlInWinForm("Use Healing Wave", "UseHealingWave", "Healing Spell");
-            AddControlInWinForm("Use Mana Tide Totem", "UseManaTideTotem", "Healing Spell");
-            AddControlInWinForm("Use Riptide", "UseRiptide", "Healing Spell");
-            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotem", "Healing Spell");
+            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTide_Totem", "Healing Spell");
             AddControlInWinForm("Use Totemic Recall", "UseTotemicRecall", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
@@ -14328,36 +14185,47 @@ public class Shaman_Restoration
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static ShamanRestorationSettings CurrentSetting { get; set; }
+        public static ShamanEnhancementSettings CurrentSetting { get; set; }
 
-        public static ShamanRestorationSettings GetSettings()
+        public static ShamanEnhancementSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Shaman_Restoration.ShamanRestorationSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<ShamanEnhancementSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Shaman_Restoration.ShamanRestorationSettings();
+                return new ShamanEnhancementSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Shaman_Restoration
+{
     private readonly ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -14382,13 +14250,13 @@ public class Shaman_Restoration
     private readonly Spell Chain_Lightning = new Spell("Chain Lightning");
     private readonly Spell Earth_Shock = new Spell("Earth Shock");
     private readonly Spell Flame_Shock = new Spell("Flame Shock");
-    private Timer Flame_Shock_Timer = new Timer(0);
     private readonly Spell Frost_Shock = new Spell("Frost Shock");
     private readonly Spell Lava_Burst = new Spell("Lava Burst");
     private readonly Spell Lightning_Bolt = new Spell("Lightning Bolt");
     private readonly Spell Magma_Totem = new Spell("Magma Totem");
     private readonly Spell Primal_Strike = new Spell("Primal Strike");
     private readonly Spell Searing_Totem = new Spell("Searing Totem");
+    private Timer Flame_Shock_Timer = new Timer(0);
 
     #endregion
 
@@ -14427,8 +14295,8 @@ public class Shaman_Restoration
     private readonly Spell Chain_Heal = new Spell("Chain Heal");
     private readonly Spell Greater_Healing_Wave = new Spell("Greater Healing Wave");
     private readonly Spell Healing_Rain = new Spell("Healing Rain");
-    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Stream_Totem = new Spell("Healing Stream Totem");
+    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Tide_Totem = new Spell("Healing Tide Totem");
     private readonly Spell Healing_Wave = new Spell("Healing_Wave");
     private readonly Spell Mana_Tide_Totem = new Spell("Mana Tide Totem");
@@ -14437,12 +14305,6 @@ public class Shaman_Restoration
     private readonly Spell Totemic_Recall = new Spell("Totemic Recall");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Shaman_Restoration()
     {
@@ -15076,80 +14938,80 @@ public class Shaman_Restoration
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Shaman_Elemental
-{
+    #region Nested type: ShamanRestorationSettings
+
     [Serializable]
-    public class ShamanElementalSettings : nManager.Helpful.Settings
+    public class ShamanRestorationSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAncestralGuidance = true;
+        public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrent = true;
+        public bool UseAscendance = true;
+        public bool UseAstralShift = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Shaman Buffs */
-        public bool UseFlametongueWeapon = true;
-        public bool UseFrostbrandWeapon = false;
-        public bool UseGhostWolf = true;
-        public bool UseLightningShield = true;
-        public bool UseRockbiterWeapon = false;
-        public bool UseSpiritwalkersGrace = true;
-        public bool UseWaterShield = true;
-        public bool UseWaterWalking = true;
-        /* Offensive Spell */
-        public bool UseChainLightning = true;
-        public bool UseEarthquake = true;
-        public bool UseEarthShock = true;
-        public bool UseFlameShock = true;
-        public bool UseFrostShock = false;
-        public bool UseLavaBurst = true;
-        public bool UseLightningBolt = true;
-        public bool UseMagmaTotem = true;
-        public bool UseSearingTotem = true;
-        public bool UseThunderstorm = true;
-        /* Offensive Cooldown */
-        public bool UseAncestralSwiftness = true;
-        public bool UseAscendance = true;
         public bool UseBloodlustHeroism = true;
         public bool UseCalloftheElements = true;
+        public bool UseCapacitorTotem = true;
+        public bool UseChainHeal = false;
+        public bool UseChainLightning = true;
         public bool UseEarthElementalTotem = true;
+        public bool UseEarthShield = true;
+        public bool UseEarthShock = true;
+        public bool UseEarthbindTotem = false;
+        public bool UseEarthlivingWeapon = true;
         public bool UseElementalBlast = true;
         public bool UseElementalMastery = true;
+        public bool UseEngGlove = true;
         public bool UseFireElementalTotem = true;
+        public bool UseFlameShock = true;
+        public bool UseFlametongueWeapon = true;
+        public bool UseFrostShock = false;
+        public bool UseFrostbrandWeapon = false;
+        public bool UseGhostWolf = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGreaterHealingWave = true;
+        public bool UseGroundingTotem = true;
+        public bool UseHealingRain = true;
+        public bool UseHealingStreamTotem = true;
+        public bool UseHealingSurge = true;
+        public bool UseHealingTideTotem = true;
+        public bool UseHealingWave = false;
+        public bool UseLavaBurst = true;
+        public bool UseLifeblood = true;
+        public bool UseLightningBolt = true;
+        public bool UseLightningShield = true;
+        public bool UseLowCombat = true;
+        public bool UseMagmaTotem = true;
+        public bool UseManaTideTotem = true;
+        public bool UsePrimalStrike = true;
+        public bool UseRiptide = true;
+        public bool UseRockbiterWeapon = false;
+        public bool UseSearingTotem = true;
+        public bool UseSpiritLinkTotem = true;
+        public bool UseSpiritwalkersGrace = true;
+        public bool UseStoneBulwarkTotem = true;
+        public bool UseStoneform = true;
         public bool UseStormlashTotem = true;
         public bool UseTotemicProjection = true;
-        public bool UseUnleashElements = true;
-        /* Defensive Cooldown */
-        public bool UseAstralShift = true;
-        public bool UseCapacitorTotem = true;
-        public bool UseEarthbindTotem = false;
-        public bool UseGroundingTotem = true;
-        public bool UseStoneBulwarkTotem = true;
-        public bool UseWindShear = true;
-        /* Healing Spell */
-        public bool UseAncestralGuidance = true;
-        public bool UseChainHeal = false;
-        public bool UseHealingRain = true;
-        public bool UseHealingSurge = true;
-        public bool UseHealingStreamTotem = true;
-        public bool UseHealingTideTotem = true;
         public bool UseTotemicRecall = true;
         /* Game Settings */
-        public bool UseLowCombat = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseUnleashElements = true;
+        public bool UseWarStomp = true;
+        public bool UseWaterShield = true;
+        public bool UseWaterWalking = true;
+        public bool UseWindShear = true;
 
-        public ShamanElementalSettings()
+        public ShamanRestorationSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Shaman Elemental Settings");
+            ConfigWinForm(new Point(400, 400), "Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -15159,6 +15021,8 @@ public class Shaman_Elemental
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Shaman Buffs */
+            AddControlInWinForm("Use Earth Shield", "UseEarthShield", "Shaman Buffs");
+            AddControlInWinForm("Use Earthliving Weapon", "UseEarthlivingWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Flametongue Weapon", "UseFlametongueWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrandWeapon", "Shaman Buffs");
             AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
@@ -15169,7 +15033,6 @@ public class Shaman_Elemental
             AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Shaman Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spell");
-            AddControlInWinForm("Use Earthquake", "UseEarthquake", "Offensive Spell");
             AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spell");
             AddControlInWinForm("Use Flame Shock", "UseFlameShock", "Offensive Spell");
             AddControlInWinForm("Use Frost Shock", "UseFrostShock", "Offensive Spell");
@@ -15177,7 +15040,6 @@ public class Shaman_Elemental
             AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spell");
             AddControlInWinForm("Use Magma Totem", "UseMagmaTotem", "Offensive Spell");
             AddControlInWinForm("Use Searing Totem", "UseSearingTotem", "Offensive Spell");
-            AddControlInWinForm("Use Thunderstorm", "UseThunderstorm", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Cooldown");
             AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldown");
@@ -15200,10 +15062,15 @@ public class Shaman_Elemental
             /* Healing Spell */
             AddControlInWinForm("Use Ancestral Guidance", "UseAncestralGuidance", "Healing Spell");
             AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spell");
+            AddControlInWinForm("Use Greater Healing Wave", "UseGreaterHealingWave", "Healing Spell");
             AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spell");
             AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spell");
             AddControlInWinForm("Use Healing Stream Totem", "UseHealingStream_Totem", "Healing Spell");
-            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTide_Totem", "Healing Spell");
+            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTideTotem", "Healing Spell");
+            AddControlInWinForm("Use Healing Wave", "UseHealingWave", "Healing Spell");
+            AddControlInWinForm("Use Mana Tide Totem", "UseManaTideTotem", "Healing Spell");
+            AddControlInWinForm("Use Riptide", "UseRiptide", "Healing Spell");
+            AddControlInWinForm("Use Spirit Link Totem", "UseSpiritLinkTotem", "Healing Spell");
             AddControlInWinForm("Use Totemic Recall", "UseTotemicRecall", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
@@ -15212,36 +15079,47 @@ public class Shaman_Elemental
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static ShamanElementalSettings CurrentSetting { get; set; }
+        public static ShamanRestorationSettings CurrentSetting { get; set; }
 
-        public static ShamanElementalSettings GetSettings()
+        public static ShamanRestorationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Shaman_Elemental.ShamanElementalSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<ShamanRestorationSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Shaman_Elemental.ShamanElementalSettings();
+                return new ShamanRestorationSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Shaman_Elemental
+{
     private readonly ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -15262,16 +15140,16 @@ public class Shaman_Elemental
     #region Offensive Spell
 
     private readonly Spell Chain_Lightning = new Spell("Chain Lightning");
-    private readonly Spell Earthquake = new Spell("Earthquake");
     private readonly Spell Earth_Shock = new Spell("Earth Shock");
+    private readonly Spell Earthquake = new Spell("Earthquake");
     private readonly Spell Flame_Shock = new Spell("Flame Shock");
-    private Timer Flame_Shock_Timer = new Timer(0);
     private readonly Spell Frost_Shock = new Spell("Frost Shock");
     private readonly Spell Lava_Burst = new Spell("Lava Burst");
     private readonly Spell Lightning_Bolt = new Spell("Lightning Bolt");
     private readonly Spell Magma_Totem = new Spell("Magma Totem");
     private readonly Spell Searing_Totem = new Spell("Searing Totem");
     private readonly Spell Thunderstorm = new Spell("Thunderstorm");
+    private Timer Flame_Shock_Timer = new Timer(0);
 
     #endregion
 
@@ -15309,18 +15187,12 @@ public class Shaman_Elemental
     private readonly Spell Ancestral_Guidance = new Spell("Ancestral Guidance");
     private readonly Spell Chain_Heal = new Spell("Chain Heal");
     private readonly Spell Healing_Rain = new Spell("Healing Rain");
-    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Stream_Totem = new Spell("Healing Stream Totem");
+    private readonly Spell Healing_Surge = new Spell("Healing Surge");
     private readonly Spell Healing_Tide_Totem = new Spell("Healing Tide Totem");
     private readonly Spell Totemic_Recall = new Spell("Totemic Recall");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Shaman_Elemental()
     {
@@ -15911,72 +15783,74 @@ public class Shaman_Elemental
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: ShamanElementalSettings
 
-#region Priest
-
-public class Priest_Shadow
-{
     [Serializable]
-    public class PriestShadowSettings : nManager.Helpful.Settings
+    public class ShamanElementalSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAncestralGuidance = true;
+        public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrent = true;
+        public bool UseAscendance = true;
+        public bool UseAstralShift = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
+        public bool UseBloodlustHeroism = true;
+        public bool UseCalloftheElements = true;
+        public bool UseCapacitorTotem = true;
+        public bool UseChainHeal = false;
+        public bool UseChainLightning = true;
+        public bool UseEarthElementalTotem = true;
+        public bool UseEarthShock = true;
+        public bool UseEarthbindTotem = false;
+        public bool UseEarthquake = true;
+        public bool UseElementalBlast = true;
+        public bool UseElementalMastery = true;
+        public bool UseEngGlove = true;
+        public bool UseFireElementalTotem = true;
+        public bool UseFlameShock = true;
+        public bool UseFlametongueWeapon = true;
+        public bool UseFrostShock = false;
+        public bool UseFrostbrandWeapon = false;
+        public bool UseGhostWolf = true;
         public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Priest Buffs */
-        public bool UseInnerFire = true;
-        public bool UseInnerWill = false;
-        public bool UseLevitate = false;
-        public bool UsePowerWordFortitude = true;
-        public bool UseShadowform = true;
-        /* Offensive Spell */
-        public bool UseDevouringPlague = true;
-        public bool UseMindBlast = true;
-        public bool UseMindFlay = true;
-        public bool UseMindSear = true;
-        public bool UseMindSpike = true;
-        public bool UseShadowWordDeath = true;
-        public bool UseShadowWordInsanity = true;
-        public bool UseShadowWordPain = true;
-        public bool UseVampiricTouch = true;
-        /* Offensive Cooldown */
-        public bool UsePowerInfusion = true;
-        public bool UseShadowfiend = true;
-        /* Defensive Cooldown */
-        public bool UseDispersion = true;
-        public bool UsePowerWordShield = true;
-        public bool UsePsychicHorror = true;
-        public bool UsePsychicScream = true;
-        public bool UsePsyfiend = true;
-        public bool UseSilence = true;
-        public bool UseSpectralGuise = true;
-        public bool UseVoidTendrils = true;
-        /* Healing Spell */
-        public bool UseDesperatePrayer = true;
-        public bool UseFlash_Heal = true;
-        public bool UseHymnofHope = true;
-        public bool UsePrayerofMending = true;
-        public bool UseRenew = true;
-        public bool UseVampiricEmbrace = true;
+        public bool UseGroundingTotem = true;
+        public bool UseHealingRain = true;
+        public bool UseHealingStreamTotem = true;
+        public bool UseHealingSurge = true;
+        public bool UseHealingTideTotem = true;
+        public bool UseLavaBurst = true;
+        public bool UseLifeblood = true;
+        public bool UseLightningBolt = true;
+        public bool UseLightningShield = true;
         /* Game Settings */
         public bool UseLowCombat = true;
+        public bool UseMagmaTotem = true;
+        public bool UseRockbiterWeapon = false;
+        public bool UseSearingTotem = true;
+        public bool UseSpiritwalkersGrace = true;
+        public bool UseStoneBulwarkTotem = true;
+        public bool UseStoneform = true;
+        public bool UseStormlashTotem = true;
+        public bool UseThunderstorm = true;
+        public bool UseTotemicProjection = true;
+        public bool UseTotemicRecall = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseUnleashElements = true;
+        public bool UseWarStomp = true;
+        public bool UseWaterShield = true;
+        public bool UseWaterWalking = true;
+        public bool UseWindShear = true;
 
-        public PriestShadowSettings()
+        public ShamanElementalSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Shadow Priest Settings");
+            ConfigWinForm(new Point(400, 400), "Shaman Elemental Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -15985,41 +15859,53 @@ public class Priest_Shadow
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Priest Buffs */
-            AddControlInWinForm("Use Inner Fire", "UseInnerFire", "Priest Buffs");
-            AddControlInWinForm("Use Inner Will", "UseInnerWill", "Priest Buffs");
-            AddControlInWinForm("Use Levitate", "UseLevitate", "Priest Buffs");
-            AddControlInWinForm("Use Power Word: Fortitude", "UsePowerWordFortitude", "Priest Buffs");
-            AddControlInWinForm("Use Shadowform", "UseShadowform", "Priest Buffs");
+            /* Shaman Buffs */
+            AddControlInWinForm("Use Flametongue Weapon", "UseFlametongueWeapon", "Shaman Buffs");
+            AddControlInWinForm("Use Frostbrand Weapon", "UseFrostbrandWeapon", "Shaman Buffs");
+            AddControlInWinForm("Use Ghost Wolf", "UseGhostWolf", "Shaman Buffs");
+            AddControlInWinForm("Use Lightning Shield", "UseLightningShield", "Shaman Buffs");
+            AddControlInWinForm("Use Rockbiter Weapon", "UseRockbiterWeapon", "Shaman Buffs");
+            AddControlInWinForm("Use Spiritwalker's Grace", "UseSpiritwalkersGrace", "Shaman Buffs");
+            AddControlInWinForm("Use Water Shield", "UseWaterShield", "Shaman Buffs");
+            AddControlInWinForm("Use Water Walking", "UseWaterWalking", "Shaman Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Devouring Plague", "UseDevoringPlague", "Offensive Spell");
-            AddControlInWinForm("Use Mind Blast", "UseMindBlast", "Offensive Spell");
-            AddControlInWinForm("Use Mind Flay", "UseMindFlay", "Offensive Spell");
-            AddControlInWinForm("Use Mind Sear", "UseMindSear", "Offensive Spell");
-            AddControlInWinForm("Use Mind Spike", "UseMindSpike", "Offensive Spell");
-            AddControlInWinForm("Use Shadow Word: Death", "UseShadowWordDeath", "Offensive Spell");
-            AddControlInWinForm("Use Shadow Word: Insanity", "UseShadowWordInsanity", "Offensive Spell");
-            AddControlInWinForm("Use Shadow Word: Pain", "UseShadowWordPain", "Offensive Spell");
-            AddControlInWinForm("Use Vampiric Touch", "UseVampiricTouch", "Offensive Spell");
+            AddControlInWinForm("Use Chain Lightning", "UseChainLightning", "Offensive Spell");
+            AddControlInWinForm("Use Earthquake", "UseEarthquake", "Offensive Spell");
+            AddControlInWinForm("Use Earth Shock", "UseEarthShock", "Offensive Spell");
+            AddControlInWinForm("Use Flame Shock", "UseFlameShock", "Offensive Spell");
+            AddControlInWinForm("Use Frost Shock", "UseFrostShock", "Offensive Spell");
+            AddControlInWinForm("Use Lava Burst", "UseLavaBurst", "Offensive Spell");
+            AddControlInWinForm("Use Lightning Bolt", "UseLightningBolt", "Offensive Spell");
+            AddControlInWinForm("Use Magma Totem", "UseMagmaTotem", "Offensive Spell");
+            AddControlInWinForm("Use Searing Totem", "UseSearingTotem", "Offensive Spell");
+            AddControlInWinForm("Use Thunderstorm", "UseThunderstorm", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Power Infusion", "UsePowerInfusion", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
+            AddControlInWinForm("Use Ancestral Swiftness", "UseAncestralSwiftness", "Offensive Cooldown");
+            AddControlInWinForm("Use Ascendance", "UseAscendance", "Offensive Cooldown");
+            AddControlInWinForm("Use Bloodlust / Heroism", "UseBloodlustHeroism", "Offensive Cooldown");
+            AddControlInWinForm("Use Call of the Elements", "UseCalloftheElements", "Offensive Cooldown");
+            AddControlInWinForm("Use Earth Elemental Totem", "UseEarthElementalTotem", "Offensive Cooldown");
+            AddControlInWinForm("Use Elemental Blast", "UseElementalBlast", "Offensive Cooldown");
+            AddControlInWinForm("Use Elemental Mastery", "UseElementalMastery", "Offensive Cooldown");
+            AddControlInWinForm("Use Fire Elemental Totem", "UseFireElementalTotem", "Offensive Cooldown");
+            AddControlInWinForm("Use Stormlash Totem", "UseStormlashTotem", "Offensive Cooldown");
+            AddControlInWinForm("Use Totemic Projection", "UseTotemicProjection", "Offensive Cooldown");
+            AddControlInWinForm("Use Unleash Elements", "UseUnleashElements", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
-            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
-            AddControlInWinForm("Use Silence", "UseSilence", "Defensive Cooldown");
-            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown");
-            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
+            AddControlInWinForm("Use Astral Shift", "UseAstralShift", "Defensive Cooldown");
+            AddControlInWinForm("Use Capacitor Totem", "UseCapacitorTotem", "Defensive Cooldown");
+            AddControlInWinForm("Use Earthbind Totem", "UseEarthbindTotem", "Defensive Cooldown");
+            AddControlInWinForm("Use Grounding Totem", "UseGroundingTotem", "Defensive Cooldown");
+            AddControlInWinForm("Use StoneBulwark Totem", "UseStoneBulwarkTotem", "Defensive Cooldown");
+            AddControlInWinForm("Use Wind Shear", "UseWindShear", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
-            AddControlInWinForm("Use Flash Heal", "UseFlash_Heal", "Healing Spell");
-            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
-            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
-            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
-            AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell");
+            AddControlInWinForm("Use Ancestral Guidance", "UseAncestralGuidance", "Healing Spell");
+            AddControlInWinForm("Use Chain Heal", "UseChainHeal", "Healing Spell");
+            AddControlInWinForm("Use Healing Rain", "UseHealingRain", "Healing Spell");
+            AddControlInWinForm("Use Healing Surge", "UseHealingSurge", "Healing Spell");
+            AddControlInWinForm("Use Healing Stream Totem", "UseHealingStream_Totem", "Healing Spell");
+            AddControlInWinForm("Use Healing Tide Totem", "UsHealingTide_Totem", "Healing Spell");
+            AddControlInWinForm("Use Totemic Recall", "UseTotemicRecall", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -16027,36 +15913,51 @@ public class Priest_Shadow
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static PriestShadowSettings CurrentSetting { get; set; }
+        public static ShamanElementalSettings CurrentSetting { get; set; }
 
-        public static PriestShadowSettings GetSettings()
+        public static ShamanElementalSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<ShamanElementalSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Priest_Shadow.PriestShadowSettings();
+                return new ShamanElementalSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Priest
+
+public class Priest_Shadow
+{
     private readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -16065,16 +15966,15 @@ public class Priest_Shadow
     private readonly Spell Inner_Fire = new Spell("Inner Fire");
     private readonly Spell Inner_Will = new Spell("Inner Will");
     private readonly Spell Levitate = new Spell("Levitate");
-    private Timer Levitate_Timer = new Timer(0);
     private readonly Spell Power_Word_Fortitude = new Spell("Power Word: Fortitude");
     private readonly Spell Shadowform = new Spell("Shadowform");
+    private Timer Levitate_Timer = new Timer(0);
 
     #endregion
 
     #region Offensive Spell
 
     private readonly Spell Devouring_Plague = new Spell("Devouring Plague");
-    private Timer Devouring_Plague_Timer = new Timer(0);
     private readonly Spell Mind_Blast = new Spell("Mind Blast");
     private readonly Spell Mind_Flay = new Spell("Mind Flay");
     private readonly Spell Mind_Sear = new Spell("Mind Sear");
@@ -16082,9 +15982,10 @@ public class Priest_Shadow
     private readonly Spell Shadow_Word_Death = new Spell("Shadow Word: Death");
     private readonly Spell Shadow_Word_Insanity = new Spell("Shadow Word: Insanity");
     private readonly Spell Shadow_Word_Pain = new Spell("Shadow Word: Pain");
-    private Timer Shadow_Word_Pain_Timer = new Timer(0);
     private readonly Spell Smite = new Spell("Smite");
     private readonly Spell Vampiric_Touch = new Spell("Vampiric Touch");
+    private Timer Devouring_Plague_Timer = new Timer(0);
+    private Timer Shadow_Word_Pain_Timer = new Timer(0);
     private Timer Vampiric_Touch_Timer = new Timer(0);
 
     #endregion
@@ -16116,16 +16017,10 @@ public class Priest_Shadow
     private readonly Spell Hymn_of_Hope = new Spell("Hymn of Hope");
     private readonly Spell Prayer_of_Mending = new Spell("Prayer of Mending");
     private readonly Spell Renew = new Spell("Renew");
-    private Timer Renew_Timer = new Timer(0);
     private readonly Spell Vampiric_Embrace = new Spell("Vampiric Embrace");
+    private Timer Renew_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Priest_Shadow()
     {
@@ -16605,82 +16500,63 @@ public class Priest_Shadow
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: PriestShadowSettings
 
-#region Rogue
-
-public class Rogue_Combat
-{
     [Serializable]
-    public class RogueCombatSettings : nManager.Helpful.Settings
+    public class PriestShadowSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Rogue Buffs */
-        public bool UseBladeFlurry = true;
-        public bool UseBurstofSpeed = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseLeechingPoison = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseParalyticPoison = false;
-        public bool UseSliceandDice = true;
-        public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseWoundPoison = false;
-        /* Offensive Spell */
-        public bool UseAmbush = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseEviscerate = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseGarrote = true;
-        public bool UseRevealingStrike = true;
-        public bool UseRupture = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseSinisterStrike = true;
-        public bool UseThrow = true;
-        /* Offensive Cooldown */
-        public bool UseAdrenalineRush = true;
-        public bool UseKillingSpree = true;
-        public bool UseRedirect = true;
-        public bool UseShadowBlades = true;
-        public bool UseShadowStep = true;
-        /* Defensive Cooldown */
-        public bool UseCheapShot = true;
-        public bool UseCloakofShadows = true;
-        public bool UseCombatReadiness = true;
-        public bool UseDismantle = true;
-        public bool UseEvasion = true;
-        public bool UseKick = true;
-        public bool UseKidneyShot = true;
-        public bool UsePreparation = true;
-        public bool UseSmokeBomb = true;
-        public bool UseVanish = true;
-        /* Healing Spell */
-        public bool UseRecuperate = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        public bool UseDesperatePrayer = true;
+        public bool UseDevouringPlague = true;
+        public bool UseDispersion = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseFlash_Heal = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHymnofHope = true;
+        /* Priest Buffs */
+        public bool UseInnerFire = true;
+        public bool UseInnerWill = false;
+        public bool UseLevitate = false;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMindBlast = true;
+        public bool UseMindFlay = true;
+        public bool UseMindSear = true;
+        public bool UseMindSpike = true;
+        /* Offensive Cooldown */
+        public bool UsePowerInfusion = true;
+        public bool UsePowerWordFortitude = true;
+        public bool UsePowerWordShield = true;
+        public bool UsePrayerofMending = true;
+        public bool UsePsychicHorror = true;
+        public bool UsePsychicScream = true;
+        public bool UsePsyfiend = true;
+        public bool UseRenew = true;
+        public bool UseShadowWordDeath = true;
+        public bool UseShadowWordInsanity = true;
+        public bool UseShadowWordPain = true;
+        public bool UseShadowfiend = true;
+        public bool UseShadowform = true;
+        public bool UseSilence = true;
+        public bool UseSpectralGuise = true;
+        public bool UseStoneform = true;
+        public bool UseTrinket = true;
+        public bool UseVampiricEmbrace = true;
+        public bool UseVampiricTouch = true;
+        public bool UseVoidTendrils = true;
+        public bool UseWarStomp = true;
 
-        public RogueCombatSettings()
+        public PriestShadowSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Rogue Combat Settings");
+            ConfigWinForm(new Point(400, 400), "Shadow Priest Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -16689,52 +16565,41 @@ public class Rogue_Combat
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Rogue Buffs */
-            AddControlInWinForm("Use Blade Flurry", "UseBladeFlurry", "Rogue Buffs");
-            AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
-            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Mindnumbing Poison", "UseMindnumbingPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Paralytic Poison", "UseParalyticPoison", "Rogue Buffs");
-            AddControlInWinForm("Use Slice and Dice", "UseSliceandDice", "Rogue Buffs");
-            AddControlInWinForm("Use Sprint", "UseSprint", "Rogue Buffs");
-            AddControlInWinForm("Use Stealth", "UseStealth", "Rogue Buffs");
-            AddControlInWinForm("Use Wound Poison", "UseWoundPoison", "Rogue Buffs");
+            /* Priest Buffs */
+            AddControlInWinForm("Use Inner Fire", "UseInnerFire", "Priest Buffs");
+            AddControlInWinForm("Use Inner Will", "UseInnerWill", "Priest Buffs");
+            AddControlInWinForm("Use Levitate", "UseLevitate", "Priest Buffs");
+            AddControlInWinForm("Use Power Word: Fortitude", "UsePowerWordFortitude", "Priest Buffs");
+            AddControlInWinForm("Use Shadowform", "UseShadowform", "Priest Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
-            AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
-            AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
-            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
-            AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
-            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
-            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Revealing Strike", "UseRevealingStrike", "Offensive Spell");
-            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
-            AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
-            AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
-            AddControlInWinForm("Use Sinister Strike", "UseSinisterStrike", "Offensive Spell");
-            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
+            AddControlInWinForm("Use Devouring Plague", "UseDevoringPlague", "Offensive Spell");
+            AddControlInWinForm("Use Mind Blast", "UseMindBlast", "Offensive Spell");
+            AddControlInWinForm("Use Mind Flay", "UseMindFlay", "Offensive Spell");
+            AddControlInWinForm("Use Mind Sear", "UseMindSear", "Offensive Spell");
+            AddControlInWinForm("Use Mind Spike", "UseMindSpike", "Offensive Spell");
+            AddControlInWinForm("Use Shadow Word: Death", "UseShadowWordDeath", "Offensive Spell");
+            AddControlInWinForm("Use Shadow Word: Insanity", "UseShadowWordInsanity", "Offensive Spell");
+            AddControlInWinForm("Use Shadow Word: Pain", "UseShadowWordPain", "Offensive Spell");
+            AddControlInWinForm("Use Vampiric Touch", "UseVampiricTouch", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Adrenaline Rush", "UseAdrenalineRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Killing Spree", "UseKillingSpree", "Offensive Cooldown");
-            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
-            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
+            AddControlInWinForm("Use Power Infusion", "UsePowerInfusion", "Offensive Cooldown");
+            AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
-            AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
-            AddControlInWinForm("Use CombatReadiness", "UseCombatReadiness", "Defensive Cooldown");
-            AddControlInWinForm("Use Dismantle", "UseDismantle", "Defensive Cooldown");
-            AddControlInWinForm("Use Evasion", "UseEvasion", "Defensive Cooldown");
-            AddControlInWinForm("Use Kick", "UseKick", "Defensive Cooldown");
-            AddControlInWinForm("Use KidneyShot", "UseKidneyShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Preparation", "UsePreparation", "Defensive Cooldown");
-            AddControlInWinForm("Use SmokeBomb", "UseSmokeBomb", "Defensive Cooldown");
-            AddControlInWinForm("Use Vanish", "UseVanish", "Defensive Cooldown");
+            AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
+            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
+            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
+            AddControlInWinForm("Use Silence", "UseSilence", "Defensive Cooldown");
+            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown");
+            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Recuperate", "UseRecuperate", "Healing Spell");
+            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
+            AddControlInWinForm("Use Flash Heal", "UseFlash_Heal", "Healing Spell");
+            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
+            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
+            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
+            AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -16742,36 +16607,52 @@ public class Rogue_Combat
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static RogueCombatSettings CurrentSetting { get; set; }
+        public static PriestShadowSettings CurrentSetting { get; set; }
 
-        public static RogueCombatSettings GetSettings()
+        public static PriestShadowSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Combat.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<PriestShadowSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Rogue_Combat.RogueCombatSettings();
+                return new PriestShadowSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Rogue
+
+public class Rogue_Combat
+{
     private readonly RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -16785,10 +16666,10 @@ public class Rogue_Combat
     private readonly Spell Mindnumbing_Poison = new Spell("Mind-numbing Poison");
     private readonly Spell Paralytic_Poison = new Spell("Paralytic Poison");
     private readonly Spell Slice_and_Dice = new Spell("Slice and Dice");
-    private Timer Slice_and_Dice_Timer = new Timer(0);
     private readonly Spell Sprint = new Spell("Sprint");
     private readonly Spell Stealth = new Spell("Stealth");
     private readonly Spell Wound_Poison = new Spell("Wound Poison");
+    private Timer Slice_and_Dice_Timer = new Timer(0);
 
     #endregion
 
@@ -16803,11 +16684,11 @@ public class Rogue_Combat
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Revealing_Strike = new Spell("Revealing Strike");
     private readonly Spell Rupture = new Spell("Rupture");
-    private Timer Rupture_Timer = new Timer(0);
     private readonly Spell Shiv = new Spell("Shiv");
     private readonly Spell Shuriken_Toss = new Spell("Shuriken Toss");
     private readonly Spell Sinister_Strike = new Spell("Sinister Strike");
     private readonly Spell Throw = new Spell("Throw");
+    private Timer Rupture_Timer = new Timer(0);
 
     #endregion
 
@@ -16828,13 +16709,13 @@ public class Rogue_Combat
     private readonly Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
     private readonly Spell Combat_Readiness = new Spell("Combat Readiness");
     private readonly Spell Dismantle = new Spell("Dismantle");
-    private Timer Dismantle_Timer = new Timer(0);
     private readonly Spell Evasion = new Spell("Evasion");
     private readonly Spell Kick = new Spell("Kick");
     private readonly Spell Kidney_Shot = new Spell("Kidney Shot");
     private readonly Spell Preparation = new Spell("Preparation");
     private readonly Spell Smoke_Bomb = new Spell("Smoke Bomb");
     private readonly Spell Vanish = new Spell("Vanish");
+    private Timer Dismantle_Timer = new Timer(0);
 
     #endregion
 
@@ -16843,13 +16724,6 @@ public class Rogue_Combat
     private readonly Spell Recuperate = new Spell("Recuperate");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
-    public int CP = 0;
 
     public Rogue_Combat()
     {
@@ -17366,76 +17240,72 @@ public class Rogue_Combat
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Rogue_Subtlety
-{
+    #region Nested type: RogueCombatSettings
+
     [Serializable]
-    public class RogueSubtletySettings : nManager.Helpful.Settings
+    public class RogueCombatSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAdrenalineRush = true;
+        public bool UseAlchFlask = true;
+        public bool UseAmbush = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
         /* Rogue Buffs */
+        public bool UseBladeFlurry = true;
+        public bool UseBloodFury = true;
         public bool UseBurstofSpeed = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseLeechingPoison = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseParalyticPoison = false;
-        public bool UseSliceandDice = true;
-        public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseWoundPoison = false;
-        /* Offensive Spell */
-        public bool UseAmbush = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseEviscerate = true;
-        public bool UseGarrote = true;
-        public bool UseHemorrhage = true;
-        public bool UseRupture = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseThrow = true;
-        /* Offensive Cooldown */
-        public bool UsePremeditation = true;
-        public bool UseRedirect = true;
-        public bool UseShadowBlades = true;
-        public bool UseShadowDance = true;
-        public bool UseShadowStep = true;
-        /* Defensive Cooldown */
         public bool UseCheapShot = true;
         public bool UseCloakofShadows = true;
         public bool UseCombatReadiness = true;
+        public bool UseCrimsonTempest = true;
+        public bool UseCripplingPoison = false;
+        public bool UseDeadlyPoison = true;
+        public bool UseDeadlyThrow = true;
         public bool UseDismantle = true;
+        public bool UseEngGlove = true;
         public bool UseEvasion = true;
+        public bool UseEviscerate = true;
+        public bool UseExposeArmor = false;
+        public bool UseFanofKnives = true;
+        public bool UseGarrote = true;
+        public bool UseGiftoftheNaaru = true;
         public bool UseKick = true;
         public bool UseKidneyShot = true;
-        public bool UsePreparation = true;
-        public bool UseSmokeBomb = true;
-        public bool UseVanish = true;
-        /* Healing Spell */
-        public bool UseRecuperate = true;
-        /* Game Settings */
+        public bool UseKillingSpree = true;
+        public bool UseLeechingPoison = true;
+        public bool UseLifeblood = true;
         public bool UseLowCombat = true;
+        public bool UseMindnumbingPoison = true;
+        public bool UseParalyticPoison = false;
+        public bool UsePreparation = true;
+        public bool UseRecuperate = true;
+        public bool UseRedirect = true;
+        public bool UseRevealingStrike = true;
+        public bool UseRupture = true;
+        public bool UseShadowBlades = true;
+        public bool UseShadowStep = true;
+        public bool UseShiv = true;
+        public bool UseShurikenToss = true;
+        public bool UseSinisterStrike = true;
+        public bool UseSliceandDice = true;
+        public bool UseSmokeBomb = true;
+        public bool UseSprint = true;
+        public bool UseStealth = false;
+        public bool UseStoneform = true;
+        public bool UseThrow = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseVanish = true;
+        public bool UseWarStomp = true;
+        public bool UseWoundPoison = false;
 
-        public RogueSubtletySettings()
+        public RogueCombatSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Rogue Subtlety Settings");
+            ConfigWinForm(new Point(400, 400), "Rogue Combat Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -17445,6 +17315,7 @@ public class Rogue_Subtlety
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
             /* Rogue Buffs */
+            AddControlInWinForm("Use Blade Flurry", "UseBladeFlurry", "Rogue Buffs");
             AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
             AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
             AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
@@ -17459,21 +17330,23 @@ public class Rogue_Subtlety
             AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
             AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
             AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
+            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
             AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
             AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
-            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
             AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Hemorrhage", "UseHemorrhage", "Offensive Spell");
+            AddControlInWinForm("Use Revealing Strike", "UseRevealingStrike", "Offensive Spell");
             AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
             AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
             AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
+            AddControlInWinForm("Use Sinister Strike", "UseSinisterStrike", "Offensive Spell");
             AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Premeditation", "UsePremeditation", "Offensive Cooldown");
+            AddControlInWinForm("Use Adrenaline Rush", "UseAdrenalineRush", "Offensive Cooldown");
+            AddControlInWinForm("Use Killing Spree", "UseKillingSpree", "Offensive Cooldown");
             AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
-            AddControlInWinForm("Use Shadow Dance", "UseShadowDance", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
+            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
             AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
@@ -17494,36 +17367,48 @@ public class Rogue_Subtlety
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static RogueSubtletySettings CurrentSetting { get; set; }
+        public static RogueCombatSettings CurrentSetting { get; set; }
 
-        public static RogueSubtletySettings GetSettings()
+        public static RogueCombatSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Combat.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Rogue_Subtlety.RogueSubtletySettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<RogueCombatSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Rogue_Subtlety.RogueSubtletySettings();
+                return new RogueCombatSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Rogue_Subtlety
+{
     private readonly RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -17536,10 +17421,10 @@ public class Rogue_Subtlety
     private readonly Spell Mindnumbing_Poison = new Spell("Mind-numbing Poison");
     private readonly Spell Paralytic_Poison = new Spell("Paralytic Poison");
     private readonly Spell Slice_and_Dice = new Spell("Slice and Dice");
-    private Timer Slice_and_Dice_Timer = new Timer(0);
     private readonly Spell Sprint = new Spell("Sprint");
     private readonly Spell Stealth = new Spell("Stealth");
     private readonly Spell Wound_Poison = new Spell("Wound Poison");
+    private Timer Slice_and_Dice_Timer = new Timer(0);
 
     #endregion
 
@@ -17554,11 +17439,11 @@ public class Rogue_Subtlety
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Hemorrhage = new Spell("Hemorrhage");
     private readonly Spell Rupture = new Spell("Rupture");
-    private Timer Rupture_Timer = new Timer(0);
     private readonly Spell Shiv = new Spell("Shiv");
     private readonly Spell Shuriken_Toss = new Spell("Shuriken Toss");
     private readonly Spell Sinister_Strike = new Spell("Sinister Strike");
     private readonly Spell Throw = new Spell("Throw");
+    private Timer Rupture_Timer = new Timer(0);
 
     #endregion
 
@@ -17578,13 +17463,13 @@ public class Rogue_Subtlety
     private readonly Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
     private readonly Spell Combat_Readiness = new Spell("Combat Readiness");
     private readonly Spell Dismantle = new Spell("Dismantle");
-    private Timer Dismantle_Timer = new Timer(0);
     private readonly Spell Evasion = new Spell("Evasion");
     private readonly Spell Kick = new Spell("Kick");
     private readonly Spell Kidney_Shot = new Spell("Kidney Shot");
     private readonly Spell Preparation = new Spell("Preparation");
     private readonly Spell Smoke_Bomb = new Spell("Smoke Bomb");
     private readonly Spell Vanish = new Spell("Vanish");
+    private Timer Dismantle_Timer = new Timer(0);
 
     #endregion
 
@@ -17593,13 +17478,6 @@ public class Rogue_Subtlety
     private readonly Spell Recuperate = new Spell("Recuperate");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
-    public int CP = 0;
 
     public Rogue_Subtlety()
     {
@@ -18092,77 +17970,72 @@ public class Rogue_Subtlety
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Rogue_Assassination
-{
+    #region Nested type: RogueSubtletySettings
+
     [Serializable]
-    public class RogueAssassinationSettings : nManager.Helpful.Settings
+    public class RogueSubtletySettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAmbush = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
         /* Rogue Buffs */
         public bool UseBurstofSpeed = true;
-        public bool UseCripplingPoison = false;
-        public bool UseDeadlyPoison = true;
-        public bool UseLeechingPoison = true;
-        public bool UseMindnumbingPoison = true;
-        public bool UseParalyticPoison = false;
-        public bool UseSliceandDice = true;
-        public bool UseSprint = true;
-        public bool UseStealth = false;
-        public bool UseWoundPoison = false;
-        /* Offensive Spell */
-        public bool UseAmbush = true;
-        public bool UseCrimsonTempest = true;
-        public bool UseDeadlyThrow = true;
-        public bool UseDispatch = true;
-        public bool UseEnvenom = true;
-        public bool UseExposeArmor = false;
-        public bool UseFanofKnives = true;
-        public bool UseGarrote = true;
-        public bool UseMutilate = true;
-        public bool UseRupture = true;
-        public bool UseShiv = true;
-        public bool UseShurikenToss = true;
-        public bool UseThrow = true;
-        /* Offensive Cooldown */
-        public bool UseRedirect = true;
-        public bool UseShadowBlades = true;
-        public bool UseShadowStep = true;
-        public bool UseVendetta = true;
-        /* Defensive Cooldown */
         public bool UseCheapShot = true;
         public bool UseCloakofShadows = true;
         public bool UseCombatReadiness = true;
+        public bool UseCrimsonTempest = true;
+        public bool UseCripplingPoison = false;
+        public bool UseDeadlyPoison = true;
+        public bool UseDeadlyThrow = true;
         public bool UseDismantle = true;
+        public bool UseEngGlove = true;
         public bool UseEvasion = true;
+        public bool UseEviscerate = true;
+        public bool UseExposeArmor = false;
+        public bool UseFanofKnives = true;
+        public bool UseGarrote = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHemorrhage = true;
         public bool UseKick = true;
         public bool UseKidneyShot = true;
-        public bool UsePreparation = true;
-        public bool UseSmokeBomb = true;
-        public bool UseVanish = true;
-        /* Healing Spell */
-        public bool UseRecuperate = true;
-        /* Game Settings */
+        public bool UseLeechingPoison = true;
+        public bool UseLifeblood = true;
         public bool UseLowCombat = true;
+        public bool UseMindnumbingPoison = true;
+        public bool UseParalyticPoison = false;
+        /* Offensive Cooldown */
+        public bool UsePremeditation = true;
+        public bool UsePreparation = true;
+        public bool UseRecuperate = true;
+        public bool UseRedirect = true;
+        public bool UseRupture = true;
+        public bool UseShadowBlades = true;
+        public bool UseShadowDance = true;
+        public bool UseShadowStep = true;
+        public bool UseShiv = true;
+        public bool UseShurikenToss = true;
+        public bool UseSliceandDice = true;
+        /* Defensive Cooldown */
+        public bool UseSmokeBomb = true;
+        public bool UseSprint = true;
+        public bool UseStealth = false;
+        public bool UseStoneform = true;
+        public bool UseThrow = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
-        public bool UseShadowFocus = false;
+        public bool UseVanish = true;
+        public bool UseWarStomp = true;
+        public bool UseWoundPoison = false;
 
-        public RogueAssassinationSettings()
+        public RogueSubtletySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Rogue Assassination Settings");
+            ConfigWinForm(new Point(400, 400), "Rogue Subtlety Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -18186,21 +18059,21 @@ public class Rogue_Assassination
             AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
             AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
             AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
-            AddControlInWinForm("Use Dispatch", "UseDispatch", "Offensive Spell");
-            AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spell");
             AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
             AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
+            AddControlInWinForm("Use Eviscerate", "UseEviscerate", "Offensive Spell");
             AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
-            AddControlInWinForm("Use Mutilate", "UseMutilate", "Offensive Spell");
+            AddControlInWinForm("Use Hemorrhage", "UseHemorrhage", "Offensive Spell");
             AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
             AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
             AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
             AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
             /* Offensive Cooldown */
+            AddControlInWinForm("Use Premeditation", "UsePremeditation", "Offensive Cooldown");
             AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
+            AddControlInWinForm("Use Shadow Dance", "UseShadowDance", "Offensive Cooldown");
             AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
-            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
             AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
@@ -18219,39 +18092,50 @@ public class Rogue_Assassination
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Shadow Focus Talent?", "UseShadowFocus", "Game Settings");
         }
 
-        public static RogueAssassinationSettings CurrentSetting { get; set; }
+        public static RogueSubtletySettings CurrentSetting { get; set; }
 
-        public static RogueAssassinationSettings GetSettings()
+        public static RogueSubtletySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Rogue_Assassination.RogueAssassinationSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<RogueSubtletySettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Rogue_Assassination.RogueAssassinationSettings();
+                return new RogueSubtletySettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Rogue_Assassination
+{
     private readonly RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -18264,10 +18148,10 @@ public class Rogue_Assassination
     private readonly Spell Mindnumbing_Poison = new Spell("Mind-numbing Poison");
     private readonly Spell Paralytic_Poison = new Spell("Paralytic Poison");
     private readonly Spell Slice_and_Dice = new Spell("Slice and Dice");
-    private Timer Slice_and_Dice_Timer = new Timer(0);
     private readonly Spell Sprint = new Spell("Sprint");
     private readonly Spell Stealth = new Spell("Stealth");
     private readonly Spell Wound_Poison = new Spell("Wound Poison");
+    private Timer Slice_and_Dice_Timer = new Timer(0);
 
     #endregion
 
@@ -18284,11 +18168,11 @@ public class Rogue_Assassination
     private readonly Spell Garrote = new Spell("Garrote");
     private readonly Spell Mutilate = new Spell("Mutilate");
     private readonly Spell Rupture = new Spell("Rupture");
-    private Timer Rupture_Timer = new Timer(0);
     private readonly Spell Shiv = new Spell("Shiv");
     private readonly Spell Shuriken_Toss = new Spell("Shuriken Toss");
     private readonly Spell Sinister_Strike = new Spell("Sinister Strike");
     private readonly Spell Throw = new Spell("Throw");
+    private Timer Rupture_Timer = new Timer(0);
 
     #endregion
 
@@ -18307,13 +18191,13 @@ public class Rogue_Assassination
     private readonly Spell Cloak_of_Shadows = new Spell("Cloak of Shadows");
     private readonly Spell Combat_Readiness = new Spell("Combat Readiness");
     private readonly Spell Dismantle = new Spell("Dismantle");
-    private Timer Dismantle_Timer = new Timer(0);
     private readonly Spell Evasion = new Spell("Evasion");
     private readonly Spell Kick = new Spell("Kick");
     private readonly Spell Kidney_Shot = new Spell("Kidney Shot");
     private readonly Spell Preparation = new Spell("Preparation");
     private readonly Spell Smoke_Bomb = new Spell("Smoke Bomb");
     private readonly Spell Vanish = new Spell("Vanish");
+    private Timer Dismantle_Timer = new Timer(0);
 
     #endregion
 
@@ -18322,13 +18206,6 @@ public class Rogue_Assassination
     private readonly Spell Recuperate = new Spell("Recuperate");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
-    public int CP = 0;
 
     public Rogue_Assassination()
     {
@@ -18837,85 +18714,72 @@ public class Rogue_Assassination
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: RogueAssassinationSettings
 
-#region Warrior
-
-public class Warrior_Arms
-{
     [Serializable]
-    public class WarriorArmsSettings : nManager.Helpful.Settings
+    public class RogueAssassinationSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
+        public bool UseAmbush = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Warrior Buffs */
-        public bool UseBattleShout = true;
-        public bool UseBattleStance = true;
-        public bool UseBerserkerStance = false;
-        public bool UseCommandingShout = false;
-        public bool UseDefensiveStance = true;
-        /* Offensive Spell */
-        public bool UseAvatar = true;
-        public bool UseBladestorm = true;
-        public bool UseBloodbath = true;
-        public bool UseCharge = true;
-        public bool UseCleave = true;
-        public bool UseColossusSmash = true;
-        public bool UseDragonRoar = true;
-        public bool UseExecute = true;
-        public bool UseHeroicLeap = true;
-        public bool UseHeroicStrike = true;
-        public bool UseHeroicThrow = true;
-        public bool UseMortalStrike = true;
-        public bool UseOverpower = true;
-        public bool UseShockwave = true;
-        public bool UseSlam = true;
-        public bool UseStormBolt = true;
-        public bool UseTaunt = true;
-        public bool UseThunderClap = true;
-        public bool UseWhirlwind = true;
-        /* Offensive Cooldown */
-        public bool UseBerserkerRage = true;
-        public bool UseDeadlyCalm = true;
-        public bool UseRecklessness = true;
-        public bool UseShatteringThrow = true;
-        public bool UseSweepingStrikes = true;
-        public bool UseSkullBanner = true;
-        /* Defensive Cooldown */
-        public bool UseDemoralizingBanner = true;
-        public bool UseDiebytheSword = true;
-        public bool UseDisarm = true;
-        public bool UseDisruptingShout = true;
-        public bool UseHamstring = false;
-        public bool UseIntimidatingShout = true;
-        public bool UseMassSpellReflection = true;
-        public bool UsePiercingHowl = false;
-        public bool UsePummel = true;
-        public bool UseStaggeringShout = true;
-        /* Healing Spell */
-        public bool UseEnragedRegeneration = true;
-        public bool UseRallyingCry = true;
-        public bool UseVictoryRush = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
+        /* Rogue Buffs */
+        public bool UseBurstofSpeed = true;
+        public bool UseCheapShot = true;
+        public bool UseCloakofShadows = true;
+        public bool UseCombatReadiness = true;
+        public bool UseCrimsonTempest = true;
+        public bool UseCripplingPoison = false;
+        public bool UseDeadlyPoison = true;
+        public bool UseDeadlyThrow = true;
+        public bool UseDismantle = true;
+        public bool UseDispatch = true;
         public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseEnvenom = true;
+        public bool UseEvasion = true;
+        public bool UseExposeArmor = false;
+        public bool UseFanofKnives = true;
+        public bool UseGarrote = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseKick = true;
+        public bool UseKidneyShot = true;
+        public bool UseLeechingPoison = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMindnumbingPoison = true;
+        public bool UseMutilate = true;
+        public bool UseParalyticPoison = false;
+        public bool UsePreparation = true;
+        public bool UseRecuperate = true;
+        /* Offensive Cooldown */
+        public bool UseRedirect = true;
+        public bool UseRupture = true;
+        public bool UseShadowBlades = true;
+        public bool UseShadowFocus = false;
+        public bool UseShadowStep = true;
+        public bool UseShiv = true;
+        public bool UseShurikenToss = true;
+        public bool UseSliceandDice = true;
+        public bool UseSmokeBomb = true;
+        public bool UseSprint = true;
+        public bool UseStealth = false;
+        public bool UseStoneform = true;
+        public bool UseThrow = true;
+        public bool UseTrinket = true;
+        public bool UseVanish = true;
+        public bool UseVendetta = true;
+        public bool UseWarStomp = true;
+        public bool UseWoundPoison = false;
 
-        public WarriorArmsSettings()
+        public RogueAssassinationSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Warrior Arms Settings");
+            ConfigWinForm(new Point(400, 400), "Rogue Assassination Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -18924,91 +18788,105 @@ public class Warrior_Arms
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Warrior Buffs */
-            AddControlInWinForm("Use Battle Shout", "UseBattleShout", "Warrior Buffs");
-            AddControlInWinForm("Use Battle Stance", "UseBattleStance", "Warrior Buffs");
-            AddControlInWinForm("Use Berserker Stance", "UseBerserkerStance", "Warrior Buffs");
-            AddControlInWinForm("Use Commanding Shout", "UseCommandingShout", "Warrior Buffs");
-            AddControlInWinForm("Use Defensive Stance", "UseDefensiveStance", "Warrior Buffs");
+            /* Rogue Buffs */
+            AddControlInWinForm("Use Burst of Speed", "UseBurstofSpeed", "Rogue Buffs");
+            AddControlInWinForm("Use Crippling Poison", "UseCripplingPoison", "Rogue Buffs");
+            AddControlInWinForm("Use Deadly Poison", "UseDeadlyPoison", "Rogue Buffs");
+            AddControlInWinForm("Use Leeching Poison", "UseLeechingPoison", "Rogue Buffs");
+            AddControlInWinForm("Use Mindnumbing Poison", "UseMindnumbingPoison", "Rogue Buffs");
+            AddControlInWinForm("Use Paralytic Poison", "UseParalyticPoison", "Rogue Buffs");
+            AddControlInWinForm("Use Slice and Dice", "UseSliceandDice", "Rogue Buffs");
+            AddControlInWinForm("Use Sprint", "UseSprint", "Rogue Buffs");
+            AddControlInWinForm("Use Stealth", "UseStealth", "Rogue Buffs");
+            AddControlInWinForm("Use Wound Poison", "UseWoundPoison", "Rogue Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Avatar", "UseAvatar", "Offensive Spell");
-            AddControlInWinForm("Use Bladestorm", "UseBladestorm", "Offensive Spell");
-            AddControlInWinForm("Use Bloodbath", "UseBloodbath", "Offensive Spell");
-            AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
-            AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
-            AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
-            AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
-            AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
-            AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
-            AddControlInWinForm("Use Heroic Strike", "UseHeroicStrike", "Offensive Spell");
-            AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Offensive Spell");
-            AddControlInWinForm("Use Mortal Strike", "UseMortalStrike", "Offensive Spell");
-            AddControlInWinForm("Use Overpower", "UseOverpower", "Offensive Spell");
-            AddControlInWinForm("Use Shockwave", "UseShockwave", "Offensive Spell");
-            AddControlInWinForm("Use Slam", "UseSlam", "Offensive Spell");
-            AddControlInWinForm("Use Storm Bolt", "UseStormBolt", "Offensive Spell");
-            AddControlInWinForm("Use Taunt", "UseTaunt", "Offensive Spell");
-            AddControlInWinForm("Use Thunder Clap", "UseThunderClap", "Offensive Spell");
-            AddControlInWinForm("Use Whirlwind", "UseWhirlwind", "Offensive Spell");
+            AddControlInWinForm("Use Ambush", "UseAmbush", "Offensive Spell");
+            AddControlInWinForm("Use Crimson Tempest", "UseCrimsonTempest", "Offensive Spell");
+            AddControlInWinForm("Use Deadly Throw", "UseDeadlyThrow", "Offensive Spell");
+            AddControlInWinForm("Use Dispatch", "UseDispatch", "Offensive Spell");
+            AddControlInWinForm("Use Envenom", "UseEnvenom", "Offensive Spell");
+            AddControlInWinForm("Use Expose Armor", "UseExposeArmor", "Offensive Spell");
+            AddControlInWinForm("Use Fan of Knives", "UseFanofKnives", "Offensive Spell");
+            AddControlInWinForm("Use Garrote", "UseGarrote", "Offensive Spell");
+            AddControlInWinForm("Use Mutilate", "UseMutilate", "Offensive Spell");
+            AddControlInWinForm("Use Rupture", "UseRupture", "Offensive Spell");
+            AddControlInWinForm("Use Shiv", "UseShiv", "Offensive Spell");
+            AddControlInWinForm("Use Shuriken Toss", "UseShurikenToss", "Offensive Spell");
+            AddControlInWinForm("Use Throw", "UseThrow", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use Berserker Rage", "UseBerserkerRage", "Offensive Cooldown");
-            AddControlInWinForm("Use Deadly Calm", "UseDeadlyCalm", "Offensive Cooldown");
-            AddControlInWinForm("Use Recklessness", "UseRecklessness", "Offensive Cooldown");
-            AddControlInWinForm("Use Shattering Throw", "UseShatteringThrow", "Offensive Cooldown");
-            AddControlInWinForm("Use Sweeping Strikes", "UseSweepingStrikes", "Offensive Cooldown");
-            AddControlInWinForm("Use Skull Banner", "UseSkullBanner", "Offensive Cooldown");
+            AddControlInWinForm("Use Redirect", "UseRedirect", "Offensive Cooldown");
+            AddControlInWinForm("Use Shadow Blades", "UseShadowBlades", "Offensive Cooldown");
+            AddControlInWinForm("Use Shadow Step", "UseShadowStep", "Offensive Cooldown");
+            AddControlInWinForm("Use Vendetta", "UseVendetta", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Demoralizing Banner", "UseDemoralizingBanner", "Defensive Cooldown");
-            AddControlInWinForm("Use Die by the Sword", "UseDiebytheSword", "Defensive Cooldown");
-            AddControlInWinForm("Use Disarm", "UseDisarm", "Defensive Cooldown");
-            AddControlInWinForm("Use Disrupting Shout", "UseDisruptingShout", "Defensive Cooldown");
-            AddControlInWinForm("Use Hamstring", "UseHamstring", "Defensive Cooldown");
-            AddControlInWinForm("Use Intimidating Shout", "UseIntimidatingShout", "Defensive Cooldown");
-            AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
-            AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
-            AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
-            AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
+            AddControlInWinForm("Use CheapShot", "UseCheapShot", "Defensive Cooldown");
+            AddControlInWinForm("Use CloakofShadows", "UseCloakofShadows", "Defensive Cooldown");
+            AddControlInWinForm("Use CombatReadiness", "UseCombatReadiness", "Defensive Cooldown");
+            AddControlInWinForm("Use Dismantle", "UseDismantle", "Defensive Cooldown");
+            AddControlInWinForm("Use Evasion", "UseEvasion", "Defensive Cooldown");
+            AddControlInWinForm("Use Kick", "UseKick", "Defensive Cooldown");
+            AddControlInWinForm("Use KidneyShot", "UseKidneyShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Preparation", "UsePreparation", "Defensive Cooldown");
+            AddControlInWinForm("Use SmokeBomb", "UseSmokeBomb", "Defensive Cooldown");
+            AddControlInWinForm("Use Vanish", "UseVanish", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Rallying Cry", "UseRallyingCry", "Healing Spell");
-            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spell");
+            AddControlInWinForm("Use Recuperate", "UseRecuperate", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Shadow Focus Talent?", "UseShadowFocus", "Game Settings");
         }
 
-        public static WarriorArmsSettings CurrentSetting { get; set; }
+        public static RogueAssassinationSettings CurrentSetting { get; set; }
 
-        public static WarriorArmsSettings GetSettings()
+        public static RogueAssassinationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Arms.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<RogueAssassinationSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warrior_Arms.WarriorArmsSettings();
+                return new RogueAssassinationSettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Warrior
+
+public class Warrior_Arms
+{
     private readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
+
+    //private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    //private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -19053,16 +18931,16 @@ public class Warrior_Arms
     private readonly Spell Deadly_Calm = new Spell("Deadly Calm");
     private readonly Spell Recklessness = new Spell("Recklessness");
     private readonly Spell Shattering_Throw = new Spell("Shattering Throw");
-    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
     private readonly Spell Skull_Banner = new Spell("Skull Banner");
+    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
 
     #endregion
 
     #region Defensive Cooldown
 
+    private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
     private readonly Spell Die_by_the_Sword = new Spell("Die by the Sword");
     private readonly Spell Disarm = new Spell("Disarm");
-    private Timer Disarm_Timer = new Timer(0);
     private readonly Spell Disrupting_Shout = new Spell("Disrupting Shout");
     private readonly Spell Hamstring = new Spell("Hamstring");
     private readonly Spell Intimidating_Shout = new Spell("Intimidating Shout");
@@ -19070,7 +18948,7 @@ public class Warrior_Arms
     private readonly Spell Piercing_Howl = new Spell("Piercing Howl");
     private readonly Spell Pummel = new Spell("Pummel");
     private readonly Spell Staggering_Shout = new Spell("Staggering Shout");
-    private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
+    private Timer Disarm_Timer = new Timer(0);
 
     #endregion
 
@@ -19081,15 +18959,6 @@ public class Warrior_Arms
     private readonly Spell Victory_Rush = new Spell("Victory Rush");
 
     #endregion
-
-    //private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    //private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer OnCD = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warrior_Arms()
     {
@@ -19678,84 +19547,75 @@ public class Warrior_Arms
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Warrior_Protection
-{
+    #region Nested type: WarriorArmsSettings
+
     [Serializable]
-    public class WarriorProtectionSettings : nManager.Helpful.Settings
+    public class WarriorArmsSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
+        public bool UseAvatar = true;
         /* Warrior Buffs */
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
+        public bool UseBerserkerRage = true;
         public bool UseBerserkerStance = false;
-        public bool UseCommandingShout = false;
-        public bool UseDefensiveStance = true;
-        /* Offensive Spell */
-        public bool UseAvatar = true;
+        public bool UseBerserking = true;
         public bool UseBladestorm = true;
+        public bool UseBloodFury = true;
         public bool UseBloodbath = true;
         public bool UseCharge = true;
         public bool UseCleave = true;
-        public bool UseDevastate = true;
+        public bool UseColossusSmash = true;
+        public bool UseCommandingShout = false;
+        public bool UseDeadlyCalm = true;
+        public bool UseDefensiveStance = true;
+        public bool UseDemoralizingBanner = true;
+        public bool UseDiebytheSword = true;
+        public bool UseDisarm = true;
+        public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHamstring = false;
         public bool UseHeroicLeap = true;
         public bool UseHeroicStrike = true;
         public bool UseHeroicThrow = true;
-        public bool UseRevenge = true;
-        public bool UseShieldSlam = true;
-        public bool UseShockwave = true;
-        public bool UseStormBolt = true;
-        public bool UseTaunt = true;
-        public bool UseThunderClap = true;
-        /* Offensive Cooldown */
-        public bool UseBerserkerRage = true;
-        public bool UseDeadlyCalm = true;
-        public bool UseRecklessness = true;
-        public bool UseShatteringThrow = true;
-        public bool UseSweepingStrikes = true;
-        public bool UseSkullBanner = true;
-        /* Defensive Cooldown */
-        public bool UseDemoralizingBanner = true;
-        public bool UseDemoralizingShout = true;
-        public bool UseDisarm = true;
-        public bool UseDisruptingShout = true;
-        public bool UseHamstring = false;
         public bool UseIntimidatingShout = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
         public bool UseMassSpellReflection = true;
+        public bool UseMortalStrike = true;
+        public bool UseOverpower = true;
         public bool UsePiercingHowl = false;
         public bool UsePummel = true;
-        public bool UseShieldBarrier = true;
-        public bool UseShieldBlock = true;
-        public bool UseShieldWall = true;
-        public bool UseSpellReflection = true;
-        public bool UseStaggeringShout = true;
-        /* Healing Spell */
-        public bool UseEnragedRegeneration = true;
-        public bool UseLastStand = true;
         public bool UseRallyingCry = true;
-        public bool UseVictoryRush = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
+        public bool UseRecklessness = true;
+        public bool UseShatteringThrow = true;
+        public bool UseShockwave = true;
+        public bool UseSkullBanner = true;
+        public bool UseSlam = true;
+        public bool UseStaggeringShout = true;
+        public bool UseStoneform = true;
+        public bool UseStormBolt = true;
+        public bool UseSweepingStrikes = true;
+        public bool UseTaunt = true;
+        public bool UseThunderClap = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseVictoryRush = true;
+        public bool UseWarStomp = true;
+        public bool UseWhirlwind = true;
 
-        public WarriorProtectionSettings()
+        public WarriorArmsSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Warrior Protection Settings");
+            ConfigWinForm(new Point(400, 400), "Warrior Arms Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -19776,18 +19636,20 @@ public class Warrior_Protection
             AddControlInWinForm("Use Bloodbath", "UseBloodbath", "Offensive Spell");
             AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
             AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
-            AddControlInWinForm("Use Devastate", "UseDevastate", "Offensive Spell");
+            AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
             AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
             AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
             AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
             AddControlInWinForm("Use Heroic Strike", "UseHeroicStrike", "Offensive Spell");
             AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Offensive Spell");
-            AddControlInWinForm("Use Revenge", "UseRevenge", "Offensive Spell");
-            AddControlInWinForm("Use Shield Slam", "UseShieldSlam", "Offensive Spell");
+            AddControlInWinForm("Use Mortal Strike", "UseMortalStrike", "Offensive Spell");
+            AddControlInWinForm("Use Overpower", "UseOverpower", "Offensive Spell");
             AddControlInWinForm("Use Shockwave", "UseShockwave", "Offensive Spell");
+            AddControlInWinForm("Use Slam", "UseSlam", "Offensive Spell");
             AddControlInWinForm("Use Storm Bolt", "UseStormBolt", "Offensive Spell");
             AddControlInWinForm("Use Taunt", "UseTaunt", "Offensive Spell");
             AddControlInWinForm("Use Thunder Clap", "UseThunderClap", "Offensive Spell");
+            AddControlInWinForm("Use Whirlwind", "UseWhirlwind", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Berserker Rage", "UseBerserkerRage", "Offensive Cooldown");
             AddControlInWinForm("Use Deadly Calm", "UseDeadlyCalm", "Offensive Cooldown");
@@ -19797,7 +19659,7 @@ public class Warrior_Protection
             AddControlInWinForm("Use Skull Banner", "UseSkullBanner", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Demoralizing Banner", "UseDemoralizingBanner", "Defensive Cooldown");
-            AddControlInWinForm("Use Demoralizing Shout", "UseDemoralizingShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Die by the Sword", "UseDiebytheSword", "Defensive Cooldown");
             AddControlInWinForm("Use Disarm", "UseDisarm", "Defensive Cooldown");
             AddControlInWinForm("Use Disrupting Shout", "UseDisruptingShout", "Defensive Cooldown");
             AddControlInWinForm("Use Hamstring", "UseHamstring", "Defensive Cooldown");
@@ -19805,14 +19667,9 @@ public class Warrior_Protection
             AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
             AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
-            AddControlInWinForm("Use Shield Barrier", "UseShieldBarrier", "Defensive Cooldown");
-            AddControlInWinForm("Use Shield Block", "UseShieldBlock", "Defensive Cooldown");
-            AddControlInWinForm("Use Shield Wall", "UseShieldWall", "Defensive Cooldown");
-            AddControlInWinForm("Use Spell Reflection", "UseSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Last Stand", "UseLastStand", "Healing Spell");
             AddControlInWinForm("Use Rallying Cry", "UseRallyingCry", "Healing Spell");
             AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spell");
             /* Game Settings */
@@ -19822,36 +19679,47 @@ public class Warrior_Protection
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static WarriorProtectionSettings CurrentSetting { get; set; }
+        public static WarriorArmsSettings CurrentSetting { get; set; }
 
-        public static WarriorProtectionSettings GetSettings()
+        public static WarriorArmsSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Protection.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warrior_Protection.WarriorProtectionSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarriorArmsSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warrior_Protection.WarriorProtectionSettings();
+                return new WarriorArmsSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Warrior_Protection
+{
     private readonly WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -19894,8 +19762,8 @@ public class Warrior_Protection
     private readonly Spell Deadly_Calm = new Spell("Deadly Calm");
     private readonly Spell Recklessness = new Spell("Recklessness");
     private readonly Spell Shattering_Throw = new Spell("Shattering Throw");
-    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
     private readonly Spell Skull_Banner = new Spell("Skull Banner");
+    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
 
     #endregion
 
@@ -19904,7 +19772,6 @@ public class Warrior_Protection
     private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
     private readonly Spell Demoralizing_Shout = new Spell("Demoralizing Shout");
     private readonly Spell Disarm = new Spell("Disarm");
-    private Timer Disarm_Timer = new Timer(0);
     private readonly Spell Disrupting_Shout = new Spell("Disrupting Shout");
     private readonly Spell Hamstring = new Spell("Hamstring");
     private readonly Spell Intimidating_Shout = new Spell("Intimidating Shout");
@@ -19912,11 +19779,12 @@ public class Warrior_Protection
     private readonly Spell Piercing_Howl = new Spell("Piercing Howl");
     private readonly Spell Pummel = new Spell("Pummel");
     private readonly Spell Shield_Barrier = new Spell("Shield Barrier");
-    private Timer Shield_Barrier_Timer = new Timer(0);
     private readonly Spell Shield_Block = new Spell("Shield Block");
     private readonly Spell Shield_Wall = new Spell("Shield Wall");
     private readonly Spell Spell_Reflection = new Spell("Spell Reflection");
     private readonly Spell Staggering_Shout = new Spell("Staggering Shout");
+    private Timer Disarm_Timer = new Timer(0);
+    private Timer Shield_Barrier_Timer = new Timer(0);
 
     #endregion
 
@@ -19928,12 +19796,6 @@ public class Warrior_Protection
     private readonly Spell Victory_Rush = new Spell("Victory Rush");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warrior_Protection()
     {
@@ -20538,81 +20400,80 @@ public class Warrior_Protection
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Warrior_Fury
-{
+    #region Nested type: WarriorProtectionSettings
+
     [Serializable]
-    public class WarriorFurySettings : nManager.Helpful.Settings
+    public class WarriorProtectionSettings : Settings
     {
         /* Professions & Racials */
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
+        public bool UseAvatar = true;
         /* Warrior Buffs */
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
+        public bool UseBerserkerRage = true;
         public bool UseBerserkerStance = false;
-        public bool UseCommandingShout = false;
-        public bool UseDefensiveStance = true;
-        /* Offensive Spell */
-        public bool UseAvatar = true;
+        public bool UseBerserking = true;
         public bool UseBladestorm = true;
+        public bool UseBloodFury = true;
         public bool UseBloodbath = true;
-        public bool UseBloodthirst = true;
         public bool UseCharge = true;
         public bool UseCleave = true;
-        public bool UseColossusSmash = true;
+        public bool UseCommandingShout = false;
+        public bool UseDeadlyCalm = true;
+        public bool UseDefensiveStance = true;
+        /* Defensive Cooldown */
+        public bool UseDemoralizingBanner = true;
+        public bool UseDemoralizingShout = true;
+        public bool UseDevastate = true;
+        public bool UseDisarm = true;
+        public bool UseDisruptingShout = true;
         public bool UseDragonRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHamstring = false;
         public bool UseHeroicLeap = true;
         public bool UseHeroicStrike = true;
         public bool UseHeroicThrow = true;
-        public bool UseRagingBlow = true;
-        public bool UseShockwave = true;
-        public bool UseStormBolt = true;
-        public bool UseTaunt = true;
-        public bool UseThunderClap = true;
-        public bool UseWhirlwind = true;
-        public bool UseWildStrike = true;
-        /* Offensive Cooldown */
-        public bool UseBerserkerRage = true;
-        public bool UseDeadlyCalm = true;
-        public bool UseRecklessness = true;
-        public bool UseShatteringThrow = true;
-        public bool UseSweepingStrikes = true;
-        public bool UseSkullBanner = true;
-        /* Defensive Cooldown */
-        public bool UseDemoralizingBanner = true;
-        public bool UseDiebytheSword = true;
-        public bool UseDisarm = true;
-        public bool UseDisruptingShout = true;
-        public bool UseHamstring = false;
         public bool UseIntimidatingShout = true;
+        public bool UseLastStand = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
         public bool UseMassSpellReflection = true;
         public bool UsePiercingHowl = false;
         public bool UsePummel = true;
-        public bool UseStaggeringShout = true;
-        /* Healing Spell */
-        public bool UseEnragedRegeneration = true;
         public bool UseRallyingCry = true;
-        public bool UseVictoryRush = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
+        public bool UseRecklessness = true;
+        public bool UseRevenge = true;
+        public bool UseShatteringThrow = true;
+        public bool UseShieldBarrier = true;
+        public bool UseShieldBlock = true;
+        public bool UseShieldSlam = true;
+        public bool UseShieldWall = true;
+        public bool UseShockwave = true;
+        public bool UseSkullBanner = true;
+        public bool UseSpellReflection = true;
+        public bool UseStaggeringShout = true;
+        public bool UseStoneform = true;
+        public bool UseStormBolt = true;
+        public bool UseSweepingStrikes = true;
+        public bool UseTaunt = true;
+        public bool UseThunderClap = true;
+        /* Healing Spell */
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseVictoryRush = true;
+        public bool UseWarStomp = true;
 
-        public WarriorFurySettings()
+        public WarriorProtectionSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Warrior Fury Settings");
+            ConfigWinForm(new Point(400, 400), "Warrior Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -20631,22 +20492,20 @@ public class Warrior_Fury
             AddControlInWinForm("Use Avatar", "UseAvatar", "Offensive Spell");
             AddControlInWinForm("Use Bladestorm", "UseBladestorm", "Offensive Spell");
             AddControlInWinForm("Use Bloodbath", "UseBloodbath", "Offensive Spell");
-            AddControlInWinForm("Use Bloodthirst", "UseBloodthirst", "Offensive Spell");
             AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
             AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
-            AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
+            AddControlInWinForm("Use Devastate", "UseDevastate", "Offensive Spell");
             AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
             AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
             AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
             AddControlInWinForm("Use Heroic Strike", "UseHeroicStrike", "Offensive Spell");
             AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Offensive Spell");
-            AddControlInWinForm("Use Raging Blow", "UseRagingBlow", "Offensive Spell");
+            AddControlInWinForm("Use Revenge", "UseRevenge", "Offensive Spell");
+            AddControlInWinForm("Use Shield Slam", "UseShieldSlam", "Offensive Spell");
             AddControlInWinForm("Use Shockwave", "UseShockwave", "Offensive Spell");
             AddControlInWinForm("Use Storm Bolt", "UseStormBolt", "Offensive Spell");
             AddControlInWinForm("Use Taunt", "UseTaunt", "Offensive Spell");
             AddControlInWinForm("Use Thunder Clap", "UseThunderClap", "Offensive Spell");
-            AddControlInWinForm("Use Whirlwind", "UseWhirlwind", "Offensive Spell");
-            AddControlInWinForm("Use Wild Strike", "UseWildStrike", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use Berserker Rage", "UseBerserkerRage", "Offensive Cooldown");
             AddControlInWinForm("Use Deadly Calm", "UseDeadlyCalm", "Offensive Cooldown");
@@ -20656,7 +20515,7 @@ public class Warrior_Fury
             AddControlInWinForm("Use Skull Banner", "UseSkullBanner", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Demoralizing Banner", "UseDemoralizingBanner", "Defensive Cooldown");
-            AddControlInWinForm("Use Die by the Sword", "UseDiebytheSword", "Defensive Cooldown");
+            AddControlInWinForm("Use Demoralizing Shout", "UseDemoralizingShout", "Defensive Cooldown");
             AddControlInWinForm("Use Disarm", "UseDisarm", "Defensive Cooldown");
             AddControlInWinForm("Use Disrupting Shout", "UseDisruptingShout", "Defensive Cooldown");
             AddControlInWinForm("Use Hamstring", "UseHamstring", "Defensive Cooldown");
@@ -20664,9 +20523,14 @@ public class Warrior_Fury
             AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
             AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
+            AddControlInWinForm("Use Shield Barrier", "UseShieldBarrier", "Defensive Cooldown");
+            AddControlInWinForm("Use Shield Block", "UseShieldBlock", "Defensive Cooldown");
+            AddControlInWinForm("Use Shield Wall", "UseShieldWall", "Defensive Cooldown");
+            AddControlInWinForm("Use Spell Reflection", "UseSpellReflection", "Defensive Cooldown");
             AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
             /* Healing Spell */
             AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
+            AddControlInWinForm("Use Last Stand", "UseLastStand", "Healing Spell");
             AddControlInWinForm("Use Rallying Cry", "UseRallyingCry", "Healing Spell");
             AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spell");
             /* Game Settings */
@@ -20676,36 +20540,47 @@ public class Warrior_Fury
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static WarriorFurySettings CurrentSetting { get; set; }
+        public static WarriorProtectionSettings CurrentSetting { get; set; }
 
-        public static WarriorFurySettings GetSettings()
+        public static WarriorProtectionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Fury.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Protection.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Warrior_Fury.WarriorFurySettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarriorProtectionSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Warrior_Fury.WarriorFurySettings();
+                return new WarriorProtectionSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Warrior_Fury
+{
     private readonly WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -20750,16 +20625,16 @@ public class Warrior_Fury
     private readonly Spell Deadly_Calm = new Spell("Deadly Calm");
     private readonly Spell Recklessness = new Spell("Recklessness");
     private readonly Spell Shattering_Throw = new Spell("Shattering Throw");
-    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
     private readonly Spell Skull_Banner = new Spell("Skull Banner");
+    private readonly Spell Sweeping_Strikes = new Spell("Sweeping Strikes");
 
     #endregion
 
     #region Defensive Cooldown
 
+    private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
     private readonly Spell Die_by_the_Sword = new Spell("Die by the Sword");
     private readonly Spell Disarm = new Spell("Disarm");
-    private Timer Disarm_Timer = new Timer(0);
     private readonly Spell Disrupting_Shout = new Spell("Disrupting Shout");
     private readonly Spell Hamstring = new Spell("Hamstring");
     private readonly Spell Intimidating_Shout = new Spell("Intimidating Shout");
@@ -20767,7 +20642,7 @@ public class Warrior_Fury
     private readonly Spell Piercing_Howl = new Spell("Piercing Howl");
     private readonly Spell Pummel = new Spell("Pummel");
     private readonly Spell Staggering_Shout = new Spell("Staggering Shout");
-    private readonly Spell Demoralizing_Banner = new Spell("Demoralizing Banner");
+    private Timer Disarm_Timer = new Timer(0);
 
     #endregion
 
@@ -20778,12 +20653,6 @@ public class Warrior_Fury
     private readonly Spell Victory_Rush = new Spell("Victory Rush");
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Warrior_Fury()
     {
@@ -21333,83 +21202,76 @@ public class Warrior_Fury
     {
         while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-#endregion
+    #region Nested type: WarriorFurySettings
 
-#region Hunter
-
-public class Hunter_Marksmanship
-{
     [Serializable]
-    public class HunterMarksmanshipSettings : nManager.Helpful.Settings
+    public class WarriorFurySettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Hunter Buffs */
-        public bool UseAspectoftheHawk = true;
-        public bool UseCamouflage = false;
-        public bool UseFeignDeath = true;
-        public bool UseHuntersMark = true;
-        public bool UseMisdirection = true;
-        /* Offensive Spell */
-        public bool UseAimedShot = true;
-        public bool UseArcaneShot = true;
-        public bool UsePet1 = true;
-        public bool UsePet2 = false;
-        public bool UsePet3 = false;
-        public bool UsePet4 = false;
-        public bool UsePet5 = false;
-        public bool UseChimeraShot = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseKillShot = true;
-        public bool UseMultiShot = true;
-        public bool UseSerpentSting = true;
-        public bool UseSteadyShot = true;
-        /* Offensive Cooldown */
-        public bool UseAMurderofCrows = true;
-        public bool UseBarrage = true;
-        public bool UseBlinkStrike = true;
-        public bool UseDireBeast = true;
-        public bool UseFervor = true;
-        public bool UseGlaiveToss = true;
-        public bool UseLynxRush = true;
-        public bool UsePowershot = true;
-        public bool UseRapidFire = true;
-        public bool UseReadiness = true;
-        public bool UseStampede = true;
-        /* Defensive Cooldown */
-        public bool UseBindingShot = true;
-        public bool UseConcussiveShot = true;
-        public bool UseDeterrance = true;
-        public bool UseDisengage = true;
-        public bool UseIceTrap = true;
-        public bool UseScatterShot = true;
-        public bool UseSilencingShot = true;
-        public bool UseWyvernSting = true;
-        /* Healing Spell */
-        public bool UseExhilaration = true;
-        public bool UseFeedPet = true;
-        public bool UseMendPet = true;
-        public bool UseRevivePet = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
-        public bool UseTrinket = true;
-        public bool UseEngGlove = true;
         public bool UseAlchFlask = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseAvatar = true;
+        /* Warrior Buffs */
+        public bool UseBattleShout = true;
+        public bool UseBattleStance = true;
+        public bool UseBerserkerRage = true;
+        public bool UseBerserkerStance = false;
+        public bool UseBerserking = true;
+        public bool UseBladestorm = true;
+        public bool UseBloodFury = true;
+        public bool UseBloodbath = true;
+        public bool UseBloodthirst = true;
+        public bool UseCharge = true;
+        public bool UseCleave = true;
+        public bool UseColossusSmash = true;
+        public bool UseCommandingShout = false;
+        public bool UseDeadlyCalm = true;
+        public bool UseDefensiveStance = true;
+        /* Defensive Cooldown */
+        public bool UseDemoralizingBanner = true;
+        public bool UseDiebytheSword = true;
+        public bool UseDisarm = true;
+        public bool UseDisruptingShout = true;
+        public bool UseDragonRoar = true;
+        public bool UseEngGlove = true;
+        public bool UseEnragedRegeneration = true;
+        public bool UseExecute = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseHamstring = false;
+        public bool UseHeroicLeap = true;
+        public bool UseHeroicStrike = true;
+        public bool UseHeroicThrow = true;
+        public bool UseIntimidatingShout = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseMassSpellReflection = true;
+        public bool UsePiercingHowl = false;
+        public bool UsePummel = true;
+        public bool UseRagingBlow = true;
+        public bool UseRallyingCry = true;
+        public bool UseRecklessness = true;
+        public bool UseShatteringThrow = true;
+        public bool UseShockwave = true;
+        public bool UseSkullBanner = true;
+        public bool UseStaggeringShout = true;
+        public bool UseStoneform = true;
+        public bool UseStormBolt = true;
+        public bool UseSweepingStrikes = true;
+        public bool UseTaunt = true;
+        public bool UseThunderClap = true;
+        public bool UseTrinket = true;
+        public bool UseVictoryRush = true;
+        public bool UseWarStomp = true;
+        public bool UseWhirlwind = true;
+        public bool UseWildStrike = true;
 
-        public HunterMarksmanshipSettings()
+        public WarriorFurySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Hunter Marksmanship Settings");
+            ConfigWinForm(new Point(400, 400), "Warrior Fury Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -21418,52 +21280,54 @@ public class Hunter_Marksmanship
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
-            /* Hunter Buffs */
-            AddControlInWinForm("Use Aspect of the Hawk", "UseAspectoftheHawk", "Hunter Buffs");
-            AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
-            AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
-            AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
-            AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
+            /* Warrior Buffs */
+            AddControlInWinForm("Use Battle Shout", "UseBattleShout", "Warrior Buffs");
+            AddControlInWinForm("Use Battle Stance", "UseBattleStance", "Warrior Buffs");
+            AddControlInWinForm("Use Berserker Stance", "UseBerserkerStance", "Warrior Buffs");
+            AddControlInWinForm("Use Commanding Shout", "UseCommandingShout", "Warrior Buffs");
+            AddControlInWinForm("Use Defensive Stance", "UseDefensiveStance", "Warrior Buffs");
             /* Offensive Spell */
-            AddControlInWinForm("Use Aimed Shot", "UseAimedShot", "Offensive Spell");
-            AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
-            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
-            AddControlInWinForm("Use Chimera Shot", "UseChimeraShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
-            AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
-            AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
-            AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
-            AddControlInWinForm("Use Steady Shot", "UseSteadyShot", "Offensive Spell");
+            AddControlInWinForm("Use Avatar", "UseAvatar", "Offensive Spell");
+            AddControlInWinForm("Use Bladestorm", "UseBladestorm", "Offensive Spell");
+            AddControlInWinForm("Use Bloodbath", "UseBloodbath", "Offensive Spell");
+            AddControlInWinForm("Use Bloodthirst", "UseBloodthirst", "Offensive Spell");
+            AddControlInWinForm("Use Charge", "UseCharge", "Offensive Spell");
+            AddControlInWinForm("Use Cleave", "UseCleave", "Offensive Spell");
+            AddControlInWinForm("Use Colossus Smash", "UseColossusSmash", "Offensive Spell");
+            AddControlInWinForm("Use Dragon Roar", "UseDragonRoar", "Offensive Spell");
+            AddControlInWinForm("Use Exectue", "UseExecute", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Leap", "UseHeroicLeap", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Strike", "UseHeroicStrike", "Offensive Spell");
+            AddControlInWinForm("Use Heroic Throw", "UseHeroicThrow", "Offensive Spell");
+            AddControlInWinForm("Use Raging Blow", "UseRagingBlow", "Offensive Spell");
+            AddControlInWinForm("Use Shockwave", "UseShockwave", "Offensive Spell");
+            AddControlInWinForm("Use Storm Bolt", "UseStormBolt", "Offensive Spell");
+            AddControlInWinForm("Use Taunt", "UseTaunt", "Offensive Spell");
+            AddControlInWinForm("Use Thunder Clap", "UseThunderClap", "Offensive Spell");
+            AddControlInWinForm("Use Whirlwind", "UseWhirlwind", "Offensive Spell");
+            AddControlInWinForm("Use Wild Strike", "UseWildStrike", "Offensive Spell");
             /* Offensive Cooldown */
-            AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
-            AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
-            AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
-            AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
-            AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
-            AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
-            AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
-            AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
-            AddControlInWinForm("Use Rapid Fire", "UseRapidFire", "Offensive Cooldown");
-            AddControlInWinForm("Use Readiness", "UseReadiness", "Offensive Cooldown");
-            AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
+            AddControlInWinForm("Use Berserker Rage", "UseBerserkerRage", "Offensive Cooldown");
+            AddControlInWinForm("Use Deadly Calm", "UseDeadlyCalm", "Offensive Cooldown");
+            AddControlInWinForm("Use Recklessness", "UseRecklessness", "Offensive Cooldown");
+            AddControlInWinForm("Use Shattering Throw", "UseShatteringThrow", "Offensive Cooldown");
+            AddControlInWinForm("Use Sweeping Strikes", "UseSweepingStrikes", "Offensive Cooldown");
+            AddControlInWinForm("Use Skull Banner", "UseSkullBanner", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
-            AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
-            AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
-            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
+            AddControlInWinForm("Use Demoralizing Banner", "UseDemoralizingBanner", "Defensive Cooldown");
+            AddControlInWinForm("Use Die by the Sword", "UseDiebytheSword", "Defensive Cooldown");
+            AddControlInWinForm("Use Disarm", "UseDisarm", "Defensive Cooldown");
+            AddControlInWinForm("Use Disrupting Shout", "UseDisruptingShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Hamstring", "UseHamstring", "Defensive Cooldown");
+            AddControlInWinForm("Use Intimidating Shout", "UseIntimidatingShout", "Defensive Cooldown");
+            AddControlInWinForm("Use Mass Spell Reflection", "UseMassSpellReflection", "Defensive Cooldown");
+            AddControlInWinForm("Use Piercing Howl", "UsePiercingHowl", "Defensive Cooldown");
+            AddControlInWinForm("Use Pummel", "UsePummel", "Defensive Cooldown");
+            AddControlInWinForm("Use Staggering Shout", "UseStaggeringShout", "Defensive Cooldown");
             /* Healing Spell */
-            AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
-            AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
-            AddControlInWinForm("Use Mend Pet", "UseMendPet", "Healing Spell");
-            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Healing Spell");
+            AddControlInWinForm("Use Enraged Regeneration", "UseEnragedRegeneration", "Healing Spell");
+            AddControlInWinForm("Use Rallying Cry", "UseRallyingCry", "Healing Spell");
+            AddControlInWinForm("Use Victory Rush", "UseVictoryRush", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -21471,36 +21335,52 @@ public class Hunter_Marksmanship
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
         }
 
-        public static HunterMarksmanshipSettings CurrentSetting { get; set; }
+        public static WarriorFurySettings CurrentSetting { get; set; }
 
-        public static HunterMarksmanshipSettings GetSettings()
+        public static WarriorFurySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Fury.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Hunter_Marksmanship.HunterMarksmanshipSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<WarriorFurySettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Hunter_Marksmanship.HunterMarksmanshipSettings();
+                return new WarriorFurySettings();
             }
         }
     }
 
+    #endregion
+}
+
+#endregion
+
+#region Hunter
+
+public class Hunter_Marksmanship
+{
     private readonly HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Steady_Focus_Timer = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -21528,8 +21408,8 @@ public class Hunter_Marksmanship
     private readonly Spell Kill_Shot = new Spell("Kill Shot");
     private readonly Spell Multi_Shot = new Spell("Multi-Shot");
     private readonly Spell Serpent_Sting = new Spell("Serpent Sting");
-    private Timer Serpent_Sting_Timer = new Timer(0);
     private readonly Spell Steady_Shot = new Spell("Steady Shot");
+    private Timer Serpent_Sting_Timer = new Timer(0);
 
     #endregion
 
@@ -21539,7 +21419,6 @@ public class Hunter_Marksmanship
     private readonly Spell Barrage = new Spell("Barrage");
     private readonly Spell Blink_Strike = new Spell("Blink Strike");
     private readonly Spell Dire_Beast = new Spell("Dire Beast");
-    private Timer Dire_Beast_Timer = new Timer(0);
     private readonly Spell Fervor = new Spell("Fervor");
     private readonly Spell Glaive_Toss = new Spell("Glaive Toss");
     private readonly Spell Lynx_Rush = new Spell("Lynx Rush");
@@ -21547,6 +21426,7 @@ public class Hunter_Marksmanship
     private readonly Spell Rapid_Fire = new Spell("Rapid Fire");
     private readonly Spell Readiness = new Spell("Readiness");
     private readonly Spell Stampede = new Spell("Stampede");
+    private Timer Dire_Beast_Timer = new Timer(0);
 
     #endregion
 
@@ -21568,17 +21448,10 @@ public class Hunter_Marksmanship
     private readonly Spell Exhilaration = new Spell("Exhilaration");
     private readonly Spell Feed_Pet = new Spell("Feed Pet");
     private readonly Spell Mend_Pet = new Spell("Mend Pet");
-    private Timer Mend_Pet_Timer = new Timer(0);
     private readonly Spell Revive_Pet = new Spell("Revive Pet");
+    private Timer Mend_Pet_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer Steady_Focus_Timer = new Timer(0);
-    public int LC = 0;
 
     public Hunter_Marksmanship()
     {
@@ -21970,7 +21843,7 @@ public class Hunter_Marksmanship
         {
             Ice_Trap.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -21980,7 +21853,7 @@ public class Hunter_Marksmanship
         {
             Concussive_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -21990,7 +21863,7 @@ public class Hunter_Marksmanship
         {
             Binding_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -22093,85 +21966,73 @@ public class Hunter_Marksmanship
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Hunter_BeastMastery
-{
+    #region Nested type: HunterMarksmanshipSettings
+
     [Serializable]
-    public class HunterBeastMasterySettings : nManager.Helpful.Settings
+    public class HunterMarksmanshipSettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Hunter Buffs */
-        public bool UseAspectoftheHawk = true;
-        public bool UseCamouflage = false;
-        public bool UseFeignDeath = true;
-        public bool UseHuntersMark = true;
-        public bool UseMisdirection = true;
-        /* Offensive Spell */
+        public bool UseAMurderofCrows = true;
+        public bool UseAimedShot = true;
+        public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseAspectoftheHawk = true;
+        public bool UseBarrage = true;
+        public bool UseBerserking = true;
+        public bool UseBindingShot = true;
+        public bool UseBlinkStrike = true;
+        public bool UseBloodFury = true;
+        public bool UseCamouflage = false;
+        public bool UseChimeraShot = true;
+        public bool UseConcussiveShot = true;
+        public bool UseDeterrance = true;
+        public bool UseDireBeast = true;
+        public bool UseDisengage = true;
+        public bool UseEngGlove = true;
+        public bool UseExhilaration = true;
+        public bool UseExplosiveTrap = true;
+        public bool UseFeedPet = true;
+        public bool UseFeignDeath = true;
+        public bool UseFervor = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGlaiveToss = true;
+        public bool UseHuntersMark = true;
+        public bool UseIceTrap = true;
+        public bool UseKillShot = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseLynxRush = true;
+        public bool UseMendPet = true;
+        public bool UseMisdirection = true;
+        public bool UseMultiShot = true;
+        /* Offensive Spell */
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
         public bool UsePet4 = false;
         public bool UsePet5 = false;
-        public bool UseCobraShot = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseKillCommand = true;
-        public bool UseKillShot = true;
-        public bool UseMultiShot = true;
-        public bool UseSerpentSting = true;
-        /* Offensive Cooldown */
-        public bool UseAMurderofCrows = true;
-        public bool UseBarrage = true;
-        public bool UseBestialWrath = true;
-        public bool UseBlinkStrike = true;
-        public bool UseDireBeast = true;
-        public bool UseFervor = true;
-        public bool UseFocusFire = false;
-        public bool UseGlaiveToss = true;
-        public bool UseLynxRush = true;
         public bool UsePowershot = true;
         public bool UseRapidFire = true;
         public bool UseReadiness = true;
-        public bool UseStampede = true;
-        /* Defensive Cooldown */
-        public bool UseBindingShot = true;
-        public bool UseConcussiveShot = true;
-        public bool UseDeterrance = true;
-        public bool UseDisengage = true;
-        public bool UseIceTrap = true;
-        public bool UseIntimidation = true;
-        public bool UseScatterShot = true;
-        public bool UseSilencingShot = true;
-        public bool UseWyvernSting = true;
-        /* Healing Spell */
-        public bool UseExhilaration = true;
-        public bool UseFeedPet = true;
-        public bool UseMendPet = true;
         public bool UseRevivePet = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
+        public bool UseScatterShot = true;
+        public bool UseSerpentSting = true;
+        public bool UseSilencingShot = true;
+        public bool UseStampede = true;
+        public bool UseSteadyShot = true;
+        public bool UseStoneform = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
-        public bool UseCoreHoundPet = false;
-        public bool UseWormPet = false;
-        public bool UseChimeraPet = false;
-        public bool UseSpiritBeastPet = false;
+        public bool UseWarStomp = true;
+        public bool UseWyvernSting = true;
 
-        public HunterBeastMasterySettings()
+        public HunterMarksmanshipSettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Hunter BeastMastery Settings");
+            ConfigWinForm(new Point(400, 400), "Hunter Marksmanship Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -22187,26 +22048,25 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
             AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
             /* Offensive Spell */
+            AddControlInWinForm("Use Aimed Shot", "UseAimedShot", "Offensive Spell");
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
-            AddControlInWinForm("Use Cobra Shot", "UseCobraShot", "Offensive Spell");
+            AddControlInWinForm("Use Chimera Shot", "UseChimeraShot", "Offensive Spell");
             AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
-            AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Spell");
             AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
             AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
+            AddControlInWinForm("Use Steady Shot", "UseSteadyShot", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
-            AddControlInWinForm("Use Bestial Wrath", "UseBestialWrath", "Offensive Cooldown");
             AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
             AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
             AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
-            AddControlInWinForm("Use Focus Fire", "UseFocusFire", "Offensive Cooldown");
             AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
             AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
             AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
@@ -22219,7 +22079,6 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
             AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
-            AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
             AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
@@ -22233,42 +22092,53 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Use Core Hound Pet", "UseCoreHoundPet", "Game Settings");
-            AddControlInWinForm("Use Worm Pet", "UseWormPet", "Game Settings");
-            AddControlInWinForm("Use Chimera Pet", "UseChimeraPet", "Game Settings");
-            AddControlInWinForm("Use Spirit Beast Pet", "UseSpiritBeastPet", "Game Settings");
         }
 
-        public static HunterBeastMasterySettings CurrentSetting { get; set; }
+        public static HunterMarksmanshipSettings CurrentSetting { get; set; }
 
-        public static HunterBeastMasterySettings GetSettings()
+        public static HunterMarksmanshipSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Hunter_BeastMastery.HunterBeastMasterySettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<HunterMarksmanshipSettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Hunter_BeastMastery.HunterBeastMasterySettings();
+                return new HunterMarksmanshipSettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Hunter_BeastMastery
+{
     private readonly HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Ancient_Hysteria_Timer = new Timer(0);
+    private Timer Burrow_Attack_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    private Timer Froststorm_Breath_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Spirit_Mend_Timer = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -22307,7 +22177,6 @@ public class Hunter_BeastMastery
     private readonly Spell Bestial_Wrath = new Spell("Bestial Wrath");
     private readonly Spell Blink_Strike = new Spell("Blink Strike");
     private readonly Spell Dire_Beast = new Spell("Dire Beast");
-    private Timer Dire_Beast_Timer = new Timer(0);
     private readonly Spell Fervor = new Spell("Fervor");
     private readonly Spell Focus_Fire = new Spell("Focus Fire");
     private readonly Spell Glaive_Toss = new Spell("Glaive Toss");
@@ -22316,6 +22185,7 @@ public class Hunter_BeastMastery
     private readonly Spell Rapid_Fire = new Spell("Rapid Fire");
     private readonly Spell Readiness = new Spell("Readiness");
     private readonly Spell Stampede = new Spell("Stampede");
+    private Timer Dire_Beast_Timer = new Timer(0);
 
     #endregion
 
@@ -22338,20 +22208,10 @@ public class Hunter_BeastMastery
     private readonly Spell Exhilaration = new Spell("Exhilaration");
     private readonly Spell Feed_Pet = new Spell("Feed Pet");
     private readonly Spell Mend_Pet = new Spell("Mend Pet");
-    private Timer Mend_Pet_Timer = new Timer(0);
     private readonly Spell Revive_Pet = new Spell("Revive Pet");
+    private Timer Mend_Pet_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    private Timer Ancient_Hysteria_Timer = new Timer(0);
-    private Timer Burrow_Attack_Timer = new Timer(0);
-    private Timer Froststorm_Breath_Timer = new Timer(0);
-    private Timer Spirit_Mend_Timer = new Timer(0);
-    public int LC = 0;
 
     public Hunter_BeastMastery()
     {
@@ -22781,7 +22641,7 @@ public class Hunter_BeastMastery
         {
             Ice_Trap.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -22791,7 +22651,7 @@ public class Hunter_BeastMastery
         {
             Concussive_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -22801,7 +22661,7 @@ public class Hunter_BeastMastery
         {
             Binding_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -22911,79 +22771,79 @@ public class Hunter_BeastMastery
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
-}
 
-public class Hunter_Survival
-{
+    #region Nested type: HunterBeastMasterySettings
+
     [Serializable]
-    public class HunterSurvivalSettings : nManager.Helpful.Settings
+    public class HunterBeastMasterySettings : Settings
     {
         /* Professions & Racials */
-        public bool UseArcaneTorrent = true;
-        public bool UseBerserking = true;
-        public bool UseBloodFury = true;
-        public bool UseLifeblood = true;
-        public bool UseStoneform = true;
-        public bool UseGiftoftheNaaru = true;
-        public bool UseWarStomp = true;
-        /* Hunter Buffs */
-        public bool UseAspectoftheHawk = true;
-        public bool UseCamouflage = false;
-        public bool UseFeignDeath = true;
-        public bool UseHuntersMark = true;
-        public bool UseMisdirection = true;
-        /* Offensive Spell */
+        public bool UseAMurderofCrows = true;
+        public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
-        public bool UseBlackArrow = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseAspectoftheHawk = true;
+        public bool UseBarrage = true;
+        public bool UseBerserking = true;
+        public bool UseBestialWrath = true;
+        public bool UseBindingShot = true;
+        public bool UseBlinkStrike = true;
+        public bool UseBloodFury = true;
+        public bool UseCamouflage = false;
+        public bool UseChimeraPet = false;
+        public bool UseCobraShot = true;
+        public bool UseConcussiveShot = true;
+        public bool UseCoreHoundPet = false;
+        public bool UseDeterrance = true;
+        public bool UseDireBeast = true;
+        public bool UseDisengage = true;
+        public bool UseEngGlove = true;
+        public bool UseExhilaration = true;
+        public bool UseExplosiveTrap = true;
+        public bool UseFeedPet = true;
+        public bool UseFeignDeath = true;
+        public bool UseFervor = true;
+        public bool UseFocusFire = false;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGlaiveToss = true;
+        public bool UseHuntersMark = true;
+        public bool UseIceTrap = true;
+        public bool UseIntimidation = true;
+        public bool UseKillCommand = true;
+        public bool UseKillShot = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseLynxRush = true;
+        public bool UseMendPet = true;
+        public bool UseMisdirection = true;
+        public bool UseMultiShot = true;
+        /* Offensive Spell */
         public bool UsePet1 = true;
         public bool UsePet2 = false;
         public bool UsePet3 = false;
         public bool UsePet4 = false;
         public bool UsePet5 = false;
-        public bool UseCobraShot = true;
-        public bool UseExplosiveShot = true;
-        public bool UseExplosiveTrap = true;
-        public bool UseKillShot = true;
-        public bool UseMultiShot = true;
-        public bool UseSerpentSting = true;
-        /* Offensive Cooldown */
-        public bool UseAMurderofCrows = true;
-        public bool UseBarrage = true;
-        public bool UseBlinkStrike = true;
-        public bool UseDireBeast = true;
-        public bool UseFervor = true;
-        public bool UseGlaiveToss = true;
-        public bool UseLynxRush = true;
         public bool UsePowershot = true;
         public bool UseRapidFire = true;
         public bool UseReadiness = true;
-        public bool UseStampede = true;
-        /* Defensive Cooldown */
-        public bool UseBindingShot = true;
-        public bool UseConcussiveShot = true;
-        public bool UseDeterrance = true;
-        public bool UseDisengage = true;
-        public bool UseIceTrap = true;
-        public bool UseScatterShot = true;
-        public bool UseSilencingShot = true;
-        public bool UseWyvernSting = true;
-        /* Healing Spell */
-        public bool UseExhilaration = true;
-        public bool UseFeedPet = true;
-        public bool UseMendPet = true;
         public bool UseRevivePet = true;
-        /* Game Settings */
-        public bool UseLowCombat = true;
+        public bool UseScatterShot = true;
+        public bool UseSerpentSting = true;
+        public bool UseSilencingShot = true;
+        public bool UseSpiritBeastPet = false;
+        public bool UseStampede = true;
+        public bool UseStoneform = true;
         public bool UseTrinket = true;
-        public bool UseEngGlove = true;
-        public bool UseAlchFlask = true;
+        public bool UseWarStomp = true;
+        public bool UseWormPet = false;
+        public bool UseWyvernSting = true;
 
-        public HunterSurvivalSettings()
+        public HunterBeastMasterySettings()
         {
-            ConfigWinForm(new System.Drawing.Point(400, 400), "Hunter Survival Settings");
+            ConfigWinForm(new Point(400, 400), "Hunter BeastMastery Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -23000,24 +22860,25 @@ public class Hunter_Survival
             AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
             /* Offensive Spell */
             AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
-            AddControlInWinForm("Use Black Arrow", "UseBlackArrow", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
             AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
             AddControlInWinForm("Use Cobra Shot", "UseCobraShot", "Offensive Spell");
-            AddControlInWinForm("Use Explosive Shot", "UseExplosiveShot", "Offensive Spell");
             AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
+            AddControlInWinForm("Use Kill Command", "UseKillCommand", "Offensive Spell");
             AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
             AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
             AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
             /* Offensive Cooldown */
             AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
             AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
+            AddControlInWinForm("Use Bestial Wrath", "UseBestialWrath", "Offensive Cooldown");
             AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
             AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
             AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
+            AddControlInWinForm("Use Focus Fire", "UseFocusFire", "Offensive Cooldown");
             AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
             AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
             AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
@@ -23030,6 +22891,7 @@ public class Hunter_Survival
             AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
             AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
+            AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
             AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
@@ -23043,38 +22905,53 @@ public class Hunter_Survival
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Core Hound Pet", "UseCoreHoundPet", "Game Settings");
+            AddControlInWinForm("Use Worm Pet", "UseWormPet", "Game Settings");
+            AddControlInWinForm("Use Chimera Pet", "UseChimeraPet", "Game Settings");
+            AddControlInWinForm("Use Spirit Beast Pet", "UseSpiritBeastPet", "Game Settings");
         }
 
-        public static HunterSurvivalSettings CurrentSetting { get; set; }
+        public static HunterBeastMasterySettings CurrentSetting { get; set; }
 
-        public static HunterSurvivalSettings GetSettings()
+        public static HunterBeastMasterySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Survival.xml";
-            if (System.IO.File.Exists(CurrentSettingsFile))
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
+            if (File.Exists(CurrentSettingsFile))
             {
                 return
-                    CurrentSetting = Settings.Load<Hunter_Survival.HunterSurvivalSettings>(CurrentSettingsFile);
+                    CurrentSetting = Load<HunterBeastMasterySettings>(CurrentSettingsFile);
             }
             else
             {
-                return new Hunter_Survival.HunterSurvivalSettings();
+                return new HunterBeastMasterySettings();
             }
         }
     }
 
+    #endregion
+}
+
+public class Hunter_Survival
+{
     private readonly HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
+
+    private Timer AlchFlask_Timer = new Timer(0);
+    private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
+    private Timer Trinket_Timer = new Timer(0);
 
     #region Professions & Racials
 
+    private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
     private readonly Spell Blood_Fury = new Spell("Blood Fury");
+    private readonly Spell Engineering = new Spell("Engineering");
+    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
-    private readonly Spell Gift_of_the_Naaru = new Spell("Gift of the Naaru");
     private readonly Spell War_Stomp = new Spell("War Stomp");
-    private readonly Spell Engineering = new Spell("Engineering");
-    private readonly Spell Alchemy = new Spell("Alchemy");
 
     #endregion
 
@@ -23113,7 +22990,6 @@ public class Hunter_Survival
     private readonly Spell Barrage = new Spell("Barrage");
     private readonly Spell Blink_Strike = new Spell("Blink Strike");
     private readonly Spell Dire_Beast = new Spell("Dire Beast");
-    private Timer Dire_Beast_Timer = new Timer(0);
     private readonly Spell Fervor = new Spell("Fervor");
     private readonly Spell Glaive_Toss = new Spell("Glaive Toss");
     private readonly Spell Lynx_Rush = new Spell("Lynx Rush");
@@ -23121,6 +22997,7 @@ public class Hunter_Survival
     private readonly Spell Rapid_Fire = new Spell("Rapid Fire");
     private readonly Spell Readiness = new Spell("Readiness");
     private readonly Spell Stampede = new Spell("Stampede");
+    private Timer Dire_Beast_Timer = new Timer(0);
 
     #endregion
 
@@ -23143,16 +23020,10 @@ public class Hunter_Survival
     private readonly Spell Exhilaration = new Spell("Exhilaration");
     private readonly Spell Feed_Pet = new Spell("Feed Pet");
     private readonly Spell Mend_Pet = new Spell("Mend Pet");
-    private Timer Mend_Pet_Timer = new Timer(0);
     private readonly Spell Revive_Pet = new Spell("Revive Pet");
+    private Timer Mend_Pet_Timer = new Timer(0);
 
     #endregion
-
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer AlchFlask_Timer = new Timer(0);
-    public int LC = 0;
 
     public Hunter_Survival()
     {
@@ -23566,7 +23437,7 @@ public class Hunter_Survival
         {
             Ice_Trap.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -23576,7 +23447,7 @@ public class Hunter_Survival
         {
             Concussive_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -23586,7 +23457,7 @@ public class Hunter_Survival
         {
             Binding_Shot.Launch();
             Thread.Sleep(1000);
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
             Disengage.Launch();
             return;
         }
@@ -23689,9 +23560,152 @@ public class Hunter_Survival
     {
         if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            nManager.Wow.Helpers.Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
         }
     }
+
+    #region Nested type: HunterSurvivalSettings
+
+    [Serializable]
+    public class HunterSurvivalSettings : Settings
+    {
+        /* Professions & Racials */
+        public bool UseAMurderofCrows = true;
+        public bool UseAlchFlask = true;
+        public bool UseArcaneShot = true;
+        public bool UseArcaneTorrent = true;
+        public bool UseAspectoftheHawk = true;
+        public bool UseBarrage = true;
+        public bool UseBerserking = true;
+        public bool UseBindingShot = true;
+        public bool UseBlackArrow = true;
+        public bool UseBlinkStrike = true;
+        public bool UseBloodFury = true;
+        public bool UseCamouflage = false;
+        public bool UseCobraShot = true;
+        public bool UseConcussiveShot = true;
+        public bool UseDeterrance = true;
+        public bool UseDireBeast = true;
+        public bool UseDisengage = true;
+        public bool UseEngGlove = true;
+        public bool UseExhilaration = true;
+        public bool UseExplosiveShot = true;
+        public bool UseExplosiveTrap = true;
+        public bool UseFeedPet = true;
+        public bool UseFeignDeath = true;
+        public bool UseFervor = true;
+        public bool UseGiftoftheNaaru = true;
+        public bool UseGlaiveToss = true;
+        public bool UseHuntersMark = true;
+        public bool UseIceTrap = true;
+        public bool UseKillShot = true;
+        public bool UseLifeblood = true;
+        public bool UseLowCombat = true;
+        public bool UseLynxRush = true;
+        public bool UseMendPet = true;
+        public bool UseMisdirection = true;
+        public bool UseMultiShot = true;
+        /* Offensive Spell */
+        public bool UsePet1 = true;
+        public bool UsePet2 = false;
+        public bool UsePet3 = false;
+        public bool UsePet4 = false;
+        public bool UsePet5 = false;
+        public bool UsePowershot = true;
+        public bool UseRapidFire = true;
+        public bool UseReadiness = true;
+        public bool UseRevivePet = true;
+        public bool UseScatterShot = true;
+        public bool UseSerpentSting = true;
+        public bool UseSilencingShot = true;
+        public bool UseStampede = true;
+        public bool UseStoneform = true;
+        public bool UseTrinket = true;
+        public bool UseWarStomp = true;
+        public bool UseWyvernSting = true;
+
+        public HunterSurvivalSettings()
+        {
+            ConfigWinForm(new Point(400, 400), "Hunter Survival Settings");
+            /* Professions & Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            /* Hunter Buffs */
+            AddControlInWinForm("Use Aspect of the Hawk", "UseAspectoftheHawk", "Hunter Buffs");
+            AddControlInWinForm("Use Camouflage", "UseCamouflage", "Hunter Buffs");
+            AddControlInWinForm("Use Feign Death", "UseFeignDeath", "Hunter Buffs");
+            AddControlInWinForm("Use Hunter's Mark", "UseHuntersMark", "Hunter Buffs");
+            AddControlInWinForm("Use Misdirection", "UseMisdirection", "Hunter Buffs");
+            /* Offensive Spell */
+            AddControlInWinForm("Use Arcane Shot", "UseArcaneShot", "Offensive Spell");
+            AddControlInWinForm("Use Black Arrow", "UseBlackArrow", "Offensive Spell");
+            AddControlInWinForm("Use Pet in Slot 1", "UsePet1", "Offensive Spell");
+            AddControlInWinForm("Use Pet in Slot 2", "UsePet2", "Offensive Spell");
+            AddControlInWinForm("Use Pet in Slot 3", "UsePet3", "Offensive Spell");
+            AddControlInWinForm("Use Pet in Slot 4", "UsePet4", "Offensive Spell");
+            AddControlInWinForm("Use Pet in Slot 5", "UsePet5", "Offensive Spell");
+            AddControlInWinForm("Use Cobra Shot", "UseCobraShot", "Offensive Spell");
+            AddControlInWinForm("Use Explosive Shot", "UseExplosiveShot", "Offensive Spell");
+            AddControlInWinForm("Use Explosive Trap", "UseExplosiveTrap", "Offensive Spell");
+            AddControlInWinForm("Use KillShot", "UseKillShot", "Offensive Spell");
+            AddControlInWinForm("Use Multi-Shot", "UseMultiShot", "Offensive Spell");
+            AddControlInWinForm("Use Serpent Sting", "UseSerpentSting", "Offensive Spell");
+            /* Offensive Cooldown */
+            AddControlInWinForm("Use A Murder of Crows", "UseAMurderofCrows", "Offensive Cooldown");
+            AddControlInWinForm("Use Barrage", "UseBarrage", "Offensive Cooldown");
+            AddControlInWinForm("Use Blink Strike", "UseBlinkStrike", "Offensive Cooldown");
+            AddControlInWinForm("Use Dire Beast", "UseDireBeast", "Offensive Cooldown");
+            AddControlInWinForm("Use Fervor", "UseFervor", "Offensive Cooldown");
+            AddControlInWinForm("Use Glaive Toss", "UseGlaiveToss", "Offensive Cooldown");
+            AddControlInWinForm("Use Lynx Rush", "UseLynxRush", "Offensive Cooldown");
+            AddControlInWinForm("Use Powershot", "UsePowershot", "Offensive Cooldown");
+            AddControlInWinForm("Use Rapid Fire", "UseRapidFire", "Offensive Cooldown");
+            AddControlInWinForm("Use Readiness", "UseReadiness", "Offensive Cooldown");
+            AddControlInWinForm("Use Stampede", "UseStampede", "Offensive Cooldown");
+            /* Defensive Cooldown */
+            AddControlInWinForm("Use Binding Shot", "UseBindingShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
+            AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
+            AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
+            AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
+            AddControlInWinForm("Use Wyvern Sting", "UseWyvernSting", "Defensive Cooldown");
+            /* Healing Spell */
+            AddControlInWinForm("Use Exhilaration", "UseExhilaration", "Healing Spell");
+            AddControlInWinForm("Use Feed Pet", "UseFeedPet", "Healing Spell");
+            AddControlInWinForm("Use Mend Pet", "UseMendPet", "Healing Spell");
+            AddControlInWinForm("Use Revive Pet", "UseRevivePet", "Healing Spell");
+            /* Game Settings */
+            AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
+            AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
+            AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+        }
+
+        public static HunterSurvivalSettings CurrentSetting { get; set; }
+
+        public static HunterSurvivalSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Survival.xml";
+            if (File.Exists(CurrentSettingsFile))
+            {
+                return
+                    CurrentSetting = Load<HunterSurvivalSettings>(CurrentSettingsFile);
+            }
+            else
+            {
+                return new HunterSurvivalSettings();
+            }
+        }
+    }
+
+    #endregion
 }
 
 public class Hunter
@@ -23779,7 +23793,7 @@ public class Hunter
     {
         if (ObjectManager.Target.GetDistance < 1)
         {
-            Keyboard.DownKey(nManager.Wow.Memory.WowProcess.MainWindowHandle, "{DOWN}");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, "{DOWN}");
         }
     }
 
