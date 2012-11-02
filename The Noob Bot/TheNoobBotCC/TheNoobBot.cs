@@ -1127,6 +1127,7 @@ public class Main : ICustomClass
                             new Hunter_BeastMastery();
                         }
                     }
+                    break;
 
                     #endregion
 
