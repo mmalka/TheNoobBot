@@ -174,11 +174,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Mage Arcane class...");
+                            range = 30.0f;
                             new Mage_Arcane();
                         }
                         break;
                     }
-
                     else if (Mage_Fire_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -198,11 +198,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Mage Fire class...");
+                            range = 30.0f;
                             new Mage_Fire();
                         }
                         break;
                     }
-
                     else if (Mage_Frost_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -222,11 +222,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Mage Frost class...");
+                            range = 30.0f;
                             new Mage_Frost();
                         }
                         break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
@@ -247,6 +247,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("Mage without Spec");
                             Logging.WriteFight("Loading Mage Frost class...");
+                            range = 30.0f;
                             new Mage_Frost();
                         }
                         break;
@@ -352,6 +353,7 @@ public class Main : ICustomClass
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Warlock Demonology class...");
+                            range = 30.0f;
                             new Warlock_Demonology();
                         }
                     }
@@ -582,7 +584,7 @@ public class Main : ICustomClass
 
                     #endregion
 
-                    #region ShamanSpecialisation checking
+                    #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
                     var Shaman_Enhancement_Spell = new Spell("Lava Lash");
@@ -612,7 +614,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else if (Shaman_Elemental_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -637,7 +638,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else if (Shaman_Restoration_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -662,7 +662,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
@@ -801,7 +800,7 @@ public class Main : ICustomClass
 
                     #endregion
 
-                    #region RogueSpecialisation checking
+                    #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
                     var Rogue_Combat_Spell = new Spell("Blade Flurry");
@@ -831,7 +830,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else if (Rogue_Assassination_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -855,7 +853,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else if (Rogue_Subtlety_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -879,7 +876,6 @@ public class Main : ICustomClass
                         }
                         break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
@@ -1034,11 +1030,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter Marksmanship class...");
+                            range = 30.0f;
                             new Hunter_Marksmanship();
                         }
                         break;
                     }
-
                     else if (Hunter_Survival_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -1058,11 +1054,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter Survival class...");
+                            range = 30.0f;
                             new Hunter_Survival();
                         }
                         break;
                     }
-
                     else if (Hunter_BeastMastery_Spell.KnownSpell)
                     {
                         if (ConfigOnly)
@@ -1082,23 +1078,36 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("Loading Hunter BeastMastery class...");
+                            range = 30.0f;
                             new Hunter_BeastMastery();
                         }
                         break;
                     }
-
                     else
                     {
                         if (ConfigOnly)
                         {
-                            MessageBox.Show("There is no settings available for your Class/Specialisation.");
+                            MessageBox.Show(
+                                "Your specification haven't be found, loading Hunter BeastMastery Settings");
+                            string CurrentSettingsFile = Application.StartupPath +
+                                                         "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
+                            Hunter_BeastMastery.HunterBeastMasterySettings CurrentSetting;
+                            CurrentSetting = new Hunter_BeastMastery.HunterBeastMasterySettings();
+                            if (File.Exists(CurrentSettingsFile))
+                            {
+                                CurrentSetting =
+                                    Settings.Load<Hunter_BeastMastery.HunterBeastMasterySettings>(CurrentSettingsFile);
+                            }
+                            CurrentSetting.ToForm();
+                            CurrentSetting.Save(CurrentSettingsFile);
                         }
                         else
                         {
-                            Logging.WriteFight("Hunter without Spec");
-                            new Hunter();
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Hunter BeastMastery class...");
+                            range = 30.0f;
+                            new Hunter_BeastMastery();
                         }
-                        break;
                     }
 
                     #endregion
