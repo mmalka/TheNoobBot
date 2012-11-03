@@ -1106,15 +1106,15 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             MessageBox.Show(
-                                "Your specification haven't be found, loading Hunter BeastMastery Settings");
+                                "Your specification haven't be found, loading Hunter Marksmanship Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
-                            Hunter_BeastMastery.HunterBeastMasterySettings CurrentSetting;
-                            CurrentSetting = new Hunter_BeastMastery.HunterBeastMasterySettings();
+                                                         "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
+                            Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
+                            CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
                             if (File.Exists(CurrentSettingsFile))
                             {
                                 CurrentSetting =
-                                    Settings.Load<Hunter_BeastMastery.HunterBeastMasterySettings>(CurrentSettingsFile);
+                                    Settings.Load<Hunter_Marksmanship.HunterMarksmanshipSettings>(CurrentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(CurrentSettingsFile);
@@ -1122,10 +1122,11 @@ public class Main : ICustomClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Hunter BeastMastery class...");
+                            Logging.WriteFight("Loading Hunter Marksmanship class...");
                             range = 30.0f;
-                            new Hunter_BeastMastery();
+                            new Hunter_Marksmanship();
                         }
+                        break;
                     }
                     break;
 
@@ -8820,7 +8821,6 @@ public class Druid_Balance
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
-    private int LC;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
@@ -8927,15 +8927,9 @@ public class Druid_Balance
 
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
                             LowCombat();
-                        }
                         else
-                        {
-                            LC = 0;
                             Combat();
-                        }
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -9630,7 +9624,6 @@ public class Druid_Feral
     private Timer AlchFlask_Timer = new Timer(0);
     private int CP;
     private Timer Engineering_Timer = new Timer(0);
-    private int LC;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
@@ -9744,15 +9737,9 @@ public class Druid_Feral
 
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
                             LowCombat();
-                        }
                         else
-                        {
-                            LC = 0;
                             Combat();
-                        }
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -10478,7 +10465,6 @@ public class Druid_Restoration
     private readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
-
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
@@ -11118,7 +11104,6 @@ public class Druid_Guardian
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
-    private int LC;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
@@ -11222,15 +11207,9 @@ public class Druid_Guardian
 
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
                             LowCombat();
-                        }
                         else
-                        {
-                            LC = 0;
                             Combat();
-                        }
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -23707,100 +23686,6 @@ public class Hunter_Survival
     }
 
     #endregion
-}
-
-public class Hunter
-{
-    #region InitializeSpell
-
-    private readonly Spell Arcane_Shot = new Spell("Arcane Shot");
-    private readonly Spell Call_Pet_1 = new Spell("Call Pet 1");
-    private readonly Spell Revive_Pet = new Spell("Revive Pet");
-    private readonly Spell Serpent_Sting = new Spell("Serpent Sting");
-    private readonly Spell Steady_Shot = new Spell("Steady Shot");
-
-    #endregion InitializeSpell
-
-    public Hunter()
-    {
-        Main.range = 30.0f;
-        UInt64 lastTarget = 0;
-
-        while (Main.loop)
-        {
-            if (!ObjectManager.Me.IsMounted)
-            {
-                if (!ObjectManager.Me.IsCast)
-                    Patrolling();
-
-                if (Fight.InFight && ObjectManager.Me.Target > 0)
-                {
-                    if (ObjectManager.Me.Target != lastTarget && Arcane_Shot.IsDistanceGood)
-                        lastTarget = ObjectManager.Me.Target;
-
-                    Combat();
-                }
-            }
-            Thread.Sleep(350);
-        }
-    }
-
-    public void Combat()
-    {
-        AvoidMelee();
-
-        if (Serpent_Sting.KnownSpell && Serpent_Sting.IsSpellUsable && Serpent_Sting.IsDistanceGood
-            && !Serpent_Sting.TargetHaveBuff)
-        {
-            Serpent_Sting.Launch();
-            return;
-        }
-        else if (Arcane_Shot.IsSpellUsable && Arcane_Shot.IsDistanceGood && Arcane_Shot.KnownSpell)
-        {
-            Arcane_Shot.Launch();
-            return;
-        }
-        else
-        {
-            if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood)
-            {
-                Steady_Shot.Launch();
-                return;
-            }
-        }
-    }
-
-
-    private void Pet()
-    {
-        if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && Call_Pet_1.KnownSpell && Call_Pet_1.IsSpellUsable)
-        {
-            Call_Pet_1.Launch();
-            Thread.Sleep(1000);
-        }
-
-        if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
-        {
-            Revive_Pet.Launch();
-            Thread.Sleep(1000);
-        }
-    }
-
-
-    private void AvoidMelee()
-    {
-        if (ObjectManager.Target.GetDistance < 1)
-        {
-            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, "{DOWN}");
-        }
-    }
-
-    public void Patrolling()
-    {
-    }
 }
 
 #endregion
