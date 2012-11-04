@@ -5957,7 +5957,8 @@ public class Mage_Fire
         else
         {
             if (Fireball.KnownSpell && Fireball.IsSpellUsable && Fireball.IsDistanceGood
-                && MySettings.UseFireball)
+                && MySettings.UseFireball && !ObjectManager.Me.HaveBuff(48107)
+                && !ObjectManager.Me.HaveBuff(48108))
             {
                 Fireball.Launch();
                 return;
