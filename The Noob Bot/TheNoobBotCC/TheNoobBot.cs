@@ -4365,13 +4365,6 @@ public class Mage_Arcane
 
     public void DPS_Cycle()
     {
-        if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
-        {
-            Scorch.Launch();
-            return;
-        }
-
         if (ObjectManager.GetNumberAttackPlayer() > 1 && Flamestrike.IsSpellUsable && Flamestrike.KnownSpell
             && Flamestrike.IsDistanceGood && Flamestrike_Timer.IsReady && MySettings.UseFlamestrike)
         {
@@ -4405,6 +4398,12 @@ public class Mage_Arcane
             Presence_of_Mind.Launch();
             Thread.Sleep(400);
             Arcane_Blast.Launch();
+            return;
+        }
+        else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
+            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+        {
+            Scorch.Launch();
             return;
         }
         else
@@ -5126,13 +5125,6 @@ public class Mage_Frost
 
     public void DPS_Cycle()
     {
-        if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
-        {
-            Scorch.Launch();
-            return;
-        }
-
         if (ObjectManager.GetNumberAttackPlayer() > 4 && Flamestrike.IsSpellUsable && Flamestrike.KnownSpell
             && Flamestrike.IsDistanceGood && Flamestrike_Timer.IsReady && MySettings.UseFlamestrike)
         {
@@ -5179,6 +5171,12 @@ public class Mage_Frost
             Presence_of_Mind.Launch();
             Thread.Sleep(400);
             Frostbolt.Launch();
+            return;
+        }
+        else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
+            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+        {
+            Scorch.Launch();
             return;
         }
         else
@@ -5910,13 +5908,6 @@ public class Mage_Fire
 
     public void DPS_Cycle()
     {
-        if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
-        {
-            Scorch.Launch();
-            return;
-        }
-
         if (ObjectManager.GetNumberAttackPlayer() > 4 && Flamestrike.IsSpellUsable && Flamestrike.KnownSpell
             && Flamestrike.IsDistanceGood && Flamestrike_Timer.IsReady && MySettings.UseFlamestrike)
         {
@@ -5952,6 +5943,12 @@ public class Mage_Fire
                  && MySettings.UseInfernoBlast && ObjectManager.Me.HaveBuff(48107))
         {
             Fire_Blast.Launch();
+            return;
+        }
+        else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
+            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+        {
+            Scorch.Launch();
             return;
         }
         else
