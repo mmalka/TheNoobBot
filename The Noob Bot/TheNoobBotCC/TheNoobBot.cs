@@ -1051,7 +1051,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Hunter_Marksmanship();
                         }
-                        break;
                     }
                     else if (Hunter_Survival_Spell.KnownSpell)
                     {
@@ -1075,7 +1074,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Hunter_Survival();
                         }
-                        break;
                     }
                     else if (Hunter_BeastMastery_Spell.KnownSpell)
                     {
@@ -1099,7 +1097,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Hunter_BeastMastery();
                         }
-                        break;
                     }
                     else
                     {
@@ -1126,7 +1123,6 @@ public class Main : ICustomClass
                             range = 30.0f;
                             new Hunter_Marksmanship();
                         }
-                        break;
                     }
                     break;
 
@@ -13814,7 +13810,8 @@ public class Shaman_Enhancement
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff
+            && ObjectManager.Target.GetDistance > 10)
         {
             Ghost_Wolf.Launch();
             return;
@@ -14560,7 +14557,8 @@ public class Shaman_Restoration
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 1 && Chain_Lightning.KnownSpell
-                 && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood && MySettings.UseChainLightning)
+                 && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood 
+                 && MySettings.UseChainLightning && !ObjectManager.Me.HaveBuff(77762))
         {
             if (Ancestral_Swiftness.KnownSpell && Ancestral_Swiftness.IsSpellUsable
                 && MySettings.UseAncestralSwiftness)
@@ -14574,7 +14572,7 @@ public class Shaman_Restoration
         else
         {
             if (Lightning_Bolt.IsDistanceGood && Lightning_Bolt.KnownSpell && Lightning_Bolt.IsSpellUsable
-                && MySettings.UseLightningBolt)
+                && MySettings.UseLightningBolt && !ObjectManager.Me.HaveBuff(77762))
             {
                 if (Ancestral_Swiftness.KnownSpell && Ancestral_Swiftness.IsSpellUsable
                     && MySettings.UseAncestralSwiftness)
@@ -14674,7 +14672,8 @@ public class Shaman_Restoration
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff
+            && ObjectManager.Target.GetDistance > 50)
         {
             Ghost_Wolf.Launch();
             return;
@@ -15555,7 +15554,8 @@ public class Shaman_Elemental
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff)
+            && MySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff
+            && ObjectManager.Target.GetDistance > 50)
         {
             Ghost_Wolf.Launch();
             return;
