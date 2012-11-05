@@ -21414,6 +21414,7 @@ public class Hunter_Marksmanship
     private readonly Spell Concussive_Shot = new Spell("Concussive Shot");
     private readonly Spell Deterrance = new Spell("Deterrance");
     private readonly Spell Disengage = new Spell("Disengage");
+    private readonly Spell Freezing_Trap = new Spell("Freezing Trap");
     private readonly Spell Ice_Trap = new Spell("Ice Trap");
     private readonly Spell Scatter_Shot = new Spell("Scatter Shot");
     private readonly Spell Silencing_Shot = new Spell("Silencing Shot");
@@ -21815,6 +21816,12 @@ public class Hunter_Marksmanship
             Deterrance.Launch();
             Thread.Sleep(200);
         }
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+                 && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        {
+            Freezing_Trap.Launch();
+            return;
+        }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
                  && Ice_Trap.KnownSpell && Ice_Trap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
                  && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
@@ -21977,6 +21984,7 @@ public class Hunter_Marksmanship
         public bool UseFeedPet = true;
         public bool UseFeignDeath = true;
         public bool UseFervor = true;
+        public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
@@ -22056,6 +22064,7 @@ public class Hunter_Marksmanship
             AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
             AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
             AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
+            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
@@ -22173,6 +22182,7 @@ public class Hunter_BeastMastery
     private readonly Spell Concussive_Shot = new Spell("Concussive Shot");
     private readonly Spell Deterrance = new Spell("Deterrance");
     private readonly Spell Disengage = new Spell("Disengage");
+    private readonly Spell Freezing_Trap = new Spell("Freezing Trap");
     private readonly Spell Ice_Trap = new Spell("Ice Trap");
     private readonly Spell Intimidation = new Spell("Intimidation");
     private readonly Spell Scatter_Shot = new Spell("Scatter Shot");
@@ -22613,6 +22623,12 @@ public class Hunter_BeastMastery
             Deterrance.Launch();
             Thread.Sleep(200);
         }
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+                 && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        {
+            Freezing_Trap.Launch();
+            return;
+        }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
                  && Ice_Trap.KnownSpell && Ice_Trap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
                  && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
@@ -22659,8 +22675,8 @@ public class Hunter_BeastMastery
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 80 && Intimidation.IsSpellUsable && Intimidation.KnownSpell
-                && MySettings.UseIntimidation)
+            if (Intimidation.IsSpellUsable && Intimidation.KnownSpell && MySettings.UseIntimidation
+                && (ObjectManager.Me.HealthPercent < 80 || ObjectManager.Pet.Health < 80))
             {
                 Intimidation.Launch();
                 OnCD = new Timer(1000*3);
@@ -22785,6 +22801,7 @@ public class Hunter_BeastMastery
         public bool UseFeignDeath = true;
         public bool UseFervor = true;
         public bool UseFocusFire = false;
+        public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
@@ -22868,6 +22885,7 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
             AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
             AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
+            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Intimidation", "UseIntimidation", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
@@ -23409,6 +23427,12 @@ public class Hunter_Survival
             Deterrance.Launch();
             Thread.Sleep(200);
         }
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+                 && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        {
+            Freezing_Trap.Launch();
+            return;
+        }
         else if (ObjectManager.Me.HealthPercent < 80 && MySettings.UseIceTrap
                  && Ice_Trap.KnownSpell && Ice_Trap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
                  && Disengage.KnownSpell && Disengage.IsSpellUsable && MySettings.UseDisengage)
@@ -23572,6 +23596,7 @@ public class Hunter_Survival
         public bool UseFeedPet = true;
         public bool UseFeignDeath = true;
         public bool UseFervor = true;
+        public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
@@ -23650,6 +23675,7 @@ public class Hunter_Survival
             AddControlInWinForm("Use Concussive Shot", "UseConcussiveShot", "Defensive Cooldown");
             AddControlInWinForm("Use Deterrance", "UseDeterrance", "Defensive Cooldown");
             AddControlInWinForm("Use Disengage", "UseDisengage", "Defensive Cooldown");
+            AddControlInWinForm("Use Freezing Trap", "UseFreezingTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Ice Trap", "UseIceTrap", "Defensive Cooldown");
             AddControlInWinForm("Use Scatter Shot", "UseScatterShot", "Defensive Cooldown");
             AddControlInWinForm("Use Silencing Shot", "UseSilencingShot", "Defensive Cooldown");
