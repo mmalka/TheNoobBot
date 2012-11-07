@@ -21939,8 +21939,15 @@ public class Hunter_Marksmanship
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+        {
+            Revive_Pet.Launch();
+            Thread.Sleep(1000);
+        }
+        else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
+                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
@@ -21974,6 +21981,7 @@ public class Hunter_Marksmanship
         public bool UseBloodFury = true;
         public bool UseCamouflage = false;
         public bool UseChimeraShot = true;
+        public bool UseCombatRevive = true;
         public bool UseConcussiveShot = true;
         public bool UseDeterrance = true;
         public bool UseDireBeast = true;
@@ -22079,6 +22087,7 @@ public class Hunter_Marksmanship
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
         }
 
         public static HunterMarksmanshipSettings CurrentSetting { get; set; }
@@ -22753,8 +22762,15 @@ public class Hunter_BeastMastery
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+        {
+            Revive_Pet.Launch();
+            Thread.Sleep(1000);
+        }
+        else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
+                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
@@ -22789,6 +22805,7 @@ public class Hunter_BeastMastery
         public bool UseCamouflage = false;
         public bool UseChimeraPet = false;
         public bool UseCobraShot = true;
+        public bool UseCombatRevive = true;
         public bool UseConcussiveShot = true;
         public bool UseCoreHoundPet = false;
         public bool UseDeterrance = true;
@@ -22905,6 +22922,7 @@ public class Hunter_BeastMastery
             AddControlInWinForm("Use Worm Pet", "UseWormPet", "Game Settings");
             AddControlInWinForm("Use Chimera Pet", "UseChimeraPet", "Game Settings");
             AddControlInWinForm("Use Spirit Beast Pet", "UseSpiritBeastPet", "Game Settings");
+            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
         }
 
         public static HunterBeastMasterySettings CurrentSetting { get; set; }
@@ -23550,8 +23568,15 @@ public class Hunter_Survival
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+        {
+            Revive_Pet.Launch();
+            Thread.Sleep(1000);
+        }
+        else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
+                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
@@ -23585,6 +23610,7 @@ public class Hunter_Survival
         public bool UseBloodFury = true;
         public bool UseCamouflage = false;
         public bool UseCobraShot = true;
+        public bool UseCombatRevive = true;
         public bool UseConcussiveShot = true;
         public bool UseDeterrance = true;
         public bool UseDireBeast = true;
@@ -23690,6 +23716,7 @@ public class Hunter_Survival
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
         }
 
         public static HunterSurvivalSettings CurrentSetting { get; set; }
