@@ -99,7 +99,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && nb == resultNb)
                         return itemsTemp;
-                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && resultNb != 1)
+                    if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString())
                         nb++;
                 }
             }
