@@ -383,7 +383,7 @@ namespace nManager.Wow.Helpers
                         {
                             return;
                         }
-                        while (!Usefuls.IsSwimming && ObjectManager.ObjectManager.Me.IsMounted)
+                        while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
                             Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
                             Thread.Sleep(300);
@@ -468,7 +468,7 @@ namespace nManager.Wow.Helpers
                     Logging.WriteDebug("UnStuck - disY = " + disY);
 
                     if (disX < 2.5f || disY < 2.5f)
-                    //we likely don't need to run this if we are 5+ units from from our stuck point
+                    //we likely don't need to run this if we are 5+ units from our stuck point
                     {
                         if (j == 1)
                         {

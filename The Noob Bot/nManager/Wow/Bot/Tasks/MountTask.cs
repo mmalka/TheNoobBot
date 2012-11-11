@@ -20,6 +20,8 @@ namespace nManager.Wow.Bot.Tasks
     {
         private static int _nbTry;
         private static int _noMountsInSettings;
+        private static string _localizedAbysalMountName = string.Empty;
+
         public static MountCapacity GetMountCapacity()
         {
             string aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
@@ -44,7 +46,6 @@ namespace nManager.Wow.Bot.Tasks
             }
             if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty)
             {
-
                 if(_noMountsInSettings != 1)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
@@ -53,25 +54,25 @@ namespace nManager.Wow.Bot.Tasks
                 return MountCapacity.Feet;
             }
 
-            System.Collections.Generic.List<uint> aquaMountId = SpellManager.SpellListManager.SpellIdByName(aquaMount);
+            if (aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
+                _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
-            // The Abyssal Seahorse is selected
-            if (aquaMount != string.Empty)
-            {   // We are in Vashjir
-                if (aquaMountId.Count > 0 && aquaMountId[0] == 75207 &&
+            // Wherever we are if we have an aquatic mount and are swimming
+            if (Usefuls.IsSwimming && aquaMount != string.Empty)
+            {   // We are in Vashjir and the Abyssal Seahorse is selected
+                if (aquaMount == _localizedAbysalMountName &&
                     (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
                      Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144))
-                {   // extra verification for caves and boats
+                {   // extra sanity checks
                     Spell abyssal = new Spell("Abyssal Seahorse");
                     if (abyssal.KnownSpell && abyssal.IsSpellUsable)
                         return MountCapacity.Swimm;
                 }
+                else if (aquaMount != _localizedAbysalMountName)
+                {
+                    return MountCapacity.Swimm;
+                }
             }
-
-            // Wherever we are if we have an aquatic mount and are swimming
-            if (aquaMount != string.Empty && Usefuls.IsSwimming &&
-                !(aquaMountId.Count > 0 && aquaMountId[0] == 75207))
-                return MountCapacity.Swimm;
 
             Enums.ContinentId cont = (Enums.ContinentId)Usefuls.ContinentId;
 
@@ -243,9 +244,9 @@ namespace nManager.Wow.Bot.Tasks
                 if (TimerMount != null)
                     if (!TimerMount.IsReady)
                         return;
-                TimerMount = new Timer(1*300);
+                TimerMount = new Timer(3 * 100);
 
-                if (ObjectManager.ObjectManager.Me.IsMounted && !onFlyMount() && !Usefuls.IsFlying)
+                if (ObjectManager.ObjectManager.Me.IsMounted && !onFlyMount())
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -254,10 +255,10 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
                     Thread.Sleep(100);
                     if (Usefuls.IsSwimming)
                     {
+                        Logging.WriteNavigator("Going out of water");
                         Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
                         Thread.Sleep(1750);
                         Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
@@ -273,13 +274,14 @@ namespace nManager.Wow.Bot.Tasks
                             return;
                         }
                         Thread.Sleep(250);
+                        Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
                         SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.FlyingMountName);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;
                         }
                         Thread.Sleep(500 + Usefuls.Latency);
-                        while (ObjectManager.ObjectManager.Me.IsCast && !ObjectManager.ObjectManager.Me.InCombat)
+                        while (ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(50);
                         }
@@ -302,10 +304,6 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         if (!ObjectManager.ObjectManager.Me.IsMounted && Products.Products.IsStarted)
                         {
-                            if (ObjectManager.ObjectManager.Me.InCombat)
-                            {
-                                return;
-                            }
                             if (tryMounting >= 3)
                             {
                                 Logging.Write("Mounting failed");
@@ -313,12 +311,12 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             else
                             {
-                                var t = new Timer(1000);
-                                while (!t.IsReady &&
-                                       !Usefuls.IsOutdoors)
+                                var t = new Timer(1000); // 1 sec
+                                while (!t.IsReady && !Usefuls.IsOutdoors)
                                 {
                                     if (ObjectManager.ObjectManager.Me.InCombat)
                                         return;
+                                    Thread.Sleep(200);
                                 }
                                 tryMounting++;
                             }
@@ -341,7 +339,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             Logging.WriteNavigator("Take-off in progress.");
             Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
-            var t = new Timer(850);
+            var t = new Timer(950);
             while (!Usefuls.IsFlying && !t.IsReady)
             {
                 Thread.Sleep(50);
