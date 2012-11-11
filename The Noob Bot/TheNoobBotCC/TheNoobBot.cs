@@ -1981,8 +1981,7 @@ public class Deathknight_Blood
             Empower_Rune_Weapon.Launch();
             return;
         }
-        else if (Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable &&
-                 MySettings.UseHornofWinter)
+        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -2207,8 +2206,7 @@ public class Deathknight_Blood
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
-            && MySettings.UseHornofWinter)
+        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -2828,7 +2826,7 @@ public class Deathknight_Unholy
             Death_Coil.Launch();
             return;
         }
-        else if (Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -3707,7 +3705,7 @@ public class Deathknight_Frost
                 return;
             }
         }
-        else if (Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -3908,8 +3906,7 @@ public class Deathknight_Frost
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
-            && MySettings.UseHornofWinter)
+        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
