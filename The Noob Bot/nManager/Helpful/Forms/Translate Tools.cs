@@ -14,7 +14,7 @@ namespace nManager.Helpful.Forms
             {
                 InitializeComponent();
                 Translate();
-                if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
                 foreach (var id in Enum.GetValues(typeof(Translate.Id)))
                 {

@@ -182,9 +182,9 @@ namespace nManager.Wow.Helpers
                             return;
                     }
 
-                    if (nManagerSetting.CurrentSetting.useGroundMount)
+                    if (nManagerSetting.CurrentSetting.UseGroundMount)
                     {
-                        if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.mountDistance || _loop)
+                        if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount || _loop)
                             Bot.Tasks.MountTask.Mount(false);
                     }
                     _lastNbStuck = StuckCount;

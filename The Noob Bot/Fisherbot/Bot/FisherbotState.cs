@@ -44,7 +44,7 @@ namespace Fisherbot.Bot
                     !ObjectManager.Me.IsValid ||
                     (ObjectManager.Me.InCombat &&
                      !(ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.IsStarted)
                     return false;
 
@@ -58,7 +58,7 @@ namespace Fisherbot.Bot
 
                     if (_node.IsValid && _node.GetBaseAddress > 0)
                         if (!nManagerSetting.IsBlackListedZone(_node.Position) &&
-                            _node.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius &&
+                            _node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                             !nManagerSetting.IsBlackListed(_node.Guid) && _node.IsValid)
                             return true;
                 }
@@ -126,7 +126,7 @@ namespace Fisherbot.Bot
                        !ObjectManager.Me.IsDeadMe &&
                        !(ObjectManager.Me.InCombat &&
                          !(ObjectManager.Me.IsMounted &&
-                           (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                        !timer.IsReady && MovementManager.InMovement)
                 {
                     if (ObjectManager.Me.Position.DistanceTo2D(whereToGo) <= 0.2f)

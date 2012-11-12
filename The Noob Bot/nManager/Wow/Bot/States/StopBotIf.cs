@@ -61,7 +61,7 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             // If Bag Full
-            if (nManagerSetting.CurrentSetting.closeIfFullBag)
+            if (nManagerSetting.CurrentSetting.StopTNBIfBagAreFull)
             {
                if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                {
@@ -75,7 +75,7 @@ namespace nManager.Wow.Bot.States
             }
 
             // If 4000 honor
-            if (nManagerSetting.CurrentSetting.closeIfReached4000HonorPoints)
+            if (nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached)
             {
                 if (Usefuls.GetHonorPoint >= 4000 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 {
@@ -89,7 +89,7 @@ namespace nManager.Wow.Bot.States
             }
 
             // If player teleported
-            if (nManagerSetting.CurrentSetting.closeIfPlayerTeleported)
+            if (nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported)
             {
                 if (_lastPos == null && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     _lastPos = ObjectManager.ObjectManager.Me.Position;
@@ -106,14 +106,14 @@ namespace nManager.Wow.Bot.States
             // After X level
             if (_startedLevel == 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 _startedLevel = ObjectManager.ObjectManager.Me.Level;
-            if ((int)(ObjectManager.ObjectManager.Me.Level - _startedLevel) >= nManagerSetting.CurrentSetting.closeAfterXLevel && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if ((int)(ObjectManager.ObjectManager.Me.Level - _startedLevel) >= nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
             {
                 closeWow(Translate.Get(Translate.Id.Your_player_is_now_level) + " " + ObjectManager.ObjectManager.Me.Level + " (+" + (ObjectManager.ObjectManager.Me.Level - _startedLevel) + " " + Translate.Get(Translate.Id.level_upper) + ")");
                 return;
             }
 
             // After X blockages
-            if (Statistics.Stucks >= nManagerSetting.CurrentSetting.closeAfterXBlockages)
+            if (Statistics.Stucks >= nManagerSetting.CurrentSetting.StopTNBAfterXStucks)
             {
                 closeWow(Statistics.Stucks + " " + Translate.Get(Translate.Id.Blockages));
                 return;
@@ -122,14 +122,14 @@ namespace nManager.Wow.Bot.States
             // After X min
             if (_startedTime == 0)
                 _startedTime = Others.Times;
-            if (_startedTime + (nManagerSetting.CurrentSetting.closeAfterXMin * 60 * 1000) < Others.Times)
+            if (_startedTime + (nManagerSetting.CurrentSetting.StopTNBAfterXMinutes * 60 * 1000) < Others.Times)
             {
-                closeWow(Translate.Get(Translate.Id.tnb_started_since) + " " + nManagerSetting.CurrentSetting.closeAfterXMin + " " + Translate.Get(Translate.Id.min));
+                closeWow(Translate.Get(Translate.Id.tnb_started_since) + " " + nManagerSetting.CurrentSetting.StopTNBAfterXMinutes + " " + Translate.Get(Translate.Id.min));
                 return;
             }
 
             // Pause bot if player near
-            if (nManagerSetting.CurrentSetting.securityPauseBotIfNerbyPlayer && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if (nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
             {
                 if (!_inPause && !Products.Products.InPause)
                 {
@@ -160,11 +160,11 @@ namespace nManager.Wow.Bot.States
                 if (!String.IsNullOrWhiteSpace(msg))
                 {
                     _numberWhisper++;
-                    if (nManagerSetting.CurrentSetting.securityRecordWhisperInLogFile)
+                    if (nManagerSetting.CurrentSetting.RecordWhispsInLogFiles)
                         Logging.Write(msg, Logging.LogType.Normal, Color.BlueViolet);
-                    if (_numberWhisper >= nManagerSetting.CurrentSetting.closeIfWhisperBiggerOrEgalAt)
+                    if (_numberWhisper >= nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers)
                         closeWow(Translate.Get(Translate.Id.Whisper_Egal_at) + " " + _numberWhisper);
-                    if (nManagerSetting.CurrentSetting.securitySongIfNewWhisper)
+                    if (nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived)
                     {
                         var t = new Thread(ThreadSoundNewWhisper) {Name = "Sound alarm", IsBackground = true};
                         t.Start();

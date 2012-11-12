@@ -42,7 +42,7 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -127,7 +127,7 @@ namespace nManager.Wow.Bot.States
                 // Loop farm in zone // We must check Me.IsIndoor because no archeology is indoor
                 int nbStuck = 0; // Nb of stuck direct
                 int nbCastSurveyError = 0; // Nb max error cast survey (for try if in zone ou if zone is finish)
-                while (Products.Products.IsStarted && !Products.Products.InPause && nbCastSurveyError <= 3 && !ObjectManager.ObjectManager.Me.IsDeadMe && !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                while (Products.Products.IsStarted && !Products.Products.InPause && nbCastSurveyError <= 3 && !ObjectManager.ObjectManager.Me.IsDeadMe && !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                 {
                     try
                     {
@@ -150,13 +150,13 @@ namespace nManager.Wow.Bot.States
                             Thread.Sleep(300);
                             while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3)
                             {
-                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     return;
                                 }
                                 Thread.Sleep(100);
                             }
-                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 return;
                             }
@@ -165,7 +165,7 @@ namespace nManager.Wow.Bot.States
                             Thread.Sleep(500);
                             Interact.InteractGameObject(t.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency);
-                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 return;
                             }
@@ -203,7 +203,7 @@ namespace nManager.Wow.Bot.States
                             Thread.Sleep(200);
                             surveySpell.Launch(); // Cast Survey
                             _nbTryFarmInThisZone++;
-                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
                                 return;
                             }
@@ -279,7 +279,7 @@ namespace nManager.Wow.Bot.States
                                         else
                                             p.Z = p.Z + 2;
 
-                                        if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                        if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                         {
                                             return;
                                         }
@@ -290,7 +290,7 @@ namespace nManager.Wow.Bot.States
                                         Thread.Sleep(300);
                                         while (LongMove.IsLongMove && !timer.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
                                         {
-                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                             {
                                                 LongMove.StopLongMove();
                                                 return;
@@ -321,7 +321,7 @@ namespace nManager.Wow.Bot.States
                                         while (MovementManager.InMovement && !timer.IsReady &&
                                                ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
                                         {
-                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                             {
                                                 return;
                                             }
@@ -330,13 +330,13 @@ namespace nManager.Wow.Bot.States
                                         Thread.Sleep(50);
                                         // incremente nbstuck if player is stuck
                                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) < 5 ||
-                                            (MovementManager.InMovement && !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && timer.IsReady))
+                                            (MovementManager.InMovement && !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && timer.IsReady))
                                             nbStuck++;
                                         else
                                             nbStuck = 0;
 
 
-                                        if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                        if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                         {
                                             return;
                                         }

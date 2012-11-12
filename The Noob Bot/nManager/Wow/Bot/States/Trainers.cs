@@ -43,7 +43,7 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                   (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                   (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -52,17 +52,17 @@ namespace nManager.Wow.Bot.States
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
                 // Herbalism:
-                if (NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer).Entry > 0 && nManagerSetting.CurrentSetting.harvestHerbs && nManagerSetting.CurrentSetting.trainNewSkills &&
+                if (NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer).Entry > 0 && nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
                     (Skill.GetMaxValue(SkillLine.Herbalism) - Skill.GetValue(SkillLine.Herbalism)) <= 10 &&
                     Skill.GetValue(SkillLine.Herbalism) > 0)
                     return true;
                 // Mining:
-                if (NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer).Entry > 0 && nManagerSetting.CurrentSetting.harvestMinerals && nManagerSetting.CurrentSetting.trainNewSkills &&
+                if (NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer).Entry > 0 && nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
                     (Skill.GetMaxValue(SkillLine.Mining) - Skill.GetValue(SkillLine.Mining)) <= 10 &&
                     Skill.GetValue(SkillLine.Mining) > 0)
                     return true;
                 // Spell
-                if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level && nManagerSetting.CurrentSetting.trainNewSpells)
+                if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level && nManagerSetting.CurrentSetting.LearnNewSpells)
                     if (NpcDB.GetNpcNearby(MyTrainerClass()).Entry > 0 &&
                             SpellManager.SpellAvailable() > 0)
                         return true;
@@ -75,17 +75,17 @@ namespace nManager.Wow.Bot.States
         {
             Npc trainer = null;
             // Herbalism:
-            if (NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer).Entry > 0 && nManagerSetting.CurrentSetting.harvestHerbs && nManagerSetting.CurrentSetting.trainNewSkills &&
+            if (NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer).Entry > 0 && nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
                     (Skill.GetMaxValue(SkillLine.Herbalism) - Skill.GetValue(SkillLine.Herbalism)) <= 10 &&
                     Skill.GetValue(SkillLine.Herbalism) > 0)
                 trainer = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
             // Mining:))
-            if (NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer).Entry > 0 && nManagerSetting.CurrentSetting.harvestMinerals && nManagerSetting.CurrentSetting.trainNewSkills &&
+            if (NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer).Entry > 0 && nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
                     (Skill.GetMaxValue(SkillLine.Mining) - Skill.GetValue(SkillLine.Mining)) <= 10 &&
                     Skill.GetValue(SkillLine.Mining) > 0 && trainer == null)
                 NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
             // Spell
-            if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level && nManagerSetting.CurrentSetting.trainNewSpells)
+            if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level && nManagerSetting.CurrentSetting.LearnNewSpells)
                 if (NpcDB.GetNpcNearby(MyTrainerClass()).Entry > 0 && SpellManager.SpellAvailable() > 0 && trainer == null)
                     trainer = NpcDB.GetNpcNearby(MyTrainerClass());
 
@@ -121,7 +121,7 @@ namespace nManager.Wow.Bot.States
             MovementManager.Go(points);
             int timer = Others.Times + ((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000;
             while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                   !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                   !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                    !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
                 if (Others.Times > timer)
@@ -131,7 +131,7 @@ namespace nManager.Wow.Bot.States
                 Thread.Sleep(100);
             }
 
-            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                 return;
 
             // GoTo trainer:
@@ -146,7 +146,7 @@ namespace nManager.Wow.Bot.States
                     MovementManager.Go(points);
                     timer = Others.Times + ((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000;
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                            !ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
                         if (tTrainer.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)

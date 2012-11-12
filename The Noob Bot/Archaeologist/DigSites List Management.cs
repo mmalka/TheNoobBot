@@ -18,7 +18,7 @@ namespace Archaeologist
 
                 solvingEveryXMin.Value = Bot.ArchaeologistSetting.CurrentSetting.solvingEveryXMin;
                 maxTryByDigsite.Value = Bot.ArchaeologistSetting.CurrentSetting.maxTryByDigsite;
-                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
             catch (Exception e)

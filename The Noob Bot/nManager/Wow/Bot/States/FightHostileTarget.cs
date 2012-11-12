@@ -38,7 +38,7 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (nManagerSetting.CurrentSetting.dontStartFighting)
+                if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
                 if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)

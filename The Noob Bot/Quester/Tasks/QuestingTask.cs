@@ -274,13 +274,13 @@ namespace Quester.Tasks
                             ObjectManager.GetWoWUnitByFaction(questObjective.Factions));
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
-                    wowUnit.GetDistance <= nManager.nManagerSetting.CurrentSetting.searchRadius &&
+                    wowUnit.GetDistance <= nManager.nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     CurrentQuestObjective.PathHotspots[
                         nManager.Helpful.Math.NearestPointOfListPoints(CurrentQuestObjective.PathHotspots,
                                                                        wowUnit.Position)].DistanceTo(wowUnit.Position) <=
-                    nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(wowUnit.Guid) &&
+                    nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(wowUnit.Guid) &&
                     wowUnit.IsAlive && wowUnit.IsValid &&
-                    (nManagerSetting.CurrentSetting.canAttackUnitsAlreadyInFight || !wowUnit.InCombat))
+                    (nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     Logging.Write("Attacking Lvl " + wowUnit.Name);
                     Fight.StartFight(wowUnit.Guid);
@@ -329,10 +329,10 @@ namespace Quester.Tasks
                     ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 
                 if (!nManagerSetting.IsBlackListedZone(node.Position) &&
-                    node.GetDistance < nManagerSetting.CurrentSetting.searchRadius &&
+                    node.GetDistance < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     CurrentQuestObjective.PathHotspots[
                         nManager.Helpful.Math.NearestPointOfListPoints(CurrentQuestObjective.PathHotspots, node.Position)
-                        ].DistanceTo(node.Position) <= nManagerSetting.CurrentSetting.searchRadius &&
+                        ].DistanceTo(node.Position) <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
@@ -439,7 +439,7 @@ namespace Quester.Tasks
                 if (!MovementManager.InMovement)
                 {
                     if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) >
-                        nManagerSetting.CurrentSetting.searchRadius &&
+                        nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                         questObjective.PositionInteractWith.X != 0)
                     {
                         MountTask.Mount();
@@ -488,7 +488,7 @@ namespace Quester.Tasks
                 if (!MovementManager.InMovement)
                 {
                     if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) >
-                        nManagerSetting.CurrentSetting.searchRadius &&
+                        nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                         questObjective.PositionInteractWith.X != 0)
                     {
                         MountTask.Mount();
@@ -643,7 +643,7 @@ namespace Quester.Tasks
                 if (!MovementManager.InMovement)
                 {
                     if (questObjective.PositionVehicle.DistanceTo(ObjectManager.Me.Position) >
-                        nManagerSetting.CurrentSetting.searchRadius &&
+                        nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                         questObjective.PositionVehicle.X != 0)
                     {
                         MountTask.Mount();
@@ -864,7 +864,7 @@ namespace Quester.Tasks
             MountTask.Mount(); // not good yet
 
             // Find path
-            if (npc.Position.DistanceTo(ObjectManager.Me.Position) < nManagerSetting.CurrentSetting.searchRadius)
+            if (npc.Position.DistanceTo(ObjectManager.Me.Position) < nManagerSetting.CurrentSetting.GatheringSearchRadius)
             {
                 WoWUnit tNpc = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(npc.Entry), npc.Position);
                 WoWGameObject tGameObj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);

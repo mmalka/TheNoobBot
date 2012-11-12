@@ -14,7 +14,7 @@ namespace Milling
 
         static void ThreadPulse()
         {
-            if (nManager.nManagerSetting.CurrentSetting.millingList.Count <= 0)
+            if (nManager.nManagerSetting.CurrentSetting.HerbsToBeMilled.Count <= 0)
             {
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List));
                 nManager.Products.Products.ProductStop();

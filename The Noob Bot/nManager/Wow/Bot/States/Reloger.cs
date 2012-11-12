@@ -30,7 +30,7 @@ namespace nManager.Wow.Bot.States
                     return false;
 
                 // Need relogger
-                if (nManagerSetting.CurrentSetting.relogger && nManagerSetting.CurrentSetting.accountEmail != string.Empty && nManagerSetting.CurrentSetting.accountPassword != string.Empty)
+                if (nManagerSetting.CurrentSetting.ActivateReloggerFeature && nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount != string.Empty && nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount != string.Empty)
                     if (!Usefuls.InGame)
                         return true;
 
@@ -64,12 +64,12 @@ namespace nManager.Wow.Bot.States
 
                 var s = new Login.SettingsLogin
                 { 
-                    Login = nManagerSetting.CurrentSetting.accountEmail,
-                    Password = nManagerSetting.CurrentSetting.accountPassword,
+                    Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
+                    Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,
                     Realm = Usefuls.RealmName,
                     Character = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
                                                                             (uint)Addresses.Player.playerName),
-                    BNetName = nManagerSetting.CurrentSetting.bNetName,
+                    BNetName = nManagerSetting.CurrentSetting.BattleNetSubAccount,
                 };
 
                 Login.Pulse(s);

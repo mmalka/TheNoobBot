@@ -25,30 +25,30 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!nManagerSetting.CurrentSetting.milling)
+                if (!nManagerSetting.CurrentSetting.ActivateAutoMilling)
                     return false;
 
-                if (nManagerSetting.CurrentSetting.millingInTown)
+                if (nManagerSetting.CurrentSetting.OnlyUseMillingInTown)
                     return false;
 
-                if (nManagerSetting.CurrentSetting.millingList.Count <= 0)
+                if (nManagerSetting.CurrentSetting.HerbsToBeMilled.Count <= 0)
                     return false;
 
-                if ((lastTimeRunning + (nManagerSetting.CurrentSetting.millingTime * 60 * 1000)) > Others.Times)
+                if ((lastTimeRunning + (nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt * 60 * 1000)) > Others.Times)
                     return false;
 
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     ObjectManager.ObjectManager.Me.IsMounted ||
                     MovementManager.InMovement ||
                     !Products.Products.IsStarted)
                     return false;
 
 
-                if (Milling.NeedRun(nManagerSetting.CurrentSetting.millingList))
+                if (Milling.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
                     return true;
 
                 return false;
@@ -74,11 +74,11 @@ namespace nManager.Wow.Bot.States
             Logging.Write("Milling in progress");
             var timer = new Helpful.Timer(15*60*1000);
             // Milling
-            while (Milling.NeedRun(nManagerSetting.CurrentSetting.millingList) && Products.Products.IsStarted && Usefuls.InGame &&
+            while (Milling.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled) && Products.Products.IsStarted && Usefuls.InGame &&
                        !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer.IsReady)
             {
                 Thread.Sleep(200);
-                Milling.Pulse(nManagerSetting.CurrentSetting.millingList);
+                Milling.Pulse(nManagerSetting.CurrentSetting.HerbsToBeMilled);
                 Thread.Sleep(750);
                 while (ObjectManager.ObjectManager.Me.IsCast && Products.Products.IsStarted && Usefuls.InGame &&
                        !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer.IsReady)
