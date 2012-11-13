@@ -3451,6 +3451,20 @@
     <Active>true</Active>
   </Digsite>
   <Digsite>
+    <name>Site de fouilles ouest de Guo-Lai</name>
+    <continentId>870</continentId>
+    <position>
+      <X>1477</X>
+      <Y>1876</Y>
+      <Z>301</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.44284421205521</px>
+    <py>0.50419491529465</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
     <name>Site de fouilles des champs de l’Été</name>
     <continentId>870</continentId>
     <position>
