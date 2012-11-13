@@ -39,14 +39,14 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!nManagerSetting.CurrentSetting.repair && !nManagerSetting.CurrentSetting.useMail && !nManagerSetting.CurrentSetting.selling && (nManagerSetting.CurrentSetting.drinkAmount == 0 || nManagerSetting.CurrentSetting.drinkName == "") && (nManagerSetting.CurrentSetting.foodAmount == 0 || nManagerSetting.CurrentSetting.foodName == ""))
+                if (!nManagerSetting.CurrentSetting.ActivateAutoRepairFeature && !nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature && !nManagerSetting.CurrentSetting.ActivateAutoSellingFeature && (nManagerSetting.CurrentSetting.NumberOfBeverageWeGot == 0 || nManagerSetting.CurrentSetting.BeverageName == "") && (nManagerSetting.CurrentSetting.NumberOfFoodsWeGot == 0 || nManagerSetting.CurrentSetting.FoodName == ""))
                     return false;
 
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                     (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                     (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                         return false;
 
@@ -56,12 +56,12 @@ namespace nManager.Wow.Bot.States
 
                 if (Usefuls.GetContainerNumFreeSlots <= 2 &&
                     (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry + NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry) > 0
-                    && nManagerSetting.CurrentSetting.selling)
+                    && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= 2 &&
                      NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 &&
-                     nManagerSetting.CurrentSetting.useMail && nManagerSetting.CurrentSetting.mailRecipient != string.Empty)
+                     nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature && nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
                     return true;
 
                 return false;
@@ -75,8 +75,8 @@ namespace nManager.Wow.Bot.States
             Npc mailBox = null;
 
             // MailBox
-            if (nManagerSetting.CurrentSetting.useMail &&
-                    nManagerSetting.CurrentSetting.mailRecipient != string.Empty &&
+            if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
+                    nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty &&
                     NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
                 mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
             // If need repair
@@ -114,7 +114,7 @@ namespace nManager.Wow.Bot.States
                     var timer = new Timer(((int)Math.DistanceListPoint(pointsVendor) / 3 * 1000) + 5000);
 
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
                         if (timer.IsReady)
                             MovementManager.StopMove();
@@ -136,7 +136,7 @@ namespace nManager.Wow.Bot.States
                         MovementManager.Go(listPoint);
                         timer = new Timer(((int)Math.DistanceListPoint(listPoint) / 3 * 1000) + 5000);
                         while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                               !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                               !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                                !ObjectManager.ObjectManager.Me.IsDeadMe)
                         {
                             if (timer.IsReady)
@@ -147,9 +147,9 @@ namespace nManager.Wow.Bot.States
                         }
 
                         // Prospection
-                        if (nManagerSetting.CurrentSetting.prospectingInTown && nManagerSetting.CurrentSetting.prospecting && nManagerSetting.CurrentSetting.prospectingList.Count > 0)
+                        if (nManagerSetting.CurrentSetting.OnlyUseProspectingInTown && nManagerSetting.CurrentSetting.ActivateAutoProspecting && nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
                         {
-                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.prospectingList))
+                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
                             {
                                 var prospectingState = new ProspectingState();
                                 prospectingState.Run();
@@ -159,9 +159,9 @@ namespace nManager.Wow.Bot.States
 
 
                         // Milling
-                        if (nManagerSetting.CurrentSetting.millingInTown && nManagerSetting.CurrentSetting.milling && nManagerSetting.CurrentSetting.millingList.Count > 0)
+                        if (nManagerSetting.CurrentSetting.OnlyUseMillingInTown && nManagerSetting.CurrentSetting.ActivateAutoMilling && nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
                         {
-                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.millingList))
+                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
                             {
                                 var millingState = new MillingState();
                                 millingState.Run();
@@ -170,7 +170,7 @@ namespace nManager.Wow.Bot.States
                         // End Milling
 
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(vendorObj.Position) < 5 && Products.Products.IsStarted &&
-                            !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                            !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                         {
                             Interact.InteractGameObject(vendorObj.GetBaseAddress);
                             Thread.Sleep(1500);
@@ -185,17 +185,17 @@ namespace nManager.Wow.Bot.States
 
                             // Sell:
                             var vQuality = new List<WoWItemQuality>();
-                            if (nManagerSetting.CurrentSetting.sellGray)
+                            if (nManagerSetting.CurrentSetting.SellGray)
                                 vQuality.Add(WoWItemQuality.Poor);
-                            if (nManagerSetting.CurrentSetting.sellWhite)
+                            if (nManagerSetting.CurrentSetting.SellWhite)
                                 vQuality.Add(WoWItemQuality.Common);
-                            if (nManagerSetting.CurrentSetting.sellGreen)
+                            if (nManagerSetting.CurrentSetting.SellGreen)
                                 vQuality.Add(WoWItemQuality.Uncommon);
-                            if (nManagerSetting.CurrentSetting.sellBlue)
+                            if (nManagerSetting.CurrentSetting.SellBlue)
                                 vQuality.Add(WoWItemQuality.Rare);
-                            if (nManagerSetting.CurrentSetting.sellPurple)
+                            if (nManagerSetting.CurrentSetting.SellPurple)
                                 vQuality.Add(WoWItemQuality.Epic);
-                            Vendor.SellItems(nManagerSetting.CurrentSetting.forceSellList, nManagerSetting.CurrentSetting.doNotSellList, vQuality);
+                            Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems, nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
                             Logging.Write("Sell items");
                             Thread.Sleep(3000);
 
@@ -206,11 +206,11 @@ namespace nManager.Wow.Bot.States
                                 Logging.Write("Buy drink and food");
                                 for (int i = 0; i < 10 && NeededBuyFood(); i++)
                                 {
-                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.foodName, 1);
+                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.FoodName, 1);
                                 }
                                 for (int i = 0; i < 10 && NeededBuyDrink(); i++)
                                 {
-                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.drinkName, 1);
+                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.BeverageName, 1);
                                 }
                             }
 
@@ -251,7 +251,7 @@ namespace nManager.Wow.Bot.States
                 var timer = new Timer(((int)Math.DistanceListPoint(pointsMail) / 3 * 1000) + 5000);
                 Thread.Sleep(700);
                 while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
                 {
                     if (timer.IsReady)
                         MovementManager.StopMove();
@@ -261,9 +261,9 @@ namespace nManager.Wow.Bot.States
                 }
 
                 // Prospection
-                if (nManagerSetting.CurrentSetting.prospectingInTown && nManagerSetting.CurrentSetting.prospecting && nManagerSetting.CurrentSetting.prospectingList.Count > 0)
+                if (nManagerSetting.CurrentSetting.OnlyUseProspectingInTown && nManagerSetting.CurrentSetting.ActivateAutoProspecting && nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
                 {
-                    if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.prospectingList))
+                    if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
                     {
                         var prospectingState = new ProspectingState();
                         prospectingState.Run();
@@ -284,7 +284,7 @@ namespace nManager.Wow.Bot.States
                     MovementManager.Go(listPoint);
                     timer = new Timer(((int)Math.DistanceListPoint(listPoint) / 3 * 1000) + 5000);
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                            !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                            !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
                         if (timer.IsReady)
                             MovementManager.StopMove();
@@ -294,20 +294,20 @@ namespace nManager.Wow.Bot.States
                     }
 
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(mailBoxObj.Position) < 5 && Products.Products.IsStarted &&
-                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                        !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                     {
                         Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
                         Thread.Sleep(500);
                         var mQuality = new List<WoWItemQuality>();
-                        if (nManagerSetting.CurrentSetting.mailGray)
+                        if (nManagerSetting.CurrentSetting.MailGray)
                             mQuality.Add(WoWItemQuality.Poor);
-                        if (nManagerSetting.CurrentSetting.mailWhite)
+                        if (nManagerSetting.CurrentSetting.MailWhite)
                             mQuality.Add(WoWItemQuality.Common);
-                        if (nManagerSetting.CurrentSetting.mailGreen)
+                        if (nManagerSetting.CurrentSetting.MailGreen)
                             mQuality.Add(WoWItemQuality.Uncommon);
-                        if (nManagerSetting.CurrentSetting.mailBlue)
+                        if (nManagerSetting.CurrentSetting.MailBlue)
                             mQuality.Add(WoWItemQuality.Rare);
-                        if (nManagerSetting.CurrentSetting.mailPurple)
+                        if (nManagerSetting.CurrentSetting.MailPurple)
                             mQuality.Add(WoWItemQuality.Epic);
 
                         var needRunAgain = true;
@@ -315,11 +315,11 @@ namespace nManager.Wow.Bot.States
                         {
                             Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
                             Thread.Sleep(1000);
-                            Mail.SendMessage(nManagerSetting.CurrentSetting.mailRecipient, nManagerSetting.CurrentSetting.mailSubject, "",
-                                                nManagerSetting.CurrentSetting.forceMailList, nManagerSetting.CurrentSetting.doNotMailList, mQuality, out needRunAgain);
+                            Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient, nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
+                                                nManagerSetting.CurrentSetting.ForceToMailTheseItems, nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality, out needRunAgain);
                             Thread.Sleep(500);
                         }
-                        Logging.Write("Mail sending at " + nManagerSetting.CurrentSetting.mailRecipient);
+                        Logging.Write("Mail sending at " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient);
                     }
                     else
                     {
@@ -337,9 +337,9 @@ namespace nManager.Wow.Bot.States
         bool NeededBuyFood()
         {
             // food
-            if (nManagerSetting.CurrentSetting.foodName != "" && nManagerSetting.CurrentSetting.foodAmount > 0)
+            if (nManagerSetting.CurrentSetting.FoodName != "" && nManagerSetting.CurrentSetting.NumberOfFoodsWeGot > 0)
             {
-                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.foodName) < nManagerSetting.CurrentSetting.foodAmount)
+                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.FoodName) < nManagerSetting.CurrentSetting.NumberOfFoodsWeGot)
                     return true;
             }
             return false;
@@ -348,9 +348,9 @@ namespace nManager.Wow.Bot.States
         bool NeededBuyDrink()
         {
             // Drink
-            if (nManagerSetting.CurrentSetting.drinkName != "" && nManagerSetting.CurrentSetting.drinkAmount > 0)
+            if (nManagerSetting.CurrentSetting.BeverageName != "" && nManagerSetting.CurrentSetting.NumberOfBeverageWeGot > 0)
             {
-                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.drinkName) < nManagerSetting.CurrentSetting.drinkAmount)
+                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.BeverageName) < nManagerSetting.CurrentSetting.NumberOfBeverageWeGot)
                     return true;
             }
             return false;

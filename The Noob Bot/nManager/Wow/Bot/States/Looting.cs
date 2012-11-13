@@ -29,14 +29,14 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (!nManagerSetting.CurrentSetting.lootMobs)
+                if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                     return false;
 
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     Usefuls.IsFlying ||
                     !Products.Products.IsStarted)
                     return false;
@@ -44,12 +44,12 @@ namespace nManager.Wow.Bot.States
                 // Get Looting
                 _units = new List<WoWUnit>();
                 var tUnit = ObjectManager.ObjectManager.GetWoWUnitLootable();
-                if (nManagerSetting.CurrentSetting.skinMobs && nManagerSetting.CurrentSetting.skinNinja)
+                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && nManagerSetting.CurrentSetting.BeastNinjaSkinning)
                     tUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitSkinnable(new List<ulong>(nManagerSetting.GetListGuidBlackListed())));
 
                 foreach (var woWUnit in tUnit)
                 {
-                    if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.searchRadius &&
+                    if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                             !nManagerSetting.IsBlackListed(woWUnit.Guid) &&
                             woWUnit.IsValid &&
                             (!UnitNearest(woWUnit) || woWUnit.GetDistance2D < 15))
@@ -82,7 +82,7 @@ namespace nManager.Wow.Bot.States
                 if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
                     i++;
             }
-            var r = i > nManagerSetting.CurrentSetting.maxUnitsNear;
+            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanOneUnitInAggroRange;
             if (r)
             {
                 nManagerSetting.AddBlackList(unit.Guid, 50 * 1000);

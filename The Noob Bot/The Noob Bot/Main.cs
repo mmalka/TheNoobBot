@@ -27,7 +27,7 @@ namespace The_Noob_Bot
                 InitializeBot();
                 InitializeComponent();
                 Translate();
-                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
                 InitializeInterface();
                 InitializeUI();
@@ -104,22 +104,28 @@ namespace The_Noob_Bot
                     nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
                 var items = new List<string>();
-                if (nManager.nManagerSetting.CurrentSetting.doNotSellList.Count == 0 ||
-                    nManager.nManagerSetting.CurrentSetting.doNotMailList.Count == 0)
+                if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
+                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
                     foreach (var item in Bag.GetBagItem())
                     {
                         items.Add(item.Name);
                     }
                     Logging.Write(items.Count + " items found");
+                    if (items.Count == 0)
+                    {
+                        Logging.Write(
+                            "Possible issue while botting detected, please try to switch DirectX version of your WoW client.");
+                        Logging.Write("Ignore this message if you really have ZERO items in your World of Warcraft bags.");
+                    }
                 }
-                if (nManager.nManagerSetting.CurrentSetting.doNotSellList.Count == 0)
+                if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
                 {
-                    nManager.nManagerSetting.CurrentSetting.doNotSellList.AddRange(items);
+                    nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(items);
                 }
-                if (nManager.nManagerSetting.CurrentSetting.doNotMailList.Count == 0)
+                if (nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
-                    nManager.nManagerSetting.CurrentSetting.doNotMailList.AddRange(items);
+                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(items);
                 }
                 //SpellManager.SpellBook(); // Initialize SpeelBook
             }

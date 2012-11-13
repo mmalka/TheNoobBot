@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
         /// <value>
         ///   <c>true</c> if [use pather finder]; otherwise, <c>false</c>.
         /// </value>
-        public static bool UsePatherFind { get { return nManagerSetting.CurrentSetting.usePathsFinder; } }
+        public static bool UsePatherFind { get { return nManagerSetting.CurrentSetting.ActivatePathFindingFeature; } }
         private static Pather _pather;
 
         /// <summary>

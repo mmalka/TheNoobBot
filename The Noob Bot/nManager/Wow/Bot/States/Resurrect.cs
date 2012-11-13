@@ -68,7 +68,7 @@ namespace nManager.Wow.Bot.States
 
             #region GoToCorp
 
-            if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 && !nManagerSetting.CurrentSetting.useSpiritHealer)
+            if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 && !nManagerSetting.CurrentSetting.UseSpiritHealer)
             {
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -89,7 +89,7 @@ namespace nManager.Wow.Bot.States
                 {
                     tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
                     List<Point> points = PathFinder.FindPath(tPointCorps);
-                    if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.useSpiritHealer))
+                    if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.UseSpiritHealer))
                         MovementManager.Go(points);
                 }
                 while ((MovementManager.InMovement || LongMove.IsLongMove) &&
@@ -143,7 +143,7 @@ namespace nManager.Wow.Bot.States
 
             #region SpiritHealer
 
-            if (nManagerSetting.CurrentSetting.useSpiritHealer)
+            if (nManagerSetting.CurrentSetting.UseSpiritHealer)
             {
                 Thread.Sleep(4000);
                 var objectSpiritHealer =

@@ -28,7 +28,7 @@ namespace Grinder.Profile
                 npcTypeC.Text = Npc.NpcType.None.ToString();
 
                 refreshListZones();
-                if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
             catch (Exception e)

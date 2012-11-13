@@ -245,15 +245,15 @@ namespace nManager.Wow.ObjectManager
                                     break; // let's accept it, we check for quest later in code and act like if no lock was set
 
                                 // Prevent herbing when the setting is off
-                                if (skill == SkillLine.Herbalism && !nManagerSetting.CurrentSetting.harvestHerbs)
+                                if (skill == SkillLine.Herbalism && !nManagerSetting.CurrentSetting.ActivateHerbsHarvesting)
                                     return false;
                                 // Prevent mining when the setting is off
-                                if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.harvestMinerals)
+                                if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting)
                                     return false;
 
                                 uint reqSkillValue = Row.Record.Skill[j];
 
-                                if (skill == SkillLine.Lockpicking && !nManagerSetting.CurrentSetting.lootChests)
+                                if (skill == SkillLine.Lockpicking && !nManagerSetting.CurrentSetting.ActivateChestLooting)
                                     return false;
 
                                 // special case for rogues and lockpicking since the skill does not exist anymore
@@ -292,7 +292,7 @@ namespace nManager.Wow.ObjectManager
                     }
                 }
                 // No lock = no gathering GameObject, then obey to lootChests setting or all lock passed
-                if (!nManagerSetting.CurrentSetting.lootChests)
+                if (!nManagerSetting.CurrentSetting.ActivateChestLooting)
                     return false;
 
                 // Finaly we check if a quest is required

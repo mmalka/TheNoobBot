@@ -17,7 +17,7 @@ namespace Battlegrounder.Profile
             {
                 InitializeComponent();
                 Translate();
-                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
             catch (Exception e)

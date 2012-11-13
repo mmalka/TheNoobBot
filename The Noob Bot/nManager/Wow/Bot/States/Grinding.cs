@@ -42,14 +42,14 @@ namespace nManager.Wow.Bot.States
         {
             get
             {
-                if (nManagerSetting.CurrentSetting.dontStartFighting)
+                if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
                 if (!Usefuls.InGame ||
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -66,8 +66,8 @@ namespace nManager.Wow.Bot.States
                 if (!_unit.IsValid)
                     return false;
 
-                if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
-                    if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.canAttackUnitsAlreadyInFight)
+                if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
+                    if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
                         if (!UnitNearest(_unit))
                             if (_unit.Level <= MaxTargetLevel && _unit.Level >= MinTargetLevel)
                             return true;
@@ -86,7 +86,7 @@ namespace nManager.Wow.Bot.States
                 if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
                     i++;
             }
-            var r = i > nManagerSetting.CurrentSetting.maxUnitsNear;
+            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanOneUnitInAggroRange;
             if (r)
             {
                 nManagerSetting.AddBlackList(unit.Guid, 15 * 1000);

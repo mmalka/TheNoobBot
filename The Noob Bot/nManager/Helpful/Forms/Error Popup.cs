@@ -9,7 +9,7 @@ namespace nManager.Helpful.Forms
         {
             InitializeComponent();
             ErrorDescription.Text = ErrorMessage;
-            if (nManagerSetting.CurrentSetting.AlwaysOnTop)
+            if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 this.TopMost = true;
         }
 

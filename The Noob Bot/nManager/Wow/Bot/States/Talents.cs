@@ -46,7 +46,7 @@ namespace nManager.Wow.Bot.States
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
                 // Need Talents
-                if (nManagerSetting.CurrentSetting.assignTalents)
+                if (nManagerSetting.CurrentSetting.AutoAssignTalents)
                     if (ObjectManager.ObjectManager.Me.Level >= 10 && _lastLevel != ObjectManager.ObjectManager.Me.Level)
                         return true;
 

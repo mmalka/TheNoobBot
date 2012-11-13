@@ -43,11 +43,11 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
-                if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.harvestDuringLongMove)
+                if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements)
                     return false;
 
                 _nodes = new List<WoWGameObject>();
@@ -55,7 +55,7 @@ namespace nManager.Wow.Bot.States
 
                 foreach (var node in tNodes)
                 {
-                    if (!nManagerSetting.IsBlackListedZone(node.Position) && node.GetDistance2D < nManagerSetting.CurrentSetting.searchRadius && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
+                    if (!nManagerSetting.IsBlackListedZone(node.Position) && node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                        if (!PlayerNearest(node))
                            if (!UnitNearest(node))
                                _nodes.Add(node);
@@ -71,7 +71,7 @@ namespace nManager.Wow.Bot.States
         public static bool PlayerNearest(WoWGameObject node)
         {
             List<WoWPlayer> players = ObjectManager.ObjectManager.GetObjectWoWPlayer();
-            if (players.Any(p => p.Position.DistanceTo2D(node.Position) <= nManagerSetting.CurrentSetting.harvestAvoidPlayersRadius))
+            if (players.Any(p => p.Position.DistanceTo2D(node.Position) <= nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius))
             {
                 Logging.Write("Player near the node");
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);
@@ -89,7 +89,7 @@ namespace nManager.Wow.Bot.States
                 if (woWUnit.Position.DistanceTo2D(node.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, woWUnit) == Reaction.Hostile)
                     i++;
             }
-            var r = i > nManagerSetting.CurrentSetting.maxUnitsNear;
+            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanOneUnitInAggroRange;
             if (r)
             {
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);

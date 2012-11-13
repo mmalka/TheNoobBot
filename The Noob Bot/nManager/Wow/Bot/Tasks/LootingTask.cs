@@ -35,7 +35,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (wowUnit.IsLootable)
                                     Logging.Write("Loot " + wowUnit.Name);
-                                else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.skinMobs)
+                                else if (wowUnit.IsSkinnable && nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                     Logging.Write("Skin " + wowUnit.Name);
                                 else
                                     continue;
@@ -55,7 +55,7 @@ namespace nManager.Wow.Bot.Tasks
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && (int)wowUnit.GetBaseAddress > 0 &&
                                        Products.Products.IsStarted &&
                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
-                                       !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) &&
+                                       !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                                        !timer.IsReady)
                                 {
                                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
@@ -72,23 +72,23 @@ namespace nManager.Wow.Bot.Tasks
                                         if (wowUnit.IsLootable)
                                         {
                                             Interact.InteractGameObject(wowUnit.GetBaseAddress);
-                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                             {
                                                 return;
                                             }
                                             Thread.Sleep(1250);
-                                            if (nManagerSetting.CurrentSetting.skinMobs && ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                 return;
                                             Statistics.Loots++;
-                                            if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
+                                            if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
                                                 Elemental.AutoMakeElemental();
-                                            if (!nManagerSetting.CurrentSetting.skinMobs)
+                                            if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
                                                 nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
                                                 break;
                                             }
                                         }
-                                        if (nManagerSetting.CurrentSetting.skinMobs && ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
+                                        if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
                                             Thread.Sleep(1500);
                                             if (wowUnit.IsSkinnable)
@@ -100,12 +100,12 @@ namespace nManager.Wow.Bot.Tasks
                                                 {
                                                     Thread.Sleep(50);
                                                 }
-                                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                                 {
                                                     return;
                                                 }
                                                 Thread.Sleep(1000);
-                                                if (nManagerSetting.CurrentSetting.skinMobs &&
+                                                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                                     ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                     return;
                                                 Statistics.Farms++;
@@ -142,7 +142,7 @@ namespace nManager.Wow.Bot.Tasks
                 Thread.Sleep(Usefuls.Latency);
                 Lua.LuaDoString(
                     "for slot = 1, GetNumLootItems() do " +
-                    "  if GetLootSlotType(slot) == LOOT_SLOT_ITEM then " +
+                    "  if GetLootSlotType(slot) != 2 then " +
                     "    ConfirmLootSlot(slot) " +
                     "  end " +
                     "end");

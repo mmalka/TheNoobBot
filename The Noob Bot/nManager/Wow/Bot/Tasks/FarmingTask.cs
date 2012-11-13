@@ -162,7 +162,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     Thread.Sleep(50);
                                 }
-                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                         Lua.RunMacroText("/cancelform");
@@ -172,7 +172,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
                                     LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
-                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))))
+                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                         Lua.RunMacroText("/cancelform");
@@ -180,7 +180,7 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                                 nManagerSetting.AddBlackList(node.Guid, 1000 * 20);
                                 Logging.Write("Farm successful");
-                                if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
+                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
 
                                 return;
@@ -224,8 +224,8 @@ namespace nManager.Wow.Bot.Tasks
                         var points = new List<Point>();
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.5f)
                         {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.mountDistance ||
-                                !nManagerSetting.CurrentSetting.useGroundMount)
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
+                                !nManagerSetting.CurrentSetting.UseGroundMount)
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                                 {
@@ -247,8 +247,8 @@ namespace nManager.Wow.Bot.Tasks
                             // fallback to ground mount or feet
                             bool r;
                             points = PathFinder.FindPath(node.Position, out r);
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.mountDistance &&
-                                nManagerSetting.CurrentSetting.useGroundMount)
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
+                                nManagerSetting.CurrentSetting.UseGroundMount)
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
                                     MountTask.Mount();
@@ -264,7 +264,7 @@ namespace nManager.Wow.Bot.Tasks
                         Logging.Write("Farm " + node.Name + " > " + node.Position);
                         var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                         while ((int)node.GetBaseAddress > 0 && Products.Products.IsStarted && !ObjectManager.ObjectManager.Me.IsDeadMe &&
-                               !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.ignoreFightGoundMount || Usefuls.IsFlying))) && !timer.IsReady)
+                               !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !timer.IsReady)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) <= 4.5f)
                             {
@@ -314,7 +314,7 @@ namespace nManager.Wow.Bot.Tasks
                                 Statistics.Farms++;
                                 nManagerSetting.AddBlackList(node.Guid, 1000 * 20); //60 * 5); // 20 sec instead of 5 min
                                 Logging.Write("Farm successful");
-                                if (nManagerSetting.CurrentSetting.autoMakeElemental && !ObjectManager.ObjectManager.Me.InCombat)
+                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
                                 return;
                             }

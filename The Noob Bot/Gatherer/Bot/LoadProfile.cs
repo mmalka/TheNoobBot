@@ -17,7 +17,7 @@ namespace Gatherer.Bot
                 TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 listProfileCb.Text = GathererSetting.CurrentSetting.profileName;
-                if (nManager.nManagerSetting.CurrentSetting.AlwaysOnTop)
+                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
             catch (Exception e)
