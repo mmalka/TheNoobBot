@@ -188,7 +188,7 @@ namespace nManager
         public bool UseSpiritHealer;
         public bool UseGroundMount = true;
         public string GroundMountName = "";
-        public float MinimumDistanceToUseMount = 80;
+        public float MinimumDistanceToUseMount = 15;
         public bool IgnoreFightIfMounted = true;
         public string FlyingMountName = "";
         public string AquaticMountName = "";
