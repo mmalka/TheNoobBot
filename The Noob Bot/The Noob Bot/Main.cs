@@ -113,6 +113,12 @@ namespace The_Noob_Bot
                     }
                     Logging.Write(items.Count + " items found");
                 }
+                if (items.Count == 0)
+                {
+                    Logging.Write(
+                        "Possible issue while botting detected, please try to switch DirectX version of your WoW client.");
+                    Logging.Write("Ignore this message if you really have ZERO items in your World of Warcraft bags.");
+                }
                 if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0)
                 {
                     nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(items);
