@@ -1981,7 +1981,8 @@ public class Deathknight_Blood
             Empower_Rune_Weapon.Launch();
             return;
         }
-        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
+            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
@@ -2826,7 +2827,8 @@ public class Deathknight_Unholy
             Death_Coil.Launch();
             return;
         }
-        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
+            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
@@ -3705,7 +3707,8 @@ public class Deathknight_Frost
                 return;
             }
         }
-        else if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
+            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
