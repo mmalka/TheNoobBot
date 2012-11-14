@@ -159,8 +159,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    if (_points[firstIdPoint].Type.ToLower() == "flying" ||
-                        _points[firstIdPoint].Type.ToLower() == "swimming")
+                    if (_points[firstIdPoint].Type.ToLower() == "swimming")
                     {
                         return;
                     }
@@ -182,10 +181,22 @@ namespace nManager.Wow.Helpers
                             return;
                     }
 
-                    if (nManagerSetting.CurrentSetting.UseGroundMount)
+                    if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount || _loop)
                     {
-                        if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount || _loop)
+                        if (nManagerSetting.CurrentSetting.UseGroundMount)
+                            Bot.Tasks.MountTask.MountingGroundMount(false);
+                        else
                             Bot.Tasks.MountTask.Mount(false);
+                        if (Usefuls.IsFlying)
+                        {
+                            List<Point> tmpList = new List<Point>();
+                            for (var i = 0; i < _points.Count; i++)
+                            {
+                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 3.0f, "flying");
+                                tmpList.Add(pt);
+                            }
+                            _points = tmpList;
+                        }
                     }
                     _lastNbStuck = StuckCount;
                     int idPoint = firstIdPoint;
@@ -202,8 +213,7 @@ namespace nManager.Wow.Helpers
                     {
                         try
                         {
-                            if (_points[firstIdPoint].Type.ToLower() == "flying" ||
-                                _points[firstIdPoint].Type.ToLower() == "swimming")
+                            if (_points[firstIdPoint].Type.ToLower() == "swimming")
                             {
                                 return;
                             }
