@@ -355,7 +355,10 @@ namespace nManager.Wow.Bot.Tasks
             var t = new Timer(15000);
             while (Usefuls.IsFlying && !t.IsReady)
             {
-                Thread.Sleep(50);
+                float z0 = ObjectManager.ObjectManager.Me.Position.Z;
+                Thread.Sleep(100);
+                if (z0 == ObjectManager.ObjectManager.Me.Position.Z)
+                    t.ForceReady();
             }
             Thread.Sleep(150);
             Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
