@@ -873,11 +873,11 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetObjectWoWGameObject().Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober) && a.CanOpen).ToList();
+                return GetObjectWoWGameObject().Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober)).ToList();
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWGameObjectByyId(int id): " + e);
+                Logging.WriteError("GetWoWGameObjectForFarm(): " + e);
             }
             return new List<WoWGameObject>();
         }

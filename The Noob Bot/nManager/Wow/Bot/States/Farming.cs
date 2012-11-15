@@ -56,9 +56,10 @@ namespace nManager.Wow.Bot.States
                 foreach (var node in tNodes)
                 {
                     if (!nManagerSetting.IsBlackListedZone(node.Position) && node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
-                       if (!PlayerNearest(node))
-                           if (!UnitNearest(node))
-                               _nodes.Add(node);
+                        if (!PlayerNearest(node))
+                            if (!UnitNearest(node))
+                                if (node.CanOpen)
+                                    _nodes.Add(node);
                 }
 
                 if (_nodes.Count > 0)

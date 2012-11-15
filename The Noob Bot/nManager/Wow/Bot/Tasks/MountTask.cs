@@ -21,6 +21,7 @@ namespace nManager.Wow.Bot.Tasks
         private static int _nbTry;
         private static int _noMountsInSettings;
         private static string _localizedAbysalMountName = string.Empty;
+        private static bool startupCheck = true;
 
         public static MountCapacity GetMountCapacity()
         {
@@ -28,21 +29,28 @@ namespace nManager.Wow.Bot.Tasks
             string groundMount = nManagerSetting.CurrentSetting.GroundMountName;
             string flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
 
-            // 1st Check if mounts in general settings exist
-            if (groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) && !SpellManager.ExistSpellBookLUA(groundMount))
+            if (startupCheck)
             {
-                MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
-                groundMount = string.Empty;
-            }
-            if (aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) && !SpellManager.ExistSpellBookLUA(aquaMount))
-            {
-                MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
-                aquaMount = string.Empty;
-            }
-            if (flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) && !SpellManager.ExistSpellBookLUA(flyMount))
-            {
-                MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
-                flyMount = string.Empty;
+                // 1st Check if mounts in general settings exist
+                if (groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) && !SpellManager.ExistSpellBookLUA(groundMount))
+                {
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
+                    groundMount = string.Empty;
+                }
+                if (aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) && !SpellManager.ExistSpellBookLUA(aquaMount))
+                {
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
+                    aquaMount = string.Empty;
+                }
+                if (flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) && !SpellManager.ExistSpellBookLUA(flyMount))
+                {
+                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
+                    flyMount = string.Empty;
+                }
+                if (aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
+                    _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
+
+                startupCheck = false;
             }
             if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty)
             {
@@ -53,9 +61,6 @@ namespace nManager.Wow.Bot.Tasks
                 }
                 return MountCapacity.Feet;
             }
-
-            if (aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
-                _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
             // Wherever we are if we have an aquatic mount and are swimming
             if (Usefuls.IsSwimming && aquaMount != string.Empty)
@@ -74,18 +79,16 @@ namespace nManager.Wow.Bot.Tasks
                 }
             }
 
-            Enums.ContinentId cont = (Enums.ContinentId)Usefuls.ContinentId;
-
             if (Usefuls.IsOutdoors)
             {
                 if (flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
-                    // We are in Outland and Expert Flying or better
-                    Spell ExpertRider = new Spell(34090);
-                    Spell ArtisanRider = new Spell(34091);
-                    Spell MasterRider = new Spell(90265);
-                    if (cont == Enums.ContinentId.Outland &&
-                        (ExpertRider.KnownSpell || ArtisanRider.KnownSpell || MasterRider.KnownSpell))
+                    Enums.ContinentId cont = (Enums.ContinentId)Usefuls.ContinentId;
+
+                    // We are in Pandaria and with "Wisdom of the Four Winds" aura
+                    Spell Wisdom4Winds = new Spell(115913);
+                    if (cont == Enums.ContinentId.Pandaria &&
+                        Wisdom4Winds.KnownSpell)
                         return MountCapacity.Fly;
 
                     // We are in Northfend with "Cold Weather Flying" aura
@@ -99,10 +102,12 @@ namespace nManager.Wow.Bot.Tasks
                         FlightMasterLicense.KnownSpell)
                         return MountCapacity.Fly;
 
-                    // We are in Pandaria and with "Wisdom of the Four Winds" aura
-                    Spell Wisdom4Winds = new Spell(115913);
-                    if (cont == Enums.ContinentId.Pandaria &&
-                        Wisdom4Winds.KnownSpell)
+                    // We are in Outland and Expert Flying or better
+                    Spell ExpertRider = new Spell(34090);
+                    Spell ArtisanRider = new Spell(34091);
+                    Spell MasterRider = new Spell(90265);
+                    if (cont == Enums.ContinentId.Outland &&
+                        (ExpertRider.KnownSpell || ArtisanRider.KnownSpell || MasterRider.KnownSpell))
                         return MountCapacity.Fly;
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
@@ -234,18 +239,12 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        private static Timer TimerMount;
         private static int tryMounting;
 
         public static void MountingFlyingMount(bool stopMove = true)
         {
             try
             {
-                if (TimerMount != null)
-                    if (!TimerMount.IsReady)
-                        return;
-                TimerMount = new Timer(3 * 100);
-
                 if (ObjectManager.ObjectManager.Me.IsMounted && !onFlyMount())
                     DismountMount(stopMove);
 

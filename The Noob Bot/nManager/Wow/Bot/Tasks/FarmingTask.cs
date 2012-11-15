@@ -134,21 +134,19 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(150);
                                 MovementManager.StopMove();
-                                if (Usefuls.IsFlying ) //|| ObjectManager.ObjectManager.Me.IsMounted)
+                                if (Usefuls.IsFlying )
                                 {
                                     MountTask.Land();
                                 }
-
                                 if (ObjectManager.ObjectManager.Me.GetMove)
                                 {
                                     MovementManager.StopMove();
-                                    //Logging.Write("Still moving !!!");
                                 }
                                 while (ObjectManager.ObjectManager.Me.GetMove)
                                 {
                                     Thread.Sleep(50);
                                 }
-                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && node.CanOpen))
+                                if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                     Usefuls.DisMount();
                                 Thread.Sleep(Usefuls.Latency + 300);
                                 Interact.InteractGameObject(node.GetBaseAddress);
@@ -168,7 +166,7 @@ namespace nManager.Wow.Bot.Tasks
                                         Lua.RunMacroText("/cancelform");
                                     return;
                                 }
-                                Thread.Sleep(Usefuls.Latency + 200);
+                                Thread.Sleep(Usefuls.Latency + 100);
                                 if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
                                     LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
@@ -222,7 +220,7 @@ namespace nManager.Wow.Bot.Tasks
                     if ((int)node.GetBaseAddress > 0)
                     {
                         var points = new List<Point>();
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.5f)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.0f)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
                                 !nManagerSetting.CurrentSetting.UseGroundMount)
@@ -253,24 +251,19 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
                                     MountTask.Mount();
                             }
+                            MovementManager.Go(points);
                         }
-                        if (points.Count <= 0)
-                        {
-                            points.Add(ObjectManager.ObjectManager.Me.Position);
-                            points.Add(node.Position);
-                        }
-                        MovementManager.Go(points);
 
                         Logging.Write("Farm " + node.Name + " > " + node.Position);
                         var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
                         while ((int)node.GetBaseAddress > 0 && Products.Products.IsStarted && !ObjectManager.ObjectManager.Me.IsDeadMe &&
                                !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !timer.IsReady)
                         {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) <= 4.5f)
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) <= 4.0f)
                             {
                                 MovementManager.StopMove();
 
-                                if (!(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) && node.CanOpen))
+                                if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                     MountTask.DismountMount();
 
                                 if (ObjectManager.ObjectManager.Me.InCombat)
@@ -296,7 +289,7 @@ namespace nManager.Wow.Bot.Tasks
                                     return;
                                 }
                                 Thread.Sleep(500);
-                                while (ObjectManager.ObjectManager.Me.IsCast && !ObjectManager.ObjectManager.Me.InCombat)
+                                while (ObjectManager.ObjectManager.Me.IsCast)
                                 {
                                     Thread.Sleep(50);
                                 }
