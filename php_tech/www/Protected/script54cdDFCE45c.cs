@@ -21,7 +21,7 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                 }
             }
             else*/
-            if (nManager.Information.Version == "1.2.15" || nManager.Information.Version == "1.3.0")
+            if (/*nManager.Information.Version == "1.2.15" || */nManager.Information.Version == "1.3.2")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
