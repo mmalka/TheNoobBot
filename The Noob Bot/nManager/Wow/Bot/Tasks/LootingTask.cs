@@ -142,9 +142,9 @@ namespace nManager.Wow.Bot.Tasks
                 Thread.Sleep(Usefuls.Latency);
                 Lua.LuaDoString(
                     "for slot = 1, GetNumLootItems() do " +
-                    "  if GetLootSlotType(slot) != 2 then " +
+                    //"  if GetLootSlotType(slot) != 2 then " +
                     "    ConfirmLootSlot(slot) " +
-                    "  end " +
+                    //"  end " +
                     "end");
                 /* TODO : We need to handle properly the event OR We need to check if the current Slot is a BoP item or not.
                  * Currently, we count how many loots we've got, and check one by one if the loot is an "item" (and not golds, etc).
