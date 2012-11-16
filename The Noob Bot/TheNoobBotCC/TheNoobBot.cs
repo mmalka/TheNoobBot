@@ -23013,6 +23013,7 @@ public class Hunter_Survival
     private readonly Spell Kill_Shot = new Spell("Kill Shot");
     private readonly Spell Multi_Shot = new Spell("Multi-Shot");
     private readonly Spell Serpent_Sting = new Spell("Serpent Sting");
+    private readonly Spell Steady_Shot = new Spell("Steady Shot");
     private Timer Serpent_Sting_Timer = new Timer(0);
 
     #endregion
