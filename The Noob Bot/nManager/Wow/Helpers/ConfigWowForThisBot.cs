@@ -46,7 +46,7 @@ namespace nManager.Wow.Helpers
                                                      (uint) Addresses.AutoLoot.AutoLoot_Activate_Pointer) +
                     (uint) Addresses.AutoLoot.AutoLoot_Activate_Offset, 1);
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
-                if (nManagerSetting.CurrentSetting.AllowTNBToSetYourMapFps)
+                if (nManagerSetting.CurrentSetting.AllowTNBToSetYourMaxFps)
                 {
                     Lua.LuaDoString("ConsoleExec(\"maxfpsbk 60\")");
                     Lua.LuaDoString("ConsoleExec(\"MaxFPS 60\")");

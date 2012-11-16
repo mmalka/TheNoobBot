@@ -9,7 +9,9 @@ using nManager.Wow.ObjectManager;
 namespace nManager
 {
     [Serializable]
+// ReSharper disable InconsistentNaming
     public class nManagerSetting : Settings
+// ReSharper restore InconsistentNaming
     {
         private static nManagerSetting _currentSetting;
         static string _lastName = "";
@@ -205,7 +207,7 @@ namespace nManager
         public bool ActivateVeinsHarvesting = true;
         public bool ActivateHerbsHarvesting = true;
         public float DontHarvestIfPlayerNearRadius = 10;
-        public int DontHarvestIfMoreThanOneUnitInAggroRange = 3;
+        public int DontHarvestIfMoreThanXUnitInAggroRange = 3;
         public float GatheringSearchRadius = 100;
         public bool HarvestDuringLongDistanceMovements;
         public bool ActivateAutoSmelting;
@@ -255,7 +257,7 @@ namespace nManager
         public bool RecordWhispsInLogFiles = true;
         public bool PlayASongIfNewWhispReceived;
         public bool ActivatePathFindingFeature = true;
-        public bool AllowTNBToSetYourMapFps = true;
+        public bool AllowTNBToSetYourMaxFps = true;
         public float MaxDistanceToGoToMailboxesOrNPCs = 1000;
         public bool AutoConfirmOnBoPItems = true;
         public bool ActivateAlwaysOnTopFeature;

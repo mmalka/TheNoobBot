@@ -1,6 +1,5 @@
 using System;
 using System.Windows.Forms;
-using nManager.Wow.Helpers;
 
 namespace nManager.Helpful.Forms
 {
@@ -18,11 +17,11 @@ namespace nManager.Helpful.Forms
                 LoadSetting(nManagerSetting.CurrentSetting);
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.dll"))
                 {
-                    customClass.Items.Add(f);
+                    CustomClass.Items.Add(f);
                 }
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.cs"))
                 {
-                    customClass.Items.Add(f);
+                    CustomClass.Items.Add(f);
                 }
             }
             catch (Exception e)
@@ -92,16 +91,16 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX56);
             labelX48.Text = Translate.Get(Translate.Id.Force_Mail_List__one_item_by_line);
             SetToolTypeIfNeeded(labelX48);
-            mailPurple.Text = Translate.Get(Translate.Id.Mail_Purple_items);
-            SetToolTypeIfNeeded(mailPurple);
-            mailBlue.Text = Translate.Get(Translate.Id.Mail_Blue_items);
-            SetToolTypeIfNeeded(mailBlue);
-            mailGreen.Text = Translate.Get(Translate.Id.Mail_Green_items);
-            SetToolTypeIfNeeded(mailGreen);
-            mailWhite.Text = Translate.Get(Translate.Id.Mail_White_items);
-            SetToolTypeIfNeeded(mailWhite);
-            mailGray.Text = Translate.Get(Translate.Id.Mail_Gray_items);
-            SetToolTypeIfNeeded(mailGray);
+            MailPurple.Text = Translate.Get(Translate.Id.Mail_Purple_items);
+            SetToolTypeIfNeeded(MailPurple);
+            MailBlue.Text = Translate.Get(Translate.Id.Mail_Blue_items);
+            SetToolTypeIfNeeded(MailBlue);
+            MailGreen.Text = Translate.Get(Translate.Id.Mail_Green_items);
+            SetToolTypeIfNeeded(MailGreen);
+            MailWhite.Text = Translate.Get(Translate.Id.Mail_White_items);
+            SetToolTypeIfNeeded(MailWhite);
+            MailGray.Text = Translate.Get(Translate.Id.Mail_Gray_items);
+            SetToolTypeIfNeeded(MailGray);
             labelX54.Text = Translate.Get(Translate.Id.Subject);
             SetToolTypeIfNeeded(labelX54);
             labelX55.Text = Translate.Get(Translate.Id.Use_Mail);
@@ -112,16 +111,16 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(expandablePanel8);
             labelX53.Text = Translate.Get(Translate.Id.Force_Sell_List__one_item_by_line);
             SetToolTypeIfNeeded(labelX53);
-            sellPurple.Text = Translate.Get(Translate.Id.Sell_Purple_items);
-            SetToolTypeIfNeeded(sellPurple);
-            sellBlue.Text = Translate.Get(Translate.Id.Sell_Blue_items);
-            SetToolTypeIfNeeded(sellBlue);
-            sellGreen.Text = Translate.Get(Translate.Id.Sell_Green_items);
-            SetToolTypeIfNeeded(sellGreen);
-            sellWhite.Text = Translate.Get(Translate.Id.Sell_White_items);
-            SetToolTypeIfNeeded(sellWhite);
-            sellGray.Text = Translate.Get(Translate.Id.Sell_Gray_items);
-            SetToolTypeIfNeeded(sellGray);
+            SellPurple.Text = Translate.Get(Translate.Id.Sell_Purple_items);
+            SetToolTypeIfNeeded(SellPurple);
+            SellBlue.Text = Translate.Get(Translate.Id.Sell_Blue_items);
+            SetToolTypeIfNeeded(SellBlue);
+            SellGreen.Text = Translate.Get(Translate.Id.Sell_Green_items);
+            SetToolTypeIfNeeded(SellGreen);
+            SellWhite.Text = Translate.Get(Translate.Id.Sell_White_items);
+            SetToolTypeIfNeeded(SellWhite);
+            SellGray.Text = Translate.Get(Translate.Id.Sell_Gray_items);
+            SetToolTypeIfNeeded(SellGray);
             labelX52.Text = Translate.Get(Translate.Id.Selling);
             SetToolTypeIfNeeded(labelX52);
             labelX51.Text = Translate.Get(Translate.Id.Repair);
@@ -162,8 +161,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX72);
             labelX61.Text = Translate.Get(Translate.Id.Smelting);
             SetToolTypeIfNeeded(labelX61);
-            delBlackListHarvest.Text = Translate.Get(Translate.Id.Del);
-            SetToolTypeIfNeeded(delBlackListHarvest);
+            ResetDontHarvestTheFollowingObjectsButton.Text = Translate.Get(Translate.Id.Del);
+            SetToolTypeIfNeeded(ResetDontHarvestTheFollowingObjectsButton);
             labelX36.Text = Translate.Get(Translate.Id.Don_t_harvest);
             SetToolTypeIfNeeded(labelX36);
             labelX35.Text = Translate.Get(Translate.Id.Harvest_During_Long_Move);
@@ -226,8 +225,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX2);
             labelX1.Text = Translate.Get(Translate.Id.Custom_Class);
             SetToolTypeIfNeeded(labelX1);
-            customClassConfigB.Text = Translate.Get(Translate.Id.Settings);
-            SetToolTypeIfNeeded(customClassConfigB);
+            CustomClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
+            SetToolTypeIfNeeded(CustomClassSettingsButton);
             closeB.Text = Translate.Get(Translate.Id.Close_without_save);
             SetToolTypeIfNeeded(closeB);
             resetB.Text = Translate.Get(Translate.Id.Reset_Settings);
@@ -241,57 +240,57 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX73);
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
-            AlwaysOnTop.Text = Translate.Get(Translate.Id.AlwaysOnTop);
-            SetToolTypeIfNeeded(AlwaysOnTopLabel);
+            ActivateAlwaysOnTopFeature.Text = Translate.Get(Translate.Id.AlwaysOnTop);
+            SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
         }
 
         void SaveSetting()
         {
             try
             {
-                nManagerSetting.CurrentSetting.CustomClass = customClass.Text;
-                nManagerSetting.CurrentSetting.AutoAssignTalents = assignTalents.Value;
-                nManagerSetting.CurrentSetting.TrainNewSkills = trainNewSkills.Value;
-                nManagerSetting.CurrentSetting.LearnNewSpells = trainNewSpells.Value;
-                nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight = canAttackUnitsAlreadyInFight.Value;
-                nManagerSetting.CurrentSetting.DontPullMonsters = dontStartFighting.Value;
-                nManagerSetting.CurrentSetting.UseSpiritHealer = useSpiritHealer.Value;
-                nManagerSetting.CurrentSetting.UseGroundMount = useGroundMount.Value;
+                nManagerSetting.CurrentSetting.CustomClass = CustomClass.Text;
+                nManagerSetting.CurrentSetting.AutoAssignTalents = AutoAssignTalents.Value;
+                nManagerSetting.CurrentSetting.TrainNewSkills = TrainNewSkills.Value;
+                nManagerSetting.CurrentSetting.LearnNewSpells = LearnNewSpells.Value;
+                nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight = CanPullUnitsAlreadyInFight.Value;
+                nManagerSetting.CurrentSetting.DontPullMonsters = DontPullMonsters.Value;
+                nManagerSetting.CurrentSetting.UseSpiritHealer = UseSpiritHealer.Value;
+                nManagerSetting.CurrentSetting.UseGroundMount = UseGroundMount.Value;
                 nManagerSetting.CurrentSetting.GroundMountName = GroundMountName.Text;
-                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount = mountDistance.Value;
-                nManagerSetting.CurrentSetting.IgnoreFightIfMounted = ignoreFightGoundMount.Value;
+                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount = MinimumDistanceToUseMount.Value;
+                nManagerSetting.CurrentSetting.IgnoreFightIfMounted = IgnoreFightIfMounted.Value;
                 nManagerSetting.CurrentSetting.FlyingMountName = FlyingMountName.Text;
                 nManagerSetting.CurrentSetting.AquaticMountName = AquaticMountName.Text;
-                nManagerSetting.CurrentSetting.FoodName = foodName.Text;
-                nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent = foodPercent.Value;
-                nManagerSetting.CurrentSetting.BeverageName = drinkName.Text;
-                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = drinkPercent.Value;
-                nManagerSetting.CurrentSetting.DoRegenManaIfLow = restingMana.Value;
-                nManagerSetting.CurrentSetting.ActivateMonsterLooting = lootMobs.Value;
-                nManagerSetting.CurrentSetting.ActivateChestLooting = lootChests.Value;
-                nManagerSetting.CurrentSetting.ActivateBeastSkinning = skinMobs.Value;
-                nManagerSetting.CurrentSetting.BeastNinjaSkinning = skinNinja.Value;
-                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = harvestMinerals.Value;
-                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = harvestHerbs.Value;
-                nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius = harvestAvoidPlayersRadius.Value;
-                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanOneUnitInAggroRange = maxUnitsNear.Value;
-                nManagerSetting.CurrentSetting.GatheringSearchRadius = searchRadius.Value;
-                nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements = harvestDuringLongMove.Value;
-                nManagerSetting.CurrentSetting.ActivateAutoSmelting = smelting.Value;
-                nManagerSetting.CurrentSetting.ActivateAutoProspecting = prospecting.Value;
-                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt = prospectingTime.Value;
-                nManagerSetting.CurrentSetting.OnlyUseProspectingInTown = prospectingInTown.Value;
+                nManagerSetting.CurrentSetting.FoodName = FoodName.Text;
+                nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent = EatFoodWhenHealthIsUnderXPercent.Value;
+                nManagerSetting.CurrentSetting.BeverageName = BeverageName.Text;
+                nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent = DrinkBeverageWhenManaIsUnderXPercent.Value;
+                nManagerSetting.CurrentSetting.DoRegenManaIfLow = DoRegenManaIfLow.Value;
+                nManagerSetting.CurrentSetting.ActivateMonsterLooting = ActivateMonsterLooting.Value;
+                nManagerSetting.CurrentSetting.ActivateChestLooting = ActivateChestLooting.Value;
+                nManagerSetting.CurrentSetting.ActivateBeastSkinning = ActivateBeastSkinning.Value;
+                nManagerSetting.CurrentSetting.BeastNinjaSkinning = BeastNinjaSkinning.Value;
+                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting = ActivateVeinsHarvesting.Value;
+                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting = ActivateHerbsHarvesting.Value;
+                nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius = DontHarvestIfPlayerNearRadius.Value;
+                nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange = DontHarvestIfMoreThanXUnitInAggroRange.Value;
+                nManagerSetting.CurrentSetting.GatheringSearchRadius = GatheringSearchRadius.Value;
+                nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements = HarvestDuringLongDistanceMovements.Value;
+                nManagerSetting.CurrentSetting.ActivateAutoSmelting = ActivateAutoSmelting.Value;
+                nManagerSetting.CurrentSetting.ActivateAutoProspecting = ActivateAutoProspecting.Value;
+                nManagerSetting.CurrentSetting.TimeBetweenEachProspectingAttempt = TimeBetweenEachProspectingAttempt.Value;
+                nManagerSetting.CurrentSetting.OnlyUseProspectingInTown = OnlyUseProspectingInTown.Value;
                 nManagerSetting.CurrentSetting.MineralsToProspect.Clear();
-                nManagerSetting.CurrentSetting.MineralsToProspect.AddRange(Others.TextToArrayByLine(prospectingList.Text));
-                nManagerSetting.CurrentSetting.ActivateAutoMilling = milling.Value;
-                nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt = millingTime.Value;
-                nManagerSetting.CurrentSetting.OnlyUseMillingInTown = millingInTown.Value;
+                nManagerSetting.CurrentSetting.MineralsToProspect.AddRange(Others.TextToArrayByLine(MineralsToProspect.Text));
+                nManagerSetting.CurrentSetting.ActivateAutoMilling = ActivateAutoMilling.Value;
+                nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt = TimeBetweenEachMillingAttempt.Value;
+                nManagerSetting.CurrentSetting.OnlyUseMillingInTown = OnlyUseMillingInTown.Value;
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Clear();
-                nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(millingList.Text));
+                nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(HerbsToBeMilled.Text));
                 nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Clear();
                 try
                 {
-                    foreach (string i in blackListHarvest.Items)
+                    foreach (string i in DontHarvestTheFollowingObjects.Items)
                     {
                         try
                         {
@@ -303,51 +302,51 @@ namespace nManager.Helpful.Forms
                     }
                 }
                 catch { }
-                nManagerSetting.CurrentSetting.MakeStackOfElementalsItems = autoMakeElemental.Value;
-                nManagerSetting.CurrentSetting.ActivateReloggerFeature = relogger.Value;
-                nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = accountEmail.Text;
-                nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount = accountPassword.Text;
-                nManagerSetting.CurrentSetting.BattleNetSubAccount = bNetName.Text;
-                nManagerSetting.CurrentSetting.NumberOfFoodsWeGot = foodAmount.Value;
-                nManagerSetting.CurrentSetting.NumberOfBeverageWeGot = drinkAmount.Value;
-                nManagerSetting.CurrentSetting.ActivateAutoRepairFeature = repair.Value;
-                nManagerSetting.CurrentSetting.ActivateAutoSellingFeature = selling.Value;
-                nManagerSetting.CurrentSetting.SellGray = sellGray.Checked;
-                nManagerSetting.CurrentSetting.SellWhite = sellWhite.Checked;
-                nManagerSetting.CurrentSetting.SellGreen = sellGreen.Checked;
-                nManagerSetting.CurrentSetting.SellBlue = sellBlue.Checked;
-                nManagerSetting.CurrentSetting.SellPurple = sellPurple.Checked;
+                nManagerSetting.CurrentSetting.MakeStackOfElementalsItems = MakeStackOfElementalsItems.Value;
+                nManagerSetting.CurrentSetting.ActivateReloggerFeature = ActivateReloggerFeature.Value;
+                nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = EmailOfTheBattleNetAccount.Text;
+                nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount = PasswordOfTheBattleNetAccount.Text;
+                nManagerSetting.CurrentSetting.BattleNetSubAccount = BattleNetSubAccount.Text;
+                nManagerSetting.CurrentSetting.NumberOfFoodsWeGot = NumberOfFoodsWeGot.Value;
+                nManagerSetting.CurrentSetting.NumberOfBeverageWeGot = NumberOfBeverageWeGot.Value;
+                nManagerSetting.CurrentSetting.ActivateAutoRepairFeature = ActivateAutoRepairFeature.Value;
+                nManagerSetting.CurrentSetting.ActivateAutoSellingFeature = ActivateAutoSellingFeature.Value;
+                nManagerSetting.CurrentSetting.SellGray = SellGray.Checked;
+                nManagerSetting.CurrentSetting.SellWhite = SellWhite.Checked;
+                nManagerSetting.CurrentSetting.SellGreen = SellGreen.Checked;
+                nManagerSetting.CurrentSetting.SellBlue = SellBlue.Checked;
+                nManagerSetting.CurrentSetting.SellPurple = SellPurple.Checked;
                 nManagerSetting.CurrentSetting.DontSellTheseItems.Clear();
-                nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(Others.TextToArrayByLine(doNotSellList.Text));
+                nManagerSetting.CurrentSetting.DontSellTheseItems.AddRange(Others.TextToArrayByLine(DontSellTheseItems.Text));
                 nManagerSetting.CurrentSetting.ForceToSellTheseItems.Clear();
-                nManagerSetting.CurrentSetting.ForceToSellTheseItems.AddRange(Others.TextToArrayByLine(forceSellList.Text));
-                nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature = useMail.Value;
-                nManagerSetting.CurrentSetting.MaillingFeatureRecipient = mailRecipient.Text;
-                nManagerSetting.CurrentSetting.MaillingFeatureSubject = mailSubject.Text;
-                nManagerSetting.CurrentSetting.MailGray = mailGray.Checked;
-                nManagerSetting.CurrentSetting.MailWhite = mailWhite.Checked;
-                nManagerSetting.CurrentSetting.MailGreen = mailGreen.Checked;
-                nManagerSetting.CurrentSetting.MailBlue = mailBlue.Checked;
-                nManagerSetting.CurrentSetting.MailPurple = mailPurple.Checked;
+                nManagerSetting.CurrentSetting.ForceToSellTheseItems.AddRange(Others.TextToArrayByLine(ForceToSellTheseItems.Text));
+                nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature = ActivateAutoMaillingFeature.Value;
+                nManagerSetting.CurrentSetting.MaillingFeatureRecipient = MaillingFeatureRecipient.Text;
+                nManagerSetting.CurrentSetting.MaillingFeatureSubject = MaillingFeatureSubject.Text;
+                nManagerSetting.CurrentSetting.MailGray = MailGray.Checked;
+                nManagerSetting.CurrentSetting.MailWhite = MailWhite.Checked;
+                nManagerSetting.CurrentSetting.MailGreen = MailGreen.Checked;
+                nManagerSetting.CurrentSetting.MailBlue = MailBlue.Checked;
+                nManagerSetting.CurrentSetting.MailPurple = MailPurple.Checked;
                 nManagerSetting.CurrentSetting.ForceToMailTheseItems.Clear();
-                nManagerSetting.CurrentSetting.ForceToMailTheseItems.AddRange(Others.TextToArrayByLine(forceMailList.Text));
+                nManagerSetting.CurrentSetting.ForceToMailTheseItems.AddRange(Others.TextToArrayByLine(ForceToMailTheseItems.Text));
                 nManagerSetting.CurrentSetting.DontMailTheseItems.Clear();
-                nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(Others.TextToArrayByLine(doNotMailList.Text));
-                nManagerSetting.CurrentSetting.StopTNBIfBagAreFull = closeIfFullBag.Value;
-                nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached = closeIfReached4000HonorPoints.Value;
-                nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported = closeIfPlayerTeleported.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup = closeAfterXLevel.Value;
-                nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers = closeIfWhisperBiggerOrEgalAt.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXStucks = closeAfterXBlockages.Value;
-                nManagerSetting.CurrentSetting.StopTNBAfterXMinutes = closeAfterXMin.Value;
-                nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer = securityPauseBotIfNerbyPlayer.Value;
-                nManagerSetting.CurrentSetting.RecordWhispsInLogFiles = securityRecordWhisperInLogFile.Value;
-                nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived = securitySongIfNewWhisper.Value;
-                nManagerSetting.CurrentSetting.ActivatePathFindingFeature = usePathsFinder.Value;
-                nManagerSetting.CurrentSetting.AllowTNBToSetYourMapFps = MaxFPSSwitch.Value;
-                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = npcMailboxSearchRadius.Value;
+                nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(Others.TextToArrayByLine(DontMailTheseItems.Text));
+                nManagerSetting.CurrentSetting.StopTNBIfBagAreFull = StopTNBIfBagAreFull.Value;
+                nManagerSetting.CurrentSetting.StopTNBIfHonorPointsLimitReached = StopTNBIfHonorPointsLimitReached.Value;
+                nManagerSetting.CurrentSetting.StopTNBIfPlayerHaveBeenTeleported = StopTNBIfPlayerHaveBeenTeleported.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup = StopTNBAfterXLevelup.Value;
+                nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers = StopTNBIfReceivedAtMostXWhispers.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXStucks = StopTNBAfterXStucks.Value;
+                nManagerSetting.CurrentSetting.StopTNBAfterXMinutes = StopTNBAfterXMinutes.Value;
+                nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer = PauseTNBIfNearByPlayer.Value;
+                nManagerSetting.CurrentSetting.RecordWhispsInLogFiles = RecordWhispsInLogFiles.Value;
+                nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived = PlayASongIfNewWhispReceived.Value;
+                nManagerSetting.CurrentSetting.ActivatePathFindingFeature = ActivatePathFindingFeature.Value;
+                nManagerSetting.CurrentSetting.AllowTNBToSetYourMaxFps = AllowTNBToSetYourMaxFps.Value;
+                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = MaxDistanceToGoToMailboxesOrNPCs.Value;
                 nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
-                nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature = AlwaysOnTop.Value;
+                nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature = ActivateAlwaysOnTopFeature.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -361,94 +360,94 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                customClass.Text = managerSetting.CustomClass;
-                assignTalents.Value = managerSetting.AutoAssignTalents;
-                trainNewSkills.Value = managerSetting.TrainNewSkills;
-                trainNewSpells.Value = managerSetting.LearnNewSpells;
-                canAttackUnitsAlreadyInFight.Value = managerSetting.CanPullUnitsAlreadyInFight;
-                dontStartFighting.Value = managerSetting.DontPullMonsters;
-                useSpiritHealer.Value = managerSetting.UseSpiritHealer;
-                useGroundMount.Value = managerSetting.UseGroundMount;
+                CustomClass.Text = managerSetting.CustomClass;
+                AutoAssignTalents.Value = managerSetting.AutoAssignTalents;
+                TrainNewSkills.Value = managerSetting.TrainNewSkills;
+                LearnNewSpells.Value = managerSetting.LearnNewSpells;
+                CanPullUnitsAlreadyInFight.Value = managerSetting.CanPullUnitsAlreadyInFight;
+                DontPullMonsters.Value = managerSetting.DontPullMonsters;
+                UseSpiritHealer.Value = managerSetting.UseSpiritHealer;
+                UseGroundMount.Value = managerSetting.UseGroundMount;
                 GroundMountName.Text = managerSetting.GroundMountName;
-                mountDistance.Value = (int)managerSetting.MinimumDistanceToUseMount;
-                ignoreFightGoundMount.Value = managerSetting.IgnoreFightIfMounted;
+                MinimumDistanceToUseMount.Value = (int)managerSetting.MinimumDistanceToUseMount;
+                IgnoreFightIfMounted.Value = managerSetting.IgnoreFightIfMounted;
                 FlyingMountName.Text = managerSetting.FlyingMountName;
                 AquaticMountName.Text = managerSetting.AquaticMountName;
-                foodName.Text = managerSetting.FoodName;
-                foodPercent.Value = managerSetting.EatFoodWhenHealthIsUnderXPercent;
-                drinkName.Text = managerSetting.BeverageName;
-                drinkPercent.Value = managerSetting.DrinkBeverageWhenManaIsUnderXPercent;
-                restingMana.Value = managerSetting.DoRegenManaIfLow;
-                lootMobs.Value = managerSetting.ActivateMonsterLooting;
-                lootChests.Value = managerSetting.ActivateChestLooting;
-                skinMobs.Value = managerSetting.ActivateBeastSkinning;
-                skinNinja.Value = managerSetting.BeastNinjaSkinning;
-                harvestMinerals.Value = managerSetting.ActivateVeinsHarvesting;
-                harvestHerbs.Value = managerSetting.ActivateHerbsHarvesting;
-                harvestAvoidPlayersRadius.Value = (int)managerSetting.DontHarvestIfPlayerNearRadius;
-                maxUnitsNear.Value = managerSetting.DontHarvestIfMoreThanOneUnitInAggroRange;
-                searchRadius.Value = (int)managerSetting.GatheringSearchRadius;
-                harvestDuringLongMove.Value = managerSetting.HarvestDuringLongDistanceMovements;
-                smelting.Value = managerSetting.ActivateAutoSmelting;
-                prospecting.Value = managerSetting.ActivateAutoProspecting;
-                prospectingInTown.Value = managerSetting.OnlyUseProspectingInTown;
-                prospectingTime.Value = managerSetting.TimeBetweenEachProspectingAttempt;
-                prospectingList.Text = Others.ArrayToTextByLine(managerSetting.MineralsToProspect.ToArray());
-                milling.Value = managerSetting.ActivateAutoMilling;
-                millingInTown.Value = managerSetting.OnlyUseMillingInTown;
-                millingTime.Value = managerSetting.TimeBetweenEachMillingAttempt;
-                millingList.Text = Others.ArrayToTextByLine(managerSetting.HerbsToBeMilled.ToArray());
-                blackListHarvest.Items.Clear();
+                FoodName.Text = managerSetting.FoodName;
+                EatFoodWhenHealthIsUnderXPercent.Value = managerSetting.EatFoodWhenHealthIsUnderXPercent;
+                BeverageName.Text = managerSetting.BeverageName;
+                DrinkBeverageWhenManaIsUnderXPercent.Value = managerSetting.DrinkBeverageWhenManaIsUnderXPercent;
+                DoRegenManaIfLow.Value = managerSetting.DoRegenManaIfLow;
+                ActivateMonsterLooting.Value = managerSetting.ActivateMonsterLooting;
+                ActivateChestLooting.Value = managerSetting.ActivateChestLooting;
+                ActivateBeastSkinning.Value = managerSetting.ActivateBeastSkinning;
+                BeastNinjaSkinning.Value = managerSetting.BeastNinjaSkinning;
+                ActivateVeinsHarvesting.Value = managerSetting.ActivateVeinsHarvesting;
+                ActivateHerbsHarvesting.Value = managerSetting.ActivateHerbsHarvesting;
+                DontHarvestIfPlayerNearRadius.Value = (int)managerSetting.DontHarvestIfPlayerNearRadius;
+                DontHarvestIfMoreThanXUnitInAggroRange.Value = managerSetting.DontHarvestIfMoreThanXUnitInAggroRange;
+                GatheringSearchRadius.Value = (int)managerSetting.GatheringSearchRadius;
+                HarvestDuringLongDistanceMovements.Value = managerSetting.HarvestDuringLongDistanceMovements;
+                ActivateAutoSmelting.Value = managerSetting.ActivateAutoSmelting;
+                ActivateAutoProspecting.Value = managerSetting.ActivateAutoProspecting;
+                OnlyUseProspectingInTown.Value = managerSetting.OnlyUseProspectingInTown;
+                TimeBetweenEachProspectingAttempt.Value = managerSetting.TimeBetweenEachProspectingAttempt;
+                MineralsToProspect.Text = Others.ArrayToTextByLine(managerSetting.MineralsToProspect.ToArray());
+                ActivateAutoMilling.Value = managerSetting.ActivateAutoMilling;
+                OnlyUseMillingInTown.Value = managerSetting.OnlyUseMillingInTown;
+                TimeBetweenEachMillingAttempt.Value = managerSetting.TimeBetweenEachMillingAttempt;
+                HerbsToBeMilled.Text = Others.ArrayToTextByLine(managerSetting.HerbsToBeMilled.ToArray());
+                DontHarvestTheFollowingObjects.Items.Clear();
                 try
                 {
                     foreach (var id in managerSetting.DontHarvestTheFollowingObjects)
                     {
                         if (id >= 0)
-                            blackListHarvest.Items.Add(id);
+                            DontHarvestTheFollowingObjects.Items.Add(id);
                     }
                 }
                 catch{}
-                autoMakeElemental.Value = managerSetting.MakeStackOfElementalsItems;
-                relogger.Value = managerSetting.ActivateReloggerFeature;
-                accountEmail.Text = managerSetting.EmailOfTheBattleNetAccount;
-                accountPassword.Text = managerSetting.PasswordOfTheBattleNetAccount;
-                bNetName.Text = managerSetting.BattleNetSubAccount;
-                foodAmount.Value = managerSetting.NumberOfFoodsWeGot;
-                drinkAmount.Value = managerSetting.NumberOfBeverageWeGot;
-                repair.Value = managerSetting.ActivateAutoRepairFeature;
-                selling.Value = managerSetting.ActivateAutoSellingFeature;
-                sellGray.Checked = managerSetting.SellGray;
-                sellWhite.Checked = managerSetting.SellWhite;
-                sellGreen.Checked = managerSetting.SellGreen;
-                sellBlue.Checked = managerSetting.SellBlue;
-                sellPurple.Checked = managerSetting.SellPurple;
-                doNotSellList.Text = Others.ArrayToTextByLine(managerSetting.DontSellTheseItems.ToArray());
-                forceSellList.Text = Others.ArrayToTextByLine(managerSetting.ForceToSellTheseItems.ToArray());
-                useMail.Value = managerSetting.ActivateAutoMaillingFeature;
-                mailRecipient.Text = managerSetting.MaillingFeatureRecipient;
-                mailSubject.Text = managerSetting.MaillingFeatureSubject;
-                mailGray.Checked = managerSetting.MailGray;
-                mailWhite.Checked = managerSetting.MailWhite;
-                mailGreen.Checked = managerSetting.MailGreen;
-                mailBlue.Checked = managerSetting.MailBlue;
-                mailPurple.Checked = managerSetting.MailPurple;
-                forceMailList.Text = Others.ArrayToTextByLine(managerSetting.ForceToMailTheseItems.ToArray());
-                doNotMailList.Text = Others.ArrayToTextByLine(managerSetting.DontMailTheseItems.ToArray());
-                closeIfFullBag.Value = managerSetting.StopTNBIfBagAreFull;
-                closeIfReached4000HonorPoints.Value = managerSetting.StopTNBIfHonorPointsLimitReached;
-                closeIfPlayerTeleported.Value = managerSetting.StopTNBIfPlayerHaveBeenTeleported;
-                closeAfterXLevel.Value = managerSetting.StopTNBAfterXLevelup;
-                closeIfWhisperBiggerOrEgalAt.Value = managerSetting.StopTNBIfReceivedAtMostXWhispers;
-                closeAfterXBlockages.Value = managerSetting.StopTNBAfterXStucks;
-                closeAfterXMin.Value = managerSetting.StopTNBAfterXMinutes;
-                securityPauseBotIfNerbyPlayer.Value = managerSetting.PauseTNBIfNearByPlayer;
-                securityRecordWhisperInLogFile.Value = managerSetting.RecordWhispsInLogFiles;
-                securitySongIfNewWhisper.Value = managerSetting.PlayASongIfNewWhispReceived;
-                usePathsFinder.Value = managerSetting.ActivatePathFindingFeature;
-                MaxFPSSwitch.Value = managerSetting.AllowTNBToSetYourMapFps;
-                npcMailboxSearchRadius.Value = (int)managerSetting.MaxDistanceToGoToMailboxesOrNPCs;
+                MakeStackOfElementalsItems.Value = managerSetting.MakeStackOfElementalsItems;
+                ActivateReloggerFeature.Value = managerSetting.ActivateReloggerFeature;
+                EmailOfTheBattleNetAccount.Text = managerSetting.EmailOfTheBattleNetAccount;
+                PasswordOfTheBattleNetAccount.Text = managerSetting.PasswordOfTheBattleNetAccount;
+                BattleNetSubAccount.Text = managerSetting.BattleNetSubAccount;
+                NumberOfFoodsWeGot.Value = managerSetting.NumberOfFoodsWeGot;
+                NumberOfBeverageWeGot.Value = managerSetting.NumberOfBeverageWeGot;
+                ActivateAutoRepairFeature.Value = managerSetting.ActivateAutoRepairFeature;
+                ActivateAutoSellingFeature.Value = managerSetting.ActivateAutoSellingFeature;
+                SellGray.Checked = managerSetting.SellGray;
+                SellWhite.Checked = managerSetting.SellWhite;
+                SellGreen.Checked = managerSetting.SellGreen;
+                SellBlue.Checked = managerSetting.SellBlue;
+                SellPurple.Checked = managerSetting.SellPurple;
+                DontSellTheseItems.Text = Others.ArrayToTextByLine(managerSetting.DontSellTheseItems.ToArray());
+                ForceToSellTheseItems.Text = Others.ArrayToTextByLine(managerSetting.ForceToSellTheseItems.ToArray());
+                ActivateAutoMaillingFeature.Value = managerSetting.ActivateAutoMaillingFeature;
+                MaillingFeatureRecipient.Text = managerSetting.MaillingFeatureRecipient;
+                MaillingFeatureSubject.Text = managerSetting.MaillingFeatureSubject;
+                MailGray.Checked = managerSetting.MailGray;
+                MailWhite.Checked = managerSetting.MailWhite;
+                MailGreen.Checked = managerSetting.MailGreen;
+                MailBlue.Checked = managerSetting.MailBlue;
+                MailPurple.Checked = managerSetting.MailPurple;
+                ForceToMailTheseItems.Text = Others.ArrayToTextByLine(managerSetting.ForceToMailTheseItems.ToArray());
+                DontMailTheseItems.Text = Others.ArrayToTextByLine(managerSetting.DontMailTheseItems.ToArray());
+                StopTNBIfBagAreFull.Value = managerSetting.StopTNBIfBagAreFull;
+                StopTNBIfHonorPointsLimitReached.Value = managerSetting.StopTNBIfHonorPointsLimitReached;
+                StopTNBIfPlayerHaveBeenTeleported.Value = managerSetting.StopTNBIfPlayerHaveBeenTeleported;
+                StopTNBAfterXLevelup.Value = managerSetting.StopTNBAfterXLevelup;
+                StopTNBIfReceivedAtMostXWhispers.Value = managerSetting.StopTNBIfReceivedAtMostXWhispers;
+                StopTNBAfterXStucks.Value = managerSetting.StopTNBAfterXStucks;
+                StopTNBAfterXMinutes.Value = managerSetting.StopTNBAfterXMinutes;
+                PauseTNBIfNearByPlayer.Value = managerSetting.PauseTNBIfNearByPlayer;
+                RecordWhispsInLogFiles.Value = managerSetting.RecordWhispsInLogFiles;
+                PlayASongIfNewWhispReceived.Value = managerSetting.PlayASongIfNewWhispReceived;
+                ActivatePathFindingFeature.Value = managerSetting.ActivatePathFindingFeature;
+                AllowTNBToSetYourMaxFps.Value = managerSetting.AllowTNBToSetYourMaxFps;
+                MaxDistanceToGoToMailboxesOrNPCs.Value = (int)managerSetting.MaxDistanceToGoToMailboxesOrNPCs;
                 AutoConfirmOnBoPItems.Value = managerSetting.AutoConfirmOnBoPItems;
-                AlwaysOnTop.Value = managerSetting.ActivateAlwaysOnTopFeature;
+                ActivateAlwaysOnTopFeature.Value = managerSetting.ActivateAlwaysOnTopFeature;
             }
             catch (Exception ex)
             {
@@ -520,7 +519,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                CustomClass.ShowConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" + customClass.Text);
+                nManager.Wow.Helpers.CustomClass.ShowConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" + CustomClass.Text);
             }
             catch (Exception ex)
             {
@@ -533,8 +532,8 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                if (blackListHarvest.SelectedIndex >= 0)
-                    blackListHarvest.Items.RemoveAt(blackListHarvest.SelectedIndex);
+                if (DontHarvestTheFollowingObjects.SelectedIndex >= 0)
+                    DontHarvestTheFollowingObjects.Items.RemoveAt(DontHarvestTheFollowingObjects.SelectedIndex);
             }
             catch (Exception ex)
             {

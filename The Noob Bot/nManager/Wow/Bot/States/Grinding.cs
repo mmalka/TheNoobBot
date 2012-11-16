@@ -86,7 +86,7 @@ namespace nManager.Wow.Bot.States
                 if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
                     i++;
             }
-            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanOneUnitInAggroRange;
+            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
             if (r)
             {
                 nManagerSetting.AddBlackList(unit.Guid, 15 * 1000);
