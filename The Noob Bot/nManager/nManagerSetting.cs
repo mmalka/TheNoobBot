@@ -248,7 +248,7 @@ namespace nManager
         public List<string> ForceToMailTheseItems = new List<string>();
         public bool StopTNBIfBagAreFull;
         public bool StopTNBIfHonorPointsLimitReached;
-        public bool StopTNBIfPlayerHaveBeenTeleported = true;
+        public bool StopTNBIfPlayerHaveBeenTeleported;
         public int StopTNBAfterXLevelup = 90;
         public int StopTNBIfReceivedAtMostXWhispers = 10;
         public int StopTNBAfterXStucks = 80;

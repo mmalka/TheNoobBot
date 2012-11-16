@@ -48,8 +48,8 @@ namespace nManager.Wow.Helpers
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
                 if (nManagerSetting.CurrentSetting.AllowTNBToSetYourMaxFps)
                 {
-                    Lua.LuaDoString("ConsoleExec(\"maxfpsbk 60\")");
-                    Lua.LuaDoString("ConsoleExec(\"MaxFPS 60\")");
+                    Lua.LuaDoString("ConsoleExec(\"maxfpsbk 100\")");
+                    Lua.LuaDoString("ConsoleExec(\"MaxFPS 100\")");
                 }
             }
             catch (Exception exception)
