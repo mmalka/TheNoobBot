@@ -249,7 +249,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                nManagerSetting.CurrentSetting.customClass = customClass.Text;
+                nManagerSetting.CurrentSetting.CustomClass = customClass.Text;
                 nManagerSetting.CurrentSetting.AutoAssignTalents = assignTalents.Value;
                 nManagerSetting.CurrentSetting.TrainNewSkills = trainNewSkills.Value;
                 nManagerSetting.CurrentSetting.LearnNewSpells = trainNewSpells.Value;
@@ -361,7 +361,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                customClass.Text = managerSetting.customClass;
+                customClass.Text = managerSetting.CustomClass;
                 assignTalents.Value = managerSetting.AutoAssignTalents;
                 trainNewSkills.Value = managerSetting.TrainNewSkills;
                 trainNewSpells.Value = managerSetting.LearnNewSpells;

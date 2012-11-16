@@ -179,7 +179,7 @@ namespace nManager
             return false;
         }
 
-        public string customClass = "TheNoobBot.dll";
+        public string CustomClass = "TheNoobBot.dll";
         public bool AutoAssignTalents;
         public bool TrainNewSkills = true;
         public bool LearnNewSpells = true;

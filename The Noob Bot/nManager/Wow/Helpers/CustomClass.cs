@@ -58,10 +58,10 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.customClass != "")
+                if (nManagerSetting.CurrentSetting.CustomClass != "")
                 {
                     string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" +
-                                                     nManagerSetting.CurrentSetting.customClass;
+                                                     nManagerSetting.CurrentSetting.CustomClass;
                     string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
                     if (fileExt == "dll")
                         LoadCustomClass(__pathToCustomClassFile, false, false);

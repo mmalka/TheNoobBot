@@ -537,11 +537,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                    Lua.RunMacroText("/cancelform");
-                else
-                    Lua.RunMacroText("/dismount");
-                
+                Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())
+                                     ? "/cancelform"
+                                     : "/dismount");
             }
             catch (Exception e)
             {
