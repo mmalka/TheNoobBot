@@ -22162,6 +22162,7 @@ public class Hunter_BeastMastery
     private readonly Spell Kill_Shot = new Spell("Kill Shot");
     private readonly Spell Multi_Shot = new Spell("Multi-Shot");
     private readonly Spell Serpent_Sting = new Spell("Serpent Sting");
+    private readonly Spell Steady_Shot = new Spell("Steady Shot");
     private Timer Serpent_Sting_Timer = new Timer(0);
 
     #endregion
@@ -22320,6 +22321,15 @@ public class Hunter_BeastMastery
             {
                 Cobra_Shot.Launch();
                 return;
+            }
+            else
+            {
+                if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood
+                    && ObjectManager.Me.FocusPercentage < 60 && (!Cobra_Shot.KnownSpell || !MySettings.UseCobraShot))
+                {
+                    Steady_Shot.Launch();
+                    return;
+                }
             }
         }
 
@@ -22533,6 +22543,15 @@ public class Hunter_BeastMastery
             {
                 Cobra_Shot.Launch();
                 return;
+            }
+            else
+            {
+                if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood
+                    && ObjectManager.Me.FocusPercentage < 60 && (!Cobra_Shot.KnownSpell || !MySettings.UseCobraShot))
+                {
+                    Steady_Shot.Launch();
+                    return;
+                }
             }
         }
     }
@@ -23153,6 +23172,15 @@ public class Hunter_Survival
                 Cobra_Shot.Launch();
                 return;
             }
+            else
+            {
+                if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood
+                    && ObjectManager.Me.FocusPercentage < 60 && (!Cobra_Shot.KnownSpell || !MySettings.UseCobraShot))
+                {
+                    Steady_Shot.Launch();
+                    return;
+                }
+            }
         }
 
         if (Explosive_Trap.KnownSpell && Explosive_Trap.IsSpellUsable && Explosive_Trap.IsDistanceGood
@@ -23355,6 +23383,15 @@ public class Hunter_Survival
             {
                 Cobra_Shot.Launch();
                 return;
+            }
+            else
+            {
+                if (Steady_Shot.KnownSpell && Steady_Shot.IsSpellUsable && Steady_Shot.IsDistanceGood
+                    && ObjectManager.Me.FocusPercentage < 60 && (!Cobra_Shot.KnownSpell || !MySettings.UseCobraShot))
+                {
+                    Steady_Shot.Launch();
+                    return;
+                }
             }
         }
     }
