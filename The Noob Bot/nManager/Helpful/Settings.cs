@@ -368,7 +368,7 @@ namespace nManager.Helpful
                             case TypeCode.Int16:
                             case TypeCode.Int32:
                             case TypeCode.Int64:
-                                if (f.SettingsType == "Percentage")
+                                if (f.SettingsType.Contains("Percentage") == true)
                                 {
                                     numericUpDown = new NumericUpDown
                                                         {
@@ -404,28 +404,7 @@ namespace nManager.Helpful
                                                             Value = Convert.ToInt64(settingsInfo.GetValue(this))
                                                         };
                                 }
-                                if (f.SettingsType == "Percentage")
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(66 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
-                                else
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(120 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
-                                expandablePanelPosY.Remove(f.Category);
-                                expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
-                                listExpandablePanel[indexTab].Controls.Add(label);
 
                                 break;
                         }
