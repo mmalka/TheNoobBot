@@ -16513,7 +16513,7 @@ public class Priest_Shadow
         public bool UsePowerInfusion = true;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
-        public int UsePowerWordShieldPercent = 25;
+        public uint UsePowerWordShieldBelowPercentage = 25;
         public bool UsePrayerofMending = true;
         public bool UsePsychicHorror = true;
         public bool UsePsychicScream = true;
@@ -16535,7 +16535,7 @@ public class Priest_Shadow
 
         public PriestShadowSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Shadow Priest Settings");
+            ConfigWinForm(new Point(450, 500), "Shadow Priest Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -16565,8 +16565,7 @@ public class Priest_Shadow
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
-            AddControlInWinForm("Use at Health Percent", "UsePowerWordShieldPercent", "Defensive Cooldown", "Percentage");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "BelowPercentage"); // Advanced field Use ON/OFF + At Percentage (0-100)
             AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
             AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
             AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");

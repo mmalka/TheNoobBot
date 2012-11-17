@@ -90,6 +90,8 @@ namespace nManager.Helpful
                                    //ClientSize = new Size(625, 396),
                                    //DoubleBuffered = true,
                                };
+                if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
+                    form.TopMost = true;
 
                 if (!_resizableWinform)
                 {
@@ -220,60 +222,42 @@ namespace nManager.Helpful
                             case TypeCode.Int16:
                             case TypeCode.Int32:
                             case TypeCode.Int64:
+                                numericUpDown = new NumericUpDown
+                                                    {
+                                                        Location = new Point(10, posY),
+                                                        Maximum = new decimal(new[]
+                                                                                  {
+                                                                                      -1592738368,
+                                                                                      7,
+                                                                                      0,
+                                                                                      0
+                                                                                  }),
+                                                        Minimum = new decimal(new[]
+                                                                                  {
+                                                                                      -1592738368,
+                                                                                      7,
+                                                                                      0,
+                                                                                      -2147483648
+                                                                                  }),
+                                                        Name = f.FieldName,
+                                                        Size = new Size(120, 20),
+                                                        Value = Convert.ToInt64(fieldInfo.GetValue(this))
+                                                    };
+                                label = new Label
+                                            {
+                                                Text = f.Description,
+                                                Location = new Point(120 + 10, posY),
+                                                Size = new Size(80, 17),
+                                                AutoSize = true,
+                                                BackColor = Color.Transparent,
+                                            };
                                 if (f.SettingsType == "Percentage")
                                 {
-                                    numericUpDown = new NumericUpDown
-                                                        {
-                                                            Location = new Point(10, posY),
-                                                            Maximum = new decimal(100),
-                                                            Minimum = new decimal(0),
-                                                            Name = f.FieldName,
-                                                            Size = new Size(66, 22),
-                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
-                                                        };
+                                    numericUpDown.Maximum = new decimal(100);
+                                    numericUpDown.Minimum = new decimal(0);
+                                    numericUpDown.Size = new Size(66, 22);
+                                    label.Location = new Point(66 + 10, posY);
                                 }
-                                else
-                                {
-                                    numericUpDown = new NumericUpDown
-                                                        {
-                                                            Location = new Point(10, posY),
-                                                            Maximum = new decimal(new[]
-                                                                                      {
-                                                                                          -1592738368,
-                                                                                          7,
-                                                                                          0,
-                                                                                          0
-                                                                                      }),
-                                                            Minimum = new decimal(new[]
-                                                                                      {
-                                                                                          -1592738368,
-                                                                                          7,
-                                                                                          0,
-                                                                                          -2147483648
-                                                                                      }),
-                                                            Name = f.FieldName,
-                                                            Size = new Size(120, 20),
-                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
-                                                        };
-                                }
-                                if (f.SettingsType == "Percentage")
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(66 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
-                                else
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(120 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
@@ -284,53 +268,37 @@ namespace nManager.Helpful
                             case TypeCode.UInt16:
                             case TypeCode.UInt32:
                             case TypeCode.UInt64:
+                                numericUpDown = new NumericUpDown
+                                                    {
+                                                        Location = new Point(10, posY),
+                                                        Maximum = new decimal(new[]
+                                                                                  {
+                                                                                      -1592738368,
+                                                                                      7,
+                                                                                      0,
+                                                                                      0
+                                                                                  }),
+                                                        Name = f.FieldName,
+                                                        Size = new Size(120, 20),
+                                                        Value = Convert.ToUInt64(fieldInfo.GetValue(this))
+                                                    };
+
+
+                                label = new Label
+                                            {
+                                                Text = f.Description,
+                                                Location = new Point(120 + 10, posY),
+                                                Size = new Size(80, 17),
+                                                AutoSize = true,
+                                                BackColor = Color.Transparent,
+                                            };
                                 if (f.SettingsType == "Percentage")
                                 {
-                                    numericUpDown = new NumericUpDown
-                                                        {
-                                                            Location = new Point(10, posY),
-                                                            Maximum = new decimal(100),
-                                                            Minimum = new decimal(0),
-                                                            Name = f.FieldName,
-                                                            Size = new Size(66, 22),
-                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
-                                                        };
+                                    numericUpDown.Maximum = new decimal(100);
+                                    numericUpDown.Minimum = new decimal(0);
+                                    numericUpDown.Size = new Size(66, 22);
+                                    label.Location = new Point(66 + 10, posY);
                                 }
-                                else
-                                {
-                                    numericUpDown = new NumericUpDown
-                                                        {
-                                                            Location = new Point(10, posY),
-                                                            Maximum = new decimal(new[]
-                                                                                      {
-                                                                                          -1592738368,
-                                                                                          7,
-                                                                                          0,
-                                                                                          0
-                                                                                      }),
-                                                            Name = f.FieldName,
-                                                            Size = new Size(120, 20),
-                                                            Value = Convert.ToUInt64(fieldInfo.GetValue(this))
-                                                        };
-                                }
-                                if (f.SettingsType == "Percentage")
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(66 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
-                                else
-                                    label = new Label
-                                                {
-                                                    Text = f.Description,
-                                                    Location = new Point(120 + 10, posY),
-                                                    Size = new Size(80, 17),
-                                                    AutoSize = true,
-                                                    BackColor = Color.Transparent,
-                                                };
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
@@ -405,6 +373,47 @@ namespace nManager.Helpful
                                 listExpandablePanel[indexTab].Controls.Add(label);
                                 listExpandablePanel[indexTab].Controls.Add(textBox);
                                 break;
+                        }
+                        if (f.SettingsType.Contains("Percentage"))
+                        {
+                            var labelName = "";
+                            var percentageField = GetType().GetField(f.FieldName + f.SettingsType);
+                            if (percentageField != null)
+                            {
+                                var percentage = new NumericUpDown
+                                                                 {
+                                                                     Location = new Point(10 + 180 + 66 + 100, posY),
+                                                                     Maximum = new decimal(100),
+                                                                     Minimum = new decimal(0),
+                                                                     Name = f.FieldName + f.SettingsType,
+                                                                     Size = new Size(38, 22),
+                                                                     Value = Convert.ToUInt64(percentageField.GetValue(this))
+                                                                 };
+                                switch (f.SettingsType)
+                                {
+                                    case "AtPercentage":
+                                        labelName = "At Percentage"; // if (UsePowerWordShieldAtPercentage == 10) 
+                                        break;
+                                    case "BelowPercentage":
+                                        labelName = "Below Percentage"; // if (UsePowerWordShieldBelowPercentage < 10) 
+                                        break;
+                                    case "AbovePercentage":
+                                        labelName = "Above Percentage"; // if (UsePowerWordShieldAbovePercentage > 10) 
+                                        break;
+                                }
+                                var percentageLabel = new Label
+                                {
+                                    Text = labelName,
+                                    Location = new Point(10 + 180 + 66, posY),
+                                    Size = new Size(90, 17),
+                                    AutoSize = true,
+                                    BackColor = Color.Transparent,
+                                    ForeColor = Color.Aqua,
+                                };
+                                //label.Location = new Point(66 + 10, posY);
+                                listExpandablePanel[indexTab].Controls.Add(percentageLabel);
+                                listExpandablePanel[indexTab].Controls.Add(percentage);
+                            }
                         }
                     }
                 }
