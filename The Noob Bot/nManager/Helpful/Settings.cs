@@ -374,7 +374,7 @@ namespace nManager.Helpful
                                 listExpandablePanel[indexTab].Controls.Add(textBox);
                                 break;
                         }
-                        if (f.SettingsType.Contains("Percentage"))
+                        if (f.SettingsType.Contains("Percentage") && f.SettingsType != "Percentage")
                         {
                             var labelName = "";
                             var percentageField = GetType().GetField(f.FieldName + f.SettingsType);
