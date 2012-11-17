@@ -9797,6 +9797,13 @@ public class Druid_Feral
         if (!ObjectManager.Me.HaveBuff(768) && MySettings.UseCatForm)
             Cat_Form.Launch();
 
+        if (!Savage_Roar.HaveBuff && MySettings.UseSavageRoar && Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell
+            && ObjectManager.Target.GetDistance < 30)
+        {
+            Savage_Roar.Launch();
+            Savage_Roar_Timer = new Timer(1000*12);
+        }
+
         if (Prowl.IsSpellUsable && Prowl.KnownSpell && Prowl.IsDistanceGood
             && MySettings.UseProwl && !ObjectManager.Me.InCombat)
         {
@@ -9987,8 +9994,16 @@ public class Druid_Feral
             Swipe.Launch();
             return;
         }
+        else if (Ferocious_Bite.IsSpellUsable && Ferocious_Bite.KnownSpell && Ferocious_Bite.IsDistanceGood
+                 && MySettings.UseFerociousBite && !Rip_Timer.IsReady && ObjectManager.Me.ComboPoint > 4
+                 && ObjectManager.Target.HealthPercent > 24 && !Savage_Roar_Timer.IsReady
+                 && ObjectManager.Me.Energy > 49 && FivePtRip == true)
+        {
+            Ferocious_Bite.Launch();
+            return;
+        }
         else if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood && !FivePtSav
-                 && ObjectManager.Me.ComboPoint == 5 && MySettings.UseSavageRoar)
+                 && ObjectManager.Me.ComboPoint > 4 && MySettings.UseSavageRoar)
         {
             CP = ObjectManager.Me.ComboPoint;
             Savage_Roar.Launch();
@@ -9997,11 +10012,12 @@ public class Druid_Feral
             return;
         }
         else if (Savage_Roar.IsSpellUsable && Savage_Roar.KnownSpell && Savage_Roar.IsDistanceGood
-                 && (!ObjectManager.Me.HaveBuff(127538) || Savage_Roar_Timer.IsReady) && MySettings.UseSavageRoar)
+                 && (!Savage_Roar.HaveBuff || Savage_Roar_Timer.IsReady) && MySettings.UseSavageRoar
+                 && ObjectManager.Me.ComboPoint < 5)
         {
             CP = ObjectManager.Me.ComboPoint;
             Savage_Roar.Launch();
-            Savage_Roar_Timer = new Timer(1000*(9 + (6*CP)));
+            Savage_Roar_Timer = new Timer(1000*(12 + (6*CP)));
             FivePtSav = false;
             return;
         }
@@ -10018,7 +10034,7 @@ public class Druid_Feral
         if (ObjectManager.Target.HealthPercent > 24)
         {
             if (Rip.IsSpellUsable && Rip.KnownSpell && Rip.IsDistanceGood && !FivePtRip
-                && ObjectManager.Me.ComboPoint == 5 && MySettings.UseRip)
+                && ObjectManager.Me.ComboPoint > 4 && MySettings.UseRip)
             {
                 Rip.Launch();
                 Rip_Timer = new Timer(1000*13);
@@ -10030,7 +10046,7 @@ public class Druid_Feral
                 && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
             {
                 Rip.Launch();
-                Rip_Timer = new Timer(1000*13);
+                Rip_Timer = new Timer(1000*19);
                 FivePtRip = false;
                 return;
             }
@@ -10042,7 +10058,7 @@ public class Druid_Feral
             {
                 CP = ObjectManager.Me.ComboPoint;
                 Rip.Launch();
-                Rip_Timer = new Timer(1000*13);
+                Rip_Timer = new Timer(1000*19);
                 if (CP == 5)
                     FivePtFer = true;
                 else
@@ -10051,19 +10067,19 @@ public class Druid_Feral
             }
 
             if (Ferocious_Bite.IsSpellUsable && Ferocious_Bite.KnownSpell && Ferocious_Bite.IsDistanceGood
-                && !FivePtFer && ObjectManager.Me.ComboPoint == 5 && MySettings.UseFerociousBite)
+                && !FivePtFer && ObjectManager.Me.ComboPoint > 4 && MySettings.UseFerociousBite)
             {
                 Ferocious_Bite.Launch();
-                Rip_Timer = new Timer(1000*13);
+                Rip_Timer = new Timer(1000*19);
                 FivePtFer = true;
                 return;
             }
 
             if (Ferocious_Bite.IsSpellUsable && Ferocious_Bite.KnownSpell && Ferocious_Bite.IsDistanceGood
-                && MySettings.UseFerociousBite && (!Rip.TargetHaveBuff || Rip_Timer.IsReady))
+                && MySettings.UseFerociousBite && Rip_Timer.IsReady && ObjectManager.Me.ComboPoint < 5)
             {
                 Ferocious_Bite.Launch();
-                Rip_Timer = new Timer(1000*13);
+                Rip_Timer = new Timer(1000*19);
                 FivePtFer = false;
                 return;
             }
