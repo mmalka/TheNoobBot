@@ -14,6 +14,7 @@ namespace nManager.Helpful
     public abstract class Settings
     {
         #region Save
+
         public bool Save(string settingsPath)
         {
             try
@@ -27,9 +28,11 @@ namespace nManager.Helpful
             }
             return false;
         }
+
         #endregion Save
 
         #region Load
+
         public static T Load<T>(string settingsPath)
         {
             try
@@ -47,6 +50,7 @@ namespace nManager.Helpful
 
             return default(T);
         }
+
         #endregion Load
 
         public static string AdviserFilePathAndName(string productName)
@@ -55,8 +59,8 @@ namespace nManager.Helpful
             try
             {
                 fileName = productName + "-" +
-                       Others.DelSpecialChar(ObjectManager.Me.Name) + "." +
-                       ObjectManager.Me.WowClass + "." + Others.DelSpecialChar(Usefuls.RealmName) + ".xml";
+                           Others.DelSpecialChar(ObjectManager.Me.Name) + "." +
+                           ObjectManager.Me.WowClass + "." + Others.DelSpecialChar(Usefuls.RealmName) + ".xml";
             }
             catch (Exception e)
             {
@@ -67,26 +71,26 @@ namespace nManager.Helpful
         }
 
         #region Winform
+
         public void ToForm()
         {
             try
             {
                 // Create Form
-             
+
 
                 var form = new DevComponents.DotNetBar.Metro.MetroForm()
-                {
-                    
-                    ClientSize = new Size(_sizeWinform),
-                    Text = _windowName,
-                    ShowIcon = false,
-                    ShowInTaskbar = false,
-                    AutoScaleDimensions = new SizeF(6F, 13F),
-                    AutoScaleMode = AutoScaleMode.Font,
-                    Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0),
-                    //ClientSize = new Size(625, 396),
-                    //DoubleBuffered = true,
-                };
+                               {
+                                   ClientSize = new Size(_sizeWinform),
+                                   Text = _windowName,
+                                   ShowIcon = false,
+                                   ShowInTaskbar = false,
+                                   AutoScaleDimensions = new SizeF(6F, 13F),
+                                   AutoScaleMode = AutoScaleMode.Font,
+                                   Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 0),
+                                   //ClientSize = new Size(625, 396),
+                                   //DoubleBuffered = true,
+                               };
 
                 if (!_resizableWinform)
                 {
@@ -114,7 +118,7 @@ namespace nManager.Helpful
                 foreach (var f in _listFormSetting)
                 {
                     Label label;
-                    
+
                     // Create or Seclect Tab:
                     int indexTab = -1;
                     for (int i = 0; i <= listExpandablePanel.Count - 1; i++)
@@ -164,13 +168,13 @@ namespace nManager.Helpful
                     if (f.FieldName == string.Empty)
                     {
                         label = new Label
-                        {
-                            Text = f.Description,
-                            Location = new Point(10, posY),
-                            Size = new Size(80, 17),
-                            AutoSize = true,
-                            BackColor = Color.Transparent,
-                        };
+                                    {
+                                        Text = f.Description,
+                                        Location = new Point(10, posY),
+                                        Size = new Size(80, 17),
+                                        AutoSize = true,
+                                        BackColor = Color.Transparent,
+                                    };
                         listExpandablePanel[indexTab].Controls.Add(label);
                         expandablePanelPosY.Remove(f.Category);
                         expandablePanelPosY.Add(f.Category, posY + 25);
@@ -200,13 +204,13 @@ namespace nManager.Helpful
                                 switchButton.BackgroundStyle.Class = "";
                                 switchButton.BackgroundStyle.CornerType = eCornerType.Square;
                                 label = new Label
-                                {
-                                    Text = f.Description,
-                                    Location = new Point(66 + 10, posY),
-                                    Size = new Size(80, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                };
+                                            {
+                                                Text = f.Description,
+                                                Location = new Point(66 + 10, posY),
+                                                Size = new Size(80, 17),
+                                                AutoSize = true,
+                                                BackColor = Color.Transparent,
+                                            };
                                 listExpandablePanel[indexTab].Controls.Add(label);
 
                                 expandablePanelPosY.Remove(f.Category);
@@ -217,66 +221,117 @@ namespace nManager.Helpful
                             case TypeCode.Int16:
                             case TypeCode.Int32:
                             case TypeCode.Int64:
-                                numericUpDown = new NumericUpDown
+                                if (f.SettingsType == "Percentage")
                                 {
-                                    Location = new Point(10, posY),
-                                    Maximum = new decimal(new[]
-                                                                                  {
-                                                                                      -1592738368,
-                                                                                      7,
-                                                                                      0,
-                                                                                      0
-                                                                                  }),
-                                    Minimum = new decimal(new[]
-                                                                                  {
-                                                                                      -1592738368,
-                                                                                      7,
-                                                                                      0,
-                                                                                      -2147483648
-                                                                                  }),
-                                    Name = f.FieldName,
-                                    Size = new Size(120, 20),
-                                    Value = Convert.ToInt64(fieldInfo.GetValue(this))
-                                };
-                                label = new Label
+                                    numericUpDown = new NumericUpDown
+                                                        {
+                                                            Location = new Point(10, posY),
+                                                            Maximum = new decimal(100),
+                                                            Minimum = new decimal(0),
+                                                            Name = f.FieldName,
+                                                            Size = new Size(66, 22),
+                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
+                                                        };
+                                }
+                                else
                                 {
-                                    Text = f.Description,
-                                    Location = new Point(120 + 10, posY),
-                                    Size = new Size(80, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                };
+                                    numericUpDown = new NumericUpDown
+                                                        {
+                                                            Location = new Point(10, posY),
+                                                            Maximum = new decimal(new[]
+                                                                                      {
+                                                                                          -1592738368,
+                                                                                          7,
+                                                                                          0,
+                                                                                          0
+                                                                                      }),
+                                                            Minimum = new decimal(new[]
+                                                                                      {
+                                                                                          -1592738368,
+                                                                                          7,
+                                                                                          0,
+                                                                                          -2147483648
+                                                                                      }),
+                                                            Name = f.FieldName,
+                                                            Size = new Size(120, 20),
+                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
+                                                        };
+                                }
+                                if (f.SettingsType == "Percentage")
+                                    label = new Label
+                                                {
+                                                    Text = f.Description,
+                                                    Location = new Point(76, posY),
+                                                    Size = new Size(80, 17),
+                                                    AutoSize = true,
+                                                    BackColor = Color.Transparent,
+                                                };
+                                else
+                                    label = new Label
+                                                {
+                                                    Text = f.Description,
+                                                    Location = new Point(120 + 10, posY),
+                                                    Size = new Size(80, 17),
+                                                    AutoSize = true,
+                                                    BackColor = Color.Transparent,
+                                                };
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
                                 listExpandablePanel[indexTab].Controls.Add(label);
+
                                 break;
 
                             case TypeCode.UInt16:
                             case TypeCode.UInt32:
                             case TypeCode.UInt64:
-                                numericUpDown = new NumericUpDown
+                                if (f.SettingsType == "Percentage")
                                 {
-                                    Location = new Point(10, posY),
-                                    Maximum = new decimal(new[]
-                                                                                  {
-                                                                                      -1592738368,
-                                                                                      7,
-                                                                                      0,
-                                                                                      0
-                                                                                  }),
-                                    Name = f.FieldName,
-                                    Size = new Size(120, 20),
-                                    Value = Convert.ToUInt64(fieldInfo.GetValue(this))
-                                };
-                                label = new Label
+                                    numericUpDown = new NumericUpDown
+                                                        {
+                                                            Location = new Point(10, posY),
+                                                            Maximum = new decimal(100),
+                                                            Minimum = new decimal(0),
+                                                            Name = f.FieldName,
+                                                            Size = new Size(66, 22),
+                                                            Value = Convert.ToInt64(fieldInfo.GetValue(this))
+                                                        };
+                                }
+                                else
                                 {
-                                    Text = f.Description,
-                                    Location = new Point(120 + 10, posY),
-                                    Size = new Size(80, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                };
+                                    numericUpDown = new NumericUpDown
+                                                        {
+                                                            Location = new Point(10, posY),
+                                                            Maximum = new decimal(new[]
+                                                                                      {
+                                                                                          -1592738368,
+                                                                                          7,
+                                                                                          0,
+                                                                                          0
+                                                                                      }),
+                                                            Name = f.FieldName,
+                                                            Size = new Size(120, 20),
+                                                            Value = Convert.ToUInt64(fieldInfo.GetValue(this))
+                                                        };
+                                }
+                                if (f.SettingsType == "Percentage")
+                                    label = new Label
+                                                {
+                                                    Text = f.Description,
+                                                    Location = new Point(76, posY),
+                                                    Size = new Size(80, 17),
+                                                    AutoSize = true,
+                                                    BackColor = Color.Transparent,
+                                                };
+                                else
+                                    label = new Label
+                                                {
+                                                    Text = f.Description,
+                                                    Location = new Point(120 + 10, posY),
+                                                    Size = new Size(80, 17),
+                                                    AutoSize = true,
+                                                    BackColor = Color.Transparent,
+                                                };
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
@@ -286,42 +341,42 @@ namespace nManager.Helpful
                             case TypeCode.Single:
                             case TypeCode.Double:
                                 numericUpDown = new NumericUpDown
-                                {
-                                    Location = new Point(10, posY),
-                                    DecimalPlaces = 3,
-                                    Increment = new decimal(new[]
+                                                    {
+                                                        Location = new Point(10, posY),
+                                                        DecimalPlaces = 3,
+                                                        Increment = new decimal(new[]
                                                                                     {
                                                                                         1,
                                                                                         0,
                                                                                         0,
                                                                                         65536
                                                                                     }),
-                                    Maximum = new decimal(new[]
+                                                        Maximum = new decimal(new[]
                                                                                   {
                                                                                       -1592738368,
                                                                                       7,
                                                                                       0,
                                                                                       0
                                                                                   }),
-                                    Minimum = new decimal(new[]
+                                                        Minimum = new decimal(new[]
                                                                                   {
                                                                                       -1592738368,
                                                                                       7,
                                                                                       0,
                                                                                       -2147483648
                                                                                   }),
-                                    Name = f.FieldName,
-                                    Size = new Size(120, 20),
-                                    Value = Convert.ToDecimal(fieldInfo.GetValue(this))
-                                };
+                                                        Name = f.FieldName,
+                                                        Size = new Size(120, 20),
+                                                        Value = Convert.ToDecimal(fieldInfo.GetValue(this))
+                                                    };
                                 label = new Label
-                                {
-                                    Text = f.Description,
-                                    Location = new Point(120 + 10, posY),
-                                    Size = new Size(80, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                };
+                                            {
+                                                Text = f.Description,
+                                                Location = new Point(120 + 10, posY),
+                                                Size = new Size(80, 17),
+                                                AutoSize = true,
+                                                BackColor = Color.Transparent,
+                                            };
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
                                 listExpandablePanel[indexTab].Controls.Add(numericUpDown);
@@ -330,21 +385,21 @@ namespace nManager.Helpful
 
                             case TypeCode.String:
                                 var textBox = new TextBox
-                                {
-                                    Location = new Point(10, posY),
-                                    Name = f.FieldName,
-                                    Size = new Size(100, 20),
-                                    TabIndex = 3,
-                                    Text = Convert.ToString(fieldInfo.GetValue(this))
-                                };
+                                                  {
+                                                      Location = new Point(10, posY),
+                                                      Name = f.FieldName,
+                                                      Size = new Size(100, 20),
+                                                      TabIndex = 3,
+                                                      Text = Convert.ToString(fieldInfo.GetValue(this))
+                                                  };
                                 label = new Label
-                                {
-                                    Text = f.Description,
-                                    Location = new Point(100 + 10, posY),
-                                    Size = new Size(80, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                };
+                                            {
+                                                Text = f.Description,
+                                                Location = new Point(100 + 10, posY),
+                                                Size = new Size(80, 17),
+                                                AutoSize = true,
+                                                BackColor = Color.Transparent,
+                                            };
 
                                 expandablePanelPosY.Remove(f.Category);
                                 expandablePanelPosY.Add(f.Category, posY + 25);
@@ -371,7 +426,8 @@ namespace nManager.Helpful
                 Logging.WriteError("Settings > ToForm(): " + e);
             }
         }
-        void ReadForm(Form form)
+
+        private void ReadForm(Form form)
         {
             try
             {
@@ -387,24 +443,30 @@ namespace nManager.Helpful
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
                         {
                             case TypeCode.Boolean:
-                                fieldInfo.SetValue(this, ((SwitchButton)controls[0]).Value);
+                                fieldInfo.SetValue(this, ((SwitchButton) controls[0]).Value);
                                 break;
 
                             case TypeCode.Int16:
                             case TypeCode.Int32:
                             case TypeCode.Int64:
-                                fieldInfo.SetValue(this, Convert.ChangeType(((NumericUpDown)controls[0]).Value, fieldInfo.FieldType));
+                                fieldInfo.SetValue(this,
+                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                                                      fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.UInt16:
                             case TypeCode.UInt32:
                             case TypeCode.UInt64:
-                                fieldInfo.SetValue(this, Convert.ChangeType(((NumericUpDown)controls[0]).Value, fieldInfo.FieldType));
+                                fieldInfo.SetValue(this,
+                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                                                      fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.Single:
                             case TypeCode.Double:
-                                fieldInfo.SetValue(this, Convert.ChangeType(((NumericUpDown)controls[0]).Value, fieldInfo.FieldType));
+                                fieldInfo.SetValue(this,
+                                                   Convert.ChangeType(((NumericUpDown) controls[0]).Value,
+                                                                      fieldInfo.FieldType));
                                 break;
 
                             case TypeCode.String:
@@ -419,41 +481,50 @@ namespace nManager.Helpful
                 Logging.WriteError("Settings > ReadForm(Form form): " + e);
             }
         }
-        readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
-        Point _sizeWinform = new Point(300, 500);
+
+        private readonly List<FormSetting> _listFormSetting = new List<FormSetting>();
+        private Point _sizeWinform = new Point(300, 500);
         private string _windowName = "Settings";
         private bool _resizableWinform;
+
         public void ConfigWinForm(Point size, string windowName = "Settings", bool resizable = false)
         {
             _sizeWinform = size;
             _windowName = windowName;
             _resizableWinform = resizable;
         }
-        protected void AddControlInWinForm(string description, string fieldName, string category = "Main")
+
+        protected void AddControlInWinForm(string description, string fieldName, string category = "Main",
+                                           string settingsType = "")
         {
             try
             {
                 if (description != string.Empty && category != string.Empty)
-                    _listFormSetting.Add(new FormSetting(description, fieldName, category));
+                    _listFormSetting.Add(new FormSetting(description, fieldName, category, settingsType));
             }
             catch (Exception e)
             {
-                Logging.WriteError("AddControlInWinForm(string description, string fieldName, string category = \"Main\"): " + e);
+                Logging.WriteError(
+                    "AddControlInWinForm(string description, string fieldName, string category = \"Main\"): " + e);
             }
         }
-        class FormSetting
+
+        private class FormSetting
         {
-            public FormSetting(string description, string fieldName, string category = "Main")
+            public FormSetting(string description, string fieldName, string category = "Main", string settingsType = "")
             {
                 Description = description;
                 FieldName = fieldName;
                 Category = category;
+                SettingsType = settingsType;
             }
 
+            public string SettingsType { get; private set; }
             public string Description { get; private set; }
             public string FieldName { get; private set; }
             public string Category { get; private set; }
         }
+
         #endregion Winform
     }
 }

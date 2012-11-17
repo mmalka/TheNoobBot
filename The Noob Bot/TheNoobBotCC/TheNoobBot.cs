@@ -16513,6 +16513,7 @@ public class Priest_Shadow
         public bool UsePowerInfusion = true;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
+        public int UsePowerWordShieldPercent = 25;
         public bool UsePrayerofMending = true;
         public bool UsePsychicHorror = true;
         public bool UsePsychicScream = true;
@@ -16564,6 +16565,7 @@ public class Priest_Shadow
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
+            AddControlInWinForm("Use at Health Percent", "UsePowerWordShieldPercent", "Defensive Cooldown", "Percentage");
             AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
             AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
             AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
