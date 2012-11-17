@@ -78,7 +78,6 @@ namespace nManager.Helpful
             {
                 // Create Form
 
-
                 var form = new DevComponents.DotNetBar.Metro.MetroForm()
                                {
                                    ClientSize = new Size(_sizeWinform),
@@ -261,7 +260,7 @@ namespace nManager.Helpful
                                     label = new Label
                                                 {
                                                     Text = f.Description,
-                                                    Location = new Point(76, posY),
+                                                    Location = new Point(66 + 10, posY),
                                                     Size = new Size(80, 17),
                                                     AutoSize = true,
                                                     BackColor = Color.Transparent,
@@ -318,7 +317,7 @@ namespace nManager.Helpful
                                     label = new Label
                                                 {
                                                     Text = f.Description,
-                                                    Location = new Point(76, posY),
+                                                    Location = new Point(66 + 10, posY),
                                                     Size = new Size(80, 17),
                                                     AutoSize = true,
                                                     BackColor = Color.Transparent,
