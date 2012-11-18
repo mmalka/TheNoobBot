@@ -345,6 +345,13 @@ public class Monk_Brewmaster
             Tigers_Lust.Launch();
             return;
         }
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
+                && ObjectManager.Me.IsAlive)
+        {
+            Roll.Launch();
+            return;
+        }
         else
         {
             if (AlchFlask_Timer.IsReady && MySettings.UseAlchFlask
@@ -974,7 +981,8 @@ public class Monk_Windwalker
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
-                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff)
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
+                && ObjectManager.Me.IsAlive)
         {
             Roll.Launch();
             return;
@@ -1574,6 +1582,13 @@ public class Monk_Mistweaver
                 && MySettings.UseTigersLust && ObjectManager.Me.GetMove)
         {
             Tigers_Lust.Launch();
+            return;
+        }
+        else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
+                && ObjectManager.Me.IsAlive)
+        {
+            Roll.Launch();
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 0 && Summon_Jade_Serpent_Statue.IsSpellUsable && Summon_Jade_Serpent_Statue.KnownSpell
