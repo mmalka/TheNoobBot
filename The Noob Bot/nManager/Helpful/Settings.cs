@@ -381,14 +381,14 @@ namespace nManager.Helpful
                             if (percentageField != null)
                             {
                                 var percentage = new NumericUpDown
-                                                                 {
-                                                                     Location = new Point(10 + 180 + 66 + 100, posY),
-                                                                     Maximum = new decimal(100),
-                                                                     Minimum = new decimal(0),
-                                                                     Name = f.FieldName + f.SettingsType,
-                                                                     Size = new Size(38, 22),
-                                                                     Value = Convert.ToUInt64(percentageField.GetValue(this))
-                                                                 };
+                                                     {
+                                                         Location = new Point(10 + 180 + 66 + 100 + 60, posY),
+                                                         Maximum = new decimal(100),
+                                                         Minimum = new decimal(0),
+                                                         Name = f.FieldName + f.SettingsType,
+                                                         Size = new Size(38, 22),
+                                                         Value = Convert.ToUInt64(percentageField.GetValue(this))
+                                                     };
                                 switch (f.SettingsType)
                                 {
                                     case "AtPercentage":
@@ -402,14 +402,14 @@ namespace nManager.Helpful
                                         break;
                                 }
                                 var percentageLabel = new Label
-                                {
-                                    Text = labelName,
-                                    Location = new Point(10 + 180 + 66, posY),
-                                    Size = new Size(90, 17),
-                                    AutoSize = true,
-                                    BackColor = Color.Transparent,
-                                    ForeColor = Color.Aqua,
-                                };
+                                                          {
+                                                              Text = labelName,
+                                                              Location = new Point(10 + 180 + 66 + 60, posY),
+                                                              Size = new Size(90, 17),
+                                                              AutoSize = true,
+                                                              BackColor = Color.Transparent,
+                                                              ForeColor = Color.Aqua,
+                                                          };
                                 //label.Location = new Point(66 + 10, posY);
                                 listExpandablePanel[indexTab].Controls.Add(percentageLabel);
                                 listExpandablePanel[indexTab].Controls.Add(percentage);
@@ -480,6 +480,15 @@ namespace nManager.Helpful
                             case TypeCode.String:
                                 fieldInfo.SetValue(this, controls[0].Text);
                                 break;
+                        }
+                        if (f.SettingsType.Contains("Percentage") && f.SettingsType != "Percentage")
+                        {
+                            var controlsP = form.Controls.Find(f.FieldName + f.SettingsType, true);
+                            var fieldInfoP = GetType().GetField(f.FieldName + f.SettingsType);
+                            if (fieldInfoP != null && controlsP.Length > 0)
+                                fieldInfoP.SetValue(this,
+                                                    Convert.ChangeType(((NumericUpDown) controlsP[0]).Value,
+                                                                       fieldInfoP.FieldType));
                         }
                     }
                 }
