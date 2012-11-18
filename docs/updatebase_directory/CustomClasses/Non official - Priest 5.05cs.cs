@@ -48,9 +48,15 @@ public class Main : ICustomClass
         Initialize(true);
     }
 
+    public void ResetConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Initialize(true, true);
+    }
+
     #endregion
 
-    public void Initialize(bool ConfigOnly)
+    public void Initialize(bool ConfigOnly, bool ResetSettings = false)
     {
         try
         {
@@ -74,7 +80,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -97,7 +103,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Discipline.xml";
                             Priest_Discipline.PriestDisciplineSettings CurrentSetting;
                             CurrentSetting = new Priest_Discipline.PriestDisciplineSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Discipline.PriestDisciplineSettings>(CurrentSettingsFile);
@@ -120,7 +126,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Holy.xml";
                             Priest_Holy.PriestHolySettings CurrentSetting;
                             CurrentSetting = new Priest_Holy.PriestHolySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Holy.PriestHolySettings>(CurrentSettingsFile);
@@ -145,7 +151,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -177,12 +183,13 @@ public class Main : ICustomClass
     }
 }
 
-
 #region Priest
 
 public class Priest_Shadow
 {
     private readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
+
+    #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
@@ -190,7 +197,9 @@ public class Priest_Shadow
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
-    #region Professions & Racials
+    #endregion
+
+    #region Professions and Racials
 
     private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
@@ -277,33 +286,38 @@ public class Priest_Shadow
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    Buff_Levitate();
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        Buff_Levitate();
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Mind_Spike.IsDistanceGood || Shadow_Word_Pain.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -597,52 +611,43 @@ public class Priest_Shadow
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+            && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHealNonCombat)
         {
-            if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHeal)
-            {
-                Flash_Heal.Launch(false);
-                return;
-            }
+            Flash_Heal.Launch(false);
+            return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage < 40 && Hymn_of_Hope.KnownSpell &&
-                 Hymn_of_Hope.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
+        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= MySettings.UseHymnofHopeAtPercentage && Hymn_of_Hope.KnownSpell
+                 && Hymn_of_Hope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
             Hymn_of_Hope.Launch(false);
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage < 60 && ObjectManager.GetNumberAttackPlayer() == 0
-                 && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersion)
+        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= MySettings.UseDispersionManaAtPercentage && ObjectManager.GetNumberAttackPlayer() == 0
+                 && Dispersion.KnownSpell && Dispersion.IsSpellUsable && MySettings.UseDispersionMana)
         {
             Dispersion.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseDesperatePrayerAtPercentage && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
                  && MySettings.UseDesperatePrayer)
         {
             Desperate_Prayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-                 && MySettings.UseFlashHeal)
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealInCombatAtPercentage && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
+                 && MySettings.UseFlashHealInCombat)
         {
             Flash_Heal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
                  && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-                 && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
-        {
-            War_Stomp.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Vampiric_Embrace.IsSpellUsable && Vampiric_Embrace.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseVampiricEmbraceAtPercentage && Vampiric_Embrace.IsSpellUsable && Vampiric_Embrace.KnownSpell
                  && MySettings.UseVampiricEmbrace)
         {
             Vampiric_Embrace.Launch();
@@ -650,13 +655,13 @@ public class Priest_Shadow
         }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
                  && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) && (ObjectManager.GetNumberAttackPlayer() > 0
-                                                         || ObjectManager.Me.GetMove))
+                 && !ObjectManager.Me.HaveBuff(6788) && ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordShieldAtPercentage
+                 && (ObjectManager.GetNumberAttackPlayer() > 0 || ObjectManager.Me.GetMove))
         {
             Power_Word_Shield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofMendingAtPercentage && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
                  && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
@@ -665,7 +670,7 @@ public class Priest_Shadow
         else
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+                ObjectManager.Me.HealthPercent <= MySettings.UseRenewAtPercentage && MySettings.UseRenew)
             {
                 Renew.Launch();
                 return;
@@ -675,15 +680,15 @@ public class Priest_Shadow
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent < 20 && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= MySettings.UsePsychicScreamAtPercentage && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
             && MySettings.UsePsychicScream)
         {
             Psychic_Scream.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && Dispersion.KnownSpell && Dispersion.IsSpellUsable
-                 && MySettings.UseDispersion)
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseDispersionHealthAtPercentage && Dispersion.KnownSpell && Dispersion.IsSpellUsable
+                 && MySettings.UseDispersionHealth)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
             {
@@ -694,24 +699,21 @@ public class Priest_Shadow
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
-                 && MySettings.UseVoidTendrils)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UseVoidTendrilsAtPercentage &&
+                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell && MySettings.UseVoidTendrils)
         {
             Void_Tendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Psyfiend.IsSpellUsable &&
-                 Psyfiend.KnownSpell
-                 && MySettings.UsePsyfiend)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UsePsyfiendAtPercentage &&
+                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && MySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseSpectralGuiseAtPercentage && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
                  && MySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
@@ -723,7 +725,7 @@ public class Priest_Shadow
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable && Stoneform.KnownSpell
                  && MySettings.UseStoneform)
         {
             Stoneform.Launch();
@@ -732,7 +734,7 @@ public class Priest_Shadow
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
@@ -745,7 +747,8 @@ public class Priest_Shadow
     private void Decast()
     {
         if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseSilence
-            && Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsDistanceGood)
+            && Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsDistanceGood
+            && ObjectManager.Target.HealthPercent <= MySettings.UseSilenceAtPercentage)
         {
             Silence.Launch();
             return;
@@ -753,7 +756,8 @@ public class Priest_Shadow
         else
         {
             if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UsePsychicHorror
-                && Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood)
+                && Psychic_Horror.KnownSpell && Psychic_Horror.IsSpellUsable && Psychic_Horror.IsDistanceGood
+                && ObjectManager.Target.HealthPercent <= MySettings.UsePsychicHorrorAtPercentage)
             {
                 Psychic_Horror.Launch();
                 return;
@@ -774,6 +778,25 @@ public class Priest_Shadow
     [Serializable]
     public class PriestShadowSettings : Settings
     {
+        public int UseDesperatePrayerAtPercentage = 65;
+        public int UseDispersionHealthAtPercentage = 20;
+        public int UseDispersionManaAtPercentage = 60;
+        public int UseFlashHealNonCombatAtPercentage = 95;
+        public int UseFlashHealInCombatAtPercentage = 60;
+        public int UseGiftoftheNaaruAtPercentage = 80;
+        public int UseHymnofHopeAtPercentage = 40;
+        public int UsePowerWordShieldAtPercentage = 100;
+        public int UsePrayerofMendingAtPercentage = 50;
+        public int UsePsychicHorrorAtPercentage = 100;
+        public int UsePsychicScreamAtPercentage = 20;
+        public int UsePsyfiendAtPercentage = 35;
+        public int UseRenewAtPercentage = 90;
+        public int UseSilenceAtPercentage = 100;
+        public int UseSpectralGuiseAtPercentage = 70;
+        public int UseStoneformAtPercentage = 80;
+        public int UseWarStompAtPercentage = 80;
+        public int UseVampiricEmbraceAtPercentage = 80;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
@@ -781,10 +804,12 @@ public class Priest_Shadow
         public bool UseCascade = true;
         public bool UseDesperatePrayer = true;
         public bool UseDevouringPlague = true;
-        public bool UseDispersion = true;
+        public bool UseDispersionHealth = true;
+        public bool UseDispersionMana = true;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
-        public bool UseFlashHeal = true;
+        public bool UseFlashHealInCombat = true;
+        public bool UseFlashHealNonCombat = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseHalo = true;
         public bool UseHymnofHope = true;
@@ -821,15 +846,15 @@ public class Priest_Shadow
 
         public PriestShadowSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Shadow Priest Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            ConfigWinForm(new Point(500, 400), "Shadow Priest Settings");
+            /* Professions and Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions and Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions and Racials", "AtPercentage");
             /* Priest Buffs */
             AddControlInWinForm("Use Inner Fire", "UseInnerFire", "Priest Buffs");
             AddControlInWinForm("Use Inner Will", "UseInnerWill", "Priest Buffs");
@@ -853,21 +878,23 @@ public class Priest_Shadow
             AddControlInWinForm("Use Power Infusion", "UsePowerInfusion", "Offensive Cooldown");
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
-            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
-            AddControlInWinForm("Use Silence", "UseSilence", "Defensive Cooldown");
-            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown");
-            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
+            AddControlInWinForm("Use Dispersion when health low", "UseDispersionHealth", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Dispersion when mana low", "UseDispersionMana", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Silence", "UseSilence", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
-            AddControlInWinForm("Use Flash Heal", "UseFlashHeal", "Healing Spell");
-            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
-            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
-            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
-            AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell");
+            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Vampiric Embrace", "UseVampiricEmbrace", "Healing Spell", "AtPercentage");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -899,12 +926,16 @@ public class Priest_Discipline
 {
     private readonly PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
 
+    #region General Timers & Variables
+
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
-    #region Professions & Racials
+    #endregion
+
+    #region Professions and Racials
 
     private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
@@ -989,23 +1020,28 @@ public class Priest_Discipline
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    Buff_Levitate();
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Holy_Fire.IsDistanceGood || Shadow_Word_Pain.IsDistanceGood))
+                        Buff_Levitate();
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                                (Holy_Fire.IsDistanceGood || Shadow_Word_Pain.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+                            else
+                                Combat();
                         }
-                        else
-                            Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -1243,78 +1279,69 @@ public class Priest_Discipline
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+            && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHealNonCombat)
         {
-            if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHeal)
-            {
-                Flash_Heal.Launch(false);
-                return;
-            }
+            Flash_Heal.Launch(false);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && Inner_Focus.KnownSpell && Inner_Focus.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseInnerFocusAtPercentage && Inner_Focus.KnownSpell && Inner_Focus.IsSpellUsable
                  && MySettings.UseInnerFocus && !Inner_Focus.HaveBuff)
         {
             Inner_Focus.Launch();
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage < 40 && Hymn_of_Hope.KnownSpell &&
-                 Hymn_of_Hope.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
+        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= MySettings.UseHymnofHopeAtPercentage && Hymn_of_Hope.KnownSpell
+                 && Hymn_of_Hope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
             Hymn_of_Hope.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseDesperatePrayerAtPercentage && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
                  && MySettings.UseDesperatePrayer)
         {
             Desperate_Prayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-                 && MySettings.UseFlashHeal)
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealInCombatAtPercentage && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
+                 && MySettings.UseFlashHealInCombat)
         {
             Flash_Heal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGreaterHealAtPercentage && Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable
                  && MySettings.UseGreaterHeal)
         {
             Greater_Heal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
                  && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-                 && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
-        {
-            War_Stomp.Launch();
-            return;
-        }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
                  && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) && (ObjectManager.GetNumberAttackPlayer() > 0
-                                                         || ObjectManager.Me.GetMove))
+                 && !ObjectManager.Me.HaveBuff(6788) && ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordShieldAtPercentage
+                 && (ObjectManager.GetNumberAttackPlayer() > 0 || ObjectManager.Me.GetMove))
         {
             Power_Word_Shield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Healing.KnownSpell && Prayer_of_Healing.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofHealingAtPercentage && Prayer_of_Healing.KnownSpell && Prayer_of_Healing.IsSpellUsable
                  && MySettings.UsePrayerofHealing)
         {
             Prayer_of_Healing.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofMendingAtPercentage && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
                  && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Heal_Spell.KnownSpell && Heal_Spell.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseHealAtPercentage && Heal_Spell.KnownSpell && Heal_Spell.IsSpellUsable
                  && (MySettings.UseHeal || !Greater_Heal.KnownSpell))
         {
             Heal_Spell.Launch();
@@ -1323,7 +1350,7 @@ public class Priest_Discipline
         else
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+                ObjectManager.Me.HealthPercent <= MySettings.UseRenewAtPercentage && MySettings.UseRenew)
             {
                 Renew.Launch();
                 return;
@@ -1333,31 +1360,28 @@ public class Priest_Discipline
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent < 20 && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= MySettings.UsePsychicScreamAtPercentage && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
             && MySettings.UsePsychicScream)
         {
             Psychic_Scream.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
-                 && MySettings.UseVoidTendrils)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UseVoidTendrilsAtPercentage &&
+                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell && MySettings.UseVoidTendrils)
         {
             Void_Tendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Psyfiend.IsSpellUsable &&
-                 Psyfiend.KnownSpell
-                 && MySettings.UsePsyfiend)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UsePsyfiendAtPercentage &&
+                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && MySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseSpectralGuiseAtPercentage && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
                  && MySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
@@ -1369,21 +1393,21 @@ public class Priest_Discipline
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Power_Word_Barrier.IsSpellUsable && Power_Word_Barrier.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordBarrierAtPercentage && Power_Word_Barrier.IsSpellUsable && Power_Word_Barrier.KnownSpell
                  && MySettings.UsePowerWordBarrier)
         {
             SpellManager.CastSpellByIDAndPosition(62618, ObjectManager.Me.Position);
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Pain_Suppression.IsSpellUsable && Pain_Suppression.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePainSuppressionAtPercentage && Pain_Suppression.IsSpellUsable && Pain_Suppression.KnownSpell
                  && MySettings.UsePainSuppression)
         {
             Pain_Suppression.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable && Stoneform.KnownSpell
                  && MySettings.UseStoneform)
         {
             Stoneform.Launch();
@@ -1392,7 +1416,7 @@ public class Priest_Discipline
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
@@ -1415,6 +1439,26 @@ public class Priest_Discipline
     [Serializable]
     public class PriestDisciplineSettings : Settings
     {
+        public int UseDesperatePrayerAtPercentage = 65;
+        public int UseFlashHealNonCombatAtPercentage = 95;
+        public int UseFlashHealInCombatAtPercentage = 60;
+        public int UseGiftoftheNaaruAtPercentage = 80;
+        public int UseGreaterHealAtPercentage = 70;
+        public int UseHealAtPercentage = 70;
+        public int UseHymnofHopeAtPercentage = 40;
+        public int UseInnerFocusAtPercentage = 90;
+        public int UsePainSuppressionAtPercentage = 70;
+        public int UsePowerWordBarrierAtPercentage = 60;
+        public int UsePowerWordShieldAtPercentage = 100;
+        public int UsePrayerofHealingAtPercentage = 50;
+        public int UsePrayerofMendingAtPercentage = 50;
+        public int UsePsychicScreamAtPercentage = 20;
+        public int UsePsyfiendAtPercentage = 35;
+        public int UseRenewAtPercentage = 90;
+        public int UseSpectralGuiseAtPercentage = 70;
+        public int UseStoneformAtPercentage = 80;
+        public int UseWarStompAtPercentage = 80;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -1424,7 +1468,8 @@ public class Priest_Discipline
         public bool UseDesperatePrayer = true;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
-        public bool UseFlashHeal = true;
+        public bool UseFlashHealNonCombat = true;
+        public bool UseFlashHealInCombat = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseGreaterHeal = true;
         public bool UseHalo = true;
@@ -1462,15 +1507,15 @@ public class Priest_Discipline
 
         public PriestDisciplineSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Discipline Priest Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            ConfigWinForm(new Point(500, 400), "Discipline Priest Settings");
+            /* Professions and Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions and Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions and Racials", "AtPercentage");
             /* Priest Buffs */
             AddControlInWinForm("Use Inner Fire", "UseInnerFire", "Priest Buffs");
             AddControlInWinForm("Use Inner Will", "UseInnerWill", "Priest Buffs");
@@ -1492,22 +1537,23 @@ public class Priest_Discipline
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Healing Cooldown");
             AddControlInWinForm("Use Spirit Shell", "UseSpiritShell", "Healing Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Pain Suppression", "UsePainSuppression", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Barrier", "UsePowerWordBarrier", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
-            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
-            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown");
-            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
+            AddControlInWinForm("Use Pain Suppression", "UsePainSuppression", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Power Word: Barrier", "UsePowerWordBarrier", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
-            AddControlInWinForm("Use Flash Heal", "UseFlashHeal", "Healing Spell");
-            AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell");
-            AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell");
-            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
-            AddControlInWinForm("Use Inner Focus", "UseInnerFocus", "Healing Spell");
-            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
-            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
+            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Inner Focus", "UseInnerFocus", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell", "AtPercentage");
             /* Game Settings */
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
@@ -1538,12 +1584,16 @@ public class Priest_Holy
 {
     private readonly PriestHolySettings MySettings = PriestHolySettings.GetSettings();
 
+    #region General Timers & Variables
+
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
 
-    #region Professions & Racials
+    #endregion
+
+    #region Professions and Racials
 
     private readonly Spell Alchemy = new Spell("Alchemy");
     private readonly Spell Arcane_Torrent = new Spell("Arcane Torrent");
@@ -1630,23 +1680,28 @@ public class Priest_Holy
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    Buff_Levitate();
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Holy_Fire.IsDistanceGood || Shadow_Word_Pain.IsDistanceGood))
+                        Buff_Levitate();
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Holy_Fire.IsDistanceGood || Shadow_Word_Pain.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+                            else
+                                Combat();
                         }
-                        else
-                            Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -1890,91 +1945,82 @@ public class Priest_Holy
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+            && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHealNonCombat)
         {
-            if (Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable && MySettings.UseFlashHeal)
-            {
-                Flash_Heal.Launch(false);
-                return;
-            }
+            Flash_Heal.Launch(false);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && Divine_Hymn.KnownSpell && Divine_Hymn.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseDivineHymnAtPercentage && Divine_Hymn.KnownSpell && Divine_Hymn.IsSpellUsable
                  && MySettings.UseDivineHymn)
         {
             Divine_Hymn.Launch();
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage < 40 && Hymn_of_Hope.KnownSpell &&
-                 Hymn_of_Hope.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
+        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= MySettings.UseHymnofHopeAtPercentage && Hymn_of_Hope.KnownSpell
+                 && Hymn_of_Hope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 && MySettings.UseHymnofHope)
         {
             Hymn_of_Hope.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseDesperatePrayerAtPercentage && Desperate_Prayer.KnownSpell && Desperate_Prayer.IsSpellUsable
                  && MySettings.UseDesperatePrayer)
         {
             Desperate_Prayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
-                 && MySettings.UseFlashHeal)
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseFlashHealInCombatAtPercentage && Flash_Heal.KnownSpell && Flash_Heal.IsSpellUsable
+                 && MySettings.UseFlashHealInCombat)
         {
             Flash_Heal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGreaterHealAtPercentage && Greater_Heal.KnownSpell && Greater_Heal.IsSpellUsable
                  && MySettings.UseGreaterHeal)
         {
             Greater_Heal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
                  && MySettings.UseGiftoftheNaaru)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-                 && MySettings.UseWarStomp && ObjectManager.Target.GetDistance < 8)
-        {
-            War_Stomp.Launch();
-            return;
-        }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
                  && !Power_Word_Shield.HaveBuff && MySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) && (ObjectManager.GetNumberAttackPlayer() > 0
-                                                         || ObjectManager.Me.GetMove))
+                 && !ObjectManager.Me.HaveBuff(6788) && ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordShieldAtPercentage
+                 && (ObjectManager.GetNumberAttackPlayer() > 0 || ObjectManager.Me.GetMove))
         {
             Power_Word_Shield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Healing.KnownSpell && Prayer_of_Healing.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofHealingAtPercentage && Prayer_of_Healing.KnownSpell && Prayer_of_Healing.IsSpellUsable
                  && MySettings.UsePrayerofHealing)
         {
             Prayer_of_Healing.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Circle_of_Healing.KnownSpell && Circle_of_Healing.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseCircleofHealingAtPercentage && Circle_of_Healing.KnownSpell && Circle_of_Healing.IsSpellUsable
                  && MySettings.UseCircleofHealing)
         {
             SpellManager.CastSpellByIDAndPosition(34861, ObjectManager.Me.Position);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofMendingAtPercentage && Prayer_of_Mending.KnownSpell && Prayer_of_Mending.IsSpellUsable
                  && MySettings.UsePrayerofMending)
         {
             Prayer_of_Mending.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Heal_Spell.KnownSpell && Heal_Spell.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseHealAtPercentage && Heal_Spell.KnownSpell && Heal_Spell.IsSpellUsable
                  && (MySettings.UseHeal || !Greater_Heal.KnownSpell))
         {
             Heal_Spell.Launch();
             return;
         }
         else if (Light_Well.KnownSpell && Light_Well.IsSpellUsable && MySettings.UseGlyphofLightspring
-                 && ObjectManager.Me.HealthPercent < 95 && MySettings.UseLightWell)
+                 && ObjectManager.Me.HealthPercent <= MySettings.UseLightWellAtPercentage && MySettings.UseLightWell)
         {
             SpellManager.CastSpellByIDAndPosition(724, ObjectManager.Target.Position);
             return;
@@ -1982,7 +2028,7 @@ public class Priest_Holy
         else
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 90 && MySettings.UseRenew)
+                ObjectManager.Me.HealthPercent <= MySettings.UseRenewAtPercentage && MySettings.UseRenew)
             {
                 Renew.Launch();
                 return;
@@ -1992,37 +2038,34 @@ public class Priest_Holy
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent < 20 && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
+        if (ObjectManager.Me.HealthPercent <= MySettings.UsePsychicScreamAtPercentage && Psychic_Scream.IsSpellUsable && Psychic_Scream.KnownSpell
             && MySettings.UsePsychicScream)
         {
             Psychic_Scream.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && Guardian_Spirit.KnownSpell && Guardian_Spirit.IsSpellUsable
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGuardianSpiritAtPercentage && Guardian_Spirit.KnownSpell && Guardian_Spirit.IsSpellUsable
                  && MySettings.UseGuardianSpirit)
         {
             Guardian_Spirit.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell
-                 && MySettings.UseVoidTendrils)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UseVoidTendrilsAtPercentage &&
+                 Void_Tendrils.IsSpellUsable && Void_Tendrils.KnownSpell && MySettings.UseVoidTendrils)
         {
             Void_Tendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent < 35 &&
-                 Psyfiend.IsSpellUsable &&
-                 Psyfiend.KnownSpell
-                 && MySettings.UsePsyfiend)
+        else if (ObjectManager.GetNumberAttackPlayer() >= 2 && ObjectManager.Me.HealthPercent <= MySettings.UsePsyfiendAtPercentage &&
+                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && MySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseSpectralGuiseAtPercentage && Spectral_Guise.IsSpellUsable && Spectral_Guise.KnownSpell
                  && MySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && MySettings.UseRenew)
@@ -2034,7 +2077,7 @@ public class Priest_Holy
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable && Stoneform.KnownSpell
                  && MySettings.UseStoneform)
         {
             Stoneform.Launch();
@@ -2043,7 +2086,7 @@ public class Priest_Holy
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+            if (ObjectManager.Me.HealthPercent <= MySettings.UseWarStompAtPercentage && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
                 && MySettings.UseWarStomp)
             {
                 War_Stomp.Launch();
@@ -2066,6 +2109,27 @@ public class Priest_Holy
     [Serializable]
     public class PriestHolySettings : Settings
     {
+        public int UseCircleofHealingAtPercentage = 50;
+        public int UseDesperatePrayerAtPercentage = 65;
+        public int UseDivineHymnAtPercentage = 30;
+        public int UseFlashHealNonCombatAtPercentage = 95;
+        public int UseFlashHealInCombatAtPercentage = 60;
+        public int UseGiftoftheNaaruAtPercentage = 80;
+        public int UseGreaterHealAtPercentage = 70;
+        public int UseGuardianSpiritAtPercentage = 20;
+        public int UseHealAtPercentage = 70;
+        public int UseHymnofHopeAtPercentage = 40;
+        public int UseLightWellAtPercentage = 95;
+        public int UsePowerWordShieldAtPercentage = 100;
+        public int UsePrayerofHealingAtPercentage = 50;
+        public int UsePrayerofMendingAtPercentage = 50;
+        public int UsePsychicScreamAtPercentage = 20;
+        public int UsePsyfiendAtPercentage = 35;
+        public int UseRenewAtPercentage = 90;
+        public int UseSpectralGuiseAtPercentage = 70;
+        public int UseStoneformAtPercentage = 80;
+        public int UseWarStompAtPercentage = 80;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -2080,7 +2144,8 @@ public class Priest_Holy
         public bool UseDivineHymn = true;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
-        public bool UseFlashHeal = true;
+        public bool UseFlashHealNonCombat = true;
+        public bool UseFlashHealInCombat = true;
         public bool UseGiftoftheNaaru = true;
         public bool UseGlyphofLightspring = false;
         public bool UseGreaterHeal = true;
@@ -2117,15 +2182,15 @@ public class Priest_Holy
 
         public PriestHolySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Holy Priest Settings");
-            /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
-            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
-            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
-            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            ConfigWinForm(new Point(500, 400), "Holy Priest Settings");
+            /* Professions and Racials */
+            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
+            AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions and Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions and Racials", "AtPercentage");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions and Racials", "AtPercentage");
             /* Priest Buffs */
             AddControlInWinForm("Use Chakra: Chastise", "UseChakraChastise", "Priest Buffs");
             AddControlInWinForm("Use Chakra: Sanctuary", "UseChakraSanctuary", "Priest Buffs");
@@ -2145,25 +2210,26 @@ public class Priest_Holy
             AddControlInWinForm("Use Shadow Word: Pain", "UseShadowWordPain", "Offensive Spell");
             AddControlInWinForm("Use Smite", "UseSmite", "Offensive Spell");
             /* Healing Cooldown */
-            AddControlInWinForm("Use Divine Hymn", "UseDivineHymn", "Healing Cooldown");
-            AddControlInWinForm("Use Light Well", "UseLightWell", "Healing Cooldown");
+            AddControlInWinForm("Use Divine Hymn", "UseDivineHymn", "Healing Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Light Well", "UseLightWell", "Healing Cooldown", "AtPercentage");
             AddControlInWinForm("Use Power Infusion", "UsePowerInfusion", "Healing Cooldown");
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Healing Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Guardian Spirit", "UseGuardianSpirit", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown");
-            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
-            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
-            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown");
-            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown");
+            AddControlInWinForm("Use Guardian Spirit", "UseGuardianSpirit", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Spectral Guise", "UseSpectralGuise", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Void Tendrils", "UseVoidTendrils", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Circle of Healing", "UseCircleofHealing", "Healing Spell");
-            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell");
-            AddControlInWinForm("Use Flash Heal", "UseFlashHeal", "Healing Spell");
-            AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell");
-            AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell");
-            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell");
-            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell");
+            AddControlInWinForm("Use Circle of Healing", "UseCircleofHealing", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Desperate Prayer", "UseDesperatePrayer", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal for Regeneration after combat", "UseFlashHealNonCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Flash Heal during combat", "UseFlashHealInCombat", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Greater Heal", "UseGreaterHeal", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Heal", "UseHeal", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Hymn of Hope", "UseHymnofHope", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Prayer of Mending", "UsePrayerofMending", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Renew", "UseRenew", "Healing Spell");
             /* Game Settings */
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");

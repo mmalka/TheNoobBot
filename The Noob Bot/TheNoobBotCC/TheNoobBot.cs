@@ -1216,23 +1216,28 @@ public class Deathknight_Apprentice
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+
+                            Combat();
                         }
 
-                        Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -1494,7 +1499,7 @@ public class Deathknight_Apprentice
 
         public DeathknightApprenticeSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Deathknight Apprentice Settings");
+            ConfigWinForm(new Point(500, 400), "Deathknight Apprentice Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -1651,7 +1656,7 @@ public class Deathknight_Blood
         {
             try
             {
-                if (ObjectManager.Me.IsAlive)
+                if (!ObjectManager.Me.IsDead)
                 {
                     Buff_Path();
                     if (!ObjectManager.Me.IsMounted)
@@ -1683,9 +1688,7 @@ public class Deathknight_Blood
                     }
                 }
                 else
-                {
-                    Thread.Sleep(100);
-                }
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -2315,7 +2318,7 @@ public class Deathknight_Blood
 
         public DeathknightBloodSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Deathknight Blood Settings");
+            ConfigWinForm(new Point(500, 400), "Deathknight Blood Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -2502,34 +2505,39 @@ public class Deathknight_Unholy
         {
             try
             {
-                Buff_Path();
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    Buff_Path();
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
-                    }
 
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
+                    }
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -3158,7 +3166,7 @@ public class Deathknight_Unholy
 
         public DeathknightUnholySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Deathknight Unholy Settings");
+            ConfigWinForm(new Point(500, 400), "Deathknight Unholy Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -3340,34 +3348,39 @@ public class Deathknight_Frost
         {
             try
             {
-                Buff_Path();
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    Buff_Path();
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
-                    }
 
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
+                    }
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -4017,7 +4030,7 @@ public class Deathknight_Frost
 
         public DeathknightFrostSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Deathknight Frost Settings");
+            ConfigWinForm(new Point(500, 400), "Deathknight Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -4201,32 +4214,37 @@ public class Mage_Arcane
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Arcane_Barrage.IsDistanceGood || Scorch.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -4754,7 +4772,7 @@ public class Mage_Arcane
 
         public MageArcaneSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Mage Arcane Settings");
+            ConfigWinForm(new Point(500, 400), "Mage Arcane Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -4933,32 +4951,37 @@ public class Mage_Frost
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Frostbolt.IsDistanceGood || Ice_Lance.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -5542,7 +5565,7 @@ public class Mage_Frost
 
         public MageFrostSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Mage Frost Settings");
+            ConfigWinForm(new Point(500, 400), "Mage Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -5722,35 +5745,40 @@ public class Mage_Fire
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Scorch.IsDistanceGood || Fireball.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
                         else
                         {
-                            LC = 0;
-                            Combat();
+                            if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
                     }
-                    else
-                    {
-                        if (!ObjectManager.Me.IsCast)
-                            Patrolling();
-                    }
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -6293,7 +6321,7 @@ public class Mage_Fire
 
         public MageFireSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Mage Fire Settings");
+            ConfigWinForm(new Point(500, 400), "Mage Fire Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -6482,32 +6510,37 @@ public class Warlock_Demonology
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Doom.IsDistanceGood || Corruption.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -7138,7 +7171,7 @@ public class Warlock_Demonology
 
         public WarlockDemonologySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Warlock Demonology Settings");
+            ConfigWinForm(new Point(500, 400), "Warlock Demonology Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -7324,32 +7357,36 @@ public class Warlock_Destruction
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Curse_of_the_Elements.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -8097,32 +8134,36 @@ public class Warlock_Affliction
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Soul_Swap.IsDistanceGood || Agony.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -8736,7 +8777,7 @@ public class Warlock_Affliction
 
         public WarlockAfflictionSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Warlock Affliction Settings");
+            ConfigWinForm(new Point(500, 400), "Warlock Affliction Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -9548,7 +9589,7 @@ public class Druid_Balance
 
         public DruidBalanceSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Druid Balance Settings");
+            ConfigWinForm(new Point(500, 400), "Druid Balance Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -9733,26 +9774,30 @@ public class Druid_Feral
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Faerie_Fire.IsDistanceGood || Wild_Charge.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Faerie_Fire.IsDistanceGood || Wild_Charge.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                            LowCombat();
-                        else
-                            Combat();
+                                LowCombat();
+                            else
+                                Combat();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -10401,7 +10446,7 @@ public class Druid_Feral
 
         public DruidFeralSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Druid Feral Settings");
+            ConfigWinForm(new Point(500, 400), "Druid Feral Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -10579,22 +10624,26 @@ public class Druid_Restoration
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Moonfire.IsDistanceGood || Wrath.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Moonfire.IsDistanceGood || Wrath.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        Combat();
+                            Combat();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -11048,7 +11097,7 @@ public class Druid_Restoration
 
         public DruidRestorationSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Druid Restoration Settings");
+            ConfigWinForm(new Point(500, 400), "Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -11219,26 +11268,30 @@ public class Druid_Guardian
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Faerie_Fire.IsDistanceGood || Wild_Charge.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Faerie_Fire.IsDistanceGood || Wild_Charge.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                            LowCombat();
-                        else
-                            Combat();
+                                LowCombat();
+                            else
+                                Combat();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -11775,7 +11828,7 @@ public class Druid_Guardian
 
         public DruidGuardianSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Druid Guardian Settings");
+            ConfigWinForm(new Point(500, 400), "Druid Guardian Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -11936,20 +11989,25 @@ public class Paladin_Holy
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget && HolyShock.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget && HolyShock.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+                            Combat();
                         }
-                        Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -12235,7 +12293,7 @@ public class Paladin_Holy
 
         public PaladinHolySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Paladin Protection Settings");
+            ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -12370,20 +12428,24 @@ public class Paladin_Protection
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget && Judgment.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget && Judgment.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+                            Combat();
                         }
-                        Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -12715,7 +12777,7 @@ public class Paladin_Protection
 
         public PaladinProtectionSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Paladin Protection Settings");
+            ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -12869,21 +12931,26 @@ public class Paladin_Retribution
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Judgment.IsDistanceGood || Exorcism.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            (Judgment.IsDistanceGood || Exorcism.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+                            Combat();
                         }
-                        Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -13255,7 +13322,7 @@ public class Paladin_Retribution
 
         public PaladinRetributionSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Paladin Retribution Settings");
+            ConfigWinForm(new Point(500, 400), "Paladin Retribution Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -13437,32 +13504,37 @@ public class Shaman_Enhancement
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Flame_Shock.IsDistanceGood || Earth_Shock.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -14125,7 +14197,7 @@ public class Shaman_Enhancement
 
         public ShamanEnhancementSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Shaman Enhancement Settings");
+            ConfigWinForm(new Point(500, 400), "Shaman Enhancement Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -14321,32 +14393,37 @@ public class Shaman_Restoration
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Flame_Shock.IsDistanceGood || Earth_Shock.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -15019,7 +15096,7 @@ public class Shaman_Restoration
 
         public ShamanRestorationSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Shaman Restoration Settings");
+            ConfigWinForm(new Point(500, 400), "Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -15211,31 +15288,36 @@ public class Shaman_Elemental
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget && Flame_Shock.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget && Flame_Shock.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -15859,7 +15941,7 @@ public class Shaman_Elemental
 
         public ShamanElementalSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Shaman Elemental Settings");
+            ConfigWinForm(new Point(500, 400), "Shaman Elemental Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -16544,7 +16626,7 @@ public class Priest_Shadow
         public bool UsePowerInfusion = true;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
-        public uint UsePowerWordShieldBelowPercentage = 25;
+        public uint UsePowerWordShieldBelowPercentage = 100;
         public bool UsePrayerofMending = true;
         public bool UsePsychicHorror = true;
         public bool UsePsychicScream = true;
@@ -16566,7 +16648,7 @@ public class Priest_Shadow
 
         public PriestShadowSettings()
         {
-            ConfigWinForm(new Point(450, 500), "Shadow Priest Settings");
+            ConfigWinForm(new Point(500, 400), "Shadow Priest Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -16745,32 +16827,37 @@ public class Rogue_Combat
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Throw.IsDistanceGood || Cheap_Shot.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -17316,7 +17403,7 @@ public class Rogue_Combat
 
         public RogueCombatSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Rogue Combat Settings");
+            ConfigWinForm(new Point(500, 400), "Rogue Combat Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -17499,32 +17586,37 @@ public class Rogue_Subtlety
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Throw.IsDistanceGood || Cheap_Shot.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -18046,7 +18138,7 @@ public class Rogue_Subtlety
 
         public RogueSubtletySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Rogue Subtlety Settings");
+            ConfigWinForm(new Point(500, 400), "Rogue Subtlety Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -18227,32 +18319,36 @@ public class Rogue_Assassination
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Throw.IsDistanceGood || Cheap_Shot.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -18790,7 +18886,7 @@ public class Rogue_Assassination
 
         public RogueAssassinationSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Rogue Assassination Settings");
+            ConfigWinForm(new Point(500, 400), "Rogue Assassination Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -18980,32 +19076,36 @@ public class Warrior_Arms
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             Taunt.IsDistanceGood)
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -19626,7 +19726,7 @@ public class Warrior_Arms
 
         public WarriorArmsSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Warrior Arms Settings");
+            ConfigWinForm(new Point(500, 400), "Warrior Arms Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -19817,32 +19917,36 @@ public class Warrior_Protection
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             Taunt.IsDistanceGood)
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -20484,7 +20588,7 @@ public class Warrior_Protection
 
         public WarriorProtectionSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Warrior Protection Settings");
+            ConfigWinForm(new Point(500, 400), "Warrior Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -20674,32 +20778,37 @@ public class Warrior_Fury
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             Taunt.IsDistanceGood)
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -21282,7 +21391,7 @@ public class Warrior_Fury
 
         public WarriorFurySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Warrior Fury Settings");
+            ConfigWinForm(new Point(500, 400), "Warrior Fury Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -21474,32 +21583,37 @@ public class Hunter_Marksmanship
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -22059,7 +22173,7 @@ public class Hunter_Marksmanship
 
         public HunterMarksmanshipSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Hunter Marksmanship Settings");
+            ConfigWinForm(new Point(500, 400), "Hunter Marksmanship Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -22253,32 +22367,37 @@ public class Hunter_BeastMastery
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -22907,7 +23026,7 @@ public class Hunter_BeastMastery
 
         public HunterBeastMasterySettings()
         {
-            ConfigWinForm(new Point(400, 400), "Hunter BeastMastery Settings");
+            ConfigWinForm(new Point(500, 400), "Hunter BeastMastery Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -23101,35 +23220,39 @@ public class Hunter_Survival
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        {
+                            if (ObjectManager.Me.Target != lastTarget &&
                             (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
-                        {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
                         else
                         {
-                            LC = 0;
-                            Combat();
+                            if (!ObjectManager.Me.IsCast)
+                                Patrolling();
                         }
                     }
-                    else
-                    {
-                        if (!ObjectManager.Me.IsCast)
-                            Patrolling();
-                    }
                 }
+                Thread.Sleep(500);
             }
             catch
             {
@@ -23726,7 +23849,7 @@ public class Hunter_Survival
 
         public HunterSurvivalSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Hunter Survival Settings");
+            ConfigWinForm(new Point(500, 400), "Hunter Survival Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");

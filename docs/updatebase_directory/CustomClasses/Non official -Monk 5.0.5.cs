@@ -48,9 +48,15 @@ public class Main : ICustomClass
         Initialize(true);
     }
 
+    public void ResetConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Initialize(true, true);
+    }
+
     #endregion
 
-    public void Initialize(bool ConfigOnly)
+    public void Initialize(bool ConfigOnly, bool ResetSettings = false)
     {
         try
         {
@@ -74,7 +80,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Monk_Brewmaster.xml";
                             Monk_Brewmaster.MonkBrewmasterSettings CurrentSetting;
                             CurrentSetting = new Monk_Brewmaster.MonkBrewmasterSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Monk_Brewmaster.MonkBrewmasterSettings>(CurrentSettingsFile);
@@ -96,7 +102,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Monk_Windwalker.xml";
                             Monk_Windwalker.MonkWindwalkerSettings CurrentSetting;
                             CurrentSetting = new Monk_Windwalker.MonkWindwalkerSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Monk_Windwalker.MonkWindwalkerSettings>(CurrentSettingsFile);
@@ -118,7 +124,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Monk_Mistweaver.xml";
                             Monk_Mistweaver.MonkMistweaverSettings CurrentSetting;
                             CurrentSetting = new Monk_Mistweaver.MonkMistweaverSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Monk_Mistweaver.MonkMistweaverSettings>(CurrentSettingsFile);
@@ -143,7 +149,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Monk_Brewmaster.xml";
                             Monk_Brewmaster.MonkBrewmasterSettings CurrentSetting;
                             CurrentSetting = new Monk_Brewmaster.MonkBrewmasterSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Monk_Brewmaster.MonkBrewmasterSettings>(CurrentSettingsFile);
@@ -273,22 +279,27 @@ public class Monk_Brewmaster
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            Provoke.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            Provoke.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+
+                            Combat();
                         }
-                        
-                        Combat();
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -346,8 +357,7 @@ public class Monk_Brewmaster
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
-                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
-                && ObjectManager.Me.IsAlive)
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff)
         {
             Roll.Launch();
             return;
@@ -734,7 +744,7 @@ public class Monk_Brewmaster
 
         public MonkBrewmasterSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Brewmaster Monk Settings");
+            ConfigWinForm(new Point(500, 400), "Brewmaster Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -905,22 +915,27 @@ public class Monk_Windwalker
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            Provoke.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            Provoke.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        Combat();
+                            Combat();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -981,8 +996,7 @@ public class Monk_Windwalker
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
-                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
-                && ObjectManager.Me.IsAlive)
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff)
         {
             Roll.Launch();
             return;
@@ -1340,7 +1354,7 @@ public class Monk_Windwalker
 
         public MonkWindwalkerSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Windwalker Monk Settings");
+            ConfigWinForm(new Point(500, 400), "Windwalker Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
@@ -1515,22 +1529,27 @@ public class Monk_Mistweaver
         {
             try
             {
-                if (!ObjectManager.Me.IsMounted)
+                if (!ObjectManager.Me.IsDead)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            Provoke.IsDistanceGood)
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
-                        }
+                            if (ObjectManager.Me.Target != lastTarget &&
+                            Provoke.IsDistanceGood)
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
 
-                        Combat();
+                            Combat();
+                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
                 }
+                else
+                    Thread.Sleep(500);
             }
             catch
             {
@@ -1585,8 +1604,7 @@ public class Monk_Mistweaver
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() == 0 && Roll.IsSpellUsable && Roll.KnownSpell
-                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff
-                && ObjectManager.Me.IsAlive)
+                && MySettings.UseRoll && ObjectManager.Me.GetMove && !Tigers_Lust.HaveBuff)
         {
             Roll.Launch();
             return;
@@ -1998,7 +2016,7 @@ public class Monk_Mistweaver
 
         public MonkMistweaverSettings()
         {
-            ConfigWinForm(new Point(400, 400), "Mistweaver Monk Settings");
+            ConfigWinForm(new Point(500, 400), "Mistweaver Monk Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
