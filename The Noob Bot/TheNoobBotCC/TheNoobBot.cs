@@ -10012,7 +10012,7 @@ public class Druid_Feral
         else if (Ferocious_Bite.IsSpellUsable && Ferocious_Bite.KnownSpell && Ferocious_Bite.IsDistanceGood
                  && MySettings.UseFerociousBite && !Rip_Timer.IsReady && ObjectManager.Me.ComboPoint > 4
                  && ObjectManager.Target.HealthPercent > 24 && !Savage_Roar_Timer.IsReady
-                 && ObjectManager.Me.Energy > 49 && FivePtRip == true)
+                 && ObjectManager.Me.Energy > 49 && FivePtRip)
         {
             Ferocious_Bite.Launch();
             return;
