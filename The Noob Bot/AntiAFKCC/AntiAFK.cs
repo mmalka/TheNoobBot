@@ -49,6 +49,11 @@ public class Main : ICustomClass
         MessageBox.Show("There is no settings available");
     }
 
+    public void ResetConfiguration()
+    {
+        MessageBox.Show("There is no settings available");
+    }
+
     #endregion
 }
 

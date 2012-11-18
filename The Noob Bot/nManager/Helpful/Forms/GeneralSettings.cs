@@ -227,6 +227,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX1);
             CustomClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
             SetToolTypeIfNeeded(CustomClassSettingsButton);
+            CustomClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
+            SetToolTypeIfNeeded(CustomClassResetSettingsButton);
             closeB.Text = Translate.Get(Translate.Id.Close_without_save);
             SetToolTypeIfNeeded(closeB);
             resetB.Text = Translate.Get(Translate.Id.Reset_Settings);
@@ -540,6 +542,11 @@ namespace nManager.Helpful.Forms
                 Logging.WriteError("GeneralSettings > delBlackListHarvest_Click(object sender, EventArgs e): " + ex);
 
             }
+        }
+
+        private void CustomClassResetSettingsButton_Click(object sender, EventArgs e)
+        {
+            nManager.Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" + CustomClass.Text);
         }
     }
 }

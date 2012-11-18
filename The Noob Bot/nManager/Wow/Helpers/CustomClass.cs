@@ -64,7 +64,7 @@ namespace nManager.Wow.Helpers
                                                      nManagerSetting.CurrentSetting.CustomClass;
                     string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(__pathToCustomClassFile, false, false);
+                        LoadCustomClass(__pathToCustomClassFile, false, false, false);
                     else
                         LoadCustomClass(__pathToCustomClassFile);
                 }
@@ -77,7 +77,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false,
+        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false, bool resetSettings = false,
                                            bool CSharpFile = true)
         {
             try
@@ -132,7 +132,10 @@ namespace nManager.Wow.Helpers
                     {
                         if (settingOnly)
                         {
-                            _instanceFromOtherAssembly.ShowConfiguration();
+                            if (resetSettings)
+                                _instanceFromOtherAssembly.ResetConfiguration();
+                            else
+                                _instanceFromOtherAssembly.ShowConfiguration();
                             _instanceFromOtherAssembly.Dispose();
                             return;
                         }
@@ -189,7 +192,7 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(1000);
                     string fileExt = _pathToCustomClassFile.Substring(_pathToCustomClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(_pathToCustomClassFile, false, false);
+                        LoadCustomClass(_pathToCustomClassFile, false, false, false);
                     else
                         LoadCustomClass(_pathToCustomClassFile);
                 }
@@ -206,9 +209,24 @@ namespace nManager.Wow.Helpers
             {
                 string fileExt = filePath.Substring(filePath.Length - 3);
                 if (fileExt == "dll")
-                    LoadCustomClass(filePath, true, false);
+                    LoadCustomClass(filePath, true, false, false);
                 else
                     LoadCustomClass(filePath, true);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
+            }
+        }
+        public static void ResetConfigurationCustomClass(string filePath)
+        {
+            try
+            {
+                string fileExt = filePath.Substring(filePath.Length - 3);
+                if (fileExt == "dll")
+                    LoadCustomClass(filePath, true, true, false);
+                else
+                    LoadCustomClass(filePath, true, true);
             }
             catch (Exception exception)
             {
@@ -233,6 +251,8 @@ namespace nManager.Wow.Helpers
         void Dispose();
 
         void ShowConfiguration();
+
+        void ResetConfiguration();
 
         #endregion Methods
     }

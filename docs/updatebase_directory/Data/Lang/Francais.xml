@@ -935,6 +935,10 @@
       <Id>Settings</Id>
     </Translation>
     <Translation>
+      <Text>Configuration par défaut</Text>
+      <Id>ResetSettings</Id>
+    </Translation>
+    <Translation>
       <Text>Veuilez sélectionner un profil</Text>
       <Id>Please_select_an_profile</Id>
     </Translation>

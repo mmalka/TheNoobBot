@@ -300,6 +300,7 @@ namespace nManager
             Product_Settings,
             Pathing_Reverse_Direction,
             Settings,
+            ResetSettings,
             Please_select_an_profile,
             File_not_found,
             success,

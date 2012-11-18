@@ -31,6 +31,8 @@ namespace nManager.Helpful.Forms
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
             this.expandablePanel7 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.AlwaysOnTopFeatureLabel = new DevComponents.DotNetBar.LabelX();
+            this.ActivateAlwaysOnTopFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX73 = new DevComponents.DotNetBar.LabelX();
             this.AllowTNBToSetYourMaxFps = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.MaxDistanceToGoToMailboxesOrNPCs = new DevComponents.Editors.IntegerInput();
@@ -179,6 +181,7 @@ namespace nManager.Helpful.Forms
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.UseGroundMount = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.CustomClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.labelX59 = new DevComponents.DotNetBar.LabelX();
             this.UseSpiritHealer = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX49 = new DevComponents.DotNetBar.LabelX();
@@ -198,8 +201,6 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.AlwaysOnTopFeatureLabel = new DevComponents.DotNetBar.LabelX();
-            this.ActivateAlwaysOnTopFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.expandablePanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
@@ -283,6 +284,37 @@ namespace nManager.Helpful.Forms
             this.expandablePanel7.TitleStyle.GradientAngle = 90;
             this.expandablePanel7.TitleText = "Other options";
             // 
+            // AlwaysOnTopFeatureLabel
+            // 
+            this.AlwaysOnTopFeatureLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.AlwaysOnTopFeatureLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.AlwaysOnTopFeatureLabel.ForeColor = System.Drawing.Color.Black;
+            this.AlwaysOnTopFeatureLabel.Location = new System.Drawing.Point(302, 62);
+            this.AlwaysOnTopFeatureLabel.Name = "AlwaysOnTopFeatureLabel";
+            this.AlwaysOnTopFeatureLabel.Size = new System.Drawing.Size(160, 23);
+            this.AlwaysOnTopFeatureLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.AlwaysOnTopFeatureLabel.TabIndex = 30;
+            this.AlwaysOnTopFeatureLabel.Text = "Always On Top";
+            // 
+            // ActivateAlwaysOnTopFeature
+            // 
+            this.ActivateAlwaysOnTopFeature.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActivateAlwaysOnTopFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActivateAlwaysOnTopFeature.ForeColor = System.Drawing.Color.Black;
+            this.ActivateAlwaysOnTopFeature.Location = new System.Drawing.Point(468, 62);
+            this.ActivateAlwaysOnTopFeature.Name = "ActivateAlwaysOnTopFeature";
+            this.ActivateAlwaysOnTopFeature.OffText = "NO";
+            this.ActivateAlwaysOnTopFeature.OnText = "YES";
+            this.ActivateAlwaysOnTopFeature.Size = new System.Drawing.Size(66, 22);
+            this.ActivateAlwaysOnTopFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActivateAlwaysOnTopFeature.TabIndex = 29;
+            // 
             // labelX73
             // 
             this.labelX73.BackColor = System.Drawing.Color.Transparent;
@@ -298,7 +330,7 @@ namespace nManager.Helpful.Forms
             this.labelX73.TabIndex = 28;
             this.labelX73.Text = "Uncap MaxFPS (recommended)";
             // 
-            // MaxFPSSwitch
+            // AllowTNBToSetYourMaxFps
             // 
             this.AllowTNBToSetYourMaxFps.BackColor = System.Drawing.Color.White;
             // 
@@ -314,7 +346,7 @@ namespace nManager.Helpful.Forms
             this.AllowTNBToSetYourMaxFps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AllowTNBToSetYourMaxFps.TabIndex = 27;
             // 
-            // npcMailboxSearchRadius
+            // MaxDistanceToGoToMailboxesOrNPCs
             // 
             this.MaxDistanceToGoToMailboxesOrNPCs.BackColor = System.Drawing.Color.White;
             // 
@@ -362,7 +394,7 @@ namespace nManager.Helpful.Forms
             this.labelX42.TabIndex = 11;
             this.labelX42.Text = "Use Paths Finder";
             // 
-            // usePathsFinder
+            // ActivatePathFindingFeature
             // 
             this.ActivatePathFindingFeature.BackColor = System.Drawing.Color.White;
             // 
@@ -460,7 +492,7 @@ namespace nManager.Helpful.Forms
             this.labelX45.TabIndex = 35;
             this.labelX45.Text = "Security:";
             // 
-            // securitySongIfNewWhisper
+            // PlayASongIfNewWhispReceived
             // 
             this.PlayASongIfNewWhispReceived.BackColor = System.Drawing.Color.White;
             // 
@@ -552,7 +584,7 @@ namespace nManager.Helpful.Forms
             this.labelX31.TabIndex = 31;
             this.labelX31.Text = "Level";
             // 
-            // securityRecordWhisperInLogFile
+            // RecordWhispsInLogFiles
             // 
             this.RecordWhispsInLogFiles.BackColor = System.Drawing.Color.White;
             // 
@@ -583,7 +615,7 @@ namespace nManager.Helpful.Forms
             this.labelX29.TabIndex = 30;
             this.labelX29.Text = "If Player Teleported";
             // 
-            // closeIfPlayerTeleported
+            // StopTNBIfPlayerHaveBeenTeleported
             // 
             this.StopTNBIfPlayerHaveBeenTeleported.BackColor = System.Drawing.Color.White;
             // 
@@ -629,7 +661,7 @@ namespace nManager.Helpful.Forms
             this.labelX30.TabIndex = 28;
             this.labelX30.Text = "If reached 4000 Honor Points";
             // 
-            // securityPauseBotIfNerbyPlayer
+            // PauseTNBIfNearByPlayer
             // 
             this.PauseTNBIfNearByPlayer.BackColor = System.Drawing.Color.White;
             // 
@@ -645,7 +677,7 @@ namespace nManager.Helpful.Forms
             this.PauseTNBIfNearByPlayer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PauseTNBIfNearByPlayer.TabIndex = 36;
             // 
-            // closeIfReached4000HonorPoints
+            // StopTNBIfHonorPointsLimitReached
             // 
             this.StopTNBIfHonorPointsLimitReached.BackColor = System.Drawing.Color.White;
             // 
@@ -661,7 +693,7 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfHonorPointsLimitReached.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfHonorPointsLimitReached.TabIndex = 27;
             // 
-            // closeAfterXMin
+            // StopTNBAfterXMinutes
             // 
             this.StopTNBAfterXMinutes.BackColor = System.Drawing.Color.White;
             // 
@@ -694,7 +726,7 @@ namespace nManager.Helpful.Forms
             this.labelX28.TabIndex = 23;
             this.labelX28.Text = "After";
             // 
-            // closeAfterXBlockages
+            // StopTNBAfterXStucks
             // 
             this.StopTNBAfterXStucks.BackColor = System.Drawing.Color.White;
             // 
@@ -727,7 +759,7 @@ namespace nManager.Helpful.Forms
             this.labelX26.TabIndex = 21;
             this.labelX26.Text = "After";
             // 
-            // closeIfWhisperBiggerOrEgalAt
+            // StopTNBIfReceivedAtMostXWhispers
             // 
             this.StopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.White;
             // 
@@ -760,7 +792,7 @@ namespace nManager.Helpful.Forms
             this.labelX25.TabIndex = 19;
             this.labelX25.Text = "If Whisper bigger or equal to";
             // 
-            // closeAfterXLevel
+            // StopTNBAfterXLevelup
             // 
             this.StopTNBAfterXLevelup.BackColor = System.Drawing.Color.White;
             // 
@@ -809,7 +841,7 @@ namespace nManager.Helpful.Forms
             this.labelX27.TabIndex = 11;
             this.labelX27.Text = "If full Bag";
             // 
-            // closeIfFullBag
+            // StopTNBIfBagAreFull
             // 
             this.StopTNBIfBagAreFull.BackColor = System.Drawing.Color.White;
             // 
@@ -866,7 +898,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel9.TitleStyle.GradientAngle = 90;
             this.expandablePanel9.TitleText = "Mail (Send Items to alts)";
             // 
-            // mailRecipient
+            // MaillingFeatureRecipient
             // 
             this.MaillingFeatureRecipient.BackColor = System.Drawing.Color.White;
             // 
@@ -895,7 +927,7 @@ namespace nManager.Helpful.Forms
             this.labelX56.TabIndex = 37;
             this.labelX56.Text = "Mail Recipient";
             // 
-            // mailSubject
+            // MaillingFeatureSubject
             // 
             this.MaillingFeatureSubject.BackColor = System.Drawing.Color.White;
             // 
@@ -909,7 +941,7 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureSubject.Size = new System.Drawing.Size(182, 22);
             this.MaillingFeatureSubject.TabIndex = 36;
             // 
-            // forceMailList
+            // ForceToMailTheseItems
             // 
             this.ForceToMailTheseItems.BackColor = System.Drawing.Color.White;
             // 
@@ -940,7 +972,7 @@ namespace nManager.Helpful.Forms
             this.labelX48.TabIndex = 34;
             this.labelX48.Text = "Force Mail List (one item by line)";
             // 
-            // mailPurple
+            // MailPurple
             // 
             this.MailPurple.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -955,7 +987,7 @@ namespace nManager.Helpful.Forms
             this.MailPurple.TabIndex = 33;
             this.MailPurple.Text = "Mail Purple items";
             // 
-            // mailBlue
+            // MailBlue
             // 
             this.MailBlue.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -970,7 +1002,7 @@ namespace nManager.Helpful.Forms
             this.MailBlue.TabIndex = 32;
             this.MailBlue.Text = "Mail Blue items";
             // 
-            // mailGreen
+            // MailGreen
             // 
             this.MailGreen.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -985,7 +1017,7 @@ namespace nManager.Helpful.Forms
             this.MailGreen.TabIndex = 31;
             this.MailGreen.Text = "Mail Green items";
             // 
-            // mailWhite
+            // MailWhite
             // 
             this.MailWhite.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1000,7 +1032,7 @@ namespace nManager.Helpful.Forms
             this.MailWhite.TabIndex = 30;
             this.MailWhite.Text = "Mail White items";
             // 
-            // mailGray
+            // MailGray
             // 
             this.MailGray.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1045,7 +1077,7 @@ namespace nManager.Helpful.Forms
             this.labelX55.TabIndex = 26;
             this.labelX55.Text = "Use Mail";
             // 
-            // useMail
+            // ActivateAutoMaillingFeature
             // 
             this.ActivateAutoMaillingFeature.BackColor = System.Drawing.Color.White;
             // 
@@ -1061,7 +1093,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMaillingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMaillingFeature.TabIndex = 25;
             // 
-            // doNotMailList
+            // DontMailTheseItems
             // 
             this.DontMailTheseItems.BackColor = System.Drawing.Color.White;
             // 
@@ -1135,7 +1167,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel8.TitleStyle.GradientAngle = 90;
             this.expandablePanel8.TitleText = "Vendor (Selling or Buying)";
             // 
-            // forceSellList
+            // ForceToSellTheseItems
             // 
             this.ForceToSellTheseItems.BackColor = System.Drawing.Color.White;
             // 
@@ -1166,7 +1198,7 @@ namespace nManager.Helpful.Forms
             this.labelX53.TabIndex = 34;
             this.labelX53.Text = "Force Sell List (one item by line)";
             // 
-            // sellPurple
+            // SellPurple
             // 
             this.SellPurple.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1181,7 +1213,7 @@ namespace nManager.Helpful.Forms
             this.SellPurple.TabIndex = 33;
             this.SellPurple.Text = "Sell Purple items";
             // 
-            // sellBlue
+            // SellBlue
             // 
             this.SellBlue.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1196,7 +1228,7 @@ namespace nManager.Helpful.Forms
             this.SellBlue.TabIndex = 32;
             this.SellBlue.Text = "Sell Blue items";
             // 
-            // sellGreen
+            // SellGreen
             // 
             this.SellGreen.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1211,7 +1243,7 @@ namespace nManager.Helpful.Forms
             this.SellGreen.TabIndex = 31;
             this.SellGreen.Text = "Sell Green items";
             // 
-            // sellWhite
+            // SellWhite
             // 
             this.SellWhite.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1226,7 +1258,7 @@ namespace nManager.Helpful.Forms
             this.SellWhite.TabIndex = 30;
             this.SellWhite.Text = "Sell White items";
             // 
-            // sellGray
+            // SellGray
             // 
             this.SellGray.BackColor = System.Drawing.Color.Transparent;
             // 
@@ -1256,7 +1288,7 @@ namespace nManager.Helpful.Forms
             this.labelX52.TabIndex = 28;
             this.labelX52.Text = "Selling";
             // 
-            // selling
+            // ActivateAutoSellingFeature
             // 
             this.ActivateAutoSellingFeature.BackColor = System.Drawing.Color.White;
             // 
@@ -1287,7 +1319,7 @@ namespace nManager.Helpful.Forms
             this.labelX51.TabIndex = 26;
             this.labelX51.Text = "Repair";
             // 
-            // repair
+            // ActivateAutoRepairFeature
             // 
             this.ActivateAutoRepairFeature.BackColor = System.Drawing.Color.White;
             // 
@@ -1303,7 +1335,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoRepairFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoRepairFeature.TabIndex = 25;
             // 
-            // foodAmount
+            // NumberOfFoodsWeGot
             // 
             this.NumberOfFoodsWeGot.BackColor = System.Drawing.Color.White;
             // 
@@ -1335,7 +1367,7 @@ namespace nManager.Helpful.Forms
             this.labelX50.TabIndex = 23;
             this.labelX50.Text = "Food Amount";
             // 
-            // drinkAmount
+            // NumberOfBeverageWeGot
             // 
             this.NumberOfBeverageWeGot.BackColor = System.Drawing.Color.White;
             // 
@@ -1367,7 +1399,7 @@ namespace nManager.Helpful.Forms
             this.labelX41.TabIndex = 16;
             this.labelX41.Text = "Drink Amount";
             // 
-            // doNotSellList
+            // DontSellTheseItems
             // 
             this.DontSellTheseItems.BackColor = System.Drawing.Color.White;
             // 
@@ -1432,7 +1464,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel6.TitleStyle.GradientAngle = 90;
             this.expandablePanel6.TitleText = "Relogger";
             // 
-            // bNetName
+            // BattleNetSubAccount
             // 
             this.BattleNetSubAccount.BackColor = System.Drawing.Color.White;
             // 
@@ -1476,7 +1508,7 @@ namespace nManager.Helpful.Forms
             this.labelX38.TabIndex = 13;
             this.labelX38.Text = "Relogger";
             // 
-            // relogger
+            // ActivateReloggerFeature
             // 
             this.ActivateReloggerFeature.BackColor = System.Drawing.Color.White;
             // 
@@ -1490,7 +1522,7 @@ namespace nManager.Helpful.Forms
             this.ActivateReloggerFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateReloggerFeature.TabIndex = 12;
             // 
-            // accountPassword
+            // PasswordOfTheBattleNetAccount
             // 
             this.PasswordOfTheBattleNetAccount.BackColor = System.Drawing.Color.White;
             // 
@@ -1519,7 +1551,7 @@ namespace nManager.Helpful.Forms
             this.labelX37.TabIndex = 21;
             this.labelX37.Text = "Account Password";
             // 
-            // accountEmail
+            // EmailOfTheBattleNetAccount
             // 
             this.EmailOfTheBattleNetAccount.BackColor = System.Drawing.Color.White;
             // 
@@ -1666,7 +1698,7 @@ namespace nManager.Helpful.Forms
             this.labelX69.TabIndex = 59;
             this.labelX69.Text = "Milling only in town";
             // 
-            // millingInTown
+            // OnlyUseMillingInTown
             // 
             this.OnlyUseMillingInTown.BackColor = System.Drawing.Color.White;
             // 
@@ -1682,7 +1714,7 @@ namespace nManager.Helpful.Forms
             this.OnlyUseMillingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseMillingInTown.TabIndex = 58;
             // 
-            // millingTime
+            // TimeBetweenEachMillingAttempt
             // 
             this.TimeBetweenEachMillingAttempt.BackColor = System.Drawing.Color.White;
             // 
@@ -1730,7 +1762,7 @@ namespace nManager.Helpful.Forms
             this.labelX71.TabIndex = 55;
             this.labelX71.Text = "Milling";
             // 
-            // milling
+            // ActivateAutoMilling
             // 
             this.ActivateAutoMilling.BackColor = System.Drawing.Color.White;
             // 
@@ -1746,7 +1778,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMilling.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMilling.TabIndex = 54;
             // 
-            // millingList
+            // HerbsToBeMilled
             // 
             this.HerbsToBeMilled.BackColor = System.Drawing.Color.White;
             // 
@@ -1792,7 +1824,7 @@ namespace nManager.Helpful.Forms
             this.labelX68.TabIndex = 51;
             this.labelX68.Text = "Auto Make Elemental";
             // 
-            // autoMakeElemental
+            // MakeStackOfElementalsItems
             // 
             this.MakeStackOfElementalsItems.BackColor = System.Drawing.Color.White;
             // 
@@ -1823,7 +1855,7 @@ namespace nManager.Helpful.Forms
             this.labelX65.TabIndex = 49;
             this.labelX65.Text = "Prospecting only in town";
             // 
-            // prospectingInTown
+            // OnlyUseProspectingInTown
             // 
             this.OnlyUseProspectingInTown.BackColor = System.Drawing.Color.White;
             // 
@@ -1839,7 +1871,7 @@ namespace nManager.Helpful.Forms
             this.OnlyUseProspectingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseProspectingInTown.TabIndex = 48;
             // 
-            // prospectingTime
+            // TimeBetweenEachProspectingAttempt
             // 
             this.TimeBetweenEachProspectingAttempt.BackColor = System.Drawing.Color.White;
             // 
@@ -1887,7 +1919,7 @@ namespace nManager.Helpful.Forms
             this.labelX63.TabIndex = 45;
             this.labelX63.Text = "Prospecting";
             // 
-            // prospecting
+            // ActivateAutoProspecting
             // 
             this.ActivateAutoProspecting.BackColor = System.Drawing.Color.White;
             // 
@@ -1903,7 +1935,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoProspecting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoProspecting.TabIndex = 44;
             // 
-            // prospectingList
+            // MineralsToProspect
             // 
             this.MineralsToProspect.BackColor = System.Drawing.Color.White;
             // 
@@ -1949,7 +1981,7 @@ namespace nManager.Helpful.Forms
             this.labelX61.TabIndex = 41;
             this.labelX61.Text = "Smelting";
             // 
-            // smelting
+            // ActivateAutoSmelting
             // 
             this.ActivateAutoSmelting.BackColor = System.Drawing.Color.White;
             // 
@@ -1965,7 +1997,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSmelting.TabIndex = 40;
             // 
-            // delBlackListHarvest
+            // ResetDontHarvestTheFollowingObjectsButton
             // 
             this.ResetDontHarvestTheFollowingObjectsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.ResetDontHarvestTheFollowingObjectsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -1992,7 +2024,7 @@ namespace nManager.Helpful.Forms
             this.labelX36.TabIndex = 38;
             this.labelX36.Text = "Don\'t harvest:";
             // 
-            // blackListHarvest
+            // DontHarvestTheFollowingObjects
             // 
             this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.White;
             this.DontHarvestTheFollowingObjects.ForeColor = System.Drawing.Color.Black;
@@ -2025,7 +2057,7 @@ namespace nManager.Helpful.Forms
             this.labelX35.TabIndex = 34;
             this.labelX35.Text = "Harvest During Long Move";
             // 
-            // harvestDuringLongMove
+            // HarvestDuringLongDistanceMovements
             // 
             this.HarvestDuringLongDistanceMovements.BackColor = System.Drawing.Color.White;
             // 
@@ -2056,7 +2088,7 @@ namespace nManager.Helpful.Forms
             this.labelX23.TabIndex = 32;
             this.labelX23.Text = "Ninja";
             // 
-            // skinNinja
+            // BeastNinjaSkinning
             // 
             this.BeastNinjaSkinning.BackColor = System.Drawing.Color.White;
             // 
@@ -2072,7 +2104,7 @@ namespace nManager.Helpful.Forms
             this.BeastNinjaSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BeastNinjaSkinning.TabIndex = 31;
             // 
-            // searchRadius
+            // GatheringSearchRadius
             // 
             this.GatheringSearchRadius.BackColor = System.Drawing.Color.White;
             // 
@@ -2105,7 +2137,7 @@ namespace nManager.Helpful.Forms
             this.labelX22.TabIndex = 29;
             this.labelX22.Text = "Search Radius";
             // 
-            // maxUnitsNear
+            // DontHarvestIfMoreThanXUnitInAggroRange
             // 
             this.DontHarvestIfMoreThanXUnitInAggroRange.BackColor = System.Drawing.Color.White;
             // 
@@ -2153,7 +2185,7 @@ namespace nManager.Helpful.Forms
             this.labelX20.TabIndex = 26;
             this.labelX20.Text = "Harvest Herbs";
             // 
-            // harvestHerbs
+            // ActivateHerbsHarvesting
             // 
             this.ActivateHerbsHarvesting.BackColor = System.Drawing.Color.White;
             // 
@@ -2184,7 +2216,7 @@ namespace nManager.Helpful.Forms
             this.labelX19.TabIndex = 24;
             this.labelX19.Text = "Harvest Minerals";
             // 
-            // harvestMinerals
+            // ActivateVeinsHarvesting
             // 
             this.ActivateVeinsHarvesting.BackColor = System.Drawing.Color.White;
             // 
@@ -2215,7 +2247,7 @@ namespace nManager.Helpful.Forms
             this.labelX17.TabIndex = 22;
             this.labelX17.Text = "Skin Mobs";
             // 
-            // skinMobs
+            // ActivateBeastSkinning
             // 
             this.ActivateBeastSkinning.BackColor = System.Drawing.Color.White;
             // 
@@ -2246,7 +2278,7 @@ namespace nManager.Helpful.Forms
             this.labelX16.TabIndex = 20;
             this.labelX16.Text = "Loot Chests";
             // 
-            // lootChests
+            // ActivateChestLooting
             // 
             this.ActivateChestLooting.BackColor = System.Drawing.Color.White;
             // 
@@ -2262,7 +2294,7 @@ namespace nManager.Helpful.Forms
             this.ActivateChestLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateChestLooting.TabIndex = 19;
             // 
-            // harvestAvoidPlayersRadius
+            // DontHarvestIfPlayerNearRadius
             // 
             this.DontHarvestIfPlayerNearRadius.BackColor = System.Drawing.Color.White;
             // 
@@ -2310,7 +2342,7 @@ namespace nManager.Helpful.Forms
             this.labelX18.TabIndex = 11;
             this.labelX18.Text = "Loot Mobs";
             // 
-            // lootMobs
+            // ActivateMonsterLooting
             // 
             this.ActivateMonsterLooting.BackColor = System.Drawing.Color.White;
             // 
@@ -2363,7 +2395,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel3.TitleStyle.GradientAngle = 90;
             this.expandablePanel3.TitleText = "Food / Drink && percentage to be used";
             // 
-            // restingMana
+            // DoRegenManaIfLow
             // 
             this.DoRegenManaIfLow.BackColor = System.Drawing.Color.White;
             // 
@@ -2409,7 +2441,7 @@ namespace nManager.Helpful.Forms
             this.labelX10.TabIndex = 24;
             this.labelX10.Text = "on";
             // 
-            // drinkPercent
+            // DrinkBeverageWhenManaIsUnderXPercent
             // 
             this.DrinkBeverageWhenManaIsUnderXPercent.BackColor = System.Drawing.Color.White;
             // 
@@ -2428,7 +2460,7 @@ namespace nManager.Helpful.Forms
             this.DrinkBeverageWhenManaIsUnderXPercent.TabIndex = 23;
             this.DrinkBeverageWhenManaIsUnderXPercent.Value = 35;
             // 
-            // drinkName
+            // BeverageName
             // 
             this.BeverageName.BackColor = System.Drawing.Color.White;
             // 
@@ -2487,7 +2519,7 @@ namespace nManager.Helpful.Forms
             this.labelX13.TabIndex = 19;
             this.labelX13.Text = "on";
             // 
-            // foodPercent
+            // EatFoodWhenHealthIsUnderXPercent
             // 
             this.EatFoodWhenHealthIsUnderXPercent.BackColor = System.Drawing.Color.White;
             // 
@@ -2506,7 +2538,7 @@ namespace nManager.Helpful.Forms
             this.EatFoodWhenHealthIsUnderXPercent.TabIndex = 18;
             this.EatFoodWhenHealthIsUnderXPercent.Value = 35;
             // 
-            // foodName
+            // FoodName
             // 
             this.FoodName.BackColor = System.Drawing.Color.White;
             // 
@@ -2617,7 +2649,7 @@ namespace nManager.Helpful.Forms
             this.labelX57.TabIndex = 20;
             this.labelX57.Text = "Ignore Fight if in Gound Mount";
             // 
-            // ignoreFightGoundMount
+            // IgnoreFightIfMounted
             // 
             this.IgnoreFightIfMounted.BackColor = System.Drawing.Color.White;
             // 
@@ -2633,7 +2665,7 @@ namespace nManager.Helpful.Forms
             this.IgnoreFightIfMounted.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IgnoreFightIfMounted.TabIndex = 19;
             // 
-            // mountDistance
+            // MinimumDistanceToUseMount
             // 
             this.MinimumDistanceToUseMount.BackColor = System.Drawing.Color.White;
             // 
@@ -2739,7 +2771,7 @@ namespace nManager.Helpful.Forms
             this.labelX5.TabIndex = 11;
             this.labelX5.Text = "Use Ground Mount";
             // 
-            // useGroundMount
+            // UseGroundMount
             // 
             this.UseGroundMount.BackColor = System.Drawing.Color.White;
             // 
@@ -2759,6 +2791,7 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel1.Controls.Add(this.CustomClassResetSettingsButton);
             this.expandablePanel1.Controls.Add(this.labelX59);
             this.expandablePanel1.Controls.Add(this.UseSpiritHealer);
             this.expandablePanel1.Controls.Add(this.labelX49);
@@ -2795,6 +2828,18 @@ namespace nManager.Helpful.Forms
             this.expandablePanel1.TitleStyle.GradientAngle = 90;
             this.expandablePanel1.TitleText = "Class / Custom spell sequence Settings";
             // 
+            // CustomClassResetSettingsButton
+            // 
+            this.CustomClassResetSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.CustomClassResetSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.CustomClassResetSettingsButton.Location = new System.Drawing.Point(432, 41);
+            this.CustomClassResetSettingsButton.Name = "CustomClassResetSettingsButton";
+            this.CustomClassResetSettingsButton.Size = new System.Drawing.Size(102, 23);
+            this.CustomClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.CustomClassResetSettingsButton.TabIndex = 29;
+            this.CustomClassResetSettingsButton.Text = "Reset Settings";
+            this.CustomClassResetSettingsButton.Click += new System.EventHandler(this.CustomClassResetSettingsButton_Click);
+            // 
             // labelX59
             // 
             this.labelX59.BackColor = System.Drawing.Color.Transparent;
@@ -2810,7 +2855,7 @@ namespace nManager.Helpful.Forms
             this.labelX59.TabIndex = 28;
             this.labelX59.Text = "Use Spirit Healer";
             // 
-            // useSpiritHealer
+            // UseSpiritHealer
             // 
             this.UseSpiritHealer.BackColor = System.Drawing.Color.White;
             // 
@@ -2841,7 +2886,7 @@ namespace nManager.Helpful.Forms
             this.labelX49.TabIndex = 26;
             this.labelX49.Text = "Train New Spells";
             // 
-            // trainNewSpells
+            // LearnNewSpells
             // 
             this.LearnNewSpells.BackColor = System.Drawing.Color.White;
             // 
@@ -2872,7 +2917,7 @@ namespace nManager.Helpful.Forms
             this.labelX47.TabIndex = 24;
             this.labelX47.Text = "Train New Skills";
             // 
-            // trainNewSkills
+            // TrainNewSkills
             // 
             this.TrainNewSkills.BackColor = System.Drawing.Color.White;
             // 
@@ -2903,7 +2948,7 @@ namespace nManager.Helpful.Forms
             this.labelX4.TabIndex = 9;
             this.labelX4.Text = "Don\'t start fighting";
             // 
-            // dontStartFighting
+            // DontPullMonsters
             // 
             this.DontPullMonsters.BackColor = System.Drawing.Color.White;
             // 
@@ -2934,7 +2979,7 @@ namespace nManager.Helpful.Forms
             this.labelX3.TabIndex = 7;
             this.labelX3.Text = "Can attack units already in fight";
             // 
-            // canAttackUnitsAlreadyInFight
+            // CanPullUnitsAlreadyInFight
             // 
             this.CanPullUnitsAlreadyInFight.BackColor = System.Drawing.Color.White;
             // 
@@ -2965,7 +3010,7 @@ namespace nManager.Helpful.Forms
             this.labelX2.TabIndex = 5;
             this.labelX2.Text = "Assign Talents";
             // 
-            // assignTalents
+            // AutoAssignTalents
             // 
             this.AutoAssignTalents.BackColor = System.Drawing.Color.White;
             // 
@@ -2996,7 +3041,7 @@ namespace nManager.Helpful.Forms
             this.labelX1.TabIndex = 3;
             this.labelX1.Text = "Custom Class";
             // 
-            // customClass
+            // CustomClass
             // 
             this.CustomClass.DisplayMember = "Text";
             this.CustomClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
@@ -3009,7 +3054,7 @@ namespace nManager.Helpful.Forms
             this.CustomClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CustomClass.TabIndex = 2;
             // 
-            // customClassConfigB
+            // CustomClassSettingsButton
             // 
             this.CustomClassSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.CustomClassSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
@@ -3062,37 +3107,6 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.TabIndex = 4;
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
-            // 
-            // AlwaysOnTopLabel
-            // 
-            this.AlwaysOnTopFeatureLabel.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.AlwaysOnTopFeatureLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.AlwaysOnTopFeatureLabel.ForeColor = System.Drawing.Color.Black;
-            this.AlwaysOnTopFeatureLabel.Location = new System.Drawing.Point(302, 62);
-            this.AlwaysOnTopFeatureLabel.Name = "AlwaysOnTopFeatureLabel";
-            this.AlwaysOnTopFeatureLabel.Size = new System.Drawing.Size(160, 23);
-            this.AlwaysOnTopFeatureLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.AlwaysOnTopFeatureLabel.TabIndex = 30;
-            this.AlwaysOnTopFeatureLabel.Text = "Always On Top";
-            // 
-            // AlwaysOnTop
-            // 
-            this.ActivateAlwaysOnTopFeature.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.ActivateAlwaysOnTopFeature.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.ActivateAlwaysOnTopFeature.ForeColor = System.Drawing.Color.Black;
-            this.ActivateAlwaysOnTopFeature.Location = new System.Drawing.Point(468, 62);
-            this.ActivateAlwaysOnTopFeature.Name = "ActivateAlwaysOnTopFeature";
-            this.ActivateAlwaysOnTopFeature.OffText = "NO";
-            this.ActivateAlwaysOnTopFeature.OnText = "YES";
-            this.ActivateAlwaysOnTopFeature.Size = new System.Drawing.Size(66, 22);
-            this.ActivateAlwaysOnTopFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ActivateAlwaysOnTopFeature.TabIndex = 29;
             // 
             // GeneralSettings
             // 
@@ -3313,5 +3327,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton AutoConfirmOnBoPItems;
         private DevComponents.DotNetBar.LabelX AlwaysOnTopFeatureLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateAlwaysOnTopFeature;
+        private DevComponents.DotNetBar.ButtonX CustomClassResetSettingsButton;
     }
 }

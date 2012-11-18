@@ -48,9 +48,15 @@ public class Main : ICustomClass
         Initialize(true);
     }
 
+    public void ResetConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Initialize(true, true);
+    }
+
     #endregion
 
-    public void Initialize(bool ConfigOnly)
+    public void Initialize(bool ConfigOnly, bool ResetSettings = false)
     {
         try
         {
@@ -74,7 +80,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
                             Deathknight_Blood.DeathknightBloodSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Blood.DeathknightBloodSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Blood.DeathknightBloodSettings>(CurrentSettingsFile);
@@ -97,7 +103,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
                             Deathknight_Unholy.DeathknightUnholySettings CurrentSetting;
                             CurrentSetting = new Deathknight_Unholy.DeathknightUnholySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Unholy.DeathknightUnholySettings>(CurrentSettingsFile);
@@ -120,7 +126,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
                             Deathknight_Frost.DeathknightFrostSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Frost.DeathknightFrostSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Frost.DeathknightFrostSettings>(CurrentSettingsFile);
@@ -145,7 +151,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
                             Deathknight_Apprentice.DeathknightApprenticeSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Apprentice.DeathknightApprenticeSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Deathknight_Apprentice.DeathknightApprenticeSettings>(
@@ -181,7 +187,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Arcane.xml";
                             Mage_Arcane.MageArcaneSettings CurrentSetting;
                             CurrentSetting = new Mage_Arcane.MageArcaneSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Arcane.MageArcaneSettings>(CurrentSettingsFile);
@@ -205,7 +211,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Fire.xml";
                             Mage_Fire.MageFireSettings CurrentSetting;
                             CurrentSetting = new Mage_Fire.MageFireSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Fire.MageFireSettings>(CurrentSettingsFile);
@@ -229,7 +235,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Frost.MageFrostSettings>(CurrentSettingsFile);
@@ -253,7 +259,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Mage_Frost.MageFrostSettings>(CurrentSettingsFile);
@@ -288,7 +294,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
@@ -311,7 +317,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
                             Warlock_Affliction.WarlockAfflictionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Affliction.WarlockAfflictionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Affliction.WarlockAfflictionSettings>(CurrentSettingsFile);
@@ -334,7 +340,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
                             Warlock_Destruction.WarlockDestructionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Destruction.WarlockDestructionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Destruction.WarlockDestructionSettings>(CurrentSettingsFile);
@@ -359,7 +365,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warlock_Demonology.WarlockDemonologySettings>(CurrentSettingsFile);
@@ -395,7 +401,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Feral.xml";
                             Druid_Feral.DruidFeralSettings CurrentSetting;
                             CurrentSetting = new Druid_Feral.DruidFeralSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Feral.DruidFeralSettings>(CurrentSettingsFile);
@@ -417,7 +423,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Guardian.xml";
                             Druid_Guardian.DruidGuardianSettings CurrentSetting;
                             CurrentSetting = new Druid_Guardian.DruidGuardianSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Guardian.DruidGuardianSettings>(CurrentSettingsFile);
@@ -439,7 +445,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Balance.DruidBalanceSettings>(CurrentSettingsFile);
@@ -462,7 +468,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Restoration.xml";
                             Druid_Restoration.DruidRestorationSettings CurrentSetting;
                             CurrentSetting = new Druid_Restoration.DruidRestorationSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Restoration.DruidRestorationSettings>(CurrentSettingsFile);
@@ -485,7 +491,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Druid_Balance.DruidBalanceSettings>(CurrentSettingsFile);
@@ -518,7 +524,7 @@ public class Main : ICustomClass
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
                             var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
@@ -539,7 +545,7 @@ public class Main : ICustomClass
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Protection.xml";
                             var CurrentSetting = new Paladin_Protection.PaladinProtectionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Protection.PaladinProtectionSettings>(CurrentSettingsFile);
@@ -560,7 +566,7 @@ public class Main : ICustomClass
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Holy.xml";
                             var CurrentSetting = new Paladin_Holy.PaladinHolySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting = Settings.Load<Paladin_Holy.PaladinHolySettings>(CurrentSettingsFile);
                             }
@@ -583,7 +589,7 @@ public class Main : ICustomClass
                             string CurrentSettingsFile = Application.StartupPath +
                                                          "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
                             var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Paladin_Retribution.PaladinRetributionSettings>(CurrentSettingsFile);
@@ -617,7 +623,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
                             Shaman_Enhancement.ShamanEnhancementSettings CurrentSetting;
                             CurrentSetting = new Shaman_Enhancement.ShamanEnhancementSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Enhancement.ShamanEnhancementSettings>(CurrentSettingsFile);
@@ -640,7 +646,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
                             Shaman_Elemental.ShamanElementalSettings CurrentSetting;
                             CurrentSetting = new Shaman_Elemental.ShamanElementalSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Elemental.ShamanElementalSettings>(CurrentSettingsFile);
@@ -664,7 +670,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Restoration.ShamanRestorationSettings>(CurrentSettingsFile);
@@ -688,7 +694,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Shaman_Restoration.ShamanRestorationSettings>(CurrentSettingsFile);
@@ -721,7 +727,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -746,7 +752,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -772,7 +778,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -798,7 +804,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Priest_Shadow.PriestShadowSettings>(CurrentSettingsFile);
@@ -833,7 +839,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
@@ -856,7 +862,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
                             Rogue_Assassination.RogueAssassinationSettings CurrentSetting;
                             CurrentSetting = new Rogue_Assassination.RogueAssassinationSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Assassination.RogueAssassinationSettings>(CurrentSettingsFile);
@@ -879,7 +885,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
                             Rogue_Subtlety.RogueSubtletySettings CurrentSetting;
                             CurrentSetting = new Rogue_Subtlety.RogueSubtletySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Subtlety.RogueSubtletySettings>(CurrentSettingsFile);
@@ -902,7 +908,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Rogue_Combat.RogueCombatSettings>(CurrentSettingsFile);
@@ -935,7 +941,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Arms.xml";
                             Warrior_Arms.WarriorArmsSettings CurrentSetting;
                             CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
@@ -957,7 +963,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Fury.xml";
                             Warrior_Fury.WarriorFurySettings CurrentSetting;
                             CurrentSetting = new Warrior_Fury.WarriorFurySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Fury.WarriorFurySettings>(CurrentSettingsFile);
@@ -979,7 +985,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Protection.xml";
                             Warrior_Protection.WarriorProtectionSettings CurrentSetting;
                             CurrentSetting = new Warrior_Protection.WarriorProtectionSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Protection.WarriorProtectionSettings>(CurrentSettingsFile);
@@ -1003,7 +1009,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Warrior_Arms.xml";
                             Warrior_Arms.WarriorArmsSettings CurrentSetting;
                             CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Warrior_Arms.WarriorArmsSettings>(CurrentSettingsFile);
@@ -1037,7 +1043,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
                             Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
                             CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_Marksmanship.HunterMarksmanshipSettings>(CurrentSettingsFile);
@@ -1060,7 +1066,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_Survival.xml";
                             Hunter_Survival.HunterSurvivalSettings CurrentSetting;
                             CurrentSetting = new Hunter_Survival.HunterSurvivalSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_Survival.HunterSurvivalSettings>(CurrentSettingsFile);
@@ -1083,7 +1089,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
                             Hunter_BeastMastery.HunterBeastMasterySettings CurrentSetting;
                             CurrentSetting = new Hunter_BeastMastery.HunterBeastMasterySettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_BeastMastery.HunterBeastMasterySettings>(CurrentSettingsFile);
@@ -1108,7 +1114,7 @@ public class Main : ICustomClass
                                                          "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
                             Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
                             CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
-                            if (File.Exists(CurrentSettingsFile))
+                            if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
                                 CurrentSetting =
                                     Settings.Load<Hunter_Marksmanship.HunterMarksmanshipSettings>(CurrentSettingsFile);
@@ -1645,33 +1651,40 @@ public class Deathknight_Blood
         {
             try
             {
-                Buff_Path();
-                if (!ObjectManager.Me.IsMounted)
+                if (ObjectManager.Me.IsAlive)
                 {
-                    if (Fight.InFight && ObjectManager.Me.Target > 0)
+                    Buff_Path();
+                    if (!ObjectManager.Me.IsMounted)
                     {
-                        if (ObjectManager.Me.Target != lastTarget &&
-                            (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
+                        if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            Pull();
-                            lastTarget = ObjectManager.Me.Target;
+                            if (ObjectManager.Me.Target != lastTarget &&
+                                (Death_Grip.IsDistanceGood || Icy_Touch.IsDistanceGood))
+                            {
+                                Pull();
+                                lastTarget = ObjectManager.Me.Target;
+                            }
+
+                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
+                                && MySettings.UseLowCombat)
+                            {
+                                LC = 1;
+                                LowCombat();
+                            }
+                            else
+                            {
+                                LC = 0;
+                                Combat();
+                            }
                         }
 
-                        if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                            && MySettings.UseLowCombat)
-                        {
-                            LC = 1;
-                            LowCombat();
-                        }
-                        else
-                        {
-                            LC = 0;
-                            Combat();
-                        }
+                        else if (!ObjectManager.Me.IsCast)
+                            Patrolling();
                     }
-
-                    else if (!ObjectManager.Me.IsCast)
-                        Patrolling();
+                }
+                else
+                {
+                    Thread.Sleep(100);
                 }
             }
             catch
@@ -1981,8 +1994,8 @@ public class Deathknight_Blood
             Empower_Rune_Weapon.Launch();
             return;
         }
-        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
-            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
+                 && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
@@ -2207,7 +2220,8 @@ public class Deathknight_Blood
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable &&
+            MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -2827,8 +2841,8 @@ public class Deathknight_Unholy
             Death_Coil.Launch();
             return;
         }
-        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
-            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
+                 && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
@@ -3707,8 +3721,8 @@ public class Deathknight_Frost
                 return;
             }
         }
-        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable 
-            && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
+        else if (ObjectManager.Me.RunicPowerPercentage < 90 && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable
+                 && MySettings.UseHornofWinter && Frost_Fever.TargetHaveBuff && Plague_Strike.TargetHaveBuff)
         {
             Horn_of_Winter.Launch();
             return;
@@ -3909,7 +3923,8 @@ public class Deathknight_Frost
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable && MySettings.UseHornofWinter)
+        if (!Horn_of_Winter.HaveBuff && Horn_of_Winter.KnownSpell && Horn_of_Winter.IsSpellUsable &&
+            MySettings.UseHornofWinter)
         {
             Horn_of_Winter.Launch();
             return;
@@ -4397,7 +4412,7 @@ public class Mage_Arcane
             return;
         }
         else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+                 && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
         {
             Scorch.Launch();
             return;
@@ -5170,7 +5185,7 @@ public class Mage_Frost
             return;
         }
         else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+                 && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
         {
             Scorch.Launch();
             return;
@@ -5942,7 +5957,7 @@ public class Mage_Fire
             return;
         }
         else if (Scorch.IsSpellUsable && MySettings.UseScorch && Scorch.IsDistanceGood
-            && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
+                 && Scorch.KnownSpell && ObjectManager.Me.GetMove && !Ice_Floes.HaveBuff)
         {
             Scorch.Launch();
             return;
@@ -14573,7 +14588,7 @@ public class Shaman_Restoration
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 1 && Chain_Lightning.KnownSpell
-                 && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood 
+                 && Chain_Lightning.IsSpellUsable && Chain_Lightning.IsDistanceGood
                  && MySettings.UseChainLightning && !ObjectManager.Me.HaveBuff(77762))
         {
             if (Ancestral_Swiftness.KnownSpell && Ancestral_Swiftness.IsSpellUsable
@@ -16581,7 +16596,8 @@ public class Priest_Shadow
             AddControlInWinForm("Use Shadowfiend", "UseShadowfiend", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Dispersion", "UseDispersion", "Defensive Cooldown");
-            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "BelowPercentage"); // Advanced field Use ON/OFF + At Percentage (0-100)
+            AddControlInWinForm("Use Power Word: Shield", "UsePowerWordShield", "Defensive Cooldown", "BelowPercentage");
+            // Advanced field Use ON/OFF + At Percentage (0-100)
             AddControlInWinForm("Use Psychic Horror", "UsePsychicHorror", "Defensive Cooldown");
             AddControlInWinForm("Use Psychic Scream", "UsePsychicScream", "Defensive Cooldown");
             AddControlInWinForm("Use Psyfiend", "UsePsyfiend", "Defensive Cooldown");
@@ -21833,7 +21849,7 @@ public class Hunter_Marksmanship
             Deterrance.Launch();
             Thread.Sleep(200);
         }
-        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell
                  && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             Freezing_Trap.Launch();
@@ -21956,15 +21972,15 @@ public class Hunter_Marksmanship
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
@@ -22668,7 +22684,7 @@ public class Hunter_BeastMastery
             Deterrance.Launch();
             Thread.Sleep(200);
         }
-        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell
                  && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             Freezing_Trap.Launch();
@@ -22798,15 +22814,15 @@ public class Hunter_BeastMastery
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
@@ -23500,7 +23516,7 @@ public class Hunter_Survival
             Deterrance.Launch();
             Thread.Sleep(200);
         }
-        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell 
+        else if (MySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && Freezing_Trap.KnownSpell
                  && Freezing_Trap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             Freezing_Trap.Launch();
@@ -23623,15 +23639,15 @@ public class Hunter_Survival
         }
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-	        && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-	        && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+            && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+            && MySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
-                && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
-                && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && Revive_Pet.KnownSpell && Revive_Pet.IsSpellUsable && MySettings.UseRevivePet
+                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Revive_Pet.Launch();
             Thread.Sleep(1000);
