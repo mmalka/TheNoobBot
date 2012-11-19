@@ -52,7 +52,7 @@ namespace nManager.Wow.Bot.States
                     if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                             !nManagerSetting.IsBlackListed(woWUnit.Guid) &&
                             woWUnit.IsValid &&
-                            (!UnitNearest(woWUnit) || woWUnit.GetDistance2D < 15))
+                            (!woWUnit.UnitNearest || woWUnit.GetDistance2D < 15))
                         _units.Add(woWUnit);
                 }
 
@@ -71,24 +71,6 @@ namespace nManager.Wow.Bot.States
         public override List<State> BeforeStates
         {
             get { return new List<State>(); }
-        }
-
-        public static bool UnitNearest(WoWUnit unit)
-        {
-            List<WoWUnit> units = ObjectManager.ObjectManager.GetObjectWoWUnit();
-            var i = 0;
-            foreach (var woWUnit in units)
-            {
-                if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
-                    i++;
-            }
-            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
-            if (r)
-            {
-                nManagerSetting.AddBlackList(unit.Guid, 50 * 1000);
-                Logging.Write(i + " Units hostile Near " + unit.Name);
-            }
-            return r;
         }
 
         public override void Run()

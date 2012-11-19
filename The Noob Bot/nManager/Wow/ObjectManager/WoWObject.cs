@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Threading;
+using System.Collections.Generic;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
-
+using nManager.Wow.Helpers;
 
 namespace nManager.Wow.ObjectManager
 {
@@ -51,6 +52,32 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool UnitNearest
+        {
+            get
+            {
+                List<WoWUnit> units = ObjectManager.GetObjectWoWUnit();
+                float i = 0;
+                foreach (var iUnit in units)
+                {
+                    if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= iUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.Me, iUnit) == Reaction.Hostile)
+                    {
+                        if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth / 2)
+                            i++;
+                        else if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth / 10)
+                            i += 0.5f;
+                    } // else 0 for very small creatures
+                }
+                bool r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
+                if (r)
+                {
+                    nManagerSetting.AddBlackList(Guid, 15 * 1000);
+                    Logging.Write(i + " hostile Units Near " + Name);
+                }
+                return r;
+            }
+        }
+
         // These are simple descriptors, or other funcs that should be shared across objects.
         public UInt64 Guid
         {
@@ -70,6 +97,7 @@ namespace nManager.Wow.ObjectManager
 
             }
         }
+
         public WoWObjectType Type
         {
             get
@@ -82,6 +110,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public int Entry
         {
             get
@@ -94,6 +123,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public float Scale
         {
             get
@@ -106,6 +136,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public virtual Point Position
         {
             get
@@ -118,6 +149,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public virtual string Name
         {
             get
@@ -130,6 +162,7 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public virtual float GetDistance
         {
             get

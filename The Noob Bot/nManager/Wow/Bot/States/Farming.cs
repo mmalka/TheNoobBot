@@ -47,6 +47,9 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
+                if (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && !nManagerSetting.CurrentSetting.ActivateChestLooting)
+                    return false;
+
                 if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements)
                     return false;
 
@@ -57,7 +60,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (!nManagerSetting.IsBlackListedZone(node.Position) && node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                         if (!PlayerNearest(node))
-                            if (!UnitNearest(node))
+                            if (!node.UnitNearest)
                                 if (node.CanOpen)
                                     _nodes.Add(node);
                 }
@@ -79,24 +82,6 @@ namespace nManager.Wow.Bot.States
                 return true;
             }
             return false;
-        }
-
-        public static bool UnitNearest(WoWGameObject node)
-        {
-            List<WoWUnit> units = ObjectManager.ObjectManager.GetObjectWoWUnit();
-            var i = 0;
-            foreach (var woWUnit in units)
-            {
-                if (woWUnit.Position.DistanceTo2D(node.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, woWUnit) == Reaction.Hostile)
-                    i++;
-            }
-            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
-            if (r)
-            {
-                nManagerSetting.AddBlackList(node.Guid, 15*1000);
-                Logging.Write(i + " hostil Units near " + node.Name);
-            }
-            return r;
         }
 
         public override void Run()

@@ -68,31 +68,13 @@ namespace nManager.Wow.Bot.States
 
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
                     if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
-                        if (!UnitNearest(_unit))
+                        if (!_unit.UnitNearest)
                             if (_unit.Level <= MaxTargetLevel && _unit.Level >= MinTargetLevel)
                             return true;
 
                 _unit = new WoWUnit(0);
                 return false;
             }
-        }
-
-        public static bool UnitNearest(WoWUnit unit)
-        {
-            List<WoWUnit> units = ObjectManager.ObjectManager.GetObjectWoWUnit();
-            var i = 0;
-            foreach (var woWUnit in units)
-            {
-                if (woWUnit.Position.DistanceTo2D(unit.Position) <= woWUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.ObjectManager.Me, unit) == Reaction.Hostile)
-                    i++;
-            }
-            var r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
-            if (r)
-            {
-                nManagerSetting.AddBlackList(unit.Guid, 15 * 1000);
-                Logging.Write(i + " Units hostile Near " + unit.Name);
-            }
-            return r;
         }
 
         public override void Run()
