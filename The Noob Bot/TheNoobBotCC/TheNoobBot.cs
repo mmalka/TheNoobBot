@@ -1326,7 +1326,8 @@ public class Deathknight_Apprentice
         else
         {
             if (ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage
-                && MySettings.UseDeathStrike && Death_Strike.KnownSpell && Death_Strike.IsSpellUsable)
+                && MySettings.UseDeathStrike && Death_Strike.KnownSpell && Death_Strike.IsSpellUsable
+                && ObjectManager.Target.IsValid && ObjectManager.Target.IsAlive && Death_Strike.IsDistanceGood)
             {
                 Death_Strike.Launch();
                 return;
@@ -2739,7 +2740,8 @@ public class Deathknight_Unholy
         }
         else
         {
-            if (Death_Strike.IsSpellUsable && Death_Strike.KnownSpell && Death_Strike.IsDistanceGood
+            if (ObjectManager.Target.IsValid && ObjectManager.Target.IsAlive
+                 && Death_Strike.IsSpellUsable && Death_Strike.KnownSpell && Death_Strike.IsDistanceGood
                  && MySettings.UseDeathStrike && ObjectManager.Me.HealthPercent <= MySettings.UseDeathStrikeAtPercentage)
             {
                 Death_Strike.Launch();
