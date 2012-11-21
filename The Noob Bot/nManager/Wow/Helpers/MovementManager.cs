@@ -164,7 +164,7 @@ namespace nManager.Wow.Helpers
                         return;
                     }
 
-                    if (_points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 && _loop &&
+                    if (_loop && _points[firstIdPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) >= 200 &&
                         !String.IsNullOrWhiteSpace(nManagerSetting.CurrentSetting.FlyingMountName))
                     {
                         Logging.WriteNavigator("Long Move distance: " +
@@ -181,7 +181,7 @@ namespace nManager.Wow.Helpers
                             return;
                     }
 
-                    if (Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount || _loop)
+                    if (_loop || Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
                         if (nManagerSetting.CurrentSetting.UseGroundMount)
                             Bot.Tasks.MountTask.MountingGroundMount(false);
@@ -192,7 +192,7 @@ namespace nManager.Wow.Helpers
                             List<Point> tmpList = new List<Point>();
                             for (var i = 0; i < _points.Count; i++)
                             {
-                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 3.0f, "flying");
+                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
                                 tmpList.Add(pt);
                             }
                             _points = tmpList;
