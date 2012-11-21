@@ -185,15 +185,20 @@ public class Main : ICustomClass
 public class Monk_Brewmaster
 {
     private readonly MonkBrewmasterSettings MySettings = MonkBrewmasterSettings.GetSettings();
+    private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+
+    #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    public int Elusive_Brew_Stack = 0;
     private Timer Trinket_Timer = new Timer(0);
     private Timer Grapple_Weapon_Timer = new Timer(0);
     private Timer Healing_Sphere_Timer = new Timer(0);
     private Timer Stagger_Timer = new Timer(0);
+    public int Elusive_Brew_Stack = 0;
+
+    #endregion
 
     #region Professions & Racials
 
@@ -307,8 +312,8 @@ public class Monk_Brewmaster
             Thread.Sleep(150);
         }
     }
-    
-    public void Pull()
+
+    private void Pull()
     {
         if (Clash.IsSpellUsable && Clash.IsDistanceGood && MySettings.UseClash && Clash.KnownSpell)
             Clash.Launch();
@@ -321,19 +326,19 @@ public class Monk_Brewmaster
         }
     }
 
-    public void Combat()
+    private void Combat()
     {
+        Buff();
         AvoidMelee();
         if (OnCD.IsReady)
             Defense_Cycle();
         Heal();
         Decast();
-        Buff();
         DPS_Burst();
         DPS_Cycle();
     }
 
-    public void Buff()
+    private void Buff()
     {
         if (ObjectManager.Me.IsMounted)
             return;
@@ -374,185 +379,15 @@ public class Monk_Brewmaster
         }
     }
 
-    public void DPS_Burst()
+    private void AvoidMelee()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000*60*2);
-            return;
-        }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Berserking.Launch();
-            return;
-        }
-        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Blood_Fury.Launch();
-            return;
-        }
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Lifeblood.Launch();
-            return;
-        }
-        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60);
-            return;
-        }
-        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
-                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
-        {
-            Chi_Brew.Launch();
-            return;
-        }
-        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
-                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
-        {
-            Invoke_Xuen_the_White_Tiger.Launch();
-            return;
-        }
-        else
-        {
-            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
-                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                Rushing_Jade_Wind.Launch();
-                return;
-            }
-        }
-    }
-
-    public void DPS_Cycle()
-    {
-        if (ObjectManager.GetNumberAttackPlayer() > 5 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
-                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
-        {
-            Spinning_Crane_Kick.Launch();
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Dizzying_Haze.IsSpellUsable && Dizzying_Haze.KnownSpell
-                 && Dizzying_Haze.IsDistanceGood && !Dizzying_Haze.TargetHaveBuff && MySettings.UseDizzyingHaze)
-        {
-            Dizzying_Haze.Launch();
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Breath_of_Fire.IsSpellUsable && Breath_of_Fire.KnownSpell
-                 && Breath_of_Fire.IsDistanceGood && !Breath_of_Fire.TargetHaveBuff && MySettings.UseBreathofFire)
-        {
-            Breath_of_Fire.Launch();
-            return;
-        }
-        else if (Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.IsDistanceGood
-                 && MySettings.UseRushingJadeWind && (!ObjectManager.Target.HaveBuff(115307)
-                 || Stagger_Timer.IsReady))
-        {
-            Rushing_Jade_Wind.Launch();
-            Stagger_Timer = new Timer(1000*4);
-            return;
-        }
-        else if (Blackout_Kick.KnownSpell && Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood
-                 && MySettings.UseBlackoutKick && !Rushing_Jade_Wind.KnownSpell
-                 && (!ObjectManager.Target.HaveBuff(115307) || Stagger_Timer.IsReady))
-        {
-            Blackout_Kick.Launch();
-            Stagger_Timer = new Timer(1000*4);
-            return;
-        }
-        else if (Keg_Smash.KnownSpell && Keg_Smash.IsSpellUsable && Keg_Smash.IsDistanceGood
-                 && MySettings.UseKegSmash && ObjectManager.Me.Chi < 3)
-        {
-            Keg_Smash.Launch();
-            return;
-        }
-        else if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
-                 && MySettings.UseTigerPalm && ObjectManager.Target.BuffStack(125359) < 3)
-        {
-            Tiger_Palm.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
-                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && Expel_Harm.IsDistanceGood)
-        {
-            Expel_Harm.Launch();
-            return;
-        }
-        else if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
-                && ObjectManager.Me.Chi < 4 && ObjectManager.Me.HealthPercent > 90 && !ObjectManager.Me.HaveBuff(118864)
-                && Jab.IsDistanceGood)
-        {
-            Jab.Launch();
-            return;
-        }
-        else
-        {
-            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
-                 && MySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 
-                 && ObjectManager.Target.HaveBuff(115307))
-            {
-                Tiger_Palm.Launch();
-                return;
-            }
-        }
-    }
-
-    public void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Heal();
-            Buff();
-        }
-    }
-    
-    private void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
-            && MySettings.UseChiWave)
-        {
-            Chi_Wave.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Chi_Burst.KnownSpell && Chi_Burst.IsSpellUsable
-                 && MySettings.UseChiBurst)
-        {
-            Chi_Burst.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
-                 && MySettings.UseExpelHarm && Expel_Harm.IsDistanceGood)
-        {
-            Expel_Harm.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
-                 && MySettings.UseZenSphere)
-        {
-            Zen_Sphere.Launch();
-            return;
-        }
-        else
-        {
-            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
-            {
-                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
-                Healing_Sphere_Timer = new Timer(1000*60);
-                return;
-            }
+            Logging.WriteFight("Too Close. Moving Back");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+                Thread.Sleep(300);
+            Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
     }
 
@@ -650,6 +485,44 @@ public class Monk_Brewmaster
         }
     }
 
+    private void Heal()
+    {
+        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
+            && MySettings.UseChiWave)
+        {
+            Chi_Wave.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 90 && Chi_Burst.KnownSpell && Chi_Burst.IsSpellUsable
+                 && MySettings.UseChiBurst)
+        {
+            Chi_Burst.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 90 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
+                 && MySettings.UseExpelHarm && Expel_Harm.IsDistanceGood)
+        {
+            Expel_Harm.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
+                 && MySettings.UseZenSphere)
+        {
+            Zen_Sphere.Launch();
+            return;
+        }
+        else
+        {
+            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
+                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+            {
+                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
+                Healing_Sphere_Timer = new Timer(1000*60);
+                return;
+            }
+        }
+    }
+
     private void Decast()
     {
         if (Arcane_Torrent.KnownSpell && MySettings.UseArcaneTorrent && Arcane_Torrent.IsSpellUsable 
@@ -682,14 +555,139 @@ public class Monk_Brewmaster
         }
     }
 
-    private void AvoidMelee()
+    private void DPS_Burst()
     {
-        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
-            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Logging.WriteFight("Use Trinket 1.");
+            Lua.RunMacroText("/use 13");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Logging.WriteFight("Use Trinket 2.");
+            Lua.RunMacroText("/use 14");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Trinket_Timer = new Timer(1000*60*2);
+        }
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBerserking)
+            Berserking.Launch();
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBloodFury)
+            Blood_Fury.Launch();
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseLifeblood)
+            Lifeblood.Launch();
+        else if (Engineering_Timer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+                && MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000*60);
+        }
+        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
+                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
+        {
+            Chi_Brew.Launch();
+            return;
+        }
+        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
+                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
+        {
+            Invoke_Xuen_the_White_Tiger.Launch();
+            return;
+        }
+        else
+        {
+            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
+                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
+            {
+                Rushing_Jade_Wind.Launch();
+                return;
+            }
         }
     }
 
+    private void DPS_Cycle()
+    {
+        if (ObjectManager.GetNumberAttackPlayer() > 5 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
+                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
+        {
+            Spinning_Crane_Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Dizzying_Haze.IsSpellUsable && Dizzying_Haze.KnownSpell
+                 && Dizzying_Haze.IsDistanceGood && !Dizzying_Haze.TargetHaveBuff && MySettings.UseDizzyingHaze)
+        {
+            Dizzying_Haze.Launch();
+            return;
+        }
+        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Breath_of_Fire.IsSpellUsable && Breath_of_Fire.KnownSpell
+                 && Breath_of_Fire.IsDistanceGood && !Breath_of_Fire.TargetHaveBuff && MySettings.UseBreathofFire)
+        {
+            Breath_of_Fire.Launch();
+            return;
+        }
+        else if (Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.IsDistanceGood
+                 && MySettings.UseRushingJadeWind && (!ObjectManager.Target.HaveBuff(115307)
+                 || Stagger_Timer.IsReady))
+        {
+            Rushing_Jade_Wind.Launch();
+            Stagger_Timer = new Timer(1000*4);
+            return;
+        }
+        else if (Blackout_Kick.KnownSpell && Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood
+                 && MySettings.UseBlackoutKick && !Rushing_Jade_Wind.KnownSpell
+                 && (!ObjectManager.Target.HaveBuff(115307) || Stagger_Timer.IsReady))
+        {
+            Blackout_Kick.Launch();
+            Stagger_Timer = new Timer(1000*4);
+            return;
+        }
+        else if (Keg_Smash.KnownSpell && Keg_Smash.IsSpellUsable && Keg_Smash.IsDistanceGood
+                 && MySettings.UseKegSmash && ObjectManager.Me.Chi < 3)
+        {
+            Keg_Smash.Launch();
+            return;
+        }
+        else if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
+                 && MySettings.UseTigerPalm && ObjectManager.Target.BuffStack(125359) < 3)
+        {
+            Tiger_Palm.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
+                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && Expel_Harm.IsDistanceGood)
+        {
+            Expel_Harm.Launch();
+            return;
+        }
+        else if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
+                && ObjectManager.Me.Chi < 4 && ObjectManager.Me.HealthPercent > 90 && !ObjectManager.Me.HaveBuff(118864)
+                && Jab.IsDistanceGood)
+        {
+            Jab.Launch();
+            return;
+        }
+        else
+        {
+            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
+                 && MySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 
+                 && ObjectManager.Target.HaveBuff(115307))
+            {
+                Tiger_Palm.Launch();
+                return;
+            }
+        }
+    }
+
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Buff();
+            Heal();
+        }
+    }
+    
     #region Nested type: MonkBrewmasterSettings
 
     [Serializable]
@@ -822,6 +820,9 @@ public class Monk_Brewmaster
 public class Monk_Windwalker
 {
     private readonly MonkWindwalkerSettings MySettings = MonkWindwalkerSettings.GetSettings();
+    private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+
+    #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
@@ -831,6 +832,8 @@ public class Monk_Windwalker
     private Timer Rising_Sun_Kick_Timer = new Timer(0);
     private Timer Healing_Sphere_Timer = new Timer(0);
     private Timer Grapple_Weapon_Timer = new Timer(0);
+
+    #endregion
 
     #region Professions & Racials
 
@@ -944,7 +947,7 @@ public class Monk_Windwalker
         }
     }
 
-    public void Pull()
+    private void Pull()
     {
         if (!ObjectManager.Target.InCombat && Provoke.IsSpellUsable && Provoke.IsDistanceGood
             && MySettings.UseProvoke && Provoke.KnownSpell)
@@ -954,19 +957,19 @@ public class Monk_Windwalker
         }
     }
 
-    public void Combat()
+    private void Combat()
     {
+        Buff();
         AvoidMelee();
         if (OnCD.IsReady)
             Defense_Cycle();
         Heal();
-        Buff();
         Decast();
         DPS_Burst();
         DPS_Cycle();
     }
 
-    public void Buff()
+    private void Buff()
     {
         if (ObjectManager.Me.IsMounted)
             return;
@@ -1013,183 +1016,15 @@ public class Monk_Windwalker
         }
     }
 
-    public void DPS_Burst()
+    private void AvoidMelee()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000*60*2);
-            return;
-        }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Berserking.Launch();
-            return;
-        }
-        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Blood_Fury.Launch();
-            return;
-        }
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Lifeblood.Launch();
-            return;
-        }
-        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-                 && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60);
-            return;
-        }
-        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
-                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
-        {
-            Chi_Brew.Launch();
-            return;
-        }
-        else if (Touch_of_Death.IsSpellUsable && Touch_of_Death.KnownSpell && Touch_of_Death.IsDistanceGood
-                 && MySettings.UseTouchofDeath)
-        {
-            Touch_of_Death.Launch();
-            return;
-        }
-        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
-                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
-        {
-            Invoke_Xuen_the_White_Tiger.Launch();
-            return;
-        }
-        else if (Energizing_Brew.IsSpellUsable && Energizing_Brew.KnownSpell && ObjectManager.Me.Energy < 41
-                 && MySettings.UseEnergizingBrew && ObjectManager.Target.GetDistance < 30)
-        {
-            Energizing_Brew.Launch();
-            return;
-        }
-        else if (Tigereye_Brew.IsSpellUsable && Tigereye_Brew.KnownSpell && ObjectManager.Me.BuffStack(125195) > 9
-                 && MySettings.UseTigereyeBrew && ObjectManager.Target.GetDistance < 30)
-        {
-            Tigereye_Brew.Launch();
-            return;
-        }
-        else
-        {
-            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
-                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                Rushing_Jade_Wind.Launch();
-                return;
-            }
-        }
-    }
-
-    public void DPS_Cycle()
-    {
-        if (ObjectManager.GetNumberAttackPlayer() > 3 && Rising_Sun_Kick.IsSpellUsable && Rising_Sun_Kick.KnownSpell
-                 && Rising_Sun_Kick.IsDistanceGood && !Rising_Sun_Kick.TargetHaveBuff && MySettings.UseRisingSunKick)
-        {
-            Rising_Sun_Kick.Launch();
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 3 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
-                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
-        {
-            Spinning_Crane_Kick.Launch();
-            return;
-        }
-        else if (Rising_Sun_Kick.KnownSpell && Rising_Sun_Kick.IsSpellUsable && Rising_Sun_Kick.IsDistanceGood
-                 && MySettings.UseRisingSunKick)
-        {
-            Rising_Sun_Kick.Launch();
-            Rising_Sun_Kick_Timer = new Timer(1000*4);
-            return;
-        }
-        else if (Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && Tiger_Palm.KnownSpell && MySettings.UseTigerPalm 
-            && (Tiger_Power_Timer.IsReady || ObjectManager.Me.BuffStack(125359) != 3 || ObjectManager.Me.HaveBuff(118864)))
-        {
-            Tiger_Palm.Launch();
-            Tiger_Power_Timer = new Timer(1000*15);
-            return;
-        }
-        else if (Fists_of_Fury.KnownSpell && Fists_of_Fury.IsSpellUsable && Fists_of_Fury.IsDistanceGood
-            && MySettings.UseFistsofFury && !Tiger_Power_Timer.IsReady && !Rising_Sun_Kick_Timer.IsReady
-            && ObjectManager.Me.EnergyPercentage < 81 && ObjectManager.Me.BuffStack(125359) > 2)
-        {
-            Fists_of_Fury.Launch();
-            return;
-        }
-        else if (Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood && Blackout_Kick.KnownSpell 
-            && MySettings.UseBlackoutKick && (ObjectManager.Me.HaveBuff(116768) || ObjectManager.Me.Chi > 2))
-        {
-            Blackout_Kick.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
-                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 3 && Expel_Harm.IsDistanceGood)
-        {
-            Expel_Harm.Launch();
-            return;
-        }
-        else
-        {
-            if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
-                && ObjectManager.Me.Chi < 3 && ObjectManager.Me.HealthPercent > 90 && !ObjectManager.Me.HaveBuff(118864)
-                && Jab.IsDistanceGood)
-            {
-                Jab.Launch();
-                return;
-            }
-        }
-    }
-
-    public void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Heal();
-            Buff();
-        }
-    }
-
-    private void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
-            && MySettings.UseChiWave)
-        {
-            Chi_Wave.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Chi_Burst.KnownSpell && Chi_Burst.IsSpellUsable
-                 && MySettings.UseChiBurst)
-        {
-            Chi_Burst.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
-                 && MySettings.UseZenSphere)
-        {
-            Zen_Sphere.Launch();
-            return;
-        }
-        else
-        {
-            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
-            {
-                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
-                Healing_Sphere_Timer = new Timer(1000*60);
-                return;
-            }
+            Logging.WriteFight("Too Close. Moving Back");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+                Thread.Sleep(300);
+            Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
     }
 
@@ -1263,6 +1098,38 @@ public class Monk_Windwalker
         }
     }
     
+    private void Heal()
+    {
+        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
+            && MySettings.UseChiWave)
+        {
+            Chi_Wave.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 90 && Chi_Burst.KnownSpell && Chi_Burst.IsSpellUsable
+                 && MySettings.UseChiBurst)
+        {
+            Chi_Burst.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
+                 && MySettings.UseZenSphere)
+        {
+            Zen_Sphere.Launch();
+            return;
+        }
+        else
+        {
+            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
+                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+            {
+                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
+                Healing_Sphere_Timer = new Timer(1000*60);
+                return;
+            }
+        }
+    }
+
     private void Decast()
     {
         if (Arcane_Torrent.KnownSpell && MySettings.UseArcaneTorrent && Arcane_Torrent.IsSpellUsable 
@@ -1294,12 +1161,141 @@ public class Monk_Windwalker
             return;
         }
     }
-    
-    private void AvoidMelee()
+
+    private void DPS_Burst()
     {
-        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
-            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Logging.WriteFight("Use Trinket 1.");
+            Lua.RunMacroText("/use 13");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Logging.WriteFight("Use Trinket 2.");
+            Lua.RunMacroText("/use 14");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Trinket_Timer = new Timer(1000*60*2);
+        }
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBerserking)
+            Berserking.Launch();
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBloodFury)
+            Blood_Fury.Launch();
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseLifeblood)
+            Lifeblood.Launch();
+        else if (Engineering_Timer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+                && MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000*60);
+        }
+        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
+                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
+        {
+            Chi_Brew.Launch();
+            return;
+        }
+        else if (Touch_of_Death.IsSpellUsable && Touch_of_Death.KnownSpell && Touch_of_Death.IsDistanceGood
+                 && MySettings.UseTouchofDeath)
+        {
+            Touch_of_Death.Launch();
+            return;
+        }
+        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
+                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
+        {
+            Invoke_Xuen_the_White_Tiger.Launch();
+            return;
+        }
+        else if (Energizing_Brew.IsSpellUsable && Energizing_Brew.KnownSpell && ObjectManager.Me.Energy < 41
+                 && MySettings.UseEnergizingBrew && ObjectManager.Target.GetDistance < 30)
+        {
+            Energizing_Brew.Launch();
+            return;
+        }
+        else if (Tigereye_Brew.IsSpellUsable && Tigereye_Brew.KnownSpell && ObjectManager.Me.BuffStack(125195) > 9
+                 && MySettings.UseTigereyeBrew && ObjectManager.Target.GetDistance < 30)
+        {
+            Tigereye_Brew.Launch();
+            return;
+        }
+        else
+        {
+            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
+                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
+            {
+                Rushing_Jade_Wind.Launch();
+                return;
+            }
+        }
+    }
+
+    private void DPS_Cycle()
+    {
+        if (ObjectManager.GetNumberAttackPlayer() > 3 && Rising_Sun_Kick.IsSpellUsable && Rising_Sun_Kick.KnownSpell
+                 && Rising_Sun_Kick.IsDistanceGood && !Rising_Sun_Kick.TargetHaveBuff && MySettings.UseRisingSunKick)
+        {
+            Rising_Sun_Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.GetNumberAttackPlayer() > 3 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
+                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
+        {
+            Spinning_Crane_Kick.Launch();
+            return;
+        }
+        else if (Rising_Sun_Kick.KnownSpell && Rising_Sun_Kick.IsSpellUsable && Rising_Sun_Kick.IsDistanceGood
+                 && MySettings.UseRisingSunKick)
+        {
+            Rising_Sun_Kick.Launch();
+            Rising_Sun_Kick_Timer = new Timer(1000*4);
+            return;
+        }
+        else if (Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && Tiger_Palm.KnownSpell && MySettings.UseTigerPalm 
+            && (Tiger_Power_Timer.IsReady || ObjectManager.Me.BuffStack(125359) != 3 || ObjectManager.Me.HaveBuff(118864)))
+        {
+            Tiger_Palm.Launch();
+            Tiger_Power_Timer = new Timer(1000*15);
+            return;
+        }
+        else if (Fists_of_Fury.KnownSpell && Fists_of_Fury.IsSpellUsable && Fists_of_Fury.IsDistanceGood
+            && MySettings.UseFistsofFury && !Tiger_Power_Timer.IsReady && !Rising_Sun_Kick_Timer.IsReady
+            && ObjectManager.Me.EnergyPercentage < 81 && ObjectManager.Me.BuffStack(125359) > 2)
+        {
+            Fists_of_Fury.Launch();
+            return;
+        }
+        else if (Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood && Blackout_Kick.KnownSpell 
+            && MySettings.UseBlackoutKick && (ObjectManager.Me.HaveBuff(116768) || ObjectManager.Me.Chi > 2))
+        {
+            Blackout_Kick.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
+                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 3 && Expel_Harm.IsDistanceGood)
+        {
+            Expel_Harm.Launch();
+            return;
+        }
+        else
+        {
+            if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
+                && ObjectManager.Me.Chi < 3 && ObjectManager.Me.HealthPercent > 90 && !ObjectManager.Me.HaveBuff(118864)
+                && Jab.IsDistanceGood)
+            {
+                Jab.Launch();
+                return;
+            }
+        }
+    }
+
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Buff();
+            Heal();
         }
     }
 
@@ -1431,6 +1427,9 @@ public class Monk_Windwalker
 public class Monk_Mistweaver
 {
     private readonly MonkMistweaverSettings MySettings = MonkMistweaverSettings.GetSettings();
+    private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+
+    #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
@@ -1439,6 +1438,8 @@ public class Monk_Mistweaver
     private Timer Grapple_Weapon_Timer = new Timer(0);
     private Timer Healing_Sphere_Timer = new Timer(0);
     private Timer Serpents_Zeal_Timer = new Timer(0);
+
+    #endregion
 
     #region Professions & Racials
 
@@ -1558,7 +1559,7 @@ public class Monk_Mistweaver
         }
     }
 
-    public void Pull()
+    private void Pull()
     {
         if (!ObjectManager.Target.InCombat && Provoke.IsSpellUsable && Provoke.IsDistanceGood
             && MySettings.UseProvoke && Provoke.KnownSpell)
@@ -1568,19 +1569,19 @@ public class Monk_Mistweaver
         }
     }
 
-    public void Combat()
+    private void Combat()
     {
+        Buff();
         AvoidMelee();
         if (OnCD.IsReady)
             Defense_Cycle();
         Heal();
-        Buff();
         Decast();
         Healing_Burst();
         DPS_Cycle();
     }
 
-    public void Buff()
+    private void Buff()
     {
         if (ObjectManager.Me.IsMounted)
             return;
@@ -1627,132 +1628,85 @@ public class Monk_Mistweaver
         }
     }
 
-    public void Healing_Burst()
+    private void AvoidMelee()
     {
-        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 40)
+        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            Trinket_Timer = new Timer(1000*60*2);
+            Logging.WriteFight("Too Close. Moving Back");
+            Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+                Thread.Sleep(300);
+            Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+        }
+    }
+
+    private void Defense_Cycle()
+    {
+        if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseGrappleWeapon && Grapple_Weapon.IsDistanceGood
+            && Grapple_Weapon.KnownSpell && Grapple_Weapon.IsSpellUsable && Grapple_Weapon_Timer.IsReady)
+        {
+            Grapple_Weapon.Launch();
+            Grapple_Weapon_Timer = new Timer(1000*60);
             return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && MySettings.UseBerserking
-                 && ObjectManager.Target.GetDistance < 40)
+        else if (ObjectManager.Me.HealthPercent < 80 && Fortifying_Brew.IsSpellUsable && Fortifying_Brew.KnownSpell
+            && MySettings.UseFortifyingBrew)
         {
-            Berserking.Launch();
+            Fortifying_Brew.Launch();
+            OnCD = new Timer(1000*20);
             return;
         }
-        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && MySettings.UseBloodFury
-                 && ObjectManager.Target.GetDistance < 40)
+        else if (ObjectManager.Me.HealthPercent < 80 && Life_Cocoon.IsSpellUsable && Life_Cocoon.KnownSpell
+            && MySettings.UseLifeCocoon)
         {
-            Blood_Fury.Launch();
+            Life_Cocoon.Launch();
+            OnCD = new Timer(1000*12);
             return;
         }
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && MySettings.UseLifeblood
-                 && ObjectManager.Target.GetDistance < 40)
+        else if (ObjectManager.Me.HealthPercent < 90 && Charging_Ox_Wave.IsSpellUsable && Charging_Ox_Wave.KnownSpell
+            && MySettings.UseChargingOxWave && Charging_Ox_Wave.IsDistanceGood)
         {
-            Lifeblood.Launch();
+            Charging_Ox_Wave.Launch();
+            OnCD = new Timer(1000*3);
             return;
         }
-        else if (MySettings.UseEngGlove && Engineering.KnownSpell && Engineering_Timer.IsReady
-                 && ObjectManager.Target.GetDistance < 40)
+        else if (ObjectManager.Me.HealthPercent < 90 && Dampen_Harm.IsSpellUsable && Dampen_Harm.KnownSpell
+            && MySettings.UseDampenHarm)
         {
-            Logging.WriteFight("Use Engineering Gloves.");
-            Lua.RunMacroText("/use 10");
-            Engineering_Timer = new Timer(1000*60);
+            Dampen_Harm.Launch();
+            OnCD = new Timer(1000*5);
             return;
         }
-        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
-                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
+        else if (ObjectManager.Me.HealthPercent < 90 && Leg_Sweep.IsSpellUsable && Leg_Sweep.KnownSpell
+            && MySettings.UseLegSweep && ObjectManager.Target.GetDistance < 6)
         {
-            Chi_Brew.Launch();
+            Leg_Sweep.Launch();
+            OnCD = new Timer(1000*5);
             return;
         }
-        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
-                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
+        else if (ObjectManager.Me.HealthPercent < 80 && Zen_Meditation.IsSpellUsable && Zen_Meditation.KnownSpell
+                 && MySettings.UseZenMeditation)
         {
-            Invoke_Xuen_the_White_Tiger.Launch();
+            Zen_Meditation.Launch();
+            OnCD = new Timer(1000*8);
             return;
         }
-        else if (Thunder_Focus_Tea.IsSpellUsable && Thunder_Focus_Tea.KnownSpell
-                 && MySettings.UseThunderFocusTea && ObjectManager.Me.HealthPercent < 90)
+        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+                 && MySettings.UseStoneform)
         {
-            Thunder_Focus_Tea.Launch();
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Revival.KnownSpell && Revival.IsSpellUsable 
-            && MySettings.UseRevival)
-        {
-            Revival.Launch();
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
             return;
         }
         else
         {
-            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
-                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
+            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
+                && MySettings.UseWarStomp)
             {
-                Rushing_Jade_Wind.Launch();
+                War_Stomp.Launch();
+                OnCD = new Timer(1000*2);
                 return;
             }
-        }
-    }
-
-    public void DPS_Cycle()
-    {
-        if (ObjectManager.GetNumberAttackPlayer() > 2 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
-                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
-        {
-            Spinning_Crane_Kick.Launch();
-            return;
-        }
-        else if (Crackling_Jade_Lightning.KnownSpell && Crackling_Jade_Lightning.IsSpellUsable
-            && MySettings.UseCracklingJadeLightning && ObjectManager.Me.Chi < 4 && Crackling_Jade_Lightning.IsDistanceGood
-            && !Expel_Harm.IsDistanceGood)
-        {
-            Crackling_Jade_Lightning.Launch();
-            return;
-        }
-        else if (Blackout_Kick.KnownSpell && Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood
-                 && MySettings.UseBlackoutKick && (!ObjectManager.Me.HaveBuff(127722) || Serpents_Zeal_Timer.IsReady))
-        {
-            Blackout_Kick.Launch();
-            Serpents_Zeal_Timer = new Timer(1000*25);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
-                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && Expel_Harm.IsDistanceGood)
-        {
-            Expel_Harm.Launch();
-            return;
-        }
-        else if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && ObjectManager.Me.Chi < 4 
-            && ObjectManager.Me.HealthPercent > 90 && Jab.IsDistanceGood)
-        {
-            Jab.Launch();
-            return;
-        }
-        else
-        {
-            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
-                 && MySettings.UseTigerPalm && ObjectManager.Me.HealthPercent > 90
-                 && ObjectManager.Me.BuffStack(125359) < 3)
-            {
-                Tiger_Palm.Launch();
-                return;
-            }
-        }
-    }
-
-    public void Patrolling()
-    {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Heal();
-            Buff();
         }
     }
 
@@ -1848,76 +1802,6 @@ public class Monk_Mistweaver
         }
     }
 
-    private void Defense_Cycle()
-    {
-        if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseGrappleWeapon && Grapple_Weapon.IsDistanceGood
-            && Grapple_Weapon.KnownSpell && Grapple_Weapon.IsSpellUsable && Grapple_Weapon_Timer.IsReady)
-        {
-            Grapple_Weapon.Launch();
-            Grapple_Weapon_Timer = new Timer(1000*60);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Fortifying_Brew.IsSpellUsable && Fortifying_Brew.KnownSpell
-            && MySettings.UseFortifyingBrew)
-        {
-            Fortifying_Brew.Launch();
-            OnCD = new Timer(1000*20);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Life_Cocoon.IsSpellUsable && Life_Cocoon.KnownSpell
-            && MySettings.UseLifeCocoon)
-        {
-            Life_Cocoon.Launch();
-            OnCD = new Timer(1000*12);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Charging_Ox_Wave.IsSpellUsable && Charging_Ox_Wave.KnownSpell
-            && MySettings.UseChargingOxWave && Charging_Ox_Wave.IsDistanceGood)
-        {
-            Charging_Ox_Wave.Launch();
-            OnCD = new Timer(1000*3);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Dampen_Harm.IsSpellUsable && Dampen_Harm.KnownSpell
-            && MySettings.UseDampenHarm)
-        {
-            Dampen_Harm.Launch();
-            OnCD = new Timer(1000*5);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 90 && Leg_Sweep.IsSpellUsable && Leg_Sweep.KnownSpell
-            && MySettings.UseLegSweep && ObjectManager.Target.GetDistance < 6)
-        {
-            Leg_Sweep.Launch();
-            OnCD = new Timer(1000*5);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Zen_Meditation.IsSpellUsable && Zen_Meditation.KnownSpell
-                 && MySettings.UseZenMeditation)
-        {
-            Zen_Meditation.Launch();
-            OnCD = new Timer(1000*8);
-            return;
-        }
-        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
-                 && MySettings.UseStoneform)
-        {
-            Stoneform.Launch();
-            OnCD = new Timer(1000*8);
-            return;
-        }
-        else
-        {
-            if (ObjectManager.Me.HealthPercent < 80 && War_Stomp.IsSpellUsable && War_Stomp.KnownSpell
-                && MySettings.UseWarStomp)
-            {
-                War_Stomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
-        }
-    }
-
     private void Decast()
     {
         if (Arcane_Torrent.KnownSpell && MySettings.UseArcaneTorrent && Arcane_Torrent.IsSpellUsable 
@@ -1950,11 +1834,121 @@ public class Monk_Mistweaver
         }
     }
 
-    private void AvoidMelee()
+    private void Healing_Burst()
     {
-        while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (MySettings.UseTrinket && Trinket_Timer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
-            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+            Logging.WriteFight("Use Trinket 1.");
+            Lua.RunMacroText("/use 13");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Logging.WriteFight("Use Trinket 2.");
+            Lua.RunMacroText("/use 14");
+            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
+            Trinket_Timer = new Timer(1000*60*2);
+        }
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBerserking)
+            Berserking.Launch();
+        else if (Blood_Fury.IsSpellUsable && Blood_Fury.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseBloodFury)
+            Blood_Fury.Launch();
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+                 && MySettings.UseLifeblood)
+            Lifeblood.Launch();
+        else if (Engineering_Timer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+                && MySettings.UseEngGlove)
+        {
+            Logging.WriteFight("Use Engineering Gloves.");
+            Lua.RunMacroText("/use 10");
+            Engineering_Timer = new Timer(1000*60);
+        }
+        else if (Chi_Brew.IsSpellUsable && Chi_Brew.KnownSpell
+                 && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
+        {
+            Chi_Brew.Launch();
+            return;
+        }
+        else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
+                 && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
+        {
+            Invoke_Xuen_the_White_Tiger.Launch();
+            return;
+        }
+        else if (Thunder_Focus_Tea.IsSpellUsable && Thunder_Focus_Tea.KnownSpell
+                 && MySettings.UseThunderFocusTea && ObjectManager.Me.HealthPercent < 90)
+        {
+            Thunder_Focus_Tea.Launch();
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 80 && Revival.KnownSpell && Revival.IsSpellUsable 
+            && MySettings.UseRevival)
+        {
+            Revival.Launch();
+            return;
+        }
+        else
+        {
+            if (Rushing_Jade_Wind.IsSpellUsable && Rushing_Jade_Wind.KnownSpell && Rushing_Jade_Wind.IsDistanceGood
+                && MySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
+            {
+                Rushing_Jade_Wind.Launch();
+                return;
+            }
+        }
+    }
+
+    private void DPS_Cycle()
+    {
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Spinning_Crane_Kick.IsSpellUsable && Spinning_Crane_Kick.KnownSpell
+                 && Spinning_Crane_Kick.IsDistanceGood && !ObjectManager.Me.IsCast && MySettings.UseSpinningCraneKick)
+        {
+            Spinning_Crane_Kick.Launch();
+            return;
+        }
+        else if (Crackling_Jade_Lightning.KnownSpell && Crackling_Jade_Lightning.IsSpellUsable
+            && MySettings.UseCracklingJadeLightning && ObjectManager.Me.Chi < 4 && Crackling_Jade_Lightning.IsDistanceGood
+            && !Expel_Harm.IsDistanceGood)
+        {
+            Crackling_Jade_Lightning.Launch();
+            return;
+        }
+        else if (Blackout_Kick.KnownSpell && Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood
+                 && MySettings.UseBlackoutKick && (!ObjectManager.Me.HaveBuff(127722) || Serpents_Zeal_Timer.IsReady))
+        {
+            Blackout_Kick.Launch();
+            Serpents_Zeal_Timer = new Timer(1000*25);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 91 && Expel_Harm.KnownSpell && Expel_Harm.IsSpellUsable
+                 && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && Expel_Harm.IsDistanceGood)
+        {
+            Expel_Harm.Launch();
+            return;
+        }
+        else if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && ObjectManager.Me.Chi < 4 
+            && ObjectManager.Me.HealthPercent > 90 && Jab.IsDistanceGood)
+        {
+            Jab.Launch();
+            return;
+        }
+        else
+        {
+            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
+                 && MySettings.UseTigerPalm && ObjectManager.Me.HealthPercent > 90
+                 && ObjectManager.Me.BuffStack(125359) < 3)
+            {
+                Tiger_Palm.Launch();
+                return;
+            }
+        }
+    }
+
+    private void Patrolling()
+    {
+        if (!ObjectManager.Me.IsMounted)
+        {
+            Buff();
+            Heal();
         }
     }
 
