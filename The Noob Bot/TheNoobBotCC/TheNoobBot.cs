@@ -1244,7 +1244,7 @@ public class Deathknight_Apprentice
     private void Pull()
     {
         if (Death_Grip.IsSpellUsable && Death_Grip.KnownSpell && Death_Grip.IsDistanceGood
-            && MySettings.UseDeathGrip)
+            && MySettings.UseDeathGrip && ObjectManager.Target.GetDistance > Main.range)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -1709,7 +1709,7 @@ public class Deathknight_Blood
     private void Pull()
     {
         if (Death_Grip.IsSpellUsable && Death_Grip.KnownSpell && Death_Grip.IsDistanceGood
-            && MySettings.UseDeathGrip)
+            && ObjectManager.Target.GetDistance > Main.range && MySettings.UseDeathGrip)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -2524,7 +2524,7 @@ public class Deathknight_Unholy
     private void Pull()
     {
         if (Death_Grip.IsSpellUsable && Death_Grip.KnownSpell && Death_Grip.IsDistanceGood
-                && MySettings.UseDeathGrip)
+                && MySettings.UseDeathGrip && ObjectManager.Target.GetDistance > Main.range)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -3345,7 +3345,7 @@ public class Deathknight_Frost
     private void Pull()
     {
         if (Death_Grip.IsSpellUsable && Death_Grip.KnownSpell && Death_Grip.IsDistanceGood
-                && MySettings.UseDeathGrip)
+                && MySettings.UseDeathGrip && ObjectManager.Target.GetDistance > Main.range)
         {
             Death_Grip.Launch();
             MovementManager.StopMove();
@@ -23157,8 +23157,7 @@ public class Hunter_Marksmanship
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget && Serpent_Sting.IsDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -23951,8 +23950,7 @@ public class Hunter_BeastMastery
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget && Serpent_Sting.IsDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
@@ -24487,8 +24485,8 @@ public class Hunter_BeastMastery
                 }
             }
         }
-        else if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable && Kill_Command.IsDistanceGood
-                 && MySettings.UseKillCommand)
+        else if (Kill_Command.KnownSpell && Kill_Command.IsSpellUsable && MySettings.UseKillCommand
+                 && ObjectManager.Target.GetDistance < 25.0f) // Kill_Command.IsDistanceGood seams to be wrong
         {
             Kill_Command.Launch();
             return;
@@ -24814,8 +24812,7 @@ public class Hunter_Survival
                     {
                         if (Fight.InFight && ObjectManager.Me.Target > 0)
                         {
-                            if (ObjectManager.Me.Target != lastTarget
-                                && (Hunters_Mark.IsDistanceGood || Serpent_Sting.IsDistanceGood))
+                            if (ObjectManager.Me.Target != lastTarget && Serpent_Sting.IsDistanceGood)
                             {
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
