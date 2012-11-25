@@ -1286,11 +1286,11 @@ public class Deathknight_Apprentice
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -1819,11 +1819,11 @@ public class Deathknight_Blood
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -2639,11 +2639,11 @@ public class Deathknight_Unholy
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -3461,11 +3461,11 @@ public class Deathknight_Frost
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -4307,11 +4307,11 @@ public class Mage_Arcane
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -5107,11 +5107,11 @@ public class Mage_Frost
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -5917,11 +5917,11 @@ public class Mage_Fire
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -6567,11 +6567,12 @@ public class Warlock_Demonology
 
     private void Pull()
     {
-        if (Corruption.IsSpellUsable && Corruption.IsDistanceGood && Corruption.KnownSpell
+        //Blizzard API calls for Doom using the Corruption Function
+        if (Corruption.IsSpellUsable && Corruption.KnownSpell && Corruption.IsDistanceGood
             && MySettings.UseDoom && ObjectManager.Me.DemonicFury > 199)
         {
-            if (Metamorphosis.KnownSpell && Metamorphosis.IsSpellUsable
-                && MySettings.UseMetamorphosis && !Metamorphosis.HaveBuff)
+            if (Metamorphosis.IsSpellUsable && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff
+                && MySettings.UseMetamorphosis)
             {
                 Metamorphosis.Launch();
                 Thread.Sleep(400);
@@ -6595,7 +6596,7 @@ public class Warlock_Demonology
         Defense_Cycle();
         Heal();
 
-        if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
+        if (Life_Tap.KnownSpell && Life_Tap.IsSpellUsable && ObjectManager.Me.ManaPercentage <= MySettings.UseLifeTapAtPercentage
             && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
@@ -6603,15 +6604,11 @@ public class Warlock_Demonology
         }
         else
         {
-            if (Fel_Flame.IsDistanceGood && Fel_Flame.IsSpellUsable && Fel_Flame.KnownSpell
+            if (Fel_Flame.IsSpellUsable && Fel_Flame.KnownSpell && Fel_Flame.IsDistanceGood
                 && MySettings.UseFelFlame)
             {
                 Fel_Flame.Launch();
-                if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
-                {
-                    Fel_Flame.Launch();
-                    return;
-                }
+                return;
             }
         }
 
@@ -6621,9 +6618,7 @@ public class Warlock_Demonology
             Hellfire.Launch();
             Thread.Sleep(200);
             while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-            {
                 Thread.Sleep(200);
-            }
             return;
         }
     }
@@ -6647,92 +6642,83 @@ public class Warlock_Demonology
 
         Pet();
 
-        if (!Dark_Intent.HaveBuff && Dark_Intent.KnownSpell && Dark_Intent.IsSpellUsable
+        if (Dark_Intent.IsSpellUsable && Dark_Intent.KnownSpell && !Dark_Intent.HaveBuff
             && MySettings.UseDarkIntent)
         {
             Dark_Intent.Launch();
             return;
         }
-        else if (!Soul_Link.HaveBuff && Soul_Link.KnownSpell && Soul_Link.IsSpellUsable
+        else if (Soul_Link.IsSpellUsable && Soul_Link.KnownSpell && !Soul_Link.HaveBuff
                  && MySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Soul_Link.Launch();
             return;
         }
-        if (!Soulstone.HaveBuff && Soulstone.KnownSpell && Soulstone.IsSpellUsable
-            && MySettings.UseSoulstone)
+        else if (Soulstone.IsSpellUsable && Soulstone.KnownSpell && !Soulstone.HaveBuff
+                 && MySettings.UseSoulstone)
         {
             Soulstone.Launch();
             return;
         }
         else
         {
-            if (ItemsManager.GetItemCountByIdLUA(5512) == 0 && Create_Healthstone.KnownSpell
-                && Create_Healthstone.IsSpellUsable && MySettings.UseCreateHealthstone)
+            if (Create_Healthstone.IsSpellUsable && Create_Healthstone.KnownSpell && ItemsManager.GetItemCountByIdLUA(5512) == 0
+                && MySettings.UseCreateHealthstone)
             {
                 Logging.WriteFight(" - Create Healthstone - ");
-                Thread.Sleep(200);
                 Create_Healthstone.Launch();
-                Thread.Sleep(200);
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
             }
         }
     }
 
     private void Pet()
     {
-        if (Health_Funnel.KnownSpell)
+        if (Health_Funnel.IsSpellUsable && Health_Funnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0
+            && MySettings.UseHealthFunnel && ObjectManager.Pet.HealthPercent < 50)
         {
-            if (ObjectManager.Pet.HealthPercent > 0 && ObjectManager.Pet.HealthPercent < 50
-                && Health_Funnel.IsSpellUsable && Health_Funnel.KnownSpell && MySettings.UseHealthFunnel)
+            Health_Funnel.Launch();
+            while (ObjectManager.Me.IsCast)
             {
-                Health_Funnel.Launch();
-                while (ObjectManager.Me.IsCast)
-                {
-                    if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
-                        break;
-                    Thread.Sleep(100);
-                }
+                if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
+                    break;
+                Thread.Sleep(100);
             }
         }
 
-        if (MySettings.UseSummonFelhunter && Summon_Felhunter.KnownSpell && Summon_Felhunter.IsSpellUsable &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
+        if (Summon_Felhunter.IsSpellUsable && Summon_Felhunter.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
+            && MySettings.UseSummonFelhunter && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             Summon_Felhunter.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (MySettings.UseSummonFelguard && Summon_Felguard.KnownSpell && Summon_Felguard.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
+        else if (Summon_Felguard.IsSpellUsable && Summon_Felguard.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
+                 && MySettings.UseSummonFelguard && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             Summon_Felguard.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (MySettings.UseSummonImp && Summon_Imp.KnownSpell && Summon_Imp.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
+        else if (Summon_Imp.IsSpellUsable && Summon_Imp.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
+                 && MySettings.UseSummonImp && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             Summon_Imp.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (MySettings.UseSummonVoidwalker && Summon_Voidwalker.KnownSpell &&
-                 Summon_Voidwalker.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
+        else if (Summon_Voidwalker.IsSpellUsable && Summon_Voidwalker.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
+                 && MySettings.UseSummonVoidwalker && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             Summon_Voidwalker.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (MySettings.UseSummonSuccubus && Summon_Succubus.KnownSpell &&
-                 Summon_Succubus.IsSpellUsable &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !Grimoire_of_Sacrifice.HaveBuff)
+        else if (Summon_Succubus.IsSpellUsable && Summon_Succubus.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
+                 && MySettings.UseSummonSuccubus && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
-            Summon_Succubus.Launch();
             Logging.WriteFight(" - PET DEAD - ");
+            Summon_Succubus.Launch();
         }
         Thread.Sleep(200);
-        if (Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff && Grimoire_of_Sacrifice.IsSpellUsable
+        if (Grimoire_of_Sacrifice.IsSpellUsable && Grimoire_of_Sacrifice.KnownSpell && !Grimoire_of_Sacrifice.HaveBuff
             && MySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             Grimoire_of_Sacrifice.Launch();
@@ -6741,11 +6727,11 @@ public class Warlock_Demonology
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -6753,38 +6739,38 @@ public class Warlock_Demonology
 
     private void Defense_Cycle()
     {
-        if (ObjectManager.Me.HealthPercent < 70 && MySettings.UseUnendingResolve
-            && Unending_Resolve.KnownSpell && Unending_Resolve.IsSpellUsable)
+        if (Unending_Resolve.IsSpellUsable && Unending_Resolve.KnownSpell
+            && MySettings.UseUnendingResolve && ObjectManager.Me.HealthPercent <= MySettings.UseUnendingResolveAtPercentage)
         {
             Unending_Resolve.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && MySettings.UseHowlofTerror
-                 && Howl_of_Terror.KnownSpell && Howl_of_Terror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (Howl_of_Terror.IsSpellUsable && Howl_of_Terror.KnownSpell && ObjectManager.Target.GetDistance < 8
+                 && MySettings.UseHowlofTerror && ObjectManager.Me.HealthPercent <= MySettings.UseHowlofTerrorAtPercentage)
         {
             Howl_of_Terror.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && MySettings.UseDarkBargain
-                 && Dark_Bargain.KnownSpell && Dark_Bargain.IsSpellUsable)
+        else if (Dark_Bargain.IsSpellUsable && Dark_Bargain.KnownSpell
+            && MySettings.UseDarkBargain && ObjectManager.Me.HealthPercent <= MySettings.UseDarkBargainAtPercentage)
         {
             Dark_Bargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && MySettings.UseSacrificialPact
-                 && Sacrificial_Pact.KnownSpell && Sacrificial_Pact.IsSpellUsable
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        else if (Sacrificial_Pact.IsSpellUsable && Sacrificial_Pact.KnownSpell
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
+                 && MySettings.UseSacrificialPact && ObjectManager.Me.HealthPercent <= MySettings.UseSacrificialPactAtPercentage)
         {
             Sacrificial_Pact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && MySettings.UseShadowfury
-                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (Shadowfury.IsSpellUsable && Shadowfury.KnownSpell && Shadowfury.IsDistanceGood
+                 && MySettings.UseShadowfury && ObjectManager.Me.HealthPercent <= MySettings.UseShadowfuryAtPercentage)
         {
-            Shadowfury.Launch();
+            SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
@@ -6813,24 +6799,24 @@ public class Warlock_Demonology
             return;
 
         if (Arcane_Torrent.IsSpellUsable && Arcane_Torrent.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseArcaneTorrentForResourceAtPercentage
-                && MySettings.UseArcaneTorrentForResource)
+            && MySettings.UseArcaneTorrentForResource)
         {
             Arcane_Torrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage && Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
-            && MySettings.UseGiftoftheNaaru)
+        else if (Gift_of_the_Naaru.IsSpellUsable && Gift_of_the_Naaru.KnownSpell
+                 && MySettings.UseGiftoftheNaaru && ObjectManager.Me.HealthPercent <= MySettings.UseGiftoftheNaaruAtPercentage)
         {
             Gift_of_the_Naaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && Dark_Regeneration.IsSpellUsable && Dark_Regeneration.KnownSpell
-                 && MySettings.UseDarkRegeneration)
+        else if (Dark_Regeneration.IsSpellUsable && Dark_Regeneration.KnownSpell
+                 && MySettings.UseDarkRegeneration && ObjectManager.Me.HealthPercent <= MySettings.UseDarkRegenerationAtPercentage)
         {
             Dark_Regeneration.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage && ItemsManager.GetItemCountByIdLUA(5512) > 0
                  && MySettings.UseCreateHealthstone && Healthstone_Timer.IsReady)
         {
             Logging.WriteFight("Use Healthstone.");
@@ -6838,22 +6824,20 @@ public class Warlock_Demonology
             Healthstone_Timer = new Timer(1000*60*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 85 && Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell
-                 && MySettings.UseMortalCoil && Mortal_Coil.IsDistanceGood)
+        else if (Mortal_Coil.IsSpellUsable && Mortal_Coil.KnownSpell && Mortal_Coil.IsDistanceGood
+                 && MySettings.UseMortalCoil && ObjectManager.Me.HealthPercent <= MySettings.UseMortalCoilAtPercentage)
         {
             Mortal_Coil.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 70 && Drain_Life.KnownSpell
-                && MySettings.UseDrainLife && Drain_Life.IsDistanceGood && Drain_Life.IsSpellUsable)
+            if (Drain_Life.IsSpellUsable && Drain_Life.KnownSpell && Drain_Life.IsDistanceGood
+                && MySettings.UseDrainLife && ObjectManager.Me.HealthPercent <= MySettings.UseDrainLifeAtPercentage)
             {
                 Drain_Life.Launch();
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
                 return;
             }
         }
@@ -6868,16 +6852,17 @@ public class Warlock_Demonology
             Arcane_Torrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && MySettings.UseTwilightWard && Twilight_Ward.KnownSpell && Twilight_Ward.IsSpellUsable)
+        else if (Twilight_Ward.IsSpellUsable && Twilight_Ward.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseTwilightWardAtPercentage
+                 && MySettings.UseTwilightWard && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             Twilight_Ward.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && MySettings.UseSummonFelhunter
-                && Command_Demon.IsSpellUsable && Command_Demon.KnownSpell && ObjectManager.Target.GetDistance < 40)
+            if (Command_Demon.IsSpellUsable && Command_Demon.KnownSpell && ObjectManager.Target.GetDistance < 40
+                && MySettings.UseSummonFelhunter && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                && MySettings.UseCommandDemon)
             {
                 Command_Demon.Launch();
                 return;
@@ -6984,7 +6969,7 @@ public class Warlock_Demonology
             Curse_of_Enfeeblement.Launch();
             return;
         }
-        else if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
+        else if (ObjectManager.Me.ManaPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
                  && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
@@ -7129,8 +7114,20 @@ public class Warlock_Demonology
     {
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public int UseArcaneTorrentForResourceAtPercentage = 80;
+        public int UseCreateHealthstoneAtPercentage = 75;
+        public int UseDarkBargainAtPercentage = 40;
+        public int UseDarkRegenerationAtPercentage = 65;
+        public int UseDrainLifeAtPercentage = 70;
         public int UseGiftoftheNaaruAtPercentage = 80;
+        public int UseHowlofTerrorAtPercentage = 20;
+        public int UseLifeTapAtPercentage = 75;
+        public int UseMortalCoilAtPercentage = 85;
+        public int UseSacrificialPactAtPercentage = 95;
+        public int UseShadowfuryAtPercentage = 90;
+        public int UseSpellLockAtPercentage = 100;
         public int UseStoneformAtPercentage = 80;
+        public int UseTwilightWardAtPercentage = 100;
+        public int UseUnendingResolveAtPercentage = 70;
         public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
@@ -7196,10 +7193,10 @@ public class Warlock_Demonology
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Warlock Buffs */
             AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
             AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
@@ -7234,20 +7231,20 @@ public class Warlock_Demonology
             AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown");
-            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown");
-            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown");
-            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown");
-            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown");
-            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown");
+            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
-            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
-            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
-            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
-            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
+            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell", "AtPercentage");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -7581,11 +7578,11 @@ public class Warlock_Destruction
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -7664,7 +7661,7 @@ public class Warlock_Destruction
             Gift_of_the_Naaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Ember_Tap.IsSpellUsable && Ember_Tap.KnownSpell
+        else if (ObjectManager.Me.HealthPercent <= MySettings.UseEmberTapAtPercentage && Ember_Tap.IsSpellUsable && Ember_Tap.KnownSpell
                  && MySettings.UseEmberTap)
         {
             Ember_Tap.Launch();
@@ -7917,8 +7914,21 @@ public class Warlock_Destruction
     {
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public int UseArcaneTorrentForResourceAtPercentage = 80;
+        public int UseCreateHealthstoneAtPercentage = 75;
+        public int UseDarkBargainAtPercentage = 40;
+        public int UseDarkRegenerationAtPercentage = 65;
+        public int UseDrainLifeAtPercentage = 70;
+        public int UseEmberTapAtPercentage = 60;
         public int UseGiftoftheNaaruAtPercentage = 80;
+        public int UseHowlofTerrorAtPercentage = 20;
+        public int UseLifeTapAtPercentage = 75;
+        public int UseMortalCoilAtPercentage = 85;
+        public int UseSacrificialPactAtPercentage = 95;
+        public int UseShadowfuryAtPercentage = 90;
+        public int UseSpellLockAtPercentage = 100;
         public int UseStoneformAtPercentage = 80;
+        public int UseTwilightWardAtPercentage = 100;
+        public int UseUnendingResolveAtPercentage = 70;
         public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
@@ -7980,10 +7990,10 @@ public class Warlock_Destruction
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrent", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
-            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
+            AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
-            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
-            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials");
+            AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use War Stomp", "UseWarStomp", "Professions & Racials", "AtPercentage");
             /* Warlock Buffs */
             AddControlInWinForm("Use Curse of Enfeeblement", "UseCurseofEnfeeblement", "Warlock Buffs");
             AddControlInWinForm("Use Curse of the Elements", "UseCurseoftheElements", "Warlock Buffs");
@@ -8013,22 +8023,23 @@ public class Warlock_Destruction
             AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown");
-            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown");
-            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown");
-            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown");
-            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown");
-            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown");
+            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Spell Lock", "UseSpellLock", "Offensive Spell", "AtPercentage");
+            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
-            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
-            AddControlInWinForm("Use Ember Tap", "UseEmberTap", "Healing Spell");
+            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Ember Tap", "UseEmberTap", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Flames of Xoroth", "UseFlamesofXoroth", "Healing Spell");
-            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
-            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
-            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
+            AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell", "AtPercentage");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
@@ -8233,7 +8244,7 @@ public class Warlock_Affliction
         Defense_Cycle();
         Heal();
 
-        if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
+        if (ObjectManager.Me.ManaPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
             && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
@@ -8388,11 +8399,11 @@ public class Warlock_Affliction
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -8620,7 +8631,7 @@ public class Warlock_Affliction
             Curse_of_Exhaustion.Launch();
             return;
         }
-        else if (ObjectManager.Me.BarTwoPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
+        else if (ObjectManager.Me.ManaPercentage < 75 && Life_Tap.KnownSpell && Life_Tap.IsSpellUsable
                  && MySettings.UseLifeTap)
         {
             Life_Tap.Launch();
@@ -9189,11 +9200,11 @@ public class Druid_Balance
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -9994,11 +10005,11 @@ public class Druid_Feral
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -10794,11 +10805,11 @@ public class Druid_Restoration
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -11495,11 +11506,11 @@ public class Druid_Guardian
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -12351,11 +12362,11 @@ public class Paladin_Holy
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -12852,11 +12863,11 @@ public class Paladin_Protection
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -13404,11 +13415,11 @@ public class Paladin_Retribution
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -13853,11 +13864,11 @@ public class Shaman_Enhancement
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -14760,11 +14771,11 @@ public class Shaman_Restoration
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -15638,11 +15649,11 @@ public class Shaman_Elemental
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -16458,11 +16469,11 @@ public class Priest_Shadow
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -17134,11 +17145,11 @@ public class Priest_Discipline
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -17806,11 +17817,11 @@ public class Priest_Holy
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -18595,11 +18606,11 @@ public class Rogue_Combat
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -19365,11 +19376,11 @@ public class Rogue_Subtlety
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -20106,11 +20117,11 @@ public class Rogue_Assassination
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -20821,11 +20832,11 @@ public class Warrior_Arms
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -21681,11 +21692,11 @@ public class Warrior_Protection
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -22542,11 +22553,11 @@ public class Warrior_Fury
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -23357,11 +23368,11 @@ public class Hunter_Marksmanship
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -24160,11 +24171,11 @@ public class Hunter_BeastMastery
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -25025,11 +25036,11 @@ public class Hunter_Survival
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }

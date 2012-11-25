@@ -381,11 +381,11 @@ public class Monk_Brewmaster
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -1023,11 +1023,11 @@ public class Monk_Windwalker
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -1636,11 +1636,11 @@ public class Monk_Mistweaver
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
