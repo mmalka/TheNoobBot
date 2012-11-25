@@ -381,11 +381,11 @@ public class Monk_Brewmaster
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -589,6 +589,12 @@ public class Monk_Brewmaster
             Chi_Brew.Launch();
             return;
         }
+        else if (Touch_of_Death.IsSpellUsable && Touch_of_Death.KnownSpell && Touch_of_Death.IsDistanceGood
+                 && MySettings.UseTouchofDeath)
+        {
+            Touch_of_Death.Launch();
+            return;
+        }
         else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
                  && MySettings.UseInvokeXuentheWhiteTiger && Invoke_Xuen_the_White_Tiger.IsDistanceGood)
         {
@@ -635,7 +641,7 @@ public class Monk_Brewmaster
             return;
         }
         else if (Blackout_Kick.KnownSpell && Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood
-                 && MySettings.UseBlackoutKick && !Rushing_Jade_Wind.KnownSpell
+                 && MySettings.UseBlackoutKick && !Rushing_Jade_Wind.KnownSpell && !ObjectManager.Me.HaveBuff(121125)
                  && (!ObjectManager.Target.HaveBuff(115307) || Stagger_Timer.IsReady))
         {
             Blackout_Kick.Launch();
@@ -648,7 +654,7 @@ public class Monk_Brewmaster
             Keg_Smash.Launch();
             return;
         }
-        else if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
+        else if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && !ObjectManager.Me.HaveBuff(121125)
                  && MySettings.UseTigerPalm && ObjectManager.Target.BuffStack(125359) < 3)
         {
             Tiger_Palm.Launch();
@@ -669,9 +675,8 @@ public class Monk_Brewmaster
         }
         else
         {
-            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood
-                 && MySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 
-                 && ObjectManager.Target.HaveBuff(115307))
+            if (Tiger_Palm.KnownSpell && Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && ObjectManager.Target.HaveBuff(115307)
+                 && MySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 && !ObjectManager.Me.HaveBuff(121125))
             {
                 Tiger_Palm.Launch();
                 return;
@@ -1018,11 +1023,11 @@ public class Monk_Windwalker
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -1252,21 +1257,22 @@ public class Monk_Windwalker
             Rising_Sun_Kick_Timer = new Timer(1000*4);
             return;
         }
-        else if (Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && Tiger_Palm.KnownSpell && MySettings.UseTigerPalm 
+        else if (Tiger_Palm.IsSpellUsable && Tiger_Palm.IsDistanceGood && Tiger_Palm.KnownSpell 
+            && MySettings.UseTigerPalm && !ObjectManager.Me.HaveBuff(121125)
             && (Tiger_Power_Timer.IsReady || ObjectManager.Me.BuffStack(125359) != 3 || ObjectManager.Me.HaveBuff(118864)))
         {
             Tiger_Palm.Launch();
             Tiger_Power_Timer = new Timer(1000*15);
             return;
         }
-        else if (Fists_of_Fury.KnownSpell && Fists_of_Fury.IsSpellUsable && Fists_of_Fury.IsDistanceGood
+        else if (Fists_of_Fury.KnownSpell && Fists_of_Fury.IsSpellUsable && Fists_of_Fury.IsDistanceGood && !ObjectManager.Me.HaveBuff(121125)
             && MySettings.UseFistsofFury && !Tiger_Power_Timer.IsReady && !Rising_Sun_Kick_Timer.IsReady
             && ObjectManager.Me.EnergyPercentage < 81 && ObjectManager.Me.BuffStack(125359) > 2)
         {
             Fists_of_Fury.Launch();
             return;
         }
-        else if (Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood && Blackout_Kick.KnownSpell 
+        else if (Blackout_Kick.IsSpellUsable && Blackout_Kick.IsDistanceGood && Blackout_Kick.KnownSpell && !ObjectManager.Me.HaveBuff(121125)
             && MySettings.UseBlackoutKick && (ObjectManager.Me.HaveBuff(116768) || ObjectManager.Me.Chi > 2))
         {
             Blackout_Kick.Launch();
@@ -1630,11 +1636,11 @@ public class Monk_Mistweaver
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+        if (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 3 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 0 && ObjectManager.Target.InCombat)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
         }
@@ -1866,6 +1872,12 @@ public class Monk_Mistweaver
                  && MySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
         {
             Chi_Brew.Launch();
+            return;
+        }
+        else if (Touch_of_Death.IsSpellUsable && Touch_of_Death.KnownSpell && Touch_of_Death.IsDistanceGood
+                 && MySettings.UseTouchofDeath)
+        {
+            Touch_of_Death.Launch();
             return;
         }
         else if (Invoke_Xuen_the_White_Tiger.IsSpellUsable && Invoke_Xuen_the_White_Tiger.KnownSpell
