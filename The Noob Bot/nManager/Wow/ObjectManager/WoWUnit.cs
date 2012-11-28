@@ -64,7 +64,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.health);
+                    return GetDescriptor<int>(Descriptors.UnitFields.Health);
                 }
                 catch (Exception e)
                 {
@@ -80,7 +80,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.maxHealth);
+                    return GetDescriptor<int>(Descriptors.UnitFields.MaxHealth);
                 }
                 catch (Exception e)
                 {
@@ -1007,7 +1007,7 @@ namespace nManager.Wow.ObjectManager
         {
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
             uint displayPower = descriptorsArray +
-                                ((uint) Descriptors.UnitFields.displayPower*Descriptors.multiplicator);
+                                ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
             uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint) powerType +
                          (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
             uint result =
@@ -1022,7 +1022,7 @@ namespace nManager.Wow.ObjectManager
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.power*Descriptors.multiplicator +
+                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.multiplicator +
                                                   index*4));
             return powerValue;
         }
@@ -1033,7 +1033,7 @@ namespace nManager.Wow.ObjectManager
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.maxPower*Descriptors.multiplicator +
+                                                 ((uint) Descriptors.UnitFields.MaxPower*Descriptors.multiplicator +
                                                   index*4));
             return powerValue;
         }
@@ -1044,7 +1044,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.UnitFields.factionTemplate);
+                    return GetDescriptor<uint>(Descriptors.UnitFields.FactionTemplate);
                 }
                 catch (Exception e)
                 {
@@ -1060,7 +1060,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.UnitFields.displayID);
+                    return GetDescriptor<uint>(Descriptors.UnitFields.DisplayID);
                 }
                 catch (Exception e)
                 {
@@ -1175,7 +1175,7 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return (Health <= 0 || Health == 0.01 ||
-                            GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags) == 0x20) ||
+                            GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) == 0x20) ||
                            (Health == 1 && GetMove);
                 }
                 catch (Exception e)
@@ -1192,7 +1192,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags);
+                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags);
                     if (dynFlags == 13 || dynFlags == 1)
                         return true;
                 }
@@ -1211,7 +1211,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.dynamicFlags);
+                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags);
                     if (dynFlags == 4)
                         return true;
                 }
@@ -1266,7 +1266,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.target);
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.Target);
                 }
                 catch (Exception e)
                 {
@@ -1280,7 +1280,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     Memory.WowMemory.Memory.WriteUInt64(
                         Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors) +
-                        (uint) Descriptors.UnitFields.target*Descriptors.multiplicator, value);
+                        (uint) Descriptors.UnitFields.Target*Descriptors.multiplicator, value);
                 }
                 catch (Exception e)
                 {
@@ -1295,7 +1295,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<uint>(Descriptors.UnitFields.level);
+                    return GetDescriptor<uint>(Descriptors.UnitFields.Level);
                 }
                 catch (Exception e)
                 {
@@ -1344,7 +1344,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
                     return Convert.ToBoolean(flags & 0x4000000);
                 }
                 catch (Exception e)
@@ -1361,7 +1361,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00004000);
                 }
                 catch (Exception e)
@@ -1378,7 +1378,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00001000);
                 }
                 catch (Exception e)
@@ -1395,7 +1395,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00000080);
                 }
                 catch (Exception e)
@@ -1412,7 +1412,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00010000);
                 }
                 catch (Exception e)
@@ -1429,7 +1429,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00000200);
                 }
                 catch (Exception e)
@@ -1446,7 +1446,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.npcFlags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
                     return Convert.ToBoolean(flags & 0x00000010);
                 }
                 catch (Exception e)
@@ -1463,7 +1463,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.summonedBy);
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.SummonedBy);
                 }
                 catch (Exception e)
                 {
@@ -1479,7 +1479,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<ulong>(Descriptors.UnitFields.createdBy);
+                    return GetDescriptor<ulong>(Descriptors.UnitFields.CreatedBy);
                 }
                 catch (Exception e)
                 {
@@ -1495,7 +1495,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
                     return Convert.ToBoolean(flags & 0x0000800);
                 }
                 catch (Exception e)
@@ -1522,7 +1522,7 @@ namespace nManager.Wow.ObjectManager
                             }
                         }
                     }
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
                     return Convert.ToBoolean(flags & 0x0080000) && !IsDead;
                 }
                 catch (Exception e)
@@ -1573,7 +1573,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID) > 0 ||
+                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 ||
                            HaveBuff(SpellManager.MountDruidId()) || InTransport;
                 }
                 catch (Exception e)
@@ -1590,7 +1590,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.mountDisplayID);
+                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID);
                 }
                 catch (Exception e)
                 {
@@ -1606,7 +1606,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
                     return Convert.ToBoolean(flags & 0x1000);
                 }
                 catch (Exception e)
@@ -1623,7 +1623,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.flags);
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
                     return Convert.ToBoolean(flags & 0x0000008);
                 }
                 catch (Exception e)
@@ -1742,7 +1742,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return ((GetDescriptor<uint>(Descriptors.UnitFields.dynamicFlags) & 2) != 0);
+                    return ((GetDescriptor<uint>(Descriptors.UnitFields.DynamicFlags) & 2) != 0);
                 }
                 catch (Exception e)
                 {
@@ -1754,7 +1754,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var descriptor = GetDescriptor<uint>(Descriptors.UnitFields.dynamicFlags);
+                    var descriptor = GetDescriptor<uint>(Descriptors.UnitFields.DynamicFlags);
                     long t;
                     if (value)
                     {
@@ -1768,7 +1768,7 @@ namespace nManager.Wow.ObjectManager
                     var descriptorsArray =
                         Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
                     var addressGD = descriptorsArray +
-                                    ((uint) Descriptors.UnitFields.dynamicFlags*Descriptors.multiplicator);
+                                    ((uint) Descriptors.UnitFields.DynamicFlags*Descriptors.multiplicator);
                     Memory.WowMemory.Memory.WriteInt64(addressGD, t);
                 }
                 catch (Exception e)

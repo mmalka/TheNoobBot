@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
+                uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.Skill * Descriptors.multiplicator);
                 uint v2 = 0;
                 uint id = 0;
                 do
@@ -44,7 +44,7 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.Skill * Descriptors.multiplicator);
                     var result = Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD + 0x200);
                     return result;
                 }
@@ -65,7 +65,7 @@ namespace nManager.Wow.Helpers
                 if (id > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.skill * Descriptors.multiplicator);
+                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.Skill * Descriptors.multiplicator);
                     return Memory.WowMemory.Memory.ReadShort(id * 0x2 + addressGD + 0x400);
                 }
                 return 0;

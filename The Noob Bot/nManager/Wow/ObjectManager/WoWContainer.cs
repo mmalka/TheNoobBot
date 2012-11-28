@@ -17,7 +17,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.ContainerFields.numSlots);
+                    return GetDescriptor<int>(Descriptors.ContainerFields.NumSlots);
                 }
                 catch (Exception e)
                 {
@@ -34,7 +34,7 @@ namespace nManager.Wow.ObjectManager
                     slot -= 1;
                     if (slot < 0 || slot > NumberSlot)
                         return 0;
-                    return GetDescriptor<int>((uint) (((int)Descriptors.ContainerFields.slots) + (slot * 0x8)));
+                    return GetDescriptor<int>((uint) (((int)Descriptors.ContainerFields.Slots) + (slot * 0x8)));
                 }
                 catch (Exception e)
                 {

@@ -18,7 +18,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<ulong>((uint)Descriptors.GameObjectFields.createdBy); }
+                try { return GetDescriptor<ulong>((uint)Descriptors.GameObjectFields.CreatedBy); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > CreatedBy: " + e);
@@ -30,7 +30,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.GameObjectFields.displayID); }
+                try { return GetDescriptor<int>(Descriptors.GameObjectFields.DisplayID); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > DisplayId: " + e);
@@ -91,7 +91,7 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<float>(Descriptors.GameObjectFields.parentRotation); }
+                try { return GetDescriptor<float>(Descriptors.GameObjectFields.ParentRotation); }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > ParentRotation: " + e);
@@ -144,7 +144,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.bytes_1);
+                    var bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.PercentHealth);
                     return (WoWGameObjectType)((bytes1 >> 8) & 0xFF);
                 }
                 catch (Exception e)

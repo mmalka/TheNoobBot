@@ -122,7 +122,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                uint addressQL = descriptorsArray + ((uint)Descriptors.PlayerFields.questLog * Descriptors.multiplicator);
+                uint addressQL = descriptorsArray + ((uint)Descriptors.PlayerFields.QuestLog * Descriptors.multiplicator);
 
                 List<int> list = new List<int>();
                 for (int index = 0; index < 50; ++index)

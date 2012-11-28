@@ -27,7 +27,7 @@
         public enum Hooking
         {
             DX_DEVICE = 0xB18ADC,
-            DX_DEVICE_IDX = 0x27F8,
+            DX_DEVICE_IDX = 0x2808,
             ENDSCENE_IDX = 0xA8,
         }
 
@@ -104,7 +104,7 @@
         public enum BarManager
         {
             slotIsEnable = 0xD3AAB8,
-            startBar = 0xD3B05C, // STRUCTURE CHANGED ON 5.1.0!
+            startBar = 0xD3B05C, // STRUCTURE CHANGED ON 5.1.0.16309!
             nbBar = 0xD3AAB8,
             nextSlot = 0x4,
         }
@@ -114,11 +114,11 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x850,//?
-            UNIT_FIELD_X = 0x7E0,//?
-            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,//?
-            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,//?
-            UNIT_FIELD_R = 0x7F0, //?
+            UNIT_SPEED = 0x858,
+            UNIT_FIELD_X = 0x7E8,
+            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
+            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
+            UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xC38, // Script_UnitCastingInfo
             ChannelSpellID = 0xC50, // Script_UnitChannelInfo
             TransportGUID = 0x7E0, // CGUnit_C__GetTransportGUID
@@ -131,14 +131,14 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0xF0,//?
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,//?
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,//?
-            DBCacheRow = 0x1B8,//?
-            CachedName = 0xB4,//?
-            CachedData0 = 0x14,//?
-            CachedData1 = 0x18,//?
-            CachedData8 = 0x34, // (Data0 + 8 * 0x04)//?
+            GAMEOBJECT_FIELD_X = 0xF0,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            DBCacheRow = 0x1B8,
+            CachedName = 0xB4,
+            CachedData0 = 0x14,
+            CachedData1 = 0x18,
+            CachedData8 = 0x34, // (Data0 + 8 * 0x04)
         }
 
         /// <summary>
@@ -177,10 +177,10 @@
         public enum ClickToMove
         {
             CTM = 0xC7CC90,
-            CTM_PUSH = CTM + 0x24,//?
-            CTM_X = CTM + 0x8C,//?
-            CTM_Y = CTM_X + 0x4,//?
-            CTM_Z = CTM_Y + 0x4,//?
+            CTM_PUSH = CTM + 0x1C,
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -188,7 +188,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 36,//?
+            CGUnit_C__GetFacing = 36,
         }
 
         /// <summary>
@@ -221,10 +221,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xBF8508 + 0x8,//?
-            nameMaskOffset = 0x024,//?
-            nameBaseOffset = 0x01c,//?
-            nameStringOffset = 0x021,//?
+            nameStorePtr = 0xBF8508 + 0x8,
+            nameMaskOffset = 0x024,
+            nameBaseOffset = 0x01c,
+            nameStringOffset = 0x021,
         }
 
         /// <summary>
@@ -232,7 +232,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xE285E8 + 0x6,//?
+            realmName = 0xE285E8 + 0x6,
             battlerNetWindow = 0xC05F80,
         }
 

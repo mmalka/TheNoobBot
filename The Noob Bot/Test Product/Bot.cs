@@ -25,7 +25,7 @@ namespace Test_Product
             var skill = nManager.Wow.Helpers.Skill.GetMaxValue(SkillLine.Fishing);
             //var tbreak = 1;
 
-            //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.visibleItems + 15 * 2);
+            //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15 * 2);
             /*
             DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
             var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
