@@ -1146,6 +1146,7 @@ public class Deathknight_Apprentice
 {
     private readonly DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region Professions & Racials
 
@@ -1289,10 +1290,18 @@ public class Deathknight_Apprentice
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -1548,6 +1557,7 @@ public class Deathknight_Blood
 {
     private readonly DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -1822,10 +1832,18 @@ public class Deathknight_Blood
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -2362,6 +2380,7 @@ public class Deathknight_Unholy
 {
     private readonly DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -2642,10 +2661,18 @@ public class Deathknight_Unholy
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -3187,6 +3214,7 @@ public class Deathknight_Frost
 {
     private readonly DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -3464,10 +3492,18 @@ public class Deathknight_Frost
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -4048,6 +4084,7 @@ public class Mage_Arcane
 {
     private readonly MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -4310,10 +4347,18 @@ public class Mage_Arcane
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -4817,6 +4862,7 @@ public class Mage_Frost
 {
     private readonly MageFrostSettings MySettings = MageFrostSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -5110,10 +5156,18 @@ public class Mage_Frost
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -5636,6 +5690,7 @@ public class Mage_Fire
 {
     private readonly MageFireSettings MySettings = MageFireSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -5920,10 +5975,18 @@ public class Mage_Fire
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -6421,6 +6484,7 @@ public class Warlock_Demonology
 {
     private readonly WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -6730,10 +6794,18 @@ public class Warlock_Demonology
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -7276,6 +7348,7 @@ public class Warlock_Destruction
 {
     private readonly WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -7581,10 +7654,18 @@ public class Warlock_Destruction
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -8071,6 +8152,7 @@ public class Warlock_Affliction
 {
     private readonly WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -8402,10 +8484,18 @@ public class Warlock_Affliction
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -8916,6 +9006,7 @@ public class Druid_Balance
 {
     private readonly DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -9203,10 +9294,18 @@ public class Druid_Balance
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -9730,6 +9829,7 @@ public class Druid_Feral
 {
     private readonly DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -10008,10 +10108,18 @@ public class Druid_Feral
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -10609,6 +10717,7 @@ public class Druid_Restoration
 {
     private readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -10808,10 +10917,18 @@ public class Druid_Restoration
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -11264,6 +11381,7 @@ public class Druid_Guardian
 {
     private readonly DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -11509,10 +11627,18 @@ public class Druid_Guardian
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -12023,6 +12149,7 @@ public class Paladin_Holy
 {
     private readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region Professions & Racial
 
@@ -12365,10 +12492,18 @@ public class Paladin_Holy
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -12480,6 +12615,7 @@ public class Paladin_Protection
 {
     private readonly PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region Professions & Racial
 
@@ -12866,10 +13002,18 @@ public class Paladin_Protection
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -12986,6 +13130,7 @@ public class Paladin_Retribution
 {
     private static readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region Professions & Racials
 
@@ -13418,10 +13563,18 @@ public class Paladin_Retribution
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -13561,6 +13714,7 @@ public class Shaman_Enhancement
 {
     private readonly ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -13867,10 +14021,18 @@ public class Shaman_Enhancement
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -14457,6 +14619,7 @@ public class Shaman_Restoration
 {
     private readonly ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -14774,10 +14937,18 @@ public class Shaman_Restoration
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -15361,6 +15532,7 @@ public class Shaman_Elemental
 {
     private readonly ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -15652,10 +15824,18 @@ public class Shaman_Elemental
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -16211,6 +16391,7 @@ public class Priest_Shadow
 {
     private readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -16472,10 +16653,18 @@ public class Priest_Shadow
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -16942,6 +17131,7 @@ public class Priest_Discipline
 {
     private readonly PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -17148,10 +17338,18 @@ public class Priest_Discipline
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -17594,6 +17792,7 @@ public class Priest_Holy
 {
     private readonly PriestHolySettings MySettings = PriestHolySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -17820,10 +18019,18 @@ public class Priest_Holy
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -18270,6 +18477,7 @@ public class Rogue_Combat
 {
     private readonly RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -18609,10 +18817,18 @@ public class Rogue_Combat
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -19040,6 +19256,7 @@ public class Rogue_Subtlety
 {
     private readonly RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -19379,10 +19596,18 @@ public class Rogue_Subtlety
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -19779,6 +20004,7 @@ public class Rogue_Assassination
 {
     private readonly RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -20120,10 +20346,18 @@ public class Rogue_Assassination
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -20540,6 +20774,7 @@ public class Warrior_Arms
 {
     private readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -20835,10 +21070,18 @@ public class Warrior_Arms
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -21390,6 +21633,7 @@ public class Warrior_Protection
 {
     private readonly WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -21695,10 +21939,18 @@ public class Warrior_Protection
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -22263,6 +22515,7 @@ public class Warrior_Fury
 {
     private readonly WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -22556,10 +22809,18 @@ public class Warrior_Fury
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -23070,6 +23331,7 @@ public class Hunter_Marksmanship
 {
     private readonly HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -23371,10 +23633,18 @@ public class Hunter_Marksmanship
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -23858,6 +24128,7 @@ public class Hunter_BeastMastery
 {
     private readonly HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -24174,10 +24445,18 @@ public class Hunter_BeastMastery
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
@@ -24727,6 +25006,7 @@ public class Hunter_Survival
 {
     private readonly HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
     private readonly string MoveBackward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+    private readonly string MoveForward = nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region General Timers & Variables
 
@@ -25039,10 +25319,18 @@ public class Hunter_Survival
         if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
+            var MaxTime_Timer = new Timer(1000 * 2);
             Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
-            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !MaxTime_Timer.IsReady)
                 Thread.Sleep(300);
             Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveBackward);
+            if (MaxTime_Timer.IsReady && ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+            {
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                Thread.Sleep(1000);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
+                MovementManager.Face(ObjectManager.Target.Position);
+            }
         }
     }
 
