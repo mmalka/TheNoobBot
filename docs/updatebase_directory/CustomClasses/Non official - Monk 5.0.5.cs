@@ -909,6 +909,7 @@ public class Monk_Windwalker
     private readonly Spell Chi_Burst = new Spell("Chi Burst");
     private readonly Spell Chi_Wave = new Spell("Chi Wave");
     private readonly Spell Expel_Harm = new Spell("Expel Harm");
+    private Timer Expel_Harm_Timer = new Timer(0);
     private readonly Spell Healing_Sphere = new Spell("Healing Sphere");
     private readonly Spell Zen_Sphere = new Spell("Zen Sphere");
 
@@ -1282,13 +1283,14 @@ public class Monk_Windwalker
                  && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 3 && Expel_Harm.IsDistanceGood)
         {
             Expel_Harm.Launch();
+            Expel_Harm_Timer = new Timer(1000*15);
             return;
         }
         else
         {
             if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
-                && ObjectManager.Me.Chi < 3 && ObjectManager.Me.HealthPercent > 90 && !ObjectManager.Me.HaveBuff(118864)
-                && Jab.IsDistanceGood)
+                && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864) && Jab.IsDistanceGood
+                && (ObjectManager.Me.HealthPercent > 90 && Expel_Harm_Timer.IsReady))
             {
                 Jab.Launch();
                 return;
@@ -1516,6 +1518,7 @@ public class Monk_Mistweaver
     private readonly Spell Chi_Wave = new Spell("Chi Wave");
     private readonly Spell Enveloping_Mist = new Spell("Enveloping Mist");
     private readonly Spell Expel_Harm = new Spell("Expel Harm");
+    private Timer Expel_Harm_Timer = new Timer(0);
     private readonly Spell Healing_Sphere = new Spell("Healing Sphere");
     private readonly Spell Mana_Tea = new Spell("Mana Tea");
     private readonly Spell Renewing_Mist = new Spell("Renewing Mist");
@@ -1935,10 +1938,11 @@ public class Monk_Mistweaver
                  && MySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && Expel_Harm.IsDistanceGood)
         {
             Expel_Harm.Launch();
+            Expel_Harm_Timer = new Timer(1000*15);
             return;
         }
         else if (Jab.KnownSpell && Jab.IsSpellUsable && MySettings.UseJab && ObjectManager.Me.Chi < 4 
-            && ObjectManager.Me.HealthPercent > 90 && Jab.IsDistanceGood)
+                 && Jab.IsDistanceGood && (ObjectManager.Me.HealthPercent > 90 && Expel_Harm_Timer.IsReady))
         {
             Jab.Launch();
             return;
