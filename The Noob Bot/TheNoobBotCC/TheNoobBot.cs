@@ -9547,7 +9547,7 @@ public class Druid_Balance
         else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
                  && MySettings.UseForceofNature)
         {
-            Force_of_Nature.Launch();
+            SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
         else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
@@ -10362,7 +10362,7 @@ public class Druid_Feral
         else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
                  && MySettings.UseForceofNature)
         {
-            Force_of_Nature.Launch();
+            SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
         else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
@@ -11193,7 +11193,7 @@ public class Druid_Restoration
         else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
                  && MySettings.UseForceofNature)
         {
-            Force_of_Nature.Launch();
+            SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
         else
@@ -11894,7 +11894,7 @@ public class Druid_Guardian
         else if (Force_of_Nature.IsSpellUsable && Force_of_Nature.KnownSpell && Force_of_Nature.IsDistanceGood
                  && MySettings.UseForceofNature)
         {
-            Force_of_Nature.Launch();
+            SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
         else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && MySettings.UseIncarnation
