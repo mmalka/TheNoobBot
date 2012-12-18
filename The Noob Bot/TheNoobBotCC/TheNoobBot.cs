@@ -6361,7 +6361,7 @@ public class Mage_Fire
         public bool UseEvocationGlyph = false;
         public bool UseFireball = true;
         public bool UseFlamestrike = true;
-        public bool UseFrostArmor = true;
+        public bool UseFrostArmor = false;
         public bool UseFrostjaw = true;
         public bool UseFrostNova = true;
         public bool UseFrozenOrb = true;
@@ -6378,7 +6378,7 @@ public class Mage_Fire
         public bool UseLowCombat = true;
         public bool UseMageArmor = true;
         public bool UseMirrorImage = true;
-        public bool UseMoltenArmor = false;
+        public bool UseMoltenArmor = true;
         public bool UsePresenceofMind = true;
         public bool UsePyroblast = true;
         public bool UseRingofFrost = true;
