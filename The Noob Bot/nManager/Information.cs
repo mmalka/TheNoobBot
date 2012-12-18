@@ -2,8 +2,8 @@
 {
     public static class Information
     {
-        public const string TargetWowVersion = "5.1.0";
-        public const int TargetWowBuild = 16309;
-        public const string Version = "1.3.4";
+        public const string TargetWowVersion = "5.1.0a";
+        public const int TargetWowBuild = 16357;
+        public const string Version = "1.3.5";
     }
 }

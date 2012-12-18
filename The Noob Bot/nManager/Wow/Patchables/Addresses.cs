@@ -1,16 +1,16 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 16309
+    ///   Offset and Pointer for Wow 16357
     /// </summary>
-    public static class Addresses
+    internal static class Addresses
     {
         /// <summary>
         ///   ObjectManager
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0x0; // E28420
+            public static uint clientConnection = 0xE28428;
         }
 
         public enum ObjectManager
@@ -77,11 +77,11 @@
         /// </summary>
         public enum GameInfo
         {
+            continentId = 0xA55824,
             buildWowVersion = 0xAFACDC,
             gameState = 0xCC9EFA,
             isLoadingOrConnecting = 0xC05F80,
-            continentId = 0xA55824,
-            AreaId = 0xC6BC74,
+            AreaId = 0xACCD70,
             lastWowErrorMessage = 0xCC92F8,
             zoneMap = 0xCC9EF0,
             subZoneMap = 0xCC9EEC,
@@ -92,8 +92,8 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xD39518,
-            playerName = 0xE28460,
+            petGUID = 0xD39520,
+            playerName = 0xE28468,
             PlayerComboPoint = 0xCC9FDD,
             RetrieveCorpseWindow = 0xCC9FB0,
         }
@@ -103,9 +103,9 @@
         /// </summary>
         public enum BarManager
         {
-            slotIsEnable = 0xD3AAB8,
-            startBar = 0xD3B05C, // STRUCTURE CHANGED ON 5.1.0.16309!
-            nbBar = 0xD3AAB8,
+            slotIsEnable = 0xD3AAC0,
+            startBar = 0xD3B064, // STRUCTURE CHANGED ON 5.1.0.16309!
+            nbBar = 0xD3AAC0,
             nextSlot = 0x4,
         }
 
@@ -147,8 +147,8 @@
         public enum Battleground
         {
             statPvp = 0xACCAE8,
-            pvpExitWindow = 0xD26F30,
-            selectedBattleGroundID = 0xD26ED4,
+            pvpExitWindow = 0xD26F38,
+            selectedBattleGroundID = 0xD26EDC,
         }
 
         /// <summary>
@@ -156,8 +156,8 @@
         /// </summary>
         public enum SpellBook
         {
-            knownSpell = 0xD266D8,
-            nbSpell = 0xD266D4,
+            knownSpell = 0xD266E0,
+            nbSpell = 0xD266DC,
         }
 
         /// <summary>
@@ -165,10 +165,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0xCCBD68,
+            chatBufferStart = 0xCCBD70,
             NextMessage = 0x17C0,
             msgFormatedChat = 0x3C,
-            chatBufferPos = 0xD25300,
+            chatBufferPos = 0xD25308,
         }
 
         /// <summary>
@@ -196,14 +196,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x40E510,
-            FrameScript_ExecuteBuffer = 0x75AD0,
-            CGPlayer_C__ClickToMove = 0x4B2750,
+            ClntObjMgrGetActivePlayer = 0x40E570,
+            FrameScript_ExecuteBuffer = 0x75AC0,
+            CGPlayer_C__ClickToMove = 0x4B26E0,
             ClntObjMgrGetActivePlayerObj = 0x33E0,
-            FrameScript__GetLocalizedText = 0x4AB730,
-            CGWorldFrame__Intersect = 0x721A80,
-            Spell_C__HandleTerrainClick = 0x3FCCE0,
-            Interact = 0x5A5E10,
+            FrameScript__GetLocalizedText = 0x4AB6A0,
+            CGWorldFrame__Intersect = 0x721980,
+            Spell_C__HandleTerrainClick = 0x3FCD50,
+            Interact = 0x5A5DA0,
         }
 
         /// <summary>
@@ -211,7 +211,7 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xCCA288,
+            X = 0xCCA28C,
             Y = X + 0x4,
             Z = Y + 0x4,
         }
@@ -232,7 +232,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xE285E8 + 0x6,
+            realmName = 0xE285F0 + 0x6,
             battlerNetWindow = 0xC05F80,
         }
 
