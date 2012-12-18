@@ -4597,7 +4597,7 @@ public class Mage_Arcane
             Engineering_Timer = new Timer(1000*60);
         }
         else if (Mage_Bomb.IsSpellUsable && Mage_Bomb.KnownSpell && Mage_Bomb.IsDistanceGood
-                 && MySettings.UseTierFive)
+                 && MySettings.UseTierFive && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
         {
             Mage_Bomb.Launch();
             return;
@@ -5399,7 +5399,7 @@ public class Mage_Frost
             Engineering_Timer = new Timer(1000*60);
         }
         else if (Mage_Bomb.IsSpellUsable && Mage_Bomb.KnownSpell && Mage_Bomb.IsDistanceGood
-                 && MySettings.UseTierFive)
+                 && MySettings.UseTierFive && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
         {
             Mage_Bomb.Launch();
             return;
@@ -6212,7 +6212,7 @@ public class Mage_Fire
             Engineering_Timer = new Timer(1000*60);
         }
         else if (Mage_Bomb.IsSpellUsable && Mage_Bomb.KnownSpell && Mage_Bomb.IsDistanceGood
-                 && MySettings.UseTierFive)
+                 && MySettings.UseTierFive && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
         {
             Mage_Bomb.Launch();
             return;
