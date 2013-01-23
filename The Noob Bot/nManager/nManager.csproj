@@ -154,6 +154,7 @@
     <Compile Include="Wow\Enums\WoWRace.cs" />
     <Compile Include="Wow\Helpers\Archaeology.cs" />
     <Compile Include="Wow\Helpers\Bag.cs" />
+    <Compile Include="Wow\Helpers\Battleground.cs" />
     <Compile Include="Wow\Helpers\BuffManager.cs" />
     <Compile Include="Wow\Helpers\CGUnit_C__GetFacing.cs" />
     <Compile Include="Wow\Helpers\Chat.cs" />
