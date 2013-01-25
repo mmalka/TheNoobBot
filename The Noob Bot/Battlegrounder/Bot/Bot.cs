@@ -30,13 +30,13 @@ namespace Battlegrounder.Bot
                 Profile = new BattlegrounderProfile();
                 var f = new LoadProfile();
                 f.ShowDialog();
-                // If grinder School Load Profile
+                // TODO: If Battlegrounder.Profile Load Profile else Action
                 if (!string.IsNullOrWhiteSpace(BattlegrounderSetting.CurrentSetting.profileName) &&
-                    File.Exists(Application.StartupPath + "\\Profiles\\Grinder\\" +
+                    File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
                                 BattlegrounderSetting.CurrentSetting.profileName))
                 {
                     Profile =
-                        XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath + "\\Profiles\\Grinder\\" +
+                        XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
                                                                   BattlegrounderSetting.CurrentSetting.profileName);
                     if (Profile.BattlegrounderZones.Count <= 0)
                         return false;
