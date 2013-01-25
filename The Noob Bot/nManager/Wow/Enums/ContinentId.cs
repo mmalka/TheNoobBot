@@ -310,7 +310,7 @@
         Transport197349 = 712,
         ///<summary>Transport: Orgrim's Hammer (IC Dungeon)</summary>
         Transport197350 = 713,
-        ///<summary>Trasnport: The Mighty Wind (Icecrown Citadel Raid)</summary>
+        ///<summary>Transport: The Mighty Wind (Icecrown Citadel Raid)</summary>
         Transport201834 = 718,
         ///<summary>Mount Hyjal Phase 1</summary>
         MountHyjalPhase1 = 719,

@@ -83,8 +83,8 @@ namespace Grinder.Bot
                 Fsm.AddState(new Regeneration {Priority = 10});
                 Fsm.AddState(new Looting {Priority = 9});
                 Fsm.AddState(new Farming {Priority = 8});
-                Fsm.AddState(new MillingState { Priority = 7 });
-                Fsm.AddState(new ProspectingState { Priority = 6 });
+                Fsm.AddState(new MillingState {Priority = 7});
+                Fsm.AddState(new ProspectingState {Priority = 6});
                 Fsm.AddState(_grinding);
                 Fsm.AddState(new ToTown {Priority = 4});
                 Fsm.AddState(new Talents {Priority = 3});

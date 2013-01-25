@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Management" />
     <Reference Include="System.Windows.Forms" />
@@ -119,6 +120,7 @@
     <Compile Include="Statistics.cs" />
     <Compile Include="Translate.cs" />
     <Compile Include="Wow\Bot\States\ArchaeologyStates.cs" />
+    <Compile Include="Wow\Bot\States\Battlegrounding.cs" />
     <Compile Include="Wow\Bot\States\FightHostileTarget.cs" />
     <Compile Include="Wow\Bot\States\Farming.cs" />
     <Compile Include="Wow\Bot\States\Grinding.cs" />

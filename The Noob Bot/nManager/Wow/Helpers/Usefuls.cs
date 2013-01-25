@@ -426,16 +426,16 @@ namespace nManager.Wow.Helpers
                     string retS;
                     switch ((Enums.ContinentId)cId)
                     {
-                        case Enums.ContinentId.AB:
+                        case Enums.ContinentId.PVPZone04:
                             retS = "PVPZone04";
                             break;
-                        case Enums.ContinentId.AV:
+                        case Enums.ContinentId.PVPZone01:
                             retS = "PVPZone01";
                             break;
                         case Enums.ContinentId.Azeroth:
                             retS = "Azeroth";
                             break;
-                        case Enums.ContinentId.EOTS:
+                        case Enums.ContinentId.NetherstormBG:
                             retS = "NetherstormBG";
                             break;
                         case Enums.ContinentId.Kalimdor:
@@ -450,28 +450,28 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.Pandaria:
                             retS = "HawaiiMainLand";
                             break;
-                        case Enums.ContinentId.SOTA:
+                        case Enums.ContinentId.NorthrendBG:
                             retS = "NorthrendBG";
                             break;
-                        case Enums.ContinentId.IOC:
+                        case Enums.ContinentId.IsleofConquest:
                             retS = "IsleofConquest";
                             break;
-                        case Enums.ContinentId.TP:
+                        case Enums.ContinentId.CataclysmCTF:
                             retS = "CataclysmCTF";
                             break;
-                        case Enums.ContinentId.BFG:
+                        case Enums.ContinentId.TheBattleforGilneas:
                             retS = "Gilneas_BG_2";
                             break;
-                        case Enums.ContinentId.WSG:
+                        case Enums.ContinentId.PVPZone03:
                             retS = "PVPZone03";
                             break;
-                        case Enums.ContinentId.Acherus:
+                        case Enums.ContinentId.DeathKnightStart:
                             retS = "DeathKnightStart";
                             break;
                         case Enums.ContinentId.Gilneas:
                             retS = "Gilneas2";
                             break;
-                        case Enums.ContinentId.Sunwell:
+                        case Enums.ContinentId.SunwellPlateau:
                             retS = "SunwellPlateau";
                             break;
                         case Enums.ContinentId.DarkmoonFaire:

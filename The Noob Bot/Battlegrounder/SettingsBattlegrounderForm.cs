@@ -20,7 +20,7 @@ namespace Battlegrounder
         {
             WarsongGulchLabel.Text = Translate.Get(Translate.Id.WarsongGulch);
             ArathiBasinLabel.Text = Translate.Get(Translate.Id.ArathiBasin);
-            AlteracValleyLabel.Text = Translate.Get(Translate.Id.AlteracValley) + "*";
+            AlteracValleyLabel.Text = Translate.Get(Translate.Id.AlteracValley);
             EyeoftheStormLabel.Text = Translate.Get(Translate.Id.EyeoftheStorm);
             StrandoftheAncientsLabel.Text = Translate.Get(Translate.Id.StrandoftheAncients);
             IsleofConquestLabel.Text = Translate.Get(Translate.Id.IsleofConquest);

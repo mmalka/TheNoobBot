@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using nManager.Helpful;
-using nManager.Wow.Class;
 
 namespace Battlegrounder.Bot
 {
@@ -51,7 +50,8 @@ namespace Battlegrounder.Bot
         public bool TwinPeaks = true;
         public bool RandomBattleground = false;
 
-        internal Point BattlegrounderPosition = new Point();
-        internal float BattlegrounderRotation = 0;
+        public string profileName = "";
+        //internal Point BattlegrounderPosition = new Point();
+        //internal float BattlegrounderRotation = 0;
     }
 }
