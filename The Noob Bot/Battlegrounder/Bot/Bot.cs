@@ -20,7 +20,7 @@ namespace Battlegrounder.Bot
         internal static BattlegrounderProfile Profile = new BattlegrounderProfile();
         internal static int ZoneIdProfile;
 
-        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 2};
+        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 1};
         internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 6};
 
         internal static bool Pulse()
@@ -82,12 +82,12 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new Regeneration {Priority = 8});
                 Fsm.AddState(new Looting {Priority = 7});
                 Fsm.AddState(_battlegrounding);
-                Fsm.AddState(new ToTown { Priority = 5 });
-                Fsm.AddState(new Talents {Priority = 4});
+                Fsm.AddState(new BattlegrounderQueueing { Priority = 5 });
+                Fsm.AddState(new ToTown { Priority = 4 });
+                Fsm.AddState(new Talents {Priority = 3});
                 Fsm.AddState(new Trainers { Priority = 3 });
                 //Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1, PathLoop = Profile.Points });
                 Fsm.AddState(_movementLoop);
-                Fsm.AddState(new BattlegrounderQueueing { Priority = 1 });
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

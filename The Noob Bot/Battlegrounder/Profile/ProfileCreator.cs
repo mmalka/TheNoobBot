@@ -372,7 +372,7 @@ namespace Battlegrounder.Profile
                 if (CanRecord())
                 {
                     var Bg = new Battleground();
-                    _profile.BattlegrounderZones.Add(new BattlegrounderZone { Name = Bg.NonLocalizedName });
+                    _profile.BattlegrounderZones.Add(new BattlegrounderZone { Name = Bg.NonLocalizedName, BattlegroundId = Battleground.GetCurrentBattleground().ToString()});
                     idZone = _profile.BattlegrounderZones.Count - 1;
                     refreshListZones();
                 }

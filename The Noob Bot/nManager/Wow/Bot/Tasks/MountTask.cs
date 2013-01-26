@@ -158,7 +158,7 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.IsMounted && !onGroundMount())
                     DismountMount(stopMove);
 
-                if (!ObjectManager.ObjectManager.Me.IsMounted && nManagerSetting.CurrentSetting.UseGroundMount && Usefuls.IsOutdoors)
+                if (nManagerSetting.CurrentSetting.GroundMountName != "" && !ObjectManager.ObjectManager.Me.IsMounted && nManagerSetting.CurrentSetting.UseGroundMount && Usefuls.IsOutdoors)
                 {
                     if (stopMove)
                         MovementManager.StopMove();

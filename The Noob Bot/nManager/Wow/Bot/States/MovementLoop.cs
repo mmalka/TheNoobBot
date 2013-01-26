@@ -35,12 +35,12 @@ namespace nManager.Wow.Bot.States
                     return false;
                 if (Products.Products.ProductName == "Battlegrounder")
                 {
+                    if (Battleground.IsInBattleground() && Battleground.BattlegroundIsStarted()) 
+                        return true;
                     if (Battleground.QueueingStatus() == 0 || !Battleground.IsInBattleground() || Battleground.IsFinishBattleground())
                         return false;
                     if (Battleground.IsInBattleground() && !Battleground.BattlegroundIsStarted())
                         return false;
-                    if (Battleground.IsInBattleground() && Battleground.BattlegroundIsStarted()) 
-                        return true;
                 }
                 if (PathLoop == null || PathLoop.Count <= 0)
                     return false;

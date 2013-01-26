@@ -33,7 +33,7 @@ namespace nManager.Wow.Bot.States
         }
 
         public uint MaxTargetLevel = ObjectManager.ObjectManager.Me.Level + 3;
-        public uint BattlegroundId;
+        public string BattlegroundId;
 
         private WoWPlayer _unit;
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 
 namespace Battlegrounder.Profile
 {
@@ -14,7 +15,7 @@ namespace Battlegrounder.Profile
     public class BattlegrounderZone
     {
         public string Name = "";
-        public uint BattlegroundId;
+        public string BattlegroundId;
         public bool Hotspots;
         public List<Point> Points = new List<Point>();
         public List<Npc> Npc = new List<Npc>();
