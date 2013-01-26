@@ -12,27 +12,38 @@ namespace nManager.Wow.Helpers
     {
         public static void JoinBattlegroundQueue(BattlegroundId id)
         {
-            Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattlegroundId, (uint) id);
+            Memory.WowMemory.Memory.WriteUInt(
+                Memory.WowProcess.WowModule + (uint) Addresses.Battleground.selectedBattlegroundId, (uint) id);
             Thread.Sleep(100);
             Lua.LuaDoString("JoinBattlefield(0);");
         }
+
         public static BattlegroundId GetSelectedBattlegroundId()
         {
-            return (BattlegroundId)Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattlegroundId);
+            return
+                (BattlegroundId)
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                 (uint) Addresses.Battleground.selectedBattlegroundId);
         }
+
         public static int QueueingStatus()
         {
-            var v1 = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.statPvp);
-            int v2 = (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.statPvp) & 1);
+            var v1 =
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp);
+            int v2 =
+                (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp) &
+                 1);
             if (v1 == 0 || v2 > 0)
                 return 0;
 
             return 1;
         }
+
         public static void AcceptBattlefieldPort(int index, bool accept)
         {
             Lua.LuaDoString("AcceptBattlefieldPort(" + index + "," + (accept ? 1 : 0) + ")");
         }
+
         public static void AcceptBattlefieldPortAll()
         {
             for (int i = 0; i <= 10; i++)
@@ -41,16 +52,20 @@ namespace nManager.Wow.Helpers
                 Thread.Sleep(500);
             }
         }
+
         public static bool IsFinishBattleground()
         {
-            return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.pvpExitWindow) > 0;
+            return
+                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                 (uint) Addresses.Battleground.pvpExitWindow) > 0;
         }
+
         public static void ExitBattleground()
         {
             Lua.LuaDoString("LeaveBattlefield()");
         }
 
-        static readonly List<uint> PreparationId = new List<uint>();
+        private static readonly List<uint> PreparationId = new List<uint>();
 
 
         public static bool BattlegroundIsStarted()
@@ -66,16 +81,17 @@ namespace nManager.Wow.Helpers
                 return !ObjectManager.ObjectManager.Me.HaveBuff(PreparationId);
             }
             catch
-            { }
+            {
+            }
             return false;
-
         }
 
         public static void JoinBattlefield(BattlegroundId type, bool asGroup = false)
         {
             if (type != BattlegroundId.None)
             {
-                Lua.LuaDoString("for i = 1, GetNumBattlegroundTypes() do local _,_,_,_,id = GetBattlegroundInfo(i); if id == {0} then RequestBattlegroundInstanceInfo(i); end end");
+                Lua.LuaDoString(
+                    "for i = 1, GetNumBattlegroundTypes() do local _,_,_,_,id = GetBattlegroundInfo(i); if id == {0} then RequestBattlegroundInstanceInfo(i); end end");
                 Lua.LuaDoString(string.Format("JoinBattlefield(1, {0})", asGroup ? "true" : "false"));
                 Thread.Sleep(500);
             }
@@ -83,14 +99,14 @@ namespace nManager.Wow.Helpers
 
         public static bool IsInBattleground()
         {
-            if(GetCurrentBattleground() != BattlegroundId.None)
+            if (GetCurrentBattleground() != BattlegroundId.None)
                 return true;
             return false;
         }
 
         public static BattlegroundId GetCurrentBattleground()
         {
-            switch ((ContinentId)Usefuls.ContinentId)
+            switch ((ContinentId) Usefuls.ContinentId)
             {
                 case ContinentId.PVPZone04:
                     return BattlegroundId.ArathiBasin;
@@ -129,7 +145,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                switch ((ContinentId)Usefuls.ContinentId)
+                switch ((ContinentId) Usefuls.ContinentId)
                 {
                     case ContinentId.PVPZone04:
                         return "Arathi Basin";
@@ -164,6 +180,5 @@ namespace nManager.Wow.Helpers
                 return "";
             }
         }
-
     }
 }

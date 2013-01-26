@@ -164,9 +164,9 @@ namespace Battlegrounder.Profile
         }
 
 
-        
         // WAY
         private bool _loopRecordPoint;
+
         private void recordWayB_Click(object sender, EventArgs ex)
         {
             try
@@ -210,15 +210,17 @@ namespace Battlegrounder.Profile
 
                 while (_loopRecordPoint)
                 {
-                    var lastPoint = _profile.BattlegrounderZones[idZone].Points[_profile.BattlegrounderZones[idZone].Points.Count - 1];
+                    var lastPoint =
+                        _profile.BattlegrounderZones[idZone].Points[
+                            _profile.BattlegrounderZones[idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > DistanceBetweenRecord.Value) &&
-                         lastRotation != (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
+                         lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.BattlegrounderZones[idZone].Points.Add(ObjectManager.Me.Position);
-                        lastRotation = (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
+                        lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
                         refreshForm();
                     }
                     Application.DoEvents();
@@ -287,7 +289,8 @@ namespace Battlegrounder.Profile
                 {
                     _profile.BattlegrounderZones[idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
                                                                                  {
-                                                                                     Position = ObjectManager.Me.Position,
+                                                                                     Position =
+                                                                                         ObjectManager.Me.Position,
                                                                                      Radius = Radius.Value
                                                                                  });
                     refreshForm();
@@ -372,7 +375,13 @@ namespace Battlegrounder.Profile
                 if (CanRecord())
                 {
                     var Bg = new Battleground();
-                    _profile.BattlegrounderZones.Add(new BattlegrounderZone { Name = Bg.NonLocalizedName, BattlegroundId = Battleground.GetCurrentBattleground().ToString()});
+                    _profile.BattlegrounderZones.Add(new BattlegrounderZone
+                                                         {
+                                                             Name = Bg.NonLocalizedName,
+                                                             BattlegroundId =
+                                                                 Battleground.GetCurrentBattleground()
+                                                                             .ToString()
+                                                         });
                     idZone = _profile.BattlegrounderZones.Count - 1;
                     refreshListZones();
                 }

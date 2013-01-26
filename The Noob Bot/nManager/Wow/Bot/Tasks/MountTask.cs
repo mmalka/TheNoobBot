@@ -32,17 +32,20 @@ namespace nManager.Wow.Bot.Tasks
             if (startupCheck)
             {
                 // 1st Check if mounts in general settings exist
-                if (groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) && !SpellManager.ExistSpellBookLUA(groundMount))
+                if (groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
+                    !SpellManager.ExistSpellBookLUA(groundMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
                     groundMount = string.Empty;
                 }
-                if (aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) && !SpellManager.ExistSpellBookLUA(aquaMount))
+                if (aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) &&
+                    !SpellManager.ExistSpellBookLUA(aquaMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
                     aquaMount = string.Empty;
                 }
-                if (flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) && !SpellManager.ExistSpellBookLUA(flyMount))
+                if (flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) &&
+                    !SpellManager.ExistSpellBookLUA(flyMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
                     flyMount = string.Empty;
@@ -52,9 +55,10 @@ namespace nManager.Wow.Bot.Tasks
 
                 startupCheck = false;
             }
-            if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty)
+            if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty &&
+                aquaMount == string.Empty)
             {
-                if(_noMountsInSettings != 1)
+                if (_noMountsInSettings != 1)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
                     _noMountsInSettings++;
@@ -64,11 +68,13 @@ namespace nManager.Wow.Bot.Tasks
 
             // Wherever we are if we have an aquatic mount and are swimming
             if (Usefuls.IsSwimming && aquaMount != string.Empty)
-            {   // We are in Vashjir and the Abyssal Seahorse is selected
+            {
+                // We are in Vashjir and the Abyssal Seahorse is selected
                 if (aquaMount == _localizedAbysalMountName &&
                     (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
                      Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144))
-                {   // extra sanity checks
+                {
+                    // extra sanity checks
                     Spell abyssal = new Spell("Abyssal Seahorse");
                     if (abyssal.KnownSpell && abyssal.IsSpellUsable)
                         return MountCapacity.Swimm;
@@ -83,7 +89,7 @@ namespace nManager.Wow.Bot.Tasks
             {
                 if (flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
-                    Enums.ContinentId cont = (Enums.ContinentId)Usefuls.ContinentId;
+                    Enums.ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
                     Spell Wisdom4Winds = new Spell(115913);
@@ -98,7 +104,8 @@ namespace nManager.Wow.Bot.Tasks
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
                     Spell FlightMasterLicense = new Spell(90267);
-                    if ((cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor || cont == Enums.ContinentId.Maelstrom) &&
+                    if ((cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor ||
+                         cont == Enums.ContinentId.Maelstrom) &&
                         FlightMasterLicense.KnownSpell)
                         return MountCapacity.Fly;
 
@@ -158,7 +165,8 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.IsMounted && !onGroundMount())
                     DismountMount(stopMove);
 
-                if (nManagerSetting.CurrentSetting.GroundMountName != "" && !ObjectManager.ObjectManager.Me.IsMounted && nManagerSetting.CurrentSetting.UseGroundMount && Usefuls.IsOutdoors)
+                if (nManagerSetting.CurrentSetting.GroundMountName != "" && !ObjectManager.ObjectManager.Me.IsMounted &&
+                    nManagerSetting.CurrentSetting.UseGroundMount && Usefuls.IsOutdoors)
                 {
                     if (stopMove)
                         MovementManager.StopMove();

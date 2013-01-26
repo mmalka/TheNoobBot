@@ -36,8 +36,10 @@ namespace Battlegrounder.Bot
                                 BattlegrounderSetting.CurrentSetting.profileName))
                 {
                     Profile =
-                        XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
-                                                                  BattlegrounderSetting.CurrentSetting.profileName);
+                        XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath +
+                                                                         "\\Profiles\\Battlegrounder\\" +
+                                                                         BattlegrounderSetting.CurrentSetting
+                                                                                              .profileName);
                     if (Profile.BattlegrounderZones.Count <= 0)
                         return false;
                 }
@@ -82,10 +84,10 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new Regeneration {Priority = 8});
                 Fsm.AddState(new Looting {Priority = 7});
                 Fsm.AddState(_battlegrounding);
-                Fsm.AddState(new BattlegrounderQueueing { Priority = 5 });
-                Fsm.AddState(new ToTown { Priority = 4 });
+                Fsm.AddState(new BattlegrounderQueueing {Priority = 5});
+                Fsm.AddState(new ToTown {Priority = 4});
                 Fsm.AddState(new Talents {Priority = 3});
-                Fsm.AddState(new Trainers { Priority = 3 });
+                Fsm.AddState(new Trainers {Priority = 2});
                 //Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1, PathLoop = Profile.Points });
                 Fsm.AddState(_movementLoop);
                 Fsm.AddState(new Idle {Priority = 0});
@@ -123,11 +125,13 @@ namespace Battlegrounder.Bot
                 Logging.WriteError("Battlegrounder > Bot > Bot  > Dispose(): " + e);
             }
         }
+
         internal static void SelectZone()
         {
             for (int i = 0; i <= Profile.BattlegrounderZones.Count - 1; i++)
             {
-                if (Profile.BattlegrounderZones[i].BattlegroundId.ToString() == Battleground.GetCurrentBattleground().ToString())
+                if (Profile.BattlegrounderZones[i].BattlegroundId.ToString() ==
+                    Battleground.GetCurrentBattleground().ToString())
                 {
                     ZoneIdProfile = i;
                     break;
@@ -144,7 +148,8 @@ namespace Battlegrounder.Bot
                                                                  Profile.BattlegrounderZones[ZoneIdProfile].Points[0]));
                     else
                         pointsTemps.AddRange(PathFinder.FindPath(Profile.BattlegrounderZones[ZoneIdProfile].Points[i],
-                                                                 Profile.BattlegrounderZones[ZoneIdProfile].Points[i + 1]));
+                                                                 Profile.BattlegrounderZones[ZoneIdProfile].Points[i + 1
+                                                                     ]));
                 }
                 Profile.BattlegrounderZones[ZoneIdProfile].Hotspots = false;
                 Profile.BattlegrounderZones[ZoneIdProfile].Points.Clear();
