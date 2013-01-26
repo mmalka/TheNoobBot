@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Profile
@@ -17,8 +18,9 @@ namespace Battlegrounder.Profile
             {
                 InitializeComponent();
                 Translate();
-                if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                refreshListZones();
+                CurrentBattlegroundInfo();
+                TopMost = true;
             }
             catch (Exception e)
             {
@@ -29,15 +31,15 @@ namespace Battlegrounder.Profile
         private void Translate()
         {
             recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
-            saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
-            WarsongGulchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record);
-            delB.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
-            delBlackRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
-            addBlackB.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
+            SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
+            DistanceBetweenRecordLabel.Text = nManager.Translate.Get(nManager.Translate.Id.Separation_distance_record);
+            DeleteButton.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            DeleteButtonBlackListRadius.Text = nManager.Translate.Get(nManager.Translate.Id.Del);
+            AddToBlackList.Text = nManager.Translate.Get(nManager.Translate.Id.Add_this_position_to_Black_list_Radius);
             Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
         }
 
-        private void saveB_Click(object sender, EventArgs ex)
+        private void SaveButton_Click(object sender, EventArgs ex)
         {
             try
             {
@@ -53,12 +55,12 @@ namespace Battlegrounder.Profile
             catch (Exception e)
             {
                 Logging.WriteError(
-                    "Battlegrounder > Bot > ProfileCreator > saveB_Click(object sender, EventArgs ex): " + e);
+                    "Battlegrounder > Bot > ProfileCreator > SaveButton_Click(object sender, EventArgs ex): " + e);
             }
         }
 
 
-        private void loadB_Click(object sender, EventArgs e)
+        private void LoadButton_Click(object sender, EventArgs e)
         {
             try
             {
@@ -75,8 +77,9 @@ namespace Battlegrounder.Profile
             }
             catch (Exception ex)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " +
-                                   ex);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > LoadButton_Click(object sender, EventArgs e): " +
+                    ex);
                 refreshForm();
             }
         }
@@ -96,32 +99,29 @@ namespace Battlegrounder.Profile
         }
 
         private int idZone;
-        void refreshListZones()
+
+        private void refreshListZones()
         {
-            lock (typeof(ProfileCreator))
+            lock (typeof (ProfileCreator))
             {
                 try
                 {
-                    /*
                     // List Zones
-                    listZoneCb.Items.Clear();
+                    ZoneList.Items.Clear();
                     if (_profile.BattlegrounderZones.Count <= 0)
                     {
-                        addZoneB_Click(null, null);
+                        AddZoneButton_Click(null, null);
                         return;
                     }
                     foreach (var p in _profile.BattlegrounderZones)
                     {
                         // if (!listZoneCb.Items.Contains(p.Name))
-                        listZoneCb.Items.Add(p.Name);
+                        ZoneList.Items.Add(p.Name);
                     }
-                    if (listZoneCb.SelectedIndex != idZone)
+                    if (ZoneList.SelectedIndex != idZone)
                     {
-                        listZoneCb.SelectedIndex = idZone;
-                        return;
+                        ZoneList.SelectedIndex = idZone;
                     }
-                    */
-                    return;
                 }
                 catch
                 {
@@ -131,39 +131,42 @@ namespace Battlegrounder.Profile
 
         private void refreshForm()
         {
-            try
+            lock (typeof (ProfileCreator))
             {
-                // Way
-                listPoint.Items.Clear();
-                foreach (var p in _profile.BattlegrounderZones[idZone].Points)
+                try
                 {
-                    listPoint.Items.Add(p.ToString());
+                    // Way
+                    RecordedPoints.Items.Clear();
+                    foreach (var p in _profile.BattlegrounderZones[idZone].Points)
+                    {
+                        RecordedPoints.Items.Add(p.ToString());
+                    }
+                    RecordedPoints.SelectedIndex = RecordedPoints.Items.Count - 1;
                 }
-                listPoint.SelectedIndex = listPoint.Items.Count - 1;
-            }
-            catch
-            {
-            }
+                catch
+                {
+                }
 
-            try
-            {
-                // BlackList
-                listBlackRadius.Items.Clear();
-                foreach (var b in _profile.BattlegrounderZones[idZone].BlackListRadius)
+                try
                 {
-                    listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
+                    // BlackList
+                    RecordedBlackListRadius.Items.Clear();
+                    foreach (var b in _profile.BattlegrounderZones[idZone].BlackListRadius)
+                    {
+                        RecordedBlackListRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
+                    }
+                    RecordedBlackListRadius.SelectedIndex = RecordedBlackListRadius.Items.Count - 1;
                 }
-                listBlackRadius.SelectedIndex = listBlackRadius.Items.Count - 1;
-            }
-            catch
-            {
+                catch
+                {
+                }
             }
         }
 
 
+        
         // WAY
         private bool _loopRecordPoint;
-
         private void recordWayB_Click(object sender, EventArgs ex)
         {
             try
@@ -175,9 +178,16 @@ namespace Battlegrounder.Profile
                 }
                 else
                 {
-                    _loopRecordPoint = true;
-                    recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Stop_Record_Way);
-                    LoopRecordWay();
+                    if (CanRecord())
+                    {
+                        _loopRecordPoint = true;
+                        recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Stop_Record_Way);
+                        LoopRecordWay();
+                    }
+                    else
+                    {
+                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                    }
                 }
             }
             catch (Exception e)
@@ -191,7 +201,8 @@ namespace Battlegrounder.Profile
         {
             try
             {
-                const float distanceZSeparator = 5.0f;
+                const float distanceZSeparator = 3.0f;
+                int lastRotation = 0;
                 _loopRecordPoint = true;
 
                 _profile.BattlegrounderZones[idZone].Points.Add(ObjectManager.Me.Position);
@@ -202,10 +213,12 @@ namespace Battlegrounder.Profile
                     var lastPoint = _profile.BattlegrounderZones[idZone].Points[_profile.BattlegrounderZones[idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
-                    if ((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) ||
+                    if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > DistanceBetweenRecord.Value) &&
+                         lastRotation != (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.BattlegrounderZones[idZone].Points.Add(ObjectManager.Me.Position);
+                        lastRotation = (int)nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
                         refreshForm();
                     }
                     Application.DoEvents();
@@ -218,49 +231,174 @@ namespace Battlegrounder.Profile
             }
         }
 
-        private void delB_Click(object sender, EventArgs ex)
+        private void DeleteButton_Click(object sender, EventArgs ex)
         {
             try
             {
-                if (listPoint.SelectedIndex >= 0)
-                    _profile.BattlegrounderZones[idZone].Points.RemoveAt(listPoint.SelectedIndex);
-                refreshForm();
+                if (CanRecord())
+                {
+                    if (RecordedPoints.SelectedIndex >= 0)
+                        _profile.BattlegrounderZones[idZone].Points.RemoveAt(RecordedPoints.SelectedIndex);
+                    refreshForm();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > ProfileCreator > delB_Click(object sender, EventArgs ex): " +
-                                   e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > DeleteButton_Click(object sender, EventArgs ex): " +
+                    e);
             }
         }
 
         // BLACK LIST
-        private void delBlackRadius_Click(object sender, EventArgs e)
+        private void DeleteButtonBlackListRadius_Click(object sender, EventArgs e)
         {
             try
             {
-                if (listBlackRadius.SelectedIndex >= 0)
-                    _profile.BattlegrounderZones[idZone].BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
-                refreshForm();
+                if (CanRecord())
+                {
+                    if (RecordedBlackListRadius.SelectedIndex >= 0)
+                        _profile.BattlegrounderZones[idZone].BlackListRadius.RemoveAt(
+                            RecordedBlackListRadius.SelectedIndex);
+                    refreshForm();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
             }
             catch (Exception ex)
             {
                 Logging.WriteError(
-                    "Battlegrounder > Bot > ProfileCreator > delBlackRadius_Click(object sender, EventArgs e): " + ex);
+                    "Battlegrounder > Bot > ProfileCreator > DeleteButtonBlackListRadius_Click(object sender, EventArgs e): " +
+                    ex);
             }
         }
 
-        private void addBlackB_Click(object sender, EventArgs e)
+        private void AddToBlackList_Click(object sender, EventArgs e)
         {
             try
             {
-                _profile.BattlegrounderZones[idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
-                                                 {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
-                refreshForm();
+                if (CanRecord())
+                {
+                    _profile.BattlegrounderZones[idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
+                                                                                 {
+                                                                                     Position = ObjectManager.Me.Position,
+                                                                                     Radius = Radius.Value
+                                                                                 });
+                    refreshForm();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
             }
             catch (Exception ex)
             {
                 Logging.WriteError(
-                    "Battlegrounder > Bot > ProfileCreator > addBlackB_Click(object sender, EventArgs e): " + ex);
+                    "Battlegrounder > Bot > ProfileCreator > AddToBlackList_Click(object sender, EventArgs e): " + ex);
+            }
+        }
+
+        private void RecordedPoints_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void RecordedBlackListRadius_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void RefreshCurrentBattleground_Click(object sender, EventArgs e)
+        {
+            CurrentBattlegroundInfo();
+        }
+
+        public void CurrentBattlegroundInfo()
+        {
+            var Bg = new Battleground();
+            if (Battleground.IsInBattleground())
+            {
+                if (!string.IsNullOrEmpty(Bg.NonLocalizedName))
+                    CurrentBattleground.Text = string.Format("Profile for the Battleground: {0}", Bg.NonLocalizedName);
+            }
+            else
+            {
+                CurrentBattleground.Text = nManager.Translate.Get(nManager.Translate.Id.NotInBg);
+            }
+        }
+
+        private bool CanRecord()
+        {
+            if (!Battleground.IsInBattleground())
+                return false;
+            return true;
+        }
+
+        private void ProfileCreator_Load(object sender, EventArgs e)
+        {
+        }
+
+        private void DelZoneButton_Click(object sender, EventArgs ex)
+        {
+            try
+            {
+                if (CanRecord())
+                {
+                    _profile.BattlegrounderZones.RemoveAt(idZone);
+                    idZone = _profile.BattlegrounderZones.Count - 1;
+                    refreshListZones();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > DeleteButton_Click(object sender, EventArgs ex): " +
+                    e);
+            }
+        }
+
+        private void AddZoneButton_Click(object sender, EventArgs ex)
+        {
+            try
+            {
+                if (CanRecord())
+                {
+                    var Bg = new Battleground();
+                    _profile.BattlegrounderZones.Add(new BattlegrounderZone { Name = Bg.NonLocalizedName });
+                    idZone = _profile.BattlegrounderZones.Count - 1;
+                    refreshListZones();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError(
+                    "Battlegrounder > Bot > ProfileCreator > AddZoneButton_Click(object sender, EventArgs ex): " +
+                    e);
+            }
+        }
+
+        private void ZoneList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                idZone = ZoneList.SelectedIndex;
+                refreshForm();
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("ZoneList_SelectedIndexChanged(object sender, EventArgs e): " + ex);
             }
         }
     }

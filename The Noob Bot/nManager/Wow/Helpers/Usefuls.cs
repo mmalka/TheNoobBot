@@ -459,7 +459,7 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.CataclysmCTF:
                             retS = "CataclysmCTF";
                             break;
-                        case Enums.ContinentId.TheBattleforGilneas:
+                        case Enums.ContinentId.Gilneas_BG_2:
                             retS = "Gilneas_BG_2";
                             break;
                         case Enums.ContinentId.PVPZone03:
@@ -467,9 +467,6 @@ namespace nManager.Wow.Helpers
                             break;
                         case Enums.ContinentId.DeathKnightStart:
                             retS = "DeathKnightStart";
-                            break;
-                        case Enums.ContinentId.Gilneas:
-                            retS = "Gilneas2";
                             break;
                         case Enums.ContinentId.SunwellPlateau:
                             retS = "SunwellPlateau";

@@ -148,7 +148,7 @@
         {
             statPvp = 0xACCAE8,
             pvpExitWindow = 0xD26F38,
-            selectedBattleGroundID = 0xD26EDC,
+            selectedBattlegroundId = 0xD26EDC,
         }
 
         /// <summary>

@@ -33,7 +33,15 @@ namespace nManager.Wow.Bot.States
                     (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
-
+                if (Products.Products.ProductName == "Battlegrounder")
+                {
+                    if (Battleground.QueueingStatus() == 0 || !Battleground.IsInBattleground() || Battleground.IsFinishBattleground())
+                        return false;
+                    if (Battleground.IsInBattleground() && !Battleground.BattlegroundIsStarted())
+                        return false;
+                    if (Battleground.IsInBattleground() && Battleground.BattlegroundIsStarted()) 
+                        return true;
+                }
                 if (PathLoop == null || PathLoop.Count <= 0)
                     return false;
 

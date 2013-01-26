@@ -6,21 +6,21 @@ using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 using nManager.Wow.ObjectManager;
 
-namespace wManager.Wow.Helpers
+namespace nManager.Wow.Helpers
 {
     public class Battleground
     {
-        public static void JointBattleGroundQueue(BattleGroundID id)
+        public static void JoinBattlegroundQueue(BattlegroundId id)
         {
-            Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattleGroundID, (uint) id);
+            Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattlegroundId, (uint) id);
             Thread.Sleep(100);
             Lua.LuaDoString("JoinBattlefield(0);");
         }
-        public static BattleGroundID GetSelectedBattleGroundID()
+        public static BattlegroundId GetSelectedBattlegroundId()
         {
-            return (BattleGroundID)Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattleGroundID);
+            return (BattlegroundId)Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.selectedBattlegroundId);
         }
-        public static int StatBattleGround()
+        public static int QueueingStatus()
         {
             var v1 = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.statPvp);
             int v2 = (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.statPvp) & 1);
@@ -41,11 +41,11 @@ namespace wManager.Wow.Helpers
                 Thread.Sleep(500);
             }
         }
-        public static bool IsFinishBattleGround()
+        public static bool IsFinishBattleground()
         {
             return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Battleground.pvpExitWindow) > 0;
         }
-        public static void ExitBattleGround()
+        public static void ExitBattleground()
         {
             Lua.LuaDoString("LeaveBattlefield()");
         }
@@ -63,7 +63,7 @@ namespace wManager.Wow.Helpers
                     PreparationId.Add(32728);
                     PreparationId.Add(32727);
                 }
-                return !ObjectManager.Me.HaveBuff(PreparationId);
+                return !ObjectManager.ObjectManager.Me.HaveBuff(PreparationId);
             }
             catch
             { }
@@ -71,9 +71,9 @@ namespace wManager.Wow.Helpers
 
         }
 
-        public static void JoinBattlefield(BattleGroundID type, bool asGroup = false)
+        public static void JoinBattlefield(BattlegroundId type, bool asGroup = false)
         {
-            if (type != BattleGroundID.None)
+            if (type != BattlegroundId.None)
             {
                 Lua.LuaDoString("for i = 1, GetNumBattlegroundTypes() do local _,_,_,_,id = GetBattlegroundInfo(i); if id == {0} then RequestBattlegroundInstanceInfo(i); end end");
                 Lua.LuaDoString(string.Format("JoinBattlefield(1, {0})", asGroup ? "true" : "false"));
@@ -83,44 +83,46 @@ namespace wManager.Wow.Helpers
 
         public static bool IsInBattleground()
         {
-            return GetCurrentBattleground() != BattleGroundID.None;
+            if(GetCurrentBattleground() != BattlegroundId.None)
+                return true;
+            return false;
         }
 
-        public static BattleGroundID GetCurrentBattleground()
+        public static BattlegroundId GetCurrentBattleground()
         {
             switch ((ContinentId)Usefuls.ContinentId)
             {
                 case ContinentId.PVPZone04:
-                    return BattleGroundID.AB;
+                    return BattlegroundId.ArathiBasin;
 
                 case ContinentId.NetherstormBG:
-                    return BattleGroundID.EotS;
+                    return BattlegroundId.EyeOfTheStorm;
 
                 case ContinentId.PVPZone01:
-                    return BattleGroundID.AV;
+                    return BattlegroundId.AlteracValley;
 
                 case ContinentId.PVPZone03:
-                    return BattleGroundID.WSG;
+                    return BattlegroundId.WarsongGulch;
 
                 case ContinentId.NorthrendBG:
-                    return BattleGroundID.SotA;
+                    return BattlegroundId.StrandOfTheAncients;
 
                 case ContinentId.IsleofConquest:
-                    return BattleGroundID.IoC;
+                    return BattlegroundId.IsleOfConquest;
 
                 case ContinentId.CataclysmCTF:
-                    return BattleGroundID.TP;
+                    return BattlegroundId.TwinPeaks;
 
                 case ContinentId.STV_Mine_BG:
-                    return BattleGroundID.SM;
+                    return BattlegroundId.SilvershardMines;
 
                 case ContinentId.Gilneas_BG_2:
-                    return BattleGroundID.BfG;
+                    return BattlegroundId.BattleForGilneas;
 
                 case ContinentId.ValleyOfPower:
-                    return BattleGroundID.ToK;
+                    return BattlegroundId.TempleOfKotmogu;
             }
-            return BattleGroundID.None;
+            return BattlegroundId.None;
         }
 
         public string NonLocalizedName

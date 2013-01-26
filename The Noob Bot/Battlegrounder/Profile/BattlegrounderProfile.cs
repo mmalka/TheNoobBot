@@ -14,13 +14,8 @@ namespace Battlegrounder.Profile
     public class BattlegrounderZone
     {
         public string Name = "";
+        public uint BattlegroundId;
         public bool Hotspots;
-        public uint MinLevel = 0;
-        public uint MaxLevel = 90;
-        public uint MinTargetLevel = 0;
-        public uint MaxTargetLevel = 90;
-        public List<int> TargetEntry = new List<int>();
-        public List<uint> TargetFactions = new List<uint>();
         public List<Point> Points = new List<Point>();
         public List<Npc> Npc = new List<Npc>();
         public List<BattlegrounderBlackListRadius> BlackListRadius = new List<BattlegrounderBlackListRadius>();

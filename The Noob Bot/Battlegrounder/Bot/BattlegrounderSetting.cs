@@ -40,15 +40,18 @@ namespace Battlegrounder.Bot
             return false;
         }
 
-        public bool WarsongGulch = true;
-        public bool ArathiBasin = true;
-        public bool AlteracValley = true;
-        public bool EyeoftheStorm = true;
-        public bool StrandoftheAncients = true;
-        public bool IsleofConquest = true;
+        public bool WarsongGulch;
+        public bool ArathiBasin;
+        public bool AlteracValley;
+        public bool EyeoftheStorm;
+        public bool StrandoftheAncients;
+        public bool IsleofConquest;
         public bool BattleforGilneas = true;
-        public bool TwinPeaks = true;
-        public bool RandomBattleground = false;
+        public bool TwinPeaks;
+        public bool TempleofKotmogu;
+        public bool SilvershardMines;
+        public bool Requeue = true;
+        public bool RandomBattleground;
 
         public string profileName = "";
         //internal Point BattlegrounderPosition = new Point();

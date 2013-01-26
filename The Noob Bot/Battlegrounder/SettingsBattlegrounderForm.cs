@@ -27,11 +27,11 @@ namespace Battlegrounder
             BattleforGilneasLabel.Text = Translate.Get(Translate.Id.BattleforGilneas);
             TwinPeaksLabel.Text = Translate.Get(Translate.Id.TwinPeaks);
             RandomBattlegroundLabel.Text = Translate.Get(Translate.Id.RandomBattleground);
-            saveB.Text = Translate.Get(Translate.Id.Save_and_Close);
+            SaveButton.Text = Translate.Get(Translate.Id.Save_and_Close);
             Text = Translate.Get(Translate.Id.Settings_Battlegrounder);
         }
 
-        private void saveB_Click(object sender, System.EventArgs e)
+        private void SaveButton_Click(object sender, System.EventArgs e)
         {
             Save();
         }

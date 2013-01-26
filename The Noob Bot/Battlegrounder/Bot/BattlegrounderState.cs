@@ -1,13 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
-using nManager;
 using nManager.FiniteStateMachine;
-using nManager.Helpful;
-using nManager.Products;
-using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Class;
-using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Bot
 {

@@ -1086,16 +1086,16 @@
       <Id>Settings_Battlegrounder</Id>
     </Translation>
     <Translation>
+      <Text>Alterac Valley</Text>
+      <Id>AlteracValley</Id>
+    </Translation>
+    <Translation>
       <Text>WarsongGulch</Text>
       <Id>WarsongGulch</Id>
     </Translation>
     <Translation>
       <Text>Arathi Basin</Text>
       <Id>ArathiBasin</Id>
-    </Translation>
-    <Translation>
-      <Text>Alterac Valley</Text>
-      <Id>AlteracValley</Id>
     </Translation>
     <Translation>
       <Text>Eye of the Storm</Text>
@@ -1110,16 +1110,24 @@
       <Id>IsleofConquest</Id>
     </Translation>
     <Translation>
+      <Text>Twin Peaks</Text>
+      <Id>TwinPeaks</Id>
+    </Translation>
+	<Translation>
       <Text>Battle for Gilneas</Text>
       <Id>BattleforGilneas</Id>
     </Translation>
     <Translation>
-      <Text>Twin Peaks</Text>
-      <Id>TwinPeaks</Id>
-    </Translation>
-    <Translation>
       <Text>Random Battleground</Text>
       <Id>RandomBattleground</Id>
+    </Translation>
+	<Translation>
+      <Text>Temple of Kotmogu</Text>
+      <Id>TempleofKotmogu</Id>
+    </Translation>
+	<Translation>
+      <Text>Silvershard Mines</Text>
+      <Id>SilvershardMines</Id>
     </Translation>
 	<Translation>
       <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please change in WoWLauncher.exe => Options => Game preferences => Activate "Launch 32-bit client".</Text>
@@ -1144,6 +1152,22 @@
 	<Translation>
       <Text>Auto Confirm on BoP Items</Text>
       <Id>AutoConfirmOnBoPItems</Id>
+    </Translation>
+	<Translation>
+      <Text>Join Queue</Text>
+      <Id>JoinQueue</Id>
+    </Translation>
+	<Translation>
+      <Text>Requeueing in Process</Text>
+      <Id>RequeueingInProcess</Id>
+    </Translation>
+	<Translation>
+      <Text>Battleground has ended.</Text>
+      <Id>Battleground_Ended</Id>
+    </Translation>
+	<Translation>
+      <Text>You must be in a battle in order to use the Profile Creator.</Text>
+      <Id>NotInBg</Id>
     </Translation>
   </Translations>
 </Language>

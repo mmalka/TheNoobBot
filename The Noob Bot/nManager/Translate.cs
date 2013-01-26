@@ -338,21 +338,27 @@ namespace nManager
             With,
             Launch_Game,
             Settings_Battlegrounder,
+            AlteracValley,
             WarsongGulch,
             ArathiBasin,
-            AlteracValley,
             EyeoftheStorm,
             StrandoftheAncients,
             IsleofConquest,
+            TwinPeaks, 
             BattleforGilneas,
-            TwinPeaks,
             RandomBattleground,
+            TempleofKotmogu,
+            SilvershardMines,
             WoW_Client_64bit,
             Title_WoW_Client_64bit,
             Uncap_MaxFPS,
             AlwaysOnTop,
             No_mounts_in_settings,
-            AutoConfirmOnBoPItems
+            AutoConfirmOnBoPItems,
+            JoinQueue,
+            RequeueingInProcess,
+            Battleground_Ended,
+            NotInBg
         };
 
         [Serializable]

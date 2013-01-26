@@ -32,16 +32,17 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        public List<int> EntryTarget = new List<int>();
-        public List<uint> FactionsTarget = new List<uint>();
-        public uint MinTargetLevel;
-        public uint MaxTargetLevel = 90;
-        private WoWUnit _unit;
+        public uint MaxTargetLevel = ObjectManager.ObjectManager.Me.Level + 3;
+        public uint BattlegroundId;
+
+        private WoWPlayer _unit;
 
         public override bool NeedToRun
         {
             get
             {
+                if (!Battleground.IsInBattleground())
+                    return false;
                 if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
@@ -54,14 +55,13 @@ namespace nManager.Wow.Bot.States
                     return false;
 
                 // Get unit:
-                _unit = new WoWUnit(0);
-                var listUnit = new List<WoWUnit>();
-                if (FactionsTarget.Count > 0)
-                    listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByFaction(FactionsTarget));
-                if (EntryTarget.Count > 0)
-                    listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByEntry(EntryTarget));
+                _unit = new WoWPlayer(0);
+                var listUnit = new List<WoWPlayer>();
+                listUnit.AddRange(ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                      ? ObjectManager.ObjectManager.GetWoWUnitAlliance()
+                                      : ObjectManager.ObjectManager.GetWoWUnitHorde());
 
-                _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(listUnit);
+                _unit = ObjectManager.ObjectManager.GetNearestWoWPlayer(listUnit);
 
                 if (!_unit.IsValid)
                     return false;
@@ -69,10 +69,10 @@ namespace nManager.Wow.Bot.States
                 if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
                     if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
                         if (!_unit.UnitNearest)
-                            if (_unit.Level <= MaxTargetLevel && _unit.Level >= MinTargetLevel)
+                            if (_unit.Level <= MaxTargetLevel)
                                 return true;
 
-                _unit = new WoWUnit(0);
+                _unit = new WoWPlayer(0);
                 return false;
             }
         }
@@ -99,5 +99,28 @@ namespace nManager.Wow.Bot.States
                 Fight.StopFight();
             }
         }
+
+        /*public static void ExitBgIfFinish()
+        {
+            while (Products.Products.IsStarted)
+            {
+                if (Battleground.IsFinishBattleground())
+                {
+                    Thread.Sleep(7000);
+                    try
+                    {
+                        Fight.StopFight();
+                        MovementManager.StopMove();
+                        MovementManager.StopMoveTo();
+                    }
+                    catch { }
+                    Battleground.ExitBattleground();
+                    Logging.Write(Translate.Get(Translate.Id.Battleground_Ended));
+
+                    Thread.Sleep(1000);
+                }
+                Thread.Sleep(1000);
+            }
+        }*/
     }
 }

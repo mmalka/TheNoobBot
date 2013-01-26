@@ -29,7 +29,7 @@ namespace Battlegrounder
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsBattlegrounderForm));
-            this.saveB = new DevComponents.DotNetBar.ButtonX();
+            this.SaveButton = new DevComponents.DotNetBar.ButtonX();
             this.WarsongGulchSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.ArathiBasinSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.AlteracValleySwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -50,17 +50,17 @@ namespace Battlegrounder
             this.RandomBattlegroundSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.SuspendLayout();
             // 
-            // saveB
+            // SaveButton
             // 
-            this.saveB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.saveB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.saveB.Location = new System.Drawing.Point(168, 10);
-            this.saveB.Name = "saveB";
-            this.saveB.Size = new System.Drawing.Size(84, 22);
-            this.saveB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.saveB.TabIndex = 20;
-            this.saveB.Text = "Save and Close";
-            this.saveB.Click += new System.EventHandler(this.saveB_Click);
+            this.SaveButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.SaveButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.SaveButton.Location = new System.Drawing.Point(168, 10);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(84, 22);
+            this.SaveButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.SaveButton.TabIndex = 20;
+            this.SaveButton.Text = "Save and Close";
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // WarsongGulchSwitch
             // 
@@ -337,7 +337,7 @@ namespace Battlegrounder
             this.Controls.Add(this.AlteracValleySwitch);
             this.Controls.Add(this.ArathiBasinSwitch);
             this.Controls.Add(this.WarsongGulchSwitch);
-            this.Controls.Add(this.saveB);
+            this.Controls.Add(this.SaveButton);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -354,7 +354,7 @@ namespace Battlegrounder
 
         #endregion
 
-        private DevComponents.DotNetBar.ButtonX saveB;
+        private DevComponents.DotNetBar.ButtonX SaveButton;
         private DevComponents.DotNetBar.LabelX WarsongGulchLabel;
         private DevComponents.DotNetBar.LabelX ArathiBasinLabel;
         private DevComponents.DotNetBar.LabelX AlteracValleyLabel;

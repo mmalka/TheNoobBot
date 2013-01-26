@@ -20,8 +20,8 @@ namespace Battlegrounder.Bot
         internal static BattlegrounderProfile Profile = new BattlegrounderProfile();
         internal static int ZoneIdProfile;
 
-        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 1};
-        internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 5};
+        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 2};
+        internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 6};
 
         internal static bool Pulse()
         {
@@ -58,7 +58,7 @@ namespace Battlegrounder.Bot
                         blackListDic.Add(b.Position, b.Radius);
                     }
                 }
-                nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Add Npc
                 foreach (var zone in Profile.BattlegrounderZones)
@@ -75,18 +75,19 @@ namespace Battlegrounder.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 11});
-                Fsm.AddState(new SelectProfileState {Priority = 10});
-                Fsm.AddState(new Resurrect {Priority = 9});
-                Fsm.AddState(new IsAttacked {Priority = 8});
-                Fsm.AddState(new Regeneration {Priority = 7});
-                Fsm.AddState(new Looting {Priority = 6});
+                Fsm.AddState(new Pause {Priority = 12});
+                Fsm.AddState(new SelectProfileState {Priority = 11});
+                Fsm.AddState(new Resurrect {Priority = 10});
+                Fsm.AddState(new IsAttacked {Priority = 9});
+                Fsm.AddState(new Regeneration {Priority = 8});
+                Fsm.AddState(new Looting {Priority = 7});
                 Fsm.AddState(_battlegrounding);
-                Fsm.AddState(new ToTown {Priority = 4});
-                Fsm.AddState(new Talents {Priority = 3});
-                Fsm.AddState(new Trainers {Priority = 2});
+                Fsm.AddState(new ToTown { Priority = 5 });
+                Fsm.AddState(new Talents {Priority = 4});
+                Fsm.AddState(new Trainers { Priority = 3 });
                 //Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1, PathLoop = Profile.Points });
                 Fsm.AddState(_movementLoop);
+                Fsm.AddState(new BattlegrounderQueueing { Priority = 1 });
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
@@ -126,13 +127,11 @@ namespace Battlegrounder.Bot
         {
             for (int i = 0; i <= Profile.BattlegrounderZones.Count - 1; i++)
             {
-                /*if (Profile.BattlegrounderZones[i].MaxLevel >= ObjectManager.Me.Level &&
-                    Profile.BattlegrounderZones[i].MinLevel <= ObjectManager.Me.Level &&
-                    Profile.BattlegrounderZones[i].IsValid())
-                {*/
+                if (Profile.BattlegrounderZones[i].BattlegroundId.ToString() == Battleground.GetCurrentBattleground().ToString())
+                {
                     ZoneIdProfile = i;
                     break;
-                /*}*/
+                }
             }
 
             if (Profile.BattlegrounderZones[ZoneIdProfile].Hotspots)
@@ -152,10 +151,7 @@ namespace Battlegrounder.Bot
                 Profile.BattlegrounderZones[ZoneIdProfile].Points.AddRange(pointsTemps);
             }
 
-            _battlegrounding.EntryTarget = Profile.BattlegrounderZones[ZoneIdProfile].TargetEntry;
-            _battlegrounding.FactionsTarget = Profile.BattlegrounderZones[ZoneIdProfile].TargetFactions;
-            _battlegrounding.MaxTargetLevel = Profile.BattlegrounderZones[ZoneIdProfile].MaxTargetLevel;
-            _battlegrounding.MinTargetLevel = Profile.BattlegrounderZones[ZoneIdProfile].MinTargetLevel;
+            _battlegrounding.BattlegroundId = Profile.BattlegrounderZones[ZoneIdProfile].BattlegroundId;
 
             _movementLoop.PathLoop = Profile.BattlegrounderZones[ZoneIdProfile].Points;
         }

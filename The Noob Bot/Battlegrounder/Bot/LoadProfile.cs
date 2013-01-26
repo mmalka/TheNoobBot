@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Battlegrounder.Profile;
 using nManager.Helpful;
+using nManager.Wow.Helpers;
 
 namespace Battlegrounder.Bot
 {
@@ -71,8 +72,16 @@ namespace Battlegrounder.Bot
         {
             try
             {
-                var f = new ProfileCreator();
-                f.ShowDialog();
+
+                if (Battleground.IsInBattleground())
+                {
+                    var f = new ProfileCreator();
+                    f.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
+                }
                 RefreshProfileList();
             }
             catch (Exception e)
