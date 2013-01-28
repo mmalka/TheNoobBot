@@ -3478,4 +3478,18 @@
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
+  <Digsite>
+    <name>Emperor's Approach Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-918</X>
+      <Y>-1937</Y>
+      <Z>170</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.483578145504</px>
+    <py>0.54944050312042</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
 </ArrayOfDigsite>
