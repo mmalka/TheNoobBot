@@ -81,11 +81,11 @@ namespace nManager.Wow.Bot.States
         {
             MovementManager.StopMove();
             MovementManager.StopMove();
-            Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
+            Logging.Write("Engage fight against player " + _unit.Name + " (lvl " + _unit.Level + ")");
             ulong UnkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && UnkillableMob != 0)
             {
-                Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
+                Logging.Write("Can't reach " + _unit.Name + ", blacklisting its position.");
                 nManagerSetting.AddBlackList(UnkillableMob, 2 * 60 * 1000); // 2 minutes
             }
             else if (_unit.IsDead)
@@ -99,28 +99,5 @@ namespace nManager.Wow.Bot.States
                 Fight.StopFight();
             }
         }
-
-        /*public static void ExitBgIfFinish()
-        {
-            while (Products.Products.IsStarted)
-            {
-                if (Battleground.IsFinishBattleground())
-                {
-                    Thread.Sleep(7000);
-                    try
-                    {
-                        Fight.StopFight();
-                        MovementManager.StopMove();
-                        MovementManager.StopMoveTo();
-                    }
-                    catch { }
-                    Battleground.ExitBattleground();
-                    Logging.Write(Translate.Get(Translate.Id.Battleground_Ended));
-
-                    Thread.Sleep(1000);
-                }
-                Thread.Sleep(1000);
-            }
-        }*/
     }
 }

@@ -1,7 +1,5 @@
-using System.Windows.Forms;
 using Battlegrounder.Bot;
 using nManager;
-using nManager.Helpful;
 
 namespace Battlegrounder
 {
@@ -18,14 +16,16 @@ namespace Battlegrounder
 
         private void translate()
         {
+            AlteracValleyLabel.Text = Translate.Get(Translate.Id.AlteracValley);
             WarsongGulchLabel.Text = Translate.Get(Translate.Id.WarsongGulch);
             ArathiBasinLabel.Text = Translate.Get(Translate.Id.ArathiBasin);
-            AlteracValleyLabel.Text = Translate.Get(Translate.Id.AlteracValley);
             EyeoftheStormLabel.Text = Translate.Get(Translate.Id.EyeoftheStorm);
             StrandoftheAncientsLabel.Text = Translate.Get(Translate.Id.StrandoftheAncients);
             IsleofConquestLabel.Text = Translate.Get(Translate.Id.IsleofConquest);
-            BattleforGilneasLabel.Text = Translate.Get(Translate.Id.BattleforGilneas);
             TwinPeaksLabel.Text = Translate.Get(Translate.Id.TwinPeaks);
+            BattleforGilneasLabel.Text = Translate.Get(Translate.Id.BattleforGilneas);
+            TempleOfKotmoguLabel.Text = Translate.Get(Translate.Id.TempleofKotmogu);
+            SilvershardMinesLabel.Text = Translate.Get(Translate.Id.SilvershardMines);
             RandomBattlegroundLabel.Text = Translate.Get(Translate.Id.RandomBattleground);
             SaveButton.Text = Translate.Get(Translate.Id.Save_and_Close);
             Text = Translate.Get(Translate.Id.Settings_Battlegrounder);
@@ -38,13 +38,16 @@ namespace Battlegrounder
 
         private void Save()
         {
+            BattlegrounderSetting.CurrentSetting.AlteracValley = AlteracValleySwitch.Value;
             BattlegrounderSetting.CurrentSetting.WarsongGulch = WarsongGulchSwitch.Value;
             BattlegrounderSetting.CurrentSetting.ArathiBasin = ArathiBasinSwitch.Value;
-            BattlegrounderSetting.CurrentSetting.AlteracValley = AlteracValleySwitch.Value;
             BattlegrounderSetting.CurrentSetting.EyeoftheStorm = EyeoftheStormSwitch.Value;
             BattlegrounderSetting.CurrentSetting.StrandoftheAncients = StrandoftheAncientsSwitch.Value;
-            BattlegrounderSetting.CurrentSetting.BattleforGilneas = BattleforGilneasSwitch.Value;
+            BattlegrounderSetting.CurrentSetting.IsleofConquest = IsleofConquestSwitch.Value;
             BattlegrounderSetting.CurrentSetting.TwinPeaks = TwinPeaksSwitch.Value;
+            BattlegrounderSetting.CurrentSetting.BattleforGilneas = BattleforGilneasSwitch.Value;
+            BattlegrounderSetting.CurrentSetting.TempleofKotmogu = TempleOfKotmoguSwitch.Value;
+            BattlegrounderSetting.CurrentSetting.SilvershardMines = SilvershardMinesSwitch.Value;
             BattlegrounderSetting.CurrentSetting.RandomBattleground = RandomBattlegroundSwitch.Value;
             BattlegrounderSetting.CurrentSetting.Save();
             Dispose();
@@ -52,13 +55,16 @@ namespace Battlegrounder
 
         private new void Load()
         {
+            AlteracValleySwitch.Value = BattlegrounderSetting.CurrentSetting.AlteracValley;
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
             ArathiBasinSwitch.Value = BattlegrounderSetting.CurrentSetting.ArathiBasin;
-            AlteracValleySwitch.Value = BattlegrounderSetting.CurrentSetting.AlteracValley;
             EyeoftheStormSwitch.Value = BattlegrounderSetting.CurrentSetting.EyeoftheStorm;
             StrandoftheAncientsSwitch.Value = BattlegrounderSetting.CurrentSetting.StrandoftheAncients;
-            BattleforGilneasSwitch.Value = BattlegrounderSetting.CurrentSetting.BattleforGilneas;
+            IsleofConquestSwitch.Value = BattlegrounderSetting.CurrentSetting.IsleofConquest;
             TwinPeaksSwitch.Value = BattlegrounderSetting.CurrentSetting.TwinPeaks;
+            BattleforGilneasSwitch.Value = BattlegrounderSetting.CurrentSetting.BattleforGilneas;
+            TempleOfKotmoguSwitch.Value = BattlegrounderSetting.CurrentSetting.TempleofKotmogu;
+            SilvershardMinesSwitch.Value = BattlegrounderSetting.CurrentSetting.SilvershardMines;
             RandomBattlegroundSwitch.Value = BattlegrounderSetting.CurrentSetting.RandomBattleground;
         }
     }

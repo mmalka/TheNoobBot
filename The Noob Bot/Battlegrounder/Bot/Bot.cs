@@ -62,12 +62,6 @@ namespace Battlegrounder.Bot
                 }
                 nManagerSetting.AddRangeBlackListZone(blackListDic);
 
-                // Add Npc
-                foreach (var zone in Profile.BattlegrounderZones)
-                {
-                    NpcDB.AddNpcRange(zone.Npc);
-                }
-
                 // Update spell list
                 SpellManager.UpdateSpellBook();
 
@@ -128,14 +122,19 @@ namespace Battlegrounder.Bot
 
         internal static void SelectZone()
         {
+            ZoneIdProfile = 1337;
             for (int i = 0; i <= Profile.BattlegrounderZones.Count - 1; i++)
             {
-                if (Profile.BattlegrounderZones[i].BattlegroundId.ToString() ==
+                if (Profile.BattlegrounderZones[i].BattlegroundId ==
                     Battleground.GetCurrentBattleground().ToString())
                 {
                     ZoneIdProfile = i;
                     break;
                 }
+            }
+            if (ZoneIdProfile == 1337)
+            {
+                return;
             }
 
             if (Profile.BattlegrounderZones[ZoneIdProfile].Hotspots)
