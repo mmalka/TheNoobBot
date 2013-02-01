@@ -50,12 +50,12 @@ namespace nManager.Wow.Bot.States
             }
         }
 
-        private bool _failled;
+        private bool _failed;
         public override void Run()
         {
             MovementManager.StopMove();
             MovementManager.StopMoveTo();
-            Logging.Write("Player dead");
+            Logging.Write("The player has died. Starting the resurrection process.");
             Interact.Repop();
             Thread.Sleep(1000);
             while (ObjectManager.ObjectManager.Me.PositionCorpse.X == 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y == 0 &&
@@ -66,7 +66,27 @@ namespace nManager.Wow.Bot.States
             }
             Thread.Sleep(1000);
 
-            #region GoToCorp
+            #region Battleground resurrection
+
+            if (Products.Products.ProductName == "Battlegrounder")
+            {
+                while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
+                {
+                    Thread.Sleep(100);
+                }
+                while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                {
+                    Thread.Sleep(1000);
+                }
+                _failed = false;
+                Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
+                Statistics.Deaths++;
+                return;
+            }
+
+            #endregion
+
+            #region Go To Corpse resurrection
 
             if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 && !nManagerSetting.CurrentSetting.UseSpiritHealer)
             {
@@ -96,9 +116,9 @@ namespace nManager.Wow.Bot.States
                        Products.Products.IsStarted &&
                        Usefuls.InGame && ObjectManager.ObjectManager.Me.IsDeadMe)
                 {
-                    if ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 25 && !_failled) ||
+                    if ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 25 && !_failed) ||
                         (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                     (uint)Addresses.Player.RetrieveCorpseWindow) > 0 && !_failled) || ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
+                                                     (uint)Addresses.Player.RetrieveCorpseWindow) > 0 && !_failed) || ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
                     {
                         LongMove.StopLongMove();
                         MovementManager.StopMove();
@@ -114,7 +134,7 @@ namespace nManager.Wow.Bot.States
                 if (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                      (uint)Addresses.Player.RetrieveCorpseWindow) <= 0)
                 {
-                    _failled = true;
+                    _failed = true;
                 }
 
                 if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 26 ||
@@ -133,15 +153,15 @@ namespace nManager.Wow.Bot.States
             }
             if (!ObjectManager.ObjectManager.Me.IsDeadMe)
             {
-                _failled = false;
-                Logging.Write("Player retrieve corpse");
+                _failed = false;
+                Logging.Write("The player have been resurrected when retrieving his corpse.");
                 Statistics.Deaths++;
                 return;
             }
 
             #endregion GoToCorp
 
-            #region SpiritHealer
+            #region Spirit Healer resurrection
 
             if (nManagerSetting.CurrentSetting.UseSpiritHealer)
             {
@@ -152,7 +172,7 @@ namespace nManager.Wow.Bot.States
 
                 if (!objectSpiritHealer.IsValid)
                 {
-                    Logging.Write("Not found Spirit Healer");
+                    Logging.Write("Spirit Healer not found, teleport back to the cimetery.");
                     Interact.TeleportToSpiritHealer();
                     Thread.Sleep(5000);
                 }
@@ -179,7 +199,7 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(1000);
                     if (!ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
-                        Logging.Write("Player retrieve corpse");
+                        Logging.Write("The player have been resurrected by the Spirit Healer.");
                         Statistics.Deaths++;
                     }
                 }
