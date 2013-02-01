@@ -358,7 +358,10 @@ namespace nManager
             JoinQueue,
             RequeueingInProcess,
             Battleground_Ended,
-            NotInBg
+            NotInBg,
+            SendMailWhenLessThanXSlotLeft,
+            SellItemsWhenLessThanXSlotLeft,
+            RepairWhenDurabilityIsUnderPercent
         };
 
         [Serializable]

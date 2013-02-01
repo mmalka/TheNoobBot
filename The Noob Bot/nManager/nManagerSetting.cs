@@ -261,5 +261,8 @@ namespace nManager
         public float MaxDistanceToGoToMailboxesOrNPCs = 1000;
         public bool AutoConfirmOnBoPItems = true;
         public bool ActivateAlwaysOnTopFeature;
+        public int RepairWhenDurabilityIsUnderPercent = 30;
+        public int SendMailWhenLessThanXSlotLeft = 2;
+        public int SellItemsWhenLessThanXSlotLeft = 2;
     }
 }

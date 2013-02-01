@@ -1166,5 +1166,17 @@
       <Text>You must be in a battle in order to use the Profile Creator.</Text>
       <Id>NotInBg</Id>
     </Translation>
+	<Translation>
+      <Text>Send Mail when less than X slot left</Text>
+      <Id>SendMailWhenLessThanXSlotLeft</Id>
+    </Translation>
+	<Translation>
+      <Text>Sell items when less than X slot left</Text>
+      <Id>SellItemsWhenLessThanXSlotLeft</Id>
+    </Translation>
+	<Translation>
+      <Text>Repair when Durability is under than X %</Text>
+      <Id>RepairWhenDurabilityIsUnderPercent</Id>
+    </Translation>
   </Translations>
 </Language>

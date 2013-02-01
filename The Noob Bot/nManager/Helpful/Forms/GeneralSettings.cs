@@ -243,6 +243,9 @@ namespace nManager.Helpful.Forms
             AutoConfirmOnBoPItemsLabel.Text = Translate.Get(Translate.Id.AutoConfirmOnBoPItems);
             SetToolTypeIfNeeded(AutoConfirmOnBoPItemsLabel);
             ActivateAlwaysOnTopFeature.Text = Translate.Get(Translate.Id.AlwaysOnTop);
+            SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
+            SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
+            RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
         }
 
@@ -349,6 +352,9 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs = MaxDistanceToGoToMailboxesOrNPCs.Value;
                 nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems = AutoConfirmOnBoPItems.Value;
                 nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature = ActivateAlwaysOnTopFeature.Value;
+                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent = RepairWhenDurabilityIsUnderPercent.Value;
+                nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft = SellItemsWhenLessThanXSlotLeft.Value;
+                nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft = SendMailWhenLessThanXSlotLeft.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -450,6 +456,9 @@ namespace nManager.Helpful.Forms
                 MaxDistanceToGoToMailboxesOrNPCs.Value = (int)managerSetting.MaxDistanceToGoToMailboxesOrNPCs;
                 AutoConfirmOnBoPItems.Value = managerSetting.AutoConfirmOnBoPItems;
                 ActivateAlwaysOnTopFeature.Value = managerSetting.ActivateAlwaysOnTopFeature;
+                RepairWhenDurabilityIsUnderPercent.Value = managerSetting.RepairWhenDurabilityIsUnderPercent;
+                SellItemsWhenLessThanXSlotLeft.Value = managerSetting.SellItemsWhenLessThanXSlotLeft;
+                SendMailWhenLessThanXSlotLeft.Value = managerSetting.SendMailWhenLessThanXSlotLeft;
             }
             catch (Exception ex)
             {

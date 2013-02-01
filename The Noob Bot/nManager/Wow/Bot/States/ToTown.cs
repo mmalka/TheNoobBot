@@ -50,16 +50,16 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                         return false;
 
-                if (ObjectManager.ObjectManager.Me.GetDurability <= 30 &&
+                if (ObjectManager.ObjectManager.Me.GetDurability <= nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
                     NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
                     return true;
 
-                if (Usefuls.GetContainerNumFreeSlots <= 2 &&
+                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
                     (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry + NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry) > 0
                     && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
-                if (Usefuls.GetContainerNumFreeSlots <= 2 &&
+                if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft &&
                      NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 &&
                      nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature && nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
                     return true;

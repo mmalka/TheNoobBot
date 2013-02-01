@@ -66,6 +66,8 @@ namespace nManager.Helpful.Forms
             this.labelX27 = new DevComponents.DotNetBar.LabelX();
             this.StopTNBIfBagAreFull = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.expandablePanel9 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.SendMailWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
+            this.SendMailWhenLessThanXSlotLeftLabel = new DevComponents.DotNetBar.LabelX();
             this.MaillingFeatureRecipient = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX56 = new DevComponents.DotNetBar.LabelX();
             this.MaillingFeatureSubject = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -82,6 +84,10 @@ namespace nManager.Helpful.Forms
             this.DontMailTheseItems = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX58 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel8 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.SellItemsWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
+            this.RepairWhenDurabilityIsUnderPercent = new DevComponents.Editors.IntegerInput();
+            this.SellItemsWhenLessThanXSlotLeftLabel = new DevComponents.DotNetBar.LabelX();
+            this.RepairWhenDurabilityIsUnderPercentLabel = new DevComponents.DotNetBar.LabelX();
             this.ForceToSellTheseItems = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX53 = new DevComponents.DotNetBar.LabelX();
             this.SellPurple = new DevComponents.DotNetBar.Controls.CheckBoxX();
@@ -210,7 +216,10 @@ namespace nManager.Helpful.Forms
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBIfReceivedAtMostXWhispers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXLevelup)).BeginInit();
             this.expandablePanel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SendMailWhenLessThanXSlotLeft)).BeginInit();
             this.expandablePanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.SellItemsWhenLessThanXSlotLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepairWhenDurabilityIsUnderPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfFoodsWeGot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfBeverageWeGot)).BeginInit();
             this.expandablePanel6.SuspendLayout();
@@ -362,7 +371,7 @@ namespace nManager.Helpful.Forms
             this.MaxDistanceToGoToMailboxesOrNPCs.ShowUpDown = true;
             this.MaxDistanceToGoToMailboxesOrNPCs.Size = new System.Drawing.Size(80, 22);
             this.MaxDistanceToGoToMailboxesOrNPCs.TabIndex = 26;
-            this.MaxDistanceToGoToMailboxesOrNPCs.Value = 250;
+            this.MaxDistanceToGoToMailboxesOrNPCs.Value = 1000;
             // 
             // labelX60
             // 
@@ -861,6 +870,8 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel9.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel9.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeft);
+            this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeftLabel);
             this.expandablePanel9.Controls.Add(this.MaillingFeatureRecipient);
             this.expandablePanel9.Controls.Add(this.labelX56);
             this.expandablePanel9.Controls.Add(this.MaillingFeatureSubject);
@@ -897,6 +908,38 @@ namespace nManager.Helpful.Forms
             this.expandablePanel9.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.expandablePanel9.TitleStyle.GradientAngle = 90;
             this.expandablePanel9.TitleText = "Mail (Send Items to alts)";
+            // 
+            // SendMailWhenLessThanXSlotLeft
+            // 
+            this.SendMailWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.SendMailWhenLessThanXSlotLeft.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.SendMailWhenLessThanXSlotLeft.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.SendMailWhenLessThanXSlotLeft.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.SendMailWhenLessThanXSlotLeft.ForeColor = System.Drawing.Color.Black;
+            this.SendMailWhenLessThanXSlotLeft.Location = new System.Drawing.Point(479, 37);
+            this.SendMailWhenLessThanXSlotLeft.MinValue = 1;
+            this.SendMailWhenLessThanXSlotLeft.Name = "SendMailWhenLessThanXSlotLeft";
+            this.SendMailWhenLessThanXSlotLeft.ShowUpDown = true;
+            this.SendMailWhenLessThanXSlotLeft.Size = new System.Drawing.Size(43, 22);
+            this.SendMailWhenLessThanXSlotLeft.TabIndex = 41;
+            this.SendMailWhenLessThanXSlotLeft.Value = 2;
+            // 
+            // SendMailWhenLessThanXSlotLeftLabel
+            // 
+            this.SendMailWhenLessThanXSlotLeftLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.SendMailWhenLessThanXSlotLeftLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.SendMailWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
+            this.SendMailWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(262, 35);
+            this.SendMailWhenLessThanXSlotLeftLabel.Name = "SendMailWhenLessThanXSlotLeftLabel";
+            this.SendMailWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(204, 24);
+            this.SendMailWhenLessThanXSlotLeftLabel.TabIndex = 40;
+            this.SendMailWhenLessThanXSlotLeftLabel.Text = "Send Mail when less than X slot left";
             // 
             // MaillingFeatureRecipient
             // 
@@ -1128,6 +1171,10 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel8.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeft);
+            this.expandablePanel8.Controls.Add(this.RepairWhenDurabilityIsUnderPercent);
+            this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeftLabel);
+            this.expandablePanel8.Controls.Add(this.RepairWhenDurabilityIsUnderPercentLabel);
             this.expandablePanel8.Controls.Add(this.ForceToSellTheseItems);
             this.expandablePanel8.Controls.Add(this.labelX53);
             this.expandablePanel8.Controls.Add(this.SellPurple);
@@ -1166,6 +1213,71 @@ namespace nManager.Helpful.Forms
             this.expandablePanel8.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
             this.expandablePanel8.TitleStyle.GradientAngle = 90;
             this.expandablePanel8.TitleText = "Vendor (Selling or Buying)";
+            // 
+            // SellItemsWhenLessThanXSlotLeft
+            // 
+            this.SellItemsWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.SellItemsWhenLessThanXSlotLeft.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.SellItemsWhenLessThanXSlotLeft.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.SellItemsWhenLessThanXSlotLeft.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.SellItemsWhenLessThanXSlotLeft.ForeColor = System.Drawing.Color.Black;
+            this.SellItemsWhenLessThanXSlotLeft.Location = new System.Drawing.Point(474, 123);
+            this.SellItemsWhenLessThanXSlotLeft.MinValue = 1;
+            this.SellItemsWhenLessThanXSlotLeft.Name = "SellItemsWhenLessThanXSlotLeft";
+            this.SellItemsWhenLessThanXSlotLeft.ShowUpDown = true;
+            this.SellItemsWhenLessThanXSlotLeft.Size = new System.Drawing.Size(43, 22);
+            this.SellItemsWhenLessThanXSlotLeft.TabIndex = 39;
+            this.SellItemsWhenLessThanXSlotLeft.Value = 2;
+            // 
+            // RepairWhenDurabilityIsUnderPercent
+            // 
+            this.RepairWhenDurabilityIsUnderPercent.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.RepairWhenDurabilityIsUnderPercent.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.RepairWhenDurabilityIsUnderPercent.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.RepairWhenDurabilityIsUnderPercent.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.RepairWhenDurabilityIsUnderPercent.ForeColor = System.Drawing.Color.Black;
+            this.RepairWhenDurabilityIsUnderPercent.Location = new System.Drawing.Point(474, 94);
+            this.RepairWhenDurabilityIsUnderPercent.MaxValue = 99;
+            this.RepairWhenDurabilityIsUnderPercent.MinValue = 1;
+            this.RepairWhenDurabilityIsUnderPercent.Name = "RepairWhenDurabilityIsUnderPercent";
+            this.RepairWhenDurabilityIsUnderPercent.ShowUpDown = true;
+            this.RepairWhenDurabilityIsUnderPercent.Size = new System.Drawing.Size(43, 22);
+            this.RepairWhenDurabilityIsUnderPercent.TabIndex = 38;
+            this.RepairWhenDurabilityIsUnderPercent.Value = 30;
+            // 
+            // SellItemsWhenLessThanXSlotLeftLabel
+            // 
+            this.SellItemsWhenLessThanXSlotLeftLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.SellItemsWhenLessThanXSlotLeftLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.SellItemsWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
+            this.SellItemsWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(257, 121);
+            this.SellItemsWhenLessThanXSlotLeftLabel.Name = "SellItemsWhenLessThanXSlotLeftLabel";
+            this.SellItemsWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(204, 24);
+            this.SellItemsWhenLessThanXSlotLeftLabel.TabIndex = 37;
+            this.SellItemsWhenLessThanXSlotLeftLabel.Text = "Sell items when less than X slot left";
+            // 
+            // RepairWhenDurabilityIsUnderPercentLabel
+            // 
+            this.RepairWhenDurabilityIsUnderPercentLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.RepairWhenDurabilityIsUnderPercentLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.RepairWhenDurabilityIsUnderPercentLabel.ForeColor = System.Drawing.Color.Black;
+            this.RepairWhenDurabilityIsUnderPercentLabel.Location = new System.Drawing.Point(256, 92);
+            this.RepairWhenDurabilityIsUnderPercentLabel.Name = "RepairWhenDurabilityIsUnderPercentLabel";
+            this.RepairWhenDurabilityIsUnderPercentLabel.Size = new System.Drawing.Size(205, 24);
+            this.RepairWhenDurabilityIsUnderPercentLabel.TabIndex = 36;
+            this.RepairWhenDurabilityIsUnderPercentLabel.Text = "Repair when Durability is under than X %";
             // 
             // ForceToSellTheseItems
             // 
@@ -1349,7 +1461,7 @@ namespace nManager.Helpful.Forms
             this.NumberOfFoodsWeGot.MinValue = 0;
             this.NumberOfFoodsWeGot.Name = "NumberOfFoodsWeGot";
             this.NumberOfFoodsWeGot.ShowUpDown = true;
-            this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(80, 22);
+            this.NumberOfFoodsWeGot.Size = new System.Drawing.Size(66, 22);
             this.NumberOfFoodsWeGot.TabIndex = 24;
             // 
             // labelX50
@@ -1381,7 +1493,7 @@ namespace nManager.Helpful.Forms
             this.NumberOfBeverageWeGot.MinValue = 0;
             this.NumberOfBeverageWeGot.Name = "NumberOfBeverageWeGot";
             this.NumberOfBeverageWeGot.ShowUpDown = true;
-            this.NumberOfBeverageWeGot.Size = new System.Drawing.Size(80, 22);
+            this.NumberOfBeverageWeGot.Size = new System.Drawing.Size(66, 22);
             this.NumberOfBeverageWeGot.TabIndex = 18;
             // 
             // labelX41
@@ -3134,7 +3246,10 @@ namespace nManager.Helpful.Forms
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBIfReceivedAtMostXWhispers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXLevelup)).EndInit();
             this.expandablePanel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SendMailWhenLessThanXSlotLeft)).EndInit();
             this.expandablePanel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.SellItemsWhenLessThanXSlotLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.RepairWhenDurabilityIsUnderPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfFoodsWeGot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfBeverageWeGot)).EndInit();
             this.expandablePanel6.ResumeLayout(false);
@@ -3328,5 +3443,11 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX AlwaysOnTopFeatureLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateAlwaysOnTopFeature;
         private DevComponents.DotNetBar.ButtonX CustomClassResetSettingsButton;
+        private DevComponents.DotNetBar.LabelX SellItemsWhenLessThanXSlotLeftLabel;
+        private DevComponents.DotNetBar.LabelX RepairWhenDurabilityIsUnderPercentLabel;
+        private DevComponents.Editors.IntegerInput SellItemsWhenLessThanXSlotLeft;
+        private DevComponents.Editors.IntegerInput RepairWhenDurabilityIsUnderPercent;
+        private DevComponents.Editors.IntegerInput SendMailWhenLessThanXSlotLeft;
+        private DevComponents.DotNetBar.LabelX SendMailWhenLessThanXSlotLeftLabel;
     }
 }
