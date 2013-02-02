@@ -46,11 +46,11 @@ namespace Battlegrounder.Bot
         public bool EyeoftheStorm;
         public bool StrandoftheAncients;
         public bool IsleofConquest;
-        public bool BattleforGilneas = true;
-        public bool TwinPeaks;
+        public bool BattleforGilneas;
+        public bool TwinPeaks = true;
         public bool TempleofKotmogu;
         public bool SilvershardMines;
-        public bool Requeue = true;
+        public bool RequeueAfterTerminaison = true;
         public bool RandomBattleground;
 
         public string profileName = "";

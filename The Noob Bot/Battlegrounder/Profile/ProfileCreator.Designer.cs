@@ -100,7 +100,7 @@ namespace Battlegrounder.Profile
             this.DistanceBetweenRecord.ShowUpDown = true;
             this.DistanceBetweenRecord.Size = new System.Drawing.Size(94, 22);
             this.DistanceBetweenRecord.TabIndex = 5;
-            this.DistanceBetweenRecord.Value = 2;
+            this.DistanceBetweenRecord.Value = 10;
             // 
             // DistanceBetweenRecordLabel
             // 

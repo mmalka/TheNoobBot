@@ -162,7 +162,7 @@ namespace Battlegrounder.Bot
                         Thread.Sleep(1000);
                         break;
                     default: //idle
-                        if (BattlegrounderSetting.CurrentSetting.Requeue)
+                        if (BattlegrounderSetting.CurrentSetting.RequeueAfterTerminaison)
                         {
                             if (_requeuTimer == null)
                                 _requeuTimer = new Timer(RequeueingTime);

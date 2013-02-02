@@ -361,7 +361,8 @@ namespace nManager
             NotInBg,
             SendMailWhenLessThanXSlotLeft,
             SellItemsWhenLessThanXSlotLeft,
-            RepairWhenDurabilityIsUnderPercent
+            RepairWhenDurabilityIsUnderPercent,
+            RequeueAfterTerminaison
         };
 
         [Serializable]

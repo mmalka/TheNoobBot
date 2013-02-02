@@ -27,6 +27,7 @@ namespace Battlegrounder
             TempleOfKotmoguLabel.Text = Translate.Get(Translate.Id.TempleofKotmogu);
             SilvershardMinesLabel.Text = Translate.Get(Translate.Id.SilvershardMines);
             RandomBattlegroundLabel.Text = Translate.Get(Translate.Id.RandomBattleground);
+            RequeueAfterTerminaisonLabel.Text = Translate.Get(Translate.Id.RequeueAfterTerminaison);
             SaveButton.Text = Translate.Get(Translate.Id.Save_and_Close);
             Text = Translate.Get(Translate.Id.Settings_Battlegrounder);
         }
@@ -49,6 +50,7 @@ namespace Battlegrounder
             BattlegrounderSetting.CurrentSetting.TempleofKotmogu = TempleOfKotmoguSwitch.Value;
             BattlegrounderSetting.CurrentSetting.SilvershardMines = SilvershardMinesSwitch.Value;
             BattlegrounderSetting.CurrentSetting.RandomBattleground = RandomBattlegroundSwitch.Value;
+            BattlegrounderSetting.CurrentSetting.RequeueAfterTerminaison = RequeueAfterTerminaisonSwitch.Value;
             BattlegrounderSetting.CurrentSetting.Save();
             Dispose();
         }
@@ -66,6 +68,7 @@ namespace Battlegrounder
             TempleOfKotmoguSwitch.Value = BattlegrounderSetting.CurrentSetting.TempleofKotmogu;
             SilvershardMinesSwitch.Value = BattlegrounderSetting.CurrentSetting.SilvershardMines;
             RandomBattlegroundSwitch.Value = BattlegrounderSetting.CurrentSetting.RandomBattleground;
+            RequeueAfterTerminaisonSwitch.Value = BattlegrounderSetting.CurrentSetting.RequeueAfterTerminaison;
         }
     }
 }
