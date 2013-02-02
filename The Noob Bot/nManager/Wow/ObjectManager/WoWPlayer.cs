@@ -64,6 +64,7 @@ namespace nManager.Wow.ObjectManager
                         case "Night Elf":
                         case "Draenei":
                         case "Worgen":
+                        case "PandarenAlliance":
                             return "Alliance";
                         case "Orc":
                         case "Undead":
@@ -71,6 +72,7 @@ namespace nManager.Wow.ObjectManager
                         case "Troll":
                         case "Blood Elf":
                         case "Goblin":
+                        case "PandarenHorde":
                             return "Horde";
                     }
                 }
@@ -112,9 +114,12 @@ namespace nManager.Wow.ObjectManager
                         return "Goblin";
                     if (faction.Equals((int)PlayerFactions.Worgen))
                         return "Worgen";
-                    if (faction.Equals((int)PlayerFactions.Pandaren))
-                        return "Pandaren";
-
+                    if (faction.Equals((int)PlayerFactions.PandarenNeutral))
+                        return "PandarenNeutral";
+                    if (faction.Equals((int)PlayerFactions.PandarenHorde))
+                        return "PandarenHorde";
+                    if (faction.Equals((int)PlayerFactions.PandarenAlliance))
+                        return "PandarenAlliance";
                 }
                 catch (Exception e)
                 {

@@ -21,6 +21,7 @@ namespace nManager.Wow.Bot.States
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -51,6 +52,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private bool _failed;
+
         public override void Run()
         {
             MovementManager.StopMove();
@@ -58,7 +60,8 @@ namespace nManager.Wow.Bot.States
             Logging.Write("The player has died. Starting the resurrection process.");
             Interact.Repop();
             Thread.Sleep(1000);
-            while (ObjectManager.ObjectManager.Me.PositionCorpse.X == 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y == 0 &&
+            while (ObjectManager.ObjectManager.Me.PositionCorpse.X == 0 &&
+                   ObjectManager.ObjectManager.Me.PositionCorpse.Y == 0 &&
                    ObjectManager.ObjectManager.Me.Health <= 0 && Products.Products.IsStarted && Usefuls.InGame)
             {
                 Interact.Repop();
@@ -74,21 +77,47 @@ namespace nManager.Wow.Bot.States
                 {
                     Thread.Sleep(100);
                 }
-                while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                Thread.Sleep(4000);
+                var factionBattlegroundSpiritHealer =
+                    new WoWUnit(
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByName(ObjectManager.ObjectManager.Me.PlayerFaction + " Spirit Guide")).GetBaseAddress);
+                if (!factionBattlegroundSpiritHealer.IsValid)
                 {
-                    Thread.Sleep(1000);
+                    Logging.Write("Faction Spirit Healer not found, teleport back to the cimetery.");
+                    Interact.TeleportToSpiritHealer();
+                    Thread.Sleep(5000);
                 }
-                _failed = false;
-                Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
-                Statistics.Deaths++;
-                return;
+                else
+                {
+                    if (factionBattlegroundSpiritHealer.GetDistance > 25)
+                    {
+                        Interact.TeleportToSpiritHealer();
+                        Thread.Sleep(5000);
+                    }
+                    while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                    {
+                        if (factionBattlegroundSpiritHealer.GetDistance > 25)
+                        {
+                            Interact.TeleportToSpiritHealer();
+                            Thread.Sleep(5000);
+                        }
+                        Thread.Sleep(1000);
+                    }
+                    _failed = false;
+                    Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
+                    Statistics.Deaths++;
+                    return;
+                }
             }
 
             #endregion
 
             #region Go To Corpse resurrection
 
-            if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 && ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 && !nManagerSetting.CurrentSetting.UseSpiritHealer)
+            if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 &&
+                ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 &&
+                !nManagerSetting.CurrentSetting.UseSpiritHealer)
             {
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -118,7 +147,10 @@ namespace nManager.Wow.Bot.States
                 {
                     if ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 25 && !_failed) ||
                         (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                     (uint)Addresses.Player.RetrieveCorpseWindow) > 0 && !_failed) || ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
+                                                         (uint) Addresses.Player.RetrieveCorpseWindow) > 0 &&
+                         !_failed) ||
+                        ObjectManager.ObjectManager.Me.PositionCorpse.DistanceTo(
+                            ObjectManager.ObjectManager.Me.Position) < 5)
                     {
                         LongMove.StopLongMove();
                         MovementManager.StopMove();
@@ -132,18 +164,19 @@ namespace nManager.Wow.Bot.States
                 }
 
                 if (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                     (uint)Addresses.Player.RetrieveCorpseWindow) <= 0)
+                                                    (uint) Addresses.Player.RetrieveCorpseWindow) <= 0)
                 {
                     _failed = true;
                 }
 
                 if (tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 26 ||
-                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.Player.RetrieveCorpseWindow) >
+                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                    (uint) Addresses.Player.RetrieveCorpseWindow) >
                     0)
                 {
                     while ((tPointCorps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 27 ||
                             Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint)Addresses.Player.RetrieveCorpseWindow) > 0) &&
+                                                            (uint) Addresses.Player.RetrieveCorpseWindow) > 0) &&
                            ObjectManager.ObjectManager.Me.IsDeadMe && Products.Products.IsStarted && Usefuls.InGame)
                     {
                         Interact.RetrieveCorpse();
@@ -167,7 +200,9 @@ namespace nManager.Wow.Bot.States
             {
                 Thread.Sleep(4000);
                 var objectSpiritHealer =
-                    new WoWUnit(ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
+                    new WoWUnit(
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);
                 int stuckTemps = 5;
 
                 if (!objectSpiritHealer.IsValid)
@@ -184,7 +219,8 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(5000);
                     }
                     MovementManager.MoveTo(objectSpiritHealer.Position);
-                    while (objectSpiritHealer.GetDistance > 5 && Products.Products.IsStarted && stuckTemps >= 0 && Usefuls.InGame)
+                    while (objectSpiritHealer.GetDistance > 5 && Products.Products.IsStarted && stuckTemps >= 0 &&
+                           Usefuls.InGame)
                     {
                         Thread.Sleep(300);
                         if (!ObjectManager.ObjectManager.Me.GetMove && objectSpiritHealer.GetDistance > 5)
@@ -203,10 +239,9 @@ namespace nManager.Wow.Bot.States
                         Statistics.Deaths++;
                     }
                 }
-
             }
-            #endregion SpiritHealer
 
+            #endregion SpiritHealer
         }
     }
 }
