@@ -52,15 +52,17 @@ namespace Battlegrounder
             this.TempleOfKotmoguLabel = new DevComponents.DotNetBar.LabelX();
             this.SilvershardMinesSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.TempleOfKotmoguSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.RequeueAfterTerminaisonLabel = new DevComponents.DotNetBar.LabelX();
-            this.RequeueAfterTerminaisonSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.RequeueAfterXMinutesLabel = new DevComponents.DotNetBar.LabelX();
+            this.RequeueAfterXMinutesSwitch = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.RequeueAfterXMinutes = new DevComponents.Editors.IntegerInput();
+            ((System.ComponentModel.ISupportInitialize)(this.RequeueAfterXMinutes)).BeginInit();
             this.SuspendLayout();
             // 
             // SaveButton
             // 
             this.SaveButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.SaveButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.SaveButton.Location = new System.Drawing.Point(430, 2);
+            this.SaveButton.Location = new System.Drawing.Point(430, 7);
             this.SaveButton.Name = "SaveButton";
             this.SaveButton.Size = new System.Drawing.Size(84, 22);
             this.SaveButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -76,7 +78,7 @@ namespace Battlegrounder
             // 
             this.WarsongGulchSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.WarsongGulchSwitch.ForeColor = System.Drawing.Color.Black;
-            this.WarsongGulchSwitch.Location = new System.Drawing.Point(186, 58);
+            this.WarsongGulchSwitch.Location = new System.Drawing.Point(186, 64);
             this.WarsongGulchSwitch.Name = "WarsongGulchSwitch";
             this.WarsongGulchSwitch.Size = new System.Drawing.Size(66, 22);
             this.WarsongGulchSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -90,7 +92,7 @@ namespace Battlegrounder
             // 
             this.ArathiBasinSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ArathiBasinSwitch.ForeColor = System.Drawing.Color.Black;
-            this.ArathiBasinSwitch.Location = new System.Drawing.Point(186, 86);
+            this.ArathiBasinSwitch.Location = new System.Drawing.Point(186, 92);
             this.ArathiBasinSwitch.Name = "ArathiBasinSwitch";
             this.ArathiBasinSwitch.Size = new System.Drawing.Size(66, 22);
             this.ArathiBasinSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -104,7 +106,7 @@ namespace Battlegrounder
             // 
             this.AlteracValleySwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AlteracValleySwitch.ForeColor = System.Drawing.Color.Black;
-            this.AlteracValleySwitch.Location = new System.Drawing.Point(186, 30);
+            this.AlteracValleySwitch.Location = new System.Drawing.Point(186, 36);
             this.AlteracValleySwitch.Name = "AlteracValleySwitch";
             this.AlteracValleySwitch.Size = new System.Drawing.Size(66, 22);
             this.AlteracValleySwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -118,7 +120,7 @@ namespace Battlegrounder
             // 
             this.EyeoftheStormSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.EyeoftheStormSwitch.ForeColor = System.Drawing.Color.Black;
-            this.EyeoftheStormSwitch.Location = new System.Drawing.Point(186, 113);
+            this.EyeoftheStormSwitch.Location = new System.Drawing.Point(186, 119);
             this.EyeoftheStormSwitch.Name = "EyeoftheStormSwitch";
             this.EyeoftheStormSwitch.Size = new System.Drawing.Size(66, 22);
             this.EyeoftheStormSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -132,7 +134,7 @@ namespace Battlegrounder
             // 
             this.StrandoftheAncientsSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.StrandoftheAncientsSwitch.ForeColor = System.Drawing.Color.Black;
-            this.StrandoftheAncientsSwitch.Location = new System.Drawing.Point(186, 141);
+            this.StrandoftheAncientsSwitch.Location = new System.Drawing.Point(186, 147);
             this.StrandoftheAncientsSwitch.Name = "StrandoftheAncientsSwitch";
             this.StrandoftheAncientsSwitch.Size = new System.Drawing.Size(66, 22);
             this.StrandoftheAncientsSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -146,7 +148,7 @@ namespace Battlegrounder
             // 
             this.WarsongGulchLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.WarsongGulchLabel.ForeColor = System.Drawing.Color.Black;
-            this.WarsongGulchLabel.Location = new System.Drawing.Point(12, 59);
+            this.WarsongGulchLabel.Location = new System.Drawing.Point(12, 65);
             this.WarsongGulchLabel.Name = "WarsongGulchLabel";
             this.WarsongGulchLabel.Size = new System.Drawing.Size(168, 23);
             this.WarsongGulchLabel.TabIndex = 25;
@@ -160,7 +162,7 @@ namespace Battlegrounder
             // 
             this.ArathiBasinLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ArathiBasinLabel.ForeColor = System.Drawing.Color.Black;
-            this.ArathiBasinLabel.Location = new System.Drawing.Point(12, 86);
+            this.ArathiBasinLabel.Location = new System.Drawing.Point(12, 92);
             this.ArathiBasinLabel.Name = "ArathiBasinLabel";
             this.ArathiBasinLabel.Size = new System.Drawing.Size(168, 23);
             this.ArathiBasinLabel.TabIndex = 26;
@@ -174,7 +176,7 @@ namespace Battlegrounder
             // 
             this.AlteracValleyLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AlteracValleyLabel.ForeColor = System.Drawing.Color.Black;
-            this.AlteracValleyLabel.Location = new System.Drawing.Point(12, 30);
+            this.AlteracValleyLabel.Location = new System.Drawing.Point(12, 36);
             this.AlteracValleyLabel.Name = "AlteracValleyLabel";
             this.AlteracValleyLabel.Size = new System.Drawing.Size(168, 23);
             this.AlteracValleyLabel.TabIndex = 27;
@@ -188,7 +190,7 @@ namespace Battlegrounder
             // 
             this.EyeoftheStormLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.EyeoftheStormLabel.ForeColor = System.Drawing.Color.Black;
-            this.EyeoftheStormLabel.Location = new System.Drawing.Point(12, 113);
+            this.EyeoftheStormLabel.Location = new System.Drawing.Point(12, 119);
             this.EyeoftheStormLabel.Name = "EyeoftheStormLabel";
             this.EyeoftheStormLabel.Size = new System.Drawing.Size(168, 23);
             this.EyeoftheStormLabel.TabIndex = 28;
@@ -202,7 +204,7 @@ namespace Battlegrounder
             // 
             this.StrandoftheAncientsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.StrandoftheAncientsLabel.ForeColor = System.Drawing.Color.Black;
-            this.StrandoftheAncientsLabel.Location = new System.Drawing.Point(12, 141);
+            this.StrandoftheAncientsLabel.Location = new System.Drawing.Point(12, 147);
             this.StrandoftheAncientsLabel.Name = "StrandoftheAncientsLabel";
             this.StrandoftheAncientsLabel.Size = new System.Drawing.Size(168, 23);
             this.StrandoftheAncientsLabel.TabIndex = 29;
@@ -216,7 +218,7 @@ namespace Battlegrounder
             // 
             this.IsleofConquestLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.IsleofConquestLabel.ForeColor = System.Drawing.Color.Black;
-            this.IsleofConquestLabel.Location = new System.Drawing.Point(275, 33);
+            this.IsleofConquestLabel.Location = new System.Drawing.Point(275, 39);
             this.IsleofConquestLabel.Name = "IsleofConquestLabel";
             this.IsleofConquestLabel.Size = new System.Drawing.Size(168, 23);
             this.IsleofConquestLabel.TabIndex = 30;
@@ -230,7 +232,7 @@ namespace Battlegrounder
             // 
             this.IsleofConquestSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.IsleofConquestSwitch.ForeColor = System.Drawing.Color.Black;
-            this.IsleofConquestSwitch.Location = new System.Drawing.Point(448, 30);
+            this.IsleofConquestSwitch.Location = new System.Drawing.Point(448, 36);
             this.IsleofConquestSwitch.Name = "IsleofConquestSwitch";
             this.IsleofConquestSwitch.Size = new System.Drawing.Size(66, 22);
             this.IsleofConquestSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -244,7 +246,7 @@ namespace Battlegrounder
             // 
             this.BattleforGilneasSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BattleforGilneasSwitch.ForeColor = System.Drawing.Color.Black;
-            this.BattleforGilneasSwitch.Location = new System.Drawing.Point(448, 86);
+            this.BattleforGilneasSwitch.Location = new System.Drawing.Point(448, 92);
             this.BattleforGilneasSwitch.Name = "BattleforGilneasSwitch";
             this.BattleforGilneasSwitch.Size = new System.Drawing.Size(66, 22);
             this.BattleforGilneasSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -258,7 +260,7 @@ namespace Battlegrounder
             // 
             this.BattleforGilneasLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BattleforGilneasLabel.ForeColor = System.Drawing.Color.Black;
-            this.BattleforGilneasLabel.Location = new System.Drawing.Point(275, 87);
+            this.BattleforGilneasLabel.Location = new System.Drawing.Point(275, 93);
             this.BattleforGilneasLabel.Name = "BattleforGilneasLabel";
             this.BattleforGilneasLabel.Size = new System.Drawing.Size(168, 23);
             this.BattleforGilneasLabel.TabIndex = 33;
@@ -272,7 +274,7 @@ namespace Battlegrounder
             // 
             this.TwinPeaksLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TwinPeaksLabel.ForeColor = System.Drawing.Color.Black;
-            this.TwinPeaksLabel.Location = new System.Drawing.Point(275, 60);
+            this.TwinPeaksLabel.Location = new System.Drawing.Point(275, 66);
             this.TwinPeaksLabel.Name = "TwinPeaksLabel";
             this.TwinPeaksLabel.Size = new System.Drawing.Size(168, 23);
             this.TwinPeaksLabel.TabIndex = 34;
@@ -286,7 +288,7 @@ namespace Battlegrounder
             // 
             this.TwinPeaksSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TwinPeaksSwitch.ForeColor = System.Drawing.Color.Black;
-            this.TwinPeaksSwitch.Location = new System.Drawing.Point(448, 58);
+            this.TwinPeaksSwitch.Location = new System.Drawing.Point(448, 64);
             this.TwinPeaksSwitch.Name = "TwinPeaksSwitch";
             this.TwinPeaksSwitch.Size = new System.Drawing.Size(66, 22);
             this.TwinPeaksSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -300,7 +302,7 @@ namespace Battlegrounder
             // 
             this.RandomBattlegroundLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.RandomBattlegroundLabel.ForeColor = System.Drawing.Color.Black;
-            this.RandomBattlegroundLabel.Location = new System.Drawing.Point(12, 170);
+            this.RandomBattlegroundLabel.Location = new System.Drawing.Point(12, 8);
             this.RandomBattlegroundLabel.Name = "RandomBattlegroundLabel";
             this.RandomBattlegroundLabel.Size = new System.Drawing.Size(168, 23);
             this.RandomBattlegroundLabel.TabIndex = 36;
@@ -314,7 +316,7 @@ namespace Battlegrounder
             // 
             this.RandomBattlegroundSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.RandomBattlegroundSwitch.ForeColor = System.Drawing.Color.Black;
-            this.RandomBattlegroundSwitch.Location = new System.Drawing.Point(186, 169);
+            this.RandomBattlegroundSwitch.Location = new System.Drawing.Point(186, 7);
             this.RandomBattlegroundSwitch.Name = "RandomBattlegroundSwitch";
             this.RandomBattlegroundSwitch.Size = new System.Drawing.Size(66, 22);
             this.RandomBattlegroundSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -328,7 +330,7 @@ namespace Battlegrounder
             // 
             this.SilvershardMinesLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SilvershardMinesLabel.ForeColor = System.Drawing.Color.Black;
-            this.SilvershardMinesLabel.Location = new System.Drawing.Point(275, 143);
+            this.SilvershardMinesLabel.Location = new System.Drawing.Point(275, 149);
             this.SilvershardMinesLabel.Name = "SilvershardMinesLabel";
             this.SilvershardMinesLabel.Size = new System.Drawing.Size(168, 23);
             this.SilvershardMinesLabel.TabIndex = 41;
@@ -342,7 +344,7 @@ namespace Battlegrounder
             // 
             this.TempleOfKotmoguLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TempleOfKotmoguLabel.ForeColor = System.Drawing.Color.Black;
-            this.TempleOfKotmoguLabel.Location = new System.Drawing.Point(275, 115);
+            this.TempleOfKotmoguLabel.Location = new System.Drawing.Point(275, 121);
             this.TempleOfKotmoguLabel.Name = "TempleOfKotmoguLabel";
             this.TempleOfKotmoguLabel.Size = new System.Drawing.Size(168, 23);
             this.TempleOfKotmoguLabel.TabIndex = 40;
@@ -356,7 +358,7 @@ namespace Battlegrounder
             // 
             this.SilvershardMinesSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SilvershardMinesSwitch.ForeColor = System.Drawing.Color.Black;
-            this.SilvershardMinesSwitch.Location = new System.Drawing.Point(449, 141);
+            this.SilvershardMinesSwitch.Location = new System.Drawing.Point(449, 147);
             this.SilvershardMinesSwitch.Name = "SilvershardMinesSwitch";
             this.SilvershardMinesSwitch.Size = new System.Drawing.Size(66, 22);
             this.SilvershardMinesSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -370,47 +372,64 @@ namespace Battlegrounder
             // 
             this.TempleOfKotmoguSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TempleOfKotmoguSwitch.ForeColor = System.Drawing.Color.Black;
-            this.TempleOfKotmoguSwitch.Location = new System.Drawing.Point(449, 113);
+            this.TempleOfKotmoguSwitch.Location = new System.Drawing.Point(449, 119);
             this.TempleOfKotmoguSwitch.Name = "TempleOfKotmoguSwitch";
             this.TempleOfKotmoguSwitch.Size = new System.Drawing.Size(66, 22);
             this.TempleOfKotmoguSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TempleOfKotmoguSwitch.TabIndex = 38;
             // 
-            // RequeueAfterTerminaisonLabel
+            // RequeueAfterXMinutesLabel
             // 
-            this.RequeueAfterTerminaisonLabel.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.RequeueAfterTerminaisonLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.RequeueAfterTerminaisonLabel.ForeColor = System.Drawing.Color.Black;
-            this.RequeueAfterTerminaisonLabel.Location = new System.Drawing.Point(275, 171);
-            this.RequeueAfterTerminaisonLabel.Name = "RequeueAfterTerminaisonLabel";
-            this.RequeueAfterTerminaisonLabel.Size = new System.Drawing.Size(168, 23);
-            this.RequeueAfterTerminaisonLabel.TabIndex = 43;
-            this.RequeueAfterTerminaisonLabel.Text = "Requeue after terminaison";
-            // 
-            // RequeueAfterTerminaisonSwitch
-            // 
-            this.RequeueAfterTerminaisonSwitch.BackColor = System.Drawing.Color.White;
+            this.RequeueAfterXMinutesLabel.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.RequeueAfterTerminaisonSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.RequeueAfterTerminaisonSwitch.ForeColor = System.Drawing.Color.Black;
-            this.RequeueAfterTerminaisonSwitch.Location = new System.Drawing.Point(449, 169);
-            this.RequeueAfterTerminaisonSwitch.Name = "RequeueAfterTerminaisonSwitch";
-            this.RequeueAfterTerminaisonSwitch.Size = new System.Drawing.Size(66, 22);
-            this.RequeueAfterTerminaisonSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.RequeueAfterTerminaisonSwitch.TabIndex = 42;
+            this.RequeueAfterXMinutesLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.RequeueAfterXMinutesLabel.ForeColor = System.Drawing.Color.Black;
+            this.RequeueAfterXMinutesLabel.Location = new System.Drawing.Point(12, 174);
+            this.RequeueAfterXMinutesLabel.Name = "RequeueAfterXMinutesLabel";
+            this.RequeueAfterXMinutesLabel.Size = new System.Drawing.Size(168, 23);
+            this.RequeueAfterXMinutesLabel.TabIndex = 43;
+            this.RequeueAfterXMinutesLabel.Text = "Requeue after X minutes";
+            // 
+            // RequeueAfterXMinutesSwitch
+            // 
+            this.RequeueAfterXMinutesSwitch.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.RequeueAfterXMinutesSwitch.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.RequeueAfterXMinutesSwitch.ForeColor = System.Drawing.Color.Black;
+            this.RequeueAfterXMinutesSwitch.Location = new System.Drawing.Point(222, 175);
+            this.RequeueAfterXMinutesSwitch.Name = "RequeueAfterXMinutesSwitch";
+            this.RequeueAfterXMinutesSwitch.Size = new System.Drawing.Size(66, 22);
+            this.RequeueAfterXMinutesSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.RequeueAfterXMinutesSwitch.TabIndex = 42;
+            // 
+            // RequeueAfterXMinutes
+            // 
+            // 
+            // 
+            // 
+            this.RequeueAfterXMinutes.BackgroundStyle.Class = "DateTimeInputBackground";
+            this.RequeueAfterXMinutes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.RequeueAfterXMinutes.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.RequeueAfterXMinutes.Location = new System.Drawing.Point(186, 175);
+            this.RequeueAfterXMinutes.MinValue = 1;
+            this.RequeueAfterXMinutes.Name = "RequeueAfterXMinutes";
+            this.RequeueAfterXMinutes.ShowUpDown = true;
+            this.RequeueAfterXMinutes.Size = new System.Drawing.Size(30, 22);
+            this.RequeueAfterXMinutes.TabIndex = 44;
+            this.RequeueAfterXMinutes.Value = 5;
             // 
             // SettingsBattlegrounderForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 204);
-            this.Controls.Add(this.RequeueAfterTerminaisonLabel);
-            this.Controls.Add(this.RequeueAfterTerminaisonSwitch);
+            this.ClientSize = new System.Drawing.Size(526, 246);
+            this.Controls.Add(this.RequeueAfterXMinutes);
+            this.Controls.Add(this.RequeueAfterXMinutesLabel);
+            this.Controls.Add(this.RequeueAfterXMinutesSwitch);
             this.Controls.Add(this.SilvershardMinesLabel);
             this.Controls.Add(this.TempleOfKotmoguLabel);
             this.Controls.Add(this.SilvershardMinesSwitch);
@@ -444,6 +463,7 @@ namespace Battlegrounder
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Battlegrounder Settings";
+            ((System.ComponentModel.ISupportInitialize)(this.RequeueAfterXMinutes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -473,7 +493,8 @@ namespace Battlegrounder
         private DevComponents.DotNetBar.Controls.SwitchButton SilvershardMinesSwitch;
         private DevComponents.DotNetBar.Controls.SwitchButton TempleOfKotmoguSwitch;        
         private DevComponents.DotNetBar.Controls.SwitchButton RandomBattlegroundSwitch;
-        private DevComponents.DotNetBar.LabelX RequeueAfterTerminaisonLabel;
-        private DevComponents.DotNetBar.Controls.SwitchButton RequeueAfterTerminaisonSwitch;
+        private DevComponents.DotNetBar.LabelX RequeueAfterXMinutesLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton RequeueAfterXMinutesSwitch;
+        private DevComponents.Editors.IntegerInput RequeueAfterXMinutes;
     }
 }

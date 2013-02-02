@@ -1182,8 +1182,8 @@
       <Id>RepairWhenDurabilityIsUnderPercent</Id>
     </Translation>
 	<Translation>
-      <Text>Requeue after terminaison</Text>
-      <Id>RequeueAfterTerminaison</Id>
+      <Text>Requeue after X minutes</Text>
+      <Id>RequeueAfterXMinutes</Id>
     </Translation>
   </Translations>
 </Language>

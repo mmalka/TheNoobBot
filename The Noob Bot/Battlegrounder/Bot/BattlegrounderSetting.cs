@@ -50,7 +50,8 @@ namespace Battlegrounder.Bot
         public bool TwinPeaks = true;
         public bool TempleofKotmogu;
         public bool SilvershardMines;
-        public bool RequeueAfterTerminaison = true;
+        public bool RequeueAfterXMinutes;
+        public int RequeueAfterXMinutesTimer = 5;
         public bool RandomBattleground;
 
         public string profileName = "";

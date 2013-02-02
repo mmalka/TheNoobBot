@@ -58,8 +58,8 @@ namespace Battlegrounder.Bot
 
         private static Spell _deserter;
         private static Timer _requeuTimer;
-        private const int RequeueingTime = 1000 * 60 * 4;
-
+        private readonly int _requeueingTime = 1000 * 60 * BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
+        
         public override void Run()
         {
             int statPvp = Battleground.QueueingStatus();
@@ -155,17 +155,17 @@ namespace Battlegrounder.Bot
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.SilvershardMines) + ".");
                                 Thread.Sleep(500);
                             }
-                            _requeuTimer = new Timer(RequeueingTime);
+                            _requeuTimer = new Timer(_requeueingTime);
                         }
                         Thread.Sleep(1000);
                         Battleground.AcceptBattlefieldPortAll();
                         Thread.Sleep(1000);
                         break;
                     default: //idle
-                        if (BattlegrounderSetting.CurrentSetting.RequeueAfterTerminaison)
+                        if (BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutes)
                         {
                             if (_requeuTimer == null)
-                                _requeuTimer = new Timer(RequeueingTime);
+                                _requeuTimer = new Timer(_requeueingTime);
                             if (_requeuTimer.IsReady)
                             {
                                 int i = 2;
@@ -176,7 +176,7 @@ namespace Battlegrounder.Bot
                                     Lua.RunMacroText("/click DropDownList1Button2");
                                     i--;
                                 }
-                                _requeuTimer = new Timer(RequeueingTime);
+                                _requeuTimer = new Timer(_requeueingTime);
                                 Logging.Write(Translate.Get(Translate.Id.RequeueingInProcess));
                             }
                         }
