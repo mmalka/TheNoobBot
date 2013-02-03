@@ -14,8 +14,8 @@
         Undead = 5,
         Worgen = 2203,
         Goblin = 2204,
-        PandarenNeutral = 24,
-        PandarenAlliance = 25,
-        PandarenHorde = 26,
+        PandarenNeutral = 2395,
+        PandarenAlliance = 2401,
+        PandarenHorde = 2402,
     }
 }
