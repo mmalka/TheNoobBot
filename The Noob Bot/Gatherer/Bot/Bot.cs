@@ -53,8 +53,8 @@ namespace Gatherer.Bot
                 Fsm.AddState(new nManager.Wow.Bot.States.Regeneration {Priority = 9});
                 Fsm.AddState(new nManager.Wow.Bot.States.Looting {Priority = 8});
                 Fsm.AddState(new nManager.Wow.Bot.States.Farming {Priority = 7});
-                Fsm.AddState(new nManager.Wow.Bot.States.MillingState { Priority = 6 });
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 5 });
+                Fsm.AddState(new nManager.Wow.Bot.States.MillingState {Priority = 6});
+                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState {Priority = 5});
                 Fsm.AddState(new nManager.Wow.Bot.States.ToTown {Priority = 4});
                 Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
                 Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
