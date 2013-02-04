@@ -4,19 +4,21 @@ using nManager.Helpful;
 
 namespace Milling
 {
-    class Milling
+    internal class Milling
     {
         public static void Pulse()
         {
-            var thread = new Thread(ThreadPulse) { Name = "Thread Milling" };
+            var thread = new Thread(ThreadPulse) {Name = "Thread Milling"};
             thread.Start();
         }
 
-        static void ThreadPulse()
+        private static void ThreadPulse()
         {
             if (nManager.nManagerSetting.CurrentSetting.HerbsToBeMilled.Count <= 0)
             {
-                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List));
+                MessageBox.Show(
+                    nManager.Translate.Get(
+                        nManager.Translate.Id.Please_add_items_to_mil_in__General_Settings_____Looting_____Milling_List));
                 nManager.Products.Products.ProductStop();
                 return;
             }
