@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -72,6 +73,7 @@ namespace Battlegrounder.Profile
                 {
                     _profile = new BattlegrounderProfile();
                     _profile = XmlSerializer.Deserialize<BattlegrounderProfile>(file);
+                    refreshListZones();
                     refreshForm();
                 }
             }
@@ -80,6 +82,7 @@ namespace Battlegrounder.Profile
                 Logging.WriteError(
                     "Battlegrounder > Bot > ProfileCreator > LoadButton_Click(object sender, EventArgs e): " +
                     ex);
+                refreshListZones();
                 refreshForm();
             }
         }
@@ -184,10 +187,6 @@ namespace Battlegrounder.Profile
                         recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Stop_Record_Way);
                         LoopRecordWay();
                     }
-                    else
-                    {
-                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
-                    }
                 }
             }
             catch (Exception e)
@@ -243,10 +242,6 @@ namespace Battlegrounder.Profile
                         _profile.BattlegrounderZones[idZone].Points.RemoveAt(RecordedPoints.SelectedIndex);
                     refreshForm();
                 }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
-                }
             }
             catch (Exception e)
             {
@@ -267,10 +262,6 @@ namespace Battlegrounder.Profile
                         _profile.BattlegrounderZones[idZone].BlackListRadius.RemoveAt(
                             RecordedBlackListRadius.SelectedIndex);
                     refreshForm();
-                }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 }
             }
             catch (Exception ex)
@@ -294,10 +285,6 @@ namespace Battlegrounder.Profile
                                                                                      Radius = Radius.Value
                                                                                  });
                     refreshForm();
-                }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 }
             }
             catch (Exception ex)
@@ -337,7 +324,16 @@ namespace Battlegrounder.Profile
         private bool CanRecord()
         {
             if (!Battleground.IsInBattleground())
+            {
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 return false;
+            }
+            BattlegrounderZone bgz = _profile.BattlegrounderZones.Find(delegate(BattlegrounderZone bgzz) { return bgzz.Name == ZoneList.SelectedItem.ToString(); });
+            if (bgz == null && Battleground.GetCurrentBattleground().ToString() != bgz.BattlegroundId)
+            {
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorSingleRandomQueue));
+                return false;
+            }
             return true;
         }
 
@@ -355,10 +351,6 @@ namespace Battlegrounder.Profile
                     idZone = _profile.BattlegrounderZones.Count - 1;
                     refreshListZones();
                 }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
-                }
             }
             catch (Exception e)
             {
@@ -374,7 +366,11 @@ namespace Battlegrounder.Profile
             {
                 if (CanRecord())
                 {
-                    if (_profile.BattlegrounderZones.Find(delegate(BattlegrounderZone bgz) { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) != null)
+                    if (
+                        _profile.BattlegrounderZones.Find(
+                            delegate(BattlegrounderZone bgz)
+                                { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) !=
+                        null)
                         return;
 
                     var Bg = new Battleground();
@@ -387,10 +383,6 @@ namespace Battlegrounder.Profile
                                                          });
                     idZone = _profile.BattlegrounderZones.Count - 1;
                     refreshListZones();
-                }
-                else
-                {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 }
             }
             catch (Exception e)

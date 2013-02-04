@@ -1190,5 +1190,9 @@
       <Text>Can't queue for Random Battleground while in another Battleground queue.</Text>
       <Id>ErrorRandomQueue</Id>
     </Translation>
+	<Translation>
+      <Text>Can't do that while in a Random Battleground queue.</Text>
+      <Id>ErrorSingleRandomQueue</Id>
+    </Translation>
   </Translations>
 </Language>

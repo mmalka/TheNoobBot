@@ -364,7 +364,8 @@ namespace nManager
             RepairWhenDurabilityIsUnderPercent,
             RequeueAfterXMinutes,
             ErrorMultipleQueue,
-            ErrorRandomQueue
+            ErrorRandomQueue,
+            ErrorSingleRandomQueue
         };
 
         [Serializable]
