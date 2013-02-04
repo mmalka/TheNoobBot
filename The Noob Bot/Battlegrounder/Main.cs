@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows.Forms;
 using Battlegrounder;
 using Battlegrounder.Bot;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -21,6 +22,7 @@ public class Main : IProduct
             BattlegrounderSetting.Load();
             Logging.Status = "Initialize Battlegrounder Complete";
             Logging.Write("Initialize Battlegrounder Complete");
+            GetProductTipOff();
         }
         catch (Exception e)
         {
@@ -92,6 +94,32 @@ public class Main : IProduct
         {
             Logging.WriteError("Battlegrounder > Main > Settings(): " + e);
         }
+    }
+
+    private string _looting = null;
+    private string _radius = null;
+
+    private void GetProductTipOff()
+    {
+      try
+      {
+          if (nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+          {
+              _looting = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffLooting);
+          }
+          if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 20)
+          {
+              _radius = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffRadius);
+          }
+          if (_radius != null || _looting != null)
+          {
+              MessageBox.Show(string.Format("{0}\n{1}{2}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting, _radius), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
+          }
+      }
+      catch (Exception e)
+      {
+          Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
+      }
     }
 
     public bool IsStarted

@@ -367,7 +367,11 @@ namespace nManager
             ErrorRandomQueue,
             ErrorSingleRandomQueue,
             CantDuplicateZone,
-            CantRecordInWrongZone
+            CantRecordInWrongZone,
+            BattlegrounderTipOffTitle,
+            BattlegrounderTipOffMessage,
+            BattlegrounderTipOffLooting,
+            BattlegrounderTipOffRadius
         };
 
         [Serializable]
