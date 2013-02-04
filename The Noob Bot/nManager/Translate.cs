@@ -365,7 +365,9 @@ namespace nManager
             RequeueAfterXMinutes,
             ErrorMultipleQueue,
             ErrorRandomQueue,
-            ErrorSingleRandomQueue
+            ErrorSingleRandomQueue,
+            CantDuplicateZone,
+            CantRecordInWrongZone
         };
 
         [Serializable]

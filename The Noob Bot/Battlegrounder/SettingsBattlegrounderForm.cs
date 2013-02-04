@@ -116,7 +116,7 @@ namespace Battlegrounder
             if (RandomBattlegroundSwitch.Value == true)
             {
                 sbi.Value = false;
-                MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Translate.Get(Translate.Id.ErrorSingleRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 

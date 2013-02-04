@@ -1194,5 +1194,13 @@
       <Text>Can't do that while in a Random Battleground queue.</Text>
       <Id>ErrorSingleRandomQueue</Id>
     </Translation>
+	<Translation>
+      <Text>You can't have the same zone twice inside the same profile.</Text>
+      <Id>CantDuplicateZone</Id>
+    </Translation>
+	<Translation>
+      <Text>You must select the current Battleground corresponding zone prior to start recording.</Text>
+      <Id>CantRecordInWrongZone</Id>
+    </Translation>
   </Translations>
 </Language>

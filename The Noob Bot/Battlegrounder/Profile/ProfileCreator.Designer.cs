@@ -81,7 +81,6 @@ namespace Battlegrounder.Profile
             this.RecordedPoints.Name = "RecordedPoints";
             this.RecordedPoints.Size = new System.Drawing.Size(375, 134);
             this.RecordedPoints.TabIndex = 4;
-            this.RecordedPoints.SelectedIndexChanged += new System.EventHandler(this.RecordedPoints_SelectedIndexChanged);
             // 
             // DistanceBetweenRecord
             // 
@@ -149,7 +148,6 @@ namespace Battlegrounder.Profile
             this.RecordedBlackListRadius.Name = "RecordedBlackListRadius";
             this.RecordedBlackListRadius.Size = new System.Drawing.Size(375, 69);
             this.RecordedBlackListRadius.TabIndex = 9;
-            this.RecordedBlackListRadius.SelectedIndexChanged += new System.EventHandler(this.RecordedBlackListRadius_SelectedIndexChanged);
             // 
             // Radius
             // 
@@ -285,7 +283,6 @@ namespace Battlegrounder.Profile
             this.ShowInTaskbar = false;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
-            this.Load += new System.EventHandler(this.ProfileCreator_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DistanceBetweenRecord)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Radius)).EndInit();
             this.ResumeLayout(false);

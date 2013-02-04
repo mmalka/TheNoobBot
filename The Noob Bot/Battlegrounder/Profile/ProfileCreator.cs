@@ -294,14 +294,6 @@ namespace Battlegrounder.Profile
             }
         }
 
-        private void RecordedPoints_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void RecordedBlackListRadius_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
         private void RefreshCurrentBattleground_Click(object sender, EventArgs e)
         {
             CurrentBattlegroundInfo();
@@ -321,24 +313,24 @@ namespace Battlegrounder.Profile
             }
         }
 
-        private bool CanRecord()
+        private bool CanRecord(bool justCheckIsInBg = false)
         {
             if (!Battleground.IsInBattleground())
             {
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NotInBg));
                 return false;
             }
-            BattlegrounderZone bgz = _profile.BattlegrounderZones.Find(delegate(BattlegrounderZone bgzz) { return bgzz.Name == ZoneList.SelectedItem.ToString(); });
-            if (bgz == null && Battleground.GetCurrentBattleground().ToString() != bgz.BattlegroundId)
+            if (justCheckIsInBg)
+                return true;
+            BattlegrounderZone bgz =
+                _profile.BattlegrounderZones.Find(
+                    delegate(BattlegrounderZone bgzz) { return bgzz.Name == ZoneList.SelectedItem.ToString(); });
+            if (bgz == null || Battleground.GetCurrentBattleground().ToString() != bgz.BattlegroundId)
             {
-                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorSingleRandomQueue));
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.CantRecordInWrongZone));
                 return false;
             }
             return true;
-        }
-
-        private void ProfileCreator_Load(object sender, EventArgs e)
-        {
         }
 
         private void DelZoneButton_Click(object sender, EventArgs ex)
@@ -364,14 +356,17 @@ namespace Battlegrounder.Profile
         {
             try
             {
-                if (CanRecord())
+                if (CanRecord(true))
                 {
                     if (
                         _profile.BattlegrounderZones.Find(
                             delegate(BattlegrounderZone bgz)
                                 { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) !=
                         null)
+                    {
+                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.CantDuplicateZone));
                         return;
+                    }
 
                     var Bg = new Battleground();
                     _profile.BattlegrounderZones.Add(new BattlegrounderZone
@@ -397,6 +392,11 @@ namespace Battlegrounder.Profile
         {
             try
             {
+                if (_loopRecordPoint)
+                {
+                    _loopRecordPoint = false;
+                    recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
+                }
                 idZone = ZoneList.SelectedIndex;
                 refreshForm();
             }
