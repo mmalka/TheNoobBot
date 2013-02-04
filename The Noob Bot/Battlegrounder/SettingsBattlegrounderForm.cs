@@ -1,12 +1,13 @@
 using Battlegrounder.Bot;
 using nManager;
-using DevComponents.DotNetBar;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace Battlegrounder
 {
     public partial class SettingsBattlegrounderForm : DevComponents.DotNetBar.Metro.MetroForm
     {
+        private List<DevComponents.DotNetBar.Controls.SwitchButton> listsb = new List<DevComponents.DotNetBar.Controls.SwitchButton>();
         public SettingsBattlegrounderForm()
         {
             InitializeComponent();
@@ -60,6 +61,17 @@ namespace Battlegrounder
 
         private new void Load()
         {
+            listsb.Add(ArathiBasinSwitch);
+            listsb.Add(AlteracValleySwitch);
+            listsb.Add(WarsongGulchSwitch);
+            listsb.Add(EyeoftheStormSwitch);
+            listsb.Add(StrandoftheAncientsSwitch);
+            listsb.Add(IsleofConquestSwitch);
+            listsb.Add(TwinPeaksSwitch);
+            listsb.Add(BattleforGilneasSwitch);
+            listsb.Add(TempleOfKotmoguSwitch);
+            listsb.Add(SilvershardMinesSwitch);
+            
             AlteracValleySwitch.Value = BattlegrounderSetting.CurrentSetting.AlteracValley;
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
             ArathiBasinSwitch.Value = BattlegrounderSetting.CurrentSetting.ArathiBasin;
@@ -77,7 +89,7 @@ namespace Battlegrounder
 
         private void RandomBattlegroundSwitch_ValueChanged(object sender, System.EventArgs e)
         {
-            SwitchButtonItem sbi = sender as SwitchButtonItem;
+            DevComponents.DotNetBar.Controls.SwitchButton sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
             if (sbi.Value == true)
             {
                 if (CountSwitchActive() > 0)
@@ -91,21 +103,17 @@ namespace Battlegrounder
         private int CountSwitchActive()
         {
             int cnt = 0;
-            foreach (SwitchButtonItem i in this.Controls)
-            {
-                if (i.Name == "RandomBattlegroundSwitch" || i.Name == "RequeueAfterXMinutesSwitch")
-                    continue;
-
+            foreach (DevComponents.DotNetBar.Controls.SwitchButton i in listsb)
                 if(i.Value == true)
                     cnt++;
-            }
+
             return cnt;
         }
 
         private void CheckAll_Switch_Event(object sender, System.EventArgs e)
         {
             RandomBattlegroundSwitch.Value = false;
-            SwitchButtonItem sbi = sender as SwitchButtonItem;
+            DevComponents.DotNetBar.Controls.SwitchButton sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
             if (CountSwitchActive() > 2)
             {
                 sbi.Value = false;
