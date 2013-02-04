@@ -4,19 +4,22 @@ using nManager.Helpful;
 
 namespace Prospecting
 {
-    class Prospecting
+    internal class Prospecting
     {
         public static void Pulse()
         {
-            var thread = new Thread(ThreadPulse) { Name = "Thread Prospecting" };
+            var thread = new Thread(ThreadPulse) {Name = "Thread Prospecting"};
             thread.Start();
         }
 
-        static void ThreadPulse()
+        private static void ThreadPulse()
         {
             if (nManager.nManagerSetting.CurrentSetting.MineralsToProspect.Count <= 0)
             {
-                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List));
+                MessageBox.Show(
+                    nManager.Translate.Get(
+                        nManager.Translate.Id
+                                .Please_add_items_to_prospect_in__General_Settings_____Looting_____Prospecting_List));
                 nManager.Products.Products.ProductStop();
                 return;
             }
