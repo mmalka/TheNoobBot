@@ -22,6 +22,7 @@ namespace Quester.Bot
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -36,7 +37,6 @@ namespace Quester.Bot
             catch (Exception e)
             {
                 Logging.WriteError("QuesterSetting > Load(): " + e);
-
             }
             return false;
         }

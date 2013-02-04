@@ -13,9 +13,8 @@ using Quest = nManager.Wow.Helpers.Quest;
 
 namespace Quester.Bot
 {
-    class QuesterState : State
+    internal class QuesterState : State
     {
-
         public override string DisplayName
         {
             get { return "QuesterState"; }
@@ -34,11 +33,13 @@ namespace Quester.Bot
             get
             {
                 if (!Usefuls.InGame ||
-                   Usefuls.IsLoadingOrConnecting ||
-                   ObjectManager.Me.IsDeadMe ||
-                   !ObjectManager.Me.IsValid ||
-                   (ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
-                   !Products.IsStarted)
+                    Usefuls.IsLoadingOrConnecting ||
+                    ObjectManager.Me.IsDeadMe ||
+                    !ObjectManager.Me.IsValid ||
+                    (ObjectManager.Me.InCombat &&
+                     !(ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    !Products.IsStarted)
                     return false;
 
                 return true;
@@ -54,6 +55,7 @@ namespace Quester.Bot
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             // Get or set selected quest
@@ -68,7 +70,7 @@ namespace Quester.Bot
             // Need PickUp or TurnIn
             if (QuestingTask.CurrentQuest.Id != -1 &&
                 (Quest.GetLogQuestIsComplete(QuestingTask.CurrentQuest.Id) ||
-                QuestingTask.CurrentQuest.Objectives.Count <= 0) &&
+                 QuestingTask.CurrentQuest.Objectives.Count <= 0) &&
                 Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id) &&
                 QuestingTask.CurrentQuest.ScriptConditionIsFinish.Replace(" ", "").Length <= 0) // TurnIn
             {
@@ -77,7 +79,7 @@ namespace Quester.Bot
             }
 
             if (QuestingTask.CurrentQuest.Id != -1 && !Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id))
-            // PickUp
+                // PickUp
             {
                 QuestingTask.PickUpQuest();
                 return;
@@ -107,8 +109,6 @@ namespace Quester.Bot
 
             // Execute Objective
             QuestingTask.CurrentQuestObjectiveExecute();
-
         }
     }
 }
-

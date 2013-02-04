@@ -16,24 +16,23 @@ namespace Quester.Profile
         // Remove all quests not for character class/race
         public void Filter()
         {
-            int exp = (int)nManager.Wow.ObjectManager.ObjectManager.Me.WowRace - 1;
+            int exp = (int) nManager.Wow.ObjectManager.ObjectManager.Me.WowRace - 1;
             //exp = 1 - 1; // Human
-            uint mBitRace = exp >= 0 ? (uint)System.Math.Pow(2, exp) : 0;
-            exp = (int)nManager.Wow.ObjectManager.ObjectManager.Me.WowClass - 1;
+            uint mBitRace = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
+            exp = (int) nManager.Wow.ObjectManager.ObjectManager.Me.WowClass - 1;
             //exp = 2 - 1; // Paladin
-            uint mBitClass = exp >= 0 ? (uint)System.Math.Pow(2, exp) : 0;
+            uint mBitClass = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
 
             Quests.RemoveAll(delegate(Quest quest)
-            {
-                return ( (quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
-                         (quest.RaceMask  > 0 && (quest.RaceMask  & mBitRace ) == 0)
-                       );
-            }
-            );
+                                 {
+                                     return ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
+                                             (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
+                                            );
+                                 }
+                );
         }
 
         // ToDo: Add another filtering function to remove done quests after requesting them to the server
-
     }
 
     [Serializable]
@@ -172,5 +171,4 @@ namespace Quester.Profile
     {
         public List<Point> Points = new List<Point>();
     }
-
 }

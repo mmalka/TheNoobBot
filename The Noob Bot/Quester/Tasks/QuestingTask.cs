@@ -14,7 +14,7 @@ using nManager.Wow.Bot.Tasks;
 
 namespace Quester.Tasks
 {
-    class QuestingTask
+    internal class QuestingTask
     {
         private static string QuestStatus = "";
         public static Profile.Quest CurrentQuest = new Profile.Quest();
@@ -27,11 +27,14 @@ namespace Quester.Tasks
             CurrentQuest = new Profile.Quest();
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
-            Quester.Bot.Bot.Profile.Quests.Sort(delegate(Profile.Quest q1, Profile.Quest q2)
-            {
-                return q1.PickUp.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(q2.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
-            }
-            );
+            Quester.Bot.Bot.Profile.Quests.Sort(
+                delegate(Profile.Quest q1, Profile.Quest q2)
+                    {
+                        return
+                            q1.PickUp.Position.DistanceTo(ObjectManager.Me.Position)
+                              .CompareTo(q2.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
+                    }
+                );
 
             foreach (var quest in Quester.Bot.Bot.Profile.Quests)
             {
@@ -57,7 +60,8 @@ namespace Quester.Tasks
                 _currentQuestObjectiveId++;
                 if (_currentQuestObjectiveId <= CurrentQuest.Objectives.Count - 1) // In array
                 {
-                    if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition)) // Script condition
+                    if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition))
+                        // Script condition
                     {
                         CurrentQuestObjective =
                             CurrentQuest.Objectives[_currentQuestObjectiveId];
@@ -87,7 +91,7 @@ namespace Quester.Tasks
 
             // COLLECT ITEM)
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
-                if (ItemsManager.GetItemCountByIdLUA((uint)questObjective.CollectItemId) < questObjective.CollectCount)
+                if (ItemsManager.GetItemCountByIdLUA((uint) questObjective.CollectItemId) < questObjective.CollectCount)
                     return false;
 
             // KILL MOB
@@ -220,7 +224,8 @@ namespace Quester.Tasks
         {
             foreach (var npc in Quester.Bot.Bot.Profile.AvoidMobs)
             {
-                if ((npc.Position.X == 0.0f || npc.Position.DistanceTo(woWUnit.Position) <= 40) && npc.Entry == woWUnit.Entry)
+                if ((npc.Position.X == 0.0f || npc.Position.DistanceTo(woWUnit.Position) <= 40) &&
+                    npc.Entry == woWUnit.Entry)
                     return true;
             }
 
@@ -336,7 +341,7 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
-                    FarmingTask.Pulse(new List<WoWGameObject> { node });
+                    FarmingTask.Pulse(new List<WoWGameObject> {node});
                     if (Statistics.Farms > tNumber)
                         questObjective.CurrentCount++;
                 }
@@ -375,10 +380,10 @@ namespace Quester.Tasks
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -405,7 +410,7 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount(true);
                         MovementManager.StopMove();
-                        ItemsManager.UseItem(ItemsManager.GetNameById((uint)questObjective.UseItemId));
+                        ItemsManager.UseItem(ItemsManager.GetNameById((uint) questObjective.UseItemId));
                         questObjective.IsUsedUseItem = true;
                         Thread.Sleep(questObjective.WaitMsUseItem);
                     }
@@ -449,7 +454,7 @@ namespace Quester.Tasks
                     {
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryInteractWith }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryInteractWith}));
                         Point pos = new Point();
                         uint baseAddress;
                         if (unit.IsValid)
@@ -498,10 +503,10 @@ namespace Quester.Tasks
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryInteractWith }));
+                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryInteractWith}));
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryInteractWith }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryInteractWith}));
                         Point pos = new Point();
                         uint baseAddress;
                         if (node.IsValid)
@@ -551,10 +556,10 @@ namespace Quester.Tasks
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -580,7 +585,7 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        Spell t = new Spell((uint)questObjective.UseSpellId);
+                        Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
                             t.Launch();
@@ -619,7 +624,7 @@ namespace Quester.Tasks
             {
                 if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
                     return;
-                ItemsManager.EquipItemByName(ItemsManager.GetNameById((uint)questObjective.EquipItemId));
+                ItemsManager.EquipItemByName(ItemsManager.GetNameById((uint) questObjective.EquipItemId));
                 questObjective.IsUsedEquipItem = true;
             }
 
@@ -651,10 +656,9 @@ namespace Quester.Tasks
                     }
                     else
                     {
-
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryVehicle }),
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryVehicle}),
                                 questObjective.PositionVehicle);
                         if (!unit.IsValid)
                         {
@@ -709,7 +713,6 @@ namespace Quester.Tasks
             // USE SPELL AOE
             if (questObjective.Objective == Objective.UseSpellAOE)
             {
-
                 if (!MovementManager.InMovement ||
                     questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
@@ -717,10 +720,10 @@ namespace Quester.Tasks
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -744,7 +747,7 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        SpellManager.CastSpellByIDAndPosition((uint)questObjective.UseSpellId,
+                        SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
                                                               questObjective.PositionUseSpell);
                         Thread.Sleep(questObjective.WaitMsUseSpell);
                         questObjective.IsUsedUseSpellAOE = true;
@@ -762,10 +765,10 @@ namespace Quester.Tasks
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -789,7 +792,7 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        ItemsManager.UseItem((uint)questObjective.UseItemId, questObjective.PositionUseItem);
+                        ItemsManager.UseItem((uint) questObjective.UseItemId, questObjective.PositionUseItem);
                         Thread.Sleep(questObjective.WaitMsUseItem);
                         questObjective.IsUsedUseItemAOE = true;
                     }
@@ -801,7 +804,6 @@ namespace Quester.Tasks
                 if (!MovementManager.InMovement ||
                     questObjective.PositionUseRuneForge.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
-
                     if (questObjective.PositionUseRuneForge.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
@@ -864,10 +866,12 @@ namespace Quester.Tasks
             MountTask.Mount(); // not good yet
 
             // Find path
-            if (npc.Position.DistanceTo(ObjectManager.Me.Position) < nManagerSetting.CurrentSetting.GatheringSearchRadius)
+            if (npc.Position.DistanceTo(ObjectManager.Me.Position) <
+                nManagerSetting.CurrentSetting.GatheringSearchRadius)
             {
                 WoWUnit tNpc = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(npc.Entry), npc.Position);
-                WoWGameObject tGameObj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
+                WoWGameObject tGameObj =
+                    ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
                 if (tNpc.IsValid)
                     npc.Position = tNpc.Position;
                 else if (tGameObj.IsValid)
@@ -876,7 +880,7 @@ namespace Quester.Tasks
             List<Point> points = PathFinder.FindPath(npc.Position);
 
             MovementManager.Go(points);
-            var timer = new Timer(((int)nManager.Helpful.Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+            var timer = new Timer(((int) nManager.Helpful.Math.DistanceListPoint(points)/3*1000) + 5000);
             var timerNpc = new Timer(1000);
             while (MovementManager.InMovement && Usefuls.InGame &&
                    !(ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted) && !ObjectManager.Me.IsDeadMe)
@@ -933,7 +937,8 @@ namespace Quester.Tasks
                 {
                     points = PathFinder.FindPath(position);
                     MovementManager.Go(points);
-                    timer = new Timer(Others.Times + ((int)nManager.Helpful.Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                    timer =
+                        new Timer(Others.Times + ((int) nManager.Helpful.Math.DistanceListPoint(points)/3*1000) + 5000);
                     while (MovementManager.InMovement && Usefuls.InGame &&
                            !(ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted) && !ObjectManager.Me.IsDeadMe)
                     {
@@ -952,7 +957,7 @@ namespace Quester.Tasks
                         Thread.Sleep(100);
                     }
                 }
-                var timerGoToNpc = new Timer(1000 * 15);
+                var timerGoToNpc = new Timer(1000*15);
 
                 // Update position
                 if (nNpc.IsValid)
@@ -997,7 +1002,9 @@ namespace Quester.Tasks
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
                         Quest.AcceptQuest();
-                        for (var i = Quest.GetNumGossipAvailableQuests(); i >= 1 && !Quest.GetLogQuestId().Contains(CurrentQuest.Id); i--)
+                        for (var i = Quest.GetNumGossipAvailableQuests();
+                             i >= 1 && !Quest.GetLogQuestId().Contains(CurrentQuest.Id);
+                             i--)
                         {
                             if (i <= 0)
                                 i = 1;
@@ -1021,7 +1028,9 @@ namespace Quester.Tasks
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
                         Quest.CompleteQuest();
-                        for (var i = Quest.GetNumGossipActiveQuests(); i >= 1 && Quest.GetLogQuestId().Contains(CurrentQuest.Id); i--)
+                        for (var i = Quest.GetNumGossipActiveQuests();
+                             i >= 1 && Quest.GetLogQuestId().Contains(CurrentQuest.Id);
+                             i--)
                         {
                             if (i <= 0)
                                 i = 1;
@@ -1046,6 +1055,8 @@ namespace Quester.Tasks
             {
                 Logging.Write(npc.Name + " Not found");
             }
-        } // end PickUpTurnInQuest
+        }
+
+        // end PickUpTurnInQuest
     }
 }

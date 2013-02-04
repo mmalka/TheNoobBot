@@ -26,15 +26,16 @@ namespace Quester.Bot
                 Logging.WriteError("Quester > Bot > LoadProfile > LoadProfile(): " + e);
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             loadProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile);
-            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Profile)+":";
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Profile) + ":";
             createProfileB.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
             Text = nManager.Translate.Get(nManager.Translate.Id.Load_Profile) + " Quester";
         }
 
-        void RefreshProfileList()
+        private void RefreshProfileList()
         {
             try
             {
@@ -76,7 +77,8 @@ namespace Quester.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Quester > Bot > LoadProfile > createProfileB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError("Quester > Bot > LoadProfile > createProfileB_Click(object sender, EventArgs ex): " +
+                                   e);
             }
         }
 
@@ -91,7 +93,8 @@ namespace Quester.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Quester > Bot > LoadProfile > LoadProfile_FormClosing(object sender, FormClosingEventArgs e): " + e);
+                Logging.WriteError(
+                    "Quester > Bot > LoadProfile > LoadProfile_FormClosing(object sender, FormClosingEventArgs e): " + e);
             }
         }
     }

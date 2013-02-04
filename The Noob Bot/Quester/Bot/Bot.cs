@@ -14,9 +14,9 @@ using nManager.Wow.Class;
 
 namespace Quester.Bot
 {
-    class Bot
+    internal class Bot
     {
-        static readonly Engine Fsm = new Engine();
+        private static readonly Engine Fsm = new Engine();
 
         internal static QuesterProfile Profile = new QuesterProfile();
 
@@ -28,12 +28,14 @@ namespace Quester.Bot
                 var f = new LoadProfile();
                 f.ShowDialog();
                 // Load Profile
-                if (!string.IsNullOrWhiteSpace(QuesterSetting.CurrentSetting.profileName) && File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSetting.CurrentSetting.profileName))
+                if (!string.IsNullOrWhiteSpace(QuesterSetting.CurrentSetting.profileName) &&
+                    File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" +
+                                QuesterSetting.CurrentSetting.profileName))
                 {
                     Profile =
                         XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" +
                                                                   QuesterSetting.CurrentSetting.profileName);
-                    
+
                     foreach (var include in Profile.Includes)
                     {
                         try
@@ -51,7 +53,6 @@ namespace Quester.Bot
                                     Profile.Quests.AddRange(profileInclude.Quests);
                                 }
                             }
-
                         }
 
                         catch (Exception e)
@@ -97,20 +98,20 @@ namespace Quester.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 13 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect { Priority = 12 });
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 11 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration { Priority = 10 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Looting { Priority = 9 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Farming { Priority = 8 });
-                Fsm.AddState(new nManager.Wow.Bot.States.MillingState { Priority = 7 });
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState { Priority = 6 });
-                Fsm.AddState(new QuesterState { Priority = QuesterStatePriority });
-                Fsm.AddState(new nManager.Wow.Bot.States.ToTown { Priority = 4 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Talents { Priority = 3 });
-                Fsm.AddState(new nManager.Wow.Bot.States.Trainers { Priority = 2 });
-                Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop { Priority = 1 }); 
-                Fsm.AddState(new nManager.Wow.Bot.States.Idle { Priority = 0 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Pause {Priority = 13});
+                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect {Priority = 12});
+                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked {Priority = 11});
+                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration {Priority = 10});
+                Fsm.AddState(new nManager.Wow.Bot.States.Looting {Priority = 9});
+                Fsm.AddState(new nManager.Wow.Bot.States.Farming {Priority = 8});
+                Fsm.AddState(new nManager.Wow.Bot.States.MillingState {Priority = 7});
+                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState {Priority = 6});
+                Fsm.AddState(new QuesterState {Priority = QuesterStatePriority});
+                Fsm.AddState(new nManager.Wow.Bot.States.ToTown {Priority = 4});
+                Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
+                Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
+                Fsm.AddState(new nManager.Wow.Bot.States.MovementLoop {Priority = 1});
+                Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6);

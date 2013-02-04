@@ -35,28 +35,25 @@ namespace Quester.Tasks
                 cp.ReferencedAssemblies.Add("WowManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
 
-                string toCompile = 
-                "using System; " + Environment.NewLine +
-                "using System.Windows.Forms; " + Environment.NewLine +
-                "using WowManager; " + Environment.NewLine +
-
-                "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
-                "{ " + Environment.NewLine +
-
-                "    public bool Script() " + Environment.NewLine +
-                "    { " + Environment.NewLine +
-                "        try " + Environment.NewLine +
-                "        { " + Environment.NewLine +
-                " " + script + " " + Environment.NewLine +
-                "        } " + Environment.NewLine +
-                "        catch (Exception e) " + Environment.NewLine +
-                "        { " + Environment.NewLine +
-                "            nManager.Helpfull.Logging.Write(\"Error :\\n\" + e.ToString()); " + Environment.NewLine +
-                "        } " + Environment.NewLine +
-                "        return true; " + Environment.NewLine +
-                "    } " + Environment.NewLine +
-
-                "} " + Environment.NewLine;
+                string toCompile =
+                    "using System; " + Environment.NewLine +
+                    "using System.Windows.Forms; " + Environment.NewLine +
+                    "using WowManager; " + Environment.NewLine +
+                    "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
+                    "{ " + Environment.NewLine +
+                    "    public bool Script() " + Environment.NewLine +
+                    "    { " + Environment.NewLine +
+                    "        try " + Environment.NewLine +
+                    "        { " + Environment.NewLine +
+                    " " + script + " " + Environment.NewLine +
+                    "        } " + Environment.NewLine +
+                    "        catch (Exception e) " + Environment.NewLine +
+                    "        { " + Environment.NewLine +
+                    "            nManager.Helpfull.Logging.Write(\"Error :\\n\" + e.ToString()); " + Environment.NewLine +
+                    "        } " + Environment.NewLine +
+                    "        return true; " + Environment.NewLine +
+                    "    } " + Environment.NewLine +
+                    "} " + Environment.NewLine;
 
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
@@ -78,11 +75,11 @@ namespace Quester.Tasks
             catch
             {
             }
-            
+
             return true;
         }
-
     }
+
     public interface IScript
     {
         #region Methods
@@ -92,4 +89,3 @@ namespace Quester.Tasks
         #endregion Methods
     }
 }
-
