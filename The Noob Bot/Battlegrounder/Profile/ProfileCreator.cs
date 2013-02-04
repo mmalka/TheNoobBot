@@ -3,7 +3,6 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -337,7 +336,7 @@ namespace Battlegrounder.Profile
         {
             try
             {
-                if (CanRecord())
+                if (CanRecord(true))
                 {
                     _profile.BattlegrounderZones.RemoveAt(idZone);
                     idZone = _profile.BattlegrounderZones.Count - 1;
