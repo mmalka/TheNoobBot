@@ -13,13 +13,15 @@ namespace Profiles_Converters
             if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 this.TopMost = true;
         }
-        void Translate()
+
+        private void Translate()
         {
             convertB.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
             labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles) + " (Pirox Fly gatherer, ";
             labelX4.Text = " grind) " + nManager.Translate.Get(nManager.Translate.Id.to) + " The Noob Bot profiles";
             Text = nManager.Translate.Get(nManager.Translate.Id.Profiles_Converters);
         }
+
         private void form_FormClosing(object sender, FormClosingEventArgs e)
         {
             nManager.Products.Products.ProductStop();
@@ -85,7 +87,9 @@ namespace Profiles_Converters
                 }
             }
 
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Convertion_finish) + ", " + success + " " + nManager.Translate.Get(nManager.Translate.Id.success) + ", " + error + " " + nManager.Translate.Get(nManager.Translate.Id.errors) + " ");
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Convertion_finish) + ", " + success + " " +
+                            nManager.Translate.Get(nManager.Translate.Id.success) + ", " + error + " " +
+                            nManager.Translate.Get(nManager.Translate.Id.errors) + " ");
             convertB.Text = nManager.Translate.Get(nManager.Translate.Id.Convert_Profiles);
             convertB.Enabled = true;
         }

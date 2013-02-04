@@ -23,7 +23,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");;
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
+                    ;
                 }
             }
             catch
@@ -44,7 +45,8 @@ namespace Profiles_Converters.Converters
 
                     var xml = XElement.Load(path);
 
-                    bool subProfile = xml.Elements().Any(child => child.Name.ToString().ToLower() == "SubProfile".ToLower());
+                    bool subProfile =
+                        xml.Elements().Any(child => child.Name.ToString().ToLower() == "SubProfile".ToLower());
                     foreach (XElement child in xml.Elements())
                     {
                         if (child.Name.ToString().ToLower() == "SubProfile".ToLower() || !subProfile) // SubProfile
@@ -75,19 +77,19 @@ namespace Profiles_Converters.Converters
                                     if (childSubProfile.Name == "MaxLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MaxLevel =
-                                           System.Convert.ToUInt32(childSubProfile.Value);
+                                            System.Convert.ToUInt32(childSubProfile.Value);
                                     }
 
                                     if (childSubProfile.Name == "TargetMinLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MinTargetLevel
-                                            =System.Convert.ToUInt32(childSubProfile.Value);
+                                            = System.Convert.ToUInt32(childSubProfile.Value);
                                     }
 
                                     if (childSubProfile.Name == "TargetMaxLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MaxTargetLevel
-                                            =System.Convert.ToUInt32(childSubProfile.Value);
+                                            = System.Convert.ToUInt32(childSubProfile.Value);
                                     }
                                     /*
                                     if (childSubProfile.Name == "Mailboxes" && _profile.GrinderZones.Any())
@@ -171,7 +173,8 @@ namespace Profiles_Converters.Converters
 
                                     */
 
-                                    if (childSubProfile.Name.ToString().ToLower() == "Blackspots".ToLower() && _profile.GrinderZones.Any())
+                                    if (childSubProfile.Name.ToString().ToLower() == "Blackspots".ToLower() &&
+                                        _profile.GrinderZones.Any())
                                     {
                                         foreach (XElement childVendors in childSubProfile.Elements())
                                         {
@@ -206,13 +209,23 @@ namespace Profiles_Converters.Converters
                                                                         System.Convert.ToSingle(z.Value.Replace(".", ",")));
                                                                 _profile.GrinderZones[
                                                                     _profile.GrinderZones.Count() - 1].BlackListRadius.
-                                                                    Add(new GrinderBlackListRadius
-                                                                            {
-                                                                                Position = pT,
-                                                                                Radius =
-                                                                                    System.Convert.ToSingle(
-                                                                                        r.Value.Replace(".", ","))
-                                                                            });
+                                                                                                       Add(new GrinderBlackListRadius
+                                                                                                               {
+                                                                                                                   Position
+                                                                                                                       =
+                                                                                                                       pT,
+                                                                                                                   Radius
+                                                                                                                       =
+                                                                                                                       System
+                                                                                                                       .Convert
+                                                                                                                       .ToSingle
+                                                                                                                       (
+                                                                                                                           r
+                                                                                                                               .Value
+                                                                                                                               .Replace
+                                                                                                                               (".",
+                                                                                                                                ","))
+                                                                                                               });
                                                             }
                                                         }
                                                     }
@@ -221,7 +234,8 @@ namespace Profiles_Converters.Converters
                                         }
                                     }
 
-                                    if (childSubProfile.Name.ToString().ToLower() == "GrindArea".ToLower() && _profile.GrinderZones.Any())
+                                    if (childSubProfile.Name.ToString().ToLower() == "GrindArea".ToLower() &&
+                                        _profile.GrinderZones.Any())
                                     {
                                         foreach (XElement childGrindArea in childSubProfile.Elements())
                                         {
@@ -229,33 +243,38 @@ namespace Profiles_Converters.Converters
                                                 _profile.GrinderZones.Any())
                                             {
                                                 _profile.GrinderZones[_profile.GrinderZones.Count() - 1].
-                                                    MinTargetLevel =System.Convert.ToUInt32(childGrindArea.Value);
+                                                    MinTargetLevel = System.Convert.ToUInt32(childGrindArea.Value);
                                             }
 
                                             if (childGrindArea.Name == "TargetMaxLevel" &&
                                                 _profile.GrinderZones.Any())
                                             {
                                                 _profile.GrinderZones[_profile.GrinderZones.Count() - 1].
-                                                    MaxTargetLevel =System.Convert.ToUInt32(childGrindArea.Value);
+                                                    MaxTargetLevel = System.Convert.ToUInt32(childGrindArea.Value);
                                             }
 
                                             if (childGrindArea.Name == "Factions" && _profile.GrinderZones.Any())
                                             {
-                                                _profile.GrinderZones[_profile.GrinderZones.Count() - 1].TargetFactions = new List<uint>();
+                                                _profile.GrinderZones[_profile.GrinderZones.Count() - 1].TargetFactions
+                                                    = new List<uint>();
                                                 string tempsfaction = childGrindArea.Value;
 
                                                 if (tempsfaction.Replace(" ", "").Length > 0)
                                                 {
                                                     string[] factionTempsString =
-                                                        tempsfaction.Replace("  ", " ").Split(System.Convert.ToChar(" "));
+                                                        tempsfaction.Replace("  ", " ")
+                                                                    .Split(System.Convert.ToChar(" "));
                                                     foreach (string t in factionTempsString)
                                                     {
                                                         try
                                                         {
                                                             if (t != "")
                                                                 _profile.GrinderZones[
-                                                                    _profile.GrinderZones.Count() - 1].TargetFactions.Add(
-                                                                       System.Convert.ToUInt32(t));
+                                                                    _profile.GrinderZones.Count() - 1].TargetFactions
+                                                                                                      .Add(
+                                                                                                          System.Convert
+                                                                                                                .ToUInt32
+                                                                                                              (t));
                                                         }
                                                         catch
                                                         {
@@ -290,9 +309,12 @@ namespace Profiles_Converters.Converters
                                                                 {
                                                                     var pT =
                                                                         new Point(
-                                                                           System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                                           System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                                           System.Convert.ToSingle(z.Value.Replace(".", ",")));
+                                                                            System.Convert.ToSingle(x.Value.Replace(
+                                                                                ".", ",")),
+                                                                            System.Convert.ToSingle(y.Value.Replace(
+                                                                                ".", ",")),
+                                                                            System.Convert.ToSingle(z.Value.Replace(
+                                                                                ".", ",")));
                                                                     _profile.GrinderZones[
                                                                         _profile.GrinderZones.Count() - 1].Points.Add
                                                                         (pT);
@@ -314,14 +336,13 @@ namespace Profiles_Converters.Converters
 
                     #endregion LoadProfileBuddy
 
-
                     var fileName = Path.GetFileNameWithoutExtension(path);
-                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Grinder\\" + fileName + ".xml", _profile))
+                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Grinder\\" + fileName + ".xml",
+                                                _profile))
                     {
                         Logging.Write("Conversion Success (HonorBuddy Grind to Grinder bot): " + fileName);
                         return true;
                     }
-
                 }
             }
             catch

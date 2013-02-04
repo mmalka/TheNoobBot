@@ -10,7 +10,6 @@ namespace Profiles_Converters.Converters
 {
     public class WowRobotGatherFly
     {
-
         public static bool IsWowRobotGatherFlyProfile(string path)
         {
             try
@@ -23,7 +22,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");;
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
+                    ;
                 }
             }
             catch
@@ -47,18 +47,18 @@ namespace Profiles_Converters.Converters
                     }
                     foreach (var p in _origineProfile.BlackListPoints)
                     {
-                        _profile.BlackListRadius.Add(new GathererBlackListRadius { Position = p, Radius = 15 });
+                        _profile.BlackListRadius.Add(new GathererBlackListRadius {Position = p, Radius = 15});
                     }
 
 
                     var fileName = Path.GetFileNameWithoutExtension(path);
 
-                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml", _profile))
+                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
+                                                _profile))
                     {
                         Logging.Write("Conversion Success (WowRobot to Gatherer bot): " + fileName);
                         return true;
                     }
-
                 }
             }
             catch
@@ -82,6 +82,4 @@ namespace Profiles_Converters.Converters
             public bool GoTo;
         }
     }
-
-
 }

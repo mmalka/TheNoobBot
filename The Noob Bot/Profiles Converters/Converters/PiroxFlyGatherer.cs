@@ -22,7 +22,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");;
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
+                    ;
                 }
             }
             catch
@@ -44,8 +45,15 @@ namespace Profiles_Converters.Converters
                         string str4 = file.IniReadValue("GoTo", "z" + i);
                         if ((str4 != null) && str4.StartsWith("WPX"))
                         {
-                            string[] strArray = str4.Replace("WPX", "").Replace("(", "").Replace(")", "").Trim().Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                            var item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture), float.Parse(strArray[1], CultureInfo.InvariantCulture), float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
+                            string[] strArray =
+                                str4.Replace("WPX", "")
+                                    .Replace("(", "")
+                                    .Replace(")", "")
+                                    .Trim()
+                                    .Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                            var item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
+                                                 float.Parse(strArray[1], CultureInfo.InvariantCulture),
+                                                 float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
                             _profile.Points.Add(item);
                         }
                     }
@@ -53,7 +61,8 @@ namespace Profiles_Converters.Converters
 
                     var fileName = Path.GetFileNameWithoutExtension(path);
 
-                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml", _profile))
+                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
+                                                _profile))
                     {
                         Logging.Write("Conversion Success (Pirox Fly Gatherer to Gatherer bot): " + fileName);
                         return true;
@@ -66,7 +75,5 @@ namespace Profiles_Converters.Converters
             Logging.Write("Conversion Failled (Pirox Fly Gatherer to Gatherer bot): " + path);
             return false;
         }
-
-
     }
 }

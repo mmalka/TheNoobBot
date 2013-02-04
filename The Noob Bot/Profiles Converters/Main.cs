@@ -11,7 +11,8 @@ public class Main : IProduct
 {
     #region IProduct Members
 
-    formMain formMain;
+    private formMain formMain;
+
     public void Initialize()
     {
         try
@@ -73,7 +74,7 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product)+".");
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product) + ".");
             Logging.Status = "Settings Profiles Converters Complete";
             Logging.Write("Settings Profiles Converters Complete");
         }

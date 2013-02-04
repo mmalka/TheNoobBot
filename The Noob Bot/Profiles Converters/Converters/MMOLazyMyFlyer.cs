@@ -21,7 +21,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");;
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
+                    ;
                 }
             }
             catch
@@ -47,12 +48,12 @@ namespace Profiles_Converters.Converters
 
                     var fileName = Path.GetFileNameWithoutExtension(path);
 
-                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml", _profile))
+                    if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
+                                                _profile))
                     {
                         Logging.Write("Conversion Success (MMOLazy MyFlyer to Gatherer bot): " + fileName);
                         return true;
                     }
-
                 }
             }
             catch
@@ -68,6 +69,7 @@ namespace Profiles_Converters.Converters
         {
             public List<Position> Waypoints_Normal = new List<Position>();
         }
+
         [Serializable]
         public class Position
         {
