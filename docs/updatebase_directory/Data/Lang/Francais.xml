@@ -1204,19 +1204,19 @@
     </Translation>
 	<Translation>
       <Text>Battlegrounder - Settings Tip-off</Text>
-      <Id>BattlegrounderAdvertizerTitle</Id>
+      <Id>BattlegrounderTipOffTitle</Id>
     </Translation>
 	<Translation>
       <Text>Your General Settings are not optimized for the Battlegrounder product: </Text>
-      <Id>BattlegrounderAdvertizerMessage</Id>
+      <Id>BattlegrounderTipOffMessage</Id>
     </Translation>
 	<Translation>
       <Text>We highly recommand  to disable the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
-      <Id>BattlegrounderAdvertizerLooting</Id>
+      <Id>BattlegrounderTipOffLooting</Id>
     </Translation>
 	<Translation>
       <Text>We highly recommand to set the Search Radius value at most to 20 yards in General Settings => Looting &amp; Farming options => Search Radius => 20</Text>
-      <Id>BattlegrounderAdvertizerRadius</Id>
+      <Id>BattlegrounderTipOffRadius</Id>
     </Translation>
   </Translations>
 </Language>

@@ -24,7 +24,6 @@ namespace Profiles_Converters.Converters
                 else
                 {
                     MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
-                    ;
                 }
             }
             catch
