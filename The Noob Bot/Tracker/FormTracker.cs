@@ -17,21 +17,23 @@ namespace Tracker
             if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 this.TopMost = true;
         }
-        void Translate()
+
+        private void Translate()
         {
             labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.By_npc_name) + ":";
             labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Object_type) + ":";
             labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Creature_type) + ":";
             Text = nManager.Translate.Get(nManager.Translate.Id.Tracker);
         }
-        void ConfigForm()
+
+        private void ConfigForm()
         {
-            foreach (string value in Enum.GetNames(typeof(TrackCreatureFlags)))
+            foreach (string value in Enum.GetNames(typeof (TrackCreatureFlags)))
             {
                 ctNoTrack.Items.Add(value);
             }
 
-            foreach (string value in Enum.GetNames(typeof(TrackObjectFlags)))
+            foreach (string value in Enum.GetNames(typeof (TrackObjectFlags)))
             {
                 otNoTrack.Items.Add(value);
             }
