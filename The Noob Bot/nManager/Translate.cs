@@ -362,7 +362,9 @@ namespace nManager
             SendMailWhenLessThanXSlotLeft,
             SellItemsWhenLessThanXSlotLeft,
             RepairWhenDurabilityIsUnderPercent,
-            RequeueAfterXMinutes
+            RequeueAfterXMinutes,
+            ErrorMultipleQueue,
+            ErrorRandomQueue
         };
 
         [Serializable]

@@ -1,5 +1,7 @@
 using Battlegrounder.Bot;
 using nManager;
+using DevComponents.DotNetBar;
+using System.Windows.Forms;
 
 namespace Battlegrounder
 {
@@ -71,6 +73,44 @@ namespace Battlegrounder
             RandomBattlegroundSwitch.Value = BattlegrounderSetting.CurrentSetting.RandomBattleground;
             RequeueAfterXMinutesSwitch.Value = BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutes;
             RequeueAfterXMinutes.Value = BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
+        }
+
+        private void RandomBattlegroundSwitch_ValueChanged(object sender, System.EventArgs e)
+        {
+            SwitchButtonItem sbi = sender as SwitchButtonItem;
+            if (sbi.Value == true)
+            {
+                if (CountSwitchActive() > 0)
+                {
+                    sbi.Value = false;
+                    MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        private int CountSwitchActive()
+        {
+            int cnt = 0;
+            foreach (SwitchButtonItem i in this.Controls)
+            {
+                if (i.Name == "RandomBattlegroundSwitch" || i.Name == "RequeueAfterXMinutesSwitch")
+                    continue;
+
+                if(i.Value == true)
+                    cnt++;
+            }
+            return cnt;
+        }
+
+        private void CheckAll_Switch_Event(object sender, System.EventArgs e)
+        {
+            RandomBattlegroundSwitch.Value = false;
+            SwitchButtonItem sbi = sender as SwitchButtonItem;
+            if (CountSwitchActive() > 2)
+            {
+                sbi.Value = false;
+                MessageBox.Show(Translate.Get(Translate.Id.ErrorMultipleQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
     }
 }

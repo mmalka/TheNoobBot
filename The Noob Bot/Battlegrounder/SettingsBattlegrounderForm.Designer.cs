@@ -83,6 +83,7 @@ namespace Battlegrounder
             this.WarsongGulchSwitch.Size = new System.Drawing.Size(66, 22);
             this.WarsongGulchSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.WarsongGulchSwitch.TabIndex = 0;
+            this.WarsongGulchSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // ArathiBasinSwitch
             // 
@@ -97,6 +98,7 @@ namespace Battlegrounder
             this.ArathiBasinSwitch.Size = new System.Drawing.Size(66, 22);
             this.ArathiBasinSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ArathiBasinSwitch.TabIndex = 21;
+            this.ArathiBasinSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // AlteracValleySwitch
             // 
@@ -111,6 +113,7 @@ namespace Battlegrounder
             this.AlteracValleySwitch.Size = new System.Drawing.Size(66, 22);
             this.AlteracValleySwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AlteracValleySwitch.TabIndex = 22;
+            this.AlteracValleySwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // EyeoftheStormSwitch
             // 
@@ -125,6 +128,7 @@ namespace Battlegrounder
             this.EyeoftheStormSwitch.Size = new System.Drawing.Size(66, 22);
             this.EyeoftheStormSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.EyeoftheStormSwitch.TabIndex = 23;
+            this.EyeoftheStormSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // StrandoftheAncientsSwitch
             // 
@@ -139,6 +143,7 @@ namespace Battlegrounder
             this.StrandoftheAncientsSwitch.Size = new System.Drawing.Size(66, 22);
             this.StrandoftheAncientsSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StrandoftheAncientsSwitch.TabIndex = 24;
+            this.StrandoftheAncientsSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // WarsongGulchLabel
             // 
@@ -237,6 +242,7 @@ namespace Battlegrounder
             this.IsleofConquestSwitch.Size = new System.Drawing.Size(66, 22);
             this.IsleofConquestSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IsleofConquestSwitch.TabIndex = 31;
+            this.IsleofConquestSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // BattleforGilneasSwitch
             // 
@@ -251,6 +257,7 @@ namespace Battlegrounder
             this.BattleforGilneasSwitch.Size = new System.Drawing.Size(66, 22);
             this.BattleforGilneasSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BattleforGilneasSwitch.TabIndex = 32;
+            this.BattleforGilneasSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // BattleforGilneasLabel
             // 
@@ -293,6 +300,7 @@ namespace Battlegrounder
             this.TwinPeaksSwitch.Size = new System.Drawing.Size(66, 22);
             this.TwinPeaksSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TwinPeaksSwitch.TabIndex = 35;
+            this.TwinPeaksSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // RandomBattlegroundLabel
             // 
@@ -321,6 +329,7 @@ namespace Battlegrounder
             this.RandomBattlegroundSwitch.Size = new System.Drawing.Size(66, 22);
             this.RandomBattlegroundSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.RandomBattlegroundSwitch.TabIndex = 37;
+            this.RandomBattlegroundSwitch.ValueChanged += new System.EventHandler(this.RandomBattlegroundSwitch_ValueChanged);
             // 
             // SilvershardMinesLabel
             // 
@@ -363,6 +372,7 @@ namespace Battlegrounder
             this.SilvershardMinesSwitch.Size = new System.Drawing.Size(66, 22);
             this.SilvershardMinesSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SilvershardMinesSwitch.TabIndex = 39;
+            this.SilvershardMinesSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // TempleOfKotmoguSwitch
             // 
@@ -377,6 +387,7 @@ namespace Battlegrounder
             this.TempleOfKotmoguSwitch.Size = new System.Drawing.Size(66, 22);
             this.TempleOfKotmoguSwitch.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TempleOfKotmoguSwitch.TabIndex = 38;
+            this.TempleOfKotmoguSwitch.ValueChanged += new System.EventHandler(this.CheckAll_Switch_Event);
             // 
             // RequeueAfterXMinutesLabel
             // 
@@ -408,12 +419,14 @@ namespace Battlegrounder
             // 
             // RequeueAfterXMinutes
             // 
+            this.RequeueAfterXMinutes.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
             this.RequeueAfterXMinutes.BackgroundStyle.Class = "DateTimeInputBackground";
             this.RequeueAfterXMinutes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.RequeueAfterXMinutes.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
+            this.RequeueAfterXMinutes.ForeColor = System.Drawing.Color.Black;
             this.RequeueAfterXMinutes.Location = new System.Drawing.Point(186, 175);
             this.RequeueAfterXMinutes.MinValue = 1;
             this.RequeueAfterXMinutes.Name = "RequeueAfterXMinutes";
@@ -426,7 +439,7 @@ namespace Battlegrounder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 246);
+            this.ClientSize = new System.Drawing.Size(534, 250);
             this.Controls.Add(this.RequeueAfterXMinutes);
             this.Controls.Add(this.RequeueAfterXMinutesLabel);
             this.Controls.Add(this.RequeueAfterXMinutesSwitch);
@@ -453,7 +466,6 @@ namespace Battlegrounder
             this.Controls.Add(this.ArathiBasinSwitch);
             this.Controls.Add(this.WarsongGulchSwitch);
             this.Controls.Add(this.SaveButton);
-            this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
