@@ -374,6 +374,9 @@ namespace Battlegrounder.Profile
             {
                 if (CanRecord())
                 {
+                    if (_profile.BattlegrounderZones.Find(delegate(BattlegrounderZone bgz) { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) != null)
+                        return;
+
                     var Bg = new Battleground();
                     _profile.BattlegrounderZones.Add(new BattlegrounderZone
                                                          {
