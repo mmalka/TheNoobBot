@@ -22,9 +22,9 @@ namespace DamageDealer.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause { Priority = 12 });
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked { Priority = 10 });
-                Fsm.AddState(new nManager.Wow.Bot.States.FightHostileTarget { Priority = 9 });
+                Fsm.AddState(new nManager.Wow.Bot.States.Pause {Priority = 12});
+                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked {Priority = 10});
+                Fsm.AddState(new nManager.Wow.Bot.States.FightHostileTarget {Priority = 9});
                 Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
                 Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
