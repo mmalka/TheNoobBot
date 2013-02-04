@@ -25,6 +25,7 @@ namespace Battlegrounder.Bot
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -45,7 +46,9 @@ namespace Battlegrounder.Bot
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.Me.IsValid ||
-                    (ObjectManager.Me.InCombat && !(ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    (ObjectManager.Me.InCombat &&
+                     !(ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.IsStarted)
                     return false;
 
@@ -58,8 +61,8 @@ namespace Battlegrounder.Bot
 
         private static Spell _deserter;
         private static Timer _requeuTimer;
-        private readonly int _requeueingTime = 1000 * 60 * BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
-        
+        private readonly int _requeueingTime = 1000*60*BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
+
         public override void Run()
         {
             int statPvp = Battleground.QueueingStatus();
@@ -80,7 +83,8 @@ namespace Battlegrounder.Bot
                         {
                             Battleground.JoinBattlegroundQueue(
                                 BattlegroundId.RandomBattleground);
-                            Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.RandomBattleground));
+                            Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                          Translate.Get(Translate.Id.RandomBattleground));
                             Thread.Sleep(500);
                         }
                         else
@@ -89,70 +93,80 @@ namespace Battlegrounder.Bot
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.AlteracValley);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.AlteracValley) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.AlteracValley) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.WarsongGulch)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.WarsongGulch);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.WarsongGulch) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.WarsongGulch) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.ArathiBasin)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.ArathiBasin);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.ArathiBasin) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.ArathiBasin) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.EyeoftheStorm)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.EyeOfTheStorm);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.EyeoftheStorm) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.EyeoftheStorm) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.StrandoftheAncients)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.StrandOfTheAncients);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.StrandoftheAncients) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.StrandoftheAncients) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.IsleofConquest)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.IsleOfConquest);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.IsleofConquest) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.IsleofConquest) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.TwinPeaks)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.TwinPeaks);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.TwinPeaks) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.TwinPeaks) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.BattleforGilneas)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.BattleForGilneas);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.BattleforGilneas) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.BattleforGilneas) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.TempleofKotmogu)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.TempleOfKotmogu);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.TempleofKotmogu) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.TempleofKotmogu) + ".");
                                 Thread.Sleep(500);
                             }
                             if (BattlegrounderSetting.CurrentSetting.SilvershardMines)
                             {
                                 Battleground.JoinBattlegroundQueue(
                                     BattlegroundId.SilvershardMines);
-                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " + Translate.Get(Translate.Id.SilvershardMines) + ".");
+                                Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
+                                              Translate.Get(Translate.Id.SilvershardMines) + ".");
                                 Thread.Sleep(500);
                             }
                             _requeuTimer = new Timer(_requeueingTime);

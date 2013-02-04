@@ -101,25 +101,27 @@ public class Main : IProduct
 
     private void GetProductTipOff()
     {
-      try
-      {
-          if (nManagerSetting.CurrentSetting.ActivateMonsterLooting)
-          {
-              _looting = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffLooting);
-          }
-          if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 20)
-          {
-              _radius = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffRadius);
-          }
-          if (_radius != null || _looting != null)
-          {
-              MessageBox.Show(string.Format("{0}\n{1}{2}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting, _radius), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
-          }
-      }
-      catch (Exception e)
-      {
-          Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
-      }
+        try
+        {
+            if (nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+            {
+                _looting = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffLooting);
+            }
+            if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 20)
+            {
+                _radius = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffRadius);
+            }
+            if (_radius != null || _looting != null)
+            {
+                MessageBox.Show(
+                    string.Format("{0}\n{1}{2}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting,
+                                  _radius), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
+            }
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
+        }
     }
 
     public bool IsStarted

@@ -7,7 +7,9 @@ namespace Battlegrounder
 {
     public partial class SettingsBattlegrounderForm : DevComponents.DotNetBar.Metro.MetroForm
     {
-        private List<DevComponents.DotNetBar.Controls.SwitchButton> listsb = new List<DevComponents.DotNetBar.Controls.SwitchButton>();
+        private List<DevComponents.DotNetBar.Controls.SwitchButton> listsb =
+            new List<DevComponents.DotNetBar.Controls.SwitchButton>();
+
         public SettingsBattlegrounderForm()
         {
             InitializeComponent();
@@ -71,7 +73,7 @@ namespace Battlegrounder
             listsb.Add(BattleforGilneasSwitch);
             listsb.Add(TempleOfKotmoguSwitch);
             listsb.Add(SilvershardMinesSwitch);
-            
+
             AlteracValleySwitch.Value = BattlegrounderSetting.CurrentSetting.AlteracValley;
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
             ArathiBasinSwitch.Value = BattlegrounderSetting.CurrentSetting.ArathiBasin;
@@ -95,7 +97,8 @@ namespace Battlegrounder
                 if (CountSwitchActive() > 0)
                 {
                     sbi.Value = false;
-                    MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information);
                 }
             }
         }
@@ -104,7 +107,7 @@ namespace Battlegrounder
         {
             int cnt = 0;
             foreach (DevComponents.DotNetBar.Controls.SwitchButton i in listsb)
-                if(i.Value == true)
+                if (i.Value == true)
                     cnt++;
 
             return cnt;
@@ -116,14 +119,16 @@ namespace Battlegrounder
             if (RandomBattlegroundSwitch.Value == true)
             {
                 sbi.Value = false;
-                MessageBox.Show(Translate.Get(Translate.Id.ErrorSingleRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Translate.Get(Translate.Id.ErrorSingleRandomQueue), "", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
                 return;
             }
 
             if (CountSwitchActive() > 2)
             {
                 sbi.Value = false;
-                MessageBox.Show(Translate.Get(Translate.Id.ErrorMultipleQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Translate.Get(Translate.Id.ErrorMultipleQueue), "", MessageBoxButtons.OK,
+                                MessageBoxIcon.Information);
             }
         }
     }

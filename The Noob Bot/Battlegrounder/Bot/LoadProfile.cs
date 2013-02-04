@@ -42,7 +42,9 @@ namespace Battlegrounder.Bot
             {
                 var profileName = listProfileCb.Text;
                 listProfileCb.Items.Clear();
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\", "*.xml"))
+                foreach (
+                    var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\", "*.xml")
+                    )
                 {
                     listProfileCb.Items.Add(f);
                 }
@@ -64,7 +66,8 @@ namespace Battlegrounder.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > LoadProfile > loadProfileB_Click(object sender, EventArgs ex): " + e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > LoadProfile > loadProfileB_Click(object sender, EventArgs ex): " + e);
             }
         }
 
@@ -72,7 +75,6 @@ namespace Battlegrounder.Bot
         {
             try
             {
-
                 if (Battleground.IsInBattleground())
                 {
                     var f = new ProfileCreator();
@@ -86,8 +88,9 @@ namespace Battlegrounder.Bot
             }
             catch (Exception e)
             {
-                Logging.WriteError("Battlegrounder > Bot > LoadProfile > createProfileB_Click(object sender, EventArgs ex): " +
-                                   e);
+                Logging.WriteError(
+                    "Battlegrounder > Bot > LoadProfile > createProfileB_Click(object sender, EventArgs ex): " +
+                    e);
             }
         }
 
@@ -103,7 +106,8 @@ namespace Battlegrounder.Bot
             catch (Exception e)
             {
                 Logging.WriteError(
-                    "Battlegrounder > Bot > LoadProfile > LoadProfile_FormClosing(object sender, FormClosingEventArgs e): " + e);
+                    "Battlegrounder > Bot > LoadProfile > LoadProfile_FormClosing(object sender, FormClosingEventArgs e): " +
+                    e);
             }
         }
     }
