@@ -27,7 +27,7 @@ namespace nManager.Helpful
                     using (FileStream outFile = File.Create(origName))
                     {
                         using (var decompress = new GZipStream(inFile,
-                                CompressionMode.Decompress))
+                                                               CompressionMode.Decompress))
                         {
                             // Copy the decompression stream 
                             // into the output file.
@@ -59,7 +59,6 @@ namespace nManager.Helpful
                 {
                     using (FileStream inputFile = File.Open(filename, FileMode.Open), outputFile = File.Create(toFile))
                     {
-
                         using (var gzip = new GZipStream(outputFile, CompressionMode.Compress))
                         {
                             int n;
@@ -71,7 +70,6 @@ namespace nManager.Helpful
                     }
                     return true;
                 }
-
             }
             catch (Exception exception)
             {

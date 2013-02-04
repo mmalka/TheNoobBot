@@ -7,7 +7,8 @@ namespace nManager.Helpful.Forms
 {
     public partial class Translate_Tools : DevComponents.DotNetBar.Metro.MetroForm
     {
-        Translate.Language _translation = new Translate.Language();
+        private Translate.Language _translation = new Translate.Language();
+
         public Translate_Tools()
         {
             try
@@ -16,19 +17,19 @@ namespace nManager.Helpful.Forms
                 Translate();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
-                foreach (var id in Enum.GetValues(typeof(Translate.Id)))
+                foreach (var id in Enum.GetValues(typeof (Translate.Id)))
                 {
-                    _translation.Translations.Add(new Translate.Translation { Id = (Translate.Id)id, Text = "" });
+                    _translation.Translations.Add(new Translate.Translation {Id = (Translate.Id) id, Text = ""});
                 }
                 listDigsitesDGV.DataSource = _translation.Translations;
             }
             catch (Exception e)
             {
                 Logging.WriteError("Translate_Tools > Translate_Tools(): " + e);
-
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save);
             loadB.Text = nManager.Translate.Get(nManager.Translate.Id.Load);
@@ -39,23 +40,24 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                var filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\", "Langage files (*.xml)|*.xml");
+                var filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\",
+                                                        "Langage files (*.xml)|*.xml");
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
-                    _translation.Translations = (List<Translate.Translation>)listDigsitesDGV.DataSource;
+                    _translation.Translations = (List<Translate.Translation>) listDigsitesDGV.DataSource;
                     XmlSerializer.Serialize(filePath, _translation);
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Translate_Tools > saveB_Click(object sender, EventArgs e): " + ex);
-
             }
         }
 
         private void loadB_Click(object sender, EventArgs e)
         {
-            var filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\", "Langage files (*.xml)|*.xml");
+            var filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\",
+                                                    "Langage files (*.xml)|*.xml");
             if (File.Exists(filePath))
             {
                 var t = XmlSerializer.Deserialize<Translate.Language>(filePath);

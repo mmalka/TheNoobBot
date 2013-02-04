@@ -14,8 +14,8 @@ namespace nManager.Wow.Helpers
         private WoWLock(uint id)
         {
             if (lockDBC == null)
-                lockDBC = new DBC<LockDbcRecord>((int)Addresses.DBC.Lock);
-            lockDbcRecord_0 = lockDBC.GetRow((int)id);
+                lockDBC = new DBC<LockDbcRecord>((int) Addresses.DBC.Lock);
+            lockDbcRecord_0 = lockDBC.GetRow((int) id);
         }
 
         // Factory function
@@ -26,25 +26,18 @@ namespace nManager.Wow.Helpers
 
         public LockDbcRecord Record
         {
-            get
-            {
-                return this.lockDbcRecord_0;
-            }
+            get { return this.lockDbcRecord_0; }
         }
 
         [StructLayout(LayoutKind.Sequential)]
         public struct LockDbcRecord
-        { // 1 + 4*8 = 33 fields
+        {
+            // 1 + 4*8 = 33 fields
             public uint Id;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            public uint[] KeyType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            public uint[] LockType;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            public uint[] Skill;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
-            public uint[] Action;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] KeyType;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] LockType;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] Skill;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)] public uint[] Action;
         }
-
     }
 }

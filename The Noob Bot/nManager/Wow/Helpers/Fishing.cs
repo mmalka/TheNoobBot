@@ -15,7 +15,8 @@ namespace nManager.Wow.Helpers
         private static Timer _timerLure;
 
         private static List<uint> _listFishingPoles;
-        static List<uint> ListFishingPoles
+
+        private static List<uint> ListFishingPoles
         {
             get
             {
@@ -46,7 +47,8 @@ namespace nManager.Wow.Helpers
         }
 
         private static List<uint> _listLure;
-        static List<uint> listLure
+
+        private static List<uint> listLure
         {
             get
             {
@@ -119,7 +121,7 @@ namespace nManager.Wow.Helpers
                         }
                     }
                 }
-                _timerLure = new Timer(10 * 1000 * 60); // 10 min
+                _timerLure = new Timer(10*1000*60); // 10 min
             }
             catch (Exception e)
             {
@@ -133,9 +135,9 @@ namespace nManager.Wow.Helpers
             {
                 foreach (int i in listLure)
                 {
-                    if (ItemsManager.GetItemCountByIdLUA((uint)i) > 0)
+                    if (ItemsManager.GetItemCountByIdLUA((uint) i) > 0)
                     {
-                        return ItemsManager.GetNameById((uint)i);
+                        return ItemsManager.GetNameById((uint) i);
                     }
                 }
             }
@@ -217,7 +219,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var idEquiped = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15 * 2);
+                var idEquiped =
+                    ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
                 if (fishingPoleName != string.Empty)
                     if (ItemsManager.GetNameById(idEquiped) == fishingPoleName)
                         return true;
@@ -263,7 +266,7 @@ namespace nManager.Wow.Helpers
         public static Point FindTheUltimatePoint(Point fishingHole)
         {
             float MinRing = 13.0f; //13
-            float MaxRing = 20.0f;  //19
+            float MaxRing = 20.0f; //19
 
             Enums.CGWorldFrameHitFlags hitFlags =
                 Enums.CGWorldFrameHitFlags.HitTestBoundingModels |
@@ -275,10 +278,10 @@ namespace nManager.Wow.Helpers
             Point from, to;
             for (float diameter = MinRing; diameter <= MaxRing; diameter = diameter + 3.0f)
             {
-                for (double angle = 0; angle <= System.Math.PI / 2; angle = angle + System.Math.PI / 10)
+                for (double angle = 0; angle <= System.Math.PI/2; angle = angle + System.Math.PI/10)
                 {
-                    float offset1 = diameter * (float)System.Math.Sin(angle);
-                    float offset2 = diameter * (float)System.Math.Cos(angle);
+                    float offset1 = diameter*(float) System.Math.Sin(angle);
+                    float offset2 = diameter*(float) System.Math.Cos(angle);
                     to = new Point(fishingHole.X + offset1, fishingHole.Y - offset2, fishingHole.Z);
                     to.Z = to.Z - 0.8f;
                     from = new Point(to);

@@ -43,7 +43,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return BaseAddress != 0 && ObjectManager.ObjectDictionary.ContainsKey(Guid); }
+                try
+                {
+                    return BaseAddress != 0 && ObjectManager.ObjectDictionary.ContainsKey(Guid);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > IsValid: " + e);
@@ -60,18 +63,19 @@ namespace nManager.Wow.ObjectManager
                 float i = 0;
                 foreach (var iUnit in units)
                 {
-                    if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= iUnit.AggroDistance && UnitRelation.GetReaction(ObjectManager.Me, iUnit) == Reaction.Hostile)
+                    if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= iUnit.AggroDistance &&
+                        UnitRelation.GetReaction(ObjectManager.Me, iUnit) == Reaction.Hostile)
                     {
-                        if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth / 2)
+                        if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth/2)
                             i++;
-                        else if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth / 10)
+                        else if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth/10)
                             i += 0.5f;
                     } // else 0 for very small creatures
                 }
                 bool r = i > nManagerSetting.CurrentSetting.DontHarvestIfMoreThanXUnitInAggroRange;
                 if (r)
                 {
-                    nManagerSetting.AddBlackList(Guid, 15 * 1000);
+                    nManagerSetting.AddBlackList(Guid, 15*1000);
                     Logging.Write(i + " hostile Units Near " + Name);
                 }
                 return r;
@@ -94,7 +98,6 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("WoWObject > Guid: " + e);
                     return 0;
                 }
-
             }
         }
 
@@ -102,7 +105,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return (WoWObjectType)Memory.WowMemory.Memory.ReadInt(BaseAddress + 0x10); }
+                try
+                {
+                    return (WoWObjectType) Memory.WowMemory.Memory.ReadInt(BaseAddress + 0x10);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Type: " + e);
@@ -115,7 +121,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.ObjectFields.Entry); }
+                try
+                {
+                    return GetDescriptor<int>(Descriptors.ObjectFields.Entry);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Entry: " + e);
@@ -128,7 +137,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<float>(Descriptors.ObjectFields.Scale); }
+                try
+                {
+                    return GetDescriptor<float>(Descriptors.ObjectFields.Scale);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Scale: " + e);
@@ -141,7 +153,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return new Point(0, 0, 0); }
+                try
+                {
+                    return new Point(0, 0, 0);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Position: " + e);
@@ -154,7 +169,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return string.Empty; }
+                try
+                {
+                    return string.Empty;
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > Name: " + e);
@@ -167,7 +185,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return 0.0f; }
+                try
+                {
+                    return 0.0f;
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWObject > GetDistance: " + e);
@@ -193,7 +214,7 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 // Makes life easier...
-                return GetDescriptor<T>((uint)field);
+                return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)
             {
@@ -224,9 +245,9 @@ namespace nManager.Wow.ObjectManager
                 if (baseAddress > 0)
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(baseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + (field * Descriptors.multiplicator);
+                    uint addressGD = descriptorsArray + (field*Descriptors.multiplicator);
 
-                    if (typeof(T) == typeof(string))
+                    if (typeof (T) == typeof (string))
                     {
                         string retTemp = "";
                         byte[] buf = Memory.WowMemory.Memory.ReadBytes(addressGD, 1);
@@ -238,22 +259,22 @@ namespace nManager.Wow.ObjectManager
                             //Thread.Sleep(1);
                         }
                         ret = retTemp;
-                        return (T)ret;
+                        return (T) ret;
                     }
 
-                    if (typeof(T) == typeof(ulong))
+                    if (typeof (T) == typeof (ulong))
                     {
                         ret = Memory.WowMemory.Memory.ReadUInt64(addressGD);
-                        return (T)ret;
+                        return (T) ret;
                     }
 
-                    switch (System.Type.GetTypeCode(typeof(T)))
+                    switch (System.Type.GetTypeCode(typeof (T)))
                     {
                         case TypeCode.Boolean:
                             ret = (Memory.WowMemory.Memory.ReadShort(addressGD) >= 0);
                             break;
                         case TypeCode.Char:
-                            ret = (char)Memory.WowMemory.Memory.ReadShort(addressGD);
+                            ret = (char) Memory.WowMemory.Memory.ReadShort(addressGD);
                             break;
                         case TypeCode.Byte:
                             ret = Memory.WowMemory.Memory.ReadByte(addressGD);
@@ -288,7 +309,7 @@ namespace nManager.Wow.ObjectManager
                     return default(T);
                 if (ret != null)
                 {
-                    return (T)ret;
+                    return (T) ret;
                 }
                 Logging.WriteError("WoWObject > GetDescriptor<T>(uint baseAddress, uint field): Value not found");
                 return default(T);

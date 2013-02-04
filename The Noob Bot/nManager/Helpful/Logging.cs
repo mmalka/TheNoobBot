@@ -15,21 +15,23 @@ namespace nManager.Helpful
         private static string _logFileName = "";
 
         private static string _status = "";
+
         public static string Status
         {
             get { return _status; }
             set
             {
-                try {
-                _status = value;
-                var e = new StatusChangeEventArgs {Status = value};
-                if (OnChangedStatus != null)
-                    OnChangedStatus(Status, e);
-                 }
-            catch (Exception ex)
-            {
-                WriteError("Loggin > Status > Set: " + ex);
-            }
+                try
+                {
+                    _status = value;
+                    var e = new StatusChangeEventArgs {Status = value};
+                    if (OnChangedStatus != null)
+                        OnChangedStatus(Status, e);
+                }
+                catch (Exception ex)
+                {
+                    WriteError("Loggin > Status > Set: " + ex);
+                }
             }
         }
 
@@ -49,6 +51,7 @@ namespace nManager.Helpful
             }
             return new Log();
         }
+
         public static string ReadLastString(LogType logType)
         {
             try
@@ -62,11 +65,16 @@ namespace nManager.Helpful
             return "";
         }
 
-        public static List<Log> List { get { return _log; } }
+        public static List<Log> List
+        {
+            get { return _log; }
+        }
+
         public static List<Log> ReadList()
         {
             return _log;
         }
+
         public static List<Log> ReadList(LogType logType)
         {
             try
@@ -79,11 +87,13 @@ namespace nManager.Helpful
             }
             return new List<Log>();
         }
+
         public static List<string> ReadListString(LogType logType)
         {
             try
             {
-                return (from l in ReadList(logType) where (l.LogType & logType) == l.LogType select l.ToString()).ToList();
+                return
+                    (from l in ReadList(logType) where (l.LogType & logType) == l.LogType select l.ToString()).ToList();
             }
             catch (Exception exception)
             {
@@ -91,23 +101,26 @@ namespace nManager.Helpful
             }
             return new List<string>();
         }
-        public static int CountNumberInQueue { get { return LogQueue.Count; } }
 
-        static readonly List<Log> LogQueue = new List<Log>();
-        static Thread _worker;
+        public static int CountNumberInQueue
+        {
+            get { return LogQueue.Count; }
+        }
+
+        private static readonly List<Log> LogQueue = new List<Log>();
+        private static Thread _worker;
 
         public static void Write(Log log)
         {
             try
             {
-
                 LogQueue.Add(log);
 
-                lock (typeof(Logging))
+                lock (typeof (Logging))
                 {
                     if (_worker == null)
                     {
-                        _worker = new Thread(AddLog) { Name = "Logging" };
+                        _worker = new Thread(AddLog) {Name = "Logging"};
                         _worker.Start();
                     }
                 }
@@ -117,30 +130,37 @@ namespace nManager.Helpful
                 WriteError("Write(Log log): " + exception);
             }
         }
+
         public static void Write(string text, LogType logType, Color color)
         {
             Write(new Log(text, logType, color));
         }
+
         public static void Write(string text)
         {
             Write(text, LogType.Normal, Color.Black);
         }
+
         public static void WriteDebug(string text)
         {
             Write(text, LogType.Debug, Color.MediumVioletRed);
         }
+
         public static void WriteNavigator(string text)
         {
             Write(text, LogType.Navigator, Color.Blue);
         }
+
         public static void WriteFight(string text)
         {
             Write(text, LogType.Fight, Color.Green);
         }
+
         public static void WriteFileOnly(string text)
         {
             Write(text, LogType.FileOnly, Color.Gray);
         }
+
         public static void WriteError(string text, bool skipThreadAbortExceptionError = true)
         {
             if (string.IsNullOrEmpty(text))
@@ -151,7 +171,8 @@ namespace nManager.Helpful
 
             Write(text, LogType.Error, Color.Red);
         }
-        static void AddLog()
+
+        private static void AddLog()
         {
             while (true)
             {
@@ -171,26 +192,30 @@ namespace nManager.Helpful
                         if (!Directory.Exists(Application.StartupPath + "\\Logs"))
                             Directory.CreateDirectory(Application.StartupPath + "\\Logs");
 
-                        var sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true, Encoding.UTF8);
-                        sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" + LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
+                        var sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true,
+                                                  Encoding.UTF8);
+                        sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" +
+                                 LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
                         sw.Close();
 
                         try
                         {
                             var e = new LoggingChangeEventArgs
-                            {
-                                Log = new Log
-                                {
-                                    Color = LogQueue[0].Color,
-                                    DateTime = LogQueue[0].DateTime,
-                                    LogType = LogQueue[0].LogType,
-                                    Text = LogQueue[0].Text
-                                }
-                            };
+                                        {
+                                            Log = new Log
+                                                      {
+                                                          Color = LogQueue[0].Color,
+                                                          DateTime = LogQueue[0].DateTime,
+                                                          LogType = LogQueue[0].LogType,
+                                                          Text = LogQueue[0].Text
+                                                      }
+                                        };
                             if (OnChanged != null)
                                 OnChanged(null, e);
                         }
-                        catch { }
+                        catch
+                        {
+                        }
                         LogQueue.RemoveAt(0);
                     }
                     else
@@ -204,6 +229,7 @@ namespace nManager.Helpful
             }
             // ReSharper disable FunctionNeverReturns
         }
+
         // ReSharper restore FunctionNeverReturns
 
         public static void NewFile()
@@ -213,7 +239,8 @@ namespace nManager.Helpful
                 _log = new List<Log>();
                 _logFileName = DateTime.Now.ToString("d MMM yyyy HH") + "H" + DateTime.Now.ToString("mm") + ".log.html";
                 if (File.Exists(Application.StartupPath + "\\Logs\\" + _logFileName))
-                    _logFileName = DateTime.Now.ToString("d MMM yyyy HH") + "H" + DateTime.Now.ToString("mm") + " - " + Others.GetRandomString(Others.Random(4,7)) + ".log.html";
+                    _logFileName = DateTime.Now.ToString("d MMM yyyy HH") + "H" + DateTime.Now.ToString("mm") + " - " +
+                                   Others.GetRandomString(Others.Random(4, 7)) + ".log.html";
                 LogQueue.Insert(0, new Log("Log file created: " + _logFileName, LogType.Debug, Color.MediumVioletRed));
             }
             catch (Exception exception)
@@ -280,14 +307,18 @@ namespace nManager.Helpful
         }
 
         public delegate void LoggingChangeEventHandler(object sender, LoggingChangeEventArgs e);
+
         public static event LoggingChangeEventHandler OnChanged;
+
         public class LoggingChangeEventArgs : EventArgs
         {
             public Log Log { get; set; }
         }
 
         public delegate void StatusChangeEventHandler(object sender, StatusChangeEventArgs e);
+
         public static event StatusChangeEventHandler OnChangedStatus;
+
         public class StatusChangeEventArgs : EventArgs
         {
             public string Status { get; set; }

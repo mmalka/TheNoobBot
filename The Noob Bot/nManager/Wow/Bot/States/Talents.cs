@@ -16,6 +16,7 @@ namespace nManager.Wow.Bot.States
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -29,6 +30,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private uint _lastLevel;
+
         public override bool NeedToRun
         {
             get

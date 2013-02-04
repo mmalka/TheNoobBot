@@ -30,4 +30,3 @@ namespace nManager.Wow.Enums
         Treasure = 0x20
     }
 }
-

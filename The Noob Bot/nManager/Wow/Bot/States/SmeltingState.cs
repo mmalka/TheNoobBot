@@ -9,7 +9,6 @@ namespace nManager.Wow.Bot.States
 {
     public class SmeltingState : State
     {
-
         public override string DisplayName
         {
             get { return "Smelting"; }
@@ -36,7 +35,9 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat &&
+                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -46,7 +47,7 @@ namespace nManager.Wow.Bot.States
                     if (Smelting.NeedRun())
                         return true;
                 }
-                    
+
                 return false;
             }
         }
@@ -60,6 +61,7 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             if (!IgnoreSmeltingZone)
@@ -86,7 +88,10 @@ namespace nManager.Wow.Bot.States
                     var timer = new Helpful.Timer(((int) Math.DistanceListPoint(pointssmelting)/3*1000) + 5000);
                     Thread.Sleep(700);
                     while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !ObjectManager.ObjectManager.Me.IsDeadMe)
+                           !(ObjectManager.ObjectManager.Me.InCombat &&
+                             !(ObjectManager.ObjectManager.Me.IsMounted &&
+                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                           !ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
                         if (timer.IsReady)
                             MovementManager.StopMove();
@@ -106,21 +111,23 @@ namespace nManager.Wow.Bot.States
 
             // Smelting
             Smelting.OpenSmeltingWindow();
-            var timer2 = new Helpful.Timer(15 * 60 * 1000);
+            var timer2 = new Helpful.Timer(15*60*1000);
             while (Smelting.NeedRun(false) && Products.Products.IsStarted && Usefuls.InGame &&
-                       !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer2.IsReady)
+                   !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe &&
+                   !timer2.IsReady)
             {
-               Smelting.Pulse();
-               Thread.Sleep(1500);
-               while (ObjectManager.ObjectManager.Me.IsCast && Products.Products.IsStarted && Usefuls.InGame &&
-                      !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe && !timer2.IsReady)
-               {
-                   Thread.Sleep(700);
-                   if (!ObjectManager.ObjectManager.Me.IsCast)
-                       Thread.Sleep(700);
-               }
+                Smelting.Pulse();
+                Thread.Sleep(1500);
+                while (ObjectManager.ObjectManager.Me.IsCast && Products.Products.IsStarted && Usefuls.InGame &&
+                       !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe &&
+                       !timer2.IsReady)
+                {
+                    Thread.Sleep(700);
+                    if (!ObjectManager.ObjectManager.Me.IsCast)
+                        Thread.Sleep(700);
+                }
 
-               Thread.Sleep(Usefuls.Latency);
+                Thread.Sleep(Usefuls.Latency);
             }
             Smelting.CloseSmeltingWindow();
         }

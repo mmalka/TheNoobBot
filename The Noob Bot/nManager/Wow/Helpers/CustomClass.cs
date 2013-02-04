@@ -77,7 +77,8 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false, bool resetSettings = false,
+        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false,
+                                           bool resetSettings = false,
                                            bool CSharpFile = true)
         {
             try
@@ -97,11 +98,12 @@ namespace nManager.Wow.Helpers
                     CodeDomProvider cc = new CSharpCodeProvider();
                     var cp = new CompilerParameters();
                     var assemblies = AppDomain.CurrentDomain
-                        .GetAssemblies()
-                        .Where(
-                            a =>
-                            !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                        .Select(a => a.Location);
+                                              .GetAssemblies()
+                                              .Where(
+                                                  a =>
+                                                  !a.IsDynamic &&
+                                                  !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                                              .Select(a => a.Location);
                     cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                     StreamReader sr = File.OpenText(pathToCustomClassFile);
                     string toCompile = sr.ReadToEnd();
@@ -218,6 +220,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
             }
         }
+
         public static void ResetConfigurationCustomClass(string filePath)
         {
             try

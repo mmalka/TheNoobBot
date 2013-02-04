@@ -21,4 +21,3 @@ namespace nManager.Wow.Enums
         Undead = 0x20
     }
 }
-

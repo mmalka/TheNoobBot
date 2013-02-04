@@ -20,6 +20,7 @@ namespace nManager.Wow.Bot.States
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -41,14 +42,16 @@ namespace nManager.Wow.Bot.States
                 if (nManagerSetting.CurrentSetting.DontPullMonsters)
                     return false;
 
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe || !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.ObjectManager.Me.IsDeadMe ||
+                    !ObjectManager.ObjectManager.Me.IsValid || !Products.Products.IsStarted)
                     return false;
 
                 // Get unit:
                 _unit = ObjectManager.ObjectManager.Target;
-                
+
                 if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0)
-                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated || _unit.Reaction == Reaction.Unfriendly || _unit.Reaction == Reaction.Neutral)
+                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated ||
+                        _unit.Reaction == Reaction.Unfriendly || _unit.Reaction == Reaction.Neutral)
                         return true;
                 _unit = new WoWUnit(0);
                 return false;
@@ -68,7 +71,8 @@ namespace nManager.Wow.Bot.States
             {
                 Statistics.Kills++;
                 Thread.Sleep(Usefuls.Latency + 1000);
-                while (ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count > 0)
+                while (ObjectManager.ObjectManager.Me.InCombat &&
+                       ObjectManager.ObjectManager.GetUnitAttackPlayer().Count > 0)
                 {
                     Thread.Sleep(50);
                 }

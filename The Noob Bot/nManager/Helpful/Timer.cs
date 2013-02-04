@@ -4,16 +4,16 @@ namespace nManager.Helpful
 {
     public class Timer
     {
-
         #region -- Private Variables --
 
         /// <summary>
         /// Holds the value of the Frequency property.
         /// </summary>
         private readonly double _countDowntime;
-        private bool _varforceReady;
-        #endregion
 
+        private bool _varforceReady;
+
+        #endregion
 
         /// <summary>
         /// Initializes a new instance of the StopWatch class.
@@ -23,13 +23,11 @@ namespace nManager.Helpful
         /// performance counter.
         /// </exception>
         /// 
-
         public Timer()
         {
             _countDowntime = 0;
             _varforceReady = false;
             Reset();
-
         }
 
         public Timer(double countDowntime)
@@ -162,5 +160,4 @@ namespace nManager.Helpful
             _varforceReady = true;
         }
     }
-
 }

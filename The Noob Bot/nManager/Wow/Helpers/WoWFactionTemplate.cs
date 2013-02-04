@@ -7,10 +7,8 @@ namespace nManager.Wow.Helpers
 {
     public class WoWFactionTemplate
     {
-        [CompilerGenerated]
-        private FactionTemplateDbcRecord factionTemplateDbcRecord_0;
-        [CompilerGenerated]
-        private uint uint_0;
+        [CompilerGenerated] private FactionTemplateDbcRecord factionTemplateDbcRecord_0;
+        [CompilerGenerated] private uint uint_0;
 
         private static DBC<FactionTemplateDbcRecord> factionTemplateDBC;
 
@@ -18,8 +16,8 @@ namespace nManager.Wow.Helpers
         {
             Id = id;
             if (factionTemplateDBC == null)
-                factionTemplateDBC = new DBC<FactionTemplateDbcRecord>((int)Addresses.DBC.FactionTemplate);
-            Record = factionTemplateDBC.GetRow((int)id);
+                factionTemplateDBC = new DBC<FactionTemplateDbcRecord>((int) Addresses.DBC.FactionTemplate);
+            Record = factionTemplateDBC.GetRow((int) id);
         }
 
         public static WoWFactionTemplate FromId(uint id)
@@ -77,35 +75,19 @@ namespace nManager.Wow.Helpers
                 }
             }
             uint num4 = (~(record.FactionFlags >> 12) & 2) | 1;
-            return (Reaction)num4;
+            return (Reaction) num4;
         }
 
         public uint Id
         {
-            [CompilerGenerated]
-            get
-            {
-                return this.uint_0;
-            }
-            [CompilerGenerated]
-            private set
-            {
-                this.uint_0 = value;
-            }
+            [CompilerGenerated] get { return this.uint_0; }
+            [CompilerGenerated] private set { this.uint_0 = value; }
         }
 
         public FactionTemplateDbcRecord Record
         {
-            [CompilerGenerated]
-            get
-            {
-                return this.factionTemplateDbcRecord_0;
-            }
-            [CompilerGenerated]
-            private set
-            {
-                this.factionTemplateDbcRecord_0 = value;
-            }
+            [CompilerGenerated] get { return this.factionTemplateDbcRecord_0; }
+            [CompilerGenerated] private set { this.factionTemplateDbcRecord_0 = value; }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -117,10 +99,8 @@ namespace nManager.Wow.Helpers
             public uint FightSupport;
             public uint FriendlyMask;
             public uint HostileMask;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-            public uint[] EnemyFactions;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-            public uint[] FriendlyFactions;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public uint[] EnemyFactions;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public uint[] FriendlyFactions;
         }
     }
 }

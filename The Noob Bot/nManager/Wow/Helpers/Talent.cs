@@ -15,12 +15,12 @@ namespace nManager.Wow.Helpers
             try
             {
                 if (Others.ExistFile(Application.StartupPath + "\\CustomClasses\\Talents\\" +
-                                            ObjectManager.ObjectManager.Me.WowClass + ".macro.txt"))
+                                     ObjectManager.ObjectManager.Me.WowClass + ".macro.txt"))
                 {
                     Lua.RunMacroText("/click TalentMicroButton");
                     string macro =
                         Others.ReadFile(Application.StartupPath + "\\CustomClasses\\Talents\\" +
-                                               ObjectManager.ObjectManager.Me.WowClass + ".macro.txt");
+                                        ObjectManager.ObjectManager.Me.WowClass + ".macro.txt");
 
                     if (macro.Replace(" ", "") != "")
                         Lua.RunMacroText(macro);

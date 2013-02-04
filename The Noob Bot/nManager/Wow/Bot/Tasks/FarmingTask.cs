@@ -30,7 +30,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        static void Fly(IEnumerable<WoWGameObject> nodes)
+        private static void Fly(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
@@ -70,17 +70,20 @@ namespace nManager.Wow.Bot.Tasks
                         if (TraceLine.TraceLineGo(n2, n))
                         {
                             Logging.Write("Node stuck");
-                            nManagerSetting.AddBlackList(node.Guid, 1000 * 60 * 2);
+                            nManagerSetting.AddBlackList(node.Guid, 1000*60*2);
                             return;
                         }
 
                         MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
 
-                        int timer = Others.Times + ((int)ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) / 3 * 1000) + 4000;
+                        int timer = Others.Times +
+                                    ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position)/3*1000) +
+                                    4000;
                         bool toMine = false;
 
                         while (node.IsValid && Products.Products.IsStarted &&
-                               !ObjectManager.ObjectManager.Me.IsDeadMe && !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
+                               !ObjectManager.ObjectManager.Me.IsDeadMe &&
+                               !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
                                Others.Times < timer)
                         {
                             //pt.Z = pt.Z + 1.5f;
@@ -94,7 +97,8 @@ namespace nManager.Wow.Bot.Tasks
                                 var temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
                                 if (temps.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
-                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
+                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                              temps, 100);
                                     temps.Z = ObjectManager.ObjectManager.Me.Position.Z + 1.5f;
                                 }
                                 if (TraceLine.TraceLineGo(temps))
@@ -104,10 +108,17 @@ namespace nManager.Wow.Bot.Tasks
 
 
                                 if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z + 2.5f)
-                                    MovementManager.MoveTo(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y, node.Position.Z + 5.0f);
+                                    MovementManager.MoveTo(ObjectManager.ObjectManager.Me.Position.X,
+                                                           ObjectManager.ObjectManager.Me.Position.Y,
+                                                           node.Position.Z + 5.0f);
                                 else
                                 {
-                                    var temps1 = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, node.Position, ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) + 0.9f);
+                                    var temps1 =
+                                        Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                          node.Position,
+                                                                          ObjectManager.ObjectManager.Me.Position
+                                                                                       .DistanceTo2D(node.Position) +
+                                                                          0.9f);
                                     MovementManager.MoveTo(temps1.X, temps1.Y, zT);
                                 }
                             }
@@ -117,7 +128,11 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 toMine = true;
                                 zT = node.Position.Z + 1.5f;
-                                var temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, node.Position, ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) + 0.9f);
+                                var temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                              node.Position,
+                                                                              ObjectManager.ObjectManager.Me.Position
+                                                                                           .DistanceTo2D(node.Position) +
+                                                                              0.9f);
                                 MovementManager.MoveTo(temps.X, temps.Y, zT);
 
                                 if (TraceLine.TraceLineGo(node.Position) && node.GetDistance > 4.0f)
@@ -134,7 +149,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(150);
                                 MovementManager.StopMove();
-                                if (Usefuls.IsFlying )
+                                if (Usefuls.IsFlying)
                                 {
                                     MountTask.Land();
                                 }
@@ -160,7 +175,9 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     Thread.Sleep(50);
                                 }
-                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                         Lua.RunMacroText("/cancelform");
@@ -170,15 +187,18 @@ namespace nManager.Wow.Bot.Tasks
                                 if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
                                     LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
-                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                         Lua.RunMacroText("/cancelform");
                                     return;
                                 }
-                                nManagerSetting.AddBlackList(node.Guid, 1000 * 20);
+                                nManagerSetting.AddBlackList(node.Guid, 1000*20);
                                 Logging.Write("Farm successful");
-                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
+                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
+                                    !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
 
                                 return;
@@ -192,7 +212,7 @@ namespace nManager.Wow.Bot.Tasks
                             if (States.Farming.PlayerNearest(node))
                             {
                                 Logging.Write("Player near the node, farm canceled");
-                                nManagerSetting.AddBlackList(node.Guid, 15 * 1000);
+                                nManagerSetting.AddBlackList(node.Guid, 15*1000);
                                 return;
                             }
                         }
@@ -209,7 +229,7 @@ namespace nManager.Wow.Bot.Tasks
             }
         }
 
-        static void Ground(IEnumerable<WoWGameObject> nodes)
+        private static void Ground(IEnumerable<WoWGameObject> nodes)
         {
             try
             {
@@ -217,12 +237,13 @@ namespace nManager.Wow.Bot.Tasks
                 foreach (var node in nodes)
                 {
                     MovementManager.StopMove();
-                    if ((int)node.GetBaseAddress > 0)
+                    if ((int) node.GetBaseAddress > 0)
                     {
                         var points = new List<Point>();
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.0f)
                         {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
+                                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount ||
                                 !nManagerSetting.CurrentSetting.UseGroundMount)
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Fly)
@@ -245,7 +266,8 @@ namespace nManager.Wow.Bot.Tasks
                             // fallback to ground mount or feet
                             bool r;
                             points = PathFinder.FindPath(node.Position, out r);
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
+                                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
                                 nManagerSetting.CurrentSetting.UseGroundMount)
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
@@ -255,9 +277,13 @@ namespace nManager.Wow.Bot.Tasks
                         }
 
                         Logging.Write("Farm " + node.Name + " > " + node.Position);
-                        var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
-                        while ((int)node.GetBaseAddress > 0 && Products.Products.IsStarted && !ObjectManager.ObjectManager.Me.IsDeadMe &&
-                               !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) && !timer.IsReady)
+                        var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
+                        while ((int) node.GetBaseAddress > 0 && Products.Products.IsStarted &&
+                               !ObjectManager.ObjectManager.Me.IsDeadMe &&
+                               !(ObjectManager.ObjectManager.Me.InCombat &&
+                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                               !timer.IsReady)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) <= 4.0f)
                             {
@@ -302,12 +328,13 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                if(nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
+                                if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
                                     LootingTask.ConfirmOnBoPItems();
                                 Statistics.Farms++;
-                                nManagerSetting.AddBlackList(node.Guid, 1000 * 20); //60 * 5); // 20 sec instead of 5 min
+                                nManagerSetting.AddBlackList(node.Guid, 1000*20); //60 * 5); // 20 sec instead of 5 min
                                 Logging.Write("Farm successful");
-                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
+                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
+                                    !ObjectManager.ObjectManager.Me.InCombat)
                                     Elemental.AutoMakeElemental();
                                 return;
                             }

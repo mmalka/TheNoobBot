@@ -20,6 +20,7 @@ namespace nManager.Wow.Bot.States
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -50,7 +51,9 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat &&
+                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -66,8 +69,12 @@ namespace nManager.Wow.Bot.States
                 if (!_unit.IsValid)
                     return false;
 
-                if (!nManagerSetting.IsBlackListedZone(_unit.Position) && _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
-                    if (_unit.Target == ObjectManager.ObjectManager.Me.Target || _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 || nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
+                if (!nManagerSetting.IsBlackListedZone(_unit.Position) &&
+                    _unit.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
+                    !nManagerSetting.IsBlackListed(_unit.Guid) && _unit.IsValid)
+                    if (_unit.Target == ObjectManager.ObjectManager.Me.Target ||
+                        _unit.Target == ObjectManager.ObjectManager.Pet.Target || _unit.Target == 0 ||
+                        nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight)
                         if (!_unit.UnitNearest)
                             if (_unit.Level <= MaxTargetLevel)
                                 return true;
@@ -86,13 +93,14 @@ namespace nManager.Wow.Bot.States
             if (!_unit.IsDead && UnkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting its position.");
-                nManagerSetting.AddBlackList(UnkillableMob, 2 * 60 * 1000); // 2 minutes
+                nManagerSetting.AddBlackList(UnkillableMob, 2*60*1000); // 2 minutes
             }
             else if (_unit.IsDead)
             {
                 Statistics.Kills++;
                 Thread.Sleep(Usefuls.Latency + 1000);
-                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat &&
+                       ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
                 {
                     Thread.Sleep(50);
                 }

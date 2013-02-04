@@ -10,14 +10,16 @@ namespace nManager.Wow.Class
             get { return _entry; }
             set { _entry = value; }
         }
-        int _entry;
+
+        private int _entry;
 
         public string Name
         {
             get { return _name; }
             set { _name = value; }
         }
-        string _name = "";
+
+        private string _name = "";
         public int SelectGossipOption = 1;
 
         public Point Position
@@ -25,32 +27,33 @@ namespace nManager.Wow.Class
             get { return _position; }
             set { _position = value; }
         }
-        Point _position = new Point();
+
+        private Point _position = new Point();
 
         public FactionType Faction
         {
             get { return _faction; }
             set { _faction = value; }
         }
-        FactionType _faction = FactionType.Neutral;
+
+        private FactionType _faction = FactionType.Neutral;
 
         public NpcType Type
         {
             get { return _type; }
             set { _type = value; }
         }
-        NpcType _type = NpcType.None;
+
+        private NpcType _type = NpcType.None;
 
         public Enums.ContinentId ContinentId
         {
             get { return _continentId; }
             set { _continentId = value; }
         }
-        Enums.ContinentId _continentId;
 
+        private Enums.ContinentId _continentId;
 
-
-        
 
         [Serializable]
         public enum FactionType

@@ -19,8 +19,11 @@ namespace nManager
             // Even English.xml file does not exist
             if (!File.Exists(Application.StartupPath + "\\Data\\Lang\\" + fileName))
             {
-                Logging.WriteError("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' does not exist!!!");
-                Form error = new Helpful.Forms.Error_Popup("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName + "' not found!!\n\nPlease install all the required file for TheNoobBot to work properly.");
+                Logging.WriteError("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName +
+                                   "' does not exist!!!");
+                Form error =
+                    new Helpful.Forms.Error_Popup("File '" + Application.StartupPath + "\\Data\\Lang\\" + fileName +
+                                                  "' not found!!\n\nPlease install all the required file for TheNoobBot to work properly.");
                 error.ShowDialog();
                 System.Diagnostics.Process.GetCurrentProcess().Kill();
                 return false;
@@ -40,7 +43,7 @@ namespace nManager
         {
             if (_translate == null || _translate.Translations.Count == 0)
                 return "";
-                
+
             if (_translate.Translations.Count == 0)
                 Load();
 
@@ -50,7 +53,8 @@ namespace nManager
                     return v.Text;
             }
 
-            var translateTemp = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
+            var translateTemp =
+                XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
 
             foreach (var v in translateTemp.Translations)
             {
@@ -97,9 +101,11 @@ namespace nManager
             New_update,
             Do_you_want_to_update_now,
             Update,
-            The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb,
+            The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb
+            ,
             Suspect_Activity,
-            TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat,
+            TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat
+            ,
             The_game_is_in_your_taskbar__this_program_don_t_works_if_you_restore_The_Game_window,
             Information,
             Trial_version,
@@ -287,7 +293,8 @@ namespace nManager
             General_Settings,
             Do_you_want_save_this_setting,
             Requis,
-            Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly,
+            Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly
+            ,
             New_whisper,
             Stop_tnb_if,
             Please_configure_your_Fly_mount_in_General_settings,
@@ -344,7 +351,7 @@ namespace nManager
             EyeoftheStorm,
             StrandoftheAncients,
             IsleofConquest,
-            TwinPeaks, 
+            TwinPeaks,
             BattleforGilneas,
             RandomBattleground,
             TempleofKotmogu,
@@ -377,30 +384,33 @@ namespace nManager
         [Serializable]
         public class Language
         {
-            List<Translation> _translations = new List<Translation>();
+            private List<Translation> _translations = new List<Translation>();
+
             public List<Translation> Translations
             {
                 get { return _translations; }
                 set { _translations = value; }
             }
         }
+
         [Serializable]
         public class Translation
         {
-            string _text = "";
+            private string _text = "";
+
             public string Text
             {
                 get { return _text; }
                 set { _text = value; }
             }
 
-            Id _id = Id.none;
+            private Id _id = Id.none;
+
             public Id Id
             {
                 get { return _id; }
                 set { _id = value; }
             }
-            
         }
     }
 }

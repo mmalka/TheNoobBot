@@ -15,7 +15,7 @@ namespace nManager.Helpful
         {
             try
             {
-                return degrees * (3.141592654f / 180.0f);
+                return degrees*(3.141592654f/180.0f);
             }
             catch (Exception exception)
             {
@@ -33,7 +33,7 @@ namespace nManager.Helpful
         {
             try
             {
-                return (float)(System.Math.Round(Convert.ToDouble(radianValue * 57.295779513082323)));
+                return (float) (System.Math.Round(Convert.ToDouble(radianValue*57.295779513082323)));
             }
             catch (Exception exception)
             {
@@ -62,11 +62,11 @@ namespace nManager.Helpful
 
                 if (x == 0)
                 {
-                    angle = System.Math.Sign(y) * System.Math.PI / 2;
+                    angle = System.Math.Sign(y)*System.Math.PI/2;
                 }
                 else
                 {
-                    angle = System.Math.Atan(y / x);
+                    angle = System.Math.Atan(y/x);
                     if (x < 0)
                     {
                         angle = System.Math.PI + angle;
@@ -75,10 +75,10 @@ namespace nManager.Helpful
 
                 if (angle < 0)
                 {
-                    angle = angle + 2 * System.Math.PI;
+                    angle = angle + 2*System.Math.PI;
                 }
-                angle = 180 * angle / System.Math.PI;
-                return (float)angle;
+                angle = 180*angle/System.Math.PI;
+                return (float) angle;
             }
             catch (Exception exception)
             {
@@ -98,12 +98,12 @@ namespace nManager.Helpful
                 double xOffset = System.Math.Abs(pointB.X - pointA.X);
                 double yOffset = System.Math.Abs(pointB.Y - pointA.Y);
                 if (pointB.X < pointA.X && pointB.Y < pointA.Y)
-                    return (float)(System.Math.PI / 2 + System.Math.Atan(xOffset / yOffset));
+                    return (float) (System.Math.PI/2 + System.Math.Atan(xOffset/yOffset));
                 if (pointB.X < pointA.X)
-                    return (float)(System.Math.PI + System.Math.Atan(yOffset / xOffset));
+                    return (float) (System.Math.PI + System.Math.Atan(yOffset/xOffset));
                 if (pointB.Y < pointA.Y)
-                    return (float)(System.Math.Atan(yOffset / xOffset));
-                return (float)(System.Math.PI * 1.5 + System.Math.Atan(xOffset / yOffset));
+                    return (float) (System.Math.Atan(yOffset/xOffset));
+                return (float) (System.Math.PI*1.5 + System.Math.Atan(xOffset/yOffset));
             }
             catch (Exception exception)
             {
@@ -161,9 +161,9 @@ namespace nManager.Helpful
 
                 var x = b.X - a.X;
                 var y = b.Y - a.Y;
-                var d = (float)System.Math.Sqrt(x * x + (double)(y * y));
-                var xc = a.X + x * distance / d;
-                var yc = a.Y + y * distance / d;
+                var d = (float) System.Math.Sqrt(x*x + (double) (y*y));
+                var xc = a.X + x*distance/d;
+                var yc = a.Y + y*distance/d;
 
                 return new Point(xc, yc, System.Math.Max(a.Z, b.Z));
             }
@@ -182,10 +182,10 @@ namespace nManager.Helpful
             var x = b.X - a.X;
             var y = b.Y - a.Y;
             var z = b.Z - a.Z;
-            var d = (float)System.Math.Sqrt((double)(x * x) + (double)(y * y) + (double)(z * z));
-            var xc = b.X + x/d * distance;
-            var yc = b.Y + y/d * distance;
-            var zc = b.Z + z/d * distance;
+            var d = (float) System.Math.Sqrt((double) (x*x) + (double) (y*y) + (double) (z*z));
+            var xc = b.X + x/d*distance;
+            var yc = b.Y + y/d*distance;
+            var zc = b.Z + z/d*distance;
 
             return new Point(xc, yc, zc);
         }

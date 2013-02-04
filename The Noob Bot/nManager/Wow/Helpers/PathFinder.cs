@@ -18,7 +18,11 @@ namespace nManager.Wow.Helpers
         /// <value>
         ///   <c>true</c> if [use pather finder]; otherwise, <c>false</c>.
         /// </value>
-        public static bool UsePatherFind { get { return nManagerSetting.CurrentSetting.ActivatePathFindingFeature; } }
+        public static bool UsePatherFind
+        {
+            get { return nManagerSetting.CurrentSetting.ActivatePathFindingFeature; }
+        }
+
         private static Pather _pather;
 
         /// <summary>
@@ -32,7 +36,7 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    return new List<Point> { ObjectManager.ObjectManager.Me.Position, to};
+                    return new List<Point> {ObjectManager.ObjectManager.Me.Position, to};
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to);
             }
@@ -75,7 +79,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
                     resultSuccess = true;
-                    return new List<Point> { ObjectManager.ObjectManager.Me.Position, to };
+                    return new List<Point> {ObjectManager.ObjectManager.Me.Position, to};
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
             }
@@ -118,7 +122,8 @@ namespace nManager.Wow.Helpers
         /// <param name="addFromAndStart">if set to <c>true</c> [add from and start].</param>
         /// <param name="loadAllTile"></param>
         /// <returns></returns>
-        public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess, bool addFromAndStart = true, bool loadAllTile = false)
+        public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
+                                           bool addFromAndStart = true, bool loadAllTile = false)
         {
             var locList = new List<Point>();
             resultSuccess = true;
@@ -204,7 +209,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                List<Point> tempsList = FindPath(point, new Point(point.X + 1, point.Y + 1, point.Z), Usefuls.ContinentNameMpq);
+                List<Point> tempsList = FindPath(point, new Point(point.X + 1, point.Y + 1, point.Z),
+                                                 Usefuls.ContinentNameMpq);
                 if (tempsList.Count > 0)
                     return tempsList[0].Z;
             }

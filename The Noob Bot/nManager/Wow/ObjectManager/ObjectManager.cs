@@ -84,7 +84,7 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     ulong guidPet =
-                        Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint)Addresses.Player.petGUID);
+                        Memory.WowMemory.Memory.ReadUInt64(Memory.WowProcess.WowModule + (uint) Addresses.Player.petGUID);
 
                     if (guidPet > 0)
                         return new WoWUnit(GetObjectByGuid(guidPet).GetBaseAddress);
@@ -102,7 +102,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                lock (Locker) 
+                lock (Locker)
                 {
                     // Remove invalid objects.
                     foreach (var o in ObjectDictionary)
@@ -145,25 +145,25 @@ namespace nManager.Wow.ObjectManager
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                          Addresses.ObjectManagerClass.clientConnection) +
-                        (uint)Addresses.ObjectManager.objectManager);
+                        (uint) Addresses.ObjectManager.objectManager);
 
                 // These are 'hard coded' in the client. I don't remember the last time they changed.
-                uint firstObject = (uint)Addresses.ObjectManager.firstObject;
-                uint nextObject = (uint)Addresses.ObjectManager.nextObject;
+                uint firstObject = (uint) Addresses.ObjectManager.firstObject;
+                uint nextObject = (uint) Addresses.ObjectManager.nextObject;
                 ulong localPlayerGuid =
-                    Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint)Addresses.ObjectManager.localGuid);
+                    Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
                 int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + firstObject);
-                
+
                 while (currentObject != 0)
                 {
                     try
                     {
-                        ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint)currentObject + 0x30);
+                        ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint) currentObject + 0x30);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
-                            var objType = (WoWObjectType)Memory.WowMemory.Memory.ReadInt((uint)currentObject + 0x10);
+                            var objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + 0x10);
 
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE
@@ -171,38 +171,38 @@ namespace nManager.Wow.ObjectManager
 
                             switch (objType)
                             {
-                                // Belive it or not, the base Object class is hardly used in WoW.
+                                    // Belive it or not, the base Object class is hardly used in WoW.
                                 case WoWObjectType.Object:
-                                    obj = new WoWObject((uint)currentObject);
+                                    obj = new WoWObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.Item:
-                                    obj = new WoWItem((uint)currentObject);
+                                    obj = new WoWItem((uint) currentObject);
                                     break;
                                 case WoWObjectType.Container:
-                                    obj = new WoWContainer((uint)currentObject);
+                                    obj = new WoWContainer((uint) currentObject);
                                     break;
                                 case WoWObjectType.Unit:
-                                    obj = new WoWUnit((uint)currentObject);
+                                    obj = new WoWUnit((uint) currentObject);
                                     break;
                                 case WoWObjectType.Player:
                                     // Keep the static reference to the local player updated... at all times.
                                     if (localPlayerGuid == objGuid)
                                     {
-                                        Me.UpdateBaseAddress((uint)currentObject);
+                                        Me.UpdateBaseAddress((uint) currentObject);
                                     }
-                                    obj = new WoWPlayer((uint)currentObject);
+                                    obj = new WoWPlayer((uint) currentObject);
                                     break;
                                 case WoWObjectType.GameObject:
-                                    obj = new WoWGameObject((uint)currentObject);
+                                    obj = new WoWGameObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.DynamicObject:
-                                    obj = new WoWGameObject((uint)currentObject);
+                                    obj = new WoWGameObject((uint) currentObject);
                                     break;
                                 case WoWObjectType.Corpse:
-                                    obj = new WoWCorpse((uint)currentObject);
+                                    obj = new WoWCorpse((uint) currentObject);
                                     break;
-                                // These two aren't used in most bots, as they're fairly pointless.
-                                // They are AI and area triggers for NPCs handled by the client itself.
+                                    // These two aren't used in most bots, as they're fairly pointless.
+                                    // They are AI and area triggers for NPCs handled by the client itself.
                                 case WoWObjectType.AiGroup:
                                 case WoWObjectType.AreaTrigger:
                                     break;
@@ -217,7 +217,7 @@ namespace nManager.Wow.ObjectManager
                         else
                         {
                             // The object already exists, just update the pointer.
-                            ObjectDictionary[objGuid].UpdateBaseAddress((uint)currentObject);
+                            ObjectDictionary[objGuid].UpdateBaseAddress((uint) currentObject);
                         }
                     }
                     catch (Exception e)
@@ -225,7 +225,7 @@ namespace nManager.Wow.ObjectManager
                         Logging.WriteError("ObjectManager >  ReadObjectList()#1: " + e);
                     }
                     // We need the next object.
-                    Int32 currentObjectNew = Memory.WowMemory.Memory.ReadInt((uint)currentObject + nextObject);
+                    Int32 currentObjectNew = Memory.WowMemory.Memory.ReadInt((uint) currentObject + nextObject);
                     if (currentObjectNew == currentObject)
                     {
                         break;
@@ -367,7 +367,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
-                return (from a in tempsListObj where a.GetBaseAddress != Me.GetBaseAddress select new WoWPlayer(a.GetBaseAddress)).ToList();
+                return
+                    (from a in tempsListObj
+                     where a.GetBaseAddress != Me.GetBaseAddress
+                     select new WoWPlayer(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
             {
@@ -412,7 +415,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (point.DistanceTo(a.Position) < tempDistance &&!nManagerSetting.IsBlackListed(a.Guid))
+                    if (point.DistanceTo(a.Position) < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -535,14 +538,17 @@ namespace nManager.Wow.ObjectManager
                     }
                     catch (Exception e)
                     {
-                        Logging.WriteError("GetWoWUnitByFaction(List<WoWUnit> listWoWUnit, List<uint> factions, bool pvp = false)#1: " + e);
+                        Logging.WriteError(
+                            "GetWoWUnitByFaction(List<WoWUnit> listWoWUnit, List<uint> factions, bool pvp = false)#1: " +
+                            e);
                     }
                 }
                 return objectReturn;
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWUnitByFaction(List<WoWUnit> listWoWUnit, List<uint> factions, bool pvp = false)#2: " + e);
+                Logging.WriteError(
+                    "GetWoWUnitByFaction(List<WoWUnit> listWoWUnit, List<uint> factions, bool pvp = false)#2: " + e);
             }
             return new List<WoWUnit>();
         }
@@ -551,7 +557,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var factions = new List<uint> { faction };
+                var factions = new List<uint> {faction};
                 return GetWoWUnitByFaction(listWoWUnit, factions);
             }
             catch (Exception e)
@@ -591,7 +597,13 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetObjectWoWUnit().Where(a => UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead && (!a.InCombat || a.InCombatWithMe)).ToList();
+                return
+                    GetObjectWoWUnit()
+                        .Where(
+                            a =>
+                            UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead &&
+                            (!a.InCombat || a.InCombatWithMe))
+                        .ToList();
             }
             catch (Exception e)
             {
@@ -630,7 +642,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var names = new List<string> { name };
+                var names = new List<string> {name};
                 return GetWoWUnitByName(listWoWUnit, names);
             }
             catch (Exception e)
@@ -683,7 +695,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var entrys = new List<int> { entry };
+                var entrys = new List<int> {entry};
                 return GetWoWUnitByEntry(listWoWUnit, entrys);
             }
             catch (Exception e)
@@ -729,7 +741,8 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWGameObjectByName(List<WoWGameObject> listWoWGameObject, List<string> names): " + e);
+                Logging.WriteError(
+                    "GetWoWGameObjectByName(List<WoWGameObject> listWoWGameObject, List<string> names): " + e);
             }
             return new List<WoWGameObject>();
         }
@@ -738,7 +751,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var names = new List<string> { name };
+                var names = new List<string> {name};
                 return GetWoWGameObjectByName(listWoWGameObject, names);
             }
             catch (Exception e)
@@ -784,7 +797,8 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWGameObjectByDisplayId(List<WoWGameObject> listWoWGameObject, List<int> displayId): " + e);
+                Logging.WriteError(
+                    "GetWoWGameObjectByDisplayId(List<WoWGameObject> listWoWGameObject, List<int> displayId): " + e);
             }
             return new List<WoWGameObject>();
         }
@@ -793,7 +807,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> { displayId };
+                var tListInt = new List<int> {displayId};
                 return GetWoWGameObjectByDisplayId(tListInt);
             }
             catch (Exception e)
@@ -824,7 +838,8 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetWoWGameObjectByEntry(List<WoWGameObject> listWoWGameObject, List<int> entry): " + e);
+                Logging.WriteError("GetWoWGameObjectByEntry(List<WoWGameObject> listWoWGameObject, List<int> entry): " +
+                                   e);
             }
             return new List<WoWGameObject>();
         }
@@ -833,7 +848,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> { entry };
+                var tListInt = new List<int> {entry};
                 return GetWoWGameObjectByEntry(tListInt);
             }
             catch (Exception e)
@@ -873,7 +888,10 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetObjectWoWGameObject().Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober)).ToList();
+                return
+                    GetObjectWoWGameObject()
+                        .Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober))
+                        .ToList();
             }
             catch (Exception e)
             {
@@ -886,7 +904,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> { id };
+                var tListInt = new List<int> {id};
                 return GetWoWGameObjectById(tListInt);
             }
             catch (Exception e)

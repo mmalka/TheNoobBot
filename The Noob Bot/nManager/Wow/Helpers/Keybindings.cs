@@ -8,7 +8,7 @@ namespace nManager.Wow.Helpers
 {
     public static class Keybindings
     {
-        static List<KeybindingsStruct> _keybindingsList = new List<KeybindingsStruct>();
+        private static List<KeybindingsStruct> _keybindingsList = new List<KeybindingsStruct>();
 
         public static string GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true)
         {
@@ -26,7 +26,7 @@ namespace nManager.Wow.Helpers
                 string kt = Lua.GetLocalizedText("key1");
                 if (kt != "")
                 {
-                    _keybindingsList.Add(new KeybindingsStruct { Action = action, Key = kt });
+                    _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = kt});
                     return kt;
                 }
 
@@ -42,7 +42,8 @@ namespace nManager.Wow.Helpers
                     }
                     else
                     {
-                        Logging.WriteDebug("No free keys found on 236 possible bindings, if you got that line, you mainly have a problem with your WoW keybindings.");
+                        Logging.WriteDebug(
+                            "No free keys found on 236 possible bindings, if you got that line, you mainly have a problem with your WoW keybindings.");
                         return "";
                     }
                 }
@@ -51,25 +52,27 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true): " + exception);
+                Logging.WriteError("GetKeyByAction(Enums.Keybindings action, bool autoAssignKeyIfNull = true): " +
+                                   exception);
                 return "";
             }
         }
+
         public static string GetAFreeKey()
         {
             try
             {
-                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"" + key + "\")");
                     string result = Lua.GetLocalizedText(randomStringResult);
-                    if(string.IsNullOrEmpty(result))
+                    if (string.IsNullOrEmpty(result))
                     {
                         return key.ToString();
                     }
                 }
-                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-" + key + "\")");
@@ -78,7 +81,7 @@ namespace nManager.Wow.Helpers
                         return "CTRL-" + key;
                     }
                 }
-                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"SHIFT-" + key + "\")");
@@ -87,7 +90,7 @@ namespace nManager.Wow.Helpers
                         return "SHIFT-" + key;
                     }
                 }
-                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof(Helpful.Win32.UnreservedVK)))
+                foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-SHIFT-" + key + "\")");
@@ -97,7 +100,6 @@ namespace nManager.Wow.Helpers
                     }
                 }
                 return ""; // No key found. Quite impossible since we try 236 bindings.
-       
             }
             catch (Exception exception)
             {
@@ -105,6 +107,7 @@ namespace nManager.Wow.Helpers
                 return "";
             }
         }
+
         public static void SetKeyByAction(Enums.Keybindings action, string key)
         {
             try
@@ -120,6 +123,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("SetKeyByAction(Enums.Keybindings action, string key): " + exception);
             }
         }
+
         public static void UpKeybindings(Enums.Keybindings action)
         {
             try
@@ -133,6 +137,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("UpKeybindings(Enums.Keybindings action): " + exception);
             }
         }
+
         public static void DownKeybindings(Enums.Keybindings action)
         {
             try
@@ -146,6 +151,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("DownKeybindings(Enums.Keybindings action): " + exception);
             }
         }
+
         public static void PressKeybindings(Enums.Keybindings action)
         {
             try
@@ -167,7 +173,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof(Keybindings))
+                lock (typeof (Keybindings))
                 {
                     _keybindingsList = new List<KeybindingsStruct>();
                 }
@@ -201,11 +207,11 @@ namespace nManager.Wow.Helpers
                     {
                         int lastBar =
                             Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                            (uint)Addresses.BarManager.nbBar);
+                                                            (uint) Addresses.BarManager.nbBar);
                         if (lastBar != Convert.ToInt32(keySlot[0]) - 1)
                         {
                             Memory.WowMemory.Memory.WriteInt(
-                                Memory.WowProcess.WowModule + (uint)Addresses.BarManager.nbBar,
+                                Memory.WowProcess.WowModule + (uint) Addresses.BarManager.nbBar,
                                 Convert.ToInt32(keySlot[0]) - 1);
                         }
                         Thread.Sleep(300);
@@ -215,7 +221,7 @@ namespace nManager.Wow.Helpers
                         if (lastBar != Convert.ToInt32(keySlot[0]) - 1)
                         {
                             Memory.WowMemory.Memory.WriteInt(
-                                Memory.WowProcess.WowModule + (uint)Addresses.BarManager.nbBar, lastBar);
+                                Memory.WowProcess.WowModule + (uint) Addresses.BarManager.nbBar, lastBar);
                         }
                     }
                 }
@@ -285,7 +291,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        struct KeybindingsStruct
+        private struct KeybindingsStruct
         {
             public string Key;
             public Enums.Keybindings Action;

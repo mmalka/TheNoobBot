@@ -4,6 +4,7 @@
     {
         FaceTarget = 0x1,
         Face = 0x2,
+
         /// <summary>
         /// Will throw a UI error. Have not figured out how to avoid it!
         /// </summary>

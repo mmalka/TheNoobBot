@@ -11,10 +11,14 @@ namespace nManager.Wow.AccountSecurity
         {
             try
             {
-                    Memory.WowProcess.KillWowProcess();
-                    MessageBox.Show(Translate.Get(Translate.Id.Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb));
-                    Logging.Write(Translate.Get(Translate.Id.Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb));
-                    Process.GetCurrentProcess().Kill();
+                Memory.WowProcess.KillWowProcess();
+                MessageBox.Show(
+                    Translate.Get(
+                        Translate.Id.Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb));
+                Logging.Write(
+                    Translate.Get(
+                        Translate.Id.Suspect_activity_of_the_game_which_haven_t_verified_yet__Closing_game_and_tnb));
+                Process.GetCurrentProcess().Kill();
             }
             catch (Exception exception)
             {

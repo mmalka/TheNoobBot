@@ -81,7 +81,8 @@ namespace nManager.Wow.Bot.States
                 var factionBattlegroundSpiritHealer =
                     new WoWUnit(
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByName(ObjectManager.ObjectManager.Me.PlayerFaction + " Spirit Guide")).GetBaseAddress);
+                            ObjectManager.ObjectManager.GetWoWUnitByName(ObjectManager.ObjectManager.Me.PlayerFaction +
+                                                                         " Spirit Guide")).GetBaseAddress);
                 if (!factionBattlegroundSpiritHealer.IsValid)
                 {
                     Logging.Write("Faction Spirit Healer not found, teleport back to the cimetery.");

@@ -29,8 +29,6 @@ namespace nManager
                     Wow.ObjectManager.Pulsator.Initialize();
                     //AccountSecurity.Pulse();
                 }
-
-                
             }
             catch (Exception e)
             {
@@ -38,12 +36,13 @@ namespace nManager
             }
         }
 
-        private static bool _isDisposed ;
+        private static bool _isDisposed;
+
         public static void Dispose(bool closePocess = false)
         {
             try
             {
-                lock (typeof(Pulsator))
+                lock (typeof (Pulsator))
                 {
                     var thread = new Thread(ThreadDispose) {Name = "Thread Dispose nManager."};
                     _isDisposed = false;
@@ -64,30 +63,34 @@ namespace nManager
                     if (closePocess)
                         System.Diagnostics.Process.GetCurrentProcess().Kill();
                 }
-                catch {}
+                catch
+                {
+                }
                 Logging.WriteError("nManager > Pulstator > Dispose(): " + e);
             }
         }
+
         private static void ThreadDispose()
         {
             try
             {
-                
-                    Products.Products.DisposeProduct();
-                    Wow.ObjectManager.Pulsator.Shutdown();
-                    //AccountSecurity.Dispose();
-                    Wow.Memory.WowMemory.DisposeHooking();
-                    Wow.Memory.WowProcess = new Process();
+                Products.Products.DisposeProduct();
+                Wow.ObjectManager.Pulsator.Shutdown();
+                //AccountSecurity.Dispose();
+                Wow.Memory.WowMemory.DisposeHooking();
+                Wow.Memory.WowProcess = new Process();
 
-                    try
+                try
+                {
+                    var t = new Timer(2*1000);
+                    while (Logging.CountNumberInQueue > 0 && !t.IsReady)
                     {
-                        var t = new Timer(2 * 1000);
-                        while (Logging.CountNumberInQueue > 0 && !t.IsReady)
-                        {
-                            Thread.Sleep(10);
-                        }
+                        Thread.Sleep(10);
                     }
-                    catch { }
+                }
+                catch
+                {
+                }
             }
             catch (Exception e)
             {

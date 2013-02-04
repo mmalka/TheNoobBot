@@ -19,7 +19,8 @@ namespace nManager.Wow.MemoryClass
         }
 
         [DllImport("kernel32.dll")]
-        public static extern int VirtualQueryEx(IntPtr hProcess, uint lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer, int dwLength);
+        public static extern int VirtualQueryEx(IntPtr hProcess, uint lpAddress, out MEMORY_BASIC_INFORMATION lpBuffer,
+                                                int dwLength);
 
         [DllImport("kernel32")]
         public static extern int LoadLibrary(string librayName);
@@ -46,20 +47,25 @@ namespace nManager.Wow.MemoryClass
                 {
                     if ((struct2.AllocationBase != 0) && (struct2.RegionSize > 0x1000))
                     {
-                        uint num3 = Memory.WowMemory.Memory.FindPattern((uint)struct2.AllocationBase, struct2.RegionSize, pattern, mask);
+                        uint num3 = Memory.WowMemory.Memory.FindPattern((uint) struct2.AllocationBase,
+                                                                        struct2.RegionSize, pattern, mask);
                         if (num3 != struct2.AllocationBase)
                         {
-                            return new PatternResult { AllocationBase = (uint)struct2.AllocationBase, dwAddress = num3, RegionSize = (uint)struct2.RegionSize };
+                            return new PatternResult
+                                       {
+                                           AllocationBase = (uint) struct2.AllocationBase,
+                                           dwAddress = num3,
+                                           RegionSize = (uint) struct2.RegionSize
+                                       };
                         }
                     }
                 }
                 catch
                 {
                 }
-                num2 = (uint)(struct2.BaseAddress + struct2.RegionSize);
+                num2 = (uint) (struct2.BaseAddress + struct2.RegionSize);
                 Thread.Sleep(3);
-            }
-            while (num2 <= num);
+            } while (num2 <= num);
             return null;
         }
     }

@@ -14,8 +14,10 @@ namespace nManager.FiniteStateMachine
         /// CurrentState
         /// </summary>
         public String CurrentState { get; private set; }
+
         private Thread _workerThread;
         private bool _showStateInStatus;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Engine"/> class.
         /// </summary>
@@ -126,11 +128,11 @@ namespace nManager.FiniteStateMachine
             try
             {
                 // We want to round a bit here.
-                int sleepTime = 1000 / framesPerSecond;
+                int sleepTime = 1000/framesPerSecond;
 
                 Running = true;
 
-                _workerThread = new Thread(Run) { IsBackground = true, Name = "FSM" };
+                _workerThread = new Thread(Run) {IsBackground = true, Name = "FSM"};
                 _workerThread.Start(sleepTime);
             }
             catch (Exception e)
@@ -147,7 +149,7 @@ namespace nManager.FiniteStateMachine
                 {
                     Pulse();
                     // Sleep for a 'frame'
-                    Thread.Sleep((int)sleepTime);
+                    Thread.Sleep((int) sleepTime);
                 }
             }
             catch (Exception ex)
@@ -176,7 +178,6 @@ namespace nManager.FiniteStateMachine
                 {
                     _workerThread.Abort();
                 }
-
             }
             catch (Exception e)
             {

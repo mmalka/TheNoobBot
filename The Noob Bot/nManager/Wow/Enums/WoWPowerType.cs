@@ -14,7 +14,7 @@
         Alternate = 0xA,
         DarkForce = 0xB,
         LightForce = 0xC,
-        Chi = 0xC, 
+        Chi = 0xC,
         ShadowOrbs = 0xD,
         BurningEmbers = 0xE,
         DemonicFury = 0xF,

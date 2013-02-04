@@ -20,10 +20,10 @@ namespace nManager.Helpful
             {
                 // register the event of the inner native window.
                 _window.KeyPressed += delegate(object sender, KeyPressedEventArgs args)
-                {
-                    if (KeyPressed != null)
-                        KeyPressed(this, args);
-                };
+                                          {
+                                              if (KeyPressed != null)
+                                                  KeyPressed(this, args);
+                                          };
             }
             catch (Exception exception)
             {
@@ -75,7 +75,7 @@ namespace nManager.Helpful
 
                 // register the hot key.
 
-                RegisterHotKey(_window.Handle, _currentId, (uint)modifier, (uint)key);
+                RegisterHotKey(_window.Handle, _currentId, (uint) modifier, (uint) key);
             }
             catch (Exception exception)
             {
@@ -140,8 +140,8 @@ namespace nManager.Helpful
                     if (m.Msg == WmHotkey)
                     {
                         // get the keys.
-                        var key = (Keys)(((int)m.LParam >> 16) & 0xFFFF);
-                        var modifier = (ModifierKeys)((int)m.LParam & 0xFFFF);
+                        var key = (Keys) (((int) m.LParam >> 16) & 0xFFFF);
+                        var modifier = (ModifierKeys) ((int) m.LParam & 0xFFFF);
 
                         // invoke the event to notify the parent.
                         if (KeyPressed != null)
@@ -185,7 +185,9 @@ namespace nManager.Helpful
                 get
                 {
                     try
-                    { return _modifier; }
+                    {
+                        return _modifier;
+                    }
                     catch (Exception exception)
                     {
                         Logging.WriteError("ModifierKeys Modifier: " + exception);
@@ -199,7 +201,9 @@ namespace nManager.Helpful
                 get
                 {
                     try
-                    { return _key; }
+                    {
+                        return _key;
+                    }
                     catch (Exception exception)
                     {
                         Logging.WriteError("Keys Key: " + exception);
@@ -207,7 +211,6 @@ namespace nManager.Helpful
                     return Keys.None;
                 }
             }
-
         }
 
         /// <summary>

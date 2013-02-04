@@ -33,13 +33,17 @@ namespace nManager.Wow.ObjectManager
                 return "";
             }
         }
-        ItemInfo _itemInfo;
+
+        private ItemInfo _itemInfo;
+
         public ItemInfo GetItemInfo
         {
             get
             {
                 try
-                { return _itemInfo ?? (_itemInfo = new ItemInfo(Entry)); }
+                {
+                    return _itemInfo ?? (_itemInfo = new ItemInfo(Entry));
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWItem > GetItemInfo: " + e);
@@ -96,7 +100,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetDescriptor<T>((uint)field);
+                return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)
             {

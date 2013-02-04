@@ -20,6 +20,7 @@ namespace nManager.Wow.Bot.States
             get { return _priority; }
             set { _priority = value; }
         }
+
         private int _priority;
 
         public override List<State> NextStates
@@ -43,11 +44,15 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat &&
+                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
                     return false;
 
-                if (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && !nManagerSetting.CurrentSetting.ActivateChestLooting)
+                if (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
+                    !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
+                    !nManagerSetting.CurrentSetting.ActivateChestLooting)
                     return false;
 
                 if (LongMove.IsLongMove && !nManagerSetting.CurrentSetting.HarvestDuringLongDistanceMovements)
@@ -58,7 +63,9 @@ namespace nManager.Wow.Bot.States
 
                 foreach (var node in tNodes)
                 {
-                    if (!nManagerSetting.IsBlackListedZone(node.Position) && node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
+                    if (!nManagerSetting.IsBlackListedZone(node.Position) &&
+                        node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
+                        !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                         if (!PlayerNearest(node))
                             if (!node.UnitNearest)
                                 if (node.CanOpen)
@@ -75,7 +82,11 @@ namespace nManager.Wow.Bot.States
         public static bool PlayerNearest(WoWGameObject node)
         {
             List<WoWPlayer> players = ObjectManager.ObjectManager.GetObjectWoWPlayer();
-            if (players.Any(p => p.Position.DistanceTo2D(node.Position) <= nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius))
+            if (
+                players.Any(
+                    p =>
+                    p.Position.DistanceTo2D(node.Position) <=
+                    nManagerSetting.CurrentSetting.DontHarvestIfPlayerNearRadius))
             {
                 Logging.Write("Player near the node");
                 nManagerSetting.AddBlackList(node.Guid, 15*1000);

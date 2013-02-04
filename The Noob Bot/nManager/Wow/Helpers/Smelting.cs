@@ -12,17 +12,17 @@ namespace nManager.Wow.Helpers
             try
             {
                 var macro =
-                   "numTrade = GetNumTradeSkills(); " +
-                   "firstTrade = GetFirstTradeSkill(); " +
-                   "while numTrade>=firstTrade do " +
-                   "  skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps = GetTradeSkillInfo(numTrade); " +
-                   "  if numAvailable > 0 then " +
-                   "    SelectTradeSkill(numTrade); " +
-                   "    RunMacroText(\"/click TradeSkillCreateAllButton\"); " +
-                   "    return; " +
-                   "  end " +
-                   "  numTrade = numTrade - 1; " +
-                   "end";
+                    "numTrade = GetNumTradeSkills(); " +
+                    "firstTrade = GetFirstTradeSkill(); " +
+                    "while numTrade>=firstTrade do " +
+                    "  skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps = GetTradeSkillInfo(numTrade); " +
+                    "  if numAvailable > 0 then " +
+                    "    SelectTradeSkill(numTrade); " +
+                    "    RunMacroText(\"/click TradeSkillCreateAllButton\"); " +
+                    "    return; " +
+                    "  end " +
+                    "  numTrade = numTrade - 1; " +
+                    "end";
                 Lua.LuaDoString(macro);
             }
             catch (Exception exception)
@@ -42,7 +42,7 @@ namespace nManager.Wow.Helpers
                 var macro =
                     "RunMacroText(\"/click TradeSkillFrameCloseButton\"); " +
                     "CastSpellByName(\"" + smeltingSpell.NameInGame + "\"); ";
-                    Lua.LuaDoString(macro);
+                Lua.LuaDoString(macro);
             }
             catch (Exception exception)
             {
@@ -56,7 +56,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 var macro =
-                "RunMacroText(\"/click TradeSkillFrameCloseButton\"); ";
+                    "RunMacroText(\"/click TradeSkillFrameCloseButton\"); ";
                 Lua.LuaDoString(macro);
             }
             catch (Exception exception)
@@ -79,7 +79,7 @@ namespace nManager.Wow.Helpers
                 if (openWindow)
                 {
                     macro = macro + "RunMacroText(\"/click TradeSkillFrameCloseButton\"); " +
-                    "CastSpellByName(\"" + smeltingSpell.NameInGame + "\");";
+                            "CastSpellByName(\"" + smeltingSpell.NameInGame + "\");";
                 }
                 macro = macro +
                         "needSmelting = \"\"; " +

@@ -86,6 +86,7 @@ namespace nManager.Wow.Class
         public float Z { get; set; }
 
         private string _type = "None";
+
         /// <summary>
         /// Point Type.
         /// </summary>
@@ -115,8 +116,8 @@ namespace nManager.Wow.Class
         {
             try
             {
-                float nx = X + (float)Math.Cos(heading) * d;
-                float ny = Y + (float)Math.Sin(heading) * d;
+                float nx = X + (float) Math.Cos(heading)*d;
+                float ny = Y + (float) Math.Sin(heading)*d;
                 float nz = Z;
                 return new Point(nx, ny, nz);
             }
@@ -131,7 +132,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return (float)Math.Sqrt(X * X + Y * Y + Z * Z);
+                return (float) Math.Sqrt(X*X + Y*Y + Z*Z);
             }
             catch (Exception exception)
             {
@@ -144,7 +145,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return (float)Math.Sqrt(X * X + Y * Y);
+                return (float) Math.Sqrt(X*X + Y*Y);
             }
             catch (Exception exception)
             {
@@ -160,7 +161,7 @@ namespace nManager.Wow.Class
                 float disZTemp = a.Z - b.Z;
                 if (disZTemp < 0)
                 {
-                    disZTemp = -1 * disZTemp;
+                    disZTemp = -1*disZTemp;
                 }
                 return disZTemp;
             }
@@ -178,7 +179,7 @@ namespace nManager.Wow.Class
                 float disZTemp = Z - b.Z;
                 if (disZTemp < 0)
                 {
-                    disZTemp = -1 * disZTemp;
+                    disZTemp = -1*disZTemp;
                 }
                 return disZTemp;
             }
@@ -271,7 +272,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return new Point(a.X * b.X, a.Y * b.Y, a.Z * b.Z);
+                return new Point(a.X*b.X, a.Y*b.Y, a.Z*b.Z);
             }
             catch (Exception exception)
             {
@@ -284,7 +285,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return new Point(a.X / b.X, a.Y / b.Y, a.Z / b.Z);
+                return new Point(a.X/b.X, a.Y/b.Y, a.Z/b.Z);
             }
             catch (Exception exception)
             {
@@ -297,7 +298,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return new Point(a.X * b, a.Y * b, a.Z * b);
+                return new Point(a.X*b, a.Y*b, a.Z*b);
             }
             catch (Exception exception)
             {
@@ -310,7 +311,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                return new Point(a.X / b, a.Y / b, a.Z / b);
+                return new Point(a.X/b, a.Y/b, a.Z/b);
             }
             catch (Exception exception)
             {

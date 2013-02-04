@@ -107,7 +107,6 @@ namespace nManager.Wow.Helpers
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     if (GetItemCountByNameLUA(nameItem) > 0)
                     {
-
                         Lua.LuaDoString(
                             "local nameItem = \"" + nameItem + "\" " +
                             "_, itemLink = GetItemInfo(nameItem); " +
@@ -131,7 +130,8 @@ namespace nManager.Wow.Helpers
             try
             {
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + itemId + "); " + randomString + " = startTime .. \"^\" .. duration .. \"^\" .. enable");
+                Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + itemId + "); " + randomString +
+                                " = startTime .. \"^\" .. duration .. \"^\" .. enable");
                 string[] itemInfoArray = Lua.GetLocalizedText(randomString).Split(Convert.ToChar("^"));
 
                 uint itemStartTime = Convert.ToUInt32(itemInfoArray[0]);

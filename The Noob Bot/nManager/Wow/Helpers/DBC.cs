@@ -11,15 +11,35 @@ namespace nManager.Wow.Helpers
         private readonly DBCStruct.WoWClientDB m_header;
         private readonly Dictionary<int, T> m_rows;
 
-        public int MinIndex { get { return m_header.minIndex; } }
-        public int MaxIndex { get { return m_header.maxIndex; } }
-        public int NumRows { get { return m_header.numRows; } }
+        public int MinIndex
+        {
+            get { return m_header.minIndex; }
+        }
 
-        public Dictionary<int, T> Rows { get { return m_rows; } }
+        public int MaxIndex
+        {
+            get { return m_header.maxIndex; }
+        }
 
-        public T this[int index] { get { return m_rows[index]; } }
+        public int NumRows
+        {
+            get { return m_header.numRows; }
+        }
 
-        public bool HasRow(int index) { return m_rows.ContainsKey(index); }
+        public Dictionary<int, T> Rows
+        {
+            get { return m_rows; }
+        }
+
+        public T this[int index]
+        {
+            get { return m_rows[index]; }
+        }
+
+        public bool HasRow(int index)
+        {
+            return m_rows.ContainsKey(index);
+        }
 
         /// <summary>
         /// Initializes a new instance of DBC class using specified memory address
@@ -29,16 +49,19 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                m_header = (DBCStruct.WoWClientDB)Memory.WowMemory.Memory.ReadObject(Memory.WowProcess.WowModule + offset, typeof(DBCStruct.WoWClientDB));
+                m_header =
+                    (DBCStruct.WoWClientDB)
+                    Memory.WowMemory.Memory.ReadObject(Memory.WowProcess.WowModule + offset,
+                                                       typeof (DBCStruct.WoWClientDB));
 
                 m_rows = new Dictionary<int, T>(m_header.numRows);
 
                 for (var i = 0; i < m_header.numRows; ++i)
                 {
-                    uint rowOffset = m_header.FirstRow + (uint)(i * Marshal.SizeOf(typeof(T)));
+                    uint rowOffset = m_header.FirstRow + (uint) (i*Marshal.SizeOf(typeof (T)));
 
                     var index = Memory.WowMemory.Memory.ReadInt(rowOffset);
-                    var row = (T)Memory.WowMemory.Memory.ReadObject(rowOffset, typeof(T));
+                    var row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));
 
                     m_rows.Add(index, row);
                 }

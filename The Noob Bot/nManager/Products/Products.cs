@@ -14,13 +14,13 @@ namespace nManager.Products
         private static IProduct instanceFromOtherAssembly;
         private static Assembly assembly;
         private static object obj;
-        static readonly Engine Fsm = new Engine(false);
+        private static readonly Engine Fsm = new Engine(false);
 
         public static void LoadProducts(string nameDll)
         {
             try
             {
-                lock (typeof(Products))
+                lock (typeof (Products))
                 {
                     if (_threadEventChangeProduct == null)
                     {
@@ -74,12 +74,12 @@ namespace nManager.Products
         {
             try
             {
-                lock (typeof(Products))
+                lock (typeof (Products))
                 {
-                    var thread = new Thread(ThreadDisposeProduct) { Name = "Thread Dispose Product." };
+                    var thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
                     _isDisposed = false;
                     thread.Start();
-                    var t = new Timer(2 * 1000);
+                    var t = new Timer(2*1000);
                     while (!_isDisposed && !t.IsReady)
                     {
                         Thread.Sleep(10);
@@ -91,8 +91,10 @@ namespace nManager.Products
                 Logging.WriteError("DisposeProduct(): " + e);
             }
         }
+
         private static bool _isDisposed;
-        static void ThreadDisposeProduct()
+
+        private static void ThreadDisposeProduct()
         {
             try
             {
@@ -114,7 +116,10 @@ namespace nManager.Products
         }
 
 
-        public static bool IsAliveProduct { get { return (instanceFromOtherAssembly != null); } }
+        public static bool IsAliveProduct
+        {
+            get { return (instanceFromOtherAssembly != null); }
+        }
 
         public static bool ProductStart()
         {
@@ -126,12 +131,12 @@ namespace nManager.Products
 
                     instanceFromOtherAssembly.Start();
                     Statistics.Reset();
-                    
+
                     // Fsm
                     Fsm.States.Clear();
-                    Fsm.AddState(new Wow.Bot.States.relogger { Priority = 10 });
-                    Fsm.AddState(new Wow.Bot.States.StopBotIf { Priority = 5 });
-                    Fsm.AddState(new Wow.Bot.States.Idle { Priority = 1 });
+                    Fsm.AddState(new Wow.Bot.States.relogger {Priority = 10});
+                    Fsm.AddState(new Wow.Bot.States.StopBotIf {Priority = 5});
+                    Fsm.AddState(new Wow.Bot.States.Idle {Priority = 1});
                     Fsm.States.Sort();
                     Fsm.StartEngine(1);
 
@@ -181,6 +186,7 @@ namespace nManager.Products
             }
             return false;
         }
+
         public static bool ProductSettings()
         {
             try
@@ -217,10 +223,16 @@ namespace nManager.Products
             }
         }
 
-        static string _productName = "";
-        public static string ProductName { get { return _productName; } private set { _productName = value; } }
+        private static string _productName = "";
+
+        public static string ProductName
+        {
+            get { return _productName; }
+            private set { _productName = value; }
+        }
 
         private static bool _inPause;
+
         public static bool InPause
         {
             get { return _inPause; }
@@ -230,7 +242,8 @@ namespace nManager.Products
         private static bool _oldIsStarted;
         private static bool _oldIsAliveProduc;
         private static Thread _threadEventChangeProduct;
-        static void ThreadEventChangeProduct()
+
+        private static void ThreadEventChangeProduct()
         {
             try
             {
@@ -241,14 +254,14 @@ namespace nManager.Products
                         if (_oldIsStarted != IsStarted && OnChangedIsStarted != null)
                         {
                             _oldIsStarted = IsStarted;
-                            var e = new IsStartedChangeEventArgs { IsStarted = IsStarted };
+                            var e = new IsStartedChangeEventArgs {IsStarted = IsStarted};
                             OnChangedIsStarted(e);
                         }
 
                         if (_oldIsAliveProduc != IsAliveProduct && OnChangedIsAliveProduct != null)
                         {
                             _oldIsAliveProduc = IsAliveProduct;
-                            var e = new IsAliveProductChangeEventArgs { IsAliveProduct = IsAliveProduct };
+                            var e = new IsAliveProductChangeEventArgs {IsAliveProduct = IsAliveProduct};
                             OnChangedIsAliveProduct(e);
                         }
                     }
@@ -267,14 +280,18 @@ namespace nManager.Products
         }
 
         public delegate void IsStartedChangeEventHandler(IsStartedChangeEventArgs e);
+
         public static event IsStartedChangeEventHandler OnChangedIsStarted;
+
         public class IsStartedChangeEventArgs : EventArgs
         {
             public bool IsStarted { get; set; }
         }
 
         public delegate void IsAliveProductChangeEventHandler(IsAliveProductChangeEventArgs e);
+
         public static event IsAliveProductChangeEventHandler OnChangedIsAliveProduct;
+
         public class IsAliveProductChangeEventArgs : EventArgs
         {
             public bool IsAliveProduct { get; set; }

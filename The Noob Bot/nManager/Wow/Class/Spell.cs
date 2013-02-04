@@ -302,28 +302,29 @@ namespace nManager.Wow.Class
         /// </value>
         public bool CreatedBySpellInRange(uint maxrange = 40)
         {
-                try
-                {
-                    var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
+            try
+            {
+                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
 
-                    if (woWUnit.Count > 0)
+                if (woWUnit.Count > 0)
+                {
+                    var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                    if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
                     {
-                        var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
-                        if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
+                        if ((nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
+                             nearestWoWUnit.CreatedBy == ObjectManager.ObjectManager.Me.Guid) &&
+                            nearestWoWUnit.GetDistance <= maxrange)
                         {
-                            if ((nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
-                                nearestWoWUnit.CreatedBy == ObjectManager.ObjectManager.Me.Guid) && nearestWoWUnit.GetDistance <= maxrange)
-                            {
-                                return true;
-                            }
+                            return true;
                         }
                     }
                 }
-                catch (Exception e)
-                {
-                    Logging.WriteError("Spell > CreatedBySpellInRange: " + e);
-                }
-                return false;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Spell > CreatedBySpellInRange: " + e);
+            }
+            return false;
         }
 
         /// <summary>

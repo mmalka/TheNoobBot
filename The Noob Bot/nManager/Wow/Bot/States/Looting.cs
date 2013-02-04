@@ -36,7 +36,9 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
+                    (ObjectManager.ObjectManager.Me.InCombat &&
+                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     Usefuls.IsFlying ||
                     !Products.Products.IsStarted)
                     return false;
@@ -44,15 +46,18 @@ namespace nManager.Wow.Bot.States
                 // Get Looting
                 _units = new List<WoWUnit>();
                 var tUnit = ObjectManager.ObjectManager.GetWoWUnitLootable();
-                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && nManagerSetting.CurrentSetting.BeastNinjaSkinning)
-                    tUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitSkinnable(new List<ulong>(nManagerSetting.GetListGuidBlackListed())));
+                if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                    nManagerSetting.CurrentSetting.BeastNinjaSkinning)
+                    tUnit.AddRange(
+                        ObjectManager.ObjectManager.GetWoWUnitSkinnable(
+                            new List<ulong>(nManagerSetting.GetListGuidBlackListed())));
 
                 foreach (var woWUnit in tUnit)
                 {
                     if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                            !nManagerSetting.IsBlackListed(woWUnit.Guid) &&
-                            woWUnit.IsValid &&
-                            (!woWUnit.UnitNearest || woWUnit.GetDistance2D < 15))
+                        !nManagerSetting.IsBlackListed(woWUnit.Guid) &&
+                        woWUnit.IsValid &&
+                        (!woWUnit.UnitNearest || woWUnit.GetDistance2D < 15))
                         _units.Add(woWUnit);
                 }
 

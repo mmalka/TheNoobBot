@@ -17,12 +17,15 @@ namespace nManager.Wow.Bot.Tasks
 
         private static ulong _guidNode;
         private static bool _precision;
-        static string _lureName = "";
+        private static string _lureName = "";
         private static bool _useLure;
 
         private const float distanceBobber = 4.0f;
 
-        public static bool IsLaunched { get { return _fishBotLaunched; } }
+        public static bool IsLaunched
+        {
+            get { return _fishBotLaunched; }
+        }
 
         /// <summary>
         /// Stop fish bot.
@@ -34,8 +37,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-
-                lock (typeof(FishingTask))
+                lock (typeof (FishingTask))
                 {
                     _guidNode = 0;
                     _fishBotLaunched = false;
@@ -54,11 +56,12 @@ namespace nManager.Wow.Bot.Tasks
         /// <param name="lureName"> </param>
         /// <param name="precision"> </param>
         /// <param name="useLure"> </param>
-        public static void LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = "", bool precision = false)
+        public static void LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = "",
+                                    bool precision = false)
         {
             try
             {
-                lock (typeof(FishingTask))
+                lock (typeof (FishingTask))
                 {
                     _guidNode = guidNode;
                     _precision = precision;
@@ -66,7 +69,7 @@ namespace nManager.Wow.Bot.Tasks
                     _lureName = lureName;
                     if (_worker2 == null)
                     {
-                        _worker2 = new Thread(LoopFishThread) { Name = "Fish" };
+                        _worker2 = new Thread(LoopFishThread) {Name = "Fish"};
                         _worker2.Start();
                     }
                     _fishBotLaunched = true;
@@ -74,7 +77,9 @@ namespace nManager.Wow.Bot.Tasks
             }
             catch (Exception e)
             {
-                Logging.WriteError("FishingTask > LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = \"\", bool precision = false): " + e);
+                Logging.WriteError(
+                    "FishingTask > LoopFish(ulong guidNode = 0, bool useLure = false, string lureName = \"\", bool precision = false): " +
+                    e);
             }
         }
 
@@ -82,12 +87,10 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-
                 while (true)
                 {
                     try
                     {
-
                         while (_fishBotLaunched)
                         {
                             Fishing.EquipFishingPoles();
@@ -105,12 +108,15 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (objBobber.GetBaseAddress > 0)
                                 {
-                                    var node = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
-                                    if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid && _guidNode > 0 && _precision)
+                                    var node =
+                                        new WoWGameObject(
+                                            ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
+                                    if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&
+                                        _guidNode > 0 && _precision)
                                         continue;
 
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                           (int)objBobber.GetBaseAddress > 0 &&
+                                           (int) objBobber.GetBaseAddress > 0 &&
                                            1 !=
                                            Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + 0xC0))
                                     {
@@ -118,13 +124,12 @@ namespace nManager.Wow.Bot.Tasks
                                         Application.DoEvents();
                                     }
                                     if (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
-                                        (int)objBobber.GetBaseAddress > 0)
+                                        (int) objBobber.GetBaseAddress > 0)
                                     {
                                         Interact.InteractGameObject(objBobber.GetBaseAddress);
                                         Statistics.Farms++;
                                         Others.Wait(1000);
                                     }
-
                                 }
                             }
                         }
@@ -142,7 +147,7 @@ namespace nManager.Wow.Bot.Tasks
             }
             // ReSharper disable FunctionNeverReturns
         }
-        // ReSharper restore FunctionNeverReturns
 
+        // ReSharper restore FunctionNeverReturns
     }
 }

@@ -34,7 +34,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 Location = loc;
-                Radius = levelDifference * 3.5f + 10;
+                Radius = levelDifference*3.5f + 10;
                 Radius *= factor;
                 if (levelDifference < 0)
                     Radius = -Radius;
@@ -103,10 +103,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public void Dispose()
         {
-
             try
             {
-
                 // _mesh.Dispose();
             }
             catch (Exception)
@@ -150,7 +148,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                var extents = new[] { 2.5f, 2.5f, 2.5f };
+                var extents = new[] {2.5f, 2.5f, 2.5f};
                 return (from danger in dangers
                         let loc = danger.Location.ToRecast().ToFloatArray()
                         let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
@@ -214,8 +212,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                x = (loc[0] - Utility.Origin[0]) / Utility.TileSize;
-                y = (loc[2] - Utility.Origin[2]) / Utility.TileSize;
+                x = (loc[0] - Utility.Origin[0])/Utility.TileSize;
+                y = (loc[2] - Utility.Origin[2])/Utility.TileSize;
             }
             catch (Exception exception)
             {
@@ -256,8 +254,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 float tx, ty;
                 GetTileByLocation(loc, out tx, out ty);
-                int x = (int)Math.Floor(tx);
-                int y = (int)Math.Floor(ty);
+                int x = (int) Math.Floor(tx);
+                int y = (int) Math.Floor(ty);
                 int thirdx, thirdy;
 
                 LoadTile(x, y);
@@ -337,8 +335,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        static List<string> blackListMaptitle = new List<string>();
-        bool downloadTile(string fileName)
+        private static List<string> blackListMaptitle = new List<string>();
+
+        private bool downloadTile(string fileName)
         {
             try
             {
@@ -354,7 +353,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!Others.ExistFile(_meshPath + "\\" + fileName))
                 {
                     Logging.WriteNavigator("Download map \"" + fileName + "\"");
-                    if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz", _meshPath + "\\" + fileName + ".gz"))
+                    if (
+                        !Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
+                                             _meshPath + "\\" + fileName + ".gz"))
                         return false;
                     if (!GZip.Decompress(_meshPath + "\\" + fileName + ".gz"))
                         return false;
@@ -461,14 +462,16 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
                 if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
                     if (pathCorridor != null)
-                        Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
+                        Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " +
+                                               pathCorridor.Length);
 
                 if (finalPath != null)
                 {
-                    var resultPath = new List<Point>(finalPath.Length / 3);
-                    for (int i = 0; i < (finalPath.Length / 3); i++)
+                    var resultPath = new List<Point>(finalPath.Length/3);
+                    for (int i = 0; i < (finalPath.Length/3); i++)
                     {
-                        resultPath.Add(new Point(finalPath[(i * 3) + 0], finalPath[(i * 3) + 1], finalPath[(i * 3) + 2]).ToWoW());
+                        resultPath.Add(
+                            new Point(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).ToWoW());
                     }
 
                     return resultPath;
@@ -498,7 +501,6 @@ namespace nManager.Wow.Helpers.PathFinderClass
         public Pather(string continent)
             : this(continent, DefaultConnectionHandler)
         {
-
         }
 
         public Pather(string continent, ConnectionHandlerDelegate connectionHandler)
@@ -514,7 +516,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
 
                 if (!Directory.Exists(_meshPath))
-                    Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath + ")");
+                    Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath +
+                                           ")");
 
                 _mesh = new NavMesh();
                 DetourStatus status;
@@ -536,12 +539,12 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 _query = new NavMeshQuery();
                 _query.Initialize(_mesh, 65536);
-                Filter = new QueryFilter { IncludeFlags = 0xFFFF, ExcludeFlags = 0x0 };
+                Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                 // Add the costs
-                Filter.SetAreaCost((int)PolyArea.Water, 4);
-                Filter.SetAreaCost((int)PolyArea.Terrain, 1);
-                Filter.SetAreaCost((int)PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
-                Filter.SetAreaCost((int)PolyArea.Danger, 20);
+                Filter.SetAreaCost((int) PolyArea.Water, 4);
+                Filter.SetAreaCost((int) PolyArea.Terrain, 1);
+                Filter.SetAreaCost((int) PolyArea.Road, 1); // This is the Taxi system, not in tiles yet
+                Filter.SetAreaCost((int) PolyArea.Danger, 20);
             }
             catch (Exception exception)
             {
@@ -566,7 +569,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                var poly = tile.GetPolygon((ushort)(index + tile.Header.OffMeshBase));
+                var poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
                 if (poly == null)
                     return;
                 poly.Disable();
@@ -692,6 +695,5 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 }
             }
         }
-
     }
 }

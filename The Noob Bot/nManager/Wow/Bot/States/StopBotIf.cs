@@ -12,7 +12,7 @@ using Point = nManager.Wow.Class.Point;
 
 namespace nManager.Wow.Bot.States
 {
-    class StopBotIf : State
+    internal class StopBotIf : State
     {
         public override string DisplayName
         {
@@ -58,20 +58,21 @@ namespace nManager.Wow.Bot.States
         private bool _inPause;
         private Channel _whisperChannel = new Channel();
         private int _numberWhisper;
+
         public override void Run()
         {
             // If Bag Full
             if (nManagerSetting.CurrentSetting.StopTNBIfBagAreFull)
             {
-               if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-               {
-                   Thread.Sleep(800);
-                   if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
-                   {
-                       closeWow(Translate.Get(Translate.Id.Bag_is_full));
-                       return;
-                   }
-               }
+                if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                {
+                    Thread.Sleep(800);
+                    if (Usefuls.GetContainerNumFreeSlots <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    {
+                        closeWow(Translate.Get(Translate.Id.Bag_is_full));
+                        return;
+                    }
+                }
             }
 
             // If 4000 honor
@@ -93,8 +94,9 @@ namespace nManager.Wow.Bot.States
             {
                 if (_lastPos == null && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     _lastPos = ObjectManager.ObjectManager.Me.Position;
-                
-                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_lastPos) >= 450 && !ObjectManager.ObjectManager.Me.IsDeadMe)
+
+                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_lastPos) >= 450 &&
+                    !ObjectManager.ObjectManager.Me.IsDeadMe)
                 {
                     closeWow(Translate.Get(Translate.Id.Player_Teleported));
                     return;
@@ -106,9 +108,13 @@ namespace nManager.Wow.Bot.States
             // After X level
             if (_startedLevel == 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 _startedLevel = ObjectManager.ObjectManager.Me.Level;
-            if ((int)(ObjectManager.ObjectManager.Me.Level - _startedLevel) >= nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if ((int) (ObjectManager.ObjectManager.Me.Level - _startedLevel) >=
+                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
             {
-                closeWow(Translate.Get(Translate.Id.Your_player_is_now_level) + " " + ObjectManager.ObjectManager.Me.Level + " (+" + (ObjectManager.ObjectManager.Me.Level - _startedLevel) + " " + Translate.Get(Translate.Id.level_upper) + ")");
+                closeWow(Translate.Get(Translate.Id.Your_player_is_now_level) + " " +
+                         ObjectManager.ObjectManager.Me.Level + " (+" +
+                         (ObjectManager.ObjectManager.Me.Level - _startedLevel) + " " +
+                         Translate.Get(Translate.Id.level_upper) + ")");
                 return;
             }
 
@@ -122,28 +128,32 @@ namespace nManager.Wow.Bot.States
             // After X min
             if (_startedTime == 0)
                 _startedTime = Others.Times;
-            if (_startedTime + (nManagerSetting.CurrentSetting.StopTNBAfterXMinutes * 60 * 1000) < Others.Times)
+            if (_startedTime + (nManagerSetting.CurrentSetting.StopTNBAfterXMinutes*60*1000) < Others.Times)
             {
-                closeWow(Translate.Get(Translate.Id.tnb_started_since) + " " + nManagerSetting.CurrentSetting.StopTNBAfterXMinutes + " " + Translate.Get(Translate.Id.min));
+                closeWow(Translate.Get(Translate.Id.tnb_started_since) + " " +
+                         nManagerSetting.CurrentSetting.StopTNBAfterXMinutes + " " + Translate.Get(Translate.Id.min));
                 return;
             }
 
             // Pause bot if player near
-            if (nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+            if (nManagerSetting.CurrentSetting.PauseTNBIfNearByPlayer && Usefuls.InGame &&
+                !Usefuls.IsLoadingOrConnecting)
             {
                 if (!_inPause && !Products.Products.InPause)
                 {
-                    if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count >= 1 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count >= 1 && Usefuls.InGame &&
+                        !Usefuls.IsLoadingOrConnecting)
                     {
                         _inPause = true;
                         Products.Products.InPause = true;
                         Logging.Write("Player Nerby, pause bot");
                     }
                 }
-                else if(_inPause)
+                else if (_inPause)
                 {
                     Thread.Sleep(800);
-                    if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count <= 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                    if (ObjectManager.ObjectManager.GetObjectWoWPlayer().Count <= 0 && Usefuls.InGame &&
+                        !Usefuls.IsLoadingOrConnecting)
                     {
                         _inPause = false;
                         Products.Products.InPause = false;
@@ -170,25 +180,25 @@ namespace nManager.Wow.Bot.States
                         t.Start();
 
                         _msgNewWhisper = msg;
-                        var t2 = new Thread(ThreadMessageBoxNewWhisper) { Name = "Messsage Box New Whisper" };
+                        var t2 = new Thread(ThreadMessageBoxNewWhisper) {Name = "Messsage Box New Whisper"};
                         t2.Start();
                     }
-
                 }
             }
         }
 
         private bool _threadSound;
         private string _msgNewWhisper;
-        void ThreadSoundNewWhisper()
+
+        private void ThreadSoundNewWhisper()
         {
             try
             {
                 _threadSound = true;
                 var myPlayer = new SoundPlayer
-                {
-                    SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
-                };
+                                   {
+                                       SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
+                                   };
                 while (_threadSound)
                 {
                     myPlayer.PlaySync();
@@ -199,19 +209,21 @@ namespace nManager.Wow.Bot.States
             {
             }
         }
-        void ThreadMessageBoxNewWhisper()
-        {
-            MessageBox.Show(Translate.Get(Translate.Id.New_whisper) + ": " + _msgNewWhisper, Translate.Get(Translate.Id.New_whisper), MessageBoxButtons.OK,
-                                        MessageBoxIcon.Warning);
-            _threadSound = false;
 
+        private void ThreadMessageBoxNewWhisper()
+        {
+            MessageBox.Show(Translate.Get(Translate.Id.New_whisper) + ": " + _msgNewWhisper,
+                            Translate.Get(Translate.Id.New_whisper), MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+            _threadSound = false;
         }
 
-        void closeWow(string reason)
+        private void closeWow(string reason)
         {
             Logging.Write(reason);
             Memory.WowProcess.KillWowProcess();
-            MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
             Process.GetCurrentProcess().Kill();
         }
     }

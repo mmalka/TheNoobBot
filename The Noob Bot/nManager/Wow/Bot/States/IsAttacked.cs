@@ -18,7 +18,8 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority
         {
-            get { return _priority; } set { _priority = value; }
+            get { return _priority; }
+            set { _priority = value; }
         }
 
         private int _priority;
@@ -31,7 +32,8 @@ namespace nManager.Wow.Bot.States
                     Usefuls.IsLoadingOrConnecting ||
                     ObjectManager.ObjectManager.Me.IsDeadMe ||
                     !ObjectManager.ObjectManager.Me.IsValid ||
-                    (ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) ||
+                    (ObjectManager.ObjectManager.Me.IsMounted &&
+                     (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) ||
                     !Products.Products.IsStarted)
                     return false;
 
@@ -39,7 +41,8 @@ namespace nManager.Wow.Bot.States
                 _unit = null;
 
                 if (ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
-                    _unit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer());
+                    _unit =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetUnitAttackPlayer());
 
                 if (_unit != null)
                     if (_unit.IsValid)
@@ -69,7 +72,8 @@ namespace nManager.Wow.Bot.States
             {
                 Statistics.Kills++;
                 Thread.Sleep(Usefuls.Latency + 800);
-                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat && ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
+                while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat &&
+                       ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
                 {
                     Thread.Sleep(10);
                 }

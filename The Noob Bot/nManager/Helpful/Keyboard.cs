@@ -16,157 +16,157 @@ namespace nManager.Helpful
             try
             {
                 if (key == "1")
-                    return (int)VK.KEY_1;
+                    return (int) VK.KEY_1;
                 if (key == "2")
-                    return (int)VK.KEY_2;
+                    return (int) VK.KEY_2;
                 if (key == "3")
-                    return (int)VK.KEY_3;
+                    return (int) VK.KEY_3;
                 if (key == "4")
-                    return (int)VK.KEY_4;
+                    return (int) VK.KEY_4;
                 if (key == "5")
-                    return (int)VK.KEY_5;
+                    return (int) VK.KEY_5;
                 if (key == "6")
-                    return (int)VK.KEY_6;
+                    return (int) VK.KEY_6;
                 if (key == "7")
-                    return (int)VK.KEY_7;
+                    return (int) VK.KEY_7;
                 if (key == "8")
-                    return (int)VK.KEY_8;
+                    return (int) VK.KEY_8;
                 if (key == "9")
-                    return (int)VK.KEY_9;
+                    return (int) VK.KEY_9;
                 if (key == "0")
-                    return (int)VK.KEY_0;
+                    return (int) VK.KEY_0;
                 if (key == ")")
-                    return (int)Keys.OemOpenBrackets;
+                    return (int) Keys.OemOpenBrackets;
                 if (key == "-")
-                    return (int)Keys.OemMinus;
+                    return (int) Keys.OemMinus;
                 if (key == "=")
-                    return (int)Keys.Oemplus;
+                    return (int) Keys.Oemplus;
 
                 key = key.ToLower();
                 char[] test = key.ToCharArray();
                 if (key.Length > 1)
                 {
                     if (key == "{CTRL}".ToLower())
-                        return (int)Keys.ControlKey;
+                        return (int) Keys.ControlKey;
                     if (key == "{ALT}".ToLower())
-                        return (int)Keys.Alt;
+                        return (int) Keys.Alt;
                     if (key == "{SHIFT}".ToLower())
-                        return (int)Keys.Shift;
+                        return (int) Keys.Shift;
                     if (key == "{SPACE}".ToLower())
-                        return (int)Keys.Space;
+                        return (int) Keys.Space;
                     if (key == "{UP}".ToLower())
-                        return (int)Keys.Up;
+                        return (int) Keys.Up;
                     if (key == "{DOWN}".ToLower())
-                        return (int)Keys.Down;
+                        return (int) Keys.Down;
                     if (key == "{LEFT}".ToLower())
-                        return (int)Keys.Left;
+                        return (int) Keys.Left;
                     if (key == "{RIGHT}".ToLower())
-                        return (int)Keys.Right;
+                        return (int) Keys.Right;
 
                     if (key == "f1".ToLower())
-                        return (int)Keys.F1;
+                        return (int) Keys.F1;
                     if (key == "shift".ToLower())
-                        return (int)Keys.Shift;
+                        return (int) Keys.Shift;
                     if (key == "f2".ToLower())
-                        return (int)Keys.F2;
+                        return (int) Keys.F2;
                     if (key == "space".ToLower())
-                        return (int)Keys.Space;
+                        return (int) Keys.Space;
                     if (key == "ctrl".ToLower())
-                        return (int)Keys.ControlKey;
+                        return (int) Keys.ControlKey;
                     if (key == "f3".ToLower())
-                        return (int)Keys.F3;
+                        return (int) Keys.F3;
                     if (key == "f4".ToLower())
-                        return (int)Keys.F4;
+                        return (int) Keys.F4;
                     if (key == "f5".ToLower())
-                        return (int)Keys.F5;
+                        return (int) Keys.F5;
                     if (key == "f8".ToLower())
-                        return (int)Keys.F8;
+                        return (int) Keys.F8;
                     if (key == "numpad1".ToLower())
-                        return (int)Keys.NumPad1;
+                        return (int) Keys.NumPad1;
                     if (key == "f9".ToLower())
-                        return (int)Keys.F9;
+                        return (int) Keys.F9;
                     if (key == "numpad4".ToLower())
-                        return (int)Keys.NumPad4;
+                        return (int) Keys.NumPad4;
                     if (key == "numpad7".ToLower())
-                        return (int)Keys.NumPad7;
+                        return (int) Keys.NumPad7;
                     if (key == "f7".ToLower())
-                        return (int)Keys.F7;
+                        return (int) Keys.F7;
                     if (key == "alt".ToLower())
-                        return (int)Keys.Alt;
+                        return (int) Keys.Alt;
                     if (key == "numpadplus".ToLower())
-                        return (int)Keys.Add;
+                        return (int) Keys.Add;
                     if (key == "pagedown".ToLower())
-                        return (int)Keys.PageDown;
+                        return (int) Keys.PageDown;
                     if (key == "numlock".ToLower())
-                        return (int)Keys.NumLock;
+                        return (int) Keys.NumLock;
                     if (key == "up".ToLower())
-                        return (int)Keys.Up;
+                        return (int) Keys.Up;
                     if (key == "numpad2".ToLower())
-                        return (int)Keys.NumPad2;
+                        return (int) Keys.NumPad2;
                     if (key == "numpad5".ToLower())
-                        return (int)Keys.NumPad5;
+                        return (int) Keys.NumPad5;
                     if (key == "numpad8".ToLower())
-                        return (int)Keys.NumPad8;
+                        return (int) Keys.NumPad8;
                     if (key == "end".ToLower())
-                        return (int)Keys.End;
+                        return (int) Keys.End;
                     if (key == "tab".ToLower())
-                        return (int)Keys.Tab;
+                        return (int) Keys.Tab;
                     if (key == "down".ToLower())
-                        return (int)Keys.Down;
+                        return (int) Keys.Down;
                     if (key == "numpaddivide".ToLower())
-                        return (int)Keys.Divide;
+                        return (int) Keys.Divide;
                     if (key == "backspace".ToLower())
-                        return (int)Keys.Back;
+                        return (int) Keys.Back;
                     if (key == "delete".ToLower())
-                        return (int)Keys.Delete;
+                        return (int) Keys.Delete;
                     if (key == "numpad0".ToLower())
-                        return (int)Keys.NumPad0;
+                        return (int) Keys.NumPad0;
                     if (key == "numpad3".ToLower())
-                        return (int)Keys.NumPad3;
+                        return (int) Keys.NumPad3;
                     if (key == "enter".ToLower())
-                        return (int)Keys.Enter;
+                        return (int) Keys.Enter;
                     if (key == "numpad6".ToLower())
-                        return (int)Keys.NumPad6;
+                        return (int) Keys.NumPad6;
                     if (key == "numpad9".ToLower())
-                        return (int)Keys.NumPad9;
+                        return (int) Keys.NumPad9;
                     if (key == "f6".ToLower())
-                        return (int)Keys.F6;
+                        return (int) Keys.F6;
                     if (key == "pageup".ToLower())
-                        return (int)Keys.PageUp;
+                        return (int) Keys.PageUp;
                     if (key == "home".ToLower())
-                        return (int)Keys.Home;
+                        return (int) Keys.Home;
                     if (key == "escape".ToLower())
-                        return (int)Keys.Space;
+                        return (int) Keys.Space;
                     if (key == "numpadminus".ToLower())
-                        return (int)Keys.Subtract;
+                        return (int) Keys.Subtract;
                     if (key == "left".ToLower())
-                        return (int)Keys.Left;
+                        return (int) Keys.Left;
                     if (key == "f10".ToLower())
-                        return (int)Keys.F10;
+                        return (int) Keys.F10;
                     if (key == "f11".ToLower())
-                        return (int)Keys.F11;
+                        return (int) Keys.F11;
                     if (key == "right".ToLower())
-                        return (int)Keys.Right;
+                        return (int) Keys.Right;
                     if (key == "f12".ToLower())
-                        return (int)Keys.F12;
+                        return (int) Keys.F12;
                     if (key == "printscreen".ToLower())
-                        return (int)Keys.PrintScreen;
+                        return (int) Keys.PrintScreen;
                     if (key == "f14".ToLower())
-                        return (int)Keys.F14;
+                        return (int) Keys.F14;
                     if (key == "f15".ToLower())
-                        return (int)Keys.F15;
+                        return (int) Keys.F15;
                     if (key == "f16".ToLower())
-                        return (int)Keys.F16;
+                        return (int) Keys.F16;
                     if (key == "f17".ToLower())
-                        return (int)Keys.F17;
+                        return (int) Keys.F17;
                     if (key == "f18".ToLower())
-                        return (int)Keys.F18;
+                        return (int) Keys.F18;
                     if (key == "f19".ToLower())
-                        return (int)Keys.F19;
+                        return (int) Keys.F19;
                     if (key == "numpadequals".ToLower())
-                        return (int)Keys.None;
+                        return (int) Keys.None;
                     if (key == "-".ToLower())
-                        return (int)Keys.Subtract;
+                        return (int) Keys.Subtract;
                 }
 
                 return Native.VkKeyScan(test[0]);
@@ -248,7 +248,7 @@ namespace nManager.Helpful
         {
             try
             {
-                DownKey(mainWindowHandle, (Keys)VkKeyScan(key));
+                DownKey(mainWindowHandle, (Keys) VkKeyScan(key));
             }
             catch (Exception exception)
             {
@@ -266,7 +266,7 @@ namespace nManager.Helpful
         {
             try
             {
-                UpKey(mainWindowHandle, (Keys)VkKeyScan(key));
+                UpKey(mainWindowHandle, (Keys) VkKeyScan(key));
             }
             catch (Exception exception)
             {
@@ -286,7 +286,7 @@ namespace nManager.Helpful
             {
                 if (key == "/")
                 {
-                    PressKey(mainWindowHandle, (Keys)VK.DIVIDE);
+                    PressKey(mainWindowHandle, (Keys) VK.DIVIDE);
                 }
                 else if (key.Length > 1 && key.Contains(";"))
                 {
@@ -294,7 +294,7 @@ namespace nManager.Helpful
                 }
                 else
                 {
-                    PressKey(mainWindowHandle, (Keys)VkKeyScan(key));
+                    PressKey(mainWindowHandle, (Keys) VkKeyScan(key));
                 }
             }
             catch (Exception exception)
@@ -324,10 +324,10 @@ namespace nManager.Helpful
                 Thread.Sleep(10);
 
                 Native.SendMessage(mainWindowHandle, 0x100, 0xa2, 0);
-                Native.SendMessage(mainWindowHandle, 0x100, (int)Keys.V, 0);
+                Native.SendMessage(mainWindowHandle, 0x100, (int) Keys.V, 0);
                 Thread.Sleep(10);
                 Native.SendMessage(mainWindowHandle, 0x101, 0xa2, 0);
-                Native.SendMessage(mainWindowHandle, 0x101, (int)Keys.V, 0);
+                Native.SendMessage(mainWindowHandle, 0x101, (int) Keys.V, 0);
 
                 Thread.Sleep(10);
             }

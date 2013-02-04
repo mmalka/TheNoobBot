@@ -7,13 +7,16 @@ namespace nManager.Wow.Helpers
 {
     public class TraceLine
     {
-        static Point _toLast = new Point();
-        static Point _fromLast = new Point();
-        static bool _lastResult = true;
+        private static Point _toLast = new Point();
+        private static Point _fromLast = new Point();
+        private static bool _lastResult = true;
 
         public static bool TraceLineGo(Point to)
         {
-            try { return TraceLineGo(ObjectManager.ObjectManager.Me.Position, to); }
+            try
+            {
+                return TraceLineGo(ObjectManager.ObjectManager.Me.Position, to);
+            }
             catch (Exception exception)
             {
                 Logging.WriteError("TraceLineGo(Point to): " + exception);
@@ -21,7 +24,8 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static bool TraceLineGo(Point from, Point to, Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll)
+        public static bool TraceLineGo(Point from, Point to,
+                                       Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll)
         {
             try
             {
@@ -36,11 +40,11 @@ namespace nManager.Wow.Helpers
                     _fromLast = from;
 
                     // protected delegate byte Traceline(ref WoWPoint end, ref WoWPoint start, ref WoWPoint result, ref float distance, uint flags, ref WoWPoint Optional);
-                    var end = Memory.WowMemory.Memory.AllocateMemory(0x4 * 3);
-                    var start = Memory.WowMemory.Memory.AllocateMemory(0x4 * 3);
-                    var result = Memory.WowMemory.Memory.AllocateMemory(0x4 * 3);
+                    var end = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    var start = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    var result = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
                     var distance = Memory.WowMemory.Memory.AllocateMemory(0x4);
-                    var optional = Memory.WowMemory.Memory.AllocateMemory(0x4 * 3);
+                    var optional = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
                     var resultRet = Memory.WowMemory.Memory.AllocateMemory(0x4);
 
 
@@ -67,30 +71,31 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.WriteInt(resultRet, 0);
 
                     var asm = new[]
-                {
-                "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                "test eax, eax",
-                "je @out",
-
-                "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                "test eax, eax",
-                "je @out",
-
-                "push " + 0,
-                "push " + (uint)hitFlags,
-                "push " + distance,
-                "push " + result,
-                "push " + start,
-                "push " + end,
-                "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.CGWorldFrame__Intersect),
-
-                "mov [" + resultRet + "], al",
-
-                "add esp, " + (uint)0x18,
-
-                "@out:",
-                "retn"
-                 };
+                                  {
+                                      "call " +
+                                      (Memory.WowProcess.WowModule +
+                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                                      "test eax, eax",
+                                      "je @out",
+                                      "call " +
+                                      (Memory.WowProcess.WowModule +
+                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                                      "test eax, eax",
+                                      "je @out",
+                                      "push " + 0,
+                                      "push " + (uint) hitFlags,
+                                      "push " + distance,
+                                      "push " + result,
+                                      "push " + start,
+                                      "push " + end,
+                                      "call " +
+                                      (Memory.WowProcess.WowModule +
+                                       (uint) Addresses.FunctionWow.CGWorldFrame__Intersect),
+                                      "mov [" + resultRet + "], al",
+                                      "add esp, " + (uint) 0x18,
+                                      "@out:",
+                                      "retn"
+                                  };
 
 
                     Memory.WowMemory.InjectAndExecute(asm);
@@ -110,10 +115,11 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("TraceLineGo(Point from, Point to, Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll): " + exception);
+                Logging.WriteError(
+                    "TraceLineGo(Point from, Point to, Enums.CGWorldFrameHitFlags hitFlags = Enums.CGWorldFrameHitFlags.HitTestAll): " +
+                    exception);
                 return true;
             }
         }
-
     }
 }

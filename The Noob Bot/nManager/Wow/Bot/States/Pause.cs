@@ -7,7 +7,6 @@ namespace nManager.Wow.Bot.States
 {
     public class Pause : State
     {
-
         public override string DisplayName
         {
             get { return "Pause"; }
@@ -40,6 +39,7 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             Logging.Write("Pause started");

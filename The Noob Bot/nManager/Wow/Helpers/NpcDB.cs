@@ -9,13 +9,15 @@ namespace nManager.Wow.Helpers
     public class NpcDB
     {
         private static List<Npc> _listNpc;
+
         public static List<Npc> ListNpc
         {
             get
             {
                 try
                 {
-                    LoadList(); return _listNpc;
+                    LoadList();
+                    return _listNpc;
                 }
                 catch (Exception ex)
                 {
@@ -27,7 +29,8 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    LoadList(); _listNpc = value;
+                    LoadList();
+                    _listNpc = value;
                 }
                 catch (Exception ex)
                 {
@@ -36,18 +39,17 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        static void LoadList()
+        private static void LoadList()
         {
             try
             {
-                lock (typeof(NpcDB))
+                lock (typeof (NpcDB))
                 {
                     if (_listNpc == null)
                         _listNpc = XmlSerializer.Deserialize<List<Npc>>(Application.StartupPath + "\\Data\\NpcDB.xml");
                     if (_listNpc == null)
                         _listNpc = new List<Npc>();
                 }
-
             }
             catch (Exception ex)
             {
@@ -59,7 +61,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                AddNpcRange(new List<Npc> { npc });
+                AddNpcRange(new List<Npc> {npc});
             }
             catch (Exception ex)
             {
@@ -72,14 +74,13 @@ namespace nManager.Wow.Helpers
             try
             {
                 LoadList();
-                lock (typeof(NpcDB))
+                lock (typeof (NpcDB))
                 {
                     foreach (var npc in npcList)
                     {
                         bool found = false;
                         foreach (var npc1 in ListNpc)
                         {
-
                             if (npc1.Position.DistanceTo(npc.Position) < 1 && npc1.Entry == npc.Entry)
                             {
                                 found = true;
@@ -92,7 +93,6 @@ namespace nManager.Wow.Helpers
 
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                 }
-
             }
             catch (Exception ex)
             {
@@ -104,10 +104,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var faction = (Npc.FactionType)Enum.Parse(typeof(Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
-                return GetNpcNearby(type, faction, (Enums.ContinentId)Usefuls.ContinentId,
-                                    ObjectManager.ObjectManager.Me.Position, (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName) && !Usefuls.IsSwimming));
-
+                var faction =
+                    (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
+                return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId,
+                                    ObjectManager.ObjectManager.Me.Position,
+                                    (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName) &&
+                                     !Usefuls.IsSwimming));
             }
             catch (Exception ex)
             {
@@ -115,7 +117,9 @@ namespace nManager.Wow.Helpers
                 return new Npc();
             }
         }
-        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition, bool forceFlying = false)
+
+        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId,
+                                       Point currentPosition, bool forceFlying = false)
         {
             try
             {
@@ -125,10 +129,13 @@ namespace nManager.Wow.Helpers
                     if (npc.Position.Type.ToLower() != "flying" && forceFlying)
                         continue;
 
-                    if ((npc.Faction == faction || npc.Faction == Npc.FactionType.Neutral) && npc.Type == type && npc.ContinentId == continentId)
+                    if ((npc.Faction == faction || npc.Faction == Npc.FactionType.Neutral) && npc.Type == type &&
+                        npc.ContinentId == continentId)
                     {
-                        if (npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition) || npcTemp.Position.X == 0)
-                            if (npc.Position.DistanceTo(currentPosition) <= nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
+                        if (npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition) ||
+                            npcTemp.Position.X == 0)
+                            if (npc.Position.DistanceTo(currentPosition) <=
+                                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
                                 npcTemp = npc;
                     }
                 }
@@ -136,7 +143,9 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception ex)
             {
-                Logging.WriteError("NpcDB > GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition): " + ex);
+                Logging.WriteError(
+                    "NpcDB > GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition): " +
+                    ex);
                 return new Npc();
             }
         }

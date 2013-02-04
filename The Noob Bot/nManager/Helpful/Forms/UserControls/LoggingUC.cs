@@ -21,7 +21,8 @@ namespace nManager.Helpful.Forms.UserControls
                 Logging.WriteError("LoggingUC(): " + e);
             }
         }
-        void Translate()
+
+        private void Translate()
         {
             labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Normal);
             labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Debug);

@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
 {
     public class Archaeology
     {
-        static List<Digsite> _allDigsiteZone = new List<Digsite>();
+        private static List<Digsite> _allDigsiteZone = new List<Digsite>();
 
         public static void ClearList()
         {
@@ -24,8 +24,9 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static List<int> SurveyList = new List<int> { 10103, 10102, 10101};
+        public static List<int> SurveyList = new List<int> {10103, 10102, 10101};
         private static List<int> _archaeologyItemsFindList;
+
         public static List<int> ArchaeologyItemsFindList
         {
             get
@@ -35,7 +36,8 @@ namespace nManager.Wow.Helpers
                     if (_archaeologyItemsFindList == null)
                     {
                         _archaeologyItemsFindList = new List<int>();
-                        foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
+                        foreach (
+                            var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
                         {
                             try
                             {
@@ -68,7 +70,9 @@ namespace nManager.Wow.Helpers
                     {
                         Logging.Write("Loading ArchaeologistDigsites.xml");
 
-                        listDigsitesZone = XmlSerializer.Deserialize<List<Digsite>>(Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml");
+                        listDigsitesZone =
+                            XmlSerializer.Deserialize<List<Digsite>>(Application.StartupPath +
+                                                                     "\\Data\\ArchaeologistDigsites.xml");
 
                         listDigsitesZone = listDigsitesZone.OrderByDescending(c => c.PriorityDigsites).ToList();
 
@@ -97,7 +101,7 @@ namespace nManager.Wow.Helpers
             {
                 GetAllDigsitesZone();
                 var resultList = new List<Digsite>();
-                var continentId = (uint)Usefuls.ContinentId;
+                var continentId = (uint) Usefuls.ContinentId;
 
                 var digsitesZoneLua = GetDigsitesZoneLua();
 
@@ -108,7 +112,8 @@ namespace nManager.Wow.Helpers
                         bool zonefound = false;
                         for (var i = 0; i <= _allDigsiteZone.Count - 1; i++)
                         {
-                            if (_allDigsiteZone[i].px == dl.px && _allDigsiteZone[i].py == dl.py && _allDigsiteZone[i].continentId == continentId && _allDigsiteZone[i].Active)
+                            if (_allDigsiteZone[i].px == dl.px && _allDigsiteZone[i].py == dl.py &&
+                                _allDigsiteZone[i].continentId == continentId && _allDigsiteZone[i].Active)
                             {
                                 var dt = _allDigsiteZone[i];
 
@@ -129,12 +134,14 @@ namespace nManager.Wow.Helpers
                                 dt.name = dl.name;
                                 resultList.Add(dt);
                                 zonefound = true;
-                                Logging.Write("Digsite zone found: Name: " + dl.name + " - Distance =" + dt.position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
+                                Logging.Write("Digsite zone found: Name: " + dl.name + " - Distance =" +
+                                              dt.position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
                                 break;
                             }
                         }
                         if (!zonefound)
-                            Logging.Write("Digsite zone not found in database: Name=" + dl.name + " px=" + dl.px + " py=" + dl.py);
+                            Logging.Write("Digsite zone not found in database: Name=" + dl.name + " px=" + dl.px +
+                                          " py=" + dl.py);
                     }
                 }
                 else
@@ -148,18 +155,20 @@ namespace nManager.Wow.Helpers
                 return new List<Digsite>();
             }
         }
+
         public static bool DigsiteZoneIsAvailable(Digsite digsitesZone)
         {
             try
             {
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
-                var continentId = (uint)Usefuls.ContinentId;
+                var continentId = (uint) Usefuls.ContinentId;
 
                 if (digsitesZoneLua.Count > 0)
                 {
                     foreach (DigsitesZoneLua dl in digsitesZoneLua)
                     {
-                        if (digsitesZone.px == dl.px && digsitesZone.py == dl.py && digsitesZone.continentId == continentId)
+                        if (digsitesZone.px == dl.px && digsitesZone.py == dl.py &&
+                            digsitesZone.continentId == continentId)
                         {
                             return true;
                         }
@@ -172,7 +181,8 @@ namespace nManager.Wow.Helpers
             }
             return false;
         }
-        static List<DigsitesZoneLua> GetDigsitesZoneLua()
+
+        private static List<DigsitesZoneLua> GetDigsitesZoneLua()
         {
             try
             {
@@ -192,12 +202,13 @@ namespace nManager.Wow.Helpers
                 luaCommand = luaCommand + "for index = 1 , totalPOIs do ";
                 luaCommand = luaCommand + "	local name, description, textureIndex, px, py = GetMapLandmarkInfo(index) ";
                 luaCommand = luaCommand + "	if textureIndex == 177 then ";
-                luaCommand = luaCommand + "		" + randomString + " = " + randomString + " .. name .. '" + separator + "' .. px .. '" + separator + "' .. py .. '" + separatorDigsites + "' ";
+                luaCommand = luaCommand + "		" + randomString + " = " + randomString + " .. name .. '" + separator +
+                             "' .. px .. '" + separator + "' .. py .. '" + separatorDigsites + "' ";
                 luaCommand = luaCommand + "	end ";
                 luaCommand = luaCommand + "end ";
 
                 string resultLua;
-                lock (typeof(Archaeology))
+                lock (typeof (Archaeology))
                 {
                     Lua.LuaDoString(luaCommand);
                     resultLua = Lua.GetLocalizedText(randomString);
@@ -217,18 +228,22 @@ namespace nManager.Wow.Helpers
                                 {
                                     string[] sDigsites = s.Split(Convert.ToChar(separator));
                                     var tDigsitesZoneLua = new DigsitesZoneLua
-                                    {
-                                        name = sDigsites[0],
-                                        px = sDigsites[1],
-                                        py = sDigsites[2]
-                                    };
+                                                               {
+                                                                   name = sDigsites[0],
+                                                                   px = sDigsites[1],
+                                                                   py = sDigsites[2]
+                                                               };
                                     resultList.Add(tDigsitesZoneLua);
                                 }
-                                catch { }
+                                catch
+                                {
+                                }
                             }
                         }
                     }
-                    catch { }
+                    catch
+                    {
+                    }
                 }
 
                 return resultList;
@@ -240,7 +255,8 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        static Spell archaeologySpell;
+        private static Spell archaeologySpell;
+
         public static void SolveAllArtifact()
         {
             try
@@ -277,7 +293,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        struct DigsitesZoneLua
+        private struct DigsitesZoneLua
         {
             public string name;
             public string px;

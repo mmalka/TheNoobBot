@@ -11,7 +11,8 @@ namespace nManager.Wow.Helpers
             try
             {
                 Thread.Sleep(1000);
-                Lua.LuaDoString("for i=1,GetNumGossipOptions() do local _,n=GetGossipOptions(); if n == \"trainer\" then SelectGossipOption(i) end end");
+                Lua.LuaDoString(
+                    "for i=1,GetNumGossipOptions() do local _,n=GetGossipOptions(); if n == \"trainer\" then SelectGossipOption(i) end end");
                 Thread.Sleep(1000);
                 Lua.LuaDoString("SetTrainerServiceTypeFilter(\"available\",1);");
                 Lua.LuaDoString("SetTrainerServiceTypeFilter(\"unavailable\",0);");

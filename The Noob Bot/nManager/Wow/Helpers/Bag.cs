@@ -32,7 +32,7 @@ namespace nManager.Wow.Helpers
 
                 string listLinkItem;
 
-                lock (typeof(Bag))
+                lock (typeof (Bag))
                 {
                     Lua.LuaDoString(luaCommand);
 
@@ -67,10 +67,16 @@ namespace nManager.Wow.Helpers
                         {
                             if (o.Type == Enums.WoWObjectType.Item)
                             {
-                                var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint)Descriptors.ObjectFields.Entry);
-                                var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint)Descriptors.ItemFields.Owner);
+                                var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
+                                                                                                    (uint)
+                                                                                                    Descriptors
+                                                                                                        .ObjectFields
+                                                                                                        .Entry);
+                                var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(
+                                    o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 
-                                if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid && !emptyBlackList.Contains(o.Entry))
+                                if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid &&
+                                    !emptyBlackList.Contains(o.Entry))
                                 {
                                     bagItem.Add(o);
                                     emptyBlackList.Add(o.Entry);
@@ -113,7 +119,7 @@ namespace nManager.Wow.Helpers
                 scriptLua = scriptLua + "end ";
 
 
-                lock (typeof(Bag))
+                lock (typeof (Bag))
                 {
                     Lua.LuaDoString(scriptLua);
                     return Lua.GetLocalizedText(randomString) == "True";
@@ -126,6 +132,9 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static int NumFreeSlots { get { return Usefuls.GetContainerNumFreeSlots; } }
+        public static int NumFreeSlots
+        {
+            get { return Usefuls.GetContainerNumFreeSlots; }
+        }
     }
 }

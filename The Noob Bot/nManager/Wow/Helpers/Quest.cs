@@ -38,7 +38,7 @@ namespace nManager.Wow.Helpers
             command += luaResultStr + " = " + luaResultStr + " .. \"^\" .. key ";
             command += "end";
             Lua.LuaDoString(command);
-            string  sResult = Lua.GetLocalizedText(luaResultStr);
+            string sResult = Lua.GetLocalizedText(luaResultStr);
 
             foreach (string toto in sResult.Split(Convert.ToChar("^")))
             {
@@ -121,13 +121,19 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + Descriptors.startDescriptors);
-                uint addressQL = descriptorsArray + ((uint)Descriptors.PlayerFields.QuestLog * Descriptors.multiplicator);
+                uint descriptorsArray =
+                    Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                     Descriptors.startDescriptors);
+                uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.multiplicator);
 
                 List<int> list = new List<int>();
                 for (int index = 0; index < 50; ++index)
                 {
-                    Quest.PlayerQuest playerQuest = (Quest.PlayerQuest)Memory.WowMemory.Memory.ReadObject((uint)(addressQL + (Marshal.SizeOf(typeof(Quest.PlayerQuest)) * index)), typeof(Quest.PlayerQuest));
+                    Quest.PlayerQuest playerQuest =
+                        (Quest.PlayerQuest)
+                        Memory.WowMemory.Memory.ReadObject(
+                            (uint) (addressQL + (Marshal.SizeOf(typeof (Quest.PlayerQuest))*index)),
+                            typeof (Quest.PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         Console.WriteLine("q: " + playerQuest.ID);
@@ -151,15 +157,15 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-              string randomString = Others.GetRandomString(Others.Random(4, 10));
-              //Lua.LuaDoString("SelectQuestLogEntry(" + questId + "); " + randomString + " = IsQuestCompletable();"); // ToDo: SelectQuestLogEntry probably wrong
-              Lua.LuaDoString("_, _, _, " + randomString + " = GetGossipActiveQuests()");
-              string ret = Lua.GetLocalizedText(randomString);
-              return ret == "1";
+                string randomString = Others.GetRandomString(Others.Random(4, 10));
+                //Lua.LuaDoString("SelectQuestLogEntry(" + questId + "); " + randomString + " = IsQuestCompletable();"); // ToDo: SelectQuestLogEntry probably wrong
+                Lua.LuaDoString("_, _, _, " + randomString + " = GetGossipActiveQuests()");
+                string ret = Lua.GetLocalizedText(randomString);
+                return ret == "1";
             }
             catch
             {
-              return false;
+                return false;
             }
         }
 
@@ -168,8 +174,7 @@ namespace nManager.Wow.Helpers
         {
             public int ID;
             public Quest.PlayerQuest.StateFlag State;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
-            public short[] ObjectiveRequiredCounts;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public short[] ObjectiveRequiredCounts;
             public int Time;
 
             public enum StateFlag : uint

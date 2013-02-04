@@ -30,8 +30,8 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                UInt64 t = (UInt64)(ObjectManager.Me.Experience - _startXp) * (60 * 60);
-                int r = (int)(t / (UInt64)(Others.TimesSec - _startTime));
+                UInt64 t = (UInt64) (ObjectManager.Me.Experience - _startXp)*(60*60);
+                int r = (int) (t/(UInt64) (Others.TimesSec - _startTime));
 
                 return r;
             }
@@ -67,7 +67,7 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                return (Usefuls.GetHonorPoint - _startHonor) * (60 * 60) / (Others.TimesSec - _startTime);
+                return (Usefuls.GetHonorPoint - _startHonor)*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
@@ -85,7 +85,7 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                return (int)_loots * (60 * 60) / (Others.TimesSec - _startTime);
+                return (int) _loots*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
@@ -103,7 +103,7 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                return (int)_kills * (60 * 60) / (Others.TimesSec - _startTime);
+                return (int) _kills*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
@@ -121,7 +121,7 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                return (int)_farms * (60 * 60) / (Others.TimesSec - _startTime);
+                return (int) _farms*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
@@ -139,7 +139,7 @@ namespace nManager
                 if (Others.TimesSec <= _startTime)
                     return 0;
 
-                return (int)_deaths * (60 * 60) / (Others.TimesSec - _startTime);
+                return (int) _deaths*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
@@ -153,6 +153,7 @@ namespace nManager
         private static int _startHonor;
 
         private static uint _loots;
+
         public static uint Loots
         {
             get { return _loots; }
@@ -160,6 +161,7 @@ namespace nManager
         }
 
         private static uint _kills;
+
         public static uint Kills
         {
             get { return _kills; }
@@ -167,6 +169,7 @@ namespace nManager
         }
 
         private static int _offSetStats;
+
         public static int OffsetStats
         {
             get { return _offSetStats; }
@@ -174,6 +177,7 @@ namespace nManager
         }
 
         private static uint _deaths;
+
         public static uint Deaths
         {
             get { return _deaths; }
@@ -181,6 +185,7 @@ namespace nManager
         }
 
         private static uint _farms;
+
         public static uint Farms
         {
             get { return _farms; }
@@ -188,6 +193,7 @@ namespace nManager
         }
 
         private static uint _stucks;
+
         public static uint Stucks
         {
             get { return _stucks; }

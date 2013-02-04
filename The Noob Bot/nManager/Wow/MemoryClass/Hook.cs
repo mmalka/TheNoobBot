@@ -11,7 +11,6 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.MemoryClass
 {
-
     /// <summary>
     /// Hook endscene for injection
     /// </summary>
@@ -29,10 +28,12 @@ namespace nManager.Wow.MemoryClass
         internal uint JumpAddress;
         private uint _retnInjectionAsm;
         private uint _startInject;
+
         /// <summary>
         /// Thread Hoocked
         /// </summary>
         public bool ThreadHooked;
+
         public int OffsetHookMemoryAccess = 0xB5;
 
         /// <summary>
@@ -89,13 +90,19 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        if (Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWowVersion) !=
+                        if (
+                            Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion) !=
                             Information.TargetWowBuild)
                         {
                             if (!System.Diagnostics.Process.GetProcessById(Memory.ProcessId).HasExited)
-                                MessageBox.Show(Translate.Get(Translate.Id.This_Programme_is_for_The_Game) + " " + Information.TargetWowVersion + "." +
-                                            Information.TargetWowBuild +
-                                            " . " + Translate.Get(Translate.Id.Please_change_your_game_version_or_change_this_programme_version) + ".");
+                                MessageBox.Show(Translate.Get(Translate.Id.This_Programme_is_for_The_Game) + " " +
+                                                Information.TargetWowVersion + "." +
+                                                Information.TargetWowBuild +
+                                                " . " +
+                                                Translate.Get(
+                                                    Translate.Id
+                                                             .Please_change_your_game_version_or_change_this_programme_version) +
+                                                ".");
                             return;
                         }
 
@@ -103,22 +110,23 @@ namespace nManager.Wow.MemoryClass
                         JumpAddress = GetJumpAdresse();
 
                         if (Memory.ReadByte(JumpAddress) == 0xE9 && (InjectedCodeDetour == 0 || _addresseInjection == 0))
-                        // check if wow is already hooked and dispose Hook
+                            // check if wow is already hooked and dispose Hook
                         {
                             DisposeHooking();
                         }
 
-                        if (Memory.ReadByte(JumpAddress) != 0xE9 || true) // check if wow is already hooked // TODO try fix error rehook
+                        if (Memory.ReadByte(JumpAddress) != 0xE9 || true)
+                            // check if wow is already hooked // TODO try fix error rehook
                         {
                             try
                             {
-                                _startInject = (uint)Others.Random(0, 60);
+                                _startInject = (uint) Others.Random(0, 60);
 
 
                                 ThreadHooked = false;
                                 // allocate memory to store injected code:
                                 InjectedCodeDetour = Memory.AllocateMemory(4000 + Others.Random(1, 2000)) +
-                                                       _startInject;
+                                                     _startInject;
                                 // allocate memory the new injection code pointer:
                                 _addresseInjection = Memory.AllocateMemory(0x4);
                                 Memory.AllocateMemory(0x4);
@@ -249,12 +257,12 @@ namespace nManager.Wow.MemoryClass
                                 // injected code
 
                                 Memory.Asm.Inject(InjectedCodeDetour);
-                                var sizeAsm = (uint)(Memory.Asm.Assemble().Length);
+                                var sizeAsm = (uint) (Memory.Asm.Assemble().Length);
 
                                 // copy and save original instructions
                                 Memory.Asm.Clear();
 
-                                
+
                                 /*foreach (var opcode in D3D.OriginalOpcode)
                                 {
                                     Memory.Asm.AddLine(opcode);
@@ -268,7 +276,7 @@ namespace nManager.Wow.MemoryClass
                                 {
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
                                     if (D3D.OriginalBytes[0] == 0xE9)
-                                        D3D.OriginalBytes = new byte[] { 139, 255, 85, 139, 236 };
+                                        D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
@@ -285,7 +293,7 @@ namespace nManager.Wow.MemoryClass
                                     Memory.Asm.AddLine(ProtectHook());
                                 }
 
-                                Memory.Asm.Inject(InjectedCodeDetour + sizeAsm + (uint)sizeJumpBack);
+                                Memory.Asm.Inject(InjectedCodeDetour + sizeAsm + (uint) sizeJumpBack);
 
                                 // create hook jump
                                 Memory.Asm.Clear(); // $jmpto
@@ -313,7 +321,6 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
-
                 if (D3D.IsD3D11(Memory.ProcessId))
                     return D3D.D3D11Adresse();
                 else
@@ -332,7 +339,6 @@ namespace nManager.Wow.MemoryClass
         /// <returns></returns>
         internal static string ProtectHook()
         {
-
             var asm = new List<string>
                           {
                               "mov edx, edx",
@@ -433,7 +439,7 @@ namespace nManager.Wow.MemoryClass
 
 
                             // Allocation Memory
-                            var startBaseInject = (uint)Others.Random(0, 60);
+                            var startBaseInject = (uint) Others.Random(0, 60);
                             uint injectionAsmCodecave =
                                 Memory.AllocateMemory(Memory.Asm.Assemble().Length + Others.Random(60, 80)) +
                                 startBaseInject;
@@ -495,7 +501,8 @@ namespace nManager.Wow.MemoryClass
             }
             catch (Exception e)
             {
-                Logging.WriteError("InjectAndExecute(IEnumerable<string> asm, bool returnValue = false, int returnLength = 0): " + e);
+                Logging.WriteError(
+                    "InjectAndExecute(IEnumerable<string> asm, bool returnValue = false, int returnLength = 0): " + e);
             }
             return new byte[0];
         }
@@ -533,10 +540,10 @@ namespace nManager.Wow.MemoryClass
                 foreach (ProcessModule v in
                     from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
                 {
-                    baseModule = (uint)v.BaseAddress;
+                    baseModule = (uint) v.BaseAddress;
                 }
-                
-                return memory.ReadUTF8String(baseModule + (uint)Addresses.Player.playerName);
+
+                return memory.ReadUTF8String(baseModule + (uint) Addresses.Player.playerName);
             }
             catch (Exception e)
             {
@@ -556,9 +563,10 @@ namespace nManager.Wow.MemoryClass
                 foreach (ProcessModule v in
                     from ProcessModule v in memory.Modules where v.ModuleName.ToLower() == "wow.exe" select v)
                 {
-                    baseModule = (uint)v.BaseAddress;
+                    baseModule = (uint) v.BaseAddress;
                 }
-                return (memory.ReadInt(baseModule + (uint)Addresses.GameInfo.isLoadingOrConnecting) == 0) && (memory.ReadByte(baseModule + (uint)Addresses.GameInfo.gameState) > 0);
+                return (memory.ReadInt(baseModule + (uint) Addresses.GameInfo.isLoadingOrConnecting) == 0) &&
+                       (memory.ReadByte(baseModule + (uint) Addresses.GameInfo.gameState) > 0);
             }
             catch (Exception e)
             {
@@ -567,5 +575,4 @@ namespace nManager.Wow.MemoryClass
             return false;
         }
     }
-
 }

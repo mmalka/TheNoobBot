@@ -13,14 +13,15 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-            string val = command.Aggregate("", (current, line) => current + (" " + line));
-            LuaDoString(val, notInGameMode);
+                string val = command.Aggregate("", (current, line) => current + (" " + line));
+                LuaDoString(val, notInGameMode);
             }
             catch (Exception exception)
             {
                 Logging.WriteError("LuaDoString(List<string> command, bool notInGameMode = false): " + exception);
             }
         }
+
         public static string LuaDoString(string command, string returnArgument, bool notInGameMode = false)
         {
             try
@@ -33,7 +34,8 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LuaDoString(string command, string returnArgument, bool notInGameMode = false): " + exception);
+                Logging.WriteError("LuaDoString(string command, string returnArgument, bool notInGameMode = false): " +
+                                   exception);
                 return "";
             }
         }
@@ -46,7 +48,9 @@ namespace nManager.Wow.Helpers
                     return;
 
                 // Allocate memory
-                var doStringArgCodecave = Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 + Others.Random(1, 25));
+                var doStringArgCodecave =
+                    Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 +
+                                                           Others.Random(1, 25));
                 if (doStringArgCodecave <= 0)
                     return;
                 // Write value:
@@ -55,28 +59,33 @@ namespace nManager.Wow.Helpers
                 //Console.WriteLine("LuaDoString(" + command + ", " + notInGameMode + ")");
 
                 // Write the asm stuff for Lua_DoString
-                var asm = new[] 
-            {
-                "mov eax, " + doStringArgCodecave,
-                "push 0",
-                "push eax",
-                "push eax",
-                "mov eax, " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.FrameScript_ExecuteBuffer), // Lua_DoString
-                "call eax",
-                "add esp, 0xC",
-
-                "@out:",
-                "retn"
-            };
+                var asm = new[]
+                              {
+                                  "mov eax, " + doStringArgCodecave,
+                                  "push 0",
+                                  "push eax",
+                                  "push eax",
+                                  "mov eax, " +
+                                  (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.FrameScript_ExecuteBuffer)
+                                  , // Lua_DoString
+                                  "call eax",
+                                  "add esp, 0xC",
+                                  "@out:",
+                                  "retn"
+                              };
 
                 if (!notInGameMode)
                 {
                     var tempsAsm = new List<string>
                                        {
-                                           "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                                           "call " +
+                                           (Memory.WowProcess.WowModule +
+                                            (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                                            "test eax, eax",
                                            "je @out",
-                                           "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                                           "call " +
+                                           (Memory.WowProcess.WowModule +
+                                            (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                                            "test eax, eax",
                                            "je @out"
                                        };
@@ -123,7 +132,9 @@ namespace nManager.Wow.Helpers
                 if (command.Replace(" ", "").Length <= 0)
                     return "";
                 // Allocate memory for command
-                var luaGetLocalizedTextSpace = Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 + Others.Random(1, 25));
+                var luaGetLocalizedTextSpace =
+                    Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 +
+                                                           Others.Random(1, 25));
                 if (luaGetLocalizedTextSpace <= 0)
                     return "";
                 // Write command in the allocated memory
@@ -131,26 +142,31 @@ namespace nManager.Wow.Helpers
 
                 // Console.WriteLine("GetLocalizedText(" + Commandline + ")");
 
-                var asm = new[] 
-                    {
-                        "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                        "test eax, eax",
-                        "je @out",
-
-                         "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "test eax, eax",
-                        "je @out",
-
-                        "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "mov ecx, eax",
-                        "push -1",
-                        "mov edx, " + luaGetLocalizedTextSpace + "",
-                        "push edx",
-                        "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.FrameScript__GetLocalizedText),
-
-                        "@out:",
-                        "retn"
-                    };
+                var asm = new[]
+                              {
+                                  "call " +
+                                  (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                                  ,
+                                  "test eax, eax",
+                                  "je @out",
+                                  "call " +
+                                  (Memory.WowProcess.WowModule +
+                                   (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                                  "test eax, eax",
+                                  "je @out",
+                                  "call " +
+                                  (Memory.WowProcess.WowModule +
+                                   (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                                  "mov ecx, eax",
+                                  "push -1",
+                                  "mov edx, " + luaGetLocalizedTextSpace + "",
+                                  "push edx",
+                                  "call " +
+                                  (Memory.WowProcess.WowModule +
+                                   (uint) Addresses.FunctionWow.FrameScript__GetLocalizedText),
+                                  "@out:",
+                                  "retn"
+                              };
 
                 // Inject the shit
                 var sResult = Encoding.UTF8.GetString(Memory.WowMemory.InjectAndExecute(asm, true));

@@ -7,7 +7,7 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Bot.States
 {
-    class relogger : State
+    internal class relogger : State
     {
         public override string DisplayName
         {
@@ -30,7 +30,9 @@ namespace nManager.Wow.Bot.States
                     return false;
 
                 // Need relogger
-                if (nManagerSetting.CurrentSetting.ActivateReloggerFeature && nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount != string.Empty && nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount != string.Empty)
+                if (nManagerSetting.CurrentSetting.ActivateReloggerFeature &&
+                    nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount != string.Empty &&
+                    nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount != string.Empty)
                     if (!Usefuls.InGame)
                         return true;
 
@@ -49,6 +51,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private bool _relogger;
+
         public override void Run()
         {
             if (Usefuls.InGame)
@@ -63,14 +66,14 @@ namespace nManager.Wow.Bot.States
                     Logging.Status = "relogger";
 
                 var s = new Login.SettingsLogin
-                { 
-                    Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
-                    Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,
-                    Realm = Usefuls.RealmName,
-                    Character = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
-                                                                            (uint)Addresses.Player.playerName),
-                    BNetName = nManagerSetting.CurrentSetting.BattleNetSubAccount,
-                };
+                            {
+                                Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
+                                Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,
+                                Realm = Usefuls.RealmName,
+                                Character = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
+                                                                                   (uint) Addresses.Player.playerName),
+                                BNetName = nManagerSetting.CurrentSetting.BattleNetSubAccount,
+                            };
 
                 Login.Pulse(s);
                 _relogger = true;

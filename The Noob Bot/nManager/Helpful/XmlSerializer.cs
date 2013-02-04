@@ -67,8 +67,8 @@ namespace nManager.Helpful
                 return default(T);
 
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            var s = new System.Xml.Serialization.XmlSerializer(typeof(T));
-            var result = (T)s.Deserialize(fs);
+            var s = new System.Xml.Serialization.XmlSerializer(typeof (T));
+            var result = (T) s.Deserialize(fs);
             fs.Close();
             return result;
         }

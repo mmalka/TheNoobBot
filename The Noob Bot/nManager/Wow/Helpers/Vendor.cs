@@ -19,20 +19,23 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void SellItems(List<String> itemSell, List<string> itemNoSell, List<Enums.WoWItemQuality> itemQuality)
+        public static void SellItems(List<String> itemSell, List<string> itemNoSell,
+                                     List<Enums.WoWItemQuality> itemQuality)
         {
             try
             {
                 string syntaxSellItem = itemSell.Aggregate("", (current, s) => current + " or namei == \"" + s + "\" ");
 
-                string syntaxQualityItem = itemQuality.Aggregate(" 1 == 2 ", (current, s) => current + " or r == " + (uint)s + " ");
+                string syntaxQualityItem = itemQuality.Aggregate(" 1 == 2 ",
+                                                                 (current, s) => current + " or r == " + (uint) s + " ");
 
                 string syntaxNoSellItem = "";
                 string syntaxNoSellItemEnd = "";
                 if (itemNoSell.Count > 0)
                 {
                     syntaxNoSellItemEnd = " end ";
-                    syntaxNoSellItem = itemNoSell.Aggregate(" if ", (current, s) => current + " and namei ~= \"" + s + "\" ");
+                    syntaxNoSellItem = itemNoSell.Aggregate(" if ",
+                                                            (current, s) => current + " and namei ~= \"" + s + "\" ");
                     syntaxNoSellItem = syntaxNoSellItem.Replace("if  and", "if ");
                     syntaxNoSellItem = syntaxNoSellItem + " then ";
                 }
@@ -61,7 +64,9 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception e)
             {
-                Logging.WriteError("SellItems(List<String> itemSell, List<string> itemNoSell, List<Enums.WoWItemQuality> itemQuality): " + e);
+                Logging.WriteError(
+                    "SellItems(List<String> itemSell, List<string> itemNoSell, List<Enums.WoWItemQuality> itemQuality): " +
+                    e);
             }
         }
 
@@ -69,7 +74,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Lua.LuaDoString("function buy(n,q) for i=1,100 do if n==GetMerchantItemInfo(i) then BuyMerchantItem(i,q) end end end name = \"" + name + "\" buy (name," + number + ")");
+                Lua.LuaDoString(
+                    "function buy(n,q) for i=1,100 do if n==GetMerchantItemInfo(i) then BuyMerchantItem(i,q) end end end name = \"" +
+                    name + "\" buy (name," + number + ")");
             }
             catch (Exception e)
             {

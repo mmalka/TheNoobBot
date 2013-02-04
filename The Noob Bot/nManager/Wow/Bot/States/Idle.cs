@@ -6,7 +6,6 @@ namespace nManager.Wow.Bot.States
 {
     public class Idle : State
     {
-
         public override string DisplayName
         {
             get { return "Idle"; }
@@ -36,6 +35,7 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
+
         public override void Run()
         {
             Thread.Sleep(TimeSleepMs);

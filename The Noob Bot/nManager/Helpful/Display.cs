@@ -5,7 +5,6 @@ using nManager.Helpful.Win32;
 
 namespace nManager.Helpful
 {
-
     /// <summary>
     /// Window Display Manager
     /// </summary>
@@ -126,7 +125,8 @@ namespace nManager.Helpful
             }
             catch (Exception exception)
             {
-                Logging.WriteError("SetWindowPositionSize(IntPtr mainWindowHandle, int x, int y, int width, int height): " + exception);
+                Logging.WriteError(
+                    "SetWindowPositionSize(IntPtr mainWindowHandle, int x, int y, int width, int height): " + exception);
             }
         }
 
@@ -146,7 +146,8 @@ namespace nManager.Helpful
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ScreenshotWindow(IntPtr mainWindowHandle, string filename, ImageFormat format): " + exception);
+                Logging.WriteError("ScreenshotWindow(IntPtr mainWindowHandle, string filename, ImageFormat format): " +
+                                   exception);
             }
         }
 

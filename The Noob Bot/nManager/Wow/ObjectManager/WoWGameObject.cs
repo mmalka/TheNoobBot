@@ -18,7 +18,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<ulong>((uint)Descriptors.GameObjectFields.CreatedBy); }
+                try
+                {
+                    return GetDescriptor<ulong>((uint) Descriptors.GameObjectFields.CreatedBy);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > CreatedBy: " + e);
@@ -26,11 +29,15 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public int DisplayId
         {
             get
             {
-                try { return GetDescriptor<int>(Descriptors.GameObjectFields.DisplayID); }
+                try
+                {
+                    return GetDescriptor<int>(Descriptors.GameObjectFields.DisplayID);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > DisplayId: " + e);
@@ -38,11 +45,22 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public override Point Position
         {
             get
             {
-                try { return new Point(Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.GAMEOBJECT_FIELD_X), Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.GAMEOBJECT_FIELD_Y), Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.GameObject.GAMEOBJECT_FIELD_Z)); }
+                try
+                {
+                    return
+                        new Point(
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_X),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Y),
+                            Memory.WowMemory.Memory.ReadFloat(BaseAddress +
+                                                              (uint) Addresses.GameObject.GAMEOBJECT_FIELD_Z));
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > Position: " + e);
@@ -50,11 +68,19 @@ namespace nManager.Wow.ObjectManager
                 return new Point();
             }
         }
+
         public override string Name
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedName)); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(
+                                Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
+                                (uint) Addresses.GameObject.CachedName));
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > Name: " + e);
@@ -62,11 +88,15 @@ namespace nManager.Wow.ObjectManager
                 return "";
             }
         }
+
         public override float GetDistance
         {
             get
             {
-                try { return Position.DistanceTo(ObjectManager.Me.Position); }
+                try
+                {
+                    return Position.DistanceTo(ObjectManager.Me.Position);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > GetDistance: " + e);
@@ -74,11 +104,15 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public float GetDistance2D
         {
             get
             {
-                try { return Position.DistanceTo2D(ObjectManager.Me.Position); }
+                try
+                {
+                    return Position.DistanceTo2D(ObjectManager.Me.Position);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > GetDistance2D: " + e);
@@ -91,7 +125,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return GetDescriptor<float>(Descriptors.GameObjectFields.ParentRotation); }
+                try
+                {
+                    return GetDescriptor<float>(Descriptors.GameObjectFields.ParentRotation);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObjectFields > ParentRotation: " + e);
@@ -104,7 +141,13 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData0); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUInt(
+                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
+                            (uint) Addresses.GameObject.CachedData0);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObject > data0: " + e);
@@ -112,11 +155,18 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public uint Data1
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData1); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUInt(
+                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
+                            (uint) Addresses.GameObject.CachedData1);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObject > data1: " + e);
@@ -129,7 +179,13 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint)Addresses.GameObject.DBCacheRow) + (uint)Addresses.GameObject.CachedData8); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUInt(
+                            Memory.WowMemory.Memory.ReadUInt(BaseAddress + (uint) Addresses.GameObject.DBCacheRow) +
+                            (uint) Addresses.GameObject.CachedData8);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("GameObject > data8: " + e);
@@ -145,7 +201,7 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     var bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.PercentHealth);
-                    return (WoWGameObjectType)((bytes1 >> 8) & 0xFF);
+                    return (WoWGameObjectType) ((bytes1 >> 8) & 0xFF);
                 }
                 catch (Exception e)
                 {
@@ -163,15 +219,15 @@ namespace nManager.Wow.ObjectManager
                 {
                     switch (GOType)
                     {
-                        case WoWGameObjectType.Door:        // 0
-                        case WoWGameObjectType.Button:      // 1
+                        case WoWGameObjectType.Door: // 0
+                        case WoWGameObjectType.Button: // 1
                             return Data1;
-                        case WoWGameObjectType.Questgiver:  // 2
-                        case WoWGameObjectType.Chest:       // 3
-                        case WoWGameObjectType.Trap:        // 6  This lock is generaly a check for DISARM_TRAP capacity
-                        case WoWGameObjectType.Goober:      // 10
-                        case WoWGameObjectType.FlagStand:   // 24
-                        case WoWGameObjectType.FlagDrop:    // 26
+                        case WoWGameObjectType.Questgiver: // 2
+                        case WoWGameObjectType.Chest: // 3
+                        case WoWGameObjectType.Trap: // 6  This lock is generaly a check for DISARM_TRAP capacity
+                        case WoWGameObjectType.Goober: // 10
+                        case WoWGameObjectType.FlagStand: // 24
+                        case WoWGameObjectType.FlagDrop: // 26
                             return Data0;
                         default:
                             return 0;
@@ -206,9 +262,10 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                //    return SkillLine.Lockpicking;
-                default: break;
+                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                    //    return SkillLine.Lockpicking;
+                default:
+                    break;
             }
             return SkillLine.None;
         }
@@ -225,7 +282,7 @@ namespace nManager.Wow.ObjectManager
 
                     for (int j = 0; j < 8; j++)
                     {
-                        switch ((WoWGameObjectLockKeyType)Row.Record.KeyType[j])
+                        switch ((WoWGameObjectLockKeyType) Row.Record.KeyType[j])
                         {
                             case WoWGameObjectLockKeyType.LOCK_KEY_NONE:
                                 break;
@@ -237,15 +294,17 @@ namespace nManager.Wow.ObjectManager
                                 break;
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
-                                SkillLine skill = SkillByLockType((WoWGameObjectLockType)Row.Record.LockType[j]);
+                                SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
                                     return false;
                                 // Most of quest chests but also treasures
                                 if (skill == SkillLine.Free)
-                                    break; // let's accept it, we check for quest later in code and act like if no lock was set
+                                    break;
+                                        // let's accept it, we check for quest later in code and act like if no lock was set
 
                                 // Prevent herbing when the setting is off
-                                if (skill == SkillLine.Herbalism && !nManagerSetting.CurrentSetting.ActivateHerbsHarvesting)
+                                if (skill == SkillLine.Herbalism &&
+                                    !nManagerSetting.CurrentSetting.ActivateHerbsHarvesting)
                                     return false;
                                 // Prevent mining when the setting is off
                                 if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting)
@@ -253,14 +312,15 @@ namespace nManager.Wow.ObjectManager
 
                                 uint reqSkillValue = Row.Record.Skill[j];
 
-                                if (skill == SkillLine.Lockpicking && !nManagerSetting.CurrentSetting.ActivateChestLooting)
+                                if (skill == SkillLine.Lockpicking &&
+                                    !nManagerSetting.CurrentSetting.ActivateChestLooting)
                                     return false;
 
                                 // special case for rogues and lockpicking since the skill does not exist anymore
                                 if (skill == SkillLine.Lockpicking)
                                 {
                                     Spell lockpick = new Spell(1804); // Pick lock
-                                    if (lockpick.KnownSpell && ObjectManager.Me.Level * 5 >= reqSkillValue)
+                                    if (lockpick.KnownSpell && ObjectManager.Me.Level*5 >= reqSkillValue)
                                         return true;
                                     else
                                         return false;
@@ -269,14 +329,14 @@ namespace nManager.Wow.ObjectManager
                                 int bonus = 0;
                                 if (skill == SkillLine.Herbalism)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(85663) > 0)    // Herbalist's Spade
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(85663) > 0) // Herbalist's Spade
                                         bonus = 10;
                                 }
                                 else if (skill == SkillLine.Mining)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(2901) > 0)     // Mining pick
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
                                         bonus = 10;
                                 }
 
@@ -296,7 +356,7 @@ namespace nManager.Wow.ObjectManager
                     return false;
 
                 // Finaly we check if a quest is required
-                if (GOType == WoWGameObjectType.Goober)// && Data1 != 0)
+                if (GOType == WoWGameObjectType.Goober) // && Data1 != 0)
                 {
                     //Logging.Write("This Goober has quest " + Data1);
                     //if (!Quest.GetLogQuestId().Contains((int)Data1))
@@ -304,7 +364,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 if (GOType == WoWGameObjectType.Chest)
                 {
-                    if (Data8 != 0 && !Quest.GetLogQuestId().Contains((int)Data8))
+                    if (Data8 != 0 && !Quest.GetLogQuestId().Contains((int) Data8))
                         return false; // Quest check
 
                     if (Entry == 210565 || Entry == 214945)
@@ -320,7 +380,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetDescriptor<T>((uint)field);
+                return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)
             {

@@ -21,8 +21,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
-                    uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.DisplayPower * Descriptors.multiplicator);
-                    return (WoWClass)Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
+                    uint displayPower = descriptorsArray +
+                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
+                    return (WoWClass) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
                 }
                 catch (Exception e)
                 {
@@ -39,8 +40,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
-                    uint displayPower = descriptorsArray + ((uint)Descriptors.UnitFields.DisplayPower * Descriptors.multiplicator);
-                    return (WoWRace)Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[0];
+                    uint displayPower = descriptorsArray +
+                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
+                    return (WoWRace) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[0];
                 }
                 catch (Exception e)
                 {
@@ -83,6 +85,7 @@ namespace nManager.Wow.ObjectManager
                 return "Neutral";
             }
         }
+
         public string PlayerRace
         {
             get
@@ -90,35 +93,35 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     long faction = Faction;
-                    if (faction.Equals((int)PlayerFactions.Human))
+                    if (faction.Equals((int) PlayerFactions.Human))
                         return "Human";
-                    if (faction.Equals((int)PlayerFactions.BloodElf))
+                    if (faction.Equals((int) PlayerFactions.BloodElf))
                         return "Blood Elf";
-                    if (faction.Equals((int)PlayerFactions.Dwarf))
+                    if (faction.Equals((int) PlayerFactions.Dwarf))
                         return "Dwarf";
-                    if (faction.Equals((int)PlayerFactions.Gnome))
+                    if (faction.Equals((int) PlayerFactions.Gnome))
                         return "Gnome";
-                    if (faction.Equals((int)PlayerFactions.NightElf))
+                    if (faction.Equals((int) PlayerFactions.NightElf))
                         return "Night Elf";
-                    if (faction.Equals((int)PlayerFactions.Orc))
+                    if (faction.Equals((int) PlayerFactions.Orc))
                         return "Orc";
-                    if (faction.Equals((int)PlayerFactions.Tauren))
+                    if (faction.Equals((int) PlayerFactions.Tauren))
                         return "Tauren";
-                    if (faction.Equals((int)PlayerFactions.Troll))
+                    if (faction.Equals((int) PlayerFactions.Troll))
                         return "Troll";
-                    if (faction.Equals((int)PlayerFactions.Undead))
+                    if (faction.Equals((int) PlayerFactions.Undead))
                         return "Undead";
-                    if (faction.Equals((int)PlayerFactions.Draenei))
+                    if (faction.Equals((int) PlayerFactions.Draenei))
                         return "Draenei";
-                    if (faction.Equals((int)PlayerFactions.Goblin))
+                    if (faction.Equals((int) PlayerFactions.Goblin))
                         return "Goblin";
-                    if (faction.Equals((int)PlayerFactions.Worgen))
+                    if (faction.Equals((int) PlayerFactions.Worgen))
                         return "Worgen";
-                    if (faction.Equals((int)PlayerFactions.PandarenNeutral))
+                    if (faction.Equals((int) PlayerFactions.PandarenNeutral))
                         return "PandarenNeutral";
-                    if (faction.Equals((int)PlayerFactions.PandarenHorde))
+                    if (faction.Equals((int) PlayerFactions.PandarenHorde))
                         return "PandarenHorde";
-                    if (faction.Equals((int)PlayerFactions.PandarenAlliance))
+                    if (faction.Equals((int) PlayerFactions.PandarenAlliance))
                         return "PandarenAlliance";
                 }
                 catch (Exception e)
@@ -128,45 +131,46 @@ namespace nManager.Wow.ObjectManager
                 return "Unknown";
             }
         }
+
         public uint BarTwo
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<uint>((uint)Descriptors.UnitFields.Power);
+                    return GetDescriptor<uint>((uint) Descriptors.UnitFields.Power);
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > BarTwo: " + e);
                     return 0;
                 }
-
             }
         }
+
         public uint BarTwoMax
         {
             get
             {
                 try
                 {
-                    return GetDescriptor<uint>((uint)Descriptors.UnitFields.MaxPower);
+                    return GetDescriptor<uint>((uint) Descriptors.UnitFields.MaxPower);
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > BarTwoMax: " + e);
                     return 0;
                 }
-
             }
         }
+
         public uint BarTwoPercentage
         {
             get
             {
                 try
                 {
-                    return BarTwo * 100 / BarTwoMax;
+                    return BarTwo*100/BarTwoMax;
                 }
                 catch (Exception e)
                 {
@@ -175,13 +179,16 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
         public int ComboPoint
         {
             get
             {
                 try
                 {
-                    int val = Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint)Addresses.Player.PlayerComboPoint);
+                    int val =
+                        Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.Player.PlayerComboPoint);
                     return val;
                 }
                 catch (Exception e)
@@ -191,6 +198,7 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public new bool InCombat
         {
             get
@@ -199,7 +207,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     bool petAttack = false;
                     bool isdead = false;
-                    var flags = GetDescriptor<Int32>((uint)Descriptors.UnitFields.Flags);
+                    var flags = GetDescriptor<Int32>((uint) Descriptors.UnitFields.Flags);
                     try
                     {
                         if (GetBaseAddress == ObjectManager.Me.GetBaseAddress)
@@ -207,7 +215,8 @@ namespace nManager.Wow.ObjectManager
                             if (IsDeadMe)
                                 isdead = true;
                             if (ObjectManager.Pet.GetBaseAddress > 0)
-                                if (ObjectManager.GetNumberAttackPlayer() > 0 && ObjectManager.Pet.InCombat && !ObjectManager.Pet.IsDead)
+                                if (ObjectManager.GetNumberAttackPlayer() > 0 && ObjectManager.Pet.InCombat &&
+                                    !ObjectManager.Pet.IsDead)
                                     petAttack = true;
 
                             if (Convert.ToBoolean(flags & 0x0080000) && !isdead)
@@ -230,6 +239,7 @@ namespace nManager.Wow.ObjectManager
                 return false;
             }
         }
+
         public int GetDurability
         {
             get
@@ -241,44 +251,44 @@ namespace nManager.Wow.ObjectManager
 
                     var ItemId = new List<uint>
                                      {
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 0 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 1 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 2 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 3 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 4 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 5 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 6 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 7 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 8 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 9 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 10 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 11 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 12 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 13 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 14 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 15 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 16 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 17 * 2),
-                                 ObjectManager.Me.GetDescriptor<uint>(
-                                     Descriptors.PlayerFields.VisibleItems + 18 * 2)
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 0*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 1*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 2*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 3*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 4*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 5*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 6*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 7*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 8*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 9*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 10*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 11*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 12*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 13*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 14*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 15*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 16*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 17*2),
+                                         ObjectManager.Me.GetDescriptor<uint>(
+                                             Descriptors.PlayerFields.VisibleItems + 18*2)
                                      };
 
                     WoWObject[] objects = ObjectManager.ObjectList.ToArray();
@@ -290,10 +300,10 @@ namespace nManager.Wow.ObjectManager
                             try
                             {
                                 var ItemIdTemp = GetDescriptor<uint>(o.GetBaseAddress,
-                                                                      (uint)Descriptors.ObjectFields.Entry);
+                                                                     (uint) Descriptors.ObjectFields.Entry);
                                 var ItemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress,
-                                                                           (uint)
-                                                                           Descriptors.ItemFields.Owner);
+                                                                         (uint)
+                                                                         Descriptors.ItemFields.Owner);
 
                                 if (ItemId.Contains(ItemIdTemp) && ItemGuidOwner == Guid)
                                 {
@@ -309,7 +319,6 @@ namespace nManager.Wow.ObjectManager
                                         durabilitys += ItemDurability;
                                         maxDurabilitys += ItemMaxDurability;
                                     }
-
                                 }
                             }
                             catch (Exception e)
@@ -320,7 +329,7 @@ namespace nManager.Wow.ObjectManager
                     }
                     try
                     {
-                        return durabilitys * 100 / maxDurabilitys;
+                        return durabilitys*100/maxDurabilitys;
                     }
                     catch
                     {
@@ -333,14 +342,16 @@ namespace nManager.Wow.ObjectManager
                 }
                 return 100;
             }
-
         }
+
         public float Rotation
         {
             get
             {
                 try
-                { return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint)Addresses.UnitField.UNIT_FIELD_R); }
+                {
+                    return Memory.WowMemory.Memory.ReadFloat(BaseAddress + (uint) Addresses.UnitField.UNIT_FIELD_R);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > Rotation get: " + e);
@@ -350,19 +361,24 @@ namespace nManager.Wow.ObjectManager
             set
             {
                 try
-                { Memory.WowMemory.Memory.WriteFloat(BaseAddress + (uint)Addresses.UnitField.UNIT_FIELD_R, value); }
+                {
+                    Memory.WowMemory.Memory.WriteFloat(BaseAddress + (uint) Addresses.UnitField.UNIT_FIELD_R, value);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > : Rotation set" + e);
                 }
             }
         }
+
         public int Experience
         {
             get
             {
                 try
-                { return GetDescriptor<int>(Descriptors.PlayerFields.XP); }
+                {
+                    return GetDescriptor<int>(Descriptors.PlayerFields.XP);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > Experience: " + e);
@@ -370,12 +386,15 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public int ExperienceMax
         {
             get
             {
                 try
-                { return GetDescriptor<int>(Descriptors.PlayerFields.NextLevelXP); }
+                {
+                    return GetDescriptor<int>(Descriptors.PlayerFields.NextLevelXP);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > ExperienceMax: " + e);
@@ -383,12 +402,22 @@ namespace nManager.Wow.ObjectManager
                 return 0;
             }
         }
+
         public Point PositionCorpse
         {
             get
             {
                 try
-                { return new Point(Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint)Addresses.CorpsePlayer.X), Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint)Addresses.CorpsePlayer.Y), Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule + (uint)Addresses.CorpsePlayer.Z)); }
+                {
+                    return
+                        new Point(
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
+                                                              (uint) Addresses.CorpsePlayer.X),
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
+                                                              (uint) Addresses.CorpsePlayer.Y),
+                            Memory.WowMemory.Memory.ReadFloat(Memory.WowProcess.WowModule +
+                                                              (uint) Addresses.CorpsePlayer.Z));
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > PositionCorpse: " + e);
@@ -396,12 +425,16 @@ namespace nManager.Wow.ObjectManager
                 return new Point();
             }
         }
+
         public bool IsDeadMe
         {
             get
             {
                 try
-                { return (Health <= 0 || Health == 0.01 || Health == 1) || (PositionCorpse.X != 0 && PositionCorpse.Y != 0); }
+                {
+                    return (Health <= 0 || Health == 0.01 || Health == 1) ||
+                           (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > IsDeadMe: " + e);
@@ -409,6 +442,7 @@ namespace nManager.Wow.ObjectManager
                 return false;
             }
         }
+
         public new bool IsDead
         {
             get
@@ -416,7 +450,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     if (Guid == ObjectManager.Me.Guid) return IsDeadMe;
-                    return (Health <= 0 || Health == 0.01 || GetDescriptor<Int32>((uint)Descriptors.UnitFields.DynamicFlags) == 0x20);
+                    return (Health <= 0 || Health == 0.01 ||
+                            GetDescriptor<Int32>((uint) Descriptors.UnitFields.DynamicFlags) == 0x20);
                 }
                 catch (Exception e)
                 {
@@ -425,13 +460,20 @@ namespace nManager.Wow.ObjectManager
                 return false;
             }
         }
+
         public bool forceIsCast { set; get; }
+
         public new bool IsCast
         {
             get
             {
                 try
-                { return (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.CastingSpellID) > 0 || Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint)Addresses.UnitField.ChannelSpellID) > 0 || forceIsCast); }
+                {
+                    return
+                        (Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.CastingSpellID) > 0 ||
+                         Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.UnitField.ChannelSpellID) > 0 ||
+                         forceIsCast);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > IsCast: " + e);
@@ -439,13 +481,14 @@ namespace nManager.Wow.ObjectManager
                 return false;
             }
         }
+
         public TrackCreatureFlags MeCreatureTrack
         {
             get
             {
                 try
                 {
-                    return (TrackCreatureFlags)GetDescriptor<uint>(Descriptors.PlayerFields.TrackCreatureMask);
+                    return (TrackCreatureFlags) GetDescriptor<uint>(Descriptors.PlayerFields.TrackCreatureMask);
                 }
                 catch (Exception e)
                 {
@@ -457,9 +500,11 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.TrackCreatureMask * Descriptors.multiplicator);
-                    Memory.WowMemory.Memory.WriteUInt(addressGD, (uint)value);
+                    uint descriptorsArray =
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                    uint addressGD = descriptorsArray +
+                                     ((uint) Descriptors.PlayerFields.TrackCreatureMask*Descriptors.multiplicator);
+                    Memory.WowMemory.Memory.WriteUInt(addressGD, (uint) value);
                 }
                 catch (Exception e)
                 {
@@ -474,7 +519,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15 * 2);
+                    return ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
                 }
                 catch (Exception e)
                 {
@@ -490,7 +535,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return (TrackObjectFlags)GetDescriptor<uint>(Descriptors.PlayerFields.TrackResourceMask);
+                    return (TrackObjectFlags) GetDescriptor<uint>(Descriptors.PlayerFields.TrackResourceMask);
                 }
                 catch (Exception e)
                 {
@@ -502,9 +547,11 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + ((uint)Descriptors.PlayerFields.TrackResourceMask * Descriptors.multiplicator);
-                    Memory.WowMemory.Memory.WriteUInt(addressGD, (uint)value);
+                    uint descriptorsArray =
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                    uint addressGD = descriptorsArray +
+                                     ((uint) Descriptors.PlayerFields.TrackResourceMask*Descriptors.multiplicator);
+                    Memory.WowMemory.Memory.WriteUInt(addressGD, (uint) value);
                 }
                 catch (Exception e)
                 {
@@ -517,7 +564,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetDescriptor<T>((uint)field);
+                return GetDescriptor<T>((uint) field);
             }
             catch (Exception e)
             {

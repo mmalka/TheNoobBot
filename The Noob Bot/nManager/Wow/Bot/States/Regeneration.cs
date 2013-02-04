@@ -50,10 +50,13 @@ namespace nManager.Wow.Bot.States
 
                 // Need Regeneration
                 // Hp:
-                if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent)
+                if (ObjectManager.ObjectManager.Me.HealthPercent <=
+                    nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent)
                     return true;
                 // Mana:
-                if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent && nManagerSetting.CurrentSetting.DoRegenManaIfLow)
+                if (ObjectManager.ObjectManager.Me.ManaPercentage <=
+                    nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
+                    nManagerSetting.CurrentSetting.DoRegenManaIfLow)
                     return true;
                 // Pet:
                 //if (ObjectManager.ObjectManager.Pet.HealthPercent <= Config.Bot.FormConfig.RegenPetMinHp && ObjectManager.ObjectManager.Pet.IsAlive && ObjectManager.ObjectManager.Pet.IsValid && Config.Bot.FormConfig.RegenPet)
@@ -69,9 +72,12 @@ namespace nManager.Wow.Bot.States
 
             try
             {
-                if ((ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent) ||
+                if ((ObjectManager.ObjectManager.Me.HealthPercent <=
+                     nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent) ||
                     // HP
-                    (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent && nManagerSetting.CurrentSetting.DoRegenManaIfLow))
+                    (ObjectManager.ObjectManager.Me.ManaPercentage <=
+                     nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
+                     nManagerSetting.CurrentSetting.DoRegenManaIfLow))
                     // MANA
                 {
                     Logging.Write("Regen started");
@@ -79,7 +85,8 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(500);
 
                     // Use food:
-                    if (ObjectManager.ObjectManager.Me.HealthPercent <= nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent &&
+                    if (ObjectManager.ObjectManager.Me.HealthPercent <=
+                        nManagerSetting.CurrentSetting.EatFoodWhenHealthIsUnderXPercent &&
                         nManagerSetting.CurrentSetting.FoodName != "")
                     {
                         ObjectManager.ObjectManager.Me.forceIsCast = true;
@@ -88,8 +95,10 @@ namespace nManager.Wow.Bot.States
                     }
 
                     // Use Water:
-                    if (ObjectManager.ObjectManager.Me.ManaPercentage <= nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
-                        nManagerSetting.CurrentSetting.BeverageName != "" && nManagerSetting.CurrentSetting.DoRegenManaIfLow)
+                    if (ObjectManager.ObjectManager.Me.ManaPercentage <=
+                        nManagerSetting.CurrentSetting.DrinkBeverageWhenManaIsUnderXPercent &&
+                        nManagerSetting.CurrentSetting.BeverageName != "" &&
+                        nManagerSetting.CurrentSetting.DoRegenManaIfLow)
                     {
                         ObjectManager.ObjectManager.Me.forceIsCast = true;
                         ItemsManager.UseItem(nManagerSetting.CurrentSetting.BeverageName);

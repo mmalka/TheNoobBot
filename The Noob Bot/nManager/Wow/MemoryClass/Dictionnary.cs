@@ -5,7 +5,7 @@ using System.Text;
 
 namespace nManager.Wow.MemoryClass
 {
-    class Dictionnary<T>
+    internal class Dictionnary<T>
     {
     }
 }

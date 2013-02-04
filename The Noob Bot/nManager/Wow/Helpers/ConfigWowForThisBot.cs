@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var configThread = new Thread(ConfigWowThread) { Name = "config wow Thread" };
+                var configThread = new Thread(ConfigWowThread) {Name = "config wow Thread"};
                 configThread.Start();
             }
             catch (Exception exception)
@@ -24,7 +24,8 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("ConfigWow(): " + exception);
             }
         }
-        static void ConfigWowThread()
+
+        private static void ConfigWowThread()
         {
             try
             {

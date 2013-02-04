@@ -31,7 +31,7 @@ namespace nManager.Wow.Bot.Tasks
                             MovementManager.StopMove();
                             Thread.Sleep(100);
 
-                            if ((int)wowUnit.GetBaseAddress > 0)
+                            if ((int) wowUnit.GetBaseAddress > 0)
                             {
                                 if (wowUnit.IsLootable)
                                     Logging.Write("Loot " + wowUnit.Name);
@@ -51,11 +51,13 @@ namespace nManager.Wow.Bot.Tasks
                                     points.Add(ObjectManager.ObjectManager.Me.Position);
                                     points.Add(wowUnit.Position);
                                 }
-                                var timer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
-                                while (!ObjectManager.ObjectManager.Me.IsDeadMe && (int)wowUnit.GetBaseAddress > 0 &&
+                                var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
+                                while (!ObjectManager.ObjectManager.Me.IsDeadMe && (int) wowUnit.GetBaseAddress > 0 &&
                                        Products.Products.IsStarted &&
                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
-                                       !(ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                       !(ObjectManager.ObjectManager.Me.InCombat &&
+                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                                        !timer.IsReady)
                                 {
                                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) <= 4.0f)
@@ -72,23 +74,29 @@ namespace nManager.Wow.Bot.Tasks
                                         if (wowUnit.IsLootable)
                                         {
                                             Interact.InteractGameObject(wowUnit.GetBaseAddress);
-                                            if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                            if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                    Usefuls.IsFlying))))
                                             {
                                                 return;
                                             }
                                             Thread.Sleep(1250);
-                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
+                                            if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                                ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                 return;
                                             Statistics.Loots++;
-                                            if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems && !ObjectManager.ObjectManager.Me.InCombat)
+                                            if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
+                                                !ObjectManager.ObjectManager.Me.InCombat)
                                                 Elemental.AutoMakeElemental();
                                             if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                 break;
                                             }
                                         }
-                                        if (nManagerSetting.CurrentSetting.ActivateBeastSkinning && ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
+                                        if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                            ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0)
                                         {
                                             Thread.Sleep(1500);
                                             if (wowUnit.IsSkinnable)
@@ -100,7 +108,10 @@ namespace nManager.Wow.Bot.Tasks
                                                 {
                                                     Thread.Sleep(50);
                                                 }
-                                                if ((ObjectManager.ObjectManager.Me.InCombat && !(ObjectManager.ObjectManager.Me.IsMounted && (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                                if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted ||
+                                                        Usefuls.IsFlying))))
                                                 {
                                                     return;
                                                 }
@@ -109,7 +120,7 @@ namespace nManager.Wow.Bot.Tasks
                                                     ObjectManager.ObjectManager.GetNumberAttackPlayer() > 0)
                                                     return;
                                                 Statistics.Farms++;
-                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 5);
+                                                nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                 break;
                                             }
                                         }
@@ -118,7 +129,7 @@ namespace nManager.Wow.Bot.Tasks
                                     Thread.Sleep(30);
                                 }
                                 if (timer.IsReady)
-                                    nManagerSetting.AddBlackList(wowUnit.Guid, 1000 * 60 * 20);
+                                    nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*20);
                             }
                             MovementManager.StopMove();
                             MovementManager.StopMove();

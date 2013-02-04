@@ -102,7 +102,8 @@ namespace nManager.Helpful
         {
             try
             {
-                Native.SetCursorPos(Display.GetWindowPosX(mainWindowHandle) + posX, Display.GetWindowPosY(mainWindowHandle) + posY);
+                Native.SetCursorPos(Display.GetWindowPosX(mainWindowHandle) + posX,
+                                    Display.GetWindowPosY(mainWindowHandle) + posY);
             }
             catch (Exception exception)
             {
@@ -121,12 +122,17 @@ namespace nManager.Helpful
         {
             try
             {
-                Native.SetCursorPos(Display.GetWindowPosX(mainWindowHandle) + ((percentageX * Display.GetWindowWidth(mainWindowHandle)) / 100),
-                                    Display.GetWindowPosY(mainWindowHandle) + ((percentageY * Display.GetWindowHeight(mainWindowHandle)) / 100));
+                Native.SetCursorPos(
+                    Display.GetWindowPosX(mainWindowHandle) +
+                    ((percentageX*Display.GetWindowWidth(mainWindowHandle))/100),
+                    Display.GetWindowPosY(mainWindowHandle) +
+                    ((percentageY*Display.GetWindowHeight(mainWindowHandle))/100));
             }
             catch (Exception exception)
             {
-                Logging.WriteError("CurseurWindowPercentagePosition(IntPtr mainWindowHandle, int percentageX, int percentageY): " + exception);
+                Logging.WriteError(
+                    "CurseurWindowPercentagePosition(IntPtr mainWindowHandle, int percentageX, int percentageY): " +
+                    exception);
             }
         }
 

@@ -66,11 +66,11 @@ namespace nManager.Wow.Helpers
                         var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
                                                                                             (uint)
                                                                                             Descriptors.ObjectFields.
-                                                                                                Entry);
+                                                                                                        Entry);
                         var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress,
                                                                                                 (uint)
                                                                                                 Descriptors.ItemFields.
-                                                                                                    Owner);
+                                                                                                            Owner);
 
                         if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid)
                         {

@@ -83,11 +83,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof(MovementManager))
+                lock (typeof (MovementManager))
                 {
                     if (_worker == null)
                     {
-                        _worker = new Thread(ThreadMovementManager) { IsBackground = true, Name = "MovementManager" };
+                        _worker = new Thread(ThreadMovementManager) {IsBackground = true, Name = "MovementManager"};
                         _worker.Start();
                     }
                 }
@@ -104,7 +104,7 @@ namespace nManager.Wow.Helpers
             {
                 while (true)
                 {
-                    lock (typeof(MovementManager))
+                    lock (typeof (MovementManager))
                     {
                         while ((_loop || _first) && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                         {
@@ -181,7 +181,8 @@ namespace nManager.Wow.Helpers
                             return;
                     }
 
-                    if (_loop || Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                    if (_loop ||
+                        Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
                         if (nManagerSetting.CurrentSetting.UseGroundMount)
                             Bot.Tasks.MountTask.MountingGroundMount(false);
@@ -478,14 +479,14 @@ namespace nManager.Wow.Helpers
                     Logging.WriteDebug("UnStuck - disY = " + disY);
 
                     if (disX < 2.5f || disY < 2.5f)
-                    //we likely don't need to run this if we are 5+ units from our stuck point
+                        //we likely don't need to run this if we are 5+ units from our stuck point
                     {
                         if (j == 1)
                         {
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 10,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'backward'
                             Logging.WriteDebug("UnStuck - Backward done.");
                         }
@@ -494,7 +495,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'back left'
                             Logging.WriteDebug("UnStuck - Backward Left done.");
                         }
@@ -503,7 +504,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 10,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'left'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'left'
                             Logging.WriteDebug("UnStuck - Left done.");
                         }
                         else if (j == 4)
@@ -511,7 +512,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'forward left'
                             Logging.WriteDebug("UnStuck - Forward Left done.");
                         }
@@ -520,7 +521,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 10,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'forward'
                             Logging.WriteDebug("UnStuck - Forward done.");
                         }
@@ -529,7 +530,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'forward right'
                             Logging.WriteDebug("UnStuck - Forward Right done.");
                         }
@@ -538,7 +539,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 10,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'right'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'right'
                             Logging.WriteDebug("UnStuck - Right done.");
                         }
                         else if (j == 8)
@@ -546,7 +547,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move,
+                                                                (int) ClickToMoveType.Move,
                                                                 0.5f); // try 'back right'
                             Logging.WriteDebug("UnStuck - Backward Right done.");
                         }
@@ -561,11 +562,11 @@ namespace nManager.Wow.Helpers
                         }
 
                         Thread.Sleep(Others.Random(700, 3000));
-                        Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " finished."); 
+                        Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " finished.");
                     }
                     else
                     {
-                        Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " finished by breaking."); 
+                        Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " finished by breaking.");
                         break;
                     }
                 }
@@ -598,7 +599,7 @@ namespace nManager.Wow.Helpers
                     ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                         ObjectManager.ObjectManager.Me.Position.Y,
                                                         ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                        (int)ClickToMoveType.Move, 0.5f);
+                                                        (int) ClickToMoveType.Move, 0.5f);
                     Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
                     // Reset position to our current location and StopMove.
                     StopMove();
@@ -625,11 +626,10 @@ namespace nManager.Wow.Helpers
                     {
                         if (j == 1)
                         {
-
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 15,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'backward'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'backward'
                             Logging.WriteDebug("Flying UnStuck - Backward done.");
                         }
                         else if (j == 2)
@@ -637,7 +637,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'back left'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'back left'
                             Logging.WriteDebug("Flying UnStuck - Backward Left done.");
                         }
                         else if (j == 3)
@@ -645,7 +645,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 15,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z,
-                                                                0, (int)ClickToMoveType.Move, 0.5f); // try 'left'
+                                                                0, (int) ClickToMoveType.Move, 0.5f); // try 'left'
                             Logging.WriteDebug("Flying UnStuck - Left done.");
                         }
                         else if (j == 4)
@@ -653,7 +653,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X - 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'forward left'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'forward left'
                             Logging.WriteDebug("Flying UnStuck - Forward Left done.");
                         }
                         else if (j == 5)
@@ -661,7 +661,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 15,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'forward'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'forward'
                             Logging.WriteDebug("Flying UnStuck - Forward done.");
                         }
                         else if (j == 6)
@@ -669,7 +669,8 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 15,
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'forward right'
+                                                                (int) ClickToMoveType.Move, 0.5f);
+                                // try 'forward right'
                             Logging.WriteDebug("Flying UnStuck - Forward Right done.");
                         }
                         else if (j == 7)
@@ -677,7 +678,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 15,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z,
-                                                                0, (int)ClickToMoveType.Move, 0.5f); // try 'right'
+                                                                0, (int) ClickToMoveType.Move, 0.5f); // try 'right'
                             Logging.WriteDebug("Flying UnStuck - Right done.");
                         }
                         else if (j == 8)
@@ -685,7 +686,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X + 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Y - 14,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f); // try 'back right'
+                                                                (int) ClickToMoveType.Move, 0.5f); // try 'back right'
                             Logging.WriteDebug("Flying UnStuck - Backward Right done.");
                         }
                         Thread.Sleep(100);
@@ -697,7 +698,7 @@ namespace nManager.Wow.Helpers
                             ClickToMove.CGPlayer_C__ClickToMove(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z, 0,
-                                                                (int)ClickToMoveType.Move, 0.5f);
+                                                                (int) ClickToMoveType.Move, 0.5f);
                             Logging.WriteDebug("Flying UnStuck - Reset position to our current location and StopMove.");
                             // Reset position to our current location and StopMove.
                             StopMove();
@@ -749,7 +750,7 @@ namespace nManager.Wow.Helpers
                 {
                     _loop = false;
                     _movement = false;
-                    lock (typeof(MovementManager))
+                    lock (typeof (MovementManager))
                     {
                         if (_worker == null)
                             LaunchThreadMovementManager();
@@ -790,7 +791,7 @@ namespace nManager.Wow.Helpers
                 {
                     _loop = false;
                     _movement = false;
-                    lock (typeof(MovementManager))
+                    lock (typeof (MovementManager))
                     {
                         if (_worker == null)
                             LaunchThreadMovementManager();
@@ -826,7 +827,7 @@ namespace nManager.Wow.Helpers
             {
                 _loop = false;
                 _movement = false;
-                lock (typeof(MovementManager))
+                lock (typeof (MovementManager))
                 {
                     StopMoveTo();
                 }
@@ -886,7 +887,7 @@ namespace nManager.Wow.Helpers
                         _workerMoveTo = null;
                     }
                 }
-                _workerMoveTo = new Thread(ThreadMoveTo) { IsBackground = true, Name = "MoveTo" };
+                _workerMoveTo = new Thread(ThreadMoveTo) {IsBackground = true, Name = "MoveTo"};
                 _workerMoveTo.Start();
             }
             catch (Exception exception)
@@ -937,20 +938,20 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
-                var timer = new Timer(1 * 1000 * 2);
-                var timerWaypoint = new Timer(1 * 1000 * (30 / 3));
-                double distance = (double)position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
+                var timer = new Timer(1*1000*2);
+                var timerWaypoint = new Timer(1*1000*(30/3));
+                double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
                 if (distance > 45)
-                    timerWaypoint = new Timer(1 * 1000 * (distance / 3));
+                    timerWaypoint = new Timer(1*1000*(distance/3));
 
                 if (distance < 45 && distance > 40)
-                    timerWaypoint = new Timer(1 * 1000 * (45 / 3));
+                    timerWaypoint = new Timer(1*1000*(45/3));
 
                 if (distance < 40 && distance > 35)
-                    timerWaypoint = new Timer(1 * 1000 * (40 / 3));
+                    timerWaypoint = new Timer(1*1000*(40/3));
 
                 if (distance < 35 && distance > 30)
-                    timerWaypoint = new Timer(1 * 1000 * (35 / 3));
+                    timerWaypoint = new Timer(1*1000*(35/3));
 
                 Point oldPos = ObjectManager.ObjectManager.Me.Position;
                 bool alerted = false;
@@ -969,7 +970,7 @@ namespace nManager.Wow.Helpers
                     if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
                         ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
                         ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0,
-                                                            (int)ClickToMoveType.Move, 0.5f);
+                                                            (int) ClickToMoveType.Move, 0.5f);
 
                     if (!_loopMoveTo || _pointTo.DistanceTo(position) > 0.5f)
                         break;
@@ -1139,7 +1140,7 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32)ClickToMoveType.FaceTarget, 0.5f);
+                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
             }
             catch (Exception exception)
             {
@@ -1168,7 +1169,7 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32)ClickToMoveType.FaceTarget, 0.5f);
+                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
             }
             catch (Exception exception)
             {
@@ -1197,7 +1198,7 @@ namespace nManager.Wow.Helpers
                     return;
 
                 ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32)ClickToMoveType.FaceTarget, 0.5f);
+                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
             }
             catch (Exception exception)
             {
@@ -1224,7 +1225,7 @@ namespace nManager.Wow.Helpers
                 if (dif <= 0.10f)
                     return;
 
-                ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0, (Int32)ClickToMoveType.Face,
+                ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0, (Int32) ClickToMoveType.Face,
                                                     0.5f);
             }
             catch (Exception exception)
@@ -1240,7 +1241,7 @@ namespace nManager.Wow.Helpers
                 //if the turning angle is negative
                 if (angle < 0)
                     //add the maximum possible angle (PI x 2) to normalize the negative angle
-                    angle += (float)(System.Math.PI * 2);
+                    angle += (float) (System.Math.PI*2);
                 return angle;
             }
             catch (Exception exception)

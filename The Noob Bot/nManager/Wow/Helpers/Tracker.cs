@@ -12,7 +12,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                TrackObjectFlags none = listTrackObjectFlags.Aggregate(Enums.TrackObjectFlags.None, (current, s) => current | (TrackObjectFlags)Enum.Parse(typeof(TrackObjectFlags), s, true));
+                TrackObjectFlags none = listTrackObjectFlags.Aggregate(Enums.TrackObjectFlags.None,
+                                                                       (current, s) =>
+                                                                       current |
+                                                                       (TrackObjectFlags)
+                                                                       Enum.Parse(typeof (TrackObjectFlags), s, true));
 
                 ObjectManager.ObjectManager.Me.MeObjectTrack = none;
             }
@@ -26,7 +30,17 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                TrackCreatureFlags none = listTrackCreatureFlags.Aggregate<string, TrackCreatureFlags>(0, (current, s) => current | (TrackCreatureFlags)Enum.Parse(typeof(TrackCreatureFlags), s, true));
+                TrackCreatureFlags none = listTrackCreatureFlags.Aggregate<string, TrackCreatureFlags>(0,
+                                                                                                       (current, s) =>
+                                                                                                       current |
+                                                                                                       (
+                                                                                                       TrackCreatureFlags
+                                                                                                       )
+                                                                                                       Enum.Parse(
+                                                                                                           typeof (
+                                                                                                               TrackCreatureFlags
+                                                                                                               ), s,
+                                                                                                           true));
 
                 ObjectManager.ObjectManager.Me.MeCreatureTrack = none;
             }

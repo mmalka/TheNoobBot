@@ -19,7 +19,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                MessageBox.Show(Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)+".");
+                MessageBox.Show(Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game) + ".");
                 string path = Others.DialogBoxOpenFile("", "Profile files (Wow.exe)|Wow.exe");
                 RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
                 if (key == null)
@@ -31,7 +31,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("MakeWowRegistry(): " + e);
             }
         }
-
 
 
         /// <summary>
@@ -64,7 +63,7 @@ namespace nManager.Wow.Helpers
                     LaunchWow();
                     return 0;
                 }
-                var proc = new Process { StartInfo = { FileName = val + "Wow.exe", Arguments = param } };
+                var proc = new Process {StartInfo = {FileName = val + "Wow.exe", Arguments = param}};
                 proc.Start();
                 return proc.Id;
             }
@@ -79,7 +78,12 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.lastWowErrorMessage); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
+                                                               (uint) Addresses.GameInfo.lastWowErrorMessage);
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("GetLastWowErrorMessage: " + exception);
@@ -92,7 +96,12 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.gameState) > 0; }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.GameInfo.gameState) > 0;
+                }
                 catch (Exception exception)
                 {
                     Logging.WriteError("InGame: " + exception);
@@ -105,7 +114,12 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try { return (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.isLoadingOrConnecting) != 0); }
+                try
+                {
+                    return
+                        (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.GameInfo.isLoadingOrConnecting) != 0);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("IsLoadingOrConnecting: " + e);
@@ -118,7 +132,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
@@ -128,7 +142,8 @@ namespace nManager.Wow.Helpers
                     }
                     catch (Exception e)
                     {
-                        Logging.WriteError("GetMoneyCopper: " + e); return 0;
+                        Logging.WriteError("GetMoneyCopper: " + e);
+                        return 0;
                     }
                 }
             }
@@ -138,7 +153,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
@@ -148,7 +163,8 @@ namespace nManager.Wow.Helpers
                     }
                     catch (Exception e)
                     {
-                        Logging.WriteError("IsFlyableArea: " + e); return false;
+                        Logging.WriteError("IsFlyableArea: " + e);
+                        return false;
                     }
                 }
             }
@@ -158,7 +174,7 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
@@ -168,7 +184,8 @@ namespace nManager.Wow.Helpers
                     }
                     catch (Exception e)
                     {
-                        Logging.WriteError("IsOutdoors: " + e); return false;
+                        Logging.WriteError("IsOutdoors: " + e);
+                        return false;
                     }
                 }
             }
@@ -176,20 +193,26 @@ namespace nManager.Wow.Helpers
 
         private static int _lastContainerNumFreeSlots;
         private static Helpful.Timer _timerContainerNumFreeSlots = new Helpful.Timer(0);
+
         public static int GetContainerNumFreeSlots
         {
             get
             {
                 try
                 {
-                    lock (typeof(Usefuls))
+                    lock (typeof (Usefuls))
                     {
                         if (!_timerContainerNumFreeSlots.IsReady)
                             return _lastContainerNumFreeSlots;
 
                         _timerContainerNumFreeSlots = new Helpful.Timer(1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        _lastContainerNumFreeSlots = Convert.ToInt32(Lua.LuaDoString(randomString + " = 0; for i = 0, 4 do if GetContainerNumFreeSlots(i) ~= nil then " + randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ", randomString));
+                        _lastContainerNumFreeSlots =
+                            Convert.ToInt32(
+                                Lua.LuaDoString(
+                                    randomString + " = 0; for i = 0, 4 do if GetContainerNumFreeSlots(i) ~= nil then " +
+                                    randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ",
+                                    randomString));
                         return _lastContainerNumFreeSlots;
                     }
 
@@ -239,17 +262,22 @@ namespace nManager.Wow.Helpers
                     }
                      * */
                 }
-                catch (Exception e) { Logging.WriteError("GetContainerNumFreeSlots: " + e); return 50; }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GetContainerNumFreeSlots: " + e);
+                    return 50;
+                }
             }
         }
 
         private static int _lastHonorPoint;
         private static Helpful.Timer _timerHonorPoint = new Helpful.Timer(0);
+
         public static int GetHonorPoint
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
@@ -266,24 +294,32 @@ namespace nManager.Wow.Helpers
                         {
                             t = Convert.ToInt32(Lua.GetLocalizedText(randomString));
                         }
-                        catch {}
+                        catch
+                        {
+                        }
 
                         if (t >= 0 || t <= 4000)
                             _lastHonorPoint = t;
 
-                    return _lastHonorPoint;
+                        return _lastHonorPoint;
                     }
-                    catch (Exception e) { Logging.WriteError("GetHonorPoint: " + e); return 0; }
+                    catch (Exception e)
+                    {
+                        Logging.WriteError("GetHonorPoint: " + e);
+                        return 0;
+                    }
                 }
             }
         }
-        static Helpful.Timer _timePlayerUsingVehicle = new Helpful.Timer(0);
-        static private bool _lastResultPlayerUsingVehicle;
+
+        private static Helpful.Timer _timePlayerUsingVehicle = new Helpful.Timer(0);
+        private static bool _lastResultPlayerUsingVehicle;
+
         public static bool PlayerUsingVehicle
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
@@ -299,25 +335,30 @@ namespace nManager.Wow.Helpers
                         _timePlayerUsingVehicle = new Helpful.Timer(500);
                         return _lastResultPlayerUsingVehicle;
                     }
-                    catch (Exception e) { Logging.WriteError("PlayerUsingVehicle: " + e); return false; }
+                    catch (Exception e)
+                    {
+                        Logging.WriteError("PlayerUsingVehicle: " + e);
+                        return false;
+                    }
                 }
             }
         }
 
         private static int _lastLatency;
         private static Helpful.Timer _timerLatency = new Helpful.Timer(0);
+
         public static int Latency
         {
             get
             {
-                lock (typeof(Usefuls))
+                lock (typeof (Usefuls))
                 {
                     try
                     {
                         if (!_timerLatency.IsReady)
                             return _lastLatency;
 
-                        _timerLatency = new Helpful.Timer(30 * 1000);
+                        _timerLatency = new Helpful.Timer(30*1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats (); " + randomString +
                                         " = lagHome + lagWorld");
@@ -341,16 +382,19 @@ namespace nManager.Wow.Helpers
                 {
                     return (Convert.ToBoolean(
                         Memory.WowMemory.Memory.ReadInt(
-                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint)Addresses.IsSwimming.offset1)
-                        + (uint)Addresses.IsSwimming.offset2)
-                        & (int)Addresses.IsSwimming.flag));
+                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                             (uint) Addresses.IsSwimming.offset1)
+                            + (uint) Addresses.IsSwimming.offset2)
+                        & (int) Addresses.IsSwimming.flag));
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("IsSwimming: " + e); return false;
+                    Logging.WriteError("IsSwimming: " + e);
+                    return false;
                 }
             }
         }
+
         public static bool IsFlying
         {
             get
@@ -358,14 +402,16 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     return (Convert.ToBoolean(
-                                                Memory.WowMemory.Memory.ReadInt(
-                                                Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint)Addresses.IsFlying.offset1)
-                                                + (uint)Addresses.IsFlying.offset2)
-                                                & (int)Addresses.IsFlying.flag));
+                        Memory.WowMemory.Memory.ReadInt(
+                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                             (uint) Addresses.IsFlying.offset1)
+                            + (uint) Addresses.IsFlying.offset2)
+                        & (int) Addresses.IsFlying.flag));
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("IsFlying: " + e); return false;
+                    Logging.WriteError("IsFlying: " + e);
+                    return false;
                 }
             }
         }
@@ -374,7 +420,12 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint)Addresses.Login.realmName); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
+                                                               (uint) Addresses.Login.realmName);
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("RealmName: " + e);
@@ -382,49 +433,76 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
+
         public static string MapZoneName
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.zoneMap)); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                             (uint) Addresses.GameInfo.zoneMap));
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("MapZoneName: " + e); return "";
+                    Logging.WriteError("MapZoneName: " + e);
+                    return "";
                 }
             }
         }
+
         public static string SubMapZoneName
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.subZoneMap)); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUTF8String(
+                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                             (uint) Addresses.GameInfo.subZoneMap));
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("SubMapZoneName: " + e); return "";
+                    Logging.WriteError("SubMapZoneName: " + e);
+                    return "";
                 }
             }
         }
+
         public static string MapName
         {
             get
             {
-                try { return ((Enums.ContinentId)(Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.continentId))).ToString(); }
+                try
+                {
+                    return
+                        ((Enums.ContinentId)
+                         (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                          (uint) Addresses.GameInfo.continentId))).ToString();
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("MapName: " + e); return "Azeroth";
+                    Logging.WriteError("MapName: " + e);
+                    return "Azeroth";
                 }
             }
         }
+
         public static string ContinentNameMpq
         {
             get
             {
                 try
                 {
-                    int cId = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.continentId);
+                    int cId =
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                        (uint) Addresses.GameInfo.continentId);
 
                     string retS;
-                    switch ((Enums.ContinentId)cId)
+                    switch ((Enums.ContinentId) cId)
                     {
                         case Enums.ContinentId.PVPZone04:
                             retS = "PVPZone04";
@@ -491,29 +569,43 @@ namespace nManager.Wow.Helpers
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("ContinentNameMpq: " + e); return "Azeroth";
+                    Logging.WriteError("ContinentNameMpq: " + e);
+                    return "Azeroth";
                 }
             }
         }
+
         public static int ContinentId
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.continentId); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
+                                                        (uint) Addresses.GameInfo.continentId);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("ContinentId: " + e); return 0;
+                    Logging.WriteError("ContinentId: " + e);
+                    return 0;
                 }
             }
         }
+
         public static int AreaId
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.AreaId); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.AreaId);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("AreaId: " + e); return 0;
+                    Logging.WriteError("AreaId: " + e);
+                    return 0;
                 }
             }
         }
@@ -522,10 +614,16 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                try { return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.GameInfo.buildWowVersion); }
+                try
+                {
+                    return
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.GameInfo.buildWowVersion);
+                }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WowVersion: " + e); return 0;
+                    Logging.WriteError("WowVersion: " + e);
+                    return 0;
                 }
             }
         }
@@ -584,14 +682,20 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var mask = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.PlayerNameStore.nameStorePtr + (uint)Addresses.PlayerNameStore.nameMaskOffset);
-                var baseAddresse = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.PlayerNameStore.nameStorePtr + (uint)Addresses.PlayerNameStore.nameBaseOffset);
+                var mask =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.PlayerNameStore.nameStorePtr +
+                                                     (uint) Addresses.PlayerNameStore.nameMaskOffset);
+                var baseAddresse =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.PlayerNameStore.nameStorePtr +
+                                                     (uint) Addresses.PlayerNameStore.nameBaseOffset);
 
                 var shortGUID = guid & 0xffffffff;
                 if (mask == 0xffffffff)
                     return "";
 
-                var offset = 12 * (uint)(mask & shortGUID);
+                var offset = 12*(uint) (mask & shortGUID);
                 var current = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset + 8);
                 offset = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset);
 
@@ -609,7 +713,8 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(5);
                 }
 
-                return Memory.WowMemory.Memory.ReadUTF8String(current + (uint)Addresses.PlayerNameStore.nameStringOffset);
+                return
+                    Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
             }
             catch (Exception e)
             {

@@ -14,7 +14,8 @@ namespace nManager
 // ReSharper restore InconsistentNaming
     {
         private static nManagerSetting _currentSetting;
-        static string _lastName = "";
+        private static string _lastName = "";
+
         public static nManagerSetting CurrentSetting
         {
             get
@@ -24,13 +25,14 @@ namespace nManager
                     Load();
                     _lastName = ObjectManager.Me.Name;
                 }
-                return _currentSetting; 
+                return _currentSetting;
             }
             set { _currentSetting = value; }
         }
 
         #region BlackListGuid
-        static Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
+
+        private static Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
 
         public static bool IsBlackListed(ulong guid)
         {
@@ -85,10 +87,12 @@ namespace nManager
                 Logging.WriteError("AddBlackList(ulong guid, int timeInMilisec = -1): " + e);
             }
         }
+
         #endregion
 
         #region BlackListZone
-        static Dictionary<Point, float> _blackListZone = new Dictionary<Point, float>();
+
+        private static Dictionary<Point, float> _blackListZone = new Dictionary<Point, float>();
 
         public static bool IsBlackListedZone(Point position)
         {
@@ -132,6 +136,7 @@ namespace nManager
                 Logging.WriteError("AddBlackListZone(Point position, float radius): " + e);
             }
         }
+
         public static void AddRangeBlackListZone(Dictionary<Point, float> listBlackZone)
         {
             try
@@ -146,6 +151,7 @@ namespace nManager
                 Logging.WriteError("AddRangeBlackListZone(Dictionary<Point, float> listBlackZone): " + e);
             }
         }
+
         #endregion
 
         // ----------------------
@@ -162,6 +168,7 @@ namespace nManager
                 return false;
             }
         }
+
         public static bool Load()
         {
             try
@@ -176,7 +183,6 @@ namespace nManager
             catch (Exception e)
             {
                 Logging.WriteError("nManagerSetting > Load(): " + e);
-
             }
             return false;
         }
@@ -219,7 +225,10 @@ namespace nManager
         public bool OnlyUseMillingInTown;
         public int TimeBetweenEachMillingAttempt = 15;
         public List<string> HerbsToBeMilled = new List<string>();
-        public List<int> DontHarvestTheFollowingObjects = new List<int>(); // TODO Use this settings to avoid looting specific entrys.
+
+        public List<int> DontHarvestTheFollowingObjects = new List<int>();
+                         // TODO Use this settings to avoid looting specific entrys.
+
         public bool MakeStackOfElementalsItems;
         public bool ActivateReloggerFeature;
         public string EmailOfTheBattleNetAccount = "";

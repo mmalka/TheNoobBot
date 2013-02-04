@@ -69,7 +69,7 @@ namespace nManager.Wow.Helpers
                 {
                     return
                         Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                        (uint)Addresses.Chat.chatBufferPos);
+                                                        (uint) Addresses.Chat.chatBufferPos);
                 }
                 catch (Exception exception)
                 {
@@ -106,11 +106,11 @@ namespace nManager.Wow.Helpers
                 return
                     Memory.WowMemory.Memory.ReadUTF8String(
                         (uint)
-                        (Memory.WowProcess.WowModule + (uint)Addresses.Chat.chatBufferStart +
-                         (uint)Addresses.Chat.msgFormatedChat +
-                         (int)Addresses.Chat.NextMessage *
+                        (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
+                         (uint) Addresses.Chat.msgFormatedChat +
+                         (int) Addresses.Chat.NextMessage*
                          Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint)Addresses.Chat.chatBufferPos)));
+                                                         (uint) Addresses.Chat.chatBufferPos)));
             }
             catch (Exception exception)
             {
@@ -205,13 +205,12 @@ namespace nManager.Wow.Helpers
             try
             {
                 ActuelRead =
-                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint)Addresses.Chat.chatBufferPos);
+                    Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferPos);
             }
             catch (Exception exception)
             {
                 Logging.WriteError("GetMsgActuel(): " + exception);
             }
-
         }
 
         private Message ReadMsg()
@@ -223,17 +222,17 @@ namespace nManager.Wow.Helpers
 
                 if (ActuelRead >=
                     Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                    (uint)Addresses.Chat.chatBufferPos) &&
+                                                    (uint) Addresses.Chat.chatBufferPos) &&
                     (ActuelRead -
                      Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                     (uint)Addresses.Chat.chatBufferPos)) <= 2)
+                                                     (uint) Addresses.Chat.chatBufferPos)) <= 2)
                     return new Message();
 
                 string lecture =
                     Memory.WowMemory.Memory.ReadUTF8String(
                         (uint)
-                        (Memory.WowProcess.WowModule + (uint)Addresses.Chat.chatBufferStart +
-                         (uint)Addresses.Chat.msgFormatedChat + (int)Addresses.Chat.NextMessage * (ActuelRead)));
+                        (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
+                         (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(ActuelRead)));
                 var unMsg = new Message();
                 if (lecture != "")
                 {
@@ -322,10 +321,12 @@ namespace nManager.Wow.Helpers
 
             public
                 int Canal;
+
             public
-            string Msg;
+                string Msg;
+
             public
-            string Pseudo;
+                string Pseudo;
 
             #endregion Fields
         }

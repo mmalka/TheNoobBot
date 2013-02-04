@@ -9,11 +9,15 @@ using Usage = SlimDX.DXGI.Usage;
 
 namespace nManager.Wow.MemoryClass
 {
-    class D3D
+    internal class D3D
     {
-        public static bool IsD3D11(int processId) { return D3D9Adresse(processId) == 0; }
+        public static bool IsD3D11(int processId)
+        {
+            return D3D9Adresse(processId) == 0;
+        }
 
         private static uint d3d11Adresse;
+
         public static uint D3D11Adresse()
         {
             if (d3d11Adresse <= 0)
@@ -22,18 +26,18 @@ namespace nManager.Wow.MemoryClass
                 using (var rf = new RenderForm())
                 {
                     var desc = new SwapChainDescription
-                    {
-                        BufferCount = 1,
-                        Flags = SwapChainFlags.None,
-                        IsWindowed = true,
-                        ModeDescription =
-                            new ModeDescription(100, 100, new Rational(60, 1),
-                                                Format.R8G8B8A8_UNorm),
-                        OutputHandle = rf.Handle,
-                        SampleDescription = new SampleDescription(1, 0),
-                        SwapEffect = SwapEffect.Discard,
-                        Usage = Usage.RenderTargetOutput
-                    };
+                                   {
+                                       BufferCount = 1,
+                                       Flags = SwapChainFlags.None,
+                                       IsWindowed = true,
+                                       ModeDescription =
+                                           new ModeDescription(100, 100, new Rational(60, 1),
+                                                               Format.R8G8B8A8_UNorm),
+                                       OutputHandle = rf.Handle,
+                                       SampleDescription = new SampleDescription(1, 0),
+                                       SwapEffect = SwapEffect.Discard,
+                                       Usage = Usage.RenderTargetOutput
+                                   };
 
                     Device tmpDevice;
                     SwapChain sc;
@@ -47,7 +51,7 @@ namespace nManager.Wow.MemoryClass
                             using (sc)
                             {
                                 var memory = new Magic.BlackMagic(System.Diagnostics.Process.GetCurrentProcess().Id);
-                                d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint)sc.ComPointer) + 4 * VMT_PRESENT);
+                                d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint) sc.ComPointer) + 4*VMT_PRESENT);
                             }
                         }
                     }
@@ -57,13 +61,16 @@ namespace nManager.Wow.MemoryClass
         }
 
         private static uint d3d9Adresse;
+
         public static uint D3D9Adresse(int processId)
         {
             var memory = new Magic.BlackMagic(processId);
-            uint pDevice = memory.ReadUInt((uint)memory.GetModule("Wow.exe").BaseAddress + (uint)Patchables.Addresses.Hooking.DX_DEVICE);
-            uint pEnd = memory.ReadUInt(pDevice + (uint)Patchables.Addresses.Hooking.DX_DEVICE_IDX);
+            uint pDevice =
+                memory.ReadUInt((uint) memory.GetModule("Wow.exe").BaseAddress +
+                                (uint) Patchables.Addresses.Hooking.DX_DEVICE);
+            uint pEnd = memory.ReadUInt(pDevice + (uint) Patchables.Addresses.Hooking.DX_DEVICE_IDX);
             uint pScene = memory.ReadUInt(pEnd);
-            d3d9Adresse = memory.ReadUInt(pScene + (uint)Patchables.Addresses.Hooking.ENDSCENE_IDX);
+            d3d9Adresse = memory.ReadUInt(pScene + (uint) Patchables.Addresses.Hooking.ENDSCENE_IDX);
 
             return d3d9Adresse;
         }

@@ -7,18 +7,19 @@ namespace nManager.Wow.Class
         [StructLayout(LayoutKind.Sequential)]
         public struct WoWClientDB
         {
-            public uint vTable;         // pointer to vtable
-            public int numRows;         // number of rows
-            public int maxIndex;        // maximal row index
-            public int minIndex;        // minimal row index
-            public uint data;           // pointer to data block
-            public uint FirstRow;       // pointer to first row
-            public uint Rows;           // pointer to rows array - not anymore!
+            public uint vTable; // pointer to vtable
+            public int numRows; // number of rows
+            public int maxIndex; // maximal row index
+            public int minIndex; // minimal row index
+            public uint data; // pointer to data block
+            public uint FirstRow; // pointer to first row
+            public uint Rows; // pointer to rows array - not anymore!
             public uint unk1; // ptr
             public uint unk2; // 1
             public uint unk3; // ptr
             public uint unk4; // 2
         };
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellRec
         {
@@ -48,6 +49,7 @@ namespace nManager.Wow.Class
             public int dword5C;
             public int SpellMiscId;
         }
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellMiscRec
         {
@@ -76,6 +78,7 @@ namespace nManager.Wow.Class
             public int int58;
             public int int5C_Flags;
         };
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellCastTimesRec
         {
@@ -84,14 +87,13 @@ namespace nManager.Wow.Class
             public int SpellCastTimes;
             public int MinCastTime;
         };
+
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellRangeRec
         {
             public int Id;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-            public float[] RangeMin;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)]
-            public float[] RangeMax;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] public float[] RangeMin;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] public float[] RangeMax;
             public int Flags;
             public int DisplayName_lang;
             public int DisplayNameShort_lang;

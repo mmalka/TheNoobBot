@@ -93,9 +93,9 @@ namespace nManager.Helpful
                     new Process();
                 var pi =
                     new ProcessStartInfo
-                    {
-                        FileName = urlOrPath
-                    };
+                        {
+                            FileName = urlOrPath
+                        };
                 p.StartInfo = pi;
                 p.Start();
             }
@@ -106,6 +106,7 @@ namespace nManager.Helpful
         }
 
         private static readonly UTF8Encoding Utf8 = new UTF8Encoding();
+
         public static string ToUtf8(byte[] bytes)
         {
             try
@@ -113,7 +114,8 @@ namespace nManager.Helpful
                 var s = Utf8.GetString(bytes, 0, bytes.Length);
 
                 if (s.IndexOf("\0", StringComparison.Ordinal) != -1)
-                    s = s.Remove(s.IndexOf("\0", StringComparison.Ordinal), s.Length - s.IndexOf("\0", StringComparison.Ordinal));
+                    s = s.Remove(s.IndexOf("\0", StringComparison.Ordinal),
+                                 s.Length - s.IndexOf("\0", StringComparison.Ordinal));
 
                 return s;
             }
@@ -230,7 +232,7 @@ namespace nManager.Helpful
                 var result = new StringBuilder(maxSize);
                 foreach (byte b in data)
                 {
-                    result.Append(chars[b % (chars.Length - 1)]);
+                    result.Append(chars[b%(chars.Length - 1)]);
                 }
                 return result.ToString();
             }
@@ -250,7 +252,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var proc = new Process { StartInfo = { FileName = "shutdown.exe", Arguments = " -s -f" } };
+                var proc = new Process {StartInfo = {FileName = "shutdown.exe", Arguments = " -s -f"}};
                 proc.Start();
                 proc.Close();
             }
@@ -270,7 +272,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var r = new Random(unchecked((int)DateTime.Now.Ticks));
+                var r = new Random(unchecked((int) DateTime.Now.Ticks));
                 return r.Next(from, to);
             }
             catch (Exception exception)
@@ -289,15 +291,15 @@ namespace nManager.Helpful
         {
             try
             {
-                var houre = (sec / 3600) + "H";
-                sec = sec - ((sec / 3600) * 3600);
+                var houre = (sec/3600) + "H";
+                sec = sec - ((sec/3600)*3600);
 
-                if ((sec / 60) < 10)
-                    houre = houre + "0" + (sec / 60) + "M";
+                if ((sec/60) < 10)
+                    houre = houre + "0" + (sec/60) + "M";
                 else
-                    houre = houre + (sec / 60) + "M";
+                    houre = houre + (sec/60) + "M";
 
-                sec = sec - ((sec / 60) * 60);
+                sec = sec - ((sec/60)*60);
 
                 if (sec < 10)
                     houre = houre + "0" + sec + "";
@@ -351,19 +353,26 @@ namespace nManager.Helpful
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public static int Times { get { return Environment.TickCount; } }
+        public static int Times
+        {
+            get { return Environment.TickCount; }
+        }
 
         /// <summary>
         /// Time on sec.
         /// </summary>
         /// <param></param>
         /// <returns></returns>
-        public static int TimesSec { get { return Environment.TickCount/1000; } }
+        public static int TimesSec
+        {
+            get { return Environment.TickCount/1000; }
+        }
 
-        static string _httpUrl = "";
-        static string _fileDest = "";
-        static bool _downloadFinish;
-        static readonly object LockerDownload = new object();
+        private static string _httpUrl = "";
+        private static string _fileDest = "";
+        private static bool _downloadFinish;
+        private static readonly object LockerDownload = new object();
+
         /// <summary>
         /// Download file from http address, return true if sucess.
         /// </summary>
@@ -379,7 +388,7 @@ namespace nManager.Helpful
                     _httpUrl = httpUrl;
                     _fileDest = fileDest;
 
-                    var checkUpdateThreadLaunch = new Thread(DownloadThread) { Name = "DownloadFile" };
+                    var checkUpdateThreadLaunch = new Thread(DownloadThread) {Name = "DownloadFile"};
                     checkUpdateThreadLaunch.Start();
 
                     Thread.Sleep(200);
@@ -401,7 +410,8 @@ namespace nManager.Helpful
                 return false;
             }
         }
-        static void DownloadThread()
+
+        private static void DownloadThread()
         {
             try
             {
@@ -437,10 +447,15 @@ namespace nManager.Helpful
             if (!Directory.Exists(path + pathDirectory))
                 return new List<string>();
             return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
-            {
-                var name = Path.GetFileName(subfolder);
-                return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
-            }).ToList();
+                                                                                      {
+                                                                                          var name =
+                                                                                              Path.GetFileName(subfolder);
+                                                                                          return name != null
+                                                                                                     ? name.ToString(
+                                                                                                         CultureInfo
+                                                                                                             .InvariantCulture)
+                                                                                                     : null;
+                                                                                      }).ToList();
         }
 
         /// <summary>
@@ -458,12 +473,11 @@ namespace nManager.Helpful
             {
                 if (!string.IsNullOrWhiteSpace(data))
                     url = url + "?" + data;
-                var httpWRequest = (HttpWebRequest)WebRequest.Create(url);
+                var httpWRequest = (HttpWebRequest) WebRequest.Create(url);
                 httpWRequest.UserAgent = "TheNoobBot";
-                httpWResponse = (HttpWebResponse)httpWRequest.GetResponse();
+                httpWResponse = (HttpWebResponse) httpWRequest.GetResponse();
                 sr = new StreamReader(httpWResponse.GetResponseStream(), Encoding.GetEncoding("iso-8859-1"));
                 result = sr.ReadToEnd();
-
             }
 
             catch (Exception ex)
@@ -500,14 +514,15 @@ namespace nManager.Helpful
                 //Commenting out above required change to App.Config
                 webRequest.ContentType = "application/x-www-form-urlencoded";
                 webRequest.Method = "POST";
-                ((HttpWebRequest)webRequest).UserAgent = "TheNoobBot";
+                ((HttpWebRequest) webRequest).UserAgent = "TheNoobBot";
                 byte[] bytes = Encoding.UTF8.GetBytes(parameters);
                 Stream os = null;
                 try
-                { // send the Post
-                    webRequest.ContentLength = bytes.Length;   //Count bytes to send
+                {
+                    // send the Post
+                    webRequest.ContentLength = bytes.Length; //Count bytes to send
                     os = webRequest.GetRequestStream();
-                    os.Write(bytes, 0, bytes.Length);         //Send it
+                    os.Write(bytes, 0, bytes.Length); //Send it
                 }
                 catch (WebException ex)
                 {
@@ -522,7 +537,8 @@ namespace nManager.Helpful
                 }
 
                 try
-                { // get the response
+                {
+                    // get the response
                     WebResponse webResponse = webRequest.GetResponse();
                     var sr = new StreamReader(webResponse.GetResponseStream());
                     string name = sr.ReadToEnd().Trim();
@@ -532,7 +548,7 @@ namespace nManager.Helpful
                 {
                     Logging.WriteError("PostRequest(string url, string parameters)#2: " + ex.Message);
                     MessageBox.Show(ex.Message, "HttpPost: Response error",
-                       MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception exception)
@@ -547,7 +563,10 @@ namespace nManager.Helpful
         /// </summary>
         /// <param ></param>
         /// <returns></returns>
-        public static string GetCurrentDirectory { get { return Application.StartupPath; } }
+        public static string GetCurrentDirectory
+        {
+            get { return Application.StartupPath; }
+        }
 
         /// <summary>
         /// Return MD5.
@@ -601,7 +620,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var chooseFile = new OpenFileDialog { InitialDirectory = path, Filter = typeFile, Multiselect = true };
+                var chooseFile = new OpenFileDialog {InitialDirectory = path, Filter = typeFile, Multiselect = true};
                 chooseFile.ShowDialog();
                 return chooseFile.FileNames;
             }
@@ -622,7 +641,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var saveFile = new SaveFileDialog { InitialDirectory = path, Filter = typeFile };
+                var saveFile = new SaveFileDialog {InitialDirectory = path, Filter = typeFile};
                 saveFile.ShowDialog();
                 return saveFile.FileName;
             }
@@ -655,12 +674,14 @@ namespace nManager.Helpful
                 var resulMb =
                     MessageBox.Show(
                         Translate.Get(Translate.Id
-                        .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
-                        "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis), MessageBoxButtons.YesNo,
+                                               .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
+                        "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
+                        MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (resulMb == DialogResult.Yes)
                 {
-                    Process.Start("http://www.microsoft.com/downloads/en/details.aspx?FamilyID=a7b7a05e-6de6-4d3a-a423-37bf0912db84");
+                    Process.Start(
+                        "http://www.microsoft.com/downloads/en/details.aspx?FamilyID=a7b7a05e-6de6-4d3a-a423-37bf0912db84");
                 }
                 Process.GetCurrentProcess().Kill();
             }
@@ -836,7 +857,7 @@ namespace nManager.Helpful
                     authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                     req.Headers["Authorization"] = "Basic " + authInfo;
                 }
-                ((HttpWebRequest)req).UserAgent = "TheNoobBot";
+                ((HttpWebRequest) req).UserAgent = "TheNoobBot";
 
                 var response = req.GetResponse();
                 string headerResult = "";
@@ -847,13 +868,14 @@ namespace nManager.Helpful
                 var stm = response.GetResponseStream();
                 var r = new StreamReader(stm);
                 var sourceResult = r.ReadToEnd();
-                return new List<string> { ToUtf8(headerResult), ToUtf8(sourceResult) };
+                return new List<string> {ToUtf8(headerResult), ToUtf8(sourceResult)};
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetReqWithAuthHeader(string url, String userName, String userPassword): " + exception);
+                Logging.WriteError("GetReqWithAuthHeader(string url, String userName, String userPassword): " +
+                                   exception);
             }
-            return new List<string> { "", "" };
+            return new List<string> {"", ""};
         }
     }
 }

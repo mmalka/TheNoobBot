@@ -63,7 +63,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                return new[] { v.X, v.Y, v.Z };
+                return new[] {v.X, v.Y, v.Z};
             }
             catch (Exception exception)
             {
@@ -76,7 +76,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                return new[] { -v[2], -v[0], v[1] };
+                return new[] {-v[2], -v[0], v[1]};
             }
             catch (Exception exception)
             {
@@ -89,7 +89,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                return new[] { -v[1], v[2], -v[0] };
+                return new[] {-v[1], v[2], -v[0]};
             }
             catch (Exception exception)
             {
@@ -124,7 +124,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return new Point();
         }
 
-        public static float[] Origin = new[] { -17066.666f, 0, -17066.666f };
+        public static float[] Origin = new[] {-17066.666f, 0, -17066.666f};
 
         public static float TileSize
         {

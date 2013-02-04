@@ -11,7 +11,9 @@ namespace nManager.Wow.Helpers
             {
                 if (baseAddress > 0)
                 {
-                    uint VTable = Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(baseAddress) + ((uint)Addresses.VMT.CGUnit_C__GetFacing * 4));
+                    uint VTable =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowMemory.Memory.ReadUInt(baseAddress) +
+                                                         ((uint) Addresses.VMT.CGUnit_C__GetFacing*4));
                     if (VTable <= 0)
                         return 0;
                     var objectManagerBase = Addresses.ObjectManager.objectManager;
@@ -24,22 +26,24 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.WriteFloat(result_Codecave, 0);
 
                     var asm = new[]
-                    {
-                        "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
-                        "test eax, eax",
-                        "je @out",
-
-                        "call " + (Memory.WowProcess.WowModule + (uint)Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                        "test eax, eax",
-                        "je @out",
-
-                        "mov ecx, " + baseAddress,
-                        "call " + VTable,
-                        "mov eax, " + result_Codecave,
-                        "fstp dword [eax]",
-                        "@out:",
-                        "retn"
-                    };
+                                  {
+                                      "call " +
+                                      (Memory.WowProcess.WowModule +
+                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                                      "test eax, eax",
+                                      "je @out",
+                                      "call " +
+                                      (Memory.WowProcess.WowModule +
+                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                                      "test eax, eax",
+                                      "je @out",
+                                      "mov ecx, " + baseAddress,
+                                      "call " + VTable,
+                                      "mov eax, " + result_Codecave,
+                                      "fstp dword [eax]",
+                                      "@out:",
+                                      "retn"
+                                  };
 
 
                     Memory.WowMemory.InjectAndExecute(asm);
@@ -47,20 +51,20 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.FreeMemory(result_Codecave);
 
                     if (result < 0)
-                        result = result + (float)System.Math.PI * 2;
+                        result = result + (float) System.Math.PI*2;
 
-                    if (result > (float)System.Math.PI * 2)
+                    if (result > (float) System.Math.PI*2)
                         result = 0;
                     if (result < 0)
                         result = 0;
 
                     return result;
-
                 }
             }
-            catch { }
+            catch
+            {
+            }
             return 0;
         }
-
     }
 }

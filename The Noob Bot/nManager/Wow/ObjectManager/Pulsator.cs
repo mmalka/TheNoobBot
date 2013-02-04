@@ -23,7 +23,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (_worker != null)
                         Shutdown();
-                    _worker = new Thread(Pulse) { IsBackground = true, Name = "ObjectManager" };
+                    _worker = new Thread(Pulse) {IsBackground = true, Name = "ObjectManager"};
                     _worker.Start();
                 }
                 else
@@ -87,7 +87,7 @@ namespace nManager.Wow.ObjectManager
                 if (_worker != null)
                 {
                     _worker.Abort();
-                    while (_worker != null  && _worker.IsAlive)// || _worker.ThreadState != ThreadState.Aborted)
+                    while (_worker != null && _worker.IsAlive) // || _worker.ThreadState != ThreadState.Aborted)
                     {
                         // Wait for the thread to actually die.
                         // This avoids crashing WoW at shutdown.
@@ -110,7 +110,9 @@ namespace nManager.Wow.ObjectManager
             get
             {
                 try
-                { return _worker != null; }
+                {
+                    return _worker != null;
+                }
                 catch (Exception e)
                 {
                     Logging.WriteError("Pulsator > IsActive: " + e);

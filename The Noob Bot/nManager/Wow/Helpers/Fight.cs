@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
                     {
                         MovementManager.StopMove();
                     }
- 
+
                     _fightLoop = true;
                     Thread.Sleep(500);
                     if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
@@ -259,7 +259,6 @@ namespace nManager.Wow.Helpers
                     if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
-
                         Interact.InteractGameObject(targetNpc.GetBaseAddress);
                         MovementManager.StopMove();
                         // Initial Target
@@ -276,7 +275,6 @@ namespace nManager.Wow.Helpers
                         if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
                             !ObjectManager.ObjectManager.Me.IsCast)
                         {
-
                             Interact.InteractGameObject(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             MovementManager.StopMove();
                             // Switch Target

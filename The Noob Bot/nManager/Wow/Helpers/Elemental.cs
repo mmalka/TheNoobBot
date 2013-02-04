@@ -12,10 +12,11 @@ namespace nManager.Wow.Helpers
             {
                 if (Others.ExistFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt"))
                 {
-                    var codeLua = Others.ReadFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt").Replace(Environment.NewLine, " ");
+                    var codeLua =
+                        Others.ReadFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt")
+                              .Replace(Environment.NewLine, " ");
                     Lua.LuaDoString(codeLua);
                 }
-                
             }
             catch (Exception exception)
             {

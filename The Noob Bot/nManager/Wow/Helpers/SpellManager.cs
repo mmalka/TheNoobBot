@@ -12,7 +12,8 @@ namespace nManager.Wow.Helpers
 {
     public class SpellManager
     {
-        static readonly List<uint> MountDruidIdList = new List<uint>();
+        private static readonly List<uint> MountDruidIdList = new List<uint>();
+
         public static List<uint> MountDruidId()
         {
             try
@@ -36,7 +37,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spellList = new List<string> { spell };
+                var spellList = new List<string> {spell};
                 return GetSlotBarBySpellName(spellList);
             }
             catch (Exception exception)
@@ -45,18 +46,22 @@ namespace nManager.Wow.Helpers
             }
             return "";
         }
+
         public static string GetSlotBarBySpellName(List<string> spellList)
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
+                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
+                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     i = i + (int) Addresses.BarManager.nextSlot)
                 {
-                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint)i);
+                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
                     if (sIdt != 0)
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
                         {
-                            int j = ((i - ((int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar)) / (int)Addresses.BarManager.nextSlot);
+                            int j = ((i - ((int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar))/
+                                     (int) Addresses.BarManager.nextSlot);
                             int k = 0;
                             while (true)
                             {
@@ -80,16 +85,19 @@ namespace nManager.Wow.Helpers
             }
             return "";
         }
+
         public static string GetSlotBarBySpellId(UInt32 spellId)
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
+                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
+                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     i = i + (int) Addresses.BarManager.nextSlot)
                 {
-
-                    if (Memory.WowMemory.Memory.ReadUInt((uint)i) == spellId)
+                    if (Memory.WowMemory.Memory.ReadUInt((uint) i) == spellId)
                     {
-                        int j = (i - (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar) / (int)Addresses.BarManager.nextSlot;
+                        int j = (i - (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar)/
+                                (int) Addresses.BarManager.nextSlot;
                         int k = 0;
                         while (true)
                         {
@@ -120,9 +128,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                for (int i = (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar; i <= (int)Memory.WowProcess.WowModule + (int)Addresses.BarManager.startBar + 0x11C; i = i + (int)Addresses.BarManager.nextSlot)
+                for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
+                     i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     i = i + (int) Addresses.BarManager.nextSlot)
                 {
-                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint)i);
+                    uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
                     if (sIdt != 0)
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
@@ -151,14 +161,14 @@ namespace nManager.Wow.Helpers
 
                 if (Convert.ToUInt32(keySlot[0]) == 1)
                 {
-
                     int numBarOne = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                         (uint)Addresses.BarManager.startBar);
+                                                                    (uint) Addresses.BarManager.startBar);
                     if (numBarOne > 0)
                         keySlot[0] = (6 + (numBarOne)).ToString(CultureInfo.InvariantCulture);
                 }
 
-                uint adresse = Memory.WowProcess.WowModule + (uint)Addresses.BarManager.slotIsEnable + (4 * 12 * (Convert.ToUInt32(keySlot[0]) - 1)) + (4 * (Convert.ToUInt32(keySlot[1]) - 1));
+                uint adresse = Memory.WowProcess.WowModule + (uint) Addresses.BarManager.slotIsEnable +
+                               (4*12*(Convert.ToUInt32(keySlot[0]) - 1)) + (4*(Convert.ToUInt32(keySlot[1]) - 1));
 
                 return Memory.WowMemory.Memory.ReadUInt(adresse) == 1;
             }
@@ -184,6 +194,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("LaunchSpellByName(string spellName): " + exception);
             }
         }
+
         public static void LaunchSpellById(UInt32 spellId)
         {
             try
@@ -191,10 +202,14 @@ namespace nManager.Wow.Helpers
                 string slotKeySpell = GetSlotBarBySpellId(spellId);
                 if (slotKeySpell == "")
                 {
-                    UInt32 spellIdTemps = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.BarManager.startBar);
-                    Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.BarManager.startBar, spellId);
+                    UInt32 spellIdTemps =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.BarManager.startBar);
+                    Memory.WowMemory.Memory.WriteUInt(
+                        Memory.WowProcess.WowModule + (uint) Addresses.BarManager.startBar, spellId);
                     Keybindings.PressBarAndSlotKey("1;1");
-                    Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint)Addresses.BarManager.startBar, spellIdTemps);
+                    Memory.WowMemory.Memory.WriteUInt(
+                        Memory.WowProcess.WowModule + (uint) Addresses.BarManager.startBar, spellIdTemps);
                 }
                 else
                 {
@@ -206,6 +221,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("LaunchSpellById(UInt32 spellId): " + exception);
             }
         }
+
         public static void CastSpellByNameLUA(string spellName)
         {
             try
@@ -217,6 +233,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("CastSpellByNameLUA(string spellName): " + exception);
             }
         }
+
         public static void CastSpellByIDAndPosition(UInt32 spellId, Point postion)
         {
             try
@@ -228,6 +245,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("CastSpellByIDAndPosition(UInt32 spellId, Point postion): " + exception);
             }
         }
+
         public static void CastSpellByIdLUA(uint spellId)
         {
             try
@@ -240,13 +258,15 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("CastSpellByIdLUA(uint spellId): " + exception);
             }
         }
+
         public static bool ExistMountLUA(string spellName)
         {
             try
             {
                 var ret =
                     Lua.LuaDoString(
-                        "ret = \"\"; nameclient = \"" + spellName + "\"; for i=1,GetNumCompanions(\"MOUNT\"),1 do local _, name = GetCompanionInfo(\"MOUNT\", i)  if name == nameclient then ret = \"true\"  return end  end",
+                        "ret = \"\"; nameclient = \"" + spellName +
+                        "\"; for i=1,GetNumCompanions(\"MOUNT\"),1 do local _, name = GetCompanionInfo(\"MOUNT\", i)  if name == nameclient then ret = \"true\"  return end  end",
                         "ret");
                 return ret == "true";
             }
@@ -256,14 +276,20 @@ namespace nManager.Wow.Helpers
                 return false;
             }
         }
+
         public static bool SpellUsableLUA(string spellName)
         {
             try
             {
-                lock (typeof(SpellManager))
+                lock (typeof (SpellManager))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(" usable, nomana = IsUsableSpell(\"" + spellName + "\");  if (not usable) then   if (not nomana) then    " + randomStringResult + " = \"false\"   else     " + randomStringResult + " = \"false\"   end  else     start, duration, enabled = GetSpellCooldown(\"" + spellName + "\"); 	if start == 0 and duration == 0  then 	" + randomStringResult + " = \"true\" 	else 	" + randomStringResult + " = \"falseD\" 	end  end  ");
+                    Lua.LuaDoString(" usable, nomana = IsUsableSpell(\"" + spellName +
+                                    "\");  if (not usable) then   if (not nomana) then    " + randomStringResult +
+                                    " = \"false\"   else     " + randomStringResult +
+                                    " = \"false\"   end  else     start, duration, enabled = GetSpellCooldown(\"" +
+                                    spellName + "\"); 	if start == 0 and duration == 0  then 	" + randomStringResult +
+                                    " = \"true\" 	else 	" + randomStringResult + " = \"falseD\" 	end  end  ");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
                     return (sResult == "true");
                 }
@@ -279,10 +305,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                lock (typeof(SpellManager))
+                lock (typeof (SpellManager))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = \"false\" for i=1,40 do local n,_,_,_,_,_,_,_,id=UnitBuff(\"player\",i); if n == \"" + spellNameInGame + "\" then " + randomStringResult + " = \"true\" end end");
+                    Lua.LuaDoString(randomStringResult +
+                                    " = \"false\" for i=1,40 do local n,_,_,_,_,_,_,_,id=UnitBuff(\"player\",i); if n == \"" +
+                                    spellNameInGame + "\" then " + randomStringResult + " = \"true\" end end");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
                     return (sResult == "true");
                 }
@@ -312,7 +340,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString("_, " + randomStringResult + " = GetSpellBookItemInfo(\""+spellNameInGame+"\")");
+                Lua.LuaDoString("_, " + randomStringResult + " = GetSpellBookItemInfo(\"" + spellNameInGame + "\")");
                 string sResult = Lua.GetLocalizedText(randomStringResult);
                 return new Spell(sResult);
             }
@@ -345,9 +373,11 @@ namespace nManager.Wow.Helpers
             {
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                 string randomStringNameClient = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomStringResult + " = \"\"; " + randomStringNameClient + " = \"" + spellName + "\"; if (GetSpellBookItemInfo(" + randomStringNameClient + ")) then " + randomStringResult + " = \"true\" else " + randomStringResult + " = \"false\" end");
+                Lua.LuaDoString(randomStringResult + " = \"\"; " + randomStringNameClient + " = \"" + spellName +
+                                "\"; if (GetSpellBookItemInfo(" + randomStringNameClient + ")) then " +
+                                randomStringResult + " = \"true\" else " + randomStringResult + " = \"false\" end");
                 string sResult = Lua.GetLocalizedText(randomStringResult);
-                if(sResult == "true")
+                if (sResult == "true")
                     return true;
                 return false;
             }
@@ -358,25 +388,33 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        static List<UInt32> _spellBookID = new List<UInt32>();
-        static bool _usedSbid;
+        private static List<UInt32> _spellBookID = new List<UInt32>();
+        private static bool _usedSbid;
+
         public static List<UInt32> SpellBookID()
         {
             try
             {
-                while (_usedSbid) { Thread.Sleep(10); }
+                while (_usedSbid)
+                {
+                    Thread.Sleep(10);
+                }
                 if (_spellBookID.Count <= 0)
                 {
                     Logging.Write("Initializing SpellBook - (Wait few seconds)");
                     _usedSbid = true;
                     var spellBook = new List<uint>();
 
-                    UInt32 nbSpells = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.nbSpell);
-                    UInt32 spellBookInfoPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.knownSpell);
+                    UInt32 nbSpells =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.nbSpell);
+                    UInt32 spellBookInfoPtr =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.knownSpell);
 
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
-                        var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i * 4);
+                        var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                         var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
                         if (isKnown == 1)
                             spellBook.Add(Memory.WowMemory.Memory.ReadUInt(Struct + 0x4));
@@ -385,7 +423,7 @@ namespace nManager.Wow.Helpers
 
                     _spellBookID = spellBook;
                     _usedSbid = false;
-                    Logging.Write("Initialize SpellBook Finished (" + _spellBookID .Count+ " spell found)");
+                    Logging.Write("Initialize SpellBook Finished (" + _spellBookID.Count + " spell found)");
                 }
                 return _spellBookID;
             }
@@ -395,16 +433,19 @@ namespace nManager.Wow.Helpers
             }
             return new List<uint>();
         }
+
         public static int SpellAvailable()
         {
             try
             {
-                UInt32 nbSpells = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.nbSpell);
-                var spellBookInfoPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.knownSpell);
+                UInt32 nbSpells =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
+                var spellBookInfoPtr =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
                 var j = 0;
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i * 4);
+                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
 
                     var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
                     if (3 == Memory.WowMemory.Memory.ReadUInt(Struct + 0x8) && isKnown == 2)
@@ -418,13 +459,18 @@ namespace nManager.Wow.Helpers
             }
             return 0;
         }
-        static List<string> _spellBookName = new List<string>();
-        static bool _usedSbn;
+
+        private static List<string> _spellBookName = new List<string>();
+        private static bool _usedSbn;
+
         public static List<string> SpellBookName()
         {
             try
             {
-                while (_usedSbn) { Thread.Sleep(10); }
+                while (_usedSbn)
+                {
+                    Thread.Sleep(10);
+                }
                 if (_spellBookName.Count <= 0)
                 {
                     _usedSbn = true;
@@ -440,7 +486,9 @@ namespace nManager.Wow.Helpers
             }
             return new List<string>();
         }
-        static List<Spell> _spellBookSpell = new List<Spell>();
+
+        private static List<Spell> _spellBookSpell = new List<Spell>();
+
         public static List<Spell> SpellBook()
         {
             try
@@ -461,16 +509,19 @@ namespace nManager.Wow.Helpers
             }
             return new List<Spell>();
         }
+
         public static void UpdateSpellBook()
         {
             try
             {
-                var nbSpells = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.nbSpell);
-                var spellBookInfoPtr = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.knownSpell);
+                var nbSpells =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
+                var spellBookInfoPtr =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
 
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i * 4);
+                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
                     if (isKnown == 1)
                     {
@@ -484,8 +535,6 @@ namespace nManager.Wow.Helpers
                     }
                     Application.DoEvents();
                 }
-
-
 
 
                 foreach (var o in _spellBookSpell)
@@ -509,7 +558,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var mountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
+                var mountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
 
                 string key = GetSlotBarBySpellName(mountList);
                 if (key != "")
@@ -522,11 +572,13 @@ namespace nManager.Wow.Helpers
             }
             return "";
         }
+
         public static string GetMountName()
         {
             try
             {
-                var mountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
+                var mountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
 
                 string key = GetClienNameBySpellName(mountList);
                 if (key != "")
@@ -544,7 +596,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var flyMountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
+                var flyMountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
 
                 string key = GetClienNameBySpellName(flyMountList);
                 if (key != "")
@@ -557,11 +610,13 @@ namespace nManager.Wow.Helpers
             }
             return "";
         }
+
         public static string GetFlyMountBarAndSlot()
         {
             try
             {
-                var flyMountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
+                var flyMountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
 
                 string key = GetSlotBarBySpellName(flyMountList);
                 if (key != "")
@@ -579,7 +634,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var aquaticMountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
+                var aquaticMountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
 
                 string key = GetClienNameBySpellName(aquaticMountList);
                 if (key != "")
@@ -592,11 +648,13 @@ namespace nManager.Wow.Helpers
             }
             return "";
         }
+
         public static string GetAquaticMountBarAndSlot()
         {
             try
             {
-                var aquaticMountList = new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
+                var aquaticMountList =
+                    new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
 
                 string key = GetSlotBarBySpellName(aquaticMountList);
                 if (key != "")
@@ -656,6 +714,7 @@ namespace nManager.Wow.Helpers
                     return listIdSpellFound;
                 }
             }
+
             private static bool FindByName(SpellList tempsSpell)
             {
                 try
@@ -688,6 +747,7 @@ namespace nManager.Wow.Helpers
                 }
                 return "";
             }
+
             public static string SpellNameByIdExperimental(UInt32 spellId)
             {
                 try
@@ -696,7 +756,8 @@ namespace nManager.Wow.Helpers
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
-                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): "+ sResult + ";" + SpellNameById(spellId) + ";" + spellId);
+                    Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): " + sResult + ";" +
+                                       SpellNameById(spellId) + ";" + spellId);
                     return sResult;
                 }
                 catch (Exception exception)
@@ -705,7 +766,9 @@ namespace nManager.Wow.Helpers
                 }
                 return "";
             }
+
             private static uint _spellId;
+
             private static bool FindById(SpellList tempsSpell)
             {
                 try
@@ -726,5 +789,4 @@ namespace nManager.Wow.Helpers
             }
         }
     }
-
 }
