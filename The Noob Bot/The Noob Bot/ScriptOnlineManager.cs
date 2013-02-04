@@ -99,9 +99,12 @@ namespace The_Noob_Bot
                 CodeDomProvider cc = new CSharpCodeProvider();
                 var cp = new CompilerParameters();
                 var assemblies = AppDomain.CurrentDomain
-                    .GetAssemblies()
-                    .Where(a => !a.IsDynamic && !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                    .Select(a => a.Location);
+                                          .GetAssemblies()
+                                          .Where(
+                                              a =>
+                                              !a.IsDynamic &&
+                                              !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                                          .Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                 string toCompile = sr;
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);

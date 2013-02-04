@@ -105,7 +105,7 @@ namespace The_Noob_Bot
                     MessageBox.Show(
                         Translate.Get(
                             Translate.Id.
-                                Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) +
+                                      Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) +
                         ": http://thenoobbot.com/.",
                         Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(
@@ -277,7 +277,8 @@ namespace The_Noob_Bot
 
                         // End Statistique
 
-                        string resultReqLoop = GetReqWithAuthHeader(ScriptLogintUrl + reqStatistique, Login, Password)[0];
+                        string resultReqLoop =
+                            GetReqWithAuthHeader(ScriptLogintUrl + reqStatistique, Login, Password)[0];
                         if (TrueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
@@ -512,7 +513,7 @@ namespace The_Noob_Bot
                                 MessageBox.Show(
                                     Translate.Get(
                                         Translate.Id.
-                                            The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb) +
+                                                  The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb) +
                                     ". ", "/!\\ " + Translate.Get(Translate.Id.Suspect_Activity) + " /!\\",
                                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
@@ -588,7 +589,7 @@ namespace The_Noob_Bot
             MessageBox.Show(
                 Translate.Get(
                     Translate.Id.
-                        TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat),
+                              TheNoobBot_s_server_seems_to_be_down__you_may_try_to_disable_your_Anti_virus_or_Firewall_and_try_again__Note__This_version_may_have_been_blocked_from_our_servers_due_to_a_Suspect_Activity_or_crack_attempt__you_can_check_if_a_new_version_is_available_on_our_Website_or_check_our_forum_in_News_cat),
                 Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
             EndInformation();
         }
