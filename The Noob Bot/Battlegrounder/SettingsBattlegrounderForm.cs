@@ -112,7 +112,13 @@ namespace Battlegrounder
 
         private void CheckAll_Switch_Event(object sender, System.EventArgs e)
         {
-            RandomBattlegroundSwitch.Value = false;
+            if (RandomBattlegroundSwitch.Value == true)
+            {
+                RandomBattlegroundSwitch.Value = false;
+                MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
             DevComponents.DotNetBar.Controls.SwitchButton sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
             if (CountSwitchActive() > 2)
             {
