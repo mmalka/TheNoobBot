@@ -1182,5 +1182,13 @@
       <Text>Requeue after X minutes</Text>
       <Id>RequeueAfterXMinutes</Id>
     </Translation>
+	<Translation>
+      <Text>You can only be queued for 2 battles at once.</Text>
+      <Id>ErrorMultipleQueue</Id>
+    </Translation>
+	<Translation>
+      <Text>Can't queue for Random Battleground while in another Battleground queue.</Text>
+      <Id>ErrorRandomQueue</Id>
+    </Translation>
   </Translations>
 </Language>
