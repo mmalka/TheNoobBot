@@ -25,8 +25,8 @@ public class Main : ICustomClass
     {
         try
         {
-			if(!loop)
-				loop = true;
+            if (!loop)
+                loop = true;
             Logging.WriteFight("Loading Anti AFK system.");
 
             new AntiAfk();
