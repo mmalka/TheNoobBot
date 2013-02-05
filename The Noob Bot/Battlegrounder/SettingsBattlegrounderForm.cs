@@ -1,9 +1,9 @@
 using System;
 using System.IO;
+using System.Linq;
 using Battlegrounder.Bot;
 using Battlegrounder.Profile;
 using Battlegrounder.Profiletype;
-using DevComponents.DotNetBar;
 using nManager;
 using System.Windows.Forms;
 using System.Collections.Generic;
@@ -14,39 +14,39 @@ namespace Battlegrounder
 {
     public partial class SettingsBattlegrounderForm : DevComponents.DotNetBar.Metro.MetroForm
     {
-        internal static BattlegrounderProfileType ProfileTypeFile = new BattlegrounderProfileType();
+        private static BattlegrounderProfileType _profileTypeFile = new BattlegrounderProfileType();
 
-        private List<DevComponents.DotNetBar.Controls.SwitchButton> listsb =
+        private readonly List<DevComponents.DotNetBar.Controls.SwitchButton> _listsb =
             new List<DevComponents.DotNetBar.Controls.SwitchButton>();
 
         public SettingsBattlegrounderForm()
         {
             InitializeComponent();
-            translate();
+            Translate();
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                this.TopMost = true;
+                TopMost = true;
             Load();
         }
 
-        private void translate()
+        private void Translate()
         {
-            AlteracValleyLabel.Text = Translate.Get(Translate.Id.AlteracValley);
-            WarsongGulchLabel.Text = Translate.Get(Translate.Id.WarsongGulch);
-            ArathiBasinLabel.Text = Translate.Get(Translate.Id.ArathiBasin);
-            EyeoftheStormLabel.Text = Translate.Get(Translate.Id.EyeoftheStorm);
-            StrandoftheAncientsLabel.Text = Translate.Get(Translate.Id.StrandoftheAncients);
-            IsleofConquestLabel.Text = Translate.Get(Translate.Id.IsleofConquest);
-            TwinPeaksLabel.Text = Translate.Get(Translate.Id.TwinPeaks);
-            BattleforGilneasLabel.Text = Translate.Get(Translate.Id.BattleforGilneas);
-            TempleOfKotmoguLabel.Text = Translate.Get(Translate.Id.TempleofKotmogu);
-            SilvershardMinesLabel.Text = Translate.Get(Translate.Id.SilvershardMines);
-            RandomBattlegroundLabel.Text = Translate.Get(Translate.Id.RandomBattleground);
-            RequeueAfterXMinutesLabel.Text = Translate.Get(Translate.Id.RequeueAfterXMinutes);
-            SaveButton.Text = Translate.Get(Translate.Id.Save_and_Close);
-            Text = Translate.Get(Translate.Id.Settings_Battlegrounder);
+            AlteracValleyLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AlteracValley);
+            WarsongGulchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.WarsongGulch);
+            ArathiBasinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ArathiBasin);
+            EyeoftheStormLabel.Text = nManager.Translate.Get(nManager.Translate.Id.EyeoftheStorm);
+            StrandoftheAncientsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.StrandoftheAncients);
+            IsleofConquestLabel.Text = nManager.Translate.Get(nManager.Translate.Id.IsleofConquest);
+            TwinPeaksLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TwinPeaks);
+            BattleforGilneasLabel.Text = nManager.Translate.Get(nManager.Translate.Id.BattleforGilneas);
+            TempleOfKotmoguLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TempleofKotmogu);
+            SilvershardMinesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SilvershardMines);
+            RandomBattlegroundLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RandomBattleground);
+            RequeueAfterXMinutesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RequeueAfterXMinutes);
+            SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
+            Text = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder);
         }
 
-        private void SaveButton_Click(object sender, System.EventArgs e)
+        private void SaveButtonClick(object sender, EventArgs e)
         {
             Save();
         }
@@ -132,16 +132,16 @@ namespace Battlegrounder
 
         private new void Load()
         {
-            listsb.Add(ArathiBasinSwitch);
-            listsb.Add(AlteracValleySwitch);
-            listsb.Add(WarsongGulchSwitch);
-            listsb.Add(EyeoftheStormSwitch);
-            listsb.Add(StrandoftheAncientsSwitch);
-            listsb.Add(IsleofConquestSwitch);
-            listsb.Add(TwinPeaksSwitch);
-            listsb.Add(BattleforGilneasSwitch);
-            listsb.Add(TempleOfKotmoguSwitch);
-            listsb.Add(SilvershardMinesSwitch);
+            _listsb.Add(ArathiBasinSwitch);
+            _listsb.Add(AlteracValleySwitch);
+            _listsb.Add(WarsongGulchSwitch);
+            _listsb.Add(EyeoftheStormSwitch);
+            _listsb.Add(StrandoftheAncientsSwitch);
+            _listsb.Add(IsleofConquestSwitch);
+            _listsb.Add(TwinPeaksSwitch);
+            _listsb.Add(BattleforGilneasSwitch);
+            _listsb.Add(TempleOfKotmoguSwitch);
+            _listsb.Add(SilvershardMinesSwitch);
 
             AlteracValleySwitch.Value = BattlegrounderSetting.CurrentSetting.AlteracValley;
             WarsongGulchSwitch.Value = BattlegrounderSetting.CurrentSetting.WarsongGulch;
@@ -159,11 +159,11 @@ namespace Battlegrounder
 
             if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml"))
             {
-                ProfileTypeFile = new BattlegrounderProfileType();
-                ProfileTypeFile =
+                _profileTypeFile = new BattlegrounderProfileType();
+                _profileTypeFile =
                     XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
                                                                          "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
-                if (ProfileTypeFile.Battlegrounds.Count > 0)
+                if (_profileTypeFile.Battlegrounds.Count > 0)
                     RefreshProfileListType();
                 else
                     MessageBox.Show("Cannot load Profile Types list.");
@@ -184,15 +184,16 @@ namespace Battlegrounder
             XMLProfileListSilvershardMines.Text = BattlegrounderSetting.CurrentSetting.XMLProfileListSilvershardMines;
         }
 
-        private void RandomBattlegroundSwitch_ValueChanged(object sender, System.EventArgs e)
+        private void RandomBattlegroundSwitchValueChanged(object sender, EventArgs e)
         {
-            DevComponents.DotNetBar.Controls.SwitchButton sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
-            if (sbi.Value == true)
+            var sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
+            if (sbi != null && sbi.Value)
             {
                 if (CountSwitchActive() > 0)
                 {
                     sbi.Value = false;
-                    MessageBox.Show(Translate.Get(Translate.Id.ErrorRandomQueue), "", MessageBoxButtons.OK,
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorRandomQueue), "",
+                                    MessageBoxButtons.OK,
                                     MessageBoxIcon.Information);
                 }
             }
@@ -200,39 +201,36 @@ namespace Battlegrounder
 
         private int CountSwitchActive()
         {
-            int cnt = 0;
-            foreach (DevComponents.DotNetBar.Controls.SwitchButton i in listsb)
-                if (i.Value == true)
-                    cnt++;
-
-            return cnt;
+            return _listsb.Count(i => i.Value);
         }
 
-        private void CheckAll_Switch_Event(object sender, System.EventArgs e)
+        private void CheckAllSwitchEvent(object sender, EventArgs e)
         {
-            DevComponents.DotNetBar.Controls.SwitchButton sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
-            if (RandomBattlegroundSwitch.Value == true)
+            var sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
+            if (RandomBattlegroundSwitch.Value)
             {
-                sbi.Value = false;
-                MessageBox.Show(Translate.Get(Translate.Id.ErrorSingleRandomQueue), "", MessageBoxButtons.OK,
+                if (sbi != null) sbi.Value = false;
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorSingleRandomQueue), "",
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
                 return;
             }
 
             if (CountSwitchActive() > 2)
             {
-                sbi.Value = false;
-                MessageBox.Show(Translate.Get(Translate.Id.ErrorMultipleQueue), "", MessageBoxButtons.OK,
+                if (sbi != null) sbi.Value = false;
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.ErrorMultipleQueue), "",
+                                MessageBoxButtons.OK,
                                 MessageBoxIcon.Information);
             }
         }
 
-        private void CloseNoSaveButton_Click(object sender, System.EventArgs e)
+        private void CloseNoSaveButtonClick(object sender, EventArgs e)
         {
             Dispose();
         }
 
-        private void createProfileB_Click(object sender, System.EventArgs e)
+        private void CreateProfileBClick(object sender, EventArgs e)
         {
             try
             {
@@ -259,200 +257,127 @@ namespace Battlegrounder
         {
             try
             {
-                var alteracValleyb = AlteracValleyProfileType.Text;
                 AlteracValleyProfileType.Items.Clear();
-                var warsongGulchb = WarsongGulchProfileType.Text;
                 WarsongGulchProfileType.Items.Clear();
-                var arathiBasinb = ArathiBasinProfileType.Text;
                 ArathiBasinProfileType.Items.Clear();
-                var eyeoftheStormb = EyeoftheStormProfileType.Text;
                 EyeoftheStormProfileType.Items.Clear();
-                var strandoftheAncientsb = StrandoftheAncientsProfileType.Text;
                 StrandoftheAncientsProfileType.Items.Clear();
-                var isleofConquestb = IsleofConquestProfileType.Text;
                 IsleofConquestProfileType.Items.Clear();
-                var battleforGilneasb = BattleforGilneasProfileType.Text;
                 BattleforGilneasProfileType.Items.Clear();
-                var twinPeaksb = TwinPeaksProfileType.Text;
                 TwinPeaksProfileType.Items.Clear();
-                var templeOfKotmogub = TempleofKotmoguProfileType.Text;
                 TempleofKotmoguProfileType.Items.Clear();
-                var silvershardMinesb = SilvershardMinesProfileType.Text;
                 SilvershardMinesProfileType.Items.Clear();
-                var item = new ComboboxItem();
-                for (int x = 0; x <= ProfileTypeFile.Battlegrounds.Count - 1; x++)
+                foreach (var battleground in _profileTypeFile.Battlegrounds)
                 {
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == AlteracValley.Name)
+                    for (var i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
                     {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        var item = new ComboboxItem
+                                       {
+                                           Text = battleground.ProfileTypes[i].ProfileTypeName,
+                                           Value = battleground.ProfileTypes[i].ProfileTypeId
+                                       };
+                        if (battleground.BattlegroundId == AlteracValley.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             AlteracValleyProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType ||
+                                AlteracValleyProfileType.SelectedIndex == -1)
                             {
-                                AlteracValleyProfileType.SelectedIndex = y;
+                                AlteracValleyProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == WarsongGulch.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == WarsongGulch.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             WarsongGulchProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType ||
+                                WarsongGulchProfileType.SelectedIndex == -1)
                             {
-                                WarsongGulchProfileType.SelectedIndex = y;
+                                WarsongGulchProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == ArathiBasin.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == ArathiBasin.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             ArathiBasinProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType ||
+                                ArathiBasinProfileType.SelectedIndex == -1)
                             {
-                                ArathiBasinProfileType.SelectedIndex = y;
+                                ArathiBasinProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == EyeoftheStorm.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == EyeoftheStorm.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             EyeoftheStormProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType ||
+                                EyeoftheStormProfileType.SelectedIndex == -1)
                             {
-                                EyeoftheStormProfileType.SelectedIndex = y;
+                                EyeoftheStormProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == StrandoftheAncients.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == StrandoftheAncients.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             StrandoftheAncientsProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType ||
+                                StrandoftheAncientsProfileType.SelectedIndex == -1)
                             {
-                                StrandoftheAncientsProfileType.SelectedIndex = y;
+                                StrandoftheAncientsProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == IsleofConquest.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == IsleofConquest.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             IsleofConquestProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType ||
+                                IsleofConquestProfileType.SelectedIndex == -1)
                             {
-                                IsleofConquestProfileType.SelectedIndex = y;
+                                IsleofConquestProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == BattleforGilneas.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == BattleforGilneas.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             BattleforGilneasProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType ||
+                                BattleforGilneasProfileType.SelectedIndex == -1)
                             {
-                                BattleforGilneasProfileType.SelectedIndex = y;
+                                BattleforGilneasProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == TwinPeaks.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == TwinPeaks.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             TwinPeaksProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType ||
+                                TwinPeaksProfileType.SelectedIndex == -1)
                             {
-                                TwinPeaksProfileType.SelectedIndex = y;
+                                TwinPeaksProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == TempleofKotmogu.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == TempleofKotmogu.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             TempleofKotmoguProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType ||
+                                TempleofKotmoguProfileType.SelectedIndex == -1)
                             {
-                                TempleofKotmoguProfileType.SelectedIndex = y;
+                                TempleofKotmoguProfileType.SelectedIndex = i;
                             }
                         }
-                    }
-                    if (ProfileTypeFile.Battlegrounds[x].BattlegroundId == SilvershardMines.Name)
-                    {
-                        for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
+                        else if (battleground.BattlegroundId == SilvershardMines.Name)
                         {
-                            item = new Battlegrounder.Profiletype.ComboboxItem();
-                            item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                            item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
                             SilvershardMinesProfileType.Items.Add(item);
-                            if (ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId ==
-                                BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType)
+                            if (battleground.ProfileTypes[i].ProfileTypeId ==
+                                BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType ||
+                                SilvershardMinesProfileType.SelectedIndex == -1)
                             {
-                                SilvershardMinesProfileType.SelectedIndex = y;
+                                SilvershardMinesProfileType.SelectedIndex = i;
                             }
                         }
                     }
                 }
-                /*for (int x = 0; x <= ProfileTypeFile.Battlegrounds.Count - 1; x++)
-                {
-                    for (int y = 0; y <= ProfileTypeFile.Battlegrounds[x].ProfileTypes.Count - 1; y++)
-                    {
-                        item = new Battlegrounder.Profiletype.ComboboxItem();
-                        item.Text = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeName;
-                        item.Value = ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId;
-                        this[ProfileTypeFile.Battlegrounds[x].ProfileTypes[y].ProfileTypeId].Items.Add(item);
-                    }
-                }*/
-                AlteracValleyProfileType.Text = alteracValleyb;
-                WarsongGulchProfileType.Text = warsongGulchb;
-                ArathiBasinProfileType.Text = arathiBasinb;
-                EyeoftheStormProfileType.Text = eyeoftheStormb;
-                StrandoftheAncientsProfileType.Text = strandoftheAncientsb;
-                IsleofConquestProfileType.Text = isleofConquestb;
-                BattleforGilneasProfileType.Text = battleforGilneasb;
-                TwinPeaksProfileType.Text = twinPeaksb;
-                TempleofKotmoguProfileType.Text = templeOfKotmogub;
-                SilvershardMinesProfileType.Text = silvershardMinesb;
             }
             catch (Exception e)
             {
@@ -464,25 +389,25 @@ namespace Battlegrounder
         {
             try
             {
-                var AlteracValley = XMLProfileListAlteracValley.Text;
+                var alteracValley = XMLProfileListAlteracValley.Text;
                 XMLProfileListAlteracValley.Items.Clear();
-                var WarsongGulch = XMLProfileListWarsongGulch.Text;
+                var warsongGulch = XMLProfileListWarsongGulch.Text;
                 XMLProfileListWarsongGulch.Items.Clear();
-                var ArathiBasin = XMLProfileListArathiBasin.Text;
+                var arathiBasin = XMLProfileListArathiBasin.Text;
                 XMLProfileListArathiBasin.Items.Clear();
-                var EyeoftheStorm = XMLProfileListEyeoftheStorm.Text;
+                var eyeoftheStorm = XMLProfileListEyeoftheStorm.Text;
                 XMLProfileListEyeoftheStorm.Items.Clear();
-                var StrandoftheAncients = XMLProfileListStrandoftheAncients.Text;
+                var strandoftheAncients = XMLProfileListStrandoftheAncients.Text;
                 XMLProfileListStrandoftheAncients.Items.Clear();
-                var IsleofConquest = XMLProfileListIsleofConquest.Text;
+                var isleofConquest = XMLProfileListIsleofConquest.Text;
                 XMLProfileListIsleofConquest.Items.Clear();
-                var BattleforGilneas = XMLProfileListBattleforGilneas.Text;
+                var battleforGilneas = XMLProfileListBattleforGilneas.Text;
                 XMLProfileListBattleforGilneas.Items.Clear();
-                var TwinPeaks = XMLProfileListTwinPeaks.Text;
+                var twinPeaks = XMLProfileListTwinPeaks.Text;
                 XMLProfileListTwinPeaks.Items.Clear();
-                var TempleofKotmogu = XMLProfileListTempleofKotmogu.Text;
+                var templeofKotmogu = XMLProfileListTempleofKotmogu.Text;
                 XMLProfileListTempleofKotmogu.Items.Clear();
-                var SilvershardMines = XMLProfileListSilvershardMines.Text;
+                var silvershardMines = XMLProfileListSilvershardMines.Text;
                 XMLProfileListSilvershardMines.Items.Clear();
                 foreach (
                     var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\", "*.xml")
@@ -499,16 +424,16 @@ namespace Battlegrounder
                     XMLProfileListTempleofKotmogu.Items.Add(f);
                     XMLProfileListSilvershardMines.Items.Add(f);
                 }
-                XMLProfileListAlteracValley.Text = AlteracValley;
-                XMLProfileListWarsongGulch.Text = WarsongGulch;
-                XMLProfileListArathiBasin.Text = ArathiBasin;
-                XMLProfileListEyeoftheStorm.Text = EyeoftheStorm;
-                XMLProfileListStrandoftheAncients.Text = StrandoftheAncients;
-                XMLProfileListIsleofConquest.Text = IsleofConquest;
-                XMLProfileListBattleforGilneas.Text = BattleforGilneas;
-                XMLProfileListTwinPeaks.Text = TwinPeaks;
-                XMLProfileListTempleofKotmogu.Text = TempleofKotmogu;
-                XMLProfileListSilvershardMines.Text = SilvershardMines;
+                XMLProfileListAlteracValley.Text = alteracValley;
+                XMLProfileListWarsongGulch.Text = warsongGulch;
+                XMLProfileListArathiBasin.Text = arathiBasin;
+                XMLProfileListEyeoftheStorm.Text = eyeoftheStorm;
+                XMLProfileListStrandoftheAncients.Text = strandoftheAncients;
+                XMLProfileListIsleofConquest.Text = isleofConquest;
+                XMLProfileListBattleforGilneas.Text = battleforGilneas;
+                XMLProfileListTwinPeaks.Text = twinPeaks;
+                XMLProfileListTempleofKotmogu.Text = templeofKotmogu;
+                XMLProfileListSilvershardMines.Text = silvershardMines;
             }
             catch (Exception e)
             {

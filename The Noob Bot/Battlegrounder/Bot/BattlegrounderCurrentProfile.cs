@@ -63,9 +63,9 @@ namespace Battlegrounder.Bot
                                     return false;
                                 //if (BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType == "XMLProfile")
                                 //{
-                                    XMLProfile = true;
-                                    CurrentProfileName =
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
+                                XMLProfile = true;
+                                CurrentProfileName =
+                                    BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
                                 //}
                                 break;
                             case "WarsongGulch":
