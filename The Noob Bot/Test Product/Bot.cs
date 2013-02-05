@@ -10,7 +10,7 @@ using nManager.Wow.Patchables;
 
 namespace Test_Product
 {
-    class Bot
+    internal class Bot
     {
         public static bool Pulse()
         {
@@ -135,7 +135,6 @@ namespace Test_Product
 
         public static void Dispose()
         {
-
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Battlegrounder.Bot
     internal class Bot
     {
         private static readonly Engine Fsm = new Engine();
-        internal static MovementLoop _movementLoop = new MovementLoop { Priority = 3 };
+        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 3};
         internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 7};
 
         internal static bool Pulse()
@@ -44,7 +44,7 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new Trainers {Priority = 4});
                 Fsm.AddState(_movementLoop);
                 Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 2});
-                Fsm.AddState(new BattlegrounderQueueing { Priority = 1 });
+                Fsm.AddState(new BattlegrounderQueueing {Priority = 1});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

@@ -12,8 +12,8 @@ namespace Test_Product
 
         private static uint afk = 0x4C3C1B;
 
-        private static readonly byte[] AfkOrigine = new byte[] { 0x78, 0x42 };
-        private static readonly byte[] AfkAfter = new byte[] { 0xEB, 0x40 };
+        private static readonly byte[] AfkOrigine = new byte[] {0x78, 0x42};
+        private static readonly byte[] AfkAfter = new byte[] {0xEB, 0x40};
 
         public static void AntiAfkPulse()
         {
@@ -45,7 +45,7 @@ namespace Test_Product
             {
                 if (
                     Memory.WowMemory.Memory.ReadBytes(Memory.WowProcess.WowModule + afk,
-                                                          AfkOrigine.Count())[0] == AfkOrigine[0])
+                                                      AfkOrigine.Count())[0] == AfkOrigine[0])
                     return false;
             }
             catch (Exception exception)

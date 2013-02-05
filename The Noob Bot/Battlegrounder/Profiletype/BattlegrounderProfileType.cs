@@ -13,6 +13,7 @@ namespace Battlegrounder.Profiletype
             return Text;
         }
     }
+
     [Serializable]
     public class BattlegrounderProfileType
     {

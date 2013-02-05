@@ -395,7 +395,7 @@ namespace nManager.Wow.Bot.States
                                 {
                                     Logging.Write("Go to Digsite " + digsitesZone.name);
                                     MovementManager.Go(new List<Point>(new[] {digsitesZone.position}));
-                                        // MoveTo Digsite
+                                    // MoveTo Digsite
                                     return;
                                 }
                             }

@@ -670,7 +670,7 @@ namespace nManager.Wow.Helpers
                                                                 ObjectManager.ObjectManager.Me.Position.Y + 17,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + z, 0,
                                                                 (int) ClickToMoveType.Move, 0.5f);
-                                // try 'forward right'
+                            // try 'forward right'
                             Logging.WriteDebug("Flying UnStuck - Forward Right done.");
                         }
                         else if (j == 7)

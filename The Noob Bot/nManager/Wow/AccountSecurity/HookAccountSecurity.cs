@@ -207,14 +207,14 @@ namespace nManager.Wow.AccountSecurity
                             Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov eax, [" + codeCave_ScanDump + "]");
-                            // On met le pt dans eax
+                        // On met le pt dans eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
                             Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov [eax],esi");
-                            // On met l'adresse lit par le AccountSecurity dans eax
+                        // On met l'adresse lit par le AccountSecurity dans eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
@@ -239,7 +239,7 @@ namespace nManager.Wow.AccountSecurity
                             Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov [eax],edx");
-                            // On écrit la longueur lit par le AccountSecurity.
+                        // On écrit la longueur lit par le AccountSecurity.
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
@@ -252,7 +252,7 @@ namespace nManager.Wow.AccountSecurity
                             Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov [" + codeCave_ScanDump + "], eax");
-                            // On met le nouveau pt pour le prochain dump
+                        // On met le nouveau pt pour le prochain dump
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {

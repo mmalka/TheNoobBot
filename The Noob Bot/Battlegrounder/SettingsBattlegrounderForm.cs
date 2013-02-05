@@ -71,7 +71,8 @@ namespace Battlegrounder
 
             BattlegrounderSetting.CurrentSetting.StrandoftheAncients = StrandoftheAncientsSwitch.Value;
             BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType = StrandoftheAncientsProfileType.Text;
-            BattlegrounderSetting.CurrentSetting.XMLProfileListStrandoftheAncients = XMLProfileListStrandoftheAncients.Text;
+            BattlegrounderSetting.CurrentSetting.XMLProfileListStrandoftheAncients =
+                XMLProfileListStrandoftheAncients.Text;
 
             BattlegrounderSetting.CurrentSetting.IsleofConquest = IsleofConquestSwitch.Value;
             BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType = IsleofConquestProfileType.Text;

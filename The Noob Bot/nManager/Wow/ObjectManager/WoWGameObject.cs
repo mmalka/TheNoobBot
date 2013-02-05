@@ -300,7 +300,7 @@ namespace nManager.Wow.ObjectManager
                                 // Most of quest chests but also treasures
                                 if (skill == SkillLine.Free)
                                     break;
-                                        // let's accept it, we check for quest later in code and act like if no lock was set
+                                // let's accept it, we check for quest later in code and act like if no lock was set
 
                                 // Prevent herbing when the setting is off
                                 if (skill == SkillLine.Herbalism &&

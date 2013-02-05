@@ -84,7 +84,8 @@ namespace nManager.Wow.MemoryClass.Magic
         /// All possible access rights for a process object.
         /// </summary>
         public const uint PROCESS_ALL_ACCESS = STANDARD_RIGHTS_REQUIRED | SYNCHRONIZE | 0xFFF;
-                          //0x001F0FFF on WinXP, should be changed to 0xFFFF on Vista/2k8
+
+        //0x001F0FFF on WinXP, should be changed to 0xFFFF on Vista/2k8
 
         /// <summary>
         /// Required to terminate a thread using TerminateThread.

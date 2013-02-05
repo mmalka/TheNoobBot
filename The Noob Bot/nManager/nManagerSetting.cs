@@ -227,7 +227,7 @@ namespace nManager
         public List<string> HerbsToBeMilled = new List<string>();
 
         public List<int> DontHarvestTheFollowingObjects = new List<int>();
-                         // TODO Use this settings to avoid looting specific entrys.
+        // TODO Use this settings to avoid looting specific entrys.
 
         public bool MakeStackOfElementalsItems;
         public bool ActivateReloggerFeature;
