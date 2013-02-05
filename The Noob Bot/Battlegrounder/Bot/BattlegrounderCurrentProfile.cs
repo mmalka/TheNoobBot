@@ -59,87 +59,87 @@ namespace Battlegrounder.Bot
                             case "AlteracValley":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley))
+                                        BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile))
                                     return false;
                                 //if (BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType == "XMLProfile")
                                 //{
                                 XMLProfile = true;
                                 CurrentProfileName =
-                                    BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
+                                    BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile;
                                 //}
                                 break;
                             case "WarsongGulch":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListWarsongGulch))
+                                        BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListWarsongGulch;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile;
                                 break;
                             case "ArathiBasin":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListArathiBasin))
+                                        BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListArathiBasin;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile;
                                 break;
                             case "EyeoftheStorm":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListEyeoftheStorm))
+                                        BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListEyeoftheStorm;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile;
                                 break;
                             case "StrandoftheAncients":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListStrandoftheAncients))
+                                        BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile))
                                     return false;
                                 XMLProfile = true;
                                 CurrentProfileName =
-                                    BattlegrounderSetting.CurrentSetting.XMLProfileListStrandoftheAncients;
+                                    BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile;
                                 break;
                             case "IsleofConquest":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListIsleofConquest))
+                                        BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListIsleofConquest;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile;
                                 break;
                             case "BattleforGilneas":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListBattleforGilneas))
+                                        BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListBattleforGilneas;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile;
                                 break;
                             case "TwinPeaks":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListTwinPeaks))
+                                        BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListTwinPeaks;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile;
                                 break;
                             case "TempleofKotmogu":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListTempleofKotmogu))
+                                        BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListTempleofKotmogu;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile;
                                 break;
                             case "SilvershardMines":
                                 if (
                                     String.IsNullOrWhiteSpace(
-                                        BattlegrounderSetting.CurrentSetting.XMLProfileListSilvershardMines))
+                                        BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile))
                                     return false;
                                 XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListSilvershardMines;
+                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile;
                                 break;
                         }
 

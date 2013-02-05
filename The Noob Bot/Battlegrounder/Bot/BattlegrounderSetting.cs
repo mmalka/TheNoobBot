@@ -41,41 +41,37 @@ namespace Battlegrounder.Bot
         }
 
         public bool AlteracValley;
-        public string AlteracValleyProfileType;
-        public string XMLProfileListAlteracValley;
+        public string AlteracValleyProfileType = "XMLProfile";
+        public string AlteracValleyXmlProfile;
         public bool WarsongGulch;
-        public string WarsongGulchProfileType;
-        public string XMLProfileListWarsongGulch;
+        public string WarsongGulchProfileType = "XMLProfile";
+        public string WarsongGulchXmlProfile;
         public bool ArathiBasin;
-        public string ArathiBasinProfileType;
-        public string XMLProfileListArathiBasin;
+        public string ArathiBasinProfileType = "XMLProfile";
+        public string ArathiBasinXmlProfile;
         public bool EyeoftheStorm;
-        public string EyeoftheStormProfileType;
-        public string XMLProfileListEyeoftheStorm;
+        public string EyeoftheStormProfileType = "XMLProfile";
+        public string EyeoftheStormXmlProfile;
         public bool StrandoftheAncients;
-        public string StrandoftheAncientsProfileType;
-        public string XMLProfileListStrandoftheAncients;
+        public string StrandoftheAncientsProfileType = "XMLProfile";
+        public string StrandoftheAncientsXmlProfile;
         public bool IsleofConquest;
-        public string IsleofConquestProfileType;
-        public string XMLProfileListIsleofConquest;
+        public string IsleofConquestProfileType = "XMLProfile";
+        public string IsleofConquestXmlProfile;
         public bool BattleforGilneas;
-        public string BattleforGilneasProfileType;
-        public string XMLProfileListBattleforGilneas;
+        public string BattleforGilneasProfileType = "XMLProfile";
+        public string BattleforGilneasXmlProfile;
         public bool TwinPeaks = true;
-        public string TwinPeaksProfileType;
-        public string XMLProfileListTwinPeaks;
+        public string TwinPeaksProfileType = "XMLProfile";
+        public string TwinPeaksXmlProfile;
         public bool TempleofKotmogu;
-        public string TempleofKotmoguProfileType;
-        public string XMLProfileListTempleofKotmogu;
+        public string TempleofKotmoguProfileType = "XMLProfile";
+        public string TempleofKotmoguXmlProfile;
         public bool SilvershardMines;
-        public string SilvershardMinesProfileType;
-        public string XMLProfileListSilvershardMines;
+        public string SilvershardMinesProfileType = "XMLProfile";
+        public string SilvershardMinesXmlProfile;
         public bool RequeueAfterXMinutes;
         public int RequeueAfterXMinutesTimer = 5;
         public bool RandomBattleground;
-
-        public string profileName = "";
-        //internal Point BattlegrounderPosition = new Point();
-        //internal float BattlegrounderRotation = 0;
     }
 }
