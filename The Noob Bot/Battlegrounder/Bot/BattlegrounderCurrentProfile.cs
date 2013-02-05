@@ -61,8 +61,12 @@ namespace Battlegrounder.Bot
                                     String.IsNullOrWhiteSpace(
                                         BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley))
                                     return false;
-                                XMLProfile = true;
-                                CurrentProfileName = BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
+                                //if (BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType == "XMLProfile")
+                                //{
+                                    XMLProfile = true;
+                                    CurrentProfileName =
+                                        BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
+                                //}
                                 break;
                             case "WarsongGulch":
                                 if (
