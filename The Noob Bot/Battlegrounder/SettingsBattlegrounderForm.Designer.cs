@@ -60,81 +60,51 @@ namespace Battlegrounder
             this.XMLProfileListAlteracValleyLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListAlteracValley = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.AlteracValleyProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem4 = new DevComponents.Editors.ComboItem();
-            this.comboItem5 = new DevComponents.Editors.ComboItem();
-            this.comboItem6 = new DevComponents.Editors.ComboItem();
             this.AlteracValleyProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.IsleofConquest = new System.Windows.Forms.GroupBox();
             this.XMLProfileListIsleofConquestLabel = new DevComponents.DotNetBar.LabelX();
             this.IsleofConquestProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem1 = new DevComponents.Editors.ComboItem();
-            this.comboItem2 = new DevComponents.Editors.ComboItem();
-            this.comboItem3 = new DevComponents.Editors.ComboItem();
             this.XMLProfileListIsleofConquest = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.IsleofConquestProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.TwinPeaks = new System.Windows.Forms.GroupBox();
             this.XMLProfileListTwinPeaksLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListTwinPeaks = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.TwinPeaksProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem7 = new DevComponents.Editors.ComboItem();
-            this.comboItem8 = new DevComponents.Editors.ComboItem();
-            this.comboItem9 = new DevComponents.Editors.ComboItem();
             this.TwinPeaksProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.WarsongGulch = new System.Windows.Forms.GroupBox();
             this.XMLProfileListWarsongGulchLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListWarsongGulch = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.WarsongGulchProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem10 = new DevComponents.Editors.ComboItem();
-            this.comboItem11 = new DevComponents.Editors.ComboItem();
-            this.comboItem12 = new DevComponents.Editors.ComboItem();
             this.WarsongGulchProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.TempleofKotmogu = new System.Windows.Forms.GroupBox();
             this.XMLProfileListTempleofKotmoguLabel = new DevComponents.DotNetBar.LabelX();
             this.TempleofKotmoguProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem13 = new DevComponents.Editors.ComboItem();
-            this.comboItem14 = new DevComponents.Editors.ComboItem();
-            this.comboItem15 = new DevComponents.Editors.ComboItem();
             this.XMLProfileListTempleofKotmogu = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.TempleofKotmoguProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.BattleforGilneas = new System.Windows.Forms.GroupBox();
             this.XMLProfileListBattleforGilneasLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListBattleforGilneas = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.BattleforGilneasProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem16 = new DevComponents.Editors.ComboItem();
-            this.comboItem17 = new DevComponents.Editors.ComboItem();
-            this.comboItem18 = new DevComponents.Editors.ComboItem();
             this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.EyeoftheStorm = new System.Windows.Forms.GroupBox();
             this.XMLProfileListEyeoftheStormLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListEyeoftheStorm = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.EyeoftheStormProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem19 = new DevComponents.Editors.ComboItem();
-            this.comboItem20 = new DevComponents.Editors.ComboItem();
-            this.comboItem21 = new DevComponents.Editors.ComboItem();
             this.EyeoftheStormProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.ArathiBasin = new System.Windows.Forms.GroupBox();
             this.XMLProfileListArathiBasinLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListArathiBasin = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.ArathiBasinProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem22 = new DevComponents.Editors.ComboItem();
-            this.comboItem23 = new DevComponents.Editors.ComboItem();
-            this.comboItem24 = new DevComponents.Editors.ComboItem();
             this.ArathiBasinProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.SilvershardMines = new System.Windows.Forms.GroupBox();
             this.XMLProfileListSilvershardMinesLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListSilvershardMines = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.SilvershardMinesProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem25 = new DevComponents.Editors.ComboItem();
-            this.comboItem26 = new DevComponents.Editors.ComboItem();
-            this.comboItem27 = new DevComponents.Editors.ComboItem();
             this.SilvershardMinesProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.StrandoftheAncients = new System.Windows.Forms.GroupBox();
             this.XMLProfileListStrandoftheAncientsLabel = new DevComponents.DotNetBar.LabelX();
             this.XMLProfileListStrandoftheAncients = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.StrandoftheAncientsProfileType = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.comboItem28 = new DevComponents.Editors.ComboItem();
-            this.comboItem29 = new DevComponents.Editors.ComboItem();
-            this.comboItem30 = new DevComponents.Editors.ComboItem();
             this.StrandoftheAncientsProfileTypeLabel = new DevComponents.DotNetBar.LabelX();
             this.StrandoftheAncientsLabel = new DevComponents.DotNetBar.LabelX();
             this.RandomBattleground = new System.Windows.Forms.GroupBox();
@@ -555,6 +525,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListAlteracValley.DisplayMember = "Text";
             this.XMLProfileListAlteracValley.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListAlteracValley.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListAlteracValley.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListAlteracValley.FormattingEnabled = true;
             this.XMLProfileListAlteracValley.ItemHeight = 16;
@@ -568,30 +539,15 @@ namespace Battlegrounder
             // 
             this.AlteracValleyProfileType.DisplayMember = "Text";
             this.AlteracValleyProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.AlteracValleyProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.AlteracValleyProfileType.ForeColor = System.Drawing.Color.Black;
             this.AlteracValleyProfileType.FormattingEnabled = true;
             this.AlteracValleyProfileType.ItemHeight = 16;
-            this.AlteracValleyProfileType.Items.AddRange(new object[] {
-            this.comboItem4,
-            this.comboItem5,
-            this.comboItem6});
             this.AlteracValleyProfileType.Location = new System.Drawing.Point(92, 45);
             this.AlteracValleyProfileType.Name = "AlteracValleyProfileType";
             this.AlteracValleyProfileType.Size = new System.Drawing.Size(156, 22);
             this.AlteracValleyProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AlteracValleyProfileType.TabIndex = 59;
-            // 
-            // comboItem4
-            // 
-            this.comboItem4.Text = "comboItem1";
-            // 
-            // comboItem5
-            // 
-            this.comboItem5.Text = "comboItem2";
-            // 
-            // comboItem6
-            // 
-            this.comboItem6.Text = "comboItem3";
             // 
             // AlteracValleyProfileTypeLabel
             // 
@@ -643,35 +599,21 @@ namespace Battlegrounder
             // 
             this.IsleofConquestProfileType.DisplayMember = "Text";
             this.IsleofConquestProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.IsleofConquestProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.IsleofConquestProfileType.ForeColor = System.Drawing.Color.Black;
             this.IsleofConquestProfileType.FormattingEnabled = true;
             this.IsleofConquestProfileType.ItemHeight = 16;
-            this.IsleofConquestProfileType.Items.AddRange(new object[] {
-            this.comboItem1,
-            this.comboItem2,
-            this.comboItem3});
             this.IsleofConquestProfileType.Location = new System.Drawing.Point(90, 45);
             this.IsleofConquestProfileType.Name = "IsleofConquestProfileType";
             this.IsleofConquestProfileType.Size = new System.Drawing.Size(156, 22);
             this.IsleofConquestProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IsleofConquestProfileType.TabIndex = 59;
             // 
-            // comboItem1
-            // 
-            this.comboItem1.Text = "comboItem1";
-            // 
-            // comboItem2
-            // 
-            this.comboItem2.Text = "comboItem2";
-            // 
-            // comboItem3
-            // 
-            this.comboItem3.Text = "comboItem3";
-            // 
             // XMLProfileListIsleofConquest
             // 
             this.XMLProfileListIsleofConquest.DisplayMember = "Text";
             this.XMLProfileListIsleofConquest.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListIsleofConquest.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListIsleofConquest.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListIsleofConquest.FormattingEnabled = true;
             this.XMLProfileListIsleofConquest.ItemHeight = 16;
@@ -731,6 +673,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListTwinPeaks.DisplayMember = "Text";
             this.XMLProfileListTwinPeaks.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListTwinPeaks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListTwinPeaks.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListTwinPeaks.FormattingEnabled = true;
             this.XMLProfileListTwinPeaks.ItemHeight = 16;
@@ -739,36 +682,20 @@ namespace Battlegrounder
             this.XMLProfileListTwinPeaks.Size = new System.Drawing.Size(240, 22);
             this.XMLProfileListTwinPeaks.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.XMLProfileListTwinPeaks.TabIndex = 62;
-            
             // 
             // TwinPeaksProfileType
             // 
             this.TwinPeaksProfileType.DisplayMember = "Text";
             this.TwinPeaksProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.TwinPeaksProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TwinPeaksProfileType.ForeColor = System.Drawing.Color.Black;
             this.TwinPeaksProfileType.FormattingEnabled = true;
             this.TwinPeaksProfileType.ItemHeight = 16;
-            this.TwinPeaksProfileType.Items.AddRange(new object[] {
-            this.comboItem7,
-            this.comboItem8,
-            this.comboItem9});
             this.TwinPeaksProfileType.Location = new System.Drawing.Point(90, 45);
             this.TwinPeaksProfileType.Name = "TwinPeaksProfileType";
             this.TwinPeaksProfileType.Size = new System.Drawing.Size(156, 22);
             this.TwinPeaksProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TwinPeaksProfileType.TabIndex = 59;
-            // 
-            // comboItem7
-            // 
-            this.comboItem7.Text = "comboItem1";
-            // 
-            // comboItem8
-            // 
-            this.comboItem8.Text = "comboItem2";
-            // 
-            // comboItem9
-            // 
-            this.comboItem9.Text = "comboItem3";
             // 
             // TwinPeaksProfileTypeLabel
             // 
@@ -820,6 +747,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListWarsongGulch.DisplayMember = "Text";
             this.XMLProfileListWarsongGulch.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListWarsongGulch.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListWarsongGulch.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListWarsongGulch.FormattingEnabled = true;
             this.XMLProfileListWarsongGulch.ItemHeight = 16;
@@ -833,30 +761,15 @@ namespace Battlegrounder
             // 
             this.WarsongGulchProfileType.DisplayMember = "Text";
             this.WarsongGulchProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.WarsongGulchProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.WarsongGulchProfileType.ForeColor = System.Drawing.Color.Black;
             this.WarsongGulchProfileType.FormattingEnabled = true;
             this.WarsongGulchProfileType.ItemHeight = 16;
-            this.WarsongGulchProfileType.Items.AddRange(new object[] {
-            this.comboItem10,
-            this.comboItem11,
-            this.comboItem12});
             this.WarsongGulchProfileType.Location = new System.Drawing.Point(90, 45);
             this.WarsongGulchProfileType.Name = "WarsongGulchProfileType";
             this.WarsongGulchProfileType.Size = new System.Drawing.Size(156, 22);
             this.WarsongGulchProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.WarsongGulchProfileType.TabIndex = 59;
-            // 
-            // comboItem10
-            // 
-            this.comboItem10.Text = "comboItem1";
-            // 
-            // comboItem11
-            // 
-            this.comboItem11.Text = "comboItem2";
-            // 
-            // comboItem12
-            // 
-            this.comboItem12.Text = "comboItem3";
             // 
             // WarsongGulchProfileTypeLabel
             // 
@@ -889,7 +802,7 @@ namespace Battlegrounder
             this.TempleofKotmogu.TabStop = false;
             this.TempleofKotmogu.Text = "Temple of Kotmogu";
             // 
-            // XMLProfileListTempleOfKotmoguLabel
+            // XMLProfileListTempleofKotmoguLabel
             // 
             this.XMLProfileListTempleofKotmoguLabel.BackColor = System.Drawing.Color.White;
             // 
@@ -904,39 +817,25 @@ namespace Battlegrounder
             this.XMLProfileListTempleofKotmoguLabel.TabIndex = 65;
             this.XMLProfileListTempleofKotmoguLabel.Text = "XML Profile List";
             // 
-            // TempleOfKotmoguProfileType
+            // TempleofKotmoguProfileType
             // 
             this.TempleofKotmoguProfileType.DisplayMember = "Text";
             this.TempleofKotmoguProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.TempleofKotmoguProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.TempleofKotmoguProfileType.ForeColor = System.Drawing.Color.Black;
             this.TempleofKotmoguProfileType.FormattingEnabled = true;
             this.TempleofKotmoguProfileType.ItemHeight = 16;
-            this.TempleofKotmoguProfileType.Items.AddRange(new object[] {
-            this.comboItem13,
-            this.comboItem14,
-            this.comboItem15});
             this.TempleofKotmoguProfileType.Location = new System.Drawing.Point(90, 45);
             this.TempleofKotmoguProfileType.Name = "TempleofKotmoguProfileType";
             this.TempleofKotmoguProfileType.Size = new System.Drawing.Size(156, 22);
             this.TempleofKotmoguProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TempleofKotmoguProfileType.TabIndex = 59;
             // 
-            // comboItem13
-            // 
-            this.comboItem13.Text = "comboItem1";
-            // 
-            // comboItem14
-            // 
-            this.comboItem14.Text = "comboItem2";
-            // 
-            // comboItem15
-            // 
-            this.comboItem15.Text = "comboItem3";
-            // 
-            // XMLProfileListTempleOfKotmogu
+            // XMLProfileListTempleofKotmogu
             // 
             this.XMLProfileListTempleofKotmogu.DisplayMember = "Text";
             this.XMLProfileListTempleofKotmogu.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListTempleofKotmogu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListTempleofKotmogu.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListTempleofKotmogu.FormattingEnabled = true;
             this.XMLProfileListTempleofKotmogu.ItemHeight = 16;
@@ -946,7 +845,7 @@ namespace Battlegrounder
             this.XMLProfileListTempleofKotmogu.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.XMLProfileListTempleofKotmogu.TabIndex = 64;
             // 
-            // TempleOfKotmoguProfileTypeLabel
+            // TempleofKotmoguProfileTypeLabel
             // 
             this.TempleofKotmoguProfileTypeLabel.BackColor = System.Drawing.Color.White;
             // 
@@ -996,6 +895,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListBattleforGilneas.DisplayMember = "Text";
             this.XMLProfileListBattleforGilneas.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListBattleforGilneas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListBattleforGilneas.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListBattleforGilneas.FormattingEnabled = true;
             this.XMLProfileListBattleforGilneas.ItemHeight = 16;
@@ -1009,30 +909,15 @@ namespace Battlegrounder
             // 
             this.BattleforGilneasProfileType.DisplayMember = "Text";
             this.BattleforGilneasProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.BattleforGilneasProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.BattleforGilneasProfileType.ForeColor = System.Drawing.Color.Black;
             this.BattleforGilneasProfileType.FormattingEnabled = true;
             this.BattleforGilneasProfileType.ItemHeight = 16;
-            this.BattleforGilneasProfileType.Items.AddRange(new object[] {
-            this.comboItem16,
-            this.comboItem17,
-            this.comboItem18});
             this.BattleforGilneasProfileType.Location = new System.Drawing.Point(90, 45);
             this.BattleforGilneasProfileType.Name = "BattleforGilneasProfileType";
             this.BattleforGilneasProfileType.Size = new System.Drawing.Size(156, 22);
             this.BattleforGilneasProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BattleforGilneasProfileType.TabIndex = 59;
-            // 
-            // comboItem16
-            // 
-            this.comboItem16.Text = "comboItem1";
-            // 
-            // comboItem17
-            // 
-            this.comboItem17.Text = "comboItem2";
-            // 
-            // comboItem18
-            // 
-            this.comboItem18.Text = "comboItem3";
             // 
             // labelX3
             // 
@@ -1084,6 +969,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListEyeoftheStorm.DisplayMember = "Text";
             this.XMLProfileListEyeoftheStorm.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListEyeoftheStorm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListEyeoftheStorm.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListEyeoftheStorm.FormattingEnabled = true;
             this.XMLProfileListEyeoftheStorm.ItemHeight = 16;
@@ -1097,30 +983,15 @@ namespace Battlegrounder
             // 
             this.EyeoftheStormProfileType.DisplayMember = "Text";
             this.EyeoftheStormProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.EyeoftheStormProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EyeoftheStormProfileType.ForeColor = System.Drawing.Color.Black;
             this.EyeoftheStormProfileType.FormattingEnabled = true;
             this.EyeoftheStormProfileType.ItemHeight = 16;
-            this.EyeoftheStormProfileType.Items.AddRange(new object[] {
-            this.comboItem19,
-            this.comboItem20,
-            this.comboItem21});
             this.EyeoftheStormProfileType.Location = new System.Drawing.Point(90, 45);
             this.EyeoftheStormProfileType.Name = "EyeoftheStormProfileType";
             this.EyeoftheStormProfileType.Size = new System.Drawing.Size(156, 22);
             this.EyeoftheStormProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.EyeoftheStormProfileType.TabIndex = 59;
-            // 
-            // comboItem19
-            // 
-            this.comboItem19.Text = "comboItem1";
-            // 
-            // comboItem20
-            // 
-            this.comboItem20.Text = "comboItem2";
-            // 
-            // comboItem21
-            // 
-            this.comboItem21.Text = "comboItem3";
             // 
             // EyeoftheStormProfileTypeLabel
             // 
@@ -1172,6 +1043,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListArathiBasin.DisplayMember = "Text";
             this.XMLProfileListArathiBasin.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListArathiBasin.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListArathiBasin.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListArathiBasin.FormattingEnabled = true;
             this.XMLProfileListArathiBasin.ItemHeight = 16;
@@ -1185,30 +1057,15 @@ namespace Battlegrounder
             // 
             this.ArathiBasinProfileType.DisplayMember = "Text";
             this.ArathiBasinProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.ArathiBasinProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ArathiBasinProfileType.ForeColor = System.Drawing.Color.Black;
             this.ArathiBasinProfileType.FormattingEnabled = true;
             this.ArathiBasinProfileType.ItemHeight = 16;
-            this.ArathiBasinProfileType.Items.AddRange(new object[] {
-            this.comboItem22,
-            this.comboItem23,
-            this.comboItem24});
             this.ArathiBasinProfileType.Location = new System.Drawing.Point(90, 45);
             this.ArathiBasinProfileType.Name = "ArathiBasinProfileType";
             this.ArathiBasinProfileType.Size = new System.Drawing.Size(156, 22);
             this.ArathiBasinProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ArathiBasinProfileType.TabIndex = 59;
-            // 
-            // comboItem22
-            // 
-            this.comboItem22.Text = "comboItem1";
-            // 
-            // comboItem23
-            // 
-            this.comboItem23.Text = "comboItem2";
-            // 
-            // comboItem24
-            // 
-            this.comboItem24.Text = "comboItem3";
             // 
             // ArathiBasinProfileTypeLabel
             // 
@@ -1260,6 +1117,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListSilvershardMines.DisplayMember = "Text";
             this.XMLProfileListSilvershardMines.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListSilvershardMines.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListSilvershardMines.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListSilvershardMines.FormattingEnabled = true;
             this.XMLProfileListSilvershardMines.ItemHeight = 16;
@@ -1273,30 +1131,15 @@ namespace Battlegrounder
             // 
             this.SilvershardMinesProfileType.DisplayMember = "Text";
             this.SilvershardMinesProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.SilvershardMinesProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SilvershardMinesProfileType.ForeColor = System.Drawing.Color.Black;
             this.SilvershardMinesProfileType.FormattingEnabled = true;
             this.SilvershardMinesProfileType.ItemHeight = 16;
-            this.SilvershardMinesProfileType.Items.AddRange(new object[] {
-            this.comboItem25,
-            this.comboItem26,
-            this.comboItem27});
             this.SilvershardMinesProfileType.Location = new System.Drawing.Point(90, 45);
             this.SilvershardMinesProfileType.Name = "SilvershardMinesProfileType";
             this.SilvershardMinesProfileType.Size = new System.Drawing.Size(156, 22);
             this.SilvershardMinesProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.SilvershardMinesProfileType.TabIndex = 59;
-            // 
-            // comboItem25
-            // 
-            this.comboItem25.Text = "comboItem1";
-            // 
-            // comboItem26
-            // 
-            this.comboItem26.Text = "comboItem2";
-            // 
-            // comboItem27
-            // 
-            this.comboItem27.Text = "comboItem3";
             // 
             // SilvershardMinesProfileTypeLabel
             // 
@@ -1348,6 +1191,7 @@ namespace Battlegrounder
             // 
             this.XMLProfileListStrandoftheAncients.DisplayMember = "Text";
             this.XMLProfileListStrandoftheAncients.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.XMLProfileListStrandoftheAncients.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.XMLProfileListStrandoftheAncients.ForeColor = System.Drawing.Color.Black;
             this.XMLProfileListStrandoftheAncients.FormattingEnabled = true;
             this.XMLProfileListStrandoftheAncients.ItemHeight = 16;
@@ -1361,30 +1205,15 @@ namespace Battlegrounder
             // 
             this.StrandoftheAncientsProfileType.DisplayMember = "Text";
             this.StrandoftheAncientsProfileType.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.StrandoftheAncientsProfileType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.StrandoftheAncientsProfileType.ForeColor = System.Drawing.Color.Black;
             this.StrandoftheAncientsProfileType.FormattingEnabled = true;
             this.StrandoftheAncientsProfileType.ItemHeight = 16;
-            this.StrandoftheAncientsProfileType.Items.AddRange(new object[] {
-            this.comboItem28,
-            this.comboItem29,
-            this.comboItem30});
             this.StrandoftheAncientsProfileType.Location = new System.Drawing.Point(90, 45);
             this.StrandoftheAncientsProfileType.Name = "StrandoftheAncientsProfileType";
             this.StrandoftheAncientsProfileType.Size = new System.Drawing.Size(156, 22);
             this.StrandoftheAncientsProfileType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StrandoftheAncientsProfileType.TabIndex = 59;
-            // 
-            // comboItem28
-            // 
-            this.comboItem28.Text = "comboItem1";
-            // 
-            // comboItem29
-            // 
-            this.comboItem29.Text = "comboItem2";
-            // 
-            // comboItem30
-            // 
-            this.comboItem30.Text = "comboItem3";
             // 
             // StrandoftheAncientsProfileTypeLabel
             // 
@@ -1469,6 +1298,7 @@ namespace Battlegrounder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
             this.ClientSize = new System.Drawing.Size(804, 524);
             this.Controls.Add(this.createProfileB);
             this.Controls.Add(this.CloseNoSaveButton);
@@ -1495,26 +1325,6 @@ namespace Battlegrounder
             this.ShowInTaskbar = false;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Battlegrounder Settings";
-            this.AlteracValleyProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.ArathiBasinProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.BattleforGilneasProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.EyeoftheStormProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.IsleofConquestProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.StrandoftheAncientsProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.WarsongGulchProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.TwinPeaksProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.TempleofKotmoguProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.SilvershardMinesProfileType.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListAlteracValley.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListArathiBasin.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListBattleforGilneas.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListEyeoftheStorm.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListIsleofConquest.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListStrandoftheAncients.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListWarsongGulch.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListTwinPeaks.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListTempleofKotmogu.DropDownStyle = ComboBoxStyle.DropDownList;
-            this.XMLProfileListSilvershardMines.DropDownStyle = ComboBoxStyle.DropDownList;
             ((System.ComponentModel.ISupportInitialize)(this.RequeueAfterXMinutes)).EndInit();
             this.AlteracValley.ResumeLayout(false);
             this.IsleofConquest.ResumeLayout(false);
@@ -1529,6 +1339,7 @@ namespace Battlegrounder
             this.RandomBattleground.ResumeLayout(false);
             this.RequeueAfterXMinutesGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion

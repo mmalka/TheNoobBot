@@ -104,8 +104,7 @@ namespace The_Noob_Bot
             this.metroShell1.Location = new System.Drawing.Point(0, 1);
             this.metroShell1.Name = "metroShell1";
             this.metroShell1.QuickToolbarItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.playerNameB,
-            this.qatCustomizeItem1});
+            this.playerNameB});
             this.metroShell1.SettingsButtonVisible = false;
             this.metroShell1.Size = new System.Drawing.Size(444, 229);
             this.metroShell1.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
