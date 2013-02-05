@@ -140,6 +140,7 @@ namespace Battlegrounder
             }
             else
                 MessageBox.Show("Cannot load Profile Types list.");
+            RefreshProfileList();
             AlteracValleyProfileType.Text = BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType;
             XMLProfileListAlteracValley.Text = BattlegrounderSetting.CurrentSetting.XMLProfileListAlteracValley;
             WarsongGulchProfileType.Text = BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType;

@@ -51,7 +51,7 @@ namespace Battlegrounder.Bot
                 if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
                     Battleground.GetCurrentBattleground() != BattlegroundId.None)
                 {
-                    if (CurrentBattlegroundName == null && CurrentProfile == null)
+                    if (CurrentBattlegroundName == null && CurrentProfile.BattlegrounderZones.Count <= 0)
                     {
                         CurrentBattlegroundName = Battleground.GetCurrentBattleground().ToString();
                         if (CurrentBattlegroundName == "AlteracValley"
@@ -118,8 +118,7 @@ namespace Battlegrounder.Bot
                         if (XMLProfile)
                         {
                             CurrentProfile = new BattlegrounderProfile();
-                            if (!String.IsNullOrWhiteSpace(BattlegrounderSetting.CurrentSetting.profileName) &&
-                                File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
+                            if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
                                             CurrentProfileName))
                             {
                                 CurrentProfile =
