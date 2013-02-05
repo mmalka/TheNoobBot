@@ -377,8 +377,18 @@ namespace nManager
             CantRecordInWrongZone,
             BattlegrounderTipOffTitle,
             BattlegrounderTipOffMessage,
-            BattlegrounderTipOffLooting,
-            BattlegrounderTipOffRadius
+            GrinderTipOffTitle,
+            GrinderTipOffMessage,
+            GathererTipOffTitle,
+            GathererTipOffMessage,
+            TipOffLootingOn,
+            TipOffLootingOff,
+            TipOffRadiusLow,
+            TipOffRadiusHigh,
+            TipOffUseGroundMountOn,
+            TipOffUseGroundMountOff,
+            TipOffEmptyGroundMount,
+            TipOffEmptyFlyingMount
         };
 
         [Serializable]

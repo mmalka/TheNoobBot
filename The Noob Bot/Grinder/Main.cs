@@ -21,6 +21,7 @@ public class Main : IProduct
             GrinderSetting.Load();
             Logging.Status = "Initialize Grinder Complete";
             Logging.Write("Initialize Grinder Complete");
+            GetProductTipOff();
         }
         catch (Exception e)
         {
@@ -90,6 +91,48 @@ public class Main : IProduct
         catch (Exception e)
         {
             Logging.WriteError("Grinder > Main > Settings(): " + e);
+        }
+    }
+
+    private string _looting;
+    private string _radius;
+    private string _useground;
+    private string _usefly;
+
+    private void GetProductTipOff()
+    {
+        try
+        {
+            if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+                _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOn);
+            if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 30)
+                _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusLow);
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20 &&
+                nManager.Wow.ObjectManager.ObjectManager.Me.Level < 60)
+            {
+                if (!nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
+                else if (nManagerSetting.CurrentSetting.UseGroundMount &&
+                         string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
+            }
+            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 60)
+            {
+                if (nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOff);
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
+                    _usefly = "\n" + Translate.Get(Translate.Id.TipOffEmptyFlyingMount);
+            }
+            if (_radius != null || _looting != null || _useground != null || _usefly != null)
+            {
+                MessageBox.Show(
+                    string.Format("{0}\n{1}{2}{3}{4}", Translate.Get(Translate.Id.GrinderTipOffMessage), _looting,
+                                  _radius, _useground, _usefly), Translate.Get(Translate.Id.GrinderTipOffTitle));
+            }
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
         }
     }
 

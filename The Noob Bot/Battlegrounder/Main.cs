@@ -96,26 +96,31 @@ public class Main : IProduct
         }
     }
 
-    private string _looting = null;
-    private string _radius = null;
+    private string _looting;
+    private string _radius;
+    private string _useground;
 
     private void GetProductTipOff()
     {
         try
         {
             if (nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+                _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOff);
+            if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 30)
+                _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusLow);
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20)
             {
-                _looting = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffLooting);
+                if (!nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
+                else if (nManagerSetting.CurrentSetting.UseGroundMount &&
+                         string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
             }
-            if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 20)
-            {
-                _radius = "\n" + Translate.Get(Translate.Id.BattlegrounderTipOffRadius);
-            }
-            if (_radius != null || _looting != null)
+            if (_radius != null || _looting != null || _useground != null)
             {
                 MessageBox.Show(
-                    string.Format("{0}\n{1}{2}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting,
-                                  _radius), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
+                    string.Format("{0}\n{1}{2}{3}", Translate.Get(Translate.Id.BattlegrounderTipOffMessage), _looting,
+                                  _radius, _useground), Translate.Get(Translate.Id.BattlegrounderTipOffTitle));
             }
         }
         catch (Exception e)

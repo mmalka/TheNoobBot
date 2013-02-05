@@ -1211,12 +1211,52 @@
       <Id>BattlegrounderTipOffMessage</Id>
     </Translation>
 	<Translation>
-      <Text>We highly recommand  to disable the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
-      <Id>BattlegrounderTipOffLooting</Id>
+      <Text>Grinder - Settings Tip-off</Text>
+      <Id>GrinderTipOffMessage</Id>
     </Translation>
 	<Translation>
-      <Text>We highly recommand to set the Search Radius value at most to 20 yards in General Settings => Looting &amp; Farming options => Search Radius => 20</Text>
-      <Id>BattlegrounderTipOffRadius</Id>
+      <Text>Your General Settings are not optimized for the Grinder product: </Text>
+      <Id>GrinderTipOffMessage</Id>
+    </Translation>
+	<Translation>
+      <Text>Gatherer - Settings Tip-off</Text>
+      <Id>GathererTipOffTitle</Id>
+    </Translation>
+	<Translation>
+      <Text>Your General Settings are not optimized for the Gatherer product: </Text>
+      <Id>GathererTipOffMessage</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to activate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+      <Id>TipOffLootingOn</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to deactivate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+      <Id>TipOffLootingOff</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings => Looting &amp; Farming options => Search Radius => -30</Text>
+      <Id>TipOffRadiusLow</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to set the Search Radius value at least to 100 yards in General Settings => Looting &amp; Farming options => Search Radius => 100+</Text>
+      <Id>TipOffRadiusHigh</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to activate Ground Mount in General Settings => Mount options => Use Ground Mount => YES.</Text>
+      <Id>TipOffUseGroundMountOn</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to deactivate Ground Mount in General Settings => Mount options => Use Ground Mount => YES.</Text>
+      <Id>TipOffUseGroundMountOff</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to set a Ground Mount Name in General Settings => Mount options => Ground => Name of the Mount.</Text>
+      <Id>TipOffEmptyGroundMount</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to set a Flying Mount Name in General Settings => Mount options => Flying => Name of the Mount.</Text>
+      <Id>TipOffEmptyFlyingMount</Id>
     </Translation>
   </Translations>
 </Language>
