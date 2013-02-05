@@ -9,10 +9,6 @@
 					<ProfileTypeName>XML Profile</ProfileTypeName>
 					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
-				<ProfileType>
-					<ProfileTypeName>AFK Somewhere</ProfileTypeName>
-					<ProfileTypeId>AFKSomewhere</ProfileTypeId>
-				</ProfileType>
 			</ProfileTypes>
 		</Battleground>
 		<Battleground>
@@ -23,21 +19,85 @@
 					<ProfileTypeName>XML Profile</ProfileTypeName>
 					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Arathi Basin</BattlegroundName>
+			<BattlegroundId>ArathiBasin</BattlegroundId>
+			<ProfileTypes>
 				<ProfileType>
-					<ProfileTypeName>AFK Somewhere</ProfileTypeName>
-					<ProfileTypeId>AFKSomewhere</ProfileTypeId>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Eye of the Storm</BattlegroundName>
+			<BattlegroundId>EyeoftheStorm</BattlegroundId>
+			<ProfileTypes>
 				<ProfileType>
-					<ProfileTypeName>Attack</ProfileTypeName>
-					<ProfileTypeId>Attack</ProfileTypeId>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Strand of the Ancients</BattlegroundName>
+			<BattlegroundId>StrandoftheAncients</BattlegroundId>
+			<ProfileTypes>
 				<ProfileType>
-					<ProfileTypeName>Protect</ProfileTypeName>
-					<ProfileTypeId>Protect</ProfileTypeId>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Isle of Conquest</BattlegroundName>
+			<BattlegroundId>IsleofConquest</BattlegroundId>
+			<ProfileTypes>
 				<ProfileType>
-					<ProfileTypeName>Fight middle</ProfileTypeName>
-					<ProfileTypeId>Fight middle</ProfileTypeId>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Battle for Gilneas</BattlegroundName>
+			<BattlegroundId>BattleforGilneas</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Twin Peaks</BattlegroundName>
+			<BattlegroundId>TwinPeaks</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Temple of Kotmogu</BattlegroundName>
+			<BattlegroundId>TempleofKotmogu</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Silvershard Mines</BattlegroundName>
+			<BattlegroundId>SilvershardMines</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
 			</ProfileTypes>
 		</Battleground>
