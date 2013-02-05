@@ -93,7 +93,7 @@ namespace Grinder.Bot
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6); // Fsm.StartEngine(25);
+                Fsm.StartEngine(12); // Fsm.StartEngine(25);
 
                 return true;
             }

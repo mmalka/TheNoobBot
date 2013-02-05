@@ -31,10 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DevComponents.DotNetBar2, Version=10.4.0.1, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
+    <Reference Include="DevComponents.DotNetBar2, Version=10.8.0.3, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Others\DevComponents.DotNetBar2.dll</HintPath>
+      <HintPath>..\..\..\..\DevComponents.DotNetBar2.dll</HintPath>
     </Reference>
+    <Reference Include="DevComponents.Instrumentation, Version=10.8.0.3, Culture=neutral, PublicKeyToken=f90dc37c26666a67" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -44,17 +45,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\BattlegrounderQueueing.cs" />
-    <Compile Include="Bot\BattlegrounderState.cs" />
+    <Compile Include="Bot\BattlegrounderCurrentProfile.cs" />
     <Compile Include="Bot\Bot.cs" />
     <Compile Include="Bot\BattlegrounderSetting.cs" />
-    <Compile Include="Bot\LoadProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bot\LoadProfile.Designer.cs">
-      <DependentUpon>LoadProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Bot\SelectProfileState.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Profiletype\BattlegrounderProfileType.cs" />
     <Compile Include="Profile\BattlegrounderProfile.cs" />
     <Compile Include="Profile\ProfileCreator.cs">
       <SubType>Form</SubType>

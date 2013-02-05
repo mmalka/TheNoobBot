@@ -40,16 +40,36 @@ namespace Battlegrounder.Bot
             return false;
         }
 
-        public bool WarsongGulch;
-        public bool ArathiBasin;
         public bool AlteracValley;
+        public string AlteracValleyProfileType;
+        public string XMLProfileListAlteracValley;
+        public bool WarsongGulch;
+        public string WarsongGulchProfileType;
+        public string XMLProfileListWarsongGulch;
+        public bool ArathiBasin;
+        public string ArathiBasinProfileType;
+        public string XMLProfileListArathiBasin;
         public bool EyeoftheStorm;
+        public string EyeoftheStormProfileType;
+        public string XMLProfileListEyeoftheStorm;
         public bool StrandoftheAncients;
+        public string StrandoftheAncientsProfileType;
+        public string XMLProfileListStrandoftheAncients;
         public bool IsleofConquest;
+        public string IsleofConquestProfileType;
+        public string XMLProfileListIsleofConquest;
         public bool BattleforGilneas;
+        public string BattleforGilneasProfileType;
+        public string XMLProfileListBattleforGilneas;
         public bool TwinPeaks = true;
+        public string TwinPeaksProfileType;
+        public string XMLProfileListTwinPeaks;
         public bool TempleofKotmogu;
+        public string TempleofKotmoguProfileType;
+        public string XMLProfileListTempleofKotmogu;
         public bool SilvershardMines;
+        public string SilvershardMinesProfileType;
+        public string XMLProfileListSilvershardMines;
         public bool RequeueAfterXMinutes;
         public int RequeueAfterXMinutesTimer = 5;
         public bool RandomBattleground;

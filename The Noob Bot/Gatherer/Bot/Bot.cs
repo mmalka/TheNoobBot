@@ -63,7 +63,7 @@ namespace Gatherer.Bot
                 Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
                 Fsm.States.Sort();
-                Fsm.StartEngine(6); // Fsm.StartEngine(25);
+                Fsm.StartEngine(12); // Fsm.StartEngine(25);
 
                 return true;
             }

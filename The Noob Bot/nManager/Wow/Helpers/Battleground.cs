@@ -112,7 +112,7 @@ namespace nManager.Wow.Helpers
                     return BattlegroundId.ArathiBasin;
 
                 case ContinentId.NetherstormBG:
-                    return BattlegroundId.EyeOfTheStorm;
+                    return BattlegroundId.EyeoftheStorm;
 
                 case ContinentId.PVPZone01:
                     return BattlegroundId.AlteracValley;
@@ -121,10 +121,10 @@ namespace nManager.Wow.Helpers
                     return BattlegroundId.WarsongGulch;
 
                 case ContinentId.NorthrendBG:
-                    return BattlegroundId.StrandOfTheAncients;
+                    return BattlegroundId.StrandoftheAncients;
 
                 case ContinentId.IsleofConquest:
-                    return BattlegroundId.IsleOfConquest;
+                    return BattlegroundId.IsleofConquest;
 
                 case ContinentId.CataclysmCTF:
                     return BattlegroundId.TwinPeaks;
@@ -133,10 +133,10 @@ namespace nManager.Wow.Helpers
                     return BattlegroundId.SilvershardMines;
 
                 case ContinentId.Gilneas_BG_2:
-                    return BattlegroundId.BattleForGilneas;
+                    return BattlegroundId.BattleforGilneas;
 
                 case ContinentId.ValleyOfPower:
-                    return BattlegroundId.TempleOfKotmogu;
+                    return BattlegroundId.TempleofKotmogu;
             }
             return BattlegroundId.None;
         }

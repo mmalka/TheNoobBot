@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BattlegrounderProfileType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Battlegrounds>
+		<Battleground>
+			<BattlegroundName>Alterac Valley</BattlegroundName>
+			<BattlegroundId>AlteracValley</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>AFK Somewhere</ProfileTypeName>
+					<ProfileTypeId>AFKSomewhere</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+		<Battleground>
+			<BattlegroundName>Warsong Gulch</BattlegroundName>
+			<BattlegroundId>WarsongGulch</BattlegroundId>
+			<ProfileTypes>
+				<ProfileType>
+					<ProfileTypeName>XML Profile</ProfileTypeName>
+					<ProfileTypeId>XMLProfile</ProfileTypeId>
+				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>AFK Somewhere</ProfileTypeName>
+					<ProfileTypeId>AFKSomewhere</ProfileTypeId>
+				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>Attack</ProfileTypeName>
+					<ProfileTypeId>Attack</ProfileTypeId>
+				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>Protect</ProfileTypeName>
+					<ProfileTypeId>Protect</ProfileTypeId>
+				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>Fight middle</ProfileTypeName>
+					<ProfileTypeId>Fight middle</ProfileTypeId>
+				</ProfileType>
+			</ProfileTypes>
+		</Battleground>
+	</Battlegrounds>
+</BattlegrounderProfileType>

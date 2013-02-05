@@ -75,7 +75,7 @@ namespace Battlegrounder.Bot
 
                 switch (statPvp)
                 {
-                    case 0: //joinQueue
+                    case 0:
                         Thread.Sleep(100);
                         Fight.StopFight();
                         MovementManager.StopMove();
@@ -116,7 +116,7 @@ namespace Battlegrounder.Bot
                             if (BattlegrounderSetting.CurrentSetting.EyeoftheStorm)
                             {
                                 Battleground.JoinBattlegroundQueue(
-                                    BattlegroundId.EyeOfTheStorm);
+                                    BattlegroundId.EyeoftheStorm);
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
                                               Translate.Get(Translate.Id.EyeoftheStorm) + ".");
                                 Thread.Sleep(500);
@@ -124,7 +124,7 @@ namespace Battlegrounder.Bot
                             if (BattlegrounderSetting.CurrentSetting.StrandoftheAncients)
                             {
                                 Battleground.JoinBattlegroundQueue(
-                                    BattlegroundId.StrandOfTheAncients);
+                                    BattlegroundId.StrandoftheAncients);
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
                                               Translate.Get(Translate.Id.StrandoftheAncients) + ".");
                                 Thread.Sleep(500);
@@ -132,7 +132,7 @@ namespace Battlegrounder.Bot
                             if (BattlegrounderSetting.CurrentSetting.IsleofConquest)
                             {
                                 Battleground.JoinBattlegroundQueue(
-                                    BattlegroundId.IsleOfConquest);
+                                    BattlegroundId.IsleofConquest);
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
                                               Translate.Get(Translate.Id.IsleofConquest) + ".");
                                 Thread.Sleep(500);
@@ -148,7 +148,7 @@ namespace Battlegrounder.Bot
                             if (BattlegrounderSetting.CurrentSetting.BattleforGilneas)
                             {
                                 Battleground.JoinBattlegroundQueue(
-                                    BattlegroundId.BattleForGilneas);
+                                    BattlegroundId.BattleforGilneas);
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
                                               Translate.Get(Translate.Id.BattleforGilneas) + ".");
                                 Thread.Sleep(500);
@@ -156,7 +156,7 @@ namespace Battlegrounder.Bot
                             if (BattlegrounderSetting.CurrentSetting.TempleofKotmogu)
                             {
                                 Battleground.JoinBattlegroundQueue(
-                                    BattlegroundId.TempleOfKotmogu);
+                                    BattlegroundId.TempleofKotmogu);
                                 Logging.Write(Translate.Get(Translate.Id.JoinQueue) + " " +
                                               Translate.Get(Translate.Id.TempleofKotmogu) + ".");
                                 Thread.Sleep(500);
@@ -175,7 +175,7 @@ namespace Battlegrounder.Bot
                         Battleground.AcceptBattlefieldPortAll();
                         Thread.Sleep(1000);
                         break;
-                    default: //idle
+                    default:
                         if (BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutes)
                         {
                             if (_requeuTimer == null)
@@ -201,10 +201,12 @@ namespace Battlegrounder.Bot
                 }
                 Thread.Sleep(300);
             }
-            else // If bg finish exit
+            else
             {
                 if (Battleground.IsFinishBattleground())
                 {
+                    BattlegrounderCurrentProfile.CurrentBattlegroundName = null;
+                    BattlegrounderCurrentProfile.CurrentProfile = null;
                     Battleground.ExitBattleground();
                     Logging.Write(Translate.Get(Translate.Id.Battleground_Ended));
 
