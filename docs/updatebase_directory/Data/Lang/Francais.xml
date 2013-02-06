@@ -1247,7 +1247,7 @@
       <Id>TipOffUseGroundMountOn</Id>
     </Translation>
 	<Translation>
-      <Text>We highly recommand to deactivate Ground Mount in General Settings => Mount options => Use Ground Mount => YES.</Text>
+      <Text>We highly recommand to deactivate Ground Mount in General Settings => Mount options => Use Ground Mount => NO.</Text>
       <Id>TipOffUseGroundMountOff</Id>
     </Translation>
 	<Translation>
