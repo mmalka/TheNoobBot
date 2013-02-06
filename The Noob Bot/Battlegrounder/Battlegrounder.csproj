@@ -49,6 +49,7 @@
     <Compile Include="Bot\BattlegrounderSetting.cs" />
     <Compile Include="Bot\SelectProfileState.cs" />
     <Compile Include="Main.cs" />
+    <Compile Include="Profiletype\AfkSomewhere.cs" />
     <Compile Include="Profiletype\BattlegrounderProfileType.cs" />
     <Compile Include="Profile\BattlegrounderProfile.cs" />
     <Compile Include="Profile\ProfileCreator.cs">
