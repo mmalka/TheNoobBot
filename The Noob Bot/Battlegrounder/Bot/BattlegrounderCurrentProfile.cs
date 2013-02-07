@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Battlegrounder.Profile;
 using Battlegrounder.Profiletype;
@@ -13,29 +14,27 @@ using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Battleground = nManager.Wow.Helpers.Battleground;
+using Timer = nManager.Helpful.Timer;
 
 namespace Battlegrounder.Bot
 {
     internal class BattlegrounderCurrentProfile : State
     {
-        internal static BattlegrounderProfile CurrentProfile = new BattlegrounderProfile();
-        public static int ZoneIdProfile;
-        public static string CurrentBattlegroundName;
-        public string CurrentProfileName;
-        public bool XMLProfile;
+        private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();
+        private static int _zoneIdProfile;
+        private static string _currentBattlegroundId;
+        private static string _currentProfileName;
+        private bool _xmlProfile;
+        private bool _afkSomewhere;
+        private List<Point> _afkSomewherePosition;
+        private Timer _afkSomewhereTimer = new Timer(-1);
 
         public override string DisplayName
         {
             get { return "BattlegrounderState"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
@@ -48,13 +47,26 @@ namespace Battlegrounder.Bot
                     !Products.IsStarted)
                     return false;
 
-                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
-                    Battleground.GetCurrentBattleground() != BattlegroundId.None)
+                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
                 {
-                    if (CurrentBattlegroundName == null && CurrentProfile.BattlegrounderZones.Count <= 0)
+                    if (_afkSomewhere && _afkSomewhereTimer.IsReady)
                     {
-                        CurrentBattlegroundName = Battleground.GetCurrentBattleground().ToString();
-                        if (CurrentBattlegroundName == BattlegroundId.AlteracValley.ToString())
+                        _currentBattlegroundId = null;
+                        _currentProfileName = "";
+                        _afkSomewhereTimer.Reset();
+                    }
+                    if (_currentBattlegroundId != null &&
+                        _currentBattlegroundId != Battleground.GetCurrentBattleground().ToString())
+                    {
+                        _currentBattlegroundId = null;
+                        _currentProfileName = "";
+                    }
+                    if (_currentBattlegroundId == null && _currentProfile.BattlegrounderZones.Count <= 0)
+                    {
+                        _xmlProfile = false;
+                        _afkSomewhere = false;
+                        _currentBattlegroundId = Battleground.GetCurrentBattleground().ToString();
+                        if (_currentBattlegroundId == BattlegroundId.AlteracValley.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
@@ -62,12 +74,12 @@ namespace Battlegrounder.Bot
                                 return false;
                             //if (BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType == "XMLProfile")
                             //{
-                            XMLProfile = true;
-                            CurrentProfileName =
+                            _xmlProfile = true;
+                            _currentProfileName =
                                 BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile;
                             //}
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.WarsongGulch.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.WarsongGulch.ToString())
                         {
                             switch (BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType)
                             {
@@ -76,104 +88,127 @@ namespace Battlegrounder.Bot
                                         String.IsNullOrWhiteSpace(
                                             BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile))
                                         return false;
-                                    XMLProfile = true;
-                                    CurrentProfileName = BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile;
+                                    _xmlProfile = true;
+                                    _currentProfileName = BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile;
                                     break;
                                 case "AfkSomewhere":
-                                    AfkSomewhere.AfkSomewhereNow(BattlegroundId.WarsongGulch);
+                                    foreach (
+                                        var profiletype in
+                                            BattlegrounderProfileType.Battlegrounds.Where(
+                                                battleground => battleground.BattlegroundId == _currentBattlegroundId)
+                                                                     .SelectMany(
+                                                                         battleground =>
+                                                                         battleground.ProfileTypes.Where(
+                                                                             profiletype =>
+                                                                             profiletype.ProfileTypeId ==
+                                                                             BattlegrounderSetting.CurrentSetting
+                                                                                                  .WarsongGulchProfileType))
+                                        )
+                                    {
+                                        _xmlProfile = false;
+                                        _afkSomewhereTimer = new Timer(1000*(profiletype.Timer1 + profiletype.Timer2));
+                                        _afkSomewherePosition = AfkSomewhere.AfkSomewhereNow(BattlegroundId.WarsongGulch);
+                                        _afkSomewhere = _afkSomewherePosition != null;
+                                    }
                                     break;
                             }
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.ArathiBasin.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.ArathiBasin.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.EyeoftheStorm.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.EyeoftheStorm.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.StrandoftheAncients.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.StrandoftheAncients.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName =
+                            _xmlProfile = true;
+                            _currentProfileName =
                                 BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.IsleofConquest.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.IsleofConquest.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.BattleforGilneas.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.BattleforGilneas.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.TwinPeaks.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.TwinPeaks.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.TempleofKotmogu.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.TempleofKotmogu.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile;
                         }
-                        else if (CurrentBattlegroundName == BattlegroundId.SilvershardMines.ToString())
+                        else if (_currentBattlegroundId == BattlegroundId.SilvershardMines.ToString())
                         {
                             if (
                                 String.IsNullOrWhiteSpace(
                                     BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile))
                                 return false;
-                            XMLProfile = true;
-                            CurrentProfileName = BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile;
+                            _xmlProfile = true;
+                            _currentProfileName = BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile;
                         }
-                        if (XMLProfile)
+                        if (_xmlProfile)
                         {
-                            CurrentProfile = new BattlegrounderProfile();
+                            _currentProfile = new BattlegrounderProfile();
                             if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
-                                            CurrentProfileName))
+                                            _currentProfileName))
                             {
-                                CurrentProfile =
+                                _currentProfile =
                                     XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath +
                                                                                      "\\Profiles\\Battlegrounder\\" +
-                                                                                     CurrentProfileName);
-                                if (CurrentProfile.BattlegrounderZones.Count > 0)
+                                                                                     _currentProfileName);
+                                if (_currentProfile.BattlegrounderZones.Count > 0)
                                 {
-                                    XMLProfile = false;
+                                    _xmlProfile = false;
+                                    MovementManager.StopMove();
                                     return true;
                                 }
                             }
-                            XMLProfile = false;
+                            _xmlProfile = false;
+                        }
+                        else if (_afkSomewhere)
+                        {
+                            MovementManager.StopMove();
+                            return true;
                         }
                     }
                 }
@@ -193,61 +228,66 @@ namespace Battlegrounder.Bot
 
         public override void Run()
         {
-            SelectZone();
-
-
-            // Black List:
-            var blackListDic = new Dictionary<Point, float>();
-            foreach (var zone in CurrentProfile.BattlegrounderZones)
+            if (_xmlProfile)
             {
-                foreach (var b in zone.BlackListRadius)
-                {
-                    blackListDic.Add(b.Position, b.Radius);
-                }
+                SelectZone();
+
+                // Black List:
+                var blackListDic =
+                    _currentProfile.BattlegrounderZones.SelectMany(zone => zone.BlackListRadius)
+                                   .ToDictionary(b => b.Position, b => b.Radius);
+                nManagerSetting.AddRangeBlackListZone(blackListDic);
             }
-            nManagerSetting.AddRangeBlackListZone(blackListDic);
+            else if (_afkSomewhere)
+            {
+                Logging.Write("ProfileType AFK Somewhere detected. Going to a new zone.");
+                Bot._battlegrounding.BattlegroundId = _currentBattlegroundId;
+                Bot._movementLoop.PathLoop = _afkSomewherePosition;
+            }
         }
 
-        internal static void SelectZone()
+        private static void SelectZone()
         {
-            ZoneIdProfile = 1337;
-            for (int i = 0; i <= CurrentProfile.BattlegrounderZones.Count - 1; i++)
+            _zoneIdProfile = -1;
+            for (int i = 0; i <= _currentProfile.BattlegrounderZones.Count - 1; i++)
             {
-                if (CurrentProfile.BattlegrounderZones[i].BattlegroundId ==
+                if (_currentProfile.BattlegrounderZones[i].BattlegroundId ==
                     Battleground.GetCurrentBattleground().ToString())
                 {
-                    ZoneIdProfile = i;
+                    _zoneIdProfile = i;
                     break;
                 }
             }
-            if (ZoneIdProfile == 1337)
+            if (_zoneIdProfile == -1 || !_currentProfile.BattlegrounderZones[_zoneIdProfile].IsValid())
             {
                 return;
             }
 
-            if (CurrentProfile.BattlegrounderZones[ZoneIdProfile].Hotspots)
+            Logging.Write("ProfileType XMLProfile detected. Starting profile : " + _currentProfileName);
+
+            if (_currentProfile.BattlegrounderZones[_zoneIdProfile].Hotspots)
             {
                 var pointsTemps = new List<Point>();
-                for (int i = 0; i <= CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points.Count - 1; i++)
+                for (int i = 0; i <= _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Count - 1; i++)
                 {
-                    if (i + 1 > CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points.Count - 1)
+                    if (i + 1 > _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Count - 1)
                         pointsTemps.AddRange(
-                            PathFinder.FindPath(CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points[i],
-                                                CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points[0]));
+                            PathFinder.FindPath(_currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i],
+                                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[0]));
                     else
                         pointsTemps.AddRange(
-                            PathFinder.FindPath(CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points[i],
-                                                CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points[i + 1
+                            PathFinder.FindPath(_currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i],
+                                                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points[i + 1
                                                     ]));
                 }
-                CurrentProfile.BattlegrounderZones[ZoneIdProfile].Hotspots = false;
-                CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points.Clear();
-                CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points.AddRange(pointsTemps);
+                _currentProfile.BattlegrounderZones[_zoneIdProfile].Hotspots = false;
+                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Clear();
+                _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.AddRange(pointsTemps);
             }
 
-            Bot._battlegrounding.BattlegroundId = CurrentProfile.BattlegrounderZones[ZoneIdProfile].BattlegroundId;
+            Bot._battlegrounding.BattlegroundId = _currentProfile.BattlegrounderZones[_zoneIdProfile].BattlegroundId;
 
-            Bot._movementLoop.PathLoop = CurrentProfile.BattlegrounderZones[ZoneIdProfile].Points;
+            Bot._movementLoop.PathLoop = _currentProfile.BattlegrounderZones[_zoneIdProfile].Points;
         }
     }
 }

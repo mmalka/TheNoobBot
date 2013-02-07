@@ -17,7 +17,7 @@ namespace Battlegrounder.Profiletype
     [Serializable]
     public class BattlegrounderProfileType
     {
-        public List<Battleground> Battlegrounds = new List<Battleground>();
+        public static List<Battleground> Battlegrounds = new List<Battleground>();
     }
 
     [Serializable]
@@ -33,5 +33,17 @@ namespace Battlegrounder.Profiletype
     {
         public string ProfileTypeName = "";
         public string ProfileTypeId = "";
+        public bool Bool1;
+        public bool Bool2;
+        public bool Bool3;
+        public int Int1;
+        public int Int2;
+        public int Int3;
+        public string String1;
+        public string String2;
+        public string String3;
+        public double Timer1;
+        public double Timer2;
+        public double Timer3;
     }
 }

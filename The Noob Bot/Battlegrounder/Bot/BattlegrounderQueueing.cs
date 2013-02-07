@@ -205,11 +205,8 @@ namespace Battlegrounder.Bot
             {
                 if (Battleground.IsFinishBattleground())
                 {
-                    BattlegrounderCurrentProfile.CurrentBattlegroundName = null;
-                    BattlegrounderCurrentProfile.CurrentProfile = null;
                     Battleground.ExitBattleground();
                     Logging.Write(Translate.Get(Translate.Id.Battleground_Ended));
-
                     Thread.Sleep(1000);
                 }
             }

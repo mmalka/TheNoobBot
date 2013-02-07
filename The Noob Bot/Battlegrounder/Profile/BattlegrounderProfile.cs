@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 
 namespace Battlegrounder.Profile
 {
@@ -18,7 +17,7 @@ namespace Battlegrounder.Profile
         public string BattlegroundId;
         public bool Hotspots;
         public List<Point> Points = new List<Point>();
-        public List<Npc> Npc = new List<Npc>();
+        //public List<Npc> Npc = new List<Npc>();
         public List<BattlegrounderBlackListRadius> BlackListRadius = new List<BattlegrounderBlackListRadius>();
 
         internal bool IsValid()

@@ -19,6 +19,12 @@
 					<ProfileTypeName>XML Profile</ProfileTypeName>
 					<ProfileTypeId>XMLProfile</ProfileTypeId>
 				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>AFK Somewhere</ProfileTypeName>
+					<ProfileTypeId>AfkSomewhere</ProfileTypeId>
+					<Timer1>25</Timer1>
+					<Timer2>45</Timer2>
+				</ProfileType>
 			</ProfileTypes>
 		</Battleground>
 		<Battleground>

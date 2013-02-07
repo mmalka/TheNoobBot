@@ -6,6 +6,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
@@ -23,6 +24,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private int _priority;
+        Timer BattlegroundResurrect = new Timer(-1);
 
         public override List<State> NextStates
         {
@@ -71,14 +73,15 @@ namespace nManager.Wow.Bot.States
 
             #region Battleground resurrection
 
-            if (Products.Products.ProductName == "Battlegrounder")
+            if (Battleground.IsInBattleground())
             {
+                BattlegroundResurrect = new Timer(1000*35);
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
                     Thread.Sleep(100);
                 }
                 Thread.Sleep(4000);
-                var factionBattlegroundSpiritHealer =
+                /*var factionBattlegroundSpiritHealer =
                     new WoWUnit(
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByName(ObjectManager.ObjectManager.Me.PlayerFaction +
@@ -95,12 +98,14 @@ namespace nManager.Wow.Bot.States
                     {
                         Interact.TeleportToSpiritHealer();
                         Thread.Sleep(5000);
-                    }
+                    }*/
                     while (ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
-                        if (factionBattlegroundSpiritHealer.GetDistance > 25)
+                        if (BattlegroundResurrect.IsReady)
                         {
                             Interact.TeleportToSpiritHealer();
+                            BattlegroundResurrect = new Timer(1000 * 35);
+                            Logging.Write("The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
                             Thread.Sleep(5000);
                         }
                         Thread.Sleep(1000);
@@ -109,7 +114,7 @@ namespace nManager.Wow.Bot.States
                     Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
                     Statistics.Deaths++;
                     return;
-                }
+                /*}*/
             }
 
             #endregion

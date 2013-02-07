@@ -13,10 +13,9 @@ namespace Battlegrounder.Profiletype
     {
         private static List<Point> _points = new List<Point>();
         private static readonly Random Randomized = new Random();
-        private static bool _action;
         private static int _i;
 
-        public static void AfkSomewhereNow(BattlegroundId battlegroundId)
+        public static List<Point> AfkSomewhereNow(BattlegroundId battlegroundId)
         {
             switch (battlegroundId)
             {
@@ -263,17 +262,12 @@ namespace Battlegrounder.Profiletype
                                   };
                     break;
             }
-            if (!_action)
+            if (_points.Count > 0)
             {
                 _i = Randomized.Next(_points.Count);
-                MovementManager.Go(new List<Point> {_points[_i]});
-                _action = true;
+                return new List<Point> {_points[_i]};
             }
-            while (!MovementManager.InMovement &&
-                   _points[_i].DistanceTo(nManager.Wow.ObjectManager.ObjectManager.Me.Position) > 5)
-            {
-                MovementManager.Go(new List<Point> {_points[_i]});
-            }
+            return null;
         }
     }
 }
