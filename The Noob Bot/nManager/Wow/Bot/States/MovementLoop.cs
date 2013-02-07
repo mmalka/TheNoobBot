@@ -84,8 +84,8 @@ namespace nManager.Wow.Bot.States
             // This simply does not work. Grinder for low level (on ground) still go straitline in front for long distance
             if (PathLoop[_currentPoint].Type.ToLower() != "flying" &&
                 PathLoop[_currentPoint].Type.ToLower() != "swimming" &&
-                PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 &&
-                PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200)
+                PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7/*&&
+                PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200*/)
             {
                 var npoints = PathFinder.FindPath(PathLoop[_currentPoint]);
                 MovementManager.Go(npoints);
