@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System;
 using System.Threading;
 using nManager;
 using nManager.FiniteStateMachine;
@@ -15,18 +14,16 @@ namespace Battlegrounder.Bot
 {
     public class BattlegrounderQueueing : State
     {
+        private static Spell _deserter;
+        private static Timer _requeuTimer;
+        private readonly int _requeueingTime = 1000*60*BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
+
         public override string DisplayName
         {
             get { return "BattlegrounderQueueing"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {
@@ -58,10 +55,6 @@ namespace Battlegrounder.Bot
                 return false;
             }
         }
-
-        private static Spell _deserter;
-        private static Timer _requeuTimer;
-        private readonly int _requeueingTime = 1000*60*BattlegrounderSetting.CurrentSetting.RequeueAfterXMinutesTimer;
 
         public override void Run()
         {

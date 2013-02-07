@@ -13,12 +13,12 @@ namespace Battlegrounder.Profile
     [Serializable]
     public class BattlegrounderZone
     {
-        public string Name = "";
         public string BattlegroundId;
+        public List<BattlegrounderBlackListRadius> BlackListRadius = new List<BattlegrounderBlackListRadius>();
         public bool Hotspots;
+        public string Name = "";
         public List<Point> Points = new List<Point>();
         //public List<Npc> Npc = new List<Npc>();
-        public List<BattlegrounderBlackListRadius> BlackListRadius = new List<BattlegrounderBlackListRadius>();
 
         internal bool IsValid()
         {

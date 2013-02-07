@@ -3,6 +3,7 @@
 using System;
 using System.Windows.Forms;
 using DamageDealer.Bot;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -10,6 +11,8 @@ public class Main : IProduct
 // ReSharper restore CheckNamespace
 {
     #region IProduct Members
+
+    private bool _isStarted;
 
     public void Initialize()
     {
@@ -72,7 +75,7 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product));
+            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
             Logging.Status = "Settings Damage Dealer Complete";
             Logging.Write("Settings Damage Dealer Complete");
         }
@@ -86,8 +89,6 @@ public class Main : IProduct
     {
         get { return _isStarted; }
     }
-
-    private bool _isStarted;
 
     #endregion
 }

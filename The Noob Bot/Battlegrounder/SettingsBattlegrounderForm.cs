@@ -1,23 +1,25 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 using Battlegrounder.Bot;
 using Battlegrounder.Profile;
 using Battlegrounder.Profiletype;
+using DevComponents.DotNetBar.Controls;
+using DevComponents.DotNetBar.Metro;
 using nManager;
-using System.Windows.Forms;
-using System.Collections.Generic;
 using nManager.Helpful;
 using Battleground = nManager.Wow.Helpers.Battleground;
 
 namespace Battlegrounder
 {
-    public partial class SettingsBattlegrounderForm : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class SettingsBattlegrounderForm : MetroForm
     {
         private static BattlegrounderProfileType _profileTypeFile = new BattlegrounderProfileType();
 
-        private readonly List<DevComponents.DotNetBar.Controls.SwitchButton> _listsb =
-            new List<DevComponents.DotNetBar.Controls.SwitchButton>();
+        private readonly List<SwitchButton> _listsb =
+            new List<SwitchButton>();
 
         public SettingsBattlegrounderForm()
         {
@@ -46,7 +48,8 @@ namespace Battlegrounder
             Text = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder);
         }
 
-        private void SaveButtonClick(object sender, EventArgs e)
+        private void SaveButtonClick(object sender,
+                                     EventArgs e)
         {
             Save();
         }
@@ -184,9 +187,10 @@ namespace Battlegrounder
             XMLProfileListSilvershardMines.Text = BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile;
         }
 
-        private void RandomBattlegroundSwitchValueChanged(object sender, EventArgs e)
+        private void RandomBattlegroundSwitchValueChanged(object sender,
+                                                          EventArgs e)
         {
-            var sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
+            var sbi = sender as SwitchButton;
             if (sbi != null && sbi.Value)
             {
                 if (CountSwitchActive() > 0)
@@ -204,9 +208,10 @@ namespace Battlegrounder
             return _listsb.Count(i => i.Value);
         }
 
-        private void CheckAllSwitchEvent(object sender, EventArgs e)
+        private void CheckAllSwitchEvent(object sender,
+                                         EventArgs e)
         {
-            var sbi = sender as DevComponents.DotNetBar.Controls.SwitchButton;
+            var sbi = sender as SwitchButton;
             if (RandomBattlegroundSwitch.Value)
             {
                 if (sbi != null) sbi.Value = false;
@@ -225,12 +230,14 @@ namespace Battlegrounder
             }
         }
 
-        private void CloseNoSaveButtonClick(object sender, EventArgs e)
+        private void CloseNoSaveButtonClick(object sender,
+                                            EventArgs e)
         {
             Dispose();
         }
 
-        private void CreateProfileBClick(object sender, EventArgs e)
+        private void CreateProfileBClick(object sender,
+                                         EventArgs e)
         {
             try
             {
@@ -267,15 +274,15 @@ namespace Battlegrounder
                 TwinPeaksProfileType.Items.Clear();
                 TempleofKotmoguProfileType.Items.Clear();
                 SilvershardMinesProfileType.Items.Clear();
-                foreach (var battleground in _profileTypeFile.Battlegrounds)
+                foreach (Profiletype.Battleground battleground in _profileTypeFile.Battlegrounds)
                 {
-                    for (var i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
+                    for (int i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
                     {
                         var item = new ComboboxItem
-                                       {
-                                           Text = battleground.ProfileTypes[i].ProfileTypeName,
-                                           Value = battleground.ProfileTypes[i].ProfileTypeId
-                                       };
+                            {
+                                Text = battleground.ProfileTypes[i].ProfileTypeName,
+                                Value = battleground.ProfileTypes[i].ProfileTypeId
+                            };
                         if (battleground.BattlegroundId == AlteracValley.Name)
                         {
                             AlteracValleyProfileType.Items.Add(item);
@@ -389,28 +396,29 @@ namespace Battlegrounder
         {
             try
             {
-                var alteracValley = XMLProfileListAlteracValley.Text;
+                string alteracValley = XMLProfileListAlteracValley.Text;
                 XMLProfileListAlteracValley.Items.Clear();
-                var warsongGulch = XMLProfileListWarsongGulch.Text;
+                string warsongGulch = XMLProfileListWarsongGulch.Text;
                 XMLProfileListWarsongGulch.Items.Clear();
-                var arathiBasin = XMLProfileListArathiBasin.Text;
+                string arathiBasin = XMLProfileListArathiBasin.Text;
                 XMLProfileListArathiBasin.Items.Clear();
-                var eyeoftheStorm = XMLProfileListEyeoftheStorm.Text;
+                string eyeoftheStorm = XMLProfileListEyeoftheStorm.Text;
                 XMLProfileListEyeoftheStorm.Items.Clear();
-                var strandoftheAncients = XMLProfileListStrandoftheAncients.Text;
+                string strandoftheAncients = XMLProfileListStrandoftheAncients.Text;
                 XMLProfileListStrandoftheAncients.Items.Clear();
-                var isleofConquest = XMLProfileListIsleofConquest.Text;
+                string isleofConquest = XMLProfileListIsleofConquest.Text;
                 XMLProfileListIsleofConquest.Items.Clear();
-                var battleforGilneas = XMLProfileListBattleforGilneas.Text;
+                string battleforGilneas = XMLProfileListBattleforGilneas.Text;
                 XMLProfileListBattleforGilneas.Items.Clear();
-                var twinPeaks = XMLProfileListTwinPeaks.Text;
+                string twinPeaks = XMLProfileListTwinPeaks.Text;
                 XMLProfileListTwinPeaks.Items.Clear();
-                var templeofKotmogu = XMLProfileListTempleofKotmogu.Text;
+                string templeofKotmogu = XMLProfileListTempleofKotmogu.Text;
                 XMLProfileListTempleofKotmogu.Items.Clear();
-                var silvershardMines = XMLProfileListSilvershardMines.Text;
+                string silvershardMines = XMLProfileListSilvershardMines.Text;
                 XMLProfileListSilvershardMines.Items.Clear();
                 foreach (
-                    var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\", "*.xml")
+                    string f in
+                        Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\", "*.xml")
                     )
                 {
                     XMLProfileListAlteracValley.Items.Add(f);

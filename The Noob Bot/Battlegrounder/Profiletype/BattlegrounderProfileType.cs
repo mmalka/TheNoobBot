@@ -23,22 +23,22 @@ namespace Battlegrounder.Profiletype
     [Serializable]
     public class Battleground
     {
-        public string BattlegroundName = "";
         public string BattlegroundId;
+        public string BattlegroundName = "";
         public List<ProfileType> ProfileTypes = new List<ProfileType>();
     }
 
     [Serializable]
     public class ProfileType
     {
-        public string ProfileTypeName = "";
-        public string ProfileTypeId = "";
         public bool Bool1;
         public bool Bool2;
         public bool Bool3;
         public int Int1;
         public int Int2;
         public int Int3;
+        public string ProfileTypeId = "";
+        public string ProfileTypeName = "";
         public string String1;
         public string String2;
         public string String3;

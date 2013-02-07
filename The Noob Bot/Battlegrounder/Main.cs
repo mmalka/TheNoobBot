@@ -8,11 +8,17 @@ using Battlegrounder.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
+using nManager.Wow.ObjectManager;
 
 public class Main : IProduct
 // ReSharper restore CheckNamespace
 {
     #region IProduct Members
+
+    private bool _isStarted;
+    private string _looting;
+    private string _radius;
+    private string _useground;
 
     public void Initialize()
     {
@@ -96,9 +102,10 @@ public class Main : IProduct
         }
     }
 
-    private string _looting;
-    private string _radius;
-    private string _useground;
+    public bool IsStarted
+    {
+        get { return _isStarted; }
+    }
 
     private void GetProductTipOff()
     {
@@ -108,7 +115,7 @@ public class Main : IProduct
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOff);
             if (nManagerSetting.CurrentSetting.GatheringSearchRadius > 30)
                 _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusLow);
-            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20)
+            if (ObjectManager.Me.Level >= 20)
             {
                 if (!nManagerSetting.CurrentSetting.UseGroundMount)
                     _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
@@ -128,13 +135,6 @@ public class Main : IProduct
             Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
         }
     }
-
-    public bool IsStarted
-    {
-        get { return _isStarted; }
-    }
-
-    private bool _isStarted;
 
     #endregion
 }

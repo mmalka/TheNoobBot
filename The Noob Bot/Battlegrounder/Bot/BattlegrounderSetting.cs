@@ -7,6 +7,39 @@ namespace Battlegrounder.Bot
     [Serializable]
     public class BattlegrounderSetting : Settings
     {
+        public bool AlteracValley;
+        public string AlteracValleyProfileType = "XMLProfile";
+        public string AlteracValleyXmlProfile;
+        public bool ArathiBasin;
+        public string ArathiBasinProfileType = "XMLProfile";
+        public string ArathiBasinXmlProfile;
+        public bool BattleforGilneas;
+        public string BattleforGilneasProfileType = "XMLProfile";
+        public string BattleforGilneasXmlProfile;
+        public bool EyeoftheStorm;
+        public string EyeoftheStormProfileType = "XMLProfile";
+        public string EyeoftheStormXmlProfile;
+        public bool IsleofConquest;
+        public string IsleofConquestProfileType = "XMLProfile";
+        public string IsleofConquestXmlProfile;
+        public bool RandomBattleground;
+        public bool RequeueAfterXMinutes;
+        public int RequeueAfterXMinutesTimer = 5;
+        public bool SilvershardMines;
+        public string SilvershardMinesProfileType = "XMLProfile";
+        public string SilvershardMinesXmlProfile;
+        public bool StrandoftheAncients;
+        public string StrandoftheAncientsProfileType = "XMLProfile";
+        public string StrandoftheAncientsXmlProfile;
+        public bool TempleofKotmogu;
+        public string TempleofKotmoguProfileType = "XMLProfile";
+        public string TempleofKotmoguXmlProfile;
+        public bool TwinPeaks = true;
+        public string TwinPeaksProfileType = "XMLProfile";
+        public string TwinPeaksXmlProfile;
+        public bool WarsongGulch;
+        public string WarsongGulchProfileType = "XMLProfile";
+        public string WarsongGulchXmlProfile;
         public static BattlegrounderSetting CurrentSetting { get; set; }
 
         public bool Save()
@@ -39,39 +72,5 @@ namespace Battlegrounder.Bot
             }
             return false;
         }
-
-        public bool AlteracValley;
-        public string AlteracValleyProfileType = "XMLProfile";
-        public string AlteracValleyXmlProfile;
-        public bool WarsongGulch;
-        public string WarsongGulchProfileType = "XMLProfile";
-        public string WarsongGulchXmlProfile;
-        public bool ArathiBasin;
-        public string ArathiBasinProfileType = "XMLProfile";
-        public string ArathiBasinXmlProfile;
-        public bool EyeoftheStorm;
-        public string EyeoftheStormProfileType = "XMLProfile";
-        public string EyeoftheStormXmlProfile;
-        public bool StrandoftheAncients;
-        public string StrandoftheAncientsProfileType = "XMLProfile";
-        public string StrandoftheAncientsXmlProfile;
-        public bool IsleofConquest;
-        public string IsleofConquestProfileType = "XMLProfile";
-        public string IsleofConquestXmlProfile;
-        public bool BattleforGilneas;
-        public string BattleforGilneasProfileType = "XMLProfile";
-        public string BattleforGilneasXmlProfile;
-        public bool TwinPeaks = true;
-        public string TwinPeaksProfileType = "XMLProfile";
-        public string TwinPeaksXmlProfile;
-        public bool TempleofKotmogu;
-        public string TempleofKotmoguProfileType = "XMLProfile";
-        public string TempleofKotmoguXmlProfile;
-        public bool SilvershardMines;
-        public string SilvershardMinesProfileType = "XMLProfile";
-        public string SilvershardMinesXmlProfile;
-        public bool RequeueAfterXMinutes;
-        public int RequeueAfterXMinutesTimer = 5;
-        public bool RandomBattleground;
     }
 }

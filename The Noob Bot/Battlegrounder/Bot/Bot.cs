@@ -1,15 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Windows.Forms;
-using Battlegrounder.Profile;
-using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
-using nManager.Wow.Class;
 using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Bot
 {

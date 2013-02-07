@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using nManager.FiniteStateMachine;
-using nManager.Helpful;
-using nManager.Wow.ObjectManager;
 
 namespace Battlegrounder.Bot
 {
@@ -12,13 +10,7 @@ namespace Battlegrounder.Bot
             get { return "SelectProfileState"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
