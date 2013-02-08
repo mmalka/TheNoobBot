@@ -1144,13 +1144,13 @@ public class Main : ICustomClass
 
 public class Deathknight_Apprentice
 {
-    private readonly DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DeathknightApprenticeSettings MySettings = DeathknightApprenticeSettings.GetSettings();
 
     #region Professions & Racials
 
@@ -1167,11 +1167,11 @@ public class Deathknight_Apprentice
     #region Deathknight Presence & Buffs
 
     private readonly Spell Blood_Plague = new Spell("Blood Plague");
-    private Timer Blood_Plague_Timer = new Timer(0);
     private readonly Spell Blood_Presence = new Spell("Blood Presence");
     private readonly Spell Frost_Fever = new Spell("Frost Fever");
-    private Timer Frost_Fever_Timer = new Timer(0);
     private readonly Spell Frost_Presence = new Spell("Frost Presence");
+    private Timer Blood_Plague_Timer = new Timer(0);
+    private Timer Frost_Fever_Timer = new Timer(0);
 
     #endregion
 
@@ -1477,13 +1477,8 @@ public class Deathknight_Apprentice
     [Serializable]
     public class DeathknightApprenticeSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseDeathStrikeAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseMindFreezeAtPercentage = 100;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
         public bool UseBerserking = true;
         public bool UseBloodBoil = true;
@@ -1494,16 +1489,21 @@ public class Deathknight_Apprentice
         public bool UseDeathCoil = true;
         public bool UseDeathGrip = true;
         public bool UseDeathStrike = true;
+        public int UseDeathStrikeAtPercentage = 80;
         public bool UseFrostPresence = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseIcyTouch = true;
         public bool UseLifeblood = true;
         public bool UseMindFreeze = true;
+        public int UseMindFreezeAtPercentage = 100;
         public bool UsePestilence = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public DeathknightApprenticeSettings()
         {
@@ -1562,22 +1562,22 @@ public class Deathknight_Apprentice
 
 public class Deathknight_Blood
 {
-    private readonly DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DeathknightBloodSettings MySettings = DeathknightBloodSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
+    public int DRW = 1;
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int DRW = 1;
-    public int LC = 0;
 
     #endregion
 
@@ -2248,32 +2248,18 @@ public class Deathknight_Blood
     [Serializable]
     public class DeathknightBloodSettings : Settings
     {
-        public int UseAntiMagicShellAtPercentage = 100;
-        public int UseAntiMagicZoneAtPercentage = 100;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 100;
-        public int UseAsphyxiateAtPercentage = 90;
-        public int UseBoneShieldAtPercentage = 100;
-        public int UseConversionAtPercentage = 45;
-        public int UseDeathPactAtPercentage = 55;
-        public int UseDeathSiphonAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceboundFortitudeAtPercentage = 80;
-        public int UseLichborneAtPercentage = 45;
-        public int UseMindFreezeAtPercentage = 100;
-        public int UseRemorselessWinterAtPercentage = 70;
-        public int UseRuneTapAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseStrangulateAtPercentage = 100;
-        public int UseWarStompAtPercentage = 80;
-        public int UseVampiricBloodAtPercentage = 70;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
+        public int UseAntiMagicShellAtPercentage = 100;
         public bool UseAntiMagicZone = true;
+        public int UseAntiMagicZoneAtPercentage = 100;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 100;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
+        public int UseAsphyxiateAtPercentage = 90;
         public bool UseBerserking = true;
         public bool UseBloodBoil = true;
         public bool UseBloodFury = true;
@@ -2281,13 +2267,17 @@ public class Deathknight_Blood
         public bool UseBloodTapForDPS = true;
         public bool UseBloodTapToHeal = true;
         public bool UseBoneShield = true;
+        public int UseBoneShieldAtPercentage = 100;
         public bool UseChainsofIce = false;
         public bool UseConversion = true;
+        public int UseConversionAtPercentage = 45;
         public bool UseDancingRuneWeapon = true;
         public bool UseDeathCoil = true;
         public bool UseDeathGrip = true;
         public bool UseDeathPact = true;
+        public int UseDeathPactAtPercentage = 55;
         public bool UseDeathSiphon = true;
+        public int UseDeathSiphonAtPercentage = 80;
         public bool UseDeathStrike = true;
         public bool UseDeathandDecay = true;
         public bool UseDeathsAdvance = true;
@@ -2295,30 +2285,40 @@ public class Deathknight_Blood
         public bool UseEngGlove = true;
         public bool UseFrostPresence = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHeartStrike = true;
         public bool UseHornofWinter = true;
         public bool UseIceboundFortitude = true;
+        public int UseIceboundFortitudeAtPercentage = 80;
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
+        public int UseLichborneAtPercentage = 45;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
+        public int UseMindFreezeAtPercentage = 100;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
         public bool UsePestilence = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
         public bool UseRemorselessWinter = true;
+        public int UseRemorselessWinterAtPercentage = 70;
         public bool UseRuneStrike = true;
         public bool UseRuneTap = true;
+        public int UseRuneTapAtPercentage = 70;
         public bool UseSoulReaper = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStrangulate = true;
+        public int UseStrangulateAtPercentage = 100;
         public bool UseTrinket = true;
         public bool UseUnholyBlight = true;
         public bool UseUnholyPresence = true;
         public bool UseVampiricBlood = true;
+        public int UseVampiricBloodAtPercentage = 70;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public DeathknightBloodSettings()
         {
@@ -2407,23 +2407,23 @@ public class Deathknight_Blood
 
 public class Deathknight_Unholy
 {
-    private readonly DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DeathknightUnholySettings MySettings = DeathknightUnholySettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
-    private Timer Engineering_Timer = new Timer(0);
-    private Timer OnCD = new Timer(0);
-    private Timer Trinket_Timer = new Timer(0);
     public int DT = 1;
+    private Timer Engineering_Timer = new Timer(0);
     public int LC = 0;
+    private Timer OnCD = new Timer(0);
     public int SG = 1;
+    private Timer Trinket_Timer = new Timer(0);
 
     #endregion
 
@@ -3110,30 +3110,18 @@ public class Deathknight_Unholy
     [Serializable]
     public class DeathknightUnholySettings : Settings
     {
-        public int UseAntiMagicShellAtPercentage = 100;
-        public int UseAntiMagicZoneAtPercentage = 100;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 100;
-        public int UseAsphyxiateAtPercentage = 90;
-        public int UseConversionAtPercentage = 45;
-        public int UseDeathPactAtPercentage = 55;
-        public int UseDeathSiphonAtPercentage = 80;
-        public int UseDeathStrikeAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceboundFortitudeAtPercentage = 80;
-        public int UseLichborneAtPercentage = 45;
-        public int UseMindFreezeAtPercentage = 100;
-        public int UseRemorselessWinterAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseStrangulateAtPercentage = 100;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
+        public int UseAntiMagicShellAtPercentage = 100;
         public bool UseAntiMagicZone = true;
+        public int UseAntiMagicZoneAtPercentage = 100;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 100;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
+        public int UseAsphyxiateAtPercentage = 90;
         public bool UseBerserking = true;
         public bool UseBloodBoil = true;
         public bool UseBloodFury = true;
@@ -3141,12 +3129,16 @@ public class Deathknight_Unholy
         public bool UseBloodTap = true;
         public bool UseChainsofIce = false;
         public bool UseConversion = true;
+        public int UseConversionAtPercentage = 45;
         public bool UseDarkTransformation = true;
         public bool UseDeathCoil = true;
         public bool UseDeathGrip = true;
         public bool UseDeathPact = true;
+        public int UseDeathPactAtPercentage = 55;
         public bool UseDeathSiphon = true;
+        public int UseDeathSiphonAtPercentage = 80;
         public bool UseDeathStrike = true;
+        public int UseDeathStrikeAtPercentage = 80;
         public bool UseDeathandDecay = true;
         public bool UseDeathsAdvance = true;
         public bool UseEmpowerRuneWeapon = true;
@@ -3154,29 +3146,37 @@ public class Deathknight_Unholy
         public bool UseFesteringStrike = true;
         public bool UseFrostPresence = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHornofWinter = true;
         public bool UseIceboundFortitude = true;
+        public int UseIceboundFortitudeAtPercentage = 80;
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
+        public int UseLichborneAtPercentage = 45;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
+        public int UseMindFreezeAtPercentage = 100;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
         public bool UsePestilence = true;
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
         public bool UseRemorselessWinter = true;
+        public int UseRemorselessWinterAtPercentage = 70;
         public bool UseScourgeStrike = true;
         public bool UseSoulReaper = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStrangulate = true;
+        public int UseStrangulateAtPercentage = 100;
         public bool UseSummonGargoyle = true;
         public bool UseTrinket = true;
         public bool UseUnholyBlight = true;
         public bool UseUnholyFrenzy = true;
         public bool UseUnholyPresence = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public DeathknightUnholySettings()
         {
@@ -3263,21 +3263,21 @@ public class Deathknight_Unholy
 
 public class Deathknight_Frost
 {
-    private readonly DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DeathknightFrostSettings MySettings = DeathknightFrostSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -3995,30 +3995,18 @@ public class Deathknight_Frost
     [Serializable]
     public class DeathknightFrostSettings : Settings
     {
-        public int UseAntiMagicShellAtPercentage = 100;
-        public int UseAntiMagicZoneAtPercentage = 100;
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 100;
-        public int UseAsphyxiateAtPercentage = 90;
-        public int UseConversionAtPercentage = 45;
-        public int UseDeathPactAtPercentage = 55;
-        public int UseDeathSiphonAtPercentage = 80;
-        public int UseDeathStrikeAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceboundFortitudeAtPercentage = 80;
-        public int UseLichborneAtPercentage = 45;
-        public int UseMindFreezeAtPercentage = 100;
-        public int UseRemorselessWinterAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseStrangulateAtPercentage = 100;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
+        public int UseAntiMagicShellAtPercentage = 100;
         public bool UseAntiMagicZone = true;
+        public int UseAntiMagicZoneAtPercentage = 100;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 100;
         public bool UseArmyoftheDead = true;
         public bool UseAsphyxiate = true;
+        public int UseAsphyxiateAtPercentage = 90;
         public bool UseBerserking = true;
         public bool UseBloodBoil = true;
         public bool UseBloodFury = true;
@@ -4026,11 +4014,15 @@ public class Deathknight_Frost
         public bool UseBloodTap = true;
         public bool UseChainsofIce = false;
         public bool UseConversion = true;
+        public int UseConversionAtPercentage = 45;
         public bool UseDeathCoil = true;
         public bool UseDeathGrip = true;
         public bool UseDeathPact = true;
+        public int UseDeathPactAtPercentage = 55;
         public bool UseDeathSiphon = true;
+        public int UseDeathSiphonAtPercentage = 80;
         public bool UseDeathStrike = true;
+        public int UseDeathStrikeAtPercentage = 80;
         public bool UseDeathandDecay = true;
         public bool UseDeathsAdvance = true;
         public bool UseDuelWield = false;
@@ -4039,14 +4031,18 @@ public class Deathknight_Frost
         public bool UseFrostPresence = true;
         public bool UseFrostStrike = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHornofWinter = true;
         public bool UseHowlingBlast = true;
         public bool UseIceboundFortitude = true;
+        public int UseIceboundFortitudeAtPercentage = 80;
         public bool UseIcyTouch = true;
         public bool UseLichborne = true;
+        public int UseLichborneAtPercentage = 45;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMindFreeze = true;
+        public int UseMindFreezeAtPercentage = 100;
         public bool UseObliterate = true;
         public bool UseOutbreak = true;
         public bool UsePathofFrost = true;
@@ -4055,14 +4051,18 @@ public class Deathknight_Frost
         public bool UsePlagueStrike = true;
         public bool UseRaiseDead = true;
         public bool UseRemorselessWinter = true;
+        public int UseRemorselessWinterAtPercentage = 70;
         public bool UseSoulReaper = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStrangulate = true;
+        public int UseStrangulateAtPercentage = 100;
         public bool UseTrinket = true;
         public bool UseTwoHander = true;
         public bool UseUnholyBlight = true;
         public bool UseUnholyPresence = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public DeathknightFrostSettings()
         {
@@ -4155,22 +4155,22 @@ public class Deathknight_Frost
 
 public class Mage_Arcane
 {
-    private readonly MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly MageArcaneSettings MySettings = MageArcaneSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Steady_Focus_Timer = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -4230,8 +4230,8 @@ public class Mage_Arcane
     private readonly Spell Cone_of_Cold = new Spell("Cone of Cold");
     private readonly Spell Counterspell = new Spell("Counterspell");
     private readonly Spell Deep_Freeze = new Spell("Deep Freeze");
-    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Frost_Nova = new Spell("Frost Nova");
+    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Ice_Barrier = new Spell("Ice Barrier");
     private readonly Spell Ice_Block = new Spell("Ice Block");
     private readonly Spell Ice_Ward = new Spell("Ice Ward");
@@ -4807,23 +4807,6 @@ public class Mage_Arcane
     [Serializable]
     public class MageArcaneSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseConeofColdAtPercentage = 45;
-        public int UseCounterspellAtPercentage = 100;
-        public int UseDeepFreezeAtPercentage = 50;
-        public int UseEvocationForHPAtPercentage = 40;
-        public int UseEvocationForManaAtPercentage = 60;
-        public int UseFrostjawAtPercentage = 40;
-        public int UseFrostNovaAtPercentage = 50;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceBarrierAtPercentage = 95;
-        public int UseIceWardAtPercentage = 45;
-        public int UseIncantersWardAtPercentage = 95;
-        public int UseConjureManaGemAtPercentage = 40;
-        public int UseTemporalShieldAtPercentage = 95;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBarrage = true;
@@ -4833,31 +4816,45 @@ public class Mage_Arcane
         public bool UseArcaneMissiles = true;
         public bool UseArcanePower = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBlazingSpeed = true;
         public bool UseBlink = true;
         public bool UseBloodFury = true;
         public bool UseColdSnap = true;
         public bool UseConeofCold = true;
+        public int UseConeofColdAtPercentage = 45;
         public bool UseConjureManaGem = true;
+        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
+        public int UseCounterspellAtPercentage = 100;
         public bool UseDeepFreeze = true;
+        public int UseDeepFreezeAtPercentage = 50;
         public bool UseEngGlove = true;
         public bool UseEvocationForHP = true;
+        public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
+        public int UseEvocationForManaAtPercentage = 60;
         public bool UseEvocationGlyph = false;
         public bool UseFlamestrike = true;
         public bool UseFrostArmor = false;
-        public bool UseFrostjaw = true;
         public bool UseFrostNova = true;
+        public int UseFrostNovaAtPercentage = 50;
+        public bool UseFrostjaw = true;
+        public int UseFrostjawAtPercentage = 40;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseIceBarrier = true;
+        public int UseIceBarrierAtPercentage = 95;
         public bool UseIceBlock = true;
         public bool UseIceFloes = true;
         public bool UseIceWard = true;
+        public int UseIceWardAtPercentage = 45;
         public bool UseIncantersWard = true;
+        public int UseIncantersWardAtPercentage = 95;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
@@ -4871,11 +4868,14 @@ public class Mage_Arcane
         public bool UseScorch = true;
         public bool UseSlow = false;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTemporalShield = true;
+        public int UseTemporalShieldAtPercentage = 95;
         public bool UseTierFive = true;
         public bool UseTimeWarp = true;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public MageArcaneSettings()
         {
@@ -4964,22 +4964,22 @@ public class Mage_Arcane
 
 public class Mage_Frost
 {
-    private readonly MageFrostSettings MySettings = MageFrostSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly MageFrostSettings MySettings = MageFrostSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer Freeze_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -5042,8 +5042,8 @@ public class Mage_Frost
     private readonly Spell Cold_Snap = new Spell("Cold Snap");
     private readonly Spell Counterspell = new Spell("Counterspell");
     private readonly Spell Deep_Freeze = new Spell("Deep Freeze");
-    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Frost_Nova = new Spell("Frost Nova");
+    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Ice_Barrier = new Spell("Ice Barrier");
     private readonly Spell Ice_Block = new Spell("Ice Block");
     private readonly Spell Ice_Ward = new Spell("Ice Ward");
@@ -5660,29 +5660,14 @@ public class Mage_Frost
     [Serializable]
     public class MageFrostSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseConeofColdAtPercentage = 45;
-        public int UseCounterspellAtPercentage = 100;
-        public int UseDeepFreezeAtPercentage = 50;
-        public int UseEvocationForHPAtPercentage = 40;
-        public int UseEvocationForManaAtPercentage = 60;
-        public int UseFrostjawAtPercentage = 40;
-        public int UseFrostNovaAtPercentage = 50;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceBarrierAtPercentage = 95;
-        public int UseIceWardAtPercentage = 45;
-        public int UseIncantersWardAtPercentage = 95;
-        public int UseConjureManaGemAtPercentage = 40;
-        public int UseTemporalShieldAtPercentage = 95;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBrilliance = true;
         public bool UseArcaneExplosion = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBlazingSpeed = true;
         public bool UseBlink = true;
@@ -5690,30 +5675,42 @@ public class Mage_Frost
         public bool UseBloodFury = true;
         public bool UseColdSnap = true;
         public bool UseConeofCold = true;
+        public int UseConeofColdAtPercentage = 45;
         public bool UseConjureManaGem = true;
+        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
+        public int UseCounterspellAtPercentage = 100;
         public bool UseDeepFreeze = true;
+        public int UseDeepFreezeAtPercentage = 50;
         public bool UseEngGlove = true;
         public bool UseEvocationForHP = true;
+        public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
+        public int UseEvocationForManaAtPercentage = 60;
         public bool UseEvocationGlyph = false;
         public bool UseFlamestrike = true;
         public bool UseFreeze = true;
         public bool UseFrostArmor = true;
-        public bool UseFrostjaw = true;
         public bool UseFrostNova = true;
+        public int UseFrostNovaAtPercentage = 50;
         public bool UseFrostbolt = true;
         public bool UseFrostfireBolt = true;
+        public bool UseFrostjaw = true;
+        public int UseFrostjawAtPercentage = 40;
         public bool UseFrozenOrb = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseIceBarrier = true;
+        public int UseIceBarrierAtPercentage = 95;
         public bool UseIceBlock = true;
         public bool UseIceFloes = true;
         public bool UseIceLance = true;
         public bool UseIceWard = true;
+        public int UseIceWardAtPercentage = 45;
         public bool UseIcyVeins = true;
         public bool UseIncantersWard = true;
+        public int UseIncantersWardAtPercentage = 95;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
@@ -5726,12 +5723,15 @@ public class Mage_Frost
         public bool UseRuneofPowerTalent = false;
         public bool UseScorch = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSummonWaterElemental = true;
         public bool UseTemporalShield = true;
+        public int UseTemporalShieldAtPercentage = 95;
         public bool UseTierFive = true;
         public bool UseTimeWarp = true;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public MageFrostSettings()
         {
@@ -5823,21 +5823,21 @@ public class Mage_Frost
 
 public class Mage_Fire
 {
-    private readonly MageFireSettings MySettings = MageFireSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly MageFireSettings MySettings = MageFireSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -5899,8 +5899,8 @@ public class Mage_Fire
     private readonly Spell Cone_of_Cold = new Spell("Cone of Cold");
     private readonly Spell Counterspell = new Spell("Counterspell");
     private readonly Spell Deep_Freeze = new Spell("Deep Freeze");
-    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Frost_Nova = new Spell("Frost Nova");
+    private readonly Spell Frostjaw = new Spell("Frostjaw");
     private readonly Spell Ice_Barrier = new Spell("Ice Barrier");
     private readonly Spell Ice_Block = new Spell("Ice Block");
     private readonly Spell Ice_Ward = new Spell("Ice Ward");
@@ -6486,29 +6486,14 @@ public class Mage_Fire
     [Serializable]
     public class MageFireSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseConeofColdAtPercentage = 45;
-        public int UseCounterspellAtPercentage = 100;
-        public int UseDeepFreezeAtPercentage = 50;
-        public int UseEvocationForHPAtPercentage = 40;
-        public int UseEvocationForManaAtPercentage = 60;
-        public int UseFrostjawAtPercentage = 40;
-        public int UseFrostNovaAtPercentage = 50;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseIceBarrierAtPercentage = 95;
-        public int UseIceWardAtPercentage = 45;
-        public int UseIncantersWardAtPercentage = 95;
-        public int UseConjureManaGemAtPercentage = 40;
-        public int UseTemporalShieldAtPercentage = 95;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBrilliance = true;
         public bool UseArcaneExplosion = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBlazingSpeed = true;
         public bool UseBlink = true;
@@ -6516,27 +6501,39 @@ public class Mage_Fire
         public bool UseColdSnap = true;
         public bool UseCombustion = true;
         public bool UseConeofCold = true;
+        public int UseConeofColdAtPercentage = 45;
         public bool UseConjureManaGem = true;
+        public int UseConjureManaGemAtPercentage = 40;
         public bool UseConjureRefreshment = true;
         public bool UseCounterspell = true;
+        public int UseCounterspellAtPercentage = 100;
         public bool UseDeepFreeze = true;
+        public int UseDeepFreezeAtPercentage = 50;
         public bool UseDragonsBreath = true;
         public bool UseEngGlove = true;
         public bool UseEvocationForHP = true;
+        public int UseEvocationForHPAtPercentage = 40;
         public bool UseEvocationForMana = true;
+        public int UseEvocationForManaAtPercentage = 60;
         public bool UseEvocationGlyph = false;
         public bool UseFireball = true;
         public bool UseFlamestrike = true;
         public bool UseFrostArmor = false;
-        public bool UseFrostjaw = true;
         public bool UseFrostNova = true;
+        public int UseFrostNovaAtPercentage = 50;
+        public bool UseFrostjaw = true;
+        public int UseFrostjawAtPercentage = 40;
         public bool UseFrozenOrb = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseIceBarrier = true;
+        public int UseIceBarrierAtPercentage = 95;
         public bool UseIceBlock = true;
         public bool UseIceFloes = false;
         public bool UseIceWard = true;
+        public int UseIceWardAtPercentage = 45;
         public bool UseIncantersWard = true;
+        public int UseIncantersWardAtPercentage = 95;
         public bool UseInfernoBlast = true;
         public bool UseInvisibility = true;
         public bool UseInvocationTalent = false;
@@ -6551,11 +6548,14 @@ public class Mage_Fire
         public bool UseRuneofPowerTalent = false;
         public bool UseScorch = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTemporalShield = true;
+        public int UseTemporalShieldAtPercentage = 95;
         public bool UseTierFive = true;
         public bool UseTimeWarp = true;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public MageFireSettings()
         {
@@ -6649,21 +6649,21 @@ public class Mage_Fire
 
 public class Warlock_Demonology
 {
-    private readonly WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarlockDemonologySettings MySettings = WarlockDemonologySettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -7369,26 +7369,11 @@ public class Warlock_Demonology
     [Serializable]
     public class WarlockDemonologySettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseCreateHealthstoneAtPercentage = 75;
-        public int UseDarkBargainAtPercentage = 40;
-        public int UseDarkRegenerationAtPercentage = 65;
-        public int UseDrainLifeAtPercentage = 70;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseHowlofTerrorAtPercentage = 20;
-        public int UseLifeTapAtPercentage = 75;
-        public int UseMortalCoilAtPercentage = 85;
-        public int UseSacrificialPactAtPercentage = 95;
-        public int UseShadowfuryAtPercentage = 90;
-        public int UseSpellLockAtPercentage = 100;
-        public int UseStoneformAtPercentage = 80;
-        public int UseTwilightWardAtPercentage = 100;
-        public int UseUnendingResolveAtPercentage = 70;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -7396,17 +7381,22 @@ public class Warlock_Demonology
         public bool UseCommandDemon = true;
         public bool UseCorruption = true;
         public bool UseCreateHealthstone = true;
+        public int UseCreateHealthstoneAtPercentage = 75;
         public bool UseCurseofEnfeeblement = false;
         public bool UseCurseoftheElements = true;
         public bool UseDarkBargain = true;
+        public int UseDarkBargainAtPercentage = 40;
         public bool UseDarkIntent = true;
         public bool UseDarkRegeneration = true;
+        public int UseDarkRegenerationAtPercentage = 65;
         public bool UseDarkSoul = true;
         public bool UseDoom = true;
         public bool UseDrainLife = true;
+        public int UseDrainLifeAtPercentage = 70;
         public bool UseEngGlove = true;
         public bool UseFelFlame = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
         public bool UseHandofGuldan = true;
@@ -7414,19 +7404,26 @@ public class Warlock_Demonology
         public bool UseHealthFunnel = true;
         public bool UseHellfire = true;
         public bool UseHowlofTerror = true;
+        public int UseHowlofTerrorAtPercentage = 20;
         public bool UseImmolationAura = true;
         public bool UseLifeTap = true;
+        public int UseLifeTapAtPercentage = 75;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMetamorphosis = true;
         public bool UseMortalCoil = true;
+        public int UseMortalCoilAtPercentage = 85;
         public bool UseSacrificialPact = true;
+        public int UseSacrificialPactAtPercentage = 95;
         public bool UseShadowBolt = true;
         public bool UseShadowfury = true;
+        public int UseShadowfuryAtPercentage = 90;
         public bool UseSoulFire = true;
         public bool UseSoulLink = true;
         public bool UseSoulstone = true;
+        public int UseSpellLockAtPercentage = 100;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSummonDoomguard = true;
         public bool UseSummonFelguard = true;
         public bool UseSummonFelhunter = false;
@@ -7437,10 +7434,13 @@ public class Warlock_Demonology
         public bool UseTouchofChaos = true;
         public bool UseTrinket = true;
         public bool UseTwilightWard = true;
+        public int UseTwilightWardAtPercentage = 100;
         public bool UseUnboundWill = true;
         public bool UseUnendingResolve = true;
+        public int UseUnendingResolveAtPercentage = 70;
         public bool UseVoidRay = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public WarlockDemonologySettings()
         {
@@ -7532,21 +7532,21 @@ public class Warlock_Demonology
 
 public class Warlock_Destruction
 {
-    private readonly WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarlockDestructionSettings MySettings = WarlockDestructionSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -8189,27 +8189,11 @@ public class Warlock_Destruction
     [Serializable]
     public class WarlockDestructionSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseCreateHealthstoneAtPercentage = 75;
-        public int UseDarkBargainAtPercentage = 40;
-        public int UseDarkRegenerationAtPercentage = 65;
-        public int UseDrainLifeAtPercentage = 70;
-        public int UseEmberTapAtPercentage = 60;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseHowlofTerrorAtPercentage = 20;
-        public int UseLifeTapAtPercentage = 75;
-        public int UseMortalCoilAtPercentage = 85;
-        public int UseSacrificialPactAtPercentage = 95;
-        public int UseShadowfuryAtPercentage = 90;
-        public int UseSpellLockAtPercentage = 100;
-        public int UseStoneformAtPercentage = 80;
-        public int UseTwilightWardAtPercentage = 100;
-        public int UseUnendingResolveAtPercentage = 70;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -8217,37 +8201,50 @@ public class Warlock_Destruction
         public bool UseCommandDemon = true;
         public bool UseConflagrate = true;
         public bool UseCreateHealthstone = true;
+        public int UseCreateHealthstoneAtPercentage = 75;
         public bool UseCurseofEnfeeblement = false;
         public bool UseCurseoftheElements = true;
         public bool UseDarkBargain = true;
+        public int UseDarkBargainAtPercentage = 40;
         public bool UseDarkIntent = true;
         public bool UseDarkRegeneration = true;
+        public int UseDarkRegenerationAtPercentage = 65;
         public bool UseDarkSoul = true;
         public bool UseDrainLife = true;
+        public int UseDrainLifeAtPercentage = 70;
         public bool UseEmberTap = true;
+        public int UseEmberTapAtPercentage = 60;
         public bool UseEngGlove = true;
         public bool UseFelFlame = true;
         public bool UseFireandBrimstone = true;
         public bool UseFlamesofXoroth = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
         public bool UseHarvestLife = true;
         public bool UseHealthFunnel = true;
         public bool UseHowlofTerror = true;
+        public int UseHowlofTerrorAtPercentage = 20;
         public bool UseImmolate = true;
         public bool UseIncinerate = true;
         public bool UseLifeTap = true;
+        public int UseLifeTapAtPercentage = 75;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMortalCoil = true;
+        public int UseMortalCoilAtPercentage = 85;
         public bool UseRainofFire = true;
         public bool UseSacrificialPact = true;
+        public int UseSacrificialPactAtPercentage = 95;
         public bool UseShadowburn = true;
         public bool UseShadowfury = true;
+        public int UseShadowfuryAtPercentage = 90;
         public bool UseSoulLink = true;
         public bool UseSoulstone = true;
+        public int UseSpellLockAtPercentage = 100;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSummonDoomguard = true;
         public bool UseSummonFelhunter = true;
         public bool UseSummonImp = false;
@@ -8256,9 +8253,12 @@ public class Warlock_Destruction
         public bool UseSummonVoidwalker = false;
         public bool UseTrinket = true;
         public bool UseTwilightWard = true;
+        public int UseTwilightWardAtPercentage = 100;
         public bool UseUnboundWill = true;
         public bool UseUnendingResolve = true;
+        public int UseUnendingResolveAtPercentage = 70;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public WarlockDestructionSettings()
         {
@@ -8347,21 +8347,21 @@ public class Warlock_Destruction
 
 public class Warlock_Affliction
 {
-    private readonly WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarlockAfflictionSettings MySettings = WarlockAfflictionSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -9056,15 +9056,12 @@ public class Warlock_Affliction
     [Serializable]
     public class WarlockAfflictionSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAgony = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArchimondesVengeance = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -9083,6 +9080,7 @@ public class Warlock_Affliction
         public bool UseEngGlove = true;
         public bool UseFelFlame = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
         public bool UseHarvestLife = true;
@@ -9104,6 +9102,7 @@ public class Warlock_Affliction
         public bool UseSoulburn = true;
         public bool UseSoulstone = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSummonDoomguard = true;
         public bool UseSummonFelhunter = true;
         public bool UseSummonImp = false;
@@ -9116,6 +9115,7 @@ public class Warlock_Affliction
         public bool UseUnendingResolve = true;
         public bool UseUnstableAffliction = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public WarlockAfflictionSettings()
         {
@@ -9211,13 +9211,13 @@ public class Warlock_Affliction
 
 public class Druid_Balance
 {
-    private readonly DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DruidBalanceSettings MySettings = DruidBalanceSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -9905,14 +9905,11 @@ public class Druid_Balance
     [Serializable]
     public class DruidBalanceSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAstralCommunion = true;
         public bool UseBarkskin = true;
         public bool UseBerserking = true;
@@ -9926,6 +9923,7 @@ public class Druid_Balance
         public bool UseFaerieFire = true;
         public bool UseForceofNature = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHealingTouch = true;
         public bool UseHeartoftheWild = true;
         public bool UseHurricane = true;
@@ -9950,12 +9948,14 @@ public class Druid_Balance
         public bool UseStarfire = true;
         public bool UseStarsurge = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSunfire = true;
         public bool UseTranquility = true;
         public bool UseTrinket = true;
         public bool UseTyphoon = true;
         public bool UseUrsolsVortex = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWildCharge = true;
         public bool UseWildMushroom = true;
         public bool UseWrath = true;
@@ -10044,21 +10044,21 @@ public class Druid_Balance
 
 public class Druid_Feral
 {
-    private readonly DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DruidFeralSettings MySettings = DruidFeralSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
+    private int CP;
     private Timer Engineering_Timer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    private int CP;
 
     #endregion
 
@@ -10790,14 +10790,11 @@ public class Druid_Feral
     [Serializable]
     public class DruidFeralSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBarkskin = true;
         public bool UseBerserk = true;
         public bool UseBerserking = true;
@@ -10812,6 +10809,7 @@ public class Druid_Feral
         public bool UseFerociousBite = true;
         public bool UseForceofNature = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGlyphofShred = false;
         public bool UseHealingTouch = true;
         public bool UseHeartoftheWild = true;
@@ -10840,6 +10838,7 @@ public class Druid_Feral
         public bool UseSkullBash = true;
         public bool UseStampedingRoar = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSurvivalInstincts = true;
         public bool UseSwipe = true;
         public bool UseThrash = true;
@@ -10849,6 +10848,7 @@ public class Druid_Feral
         public bool UseTyphoon = true;
         public bool UseUrsolsVortex = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWildCharge = true;
 
         public DruidFeralSettings()
@@ -10941,13 +10941,13 @@ public class Druid_Feral
 
 public class Druid_Restoration
 {
-    private readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DruidRestorationSettings MySettings = DruidRestorationSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -11481,14 +11481,11 @@ public class Druid_Restoration
     [Serializable]
     public class DruidRestorationSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBarkskin = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -11500,6 +11497,7 @@ public class Druid_Restoration
         public bool UseFaerieFire = true;
         public bool UseForceofNature = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHealingTouch = true;
         public bool UseHurricane = true;
         public bool UseIncarnation = true;
@@ -11522,12 +11520,14 @@ public class Druid_Restoration
         public bool UseSolarBeam = true;
         public bool UseStampedingRoar = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSwiftmend = true;
         public bool UseTranquility = true;
         public bool UseTrinket = true;
         public bool UseTyphoon = true;
         public bool UseUrsolsVortex = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWildCharge = true;
         public bool UseWildGrowth = true;
         public bool UseWildMushroom = false;
@@ -11614,13 +11614,13 @@ public class Druid_Restoration
 
 public class Druid_Guardian
 {
-    private readonly DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly DruidGuardianSettings MySettings = DruidGuardianSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -12245,14 +12245,11 @@ public class Druid_Guardian
     [Serializable]
     public class DruidGuardianSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBarkskin = true;
         public bool UseBearForm = true;
         public bool UseBearHug = true;
@@ -12268,6 +12265,7 @@ public class Druid_Guardian
         public bool UseForceofNature = true;
         public bool UseFrenziedRegeneration = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrowl = true;
         public bool UseHealingTouch = true;
         public bool UseHeartoftheWild = true;
@@ -12291,6 +12289,7 @@ public class Druid_Guardian
         public bool UseSkullBash = true;
         public bool UseStampedingRoar = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseSurvivalInstincts = true;
         public bool UseSwipe = true;
         public bool UseThrash = true;
@@ -12299,6 +12298,7 @@ public class Druid_Guardian
         public bool UseTyphoon = true;
         public bool UseUrsolsVortex = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWildCharge = true;
 
         public DruidGuardianSettings()
@@ -12391,13 +12391,13 @@ public class Druid_Guardian
 
 public class Paladin_Holy
 {
-    private readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly PaladinHolySettings MySettings = PaladinHolySettings.GetSettings();
 
     #region Professions & Racial
 
@@ -12760,13 +12760,10 @@ public class Paladin_Holy
     [Serializable]
     public class PaladinHolySettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvengingWrath = true;
         public bool UseBeaconOfLight = true;
         public bool UseBerserking = true;
@@ -12781,6 +12778,7 @@ public class Paladin_Holy
         public bool UseDivineShield = true;
         public bool UseFlashOfLight = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHammerOfJustice = true;
         public bool UseHammerOfWrath = true;
         public bool UseHandOfProtection = true;
@@ -12796,7 +12794,9 @@ public class Paladin_Holy
         public bool UseSealOfTheRighteousness = true;
         public bool UseSealOfTruth = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWordOfGlory = true;
 
         public PaladinHolySettings()
@@ -12862,13 +12862,13 @@ public class Paladin_Holy
 
 public class Paladin_Protection
 {
-    private readonly PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly PaladinProtectionSettings MySettings = PaladinProtectionSettings.GetSettings();
 
     #region Professions & Racial
 
@@ -13275,13 +13275,10 @@ public class Paladin_Protection
     [Serializable]
     public class PaladinProtectionSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArdentDefender = true;
         public bool UseAvengersShield = true;
         public bool UseAvengingWrath = true;
@@ -13295,6 +13292,7 @@ public class Paladin_Protection
         public bool UseDivineShield = true;
         public bool UseFlashOfLight = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGuardianOfAncientKings = true;
         public bool UseHammerOfJustice = true;
         public bool UseHammerOfTheRighteous = true;
@@ -13312,7 +13310,9 @@ public class Paladin_Protection
         public bool UseSealOfTruth = true;
         public bool UseShieldOfTheRighteous = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWordOfGlory = true;
 
         public PaladinProtectionSettings()
@@ -13385,10 +13385,10 @@ public class Paladin_Retribution
     private static readonly PaladinRetributionSettings MySettings = PaladinRetributionSettings.GetSettings();
 
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
 
     #region Professions & Racials
 
@@ -13841,18 +13841,15 @@ public class Paladin_Retribution
     [Serializable]
     public class PaladinRetributionSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public string CombatPotion = "Potion of Mogu Power";
         public string FlaskOrBattleElixir = "Flask of Winter's Bite";
         public string GuardianElixir = "";
         public bool RefreshWeakenedBlows = true;
         public string TeasureFindingPotion = "Potion of Luck";
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvengingWrath = true;
         public bool UseBerserking = true;
         public bool UseBlessingOfKings = true;
@@ -13867,6 +13864,7 @@ public class Paladin_Retribution
         public bool UseFlashOfLight = true;
         public bool UseFlaskOrBattleElixir = false;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGuardianElixir = false;
         public bool UseGuardianOfAncientKings = true;
         public bool UseHammerOfJustice = true;
@@ -13884,9 +13882,11 @@ public class Paladin_Retribution
         public bool UseSealOfTheRighteousness = true;
         public bool UseSealOfTruth = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTeasureFindingPotion = false;
         public bool UseTemplarsVerdict = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWellFedBuff = false;
         public bool UseWordOfGlory = true;
         public string WellFedBuff = "Black Pepper Ribs and Shrimp";
@@ -13971,21 +13971,21 @@ public class Paladin_Retribution
 
 public class Shaman_Enhancement
 {
-    private readonly ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly ShamanEnhancementSettings MySettings = ShamanEnhancementSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -14731,16 +14731,13 @@ public class Shaman_Enhancement
     [Serializable]
     public class ShamanEnhancementSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAscendance = true;
         public bool UseAstralShift = true;
         public bool UseBerserking = true;
@@ -14765,6 +14762,7 @@ public class Shaman_Enhancement
         public bool UseFrostbrandWeapon = false;
         public bool UseGhostWolf = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGroundingTotem = true;
         public bool UseHealingRain = true;
         public bool UseHealingStreamTotem = true;
@@ -14782,6 +14780,7 @@ public class Shaman_Enhancement
         public bool UseSpiritwalkersGrace = true;
         public bool UseStoneBulwarkTotem = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormlashTotem = true;
         public bool UseStormstrike = true;
         public bool UseTotemicProjection = true;
@@ -14789,6 +14788,7 @@ public class Shaman_Enhancement
         public bool UseTrinket = true;
         public bool UseUnleashElements = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWaterShield = true;
         public bool UseWaterWalking = true;
         public bool UseWindShear = true;
@@ -14886,21 +14886,21 @@ public class Shaman_Enhancement
 
 public class Shaman_Restoration
 {
-    private readonly ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly ShamanRestorationSettings MySettings = ShamanRestorationSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -15650,16 +15650,13 @@ public class Shaman_Restoration
     [Serializable]
     public class ShamanRestorationSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAscendance = true;
         public bool UseAstralShift = true;
         public bool UseBerserking = true;
@@ -15684,6 +15681,7 @@ public class Shaman_Restoration
         public bool UseFrostbrandWeapon = false;
         public bool UseGhostWolf = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGreaterHealingWave = true;
         public bool UseGroundingTotem = true;
         public bool UseHealingRain = true;
@@ -15706,12 +15704,14 @@ public class Shaman_Restoration
         public bool UseSpiritwalkersGrace = true;
         public bool UseStoneBulwarkTotem = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormlashTotem = true;
         public bool UseTotemicProjection = true;
         public bool UseTotemicRecall = true;
         public bool UseTrinket = true;
         public bool UseUnleashElements = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWaterShield = true;
         public bool UseWaterWalking = true;
         public bool UseWindShear = true;
@@ -15810,21 +15810,21 @@ public class Shaman_Restoration
 
 public class Shaman_Elemental
 {
-    private readonly ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly ShamanElementalSettings MySettings = ShamanElementalSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -16527,16 +16527,13 @@ public class Shaman_Elemental
     [Serializable]
     public class ShamanElementalSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAscendance = true;
         public bool UseAstralShift = true;
         public bool UseBerserking = true;
@@ -16560,6 +16557,7 @@ public class Shaman_Elemental
         public bool UseFrostbrandWeapon = false;
         public bool UseGhostWolf = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGroundingTotem = true;
         public bool UseHealingRain = true;
         public bool UseHealingStreamTotem = true;
@@ -16576,6 +16574,7 @@ public class Shaman_Elemental
         public bool UseSpiritwalkersGrace = true;
         public bool UseStoneBulwarkTotem = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormlashTotem = true;
         public bool UseThunderstorm = true;
         public bool UseTotemicProjection = true;
@@ -16583,6 +16582,7 @@ public class Shaman_Elemental
         public bool UseTrinket = true;
         public bool UseUnleashElements = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWaterShield = true;
         public bool UseWaterWalking = true;
         public bool UseWindShear = true;
@@ -16680,21 +16680,21 @@ public class Shaman_Elemental
 
 public class Priest_Shadow
 {
-    private readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly PriestShadowSettings MySettings = PriestShadowSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -17295,41 +17295,29 @@ public class Priest_Shadow
     [Serializable]
     public class PriestShadowSettings : Settings
     {
-        public int UseDesperatePrayerAtPercentage = 65;
-        public int UseDispersionHealthAtPercentage = 20;
-        public int UseDispersionManaAtPercentage = 60;
-        public int UseFlashHealNonCombatAtPercentage = 95;
-        public int UseFlashHealInCombatAtPercentage = 60;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseHymnofHopeAtPercentage = 40;
-        public int UsePowerWordShieldAtPercentage = 100;
-        public int UsePrayerofMendingAtPercentage = 50;
-        public int UsePsychicHorrorAtPercentage = 100;
-        public int UsePsychicScreamAtPercentage = 20;
-        public int UsePsyfiendAtPercentage = 35;
-        public int UseRenewAtPercentage = 90;
-        public int UseSilenceAtPercentage = 100;
-        public int UseSpectralGuiseAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
-        public int UseVampiricEmbraceAtPercentage = 80;
-        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseCascade = true;
         public bool UseDesperatePrayer = true;
+        public int UseDesperatePrayerAtPercentage = 65;
         public bool UseDevouringPlague = true;
         public bool UseDispersionHealth = true;
+        public int UseDispersionHealthAtPercentage = 20;
         public bool UseDispersionMana = true;
+        public int UseDispersionManaAtPercentage = 60;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
         public bool UseFlashHealInCombat = true;
+        public int UseFlashHealInCombatAtPercentage = 60;
         public bool UseFlashHealNonCombat = true;
+        public int UseFlashHealNonCombatAtPercentage = 95;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHalo = true;
         public bool UseHymnofHope = true;
+        public int UseHymnofHopeAtPercentage = 40;
         public bool UseInnerFire = true;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
@@ -17342,24 +17330,36 @@ public class Priest_Shadow
         public bool UsePowerInfusion = true;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
+        public int UsePowerWordShieldAtPercentage = 100;
         public bool UsePrayerofMending = true;
+        public int UsePrayerofMendingAtPercentage = 50;
         public bool UsePsychicHorror = true;
+        public int UsePsychicHorrorAtPercentage = 100;
         public bool UsePsychicScream = true;
+        public int UsePsychicScreamAtPercentage = 20;
         public bool UsePsyfiend = true;
+        public int UsePsyfiendAtPercentage = 35;
         public bool UseRenew = true;
+        public int UseRenewAtPercentage = 90;
         public bool UseShadowWordDeath = true;
         public bool UseShadowWordInsanity = true;
         public bool UseShadowWordPain = true;
         public bool UseShadowfiend = true;
         public bool UseShadowform = true;
         public bool UseSilence = true;
+        public int UseSilenceAtPercentage = 100;
         public bool UseSpectralGuise = true;
+        public int UseSpectralGuiseAtPercentage = 70;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseVampiricEmbrace = true;
+        public int UseVampiricEmbraceAtPercentage = 80;
         public bool UseVampiricTouch = true;
         public bool UseVoidTendrils = true;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public PriestShadowSettings()
         {
@@ -17444,13 +17444,13 @@ public class Priest_Shadow
 
 public class Priest_Discipline
 {
-    private readonly PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly PriestDisciplineSettings MySettings = PriestDisciplineSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -17987,26 +17987,6 @@ public class Priest_Discipline
     [Serializable]
     public class PriestDisciplineSettings : Settings
     {
-        public int UseDesperatePrayerAtPercentage = 65;
-        public int UseFlashHealNonCombatAtPercentage = 95;
-        public int UseFlashHealInCombatAtPercentage = 60;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseGreaterHealAtPercentage = 70;
-        public int UseHealAtPercentage = 70;
-        public int UseHymnofHopeAtPercentage = 40;
-        public int UseInnerFocusAtPercentage = 90;
-        public int UsePainSuppressionAtPercentage = 70;
-        public int UsePowerWordBarrierAtPercentage = 60;
-        public int UsePowerWordShieldAtPercentage = 100;
-        public int UsePrayerofHealingAtPercentage = 50;
-        public int UsePrayerofMendingAtPercentage = 50;
-        public int UsePsychicScreamAtPercentage = 20;
-        public int UsePsyfiendAtPercentage = 35;
-        public int UseRenewAtPercentage = 90;
-        public int UseSpectralGuiseAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
-        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -18014,44 +17994,64 @@ public class Priest_Discipline
         public bool UseBloodFury = true;
         public bool UseCascade = true;
         public bool UseDesperatePrayer = true;
+        public int UseDesperatePrayerAtPercentage = 65;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
-        public bool UseFlashHealNonCombat = true;
         public bool UseFlashHealInCombat = true;
+        public int UseFlashHealInCombatAtPercentage = 60;
+        public bool UseFlashHealNonCombat = true;
+        public int UseFlashHealNonCombatAtPercentage = 95;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGreaterHeal = true;
+        public int UseGreaterHealAtPercentage = 70;
         public bool UseHalo = true;
         public bool UseHeal = true;
+        public int UseHealAtPercentage = 70;
         public bool UseHolyFire = true;
         public bool UseHymnofHope = true;
+        public int UseHymnofHopeAtPercentage = 40;
         public bool UseInnerFire = true;
         public bool UseInnerFocus = true;
+        public int UseInnerFocusAtPercentage = 90;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
         public bool UseLifeblood = true;
         public bool UseMindSear = true;
         public bool UsePainSuppression = true;
+        public int UsePainSuppressionAtPercentage = 70;
         public bool UsePenance = true;
         public bool UsePowerInfusion = true;
         public bool UsePowerWordBarrier = true;
+        public int UsePowerWordBarrierAtPercentage = 60;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
+        public int UsePowerWordShieldAtPercentage = 100;
         public bool UsePowerWordSolace = true;
         public bool UsePrayerofHealing = false;
+        public int UsePrayerofHealingAtPercentage = 50;
         public bool UsePrayerofMending = true;
+        public int UsePrayerofMendingAtPercentage = 50;
         public bool UsePsychicScream = true;
+        public int UsePsychicScreamAtPercentage = 20;
         public bool UsePsyfiend = true;
+        public int UsePsyfiendAtPercentage = 35;
         public bool UseRenew = true;
+        public int UseRenewAtPercentage = 90;
         public bool UseShadowWordDeath = true;
         public bool UseShadowWordPain = true;
         public bool UseShadowfiend = true;
-        public bool UseSpectralGuise = true;
-        public bool UseSpiritShell = true;
         public bool UseSmite = true;
+        public bool UseSpectralGuise = true;
+        public int UseSpectralGuiseAtPercentage = 70;
+        public bool UseSpiritShell = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseVoidTendrils = true;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public PriestDisciplineSettings()
         {
@@ -18131,13 +18131,13 @@ public class Priest_Discipline
 
 public class Priest_Holy
 {
-    private readonly PriestHolySettings MySettings = PriestHolySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly PriestHolySettings MySettings = PriestHolySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -18692,27 +18692,6 @@ public class Priest_Holy
     [Serializable]
     public class PriestHolySettings : Settings
     {
-        public int UseCircleofHealingAtPercentage = 50;
-        public int UseDesperatePrayerAtPercentage = 65;
-        public int UseDivineHymnAtPercentage = 30;
-        public int UseFlashHealNonCombatAtPercentage = 95;
-        public int UseFlashHealInCombatAtPercentage = 60;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseGreaterHealAtPercentage = 70;
-        public int UseGuardianSpiritAtPercentage = 20;
-        public int UseHealAtPercentage = 70;
-        public int UseHymnofHopeAtPercentage = 40;
-        public int UseLightWellAtPercentage = 95;
-        public int UsePowerWordShieldAtPercentage = 100;
-        public int UsePrayerofHealingAtPercentage = 50;
-        public int UsePrayerofMendingAtPercentage = 50;
-        public int UsePsychicScreamAtPercentage = 20;
-        public int UsePsyfiendAtPercentage = 35;
-        public int UseRenewAtPercentage = 90;
-        public int UseSpectralGuiseAtPercentage = 70;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
-        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -18723,45 +18702,66 @@ public class Priest_Holy
         public bool UseChakraSanctuary = false;
         public bool UseChakraSerenity = false;
         public bool UseCircleofHealing = false;
+        public int UseCircleofHealingAtPercentage = 50;
         public bool UseDesperatePrayer = true;
+        public int UseDesperatePrayerAtPercentage = 65;
         public bool UseDivineHymn = true;
+        public int UseDivineHymnAtPercentage = 30;
         public bool UseDivineStar = true;
         public bool UseEngGlove = true;
-        public bool UseFlashHealNonCombat = true;
         public bool UseFlashHealInCombat = true;
+        public int UseFlashHealInCombatAtPercentage = 60;
+        public bool UseFlashHealNonCombat = true;
+        public int UseFlashHealNonCombatAtPercentage = 95;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGlyphofLightspring = false;
         public bool UseGreaterHeal = true;
+        public int UseGreaterHealAtPercentage = 70;
         public bool UseGuardianSpirit = true;
+        public int UseGuardianSpiritAtPercentage = 20;
         public bool UseHalo = true;
         public bool UseHeal = true;
+        public int UseHealAtPercentage = 70;
         public bool UseHolyFire = true;
         public bool UseHolyWordChastise = true;
         public bool UseHymnofHope = true;
+        public int UseHymnofHopeAtPercentage = 40;
         public bool UseInnerFire = true;
         public bool UseInnerWill = false;
         public bool UseLevitate = false;
         public bool UseLifeblood = true;
         public bool UseLightWell = true;
+        public int UseLightWellAtPercentage = 95;
         public bool UseMindSear = true;
         public bool UsePowerInfusion = true;
         public bool UsePowerWordFortitude = true;
         public bool UsePowerWordShield = true;
+        public int UsePowerWordShieldAtPercentage = 100;
         public bool UsePowerWordSolace = true;
         public bool UsePrayerofHealing = false;
+        public int UsePrayerofHealingAtPercentage = 50;
         public bool UsePrayerofMending = true;
+        public int UsePrayerofMendingAtPercentage = 50;
         public bool UsePsychicScream = true;
+        public int UsePsychicScreamAtPercentage = 20;
         public bool UsePsyfiend = true;
+        public int UsePsyfiendAtPercentage = 35;
         public bool UseRenew = true;
+        public int UseRenewAtPercentage = 90;
         public bool UseShadowWordDeath = true;
         public bool UseShadowWordPain = true;
         public bool UseShadowfiend = true;
-        public bool UseSpectralGuise = true;
         public bool UseSmite = true;
+        public bool UseSpectralGuise = true;
+        public int UseSpectralGuiseAtPercentage = 70;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseVoidTendrils = true;
+        public int UseVoidTendrilsAtPercentage = 35;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public PriestHolySettings()
         {
@@ -18848,22 +18848,22 @@ public class Priest_Holy
 
 public class Rogue_Combat
 {
-    private readonly RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly RogueCombatSettings MySettings = RogueCombatSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int CP = 0;
-    public int LC = 0;
 
     #endregion
 
@@ -19490,16 +19490,13 @@ public class Rogue_Combat
     [Serializable]
     public class RogueCombatSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAdrenalineRush = true;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBladeFlurry = true;
         public bool UseBloodFury = true;
@@ -19519,6 +19516,7 @@ public class Rogue_Combat
         public bool UseFanofKnives = true;
         public bool UseGarrote = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseKick = true;
         public bool UseKidneyShot = true;
         public bool UseKillingSpree = true;
@@ -19542,10 +19540,12 @@ public class Rogue_Combat
         public bool UseSprint = true;
         public bool UseStealth = false;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseThrow = true;
         public bool UseTrinket = true;
         public bool UseVanish = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWoundPoison = false;
 
         public RogueCombatSettings()
@@ -19636,22 +19636,22 @@ public class Rogue_Combat
 
 public class Rogue_Subtlety
 {
-    private readonly RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly RogueSubtletySettings MySettings = RogueSubtletySettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int CP = 0;
-    public int LC = 0;
 
     #endregion
 
@@ -20252,15 +20252,12 @@ public class Rogue_Subtlety
     [Serializable]
     public class RogueSubtletySettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseBurstofSpeed = true;
@@ -20279,6 +20276,7 @@ public class Rogue_Subtlety
         public bool UseFanofKnives = true;
         public bool UseGarrote = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHemorrhage = true;
         public bool UseKick = true;
         public bool UseKidneyShot = true;
@@ -20302,10 +20300,12 @@ public class Rogue_Subtlety
         public bool UseSprint = true;
         public bool UseStealth = false;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseThrow = true;
         public bool UseTrinket = true;
         public bool UseVanish = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWoundPoison = false;
 
         public RogueSubtletySettings()
@@ -20393,22 +20393,22 @@ public class Rogue_Subtlety
 
 public class Rogue_Assassination
 {
-    private readonly RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly RogueAssassinationSettings MySettings = RogueAssassinationSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
+    public int CP = 0;
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int CP = 0;
-    public int LC = 0;
 
     #endregion
 
@@ -21025,15 +21025,12 @@ public class Rogue_Assassination
     [Serializable]
     public class RogueAssassinationSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseBurstofSpeed = true;
@@ -21053,6 +21050,7 @@ public class Rogue_Assassination
         public bool UseFanofKnives = true;
         public bool UseGarrote = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseKick = true;
         public bool UseKidneyShot = true;
         public bool UseLeechingPoison = true;
@@ -21075,11 +21073,13 @@ public class Rogue_Assassination
         public bool UseSprint = true;
         public bool UseStealth = false;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseThrow = true;
         public bool UseTrinket = true;
         public bool UseVanish = true;
         public bool UseVendetta = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWoundPoison = false;
 
         public RogueAssassinationSettings()
@@ -21172,13 +21172,13 @@ public class Rogue_Assassination
 
 public class Warrior_Arms
 {
-    private readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarriorArmsSettings MySettings = WarriorArmsSettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -21187,9 +21187,9 @@ public class Warrior_Arms
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -21888,14 +21888,11 @@ public class Warrior_Arms
     [Serializable]
     public class WarriorArmsSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -21920,6 +21917,7 @@ public class Warrior_Arms
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHamstring = false;
         public bool UseHeroicLeap = true;
         public bool UseHeroicStrike = true;
@@ -21940,6 +21938,7 @@ public class Warrior_Arms
         public bool UseSlam = true;
         public bool UseStaggeringShout = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormBolt = true;
         public bool UseSweepingStrikes = true;
         public bool UseTaunt = true;
@@ -21947,6 +21946,7 @@ public class Warrior_Arms
         public bool UseTrinket = true;
         public bool UseVictoryRush = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWhirlwind = true;
 
         public WarriorArmsSettings()
@@ -22039,21 +22039,21 @@ public class Warrior_Arms
 
 public class Warrior_Protection
 {
-    private readonly WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarriorProtectionSettings MySettings = WarriorProtectionSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -22772,14 +22772,11 @@ public class Warrior_Protection
     [Serializable]
     public class WarriorProtectionSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -22804,6 +22801,7 @@ public class Warrior_Protection
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHamstring = false;
         public bool UseHeroicLeap = true;
         public bool UseHeroicStrike = true;
@@ -22828,6 +22826,7 @@ public class Warrior_Protection
         public bool UseSpellReflection = true;
         public bool UseStaggeringShout = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormBolt = true;
         public bool UseSweepingStrikes = true;
         public bool UseTaunt = true;
@@ -22835,6 +22834,7 @@ public class Warrior_Protection
         public bool UseTrinket = true;
         public bool UseVictoryRush = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
 
         public WarriorProtectionSettings()
         {
@@ -22929,21 +22929,21 @@ public class Warrior_Protection
 
 public class Warrior_Fury
 {
-    private readonly WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly WarriorFurySettings MySettings = WarriorFurySettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -23598,14 +23598,11 @@ public class Warrior_Fury
     [Serializable]
     public class WarriorFurySettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -23631,6 +23628,7 @@ public class Warrior_Fury
         public bool UseEnragedRegeneration = true;
         public bool UseExecute = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseHamstring = false;
         public bool UseHeroicLeap = true;
         public bool UseHeroicStrike = true;
@@ -23649,6 +23647,7 @@ public class Warrior_Fury
         public bool UseSkullBanner = true;
         public bool UseStaggeringShout = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseStormBolt = true;
         public bool UseSweepingStrikes = true;
         public bool UseTaunt = true;
@@ -23656,6 +23655,7 @@ public class Warrior_Fury
         public bool UseTrinket = true;
         public bool UseVictoryRush = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWhirlwind = true;
         public bool UseWildStrike = true;
 
@@ -23753,22 +23753,22 @@ public class Warrior_Fury
 
 public class Hunter_Marksmanship
 {
-    private readonly HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly HunterMarksmanshipSettings MySettings = HunterMarksmanshipSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Steady_Focus_Timer = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -24407,17 +24407,14 @@ public class Hunter_Marksmanship
     [Serializable]
     public class HunterMarksmanshipSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAMurderofCrows = true;
         public bool UseAimedShot = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -24439,6 +24436,7 @@ public class Hunter_Marksmanship
         public bool UseFervor = true;
         public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
         public bool UseIceTrap = true;
@@ -24464,8 +24462,10 @@ public class Hunter_Marksmanship
         public bool UseStampede = true;
         public bool UseSteadyShot = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWyvernSting = true;
 
         public HunterMarksmanshipSettings()
@@ -24558,13 +24558,13 @@ public class Hunter_Marksmanship
 
 public class Hunter_BeastMastery
 {
-    private readonly HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly HunterBeastMasterySettings MySettings = HunterBeastMasterySettings.GetSettings();
 
     #region General Timers & Variables
 
@@ -24573,10 +24573,10 @@ public class Hunter_BeastMastery
     private Timer Burrow_Attack_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
     private Timer Froststorm_Breath_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Spirit_Mend_Timer = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -25281,16 +25281,13 @@ public class Hunter_BeastMastery
     [Serializable]
     public class HunterBeastMasterySettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAMurderofCrows = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -25316,6 +25313,7 @@ public class Hunter_BeastMastery
         public bool UseFocusFire = false;
         public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
         public bool UseIceTrap = true;
@@ -25343,8 +25341,10 @@ public class Hunter_BeastMastery
         public bool UseSpiritBeastPet = false;
         public bool UseStampede = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWormPet = false;
         public bool UseWyvernSting = true;
 
@@ -25444,21 +25444,21 @@ public class Hunter_BeastMastery
 
 public class Hunter_Survival
 {
-    private readonly HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
-
     private readonly string MoveBackward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
 
     private readonly string MoveForward =
-        nManager.Wow.Helpers.Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+
+    private readonly HunterSurvivalSettings MySettings = HunterSurvivalSettings.GetSettings();
 
     #region General Timers & Variables
 
     private Timer AlchFlask_Timer = new Timer(0);
     private Timer Engineering_Timer = new Timer(0);
+    public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer Trinket_Timer = new Timer(0);
-    public int LC = 0;
 
     #endregion
 
@@ -26137,16 +26137,13 @@ public class Hunter_Survival
     [Serializable]
     public class HunterSurvivalSettings : Settings
     {
-        public int UseArcaneTorrentForDecastAtPercentage = 100;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
-        public int UseGiftoftheNaaruAtPercentage = 80;
-        public int UseStoneformAtPercentage = 80;
-        public int UseWarStompAtPercentage = 80;
         public bool UseAMurderofCrows = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
         public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -26170,6 +26167,7 @@ public class Hunter_Survival
         public bool UseFervor = true;
         public bool UseFreezingTrap = true;
         public bool UseGiftoftheNaaru = true;
+        public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGlaiveToss = true;
         public bool UseHuntersMark = true;
         public bool UseIceTrap = true;
@@ -26194,8 +26192,10 @@ public class Hunter_Survival
         public bool UseSilencingShot = true;
         public bool UseStampede = true;
         public bool UseStoneform = true;
+        public int UseStoneformAtPercentage = 80;
         public bool UseTrinket = true;
         public bool UseWarStomp = true;
+        public int UseWarStompAtPercentage = 80;
         public bool UseWyvernSting = true;
 
         public HunterSurvivalSettings()
