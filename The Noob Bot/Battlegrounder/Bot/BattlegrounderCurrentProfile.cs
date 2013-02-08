@@ -344,7 +344,7 @@ namespace Battlegrounder.Bot
             }
             else if (_afkSomewhere)
             {
-                Logging.Write("ProfileType AFK Somewhere detected. Going to a new zone.");
+                Logging.Write("ProfileType AFK Somewhere detected. Going to a new zone to start AFK.");
                 Bot._battlegrounding.BattlegroundId = _currentBattlegroundId;
                 Bot._movementLoop.PathLoop = _afkSomewherePosition;
             }
