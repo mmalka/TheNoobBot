@@ -80,13 +80,17 @@ namespace Battlegrounder.Bot
                             StopChecking = false;
                         }
                     }
+                    if (!_afkSomewhere && !_csharpProfile && !_xmlProfile)
+                    {
+                        _currentBattlegroundId = null;
+                    }
                     if (_currentBattlegroundId == null && _currentProfile.BattlegrounderZones.Count <= 0 &&
                         !StopChecking)
                     {
                         _xmlProfile = false;
                         _afkSomewhere = false;
                         _currentBattlegroundId = Battleground.GetCurrentBattleground().ToString();
-                        foreach (Profiletype.Battleground battleground in ProfileTypeFile.Battlegrounds)
+                        foreach (Profiletype.Battleground battleground in ProfileTypeFile.Battlegrounds.Where(battleground => battleground.BattlegroundId == Battleground.GetCurrentBattleground().ToString()))
                         {
                             if (battleground.BattlegroundId == BattlegroundId.AlteracValley.ToString())
                             {
@@ -219,7 +223,9 @@ namespace Battlegrounder.Bot
                                     switch (profileType.ProfileTypeId)
                                     {
                                         case "XMLProfile":
-                                            if (BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile == "")
+                                            if (
+                                                BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile ==
+                                                "")
                                                 return false;
                                             _xmlProfile = true;
                                             _currentProfileName =
@@ -275,7 +281,8 @@ namespace Battlegrounder.Bot
                                     switch (profileType.ProfileTypeId)
                                     {
                                         case "XMLProfile":
-                                            if (BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile == "")
+                                            if (BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile ==
+                                                "")
                                                 return false;
                                             _xmlProfile = true;
                                             _currentProfileName =
@@ -359,7 +366,8 @@ namespace Battlegrounder.Bot
                                     switch (profileType.ProfileTypeId)
                                     {
                                         case "XMLProfile":
-                                            if (BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile == "")
+                                            if (BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile ==
+                                                "")
                                                 return false;
                                             _xmlProfile = true;
                                             _currentProfileName =
@@ -398,7 +406,8 @@ namespace Battlegrounder.Bot
                                 MovementManager.StopMove();
                                 return true;
                             }
-                            return false;
+                            else
+                                return false;
                         }
                     }
                 }
