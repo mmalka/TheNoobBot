@@ -16,7 +16,9 @@ namespace Battlegrounder
 {
     public partial class SettingsBattlegrounderForm : MetroForm
     {
-        private static BattlegrounderProfileType _profileTypeFile = new BattlegrounderProfileType();
+        private static readonly BattlegrounderProfileType ProfileTypeFile =
+            XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
+                                                                 "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
 
         private readonly List<SwitchButton> _listsb =
             new List<SwitchButton>();
@@ -162,11 +164,7 @@ namespace Battlegrounder
 
             if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml"))
             {
-                _profileTypeFile = new BattlegrounderProfileType();
-                _profileTypeFile =
-                    XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
-                                                                         "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
-                if (_profileTypeFile.Battlegrounds.Count > 0)
+                if (ProfileTypeFile.Battlegrounds.Count > 0)
                     RefreshProfileListType();
                 else
                     MessageBox.Show("Cannot load Profile Types list.");
@@ -274,7 +272,7 @@ namespace Battlegrounder
                 TwinPeaksProfileType.Items.Clear();
                 TempleofKotmoguProfileType.Items.Clear();
                 SilvershardMinesProfileType.Items.Clear();
-                foreach (Profiletype.Battleground battleground in _profileTypeFile.Battlegrounds)
+                foreach (Profiletype.Battleground battleground in ProfileTypeFile.Battlegrounds)
                 {
                     for (int i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
                     {

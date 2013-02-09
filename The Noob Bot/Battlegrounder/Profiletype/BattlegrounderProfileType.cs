@@ -17,7 +17,7 @@ namespace Battlegrounder.Profiletype
     [Serializable]
     public class BattlegrounderProfileType
     {
-        public static List<Battleground> Battlegrounds = new List<Battleground>();
+        public List<Battleground> Battlegrounds = new List<Battleground>();
     }
 
     [Serializable]

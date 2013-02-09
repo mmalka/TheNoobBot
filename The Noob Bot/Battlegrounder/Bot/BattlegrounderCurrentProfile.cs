@@ -23,6 +23,11 @@ namespace Battlegrounder.Bot
         private static int _zoneIdProfile;
         private static string _currentBattlegroundId;
         private static string _currentProfileName;
+
+        private static readonly BattlegrounderProfileType ProfileTypeFile =
+            XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
+                                                                 "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
+
         private bool _afkSomewhere;
         private List<Point> _afkSomewherePosition;
         private Timer _afkSomewhereTimer = new Timer(-1);
@@ -64,7 +69,7 @@ namespace Battlegrounder.Bot
                         _xmlProfile = false;
                         _afkSomewhere = false;
                         _currentBattlegroundId = Battleground.GetCurrentBattleground().ToString();
-                        foreach (Profiletype.Battleground battleground in BattlegrounderProfileType.Battlegrounds)
+                        foreach (Profiletype.Battleground battleground in ProfileTypeFile.Battlegrounds)
                         {
                             if (battleground.BattlegroundId == BattlegroundId.AlteracValley.ToString())
                             {
