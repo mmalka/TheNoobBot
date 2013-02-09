@@ -9,8 +9,8 @@ namespace Battlegrounder.Bot
     internal class Bot
     {
         private static readonly Engine Fsm = new Engine();
-        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 3};
-        internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 7};
+        internal static MovementLoop _movementLoop = new MovementLoop {Priority = 5};
+        internal static Battlegrounding _battlegrounding = new Battlegrounding {Priority = 3};
 
         internal static bool Pulse()
         {
@@ -25,16 +25,15 @@ namespace Battlegrounder.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 13});
-                Fsm.AddState(new SelectProfileState {Priority = 12});
-                Fsm.AddState(new Resurrect {Priority = 11});
-                Fsm.AddState(new IsAttacked {Priority = 10});
-                Fsm.AddState(new Regeneration {Priority = 9});
-                Fsm.AddState(new Looting {Priority = 8});
+                Fsm.AddState(new Pause {Priority = 12});
+                Fsm.AddState(new ToTown {Priority = 1});
+                Fsm.AddState(new Talents {Priority = 10});
+                Fsm.AddState(new Trainers {Priority = 9});
+                Fsm.AddState(new Resurrect { Priority = 8 });
+                Fsm.AddState(new Looting { Priority = 7 });
+                Fsm.AddState(new Regeneration { Priority = 6 });
                 Fsm.AddState(_battlegrounding);
-                Fsm.AddState(new ToTown {Priority = 6});
-                Fsm.AddState(new Talents {Priority = 5});
-                Fsm.AddState(new Trainers {Priority = 4});
+                Fsm.AddState(new IsAttacked { Priority = 4 });
                 Fsm.AddState(_movementLoop);
                 Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 2});
                 Fsm.AddState(new BattlegrounderQueueing {Priority = 1});
