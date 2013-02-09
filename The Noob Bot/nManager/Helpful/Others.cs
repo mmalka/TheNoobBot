@@ -447,15 +447,15 @@ namespace nManager.Helpful
             if (!Directory.Exists(path + pathDirectory))
                 return new List<string>();
             return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
-                                                                                      {
-                                                                                          var name =
-                                                                                              Path.GetFileName(subfolder);
-                                                                                          return name != null
-                                                                                                     ? name.ToString(
-                                                                                                         CultureInfo
-                                                                                                             .InvariantCulture)
-                                                                                                     : null;
-                                                                                      }).ToList();
+                {
+                    var name =
+                        Path.GetFileName(subfolder);
+                    return name != null
+                               ? name.ToString(
+                                   CultureInfo
+                                       .InvariantCulture)
+                               : null;
+                }).ToList();
         }
 
         /// <summary>
@@ -605,7 +605,7 @@ namespace nManager.Helpful
             try
             {
                 var chooseFile = new OpenFileDialog
-                                     {InitialDirectory = path, Filter = typeFile};
+                    {InitialDirectory = path, Filter = typeFile};
                 chooseFile.ShowDialog();
                 return chooseFile.FileName;
             }

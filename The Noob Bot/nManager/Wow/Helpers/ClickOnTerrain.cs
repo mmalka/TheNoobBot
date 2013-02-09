@@ -76,26 +76,26 @@ namespace nManager.Wow.Helpers
 
 
                 var asm = new[]
-                              {
-                                  "call " +
-                                  (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                                  ,
-                                  "test eax, eax",
-                                  "je @out",
-                                  "call " +
-                                  (Memory.WowProcess.WowModule +
-                                   (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                                  "test eax, eax",
-                                  "je @out",
-                                  "push " + codeCaveStructClickOnTerrain,
-                                  "mov ebx, " +
-                                  (Memory.WowProcess.WowModule +
-                                   (uint) Addresses.FunctionWow.Spell_C__HandleTerrainClick),
-                                  "call ebx",
-                                  "add esp, 0x4",
-                                  "@out:",
-                                  "retn"
-                              };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                        ,
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out",
+                        "push " + codeCaveStructClickOnTerrain,
+                        "mov ebx, " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.Spell_C__HandleTerrainClick),
+                        "call ebx",
+                        "add esp, 0x4",
+                        "@out:",
+                        "retn"
+                    };
 
                 Memory.WowMemory.InjectAndExecute(asm);
 

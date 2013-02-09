@@ -339,12 +339,12 @@ namespace Grinder.Profile
             try
             {
                 _profile.GrinderZones[idZone].BlackListRadius.Add(new GrinderBlackListRadius
-                                                                      {
-                                                                          Position =
-                                                                              ObjectManager.Me
-                                                                                           .Position,
-                                                                          Radius = radiusN.Value
-                                                                      });
+                    {
+                        Position =
+                            ObjectManager.Me
+                                         .Position,
+                        Radius = radiusN.Value
+                    });
                 refreshForm();
             }
             catch (Exception ex)
@@ -376,17 +376,17 @@ namespace Grinder.Profile
                     return;
 
                 var npc = new Npc
-                              {
-                                  ContinentId =
-                                      (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
-                                  Entry = ObjectManager.Target.Entry,
-                                  Faction =
-                                      (Npc.FactionType)
-                                      Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
-                                  Name = ObjectManager.Target.Name,
-                                  Position = ObjectManager.Target.Position,
-                                  Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
-                              };
+                    {
+                        ContinentId =
+                            (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
+                        Entry = ObjectManager.Target.Entry,
+                        Faction =
+                            (Npc.FactionType)
+                            Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
+                        Name = ObjectManager.Target.Name,
+                        Position = ObjectManager.Target.Position,
+                        Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                    };
                 _profile.GrinderZones[idZone].Npc.Add(npc);
                 refreshForm();
             }

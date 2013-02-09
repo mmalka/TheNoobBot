@@ -52,11 +52,11 @@ namespace nManager.Wow.MemoryClass
                         if (num3 != struct2.AllocationBase)
                         {
                             return new PatternResult
-                                       {
-                                           AllocationBase = (uint) struct2.AllocationBase,
-                                           dwAddress = num3,
-                                           RegionSize = (uint) struct2.RegionSize
-                                       };
+                                {
+                                    AllocationBase = (uint) struct2.AllocationBase,
+                                    dwAddress = num3,
+                                    RegionSize = (uint) struct2.RegionSize
+                                };
                         }
                     }
                 }

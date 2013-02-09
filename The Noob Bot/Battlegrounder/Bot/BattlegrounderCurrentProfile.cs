@@ -28,9 +28,12 @@ namespace Battlegrounder.Bot
             XmlSerializer.Deserialize<BattlegrounderProfileType>(Application.StartupPath +
                                                                  "\\Profiles\\Battlegrounder\\ProfileType\\ProfileType.xml");
 
+        public static bool ForceChecking;
+        public static bool StopChecking;
         private bool _afkSomewhere;
-        private List<Point> _afkSomewherePosition;
+        private List<Point> _afkSomewhereNextPosition;
         private Timer _afkSomewhereTimer = new Timer(-1);
+        private bool _csharpProfile;
         private bool _xmlProfile;
 
         public override string DisplayName
@@ -55,16 +58,30 @@ namespace Battlegrounder.Bot
                 {
                     if ((_afkSomewhere && _afkSomewhereTimer.IsReady) ||
                         (_currentBattlegroundId != null &&
-                         _currentBattlegroundId != Battleground.GetCurrentBattleground().ToString()))
+                         _currentBattlegroundId != Battleground.GetCurrentBattleground().ToString())
+                        || ForceChecking)
                     {
                         _currentBattlegroundId = null;
                         _currentProfileName = "";
+                        ForceChecking = false;
                         if (_xmlProfile)
+                        {
                             _currentProfile.BattlegrounderZones.Clear();
+                            _xmlProfile = false;
+                        }
                         if (_afkSomewhere)
+                        {
+                            _afkSomewhere = false;
                             _afkSomewhereTimer.Reset();
+                        }
+                        if (_csharpProfile)
+                        {
+                            _csharpProfile = false;
+                            StopChecking = false;
+                        }
                     }
-                    if (_currentBattlegroundId == null && _currentProfile.BattlegrounderZones.Count <= 0)
+                    if (_currentBattlegroundId == null && _currentProfile.BattlegrounderZones.Count <= 0 &&
+                        !StopChecking)
                     {
                         _xmlProfile = false;
                         _afkSomewhere = false;
@@ -89,6 +106,20 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false; // Once the script is started, let him do the rest.
                                     }
                                 }
                             }
@@ -111,13 +142,11 @@ namespace Battlegrounder.Bot
                                                 BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile;
                                             break;
                                         case "AfkSomewhere":
-                                            _xmlProfile = false;
                                             _afkSomewhereTimer =
                                                 new Timer(1000*(profileType.Timer1 + profileType.Timer2));
-                                            _afkSomewherePosition =
-                                                AfkSomewhere.AfkSomewhereNow(BattlegroundId.WarsongGulch);
-                                            _afkSomewhere = _afkSomewherePosition != null;
-
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
                                     }
                                 }
@@ -140,6 +169,13 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
                                     }
                                 }
                             }
@@ -160,6 +196,13 @@ namespace Battlegrounder.Bot
                                             _xmlProfile = true;
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile;
+                                            break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
                                     }
                                 }
@@ -182,6 +225,13 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.StrandoftheAncientsXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
                                     }
                                 }
                             }
@@ -202,6 +252,13 @@ namespace Battlegrounder.Bot
                                             _xmlProfile = true;
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile;
+                                            break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
                                     }
                                 }
@@ -224,6 +281,13 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
                                     }
                                 }
                             }
@@ -244,6 +308,13 @@ namespace Battlegrounder.Bot
                                             _xmlProfile = true;
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile;
+                                            break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
                                     }
                                 }
@@ -266,6 +337,13 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
                                     }
                                 }
                             }
@@ -287,33 +365,40 @@ namespace Battlegrounder.Bot
                                             _currentProfileName =
                                                 BattlegrounderSetting.CurrentSetting.SilvershardMinesXmlProfile;
                                             break;
+                                        case "AfkSomewhere":
+                                            _afkSomewhereTimer =
+                                                new Timer(1000*(profileType.Timer1 + profileType.Timer2));
+                                            _afkSomewhereNextPosition =
+                                                AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
+                                            _afkSomewhere = _afkSomewhereNextPosition != null;
+                                            break;
                                     }
                                 }
                             }
-                        }
-                        if (_xmlProfile)
-                        {
-                            _currentProfile = new BattlegrounderProfile();
-                            if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
-                                            _currentProfileName))
+                            if (_xmlProfile)
                             {
-                                _currentProfile =
-                                    XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath +
-                                                                                     "\\Profiles\\Battlegrounder\\" +
-                                                                                     _currentProfileName);
-                                if (_currentProfile.BattlegrounderZones.Count > 0)
+                                _currentProfile = new BattlegrounderProfile();
+                                if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
+                                                _currentProfileName))
                                 {
-                                    _xmlProfile = false;
-                                    MovementManager.StopMove();
-                                    return true;
+                                    _currentProfile =
+                                        XmlSerializer.Deserialize<BattlegrounderProfile>(Application.StartupPath +
+                                                                                         "\\Profiles\\Battlegrounder\\" +
+                                                                                         _currentProfileName);
+                                    if (_currentProfile.IsValid())
+                                    {
+                                        MovementManager.StopMove();
+                                        return true;
+                                    }
                                 }
+                                _xmlProfile = false;
                             }
-                            _xmlProfile = false;
-                        }
-                        else if (_afkSomewhere)
-                        {
-                            MovementManager.StopMove();
-                            return true;
+                            else if (_afkSomewhere)
+                            {
+                                MovementManager.StopMove();
+                                return true;
+                            }
+                            return false;
                         }
                     }
                 }
@@ -351,7 +436,7 @@ namespace Battlegrounder.Bot
             {
                 Logging.Write("ProfileType AFK Somewhere detected. Going to a new zone to start AFK.");
                 Bot._battlegrounding.BattlegroundId = _currentBattlegroundId;
-                Bot._movementLoop.PathLoop = _afkSomewherePosition;
+                Bot._movementLoop.PathLoop = _afkSomewhereNextPosition;
             }
         }
 

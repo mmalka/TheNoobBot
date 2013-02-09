@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using Battlegrounder.Profile;
 using nManager.Helpful;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 
 namespace Battlegrounder.Profiletype
 {
@@ -17,7 +16,7 @@ namespace Battlegrounder.Profiletype
         private static BattlegrounderProfile _currentProfile = new BattlegrounderProfile();
         private static int _i;
 
-        public static List<Point> AfkSomewhereNow(BattlegroundId battlegroundId)
+        public static List<Point> AfkSomewhereNow(string battlegroundId)
         {
             _currentProfile = new BattlegrounderProfile();
             string path = Application.StartupPath + "\\Profiles\\Battlegrounder\\ProfileType\\AfkSomewhere\\" +
@@ -26,12 +25,12 @@ namespace Battlegrounder.Profiletype
             {
                 _currentProfile =
                     XmlSerializer.Deserialize<BattlegrounderProfile>(path);
-                if (_currentProfile.BattlegrounderZones.Count > 0)
+                if (_currentProfile.IsValid())
                 {
                     foreach (
                         BattlegrounderZone battleground in
                             _currentProfile.BattlegrounderZones.Where(
-                                battleground => battleground.BattlegroundId == battlegroundId.ToString())
+                                battleground => battleground.BattlegroundId == battlegroundId)
                                            .Where(battleground => battleground.IsValid()))
                     {
                         _points = battleground.Points;

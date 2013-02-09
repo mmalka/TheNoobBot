@@ -247,7 +247,7 @@ namespace Gatherer.Bot
             try
             {
                 _profile.BlackListRadius.Add(new GathererBlackListRadius
-                                                 {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
+                    {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
                 refreshForm();
             }
             catch (Exception ex)
@@ -280,17 +280,17 @@ namespace Gatherer.Bot
                     return;
 
                 var npc = new Npc
-                              {
-                                  ContinentId =
-                                      (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
-                                  Entry = ObjectManager.Target.Entry,
-                                  Faction =
-                                      (Npc.FactionType)
-                                      Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
-                                  Name = ObjectManager.Target.Name,
-                                  Position = ObjectManager.Target.Position,
-                                  Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
-                              };
+                    {
+                        ContinentId =
+                            (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
+                        Entry = ObjectManager.Target.Entry,
+                        Faction =
+                            (Npc.FactionType)
+                            Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true),
+                        Name = ObjectManager.Target.Name,
+                        Position = ObjectManager.Target.Position,
+                        Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
+                    };
                 _profile.Npc.Add(npc);
                 refreshForm();
             }

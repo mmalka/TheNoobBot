@@ -24,11 +24,11 @@ namespace Quester.Profile
             uint mBitClass = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
 
             Quests.RemoveAll(delegate(Quest quest)
-                                 {
-                                     return ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
-                                             (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
-                                            );
-                                 }
+                {
+                    return ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
+                            (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
+                           );
+                }
                 );
         }
 

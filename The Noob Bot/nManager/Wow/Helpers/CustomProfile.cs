@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -11,34 +12,16 @@ using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
-    public class CustomClass
+    public class CustomProfile
     {
-        private static ICustomClass _instanceFromOtherAssembly;
+        private static ICustomProfile _instanceFromOtherAssembly;
         private static Assembly _assembly;
         private static object _obj;
         private static Thread _worker;
-        private static string _pathToCustomClassFile = "";
+        private static string _pathToCustomProfileFile = "";
         private static string _threadName = "";
 
-        public static float GetRange
-        {
-            get
-            {
-                try
-                {
-                    if (_instanceFromOtherAssembly != null)
-                        return _instanceFromOtherAssembly.Range < 5.0f ? 5.0f : _instanceFromOtherAssembly.Range;
-                    return 5.0f;
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("CustomClass > GetRange: " + exception);
-                    return 5.0f;
-                }
-            }
-        }
-
-        public static bool IsAliveCustomClass
+        public static bool IsAliveCustomProfile
         {
             get
             {
@@ -48,42 +31,43 @@ namespace nManager.Wow.Helpers
                 }
                 catch (Exception exception)
                 {
-                    Logging.WriteError("IsAliveCustomClass: " + exception);
+                    Logging.WriteError("IsAliveCustomProfile: " + exception);
                     return false;
                 }
             }
         }
 
-        public static void LoadCustomClass()
+        public static void LoadCustomProfile(bool init, string profileTypeScriptName)
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.CustomClass != "")
+                if (profileTypeScriptName != "")
                 {
-                    string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" +
-                                                     nManagerSetting.CurrentSetting.CustomClass;
-                    string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
+                    string pathToCustomProfileFile = Application.StartupPath +
+                                                     "\\Profiles\\Battlegrounder\\ProfileType\\CSharpProfile\\" +
+                                                     profileTypeScriptName;
+                    string fileExt = pathToCustomProfileFile.Substring(pathToCustomProfileFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(__pathToCustomClassFile, false, false, false);
+                        LoadCustomProfile(pathToCustomProfileFile, false, false, false);
                     else
-                        LoadCustomClass(__pathToCustomClassFile);
+                        LoadCustomProfile(pathToCustomProfileFile);
                 }
                 else
-                    Logging.Write("No custom class selected");
+                    Logging.Write("ProfileType: ProfileTypeScriptName is empty.");
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadCustomClass(): " + exception);
+                Logging.WriteError("LoadCustomProfile(): " + exception);
             }
         }
 
-        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false,
-                                           bool resetSettings = false,
-                                           bool CSharpFile = true)
+        public static void LoadCustomProfile(string pathToCustomProfileFile, bool settingOnly = false,
+                                             bool resetSettings = false,
+                                             bool cSharpFile = true)
         {
             try
             {
-                _pathToCustomClassFile = pathToCustomClassFile;
+                _pathToCustomProfileFile = pathToCustomProfileFile;
                 if (_instanceFromOtherAssembly != null)
                 {
                     _instanceFromOtherAssembly.Dispose();
@@ -93,19 +77,20 @@ namespace nManager.Wow.Helpers
                 _assembly = null;
                 _obj = null;
 
-                if (CSharpFile)
+                if (cSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
                     var cp = new CompilerParameters();
-                    var assemblies = AppDomain.CurrentDomain
-                                              .GetAssemblies()
-                                              .Where(
-                                                  a =>
-                                                  !a.IsDynamic &&
-                                                  !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                                              .Select(a => a.Location);
+                    IEnumerable<string> assemblies = AppDomain.CurrentDomain
+                                                              .GetAssemblies()
+                                                              .Where(
+                                                                  a =>
+                                                                  !a.IsDynamic &&
+                                                                  !a.CodeBase.Contains(
+                                                                      (Process.GetCurrentProcess().ProcessName + ".exe")))
+                                                              .Select(a => a.Location);
                     cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
-                    StreamReader sr = File.OpenText(pathToCustomClassFile);
+                    StreamReader sr = File.OpenText(pathToCustomProfileFile);
                     string toCompile = sr.ReadToEnd();
                     CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                     if (cr.Errors.HasErrors)
@@ -119,17 +104,17 @@ namespace nManager.Wow.Helpers
 
                     _assembly = cr.CompiledAssembly;
                     _obj = _assembly.CreateInstance("Main", true);
-                    _threadName = "CustomClass CS";
+                    _threadName = "CustomProfile CS";
                 }
                 else
                 {
-                    _assembly = Assembly.LoadFrom(_pathToCustomClassFile);
+                    _assembly = Assembly.LoadFrom(_pathToCustomProfileFile);
                     _obj = _assembly.CreateInstance("Main", false);
-                    _threadName = "CustomClass DLL";
+                    _threadName = "CustomProfile DLL";
                 }
                 if (_obj != null && _assembly != null)
                 {
-                    _instanceFromOtherAssembly = _obj as ICustomClass;
+                    _instanceFromOtherAssembly = _obj as ICustomProfile;
                     if (_instanceFromOtherAssembly != null)
                     {
                         if (settingOnly)
@@ -147,16 +132,16 @@ namespace nManager.Wow.Helpers
                         _worker.Start();
                     }
                     else
-                        Logging.WriteError("Custom Class Loading error.");
+                        Logging.WriteError("Custom Profile Loading error.");
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadCustomClass(string _pathToCustomClassFile): " + exception);
+                Logging.WriteError("LoadCustomProfile(string _pathToCustomProfileFile): " + exception);
             }
         }
 
-        public static void DisposeCustomClass()
+        public static void DisposeCustomProfile()
         {
             try
             {
@@ -174,7 +159,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("DisposeCustomClass(): " + exception);
+                Logging.WriteError("DisposeCustomProfile(): " + exception);
             }
             finally
             {
@@ -184,66 +169,66 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void ResetCustomClass()
+        public static void ResetCustomProfile()
         {
             try
             {
-                if (IsAliveCustomClass)
+                if (IsAliveCustomProfile)
                 {
-                    DisposeCustomClass();
+                    DisposeCustomProfile();
                     Thread.Sleep(1000);
-                    string fileExt = _pathToCustomClassFile.Substring(_pathToCustomClassFile.Length - 3);
+                    string fileExt = _pathToCustomProfileFile.Substring(_pathToCustomProfileFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(_pathToCustomClassFile, false, false, false);
+                        LoadCustomProfile(_pathToCustomProfileFile, false, false, false);
                     else
-                        LoadCustomClass(_pathToCustomClassFile);
+                        LoadCustomProfile(_pathToCustomProfileFile);
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ResetCustomClass(): " + exception);
+                Logging.WriteError("ResetCustomProfile(): " + exception);
             }
         }
 
-        public static void ShowConfigurationCustomClass(string filePath)
+        public static void ShowConfigurationCustomProfile(string filePath)
         {
             try
             {
                 string fileExt = filePath.Substring(filePath.Length - 3);
                 if (fileExt == "dll")
-                    LoadCustomClass(filePath, true, false, false);
+                    LoadCustomProfile(filePath, true, false, false);
                 else
-                    LoadCustomClass(filePath, true);
+                    LoadCustomProfile(filePath, true);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
+                Logging.WriteError("ShowConfigurationCustomProfile(): " + exception);
             }
         }
 
-        public static void ResetConfigurationCustomClass(string filePath)
+        public static void ResetConfigurationCustomProfile(string filePath)
         {
             try
             {
                 string fileExt = filePath.Substring(filePath.Length - 3);
                 if (fileExt == "dll")
-                    LoadCustomClass(filePath, true, true, false);
+                    LoadCustomProfile(filePath, true, true, false);
                 else
-                    LoadCustomClass(filePath, true, true);
+                    LoadCustomProfile(filePath, true, true);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
+                Logging.WriteError("ShowConfigurationCustomProfile(): " + exception);
             }
         }
     }
 
 
-    public interface ICustomClass
+    public interface ICustomProfile
     {
         #region Properties
 
-        float Range { get; }
+        string BattlegroundId { get; set; }
 
         #endregion Properties
 

@@ -126,23 +126,23 @@ namespace The_Noob_Bot
                 flag |= Logging.LogType.Navigator;
 
                 var packetClient = new PacketClient
-                                       {
-                                           Name = ObjectManager.Me.Name,
-                                           Level = (int) ObjectManager.Me.Level,
-                                           Health = (int) ObjectManager.Me.HealthPercent,
-                                           X = ObjectManager.Me.Position.X,
-                                           Y = ObjectManager.Me.Position.Y,
-                                           Z = ObjectManager.Me.Position.Z,
-                                           LastLog = Logging.ReadLastString(flag),
-                                           TargetName = ObjectManager.Target.Name,
-                                           TargetLevel = (int) ObjectManager.Target.Level,
-                                           TargetHealth = (int) ObjectManager.Target.HealthPercent,
-                                           InGame = Usefuls.InGame,
-                                           SubMapName = Usefuls.SubMapZoneName,
-                                           ClassPlayer = ObjectManager.Me.WowClass.ToString(),
-                                           BagSpace = Usefuls.GetContainerNumFreeSlots,
-                                           LastWhisper = whisper,
-                                       };
+                    {
+                        Name = ObjectManager.Me.Name,
+                        Level = (int) ObjectManager.Me.Level,
+                        Health = (int) ObjectManager.Me.HealthPercent,
+                        X = ObjectManager.Me.Position.X,
+                        Y = ObjectManager.Me.Position.Y,
+                        Z = ObjectManager.Me.Position.Z,
+                        LastLog = Logging.ReadLastString(flag),
+                        TargetName = ObjectManager.Target.Name,
+                        TargetLevel = (int) ObjectManager.Target.Level,
+                        TargetHealth = (int) ObjectManager.Target.HealthPercent,
+                        InGame = Usefuls.InGame,
+                        SubMapName = Usefuls.SubMapZoneName,
+                        ClassPlayer = ObjectManager.Me.WowClass.ToString(),
+                        BagSpace = Usefuls.GetContainerNumFreeSlots,
+                        LastWhisper = whisper,
+                    };
 
 
                 string req = packetClient.Name + "|" + packetClient.Level + "|" + packetClient.Health + "|" +

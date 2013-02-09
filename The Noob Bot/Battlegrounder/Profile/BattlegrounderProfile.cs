@@ -8,6 +8,18 @@ namespace Battlegrounder.Profile
     public class BattlegrounderProfile
     {
         public List<BattlegrounderZone> BattlegrounderZones = new List<BattlegrounderZone>();
+
+        internal bool IsValid()
+        {
+            try
+            {
+                return BattlegrounderZones.Count > 0;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 
     [Serializable]

@@ -20,10 +20,10 @@ namespace nManager.Helpful
             {
                 // register the event of the inner native window.
                 _window.KeyPressed += delegate(object sender, KeyPressedEventArgs args)
-                                          {
-                                              if (KeyPressed != null)
-                                                  KeyPressed(this, args);
-                                          };
+                    {
+                        if (KeyPressed != null)
+                            KeyPressed(this, args);
+                    };
             }
             catch (Exception exception)
             {

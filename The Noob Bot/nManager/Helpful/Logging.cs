@@ -201,15 +201,15 @@ namespace nManager.Helpful
                         try
                         {
                             var e = new LoggingChangeEventArgs
+                                {
+                                    Log = new Log
                                         {
-                                            Log = new Log
-                                                      {
-                                                          Color = LogQueue[0].Color,
-                                                          DateTime = LogQueue[0].DateTime,
-                                                          LogType = LogQueue[0].LogType,
-                                                          Text = LogQueue[0].Text
-                                                      }
-                                        };
+                                            Color = LogQueue[0].Color,
+                                            DateTime = LogQueue[0].DateTime,
+                                            LogType = LogQueue[0].LogType,
+                                            Text = LogQueue[0].Text
+                                        }
+                                };
                             if (OnChanged != null)
                                 OnChanged(null, e);
                         }

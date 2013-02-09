@@ -31,26 +31,26 @@ namespace nManager.Wow.Helpers
                     var p2 = b.ReadUInt32();
 
                     var asm = new[]
-                                  {
-                                      "call " +
-                                      (Memory.WowProcess.WowModule +
-                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                                      ,
-                                      "test eax, eax",
-                                      "je @out",
-                                      "call " +
-                                      (Memory.WowProcess.WowModule +
-                                       (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                                      "test eax, eax",
-                                      "je @out",
-                                      "push " + p2,
-                                      "push " + p1,
-                                      "mov ecx, eax",
-                                      "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.Interact),
-                                      "add esp, 8",
-                                      "@out:",
-                                      "retn"
-                                  };
+                        {
+                            "call " +
+                            (Memory.WowProcess.WowModule +
+                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                            ,
+                            "test eax, eax",
+                            "je @out",
+                            "call " +
+                            (Memory.WowProcess.WowModule +
+                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                            "test eax, eax",
+                            "je @out",
+                            "push " + p2,
+                            "push " + p1,
+                            "mov ecx, eax",
+                            "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.Interact),
+                            "add esp, 8",
+                            "@out:",
+                            "retn"
+                        };
 
                     Memory.WowMemory.InjectAndExecute(asm);
                     Thread.Sleep(Usefuls.Latency);

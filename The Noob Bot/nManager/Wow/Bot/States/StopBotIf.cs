@@ -196,9 +196,9 @@ namespace nManager.Wow.Bot.States
             {
                 _threadSound = true;
                 var myPlayer = new SoundPlayer
-                                   {
-                                       SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
-                                   };
+                    {
+                        SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
+                    };
                 while (_threadSound)
                 {
                     myPlayer.PlaySync();

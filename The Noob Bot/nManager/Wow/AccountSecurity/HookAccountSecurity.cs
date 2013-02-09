@@ -42,10 +42,10 @@ namespace nManager.Wow.AccountSecurity
                     {
                         accountSecurityThreadIsAlive = true;
                         var checkUpdateThreadLaunch = new Thread(loopAccountSecurityThread)
-                                                          {
-                                                              Name =
-                                                                  "loopAccountSecurity"
-                                                          };
+                            {
+                                Name =
+                                    "loopAccountSecurity"
+                            };
                         checkUpdateThreadLaunch.Start();
                     }
                 }

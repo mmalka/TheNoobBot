@@ -163,6 +163,7 @@
     <Compile Include="Wow\Helpers\ClickOnTerrain.cs" />
     <Compile Include="Wow\Helpers\ClickToMove.cs" />
     <Compile Include="Wow\Helpers\ConfigWowForThisBot.cs" />
+    <Compile Include="Wow\Helpers\CustomProfile.cs" />
     <Compile Include="Wow\Helpers\CustomClass.cs" />
     <Compile Include="Wow\Enums\BattleGroundID.cs" />
     <Compile Include="Wow\Enums\CGWorldFrameHitFlags.cs" />
@@ -201,6 +202,7 @@
     <Compile Include="Wow\Helpers\PathFinderClass\Hop.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Pather.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Utility.cs" />
+    <Compile Include="Wow\Helpers\ProfileType.cs" />
     <Compile Include="Wow\Helpers\Prospecting.cs" />
     <Compile Include="Wow\Helpers\Quest.cs" />
     <Compile Include="Wow\Helpers\Skill.cs" />

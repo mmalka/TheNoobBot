@@ -24,7 +24,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private int _priority;
-        Timer BattlegroundResurrect = new Timer(-1);
+        private Timer BattlegroundResurrect = new Timer(-1);
 
         public override List<State> NextStates
         {
@@ -99,21 +99,22 @@ namespace nManager.Wow.Bot.States
                         Interact.TeleportToSpiritHealer();
                         Thread.Sleep(5000);
                     }*/
-                    while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                while (ObjectManager.ObjectManager.Me.IsDeadMe)
+                {
+                    if (BattlegroundResurrect.IsReady)
                     {
-                        if (BattlegroundResurrect.IsReady)
-                        {
-                            Interact.TeleportToSpiritHealer();
-                            BattlegroundResurrect = new Timer(1000 * 35);
-                            Logging.Write("The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
-                            Thread.Sleep(5000);
-                        }
-                        Thread.Sleep(1000);
+                        Interact.TeleportToSpiritHealer();
+                        BattlegroundResurrect = new Timer(1000*35);
+                        Logging.Write(
+                            "The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
+                        Thread.Sleep(5000);
                     }
-                    _failed = false;
-                    Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
-                    Statistics.Deaths++;
-                    return;
+                    Thread.Sleep(1000);
+                }
+                _failed = false;
+                Logging.Write("The player have been resurrected by the Battleground Spirit Healer.");
+                Statistics.Deaths++;
+                return;
                 /*}*/
             }
 

@@ -66,14 +66,14 @@ namespace nManager.Wow.Bot.States
                     Logging.Status = "relogger";
 
                 var s = new Login.SettingsLogin
-                            {
-                                Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
-                                Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,
-                                Realm = Usefuls.RealmName,
-                                Character = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
-                                                                                   (uint) Addresses.Player.playerName),
-                                BNetName = nManagerSetting.CurrentSetting.BattleNetSubAccount,
-                            };
+                    {
+                        Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
+                        Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,
+                        Realm = Usefuls.RealmName,
+                        Character = Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
+                                                                           (uint) Addresses.Player.playerName),
+                        BNetName = nManagerSetting.CurrentSetting.BattleNetSubAccount,
+                    };
 
                 Login.Pulse(s);
                 _relogger = true;

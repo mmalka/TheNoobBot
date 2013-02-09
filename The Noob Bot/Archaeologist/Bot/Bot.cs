@@ -47,11 +47,11 @@ namespace Archaeologist.Bot
                 Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
                 Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
                 Fsm.AddState(new nManager.Wow.Bot.States.ArchaeologyStates
-                                 {
-                                     Priority = 1,
-                                     SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.solvingEveryXMin,
-                                     MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.maxTryByDigsite
-                                 });
+                    {
+                        Priority = 1,
+                        SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.solvingEveryXMin,
+                        MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.maxTryByDigsite
+                    });
                 Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
 
                 Fsm.States.Sort();

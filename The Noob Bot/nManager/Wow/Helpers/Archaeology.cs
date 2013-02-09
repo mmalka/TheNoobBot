@@ -228,11 +228,11 @@ namespace nManager.Wow.Helpers
                                 {
                                     string[] sDigsites = s.Split(Convert.ToChar(separator));
                                     var tDigsitesZoneLua = new DigsitesZoneLua
-                                                               {
-                                                                   name = sDigsites[0],
-                                                                   px = sDigsites[1],
-                                                                   py = sDigsites[2]
-                                                               };
+                                        {
+                                            name = sDigsites[0],
+                                            px = sDigsites[1],
+                                            py = sDigsites[2]
+                                        };
                                     resultList.Add(tDigsitesZoneLua);
                                 }
                                 catch

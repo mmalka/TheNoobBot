@@ -209,22 +209,22 @@ namespace Profiles_Converters.Converters
                                                                 _profile.GrinderZones[
                                                                     _profile.GrinderZones.Count() - 1].BlackListRadius.
                                                                                                        Add(new GrinderBlackListRadius
-                                                                                                               {
-                                                                                                                   Position
-                                                                                                                       =
-                                                                                                                       pT,
-                                                                                                                   Radius
-                                                                                                                       =
-                                                                                                                       System
-                                                                                                                       .Convert
-                                                                                                                       .ToSingle
-                                                                                                                       (
-                                                                                                                           r
-                                                                                                                               .Value
-                                                                                                                               .Replace
-                                                                                                                               (".",
-                                                                                                                                ","))
-                                                                                                               });
+                                                                                                           {
+                                                                                                               Position
+                                                                                                                   =
+                                                                                                                   pT,
+                                                                                                               Radius
+                                                                                                                   =
+                                                                                                                   System
+                                                                                                               .Convert
+                                                                                                               .ToSingle
+                                                                                                               (
+                                                                                                                   r
+                                                                                                                       .Value
+                                                                                                                       .Replace
+                                                                                                                       (".",
+                                                                                                                        ","))
+                                                                                                           });
                                                             }
                                                         }
                                                     }

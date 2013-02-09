@@ -39,6 +39,7 @@ namespace Battlegrounder.Profiletype
         public int Int3;
         public string ProfileTypeId = "";
         public string ProfileTypeName = "";
+        public string ProfileTypeScriptName = "";
         public string String1;
         public string String2;
         public string String3;

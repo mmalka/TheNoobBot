@@ -215,7 +215,7 @@ namespace Fisherbot.Profile
             try
             {
                 _profile.BlackListRadius.Add(new FisherbotBlackListRadius
-                                                 {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
+                    {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
                 refreshForm();
             }
             catch (Exception ex)

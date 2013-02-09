@@ -489,7 +489,7 @@ namespace The_Noob_Bot
             try
             {
                 var checkAccountSecurityThreadLaunch = new Thread(CheckAccountSecurityThread)
-                                                           {Name = "CheckAccountSecurity"};
+                    {Name = "CheckAccountSecurity"};
                 checkAccountSecurityThreadLaunch.Start();
             }
             catch (Exception e)

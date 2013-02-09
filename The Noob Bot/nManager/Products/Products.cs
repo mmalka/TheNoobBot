@@ -25,7 +25,7 @@ namespace nManager.Products
                     if (_threadEventChangeProduct == null)
                     {
                         _threadEventChangeProduct = new Thread(ThreadEventChangeProduct)
-                                                        {Name = "ThreadEventChangeProduct"};
+                            {Name = "ThreadEventChangeProduct"};
                         _threadEventChangeProduct.Start();
                     }
 

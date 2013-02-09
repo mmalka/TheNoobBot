@@ -50,6 +50,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="Profiletype\AfkSomewhere.cs" />
     <Compile Include="Profiletype\BattlegrounderProfileType.cs" />
+    <Compile Include="Profiletype\CSharpProfile.cs" />
     <Compile Include="Profile\BattlegrounderProfile.cs" />
     <Compile Include="Profile\ProfileCreator.cs">
       <SubType>Form</SubType>

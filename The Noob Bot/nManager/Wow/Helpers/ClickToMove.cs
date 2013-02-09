@@ -33,28 +33,28 @@ namespace nManager.Wow.Helpers
 
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
                 var asm = new[]
-                              {
-                                  "call " +
-                                  (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
-                                  ,
-                                  "test eax, eax",
-                                  "je @out",
-                                  "call " +
-                                  (Memory.WowProcess.WowModule +
-                                   (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
-                                  "test eax, eax",
-                                  "je @out",
-                                  "mov edx, [" + precisionCodecave + "]",
-                                  "push edx",
-                                  "push " + posCodecave,
-                                  "push " + guidCodecave,
-                                  "push " + action,
-                                  "mov ecx, eax",
-                                  "call " +
-                                  (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove),
-                                  "@out:",
-                                  "retn"
-                              };
+                    {
+                        "call " +
+                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
+                        ,
+                        "test eax, eax",
+                        "je @out",
+                        "call " +
+                        (Memory.WowProcess.WowModule +
+                         (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                        "test eax, eax",
+                        "je @out",
+                        "mov edx, [" + precisionCodecave + "]",
+                        "push edx",
+                        "push " + posCodecave,
+                        "push " + guidCodecave,
+                        "push " + action,
+                        "mov ecx, eax",
+                        "call " +
+                        (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGPlayer_C__ClickToMove),
+                        "@out:",
+                        "retn"
+                    };
 
                 Memory.WowMemory.InjectAndExecute(asm);
 

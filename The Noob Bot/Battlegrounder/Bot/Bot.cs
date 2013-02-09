@@ -29,11 +29,11 @@ namespace Battlegrounder.Bot
                 Fsm.AddState(new ToTown {Priority = 1});
                 Fsm.AddState(new Talents {Priority = 10});
                 Fsm.AddState(new Trainers {Priority = 9});
-                Fsm.AddState(new Resurrect { Priority = 8 });
-                Fsm.AddState(new Looting { Priority = 7 });
-                Fsm.AddState(new Regeneration { Priority = 6 });
+                Fsm.AddState(new Resurrect {Priority = 8});
+                Fsm.AddState(new Looting {Priority = 7});
+                Fsm.AddState(new Regeneration {Priority = 6});
                 Fsm.AddState(_battlegrounding);
-                Fsm.AddState(new IsAttacked { Priority = 4 });
+                Fsm.AddState(new IsAttacked {Priority = 4});
                 Fsm.AddState(_movementLoop);
                 Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 2});
                 Fsm.AddState(new BattlegrounderQueueing {Priority = 1});

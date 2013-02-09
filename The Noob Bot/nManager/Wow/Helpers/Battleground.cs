@@ -1,10 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using nManager.Wow;
 using nManager.Wow.Enums;
-using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
-using nManager.Wow.ObjectManager;
 
 namespace nManager.Wow.Helpers
 {

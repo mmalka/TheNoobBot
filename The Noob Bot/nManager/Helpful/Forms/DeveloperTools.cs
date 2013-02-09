@@ -134,13 +134,13 @@ namespace nManager.Helpful.Forms
                 Others.WriteFile("Get all objects information.html", codeHtml);
 
                 var myInfo = new Process
-                                 {
-                                     StartInfo =
-                                         {
-                                             FileName = "Get all objects information.html",
-                                             WorkingDirectory = Application.StartupPath
-                                         }
-                                 };
+                    {
+                        StartInfo =
+                            {
+                                FileName = "Get all objects information.html",
+                                WorkingDirectory = Application.StartupPath
+                            }
+                    };
                 myInfo.Start();
             }
             catch (Exception ex)

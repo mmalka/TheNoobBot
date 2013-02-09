@@ -259,10 +259,10 @@ namespace Quester.Tasks
                 else
                 {
                     questObjective.PathHotspots = new List<Point>
-                                                      {
-                                                          ObjectManager.Me.Position,
-                                                          ObjectManager.Me.Position
-                                                      };
+                        {
+                            ObjectManager.Me.Position,
+                            ObjectManager.Me.Position
+                        };
                 }
             }
 
