@@ -83,14 +83,21 @@ namespace Battlegrounder.Bot
                     if (!_afkSomewhere && !_csharpProfile && !_xmlProfile)
                     {
                         _currentBattlegroundId = null;
+                        if (_currentProfile.BattlegrounderZones != null)
+                            _currentProfile.BattlegrounderZones.Clear();
                     }
-                    if (_currentBattlegroundId == null && _currentProfile.BattlegrounderZones.Count <= 0 &&
+                    if (_currentBattlegroundId == null &&
+                        (_currentProfile.BattlegrounderZones == null || _currentProfile.BattlegrounderZones.Count <= 0) &&
                         !StopChecking)
                     {
                         _xmlProfile = false;
                         _afkSomewhere = false;
                         _currentBattlegroundId = Battleground.GetCurrentBattleground().ToString();
-                        foreach (Profiletype.Battleground battleground in ProfileTypeFile.Battlegrounds.Where(battleground => battleground.BattlegroundId == Battleground.GetCurrentBattleground().ToString()))
+                        foreach (
+                            Profiletype.Battleground battleground in
+                                ProfileTypeFile.Battlegrounds.Where(
+                                    battleground =>
+                                    battleground.BattlegroundId == Battleground.GetCurrentBattleground().ToString()))
                         {
                             if (battleground.BattlegroundId == BattlegroundId.AlteracValley.ToString())
                             {
@@ -433,9 +440,9 @@ namespace Battlegrounder.Bot
         {
             if (_xmlProfile)
             {
+                if (Bot.MovementLoop.PathLoop != null && Bot.MovementLoop.PathLoop.Count > 0)
+                    Bot.MovementLoop.PathLoop.Clear();
                 SelectZone();
-
-                // Black List:
                 Dictionary<Point, float> blackListDic =
                     _currentProfile.BattlegrounderZones.SelectMany(zone => zone.BlackListRadius)
                                    .ToDictionary(b => b.Position, b => b.Radius);
@@ -443,9 +450,11 @@ namespace Battlegrounder.Bot
             }
             else if (_afkSomewhere)
             {
+                if (Bot.MovementLoop.PathLoop != null && Bot.MovementLoop.PathLoop.Count > 0)
+                    Bot.MovementLoop.PathLoop.Clear();
                 Logging.Write("ProfileType AFK Somewhere detected. Going to a new zone to start AFK.");
-                Bot._battlegrounding.BattlegroundId = _currentBattlegroundId;
-                Bot._movementLoop.PathLoop = _afkSomewhereNextPosition;
+                Bot.Battlegrounding.BattlegroundId = _currentBattlegroundId;
+                Bot.MovementLoop.PathLoop = _afkSomewhereNextPosition;
             }
         }
 
@@ -488,9 +497,9 @@ namespace Battlegrounder.Bot
                 _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.AddRange(pointsTemps);
             }
 
-            Bot._battlegrounding.BattlegroundId = _currentProfile.BattlegrounderZones[_zoneIdProfile].BattlegroundId;
+            Bot.Battlegrounding.BattlegroundId = _currentProfile.BattlegrounderZones[_zoneIdProfile].BattlegroundId;
 
-            Bot._movementLoop.PathLoop = _currentProfile.BattlegrounderZones[_zoneIdProfile].Points;
+            Bot.MovementLoop.PathLoop = _currentProfile.BattlegrounderZones[_zoneIdProfile].Points;
         }
     }
 }

@@ -12,6 +12,8 @@ public class Main : IProduct
 {
     #region IProduct Members
 
+    private bool _isStarted;
+
     public void Initialize()
     {
         try
@@ -95,8 +97,6 @@ public class Main : IProduct
     {
         get { return _isStarted; }
     }
-
-    private bool _isStarted;
 
     #endregion
 }

@@ -1,27 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading;
 using nManager.FiniteStateMachine;
+using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
-using Math = nManager.Helpful.Math;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
     public class MovementLoop : State
     {
+        private readonly Timer _outOfBattlegroundAntiAfk = new Timer(1000*60);
+        private int _battleground;
+        private float _loopPathId = -1f;
+
         public override string DisplayName
         {
             get { return "Movement Loop"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
-        private float _loopPathId = -1f;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
@@ -45,9 +43,32 @@ namespace nManager.Wow.Bot.States
 
                 if (Products.Products.ProductName == "Battlegrounder")
                 {
-                    if (Battleground.IsInBattleground() && Battleground.BattlegroundIsStarted() &&
-                        !Battleground.IsFinishBattleground())
+                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
+                        Battleground.BattlegroundIsStarted())
+                    {
+                        _battleground = 0;
                         return true;
+                    }
+                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
+                        !Battleground.BattlegroundIsStarted() && _battleground == 0)
+                    {
+                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
+                                         Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        Thread.Sleep(1000);
+                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
+                                       Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        _battleground++;
+                    }
+                    else if (!Battleground.IsInBattleground() && _outOfBattlegroundAntiAfk.IsReady)
+                    {
+                        _battleground = 0;
+                        _outOfBattlegroundAntiAfk.Reset();
+                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
+                                         Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        Thread.Sleep(300);
+                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
+                                       Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                    }
                     return false;
                 }
                 return true;
@@ -87,7 +108,7 @@ namespace nManager.Wow.Bot.States
                 PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 /*&&
                 PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200*/)
             {
-                var npoints = PathFinder.FindPath(PathLoop[_currentPoint]);
+                List<Point> npoints = PathFinder.FindPath(PathLoop[_currentPoint]);
                 MovementManager.Go(npoints);
                 return;
             }

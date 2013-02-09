@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
-using nManager.Wow.Helpers;
-using nManager.Wow.Patchables;
 
 namespace Test_Product
 {
@@ -34,7 +28,7 @@ namespace Test_Product
                     {
                         _xmlProfile = false;
                         var listP = new List<Point>();
-                        foreach (var points in _currentProfile.BattlegrounderZones[0].Points)
+                        foreach (Point points in _currentProfile.BattlegrounderZones[0].Points)
                         {
                             Logging.Write("listP.Add(new Point((float) " + points.X + ", (float) " + points.Y +
                                           ", (float) " + points.Z + "));");
@@ -403,7 +397,6 @@ namespace Test_Product
 
             nManager.Helpful.Others.WriteFile("TESTTEST.txt", r);
             */
-            return false;
         }
 
         public static void Dispose()

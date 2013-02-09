@@ -2,7 +2,6 @@
 using System.Linq;
 using nManager.Helpful;
 using nManager.Wow;
-using nManager.Wow.Patchables;
 
 namespace Test_Product
 {
