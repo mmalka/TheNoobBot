@@ -25,6 +25,11 @@
 					<Timer1>25</Timer1>
 					<Timer2>45</Timer2>
 				</ProfileType>
+				<ProfileType>
+					<ProfileTypeName>C# Profile</ProfileTypeName>
+					<ProfileTypeId>CSharpProfile</ProfileTypeId>
+					<ProfileTypeScriptName>TheNoobBot.dll</ProfileTypeScriptName>
+				</ProfileType>
 			</ProfileTypes>
 		</Battleground>
 		<Battleground>

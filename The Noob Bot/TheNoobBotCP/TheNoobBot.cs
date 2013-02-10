@@ -9,25 +9,17 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Products;
-using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
 public class Main : ICustomProfile
 {
-    internal static float range = 5.0f;
     internal static bool loop = true;
 
     #region ICustomProfile Members
 
-    public static string BattlegroundId { get; set; }
-
-    string ICustomProfile.BattlegroundId
-    {
-        get { return BattlegroundId; }
-        set { BattlegroundId = value; }
-    }
+    public string BattlegroundId { get; set; }
 
     public void Initialize()
     {
