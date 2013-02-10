@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Battlegrounder.Profile;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Helpers;
 
 namespace Battlegrounder.Profiletype
 {
@@ -35,7 +36,8 @@ namespace Battlegrounder.Profiletype
                     {
                         _points = battleground.Points;
                         _i = Randomized.Next(_points.Count);
-                        return new List<Point> {_points[_i]};
+                        MovementManager.StopMove(); 
+                        return new List<Point> { _points[_i] };
                     }
                 }
             }

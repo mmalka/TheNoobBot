@@ -159,6 +159,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false; // Once the script is started, let him do the rest.
                                     }
                                 }
                             }
@@ -409,10 +416,7 @@ namespace Battlegrounder.Bot
                                 _xmlProfile = false;
                             }
                             else if (_afkSomewhere)
-                            {
-                                MovementManager.StopMove();
-                                return true;
-                            }
+                            return true;
                             else
                                 return false;
                         }

@@ -6,10 +6,10 @@ using nManager.Wow.Helpers;
 
 namespace Battlegrounder.Bot
 {
-    internal class Bot
+    public class Bot
     {
         private static readonly Engine Fsm = new Engine();
-        internal static MovementLoop MovementLoop = new MovementLoop {Priority = 5};
+        public static MovementLoop MovementLoop = new MovementLoop {Priority = 5};
         internal static Battlegrounding Battlegrounding = new Battlegrounding {Priority = 3};
 
         internal static bool Pulse()
