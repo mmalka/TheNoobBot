@@ -112,28 +112,26 @@ namespace nManager.Wow.Helpers
                     _obj = _assembly.CreateInstance("Main", false);
                     _threadName = "CustomProfile DLL";
                 }
-                if (_obj != null && _assembly != null)
+                if (_obj == null || _assembly == null) return;
+                _instanceFromOtherAssembly = _obj as ICustomProfile;
+                if (_instanceFromOtherAssembly != null)
                 {
-                    _instanceFromOtherAssembly = _obj as ICustomProfile;
-                    if (_instanceFromOtherAssembly != null)
+                    if (settingOnly)
                     {
-                        if (settingOnly)
-                        {
-                            if (resetSettings)
-                                _instanceFromOtherAssembly.ResetConfiguration();
-                            else
-                                _instanceFromOtherAssembly.ShowConfiguration();
-                            _instanceFromOtherAssembly.Dispose();
-                            return;
-                        }
-
-                        _worker = new Thread(_instanceFromOtherAssembly.Initialize)
-                            {IsBackground = true, Name = _threadName};
-                        _worker.Start();
+                        if (resetSettings)
+                            _instanceFromOtherAssembly.ResetConfiguration();
+                        else
+                            _instanceFromOtherAssembly.ShowConfiguration();
+                        _instanceFromOtherAssembly.Dispose();
+                        return;
                     }
-                    else
-                        Logging.WriteError("Custom Profile Loading error.");
+
+                    _worker = new Thread(_instanceFromOtherAssembly.Initialize)
+                        {IsBackground = true, Name = _threadName};
+                    _worker.Start();
                 }
+                else
+                    Logging.WriteError("Custom Profile Loading error.");
             }
             catch (Exception exception)
             {
@@ -226,12 +224,6 @@ namespace nManager.Wow.Helpers
 
     public interface ICustomProfile
     {
-        #region Properties
-
-        string BattlegroundId { get; set; }
-
-        #endregion Properties
-
         #region Methods
 
         void Initialize();

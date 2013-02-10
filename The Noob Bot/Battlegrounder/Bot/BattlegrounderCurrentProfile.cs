@@ -85,6 +85,7 @@ namespace Battlegrounder.Bot
                         _currentBattlegroundId = null;
                         if (_currentProfile.BattlegrounderZones != null)
                             _currentProfile.BattlegrounderZones.Clear();
+                        StopChecking = false;
                     }
                     if (_currentBattlegroundId == null &&
                         (_currentProfile.BattlegrounderZones == null || _currentProfile.BattlegrounderZones.Count <= 0) &&

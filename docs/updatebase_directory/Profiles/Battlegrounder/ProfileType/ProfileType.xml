@@ -28,7 +28,7 @@
 				<ProfileType>
 					<ProfileTypeName>C# Profile</ProfileTypeName>
 					<ProfileTypeId>CSharpProfile</ProfileTypeId>
-					<ProfileTypeScriptName>TheNoobBot.dll</ProfileTypeScriptName>
+					<ProfileTypeScriptName>TheNoobBotCP.dll</ProfileTypeScriptName>
 				</ProfileType>
 			</ProfileTypes>
 		</Battleground>

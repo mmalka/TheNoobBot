@@ -1344,5 +1344,24 @@ namespace nManager.Wow.ObjectManager
             }
             return new List<WoWPlayer>();
         }
+
+        public static WoWPlayer GetWoWUnitWGFlagHolder(bool hostileHolder = true)
+        {
+            var woWPlayerList = new List<WoWPlayer>();
+            if (hostileHolder)
+                woWPlayerList.AddRange(Me.PlayerFaction.ToLower() == "horde"
+                                           ? GetWoWUnitAlliance()
+                                           : GetWoWUnitHorde());
+            else
+                woWPlayerList.AddRange(Me.PlayerFaction.ToLower() == "horde"
+                                           ? GetWoWUnitHorde()
+                                           : GetWoWUnitAlliance());
+            return woWPlayerList.FirstOrDefault(wowPlayer => wowPlayer.IsHoldingWGFlag);
+        }
+
+        public static bool IsSomeoneHoldingWGFlag(bool hostileHolder = true)
+        {
+            return GetWoWUnitWGFlagHolder(hostileHolder) != null;
+        }
     }
 }

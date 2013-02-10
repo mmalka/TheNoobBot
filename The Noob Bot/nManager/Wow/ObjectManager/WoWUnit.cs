@@ -1736,6 +1736,28 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        private static readonly List<uint> FlagsIds = new List<uint>();
+
+        public bool IsHoldingWGFlag
+        {
+            get
+            {
+                try
+                {
+                    if (FlagsIds.Count <= 0)
+                    {
+                        FlagsIds.Add(23333);
+                        FlagsIds.Add(23335);
+                    }
+                    return HaveBuff(FlagsIds);
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+
         public bool IsTracked
         {
             get
