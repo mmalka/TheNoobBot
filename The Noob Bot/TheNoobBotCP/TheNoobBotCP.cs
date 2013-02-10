@@ -191,6 +191,16 @@ public class CaptureTheFlagWG
             (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) > 1))
         {
             MovementManager.StopMove();
+            if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
+                Logging.Write(
+                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) <= 0");
+            else if (MovementManager.CurrentPath != null)
+                Logging.Write(
+                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
+                    MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point));
+            else
+                Logging.Write(
+                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = null");
         }
         List<Point> points = PathFinder.FindPath(point);
         MovementManager.Go(points);
@@ -246,6 +256,16 @@ public class CaptureTheFlagWG
             (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position) > 1))
         {
             MovementManager.StopMove();
+            if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
+                Logging.Write(
+                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) <= 0");
+            else if (MovementManager.CurrentPath != null)
+                Logging.Write(
+                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
+                    MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position));
+            else
+                Logging.Write(
+                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = null");
         }
         Main._ignoreFight = true;
         List<Point> points = PathFinder.FindPath(obj.Position);
