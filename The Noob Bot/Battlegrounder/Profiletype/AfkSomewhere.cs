@@ -36,8 +36,8 @@ namespace Battlegrounder.Profiletype
                     {
                         _points = battleground.Points;
                         _i = Randomized.Next(_points.Count);
-                        MovementManager.StopMove(); 
-                        return new List<Point> { _points[_i] };
+                        MovementManager.StopMove();
+                        return new List<Point> {_points[_i]};
                     }
                 }
             }

@@ -45,10 +45,6 @@
     <Compile Include="TheNoobBotCP.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Battlegrounder\Battlegrounder.csproj">
-      <Project>{400F0014-160A-4D26-82B3-25A89B525D1C}</Project>
-      <Name>Battlegrounder</Name>
-    </ProjectReference>
     <ProjectReference Include="..\nManager\nManager.csproj">
       <Project>{FF49172B-7F6D-4B49-AA3B-D6D817CB0862}</Project>
       <Name>nManager</Name>

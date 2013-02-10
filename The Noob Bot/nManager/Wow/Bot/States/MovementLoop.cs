@@ -36,9 +36,6 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (PathLoop == null || PathLoop.Count <= 0)
-                    return false;
-
                 if (MovementManager.InMovement)
                     return false;
 
@@ -48,7 +45,8 @@ namespace nManager.Wow.Bot.States
                         Battleground.BattlegroundIsStarted())
                     {
                         _battleground = 0;
-                        return !IsProfileCSharp;
+                        if (PathLoop != null && PathLoop.Count > 0 && !IsProfileCSharp)
+                            return true;
                     }
                     if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
                         !Battleground.BattlegroundIsStarted() && _battleground == 0)
@@ -72,6 +70,8 @@ namespace nManager.Wow.Bot.States
                     }
                     return false;
                 }
+                if (PathLoop == null || PathLoop.Count <= 0)
+                    return false;
                 return true;
             }
         }

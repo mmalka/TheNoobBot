@@ -21,6 +21,18 @@ namespace nManager.Wow.Helpers
         private static string _pathToCustomProfileFile = "";
         private static string _threadName = "";
 
+        public static bool GetSetIgnoreFight
+        {
+            get { return _instanceFromOtherAssembly != null && _instanceFromOtherAssembly.IgnoreFight; }
+            set
+            {
+                if (_instanceFromOtherAssembly != null)
+                {
+                    _instanceFromOtherAssembly.IgnoreFight = value;
+                }
+            }
+        }
+
         public static bool IsAliveCustomProfile
         {
             get
@@ -224,6 +236,8 @@ namespace nManager.Wow.Helpers
 
     public interface ICustomProfile
     {
+        bool IgnoreFight { get; set; }
+
         #region Methods
 
         void Initialize();

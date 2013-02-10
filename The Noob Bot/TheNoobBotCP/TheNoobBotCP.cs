@@ -7,7 +7,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Forms;
-using Battlegrounder.Bot;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Class;
@@ -20,7 +19,14 @@ public class Main : ICustomProfile
 
     #region ICustomProfile Members
 
+    internal static bool _ignoreFight;
     public string BattlegroundId;
+
+    public bool IgnoreFight
+    {
+        get { return _ignoreFight; }
+        set { _ignoreFight = value; }
+    }
 
     public void Initialize()
     {
@@ -28,6 +34,7 @@ public class Main : ICustomProfile
         {
             if (!Loop)
                 Loop = true;
+            _ignoreFight = false;
             Logging.WriteFight("Loading TheNoobBot example Custom Profile.");
             BattlegroundId = Battleground.GetCurrentBattleground().ToString();
             if (BattlegroundId != null)
@@ -40,7 +47,7 @@ public class Main : ICustomProfile
         {
             Logging.WriteError("Initialize(): " + exception);
         }
-        Logging.WriteFight("TheNoobBot example Custom Profile stopped.");
+        Logging.WriteFight("TheNoobBot example Custom Profile stopped. Loop shutdown.");
     }
 
     public void Dispose()
@@ -88,13 +95,17 @@ public class CaptureTheFlagWG
         {
             try
             {
+                Main._ignoreFight = false;
                 if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting && !ObjectManager.Me.IsDeadMe &&
-                    ObjectManager.Me.IsValid && !ObjectManager.Me.InCombat && Products.IsStarted)
+                    ObjectManager.Me.IsValid && !ObjectManager.Me.InCombat && Products.IsStarted &&
+                    Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
+                    Battleground.BattlegroundIsStarted())
                 {
                     if (ObjectManager.Me.IsHoldingWGFlag && !ObjectManager.IsSomeoneHoldingWGFlag())
                     {
                         // 1 possibility :
                         // Go to my base and capture it.
+                        Logging.Write("Go to my base and capture it.");
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _hordeFlagPosition
                                          : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -104,6 +115,7 @@ public class CaptureTheFlagWG
                     {
                         // 4 possibilities :
                         // Go to my base and wait until I can capture it.
+                        Logging.Write("Go to my base and wait until I can capture it.");
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _hordeFlagPosition
                                          : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -116,6 +128,7 @@ public class CaptureTheFlagWG
                     {
                         // 1 possibility :
                         // Go to the ennemy base and take it.
+                        Logging.Write("Go to the ennemy base and take it.");
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
                                          : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -125,6 +138,7 @@ public class CaptureTheFlagWG
                     else if (ObjectManager.IsSomeoneHoldingWGFlag())
                     {
                         // 4 possibilities :
+                        Logging.Write("Go to the ennemy base and wait until I can take it.");
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -138,6 +152,7 @@ public class CaptureTheFlagWG
                     else if (!ObjectManager.IsSomeoneHoldingWGFlag())
                     {
                         // 3 possibilities :
+                        Logging.Write("Go to the ennemy base and wait until I can take it.");
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -146,6 +161,10 @@ public class CaptureTheFlagWG
                                      "Take");
                         // Go to the ennemy base and wait in a protected area until I can take it.
                         // Protect the ally Flag holder.
+                    }
+                    else
+                    {
+                        Logging.Write("NOTHING TO DO !");
                     }
                 }
                 else
@@ -162,11 +181,24 @@ public class CaptureTheFlagWG
     public void InternalGoTo(Point point, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                              bool isSomeoneHoldingThemFlag, string goal = "Capture")
     {
+        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
+            !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
+            !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
+            !Battleground.BattlegroundIsStarted())
+            return;
         if (!(point.DistanceTo(ObjectManager.Me.Position) > 5)) return;
-        var points = PathFinder.FindPath(point);
+        if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count > 0 &&
+            MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) < 2)
+            return;
+        List<Point> points = PathFinder.FindPath(point);
         MovementManager.Go(points);
         while (true)
         {
+            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
+                !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
+                !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
+                !Battleground.BattlegroundIsStarted())
+                break;
             if ((isHoldingWGFlag && !ObjectManager.Me.IsHoldingWGFlag) ||
                 (!isHoldingWGFlag && ObjectManager.Me.IsHoldingWGFlag))
                 break;
@@ -179,6 +211,7 @@ public class CaptureTheFlagWG
             switch (goal)
             {
                 case "Capture":
+                    Main._ignoreFight = ObjectManager.Me.IsHoldingWGFlag;
                     Thread.Sleep(100);
                     break;
                 case "Take":
@@ -199,16 +232,31 @@ public class CaptureTheFlagWG
     public void InternalGoToGameObject(int entry, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                                        bool isSomeoneHoldingThemFlag = false)
     {
-        var obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
-
+        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
+            !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
+            !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
+            !Battleground.BattlegroundIsStarted())
+            return;
+        WoWGameObject obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
         if (obj.GetBaseAddress <= 0) return;
+        if (obj.GetDistance > 20)
+            return;
+        if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count > 0 &&
+            MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position) < 2)
+            return;
+        Main._ignoreFight = true;
         MovementManager.StopMove();
-        var points = PathFinder.FindPath(obj.Position);
+        List<Point> points = PathFinder.FindPath(obj.Position);
         MovementManager.Go(points);
         Logging.Write("Going to Object: " + obj.Name);
         Thread.Sleep(300);
         while (true)
         {
+            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
+                !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
+                !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
+                !Battleground.BattlegroundIsStarted())
+                break;
             Point newPosition =
                 ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry)).Position;
             if (newPosition != obj.Position)

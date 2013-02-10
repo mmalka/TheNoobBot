@@ -2,7 +2,6 @@
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -10,18 +9,16 @@ namespace nManager.Wow.Bot.States
 {
     public class Battlegrounding : State
     {
+        public string BattlegroundId;
+        public uint MaxTargetLevel = ObjectManager.ObjectManager.Me.Level + 3;
+        private WoWPlayer _unit;
+
         public override string DisplayName
         {
             get { return "Battlegrounding"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {
@@ -32,11 +29,6 @@ namespace nManager.Wow.Bot.States
         {
             get { return new List<State>(); }
         }
-
-        public uint MaxTargetLevel = ObjectManager.ObjectManager.Me.Level + 3;
-        public string BattlegroundId;
-
-        private WoWPlayer _unit;
 
         public override bool NeedToRun
         {
@@ -55,6 +47,9 @@ namespace nManager.Wow.Bot.States
                      !(ObjectManager.ObjectManager.Me.IsMounted &&
                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) ||
                     !Products.Products.IsStarted)
+                    return false;
+
+                if (CustomProfile.GetSetIgnoreFight)
                     return false;
 
                 // Get unit:

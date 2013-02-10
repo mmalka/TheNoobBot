@@ -76,6 +76,11 @@ namespace Battlegrounder.Bot
                         }
                         if (_csharpProfile)
                         {
+                            if (CustomProfile.IsAliveCustomProfile)
+                            {
+                                CustomProfile.GetSetIgnoreFight = false;
+                                CustomProfile.DisposeCustomProfile();
+                            }
                             Bot.MovementLoop.IsProfileCSharp = false;
                             _csharpProfile = false;
                             StopChecking = false;
@@ -419,7 +424,7 @@ namespace Battlegrounder.Bot
                                 _xmlProfile = false;
                             }
                             else if (_afkSomewhere)
-                            return true;
+                                return true;
                             else
                                 return false;
                         }

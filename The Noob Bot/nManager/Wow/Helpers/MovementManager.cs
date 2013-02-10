@@ -79,6 +79,22 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static List<Point> CurrentPath
+        {
+            get
+            {
+                try
+                {
+                    return _points;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("PointId: " + exception);
+                }
+                return null;
+            }
+        }
+
         public static void LaunchThreadMovementManager()
         {
             try

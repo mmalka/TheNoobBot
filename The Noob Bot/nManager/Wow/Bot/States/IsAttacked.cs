@@ -16,13 +16,7 @@ namespace nManager.Wow.Bot.States
             get { return "IsAttacked"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
@@ -35,6 +29,9 @@ namespace nManager.Wow.Bot.States
                     (ObjectManager.ObjectManager.Me.IsMounted &&
                      (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying)) ||
                     !Products.Products.IsStarted)
+                    return false;
+
+                if (CustomProfile.GetSetIgnoreFight)
                     return false;
 
                 // Get if is attacked:

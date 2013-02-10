@@ -85,20 +85,16 @@ namespace nManager.Wow.Helpers
 
         public static void JoinBattlefield(BattlegroundId type, bool asGroup = false)
         {
-            if (type != BattlegroundId.None)
-            {
-                Lua.LuaDoString(
-                    "for i = 1, GetNumBattlegroundTypes() do local _,_,_,_,id = GetBattlegroundInfo(i); if id == {0} then RequestBattlegroundInstanceInfo(i); end end");
-                Lua.LuaDoString(string.Format("JoinBattlefield(1, {0})", asGroup ? "true" : "false"));
-                Thread.Sleep(500);
-            }
+            if (type == BattlegroundId.None) return;
+            Lua.LuaDoString(
+                "for i = 1, GetNumBattlegroundTypes() do local _,_,_,_,id = GetBattlegroundInfo(i); if id == {0} then RequestBattlegroundInstanceInfo(i); end end");
+            Lua.LuaDoString(string.Format("JoinBattlefield(1, {0})", asGroup ? "true" : "false"));
+            Thread.Sleep(500);
         }
 
         public static bool IsInBattleground()
         {
-            if (GetCurrentBattleground() != BattlegroundId.None)
-                return true;
-            return false;
+            return GetCurrentBattleground() != BattlegroundId.None;
         }
 
         public static BattlegroundId GetCurrentBattleground()
