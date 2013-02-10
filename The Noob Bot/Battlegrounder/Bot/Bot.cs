@@ -63,6 +63,7 @@ namespace Battlegrounder.Bot
             try
             {
                 CustomClass.DisposeCustomClass();
+                CustomProfile.DisposeCustomProfile();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
