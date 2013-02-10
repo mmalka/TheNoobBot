@@ -70,24 +70,18 @@ public class CaptureTheFlagWG
 
     private readonly int _allianceFlagFloorId;
     private readonly int _allianceFlagId;
-    private readonly List<Point> _allianceFlagPosition;
+    private readonly Point _allianceFlagPosition;
 
     private readonly int _hordeFlagFloorId;
     private readonly int _hordeFlagId;
-    private readonly List<Point> _hordeFlagPosition;
+    private readonly Point _hordeFlagPosition;
 
     public CaptureTheFlagWG()
     {
-        _allianceFlagPosition = new List<Point>
-            {
-                new Point((float) 1539.203, (float) 1481.274, (float) 352.4759)
-            };
+        _allianceFlagPosition = new Point((float) 1539.203, (float) 1481.274, (float) 352.4759);
         _allianceFlagId = 179830;
         _allianceFlagFloorId = 179785;
-        _hordeFlagPosition = new List<Point>
-            {
-                new Point((float) 918.0743, (float) 1433.238, (float) 346.3038)
-            };
+        _hordeFlagPosition = new Point((float) 918.0743, (float) 1433.238, (float) 346.3038);
         _hordeFlagId = _allianceFlagId + 1;
         _hordeFlagFloorId = _allianceFlagFloorId + 1;
         while (Main.Loop)
@@ -165,13 +159,12 @@ public class CaptureTheFlagWG
         }
     }
 
-    public void InternalGoTo(List<Point> point, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
+    public void InternalGoTo(Point point, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                              bool isSomeoneHoldingThemFlag, string goal = "Capture")
     {
-        if (!(point[0].DistanceTo(ObjectManager.Me.Position) > 5)) return;
-        if (Bot.MovementLoop.PathLoop != null)
-            Bot.MovementLoop.PathLoop.Clear();
-        Bot.MovementLoop.PathLoop = point;
+        if (!(point.DistanceTo(ObjectManager.Me.Position) > 5)) return;
+        var points = PathFinder.FindPath(point);
+        MovementManager.Go(points);
         while (true)
         {
             if ((isHoldingWGFlag && !ObjectManager.Me.IsHoldingWGFlag) ||
@@ -206,14 +199,12 @@ public class CaptureTheFlagWG
     public void InternalGoToGameObject(int entry, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                                        bool isSomeoneHoldingThemFlag = false)
     {
-        WoWGameObject obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
+        var obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
 
         if (obj.GetBaseAddress <= 0) return;
         MovementManager.StopMove();
-        if (Bot.MovementLoop.PathLoop != null)
-            Bot.MovementLoop.PathLoop.Clear();
-        List<Point> points = PathFinder.FindPath(obj.Position);
-        Bot.MovementLoop.PathLoop = points;
+        var points = PathFinder.FindPath(obj.Position);
+        MovementManager.Go(points);
         Logging.Write("Going to Object: " + obj.Name);
         Thread.Sleep(300);
         while (true)

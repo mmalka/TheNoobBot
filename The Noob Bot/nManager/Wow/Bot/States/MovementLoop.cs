@@ -13,6 +13,7 @@ namespace nManager.Wow.Bot.States
         private readonly Timer _outOfBattlegroundAntiAfk = new Timer(1000*60);
         private int _battleground;
         private float _loopPathId = -1f;
+        public bool IsProfileCSharp;
 
         public override string DisplayName
         {
@@ -47,7 +48,7 @@ namespace nManager.Wow.Bot.States
                         Battleground.BattlegroundIsStarted())
                     {
                         _battleground = 0;
-                        return true;
+                        return !IsProfileCSharp;
                     }
                     if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
                         !Battleground.BattlegroundIsStarted() && _battleground == 0)

@@ -76,6 +76,7 @@ namespace Battlegrounder.Bot
                         }
                         if (_csharpProfile)
                         {
+                            Bot.MovementLoop.IsProfileCSharp = false;
                             _csharpProfile = false;
                             StopChecking = false;
                         }
@@ -131,6 +132,7 @@ namespace Battlegrounder.Bot
                                             if (_csharpProfile)
                                                 Logging.Write("ProfileType C# Profile detected. Starting script.");
                                             StopChecking = _csharpProfile;
+                                            Bot.MovementLoop.IsProfileCSharp = StopChecking;
                                             return false; // Once the script is started, let him do the rest.
                                     }
                                 }
