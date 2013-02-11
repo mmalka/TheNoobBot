@@ -204,7 +204,8 @@ public class CaptureTheFlagWG
         }
         List<Point> points = PathFinder.FindPath(point);
         MovementManager.Go(points);
-        while (MovementManager.InMovement || (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3))
+        while (MovementManager.InMovement ||
+               (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3))
         {
             if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
                 !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
@@ -270,7 +271,7 @@ public class CaptureTheFlagWG
         Main._ignoreFight = true;
         List<Point> points = PathFinder.FindPath(obj.Position);
         MovementManager.Go(points);
-        Logging.Write("Going to Object: " + obj.Name +"@" + obj.Position + " From: " + ObjectManager.Me.Position);
+        Logging.Write("Going to Object: " + obj.Name + "@" + obj.Position + " From: " + ObjectManager.Me.Position);
         Thread.Sleep(300);
         while (MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 50)
         {
