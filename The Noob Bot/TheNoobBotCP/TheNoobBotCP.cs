@@ -204,7 +204,7 @@ public class CaptureTheFlagWG
         }
         List<Point> points = PathFinder.FindPath(point);
         MovementManager.Go(points);
-        while (MovementManager.InMovement)
+        while (MovementManager.InMovement || (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3))
         {
             if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
                 !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
@@ -250,7 +250,7 @@ public class CaptureTheFlagWG
             return;
         WoWGameObject obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
         if (obj.GetBaseAddress <= 0) return;
-        if (obj.GetDistance > 20)
+        if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 50)
             return;
         if (MovementManager.CurrentPath == null || MovementManager.CurrentPath.Count <= 0 ||
             (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position) > 1))
@@ -270,9 +270,9 @@ public class CaptureTheFlagWG
         Main._ignoreFight = true;
         List<Point> points = PathFinder.FindPath(obj.Position);
         MovementManager.Go(points);
-        Logging.Write("Going to Object: " + obj.Name);
+        Logging.Write("Going to Object: " + obj.Name +"@" + obj.Position + " From: " + ObjectManager.Me.Position);
         Thread.Sleep(300);
-        while (MovementManager.InMovement && obj.GetDistance < 20)
+        while (MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 50)
         {
             if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
                 !ObjectManager.Me.IsValid || !Products.IsStarted ||
@@ -285,18 +285,14 @@ public class CaptureTheFlagWG
             {
                 return;
             }
-            if (obj.GetDistance < 3)
+            if (ObjectManager.Me.Position.DistanceTo(obj.Position) < 3)
             {
-                Thread.Sleep(500);
-                if (MovementManager.InMovement)
-                    MovementManager.StopMove();
-                Thread.Sleep(500);
-                Interact.InteractGameObject(obj.GetBaseAddress);
-                Thread.Sleep(Usefuls.Latency + 500);
-                while (ObjectManager.Me.IsCast)
+                while (MovementManager.InMovement)
                 {
                     Thread.Sleep(500);
                 }
+                Interact.InteractGameObject(obj.GetBaseAddress);
+                Thread.Sleep(Usefuls.Latency + 500);
             }
             if ((isHoldingWGFlag && !ObjectManager.Me.IsHoldingWGFlag) ||
                 (!isHoldingWGFlag && ObjectManager.Me.IsHoldingWGFlag))
