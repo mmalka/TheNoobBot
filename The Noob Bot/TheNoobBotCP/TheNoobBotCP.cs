@@ -264,7 +264,7 @@ public class CaptureTheFlagWG
         Logging.Write("Going to Object: " + obj.Name + "@" + obj.Position + " From: " + ObjectManager.Me.Position);
         Thread.Sleep(300);
         while ((MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 50) ||
-               (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 1))
+               (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 1.5))
         {
             if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
                                               isSomeoneHoldingThemFlag))
