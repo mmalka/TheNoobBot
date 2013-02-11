@@ -85,7 +85,7 @@ public class CaptureTheFlagWG
 
     public CaptureTheFlagWG()
     {
-        _allianceFlagPosition = new Point((float) 1539.203, (float) 1481.274, (float) 352.4759);
+        _allianceFlagPosition = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
         _allianceFlagId = 179830;
         _allianceFlagFloorId = 179785;
         _hordeFlagPosition = new Point((float) 918.0743, (float) 1433.238, (float) 346.3038);
@@ -116,6 +116,7 @@ public class CaptureTheFlagWG
                         // 4 possibilities :
                         // Go to my base and wait until I can capture it.
                         Logging.Write("Go to my base and wait until I can capture it.");
+                        Main._ignoreFight = true;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _hordeFlagPosition
                                          : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -129,6 +130,7 @@ public class CaptureTheFlagWG
                         // 1 possibility :
                         // Go to the ennemy base and take it.
                         Logging.Write("Go to the ennemy base and take it.");
+                        Main._ignoreFight = true;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
                                          : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -139,6 +141,7 @@ public class CaptureTheFlagWG
                     {
                         // 4 possibilities :
                         Logging.Write("Go to the ennemy base and wait until I can take it.");
+                        Main._ignoreFight = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -153,6 +156,7 @@ public class CaptureTheFlagWG
                     {
                         // 3 possibilities :
                         Logging.Write("Go to the ennemy base and wait until I can take it.");
+                        Main._ignoreFight = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -186,24 +190,26 @@ public class CaptureTheFlagWG
             !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
             !Battleground.BattlegroundIsStarted())
             return;
-        if (!(point.DistanceTo(ObjectManager.Me.Position) > 5)) return;
-        if (MovementManager.CurrentPath == null || MovementManager.CurrentPath.Count <= 0 ||
-            (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) > 1))
+        if (point.DistanceTo(ObjectManager.Me.Position) > 0)
         {
-            MovementManager.StopMove();
-            if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
-                Logging.Write(
-                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) <= 0");
-            else if (MovementManager.CurrentPath != null)
-                Logging.Write(
-                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
-                    MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point));
-            else
-                Logging.Write(
-                    "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = null");
+            if (MovementManager.CurrentPath == null || MovementManager.CurrentPath.Count <= 0 ||
+                (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) > 1))
+            {
+                MovementManager.StopMove();
+                if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
+                    Logging.Write(
+                        "InternalGoTo : StopMove : MovementManager.CurrentPath.Count <= 0");
+                else if (MovementManager.CurrentPath != null)
+                    Logging.Write(
+                        "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
+                        MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point));
+                else
+                    Logging.Write(
+                        "InternalGoTo : StopMove : MovementManager.CurrentPath = null");
+            }
+            List<Point> points = PathFinder.FindPath(point);
+            MovementManager.Go(points);
         }
-        List<Point> points = PathFinder.FindPath(point);
-        MovementManager.Go(points);
         while (MovementManager.InMovement ||
                (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3))
         {
@@ -259,14 +265,14 @@ public class CaptureTheFlagWG
             MovementManager.StopMove();
             if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
                 Logging.Write(
-                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) <= 0");
+                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath.Count <= 0");
             else if (MovementManager.CurrentPath != null)
                 Logging.Write(
                     "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
                     MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position));
             else
                 Logging.Write(
-                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = null");
+                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath = null");
         }
         Main._ignoreFight = true;
         List<Point> points = PathFinder.FindPath(obj.Position);
