@@ -152,7 +152,7 @@ public class CaptureTheFlagWG
                         // Protect the ally Flag holder.
                         // Search & Destroy the Hostile Flag holder.
                     }
-                    else if (!ObjectManager.IsSomeoneHoldingWGFlag())
+                    else
                     {
                         // 3 possibilities :
                         Logging.Write("Go to the ennemy base and wait until I can take it.");
@@ -165,10 +165,6 @@ public class CaptureTheFlagWG
                                      "Take");
                         // Go to the ennemy base and wait in a protected area until I can take it.
                         // Protect the ally Flag holder.
-                    }
-                    else
-                    {
-                        Logging.Write("NOTHING TO DO !");
                     }
                 }
                 else
@@ -185,10 +181,7 @@ public class CaptureTheFlagWG
     public void InternalGoTo(Point point, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                              bool isSomeoneHoldingThemFlag, string goal = "Capture")
     {
-        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
-            !ObjectManager.Me.IsValid || !Products.IsStarted ||
-            !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
-            !Battleground.BattlegroundIsStarted())
+        if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
             return;
         if (point.DistanceTo(ObjectManager.Me.Position) > 0)
         {
@@ -210,22 +203,10 @@ public class CaptureTheFlagWG
             List<Point> points = PathFinder.FindPath(point);
             MovementManager.Go(points);
         }
-        while (MovementManager.InMovement ||
-               (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3))
+        while ((MovementManager.InMovement ||
+                (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3)))
         {
-            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
-                !ObjectManager.Me.IsValid || ObjectManager.Me.InCombat || !Products.IsStarted ||
-                !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
-                !Battleground.BattlegroundIsStarted())
-                return;
-            if ((isHoldingWGFlag && !ObjectManager.Me.IsHoldingWGFlag) ||
-                (!isHoldingWGFlag && ObjectManager.Me.IsHoldingWGFlag))
-                return;
-            if (isSomeoneHoldingMyFlag && !ObjectManager.IsSomeoneHoldingWGFlag() ||
-                !isSomeoneHoldingMyFlag && ObjectManager.IsSomeoneHoldingWGFlag())
-                return;
-            if (isSomeoneHoldingThemFlag && !ObjectManager.IsSomeoneHoldingWGFlag(false) ||
-                !isSomeoneHoldingThemFlag && ObjectManager.IsSomeoneHoldingWGFlag(false))
+            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
                 return;
             switch (goal)
             {
@@ -248,12 +229,9 @@ public class CaptureTheFlagWG
     }
 
     public void InternalGoToGameObject(int entry, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
-                                       bool isSomeoneHoldingThemFlag = false)
+                                       bool isSomeoneHoldingThemFlag)
     {
-        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
-            !ObjectManager.Me.IsValid || !Products.IsStarted ||
-            !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
-            !Battleground.BattlegroundIsStarted())
+        if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
             return;
         WoWGameObject obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
         if (obj.GetBaseAddress <= 0) return;
@@ -273,6 +251,8 @@ public class CaptureTheFlagWG
             else
                 Logging.Write(
                     "InternalGoToGameObject : StopMove : MovementManager.CurrentPath = null");
+            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                return;
         }
         Main._ignoreFight = true;
         List<Point> points = PathFinder.FindPath(obj.Position);
@@ -281,36 +261,75 @@ public class CaptureTheFlagWG
         Thread.Sleep(300);
         while (MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 50)
         {
-            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
-                !ObjectManager.Me.IsValid || !Products.IsStarted ||
-                !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
-                !Battleground.BattlegroundIsStarted())
+            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
                 return;
             Point newPosition =
                 ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry)).Position;
             if (newPosition != obj.Position)
             {
+                Logging.Write("Object: " + obj.Name + "@" + obj.Position + " has changed position to : " + newPosition);
                 return;
             }
             if (ObjectManager.Me.Position.DistanceTo(obj.Position) < 3)
             {
-                while (MovementManager.InMovement)
+                while (MovementManager.InMovement && !ObjectManager.Me.IsDeadMe)
                 {
+                    if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                        return;
                     Thread.Sleep(500);
                 }
-                Interact.InteractGameObject(obj.GetBaseAddress);
-                Thread.Sleep(Usefuls.Latency + 500);
+                while (!CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                {
+                    Interact.InteractGameObject(obj.GetBaseAddress);
+                    Thread.Sleep(Usefuls.Latency + 500);
+                }
             }
-            if ((isHoldingWGFlag && !ObjectManager.Me.IsHoldingWGFlag) ||
-                (!isHoldingWGFlag && ObjectManager.Me.IsHoldingWGFlag))
-                return;
-            if (isSomeoneHoldingMyFlag && !ObjectManager.IsSomeoneHoldingWGFlag() ||
-                !isSomeoneHoldingMyFlag && ObjectManager.IsSomeoneHoldingWGFlag())
-                return;
-            if (isSomeoneHoldingThemFlag && !ObjectManager.IsSomeoneHoldingWGFlag(false) ||
-                !isSomeoneHoldingThemFlag && ObjectManager.IsSomeoneHoldingWGFlag(false))
-                return;
             Thread.Sleep(100);
         }
+    }
+
+    private static bool CurrentInformationsHasChanged(bool ignoreFight, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
+                                                      bool isSomeoneHoldingThemFlag)
+    {
+        if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
+            !ObjectManager.Me.IsValid || (ObjectManager.Me.InCombat && !ignoreFight) || !Products.IsStarted ||
+            !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
+            !Battleground.BattlegroundIsStarted())
+            return true;
+        if (isHoldingWGFlag && !isSomeoneHoldingMyFlag)
+        {
+            if (!ObjectManager.Me.IsHoldingWGFlag || ObjectManager.IsSomeoneHoldingWGFlag())
+                return true;
+        }
+        else
+        {
+            if (isHoldingWGFlag)
+            {
+                if (!ObjectManager.Me.IsHoldingWGFlag)
+                    return true;
+            }
+            else
+            {
+                if (!isSomeoneHoldingThemFlag)
+                {
+                    if (ObjectManager.IsSomeoneHoldingWGFlag(false))
+                        return true;
+                }
+                else
+                {
+                    if (isSomeoneHoldingMyFlag)
+                    {
+                        if (!ObjectManager.IsSomeoneHoldingWGFlag())
+                            return true;
+                    }
+                    else
+                    {
+                        if (ObjectManager.IsSomeoneHoldingWGFlag(false))
+                            return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 }
