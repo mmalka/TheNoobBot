@@ -12,6 +12,7 @@ using nManager.Products;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using Math = System.Math;
 
 public class Main : ICustomProfile
 {
@@ -19,13 +20,13 @@ public class Main : ICustomProfile
 
     #region ICustomProfile Members
 
-    internal static bool _ignoreFight;
+    internal static bool InternalIgnoreFight;
     public string BattlegroundId;
 
     public bool IgnoreFight
     {
-        get { return _ignoreFight; }
-        set { _ignoreFight = value; }
+        get { return InternalIgnoreFight; }
+        set { InternalIgnoreFight = value; }
     }
 
     public void Initialize()
@@ -34,13 +35,14 @@ public class Main : ICustomProfile
         {
             if (!Loop)
                 Loop = true;
-            _ignoreFight = false;
+            InternalIgnoreFight = false;
             Logging.WriteFight("Loading TheNoobBot example Custom Profile.");
             BattlegroundId = Battleground.GetCurrentBattleground().ToString();
             if (BattlegroundId != null)
                 if (BattlegroundId == "WarsongGulch")
                 {
-                    new CaptureTheFlagWG();
+                    var ctf = new CaptureTheFlagWG();
+                    Logging.WriteFight("CaptureTheFlagWG stopped, broken ?");
                 }
         }
         catch (Exception exception)
@@ -58,12 +60,12 @@ public class Main : ICustomProfile
 
     public void ShowConfiguration()
     {
-        MessageBox.Show("There is no settings available");
+        MessageBox.Show(@"There is no settings available");
     }
 
     public void ResetConfiguration()
     {
-        MessageBox.Show("There is no settings available");
+        MessageBox.Show(@"There is no settings available");
     }
 
     #endregion
@@ -95,9 +97,9 @@ public class CaptureTheFlagWG
         {
             try
             {
-                Main._ignoreFight = false;
+                Main.InternalIgnoreFight = false;
                 if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting && !ObjectManager.Me.IsDeadMe &&
-                    ObjectManager.Me.IsValid && !ObjectManager.Me.InCombat && Products.IsStarted &&
+                    ObjectManager.Me.IsValid && Products.IsStarted &&
                     Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
                     Battleground.BattlegroundIsStarted())
                 {
@@ -106,6 +108,7 @@ public class CaptureTheFlagWG
                         // 1 possibility :
                         // Go to my base and capture it.
                         Logging.Write("Go to my base and capture it.");
+                        Main.InternalIgnoreFight = true;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _hordeFlagPosition
                                          : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -116,7 +119,7 @@ public class CaptureTheFlagWG
                         // 4 possibilities :
                         // Go to my base and wait until I can capture it.
                         Logging.Write("Go to my base and wait until I can capture it.");
-                        Main._ignoreFight = true;
+                        Main.InternalIgnoreFight = true;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _hordeFlagPosition
                                          : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -130,7 +133,7 @@ public class CaptureTheFlagWG
                         // 1 possibility :
                         // Go to the ennemy base and take it.
                         Logging.Write("Go to the ennemy base and take it.");
-                        Main._ignoreFight = true;
+                        Main.InternalIgnoreFight = true;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
                                          : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
@@ -140,8 +143,8 @@ public class CaptureTheFlagWG
                     else if (ObjectManager.IsSomeoneHoldingWGFlag())
                     {
                         // 4 possibilities :
-                        Logging.Write("Go to the ennemy base and wait until I can take it.");
-                        Main._ignoreFight = false;
+                        Logging.Write("Go to the ennemy base and wait until I can take it. #1");
+                        Main.InternalIgnoreFight = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -155,8 +158,8 @@ public class CaptureTheFlagWG
                     else
                     {
                         // 3 possibilities :
-                        Logging.Write("Go to the ennemy base and wait until I can take it.");
-                        Main._ignoreFight = false;
+                        Logging.Write("Go to the ennemy base and wait until I can take it. #2");
+                        Main.InternalIgnoreFight = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                          ? _allianceFlagPosition
@@ -181,120 +184,119 @@ public class CaptureTheFlagWG
     public void InternalGoTo(Point point, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                              bool isSomeoneHoldingThemFlag, string goal = "Capture")
     {
-        if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
+        Point initialPos = ObjectManager.Me.Position;
+        if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
                                           isSomeoneHoldingThemFlag))
-            return;
-        if (point.DistanceTo(ObjectManager.Me.Position) > 0)
+            goto End;
+        if (point.DistanceTo(ObjectManager.Me.Position) > 1.5)
         {
-            if (MovementManager.CurrentPath == null || MovementManager.CurrentPath.Count <= 0 ||
-                (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) > 1))
-            {
-                MovementManager.StopMove();
-                if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
-                    Logging.Write(
-                        "InternalGoTo : StopMove : MovementManager.CurrentPath.Count <= 0");
-                else if (MovementManager.CurrentPath != null)
-                    Logging.Write(
-                        "InternalGoTo : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
-                        MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point));
-                else
-                    Logging.Write(
-                        "InternalGoTo : StopMove : MovementManager.CurrentPath = null");
-            }
-            List<Point> points = PathFinder.FindPath(point);
+            if (!CheckPath(point, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                goto End;
+            List<Point> points = PathFinder.FindPathUnstuck(point);
             MovementManager.Go(points);
         }
-        while ((MovementManager.InMovement ||
-                (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) < 3)))
+        while (MovementManager.InMovement ||
+               !MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(point) <= 1.5)
         {
-            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
-                                              isSomeoneHoldingThemFlag))
-                return;
+            if (!CheckPath(point, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                goto End;
             switch (goal)
             {
                 case "Capture":
-                    Main._ignoreFight = ObjectManager.Me.IsHoldingWGFlag;
+                    Main.InternalIgnoreFight = ObjectManager.Me.IsHoldingWGFlag;
                     break;
                 case "Take":
+                    if (ObjectManager.Me.Position.DistanceTo(point) <= 1.5)
+                        InternalGoToGameObject(
+                            ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _allianceFlagId : _hordeFlagId,
+                            isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag);
                     InternalGoToGameObject(
                         ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                             ? _allianceFlagFloorId
                             : _hordeFlagFloorId,
                         isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag);
-                    InternalGoToGameObject(
-                        ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? _allianceFlagId : _hordeFlagId,
-                        isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag);
                     break;
             }
             Thread.Sleep(100);
         }
+        End:
+        Logging.Write("InternalGoTo ended after traveling " + ObjectManager.Me.Position.DistanceTo(initialPos) +
+                      " yards");
+        Logging.Write("Initial Position: " + initialPos);
+        Logging.Write("Current Position: " + ObjectManager.Me.Position);
+        Logging.Write("Destination: " + point);
+        Logging.Write("Last distance to destination: " + ObjectManager.Me.Position.DistanceTo(point));
     }
 
     public void InternalGoToGameObject(int entry, bool isHoldingWGFlag, bool isSomeoneHoldingMyFlag,
                                        bool isSomeoneHoldingThemFlag)
     {
-        if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
+        Point initialPos = ObjectManager.Me.Position;
+        var obj = new WoWGameObject(0);
+        if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
                                           isSomeoneHoldingThemFlag))
-            return;
-        WoWGameObject obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
-        if (obj.GetBaseAddress <= 0) return;
-        if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 50)
-            return;
-        if (MovementManager.CurrentPath == null || MovementManager.CurrentPath.Count <= 0 ||
-            (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position) > 1))
+            goto End;
+        obj = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry));
+        if (obj.GetBaseAddress <= 0) goto End;
+        if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 100)
         {
-            MovementManager.StopMove();
-            if (MovementManager.CurrentPath != null && MovementManager.CurrentPath.Count <= 0)
-                Logging.Write(
-                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath.Count <= 0");
-            else if (MovementManager.CurrentPath != null)
-                Logging.Write(
-                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
-                    MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(obj.Position));
-            else
-                Logging.Write(
-                    "InternalGoToGameObject : StopMove : MovementManager.CurrentPath = null");
-            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
-                                              isSomeoneHoldingThemFlag))
-                return;
+            Logging.Write("Found object " + obj.Name + ", but it's out of our radius.");
+            goto End;
         }
-        Main._ignoreFight = true;
-        List<Point> points = PathFinder.FindPath(obj.Position);
-        MovementManager.Go(points);
-        Logging.Write("Going to Object: " + obj.Name + "@" + obj.Position + " From: " + ObjectManager.Me.Position);
-        Thread.Sleep(300);
-        while ((MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 50) ||
+        if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 1.5)
+        {
+            if (!CheckPath(obj.Position, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                goto End;
+            Main.InternalIgnoreFight = ObjectManager.Me.Position.DistanceTo(obj.Position) < 15;
+            List<Point> points = PathFinder.FindPathUnstuck(obj.Position);
+            MovementManager.Go(points);
+            Logging.Write("Found object " + obj.Name + " at coordonate: " + obj.Position.X + ", " + obj.Position.Y +
+                          ", " + obj.Position.Z + "; Currently at: " + ObjectManager.Me.Position.X + ", " +
+                          ObjectManager.Me.Position.Y + ", " + ObjectManager.Me.Position.Z);
+        }
+        while ((MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 100) ||
                (!MovementManager.InMovement && ObjectManager.Me.Position.DistanceTo(obj.Position) <= 1.5))
         {
-            if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
-                                              isSomeoneHoldingThemFlag))
-                return;
+            if (!CheckPath(obj.Position, isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag))
+                goto End;
             Point newPosition =
                 ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(entry)).Position;
-            if (newPosition != obj.Position)
+            if (Math.Abs(newPosition.X - obj.Position.X) > 0 || Math.Abs(newPosition.Y - obj.Position.Y) > 0 ||
+                Math.Abs(newPosition.Z - obj.Position.Z) > 0)
             {
-                Logging.Write("Object: " + obj.Name + "@" + obj.Position + " has changed position to : " + newPosition);
-                return;
+                Logging.Write("Object " + obj.Name + " has changed position To: " + newPosition.X + ", " +
+                              newPosition.Y + ", " + newPosition.Z + "; From: " + obj.Position.X + ", " +
+                              obj.Position.Y + ", " + obj.Position.Z);
+                goto End;
             }
-            if (ObjectManager.Me.Position.DistanceTo(obj.Position) < 3)
+            if (ObjectManager.Me.Position.DistanceTo(obj.Position) <= 1.5)
             {
-                while (MovementManager.InMovement)
-                {
-                    if (CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
-                                                      isSomeoneHoldingThemFlag))
-                        return;
-                    Thread.Sleep(500);
-                }
-                while (
-                    !CurrentInformationsHasChanged(Main._ignoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
-                                                   isSomeoneHoldingThemFlag))
+                while (true)
                 {
                     Interact.InteractGameObject(obj.GetBaseAddress);
                     Thread.Sleep(Usefuls.Latency + 500);
+                    if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
+                                                      isSomeoneHoldingThemFlag))
+                        return;
+                    Interact.InteractGameObject(obj.GetBaseAddress);
+                    Thread.Sleep(Usefuls.Latency + 1000);
                 }
             }
             Thread.Sleep(100);
         }
+        End:
+        Logging.Write("InternalGoToGameObject ended after traveling " + initialPos.DistanceTo(ObjectManager.Me.Position) +
+                      " yards");
+        Logging.Write("Initial Position: " + initialPos);
+        Logging.Write("Current Position: " + ObjectManager.Me.Position);
+        Logging.Write("Searching for object entry: " + entry);
+        if (obj.IsValid)
+        {
+            Logging.Write("Object " + obj.Name + " found.");
+            Logging.Write("Position: " + obj.Position);
+            Logging.Write("Last distance to target: " + ObjectManager.Me.Position.DistanceTo(obj.Position));
+        }
+        else Logging.Write("Object not found.");
     }
 
     private static bool CurrentInformationsHasChanged(bool ignoreFight, bool isHoldingWGFlag,
@@ -302,44 +304,97 @@ public class CaptureTheFlagWG
                                                       bool isSomeoneHoldingThemFlag)
     {
         if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || ObjectManager.Me.IsDeadMe ||
-            !ObjectManager.Me.IsValid || (ObjectManager.Me.InCombat && !ignoreFight) || !Products.IsStarted ||
+            !ObjectManager.Me.IsValid || !Products.IsStarted ||
             !Battleground.IsInBattleground() || Battleground.IsFinishBattleground() ||
             !Battleground.BattlegroundIsStarted())
+        {
+            Logging.Write("Current Informations Has Changed. #1");
             return true;
+        }
         if (isHoldingWGFlag && !isSomeoneHoldingMyFlag)
         {
             if (!ObjectManager.Me.IsHoldingWGFlag || ObjectManager.IsSomeoneHoldingWGFlag())
+            {
+                Logging.Write("Current Informations Has Changed. #2");
                 return true;
+            }
         }
         else
         {
             if (isHoldingWGFlag)
             {
                 if (!ObjectManager.Me.IsHoldingWGFlag)
+                {
+                    Logging.Write("Current Informations Has Changed. #3");
                     return true;
+                }
             }
             else
             {
                 if (!isSomeoneHoldingThemFlag)
                 {
                     if (ObjectManager.IsSomeoneHoldingWGFlag(false))
+                    {
+                        Logging.Write("Current Informations Has Changed. #4");
                         return true;
+                    }
                 }
                 else
                 {
                     if (isSomeoneHoldingMyFlag)
                     {
                         if (!ObjectManager.IsSomeoneHoldingWGFlag())
+                        {
+                            Logging.Write("Current Informations Has Changed. #5");
                             return true;
+                        }
                     }
                     else
                     {
-                        if (ObjectManager.IsSomeoneHoldingWGFlag(false))
+                        if (!ObjectManager.IsSomeoneHoldingWGFlag(false))
+                        {
+                            Logging.Write("Current Informations Has Changed. #6");
                             return true;
+                        }
                     }
                 }
             }
         }
+        if (ObjectManager.Me.InCombat && !ignoreFight)
+        {
+            Logging.Write("Current Informations Has Changed. #7");
+            return true;
+        }
         return false;
+    }
+
+    private static bool CheckPath(Point destination, bool isHoldingWGFlag,
+                                  bool isSomeoneHoldingMyFlag,
+                                  bool isSomeoneHoldingThemFlag)
+    {
+        if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
+                                          isSomeoneHoldingThemFlag))
+            return false;
+        if (MovementManager.CurrentPath == null)
+        {
+            MovementManager.StopMove();
+            Logging.Write("InternalGoTo : MovementManager.CurrentPath = null; InMovement = " +
+                          MovementManager.InMovement);
+        }
+        else if (MovementManager.CurrentPath.Count <= 0)
+        {
+            MovementManager.StopMove();
+            Logging.Write("InternalGoTo : MovementManager.CurrentPath.Count <= 0; InMovement = " +
+                          MovementManager.InMovement);
+        }
+        else if (MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(destination) > 1.5)
+        {
+            MovementManager.StopMove();
+            Logging.Write(
+                "InternalGoTo : MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(point) = " +
+                MovementManager.CurrentPath[MovementManager.CurrentPath.Count - 1].DistanceTo(destination) +
+                "; InMovement = " + MovementManager.InMovement);
+        }
+        return true;
     }
 }

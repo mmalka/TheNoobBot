@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers.PathFinderClass;
@@ -220,6 +221,42 @@ namespace nManager.Wow.Helpers
             }
 
             return 0;
+        }
+
+        public static List<Point> FindPathUnstuck(Point to)
+        {
+            try
+            {
+                bool result;
+                List<Point> points = FindPath(to, out result);
+                if (!result && points.Count <= 2)
+                {
+                    Logging.WriteNavigator("FindPathUnstuck : FindPath failed. From: " +
+                                           ObjectManager.ObjectManager.Me.Position + " To: " + to);
+                    Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
+                                     Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                    int trys = 0;
+                    while (!result && trys <= 2)
+                    {
+                        Thread.Sleep(700);
+                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
+                                         Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        Thread.Sleep(200);
+                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
+                                       Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        points = FindPath(to, out result);
+                        trys++;
+                    }
+                    Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
+                                   Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                }
+                return points;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("FindPathUnstuck(Point to): " + exception);
+            }
+            return new List<Point>();
         }
     }
 }

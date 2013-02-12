@@ -54,51 +54,54 @@ namespace Battlegrounder.Bot
                     !Products.IsStarted)
                     return false;
 
-                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
+                if (_afkSomewhere && _afkSomewhereTimer.IsReady ||
+                    _currentBattlegroundId != null &&
+                    _currentBattlegroundId != Battleground.GetCurrentBattleground().ToString()
+                    || ForceChecking)
                 {
-                    if ((_afkSomewhere && _afkSomewhereTimer.IsReady) ||
-                        (_currentBattlegroundId != null &&
-                         _currentBattlegroundId != Battleground.GetCurrentBattleground().ToString())
-                        || ForceChecking)
+                    _currentBattlegroundId = null;
+                    _currentProfileName = "";
+                    ForceChecking = false;
+                    if (_xmlProfile)
                     {
-                        _currentBattlegroundId = null;
-                        _currentProfileName = "";
-                        ForceChecking = false;
-                        if (_xmlProfile)
-                        {
-                            _currentProfile.BattlegrounderZones.Clear();
-                            _xmlProfile = false;
-                        }
-                        if (_afkSomewhere)
-                        {
-                            _afkSomewhere = false;
-                            _afkSomewhereTimer.Reset();
-                        }
-                        if (_csharpProfile)
-                        {
-                            if (CustomProfile.IsAliveCustomProfile)
-                            {
-                                CustomProfile.GetSetIgnoreFight = false;
-                                CustomProfile.DisposeCustomProfile();
-                            }
-                            Bot.MovementLoop.IsProfileCSharp = false;
-                            _csharpProfile = false;
-                            StopChecking = false;
-                        }
+                        _currentProfile.BattlegrounderZones.Clear();
+                        _xmlProfile = false;
                     }
-                    if (!_afkSomewhere && !_csharpProfile && !_xmlProfile)
+                    if (_afkSomewhere)
                     {
-                        _currentBattlegroundId = null;
-                        if (_currentProfile.BattlegrounderZones != null)
-                            _currentProfile.BattlegrounderZones.Clear();
+                        _afkSomewhere = false;
+                        _afkSomewhereTimer.Reset();
+                    }
+                    if (_csharpProfile)
+                    {
+                        if (CustomProfile.IsAliveCustomProfile)
+                        {
+                            CustomProfile.GetSetIgnoreFight = false;
+                            CustomProfile.DisposeCustomProfile();
+                        }
+                        Bot.MovementLoop.IsProfileCSharp = false;
+                        _csharpProfile = false;
                         StopChecking = false;
                     }
+                }
+
+                if (!_afkSomewhere && !_csharpProfile && !_xmlProfile)
+                {
+                    _currentBattlegroundId = null;
+                    if (_currentProfile.BattlegrounderZones != null)
+                        _currentProfile.BattlegrounderZones.Clear();
+                    StopChecking = false;
+                }
+
+                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
+                {
                     if (_currentBattlegroundId == null &&
                         (_currentProfile.BattlegrounderZones == null || _currentProfile.BattlegrounderZones.Count <= 0) &&
                         !StopChecking)
                     {
                         _xmlProfile = false;
                         _afkSomewhere = false;
+                        _csharpProfile = false;
                         _currentBattlegroundId = Battleground.GetCurrentBattleground().ToString();
                         foreach (
                             Profiletype.Battleground battleground in
@@ -137,8 +140,7 @@ namespace Battlegrounder.Bot
                                             if (_csharpProfile)
                                                 Logging.Write("ProfileType C# Profile detected. Starting script.");
                                             StopChecking = _csharpProfile;
-                                            Bot.MovementLoop.IsProfileCSharp = StopChecking;
-                                            return false; // Once the script is started, let him do the rest.
+                                            return false;
                                     }
                                 }
                             }
@@ -173,7 +175,7 @@ namespace Battlegrounder.Bot
                                             if (_csharpProfile)
                                                 Logging.Write("ProfileType C# Profile detected. Starting script.");
                                             StopChecking = _csharpProfile;
-                                            return false; // Once the script is started, let him do the rest.
+                                            return false;
                                     }
                                 }
                             }
@@ -202,6 +204,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -230,6 +239,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -260,6 +276,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -288,6 +311,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -317,6 +347,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -345,6 +382,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -373,6 +417,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -402,6 +453,13 @@ namespace Battlegrounder.Bot
                                                 AfkSomewhere.AfkSomewhereNow(battleground.BattlegroundId);
                                             _afkSomewhere = _afkSomewhereNextPosition != null;
                                             break;
+                                        case "CSharpProfile":
+                                            _csharpProfile =
+                                                CSharpProfile.CSharpProfileNow(profileType.ProfileTypeScriptName);
+                                            if (_csharpProfile)
+                                                Logging.Write("ProfileType C# Profile detected. Starting script.");
+                                            StopChecking = _csharpProfile;
+                                            return false;
                                     }
                                 }
                             }
@@ -429,7 +487,13 @@ namespace Battlegrounder.Bot
                                 return false;
                         }
                     }
+                    else
+                    {
+                        return false;
+                    }
                 }
+                else if (MovementManager.InMovement)
+                    MovementManager.StopMove();
                 return false;
             }
         }
