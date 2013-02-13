@@ -98,7 +98,7 @@ public class CaptureTheFlagWG
         _allianceFlagPosition = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
         _allianceFlagId = 179830;
         _allianceFlagFloorId = 179785;
-        _hordeFlagPosition = new Point((float) 918.0743, (float) 1433.238, (float) 346.3038);
+        _hordeFlagPosition = new Point((float) 916.5073, (float) 1433.826, (float) 346.3796);
         _hordeFlagId = _allianceFlagId + 1;
         _hordeFlagFloorId = _allianceFlagFloorId + 1;
         while (Main.Loop)
@@ -274,8 +274,7 @@ public class CaptureTheFlagWG
         if (obj.GetBaseAddress <= 0) return;
         if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 100)
         {
-            Logging.Write("Found object " + obj.Name + ", but it's out of our radius. Distance: " +
-                          ObjectManager.Me.Position.DistanceTo(obj.Position) + " yards.");
+            //Logging.Write("Found object " + obj.Name + ", but it's out of our radius. Distance: " + ObjectManager.Me.Position.DistanceTo(obj.Position) + " yards.");
             return;
         }
         if (ObjectManager.Me.Position.DistanceTo(obj.Position) > 1.5)
@@ -372,7 +371,7 @@ public class CaptureTheFlagWG
         }
         else if (!isSomeoneHoldingThemFlag)
         {
-            if (ObjectManager.IsSomeoneHoldingWGFlag(false))
+            if (ObjectManager.Me.IsHoldingWGFlag || ObjectManager.IsSomeoneHoldingWGFlag(false))
             {
                 Logging.Write("Current Informations Has Changed. #4");
                 return true;
