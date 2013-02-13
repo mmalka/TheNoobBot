@@ -18,6 +18,9 @@ namespace nManager
 
             _startTime = Others.TimesSec;
             _startXp = ObjectManager.Me.Experience;
+            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                _startHonor = -1;
+            else
             _startHonor = Usefuls.GetHonorPoint;
         }
 
@@ -62,6 +65,8 @@ namespace nManager
         {
             try
             {
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                    return 0;
                 if (Usefuls.GetHonorPoint != -1)
                 {
                     if (_startHonor == -1)

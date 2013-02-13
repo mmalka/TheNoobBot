@@ -196,7 +196,10 @@ namespace The_Noob_Bot
                         {
                             if (_levelStat == 0)
                             {
-                                _honnorStat = Usefuls.GetHonorPoint;
+                                if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting) 
+                                    _honnorStat = Usefuls.GetHonorPoint;
+                                else
+                                    _honnorStat = -1;
                                 _expStat = nManager.Wow.ObjectManager.ObjectManager.Me.Experience;
                                 _farmStat = (int) Statistics.Farms;
                                 _killStat = (int) Statistics.Kills;
@@ -214,6 +217,9 @@ namespace The_Noob_Bot
                                 reqStatistique += "level=0";
                             }
                             // Honnor
+                            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                                reqStatistique += "&honnor=0";
+                            else
                             if (Usefuls.GetHonorPoint != -1)
                             {
                                 if (_honnorStat == -1)

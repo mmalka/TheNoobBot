@@ -34,7 +34,14 @@ namespace nManager.Wow.Helpers
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomString + " = GetItemCount(" + itemId + ");");
-                    return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                    try
+                    {
+                        return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                    }
+                    catch
+                    {
+                        return 0;
+                    }
                 }
             }
             catch (Exception exception)
