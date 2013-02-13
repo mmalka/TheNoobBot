@@ -18,10 +18,9 @@ namespace nManager
 
             _startTime = Others.TimesSec;
             _startXp = ObjectManager.Me.Experience;
-            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
-                _startHonor = -1;
-            else
-            _startHonor = Usefuls.GetHonorPoint;
+            if (Usefuls.InGame && Usefuls.IsLoadingOrConnecting && Usefuls.GetHonorPoint >= 0)
+                _startHonor = Usefuls.GetHonorPoint;
+            else _startHonor = -1;
         }
 
         public static int ExperienceByHr()
@@ -65,29 +64,36 @@ namespace nManager
         {
             try
             {
-                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
-                    return 0;
-                if (Usefuls.GetHonorPoint != -1)
+                if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || Usefuls.GetHonorPoint < 0)
                 {
-                    if (_startHonor == -1)
+                    return 0;
+                }
+                if (Usefuls.GetHonorPoint >= 0)
+                {
+                    if (_startHonor >= 0)
+                    {
+                        if (Usefuls.GetHonorPoint < _startHonor)
+                        {
+                            _startHonor = Usefuls.GetHonorPoint;
+                            return 0;
+                        }
+                        if (Others.TimesSec <= _startTime)
+                            return 0;
+                        return (Usefuls.GetHonorPoint - _startHonor)*(60*60)/(Others.TimesSec - _startTime);
+                    }
+                    if (_startHonor < 0)
                     {
                         _startHonor = Usefuls.GetHonorPoint;
                         return 0;
                     }
-                    if (Usefuls.GetHonorPoint <= _startHonor)
-                        return 0;
-                    if (Others.TimesSec <= _startTime)
-                        return 0;
                 }
-                else
-                    return 0;
-                return (Usefuls.GetHonorPoint - _startHonor)*(60*60)/(Others.TimesSec - _startTime);
             }
             catch (Exception e)
             {
                 Logging.WriteError("HonorByHr(): " + e);
                 return 0;
             }
+            return 0;
         }
 
         public static int LootsByHr()
