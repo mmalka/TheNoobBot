@@ -21,13 +21,13 @@
                 }
             }
             else*/
-            if (nManager.Information.Version == "1.3.8")
+            if (nManager.Information.Version == "1.3.9")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xE28428;
             }
-            else if (nManager.Information.Version == "1.3.7")
+            else if (nManager.Information.Version == "1.3.8")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
