@@ -196,10 +196,7 @@ namespace The_Noob_Bot
                         {
                             if (_levelStat == 0)
                             {
-                                if (Usefuls.GetHonorPoint == 0)
-                                    _honnorStat = -1;
-                                else
-                                    _honnorStat = Usefuls.GetHonorPoint;
+                                _honnorStat = Usefuls.GetHonorPoint;
                                 _expStat = nManager.Wow.ObjectManager.ObjectManager.Me.Experience;
                                 _farmStat = (int) Statistics.Farms;
                                 _killStat = (int) Statistics.Kills;
@@ -217,20 +214,25 @@ namespace The_Noob_Bot
                                 reqStatistique += "level=0";
                             }
                             // Honnor
-                            if (_honnorStat == -1)
-                                _honnorStat = Usefuls.GetHonorPoint;
-                            if (Usefuls.GetHonorPoint - _honnorStat > 0)
+                            if (Usefuls.GetHonorPoint != -1)
                             {
-                                reqStatistique += "&honnor=" + (Usefuls.GetHonorPoint - _honnorStat);
-                                _honnorStat = Usefuls.GetHonorPoint;
+                                if (_honnorStat == -1)
+                                    _honnorStat = Usefuls.GetHonorPoint;
+                                if (Usefuls.GetHonorPoint - _honnorStat > 0)
+                                {
+                                    reqStatistique += "&honnor=" + (Usefuls.GetHonorPoint - _honnorStat);
+                                    _honnorStat = Usefuls.GetHonorPoint;
+                                }
+                                else
+                                {
+                                    if (Usefuls.GetHonorPoint < _honnorStat)
+                                        _honnorStat = Usefuls.GetHonorPoint;
+
+                                    reqStatistique += "&honnor=0";
+                                }
                             }
                             else
-                            {
-                                if (Usefuls.GetHonorPoint < _honnorStat)
-                                    _honnorStat = Usefuls.GetHonorPoint;
-
                                 reqStatistique += "&honnor=0";
-                            }
                             // Exp
                             if (nManager.Wow.ObjectManager.ObjectManager.Me.Experience - _expStat > 0)
                             {

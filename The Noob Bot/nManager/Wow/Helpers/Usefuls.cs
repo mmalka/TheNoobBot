@@ -270,8 +270,8 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static int _lastHonorPoint;
-        private static Helpful.Timer _timerHonorPoint = new Helpful.Timer(0);
+        private static int _lastHonorPoint = -1;
+        private static readonly Helpful.Timer TimerHonorPoint = new Helpful.Timer(1000);
 
         public static int GetHonorPoint
         {
@@ -281,10 +281,10 @@ namespace nManager.Wow.Helpers
                 {
                     try
                     {
-                        if (!_timerHonorPoint.IsReady)
+                        if (!TimerHonorPoint.IsReady)
                             return _lastHonorPoint;
 
-                        _timerHonorPoint = new Helpful.Timer(1000);
+                        TimerHonorPoint.Reset();
 
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, " + randomString + " = GetCurrencyInfo(392);");
@@ -292,7 +292,8 @@ namespace nManager.Wow.Helpers
                         int t = -1;
                         try
                         {
-                            t = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                            if (Lua.GetLocalizedText(randomString) != null)
+                                t = Convert.ToInt32(Lua.GetLocalizedText(randomString));
                         }
                         catch
                         {
