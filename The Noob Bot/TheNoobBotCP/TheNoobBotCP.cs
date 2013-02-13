@@ -191,13 +191,13 @@ public class CaptureTheFlagWG
                     }
                 }
                 else
-                    Thread.Sleep(500);
+                    Thread.Sleep(100);
             }
             catch (Exception e)
             {
                 Logging.WriteError("Custom Profile > TheNoobBotCP > CaptureTheFlagWG > Loop: " + e);
             }
-            Thread.Sleep(150);
+            Thread.Sleep(100);
         }
     }
 
@@ -209,7 +209,7 @@ public class CaptureTheFlagWG
             if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
                                               isSomeoneHoldingThemFlag, true))
                 return;
-            Thread.Sleep(1000);
+            Thread.Sleep(10);
         }
         Point initialPos = ObjectManager.Me.Position;
         if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
@@ -245,7 +245,7 @@ public class CaptureTheFlagWG
                         isHoldingWGFlag, isSomeoneHoldingMyFlag, isSomeoneHoldingThemFlag, inCombat);
                     break;
             }
-            Thread.Sleep(1500);
+            Thread.Sleep(100);
         }
         End:
         Logging.Write("InternalGoTo ended after traveling " + ObjectManager.Me.Position.DistanceTo(initialPos) +
@@ -264,7 +264,7 @@ public class CaptureTheFlagWG
             if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
                                               isSomeoneHoldingThemFlag, true))
                 return;
-            Thread.Sleep(1000);
+            Thread.Sleep(10);
         }
         Point initialPos = ObjectManager.Me.Position;
         if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag, isSomeoneHoldingMyFlag,
@@ -309,13 +309,13 @@ public class CaptureTheFlagWG
                 while (true)
                 {
                     Interact.InteractGameObject(obj.GetBaseAddress);
-                    Thread.Sleep(Usefuls.Latency + 500);
+                    Thread.Sleep(Usefuls.Latency + 100);
                     if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag,
                                                       isSomeoneHoldingMyFlag,
                                                       isSomeoneHoldingThemFlag, inCombat))
                         return;
                     Interact.InteractGameObject(obj.GetBaseAddress);
-                    Thread.Sleep(Usefuls.Latency + 1000);
+                    Thread.Sleep(Usefuls.Latency + 100);
                 }
             }
             Thread.Sleep(100);
