@@ -170,11 +170,11 @@
       <Id>Level</Id>
     </Translation>
     <Translation>
-      <Text>XP_T</Text>
+      <Text>XP/time/Text>
       <Id>XP_HR</Id>
     </Translation>
     <Translation>
-      <Text>Honor_T</Text>
+      <Text>Honor/time</Text>
       <Id>Honor_HR</Id>
     </Translation>
     <Translation>

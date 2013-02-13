@@ -360,7 +360,7 @@ namespace The_Noob_Bot
             this.honorHrL.Size = new System.Drawing.Size(124, 23);
             this.honorHrL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.honorHrL.TabIndex = 10;
-            this.honorHrL.Text = "Honor/HR: 0";
+            this.honorHrL.Text = "Honor/hr: 0";
             // 
             // lootL
             // 
@@ -424,7 +424,7 @@ namespace The_Noob_Bot
             this.xpHrL.Size = new System.Drawing.Size(124, 23);
             this.xpHrL.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.xpHrL.TabIndex = 6;
-            this.xpHrL.Text = "XP/HR: 0";
+            this.xpHrL.Text = "XP/hr: 0";
             // 
             // levelL
             // 

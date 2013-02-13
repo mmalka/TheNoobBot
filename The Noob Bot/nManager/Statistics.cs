@@ -18,7 +18,10 @@ namespace nManager
 
             _startTime = Others.TimesSec;
             _startXp = ObjectManager.Me.Experience;
-            _startHonor = Usefuls.GetHonorPoint;
+            if (Usefuls.GetHonorPoint == 0)
+                _startHonor = -1;
+            else
+                _startHonor = Usefuls.GetHonorPoint;
         }
 
         public static int ExperienceByHr()
@@ -31,7 +34,7 @@ namespace nManager
                     return 0;
 
                 UInt64 t = (UInt64) (ObjectManager.Me.Experience - _startXp)*(60*60);
-                int r = (int) (t/(UInt64) (Others.TimesSec - _startTime));
+                var r = (int) (t/(UInt64) (Others.TimesSec - _startTime));
 
                 return r;
             }
@@ -62,6 +65,8 @@ namespace nManager
         {
             try
             {
+                if (Usefuls.GetHonorPoint > 0 && _startHonor == -1)
+                    _startHonor = Usefuls.GetHonorPoint;
                 if (Usefuls.GetHonorPoint <= _startHonor)
                     return 0;
                 if (Others.TimesSec <= _startTime)
