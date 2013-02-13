@@ -77,6 +77,7 @@ namespace Battlegrounder.Bot
                         if (CustomProfile.IsAliveCustomProfile)
                         {
                             CustomProfile.GetSetIgnoreFight = false;
+                            CustomProfile.GetSetDontStartFights = false;
                             CustomProfile.DisposeCustomProfile();
                         }
                         Bot.MovementLoop.IsProfileCSharp = false;

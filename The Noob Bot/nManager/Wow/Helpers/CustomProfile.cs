@@ -33,6 +33,17 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool GetSetDontStartFights
+        {
+            get { return _instanceFromOtherAssembly != null && _instanceFromOtherAssembly.DontStartFights; }
+            set
+            {
+                if (_instanceFromOtherAssembly != null)
+                {
+                    _instanceFromOtherAssembly.DontStartFights = value;
+                }
+            }
+        }
         public static bool IsAliveCustomProfile
         {
             get
@@ -237,6 +248,7 @@ namespace nManager.Wow.Helpers
     public interface ICustomProfile
     {
         bool IgnoreFight { get; set; }
+        bool DontStartFights { get; set; }
 
         #region Methods
 

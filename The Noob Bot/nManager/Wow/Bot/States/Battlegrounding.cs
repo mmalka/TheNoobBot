@@ -49,7 +49,7 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (CustomProfile.GetSetIgnoreFight)
+                if (CustomProfile.GetSetDontStartFights)
                     return false;
 
                 // Get unit:
