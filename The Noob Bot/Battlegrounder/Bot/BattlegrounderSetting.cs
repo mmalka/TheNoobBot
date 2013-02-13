@@ -34,11 +34,11 @@ namespace Battlegrounder.Bot
         public bool TempleofKotmogu;
         public string TempleofKotmoguProfileType = "XMLProfile";
         public string TempleofKotmoguXmlProfile;
-        public bool TwinPeaks = true;
+        public bool TwinPeaks;
         public string TwinPeaksProfileType = "XMLProfile";
         public string TwinPeaksXmlProfile;
-        public bool WarsongGulch;
-        public string WarsongGulchProfileType = "XMLProfile";
+        public bool WarsongGulch = true;
+        public string WarsongGulchProfileType = "CSharpProfile";
         public string WarsongGulchXmlProfile;
         public static BattlegrounderSetting CurrentSetting { get; set; }
 

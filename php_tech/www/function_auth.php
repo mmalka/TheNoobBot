@@ -20,7 +20,7 @@ $DHMS = secondeToStringDayHourMin($time);
 */
 
 
-$dbServer = "thenoobbot.com";
+$dbServer = "services.thenoobcompany.com";
 $dbName = "thenoobbot_site";
 $dbUser = "thenoobbot_chk";
 $dbPassword = "AFjuVhFmKXsQ2wAj";
