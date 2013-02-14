@@ -1,0 +1,26 @@
+﻿<Window x:Class="meshMarker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="meshMarker" Height="820" Width="1006" KeyDown="OnKeyDown">
+    <Grid Height="782" Name="grid1" Width="987">
+        <Canvas Height="768" HorizontalAlignment="Left" Margin="8,7,0,0" Name="canvas1" VerticalAlignment="Top" Width="768" MouseLeftButtonDown="OnClick" MouseRightButtonDown="OnRightClick">
+            <Separator Height="8" Name="separator1" Width="198" Canvas.Left="774" Canvas.Top="95" />
+            <Separator Canvas.Left="774" Canvas.Top="196" Height="8" Name="separator3" Width="198" />
+        </Canvas>
+        <Label Content="Continent" Height="28" HorizontalAlignment="Left" Margin="782,7,0,0" Name="label1" VerticalAlignment="Top" Width="67" />
+        <Label Content="Origin-Tile" Height="28" HorizontalAlignment="Left" Margin="782,41,0,0" Name="label2" VerticalAlignment="Top" Width="67" />
+        <Label Height="28" HorizontalAlignment="Left" Margin="855,41,0,0" Name="originTileLabel" VerticalAlignment="Top" Width="125" />
+        <Button Content="Reload" Height="23" HorizontalAlignment="Left" Margin="782,75,0,0" Name="reloadButton" VerticalAlignment="Top" Width="198" Click="reloadButton_Click" />
+        <Button Content="Clear current polygon" Height="23" HorizontalAlignment="Left" Margin="782,118,0,0" Name="button1" VerticalAlignment="Top" Width="198" Click="button1_Click" />
+        <Button Content="Clear all polygons" Height="23" HorizontalAlignment="Left" Margin="782,147,0,0" Name="button2" VerticalAlignment="Top" Width="198" Click="button2_Click" />
+        <Button Content="Remove last polygon" Height="23" HorizontalAlignment="Left" Margin="782,176,0,0" Name="button3" VerticalAlignment="Top" Width="198" Click="button3_Click" />
+        <ProgressBar Height="18" Name="progressBar1" Width="198" Margin="782,279,7,485" />
+        <Button Content="Apply to mesh" Height="23" Margin="782,303,7,0" Name="button4" VerticalAlignment="Top" Click="button4_Click" />
+        <Label Content="Marked" Height="28" HorizontalAlignment="Left" Margin="782,332,0,0" Name="label3" VerticalAlignment="Top" Width="67" />
+        <Label Content="None" Height="28" HorizontalAlignment="Right" Margin="0,332,7,0" Name="markedLabel" VerticalAlignment="Top" Width="125" />
+        <RadioButton Content="Convex Polygon Tool" Height="16" HorizontalAlignment="Left" Margin="782,219,0,0" Name="convexRadio" VerticalAlignment="Top" GroupName="Tool" IsEnabled="False" />
+        <RadioButton Content="Circle Tool" Height="18" HorizontalAlignment="Left" Margin="782,241,0,0" Name="circleRadio" VerticalAlignment="Top" GroupName="Tool" IsChecked="True" />
+        <Separator Height="8" Name="separator2" Width="198" Margin="782,265,7,509" />
+        <ComboBox Height="28" HorizontalAlignment="Left" Margin="855,7,0,0" Name="comboBox1" VerticalAlignment="Top" Width="125" />
+    </Grid>
+</Window>

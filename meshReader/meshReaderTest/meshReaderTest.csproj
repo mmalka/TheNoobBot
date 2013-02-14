@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B419558D-1CB7-44B4-8F8F-CB491C04804F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>meshReaderTest</RootNamespace>
+    <AssemblyName>meshReaderTest</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=2.5.8.10295, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\NUnit 2.5.8\bin\net-2.0\framework\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ADTTest.cs" />
+    <Compile Include="BuilderTest.cs" />
+    <Compile Include="DungeonMeshTest.cs" />
+    <Compile Include="Dungeon\GnomeragonMeshTest.cs" />
+    <Compile Include="Dungeon\StormwindJailMeshTest.cs" />
+    <Compile Include="Dungeon\WailingCavernsMeshTest.cs" />
+    <Compile Include="Expansion01MeshTest.cs" />
+    <Compile Include="KalimdorMeshTest.cs" />
+    <Compile Include="MeshTest.cs" />
+    <Compile Include="NorthrendMeshTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Dungeon\RagefireMeshTest.cs" />
+    <Compile Include="TileCrossingTest.cs" />
+    <Compile Include="VisualizerTest.cs" />
+    <Compile Include="WDTTest.cs" />
+    <Compile Include="WMOTest.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\meshBuilder\meshBuilder.csproj">
+      <Project>{11536EC8-063C-48BD-A49E-B7DA7D0C4399}</Project>
+      <Name>meshBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\meshDatabase\meshDatabase.csproj">
+      <Project>{A7997652-1C78-4C0F-9D4E-31F64501D555}</Project>
+      <Name>meshDatabase</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\meshPather\meshPather.csproj">
+      <Project>{AC6A0F0E-0AC1-4687-A484-323FBB3C7E97}</Project>
+      <Name>meshPather</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\meshPathVisualizer\meshPathVisualizer.csproj">
+      <Project>{BC3C07B1-3070-4A23-BA61-BE99EE9106F8}</Project>
+      <Name>meshPathVisualizer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\meshReader\meshReader.csproj">
+      <Project>{55A65512-1497-4EF3-80D1-8EBD9BC0CDDF}</Project>
+      <Name>meshReader</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RecastLayer\RecastLayer.vcxproj">
+      <Project>{88ABD3DA-803D-4D83-9894-F669B8CFAEAD}</Project>
+      <Name>RecastLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AzerothMeshTest.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
