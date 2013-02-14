@@ -37,7 +37,7 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    return new List<Point> {ObjectManager.ObjectManager.Me.Position, to};
+                    return new List<Point> {to};
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to);
             }
@@ -80,7 +80,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
                     resultSuccess = true;
-                    return new List<Point> {ObjectManager.ObjectManager.Me.Position, to};
+                    return new List<Point> {to};
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
             }
@@ -231,24 +231,26 @@ namespace nManager.Wow.Helpers
                 List<Point> points = FindPath(to, out result);
                 if (!result && points.Count <= 2)
                 {
+                    Thread.Sleep(100);
                     Logging.WriteNavigator("FindPathUnstuck : FindPath failed. From: " +
                                            ObjectManager.ObjectManager.Me.Position + " To: " + to);
-                    Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
-                                     Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
                     int trys = 0;
                     while (!result && trys <= 2)
                     {
-                        Thread.Sleep(700);
+                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
+                                         Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        Thread.Sleep(1000);
                         Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
                                          Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
-                        Thread.Sleep(200);
+                        Thread.Sleep(100);
                         Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
                                        Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
                         points = FindPath(to, out result);
+                        Thread.Sleep(200);
+                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
+                                       Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
                         trys++;
                     }
-                    Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
-                                   Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
                 }
                 return points;
             }
