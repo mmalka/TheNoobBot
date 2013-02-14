@@ -1087,7 +1087,7 @@
       <Id>AlteracValley</Id>
     </Translation>
     <Translation>
-      <Text>WarsongGulch</Text>
+      <Text>Warsong Gulch</Text>
       <Id>WarsongGulch</Id>
     </Translation>
     <Translation>
@@ -1125,6 +1125,50 @@
 	<Translation>
       <Text>Silvershard Mines</Text>
       <Id>SilvershardMines</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Alterac Valley</Text>
+      <Id>QueueAlteracValley</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Warsong Gulch</Text>
+      <Id>QueueWarsongGulch</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Arathi Basin</Text>
+      <Id>QueueArathiBasin</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Eye of the Storm</Text>
+      <Id>QueueEyeoftheStorm</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Strand of the Ancients</Text>
+      <Id>QueueStrandoftheAncients</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Isle of Conquest</Text>
+      <Id>QueueIsleofConquest</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Twin Peaks</Text>
+      <Id>QueueTwinPeaks</Id>
+    </Translation>
+	<Translation>
+      <Text>Queue for Battle for Gilneas</Text>
+      <Id>QueueBattleforGilneas</Id>
+    </Translation>
+    <Translation>
+      <Text>Queue for Random Battleground</Text>
+      <Id>QueueRandomBattleground</Id>
+    </Translation>
+	<Translation>
+      <Text>Queue for Temple of Kotmogu</Text>
+      <Id>QueueTempleofKotmogu</Id>
+    </Translation>
+	<Translation>
+      <Text>Queue for Silvershard Mines</Text>
+      <Id>QueueSilvershardMines</Id>
     </Translation>
 	<Translation>
       <Text>Erreur : World of Warcraft 64bit trouvé Attention: TheNoobBot n'est pas compatible avec Wow x64. WoWLauncher.exe => Options => Préfèrences du jeu => "Lancer le client 32-bit".</Text>

@@ -44,6 +44,7 @@ namespace nManager.Wow.Helpers
                 }
             }
         }
+
         public static bool IsAliveCustomProfile
         {
             get

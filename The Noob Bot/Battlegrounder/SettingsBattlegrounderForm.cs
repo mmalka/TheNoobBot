@@ -34,17 +34,28 @@ namespace Battlegrounder
 
         private void Translate()
         {
-            AlteracValleyLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AlteracValley);
-            WarsongGulchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.WarsongGulch);
-            ArathiBasinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.ArathiBasin);
-            EyeoftheStormLabel.Text = nManager.Translate.Get(nManager.Translate.Id.EyeoftheStorm);
-            StrandoftheAncientsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.StrandoftheAncients);
-            IsleofConquestLabel.Text = nManager.Translate.Get(nManager.Translate.Id.IsleofConquest);
-            TwinPeaksLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TwinPeaks);
-            BattleforGilneasLabel.Text = nManager.Translate.Get(nManager.Translate.Id.BattleforGilneas);
-            TempleOfKotmoguLabel.Text = nManager.Translate.Get(nManager.Translate.Id.TempleofKotmogu);
-            SilvershardMinesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SilvershardMines);
-            RandomBattlegroundLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RandomBattleground);
+            AlteracValleyLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueAlteracValley);
+            WarsongGulchLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueWarsongGulch);
+            ArathiBasinLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueArathiBasin);
+            EyeoftheStormLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueEyeoftheStorm);
+            StrandoftheAncientsLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueStrandoftheAncients);
+            IsleofConquestLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueIsleofConquest);
+            TwinPeaksLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueTwinPeaks);
+            BattleforGilneasLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueBattleforGilneas);
+            TempleOfKotmoguLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueTempleofKotmogu);
+            SilvershardMinesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueSilvershardMines);
+            RandomBattlegroundLabel.Text = nManager.Translate.Get(nManager.Translate.Id.QueueRandomBattleground);
+            AlteracValley.Text = nManager.Translate.Get(nManager.Translate.Id.AlteracValley);
+            WarsongGulch.Text = nManager.Translate.Get(nManager.Translate.Id.WarsongGulch);
+            ArathiBasin.Text = nManager.Translate.Get(nManager.Translate.Id.ArathiBasin);
+            EyeoftheStorm.Text = nManager.Translate.Get(nManager.Translate.Id.EyeoftheStorm);
+            StrandoftheAncients.Text = nManager.Translate.Get(nManager.Translate.Id.StrandoftheAncients);
+            IsleofConquest.Text = nManager.Translate.Get(nManager.Translate.Id.IsleofConquest);
+            TwinPeaks.Text = nManager.Translate.Get(nManager.Translate.Id.TwinPeaks);
+            BattleforGilneas.Text = nManager.Translate.Get(nManager.Translate.Id.BattleforGilneas);
+            TempleofKotmogu.Text = nManager.Translate.Get(nManager.Translate.Id.TempleofKotmogu);
+            SilvershardMines.Text = nManager.Translate.Get(nManager.Translate.Id.SilvershardMines);
+            RandomBattleground.Text = nManager.Translate.Get(nManager.Translate.Id.RandomBattleground);
             RequeueAfterXMinutesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.RequeueAfterXMinutes);
             SaveButton.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
             Text = nManager.Translate.Get(nManager.Translate.Id.Settings_Battlegrounder);
