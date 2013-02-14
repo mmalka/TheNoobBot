@@ -7,11 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "nManager", "nManager\nManag
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RecastLayer", "RecastLayer\RecastLayer.vcxproj", "{88ABD3DA-803D-4D83-9894-F669B8CFAEAD}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Others", "Others", "{886BB620-8663-4B32-861F-93CE5B854D78}"
-	ProjectSection(SolutionItems) = preProject
-		Others\meshReader.rar = Others\meshReader.rar
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gatherer", "Gatherer\Gatherer.csproj", "{E321286C-4B1F-40A2-8880-14C29AF1BF9B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Profiles Converters", "Profiles Converters\Profiles Converters.csproj", "{DD5F7A3D-85A9-479F-B3AE-2315C27F666E}"

@@ -196,7 +196,7 @@ namespace The_Noob_Bot
                         {
                             if (_levelStat == 0)
                             {
-                                if (Usefuls.InGame && Usefuls.IsLoadingOrConnecting && Usefuls.GetHonorPoint >= 0)
+                                if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting && Usefuls.GetHonorPoint >= 0)
                                     _honnorStat = Usefuls.GetHonorPoint;
                                 else _honnorStat = -1;
                                 _expStat = nManager.Wow.ObjectManager.ObjectManager.Me.Experience;
@@ -215,7 +215,6 @@ namespace The_Noob_Bot
                             {
                                 reqStatistique += "level=0";
                             }
-
                             // Honnor
                             if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting || Usefuls.GetHonorPoint < 0)
                             {
@@ -225,7 +224,7 @@ namespace The_Noob_Bot
                             {
                                 if (_honnorStat >= 0)
                                 {
-                                    if (Usefuls.GetHonorPoint <= _honnorStat)
+                                    if (Usefuls.GetHonorPoint < _honnorStat)
                                     {
                                         _honnorStat = Usefuls.GetHonorPoint;
                                         reqStatistique += "&honnor=0";
@@ -242,7 +241,6 @@ namespace The_Noob_Bot
                                     reqStatistique += "&honnor=0";
                                 }
                             }
-
                             // Exp
                             if (nManager.Wow.ObjectManager.ObjectManager.Me.Experience - _expStat > 0)
                             {
