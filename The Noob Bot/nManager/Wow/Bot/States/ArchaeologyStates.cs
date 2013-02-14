@@ -145,7 +145,10 @@ namespace nManager.Wow.Bot.States
                                 ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
                         if (t.GetBaseAddress > 0) // If found then loot
                         {
-                            var points = PathFinder.FindPath(t.Position);
+                            List<Point> points = ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) > 5
+                                                     ? PathFinder.FindPath(t.Position)
+                                                     : new List<Point> {t.Position};
+
                             MovementManager.Go(points);
                             if (nbLootAttempt > 3)
                             {
