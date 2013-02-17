@@ -246,6 +246,7 @@ namespace nManager.Helpful.Forms
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
+            UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
         }
 
@@ -377,6 +378,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBAfterXStucks = ActiveStopTNBAfterXStucks.Value;
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers =
                     ActiveStopTNBIfReceivedAtMostXWhispers.Value;
+                nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -487,6 +489,7 @@ namespace nManager.Helpful.Forms
                 ActiveStopTNBAfterXMinutes.Value = managerSetting.ActiveStopTNBAfterXMinutes;
                 ActiveStopTNBAfterXStucks.Value = managerSetting.ActiveStopTNBAfterXStucks;
                 ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
+                UseMollE.Value = managerSetting.UseMollE;
             }
             catch (Exception ex)
             {
@@ -579,7 +582,7 @@ namespace nManager.Helpful.Forms
 
         private void CustomClassResetSettingsButton_Click(object sender, EventArgs e)
         {
-            nManager.Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" +
+            Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" +
                                                                            CustomClass.Text);
         }
     }

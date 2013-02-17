@@ -213,6 +213,8 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.UseMollELabel = new DevComponents.DotNetBar.LabelX();
+            this.UseMollE = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.expandablePanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
@@ -978,6 +980,8 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel9.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel9.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel9.Controls.Add(this.UseMollELabel);
+            this.expandablePanel9.Controls.Add(this.UseMollE);
             this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeft);
             this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeftLabel);
             this.expandablePanel9.Controls.Add(this.MaillingFeatureRecipient);
@@ -997,7 +1001,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel9.Controls.Add(this.labelX58);
             this.expandablePanel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel9.Expanded = false;
-            this.expandablePanel9.ExpandedBounds = new System.Drawing.Rectangle(0, 156, 543, 320);
+            this.expandablePanel9.ExpandedBounds = new System.Drawing.Rectangle(0, 36, 543, 346);
             this.expandablePanel9.ExpandOnTitleClick = true;
             this.expandablePanel9.Location = new System.Drawing.Point(0, 156);
             this.expandablePanel9.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -1027,7 +1031,7 @@ namespace nManager.Helpful.Forms
             this.SendMailWhenLessThanXSlotLeft.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SendMailWhenLessThanXSlotLeft.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.SendMailWhenLessThanXSlotLeft.ForeColor = System.Drawing.Color.Black;
-            this.SendMailWhenLessThanXSlotLeft.Location = new System.Drawing.Point(479, 37);
+            this.SendMailWhenLessThanXSlotLeft.Location = new System.Drawing.Point(220, 66);
             this.SendMailWhenLessThanXSlotLeft.MinValue = 1;
             this.SendMailWhenLessThanXSlotLeft.Name = "SendMailWhenLessThanXSlotLeft";
             this.SendMailWhenLessThanXSlotLeft.ShowUpDown = true;
@@ -1043,7 +1047,7 @@ namespace nManager.Helpful.Forms
             // 
             this.SendMailWhenLessThanXSlotLeftLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SendMailWhenLessThanXSlotLeftLabel.ForeColor = System.Drawing.Color.Black;
-            this.SendMailWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(262, 35);
+            this.SendMailWhenLessThanXSlotLeftLabel.Location = new System.Drawing.Point(3, 64);
             this.SendMailWhenLessThanXSlotLeftLabel.Name = "SendMailWhenLessThanXSlotLeftLabel";
             this.SendMailWhenLessThanXSlotLeftLabel.Size = new System.Drawing.Size(204, 24);
             this.SendMailWhenLessThanXSlotLeftLabel.TabIndex = 40;
@@ -1058,7 +1062,7 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureRecipient.Border.Class = "TextBoxBorder";
             this.MaillingFeatureRecipient.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MaillingFeatureRecipient.ForeColor = System.Drawing.Color.Black;
-            this.MaillingFeatureRecipient.Location = new System.Drawing.Point(169, 68);
+            this.MaillingFeatureRecipient.Location = new System.Drawing.Point(169, 97);
             this.MaillingFeatureRecipient.Name = "MaillingFeatureRecipient";
             this.MaillingFeatureRecipient.Size = new System.Drawing.Size(182, 22);
             this.MaillingFeatureRecipient.TabIndex = 38;
@@ -1071,7 +1075,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX56.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX56.ForeColor = System.Drawing.Color.Black;
-            this.labelX56.Location = new System.Drawing.Point(3, 65);
+            this.labelX56.Location = new System.Drawing.Point(3, 94);
             this.labelX56.Name = "labelX56";
             this.labelX56.Size = new System.Drawing.Size(160, 23);
             this.labelX56.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -1087,7 +1091,7 @@ namespace nManager.Helpful.Forms
             this.MaillingFeatureSubject.Border.Class = "TextBoxBorder";
             this.MaillingFeatureSubject.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MaillingFeatureSubject.ForeColor = System.Drawing.Color.Black;
-            this.MaillingFeatureSubject.Location = new System.Drawing.Point(169, 97);
+            this.MaillingFeatureSubject.Location = new System.Drawing.Point(169, 126);
             this.MaillingFeatureSubject.Name = "MaillingFeatureSubject";
             this.MaillingFeatureSubject.Size = new System.Drawing.Size(182, 22);
             this.MaillingFeatureSubject.TabIndex = 36;
@@ -1101,7 +1105,7 @@ namespace nManager.Helpful.Forms
             this.ForceToMailTheseItems.Border.Class = "TextBoxBorder";
             this.ForceToMailTheseItems.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.ForceToMailTheseItems.ForeColor = System.Drawing.Color.Black;
-            this.ForceToMailTheseItems.Location = new System.Drawing.Point(283, 216);
+            this.ForceToMailTheseItems.Location = new System.Drawing.Point(283, 245);
             this.ForceToMailTheseItems.Multiline = true;
             this.ForceToMailTheseItems.Name = "ForceToMailTheseItems";
             this.ForceToMailTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1116,7 +1120,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX48.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX48.ForeColor = System.Drawing.Color.Black;
-            this.labelX48.Location = new System.Drawing.Point(283, 187);
+            this.labelX48.Location = new System.Drawing.Point(283, 216);
             this.labelX48.Name = "labelX48";
             this.labelX48.Size = new System.Drawing.Size(236, 23);
             this.labelX48.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -1131,7 +1135,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MailPurple.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailPurple.ForeColor = System.Drawing.Color.Black;
-            this.MailPurple.Location = new System.Drawing.Point(169, 153);
+            this.MailPurple.Location = new System.Drawing.Point(169, 182);
             this.MailPurple.Name = "MailPurple";
             this.MailPurple.Size = new System.Drawing.Size(100, 24);
             this.MailPurple.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1146,7 +1150,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MailBlue.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailBlue.ForeColor = System.Drawing.Color.Black;
-            this.MailBlue.Location = new System.Drawing.Point(11, 153);
+            this.MailBlue.Location = new System.Drawing.Point(11, 182);
             this.MailBlue.Name = "MailBlue";
             this.MailBlue.Size = new System.Drawing.Size(100, 24);
             this.MailBlue.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1161,7 +1165,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MailGreen.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailGreen.ForeColor = System.Drawing.Color.Black;
-            this.MailGreen.Location = new System.Drawing.Point(315, 123);
+            this.MailGreen.Location = new System.Drawing.Point(315, 152);
             this.MailGreen.Name = "MailGreen";
             this.MailGreen.Size = new System.Drawing.Size(100, 24);
             this.MailGreen.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1176,7 +1180,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MailWhite.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailWhite.ForeColor = System.Drawing.Color.Black;
-            this.MailWhite.Location = new System.Drawing.Point(169, 122);
+            this.MailWhite.Location = new System.Drawing.Point(169, 151);
             this.MailWhite.Name = "MailWhite";
             this.MailWhite.Size = new System.Drawing.Size(100, 24);
             this.MailWhite.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1191,7 +1195,7 @@ namespace nManager.Helpful.Forms
             // 
             this.MailGray.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.MailGray.ForeColor = System.Drawing.Color.Black;
-            this.MailGray.Location = new System.Drawing.Point(11, 123);
+            this.MailGray.Location = new System.Drawing.Point(11, 152);
             this.MailGray.Name = "MailGray";
             this.MailGray.Size = new System.Drawing.Size(100, 24);
             this.MailGray.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -1206,7 +1210,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX54.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX54.ForeColor = System.Drawing.Color.Black;
-            this.labelX54.Location = new System.Drawing.Point(3, 94);
+            this.labelX54.Location = new System.Drawing.Point(3, 123);
             this.labelX54.Name = "labelX54";
             this.labelX54.Size = new System.Drawing.Size(160, 23);
             this.labelX54.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -1253,7 +1257,7 @@ namespace nManager.Helpful.Forms
             this.DontMailTheseItems.Border.Class = "TextBoxBorder";
             this.DontMailTheseItems.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DontMailTheseItems.ForeColor = System.Drawing.Color.Black;
-            this.DontMailTheseItems.Location = new System.Drawing.Point(13, 216);
+            this.DontMailTheseItems.Location = new System.Drawing.Point(13, 245);
             this.DontMailTheseItems.Multiline = true;
             this.DontMailTheseItems.Name = "DontMailTheseItems";
             this.DontMailTheseItems.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1268,7 +1272,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX58.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX58.ForeColor = System.Drawing.Color.Black;
-            this.labelX58.Location = new System.Drawing.Point(13, 187);
+            this.labelX58.Location = new System.Drawing.Point(13, 216);
             this.labelX58.Name = "labelX58";
             this.labelX58.Size = new System.Drawing.Size(237, 23);
             this.labelX58.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3328,6 +3332,37 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
             // 
+            // UseMollELabel
+            // 
+            this.UseMollELabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.UseMollELabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseMollELabel.ForeColor = System.Drawing.Color.Black;
+            this.UseMollELabel.Location = new System.Drawing.Point(301, 35);
+            this.UseMollELabel.Name = "UseMollELabel";
+            this.UseMollELabel.Size = new System.Drawing.Size(160, 23);
+            this.UseMollELabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.UseMollELabel.TabIndex = 43;
+            this.UseMollELabel.Text = "Use MOLL-E if up";
+            // 
+            // UseMollE
+            // 
+            this.UseMollE.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.UseMollE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseMollE.ForeColor = System.Drawing.Color.Black;
+            this.UseMollE.Location = new System.Drawing.Point(467, 35);
+            this.UseMollE.Name = "UseMollE";
+            this.UseMollE.OffText = Translate.Get(Translate.Id.NO);
+            this.UseMollE.OnText = Translate.Get(Translate.Id.YES);
+            this.UseMollE.Size = new System.Drawing.Size(66, 22);
+            this.UseMollE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.UseMollE.TabIndex = 42;
+            // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3563,5 +3598,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBIfReceivedAtMostXWhispers;
         private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBAfterXLevelup;
         private DevComponents.DotNetBar.Controls.SwitchButton UseHearthstone;
+        private DevComponents.DotNetBar.LabelX UseMollELabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton UseMollE;
     }
 }

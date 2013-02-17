@@ -278,5 +278,6 @@ namespace nManager
         public bool ActiveStopTNBAfterXMinutes;
         public bool ActiveStopTNBAfterXStucks;
         public bool ActiveStopTNBIfReceivedAtMostXWhispers;
+        public bool UseMollE;
     }
 }

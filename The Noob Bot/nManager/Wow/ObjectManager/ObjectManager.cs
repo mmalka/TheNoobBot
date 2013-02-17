@@ -900,7 +900,7 @@ namespace nManager.Wow.ObjectManager
             return new List<WoWGameObject>();
         }
 
-        public static List<WoWGameObject> GetWoWGameObjectByyId(int id)
+        public static List<WoWGameObject> GetWoWGameObjectById(int id)
         {
             try
             {

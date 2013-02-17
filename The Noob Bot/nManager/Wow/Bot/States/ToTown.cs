@@ -70,7 +70,9 @@ namespace nManager.Wow.Bot.States
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft &&
-                    NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 &&
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 ||
+                     (nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
+                      !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768))) &&
                     nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
                     nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
                     return true;
@@ -87,9 +89,36 @@ namespace nManager.Wow.Bot.States
 
             // MailBox
             if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
-                nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty &&
-                NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
-                mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
+                nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
+            {
+                if (nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
+                    !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768))
+                {
+                    var mollE = new WoWItem(40768);
+                    ItemsManager.UseItem(mollE.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
+                        ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
+                    if (portableMailbox.IsValid &&
+                        portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.GetBaseAddress)
+                    {
+                        mailBox = new Npc
+                            {
+                                Entry = portableMailbox.Entry,
+                                Position = portableMailbox.Position,
+                                Name = portableMailbox.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Mailbox
+                            };
+                    }
+                }
+                if (mailBox == null && NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
+                    mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
+            }
             // If need repair
             if ((ObjectManager.ObjectManager.Me.GetDurability <= 85 ||
                  (Usefuls.GetContainerNumFreeSlots <= 2 && NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry <= 0)) &&

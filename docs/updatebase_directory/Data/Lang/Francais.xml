@@ -1310,5 +1310,9 @@
       <Text>Use Hearthstone prior to log-off activated, but HearthStone not found.</Text>
       <Id>HearthstoneNotFound</Id>
     </Translation>
+	<Translation>
+      <Text>Use MOLL-E if up</Text>
+      <Id>UseMollE</Id>
+    </Translation>
   </Translations>
 </Language>
