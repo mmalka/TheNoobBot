@@ -583,7 +583,7 @@ namespace nManager.Helpful.Forms
         private void CustomClassResetSettingsButton_Click(object sender, EventArgs e)
         {
             Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" +
-                                                                           CustomClass.Text);
+                                                                  CustomClass.Text);
         }
     }
 }
