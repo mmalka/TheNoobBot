@@ -399,7 +399,9 @@ namespace nManager
             TipOffUseGroundMountOn,
             TipOffUseGroundMountOff,
             TipOffEmptyGroundMount,
-            TipOffEmptyFlyingMount
+            TipOffEmptyFlyingMount,
+            UseHearthstone,
+            HearthstoneNotFound
         };
 
         [Serializable]

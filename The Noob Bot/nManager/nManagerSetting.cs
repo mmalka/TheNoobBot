@@ -273,5 +273,10 @@ namespace nManager
         public int RepairWhenDurabilityIsUnderPercent = 30;
         public int SendMailWhenLessThanXSlotLeft = 2;
         public int SellItemsWhenLessThanXSlotLeft = 2;
+        public bool UseHearthstone;
+        public bool ActiveStopTNBAfterXLevelup;
+        public bool ActiveStopTNBAfterXMinutes;
+        public bool ActiveStopTNBAfterXStucks;
+        public bool ActiveStopTNBIfReceivedAtMostXWhispers;
     }
 }

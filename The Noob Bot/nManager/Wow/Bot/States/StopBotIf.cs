@@ -8,7 +8,9 @@ using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 using Point = nManager.Wow.Class.Point;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
@@ -109,7 +111,8 @@ namespace nManager.Wow.Bot.States
             if (_startedLevel == 0 && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 _startedLevel = ObjectManager.ObjectManager.Me.Level;
             if ((int) (ObjectManager.ObjectManager.Me.Level - _startedLevel) >=
-                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                nManagerSetting.CurrentSetting.StopTNBAfterXLevelup && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting &&
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXLevelup)
             {
                 closeWow(Translate.Get(Translate.Id.Your_player_is_now_level) + " " +
                          ObjectManager.ObjectManager.Me.Level + " (+" +
@@ -119,7 +122,8 @@ namespace nManager.Wow.Bot.States
             }
 
             // After X blockages
-            if (Statistics.Stucks >= nManagerSetting.CurrentSetting.StopTNBAfterXStucks)
+            if (Statistics.Stucks >= nManagerSetting.CurrentSetting.StopTNBAfterXStucks &&
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXStucks)
             {
                 closeWow(Statistics.Stucks + " " + Translate.Get(Translate.Id.Blockages));
                 return;
@@ -128,7 +132,8 @@ namespace nManager.Wow.Bot.States
             // After X min
             if (_startedTime == 0)
                 _startedTime = Others.Times;
-            if (_startedTime + (nManagerSetting.CurrentSetting.StopTNBAfterXMinutes*60*1000) < Others.Times)
+            if ((_startedTime + (nManagerSetting.CurrentSetting.StopTNBAfterXMinutes*60*1000) < Others.Times) &&
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXMinutes)
             {
                 closeWow(Translate.Get(Translate.Id.tnb_started_since) + " " +
                          nManagerSetting.CurrentSetting.StopTNBAfterXMinutes + " " + Translate.Get(Translate.Id.min));
@@ -172,7 +177,8 @@ namespace nManager.Wow.Bot.States
                     _numberWhisper++;
                     if (nManagerSetting.CurrentSetting.RecordWhispsInLogFiles)
                         Logging.Write(msg, Logging.LogType.Normal, Color.BlueViolet);
-                    if (_numberWhisper >= nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers)
+                    if (_numberWhisper >= nManagerSetting.CurrentSetting.StopTNBIfReceivedAtMostXWhispers &&
+                        nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers)
                         closeWow(Translate.Get(Translate.Id.Whisper_Egal_at) + " " + _numberWhisper);
                     if (nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived)
                     {
@@ -212,7 +218,7 @@ namespace nManager.Wow.Bot.States
 
         private void ThreadMessageBoxNewWhisper()
         {
-            MessageBox.Show(Translate.Get(Translate.Id.New_whisper) + ": " + _msgNewWhisper,
+            MessageBox.Show(Translate.Get(Translate.Id.New_whisper) + @": " + _msgNewWhisper,
                             Translate.Get(Translate.Id.New_whisper), MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);
             _threadSound = false;
@@ -221,6 +227,21 @@ namespace nManager.Wow.Bot.States
         private void closeWow(string reason)
         {
             Logging.Write(reason);
+            if (nManagerSetting.CurrentSetting.UseHearthstone && ItemsManager.GetItemCountByIdLUA(6948) > 0)
+            {
+                var timerHearthstone = new Timer(1000*45);
+                var hearthstone = new WoWItem(6948);
+                Tasks.MountTask.DismountMount();
+                timerHearthstone.Reset();
+                while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
+                {
+                    ItemsManager.UseItem(hearthstone.GetItemInfo.ItemName);
+                    Thread.Sleep(1000);
+                }
+                Thread.Sleep(1000);
+            }
+            else if (nManagerSetting.CurrentSetting.StopTNBIfBagAreFull)
+                Logging.Write(Translate.Get(Translate.Id.HearthstoneNotFound));
             Memory.WowProcess.KillWowProcess();
             MessageBox.Show(reason, Translate.Get(Translate.Id.Stop_tnb_if), MessageBoxButtons.OK,
                             MessageBoxIcon.Warning);

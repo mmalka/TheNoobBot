@@ -1302,5 +1302,13 @@
       <Text>We highly recommand to set a Flying Mount Name in General Settings => Mount options => Flying => Name of the Mount.</Text>
       <Id>TipOffEmptyFlyingMount</Id>
     </Translation>
+	<Translation>
+      <Text>Use Hearthstone</Text>
+      <Id>UseHearthstone</Id>
+    </Translation>
+	<Translation>
+      <Text>Use Hearthstone prior to log-off activated, but HearthStone not found.</Text>
+      <Id>HearthstoneNotFound</Id>
+    </Translation>
   </Translations>
 </Language>

@@ -245,6 +245,7 @@ namespace nManager.Helpful.Forms
             SendMailWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SendMailWhenLessThanXSlotLeft);
             SellItemsWhenLessThanXSlotLeftLabel.Text = Translate.Get(Translate.Id.SellItemsWhenLessThanXSlotLeft);
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
+            UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
         }
 
@@ -370,6 +371,12 @@ namespace nManager.Helpful.Forms
                     RepairWhenDurabilityIsUnderPercent.Value;
                 nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft = SellItemsWhenLessThanXSlotLeft.Value;
                 nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft = SendMailWhenLessThanXSlotLeft.Value;
+                nManagerSetting.CurrentSetting.UseHearthstone = UseHearthstone.Value;
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXLevelup = ActiveStopTNBAfterXLevelup.Value;
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXMinutes = ActiveStopTNBAfterXMinutes.Value;
+                nManagerSetting.CurrentSetting.ActiveStopTNBAfterXStucks = ActiveStopTNBAfterXStucks.Value;
+                nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers =
+                    ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -475,6 +482,11 @@ namespace nManager.Helpful.Forms
                 RepairWhenDurabilityIsUnderPercent.Value = managerSetting.RepairWhenDurabilityIsUnderPercent;
                 SellItemsWhenLessThanXSlotLeft.Value = managerSetting.SellItemsWhenLessThanXSlotLeft;
                 SendMailWhenLessThanXSlotLeft.Value = managerSetting.SendMailWhenLessThanXSlotLeft;
+                UseHearthstone.Value = managerSetting.UseHearthstone;
+                ActiveStopTNBAfterXLevelup.Value = managerSetting.ActiveStopTNBAfterXLevelup;
+                ActiveStopTNBAfterXMinutes.Value = managerSetting.ActiveStopTNBAfterXMinutes;
+                ActiveStopTNBAfterXStucks.Value = managerSetting.ActiveStopTNBAfterXStucks;
+                ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
             }
             catch (Exception ex)
             {

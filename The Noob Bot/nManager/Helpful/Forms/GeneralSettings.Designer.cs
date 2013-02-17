@@ -40,6 +40,12 @@ namespace nManager.Helpful.Forms
             this.labelX42 = new DevComponents.DotNetBar.LabelX();
             this.ActivatePathFindingFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.expandablePanel5 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.UseHearthstoneLabel = new DevComponents.DotNetBar.LabelX();
+            this.ActiveStopTNBAfterXMinutes = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.ActiveStopTNBAfterXStucks = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.ActiveStopTNBIfReceivedAtMostXWhispers = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.ActiveStopTNBAfterXLevelup = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.UseHearthstone = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX39 = new DevComponents.DotNetBar.LabelX();
             this.labelX45 = new DevComponents.DotNetBar.LabelX();
             this.PlayASongIfNewWhispReceived = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -318,8 +324,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAlwaysOnTopFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAlwaysOnTopFeature.Location = new System.Drawing.Point(468, 62);
             this.ActivateAlwaysOnTopFeature.Name = "ActivateAlwaysOnTopFeature";
-            this.ActivateAlwaysOnTopFeature.OffText = "NO";
-            this.ActivateAlwaysOnTopFeature.OnText = "YES";
+            this.ActivateAlwaysOnTopFeature.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAlwaysOnTopFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAlwaysOnTopFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAlwaysOnTopFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAlwaysOnTopFeature.TabIndex = 29;
@@ -349,8 +355,8 @@ namespace nManager.Helpful.Forms
             this.AllowTNBToSetYourMaxFps.ForeColor = System.Drawing.Color.Black;
             this.AllowTNBToSetYourMaxFps.Location = new System.Drawing.Point(468, 33);
             this.AllowTNBToSetYourMaxFps.Name = "AllowTNBToSetYourMaxFps";
-            this.AllowTNBToSetYourMaxFps.OffText = "NO";
-            this.AllowTNBToSetYourMaxFps.OnText = "YES";
+            this.AllowTNBToSetYourMaxFps.OffText = Translate.Get(Translate.Id.NO);
+            this.AllowTNBToSetYourMaxFps.OnText = Translate.Get(Translate.Id.YES);
             this.AllowTNBToSetYourMaxFps.Size = new System.Drawing.Size(66, 22);
             this.AllowTNBToSetYourMaxFps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AllowTNBToSetYourMaxFps.TabIndex = 27;
@@ -413,8 +419,8 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivatePathFindingFeature.Location = new System.Drawing.Point(169, 34);
             this.ActivatePathFindingFeature.Name = "ActivatePathFindingFeature";
-            this.ActivatePathFindingFeature.OffText = "NO";
-            this.ActivatePathFindingFeature.OnText = "YES";
+            this.ActivatePathFindingFeature.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivatePathFindingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivatePathFindingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivatePathFindingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivatePathFindingFeature.TabIndex = 10;
@@ -423,6 +429,12 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel5.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel5.Controls.Add(this.UseHearthstoneLabel);
+            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXMinutes);
+            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXStucks);
+            this.expandablePanel5.Controls.Add(this.ActiveStopTNBIfReceivedAtMostXWhispers);
+            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXLevelup);
+            this.expandablePanel5.Controls.Add(this.UseHearthstone);
             this.expandablePanel5.Controls.Add(this.labelX39);
             this.expandablePanel5.Controls.Add(this.labelX45);
             this.expandablePanel5.Controls.Add(this.PlayASongIfNewWhispReceived);
@@ -470,6 +482,102 @@ namespace nManager.Helpful.Forms
             this.expandablePanel5.TitleStyle.GradientAngle = 90;
             this.expandablePanel5.TitleText = "Stop Game / Bot / Security";
             // 
+            // UseHearthstoneLabel
+            // 
+            this.UseHearthstoneLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.UseHearthstoneLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseHearthstoneLabel.Font = new System.Drawing.Font("Segoe UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.UseHearthstoneLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseHearthstoneLabel.Location = new System.Drawing.Point(262, 33);
+            this.UseHearthstoneLabel.Name = "UseHearthstoneLabel";
+            this.UseHearthstoneLabel.Size = new System.Drawing.Size(160, 23);
+            this.UseHearthstoneLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.UseHearthstoneLabel.TabIndex = 48;
+            this.UseHearthstoneLabel.Text = "Use Hearthstone";
+            // 
+            // ActiveStopTNBAfterXMinutes
+            // 
+            this.ActiveStopTNBAfterXMinutes.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActiveStopTNBAfterXMinutes.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActiveStopTNBAfterXMinutes.ForeColor = System.Drawing.Color.Black;
+            this.ActiveStopTNBAfterXMinutes.Location = new System.Drawing.Point(349, 237);
+            this.ActiveStopTNBAfterXMinutes.Name = "ActiveStopTNBAfterXMinutes";
+            this.ActiveStopTNBAfterXMinutes.OffText = Translate.Get(Translate.Id.NO);
+            this.ActiveStopTNBAfterXMinutes.OnText = Translate.Get(Translate.Id.YES);
+            this.ActiveStopTNBAfterXMinutes.Size = new System.Drawing.Size(66, 22);
+            this.ActiveStopTNBAfterXMinutes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActiveStopTNBAfterXMinutes.TabIndex = 47;
+            // 
+            // ActiveStopTNBAfterXStucks
+            // 
+            this.ActiveStopTNBAfterXStucks.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActiveStopTNBAfterXStucks.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActiveStopTNBAfterXStucks.ForeColor = System.Drawing.Color.Black;
+            this.ActiveStopTNBAfterXStucks.Location = new System.Drawing.Point(349, 207);
+            this.ActiveStopTNBAfterXStucks.Name = "ActiveStopTNBAfterXStucks";
+            this.ActiveStopTNBAfterXStucks.OffText = Translate.Get(Translate.Id.NO);
+            this.ActiveStopTNBAfterXStucks.OnText = Translate.Get(Translate.Id.YES);
+            this.ActiveStopTNBAfterXStucks.Size = new System.Drawing.Size(66, 22);
+            this.ActiveStopTNBAfterXStucks.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActiveStopTNBAfterXStucks.TabIndex = 46;
+            // 
+            // ActiveStopTNBIfReceivedAtMostXWhispers
+            // 
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.ForeColor = System.Drawing.Color.Black;
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(349, 179);
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Name = "ActiveStopTNBIfReceivedAtMostXWhispers";
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.OffText = Translate.Get(Translate.Id.NO);
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.OnText = Translate.Get(Translate.Id.YES);
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Size = new System.Drawing.Size(66, 22);
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActiveStopTNBIfReceivedAtMostXWhispers.TabIndex = 45;
+            // 
+            // ActiveStopTNBAfterXLevelup
+            // 
+            this.ActiveStopTNBAfterXLevelup.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.ActiveStopTNBAfterXLevelup.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.ActiveStopTNBAfterXLevelup.ForeColor = System.Drawing.Color.Black;
+            this.ActiveStopTNBAfterXLevelup.Location = new System.Drawing.Point(349, 149);
+            this.ActiveStopTNBAfterXLevelup.Name = "ActiveStopTNBAfterXLevelup";
+            this.ActiveStopTNBAfterXLevelup.OffText = Translate.Get(Translate.Id.NO);
+            this.ActiveStopTNBAfterXLevelup.OnText = Translate.Get(Translate.Id.YES);
+            this.ActiveStopTNBAfterXLevelup.Size = new System.Drawing.Size(66, 22);
+            this.ActiveStopTNBAfterXLevelup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ActiveStopTNBAfterXLevelup.TabIndex = 44;
+            // 
+            // UseHearthstone
+            // 
+            this.UseHearthstone.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.UseHearthstone.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseHearthstone.ForeColor = System.Drawing.Color.Black;
+            this.UseHearthstone.Location = new System.Drawing.Point(428, 34);
+            this.UseHearthstone.Name = "UseHearthstone";
+            this.UseHearthstone.OffText = Translate.Get(Translate.Id.NO);
+            this.UseHearthstone.OnText = Translate.Get(Translate.Id.YES);
+            this.UseHearthstone.Size = new System.Drawing.Size(66, 22);
+            this.UseHearthstone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.UseHearthstone.TabIndex = 42;
+            // 
             // labelX39
             // 
             this.labelX39.BackColor = System.Drawing.Color.Transparent;
@@ -511,8 +619,8 @@ namespace nManager.Helpful.Forms
             this.PlayASongIfNewWhispReceived.ForeColor = System.Drawing.Color.Black;
             this.PlayASongIfNewWhispReceived.Location = new System.Drawing.Point(169, 350);
             this.PlayASongIfNewWhispReceived.Name = "PlayASongIfNewWhispReceived";
-            this.PlayASongIfNewWhispReceived.OffText = "NO";
-            this.PlayASongIfNewWhispReceived.OnText = "YES";
+            this.PlayASongIfNewWhispReceived.OffText = Translate.Get(Translate.Id.NO);
+            this.PlayASongIfNewWhispReceived.OnText = Translate.Get(Translate.Id.YES);
             this.PlayASongIfNewWhispReceived.Size = new System.Drawing.Size(66, 22);
             this.PlayASongIfNewWhispReceived.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PlayASongIfNewWhispReceived.TabIndex = 40;
@@ -603,8 +711,8 @@ namespace nManager.Helpful.Forms
             this.RecordWhispsInLogFiles.ForeColor = System.Drawing.Color.Black;
             this.RecordWhispsInLogFiles.Location = new System.Drawing.Point(169, 323);
             this.RecordWhispsInLogFiles.Name = "RecordWhispsInLogFiles";
-            this.RecordWhispsInLogFiles.OffText = "NO";
-            this.RecordWhispsInLogFiles.OnText = "YES";
+            this.RecordWhispsInLogFiles.OffText = Translate.Get(Translate.Id.NO);
+            this.RecordWhispsInLogFiles.OnText = Translate.Get(Translate.Id.YES);
             this.RecordWhispsInLogFiles.Size = new System.Drawing.Size(66, 22);
             this.RecordWhispsInLogFiles.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.RecordWhispsInLogFiles.TabIndex = 38;
@@ -634,8 +742,8 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfPlayerHaveBeenTeleported.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfPlayerHaveBeenTeleported.Location = new System.Drawing.Point(169, 120);
             this.StopTNBIfPlayerHaveBeenTeleported.Name = "StopTNBIfPlayerHaveBeenTeleported";
-            this.StopTNBIfPlayerHaveBeenTeleported.OffText = "NO";
-            this.StopTNBIfPlayerHaveBeenTeleported.OnText = "YES";
+            this.StopTNBIfPlayerHaveBeenTeleported.OffText = Translate.Get(Translate.Id.NO);
+            this.StopTNBIfPlayerHaveBeenTeleported.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfPlayerHaveBeenTeleported.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfPlayerHaveBeenTeleported.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfPlayerHaveBeenTeleported.TabIndex = 29;
@@ -680,8 +788,8 @@ namespace nManager.Helpful.Forms
             this.PauseTNBIfNearByPlayer.ForeColor = System.Drawing.Color.Black;
             this.PauseTNBIfNearByPlayer.Location = new System.Drawing.Point(169, 294);
             this.PauseTNBIfNearByPlayer.Name = "PauseTNBIfNearByPlayer";
-            this.PauseTNBIfNearByPlayer.OffText = "NO";
-            this.PauseTNBIfNearByPlayer.OnText = "YES";
+            this.PauseTNBIfNearByPlayer.OffText = Translate.Get(Translate.Id.NO);
+            this.PauseTNBIfNearByPlayer.OnText = Translate.Get(Translate.Id.YES);
             this.PauseTNBIfNearByPlayer.Size = new System.Drawing.Size(66, 22);
             this.PauseTNBIfNearByPlayer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PauseTNBIfNearByPlayer.TabIndex = 36;
@@ -696,8 +804,8 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfHonorPointsLimitReached.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfHonorPointsLimitReached.Location = new System.Drawing.Point(169, 91);
             this.StopTNBIfHonorPointsLimitReached.Name = "StopTNBIfHonorPointsLimitReached";
-            this.StopTNBIfHonorPointsLimitReached.OffText = "NO";
-            this.StopTNBIfHonorPointsLimitReached.OnText = "YES";
+            this.StopTNBIfHonorPointsLimitReached.OffText = Translate.Get(Translate.Id.NO);
+            this.StopTNBIfHonorPointsLimitReached.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfHonorPointsLimitReached.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfHonorPointsLimitReached.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfHonorPointsLimitReached.TabIndex = 27;
@@ -860,8 +968,8 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfBagAreFull.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfBagAreFull.Location = new System.Drawing.Point(169, 62);
             this.StopTNBIfBagAreFull.Name = "StopTNBIfBagAreFull";
-            this.StopTNBIfBagAreFull.OffText = "NO";
-            this.StopTNBIfBagAreFull.OnText = "YES";
+            this.StopTNBIfBagAreFull.OffText = Translate.Get(Translate.Id.NO);
+            this.StopTNBIfBagAreFull.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfBagAreFull.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfBagAreFull.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfBagAreFull.TabIndex = 10;
@@ -1130,8 +1238,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMaillingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMaillingFeature.Location = new System.Drawing.Point(169, 36);
             this.ActivateAutoMaillingFeature.Name = "ActivateAutoMaillingFeature";
-            this.ActivateAutoMaillingFeature.OffText = "NO";
-            this.ActivateAutoMaillingFeature.OnText = "YES";
+            this.ActivateAutoMaillingFeature.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoMaillingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoMaillingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoMaillingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMaillingFeature.TabIndex = 25;
@@ -1410,8 +1518,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSellingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSellingFeature.Location = new System.Drawing.Point(169, 122);
             this.ActivateAutoSellingFeature.Name = "ActivateAutoSellingFeature";
-            this.ActivateAutoSellingFeature.OffText = "NO";
-            this.ActivateAutoSellingFeature.OnText = "YES";
+            this.ActivateAutoSellingFeature.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoSellingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoSellingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoSellingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSellingFeature.TabIndex = 27;
@@ -1441,8 +1549,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoRepairFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoRepairFeature.Location = new System.Drawing.Point(169, 93);
             this.ActivateAutoRepairFeature.Name = "ActivateAutoRepairFeature";
-            this.ActivateAutoRepairFeature.OffText = "NO";
-            this.ActivateAutoRepairFeature.OnText = "YES";
+            this.ActivateAutoRepairFeature.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoRepairFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoRepairFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoRepairFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoRepairFeature.TabIndex = 25;
@@ -1774,8 +1882,8 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItems.ForeColor = System.Drawing.Color.Black;
             this.AutoConfirmOnBoPItems.Location = new System.Drawing.Point(428, 30);
             this.AutoConfirmOnBoPItems.Name = "AutoConfirmOnBoPItems";
-            this.AutoConfirmOnBoPItems.OffText = "NO";
-            this.AutoConfirmOnBoPItems.OnText = "YES";
+            this.AutoConfirmOnBoPItems.OffText = Translate.Get(Translate.Id.NO);
+            this.AutoConfirmOnBoPItems.OnText = Translate.Get(Translate.Id.YES);
             this.AutoConfirmOnBoPItems.Size = new System.Drawing.Size(66, 22);
             this.AutoConfirmOnBoPItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoConfirmOnBoPItems.TabIndex = 61;
@@ -1820,8 +1928,8 @@ namespace nManager.Helpful.Forms
             this.OnlyUseMillingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseMillingInTown.Location = new System.Drawing.Point(170, 496);
             this.OnlyUseMillingInTown.Name = "OnlyUseMillingInTown";
-            this.OnlyUseMillingInTown.OffText = "NO";
-            this.OnlyUseMillingInTown.OnText = "YES";
+            this.OnlyUseMillingInTown.OffText = Translate.Get(Translate.Id.NO);
+            this.OnlyUseMillingInTown.OnText = Translate.Get(Translate.Id.YES);
             this.OnlyUseMillingInTown.Size = new System.Drawing.Size(66, 22);
             this.OnlyUseMillingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseMillingInTown.TabIndex = 58;
@@ -1884,8 +1992,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMilling.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMilling.Location = new System.Drawing.Point(170, 438);
             this.ActivateAutoMilling.Name = "ActivateAutoMilling";
-            this.ActivateAutoMilling.OffText = "NO";
-            this.ActivateAutoMilling.OnText = "YES";
+            this.ActivateAutoMilling.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoMilling.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoMilling.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoMilling.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMilling.TabIndex = 54;
@@ -1946,8 +2054,8 @@ namespace nManager.Helpful.Forms
             this.MakeStackOfElementalsItems.ForeColor = System.Drawing.Color.Black;
             this.MakeStackOfElementalsItems.Location = new System.Drawing.Point(170, 541);
             this.MakeStackOfElementalsItems.Name = "MakeStackOfElementalsItems";
-            this.MakeStackOfElementalsItems.OffText = "NO";
-            this.MakeStackOfElementalsItems.OnText = "YES";
+            this.MakeStackOfElementalsItems.OffText = Translate.Get(Translate.Id.NO);
+            this.MakeStackOfElementalsItems.OnText = Translate.Get(Translate.Id.YES);
             this.MakeStackOfElementalsItems.Size = new System.Drawing.Size(66, 22);
             this.MakeStackOfElementalsItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MakeStackOfElementalsItems.TabIndex = 50;
@@ -1977,8 +2085,8 @@ namespace nManager.Helpful.Forms
             this.OnlyUseProspectingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseProspectingInTown.Location = new System.Drawing.Point(170, 377);
             this.OnlyUseProspectingInTown.Name = "OnlyUseProspectingInTown";
-            this.OnlyUseProspectingInTown.OffText = "NO";
-            this.OnlyUseProspectingInTown.OnText = "YES";
+            this.OnlyUseProspectingInTown.OffText = Translate.Get(Translate.Id.NO);
+            this.OnlyUseProspectingInTown.OnText = Translate.Get(Translate.Id.YES);
             this.OnlyUseProspectingInTown.Size = new System.Drawing.Size(66, 22);
             this.OnlyUseProspectingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseProspectingInTown.TabIndex = 48;
@@ -2041,8 +2149,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoProspecting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoProspecting.Location = new System.Drawing.Point(170, 319);
             this.ActivateAutoProspecting.Name = "ActivateAutoProspecting";
-            this.ActivateAutoProspecting.OffText = "NO";
-            this.ActivateAutoProspecting.OnText = "YES";
+            this.ActivateAutoProspecting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoProspecting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoProspecting.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoProspecting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoProspecting.TabIndex = 44;
@@ -2103,8 +2211,8 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSmelting.Location = new System.Drawing.Point(474, 117);
             this.ActivateAutoSmelting.Name = "ActivateAutoSmelting";
-            this.ActivateAutoSmelting.OffText = "NO";
-            this.ActivateAutoSmelting.OnText = "YES";
+            this.ActivateAutoSmelting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateAutoSmelting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoSmelting.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoSmelting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSmelting.TabIndex = 40;
@@ -2179,8 +2287,8 @@ namespace nManager.Helpful.Forms
             this.HarvestDuringLongDistanceMovements.ForeColor = System.Drawing.Color.Black;
             this.HarvestDuringLongDistanceMovements.Location = new System.Drawing.Point(170, 262);
             this.HarvestDuringLongDistanceMovements.Name = "HarvestDuringLongDistanceMovements";
-            this.HarvestDuringLongDistanceMovements.OffText = "NO";
-            this.HarvestDuringLongDistanceMovements.OnText = "YES";
+            this.HarvestDuringLongDistanceMovements.OffText = Translate.Get(Translate.Id.NO);
+            this.HarvestDuringLongDistanceMovements.OnText = Translate.Get(Translate.Id.YES);
             this.HarvestDuringLongDistanceMovements.Size = new System.Drawing.Size(66, 22);
             this.HarvestDuringLongDistanceMovements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HarvestDuringLongDistanceMovements.TabIndex = 33;
@@ -2210,8 +2318,8 @@ namespace nManager.Helpful.Forms
             this.BeastNinjaSkinning.ForeColor = System.Drawing.Color.Black;
             this.BeastNinjaSkinning.Location = new System.Drawing.Point(302, 88);
             this.BeastNinjaSkinning.Name = "BeastNinjaSkinning";
-            this.BeastNinjaSkinning.OffText = "NO";
-            this.BeastNinjaSkinning.OnText = "YES";
+            this.BeastNinjaSkinning.OffText = Translate.Get(Translate.Id.NO);
+            this.BeastNinjaSkinning.OnText = Translate.Get(Translate.Id.YES);
             this.BeastNinjaSkinning.Size = new System.Drawing.Size(66, 22);
             this.BeastNinjaSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BeastNinjaSkinning.TabIndex = 31;
@@ -2307,8 +2415,8 @@ namespace nManager.Helpful.Forms
             this.ActivateHerbsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateHerbsHarvesting.Location = new System.Drawing.Point(170, 146);
             this.ActivateHerbsHarvesting.Name = "ActivateHerbsHarvesting";
-            this.ActivateHerbsHarvesting.OffText = "NO";
-            this.ActivateHerbsHarvesting.OnText = "YES";
+            this.ActivateHerbsHarvesting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateHerbsHarvesting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateHerbsHarvesting.Size = new System.Drawing.Size(66, 22);
             this.ActivateHerbsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateHerbsHarvesting.TabIndex = 25;
@@ -2338,8 +2446,8 @@ namespace nManager.Helpful.Forms
             this.ActivateVeinsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateVeinsHarvesting.Location = new System.Drawing.Point(170, 117);
             this.ActivateVeinsHarvesting.Name = "ActivateVeinsHarvesting";
-            this.ActivateVeinsHarvesting.OffText = "NO";
-            this.ActivateVeinsHarvesting.OnText = "YES";
+            this.ActivateVeinsHarvesting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateVeinsHarvesting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateVeinsHarvesting.Size = new System.Drawing.Size(66, 22);
             this.ActivateVeinsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateVeinsHarvesting.TabIndex = 23;
@@ -2369,8 +2477,8 @@ namespace nManager.Helpful.Forms
             this.ActivateBeastSkinning.ForeColor = System.Drawing.Color.Black;
             this.ActivateBeastSkinning.Location = new System.Drawing.Point(170, 88);
             this.ActivateBeastSkinning.Name = "ActivateBeastSkinning";
-            this.ActivateBeastSkinning.OffText = "NO";
-            this.ActivateBeastSkinning.OnText = "YES";
+            this.ActivateBeastSkinning.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateBeastSkinning.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateBeastSkinning.Size = new System.Drawing.Size(66, 22);
             this.ActivateBeastSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateBeastSkinning.TabIndex = 21;
@@ -2400,8 +2508,8 @@ namespace nManager.Helpful.Forms
             this.ActivateChestLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateChestLooting.Location = new System.Drawing.Point(170, 59);
             this.ActivateChestLooting.Name = "ActivateChestLooting";
-            this.ActivateChestLooting.OffText = "NO";
-            this.ActivateChestLooting.OnText = "YES";
+            this.ActivateChestLooting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateChestLooting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateChestLooting.Size = new System.Drawing.Size(66, 22);
             this.ActivateChestLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateChestLooting.TabIndex = 19;
@@ -2464,8 +2572,8 @@ namespace nManager.Helpful.Forms
             this.ActivateMonsterLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateMonsterLooting.Location = new System.Drawing.Point(170, 30);
             this.ActivateMonsterLooting.Name = "ActivateMonsterLooting";
-            this.ActivateMonsterLooting.OffText = "NO";
-            this.ActivateMonsterLooting.OnText = "YES";
+            this.ActivateMonsterLooting.OffText = Translate.Get(Translate.Id.NO);
+            this.ActivateMonsterLooting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateMonsterLooting.Size = new System.Drawing.Size(66, 22);
             this.ActivateMonsterLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateMonsterLooting.TabIndex = 10;
@@ -2517,8 +2625,8 @@ namespace nManager.Helpful.Forms
             this.DoRegenManaIfLow.ForeColor = System.Drawing.Color.Black;
             this.DoRegenManaIfLow.Location = new System.Drawing.Point(485, 57);
             this.DoRegenManaIfLow.Name = "DoRegenManaIfLow";
-            this.DoRegenManaIfLow.OffText = "NO";
-            this.DoRegenManaIfLow.OnText = "YES";
+            this.DoRegenManaIfLow.OffText = Translate.Get(Translate.Id.NO);
+            this.DoRegenManaIfLow.OnText = Translate.Get(Translate.Id.YES);
             this.DoRegenManaIfLow.Size = new System.Drawing.Size(66, 22);
             this.DoRegenManaIfLow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DoRegenManaIfLow.TabIndex = 26;
@@ -2771,8 +2879,8 @@ namespace nManager.Helpful.Forms
             this.IgnoreFightIfMounted.ForeColor = System.Drawing.Color.Black;
             this.IgnoreFightIfMounted.Location = new System.Drawing.Point(169, 121);
             this.IgnoreFightIfMounted.Name = "IgnoreFightIfMounted";
-            this.IgnoreFightIfMounted.OffText = "NO";
-            this.IgnoreFightIfMounted.OnText = "YES";
+            this.IgnoreFightIfMounted.OffText = Translate.Get(Translate.Id.NO);
+            this.IgnoreFightIfMounted.OnText = Translate.Get(Translate.Id.YES);
             this.IgnoreFightIfMounted.Size = new System.Drawing.Size(66, 22);
             this.IgnoreFightIfMounted.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IgnoreFightIfMounted.TabIndex = 19;
@@ -2893,8 +3001,8 @@ namespace nManager.Helpful.Forms
             this.UseGroundMount.ForeColor = System.Drawing.Color.Black;
             this.UseGroundMount.Location = new System.Drawing.Point(169, 34);
             this.UseGroundMount.Name = "UseGroundMount";
-            this.UseGroundMount.OffText = "NO";
-            this.UseGroundMount.OnText = "YES";
+            this.UseGroundMount.OffText = Translate.Get(Translate.Id.NO);
+            this.UseGroundMount.OnText = Translate.Get(Translate.Id.YES);
             this.UseGroundMount.Size = new System.Drawing.Size(66, 22);
             this.UseGroundMount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseGroundMount.TabIndex = 10;
@@ -2977,8 +3085,8 @@ namespace nManager.Helpful.Forms
             this.UseSpiritHealer.ForeColor = System.Drawing.Color.Black;
             this.UseSpiritHealer.Location = new System.Drawing.Point(177, 213);
             this.UseSpiritHealer.Name = "UseSpiritHealer";
-            this.UseSpiritHealer.OffText = "NO";
-            this.UseSpiritHealer.OnText = "YES";
+            this.UseSpiritHealer.OffText = Translate.Get(Translate.Id.NO);
+            this.UseSpiritHealer.OnText = Translate.Get(Translate.Id.YES);
             this.UseSpiritHealer.Size = new System.Drawing.Size(66, 22);
             this.UseSpiritHealer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseSpiritHealer.TabIndex = 27;
@@ -3008,8 +3116,8 @@ namespace nManager.Helpful.Forms
             this.LearnNewSpells.ForeColor = System.Drawing.Color.Black;
             this.LearnNewSpells.Location = new System.Drawing.Point(177, 127);
             this.LearnNewSpells.Name = "LearnNewSpells";
-            this.LearnNewSpells.OffText = "NO";
-            this.LearnNewSpells.OnText = "YES";
+            this.LearnNewSpells.OffText = Translate.Get(Translate.Id.NO);
+            this.LearnNewSpells.OnText = Translate.Get(Translate.Id.YES);
             this.LearnNewSpells.Size = new System.Drawing.Size(66, 22);
             this.LearnNewSpells.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.LearnNewSpells.TabIndex = 25;
@@ -3039,8 +3147,8 @@ namespace nManager.Helpful.Forms
             this.TrainNewSkills.ForeColor = System.Drawing.Color.Black;
             this.TrainNewSkills.Location = new System.Drawing.Point(177, 98);
             this.TrainNewSkills.Name = "TrainNewSkills";
-            this.TrainNewSkills.OffText = "NO";
-            this.TrainNewSkills.OnText = "YES";
+            this.TrainNewSkills.OffText = Translate.Get(Translate.Id.NO);
+            this.TrainNewSkills.OnText = Translate.Get(Translate.Id.YES);
             this.TrainNewSkills.Size = new System.Drawing.Size(66, 22);
             this.TrainNewSkills.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TrainNewSkills.TabIndex = 23;
@@ -3070,8 +3178,8 @@ namespace nManager.Helpful.Forms
             this.DontPullMonsters.ForeColor = System.Drawing.Color.Black;
             this.DontPullMonsters.Location = new System.Drawing.Point(177, 185);
             this.DontPullMonsters.Name = "DontPullMonsters";
-            this.DontPullMonsters.OffText = "NO";
-            this.DontPullMonsters.OnText = "YES";
+            this.DontPullMonsters.OffText = Translate.Get(Translate.Id.NO);
+            this.DontPullMonsters.OnText = Translate.Get(Translate.Id.YES);
             this.DontPullMonsters.Size = new System.Drawing.Size(66, 22);
             this.DontPullMonsters.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DontPullMonsters.TabIndex = 8;
@@ -3101,8 +3209,8 @@ namespace nManager.Helpful.Forms
             this.CanPullUnitsAlreadyInFight.ForeColor = System.Drawing.Color.Black;
             this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(177, 156);
             this.CanPullUnitsAlreadyInFight.Name = "CanPullUnitsAlreadyInFight";
-            this.CanPullUnitsAlreadyInFight.OffText = "NO";
-            this.CanPullUnitsAlreadyInFight.OnText = "YES";
+            this.CanPullUnitsAlreadyInFight.OffText = Translate.Get(Translate.Id.NO);
+            this.CanPullUnitsAlreadyInFight.OnText = Translate.Get(Translate.Id.YES);
             this.CanPullUnitsAlreadyInFight.Size = new System.Drawing.Size(66, 22);
             this.CanPullUnitsAlreadyInFight.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CanPullUnitsAlreadyInFight.TabIndex = 6;
@@ -3132,8 +3240,8 @@ namespace nManager.Helpful.Forms
             this.AutoAssignTalents.ForeColor = System.Drawing.Color.Black;
             this.AutoAssignTalents.Location = new System.Drawing.Point(177, 70);
             this.AutoAssignTalents.Name = "AutoAssignTalents";
-            this.AutoAssignTalents.OffText = "NO";
-            this.AutoAssignTalents.OnText = "YES";
+            this.AutoAssignTalents.OffText = Translate.Get(Translate.Id.NO);
+            this.AutoAssignTalents.OnText = Translate.Get(Translate.Id.YES);
             this.AutoAssignTalents.Size = new System.Drawing.Size(66, 22);
             this.AutoAssignTalents.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoAssignTalents.TabIndex = 4;
@@ -3449,5 +3557,11 @@ namespace nManager.Helpful.Forms
         private DevComponents.Editors.IntegerInput RepairWhenDurabilityIsUnderPercent;
         private DevComponents.Editors.IntegerInput SendMailWhenLessThanXSlotLeft;
         private DevComponents.DotNetBar.LabelX SendMailWhenLessThanXSlotLeftLabel;
+        private DevComponents.DotNetBar.LabelX UseHearthstoneLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBAfterXMinutes;
+        private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBAfterXStucks;
+        private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBIfReceivedAtMostXWhispers;
+        private DevComponents.DotNetBar.Controls.SwitchButton ActiveStopTNBAfterXLevelup;
+        private DevComponents.DotNetBar.Controls.SwitchButton UseHearthstone;
     }
 }
