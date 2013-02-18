@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -126,18 +127,14 @@ namespace nManager.Wow.Helpers
                 var npcTemp = new Npc();
                 foreach (var npc in ListNpc)
                 {
-                    if (npc.Position.Type.ToLower() != "flying" && forceFlying)
-                        continue;
-
-                    if ((npc.Faction == faction || npc.Faction == Npc.FactionType.Neutral) && npc.Type == type &&
-                        npc.ContinentId == continentId)
-                    {
-                        if (npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition) ||
-                            npcTemp.Position.X == 0)
-                            if (npc.Position.DistanceTo(currentPosition) <=
-                                nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
-                                npcTemp = npc;
-                    }
+                    if (npc.Position.Type.ToLower() != "flying" && forceFlying) continue;
+                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type ||
+                        npc.ContinentId != continentId) continue;
+                    if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) &&
+                        npcTemp.Position.X != 0) continue;
+                    if (npc.Position.DistanceTo(currentPosition) <=
+                        nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
+                        npcTemp = npc;
                 }
                 return npcTemp;
             }
