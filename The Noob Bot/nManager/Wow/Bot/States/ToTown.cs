@@ -137,8 +137,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (_useMollE)
                 {
-                    var mollE = ItemsManager.GetNameById(40768);
-                    ItemsManager.UseItem(mollE);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(500);
                     var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
@@ -221,8 +220,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    var a = ItemsManager.GetNameById(18232);
-                    ItemsManager.UseItem(a);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(500);
                     var unitA =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -246,8 +244,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use110G)
                 {
-                    var g = ItemsManager.GetNameById(34113);
-                    ItemsManager.UseItem(g);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(34113));
                     Thread.Sleep(500);
                     var unitG =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -271,8 +268,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_useJeeves)
                 {
-                    var jeeves = ItemsManager.GetNameById(49040);
-                    ItemsManager.UseItem(jeeves);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(500);
                     var unitJeeves =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -360,8 +356,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    var a = new WoWItem(18232);
-                    ItemsManager.UseItem(a.GetItemInfo.ItemName);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(500);
                     var unitA =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -385,8 +380,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use110G)
                 {
-                    var g = new WoWItem(34113);
-                    ItemsManager.UseItem(g.GetItemInfo.ItemName);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(31113));
                     Thread.Sleep(500);
                     var unitG =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -410,8 +404,7 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_useJeeves)
                 {
-                    var jeeves = new WoWItem(49040);
-                    ItemsManager.UseItem(jeeves.GetItemInfo.ItemName);
+                    ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(500);
                     var unitJeeves =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
