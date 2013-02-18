@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
+using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -35,6 +36,10 @@ namespace nManager.Wow.Bot.States
             get { return new List<State> {new SmeltingState {Priority = 1}}; }
         }
 
+        private readonly Spell _grandExpeditionYak = new Spell(122708);
+        private readonly Spell _travelersTundraMammoth = new Spell(61425);
+        private bool _magicMountYak;
+        private bool _magicMountMammoth;
 
         public override bool NeedToRun
         {
@@ -59,13 +64,24 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
+                if (_grandExpeditionYak != null &&
+                    (SpellManager.ExistMountLUA(_grandExpeditionYak.NameInGame) || _grandExpeditionYak.KnownSpell))
+                    _magicMountYak = true;
+
+                if (_travelersTundraMammoth != null &&
+                    (SpellManager.ExistMountLUA(_travelersTundraMammoth.NameInGame) ||
+                     _travelersTundraMammoth.KnownSpell))
+                    _magicMountMammoth = true;
+
                 if (ObjectManager.ObjectManager.Me.GetDurability <=
                     nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
-                    NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || _magicMountMammoth || _magicMountYak) &&
+                    nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry + NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry) > 0
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 ||
+                     _magicMountMammoth || _magicMountYak)
                     && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
@@ -120,15 +136,132 @@ namespace nManager.Wow.Bot.States
                     mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
             }
             // If need repair
-            if ((ObjectManager.ObjectManager.Me.GetDurability <= 85 ||
-                 (Usefuls.GetContainerNumFreeSlots <= 2 && NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry <= 0)) &&
-                NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
-                listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Repair));
+            if (ObjectManager.ObjectManager.Me.GetDurability <=
+                nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
+                nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
+            {
+                if (_magicMountMammoth)
+                {
+                    if (_travelersTundraMammoth.IsSpellUsable)
+                    {
+                        _travelersTundraMammoth.Launch(true, true, true);
+                        var gnimo =
+                            ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                        if (gnimo.IsValid && gnimo.IsAlive)
+                        {
+                            var gnimoNpc = new Npc
+                                {
+                                    Entry = gnimo.Entry,
+                                    Position = gnimo.Position,
+                                    Name = gnimo.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                                  ? Npc.FactionType.Horde
+                                                  : Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Repair
+                                };
+                            listVendor.Add(gnimoNpc);
+                        }
+                    }
+                }
+                else if (_magicMountYak)
+                {
+                    if (_grandExpeditionYak.IsSpellUsable)
+                    {
+                        _grandExpeditionYak.Launch(true, true, true);
+                        var cousinSlowhands =
+                            ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                        if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
+                        {
+                            var cousinSlowhandsNpc = new Npc
+                                {
+                                    Entry = cousinSlowhands.Entry,
+                                    Position = cousinSlowhands.Position,
+                                    Name = cousinSlowhands.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                                  ? Npc.FactionType.Horde
+                                                  : Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Repair
+                                };
+                            listVendor.Add(cousinSlowhandsNpc);
+                        }
+                    }
+                }
+                else
+                {
+                    if (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
+                        listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Repair));
+                }
+            }
+
             // If need sell
-            if (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 &&
-                (listVendor.Count <= 0 || NeededBuyFood() || NeededBuyDrink() ||
-                 (Usefuls.GetContainerNumFreeSlots <= 2 && listVendor.Count <= 0)))
-                listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Vendor));
+            if (NeededBuyFood() || NeededBuyDrink() ||
+                Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
+                nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
+            {
+                if (_magicMountMammoth)
+                {
+                    if (_travelersTundraMammoth.IsSpellUsable)
+                    {
+                        _travelersTundraMammoth.Launch(true, true, true);
+                        var hakmuddArgus =
+                            ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                        if (hakmuddArgus.IsValid && hakmuddArgus.IsAlive)
+                        {
+                            var hakmuddArgusNpc = new Npc
+                                {
+                                    Entry = hakmuddArgus.Entry,
+                                    Position = hakmuddArgus.Position,
+                                    Name = hakmuddArgus.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                                  ? Npc.FactionType.Horde
+                                                  : Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Vendor
+                                };
+                            listVendor.Add(hakmuddArgusNpc);
+                        }
+                    }
+                }
+                else if (_magicMountYak)
+                {
+                    if (_grandExpeditionYak.IsSpellUsable)
+                    {
+                        _grandExpeditionYak.Launch(true, true, true);
+                        var cousinSlowhands =
+                            ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                        if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
+                        {
+                            var cousinSlowhandsNpc = new Npc
+                                {
+                                    Entry = cousinSlowhands.Entry,
+                                    Position = cousinSlowhands.Position,
+                                    Name = cousinSlowhands.Name,
+                                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                                  ? Npc.FactionType.Horde
+                                                  : Npc.FactionType.Alliance,
+                                    SelectGossipOption = 0,
+                                    Type = Npc.NpcType.Vendor
+                                };
+                            listVendor.Add(cousinSlowhandsNpc);
+                        }
+                    }
+                }
+                else
+                {
+                    if (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0)
+                        listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Vendor));
+                }
+            }
 
             #region Vendor
 
@@ -137,52 +270,27 @@ namespace nManager.Wow.Bot.States
                 foreach (var vendor in listVendor)
                 {
                     Logging.Write("Go to vendor");
-                    var pointsVendor = new List<Point>();
-                    if ((vendor.Position.Type.ToLower() == "flying") &&
-                        nManagerSetting.CurrentSetting.FlyingMountName != "")
+                    if (vendor.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.7f)
                     {
-                        pointsVendor.Add(new Point(vendor.Position));
-                    }
-                    else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
-                    {
-                        vendor.Position.Type = "Swimming";
-                        pointsVendor.Add(vendor.Position);
-                    }
-                    else
-                    {
-                        pointsVendor = PathFinder.FindPath(vendor.Position);
-                    }
+                        var pointsVendor = new List<Point>();
+                        if ((vendor.Position.Type.ToLower() == "flying") &&
+                            nManagerSetting.CurrentSetting.FlyingMountName != "")
+                        {
+                            pointsVendor.Add(new Point(vendor.Position));
+                        }
+                        else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
+                        {
+                            vendor.Position.Type = "Swimming";
+                            pointsVendor.Add(vendor.Position);
+                        }
+                        else
+                        {
+                            pointsVendor = PathFinder.FindPath(vendor.Position);
+                        }
 
-                    MovementManager.Go(pointsVendor);
-                    var timer = new Timer(((int) Math.DistanceListPoint(pointsVendor)/3*1000) + 5000);
+                        MovementManager.Go(pointsVendor);
+                        var timer = new Timer(((int) Math.DistanceListPoint(pointsVendor)/3*1000) + 5000);
 
-                    while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat &&
-                             !(ObjectManager.ObjectManager.Me.IsMounted &&
-                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                           !ObjectManager.ObjectManager.Me.IsDeadMe)
-                    {
-                        if (timer.IsReady)
-                            MovementManager.StopMove();
-                        if (vendor.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                            MovementManager.StopMove();
-                        Thread.Sleep(100);
-                    }
-
-                    var vendorObj =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(vendor.Entry));
-                    if (vendorObj.IsValid)
-                    {
-                        Logging.Write("Vendor named " + vendorObj.Name);
-
-                        Thread.Sleep(500);
-                        MovementManager.StopMoveTo();
-                        Thread.Sleep(1000);
-                        List<Point> listPoint = PathFinder.FindPath(vendorObj.Position);
-
-                        MovementManager.Go(listPoint);
-                        timer = new Timer(((int) Math.DistanceListPoint(listPoint)/3*1000) + 5000);
                         while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
                                !(ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
@@ -191,13 +299,44 @@ namespace nManager.Wow.Bot.States
                         {
                             if (timer.IsReady)
                                 MovementManager.StopMove();
-                            if (vendorObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
+                            if (vendor.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
                                 MovementManager.StopMove();
                             Thread.Sleep(100);
                         }
+                    }
+
+                    var vendorObj =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(vendor.Entry));
+                    if (vendorObj.IsValid)
+                    {
+                        Logging.Write("Vendor named " + vendorObj.Name);
+                        if (vendorObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.7f)
+                        {
+                            Thread.Sleep(500);
+                            MovementManager.StopMoveTo();
+                            Thread.Sleep(1000);
+                            List<Point> listPoint = PathFinder.FindPath(vendorObj.Position);
+
+                            MovementManager.Go(listPoint);
+                            var timer = new Timer(((int) Math.DistanceListPoint(listPoint)/3*1000) + 5000);
+                            while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
+                                   !(ObjectManager.ObjectManager.Me.InCombat &&
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                   !ObjectManager.ObjectManager.Me.IsDeadMe)
+                            {
+                                if (timer.IsReady)
+                                    MovementManager.StopMove();
+                                if (vendorObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
+                                    MovementManager.StopMove();
+                                Thread.Sleep(100);
+                            }
+                        }
 
                         // Prospection
-                        if (nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
+                        if (!_magicMountMammoth && !_magicMountYak &&
+                            nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
                             nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
                             nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
                         {
@@ -211,7 +350,8 @@ namespace nManager.Wow.Bot.States
 
 
                         // Milling
-                        if (nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
+                        if (!_magicMountMammoth && !_magicMountYak &&
+                            nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
                             nManagerSetting.CurrentSetting.ActivateAutoMilling &&
                             nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
                         {
