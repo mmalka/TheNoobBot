@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Threading;
-using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -18,13 +17,7 @@ namespace nManager.Wow.Bot.States
             get { return "To Town"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {
@@ -144,8 +137,8 @@ namespace nManager.Wow.Bot.States
             {
                 if (_useMollE)
                 {
-                    var mollE = new WoWItem(40768);
-                    ItemsManager.UseItem(mollE.GetItemInfo.ItemName);
+                    var mollE = ItemsManager.GetNameById(40768);
+                    ItemsManager.UseItem(mollE);
                     Thread.Sleep(500);
                     var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
@@ -228,8 +221,8 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    var a = new WoWItem(18232);
-                    ItemsManager.UseItem(a.GetItemInfo.ItemName);
+                    var a = ItemsManager.GetNameById(18232);
+                    ItemsManager.UseItem(a);
                     Thread.Sleep(500);
                     var unitA =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -253,8 +246,8 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use110G)
                 {
-                    var g = new WoWItem(34113);
-                    ItemsManager.UseItem(g.GetItemInfo.ItemName);
+                    var g = ItemsManager.GetNameById(34113);
+                    ItemsManager.UseItem(g);
                     Thread.Sleep(500);
                     var unitG =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
@@ -278,8 +271,8 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_useJeeves)
                 {
-                    var jeeves = new WoWItem(49040);
-                    ItemsManager.UseItem(jeeves.GetItemInfo.ItemName);
+                    var jeeves = ItemsManager.GetNameById(49040);
+                    ItemsManager.UseItem(jeeves);
                     Thread.Sleep(500);
                     var unitJeeves =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(

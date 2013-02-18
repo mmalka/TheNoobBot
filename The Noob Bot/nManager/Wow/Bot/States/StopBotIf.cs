@@ -231,12 +231,14 @@ namespace nManager.Wow.Bot.States
                 !ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsUsableItemById(6948))
             {
                 var timerHearthstone = new Timer(1000*45);
-                var hearthstone = new WoWItem(6948);
+                var hearthstone = ItemsManager.GetNameById(6948);
                 Tasks.MountTask.DismountMount();
+                MovementManager.StopMove();
+                MovementManager.StopMove();
                 timerHearthstone.Reset();
                 while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
                 {
-                    ItemsManager.UseItem(hearthstone.GetItemInfo.ItemName);
+                    ItemsManager.UseItem(hearthstone);
                     Thread.Sleep(1000);
                 }
                 Thread.Sleep(1000);
