@@ -40,6 +40,10 @@ namespace nManager.Wow.Bot.States
         private readonly Spell _travelersTundraMammoth = new Spell(61425);
         private bool _magicMountYak;
         private bool _magicMountMammoth;
+        private bool _useMollE;
+        private bool _use74A;
+        private bool _use110G;
+        private bool _useJeeves;
 
         public override bool NeedToRun
         {
@@ -73,22 +77,53 @@ namespace nManager.Wow.Bot.States
                      _travelersTundraMammoth.KnownSpell))
                     _magicMountMammoth = true;
 
+                if ((nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
+                     !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768)))
+                    _useMollE = true;
+                else
+                    _useMollE = false;
+
+                if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(18232) > 0 &&
+                     !ItemsManager.IsItemOnCooldown(18232) && ItemsManager.IsUsableItemById(18232)))
+                {
+                    _use74A = true;
+                    _use110G = false;
+                    _useJeeves = false;
+                }
+                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(34113) > 0 &&
+                          !ItemsManager.IsItemOnCooldown(34113) && ItemsManager.IsUsableItemById(34113)))
+                {
+                    _use74A = false;
+                    _use110G = true;
+                    _useJeeves = false;
+                }
+                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(49040) > 0 &&
+                          !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsUsableItemById(49040)))
+                {
+                    _use74A = false;
+                    _use110G = false;
+                    _useJeeves = true;
+                }
+                else
+                {
+                    _use74A = false;
+                    _use110G = false;
+                    _useJeeves = false;
+                }
+
                 if (ObjectManager.ObjectManager.Me.GetDurability <=
                     nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || _magicMountMammoth || _magicMountYak) &&
-                    nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || _magicMountMammoth || _magicMountYak || _use74A ||
+                     _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 ||
-                     _magicMountMammoth || _magicMountYak)
-                    && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 || _magicMountMammoth || _magicMountYak || _use74A ||
+                     _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SendMailWhenLessThanXSlotLeft &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 ||
-                     (nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
-                      !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768))) &&
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0 || _useMollE) &&
                     nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
                     nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
                     return true;
@@ -107,8 +142,7 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
                 nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
             {
-                if (nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
-                    !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768))
+                if (_useMollE)
                 {
                     var mollE = new WoWItem(40768);
                     ItemsManager.UseItem(mollE.GetItemInfo.ItemName);
@@ -192,6 +226,81 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
+                else if (_use74A)
+                {
+                    var a = new WoWItem(18232);
+                    ItemsManager.UseItem(a.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitA =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
+                    if (unitA.IsValid && unitA.IsAlive)
+                    {
+                        var npcA = new Npc
+                            {
+                                Entry = unitA.Entry,
+                                Position = unitA.Position,
+                                Name = unitA.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Repair
+                            };
+                        listVendor.Add(npcA);
+                    }
+                }
+                else if (_use110G)
+                {
+                    var g = new WoWItem(34113);
+                    ItemsManager.UseItem(g.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitG =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
+                    if (unitG.IsValid && unitG.IsAlive)
+                    {
+                        var npcG = new Npc
+                            {
+                                Entry = unitG.Entry,
+                                Position = unitG.Position,
+                                Name = unitG.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Repair
+                            };
+                        listVendor.Add(npcG);
+                    }
+                }
+                else if (_useJeeves)
+                {
+                    var jeeves = new WoWItem(49040);
+                    ItemsManager.UseItem(jeeves.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitJeeves =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
+                    if (unitJeeves.IsValid && unitJeeves.IsAlive)
+                    {
+                        var npcJeeves = new Npc
+                            {
+                                Entry = unitJeeves.Entry,
+                                Position = unitJeeves.Position,
+                                Name = unitJeeves.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 2,
+                                Type = Npc.NpcType.Repair
+                            };
+                        listVendor.Add(npcJeeves);
+                    }
+                }
                 else
                 {
                     if (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
@@ -254,6 +363,81 @@ namespace nManager.Wow.Bot.States
                                 };
                             listVendor.Add(cousinSlowhandsNpc);
                         }
+                    }
+                }
+                else if (_use74A)
+                {
+                    var a = new WoWItem(18232);
+                    ItemsManager.UseItem(a.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitA =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
+                    if (unitA.IsValid && unitA.IsAlive)
+                    {
+                        var npcA = new Npc
+                            {
+                                Entry = unitA.Entry,
+                                Position = unitA.Position,
+                                Name = unitA.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Vendor
+                            };
+                        listVendor.Add(npcA);
+                    }
+                }
+                else if (_use110G)
+                {
+                    var g = new WoWItem(34113);
+                    ItemsManager.UseItem(g.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitG =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
+                    if (unitG.IsValid && unitG.IsAlive)
+                    {
+                        var npcG = new Npc
+                            {
+                                Entry = unitG.Entry,
+                                Position = unitG.Position,
+                                Name = unitG.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 0,
+                                Type = Npc.NpcType.Vendor
+                            };
+                        listVendor.Add(npcG);
+                    }
+                }
+                else if (_useJeeves)
+                {
+                    var jeeves = new WoWItem(49040);
+                    ItemsManager.UseItem(jeeves.GetItemInfo.ItemName);
+                    Thread.Sleep(500);
+                    var unitJeeves =
+                        ObjectManager.ObjectManager.GetNearestWoWUnit(
+                            ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
+                    if (unitJeeves.IsValid && unitJeeves.IsAlive)
+                    {
+                        var npcJeeves = new Npc
+                            {
+                                Entry = unitJeeves.Entry,
+                                Position = unitJeeves.Position,
+                                Name = unitJeeves.Name,
+                                ContinentId = (ContinentId) Usefuls.ContinentId,
+                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                              ? Npc.FactionType.Horde
+                                              : Npc.FactionType.Alliance,
+                                SelectGossipOption = 2,
+                                Type = Npc.NpcType.Vendor
+                            };
+                        listVendor.Add(npcJeeves);
                     }
                 }
                 else
@@ -370,7 +554,10 @@ namespace nManager.Wow.Bot.States
                                 (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                         {
                             Interact.InteractGameObject(vendorObj.GetBaseAddress);
-                            Thread.Sleep(1500);
+                            Thread.Sleep(500);
+                            if (vendor.SelectGossipOption != 0)
+                                Lua.LuaDoString("SelectGossipOption(" + vendor.SelectGossipOption + ")");
+                            Thread.Sleep(1000);
 
                             // Repair:
                             if (vendor.Type == Npc.NpcType.Repair)

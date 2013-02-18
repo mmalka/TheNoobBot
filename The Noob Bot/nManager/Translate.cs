@@ -402,7 +402,8 @@ namespace nManager
             TipOffEmptyFlyingMount,
             UseHearthstone,
             HearthstoneNotFound,
-            UseMollE
+            UseMollE,
+            UseRobot
         };
 
         [Serializable]

@@ -279,5 +279,6 @@ namespace nManager
         public bool ActiveStopTNBAfterXStucks;
         public bool ActiveStopTNBIfReceivedAtMostXWhispers;
         public bool UseMollE;
+        public bool UseRobot;
     }
 }

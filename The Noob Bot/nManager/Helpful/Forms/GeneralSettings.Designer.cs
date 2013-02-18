@@ -72,6 +72,8 @@ namespace nManager.Helpful.Forms
             this.labelX27 = new DevComponents.DotNetBar.LabelX();
             this.StopTNBIfBagAreFull = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.expandablePanel9 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.UseMollELabel = new DevComponents.DotNetBar.LabelX();
+            this.UseMollE = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.SendMailWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
             this.SendMailWhenLessThanXSlotLeftLabel = new DevComponents.DotNetBar.LabelX();
             this.MaillingFeatureRecipient = new DevComponents.DotNetBar.Controls.TextBoxX();
@@ -213,8 +215,8 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.UseMollELabel = new DevComponents.DotNetBar.LabelX();
-            this.UseMollE = new DevComponents.DotNetBar.Controls.SwitchButton();
+            this.UseRobotLabel = new DevComponents.DotNetBar.LabelX();
+            this.UseRobot = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.expandablePanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
@@ -1021,6 +1023,37 @@ namespace nManager.Helpful.Forms
             this.expandablePanel9.TitleStyle.GradientAngle = 90;
             this.expandablePanel9.TitleText = "Mail (Send Items to alts)";
             // 
+            // UseMollELabel
+            // 
+            this.UseMollELabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.UseMollELabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseMollELabel.ForeColor = System.Drawing.Color.Black;
+            this.UseMollELabel.Location = new System.Drawing.Point(301, 35);
+            this.UseMollELabel.Name = "UseMollELabel";
+            this.UseMollELabel.Size = new System.Drawing.Size(160, 23);
+            this.UseMollELabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.UseMollELabel.TabIndex = 43;
+            this.UseMollELabel.Text = "Use MOLL-E if up";
+            // 
+            // UseMollE
+            // 
+            this.UseMollE.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.UseMollE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseMollE.ForeColor = System.Drawing.Color.Black;
+            this.UseMollE.Location = new System.Drawing.Point(467, 35);
+            this.UseMollE.Name = "UseMollE";
+            this.UseMollE.OffText = Translate.Get(Translate.Id.NO);
+            this.UseMollE.OnText = Translate.Get(Translate.Id.YES);
+            this.UseMollE.Size = new System.Drawing.Size(66, 22);
+            this.UseMollE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.UseMollE.TabIndex = 42;
+            // 
             // SendMailWhenLessThanXSlotLeft
             // 
             this.SendMailWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
@@ -1283,6 +1316,8 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel8.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel8.Controls.Add(this.UseRobotLabel);
+            this.expandablePanel8.Controls.Add(this.UseRobot);
             this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeft);
             this.expandablePanel8.Controls.Add(this.RepairWhenDurabilityIsUnderPercent);
             this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeftLabel);
@@ -1306,7 +1341,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel8.Controls.Add(this.labelX46);
             this.expandablePanel8.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel8.Expanded = false;
-            this.expandablePanel8.ExpandedBounds = new System.Drawing.Rectangle(0, 130, 543, 341);
+            this.expandablePanel8.ExpandedBounds = new System.Drawing.Rectangle(0, 85, 543, 341);
             this.expandablePanel8.ExpandOnTitleClick = true;
             this.expandablePanel8.Location = new System.Drawing.Point(0, 130);
             this.expandablePanel8.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
@@ -1569,7 +1604,7 @@ namespace nManager.Helpful.Forms
             this.NumberOfFoodsWeGot.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.NumberOfFoodsWeGot.ButtonFreeText.Shortcut = DevComponents.DotNetBar.eShortcut.F2;
             this.NumberOfFoodsWeGot.ForeColor = System.Drawing.Color.Black;
-            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(169, 35);
+            this.NumberOfFoodsWeGot.Location = new System.Drawing.Point(423, 63);
             this.NumberOfFoodsWeGot.MinValue = 0;
             this.NumberOfFoodsWeGot.Name = "NumberOfFoodsWeGot";
             this.NumberOfFoodsWeGot.ShowUpDown = true;
@@ -1584,7 +1619,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX50.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX50.ForeColor = System.Drawing.Color.Black;
-            this.labelX50.Location = new System.Drawing.Point(3, 35);
+            this.labelX50.Location = new System.Drawing.Point(257, 63);
             this.labelX50.Name = "labelX50";
             this.labelX50.Size = new System.Drawing.Size(160, 23);
             this.labelX50.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3332,36 +3367,36 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
             // 
-            // UseMollELabel
+            // UseRobotLabel
             // 
-            this.UseMollELabel.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.UseMollELabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.UseMollELabel.ForeColor = System.Drawing.Color.Black;
-            this.UseMollELabel.Location = new System.Drawing.Point(301, 35);
-            this.UseMollELabel.Name = "UseMollELabel";
-            this.UseMollELabel.Size = new System.Drawing.Size(160, 23);
-            this.UseMollELabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.UseMollELabel.TabIndex = 43;
-            this.UseMollELabel.Text = "Use MOLL-E if up";
-            // 
-            // UseMollE
-            // 
-            this.UseMollE.BackColor = System.Drawing.Color.White;
+            this.UseRobotLabel.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.UseMollE.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.UseMollE.ForeColor = System.Drawing.Color.Black;
-            this.UseMollE.Location = new System.Drawing.Point(467, 35);
-            this.UseMollE.Name = "UseMollE";
-            this.UseMollE.OffText = Translate.Get(Translate.Id.NO);
-            this.UseMollE.OnText = Translate.Get(Translate.Id.YES);
-            this.UseMollE.Size = new System.Drawing.Size(66, 22);
-            this.UseMollE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.UseMollE.TabIndex = 42;
+            this.UseRobotLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseRobotLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseRobotLabel.Location = new System.Drawing.Point(4, 35);
+            this.UseRobotLabel.Name = "UseRobotLabel";
+            this.UseRobotLabel.Size = new System.Drawing.Size(160, 23);
+            this.UseRobotLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.UseRobotLabel.TabIndex = 41;
+            this.UseRobotLabel.Text = "Use robot when possible";
+            // 
+            // UseRobot
+            // 
+            this.UseRobot.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.UseRobot.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseRobot.ForeColor = System.Drawing.Color.Black;
+            this.UseRobot.Location = new System.Drawing.Point(170, 35);
+            this.UseRobot.Name = "UseRobot";
+            this.UseRobot.OffText = Translate.Get(Translate.Id.NO);
+            this.UseRobot.OnText = Translate.Get(Translate.Id.YES);
+            this.UseRobot.Size = new System.Drawing.Size(66, 22);
+            this.UseRobot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.UseRobot.TabIndex = 40;
             // 
             // GeneralSettings
             // 
@@ -3600,5 +3635,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton UseHearthstone;
         private DevComponents.DotNetBar.LabelX UseMollELabel;
         private DevComponents.DotNetBar.Controls.SwitchButton UseMollE;
+        private DevComponents.DotNetBar.LabelX UseRobotLabel;
+        private DevComponents.DotNetBar.Controls.SwitchButton UseRobot;
     }
 }

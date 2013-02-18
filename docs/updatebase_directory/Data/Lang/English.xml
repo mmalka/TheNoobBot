@@ -1317,5 +1317,9 @@
       <Text>Use MOLL-E if up</Text>
       <Id>UseMollE</Id>
     </Translation>
+	<Translation>
+      <Text>Use Robot when up</Text>
+      <Id>UseRobot</Id>
+    </Translation>
   </Translations>
 </Language>

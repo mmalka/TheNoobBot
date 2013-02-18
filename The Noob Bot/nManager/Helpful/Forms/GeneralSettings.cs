@@ -247,6 +247,7 @@ namespace nManager.Helpful.Forms
             RepairWhenDurabilityIsUnderPercentLabel.Text = Translate.Get(Translate.Id.RepairWhenDurabilityIsUnderPercent);
             UseHearthstoneLabel.Text = Translate.Get(Translate.Id.UseHearthstone);
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
+            UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
         }
 
@@ -379,6 +380,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.ActiveStopTNBIfReceivedAtMostXWhispers =
                     ActiveStopTNBIfReceivedAtMostXWhispers.Value;
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
+                nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.Save();
             }
             catch (Exception e)
@@ -490,6 +492,7 @@ namespace nManager.Helpful.Forms
                 ActiveStopTNBAfterXStucks.Value = managerSetting.ActiveStopTNBAfterXStucks;
                 ActiveStopTNBIfReceivedAtMostXWhispers.Value = managerSetting.ActiveStopTNBIfReceivedAtMostXWhispers;
                 UseMollE.Value = managerSetting.UseMollE;
+                UseRobot.Value = managerSetting.UseRobot;
             }
             catch (Exception ex)
             {
