@@ -108,9 +108,7 @@ namespace nManager.Wow.Helpers
                 var faction =
                     (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
                 return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId,
-                                    ObjectManager.ObjectManager.Me.Position,
-                                    (!string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName) &&
-                                     !Usefuls.IsSwimming));
+                                    ObjectManager.ObjectManager.Me.Position);
             }
             catch (Exception ex)
             {
@@ -120,14 +118,13 @@ namespace nManager.Wow.Helpers
         }
 
         public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId,
-                                       Point currentPosition, bool forceFlying = false)
+                                       Point currentPosition)
         {
             try
             {
                 var npcTemp = new Npc();
                 foreach (var npc in ListNpc)
                 {
-                    if (npc.Position.Type.ToLower() != "flying" && forceFlying) continue;
                     if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type ||
                         npc.ContinentId != continentId) continue;
                     if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) &&
