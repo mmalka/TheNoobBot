@@ -37,18 +37,13 @@ namespace Test_Product
             var currentFaction = new Npc.FactionType();
             while (npcresult.Read())
             {
-                if ((UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_H")) == (Reaction) 3 ||
-                     (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) == (Reaction) 3)))
-                {
-                    continue;
-                }
-                if ((UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                     Reaction.Friendly &&
+                if ((UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
+                     Reaction.Friendly ||
                      UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
-                     Reaction.Friendly) ||
+                     Reaction.Neutral) &&
                     (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                     Reaction.Neutral &&
-                     UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
+                     Reaction.Friendly ||
+                     UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
                      Reaction.Neutral))
                 {
                     // neutral
