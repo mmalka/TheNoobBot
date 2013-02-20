@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -77,10 +78,10 @@ namespace nManager.Wow.Helpers
                 LoadList();
                 lock (typeof (NpcDB))
                 {
-                    foreach (var npc in npcList)
+                    foreach (Npc npc in npcList)
                     {
                         bool found = false;
-                        foreach (var npc1 in ListNpc)
+                        foreach (Npc npc1 in ListNpc)
                         {
                             if (npc1.Position.DistanceTo(npc.Position) < 1 && npc1.Entry == npc.Entry)
                             {
@@ -88,16 +89,36 @@ namespace nManager.Wow.Helpers
                                 break;
                             }
                         }
-                        if (!found)
-                            ListNpc.Add(npc);
+                        if (!found) ListNpc.Add(npc);
                     }
-
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("NpcDB > AddNpcRange(List<Npc> npcList)): " + ex);
+            }
+        }
+
+        public static void BuildNewList(List<Npc> npcList)
+        {
+            try
+            {
+                File.Delete(Application.StartupPath + "\\Data\\NpcDB.xml");
+                ListNpc.Clear();
+                lock (typeof (NpcDB))
+                {
+                    foreach (Npc npc in npcList)
+                    {
+                        ListNpc.Add(npc);
+                    }
+                    Logging.Write("List builded with " + ListNpc.Count() + "NPC inside.");
+                    XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", ListNpc);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("NpcDB > BuildNewList(List<Npc> npcList)): " + ex);
             }
         }
 

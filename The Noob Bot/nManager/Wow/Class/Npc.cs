@@ -95,10 +95,19 @@ namespace nManager.Wow.Class
             CookingTrainer,
             FirstAidTrainer,
             FishingTrainer,
-            ArchaeologyTrainers,
+            ArchaeologyTrainer,
             RidingTrainer,
             Smelting,
             MonkTrainer,
+            FlightMaster,
+            SpiritHealer,
+            SpiritGuide,
+            Innkeeper,
+            Banker,
+            Battlemaster,
+            Auctioneer,
+            StableMaster,
+            GuildBanker,
         }
     }
 }
