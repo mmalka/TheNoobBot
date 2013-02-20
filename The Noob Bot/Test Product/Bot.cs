@@ -16,91 +16,109 @@ namespace Test_Product
 
         public static bool Pulse()
         {
-            var myConn =
-                new MySqlConnection(
-                    "server=over-game.eu; user id=thenoobbot_npcdb; password=4KJmBv5u3VRaVPwV; database=thenoobbot_npcdb;");
-            myConn.Open();
-            const string npcquery =
-                "SELECT ct.entry, ct.name, ct.subname, ct.faction_A, ct.faction_H, ct.npcflag, c.map, c.position_x, c.position_y, c.position_z " +
-                "FROM `creature_template` AS ct, `creature` AS c " +
-                "WHERE c.id = ct.entry && c.phaseMask =1 && c.spawnMask&15 && " +
-                "( ! ( c.unit_flags &33554432 ) && ! ( c.unit_flags &262144 ) && ! ( c.unit_flags &524288 ) ) && " +
-                "!(ct.npcflag &1) && " +
-                // NPC without GOSSIP menu for now, we need to handle GOSSIP correctly in the bot first.
-                "((ct.npcflag &64 && trainer_type=2) || ct.npcflag &128 || ct.npcflag &4096 || ct.npcflag &8192 || ct.npcflag &16384 || ct.npcflag &32768 || ct.npcflag &65536 || ct.npcflag &131072 || ct.npcflag &1048576 || ct.npcflag &2097152 || ct.npcflag &4194304 || ct.npcflag &8388608 || ct.npcflag &67108864) && " +
-                "( ! ( ct.unit_flags &33554432 ) && ! ( ct.unit_flags &262144 ) && ! ( ct.unit_flags &524288 ) ) && ! ( ct.flags_extra &128 ) && " +
-                "ct.entry NOT IN (SELECT `npc_entry` FROM (`creature_transport`)) " +
-                "GROUP BY ct.entry;";
-            var npccmd = new MySqlCommand(npcquery, myConn);
-            var npcresult = npccmd.ExecuteReader();
-            var newList = new List<Npc>();
-            var currentFaction = new Npc.FactionType();
-            while (npcresult.Read())
+            try
             {
-                if ((UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
-                     Reaction.Friendly ||
-                     UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
-                     Reaction.Neutral) &&
-                    (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                     Reaction.Friendly ||
-                     UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                     Reaction.Neutral))
+                var myConn =
+                    new MySqlConnection(
+                        "server=over-game.eu; user id=thenoobbot_npcdb; password=4KJmBv5u3VRaVPwV; database=thenoobbot_npcdb;");
+                myConn.Open();
+                const string npcquery =
+                    "SELECT ct.entry, ct.name, ct.subname, ct.faction_A, ct.faction_H, ct.npcflag, c.map, c.position_x, c.position_y, c.position_z " +
+                    "FROM `creature_template` AS ct, `creature` AS c " +
+                    "WHERE c.id = ct.entry && c.phaseMask =1 && c.spawnMask&15 && " +
+                    "( ! ( c.unit_flags &33554432 ) && ! ( c.unit_flags &262144 ) && ! ( c.unit_flags &524288 ) ) && " +
+                    "!(ct.npcflag &1)" +
+                    " && " +
+                    // NPC without GOSSIP menu for now, we need to handle GOSSIP correctly in the bot first.
+                    "((ct.npcflag &64 && trainer_type=2) || ct.npcflag &128 || ct.npcflag &4096 || ct.npcflag &8192 || ct.npcflag &16384 || ct.npcflag &32768 || ct.npcflag &65536 || ct.npcflag &131072 || ct.npcflag &1048576 || ct.npcflag &2097152 || ct.npcflag &4194304 || ct.npcflag &8388608 || ct.npcflag &67108864) && " +
+                    "( ! ( ct.unit_flags &33554432 ) && ! ( ct.unit_flags &262144 ) && ! ( ct.unit_flags &524288 ) ) && ! ( ct.flags_extra &128 ) && " +
+                    "ct.entry NOT IN (SELECT `npc_entry` FROM (`creature_transport`)) " +
+                    "GROUP BY ct.entry;";
+                var npccmd = new MySqlCommand(npcquery, myConn);
+                MySqlDataReader npcresult = npccmd.ExecuteReader();
+                var newList = new List<Npc>();
+                var currentFaction = new Npc.FactionType();
+                while (npcresult.Read())
                 {
-                    // neutral
-                    currentFaction = Npc.FactionType.Neutral;
-                }
-                else if (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                         Reaction.Friendly ||
-                         UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
-                         Reaction.Neutral)
-                {
-                    // horde
-                    currentFaction = Npc.FactionType.Horde;
-                }
-                else if (UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
+                    if ((UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
                          Reaction.Friendly ||
                          UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
-                         Reaction.Neutral)
-                {
-                    // alliance
-                    currentFaction = Npc.FactionType.Alliance;
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 64))
-                {
-                    var newtype = Npc.NpcType.None;
-                    if (npcresult.GetString("subname").Contains("Alchemy"))
-                        newtype = Npc.NpcType.AlchemyTrainer;
-                    else if (npcresult.GetString("subname").Contains("Blacksmithing"))
-                        newtype = Npc.NpcType.BlacksmithingTrainer;
-                    else if (npcresult.GetString("subname").Contains("Enchanting"))
-                        newtype = Npc.NpcType.EnchantingTrainer;
-                    else if (npcresult.GetString("subname").Contains("Engineering"))
-                        newtype = Npc.NpcType.EngineeringTrainer;
-                    else if (npcresult.GetString("subname").Contains("Herbalism"))
-                        newtype = Npc.NpcType.HerbalismTrainer;
-                    else if (npcresult.GetString("subname").Contains("Inscription"))
-                        newtype = Npc.NpcType.InscriptionTrainer;
-                    else if (npcresult.GetString("subname").Contains("Jewelcrafting"))
-                        newtype = Npc.NpcType.JewelcraftingTrainer;
-                    else if (npcresult.GetString("subname").Contains("Leatherworking"))
-                        newtype = Npc.NpcType.LeatherworkingTrainer;
-                    else if (npcresult.GetString("subname").Contains("Mining"))
-                        newtype = Npc.NpcType.MiningTrainer;
-                    else if (npcresult.GetString("subname").Contains("Skinning"))
-                        newtype = Npc.NpcType.SkinningTrainer;
-                    else if (npcresult.GetString("subname").Contains("Tailoring"))
-                        newtype = Npc.NpcType.TailoringTrainer;
-                    else if (npcresult.GetString("subname").Contains("Archaeology"))
-                        newtype = Npc.NpcType.ArchaeologyTrainer;
-                    else if (npcresult.GetString("subname").Contains("Cooking"))
-                        newtype = Npc.NpcType.CookingTrainer;
-                    else if (npcresult.GetString("subname").Contains("First Aid"))
-                        newtype = Npc.NpcType.FirstAidTrainer;
-                    else if (npcresult.GetString("subname").Contains("Fishing"))
-                        newtype = Npc.NpcType.FishingTrainer;
-                    else if (npcresult.GetString("subname").Contains("Riding"))
-                        newtype = Npc.NpcType.RidingTrainer;
-                    if (newtype != Npc.NpcType.None)
+                         Reaction.Neutral) &&
+                        (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
+                         Reaction.Friendly ||
+                         UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
+                         Reaction.Neutral))
+                    {
+                        // neutral
+                        currentFaction = Npc.FactionType.Neutral;
+                    }
+                    else if (UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
+                             Reaction.Friendly ||
+                             UnitRelation.GetReaction(2, npcresult.GetUInt32("faction_H")) ==
+                             Reaction.Neutral)
+                    {
+                        // horde
+                        currentFaction = Npc.FactionType.Horde;
+                    }
+                    else if (UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
+                             Reaction.Friendly ||
+                             UnitRelation.GetReaction(1, npcresult.GetUInt32("faction_A")) ==
+                             Reaction.Neutral)
+                    {
+                        // alliance
+                        currentFaction = Npc.FactionType.Alliance;
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 64))
+                    {
+                        var newtype = Npc.NpcType.None;
+                        if (npcresult.GetString("subname").Contains("Alchemy"))
+                            newtype = Npc.NpcType.AlchemyTrainer;
+                        else if (npcresult.GetString("subname").Contains("Blacksmithing"))
+                            newtype = Npc.NpcType.BlacksmithingTrainer;
+                        else if (npcresult.GetString("subname").Contains("Enchanting"))
+                            newtype = Npc.NpcType.EnchantingTrainer;
+                        else if (npcresult.GetString("subname").Contains("Engineering"))
+                            newtype = Npc.NpcType.EngineeringTrainer;
+                        else if (npcresult.GetString("subname").Contains("Herbalism"))
+                            newtype = Npc.NpcType.HerbalismTrainer;
+                        else if (npcresult.GetString("subname").Contains("Inscription"))
+                            newtype = Npc.NpcType.InscriptionTrainer;
+                        else if (npcresult.GetString("subname").Contains("Jewelcrafting"))
+                            newtype = Npc.NpcType.JewelcraftingTrainer;
+                        else if (npcresult.GetString("subname").Contains("Leatherworking"))
+                            newtype = Npc.NpcType.LeatherworkingTrainer;
+                        else if (npcresult.GetString("subname").Contains("Mining"))
+                            newtype = Npc.NpcType.MiningTrainer;
+                        else if (npcresult.GetString("subname").Contains("Skinning"))
+                            newtype = Npc.NpcType.SkinningTrainer;
+                        else if (npcresult.GetString("subname").Contains("Tailoring"))
+                            newtype = Npc.NpcType.TailoringTrainer;
+                        else if (npcresult.GetString("subname").Contains("Archaeology"))
+                            newtype = Npc.NpcType.ArchaeologyTrainer;
+                        else if (npcresult.GetString("subname").Contains("Cooking"))
+                            newtype = Npc.NpcType.CookingTrainer;
+                        else if (npcresult.GetString("subname").Contains("First Aid"))
+                            newtype = Npc.NpcType.FirstAidTrainer;
+                        else if (npcresult.GetString("subname").Contains("Fishing"))
+                            newtype = Npc.NpcType.FishingTrainer;
+                        else if (npcresult.GetString("subname").Contains("Riding"))
+                            newtype = Npc.NpcType.RidingTrainer;
+                        if (newtype != Npc.NpcType.None)
+                            newList.Add(new Npc
+                                {
+                                    ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                    Entry = npcresult.GetInt32("entry"),
+                                    Faction = currentFaction,
+                                    Name = npcresult.GetString("name"),
+                                    Position =
+                                        new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                                  npcresult.GetFloat("position_z")),
+                                    SelectGossipOption = 1,
+                                    Type = newtype
+                                });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 128))
+                    {
                         newList.Add(new Npc
                             {
                                 ContinentId = (ContinentId) npcresult.GetUInt32("map"),
@@ -111,248 +129,236 @@ namespace Test_Product
                                     new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
                                               npcresult.GetFloat("position_z")),
                                 SelectGossipOption = 1,
-                                Type = newtype
+                                Type = Npc.NpcType.Vendor
                             });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4096))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Repair
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8192))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.FlightMaster
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 16384))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.SpiritHealer
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 32768))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.SpiritGuide
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 65536))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Innkeeper
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 131072))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Banker
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 1048576))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Battlemaster
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 2097152))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Auctioneer
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4194304))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.StableMaster
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8388608))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.GuildBanker
+                            });
+                    }
+                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 67108864))
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) npcresult.GetUInt32("map"),
+                                Entry = npcresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = npcresult.GetString("name"),
+                                Position =
+                                    new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
+                                              npcresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Mailbox
+                            });
+                    }
                 }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 128))
+                npcresult.Close();
+                const string goquery =
+                    "SELECT `got`.entry, `got`.name, `got`.type, `got`.faction, `go`.map, `go`.position_x, `go`.position_y, `go`.position_z " +
+                    "FROM `gameobject_template` AS got, `gameobject` AS go " +
+                    "WHERE `go`.id = `got`.entry && `go`.phaseMask =1 && `go`.spawnMask&15 && " +
+                    "( ! ( `got`.flags &1 ) && ! ( `got`.flags &2 ) && ! ( `got`.flags &4 ) && ! ( `got`.flags &8 ) && ! ( `got`.flags &64 ) && ! ( `got`.flags &72 ) && ! ( `got`.flags &1024 )) && " +
+                    "`got`.type = 19 " +
+                    "GROUP BY `got`.entry;";
+                var gocmd = new MySqlCommand(goquery, myConn);
+                MySqlDataReader goresult = gocmd.ExecuteReader();
+                while (goresult.Read())
                 {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Vendor
-                        });
+                    if ((UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                         Reaction.Friendly ||
+                         UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                         Reaction.Neutral) &&
+                        (UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                         Reaction.Friendly ||
+                         UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                         Reaction.Neutral))
+                    {
+                        // neutral
+                        currentFaction = Npc.FactionType.Neutral;
+                    }
+                    else if (UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                             Reaction.Friendly ||
+                             UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                             Reaction.Neutral)
+                    {
+                        // horde
+                        currentFaction = Npc.FactionType.Horde;
+                    }
+                    else if (UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                             Reaction.Friendly ||
+                             UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                             Reaction.Neutral)
+                    {
+                        // alliance
+                        currentFaction = Npc.FactionType.Alliance;
+                    }
+                    if (goresult.GetUInt32("type") == 19)
+                    {
+                        newList.Add(new Npc
+                            {
+                                ContinentId = (ContinentId) goresult.GetUInt32("map"),
+                                Entry = goresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = goresult.GetString("name"),
+                                Position =
+                                    new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                              goresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Mailbox
+                            });
+                    }
                 }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4096))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Repair
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8192))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.FlightMaster
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 16384))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.SpiritHealer
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 32768))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.SpiritGuide
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 65536))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Innkeeper
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 131072))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Banker
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 1048576))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Battlemaster
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 2097152))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Auctioneer
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4194304))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.StableMaster
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8388608))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.GuildBanker
-                        });
-                }
-                if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 67108864))
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) npcresult.GetUInt32("map"),
-                            Entry = npcresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = npcresult.GetString("name"),
-                            Position =
-                                new Point(npcresult.GetFloat("position_x"), npcresult.GetFloat("position_y"),
-                                          npcresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Mailbox
-                        });
-                }
-            }
-            npcresult.Close();
-            const string goquery =
-                "SELECT `got`.entry, `got`.name, `got`.type, `got`.faction, `go`.map, `go`.position_x, `go`.position_y, `go`.position_z " +
-                "FROM `gameobject_template` AS got, `gameobject` AS go " +
-                "WHERE `go`.id = `got`.entry && `go`.phaseMask =1 && `go`.spawnMask&15 && " +
-                "( ! ( `got`.flags &1 ) && ! ( `got`.flags &2 ) && ! ( `got`.flags &4 ) && ! ( `got`.flags &8 ) && ! ( `got`.flags &64 ) && ! ( `got`.flags &72 ) && ! ( `got`.flags &1024 )) && " +
-                "`got`.type = 19 " +
-                "GROUP BY `got`.entry;";
-            var gocmd = new MySqlCommand(goquery, myConn);
-            var goresult = gocmd.ExecuteReader();
-            while (goresult.Read())
-            {
-                if ((UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                     Reaction.Friendly &&
-                     UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                     Reaction.Friendly) ||
-                    (UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                     Reaction.Neutral && UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                     Reaction.Neutral))
-                {
-                    // neutral
-                    currentFaction = Npc.FactionType.Neutral;
-                }
-                else if (UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                         Reaction.Friendly || UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                         Reaction.Neutral)
-                {
-                    // horde
-                    currentFaction = Npc.FactionType.Horde;
-                }
-                else if (UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                         Reaction.Friendly || UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                         Reaction.Neutral)
-                {
-                    // alliance
-                    currentFaction = Npc.FactionType.Alliance;
-                }
-                if (goresult.GetUInt32("type") == 19)
-                {
-                    newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId) goresult.GetUInt32("map"),
-                            Entry = goresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = goresult.GetString("name"),
-                            Position =
-                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
-                                          goresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Mailbox
-                        });
-                }
-            }
-            goresult.Close();
-            NpcDB.BuildNewList(newList);
-            newList.Clear();
-            return goresult.HasRows;
-            /*if (_xmlProfile)
+                goresult.Close();
+                NpcDB.BuildNewList(newList);
+                newList.Clear();
+                return goresult.HasRows;
+                /*if (_xmlProfile)
             {
                 _currentProfile = new BattlegrounderProfile();
                 if (File.Exists(Application.StartupPath + "\\Profiles\\Battlegrounder\\" +
@@ -631,8 +637,8 @@ namespace Test_Product
             //var tbreak = 1;
 
             //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15 * 2);
-            /*
-            DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
+            */
+                /*DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
             var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
             for (int i = 0; i < DBCSpell.MaxIndex - 1; i++)
             {
@@ -735,6 +741,12 @@ namespace Test_Product
 
             nManager.Helpful.Others.WriteFile("TESTTEST.txt", r);
             */
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Test product: " + exception);
+            }
+            return false;
         }
 
         public static
