@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0xE28428;
+            public static uint clientConnection = 0x0; // 0xE28428
         }
 
         public enum ObjectManager

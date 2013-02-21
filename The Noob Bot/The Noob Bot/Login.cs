@@ -287,7 +287,7 @@ namespace The_Noob_Bot
                     Application.DoEvents();
                     Thread.Sleep(50);
                 }
-                LoginServer.CheckAccountSecurity();
+                //LoginServer.CheckAccountSecurity();
                 launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.Launch_Tnb);
                 LoginServer.CheckUpdate();
                 launchBotB.Enabled = true;
