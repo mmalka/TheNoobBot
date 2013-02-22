@@ -1417,28 +1417,6 @@ exit:
 			return ret;
 		}
 
-		DetourStatus findOnePolygonInTube(array<float>^ center, array<float>^ extents, QueryFilter^ filter, const float radiusMin, const float radiusMax, const float zBest, [Out] array<float>^% nearestPoint)
-		{
-			pin_ptr<float> centerPointer = &center[0];
-			pin_ptr<float> extentsPointer = &extents[0];
-
-			nearestPoint = gcnew array<float>(3);
-			pin_ptr<float> nearestPointer = &nearestPoint[0];
-
-			dtPolyRef discard;
-			return (DetourStatus)_query->findOnePolyInTube(centerPointer, extentsPointer, filter->GetNativeObject(), radiusMin, radiusMax, zBest, &discard, nearestPointer);
-		}
-
-		unsigned int findOnePolygonInTube(array<float>^ center, array<float>^ extents, QueryFilter^ filter, const float radiusMin, const float radiusMax, const float zBest)
-		{
-			pin_ptr<float> centerPointer = &center[0];
-			pin_ptr<float> extentsPointer = &extents[0];
-			dtPolyRef ret;
-			if (_query->findOnePolyInTube(centerPointer, extentsPointer, filter->GetNativeObject(), radiusMin, radiusMax, zBest, &ret, 0) != DT_SUCCESS)
-				return 0;
-			return ret;
-		}
-
 		DetourStatus FindStraightPath(array<float>^ start, array<float>^ end, array<dtPolyRef>^ pathCorridor, [Out] array<float>^% straightPath, [Out] array<StraightPathFlag>^% straightPathFlags, [Out] array<dtPolyRef>^% straightPathRefs)
 		{
 			pin_ptr<float> startPointer = &start[0];
