@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Math = System.Math;
@@ -22,7 +23,7 @@ public class Main : ICustomProfile
 
     internal static bool InternalIgnoreFight;
     internal static bool InternalDontStartFights;
-    public string BattlegroundId;
+    public BattlegroundId CurrentBattlegroundId;
 
     public bool IgnoreFight
     {
@@ -45,12 +46,13 @@ public class Main : ICustomProfile
             InternalIgnoreFight = false;
             InternalDontStartFights = false;
             Logging.WriteFight("Loading TheNoobBot example Custom Profile.");
-            BattlegroundId = Battleground.GetCurrentBattleground().ToString();
-            if (BattlegroundId != null)
-                if (BattlegroundId == "WarsongGulch")
+            CurrentBattlegroundId = Battleground.GetCurrentBattleground();
+            if (CurrentBattlegroundId != BattlegroundId.None)
+                if (CurrentBattlegroundId == BattlegroundId.WarsongGulch ||
+                    CurrentBattlegroundId == BattlegroundId.TwinPeaks)
                 {
-                    var ctf = new CaptureTheFlagWG();
-                    Logging.WriteFight("CaptureTheFlagWG stopped, broken ?");
+                    var LoadCTF = new CaptureTheFlag();
+                    Logging.WriteFight("CaptureTheFlag stopped, broken ?");
                 }
         }
         catch (Exception exception)
@@ -79,32 +81,48 @@ public class Main : ICustomProfile
     #endregion
 }
 
-public class CaptureTheFlagWG
+public class CaptureTheFlag
 {
     /**
       * Author : VesperCore
     **/
 
-    private static Point _allianceFlagPosition;
-    private static Point _hordeFlagPosition;
+    private static Point _allianceFlagPositionInCTFModule;
+    private static Point _allianceFlagPositionTP;
+    private static Point _allianceFlagPositionWSG;
+    private static Point _hordeFlagPositionInCTFModule;
+    private static Point _hordeFlagPositionInTwinPeaks;
+    private static Point _hordeFlagPositionInWarsongGulch;
+
     private readonly int _allianceFlagFloorId;
     private readonly int _allianceFlagId;
-
     private readonly int _hordeFlagFloorId;
     private readonly int _hordeFlagId;
 
-    public CaptureTheFlagWG()
+    public CaptureTheFlag()
     {
-        _allianceFlagPosition = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
+        _allianceFlagPositionTP = new Point((float) 2117.637, (float) 191.6823, (float) 44.05199);
+        _allianceFlagPositionWSG = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
         _allianceFlagId = 179830;
         _allianceFlagFloorId = 179785;
-        _hordeFlagPosition = new Point((float) 916.5073, (float) 1433.826, (float) 346.3796);
+        _hordeFlagPositionInTwinPeaks = new Point((float) 1578.337, (float) 344.0451, (float) 2.418409);
+        _hordeFlagPositionInWarsongGulch = new Point((float) 916.5073, (float) 1433.826, (float) 346.3796);
         _hordeFlagId = _allianceFlagId + 1;
         _hordeFlagFloorId = _allianceFlagFloorId + 1;
         while (Main.Loop)
         {
             try
             {
+                if (Battleground.GetCurrentBattleground() == BattlegroundId.WarsongGulch)
+                {
+                    _allianceFlagPositionInCTFModule = _allianceFlagPositionWSG;
+                    _hordeFlagPositionInCTFModule = _hordeFlagPositionInWarsongGulch;
+                }
+                else
+                {
+                    _allianceFlagPositionInCTFModule = _allianceFlagPositionTP;
+                    _hordeFlagPositionInCTFModule = _hordeFlagPositionInTwinPeaks;
+                }
                 Main.InternalIgnoreFight = false;
                 Main.InternalDontStartFights = false;
                 if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting && !ObjectManager.Me.IsDeadMe &&
@@ -120,8 +138,8 @@ public class CaptureTheFlagWG
                         Main.InternalDontStartFights = true;
                         Main.InternalIgnoreFight = false;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _hordeFlagPosition
-                                         : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
+                                         ? _hordeFlagPositionInCTFModule
+                                         : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
                                      ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat);
                     }
@@ -133,8 +151,8 @@ public class CaptureTheFlagWG
                         Main.InternalDontStartFights = true;
                         Main.InternalIgnoreFight = false;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _hordeFlagPosition
-                                         : _allianceFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
+                                         ? _hordeFlagPositionInCTFModule
+                                         : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
                                      ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat);
                         // Go to my base and wait in a protected area until I can capture it.
@@ -149,8 +167,8 @@ public class CaptureTheFlagWG
                         Main.InternalDontStartFights = true;
                         Main.InternalIgnoreFight = false;
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _allianceFlagPosition
-                                         : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
+                                         ? _allianceFlagPositionInCTFModule
+                                         : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
                                      ObjectManager.IsSomeoneHoldingWGFlag(),
                                      ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat, "Take");
@@ -164,8 +182,8 @@ public class CaptureTheFlagWG
                         Main.InternalDontStartFights = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _allianceFlagPosition
-                                         : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
+                                         ? _allianceFlagPositionInCTFModule
+                                         : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
                                      ObjectManager.IsSomeoneHoldingWGFlag(),
                                      ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat, "Take");
@@ -181,8 +199,8 @@ public class CaptureTheFlagWG
                         Main.InternalDontStartFights = false;
                         // Go to the ennemy base and wait until I can take it.
                         InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _allianceFlagPosition
-                                         : _hordeFlagPosition, ObjectManager.Me.IsHoldingWGFlag,
+                                         ? _allianceFlagPositionInCTFModule
+                                         : _hordeFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
                                      ObjectManager.IsSomeoneHoldingWGFlag(),
                                      ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat, "Take");
@@ -354,8 +372,8 @@ public class CaptureTheFlagWG
             }
             Main.InternalIgnoreFight = ObjectManager.Me.Position.DistanceTo(
                 ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                    ? _hordeFlagPosition
-                    : _allianceFlagPosition) <= 20;
+                    ? _hordeFlagPositionInCTFModule
+                    : _allianceFlagPositionInCTFModule) <= 20;
         }
         else if (isHoldingWGFlag)
         {
@@ -366,8 +384,8 @@ public class CaptureTheFlagWG
             }
             Main.InternalDontStartFights = ObjectManager.Me.Position.DistanceTo(
                 ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                    ? _hordeFlagPosition
-                    : _allianceFlagPosition) > 20;
+                    ? _hordeFlagPositionInCTFModule
+                    : _allianceFlagPositionInCTFModule) > 20;
         }
         else if (!isSomeoneHoldingThemFlag)
         {
@@ -379,8 +397,8 @@ public class CaptureTheFlagWG
             Main.InternalIgnoreFight = ObjectManager.IsSomeoneHoldingWGFlag() &&
                                        ObjectManager.Me.Position.DistanceTo(ObjectManager.Me.PlayerFaction.ToLower() ==
                                                                             "horde"
-                                                                                ? _allianceFlagPosition
-                                                                                : _hordeFlagPosition) <= 20;
+                                                                                ? _allianceFlagPositionInCTFModule
+                                                                                : _hordeFlagPositionInCTFModule) <= 20;
         }
         else if (isSomeoneHoldingMyFlag)
         {
