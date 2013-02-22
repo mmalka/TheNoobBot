@@ -1354,6 +1354,19 @@ error:
 			return ret;
 		}
 
+        DetourStatus closestPointOnPolyBoundary(dtPolyRef polyRef, array<float>^ pos, [Out] array<float>^% closestPoint)
+        {
+            pin_ptr<float> posPointer = &pos[0];
+            float* pt = new float[3];
+
+            dtStatus status = _query->closestPointOnPolyBoundary(polyRef, posPointer, pt);
+            closestPoint = gcnew array<float>(3);
+            for (int i = 0; i < 3; i++)
+                closestPoint[i] = pt[i];
+
+            return (DetourStatus)status;
+        }
+
 		DetourStatus QueryPolygons(array<float>^ center, array<float>^ extents, QueryFilter^ filter, [Out] array<dtPolyRef>^% foundPolys)
 		{
 			pin_ptr<float> centerPointer = &center[0];
@@ -1400,6 +1413,28 @@ exit:
 			pin_ptr<float> extentsPointer = &extents[0];
 			dtPolyRef ret;
 			if (_query->findNearestPoly(centerPointer, extentsPointer, filter->GetNativeObject(), &ret, 0) != DT_SUCCESS)
+				return 0;
+			return ret;
+		}
+
+		DetourStatus findOnePolygonInTube(array<float>^ center, array<float>^ extents, QueryFilter^ filter, const float radiusMin, const float radiusMax, const float zBest, [Out] array<float>^% nearestPoint)
+		{
+			pin_ptr<float> centerPointer = &center[0];
+			pin_ptr<float> extentsPointer = &extents[0];
+
+			nearestPoint = gcnew array<float>(3);
+			pin_ptr<float> nearestPointer = &nearestPoint[0];
+
+			dtPolyRef discard;
+			return (DetourStatus)_query->findOnePolyInTube(centerPointer, extentsPointer, filter->GetNativeObject(), radiusMin, radiusMax, zBest, &discard, nearestPointer);
+		}
+
+		unsigned int findOnePolygonInTube(array<float>^ center, array<float>^ extents, QueryFilter^ filter, const float radiusMin, const float radiusMax, const float zBest)
+		{
+			pin_ptr<float> centerPointer = &center[0];
+			pin_ptr<float> extentsPointer = &extents[0];
+			dtPolyRef ret;
+			if (_query->findOnePolyInTube(centerPointer, extentsPointer, filter->GetNativeObject(), radiusMin, radiusMax, zBest, &ret, 0) != DT_SUCCESS)
 				return 0;
 			return ret;
 		}
