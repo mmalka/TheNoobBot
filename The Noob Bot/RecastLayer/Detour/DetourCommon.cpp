@@ -226,7 +226,7 @@ bool dtClosestHeightPointTriangle(const float* p, const float* a, const float* b
 
 	// The (sloppy) epsilon is needed to allow to get height of points which
 	// are interpolated along the edges of the triangles.
-	static const float EPS = 1e-4f;
+	static const float EPS = 0.5f; // 1e-4f
 	
 	// If point lies inside the triangle, return interpolated ycoord.
 	if (u >= -EPS && v >= -EPS && (u+v) <= 1+EPS)

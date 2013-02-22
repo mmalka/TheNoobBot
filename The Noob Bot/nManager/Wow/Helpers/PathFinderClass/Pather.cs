@@ -421,7 +421,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 resultSuccess = true;
-                var extents = new Point(5.0f, 85.0f, 5.0f).ToFloatArray();
+                var extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
                 var start = startVec.ToRecast().ToFloatArray();
                 var end = endVec.ToRecast().ToFloatArray();
 
@@ -467,8 +467,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 if (finalPath != null)
                 {
-                    var resultPath = new List<Point>(finalPath.Length/3);
-                    for (int i = 0; i < (finalPath.Length/3); i++)
+                    var resultPath = new List<Point>(finalPath.Length / 3);
+                    for (int i = 0; i < (finalPath.Length / 3); i++)
                     {
                         resultPath.Add(
                             new Point(finalPath[(i*3) + 0], finalPath[(i*3) + 1], finalPath[(i*3) + 2]).ToWoW());
@@ -483,6 +483,36 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 resultSuccess = false;
             }
             return new List<Point>();
+        }
+
+        public float GetZ(Point position)
+        {
+            var extents = new Point(0.5f, 2000.0f, 0.5f).ToFloatArray();
+            var center = position.ToRecast().ToFloatArray();
+
+            float tx, ty;
+            GetTileByLocation(position, out tx, out ty);
+            int x = (int)Math.Floor(tx);
+            int y = (int)Math.Floor(ty);
+            LoadTile(x, y);
+
+            uint startRef = _query.FindNearestPolygon(center, extents, Filter);
+            if (startRef == 0)
+            {
+                Logging.WriteDebug("There is no polygon in this location (Tile " + x + "," + y + "), coord: X:" + position.X +  ", Y:" + position.Y);
+                return 0;
+            }
+            float z = _query.GetPolyHeight(startRef, center);
+            if (z == 0) // it failed
+            {
+                float[] result;
+                var status = _query.closestPointOnPolyBoundary(startRef, center, out result);
+                if (status.HasFailed())
+                    z = 0;
+                else
+                    z = result[1];
+            }
+            return z;
         }
 
         private string GetDungeonPath()
@@ -516,8 +546,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
 
                 if (!Directory.Exists(_meshPath))
-                    Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath +
-                                           ")");
+                    Logging.WriteNavigator(DetourStatus.Failure + " No mesh for " + continent + " (Path: " + _meshPath + ")");
 
                 _mesh = new NavMesh();
                 DetourStatus status;

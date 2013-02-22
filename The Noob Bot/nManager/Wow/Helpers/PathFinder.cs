@@ -210,16 +210,19 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                List<Point> tempsList = FindPath(point, new Point(point.X + 1, point.Y + 1, point.Z),
-                                                 Usefuls.ContinentNameMpq);
-                if (tempsList.Count > 0)
-                    return tempsList[0].Z;
+                if (_pather == null)
+                    _pather = new Pather(Usefuls.ContinentNameMpq);
+                if (_pather.Continent != Usefuls.ContinentNameMpq)
+                {
+                    _pather.Dispose();
+                    _pather = new Pather(Usefuls.ContinentNameMpq);
+                }
+                return _pather.GetZ(point);
             }
             catch (Exception exception)
             {
                 Logging.WriteError("GetZPosition(Point point): " + exception);
             }
-
             return 0;
         }
 
