@@ -74,10 +74,7 @@ namespace nManager.Wow.Bot.Tasks
                     (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
                      Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144))
                 {
-                    // extra sanity checks
-                    Spell abyssal = new Spell("Abyssal Seahorse");
-                    if (abyssal.KnownSpell && abyssal.IsSpellUsable)
-                        return MountCapacity.Swimm;
+                    return MountCapacity.Swimm;
                 }
                 else if (aquaMount != _localizedAbysalMountName)
                 {

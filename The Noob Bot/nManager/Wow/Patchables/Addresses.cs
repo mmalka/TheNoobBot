@@ -81,7 +81,7 @@
             buildWowVersion = 0xAFACDC,
             gameState = 0xCC9EFA,
             isLoadingOrConnecting = 0xC05F80,
-            AreaId = 0xACCD70,
+            AreaId = 0xAC2B9C,
             lastWowErrorMessage = 0xCC92F8,
             zoneMap = 0xCC9EF0,
             subZoneMap = 0xCC9EEC,
