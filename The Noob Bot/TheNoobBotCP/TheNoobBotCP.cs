@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -39,19 +40,61 @@ public class Main : ICustomProfile
 
     public void Initialize()
     {
+        Initialize(false);
+    }
+
+    public void ShowConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath +
+                                  "\\Profiles\\Battlegrounder\\ProfileType\\CSharpProfile\\Settings\\");
+        Initialize(true);
+    }
+
+    public void ResetConfiguration()
+    {
+        Directory.CreateDirectory(Application.StartupPath +
+                                  "\\Profiles\\Battlegrounder\\ProfileType\\CSharpProfile\\Settings\\");
+        Initialize(true, true);
+    }
+
+    public void Dispose()
+    {
+        Logging.WriteFight("TheNoobBot example Custom Profile stopped.");
+        Loop = false;
+    }
+
+    public void Initialize(bool configOnly, bool resetSettings = false)
+    {
         try
         {
             if (!Loop)
                 Loop = true;
             InternalIgnoreFight = false;
             InternalDontStartFights = false;
-            Logging.WriteFight("Loading TheNoobBot example Custom Profile.");
+            Logging.Write("Loading TheNoobBot ProfileType C# Profile system.");
             CurrentBattlegroundId = Battleground.GetCurrentBattleground();
             if (CurrentBattlegroundId != BattlegroundId.None)
                 if (CurrentBattlegroundId == BattlegroundId.WarsongGulch ||
                     CurrentBattlegroundId == BattlegroundId.TwinPeaks)
                 {
-                    var LoadCTF = new CaptureTheFlag();
+                    if (configOnly)
+                    {
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\Profiles\\Battlegrounder\\ProfileType\\CSharpProfile\\Settings\\CaptureTheFlag.xml";
+                        var currentSetting = new CaptureTheFlag.CaptureTheFlagSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            currentSetting =
+                                Settings.Load<CaptureTheFlag.CaptureTheFlagSettings>(currentSettingsFile);
+                        }
+                        currentSetting.ToForm();
+                        currentSetting.Save(currentSettingsFile);
+                    }
+                    else
+                    {
+                        Logging.Write("Loading Capture The Flag module.");
+                        new CaptureTheFlag();
+                    }
                     Logging.WriteFight("CaptureTheFlag stopped, broken ?");
                 }
         }
@@ -62,22 +105,6 @@ public class Main : ICustomProfile
         Logging.WriteFight("TheNoobBot example Custom Profile stopped. Loop shutdown.");
     }
 
-    public void Dispose()
-    {
-        Logging.WriteFight("TheNoobBot example Custom Profile stopped.");
-        Loop = false;
-    }
-
-    public void ShowConfiguration()
-    {
-        MessageBox.Show(@"There is no settings available");
-    }
-
-    public void ResetConfiguration()
-    {
-        MessageBox.Show(@"There is no settings available");
-    }
-
     #endregion
 }
 
@@ -86,7 +113,6 @@ public class CaptureTheFlag
     /**
       * Author : VesperCore
     **/
-
     private static Point _allianceFlagPositionInCTFModule;
     private static Point _allianceFlagPositionTP;
     private static Point _allianceFlagPositionWSG;
@@ -146,22 +172,26 @@ public class CaptureTheFlag
                     else if (ObjectManager.Me.IsHoldingWGFlag)
                     {
                         // 4 possibilities :
-                        // Go to my base and wait until I can capture it.
-                        Logging.Write("Go to my base and wait until I can capture it.");
-                        Main.InternalDontStartFights = true;
-                        Main.InternalIgnoreFight = false;
-                        InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                         ? _hordeFlagPositionInCTFModule
-                                         : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
-                                     ObjectManager.IsSomeoneHoldingWGFlag(), ObjectManager.IsSomeoneHoldingWGFlag(false),
-                                     ObjectManager.Me.InCombat);
+                        if (CaptureTheFlagSettings.CurrentSetting.PlayTheFlag)
+                        {
+                            // Go to my base and wait until I can capture it.
+                            Logging.Write("Go to my base and wait until I can capture it.");
+                            Main.InternalDontStartFights = true;
+                            Main.InternalIgnoreFight = false;
+                            InternalGoTo(ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                             ? _hordeFlagPositionInCTFModule
+                                             : _allianceFlagPositionInCTFModule, ObjectManager.Me.IsHoldingWGFlag,
+                                         ObjectManager.IsSomeoneHoldingWGFlag(),
+                                         ObjectManager.IsSomeoneHoldingWGFlag(false),
+                                         ObjectManager.Me.InCombat);
+                        }
                         // Go to my base and wait in a protected area until I can capture it.
                         // Search & Destroy the Hostile Flag holder if not so far from my base.
                         // Search & Destroy the Hostile Flag holder.
                     }
                     else if (!ObjectManager.IsSomeoneHoldingWGFlag(false))
                     {
-                        // 1 possibility :
+                        // 2 possibilities :
                         // Go to the ennemy base and take it.
                         Logging.Write("Go to the ennemy base and take it.");
                         Main.InternalDontStartFights = true;
@@ -172,6 +202,7 @@ public class CaptureTheFlag
                                      ObjectManager.IsSomeoneHoldingWGFlag(),
                                      ObjectManager.IsSomeoneHoldingWGFlag(false),
                                      ObjectManager.Me.InCombat, "Take");
+                        // Search & Destroy the Hostile Flag holder.
                     }
 
                     else if (ObjectManager.IsSomeoneHoldingWGFlag())
@@ -460,5 +491,31 @@ public class CaptureTheFlag
                 "; InMovement = " + MovementManager.InMovement);
         }
         return true;
+    }
+
+    [Serializable]
+    public class CaptureTheFlagSettings : Settings
+    {
+        public readonly CaptureTheFlagSettings MySettings = GetSettings();
+        public bool PlayTheFlag = true;
+
+        public CaptureTheFlagSettings()
+        {
+            ConfigWinForm(new System.Drawing.Point(500, 400), "Capture The Flag module Settings");
+            AddControlInWinForm("Play The Flag", "PlayTheFlag", "Main settings", "bool");
+        }
+
+        public static CaptureTheFlagSettings CurrentSetting { get; set; }
+
+        public static CaptureTheFlagSettings GetSettings()
+        {
+            string CurrentSettingsFile = Application.StartupPath +
+                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
+            if (File.Exists(CurrentSettingsFile))
+                return
+                    CurrentSetting =
+                    Load<CaptureTheFlagSettings>(CurrentSettingsFile);
+            return new CaptureTheFlagSettings();
+        }
     }
 }
