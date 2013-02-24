@@ -36904,4 +36904,18 @@
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
+   <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>63626</Entry>
+    <Name>Varzok</Name>
+    <Position>
+      <X>1799.375</X>	 	
+      <Y>-4420.592</Y>
+      <Z>102.7603</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>BattlePetTrainer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
 </ArrayOfNpc>

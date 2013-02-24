@@ -97,6 +97,7 @@ namespace nManager.Wow.Class
             FishingTrainer,
             ArchaeologyTrainer,
             RidingTrainer,
+            BattlePetTrainer,
             Smelting,
             MonkTrainer,
             FlightMaster,
