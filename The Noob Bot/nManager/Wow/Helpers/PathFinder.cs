@@ -37,7 +37,18 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    return new List<Point> {to};
+                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                    {
+                        // The destination is in water
+                        if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to, Enums.CGWorldFrameHitFlags.HitTestAll))
+                        {
+                            Logging.WriteNavigator("Swimmming right to the destination");
+                            return new List<Point> { to };
+                        }
+                        Logging.WriteNavigator("Swimming to the destination using the PathFinder");
+                    }
+                    else
+                        Logging.WriteError("Using the PathFinder since the destination is out of water");
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to);
             }
@@ -79,8 +90,19 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    resultSuccess = true;
-                    return new List<Point> {to};
+                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                    {
+                        // The destination is in water
+                        if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to, Enums.CGWorldFrameHitFlags.HitTestAll))
+                        {
+                            Logging.WriteNavigator("Swimmming right to the destination");
+                            resultSuccess = true;
+                            return new List<Point> { to };
+                        }
+                        Logging.WriteNavigator("Swimming to the destination using the PathFinder");
+                    }
+                    else
+                        Logging.WriteError("Using the PathFinder since the destination is out of water");
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
             }
