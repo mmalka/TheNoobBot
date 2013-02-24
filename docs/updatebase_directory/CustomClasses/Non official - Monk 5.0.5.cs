@@ -298,7 +298,8 @@ public class Monk_Brewmaster
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -497,8 +498,15 @@ public class Monk_Brewmaster
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
-            && MySettings.UseChiWave)
+        if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && ObjectManager.Me.Energy > 39 &&
+            ObjectManager.Me.HealthPercent < 70 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+        {
+            SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
+            Healing_Sphere_Timer = new Timer(1000*5);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
+                && MySettings.UseChiWave)
         {
             Chi_Wave.Launch();
             return;
@@ -515,19 +523,12 @@ public class Monk_Brewmaster
             Expel_Harm.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
-                 && MySettings.UseZenSphere)
-        {
-            Zen_Sphere.Launch();
-            return;
-        }
         else
         {
-            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+            if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
+                 && MySettings.UseZenSphere)
             {
-                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
-                Healing_Sphere_Timer = new Timer(1000*60);
+                Zen_Sphere.Launch();
                 return;
             }
         }
@@ -947,7 +948,8 @@ public class Monk_Windwalker
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -1125,8 +1127,15 @@ public class Monk_Windwalker
     
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
-            && MySettings.UseChiWave)
+        if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && ObjectManager.Me.Energy > 39 &&
+            ObjectManager.Me.HealthPercent < 70 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+        {
+            SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
+            Healing_Sphere_Timer = new Timer(1000*5);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 85 && Chi_Wave.KnownSpell && Chi_Wave.IsSpellUsable 
+                && MySettings.UseChiWave)
         {
             Chi_Wave.Launch();
             return;
@@ -1137,19 +1146,12 @@ public class Monk_Windwalker
             Chi_Burst.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
-                 && MySettings.UseZenSphere)
-        {
-            Zen_Sphere.Launch();
-            return;
-        }
         else
         {
-            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+            if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
+                 && MySettings.UseZenSphere)
             {
-                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
-                Healing_Sphere_Timer = new Timer(1000*60);
+                Zen_Sphere.Launch();
                 return;
             }
         }
@@ -1569,7 +1571,8 @@ public class Monk_Mistweaver
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -1765,7 +1768,14 @@ public class Monk_Mistweaver
             }
         }
 
-        if (ObjectManager.Me.HealthPercent < 70 && Surging_Mist.KnownSpell && Surging_Mist.IsSpellUsable 
+        if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && ObjectManager.Me.Energy > 39 &&
+            ObjectManager.Me.HealthPercent < 60 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+        {
+            SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
+            Healing_Sphere_Timer = new Timer(1000*5);
+            return;
+        }
+        else if (ObjectManager.Me.HealthPercent < 70 && Surging_Mist.KnownSpell && Surging_Mist.IsSpellUsable 
             && MySettings.UseSurgingMist)
         {
             Surging_Mist.Launch();
@@ -1819,19 +1829,12 @@ public class Monk_Mistweaver
             Renewing_Mist.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
-                 && MySettings.UseZenSphere)
-        {
-            Zen_Sphere.Launch();
-            return;
-        }
         else
         {
-            if (Healing_Sphere.KnownSpell && Healing_Sphere.IsSpellUsable && !Healing_Sphere.HaveBuff &&
-                ObjectManager.Me.HealthPercent < 95 && MySettings.UseHealingSphere && Healing_Sphere_Timer.IsReady)
+            if (ObjectManager.Me.HealthPercent < 95 && Zen_Sphere.KnownSpell && Zen_Sphere.IsSpellUsable
+                 && MySettings.UseZenSphere)
             {
-                SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
-                Healing_Sphere_Timer = new Timer(1000*60);
+                Zen_Sphere.Launch();
                 return;
             }
         }

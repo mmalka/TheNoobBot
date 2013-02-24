@@ -1229,7 +1229,8 @@ public class Deathknight_Apprentice
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
 
                         else if (!ObjectManager.Me.IsCast)
@@ -1694,12 +1695,14 @@ public class Deathknight_Blood
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
 
@@ -2540,12 +2543,14 @@ public class Deathknight_Unholy
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
 
@@ -3392,12 +3397,14 @@ public class Deathknight_Frost
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
 
@@ -4277,12 +4284,14 @@ public class Mage_Arcane
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -5088,12 +5097,14 @@ public class Mage_Frost
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -5945,12 +5956,14 @@ public class Mage_Fire
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else
@@ -6778,12 +6791,14 @@ public class Warlock_Demonology
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -7659,12 +7674,14 @@ public class Warlock_Destruction
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -8478,12 +8495,14 @@ public class Warlock_Affliction
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -9331,9 +9350,15 @@ public class Druid_Balance
 
                         if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                             && MySettings.UseLowCombat)
-                            LowCombat();
+                        {
+                            if (ObjectManager.Target.GetDistance < 41)
+                                LowCombat();
+                        }
                         else
-                            Combat();
+                        {
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
+                        }
                     }
                     else if (!ObjectManager.Me.IsCast)
                         Patrolling();
@@ -10174,9 +10199,15 @@ public class Druid_Feral
 
                             if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                                 && MySettings.UseLowCombat)
-                                LowCombat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
+                            }
                             else
-                                Combat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
+                            }
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -11057,7 +11088,8 @@ public class Druid_Restoration
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -11733,9 +11765,15 @@ public class Druid_Guardian
 
                             if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                                 && MySettings.UseLowCombat)
-                                LowCombat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
+                            }
                             else
-                                Combat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
+                            }
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -12483,7 +12521,8 @@ public class Paladin_Holy
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -12955,7 +12994,8 @@ public class Paladin_Protection
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -13491,7 +13531,8 @@ public class Paladin_Retribution
                                 Pull();
                                 lastTarget = ObjectManager.Me.Target;
                             }
-                            Combat();
+                            if (ObjectManager.Target.GetDistance < 41)
+                                Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -14104,12 +14145,14 @@ public class Shaman_Enhancement
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -15021,12 +15064,14 @@ public class Shaman_Restoration
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -15938,12 +15983,14 @@ public class Shaman_Elemental
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -16803,12 +16850,14 @@ public class Priest_Shadow
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -17560,7 +17609,10 @@ public class Priest_Discipline
                                 lastTarget = ObjectManager.Me.Target;
                             }
                             else
-                                Combat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
+                            }
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -18249,7 +18301,10 @@ public class Priest_Holy
                                 lastTarget = ObjectManager.Me.Target;
                             }
                             else
-                                Combat();
+                            {
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
+                            }
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -18976,12 +19031,14 @@ public class Rogue_Combat
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -19762,12 +19819,14 @@ public class Rogue_Subtlety
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -20520,12 +20579,14 @@ public class Rogue_Assassination
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -21303,12 +21364,14 @@ public class Warrior_Arms
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -22171,12 +22234,14 @@ public class Warrior_Protection
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -23057,12 +23122,14 @@ public class Warrior_Fury
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -23882,12 +23949,14 @@ public class Hunter_Marksmanship
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -24693,12 +24762,14 @@ public class Hunter_BeastMastery
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -25573,12 +25644,14 @@ public class Hunter_Survival
                                 && MySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                LowCombat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                Combat();
+                                if (ObjectManager.Target.GetDistance < 41)
+                                    Combat();
                             }
                         }
                         else
