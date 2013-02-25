@@ -327,6 +327,24 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static WoWItem GetWoWItemById(int entry)
+        {
+            try
+            {
+                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
+                foreach (var a in tempsListObj.Where(a => a.Entry == entry))
+                {
+                    return new WoWItem(a.GetBaseAddress);
+                }
+                return new WoWItem(0);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("GetObjectWoWItem(): " + e);
+                return new WoWItem(0);
+            }
+        }
+
         public static List<WoWGameObject> GetWoWGameObjectOfType(WoWGameObjectType reqtype)
         {
             try
