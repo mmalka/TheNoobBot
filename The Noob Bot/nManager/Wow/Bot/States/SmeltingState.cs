@@ -42,7 +42,7 @@ namespace nManager.Wow.Bot.States
                     return false;
 
 
-                if (NpcDB.GetNpcNearby(Npc.NpcType.Smelting).Entry > 0)
+                if (NpcDB.GetNpcNearby(Npc.NpcType.SmeltingForge).Entry > 0)
                 {
                     if (Smelting.NeedRun())
                         return true;
@@ -67,7 +67,7 @@ namespace nManager.Wow.Bot.States
             if (!IgnoreSmeltingZone)
             {
                 Logging.Write("Smelting in progress");
-                var smeltingZone = NpcDB.GetNpcNearby(Npc.NpcType.Smelting);
+                var smeltingZone = NpcDB.GetNpcNearby(Npc.NpcType.SmeltingForge);
                 if (smeltingZone.Entry <= 0)
                     return;
                 if (smeltingZone.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10)

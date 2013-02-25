@@ -98,7 +98,7 @@ namespace nManager.Wow.Class
             ArchaeologyTrainer,
             RidingTrainer,
             BattlePetTrainer,
-            Smelting,
+            SmeltingForge,
             MonkTrainer,
             FlightMaster,
             SpiritHealer,

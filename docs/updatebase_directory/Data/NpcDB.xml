@@ -2,6 +2,20 @@
 <ArrayOfNpc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>63626</Entry>
+    <Name>Varzok</Name>
+    <Position>
+      <X>1799.375</X>
+      <Y>-4420.592</Y>
+      <Z>102.7603</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>BattlePetTrainer</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>54</Entry>
     <Name>Corina Steele</Name>
     <Position>
@@ -33392,6 +33406,202 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>1685</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9479.35</X>
+      <Y>-6800.87</Y>
+      <Z>16.4936</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>1743</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2039.03</X>
+      <Y>150.276</Y>
+      <Z>34.2552</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>1745</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-11042.4</X>
+      <Y>1452.14</Y>
+      <Z>45.1961</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>1749</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-5579.04</X>
+      <Y>-428.925</Y>
+      <Z>397.214</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>1797</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-550.339</X>
+      <Y>-1437.02</Y>
+      <Z>52.4438</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>2015</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-9261.33</X>
+      <Y>-2228.62</Y>
+      <Z>63.7668</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>2575</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-14378.8</X>
+      <Y>379.264</Y>
+      <Z>23.3135</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>2727</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-936.988</X>
+      <Y>-3482.46</Y>
+      <Z>51.4743</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>2728</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1252.36</X>
+      <Y>-2548.47</Y>
+      <Z>21.3728</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>3223</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1886.95</X>
+      <Y>-1093.64</Y>
+      <Z>90.0005</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>4090</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2976.9</X>
+      <Y>4027.76</Y>
+      <Z>1.76402</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>17190</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1981.14</X>
+      <Y>442.017</Y>
+      <Z>133.59</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>20986</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-3794.98</X>
+      <Y>-862.101</Y>
+      <Z>1.24277</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>21679</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1002.4</X>
+      <Y>-3654.73</Y>
+      <Z>20.0715</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>32349</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33406,6 +33616,286 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>34571</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-5579.16</X>
+      <Y>-435.339</Y>
+      <Z>397.609</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>34572</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2603.53</X>
+      <Y>-2284.22</Y>
+      <Z>86.2996</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>38491</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1811.8</X>
+      <Y>-6001.52</Y>
+      <Z>115.85</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>50469</Entry>
+    <Name>Thunder Bluff Forge</Name>
+    <Position>
+      <X>-1240.52</X>
+      <Y>104.844</Y>
+      <Z>128.592</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>50831</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>111.945</X>
+      <Y>-591.356</Y>
+      <Z>-19.8297</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>50983</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
+      <X>163.254</X>
+      <Y>2798.03</Y>
+      <Z>111.67</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>50984</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
+      <X>-900.498</X>
+      <Y>1965.94</Y>
+      <Z>66.9951</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>50985</Entry>
+    <Name>Heated Forge</Name>
+    <Position>
+      <X>-10398.6</X>
+      <Y>-3260.64</Y>
+      <Z>20.186</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>51949</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-426.528</X>
+      <Y>-3162.13</Y>
+      <Z>212.421</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>52175</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1392.59</X>
+      <Y>147.99</Y>
+      <Z>-62.4183</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>52176</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1684.69</X>
+      <Y>276.825</Y>
+      <Z>-62.1811</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>56897</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-14379.8</X>
+      <Y>369.862</Y>
+      <Z>23.9454</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>92490</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>6545.78</X>
+      <Y>433.099</Y>
+      <Z>1.92142</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>113754</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1694.13</X>
+      <Y>293.993</Y>
+      <Z>-62.1811</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>123207</Entry>
+    <Name>Goblin Smelting Pot</Name>
+    <Position>
+      <X>-205.664</X>
+      <Y>-574.581</Y>
+      <Z>20.9987</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeadminesInstance</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>123208</Entry>
+    <Name>Goblin Smelting Pot</Name>
+    <Position>
+      <X>-210.428</X>
+      <Y>-579.201</Y>
+      <Z>20.9987</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeadminesInstance</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>123209</Entry>
+    <Name>Goblin Smelting Pot</Name>
+    <Position>
+      <X>-201.043</X>
+      <Y>-579.374</Y>
+      <Z>20.9987</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeadminesInstance</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>123210</Entry>
+    <Name>Goblin Smelting Pot</Name>
+    <Position>
+      <X>-205.805</X>
+      <Y>-583.964</Y>
+      <Z>20.9987</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeadminesInstance</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>130668</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-10651.1</X>
+      <Y>1099.43</Y>
+      <Z>33.6232</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>141838</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-7232.88</X>
+      <Y>-3750.39</Y>
+      <Z>8.98483</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>142075</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33416,6 +33906,20 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>142078</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-12040.3</X>
+      <Y>-1005.96</Y>
+      <Z>49.4104</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33686,17 +34190,59 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>144179</Entry>
-    <Name>Mailbox</Name>
+    <Entry>144133</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>-547.903</X>
-      <Y>167.259</Y>
-      <Z>-193.804</Z>
+      <X>-5340.11</X>
+      <Y>-2940.55</Y>
+      <Z>323.763</Z>
       <Type>None</Type>
     </Position>
-    <Faction>Alliance</Faction>
-    <Type>Mailbox</Type>
-    <ContinentId>GnomeragonInstance</ContinentId>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>147285</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-714.121</X>
+      <Y>2603.5</Y>
+      <Z>89.201</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>148960</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1811.8</X>
+      <Y>-6001.64</Y>
+      <Z>115.848</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>153459</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-10894.9</X>
+      <Y>-3185.49</Y>
+      <Z>49.5703</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -33798,6 +34344,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>171716</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4762.97</X>
+      <Y>-1117.1</Y>
+      <Z>499.335</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>171717</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4807.86</X>
+      <Y>-1130.18</Y>
+      <Z>499.499</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>171752</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33854,6 +34428,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>176509</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>988.247</X>
+      <Y>1005.29</Y>
+      <Z>104.608</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>176895</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8100.39</X>
+      <Y>-1507.24</Y>
+      <Z>132.934</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>177044</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33882,6 +34484,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>179863</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>6696.5</X>
+      <Y>-4645.01</Y>
+      <Z>720.95</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>179886</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-593.066</X>
+      <Y>-4546.81</Y>
+      <Z>8.97534</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>179895</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33892,6 +34522,20 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>181130</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2261.36</X>
+      <Y>-5322.45</Y>
+      <Z>81.8427</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -33938,6 +34582,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>181716</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4727.86</X>
+      <Y>-12387.1</Y>
+      <Z>11.0831</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>181883</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33952,6 +34610,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>181884</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>7599.21</X>
+      <Y>-6910.67</Y>
+      <Z>93.7687</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>181980</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -33962,6 +34634,76 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>181990</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>8677.56</X>
+      <Y>-6606.24</Y>
+      <Z>70.2548</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>182056</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1935.83</X>
+      <Y>-11912.2</Y>
+      <Z>48.0586</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>182117</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2649.29</X>
+      <Y>4441.55</Y>
+      <Z>36.732</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>182270</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-198.956</X>
+      <Y>5483.06</Y>
+      <Z>21.845</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>182278</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4186.52</X>
+      <Y>-12440</Y>
+      <Z>43.3879</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -34106,16 +34848,16 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>182567</Entry>
-    <Name>Mailbox</Name>
+    <Entry>182860</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>258.91</X>
-      <Y>7870.72</Y>
-      <Z>23.014</Z>
+      <X>173.757</X>
+      <Y>4296.73</Y>
+      <Z>117.174</Z>
       <Type>None</Type>
     </Position>
-    <Faction>Horde</Faction>
-    <Type>Mailbox</Type>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -34204,20 +34946,6 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>183037</Entry>
-    <Name>Mailbox</Name>
-    <Position>
-      <X>-596.531</X>
-      <Y>4151.75</Y>
-      <Z>65.4322</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Horde</Faction>
-    <Type>Mailbox</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
     <Entry>183038</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34288,6 +35016,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183149</Entry>
+    <Name>Anvil</Name>
+    <Position>
+      <X>-1333.94</X>
+      <Y>7199.66</Y>
+      <Z>33.9296</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>183167</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34298,6 +35040,146 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183345</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>323.56</X>
+      <Y>7838.17</Y>
+      <Z>21.7989</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183347</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>189.003</X>
+      <Y>2671.13</Y>
+      <Z>88.7218</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183408</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2544.48</X>
+      <Y>6512.92</Y>
+      <Z>3.46994</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183484</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2330.13</X>
+      <Y>6059.69</Y>
+      <Z>142.2</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183757</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9846.58</X>
+      <Y>-7361.63</Y>
+      <Z>19.3927</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183758</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9840.03</X>
+      <Y>-7358.29</Y>
+      <Z>19.3927</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183759</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9853.98</X>
+      <Y>-7361.64</Y>
+      <Z>19.3927</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183760</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>9860.24</X>
+      <Y>-7358.53</Y>
+      <Z>19.3927</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183782</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2248.67</X>
+      <Y>6225.14</Y>
+      <Z>43.8522</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>183818</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>249.649</X>
+      <Y>6030.21</Y>
+      <Z>131.597</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -34470,6 +35352,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>184146</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2318.16</X>
+      <Y>7256.9</Y>
+      <Z>365.554</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>184147</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34498,17 +35394,45 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>184490</Entry>
-    <Name>Mailbox</Name>
+    <Entry>184286</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>-3009.24</X>
-      <Y>850.87</Y>
-      <Z>-10.5309</Z>
+      <X>-3963.26</X>
+      <Y>2201.8</Y>
+      <Z>101.774</Z>
       <Type>None</Type>
     </Position>
     <Faction>Neutral</Faction>
-    <Type>Mailbox</Type>
+    <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>184303</Entry>
+    <Name>Blazing Fire</Name>
+    <Position>
+      <X>-2518.51</X>
+      <Y>7360.1</Y>
+      <Z>10.6223</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>184617</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-160.125</X>
+      <Y>-866.333</Y>
+      <Z>56.5027</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -34522,6 +35446,34 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>184922</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4236.61</X>
+      <Y>-11717.1</Y>
+      <Z>-144.019</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>184923</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4242.69</X>
+      <Y>-11713.7</Y>
+      <Z>-144.076</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
   <Npc>
@@ -34549,20 +35501,6 @@
       <Type>None</Type>
     </Position>
     <Faction>Neutral</Faction>
-    <Type>Mailbox</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
-    <Entry>185471</Entry>
-    <Name>Mailbox</Name>
-    <Position>
-      <X>9552.08</X>
-      <Y>-7180.94</Y>
-      <Z>14.0837</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Outland</ContinentId>
   </Npc>
@@ -34610,6 +35548,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186139</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>4142.8</X>
+      <Y>3064.89</Y>
+      <Z>336.459</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186141</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3065.76</X>
+      <Y>3677.72</Y>
+      <Z>142.301</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>186230</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34624,6 +35590,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186231</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4606.12</X>
+      <Y>-3212.51</Y>
+      <Z>34.8139</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186433</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1401.93</X>
+      <Y>-3199.86</Y>
+      <Z>160.944</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>186435</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34634,6 +35628,20 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186486</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>544.495</X>
+      <Y>-4997.93</Y>
+      <Z>10.4723</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -34652,6 +35660,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186556</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2426.83</X>
+      <Y>-5083.96</Y>
+      <Z>272.943</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>186629</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34663,6 +35685,48 @@
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186630</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-3150.39</X>
+      <Y>-2857.27</Y>
+      <Z>34.0014</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186653</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>413.212</X>
+      <Y>-4655.42</Y>
+      <Z>246.584</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>186654</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>421.714</X>
+      <Y>-4648.43</Y>
+      <Z>246.773</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -34680,17 +35744,17 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>187113</Entry>
-    <Name>Mailbox</Name>
+    <Entry>187256</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>12793.1</X>
-      <Y>-6966.52</Y>
-      <Z>15.4447</Z>
+      <X>2334.3</X>
+      <Y>5269.3</Y>
+      <Z>7.54757</Z>
       <Type>None</Type>
     </Position>
     <Faction>Neutral</Faction>
-    <Type>Mailbox</Type>
-    <ContinentId>Outland</ContinentId>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -34705,6 +35769,90 @@
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187290</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1603.5</X>
+      <Y>231.786</Y>
+      <Z>-51.2794</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187291</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-3904.36</X>
+      <Y>-11558</Y>
+      <Z>-150.018</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187294</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-4905.44</X>
+      <Y>-992.343</Y>
+      <Z>503.94</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187295</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-1257.81</X>
+      <Y>64.3735</Y>
+      <Z>127.625</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187296</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>9931.25</X>
+      <Y>2526.47</Y>
+      <Z>1319.59</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187299</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-14429.1</X>
+      <Y>521.609</Y>
+      <Z>4.97689</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -34736,6 +35884,48 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187337</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>9935.95</X>
+      <Y>2517.15</Y>
+      <Z>1318.54</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187388</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3071.34</X>
+      <Y>4826.25</Y>
+      <Z>1.22049</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>187390</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>9810.16</X>
+      <Y>-7497.59</Y>
+      <Z>14.498</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>188123</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34764,6 +35954,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188250</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>4542.97</X>
+      <Y>-4246.02</Y>
+      <Z>170.492</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>188256</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34778,6 +35982,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188257</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3832.71</X>
+      <Y>-4541.69</Y>
+      <Z>209.232</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188354</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3813.74</X>
+      <Y>1571.33</Y>
+      <Z>86.6407</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>188355</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34788,6 +36020,48 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188356</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3819.69</X>
+      <Y>1561.8</Y>
+      <Z>86.588</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188396</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3210.12</X>
+      <Y>-635.604</Y>
+      <Z>160.149</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188452</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3309.21</X>
+      <Y>-2341.57</Y>
+      <Z>110.914</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -34862,6 +36136,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188607</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2760.45</X>
+      <Y>853.038</Y>
+      <Z>6.70005</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>188618</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34876,6 +36164,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188624</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3417.53</X>
+      <Y>-2759.07</Y>
+      <Z>199.281</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188651</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>4131.76</X>
+      <Y>5282.39</Y>
+      <Z>25.1095</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>188682</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34886,6 +36202,20 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>188683</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3687</X>
+      <Y>-742.351</Y>
+      <Z>213.453</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Northrend</ContinentId>
   </Npc>
   <Npc>
@@ -34946,6 +36276,62 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>190457</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>5409.99</X>
+      <Y>-2662.46</Y>
+      <Z>303.933</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>190495</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>7793.19</X>
+      <Y>-2950.45</Y>
+      <Z>1257.73</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>190524</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>6642.58</X>
+      <Y>-209.403</Y>
+      <Z>951.87</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>190765</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>5246.64</X>
+      <Y>4490.58</Y>
+      <Z>-84.328</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>190914</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -34971,6 +36357,90 @@
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191237</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2261.64</X>
+      <Y>-5322.56</Y>
+      <Z>81.9226</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191287</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2760.5</X>
+      <Y>6177.2</Y>
+      <Z>83.322</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191288</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2826.32</X>
+      <Y>6108.43</Y>
+      <Z>83.322</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191346</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>519.767</X>
+      <Y>1650.63</Y>
+      <Z>125.528</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191505</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2453.4</X>
+      <Y>-5659.12</Y>
+      <Z>420.566</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>191508</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2438.34</X>
+      <Y>-5655.61</Y>
+      <Z>420.542</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DeathKnightStart</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -35170,6 +36640,76 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>192020</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1954.12</X>
+      <Y>-6190.49</Y>
+      <Z>24.1268</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>192572</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2757.91</X>
+      <Y>6203.11</Y>
+      <Z>83.322</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>192573</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2851.6</X>
+      <Y>6105.69</Y>
+      <Z>83.322</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>192583</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>7985.85</X>
+      <Y>4.99045</Y>
+      <Z>961.557</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>192831</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>5622.48</X>
+      <Y>4572.26</Y>
+      <Z>-137.664</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>192952</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35254,6 +36794,76 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>193086</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>5649.97</X>
+      <Y>707.536</Y>
+      <Z>657.636</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>193087</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>5632.51</X>
+      <Y>667.335</Y>
+      <Z>657.653</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>193088</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>5974.59</X>
+      <Y>634.285</Y>
+      <Z>656.333</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>193089</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>5959.15</X>
+      <Y>593.502</Y>
+      <Z>656.381</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>193126</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>5292.3</X>
+      <Y>2930.51</Y>
+      <Z>409.157</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>193791</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35324,6 +36934,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>194468</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2133.08</X>
+      <Y>5371.85</Y>
+      <Z>53.8077</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Outland</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>194487</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>8545.78</X>
+      <Y>934.618</Y>
+      <Z>547.293</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Northrend</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>194492</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35348,6 +36986,20 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>194777</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2986.72</X>
+      <Y>-486.479</Y>
+      <Z>198.613</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -35506,6 +37158,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>196879</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-1869.11</X>
+      <Y>2229.79</Y>
+      <Z>42.3233</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Gilneas2</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>197017</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35632,6 +37298,76 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201393</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-382.2</X>
+      <Y>-1503.21</Y>
+      <Z>87.2058</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201417</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8420.1</X>
+      <Y>633.519</Y>
+      <Z>95.6527</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201418</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8427.11</X>
+      <Y>631.11</Y>
+      <Z>95.6311</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201419</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8421.32</X>
+      <Y>613.44</Y>
+      <Z>95.181</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201420</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8425.16</X>
+      <Y>618.067</Y>
+      <Z>95.3874</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>201515</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35674,6 +37410,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201695</Entry>
+    <Name />
+    <Position>
+      <X>-2280.31</X>
+      <Y>-2351.9</Y>
+      <Z>94.2105</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>201696</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-2183.64</X>
+      <Y>-3642.55</Y>
+      <Z>91.8443</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>201987</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35698,6 +37462,20 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202122</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-11013.4</X>
+      <Y>-3122.11</Y>
+      <Z>40.4831</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35740,6 +37518,20 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202471</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-6621.44</X>
+      <Y>-4707.29</Y>
+      <Z>8.7099</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35870,6 +37662,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202601</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-13308.2</X>
+      <Y>722.642</Y>
+      <Z>3.45297</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>202602</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35884,6 +37690,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202603</Entry>
+    <Name>forge</Name>
+    <Position>
+      <X>-12853.2</X>
+      <Y>-416.931</Y>
+      <Z>12.9025</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202621</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-10604.1</X>
+      <Y>1031.55</Y>
+      <Z>34.0937</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>202861</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35894,6 +37728,20 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>202977</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-3263</X>
+      <Y>-2783.27</Y>
+      <Z>12.7113</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -35926,6 +37774,48 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>203146</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1198.8</X>
+      <Y>430.871</Y>
+      <Z>77.8283</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>203291</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>300.95</X>
+      <Y>-309.682</Y>
+      <Z>92.4618</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>203377</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2126.45</X>
+      <Y>1580.05</Y>
+      <Z>342.119</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>203429</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35936,6 +37826,34 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204122</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3531.55</X>
+      <Y>-6410.59</Y>
+      <Z>20.0985</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204132</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>7396.68</X>
+      <Y>-274.793</Y>
+      <Z>4.8559</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -35954,6 +37872,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204230</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>4615.82</X>
+      <Y>-7012.03</Y>
+      <Z>113.656</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>204233</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35968,6 +37900,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204234</Entry>
+    <Name>forge</Name>
+    <Position>
+      <X>2667.74</X>
+      <Y>-6158.47</Y>
+      <Z>98.2498</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>204238</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -35978,6 +37924,20 @@
     </Position>
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204269</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>4464.71</X>
+      <Y>-5732.63</Y>
+      <Z>105.789</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -36066,6 +38026,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204412</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>3538.45</X>
+      <Y>-6727.01</Y>
+      <Z>96.3232</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>204449</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36076,6 +38050,34 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204451</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-62.4149</X>
+      <Y>-955.542</Y>
+      <Z>54.303</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204459</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-6599.79</X>
+      <Y>-3898.28</Y>
+      <Z>379.007</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36091,6 +38093,62 @@
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204583</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-7041.88</X>
+      <Y>-2554.34</Y>
+      <Z>252.2</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204686</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2057.49</X>
+      <Y>-4829.4</Y>
+      <Z>27.4266</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204687</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2057.83</X>
+      <Y>-4837.13</Y>
+      <Z>27.6638</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204690</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1530.23</X>
+      <Y>-4129.96</Y>
+      <Z>51.0277</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -36122,6 +38180,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204868</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-7925.67</X>
+      <Y>-1942.71</Y>
+      <Z>133.28</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204870</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-7907.79</X>
+      <Y>-1939.72</Y>
+      <Z>133</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>204987</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36147,6 +38233,34 @@
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204993</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-3256.8</X>
+      <Y>-1678.28</Y>
+      <Z>99.3731</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>204996</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-3099.3</X>
+      <Y>-2302.51</Y>
+      <Z>93.2116</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -36234,6 +38348,118 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205091</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1955.01</X>
+      <Y>-4212.97</Y>
+      <Z>37.1079</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205104</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-8307.61</X>
+      <Y>569.937</Y>
+      <Z>100.626</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205105</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-8303.91</X>
+      <Y>572.979</Y>
+      <Z>100.626</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205106</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-8932.42</X>
+      <Y>617.34</Y>
+      <Z>100.547</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205107</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-8930.07</X>
+      <Y>613.163</Y>
+      <Z>100.547</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205108</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1883.68</X>
+      <Y>-4690.83</Y>
+      <Z>38.5353</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205109</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1884.56</X>
+      <Y>-4674</Y>
+      <Z>38.5353</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205230</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1740.6</X>
+      <Y>-4083.22</Y>
+      <Z>67.6882</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>205371</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36244,6 +38470,20 @@
     </Position>
     <Faction>Horde</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205494</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>1573.34</X>
+      <Y>-4176.41</Y>
+      <Z>51.7114</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Horde</Faction>
+    <Type>GuildBanker</Type>
     <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
@@ -36276,6 +38516,62 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>205656</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2979.04</X>
+      <Y>-1491.28</Y>
+      <Z>145.232</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206558</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-9767.7</X>
+      <Y>-3898.79</Y>
+      <Z>21.7897</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206559</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1168.97</X>
+      <Y>-3399.59</Y>
+      <Z>91.6667</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206560</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-8426.21</X>
+      <Y>607.327</Y>
+      <Z>95.0285</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>206623</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36287,6 +38583,20 @@
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206691</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-9402.23</X>
+      <Y>-917.936</Y>
+      <Z>112.54</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -36444,6 +38754,20 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206739</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1904.31</X>
+      <Y>-4216.63</Y>
+      <Z>36.9227</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>206740</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36500,6 +38824,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206861</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2289.66</X>
+      <Y>207.227</Y>
+      <Z>33.5232</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>206863</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2294.55</X>
+      <Y>212.931</Y>
+      <Z>33.5274</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>207077</Entry>
     <Name />
     <Position>
@@ -36510,6 +38862,34 @@
     </Position>
     <Faction>Alliance</Faction>
     <Type>Mailbox</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207080</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-12349.6</X>
+      <Y>-3041.05</Y>
+      <Z>88.1829</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207084</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-12751.5</X>
+      <Y>-2869.07</Y>
+      <Z>2.00846</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
@@ -36525,6 +38905,20 @@
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207212</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-32.5017</X>
+      <Y>-590.764</Y>
+      <Z>153.673</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -36553,6 +38947,48 @@
     <Faction>Neutral</Faction>
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207585</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2453.4</X>
+      <Y>-5659.12</Y>
+      <Z>420.566</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207588</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2438.34</X>
+      <Y>-5655.61</Y>
+      <Z>420.542</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Azeroth</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207600</Entry>
+    <Name>Firepit</Name>
+    <Position>
+      <X>-9701.91</X>
+      <Y>-658.744</Y>
+      <Z>102.142</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
@@ -36794,6 +39230,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207704</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-372.273</X>
+      <Y>1050.51</Y>
+      <Z>21.9858</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>207705</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-610.427</X>
+      <Y>1379.63</Y>
+      <Z>22.0371</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>TolBarad</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>208054</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36892,6 +39356,34 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
+    <Entry>208269</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1825.67</X>
+      <Y>-4484.98</Y>
+      <Z>23.6417</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>208948</Entry>
+    <Name>Guild Vault</Name>
+    <Position>
+      <X>-3721.61</X>
+      <Y>-4536.48</Y>
+      <Z>25.8204</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Alliance</Faction>
+    <Type>GuildBanker</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
     <Entry>209129</Entry>
     <Name>Mailbox</Name>
     <Position>
@@ -36904,18 +39396,60 @@
     <Type>Mailbox</Type>
     <ContinentId>Azeroth</ContinentId>
   </Npc>
-   <Npc>
+  <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>63626</Entry>
-    <Name>Varzok</Name>
+    <Entry>209819</Entry>
+    <Name>Forge</Name>
     <Position>
-      <X>1799.375</X>	 	
-      <Y>-4420.592</Y>
-      <Z>102.7603</Z>
+      <X>-4147.76</X>
+      <Y>6390.69</Y>
+      <Z>13.1167</Z>
       <Type>None</Type>
     </Position>
-    <Faction>Horde</Faction>
-    <Type>BattlePetTrainer</Type>
-    <ContinentId>Azeroth</ContinentId>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DarkmoonFaire</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>209858</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>-4210.91</X>
+      <Y>6244.99</Y>
+      <Z>13.1036</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>DarkmoonFaire</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>209867</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>2085.77</X>
+      <Y>-4793.71</Y>
+      <Z>27.4712</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
+  </Npc>
+  <Npc>
+    <SelectGossipOption>1</SelectGossipOption>
+    <Entry>210058</Entry>
+    <Name>Forge</Name>
+    <Position>
+      <X>1735.24</X>
+      <Y>-4514.39</Y>
+      <Z>30.7668</Z>
+      <Type>None</Type>
+    </Position>
+    <Faction>Neutral</Faction>
+    <Type>SmeltingForge</Type>
+    <ContinentId>Kalimdor</ContinentId>
   </Npc>
 </ArrayOfNpc>
