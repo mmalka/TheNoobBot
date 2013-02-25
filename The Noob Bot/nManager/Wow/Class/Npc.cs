@@ -99,6 +99,7 @@ namespace nManager.Wow.Class
             RidingTrainer,
             BattlePetTrainer,
             SmeltingForge,
+            RuneForge,
             MonkTrainer,
             FlightMaster,
             SpiritHealer,

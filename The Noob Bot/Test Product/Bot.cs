@@ -33,7 +33,7 @@ namespace Test_Product
                     "((ct.npcflag &64 && trainer_type=2) || ct.npcflag &128 || ct.npcflag &4096 || ct.npcflag &8192 || ct.npcflag &16384 || ct.npcflag &32768 || ct.npcflag &65536 || ct.npcflag &131072 || ct.npcflag &1048576 || ct.npcflag &2097152 || ct.npcflag &4194304 || ct.npcflag &8388608 || ct.npcflag &67108864) && " +
                     "( ! ( ct.unit_flags &33554432 ) && ! ( ct.unit_flags &262144 ) && ! ( ct.unit_flags &524288 ) ) && ! ( ct.flags_extra &128 ) && " +
                     "ct.entry NOT IN (SELECT `npc_entry` FROM (`creature_transport`)) " +
-                    "GROUP BY ct.entry;";
+                    "GROUP BY c.guid ORDER BY ct.entry;";
                 var npccmd = new MySqlCommand(npcquery, myConn);
                 MySqlDataReader npcresult = npccmd.ExecuteReader();
                 var newList = new List<Npc>();
@@ -304,8 +304,8 @@ namespace Test_Product
                     "FROM `gameobject_template` AS got, `gameobject` AS go " +
                     "WHERE `go`.id = `got`.entry && `go`.phaseMask =1 && `go`.spawnMask&15 && `WDBVerified` = 15595 && " +
                     "((( ! ( `got`.flags &1 ) && ! ( `got`.flags &2 ) && ! ( `got`.flags &4 ) && ! ( `got`.flags &8 ) && ! ( `got`.flags &64 ) && ! ( `got`.flags &72 ) && ! ( `got`.flags &1024 )) && " +
-                    "`got`.type = 19) || ( `type` = 8 && `data0` = 3) || (`type` = 34)) " +
-                    "GROUP BY `got`.entry;";
+                    "`got`.type = 19) || (`type` = 8 && `data0` = 3) || (`type` = 8 && `data0` = 1552) || (`type` = 34)) " +
+                    "GROUP BY `go`.guid ORDER BY `got`.entry;";
                 var gocmd = new MySqlCommand(goquery, myConn);
                 MySqlDataReader goresult = gocmd.ExecuteReader();
                 while (goresult.Read())
@@ -366,6 +366,21 @@ namespace Test_Product
                                           goresult.GetFloat("position_z")),
                             SelectGossipOption = 1,
                             Type = Npc.NpcType.SmeltingForge
+                        });
+                    }
+                    else if (goresult.GetUInt32("type") == 8 && goresult.GetUInt32("data0") == 1552)
+                    {
+                        newList.Add(new Npc
+                        {
+                            ContinentId = (ContinentId)goresult.GetUInt32("map"),
+                            Entry = goresult.GetInt32("entry"),
+                            Faction = currentFaction,
+                            Name = goresult.GetString("name"),
+                            Position =
+                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                          goresult.GetFloat("position_z")),
+                            SelectGossipOption = 1,
+                            Type = Npc.NpcType.RuneForge
                         });
                     }
                     else if (goresult.GetUInt32("type") == 34)
