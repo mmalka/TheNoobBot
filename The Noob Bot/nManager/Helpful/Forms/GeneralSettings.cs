@@ -544,5 +544,17 @@ namespace nManager.Helpful.Forms
             Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" +
                                                                   CustomClass.Text);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612&p=20876");
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("Login > buttonX1_Click(object sender, EventArgs e): " + ex);
+            }
+        }
     }
 }

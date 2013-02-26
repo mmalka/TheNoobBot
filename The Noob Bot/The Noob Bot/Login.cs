@@ -214,7 +214,7 @@ namespace The_Noob_Bot
                     {
                         Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
                         var sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
-                        sw.WriteLine(Others.StringToEncryptString(userNameTb.Text + "#" + passwordTb.Text));
+                        sw.WriteLine(Others.StringToEncryptString(userNameTb.Text.Trim() + "#" + passwordTb.Text.Trim()));
                         sw.Close();
                     }
                     else // Delete .wr file
@@ -224,7 +224,7 @@ namespace The_Noob_Bot
                             File.Delete(fileToDelete);
                     }
 
-                    LoginServer.Connect(userNameTb.Text, passwordTb.Text);
+                    LoginServer.Connect(userNameTb.Text.Trim(), passwordTb.Text.Trim());
 
                     while (!LoginServer.IsConnected)
                     {

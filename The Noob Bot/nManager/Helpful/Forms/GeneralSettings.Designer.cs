@@ -125,6 +125,7 @@ namespace nManager.Helpful.Forms
             this.EmailOfTheBattleNetAccount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX40 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel4 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.button1 = new System.Windows.Forms.Button();
             this.DontHarvestTheFollowingObjects = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.AutoConfirmOnBoPItems = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.AutoConfirmOnBoPItemsLabel = new DevComponents.DotNetBar.LabelX();
@@ -1873,6 +1874,7 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel4.Controls.Add(this.button1);
             this.expandablePanel4.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItems);
             this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
@@ -1940,6 +1942,18 @@ namespace nManager.Helpful.Forms
             this.expandablePanel4.TitleStyle.GradientAngle = 90;
             this.expandablePanel4.TitleText = "Looting && Farming options";
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.White;
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(521, 146);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(19, 23);
+            this.button1.TabIndex = 64;
+            this.button1.Text = "?";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DontHarvestTheFollowingObjects
             // 
             this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.White;
@@ -1949,11 +1963,11 @@ namespace nManager.Helpful.Forms
             this.DontHarvestTheFollowingObjects.Border.Class = "TextBoxBorder";
             this.DontHarvestTheFollowingObjects.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DontHarvestTheFollowingObjects.ForeColor = System.Drawing.Color.Black;
-            this.DontHarvestTheFollowingObjects.Location = new System.Drawing.Point(423, 175);
+            this.DontHarvestTheFollowingObjects.Location = new System.Drawing.Point(302, 175);
             this.DontHarvestTheFollowingObjects.Multiline = true;
             this.DontHarvestTheFollowingObjects.Name = "DontHarvestTheFollowingObjects";
             this.DontHarvestTheFollowingObjects.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.DontHarvestTheFollowingObjects.Size = new System.Drawing.Size(114, 86);
+            this.DontHarvestTheFollowingObjects.Size = new System.Drawing.Size(235, 86);
             this.DontHarvestTheFollowingObjects.TabIndex = 63;
             // 
             // AutoConfirmOnBoPItems
@@ -2311,10 +2325,10 @@ namespace nManager.Helpful.Forms
             this.labelX36.ForeColor = System.Drawing.Color.Black;
             this.labelX36.Location = new System.Drawing.Point(301, 146);
             this.labelX36.Name = "labelX36";
-            this.labelX36.Size = new System.Drawing.Size(160, 23);
+            this.labelX36.Size = new System.Drawing.Size(218, 23);
             this.labelX36.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX36.TabIndex = 38;
-            this.labelX36.Text = "Don\'t harvest:";
+            this.labelX36.Text = "Don\'t harvest List (one id per line)";
             // 
             // addBlackListHarvest
             // 
@@ -3628,5 +3642,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX UseRobotLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton UseRobot;
         private DevComponents.DotNetBar.Controls.TextBoxX DontHarvestTheFollowingObjects;
+        private System.Windows.Forms.Button button1;
     }
 }
