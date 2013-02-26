@@ -286,6 +286,18 @@ namespace nManager.Wow.Helpers
 
                     Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
                 }
+                if (ObjectManager.ObjectManager.Me.Level < 90) return;
+                for (uint i = 79896; i <= 79919; i++)
+                {
+                    var item = ObjectManager.ObjectManager.GetWoWItemById(i);
+                    if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
+                        !ItemsManager.IsUsableItemById(i)) continue;
+                    while (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                    {
+                        ItemsManager.UseItem(i);
+                        Thread.Sleep(500);
+                    }
+                }
             }
             catch (Exception e)
             {

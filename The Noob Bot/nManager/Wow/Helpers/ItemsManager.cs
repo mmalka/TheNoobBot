@@ -63,6 +63,18 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void UseItem(uint itemId)
+        {
+            try
+            {
+                Lua.RunMacroText("/use " + GetNameById(itemId));
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("UseItem(string itemName): " + exception);
+            }
+        }
+
         public static void UseItem(string itemName)
         {
             try

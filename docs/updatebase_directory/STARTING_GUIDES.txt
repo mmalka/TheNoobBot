@@ -1,0 +1,13 @@
+Fews things to know :
+The forum account must be created. The answer to the AntiBot system is "13" (numbers of Classes in WoW)
+
+If WoW crash or Bot freeze: http://thenoobbot.com/community/viewtopic.php?f=43&t=464
+If others issues: http://thenoobbot.com/community/viewtopic.php?f=43&t=4051
+
+If you are Monk, you must manually switch the Custom Class in General Settings until it get Stable to include in the official Combat system of TheNoobBot.
+
+How to attach a log if asked on the forum: http://thenoobbot.com/community/viewtopic.php?f=43&t=4316
+
+If you have any payment issue, contact immediatly contact@thenoobcompany.com with a proof of payment to get your account activated ASAP.
+
+Enjoy botting with TheNoobBot !
