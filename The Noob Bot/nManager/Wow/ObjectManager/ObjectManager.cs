@@ -340,7 +340,7 @@ namespace nManager.Wow.ObjectManager
             }
             catch (Exception e)
             {
-                Logging.WriteError("GetObjectWoWItem(): " + e);
+                Logging.WriteError("GetWoWItemById(uint entry): " + e);
                 return new WoWItem(0);
             }
         }

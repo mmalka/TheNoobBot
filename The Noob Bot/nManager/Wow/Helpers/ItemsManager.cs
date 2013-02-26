@@ -71,7 +71,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("UseItem(string itemName): " + exception);
+                Logging.WriteError("UseItem(uint itemId): " + exception);
             }
         }
 
@@ -184,7 +184,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("IsUsableItem(uint itemId): " + exception);
+                Logging.WriteError("IsUsableItemById(uint itemId): " + exception);
             }
             return false;
         }
@@ -201,7 +201,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("IsUsableItem(string itemName): " + exception);
+                Logging.WriteError("IsUsableItemByName(string itemName): " + exception);
             }
             return false;
         }
