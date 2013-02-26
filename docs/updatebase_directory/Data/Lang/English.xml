@@ -598,7 +598,7 @@
       <Id>Mail_Recipient</Id>
     </Translation>
     <Translation>
-      <Text>Force Mail List (one item by line)</Text>
+      <Text>Force Mail List (one item per line)</Text>
       <Id>Force_Mail_List__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -630,7 +630,7 @@
       <Id>Use_Mail</Id>
     </Translation>
     <Translation>
-      <Text>Do not Mail List (one item by line)</Text>
+      <Text>Do not Mail List (one item per line)</Text>
       <Id>Do_not_Mail_List__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -638,7 +638,7 @@
       <Id>Vendor__Selling_or_Buying</Id>
     </Translation>
     <Translation>
-      <Text>Force Sell List (one item by line)</Text>
+      <Text>Force Sell List (one item per line)</Text>
       <Id>Force_Sell_List__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -678,7 +678,7 @@
       <Id>Drink_Amount</Id>
     </Translation>
     <Translation>
-      <Text>Do not Sell List (one item by line)</Text>
+      <Text>Do not Sell List (one item per line)</Text>
       <Id>Do_not_Sell_List__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -714,7 +714,7 @@
       <Id>Prospecting</Id>
     </Translation>
     <Translation>
-      <Text>Prospecting list (one item by line)</Text>
+      <Text>Prospecting list (one item per line)</Text>
       <Id>Prospecting_list__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -730,7 +730,7 @@
       <Id>Milling</Id>
     </Translation>
     <Translation>
-      <Text>Milling list (one item by line)</Text>
+      <Text>Milling list (one item per line)</Text>
       <Id>Milling_list__one_item_by_line</Id>
     </Translation>
     <Translation>
@@ -738,7 +738,7 @@
       <Id>Smelting</Id>
     </Translation>
     <Translation>
-      <Text>Don't harvest</Text>
+      <Text>Don't harvest list (one id per line)</Text>
       <Id>Don_t_harvest</Id>
     </Translation>
     <Translation>

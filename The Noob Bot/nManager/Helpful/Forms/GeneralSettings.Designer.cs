@@ -92,6 +92,8 @@ namespace nManager.Helpful.Forms
             this.DontMailTheseItems = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX58 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel8 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.UseRobotLabel = new DevComponents.DotNetBar.LabelX();
+            this.UseRobot = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.SellItemsWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
             this.RepairWhenDurabilityIsUnderPercent = new DevComponents.Editors.IntegerInput();
             this.SellItemsWhenLessThanXSlotLeftLabel = new DevComponents.DotNetBar.LabelX();
@@ -123,6 +125,7 @@ namespace nManager.Helpful.Forms
             this.EmailOfTheBattleNetAccount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX40 = new DevComponents.DotNetBar.LabelX();
             this.expandablePanel4 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.DontHarvestTheFollowingObjects = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.AutoConfirmOnBoPItems = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.AutoConfirmOnBoPItemsLabel = new DevComponents.DotNetBar.LabelX();
             this.labelX69 = new DevComponents.DotNetBar.LabelX();
@@ -145,9 +148,7 @@ namespace nManager.Helpful.Forms
             this.labelX62 = new DevComponents.DotNetBar.LabelX();
             this.labelX61 = new DevComponents.DotNetBar.LabelX();
             this.ActivateAutoSmelting = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.ResetDontHarvestTheFollowingObjectsButton = new DevComponents.DotNetBar.ButtonX();
             this.labelX36 = new DevComponents.DotNetBar.LabelX();
-            this.DontHarvestTheFollowingObjects = new System.Windows.Forms.ListBox();
             this.addBlackListHarvest = new DevComponents.DotNetBar.ButtonX();
             this.labelX35 = new DevComponents.DotNetBar.LabelX();
             this.HarvestDuringLongDistanceMovements = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -215,8 +216,6 @@ namespace nManager.Helpful.Forms
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.UseRobotLabel = new DevComponents.DotNetBar.LabelX();
-            this.UseRobot = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.panel1.SuspendLayout();
             this.expandablePanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
@@ -1361,6 +1360,37 @@ namespace nManager.Helpful.Forms
             this.expandablePanel8.TitleStyle.GradientAngle = 90;
             this.expandablePanel8.TitleText = "Vendor (Selling or Buying)";
             // 
+            // UseRobotLabel
+            // 
+            this.UseRobotLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.UseRobotLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseRobotLabel.ForeColor = System.Drawing.Color.Black;
+            this.UseRobotLabel.Location = new System.Drawing.Point(4, 35);
+            this.UseRobotLabel.Name = "UseRobotLabel";
+            this.UseRobotLabel.Size = new System.Drawing.Size(160, 23);
+            this.UseRobotLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.UseRobotLabel.TabIndex = 41;
+            this.UseRobotLabel.Text = "Use robot when possible";
+            // 
+            // UseRobot
+            // 
+            this.UseRobot.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.UseRobot.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.UseRobot.ForeColor = System.Drawing.Color.Black;
+            this.UseRobot.Location = new System.Drawing.Point(170, 35);
+            this.UseRobot.Name = "UseRobot";
+            this.UseRobot.OffText = Translate.Get(Translate.Id.NO);
+            this.UseRobot.OnText = Translate.Get(Translate.Id.YES);
+            this.UseRobot.Size = new System.Drawing.Size(66, 22);
+            this.UseRobot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.UseRobot.TabIndex = 40;
+            // 
             // SellItemsWhenLessThanXSlotLeft
             // 
             this.SellItemsWhenLessThanXSlotLeft.BackColor = System.Drawing.Color.White;
@@ -1843,6 +1873,7 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel4.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.expandablePanel4.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItems);
             this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
             this.expandablePanel4.Controls.Add(this.labelX69);
@@ -1865,9 +1896,7 @@ namespace nManager.Helpful.Forms
             this.expandablePanel4.Controls.Add(this.labelX62);
             this.expandablePanel4.Controls.Add(this.labelX61);
             this.expandablePanel4.Controls.Add(this.ActivateAutoSmelting);
-            this.expandablePanel4.Controls.Add(this.ResetDontHarvestTheFollowingObjectsButton);
             this.expandablePanel4.Controls.Add(this.labelX36);
-            this.expandablePanel4.Controls.Add(this.DontHarvestTheFollowingObjects);
             this.expandablePanel4.Controls.Add(this.addBlackListHarvest);
             this.expandablePanel4.Controls.Add(this.labelX35);
             this.expandablePanel4.Controls.Add(this.HarvestDuringLongDistanceMovements);
@@ -1911,6 +1940,22 @@ namespace nManager.Helpful.Forms
             this.expandablePanel4.TitleStyle.GradientAngle = 90;
             this.expandablePanel4.TitleText = "Looting && Farming options";
             // 
+            // DontHarvestTheFollowingObjects
+            // 
+            this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.DontHarvestTheFollowingObjects.Border.Class = "TextBoxBorder";
+            this.DontHarvestTheFollowingObjects.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.DontHarvestTheFollowingObjects.ForeColor = System.Drawing.Color.Black;
+            this.DontHarvestTheFollowingObjects.Location = new System.Drawing.Point(423, 175);
+            this.DontHarvestTheFollowingObjects.Multiline = true;
+            this.DontHarvestTheFollowingObjects.Name = "DontHarvestTheFollowingObjects";
+            this.DontHarvestTheFollowingObjects.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.DontHarvestTheFollowingObjects.Size = new System.Drawing.Size(114, 86);
+            this.DontHarvestTheFollowingObjects.TabIndex = 63;
+            // 
             // AutoConfirmOnBoPItems
             // 
             this.AutoConfirmOnBoPItems.BackColor = System.Drawing.Color.White;
@@ -1919,7 +1964,7 @@ namespace nManager.Helpful.Forms
             // 
             this.AutoConfirmOnBoPItems.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoConfirmOnBoPItems.ForeColor = System.Drawing.Color.Black;
-            this.AutoConfirmOnBoPItems.Location = new System.Drawing.Point(428, 30);
+            this.AutoConfirmOnBoPItems.Location = new System.Drawing.Point(474, 30);
             this.AutoConfirmOnBoPItems.Name = "AutoConfirmOnBoPItems";
             this.AutoConfirmOnBoPItems.OffText = Translate.Get(Translate.Id.NO);
             this.AutoConfirmOnBoPItems.OnText = Translate.Get(Translate.Id.YES);
@@ -1935,7 +1980,7 @@ namespace nManager.Helpful.Forms
             // 
             this.AutoConfirmOnBoPItemsLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoConfirmOnBoPItemsLabel.ForeColor = System.Drawing.Color.Black;
-            this.AutoConfirmOnBoPItemsLabel.Location = new System.Drawing.Point(262, 29);
+            this.AutoConfirmOnBoPItemsLabel.Location = new System.Drawing.Point(301, 30);
             this.AutoConfirmOnBoPItemsLabel.Name = "AutoConfirmOnBoPItemsLabel";
             this.AutoConfirmOnBoPItemsLabel.Size = new System.Drawing.Size(160, 23);
             this.AutoConfirmOnBoPItemsLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -2233,7 +2278,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX61.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX61.ForeColor = System.Drawing.Color.Black;
-            this.labelX61.Location = new System.Drawing.Point(347, 117);
+            this.labelX61.Location = new System.Drawing.Point(302, 117);
             this.labelX61.Name = "labelX61";
             this.labelX61.Size = new System.Drawing.Size(101, 23);
             this.labelX61.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -2256,18 +2301,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSmelting.TabIndex = 40;
             // 
-            // ResetDontHarvestTheFollowingObjectsButton
-            // 
-            this.ResetDontHarvestTheFollowingObjectsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.ResetDontHarvestTheFollowingObjectsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.ResetDontHarvestTheFollowingObjectsButton.Location = new System.Drawing.Point(500, 173);
-            this.ResetDontHarvestTheFollowingObjectsButton.Name = "ResetDontHarvestTheFollowingObjectsButton";
-            this.ResetDontHarvestTheFollowingObjectsButton.Size = new System.Drawing.Size(40, 21);
-            this.ResetDontHarvestTheFollowingObjectsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.ResetDontHarvestTheFollowingObjectsButton.TabIndex = 39;
-            this.ResetDontHarvestTheFollowingObjectsButton.Text = "Del";
-            this.ResetDontHarvestTheFollowingObjectsButton.Click += new System.EventHandler(this.delBlackListHarvest_Click);
-            // 
             // labelX36
             // 
             this.labelX36.BackColor = System.Drawing.Color.Transparent;
@@ -2276,22 +2309,12 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX36.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX36.ForeColor = System.Drawing.Color.Black;
-            this.labelX36.Location = new System.Drawing.Point(347, 144);
+            this.labelX36.Location = new System.Drawing.Point(301, 146);
             this.labelX36.Name = "labelX36";
             this.labelX36.Size = new System.Drawing.Size(160, 23);
             this.labelX36.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
             this.labelX36.TabIndex = 38;
             this.labelX36.Text = "Don\'t harvest:";
-            // 
-            // DontHarvestTheFollowingObjects
-            // 
-            this.DontHarvestTheFollowingObjects.BackColor = System.Drawing.Color.White;
-            this.DontHarvestTheFollowingObjects.ForeColor = System.Drawing.Color.Black;
-            this.DontHarvestTheFollowingObjects.FormattingEnabled = true;
-            this.DontHarvestTheFollowingObjects.Location = new System.Drawing.Point(347, 173);
-            this.DontHarvestTheFollowingObjects.Name = "DontHarvestTheFollowingObjects";
-            this.DontHarvestTheFollowingObjects.Size = new System.Drawing.Size(193, 82);
-            this.DontHarvestTheFollowingObjects.TabIndex = 37;
             // 
             // addBlackListHarvest
             // 
@@ -2340,7 +2363,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX23.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX23.ForeColor = System.Drawing.Color.Black;
-            this.labelX23.Location = new System.Drawing.Point(262, 88);
+            this.labelX23.Location = new System.Drawing.Point(301, 88);
             this.labelX23.Name = "labelX23";
             this.labelX23.Size = new System.Drawing.Size(34, 23);
             this.labelX23.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -2355,7 +2378,7 @@ namespace nManager.Helpful.Forms
             // 
             this.BeastNinjaSkinning.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.BeastNinjaSkinning.ForeColor = System.Drawing.Color.Black;
-            this.BeastNinjaSkinning.Location = new System.Drawing.Point(302, 88);
+            this.BeastNinjaSkinning.Location = new System.Drawing.Point(474, 88);
             this.BeastNinjaSkinning.Name = "BeastNinjaSkinning";
             this.BeastNinjaSkinning.OffText = Translate.Get(Translate.Id.NO);
             this.BeastNinjaSkinning.OnText = Translate.Get(Translate.Id.YES);
@@ -3367,37 +3390,6 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB.Text = "Save and Close";
             this.saveAndCloseB.Click += new System.EventHandler(this.saveAndCloseB_Click);
             // 
-            // UseRobotLabel
-            // 
-            this.UseRobotLabel.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.UseRobotLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.UseRobotLabel.ForeColor = System.Drawing.Color.Black;
-            this.UseRobotLabel.Location = new System.Drawing.Point(4, 35);
-            this.UseRobotLabel.Name = "UseRobotLabel";
-            this.UseRobotLabel.Size = new System.Drawing.Size(160, 23);
-            this.UseRobotLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.UseRobotLabel.TabIndex = 41;
-            this.UseRobotLabel.Text = "Use robot when possible";
-            // 
-            // UseRobot
-            // 
-            this.UseRobot.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.UseRobot.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.UseRobot.ForeColor = System.Drawing.Color.Black;
-            this.UseRobot.Location = new System.Drawing.Point(170, 35);
-            this.UseRobot.Name = "UseRobot";
-            this.UseRobot.OffText = Translate.Get(Translate.Id.NO);
-            this.UseRobot.OnText = Translate.Get(Translate.Id.YES);
-            this.UseRobot.Size = new System.Drawing.Size(66, 22);
-            this.UseRobot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.UseRobot.TabIndex = 40;
-            // 
             // GeneralSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -3586,8 +3578,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton HarvestDuringLongDistanceMovements;
         private DevComponents.DotNetBar.ButtonX addBlackListHarvest;
         private DevComponents.DotNetBar.LabelX labelX36;
-        private System.Windows.Forms.ListBox DontHarvestTheFollowingObjects;
-        private DevComponents.DotNetBar.ButtonX ResetDontHarvestTheFollowingObjectsButton;
         private DevComponents.DotNetBar.LabelX labelX61;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateAutoSmelting;
         private DevComponents.DotNetBar.Controls.SwitchButton DoRegenManaIfLow;
@@ -3637,5 +3627,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton UseMollE;
         private DevComponents.DotNetBar.LabelX UseRobotLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton UseRobot;
+        private DevComponents.DotNetBar.Controls.TextBoxX DontHarvestTheFollowingObjects;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -274,6 +275,14 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
+                if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Count > 0)
+                {
+                    int entryid = 0;
+                    if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Where(entry => int.TryParse(entry.Trim(), out entryid)).Any(entry => Entry == entryid))
+                    {
+                        return false;
+                    }
+                }
                 if (LockEntry != 0)
                 {
                     WoWLock Row = WoWLock.FromId(LockEntry);

@@ -225,10 +225,7 @@ namespace nManager
         public bool OnlyUseMillingInTown;
         public int TimeBetweenEachMillingAttempt = 15;
         public List<string> HerbsToBeMilled = new List<string>();
-
-        public List<int> DontHarvestTheFollowingObjects = new List<int>();
-        // TODO Use this settings to avoid looting specific entrys.
-
+        public List<string> DontHarvestTheFollowingObjects = new List<string>();
         public bool MakeStackOfElementalsItems;
         public bool ActivateReloggerFeature;
         public string EmailOfTheBattleNetAccount = "";

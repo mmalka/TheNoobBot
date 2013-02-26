@@ -739,7 +739,7 @@
       <Id>Smelting</Id>
     </Translation>
     <Translation>
-      <Text>Ne pas farmer les</Text>
+      <Text>Liste à ne pas farm (un id par ligne)</Text>
       <Id>Don_t_harvest</Id>
     </Translation>
     <Translation>

@@ -160,8 +160,6 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX72);
             labelX61.Text = Translate.Get(Translate.Id.Smelting);
             SetToolTypeIfNeeded(labelX61);
-            ResetDontHarvestTheFollowingObjectsButton.Text = Translate.Get(Translate.Id.Del);
-            SetToolTypeIfNeeded(ResetDontHarvestTheFollowingObjectsButton);
             labelX36.Text = Translate.Get(Translate.Id.Don_t_harvest);
             SetToolTypeIfNeeded(labelX36);
             labelX35.Text = Translate.Get(Translate.Id.Harvest_During_Long_Move);
@@ -300,25 +298,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Clear();
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(HerbsToBeMilled.Text));
                 nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Clear();
-                try
-                {
-                    foreach (string i in DontHarvestTheFollowingObjects.Items)
-                    {
-                        try
-                        {
-                            string[] result = i.Replace(" ", "").Split(Convert.ToChar("-"));
-                            if (result.Length > 0)
-                                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Add(
-                                    Convert.ToInt32(result[0]));
-                        }
-                        catch
-                        {
-                        }
-                    }
-                }
-                catch
-                {
-                }
+                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.AddRange(Others.TextToArrayByLine(DontHarvestTheFollowingObjects.Text));
                 nManagerSetting.CurrentSetting.MakeStackOfElementalsItems = MakeStackOfElementalsItems.Value;
                 nManagerSetting.CurrentSetting.ActivateReloggerFeature = ActivateReloggerFeature.Value;
                 nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = EmailOfTheBattleNetAccount.Text;
@@ -430,18 +410,7 @@ namespace nManager.Helpful.Forms
                 OnlyUseMillingInTown.Value = managerSetting.OnlyUseMillingInTown;
                 TimeBetweenEachMillingAttempt.Value = managerSetting.TimeBetweenEachMillingAttempt;
                 HerbsToBeMilled.Text = Others.ArrayToTextByLine(managerSetting.HerbsToBeMilled.ToArray());
-                DontHarvestTheFollowingObjects.Items.Clear();
-                try
-                {
-                    foreach (var id in managerSetting.DontHarvestTheFollowingObjects)
-                    {
-                        if (id >= 0)
-                            DontHarvestTheFollowingObjects.Items.Add(id);
-                    }
-                }
-                catch
-                {
-                }
+                DontHarvestTheFollowingObjects.Text = Others.ArrayToTextByLine(managerSetting.DontHarvestTheFollowingObjects.ToArray());
                 MakeStackOfElementalsItems.Value = managerSetting.MakeStackOfElementalsItems;
                 ActivateReloggerFeature.Value = managerSetting.ActivateReloggerFeature;
                 EmailOfTheBattleNetAccount.Text = managerSetting.EmailOfTheBattleNetAccount;
@@ -567,19 +536,6 @@ namespace nManager.Helpful.Forms
             catch (Exception ex)
             {
                 Logging.WriteError("GeneralSettings > customClassConfigB_Click(object sender, EventArgs e): " + ex);
-            }
-        }
-
-        private void delBlackListHarvest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (DontHarvestTheFollowingObjects.SelectedIndex >= 0)
-                    DontHarvestTheFollowingObjects.Items.RemoveAt(DontHarvestTheFollowingObjects.SelectedIndex);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("GeneralSettings > delBlackListHarvest_Click(object sender, EventArgs e): " + ex);
             }
         }
 
