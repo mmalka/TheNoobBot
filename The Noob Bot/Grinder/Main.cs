@@ -132,7 +132,7 @@ public class Main : IProduct
         }
         catch (Exception e)
         {
-            Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
+            Logging.WriteError("Grinder > Main > GetProductTipOff(): " + e);
         }
     }
 

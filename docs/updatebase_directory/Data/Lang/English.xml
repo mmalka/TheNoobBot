@@ -1274,12 +1274,28 @@
       <Id>GathererTipOffMessage</Id>
     </Translation>
 	<Translation>
-      <Text>We highly recommand to activate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+      <Text>Archaeologist - Settings Tip-off</Text>
+      <Id>ArchaeologistTipOffTitle</Id>
+    </Translation>
+	<Translation>
+      <Text>Your General Settings are not optimized for the Archaeologist product: </Text>
+      <Id>ArchaeologistTipOffMessage</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to activate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => ON</Text>
       <Id>TipOffLootingOn</Id>
     </Translation>
 	<Translation>
       <Text>We highly recommand to deactivate the Looting function in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
       <Id>TipOffLootingOff</Id>
+    </Translation>
+	<Translation>
+      <Text>We recommand to activate the Looting function for Pandaria in General Settings => Looting &amp; Farming options => Loot mobs => ON</Text>
+      <Id>TipOffLootingOnArchaeologist</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
+      <Id>TipOffLootingOffArchaeologist</Id>
     </Translation>
 	<Translation>
       <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings => Looting &amp; Farming options => Search Radius => -30</Text>

@@ -1,8 +1,10 @@
 ﻿// ReSharper disable CheckNamespace
 
 using System;
+using System.Windows.Forms;
 using Archaeologist;
 using Archaeologist.Bot;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -18,6 +20,7 @@ public class Main : IProduct
             ArchaeologistSetting.Load();
             Logging.Status = "Initialize Archaeologist Complete";
             Logging.Write("Initialize Archaeologist Complete");
+            GetProductTipOff();
         }
         catch (Exception e)
         {
@@ -88,6 +91,47 @@ public class Main : IProduct
         catch (Exception e)
         {
             Logging.WriteError("Archaeologist > Main > Settings(): " + e);
+        }
+    }
+
+    private string _looting;
+    private string _useground;
+    private string _usefly;
+
+    private void GetProductTipOff()
+    {
+        try
+        {
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 90 && nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+                _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOffArchaeologist);
+            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 && !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+                _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOnArchaeologist);
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20 &&
+                nManager.Wow.ObjectManager.ObjectManager.Me.Level < 60)
+            {
+                if (!nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
+                else if (nManagerSetting.CurrentSetting.UseGroundMount &&
+                         string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
+            }
+            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 60)
+            {
+                if (nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOff);
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
+                    _usefly = "\n" + Translate.Get(Translate.Id.TipOffEmptyFlyingMount);
+            }
+            if (_looting != null || _useground != null || _usefly != null)
+            {
+                MessageBox.Show(
+                    string.Format("{0}\n{1}{2}{3}", Translate.Get(Translate.Id.ArchaeologistTipOffMessage), _looting,
+                                  _useground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
+            }
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("Battlegrounder > Main > GetProductTipOff(): " + e);
         }
     }
 
