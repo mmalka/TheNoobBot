@@ -77,6 +77,18 @@ namespace nManager.Wow.Helpers
                 }
                 return 0;
             }
+            set
+            {
+                try
+                {
+                    _currentTargetedPoint = value;
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("PointId: " + exception);
+                    _currentTargetedPoint = 0;
+                }
+            }
         }
 
         public static List<Point> CurrentPath
@@ -130,24 +142,27 @@ namespace nManager.Wow.Helpers
 
                                 if (_movement && _points.Count > 0)
                                 {
+                                    int targetPoint = 0;
+                                    if (_loop)
+                                        targetPoint = _currentTargetedPoint;
                                     if (
-                                        _points[_currentTargetedPoint].DistanceTo2D(
+                                        _points[targetPoint].DistanceTo2D(
                                             ObjectManager.ObjectManager.Me.Position) < 0.5f)
                                     {
-                                        _currentTargetedPoint++;
+                                        targetPoint++;
                                     }
-
-                                    if (_currentTargetedPoint >= _points.Count - 1)
+                                    if (targetPoint >= _points.Count - 1)
                                     {
-                                        _currentTargetedPoint = 0;
+                                        targetPoint = 0;
                                     }
-
-                                    if (_points[_currentTargetedPoint].Type.ToLower() == "flying")
-                                        FlyMouvementManager(_currentTargetedPoint);
-                                    else if (_points[_currentTargetedPoint].Type.ToLower() == "swimming")
-                                        AquaticMouvementManager(_currentTargetedPoint);
+                                    if (_loop)
+                                        _currentTargetedPoint = targetPoint;
+                                    if (_points[targetPoint].Type.ToLower() == "flying")
+                                        FlyMouvementManager(targetPoint);
+                                    else if (_points[targetPoint].Type.ToLower() == "swimming")
+                                        AquaticMouvementManager(targetPoint);
                                     else
-                                        GroundMouvementManager(_currentTargetedPoint);
+                                        GroundMouvementManager(targetPoint);
 
                                     Statistics.OffsetStats = 0x53;
                                 }
@@ -486,7 +501,7 @@ namespace nManager.Wow.Helpers
                 Logging.WriteDebug("UnStuck - lastPost = " + lastPost);
                 for (int i = 0; i < 8; i++)
                 {
-                    Logging.WriteDebug("UnStuck - UnStuck attempt " + i + "started.");
+                    Logging.WriteDebug("UnStuck - UnStuck attempt " + i + " started.");
                     int j = Others.Random(1, 8);
 
                     float disX = System.Math.Abs(lastPost.X - ObjectManager.ObjectManager.Me.Position.X);
@@ -586,7 +601,6 @@ namespace nManager.Wow.Helpers
                         break;
                     }
                 }
-
 
                 IsUnStuck = false;
                 StuckCount++;
@@ -769,13 +783,14 @@ namespace nManager.Wow.Helpers
                     lock (typeof (MovementManager))
                     {
                         if (_worker == null)
+                        {
+                            _currentTargetedPoint = 0;
                             LaunchThreadMovementManager();
-
+                        }
                         _pointsOrigine = new List<Point>();
                         _pointsOrigine.AddRange(points);
                         _points = new List<Point>();
                         _points.AddRange(points);
-                        _currentTargetedPoint = 0;
 
                         _movement = true;
                         _first = true;

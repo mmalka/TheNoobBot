@@ -95,6 +95,7 @@ namespace nManager.Wow.Bot.States
             if (_loopPathId != PathIdentity) // If path changed, then we need to find the nearest point
             {
                 _currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
+                MovementManager.PointId = _currentPoint;
             }
             else // If the path did not change, let's return to the last point we were using
             {
@@ -102,6 +103,8 @@ namespace nManager.Wow.Bot.States
                 if (_currentPoint > PathLoop.Count - 1)
                     _currentPoint = 0;
             }
+            if (_loopPathId == -1f)
+                _loopPathId = PathIdentity;
             // Too far away, then we don't care for fly/swim but we need pathfinder to go by foot before anything else
             // This simply does not work. Grinder for low level (on ground) still go straitline in front for long distance
             if (PathLoop[_currentPoint].Type.ToLower() != "flying" &&
@@ -114,7 +117,6 @@ namespace nManager.Wow.Bot.States
                 return;
             }
             // We are near enough or flying/swimming then restore the loop
-            _loopPathId = PathIdentity;
             MovementManager.GoLoop(PathLoop);
         }
     }
