@@ -32,13 +32,13 @@ namespace Quester.Tasks
                 cp.ReferencedAssemblies.Add("System.dll");
                 cp.ReferencedAssemblies.Add("System.Xml.dll");
                 cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
-                cp.ReferencedAssemblies.Add("WowManager.dll");
+                cp.ReferencedAssemblies.Add("nManager.dll");
                 cp.ReferencedAssemblies.Add("Products\\Quester.dll");
 
                 string toCompile =
                     "using System; " + Environment.NewLine +
                     "using System.Windows.Forms; " + Environment.NewLine +
-                    "using WowManager; " + Environment.NewLine +
+                    "using nManager; " + Environment.NewLine +
                     "public class Main : Quester.Tasks.IScript " + Environment.NewLine +
                     "{ " + Environment.NewLine +
                     "    public bool Script() " + Environment.NewLine +

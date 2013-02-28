@@ -150,6 +150,7 @@
     <Compile Include="Wow\Class\Npc.cs" />
     <Compile Include="Wow\Class\Point.cs" />
     <Compile Include="Wow\Class\Spell.cs" />
+    <Compile Include="Wow\Enums\PartyEnums.cs" />
     <Compile Include="Wow\Enums\WoWGameObjectLockType.cs" />
     <Compile Include="Wow\Enums\WoWGameObjectType.cs" />
     <Compile Include="Wow\Enums\WoWPowerType.cs" />
@@ -198,6 +199,7 @@
     <Compile Include="Wow\Helpers\Lua.cs" />
     <Compile Include="Wow\Helpers\Mail.cs" />
     <Compile Include="Wow\Helpers\MovementManager.cs" />
+    <Compile Include="Wow\Helpers\Party.cs" />
     <Compile Include="Wow\Helpers\PathFinder.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Hop.cs" />
     <Compile Include="Wow\Helpers\PathFinderClass\Pather.cs" />

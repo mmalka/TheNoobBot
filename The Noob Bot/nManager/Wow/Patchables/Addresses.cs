@@ -51,6 +51,13 @@
             offset2 = 0x38,
         }
 
+        public enum Party
+        {
+            PartyOffset = 0xD26874,
+            NumOfPlayers = 0xC4,
+            PlayerGuid = 0x10,
+        }
+
         public enum PetBattle
         {
             IsInBattle = 0xACB2A8, // LUA: C_PetBattles.IsInBattle

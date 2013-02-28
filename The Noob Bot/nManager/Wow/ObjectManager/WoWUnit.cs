@@ -1305,6 +1305,38 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsHomePartyLeader
+        {
+            get
+            {
+                try
+                {
+                    return Party.GetPartyLeaderGUID() == Guid;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsHomePartyLeader: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsInstancePartyLeader
+        {
+            get
+            {
+                try
+                {
+                    return Party.GetPartyLeaderGUID(Enums.PartyEnums.PartyType.Instance) == Guid;
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsInstancePartyLeader: " + e);
+                    return false;
+                }
+            }
+        }
+
         public override string Name
         {
             get
