@@ -114,8 +114,8 @@ public class CaptureTheFlag
       * Author : VesperCore
     **/
     private static Point _allianceFlagPositionInCTFModule;
-    private static Point _allianceFlagPositionTP;
-    private static Point _allianceFlagPositionWSG;
+    private static Point _allianceFlagPositionTwinPeaks;
+    private static Point _allianceFlagPositionWarsongGulch;
     private static Point _hordeFlagPositionInCTFModule;
     private static Point _hordeFlagPositionInTwinPeaks;
     private static Point _hordeFlagPositionInWarsongGulch;
@@ -127,8 +127,8 @@ public class CaptureTheFlag
 
     public CaptureTheFlag()
     {
-        _allianceFlagPositionTP = new Point((float) 2117.637, (float) 191.6823, (float) 44.05199);
-        _allianceFlagPositionWSG = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
+        _allianceFlagPositionTwinPeaks = new Point((float) 2117.637, (float) 191.6823, (float) 44.05199);
+        _allianceFlagPositionWarsongGulch = new Point((float) 1540.423, (float) 1481.325, (float) 351.8284);
         _allianceFlagId = 179830;
         _allianceFlagFloorId = 179785;
         _hordeFlagPositionInTwinPeaks = new Point((float) 1578.337, (float) 344.0451, (float) 2.418409);
@@ -141,12 +141,12 @@ public class CaptureTheFlag
             {
                 if (Battleground.GetCurrentBattleground() == BattlegroundId.WarsongGulch)
                 {
-                    _allianceFlagPositionInCTFModule = _allianceFlagPositionWSG;
+                    _allianceFlagPositionInCTFModule = _allianceFlagPositionWarsongGulch;
                     _hordeFlagPositionInCTFModule = _hordeFlagPositionInWarsongGulch;
                 }
                 else
                 {
-                    _allianceFlagPositionInCTFModule = _allianceFlagPositionTP;
+                    _allianceFlagPositionInCTFModule = _allianceFlagPositionTwinPeaks;
                     _hordeFlagPositionInCTFModule = _hordeFlagPositionInTwinPeaks;
                 }
                 Main.InternalIgnoreFight = false;
