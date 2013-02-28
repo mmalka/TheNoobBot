@@ -41,7 +41,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AntiAFK.cs" />
+    <Compile Include="Tnb_AntiAFKClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,11 +53,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)AntiAFK.dll" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i
-xcopy "$(ProjectDir)AntiAFK.cs" "$(TargetDir)" /y /i</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetDir)Tnb_AntiAFKClass.dll" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i
+xcopy "$(ProjectDir)Tnb_AntiAFKClass.cs" "$(TargetDir)" /y /i</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)AntiAFK.cs" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)Tnb_AntiAFKClass.cs" "$(SolutionDir)..\docs\updatebase_directory\CustomClasses\" /y /i</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
