@@ -566,7 +566,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (status.HasFailed())
                     Logging.WriteNavigator(status + " Failed to initialize the mesh");
 
-                _query = new NavMeshQuery();
+                _query = new NavMeshQuery(new PatherCallback(this));
                 _query.Initialize(_mesh, 65536);
                 Filter = new QueryFilter {IncludeFlags = 0xFFFF, ExcludeFlags = 0x0};
                 // Add the costs
