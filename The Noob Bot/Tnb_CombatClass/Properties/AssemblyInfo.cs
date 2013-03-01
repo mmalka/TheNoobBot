@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // l'ensemble d'attributs suivant. Changez les valeurs de ces attributs pour modifier les informations
 // associées à un assembly.
 
-[assembly: AssemblyTitle("TheNoobBot AntiAFK Custom Class")]
+[assembly: AssemblyTitle("TheNoobBot Combat Class")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Noob Company Sarl")]
-[assembly: AssemblyProduct("TheNoobBot AntiAFK Custom Class")]
+[assembly: AssemblyProduct("TheNoobBot Combat Class")]
 [assembly: AssemblyCopyright("Copyright ©  2012")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

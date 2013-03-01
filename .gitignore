@@ -29,10 +29,12 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 The Noob Bot/The Noob Bot.opensdf
 The Noob Bot/RecastLayer/Release/*
-docs/updatebase_directory/CustomClasses/TheNoobBot.cs
-docs/updatebase_directory/CustomClasses/TheNoobBot.dll
-docs/updatebase_directory/CustomClasses/AntiAFK.cs
-docs/updatebase_directory/CustomClasses/AntiAFK.dll
+docs/updatebase_directory/CustomClasses/Tnb_HealerClass.cs
+docs/updatebase_directory/CustomClasses/Tnb_HealerClass.dll
+docs/updatebase_directory/CustomClasses/Tnb_CombatClass.cs
+docs/updatebase_directory/CustomClasses/Tnb_CombatClass.dll
+docs/updatebase_directory/CustomClasses/Tnb_AntiAFKClass.cs
+docs/updatebase_directory/CustomClasses/Tnb_AntiAFKClass.dll
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.cs
 docs/updatebase_directory/Profiles/Battlegrounder/ProfileType/CSharpProfile/TheNoobBotCP.dll
 docs/updatebase_directory/RecastLayer.dll
