@@ -281,7 +281,7 @@ namespace nManager.Wow.Helpers
                                     StopMoveTo();
                                     idPoint = _points.Count - 1;
                                     _points.AddRange(PathFinder.FindPath(_pointsOrigine[_pointsOrigine.Count - 1]));
-                                    //idPoint = 0; // no: do not reset the id after a stuck
+                                    idPoint = 0;
                                 }
                                 catch (Exception exception)
                                 {
