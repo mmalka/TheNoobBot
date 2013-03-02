@@ -1401,6 +1401,74 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool IsSilenced
+        {
+            get
+            {
+                try
+                {
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
+                    return Convert.ToBoolean(flags & 0x00002000);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsSilenced: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsStunned
+        {
+            get
+            {
+                try
+                {
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
+                    return Convert.ToBoolean(flags & 0x00040000);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsStunned: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsConfused
+        {
+            get
+            {
+                try
+                {
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
+                    return Convert.ToBoolean(flags & 0x00400000);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsConfused: " + e);
+                    return false;
+                }
+            }
+        }
+
+        /*public bool IsStunnable
+        {
+            get
+            {
+                try
+                {
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.XXX_MECHANIC_IMUNE_MASK_TO_FIND_XXX);
+                    return !Convert.ToBoolean(flags & 0x00000800);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsStunnable: " + e);
+                    return false;
+                }
+            }
+        }*/
+
         public bool IsNpcSpiritHealer
         {
             get

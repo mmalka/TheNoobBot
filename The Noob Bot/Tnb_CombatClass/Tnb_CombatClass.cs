@@ -13762,9 +13762,8 @@ public class Paladin_Retribution
     private void DPS_Cycle()
     {
         if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable &&
-            MySettings.UseHammerOfJustice)
+            MySettings.UseHammerOfJustice/* && ObjectManager.Target.IsStunnable*/)
         {
-            // TODO : If target can be stun, if not, it will be a pure loss of DPS.
             HammerOfJustice.Launch();
             return;
         }
