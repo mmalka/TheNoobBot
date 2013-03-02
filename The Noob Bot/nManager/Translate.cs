@@ -333,6 +333,7 @@ namespace nManager
             Grinder_Product_Description,
             Gatherer_Product_Description,
             Damage_Dealer_Product_Description,
+            Heal_Bot_Product_Description,
             Fisherbot_Product_Description,
             Battlegrounder_Product_Description,
             Quester_Product_Description,

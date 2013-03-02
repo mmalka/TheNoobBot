@@ -14,7 +14,7 @@ namespace nManager.Wow.Helpers
             set { _healLoop = value; }
         }
 
-        public static ulong StartHeal()
+        public static void StartHeal()
         {
             try
             {
