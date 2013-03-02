@@ -8,8 +8,8 @@
     <ProjectGuid>{30B83E3E-0258-4F44-A6D2-02E139A95A56}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AntiAFK</RootNamespace>
-    <AssemblyName>AntiAFK</AssemblyName>
+    <RootNamespace>AntiAFKClass</RootNamespace>
+    <AssemblyName>Tnb_AntiAFKClass</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

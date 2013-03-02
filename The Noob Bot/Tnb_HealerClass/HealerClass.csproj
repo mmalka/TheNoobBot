@@ -8,8 +8,8 @@
     <ProjectGuid>{2EDB8591-B05E-4083-BFC2-FA8404807C3C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheNoobBot</RootNamespace>
-    <AssemblyName>TheNoobBot</AssemblyName>
+    <RootNamespace>HealerClass</RootNamespace>
+    <AssemblyName>Tnb_HealerClass</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -53,11 +53,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(TargetDir)Tnb_HealerClass.dll" "$(SolutionDir)..\docs\updatebase_directory\CombatClasses\" /y /i
+    <PostBuildEvent>xcopy "$(TargetDir)Tnb_HealerClass.dll" "$(SolutionDir)..\docs\updatebase_directory\HealerClasses\" /y /i
 xcopy "$(ProjectDir)Tnb_HealerClass.cs" "$(TargetDir)" /y /i</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)Tnb_HealerClass.cs" "$(SolutionDir)..\docs\updatebase_directory\CombatClasses\" /y /i</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)Tnb_HealerClass.cs" "$(SolutionDir)..\docs\updatebase_directory\HealerClasses\" /y /i</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

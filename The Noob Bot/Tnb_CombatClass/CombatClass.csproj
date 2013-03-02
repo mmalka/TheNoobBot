@@ -8,8 +8,8 @@
     <ProjectGuid>{BDDC60E3-45ED-433F-B419-CE5957E3CAB1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TheNoobBot</RootNamespace>
-    <AssemblyName>TheNoobBot</AssemblyName>
+    <RootNamespace>CombatClass</RootNamespace>
+    <AssemblyName>Tnb_CombatClass</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
