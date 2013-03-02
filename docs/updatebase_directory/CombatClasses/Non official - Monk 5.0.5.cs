@@ -1,5 +1,5 @@
 ﻿/*
-* CustomClass for TheNoobBot
+* CombatClass for TheNoobBot
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
 */
@@ -18,12 +18,12 @@ using Keybindings = nManager.Wow.Helpers.Keybindings;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
-public class Main : ICustomClass
+public class Main : ICombatClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
 
-    #region ICustomClass Members
+    #region ICombatClass Members
 
     public float Range
     {
@@ -44,13 +44,13 @@ public class Main : ICustomClass
 
     public void ShowConfiguration()
     {
-        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
         Initialize(true);
     }
 
     public void ResetConfiguration()
     {
-        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
         Initialize(true, true);
     }
 
@@ -77,7 +77,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Monk_Brewmaster.xml";
+                                                         "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
                             Monk_Brewmaster.MonkBrewmasterSettings CurrentSetting;
                             CurrentSetting = new Monk_Brewmaster.MonkBrewmasterSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -99,7 +99,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Monk_Windwalker.xml";
+                                                         "\\CombatClasses\\Settings\\Monk_Windwalker.xml";
                             Monk_Windwalker.MonkWindwalkerSettings CurrentSetting;
                             CurrentSetting = new Monk_Windwalker.MonkWindwalkerSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -121,7 +121,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Monk_Mistweaver.xml";
+                                                         "\\CombatClasses\\Settings\\Monk_Mistweaver.xml";
                             Monk_Mistweaver.MonkMistweaverSettings CurrentSetting;
                             CurrentSetting = new Monk_Mistweaver.MonkMistweaverSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -146,7 +146,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Monk Brewmaster Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Monk_Brewmaster.xml";
+                                                         "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
                             Monk_Brewmaster.MonkBrewmasterSettings CurrentSetting;
                             CurrentSetting = new Monk_Brewmaster.MonkBrewmasterSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -817,7 +817,7 @@ public class Monk_Brewmaster
 
         public static MonkBrewmasterSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Monk_Brewmaster.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -1435,7 +1435,7 @@ public class Monk_Windwalker
 
         public static MonkWindwalkerSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Monk_Windwalker.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Windwalker.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -2117,7 +2117,7 @@ public class Monk_Mistweaver
 
         public static MonkMistweaverSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Monk_Mistweaver.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Mistweaver.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
