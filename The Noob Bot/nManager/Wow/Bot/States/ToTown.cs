@@ -137,8 +137,10 @@ namespace nManager.Wow.Bot.States
             {
                 if (_useMollE)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
                     if (portableMailbox.IsValid &&
@@ -170,7 +172,10 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
+                        if (Usefuls.IsFlying)
+                            Tasks.MountTask.Land();
                         _travelersTundraMammoth.Launch(true, true, true);
+                        Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
                             var drixBlackwrench =
@@ -217,7 +222,10 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
+                        if (Usefuls.IsFlying)
+                            Tasks.MountTask.Land();
                         _grandExpeditionYak.Launch(true, true, true);
+                        Thread.Sleep(2000);
                         var cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
@@ -241,8 +249,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitA =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
@@ -265,8 +275,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use110G)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(34113));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitG =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
@@ -289,8 +301,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_useJeeves)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitJeeves =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
@@ -327,7 +341,10 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
+                        if (Usefuls.IsFlying)
+                            Tasks.MountTask.Land();
                         _travelersTundraMammoth.Launch(true, true, true);
+                        Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
                             var mojodishu =
@@ -374,7 +391,10 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
+                        if (Usefuls.IsFlying)
+                            Tasks.MountTask.Land();
                         _grandExpeditionYak.Launch(true, true, true);
+                        Thread.Sleep(2000);
                         var cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
@@ -396,8 +416,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitA =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
@@ -420,8 +442,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use110G)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(31113));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitG =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
@@ -444,8 +468,10 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_useJeeves)
                 {
+                    if (Usefuls.IsFlying)
+                        Tasks.MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
-                    Thread.Sleep(500);
+                    Thread.Sleep(2000);
                     var unitJeeves =
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
