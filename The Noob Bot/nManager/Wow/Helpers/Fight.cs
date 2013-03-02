@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
             set { _fightLoop = value; }
         }
 
-        public static ulong StartFight(ulong guid = 0, bool inBg = false)
+        public static ulong StartFight(ulong guid = 0)
         {
             MovementManager.StopMove();
             if (ObjectManager.ObjectManager.Me.IsMounted)
@@ -56,7 +56,7 @@ namespace nManager.Wow.Helpers
                 // If pos start is very different
                 if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                     return 0;
-                if (inBg)
+                if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
                 {
                     List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
                     if (tLUnit.Count > 0)
@@ -200,7 +200,7 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static ulong StartFightDamageDealer(ulong guid = 0, bool inBg = false)
+        public static ulong StartFightDamageDealer(ulong guid = 0)
         {
             WoWUnit targetNpc = null;
             try
@@ -233,7 +233,7 @@ namespace nManager.Wow.Helpers
                     // If pos start is very different
                     if (targetNpc.Position.DistanceTo(positionStartTarget) > 50)
                         return 0;
-                    if (inBg)
+                    if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground())
                     {
                         List<WoWUnit> tLUnit = ObjectManager.ObjectManager.GetUnitAttackPlayer();
                         if (tLUnit.Count > 0)
