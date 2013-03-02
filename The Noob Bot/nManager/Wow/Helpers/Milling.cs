@@ -18,11 +18,14 @@ namespace nManager.Wow.Helpers
                 var itemArray = "";
                 foreach (var i in items)
                 {
-                    if (!string.IsNullOrEmpty(itemArray))
-                        itemArray = itemArray + ", ";
-                    itemArray = itemArray + "\"" + i + "\"";
+                    if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
+                    {
+                        if (!string.IsNullOrEmpty(itemArray))
+                            itemArray = itemArray + ", ";
+                        itemArray = itemArray + "\"" + i + "\"";
+                    }
                 }
-                var macro =
+            var macro =
                     "myTable = {" + itemArray + "} " +
                     "for key,value in pairs(myTable) do " +
                     "	itemsToMil = value " +
@@ -65,9 +68,17 @@ namespace nManager.Wow.Helpers
                 var itemArray = "";
                 foreach (var i in items)
                 {
-                    if (!string.IsNullOrEmpty(itemArray))
-                        itemArray = itemArray + ", ";
-                    itemArray = itemArray + "\"" + i + "\"";
+                    if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
+                    {
+                        if (!string.IsNullOrEmpty(itemArray))
+                            itemArray = itemArray + ", ";
+                        itemArray = itemArray + "\"" + i + "\"";
+                    }
+                }
+                if (string.IsNullOrEmpty(itemArray))
+                {
+                    Logging.Write("Milling interrupted, no items founds from the list, check that the names are correctly typed and that you have at least 5 of them.");
+                    return false;
                 }
                 var macro =
                     "myTable = {" + itemArray + "} " +
