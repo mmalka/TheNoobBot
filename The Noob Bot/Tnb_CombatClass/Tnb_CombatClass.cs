@@ -13762,7 +13762,7 @@ public class Paladin_Retribution
     private void DPS_Cycle()
     {
         if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable &&
-            MySettings.UseHammerOfJustice/* && ObjectManager.Target.IsStunnable*/)
+            MySettings.UseHammerOfJustice && ObjectManager.Target.IsStunnable)
         {
             HammerOfJustice.Launch();
             return;

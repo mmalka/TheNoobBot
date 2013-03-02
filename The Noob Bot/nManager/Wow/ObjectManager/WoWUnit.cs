@@ -162,6 +162,27 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public string CreatureRankTarget
+        {
+            get
+            {
+                lock (this)
+                {
+                    try
+                    {
+                        string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                        Lua.LuaDoString(randomStringResult + " = UnitClassification(\"target\")");
+                        return Lua.GetLocalizedText(randomStringResult);
+                    }
+                    catch (Exception e)
+                    {
+                        Logging.WriteError("WoWUnit > CreatureRankTarget: " + e);
+                        return "";
+                    }
+                }
+            }
+        }
+
         public WoWFactionTemplate FactionTemplate
         {
             get
@@ -1452,22 +1473,21 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        /*public bool IsStunnable
+        public bool IsStunnable
         {
             get
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.XXX_MECHANIC_IMUNE_MASK_TO_FIND_XXX);
-                    return !Convert.ToBoolean(flags & 0x00000800);
+                    return CreatureRankTarget != "worldboss";
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > IsStunnable: " + e);
-                    return false;
+                    return true;
                 }
             }
-        }*/
+        }
 
         public bool IsNpcSpiritHealer
         {
