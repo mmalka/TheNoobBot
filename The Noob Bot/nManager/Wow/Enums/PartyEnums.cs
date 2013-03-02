@@ -9,9 +9,9 @@ namespace nManager.Wow.Enums
     {
         public enum PartyType
         {
+            None = 0,
             Home = 1,
             Instance,
-            None
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using PartyType = nManager.Wow.Enums.PartyEnums.PartyType;
 using nManager.Wow.Patchables;
 
@@ -12,7 +13,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                uint party = GetPartyPointer();
+                uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 if (party > 0)
                 {
                     uint numGroupMembers =
@@ -44,7 +45,7 @@ namespace nManager.Wow.Helpers
             var partyPlayersGUID = new List<UInt64>();
             try
             {
-                uint party = GetPartyPointer();
+                uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 if (party > 0)
                 {
                     uint numGroupMembers = Memory.WowMemory.Memory.ReadUInt(
@@ -75,7 +76,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                uint party = GetPartyPointer();
+                uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 return party > 0
                            ? Memory.WowMemory.Memory.ReadUInt(party + (uint) Addresses.Party.NumOfPlayers, false)
                            : 0;
@@ -102,7 +103,7 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static UInt32 GetPartyPointer()
+        public static UInt32 GetPartyPointer(PartyType partyType = PartyType.Home)
         {
             try
             {
@@ -110,7 +111,7 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.ReadUInt(
                         (uint)
                         ((PartyType) (uint) Addresses.Party.PartyOffset +
-                         (ObjectManager.ObjectManager.Me.GetCurrentPartyType - PartyType.Home)*(int) (PartyType) 4),
+                         (partyType - PartyType.Home)*(int) (PartyType) 4),
                         true);
             }
             catch (Exception e)

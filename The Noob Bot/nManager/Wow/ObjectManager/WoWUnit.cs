@@ -1310,9 +1310,11 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                return IsInstancePartyLeader
-                           ? PartyEnums.PartyType.Instance
-                           : (IsHomePartyLeader ? PartyEnums.PartyType.Home : PartyEnums.PartyType.None);
+                return Party.IsInGroup()
+                           ? (Party.GetPartyPointer(PartyEnums.PartyType.Instance) > 0
+                                  ? PartyEnums.PartyType.Instance
+                                  : (Party.GetPartyPointer() > 0 ? PartyEnums.PartyType.Home : PartyEnums.PartyType.None))
+                           : PartyEnums.PartyType.None;
                 // Priority over the Instance group as we can be in both group type at the same time.
             }
         }
