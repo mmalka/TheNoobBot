@@ -6,6 +6,7 @@
 
 using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -18,12 +19,12 @@ using Keybindings = nManager.Wow.Helpers.Keybindings;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
-public class Main : ICombatClass
+public class Main : IHealerClass
 {
     internal static float range = 30f;
     internal static bool loop = true;
 
-    #region ICombatClass Members
+    #region IHealerClass Members
 
     public float Range
     {
@@ -451,14 +452,14 @@ public class Druid_Restoration
             AlchFlask_Timer = new Timer(1000*60*60*2);
             return;
         }
-        else if (Mark_of_the_Wild.KnownSpell && Mark_of_the_Wild.IsSpellUsable && !Mark_of_the_Wild.HaveBuff
+        else if (Mark_of_the_Wild.KnownSpell && Mark_of_the_Wild.IsSpellUsable && !Mark_of_the_Wild.TargetHaveBuff
                  && _mySettings.UseMarkoftheWild)
         {
             Mark_of_the_Wild.Launch();
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() == 0 && _mySettings.UseDash
-                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !Stampeding_Roar.HaveBuff
+                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.TargetHaveBuff && !Stampeding_Roar.TargetHaveBuff
                  && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
@@ -467,8 +468,8 @@ public class Druid_Restoration
         else
         {
             if (ObjectManager.GetNumberAttackPlayer() == 0 && _mySettings.UseStampedingRoar
-                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.HaveBuff
-                && !Stampeding_Roar.HaveBuff && ObjectManager.Me.GetMove)
+                && Stampeding_Roar.KnownSpell && Stampeding_Roar.IsSpellUsable && !Dash.TargetHaveBuff
+                && !Stampeding_Roar.TargetHaveBuff && ObjectManager.Me.GetMove)
             {
                 Stampeding_Roar.Launch();
                 return;
@@ -641,13 +642,13 @@ public class Druid_Restoration
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
-                 && !Rejuvenation.HaveBuff && _mySettings.UseRejuvenation)
+                 && !Rejuvenation.TargetHaveBuff && _mySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 60 && Regrowth.IsSpellUsable && Regrowth.KnownSpell
-                 && !Regrowth.HaveBuff && _mySettings.UseRegrowth)
+                 && !Regrowth.TargetHaveBuff && _mySettings.UseRegrowth)
         {
             Regrowth.Launch();
             return;
@@ -1033,26 +1034,56 @@ public class Paladin_Holy
         {
             try
             {
-                if (!ObjectManager.Me.IsDeadMe)
+                if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
                     if (!ObjectManager.Me.IsMounted)
                     {
-                        if (Fight.InFight && ObjectManager.Me.Target > 0)
+                        if (Heal.IsHealing)
                         {
-                            if (ObjectManager.Me.Target != lastTarget && HolyShock.IsDistanceGood)
+                            if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
-                                Pull();
-                                lastTarget = ObjectManager.Me.Target;
+                                if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
+                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                             }
-                            if (ObjectManager.Target.GetDistance < 41)
-                                Combat();
+                            else if (Party.IsInGroup())
+                            {
+                                double lowestHp = 100;
+                                var lowestHpPlayer = new WoWUnit(0);
+                                foreach (var playerInMyParty in Party.GetPartyPlayersGUID())
+                                {
+                                    if (playerInMyParty <= 0) continue;
+                                    var obj = ObjectManager.GetObjectByGuid(playerInMyParty);
+                                    if (!obj.IsValid || obj.Type != WoWObjectType.Player)
+                                        continue;
+                                    var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    {
+                                        lowestHp = currentPlayer.HealthPercent;
+                                        lowestHpPlayer = currentPlayer;
+                                    }
+                                }
+                                if (ObjectManager.Me.HealthPercent < 50 &&
+                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                {
+                                    lowestHpPlayer = ObjectManager.Me;
+                                }
+                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                            }
+                            else
+                            {
+                                Heal.IsHealing = false;
+                                break;
+                            }
+                            HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
-                else
-                    Thread.Sleep(500);
+                Thread.Sleep(500);
             }
             catch
             {
@@ -1061,28 +1092,14 @@ public class Paladin_Holy
         }
     }
 
-    private void Pull()
+    private void HealingFight()
     {
-        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable && _mySettings.UseHolyShock)
-        {
-            HolyShock.Launch();
-            return;
-        }
-    }
+        //AvoidMelee();
 
-    private void Combat()
-    {
-        AvoidMelee();
+        if (ObjectManager.Target.HealthPercent < 40) 
+            Heal_Burst();
 
-        DPS_Cycle();
-
-        DPS_Burst();
-
-        DPS_Cycle();
-
-        Heal();
-
-        DPS_Cycle();
+        Heal_Cycle();
 
         Buffs();
     }
@@ -1092,9 +1109,7 @@ public class Paladin_Holy
         if (!ObjectManager.Me.IsMounted)
         {
             Blessing();
-            Heal();
         }
-
         Seal();
     }
 
@@ -1109,17 +1124,17 @@ public class Paladin_Holy
     {
         if (SealOfInsight.KnownSpell && _mySettings.UseSealOfInsight)
         {
-            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+            if (!SealOfInsight.TargetHaveBuff && SealOfInsight.IsSpellUsable)
                 SealOfInsight.Launch();
         }
         else if (SealOfTruth.KnownSpell && _mySettings.UseSealOfTruth)
         {
-            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
+            if (!SealOfTruth.TargetHaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
         }
         else if (SealOfTheRighteousness.KnownSpell && _mySettings.UseSealOfTheRighteousness)
         {
-            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            if (!SealOfTheRighteousness.TargetHaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
         }
     }
@@ -1131,120 +1146,22 @@ public class Paladin_Holy
 
         if (BlessingOfKings.KnownSpell && _mySettings.UseBlessingOfKings)
         {
-            if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+            if (!BlessingOfKings.TargetHaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
         }
         else if (BlessingOfMight.KnownSpell && _mySettings.UseBlessingOfMight)
         {
-            if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+            if (!BlessingOfMight.TargetHaveBuff && BlessingOfMight.IsSpellUsable)
                 BlessingOfMight.Launch();
         }
         if (BeaconOfLight.KnownSpell && _mySettings.UseBeaconOfLight)
         {
-            if (!BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable)
+            if (!BeaconOfLight.TargetHaveBuff && BeaconOfLight.IsSpellUsable)
                 BeaconOfLight.Launch();
         }
     }
 
-    private void Heal()
-    {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
-        {
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && _mySettings.UseDivineLight)
-            {
-                DivineLight.Launch(true, true, true);
-                return;
-            }
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && _mySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Launch(true, true, true);
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && _mySettings.UseHolyLight)
-            {
-                HolyLight.Launch(true, true, true);
-                return;
-            }
-        }
-        if (!ObjectManager.Me.HaveBuff(25771))
-        {
-            if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-                DivineShield.IsSpellUsable && _mySettings.UseDivineShield)
-            {
-                DivineShield.Launch();
-                return;
-            }
-            if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-                LayOnHands.IsSpellUsable && _mySettings.UseLayOnHands)
-            {
-                LayOnHands.Launch();
-                return;
-            }
-            if (HandOfProtection.KnownSpell && ObjectManager.Me.HealthPercent > 0 &&
-                ObjectManager.Me.HealthPercent <= 20 &&
-                HandOfProtection.IsSpellUsable && _mySettings.UseHandOfProtection)
-            {
-                HandOfProtection.Launch();
-                return;
-            }
-        }
-        if (ObjectManager.Me.ManaPercentage < 30)
-        {
-            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && _mySettings.UseArcaneTorrentForResource)
-                ArcaneTorrent.Launch();
-            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable && _mySettings.UseHandOfProtection)
-            {
-                DivinePlea.Launch();
-                return;
-            }
-        }
-        if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
-        {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && _mySettings.UseWordOfGlory)
-                WordOfGlory.Launch();
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && _mySettings.UseDivineLight)
-            {
-                DivineLight.Launch();
-                return;
-            }
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && _mySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Launch();
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && _mySettings.UseHolyLight)
-            {
-                HolyLight.Launch();
-                return;
-            }
-        }
-        if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
-        {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
-                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && _mySettings.UseWordOfGlory)
-                WordOfGlory.Launch();
-            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && _mySettings.UseDivineProtection)
-                DivineProtection.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && _mySettings.UseFlashOfLight)
-            {
-                FlashOfLight.Launch();
-                return;
-            }
-            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && _mySettings.UseHolyLight)
-            {
-                HolyLight.Launch();
-                return;
-            }
-            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && _mySettings.UseDivineLight)
-            {
-                DivineLight.Launch();
-                return;
-            }
-        }
-    }
-
-    private void DPS_Burst()
+    private void Heal_Burst()
     {
         if (DivineFavor.KnownSpell && DivineFavor.IsSpellUsable)
         {
@@ -1271,35 +1188,88 @@ public class Paladin_Holy
         }
     }
 
-    private void DPS_Cycle()
+    private void Heal_Cycle()
     {
-        if (HolyShock.KnownSpell && HolyShock.IsDistanceGood && HolyShock.IsSpellUsable && _mySettings.UseHolyShock)
+        if (!ObjectManager.Target.HaveBuff(25771))
         {
-            HolyShock.Launch();
-            return;
+            if (_mySettings.UseDivineShield && ObjectManager.Target == ObjectManager.Me && DivineShield.KnownSpell && ObjectManager.Target.HealthPercent > 0 && ObjectManager.Target.HealthPercent <= 20 &&
+                DivineShield.IsSpellUsable)
+            {
+                DivineShield.Launch();
+                return;
+            }
+            if (LayOnHands.KnownSpell && ObjectManager.Target.HealthPercent > 0 && ObjectManager.Target.HealthPercent <= 20 &&
+                LayOnHands.IsSpellUsable && _mySettings.UseLayOnHands)
+            {
+                LayOnHands.Launch();
+                return;
+            }
+            if (HandOfProtection.KnownSpell && ObjectManager.Target.HealthPercent > 0 &&
+                ObjectManager.Target.HealthPercent <= 20 &&
+                HandOfProtection.IsSpellUsable && _mySettings.UseHandOfProtection)
+            {
+                HandOfProtection.Launch();
+                return;
+            }
         }
-        if (HammerOfWrath.KnownSpell && HammerOfWrath.IsDistanceGood && HammerOfWrath.IsSpellUsable &&
-            _mySettings.UseHammerOfWrath)
+        if (ObjectManager.Target.ManaPercentage < 30)
         {
-            HammerOfWrath.Launch();
-            return;
+            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && _mySettings.UseArcaneTorrentForResource)
+                ArcaneTorrent.Launch();
+            if (DivinePlea.KnownSpell && DivinePlea.IsSpellUsable && _mySettings.UseHandOfProtection)
+            {
+                DivinePlea.Launch();
+                return;
+            }
         }
-        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsDistanceGood && HammerOfJustice.IsSpellUsable &&
-            _mySettings.UseHammerOfJustice)
+        if (ObjectManager.Target.HealthPercent > 0 && ObjectManager.Target.HealthPercent < 50)
         {
-            HammerOfJustice.Launch();
-            return;
+            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && _mySettings.UseWordOfGlory)
+                WordOfGlory.Launch();
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && _mySettings.UseDivineLight)
+            {
+                DivineLight.Launch();
+                return;
+            }
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && _mySettings.UseFlashOfLight)
+            {
+                FlashOfLight.Launch();
+                return;
+            }
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && _mySettings.UseHolyLight)
+            {
+                HolyLight.Launch();
+                return;
+            }
         }
-        if (Denounce.KnownSpell && Denounce.IsDistanceGood && Denounce.IsSpellUsable && _mySettings.UseDenounce)
+        if (ObjectManager.Target.HealthPercent >= 0 && ObjectManager.Target.HealthPercent < 30)
         {
-            Denounce.Launch();
-            return;
+            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable &&
+                (!GlyphOfHarshWords.KnownSpell /* || cast on me */) && _mySettings.UseWordOfGlory)
+                WordOfGlory.Launch();
+            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && _mySettings.UseDivineProtection)
+                DivineProtection.Launch();
+            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && _mySettings.UseFlashOfLight)
+            {
+                FlashOfLight.Launch();
+                return;
+            }
+            if (HolyLight.KnownSpell && HolyLight.IsSpellUsable && _mySettings.UseHolyLight)
+            {
+                HolyLight.Launch();
+                return;
+            }
+            if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && _mySettings.UseDivineLight)
+            {
+                DivineLight.Launch();
+                return;
+            }
         }
     }
 
     private void AvoidMelee()
     {
-        if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
+        /*if (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat)
         {
             Logging.WriteFight("Too Close. Moving Back");
             var MaxTime_Timer = new Timer(1000*2);
@@ -1314,7 +1284,7 @@ public class Paladin_Holy
                 Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, MoveForward);
                 MovementManager.Face(ObjectManager.Target.Position);
             }
-        }
+        }*/
     }
 
     #region Nested type: PaladinHolySettings
@@ -1670,7 +1640,7 @@ public class Shaman_Restoration
             return;
 
         if (Water_Walking.IsSpellUsable && Water_Walking.KnownSpell &&
-            (!Water_Walking.HaveBuff || Water_Walking_Timer.IsReady)
+            (!Water_Walking.TargetHaveBuff || Water_Walking_Timer.IsReady)
             && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && _mySettings.UseWaterWalking)
         {
             Water_Walking.Launch();
@@ -1678,20 +1648,20 @@ public class Shaman_Restoration
             return;
         }
         else if ((ObjectManager.Me.ManaPercentage < 5 && Water_Shield.KnownSpell && Water_Shield.IsSpellUsable
-                  && _mySettings.UseWaterShield && !Water_Shield.HaveBuff)
+                  && _mySettings.UseWaterShield && !Water_Shield.TargetHaveBuff)
                  || (!_mySettings.UseLightningShield && !_mySettings.UseEarthShield))
         {
             Water_Shield.Launch();
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 50 && Earth_Shield.KnownSpell && Earth_Shield.IsSpellUsable
-                 && _mySettings.UseEarthShield && !Earth_Shield.HaveBuff && ObjectManager.Me.ManaPercentage > 15
+                 && _mySettings.UseEarthShield && !Earth_Shield.TargetHaveBuff && ObjectManager.Me.ManaPercentage > 15
                  || !_mySettings.UseLightningShield)
         {
             Earth_Shield.Launch();
             return;
         }
-        else if (Lightning_Shield.KnownSpell && Lightning_Shield.IsSpellUsable && !Lightning_Shield.HaveBuff
+        else if (Lightning_Shield.KnownSpell && Lightning_Shield.IsSpellUsable && !Lightning_Shield.TargetHaveBuff
                  && _mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15
                  && ObjectManager.Me.HealthPercent > 70)
         {
@@ -1741,7 +1711,7 @@ public class Shaman_Restoration
         }
 
         if (ObjectManager.GetNumberAttackPlayer() == 0 && Ghost_Wolf.IsSpellUsable && Ghost_Wolf.KnownSpell
-            && _mySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.HaveBuff
+            && _mySettings.UseGhostWolf && ObjectManager.Me.GetMove && !Ghost_Wolf.TargetHaveBuff
             && ObjectManager.Target.GetDistance > 50)
         {
             Ghost_Wolf.Launch();
@@ -1908,7 +1878,7 @@ public class Shaman_Restoration
             return;
         }
         else if (Riptide.KnownSpell && Riptide.IsSpellUsable && ObjectManager.Me.HealthPercent < 90
-                 && _mySettings.UseRiptide && !Riptide.HaveBuff)
+                 && _mySettings.UseRiptide && !Riptide.TargetHaveBuff)
         {
             Riptide.Launch();
             return;
@@ -2496,7 +2466,7 @@ public class Priest_Discipline
     private void Buff_Levitate()
     {
         if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && _mySettings.UseLevitate
-            && (!Levitate.HaveBuff || Levitate_Timer.IsReady))
+            && (!Levitate.TargetHaveBuff || Levitate_Timer.IsReady))
         {
             Levitate.Launch();
             Levitate_Timer = new Timer(1000*60*9);
@@ -2540,18 +2510,18 @@ public class Priest_Discipline
             return;
 
         if (Power_Word_Fortitude.KnownSpell && Power_Word_Fortitude.IsSpellUsable &&
-            !Power_Word_Fortitude.HaveBuff && _mySettings.UsePowerWordFortitude)
+            !Power_Word_Fortitude.TargetHaveBuff && _mySettings.UsePowerWordFortitude)
         {
             Power_Word_Fortitude.Launch();
             return;
         }
-        else if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.HaveBuff
+        else if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.TargetHaveBuff
                  && _mySettings.UseInnerFire)
         {
             Inner_Fire.Launch();
             return;
         }
-        else if (Inner_Will.KnownSpell && Inner_Will.IsSpellUsable && !Inner_Will.HaveBuff
+        else if (Inner_Will.KnownSpell && Inner_Will.IsSpellUsable && !Inner_Will.TargetHaveBuff
                  && !_mySettings.UseInnerFire && _mySettings.UseInnerWill)
         {
             Inner_Will.Launch();
@@ -2676,7 +2646,7 @@ public class Priest_Discipline
         }
         else if (ObjectManager.Me.HealthPercent <= _mySettings.UseInnerFocusAtPercentage && Inner_Focus.KnownSpell &&
                  Inner_Focus.IsSpellUsable
-                 && _mySettings.UseInnerFocus && !Inner_Focus.HaveBuff)
+                 && _mySettings.UseInnerFocus && !Inner_Focus.TargetHaveBuff)
         {
             Inner_Focus.Launch();
             return;
@@ -2718,7 +2688,7 @@ public class Priest_Discipline
             return;
         }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
-                 && !Power_Word_Shield.HaveBuff && _mySettings.UsePowerWordShield
+                 && !Power_Word_Shield.TargetHaveBuff && _mySettings.UsePowerWordShield
                  && !ObjectManager.Me.HaveBuff(6788) &&
                  ObjectManager.Me.HealthPercent <= _mySettings.UsePowerWordShieldAtPercentage
                  && (ObjectManager.GetNumberAttackPlayer() > 0 || ObjectManager.Me.GetMove))
@@ -2749,7 +2719,7 @@ public class Priest_Discipline
         }
         else
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.TargetHaveBuff &&
                 ObjectManager.Me.HealthPercent <= _mySettings.UseRenewAtPercentage &&
                 _mySettings.UseRenew)
             {
@@ -3188,7 +3158,7 @@ public class Priest_Holy
     private void Buff_Levitate()
     {
         if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && _mySettings.UseLevitate
-            && (!Levitate.HaveBuff || Levitate_Timer.IsReady))
+            && (!Levitate.TargetHaveBuff || Levitate_Timer.IsReady))
         {
             Levitate.Launch();
             Levitate_Timer = new Timer(1000*60*9);
@@ -3232,36 +3202,36 @@ public class Priest_Holy
             return;
 
         if (Power_Word_Fortitude.KnownSpell && Power_Word_Fortitude.IsSpellUsable &&
-            !Power_Word_Fortitude.HaveBuff && _mySettings.UsePowerWordFortitude)
+            !Power_Word_Fortitude.TargetHaveBuff && _mySettings.UsePowerWordFortitude)
         {
             Power_Word_Fortitude.Launch();
             return;
         }
-        else if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.HaveBuff
+        else if (Inner_Fire.KnownSpell && Inner_Fire.IsSpellUsable && !Inner_Fire.TargetHaveBuff
                  && _mySettings.UseInnerFire)
         {
             Inner_Fire.Launch();
             return;
         }
-        else if (Inner_Will.KnownSpell && Inner_Will.IsSpellUsable && !Inner_Will.HaveBuff
+        else if (Inner_Will.KnownSpell && Inner_Will.IsSpellUsable && !Inner_Will.TargetHaveBuff
                  && !_mySettings.UseInnerFire && _mySettings.UseInnerWill)
         {
             Inner_Will.Launch();
             return;
         }
-        else if (Chakra_Chastise.KnownSpell && Chakra_Chastise.IsSpellUsable && !Chakra_Chastise.HaveBuff
+        else if (Chakra_Chastise.KnownSpell && Chakra_Chastise.IsSpellUsable && !Chakra_Chastise.TargetHaveBuff
                  && _mySettings.UseChakraChastise)
         {
             Chakra_Chastise.Launch();
             return;
         }
-        else if (Chakra_Sanctuary.KnownSpell && Chakra_Sanctuary.IsSpellUsable && !Chakra_Sanctuary.HaveBuff
+        else if (Chakra_Sanctuary.KnownSpell && Chakra_Sanctuary.IsSpellUsable && !Chakra_Sanctuary.TargetHaveBuff
                  && !_mySettings.UseChakraChastise && _mySettings.UseChakraSanctuary)
         {
             Chakra_Sanctuary.Launch();
             return;
         }
-        else if (Chakra_Serenity.KnownSpell && Chakra_Serenity.IsSpellUsable && !Chakra_Serenity.HaveBuff
+        else if (Chakra_Serenity.KnownSpell && Chakra_Serenity.IsSpellUsable && !Chakra_Serenity.TargetHaveBuff
                  && !_mySettings.UseChakraChastise && !_mySettings.UseChakraSanctuary && _mySettings.UseChakraSerenity)
         {
             Chakra_Serenity.Launch();
@@ -3419,7 +3389,7 @@ public class Priest_Holy
             return;
         }
         else if (Power_Word_Shield.KnownSpell && Power_Word_Shield.IsSpellUsable
-                 && !Power_Word_Shield.HaveBuff && _mySettings.UsePowerWordShield
+                 && !Power_Word_Shield.TargetHaveBuff && _mySettings.UsePowerWordShield
                  && !ObjectManager.Me.HaveBuff(6788) &&
                  ObjectManager.Me.HealthPercent <= _mySettings.UsePowerWordShieldAtPercentage
                  && (ObjectManager.GetNumberAttackPlayer() > 0 || ObjectManager.Me.GetMove))
@@ -3469,7 +3439,7 @@ public class Priest_Holy
         }
         else
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.TargetHaveBuff &&
                 ObjectManager.Me.HealthPercent <=
                 _mySettings.UseRenewAtPercentage && _mySettings.UseRenew)
             {
