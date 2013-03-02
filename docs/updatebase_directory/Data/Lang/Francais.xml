@@ -1035,6 +1035,14 @@
       <Id>Gatherer_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text>(DPS votre cible)</Text>
+      <Id>Damage_Dealer_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Soigne les membres de votre groupe et vous - BETA)</Text>
+      <Id>Heal_Bot_Product_Description</Id>
+    </Translation>
+    <Translation>
       <Text />
       <Id>Fisherbot_Product_Description</Id>
     </Translation>

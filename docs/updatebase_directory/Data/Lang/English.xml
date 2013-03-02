@@ -1034,8 +1034,12 @@
       <Id>Gatherer_Product_Description</Id>
     </Translation>
     <Translation>
-      <Text>(DPS your target - BETA)</Text>
+      <Text>(DPS your target)</Text>
       <Id>Damage_Dealer_Product_Description</Id>
+    </Translation>
+    <Translation>
+      <Text>(Heal yourself and Party members - BETA)</Text>
+      <Id>Heal_Bot_Product_Description</Id>
     </Translation>
     <Translation>
       <Text />
