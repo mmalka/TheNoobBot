@@ -171,24 +171,45 @@ namespace nManager.Wow.Bot.States
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
                         _travelersTundraMammoth.Launch(true, true, true);
-                        var gnimo =
-                            ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
-                        if (gnimo.IsValid && gnimo.IsAlive)
+                        if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
-                            var gnimoNpc = new Npc
-                                {
-                                    Entry = gnimo.Entry,
-                                    Position = gnimo.Position,
-                                    Name = gnimo.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
-                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                                  ? Npc.FactionType.Horde
-                                                  : Npc.FactionType.Alliance,
-                                    SelectGossipOption = 0,
-                                    Type = Npc.NpcType.Repair
-                                };
-                            listVendor.Add(gnimoNpc);
+                            var drixBlackwrench =
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.ObjectManager.GetWoWUnitByEntry(32641));
+                            if (drixBlackwrench.IsValid && drixBlackwrench.IsAlive)
+                            {
+                                var drixBlackwrenchNpc = new Npc
+                                    {
+                                        Entry = drixBlackwrench.Entry,
+                                        Position = drixBlackwrench.Position,
+                                        Name = drixBlackwrench.Name,
+                                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                                        Faction = Npc.FactionType.Horde,
+                                        SelectGossipOption = 0,
+                                        Type = Npc.NpcType.Repair
+                                    };
+                                listVendor.Add(drixBlackwrenchNpc);
+                            }
+                        }
+                        else
+                        {
+                            var gnimo =
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                            if (gnimo.IsValid && gnimo.IsAlive)
+                            {
+                                var gnimoNpc = new Npc
+                                    {
+                                        Entry = gnimo.Entry,
+                                        Position = gnimo.Position,
+                                        Name = gnimo.Name,
+                                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                                        Faction = Npc.FactionType.Alliance,
+                                        SelectGossipOption = 0,
+                                        Type = Npc.NpcType.Repair
+                                    };
+                                listVendor.Add(gnimoNpc);
+                            }
                         }
                     }
                 }
@@ -199,7 +220,7 @@ namespace nManager.Wow.Bot.States
                         _grandExpeditionYak.Launch(true, true, true);
                         var cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
                             var cousinSlowhandsNpc = new Npc
@@ -307,24 +328,45 @@ namespace nManager.Wow.Bot.States
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
                         _travelersTundraMammoth.Launch(true, true, true);
-                        var hakmuddArgus =
-                            ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
-                        if (hakmuddArgus.IsValid && hakmuddArgus.IsAlive)
+                        if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
-                            var hakmuddArgusNpc = new Npc
-                                {
-                                    Entry = hakmuddArgus.Entry,
-                                    Position = hakmuddArgus.Position,
-                                    Name = hakmuddArgus.Name,
-                                    ContinentId = (ContinentId) Usefuls.ContinentId,
-                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                                  ? Npc.FactionType.Horde
-                                                  : Npc.FactionType.Alliance,
-                                    SelectGossipOption = 0,
-                                    Type = Npc.NpcType.Vendor
-                                };
-                            listVendor.Add(hakmuddArgusNpc);
+                            var mojodishu =
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.ObjectManager.GetWoWUnitByEntry(32642));
+                            if (mojodishu.IsValid && mojodishu.IsAlive)
+                            {
+                                var mojodishuNpc = new Npc
+                                    {
+                                        Entry = mojodishu.Entry,
+                                        Position = mojodishu.Position,
+                                        Name = mojodishu.Name,
+                                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                                        Faction = Npc.FactionType.Horde,
+                                        SelectGossipOption = 0,
+                                        Type = Npc.NpcType.Vendor
+                                    };
+                                listVendor.Add(mojodishuNpc);
+                            }
+                        }
+                        else
+                        {
+                            var hakmuddArgus =
+                                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.ObjectManager.GetWoWUnitByEntry(32638));
+                            if (hakmuddArgus.IsValid && hakmuddArgus.IsAlive)
+                            {
+                                var hakmuddArgusNpc = new Npc
+                                    {
+                                        Entry = hakmuddArgus.Entry,
+                                        Position = hakmuddArgus.Position,
+                                        Name = hakmuddArgus.Name,
+                                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                                        Faction = Npc.FactionType.Alliance,
+                                        SelectGossipOption = 0,
+                                        Type = Npc.NpcType.Vendor
+                                    };
+                                listVendor.Add(hakmuddArgusNpc);
+                            }
                         }
                     }
                 }
@@ -335,7 +377,7 @@ namespace nManager.Wow.Bot.States
                         _grandExpeditionYak.Launch(true, true, true);
                         var cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
+                                ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
                             var cousinSlowhandsNpc = new Npc
@@ -344,9 +386,7 @@ namespace nManager.Wow.Bot.States
                                     Position = cousinSlowhands.Position,
                                     Name = cousinSlowhands.Name,
                                     ContinentId = (ContinentId) Usefuls.ContinentId,
-                                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                                  ? Npc.FactionType.Horde
-                                                  : Npc.FactionType.Alliance,
+                                    Faction = Npc.FactionType.Neutral,
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Vendor
                                 };
