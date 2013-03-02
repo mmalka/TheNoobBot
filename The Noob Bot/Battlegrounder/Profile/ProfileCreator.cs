@@ -371,8 +371,7 @@ namespace Battlegrounder.Profile
                 {
                     if (
                         _profile.BattlegrounderZones.Find(
-                            delegate(BattlegrounderZone bgz)
-                                { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) !=
+                            delegate(BattlegrounderZone bgz) { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) !=
                         null)
                     {
                         MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.CantDuplicateZone));

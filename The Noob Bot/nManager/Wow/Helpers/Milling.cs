@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                         itemArray = itemArray + "\"" + i + "\"";
                     }
                 }
-            var macro =
+                var macro =
                     "myTable = {" + itemArray + "} " +
                     "for key,value in pairs(myTable) do " +
                     "	itemsToMil = value " +

@@ -1096,7 +1096,7 @@ public class Paladin_Holy
     {
         //AvoidMelee();
 
-        if (ObjectManager.Target.HealthPercent < 40) 
+        if (ObjectManager.Target.HealthPercent < 40)
             Heal_Burst();
 
         Heal_Cycle();
@@ -1192,7 +1192,8 @@ public class Paladin_Holy
     {
         if (!ObjectManager.Target.HaveBuff(25771))
         {
-            if (_mySettings.UseDivineShield && ObjectManager.Target == ObjectManager.Me && DivineShield.KnownSpell && ObjectManager.Target.HealthPercent > 0 && ObjectManager.Target.HealthPercent <= 20 &&
+            if (_mySettings.UseDivineShield && ObjectManager.Target == ObjectManager.Me && DivineShield.KnownSpell && ObjectManager.Target.HealthPercent > 0 &&
+                ObjectManager.Target.HealthPercent <= 20 &&
                 DivineShield.IsSpellUsable)
             {
                 DivineShield.Launch();
