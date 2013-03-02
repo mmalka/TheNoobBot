@@ -37,13 +37,16 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
+                                                                   Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
-                        if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to, Enums.CGWorldFrameHitFlags.HitTestAll))
+                        if (
+                            !nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to,
+                                                                        Enums.CGWorldFrameHitFlags.HitTestAll))
                         {
                             Logging.WriteNavigator("Swimmming right to the destination");
-                            return new List<Point> { to };
+                            return new List<Point> {to};
                         }
                         Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                     }
@@ -90,14 +93,17 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to, Enums.CGWorldFrameHitFlags.HitTestLiquid))
+                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
+                                                                   Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
-                        if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to, Enums.CGWorldFrameHitFlags.HitTestAll))
+                        if (
+                            !nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to,
+                                                                        Enums.CGWorldFrameHitFlags.HitTestAll))
                         {
                             Logging.WriteNavigator("Swimmming right to the destination");
                             resultSuccess = true;
-                            return new List<Point> { to };
+                            return new List<Point> {to};
                         }
                         Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                     }

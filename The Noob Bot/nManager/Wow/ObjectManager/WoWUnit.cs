@@ -3,6 +3,7 @@ using System.Threading;
 using System.Collections.Generic;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Patchables;
 using Math = System.Math;
@@ -1305,6 +1306,17 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public PartyEnums.PartyType GetCurrentPartyType
+        {
+            get
+            {
+                return IsInstancePartyLeader
+                           ? PartyEnums.PartyType.Instance
+                           : (IsHomePartyLeader ? PartyEnums.PartyType.Home : PartyEnums.PartyType.None);
+                // Priority over the Instance group as we can be in both group type at the same time.
+            }
+        }
+
         public bool IsHomePartyLeader
         {
             get
@@ -1327,7 +1339,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return Party.GetPartyLeaderGUID(Enums.PartyEnums.PartyType.Instance) == Guid;
+                    return Party.GetPartyLeaderGUID() == Guid;
                 }
                 catch (Exception e)
                 {

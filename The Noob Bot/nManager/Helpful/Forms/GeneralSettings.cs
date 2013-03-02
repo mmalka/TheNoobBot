@@ -298,7 +298,8 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Clear();
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.AddRange(Others.TextToArrayByLine(HerbsToBeMilled.Text));
                 nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Clear();
-                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.AddRange(Others.TextToArrayByLine(DontHarvestTheFollowingObjects.Text));
+                nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.AddRange(
+                    Others.TextToArrayByLine(DontHarvestTheFollowingObjects.Text));
                 nManagerSetting.CurrentSetting.MakeStackOfElementalsItems = MakeStackOfElementalsItems.Value;
                 nManagerSetting.CurrentSetting.ActivateReloggerFeature = ActivateReloggerFeature.Value;
                 nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount = EmailOfTheBattleNetAccount.Text;
@@ -410,7 +411,8 @@ namespace nManager.Helpful.Forms
                 OnlyUseMillingInTown.Value = managerSetting.OnlyUseMillingInTown;
                 TimeBetweenEachMillingAttempt.Value = managerSetting.TimeBetweenEachMillingAttempt;
                 HerbsToBeMilled.Text = Others.ArrayToTextByLine(managerSetting.HerbsToBeMilled.ToArray());
-                DontHarvestTheFollowingObjects.Text = Others.ArrayToTextByLine(managerSetting.DontHarvestTheFollowingObjects.ToArray());
+                DontHarvestTheFollowingObjects.Text =
+                    Others.ArrayToTextByLine(managerSetting.DontHarvestTheFollowingObjects.ToArray());
                 MakeStackOfElementalsItems.Value = managerSetting.MakeStackOfElementalsItems;
                 ActivateReloggerFeature.Value = managerSetting.ActivateReloggerFeature;
                 EmailOfTheBattleNetAccount.Text = managerSetting.EmailOfTheBattleNetAccount;

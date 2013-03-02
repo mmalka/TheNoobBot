@@ -278,7 +278,9 @@ namespace nManager.Wow.ObjectManager
                 if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Count > 0)
                 {
                     int entryid = 0;
-                    if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Where(entry => int.TryParse(entry.Trim(), out entryid)).Any(entry => Entry == entryid))
+                    if (
+                        nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Where(
+                            entry => int.TryParse(entry.Trim(), out entryid)).Any(entry => Entry == entryid))
                     {
                         return false;
                     }

@@ -102,9 +102,11 @@ public class Main : IProduct
     {
         try
         {
-            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 90 && nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level < 90 &&
+                nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOffArchaeologist);
-            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 && !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 &&
+                     !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOnArchaeologist);
             if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20 &&
                 nManager.Wow.ObjectManager.ObjectManager.Me.Level < 60)

@@ -10,7 +10,8 @@ namespace nManager.Wow.Enums
         public enum PartyType
         {
             Home = 1,
-            Instance
+            Instance,
+            None
         }
     }
 }

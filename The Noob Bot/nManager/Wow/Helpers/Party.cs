@@ -8,11 +8,11 @@ namespace nManager.Wow.Helpers
 {
     public static class Party
     {
-        public static ulong GetPartyLeaderGUID(PartyType partyType = PartyType.Home)
+        public static ulong GetPartyLeaderGUID()
         {
             try
             {
-                uint party = GetPartyPointer(partyType);
+                uint party = GetPartyPointer();
                 if (party > 0)
                 {
                     uint numGroupMembers =
@@ -39,12 +39,12 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static List<UInt64> GetPartyPlayersGUID(PartyType partyType = PartyType.Home)
+        public static List<UInt64> GetPartyPlayersGUID()
         {
             var partyPlayersGUID = new List<UInt64>();
             try
             {
-                uint party = GetPartyPointer(partyType);
+                uint party = GetPartyPointer();
                 if (party > 0)
                 {
                     uint numGroupMembers = Memory.WowMemory.Memory.ReadUInt(
@@ -71,12 +71,11 @@ namespace nManager.Wow.Helpers
             return partyPlayersGUID;
         }
 
-        public static uint GetPartyNumberPlayers(
-            PartyType partyType = PartyType.Home)
+        public static uint GetPartyNumberPlayers()
         {
             try
             {
-                uint party = GetPartyPointer(partyType);
+                uint party = GetPartyPointer();
                 return party > 0
                            ? Memory.WowMemory.Memory.ReadUInt(party + (uint) Addresses.Party.NumOfPlayers, false)
                            : 0;
@@ -88,12 +87,11 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static bool CurrentPlayerIsLeader(
-            PartyType partyType = PartyType.Home)
+        public static bool CurrentPlayerIsLeader()
         {
             try
             {
-                return partyType == PartyType.Home
+                return ObjectManager.ObjectManager.Me.GetCurrentPartyType == PartyType.Home
                            ? ObjectManager.ObjectManager.Me.IsHomePartyLeader
                            : ObjectManager.ObjectManager.Me.IsInstancePartyLeader;
             }
@@ -104,8 +102,7 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static UInt32 GetPartyPointer(
-            PartyType partyType = PartyType.Home)
+        public static UInt32 GetPartyPointer()
         {
             try
             {
@@ -113,7 +110,8 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.ReadUInt(
                         (uint)
                         ((PartyType) (uint) Addresses.Party.PartyOffset +
-                         (partyType - PartyType.Home)*(int) (PartyType) 4), true);
+                         (ObjectManager.ObjectManager.Me.GetCurrentPartyType - PartyType.Home)*(int) (PartyType) 4),
+                        true);
             }
             catch (Exception e)
             {

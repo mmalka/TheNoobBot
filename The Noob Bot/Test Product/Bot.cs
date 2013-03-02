@@ -312,15 +312,14 @@ namespace Test_Product
                 {
                     if (goresult.GetUInt32("faction") == 0)
                         currentFaction = Npc.FactionType.Neutral;
-                    else
-                    if ((UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                         Reaction.Friendly ||
-                         UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
-                         Reaction.Neutral) &&
-                        (UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                         Reaction.Friendly ||
-                         UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
-                         Reaction.Neutral))
+                    else if ((UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                              Reaction.Friendly ||
+                              UnitRelation.GetReaction(1, goresult.GetUInt32("faction")) ==
+                              Reaction.Neutral) &&
+                             (UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                              Reaction.Friendly ||
+                              UnitRelation.GetReaction(2, goresult.GetUInt32("faction")) ==
+                              Reaction.Neutral))
                     {
                         currentFaction = Npc.FactionType.Neutral;
                     }
@@ -341,62 +340,62 @@ namespace Test_Product
                     if (goresult.GetUInt32("type") == 19)
                     {
                         newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId)goresult.GetUInt32("map"),
-                            Entry = goresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = goresult.GetString("name"),
-                            Position =
-                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
-                                          goresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.Mailbox
-                        });
+                            {
+                                ContinentId = (ContinentId) goresult.GetUInt32("map"),
+                                Entry = goresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = goresult.GetString("name"),
+                                Position =
+                                    new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                              goresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.Mailbox
+                            });
                     }
                     else if (goresult.GetUInt32("type") == 8 && goresult.GetUInt32("data0") == 3)
                     {
                         newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId)goresult.GetUInt32("map"),
-                            Entry = goresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = goresult.GetString("name"),
-                            Position =
-                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
-                                          goresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.SmeltingForge
-                        });
+                            {
+                                ContinentId = (ContinentId) goresult.GetUInt32("map"),
+                                Entry = goresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = goresult.GetString("name"),
+                                Position =
+                                    new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                              goresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.SmeltingForge
+                            });
                     }
                     else if (goresult.GetUInt32("type") == 8 && goresult.GetUInt32("data0") == 1552)
                     {
                         newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId)goresult.GetUInt32("map"),
-                            Entry = goresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = goresult.GetString("name"),
-                            Position =
-                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
-                                          goresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.RuneForge
-                        });
+                            {
+                                ContinentId = (ContinentId) goresult.GetUInt32("map"),
+                                Entry = goresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = goresult.GetString("name"),
+                                Position =
+                                    new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                              goresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.RuneForge
+                            });
                     }
                     else if (goresult.GetUInt32("type") == 34)
                     {
                         newList.Add(new Npc
-                        {
-                            ContinentId = (ContinentId)goresult.GetUInt32("map"),
-                            Entry = goresult.GetInt32("entry"),
-                            Faction = currentFaction,
-                            Name = goresult.GetString("name"),
-                            Position =
-                                new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
-                                          goresult.GetFloat("position_z")),
-                            SelectGossipOption = 1,
-                            Type = Npc.NpcType.GuildBanker
-                        });
+                            {
+                                ContinentId = (ContinentId) goresult.GetUInt32("map"),
+                                Entry = goresult.GetInt32("entry"),
+                                Faction = currentFaction,
+                                Name = goresult.GetString("name"),
+                                Position =
+                                    new Point(goresult.GetFloat("position_x"), goresult.GetFloat("position_y"),
+                                              goresult.GetFloat("position_z")),
+                                SelectGossipOption = 1,
+                                Type = Npc.NpcType.GuildBanker
+                            });
                     }
                 }
                 goresult.Close();

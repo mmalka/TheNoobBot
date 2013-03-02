@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 _pointLongMove = point;
-                var worker2 = new Thread(LongMoveGo) { IsBackground = true, Name = "LongMove" };
+                var worker2 = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
                 worker2.Start();
                 Thread.Sleep(100);
             }
@@ -85,7 +85,8 @@ namespace nManager.Wow.Helpers
                             var temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
                             if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                             {
-                                temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point, 100);
+                                temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
+                                                                          100);
                                 temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                             }
                             if (TraceLine.TraceLineGo(meTemps, temps) ||
@@ -99,7 +100,8 @@ namespace nManager.Wow.Helpers
                                 temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
                                 if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
-                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point, 40);
+                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                              point, 40);
                                     temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                 }
                                 if (TraceLine.TraceLineGo(meTemps, temps))
@@ -128,8 +130,8 @@ namespace nManager.Wow.Helpers
                                                       ObjectManager.ObjectManager.Me.Position.Y,
                                                       ObjectManager.ObjectManager.Me.Position.Z - altitude);
                                     var tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
-                                                      ObjectManager.ObjectManager.Me.Position.Y,
-                                                      ObjectManager.ObjectManager.Me.Position.Z + 5f);
+                                                            ObjectManager.ObjectManager.Me.Position.Y,
+                                                            ObjectManager.ObjectManager.Me.Position.Z + 5f);
                                     var temps2 = Math.GetPostion2DOfLineByDistance(tempsMe, point, 80);
                                     temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
                                     if (!TraceLine.TraceLineGo(tempsMe, temps))

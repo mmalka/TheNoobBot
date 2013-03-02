@@ -186,6 +186,7 @@
     <Compile Include="Wow\Enums\WoWObjectType.cs" />
     <Compile Include="Wow\Helpers\DBC.cs" />
     <Compile Include="Wow\Helpers\Fishing.cs" />
+    <Compile Include="Wow\Helpers\HealerClass.cs" />
     <Compile Include="Wow\Helpers\Milling.cs" />
     <Compile Include="Wow\Helpers\NpcDB.cs" />
     <Compile Include="Wow\Helpers\Elemental.cs" />
