@@ -197,7 +197,7 @@ namespace nManager.Helpful.Forms
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.UseGroundMount = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
-            this.CustomClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
+            this.CombatClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.labelX59 = new DevComponents.DotNetBar.LabelX();
             this.UseSpiritHealer = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX49 = new DevComponents.DotNetBar.LabelX();
@@ -211,8 +211,8 @@ namespace nManager.Helpful.Forms
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.AutoAssignTalents = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.CustomClass = new DevComponents.DotNetBar.Controls.ComboBoxEx();
-            this.CustomClassSettingsButton = new DevComponents.DotNetBar.ButtonX();
+            this.CombatClass = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.CombatClassSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.closeB = new DevComponents.DotNetBar.ButtonX();
             this.resetB = new DevComponents.DotNetBar.ButtonX();
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
@@ -3087,7 +3087,7 @@ namespace nManager.Helpful.Forms
             // 
             this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel1.Controls.Add(this.CustomClassResetSettingsButton);
+            this.expandablePanel1.Controls.Add(this.CombatClassResetSettingsButton);
             this.expandablePanel1.Controls.Add(this.labelX59);
             this.expandablePanel1.Controls.Add(this.UseSpiritHealer);
             this.expandablePanel1.Controls.Add(this.labelX49);
@@ -3101,8 +3101,8 @@ namespace nManager.Helpful.Forms
             this.expandablePanel1.Controls.Add(this.labelX2);
             this.expandablePanel1.Controls.Add(this.AutoAssignTalents);
             this.expandablePanel1.Controls.Add(this.labelX1);
-            this.expandablePanel1.Controls.Add(this.CustomClass);
-            this.expandablePanel1.Controls.Add(this.CustomClassSettingsButton);
+            this.expandablePanel1.Controls.Add(this.CombatClass);
+            this.expandablePanel1.Controls.Add(this.CombatClassSettingsButton);
             this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.expandablePanel1.Expanded = false;
             this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 543, 236);
@@ -3124,17 +3124,17 @@ namespace nManager.Helpful.Forms
             this.expandablePanel1.TitleStyle.GradientAngle = 90;
             this.expandablePanel1.TitleText = "Class / Custom spell sequence Settings";
             // 
-            // CustomClassResetSettingsButton
+            // CombatClassResetSettingsButton
             // 
-            this.CustomClassResetSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.CustomClassResetSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.CustomClassResetSettingsButton.Location = new System.Drawing.Point(432, 41);
-            this.CustomClassResetSettingsButton.Name = "CustomClassResetSettingsButton";
-            this.CustomClassResetSettingsButton.Size = new System.Drawing.Size(102, 23);
-            this.CustomClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.CustomClassResetSettingsButton.TabIndex = 29;
-            this.CustomClassResetSettingsButton.Text = "Reset Settings";
-            this.CustomClassResetSettingsButton.Click += new System.EventHandler(this.CustomClassResetSettingsButton_Click);
+            this.CombatClassResetSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.CombatClassResetSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.CombatClassResetSettingsButton.Location = new System.Drawing.Point(432, 41);
+            this.CombatClassResetSettingsButton.Name = "CombatClassResetSettingsButton";
+            this.CombatClassResetSettingsButton.Size = new System.Drawing.Size(102, 23);
+            this.CombatClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.CombatClassResetSettingsButton.TabIndex = 29;
+            this.CombatClassResetSettingsButton.Text = "Reset Settings";
+            this.CombatClassResetSettingsButton.Click += new System.EventHandler(this.CombatClassResetSettingsButton_Click);
             // 
             // labelX59
             // 
@@ -3337,30 +3337,30 @@ namespace nManager.Helpful.Forms
             this.labelX1.TabIndex = 3;
             this.labelX1.Text = "Custom Class";
             // 
-            // CustomClass
+            // CombatClass
             // 
-            this.CustomClass.DisplayMember = "Text";
-            this.CustomClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.CustomClass.ForeColor = System.Drawing.Color.Black;
-            this.CustomClass.FormattingEnabled = true;
-            this.CustomClass.ItemHeight = 16;
-            this.CustomClass.Location = new System.Drawing.Point(177, 41);
-            this.CustomClass.Name = "CustomClass";
-            this.CustomClass.Size = new System.Drawing.Size(159, 22);
-            this.CustomClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.CustomClass.TabIndex = 2;
+            this.CombatClass.DisplayMember = "Text";
+            this.CombatClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.CombatClass.ForeColor = System.Drawing.Color.Black;
+            this.CombatClass.FormattingEnabled = true;
+            this.CombatClass.ItemHeight = 16;
+            this.CombatClass.Location = new System.Drawing.Point(177, 41);
+            this.CombatClass.Name = "CombatClass";
+            this.CombatClass.Size = new System.Drawing.Size(159, 22);
+            this.CombatClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.CombatClass.TabIndex = 2;
             // 
-            // CustomClassSettingsButton
+            // CombatClassSettingsButton
             // 
-            this.CustomClassSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
-            this.CustomClassSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.CustomClassSettingsButton.Location = new System.Drawing.Point(342, 41);
-            this.CustomClassSettingsButton.Name = "CustomClassSettingsButton";
-            this.CustomClassSettingsButton.Size = new System.Drawing.Size(75, 23);
-            this.CustomClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.CustomClassSettingsButton.TabIndex = 1;
-            this.CustomClassSettingsButton.Text = "Settings";
-            this.CustomClassSettingsButton.Click += new System.EventHandler(this.customClassConfigB_Click);
+            this.CombatClassSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.CombatClassSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.CombatClassSettingsButton.Location = new System.Drawing.Point(342, 41);
+            this.CombatClassSettingsButton.Name = "CombatClassSettingsButton";
+            this.CombatClassSettingsButton.Size = new System.Drawing.Size(75, 23);
+            this.CombatClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.CombatClassSettingsButton.TabIndex = 1;
+            this.CombatClassSettingsButton.Text = "Settings";
+            this.CombatClassSettingsButton.Click += new System.EventHandler(this.CombatClassConfigB_Click);
             // 
             // closeB
             // 
@@ -3472,8 +3472,8 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.Controls.SwitchButton AutoAssignTalents;
         private DevComponents.DotNetBar.LabelX labelX1;
-        private DevComponents.DotNetBar.Controls.ComboBoxEx CustomClass;
-        private DevComponents.DotNetBar.ButtonX CustomClassSettingsButton;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx CombatClass;
+        private DevComponents.DotNetBar.ButtonX CombatClassSettingsButton;
         private DevComponents.DotNetBar.ExpandablePanel expandablePanel4;
         private DevComponents.Editors.IntegerInput DontHarvestIfPlayerNearRadius;
         private DevComponents.DotNetBar.LabelX labelX12;
@@ -3624,7 +3624,7 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton AutoConfirmOnBoPItems;
         private DevComponents.DotNetBar.LabelX AlwaysOnTopFeatureLabel;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateAlwaysOnTopFeature;
-        private DevComponents.DotNetBar.ButtonX CustomClassResetSettingsButton;
+        private DevComponents.DotNetBar.ButtonX CombatClassResetSettingsButton;
         private DevComponents.DotNetBar.LabelX SellItemsWhenLessThanXSlotLeftLabel;
         private DevComponents.DotNetBar.LabelX RepairWhenDurabilityIsUnderPercentLabel;
         private DevComponents.Editors.IntegerInput SellItemsWhenLessThanXSlotLeft;

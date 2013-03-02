@@ -187,7 +187,8 @@ namespace nManager
             return false;
         }
 
-        public string CustomClass = "TheNoobBot.dll";
+        public string CombatClass = "Tnb_CombatClass.dll";
+        public string HealerClass = "Tnb_HealerClass.dll";
         public bool AutoAssignTalents;
         public bool TrainNewSkills = true;
         public bool LearnNewSpells = true;

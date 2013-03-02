@@ -62,9 +62,9 @@ namespace The_Noob_Bot
                 ScriptOnlineManager.LoadScript();
                 // Create folder:
                 Directory.CreateDirectory(Application.StartupPath + "\\Logs\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
-                Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Talents\\");
+                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\");
+                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
+                Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Talents\\");
                 Directory.CreateDirectory(Application.StartupPath + "\\Meshes\\");
                 Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
                 Directory.CreateDirectory(Application.StartupPath + "\\Data\\");

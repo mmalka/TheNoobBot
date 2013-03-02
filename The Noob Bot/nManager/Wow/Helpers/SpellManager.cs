@@ -542,9 +542,9 @@ namespace nManager.Wow.Helpers
                     o.Update();
                 }
 
-                if (CustomClass.IsAliveCustomClass)
+                if (CombatClass.IsAliveCombatClass)
                 {
-                    CustomClass.ResetCustomClass();
+                    CombatClass.ResetCombatClass();
                 }
             }
             catch (Exception exception)

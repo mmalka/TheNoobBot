@@ -1,5 +1,5 @@
 ﻿/*
-* CustomClass for TheNoobBot
+* CombatClass for TheNoobBot
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
 */
@@ -18,12 +18,12 @@ using Keybindings = nManager.Wow.Helpers.Keybindings;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
-public class Main : ICustomClass
+public class Main : ICombatClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
 
-    #region ICustomClass Members
+    #region ICombatClass Members
 
     public float Range
     {
@@ -44,13 +44,13 @@ public class Main : ICustomClass
 
     public void ShowConfiguration()
     {
-        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
         Initialize(true);
     }
 
     public void ResetConfiguration()
     {
-        Directory.CreateDirectory(Application.StartupPath + "\\CustomClasses\\Settings\\");
+        Directory.CreateDirectory(Application.StartupPath + "\\CombatClasses\\Settings\\");
         Initialize(true, true);
     }
 
@@ -77,7 +77,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
+                                                         "\\CombatClasses\\Settings\\Deathknight_Blood.xml";
                             Deathknight_Blood.DeathknightBloodSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Blood.DeathknightBloodSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -100,7 +100,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
+                                                         "\\CombatClasses\\Settings\\Deathknight_Unholy.xml";
                             Deathknight_Unholy.DeathknightUnholySettings CurrentSetting;
                             CurrentSetting = new Deathknight_Unholy.DeathknightUnholySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -123,7 +123,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
+                                                         "\\CombatClasses\\Settings\\Deathknight_Frost.xml";
                             Deathknight_Frost.DeathknightFrostSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Frost.DeathknightFrostSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -148,7 +148,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Deathknight Apprentice Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
+                                                         "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
                             Deathknight_Apprentice.DeathknightApprenticeSettings CurrentSetting;
                             CurrentSetting = new Deathknight_Apprentice.DeathknightApprenticeSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -184,7 +184,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Mage_Arcane.xml";
+                                                         "\\CombatClasses\\Settings\\Mage_Arcane.xml";
                             Mage_Arcane.MageArcaneSettings CurrentSetting;
                             CurrentSetting = new Mage_Arcane.MageArcaneSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -208,7 +208,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Mage_Fire.xml";
+                                                         "\\CombatClasses\\Settings\\Mage_Fire.xml";
                             Mage_Fire.MageFireSettings CurrentSetting;
                             CurrentSetting = new Mage_Fire.MageFireSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -232,7 +232,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Mage_Frost.xml";
+                                                         "\\CombatClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -256,7 +256,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Mage_Frost.xml";
+                                                         "\\CombatClasses\\Settings\\Mage_Frost.xml";
                             Mage_Frost.MageFrostSettings CurrentSetting;
                             CurrentSetting = new Mage_Frost.MageFrostSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -291,7 +291,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
+                                                         "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -314,7 +314,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
+                                                         "\\CombatClasses\\Settings\\Warlock_Affliction.xml";
                             Warlock_Affliction.WarlockAfflictionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Affliction.WarlockAfflictionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -337,7 +337,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
+                                                         "\\CombatClasses\\Settings\\Warlock_Destruction.xml";
                             Warlock_Destruction.WarlockDestructionSettings CurrentSetting;
                             CurrentSetting = new Warlock_Destruction.WarlockDestructionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -362,7 +362,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Warlock Demonology Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
+                                                         "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
                             Warlock_Demonology.WarlockDemonologySettings CurrentSetting;
                             CurrentSetting = new Warlock_Demonology.WarlockDemonologySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -398,7 +398,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Druid_Feral.xml";
+                                                         "\\CombatClasses\\Settings\\Druid_Feral.xml";
                             Druid_Feral.DruidFeralSettings CurrentSetting;
                             CurrentSetting = new Druid_Feral.DruidFeralSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -420,7 +420,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Druid_Guardian.xml";
+                                                         "\\CombatClasses\\Settings\\Druid_Guardian.xml";
                             Druid_Guardian.DruidGuardianSettings CurrentSetting;
                             CurrentSetting = new Druid_Guardian.DruidGuardianSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -442,7 +442,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Druid_Balance.xml";
+                                                         "\\CombatClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -465,7 +465,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Druid_Restoration.xml";
+                                                         "\\CombatClasses\\Settings\\Druid_Restoration.xml";
                             Druid_Restoration.DruidRestorationSettings CurrentSetting;
                             CurrentSetting = new Druid_Restoration.DruidRestorationSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -488,7 +488,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Druid_Balance.xml";
+                                                         "\\CombatClasses\\Settings\\Druid_Balance.xml";
                             Druid_Balance.DruidBalanceSettings CurrentSetting;
                             CurrentSetting = new Druid_Balance.DruidBalanceSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -522,7 +522,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+                                                         "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
                             var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
@@ -543,7 +543,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Paladin_Protection.xml";
+                                                         "\\CombatClasses\\Settings\\Paladin_Protection.xml";
                             var CurrentSetting = new Paladin_Protection.PaladinProtectionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
@@ -564,7 +564,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Paladin_Holy.xml";
+                                                         "\\CombatClasses\\Settings\\Paladin_Holy.xml";
                             var CurrentSetting = new Paladin_Holy.PaladinHolySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
@@ -587,7 +587,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Paladin Retribution Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+                                                         "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
                             var CurrentSetting = new Paladin_Retribution.PaladinRetributionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
                             {
@@ -620,7 +620,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
+                                                         "\\CombatClasses\\Settings\\Shaman_Enhancement.xml";
                             Shaman_Enhancement.ShamanEnhancementSettings CurrentSetting;
                             CurrentSetting = new Shaman_Enhancement.ShamanEnhancementSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -643,7 +643,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
+                                                         "\\CombatClasses\\Settings\\Shaman_Elemental.xml";
                             Shaman_Elemental.ShamanElementalSettings CurrentSetting;
                             CurrentSetting = new Shaman_Elemental.ShamanElementalSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -667,7 +667,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
+                                                         "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -691,7 +691,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
+                                                         "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
                             Shaman_Restoration.ShamanRestorationSettings CurrentSetting;
                             CurrentSetting = new Shaman_Restoration.ShamanRestorationSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -724,7 +724,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+                                                         "\\CombatClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -747,7 +747,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Discipline.xml";
+                                                         "\\CombatClasses\\Settings\\Priest_Discipline.xml";
                             Priest_Discipline.PriestDisciplineSettings CurrentSetting;
                             CurrentSetting = new Priest_Discipline.PriestDisciplineSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -770,7 +770,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Holy.xml";
+                                                         "\\CombatClasses\\Settings\\Priest_Holy.xml";
                             Priest_Holy.PriestHolySettings CurrentSetting;
                             CurrentSetting = new Priest_Holy.PriestHolySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -795,7 +795,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Priest Shadow Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+                                                         "\\CombatClasses\\Settings\\Priest_Shadow.xml";
                             Priest_Shadow.PriestShadowSettings CurrentSetting;
                             CurrentSetting = new Priest_Shadow.PriestShadowSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -830,7 +830,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Rogue_Combat.xml";
+                                                         "\\CombatClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -853,7 +853,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
+                                                         "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
                             Rogue_Assassination.RogueAssassinationSettings CurrentSetting;
                             CurrentSetting = new Rogue_Assassination.RogueAssassinationSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -876,7 +876,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
+                                                         "\\CombatClasses\\Settings\\Rogue_Subtlety.xml";
                             Rogue_Subtlety.RogueSubtletySettings CurrentSetting;
                             CurrentSetting = new Rogue_Subtlety.RogueSubtletySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -899,7 +899,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Rogue_Combat.xml";
+                                                         "\\CombatClasses\\Settings\\Rogue_Combat.xml";
                             Rogue_Combat.RogueCombatSettings CurrentSetting;
                             CurrentSetting = new Rogue_Combat.RogueCombatSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -932,7 +932,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+                                                         "\\CombatClasses\\Settings\\Warrior_Arms.xml";
                             Warrior_Arms.WarriorArmsSettings CurrentSetting;
                             CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -954,7 +954,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warrior_Fury.xml";
+                                                         "\\CombatClasses\\Settings\\Warrior_Fury.xml";
                             Warrior_Fury.WarriorFurySettings CurrentSetting;
                             CurrentSetting = new Warrior_Fury.WarriorFurySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -976,7 +976,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warrior_Protection.xml";
+                                                         "\\CombatClasses\\Settings\\Warrior_Protection.xml";
                             Warrior_Protection.WarriorProtectionSettings CurrentSetting;
                             CurrentSetting = new Warrior_Protection.WarriorProtectionSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1000,7 +1000,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Warrior Arms Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+                                                         "\\CombatClasses\\Settings\\Warrior_Arms.xml";
                             Warrior_Arms.WarriorArmsSettings CurrentSetting;
                             CurrentSetting = new Warrior_Arms.WarriorArmsSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1034,7 +1034,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
+                                                         "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
                             Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
                             CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1057,7 +1057,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Hunter_Survival.xml";
+                                                         "\\CombatClasses\\Settings\\Hunter_Survival.xml";
                             Hunter_Survival.HunterSurvivalSettings CurrentSetting;
                             CurrentSetting = new Hunter_Survival.HunterSurvivalSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1080,7 +1080,7 @@ public class Main : ICustomClass
                         if (ConfigOnly)
                         {
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
+                                                         "\\CombatClasses\\Settings\\Hunter_BeastMastery.xml";
                             Hunter_BeastMastery.HunterBeastMasterySettings CurrentSetting;
                             CurrentSetting = new Hunter_BeastMastery.HunterBeastMasterySettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1105,7 +1105,7 @@ public class Main : ICustomClass
                             MessageBox.Show(
                                 "Your specification haven't be found, loading Hunter Marksmanship Settings");
                             string CurrentSettingsFile = Application.StartupPath +
-                                                         "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
+                                                         "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
                             Hunter_Marksmanship.HunterMarksmanshipSettings CurrentSetting;
                             CurrentSetting = new Hunter_Marksmanship.HunterMarksmanshipSettings();
                             if (File.Exists(CurrentSettingsFile) && !ResetSettings)
@@ -1544,7 +1544,7 @@ public class Deathknight_Apprentice
         public static DeathknightApprenticeSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath +
-                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
+                                         "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -2392,7 +2392,7 @@ public class Deathknight_Blood
 
         public static DeathknightBloodSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Blood.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Blood.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -3250,7 +3250,7 @@ public class Deathknight_Unholy
 
         public static DeathknightUnholySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Unholy.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Unholy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -4140,7 +4140,7 @@ public class Deathknight_Frost
 
         public static DeathknightFrostSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Deathknight_Frost.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Frost.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -4955,7 +4955,7 @@ public class Mage_Arcane
 
         public static MageArcaneSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Arcane.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Arcane.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -5816,7 +5816,7 @@ public class Mage_Frost
 
         public static MageFrostSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Frost.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -6640,7 +6640,7 @@ public class Mage_Fire
 
         public static MageFireSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Mage_Fire.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Fire.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -7529,7 +7529,7 @@ public class Warlock_Demonology
 
         public static WarlockDemonologySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Demonology.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -8346,7 +8346,7 @@ public class Warlock_Destruction
 
         public static WarlockDestructionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Destruction.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Destruction.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -9208,7 +9208,7 @@ public class Warlock_Affliction
 
         public static WarlockAfflictionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warlock_Affliction.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Affliction.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -10051,7 +10051,7 @@ public class Druid_Balance
 
         public static DruidBalanceSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Balance.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Balance.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -10954,7 +10954,7 @@ public class Druid_Feral
 
         public static DruidFeralSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Feral.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Feral.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -11628,7 +11628,7 @@ public class Druid_Restoration
 
         public static DruidRestorationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Restoration.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Restoration.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -12407,7 +12407,7 @@ public class Druid_Guardian
 
         public static DruidGuardianSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Druid_Guardian.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Guardian.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -12887,7 +12887,7 @@ public class Paladin_Holy
 
         public static PaladinHolySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Holy.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Holy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return CurrentSetting = Load<PaladinHolySettings>(CurrentSettingsFile);
@@ -13405,7 +13405,7 @@ public class Paladin_Protection
 
         public static PaladinProtectionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Protection.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Protection.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return CurrentSetting = Load<PaladinProtectionSettings>(CurrentSettingsFile);
@@ -13993,7 +13993,7 @@ public class Paladin_Retribution
 
         public static PaladinRetributionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Paladin_Retribution.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -14911,7 +14911,7 @@ public class Shaman_Enhancement
 
         public static ShamanEnhancementSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Enhancement.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Enhancement.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -15837,7 +15837,7 @@ public class Shaman_Restoration
 
         public static ShamanRestorationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Restoration.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -16705,7 +16705,7 @@ public class Shaman_Elemental
 
         public static ShamanElementalSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Shaman_Elemental.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Elemental.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -17475,7 +17475,7 @@ public class Priest_Shadow
 
         public static PriestShadowSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Shadow.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Shadow.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -18165,7 +18165,7 @@ public class Priest_Discipline
 
         public static PriestDisciplineSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Discipline.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Discipline.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -18881,7 +18881,7 @@ public class Priest_Holy
 
         public static PriestHolySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Priest_Holy.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Holy.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -19675,7 +19675,7 @@ public class Rogue_Combat
 
         public static RogueCombatSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Combat.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -20434,7 +20434,7 @@ public class Rogue_Subtlety
 
         public static RogueSubtletySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Subtlety.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Subtlety.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -21211,7 +21211,7 @@ public class Rogue_Assassination
 
         public static RogueAssassinationSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Rogue_Assassination.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -22084,7 +22084,7 @@ public class Warrior_Arms
 
         public static WarriorArmsSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Arms.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Arms.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -22976,7 +22976,7 @@ public class Warrior_Protection
 
         public static WarriorProtectionSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Protection.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Protection.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -23798,7 +23798,7 @@ public class Warrior_Fury
 
         public static WarriorFurySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Warrior_Fury.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Fury.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -24609,7 +24609,7 @@ public class Hunter_Marksmanship
 
         public static HunterMarksmanshipSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Marksmanship.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -25497,7 +25497,7 @@ public class Hunter_BeastMastery
 
         public static HunterBeastMasterySettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_BeastMastery.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_BeastMastery.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return
@@ -26343,7 +26343,7 @@ public class Hunter_Survival
 
         public static HunterSurvivalSettings GetSettings()
         {
-            string CurrentSettingsFile = Application.StartupPath + "\\CustomClasses\\Settings\\Hunter_Survival.xml";
+            string CurrentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Survival.xml";
             if (File.Exists(CurrentSettingsFile))
             {
                 return

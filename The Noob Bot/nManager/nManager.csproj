@@ -165,7 +165,7 @@
     <Compile Include="Wow\Helpers\ClickToMove.cs" />
     <Compile Include="Wow\Helpers\ConfigWowForThisBot.cs" />
     <Compile Include="Wow\Helpers\CustomProfile.cs" />
-    <Compile Include="Wow\Helpers\CustomClass.cs" />
+    <Compile Include="Wow\Helpers\CombatClass.cs" />
     <Compile Include="Wow\Enums\BattleGroundID.cs" />
     <Compile Include="Wow\Enums\CGWorldFrameHitFlags.cs" />
     <Compile Include="Wow\Enums\ClickToMoveType.cs" />

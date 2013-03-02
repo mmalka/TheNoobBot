@@ -91,7 +91,7 @@ namespace Quester.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 int QuesterStatePriority = 5;
 
@@ -136,7 +136,7 @@ namespace Quester.Bot
         {
             try
             {
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();

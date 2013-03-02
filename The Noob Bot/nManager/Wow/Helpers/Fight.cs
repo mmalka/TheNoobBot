@@ -76,7 +76,7 @@ namespace nManager.Wow.Helpers
                            targetNpc.Health > 0 && targetNpc.IsValid &&
                            MovementManager.InMovement && _fightLoop && Usefuls.InGame &&
                            (TraceLine.TraceLineGo(targetNpc.Position) ||
-                            targetNpc.GetDistance > (CustomClass.GetRange - 1))
+                            targetNpc.GetDistance > (CombatClass.GetRange - 1))
                         )
                     {
                         // Mob already in fight
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
 
                 _fightLoop = true;
                 Thread.Sleep(500);
-                if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                if (targetNpc.GetDistance < (CombatClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
                     !ObjectManager.ObjectManager.Me.IsCast)
                 {
                     MovementManager.StopMoveTo();
@@ -146,7 +146,7 @@ namespace nManager.Wow.Helpers
                     }
 
                     // Move to target if out of range
-                    if (targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast)
+                    if (targetNpc.GetDistance > CombatClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         int rJump = Others.Random(1, 30);
                         if (rJump == 5)
@@ -154,13 +154,13 @@ namespace nManager.Wow.Helpers
                         MovementManager.MoveTo(targetNpc);
                     }
                     // Create path if the mob is out of sight or out of range
-                    if ((targetNpc.GetDistance > CustomClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast) ||
+                    if ((targetNpc.GetDistance > CombatClass.GetRange && !ObjectManager.ObjectManager.Me.IsCast) ||
                         TraceLine.TraceLineGo(targetNpc.Position))
                     {
                         goto figthStart;
                     }
                     // Stop move if in range
-                    if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                    if (targetNpc.GetDistance < (CombatClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         MovementManager.StopMoveTo();
@@ -251,7 +251,7 @@ namespace nManager.Wow.Helpers
 
                     _fightLoop = true;
                     Thread.Sleep(500);
-                    if (targetNpc.GetDistance < (CustomClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
+                    if (targetNpc.GetDistance < (CombatClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
                         !ObjectManager.ObjectManager.Me.IsCast)
                     {
                         MovementManager.StopMoveTo();

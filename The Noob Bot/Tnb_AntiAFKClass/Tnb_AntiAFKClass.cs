@@ -1,5 +1,5 @@
 ﻿/*
-* CustomClass for TheNoobBot
+* CombatClass for TheNoobBot
 * Credit : Vesper
 */
 
@@ -9,12 +9,12 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
-public class Main : ICustomClass
+public class Main : ICombatClass
 {
     internal static float range = 5.0f;
     internal static bool loop = true;
 
-    #region ICustomClass Members
+    #region ICombatClass Members
 
     public float Range
     {

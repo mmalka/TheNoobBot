@@ -510,7 +510,7 @@ public class CaptureTheFlag
         public static CaptureTheFlagSettings GetSettings()
         {
             string CurrentSettingsFile = Application.StartupPath +
-                                         "\\CustomClasses\\Settings\\Deathknight_Apprentice.xml";
+                                         "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
             if (File.Exists(CurrentSettingsFile))
                 return
                     CurrentSetting =

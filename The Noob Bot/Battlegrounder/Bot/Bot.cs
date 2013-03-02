@@ -20,7 +20,7 @@ namespace Battlegrounder.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 // FSM
                 Fsm.States.Clear();
@@ -62,7 +62,7 @@ namespace Battlegrounder.Bot
         {
             try
             {
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 CustomProfile.DisposeCustomProfile();
                 Fsm.StopEngine();
                 Fight.StopFight();

@@ -53,7 +53,7 @@ namespace Fisherbot.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 if (!FisherbotSetting.CurrentSetting.fishSchool)
                 {
@@ -109,7 +109,7 @@ namespace Fisherbot.Bot
             try
             {
                 nManager.Wow.Bot.Tasks.FishingTask.StopLoopFish();
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();

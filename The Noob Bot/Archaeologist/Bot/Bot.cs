@@ -30,7 +30,7 @@ namespace Archaeologist.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 // FSM
                 Fsm.States.Clear();
@@ -77,7 +77,7 @@ namespace Archaeologist.Bot
         {
             try
             {
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();

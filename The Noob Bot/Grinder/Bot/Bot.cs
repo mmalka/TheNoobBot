@@ -71,7 +71,7 @@ namespace Grinder.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 // FSM
                 Fsm.States.Clear();
@@ -116,7 +116,7 @@ namespace Grinder.Bot
             try
             {
                 nManager.Wow.Bot.Tasks.FishingTask.StopLoopFish();
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();

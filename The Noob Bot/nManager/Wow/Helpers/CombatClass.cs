@@ -11,13 +11,13 @@ using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
-    public class CustomClass
+    public class CombatClass
     {
-        private static ICustomClass _instanceFromOtherAssembly;
+        private static ICombatClass _instanceFromOtherAssembly;
         private static Assembly _assembly;
         private static object _obj;
         private static Thread _worker;
-        private static string _pathToCustomClassFile = "";
+        private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
 
         public static float GetRange
@@ -32,13 +32,13 @@ namespace nManager.Wow.Helpers
                 }
                 catch (Exception exception)
                 {
-                    Logging.WriteError("CustomClass > GetRange: " + exception);
+                    Logging.WriteError("CombatClass > GetRange: " + exception);
                     return 5.0f;
                 }
             }
         }
 
-        public static bool IsAliveCustomClass
+        public static bool IsAliveCombatClass
         {
             get
             {
@@ -48,42 +48,42 @@ namespace nManager.Wow.Helpers
                 }
                 catch (Exception exception)
                 {
-                    Logging.WriteError("IsAliveCustomClass: " + exception);
+                    Logging.WriteError("IsAliveCombatClass: " + exception);
                     return false;
                 }
             }
         }
 
-        public static void LoadCustomClass()
+        public static void LoadCombatClass()
         {
             try
             {
-                if (nManagerSetting.CurrentSetting.CustomClass != "")
+                if (nManagerSetting.CurrentSetting.CombatClass != "")
                 {
-                    string __pathToCustomClassFile = Application.StartupPath + "\\CustomClasses\\" +
-                                                     nManagerSetting.CurrentSetting.CustomClass;
-                    string fileExt = __pathToCustomClassFile.Substring(__pathToCustomClassFile.Length - 3);
+                    string __pathToCombatClassFile = Application.StartupPath + "\\CombatClasses\\" +
+                                                     nManagerSetting.CurrentSetting.CombatClass;
+                    string fileExt = __pathToCombatClassFile.Substring(__pathToCombatClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(__pathToCustomClassFile, false, false, false);
+                        LoadCombatClass(__pathToCombatClassFile, false, false, false);
                     else
-                        LoadCustomClass(__pathToCustomClassFile);
+                        LoadCombatClass(__pathToCombatClassFile);
                 }
                 else
                     Logging.Write("No custom class selected");
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadCustomClass(): " + exception);
+                Logging.WriteError("LoadCombatClass(): " + exception);
             }
         }
 
-        public static void LoadCustomClass(string pathToCustomClassFile, bool settingOnly = false,
+        public static void LoadCombatClass(string pathToCombatClassFile, bool settingOnly = false,
                                            bool resetSettings = false,
                                            bool CSharpFile = true)
         {
             try
             {
-                _pathToCustomClassFile = pathToCustomClassFile;
+                _pathToCombatClassFile = pathToCombatClassFile;
                 if (_instanceFromOtherAssembly != null)
                 {
                     _instanceFromOtherAssembly.Dispose();
@@ -105,7 +105,7 @@ namespace nManager.Wow.Helpers
                                                   !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
                                               .Select(a => a.Location);
                     cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
-                    StreamReader sr = File.OpenText(pathToCustomClassFile);
+                    StreamReader sr = File.OpenText(pathToCombatClassFile);
                     string toCompile = sr.ReadToEnd();
                     CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                     if (cr.Errors.HasErrors)
@@ -119,17 +119,17 @@ namespace nManager.Wow.Helpers
 
                     _assembly = cr.CompiledAssembly;
                     _obj = _assembly.CreateInstance("Main", true);
-                    _threadName = "CustomClass CS";
+                    _threadName = "CombatClass CS";
                 }
                 else
                 {
-                    _assembly = Assembly.LoadFrom(_pathToCustomClassFile);
+                    _assembly = Assembly.LoadFrom(_pathToCombatClassFile);
                     _obj = _assembly.CreateInstance("Main", false);
-                    _threadName = "CustomClass DLL";
+                    _threadName = "CombatClass DLL";
                 }
                 if (_obj != null && _assembly != null)
                 {
-                    _instanceFromOtherAssembly = _obj as ICustomClass;
+                    _instanceFromOtherAssembly = _obj as ICombatClass;
                     if (_instanceFromOtherAssembly != null)
                     {
                         if (settingOnly)
@@ -152,11 +152,11 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("LoadCustomClass(string _pathToCustomClassFile): " + exception);
+                Logging.WriteError("LoadCombatClass(string _pathToCombatClassFile): " + exception);
             }
         }
 
-        public static void DisposeCustomClass()
+        public static void DisposeCombatClass()
         {
             try
             {
@@ -174,7 +174,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("DisposeCustomClass(): " + exception);
+                Logging.WriteError("DisposeCombatClass(): " + exception);
             }
             finally
             {
@@ -184,62 +184,62 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void ResetCustomClass()
+        public static void ResetCombatClass()
         {
             try
             {
-                if (IsAliveCustomClass)
+                if (IsAliveCombatClass)
                 {
-                    DisposeCustomClass();
+                    DisposeCombatClass();
                     Thread.Sleep(1000);
-                    string fileExt = _pathToCustomClassFile.Substring(_pathToCustomClassFile.Length - 3);
+                    string fileExt = _pathToCombatClassFile.Substring(_pathToCombatClassFile.Length - 3);
                     if (fileExt == "dll")
-                        LoadCustomClass(_pathToCustomClassFile, false, false, false);
+                        LoadCombatClass(_pathToCombatClassFile, false, false, false);
                     else
-                        LoadCustomClass(_pathToCustomClassFile);
+                        LoadCombatClass(_pathToCombatClassFile);
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ResetCustomClass(): " + exception);
+                Logging.WriteError("ResetCombatClass(): " + exception);
             }
         }
 
-        public static void ShowConfigurationCustomClass(string filePath)
+        public static void ShowConfigurationCombatClass(string filePath)
         {
             try
             {
                 string fileExt = filePath.Substring(filePath.Length - 3);
                 if (fileExt == "dll")
-                    LoadCustomClass(filePath, true, false, false);
+                    LoadCombatClass(filePath, true, false, false);
                 else
-                    LoadCustomClass(filePath, true);
+                    LoadCombatClass(filePath, true);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
+                Logging.WriteError("ShowConfigurationCombatClass(): " + exception);
             }
         }
 
-        public static void ResetConfigurationCustomClass(string filePath)
+        public static void ResetConfigurationCombatClass(string filePath)
         {
             try
             {
                 string fileExt = filePath.Substring(filePath.Length - 3);
                 if (fileExt == "dll")
-                    LoadCustomClass(filePath, true, true, false);
+                    LoadCombatClass(filePath, true, true, false);
                 else
-                    LoadCustomClass(filePath, true, true);
+                    LoadCombatClass(filePath, true, true);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ShowConfigurationCustomClass(): " + exception);
+                Logging.WriteError("ShowConfigurationCombatClass(): " + exception);
             }
         }
     }
 
 
-    public interface ICustomClass
+    public interface ICombatClass
     {
         #region Properties
 

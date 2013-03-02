@@ -15,13 +15,13 @@ namespace nManager.Helpful.Forms
                     this.TopMost = true;
 
                 LoadSetting(nManagerSetting.CurrentSetting);
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.dll"))
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
                 {
-                    CustomClass.Items.Add(f);
+                    CombatClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CustomClasses\\", "*.cs"))
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
                 {
-                    CustomClass.Items.Add(f);
+                    CombatClass.Items.Add(f);
                 }
             }
             catch (Exception e)
@@ -222,10 +222,10 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX2);
             labelX1.Text = Translate.Get(Translate.Id.Custom_Class);
             SetToolTypeIfNeeded(labelX1);
-            CustomClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
-            SetToolTypeIfNeeded(CustomClassSettingsButton);
-            CustomClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
-            SetToolTypeIfNeeded(CustomClassResetSettingsButton);
+            CombatClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
+            SetToolTypeIfNeeded(CombatClassSettingsButton);
+            CombatClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
+            SetToolTypeIfNeeded(CombatClassResetSettingsButton);
             closeB.Text = Translate.Get(Translate.Id.Close_without_save);
             SetToolTypeIfNeeded(closeB);
             resetB.Text = Translate.Get(Translate.Id.Reset_Settings);
@@ -253,7 +253,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                nManagerSetting.CurrentSetting.CustomClass = CustomClass.Text;
+                nManagerSetting.CurrentSetting.CombatClass = CombatClass.Text;
                 nManagerSetting.CurrentSetting.AutoAssignTalents = AutoAssignTalents.Value;
                 nManagerSetting.CurrentSetting.TrainNewSkills = TrainNewSkills.Value;
                 nManagerSetting.CurrentSetting.LearnNewSpells = LearnNewSpells.Value;
@@ -373,7 +373,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                CustomClass.Text = managerSetting.CustomClass;
+                CombatClass.Text = managerSetting.CombatClass;
                 AutoAssignTalents.Value = managerSetting.AutoAssignTalents;
                 TrainNewSkills.Value = managerSetting.TrainNewSkills;
                 LearnNewSpells.Value = managerSetting.LearnNewSpells;
@@ -526,23 +526,23 @@ namespace nManager.Helpful.Forms
             }
         }
 
-        private void customClassConfigB_Click(object sender, EventArgs e)
+        private void CombatClassConfigB_Click(object sender, EventArgs e)
         {
             try
             {
-                nManager.Wow.Helpers.CustomClass.ShowConfigurationCustomClass(Application.StartupPath +
-                                                                              "\\CustomClasses\\" + CustomClass.Text);
+                nManager.Wow.Helpers.CombatClass.ShowConfigurationCombatClass(Application.StartupPath +
+                                                                              "\\CombatClasses\\" + CombatClass.Text);
             }
             catch (Exception ex)
             {
-                Logging.WriteError("GeneralSettings > customClassConfigB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("GeneralSettings > CombatClassConfigB_Click(object sender, EventArgs e): " + ex);
             }
         }
 
-        private void CustomClassResetSettingsButton_Click(object sender, EventArgs e)
+        private void CombatClassResetSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.CustomClass.ResetConfigurationCustomClass(Application.StartupPath + "\\CustomClasses\\" +
-                                                                  CustomClass.Text);
+            Wow.Helpers.CombatClass.ResetConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" +
+                                                                  CombatClass.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)

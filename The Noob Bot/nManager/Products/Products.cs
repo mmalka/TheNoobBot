@@ -175,7 +175,7 @@ namespace nManager.Products
                     Thread.Sleep(500);
                     MovementManager.StopMove();
                     Fight.StopFight();
-                    CustomClass.DisposeCustomClass();
+                    CombatClass.DisposeCombatClass();
                     LongMove.StopLongMove();
                     return true;
                 }

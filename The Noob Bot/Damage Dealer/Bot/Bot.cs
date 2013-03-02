@@ -18,7 +18,7 @@ namespace DamageDealer.Bot
                 SpellManager.UpdateSpellBook();
 
                 // Load CC:
-                CustomClass.LoadCustomClass();
+                CombatClass.LoadCombatClass();
 
                 // FSM
                 Fsm.States.Clear();
@@ -52,7 +52,7 @@ namespace DamageDealer.Bot
         {
             try
             {
-                CustomClass.DisposeCustomClass();
+                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
             }
