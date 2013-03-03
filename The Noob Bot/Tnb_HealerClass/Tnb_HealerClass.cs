@@ -408,6 +408,13 @@ public class DruidRestoration
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -436,12 +443,17 @@ public class DruidRestoration
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -452,7 +464,9 @@ public class DruidRestoration
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -1022,6 +1036,13 @@ public class PaladinHoly
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -1050,12 +1071,17 @@ public class PaladinHoly
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -1066,7 +1092,9 @@ public class PaladinHoly
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -1480,6 +1508,13 @@ public class ShamanRestoration
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -1508,12 +1543,17 @@ public class ShamanRestoration
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -1524,7 +1564,9 @@ public class ShamanRestoration
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -2267,6 +2309,13 @@ public class PriestDiscipline
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2295,12 +2344,17 @@ public class PriestDiscipline
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -2311,7 +2365,9 @@ public class PriestDiscipline
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -2373,13 +2429,13 @@ public class PriestDiscipline
             PowerWordFortitude.Launch();
             return;
         }
-        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.TargetHaveBuff
+        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
                  && _mySettings.UseInnerFire)
         {
             InnerFire.Launch();
             return;
         }
-        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.TargetHaveBuff
+        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
                  && !_mySettings.UseInnerFire && _mySettings.UseInnerWill)
         {
             InnerWill.Launch();
@@ -2616,9 +2672,19 @@ public class PriestDiscipline
         else
         {
             if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
-                && _mySettings.UseShadowfiend)
+                && _mySettings.UseShadowfiend && ObjectManager.Me.InCombat)
             {
-                Shadowfiend.Launch();
+                WoWUnit unit = null;
+                if (ObjectManager.GetNumberAttackPlayer() > 0)
+                    unit =
+                        ObjectManager.GetNearestWoWUnit(ObjectManager.GetUnitAttackPlayer());
+
+                if (unit != null)
+                    if (unit.IsValid)
+                    {
+                        Interact.InteractGameObject(unit.GetBaseAddress);
+                        Shadowfiend.Launch();
+                    }
                 return;
             }
         }
@@ -2886,6 +2952,13 @@ public class PriestHoly
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2914,12 +2987,17 @@ public class PriestHoly
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -2930,7 +3008,9 @@ public class PriestHoly
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
@@ -2992,13 +3072,13 @@ public class PriestHoly
             PowerWordFortitude.Launch();
             return;
         }
-        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.TargetHaveBuff
+        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
                  && _mySettings.UseInnerFire)
         {
             InnerFire.Launch();
             return;
         }
-        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.TargetHaveBuff
+        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
                  && !_mySettings.UseInnerFire && _mySettings.UseInnerWill)
         {
             InnerWill.Launch();
@@ -3251,9 +3331,19 @@ public class PriestHoly
         else
         {
             if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
-                && _mySettings.UseShadowfiend)
+                && _mySettings.UseShadowfiend && ObjectManager.Me.InCombat)
             {
-                Shadowfiend.Launch();
+                WoWUnit unit = null;
+                if (ObjectManager.GetNumberAttackPlayer() > 0)
+                    unit =
+                        ObjectManager.GetNearestWoWUnit(ObjectManager.GetUnitAttackPlayer());
+
+                if (unit != null)
+                    if (unit.IsValid)
+                    {
+                        Interact.InteractGameObject(unit.GetBaseAddress);
+                        Shadowfiend.Launch();
+                    }
                 return;
             }
         }
@@ -3533,6 +3623,13 @@ public class MonkMistweaver
             {
                 if (!ObjectManager.Me.IsDead && !Usefuls.IsLoadingOrConnecting && Usefuls.InGame)
                 {
+                    if (ObjectManager.Me.Target > 0)
+                    {
+                        if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
+                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                    }
+                    else
+                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -3561,12 +3658,17 @@ public class MonkMistweaver
                                         lowestHpPlayer = currentPlayer;
                                     }
                                 }
-                                if (ObjectManager.Me.HealthPercent < 50 &&
-                                    ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                if (lowestHpPlayer.Guid > 0)
                                 {
-                                    lowestHpPlayer = ObjectManager.Me;
+                                    if (ObjectManager.Me.HealthPercent < 50 &&
+                                        ObjectManager.Me.HealthPercent - 10 < lowestHp)
+                                    {
+                                        lowestHpPlayer = ObjectManager.Me;
+                                    }
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                                 }
-                                if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
                             }
                             else
@@ -3577,7 +3679,9 @@ public class MonkMistweaver
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
+                        {
                             Patrolling();
+                        }
                     }
                 }
                 Thread.Sleep(500);
