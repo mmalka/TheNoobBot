@@ -16,8 +16,7 @@ namespace nManager.Wow.Helpers
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 if (party > 0)
                 {
-                    uint numGroupMembers =
-                        Memory.WowMemory.Memory.ReadUInt(party + (uint) Addresses.Party.NumOfPlayers, false);
+                    uint numGroupMembers = GetPartyNumberPlayers();
 
                     for (uint i = 0; i < numGroupMembers; i++)
                     {
@@ -48,8 +47,7 @@ namespace nManager.Wow.Helpers
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
                 if (party > 0)
                 {
-                    uint numGroupMembers = Memory.WowMemory.Memory.ReadUInt(
-                        party + (uint) Addresses.Party.NumOfPlayers, false);
+                    uint numGroupMembers = GetPartyNumberPlayers();
                     for (uint i = 0; i < numGroupMembers; i++)
                     {
                         uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i, false);
@@ -107,13 +105,10 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return
-                    Memory.WowMemory.Memory.ReadUInt(
-                        (uint)
-                        ((PartyType) (uint) Addresses.Party.PartyOffset +
-                         (partyType - PartyType.Home)*(int) (PartyType) 4),
-                        true);
-            }
+                if (partyType == PartyType.None || !IsInGroup())
+                    return 0;
+                return Memory.WowMemory.Memory.ReadUInt((uint)((PartyType)(uint)Addresses.Party.PartyOffset + (partyType - PartyType.Home) * (int)(PartyType)4), true);
+                }
             catch (Exception e)
             {
                 Logging.WriteError("Party > GetPartyPointer(): " + e);
