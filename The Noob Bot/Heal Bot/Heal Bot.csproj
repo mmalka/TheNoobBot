@@ -8,7 +8,7 @@
     <ProjectGuid>{7AFCF1B4-C1C3-4769-B35E-D8C434317773}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Heal Bot</RootNamespace>
+    <RootNamespace>Heal_Bot</RootNamespace>
     <AssemblyName>Heal Bot</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

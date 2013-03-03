@@ -2,7 +2,7 @@
 
 using System;
 using System.Windows.Forms;
-using DamageDealer.Bot;
+using Damage_Dealer.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;

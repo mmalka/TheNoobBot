@@ -2,7 +2,7 @@
 
 using System;
 using System.Windows.Forms;
-using HealBot.Bot;
+using Heal_Bot.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;

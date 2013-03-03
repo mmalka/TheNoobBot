@@ -4,7 +4,7 @@ using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
 
-namespace DamageDealer.Bot
+namespace Damage_Dealer.Bot
 {
     internal class Bot
     {
