@@ -90,7 +90,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Deathknight Blood class...");
+                            Logging.WriteFight("Loading Deathknight Blood Combat class...");
                             range = 5.0f;
                             new Deathknight_Blood();
                         }
@@ -113,7 +113,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Deathknight Unholy class...");
+                            Logging.WriteFight("Loading Deathknight Unholy Combat class...");
                             range = 5.0f;
                             new Deathknight_Unholy();
                         }
@@ -136,7 +136,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Deathknight Frost class...");
+                            Logging.WriteFight("Loading Deathknight Frost Combat class...");
                             range = 5.0f;
                             new Deathknight_Frost();
                         }
@@ -163,7 +163,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Deathknight Apprentice class...");
+                            Logging.WriteFight("Loading Deathknight Apprentice Combat class...");
                             range = 5.0f;
                             new Deathknight_Apprentice();
                         }
@@ -197,7 +197,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Mage Arcane class...");
+                            Logging.WriteFight("Loading Mage Arcane Combat class...");
                             range = 30.0f;
                             new Mage_Arcane();
                         }
@@ -221,7 +221,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Mage Fire class...");
+                            Logging.WriteFight("Loading Mage Fire Combat class...");
                             range = 30.0f;
                             new Mage_Fire();
                         }
@@ -245,7 +245,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Mage Frost class...");
+                            Logging.WriteFight("Loading Mage Frost Combat class...");
                             range = 30.0f;
                             new Mage_Frost();
                         }
@@ -270,7 +270,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("Mage without Spec");
-                            Logging.WriteFight("Loading Mage Frost class...");
+                            Logging.WriteFight("Loading Mage Frost Combat class...");
                             range = 30.0f;
                             new Mage_Frost();
                         }
@@ -304,7 +304,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warlock Demonology class...");
+                            Logging.WriteFight("Loading Warlock Demonology Combat class...");
                             range = 30.0f;
                             new Warlock_Demonology();
                         }
@@ -327,7 +327,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warlock Affliction class...");
+                            Logging.WriteFight("Loading Warlock Affliction Combat class...");
                             range = 30.0f;
                             new Warlock_Affliction();
                         }
@@ -350,7 +350,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warlock Destruction class...");
+                            Logging.WriteFight("Loading Warlock Destruction Combat class...");
                             range = 30.0f;
                             new Warlock_Destruction();
                         }
@@ -376,7 +376,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Warlock Demonology class...");
+                            Logging.WriteFight("Loading Warlock Demonology Combat class...");
                             range = 30.0f;
                             new Warlock_Demonology();
                         }
@@ -502,7 +502,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Druid Balance class...");
+                            Logging.WriteFight("Loading Druid Balance Combat class...");
                             range = 30.0f;
                             new Druid_Balance();
                         }
@@ -534,7 +534,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Paladin Retribution class...");
+                            Logging.WriteFight("Loading Paladin Retribution Combat class...");
                             new Paladin_Retribution();
                         }
                     }
@@ -555,7 +555,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Paladin Protection class...");
+                            Logging.WriteFight("Loading Paladin Protection Combat class...");
                             new Paladin_Protection();
                         }
                     }
@@ -575,7 +575,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Paladin Holy class...");
+                            Logging.WriteFight("Loading Paladin Holy Combat class...");
                             range = 30.0f;
                             new Paladin_Holy();
                         }
@@ -600,7 +600,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Paladin Retribution class...");
+                            Logging.WriteFight("Loading Paladin Retribution Combat class...");
                             new Paladin_Retribution();
                         }
                     }
@@ -633,7 +633,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Shaman Enhancement class...");
+                            Logging.WriteFight("Loading Shaman Enhancement Combat class...");
                             new Shaman_Enhancement();
                         }
                         break;
@@ -656,7 +656,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Shaman Elemental class...");
+                            Logging.WriteFight("Loading Shaman Elemental Combat class...");
                             range = 30.0f;
                             new Shaman_Elemental();
                         }
@@ -680,7 +680,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Shaman Restoration class...");
+                            Logging.WriteFight("Loading Shaman Restoration Combat class...");
                             range = 30.0f;
                             new Shaman_Restoration();
                         }
@@ -737,7 +737,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Priest Shadow class...");
+                            Logging.WriteFight("Loading Priest Shadow Combat class...");
                             range = 30.0f;
                             new Priest_Shadow();
                         }
@@ -760,7 +760,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Priest Discipline class...");
+                            Logging.WriteFight("Loading Priest Discipline Combat class...");
                             range = 30.0f;
                             new Priest_Discipline();
                         }
@@ -783,7 +783,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Priest Holy class...");
+                            Logging.WriteFight("Loading Priest Holy Combat class...");
                             range = 30.0f;
                             new Priest_Holy();
                         }
@@ -809,7 +809,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Priest Shadow class...");
+                            Logging.WriteFight("Loading Priest Shadow Combat class...");
                             range = 30.0f;
                             new Priest_Shadow();
                         }
@@ -843,7 +843,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Rogue Combat class...");
+                            Logging.WriteFight("Loading Rogue Combat Combat class...");
                             new Rogue_Combat();
                         }
                         break;
@@ -866,7 +866,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Rogue Assassination class...");
+                            Logging.WriteFight("Loading Rogue Assassination Combat class...");
                             new Rogue_Assassination();
                         }
                         break;
@@ -889,7 +889,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Rogue Subtlety class...");
+                            Logging.WriteFight("Loading Rogue Subtlety Combat class...");
                             new Rogue_Subtlety();
                         }
                         break;
@@ -945,7 +945,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warrior Arms class...");
+                            Logging.WriteFight("Loading Warrior Arms Combat class...");
                             new Warrior_Arms();
                         }
                     }
@@ -967,7 +967,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warrior Fury class...");
+                            Logging.WriteFight("Loading Warrior Fury Combat class...");
                             new Warrior_Fury();
                         }
                     }
@@ -989,7 +989,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Warrior Protection class...");
+                            Logging.WriteFight("Loading Warrior Protection Combat class...");
                             new Warrior_Protection();
                         }
                     }
@@ -1014,7 +1014,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Warrior Arms class...");
+                            Logging.WriteFight("Loading Warrior Arms Combat class...");
                             new Warrior_Arms();
                         }
                     }
@@ -1047,7 +1047,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Hunter Marksmanship class...");
+                            Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
                             range = 30.0f;
                             new Hunter_Marksmanship();
                         }
@@ -1070,7 +1070,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Hunter Survival class...");
+                            Logging.WriteFight("Loading Hunter Survival Combat class...");
                             range = 30.0f;
                             new Hunter_Survival();
                         }
@@ -1093,7 +1093,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Hunter BeastMastery class...");
+                            Logging.WriteFight("Loading Hunter BeastMastery Combat class...");
                             range = 30.0f;
                             new Hunter_BeastMastery();
                         }
@@ -1119,7 +1119,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Hunter Marksmanship class...");
+                            Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
                             range = 30.0f;
                             new Hunter_Marksmanship();
                         }
@@ -1152,7 +1152,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Monk Brewmaster class...");
+                            Logging.WriteFight("Loading Monk Brewmaster Combat class...");
                             new Monk_Brewmaster();
                         }
                     }
@@ -1174,7 +1174,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Monk Windwalker class...");
+                            Logging.WriteFight("Loading Monk Windwalker Combat class...");
                             new Monk_Windwalker();
                         }
                     }
@@ -1196,7 +1196,7 @@ public class Main : ICombatClass
                         }
                         else
                         {
-                            Logging.WriteFight("Loading Monk Mistweaver class...");
+                            Logging.WriteFight("Loading Monk Mistweaver Combat class...");
                             range = 30.0f;
                             new Monk_Mistweaver();
                         }
@@ -1222,7 +1222,7 @@ public class Main : ICombatClass
                         else
                         {
                             Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Monk Brewmaster class...");
+                            Logging.WriteFight("Loading Monk Brewmaster Combat class...");
                             new Monk_Brewmaster();
                         }
                     }
