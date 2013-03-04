@@ -18,27 +18,17 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (!ObjectManager.ObjectManager.Me.IsMounted)
+                Logging.Write("Start healing process.");
+                _healLoop = true;
+                if (MovementManager.InMovement)
                 {
-                    _healLoop = true;
-                    if (MovementManager.InMovement)
-                    {
-                        MovementManager.StopMove();
-                    }
-                    Thread.Sleep(500);
-
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && _healLoop &&
-                           !ObjectManager.ObjectManager.Me.InTransport)
-                    {
-                        Thread.Sleep(500);
-                    }
+                    MovementManager.StopMove();
                 }
-                _healLoop = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StartHealBot(): " + exception);
-                _healLoop = false;
+                _healLoop = true;
             }
         }
 
@@ -46,27 +36,17 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (!ObjectManager.ObjectManager.Me.IsMounted)
+                Logging.Write("Start healing process.");
+                _healLoop = true;
+                if (MovementManager.InMovement)
                 {
-                    _healLoop = true;
-                    if (MovementManager.InMovement)
-                    {
-                        MovementManager.StopMove();
-                    }
-                    Thread.Sleep(500);
-
-                    while (!ObjectManager.ObjectManager.Me.IsDeadMe && _healLoop &&
-                           !ObjectManager.ObjectManager.Me.InTransport)
-                    {
-                        Thread.Sleep(500);
-                    }
+                    MovementManager.StopMove();
                 }
-                _healLoop = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StartHealBot(): " + exception);
-                _healLoop = false;
+                _healLoop = true;
             }
         }
 
@@ -74,6 +54,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Logging.Write("Stop healing process.");
                 _healLoop = false;
             }
             catch (Exception exception)

@@ -53,7 +53,6 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             MovementManager.StopMove();
-            Logging.Write("Start healing process.");
             Heal.StartHealBot();
             while (ObjectManager.ObjectManager.Me.HealthPercent < 100 ||
                    (Party.IsInGroup() &&
