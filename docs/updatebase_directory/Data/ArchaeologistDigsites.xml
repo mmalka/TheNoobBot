@@ -3482,9 +3482,9 @@
     <name>Emperor's Approach Digsite</name>
     <continentId>870</continentId>
     <position>
-      <X>-918</X>
-      <Y>-1937</Y>
-      <Z>170</Z>
+      <X>1000</X>
+      <Y>1200</Y>
+      <Z>400</Z>
       <Type>Flying</Type>
     </position>
     <px>0.483578145504</px>
