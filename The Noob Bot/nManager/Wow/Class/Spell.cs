@@ -159,7 +159,7 @@ namespace nManager.Wow.Class
                     return;
                 }
                 Logging.WriteDebug("Spell(string spellName): spellName=" + spellName + ", Id found: " + tSpell.Id +
-                                   ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame);
+                                   ", Name found: " + tSpell.Name + ", NameInGame found: " + tSpell.NameInGame + ", KnownSpell: " + tSpell.KnownSpell);
                 Id = tSpell.Id;
                 CastTime = tSpell.CastTime;
                 Cost = tSpell.Cost;
