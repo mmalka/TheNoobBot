@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using nManager.Helpful;
 using nManager.Wow.Enums;
-using PartyType = nManager.Wow.Enums.PartyEnums.PartyType;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -86,11 +85,27 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
+        public static uint GetPartyNumberPlayersLUA(PartyEnums.PartyType partyType = PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)
+        {
+            try
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult + " = GetNumGroupMembers(\"" + partyType + "\");");
+                string sResult = Lua.GetLocalizedText(randomStringResult);
+                return Convert.ToUInt32(sResult);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Party > GetPartyNumberPlayers(): " + e);
+            }
+            return 0;
+        }
+
         public static bool CurrentPlayerIsLeader()
         {
             try
             {
-                return ObjectManager.ObjectManager.Me.GetCurrentPartyType == PartyType.Home
+                return ObjectManager.ObjectManager.Me.GetCurrentPartyType == PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME
                            ? ObjectManager.ObjectManager.Me.IsHomePartyLeader
                            : ObjectManager.ObjectManager.Me.IsInstancePartyLeader;
             }
@@ -101,19 +116,19 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static UInt32 GetPartyPointer(PartyType partyType = PartyType.Home)
+        public static bool CurrentPlayerIsLeaderLUA()
         {
             try
             {
-                if (partyType == PartyType.None || !IsInGroup())
-                    return 0;
-                return Memory.WowMemory.Memory.ReadUInt((uint)((PartyType)(uint)Addresses.Party.PartyOffset + (partyType - PartyType.Home) * (int)(PartyType)4), true);
-                }
+                return ObjectManager.ObjectManager.Me.GetCurrentPartyTypeLUA == PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME
+                           ? ObjectManager.ObjectManager.Me.IsHomePartyLeaderLUA
+                           : ObjectManager.ObjectManager.Me.IsInstancePartyLeaderLUA;
+            }
             catch (Exception e)
             {
-                Logging.WriteError("Party > GetPartyPointer(): " + e);
+                Logging.WriteError("Party > CurrentPlayerIsLeader(): " + e);
             }
-            return 0;
+            return false;
         }
 
         public static bool IsInGroup()
@@ -127,6 +142,40 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("Party > IsInGroup(): " + e);
             }
             return false;
+        }
+
+        public static bool IsInGroupLUA(PartyEnums.PartyType partyType = PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)
+        {
+            try
+            {
+                string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomStringResult + " = IsInGroup(\"" + partyType + "\")");
+                string sResult = Lua.GetLocalizedText(randomStringResult);
+                return Convert.ToBoolean(sResult);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetSpellInfoLUA(string spellNameInGame): " + exception);
+            }
+            return false;
+        }
+
+        public static UInt32 GetPartyPointer(PartyEnums.PartyType partyType = PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)
+        {
+            try
+            {
+                if (partyType == PartyEnums.PartyType.None || !IsInGroup())
+                    return 0;
+                return
+                    Memory.WowMemory.Memory.ReadUInt(
+                        (uint)
+                        ((PartyEnums.PartyType) (uint) Addresses.Party.PartyOffset + (partyType - PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)*(int) (PartyEnums.PartyType) 4), true);
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Party > GetPartyPointer(): " + e);
+            }
+            return 0;
         }
     }
 }
