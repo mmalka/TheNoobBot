@@ -19,12 +19,11 @@ namespace nManager.Wow.Helpers
 
                     for (uint i = 0; i < numGroupMembers; i++)
                     {
-                        uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i, false);
+                        uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
 
-                        if (partyPlayer <= 0 || Memory.WowMemory.Memory.ReadUInt(partyPlayer + 4, false) != 2)
+                        if (partyPlayer <= 0 || Memory.WowMemory.Memory.ReadUInt(partyPlayer + 4) != 2)
                             continue;
-                        return Memory.WowMemory.Memory.ReadUInt64(partyPlayer + (uint) Addresses.Party.PlayerGuid,
-                                                                  false);
+                        return Memory.WowMemory.Memory.ReadUInt64(partyPlayer + (uint) Addresses.Party.PlayerGuid);
                     }
                 }
             }
@@ -49,11 +48,11 @@ namespace nManager.Wow.Helpers
                     uint numGroupMembers = GetPartyNumberPlayers();
                     for (uint i = 0; i < numGroupMembers; i++)
                     {
-                        uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i, false);
+                        uint partyPlayer = Memory.WowMemory.Memory.ReadUInt(party + 4*i);
                         if (partyPlayer <= 0) continue;
                         ulong currentPlayerGUID =
                             Memory.WowMemory.Memory.ReadUInt64(
-                                partyPlayer + (uint) Addresses.Party.PlayerGuid, false);
+                                partyPlayer + (uint) Addresses.Party.PlayerGuid);
                         if (currentPlayerGUID > 0)
                         {
                             partyPlayersGUID.Add(currentPlayerGUID);
@@ -74,9 +73,12 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);
-                return party > 0
-                           ? Memory.WowMemory.Memory.ReadUInt(party + (uint) Addresses.Party.NumOfPlayers, false)
-                           : 0;
+                if (party > 0)
+                {
+                    uint nbr = Memory.WowMemory.Memory.ReadUInt(party + (uint) Addresses.Party.NumOfPlayers);
+                    if (nbr > 0 && nbr <= 40)
+                        return nbr;
+                }
             }
             catch (Exception e)
             {
@@ -116,26 +118,11 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static bool CurrentPlayerIsLeaderLUA()
-        {
-            try
-            {
-                return ObjectManager.ObjectManager.Me.GetCurrentPartyTypeLUA == PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME
-                           ? ObjectManager.ObjectManager.Me.IsHomePartyLeaderLUA
-                           : ObjectManager.ObjectManager.Me.IsInstancePartyLeaderLUA;
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("Party > CurrentPlayerIsLeader(): " + e);
-            }
-            return false;
-        }
-
         public static bool IsInGroup()
         {
             try
             {
-                return Memory.WowMemory.Memory.ReadUInt((uint) Addresses.Party.PartyOffset, true) > 0;
+                return ObjectManager.ObjectManager.Me.GetCurrentPartyType != PartyEnums.PartyType.None;
             }
             catch (Exception e)
             {
@@ -164,12 +151,13 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (partyType == PartyEnums.PartyType.None || !IsInGroup())
+                if (partyType == PartyEnums.PartyType.None)
                     return 0;
                 return
-                    Memory.WowMemory.Memory.ReadUInt(
-                        (uint)
-                        ((PartyEnums.PartyType) (uint) Addresses.Party.PartyOffset + (partyType - PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)*(int) (PartyEnums.PartyType) 4), true);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint)
+                                                     ((PartyEnums.PartyType) (uint) Addresses.Party.PartyOffset +
+                                                      (partyType - PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME)*(int) (PartyEnums.PartyType) 4));
             }
             catch (Exception e)
             {

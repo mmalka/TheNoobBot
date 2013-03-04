@@ -1180,7 +1180,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return (Health > 0);
+                    return (Health > 1);
                 }
                 catch (Exception e)
                 {
@@ -1331,19 +1331,11 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                if (!Party.IsInGroup())
-                    return
-                        PartyEnums.PartyType.None;
-                else
-                {
-                    if (Party.GetPartyPointer(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE) > 0)
-                        return PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE;
-                    else if (Party.GetPartyPointer() > 0)
-                        return PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME;
-                    else
-                        return PartyEnums.PartyType.None;
-                }
-                // Priority over the Instance group as we can be in both group type at the same time.
+                var instancePointer = Party.GetPartyPointer(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE);
+                var homePointer = Party.GetPartyPointer();
+                return instancePointer > 0
+                           ? PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE
+                           : (homePointer > 0 ? PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME : PartyEnums.PartyType.None);
             }
         }
 
@@ -1351,18 +1343,12 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                if (!Party.IsInGroupLUA())
-                    return
-                        PartyEnums.PartyType.None;
+                if (Party.IsInGroupLUA(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE))
+                    return PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE;
+                else if (Party.IsInGroupLUA())
+                    return PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME;
                 else
-                {
-                    if (Party.IsInGroupLUA(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE))
-                        return PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE;
-                    else if (Party.IsInGroupLUA())
-                        return PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME;
-                    else
-                        return PartyEnums.PartyType.None;
-                }
+                    return PartyEnums.PartyType.None;
             }
         }
 
@@ -1398,44 +1384,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public bool IsHomePartyLeaderLUA
-        {
-            get
-            {
-                try
-                {
-                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = UnitIsGroupLeader(\"Player\", \"LE_PARTY_CATEGORY_HOME\");");
-                    string sResult = Lua.GetLocalizedText(randomStringResult);
-                    return Convert.ToBoolean(sResult);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > IsHomePartyLeader: " + e);
-                    return false;
-                }
-            }
-        }
-
-        public bool IsInstancePartyLeaderLUA
-        {
-            get
-            {
-                try
-                {
-                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = UnitIsGroupLeader(\"Player\", \"LE_PARTY_CATEGORY_INSTANCE\");");
-                    string sResult = Lua.GetLocalizedText(randomStringResult);
-                    return Convert.ToBoolean(sResult);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWUnit > IsInstancePartyLeader: " + e);
-                    return false;
-                }
-            }
-        }
-
         public override string Name
         {
             get
@@ -1448,7 +1396,7 @@ namespace nManager.Wow.ObjectManager
                             Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
                                                                    (uint) Addresses.Player.playerName);
                     }
-                    if (Type == Enums.WoWObjectType.Player)
+                    if (Type == WoWObjectType.Player)
                     {
                         return Usefuls.GetPlayerName(Guid);
                     }
@@ -1918,7 +1866,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public Enums.Reaction Reaction
+        public Reaction Reaction
         {
             get
             {

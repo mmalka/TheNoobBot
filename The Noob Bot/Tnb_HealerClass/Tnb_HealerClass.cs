@@ -435,9 +435,9 @@ public class DruidRestoration
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -450,8 +450,11 @@ public class DruidRestoration
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
@@ -1063,9 +1066,9 @@ public class PaladinHoly
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -1078,8 +1081,11 @@ public class PaladinHoly
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
@@ -1535,9 +1541,9 @@ public class ShamanRestoration
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -1550,8 +1556,11 @@ public class ShamanRestoration
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
@@ -2336,9 +2345,9 @@ public class PriestDiscipline
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -2351,8 +2360,11 @@ public class PriestDiscipline
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
@@ -2979,9 +2991,9 @@ public class PriestHoly
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -2994,8 +3006,11 @@ public class PriestHoly
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
@@ -3650,9 +3665,9 @@ public class MonkMistweaver
                                     if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                         continue;
                                     var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
-                                    if (!currentPlayer.IsValid || currentPlayer.IsDead) continue;
+                                    if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.range)
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -3665,8 +3680,11 @@ public class MonkMistweaver
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
+                                    {
+                                        Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
                                     Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
