@@ -110,9 +110,9 @@
         /// </summary>
         public enum BarManager
         {
-            slotIsEnable = 0xD3AAC0, // Not found
-            startBar = 0xD3B064, // Not found // STRUCTURE CHANGED ON 5.1.0.16309!
-            nbBar = 0xD3AAC0, // Not found
+            slotIsEnable = 0xDBFC18,
+            startBar = 0xDC01BC, // STRUCTURE CHANGED ON 5.1.0.16309!
+            nbBar = 0xDBFC18,
             nextSlot = 0x4, // Not found
         }
 
@@ -126,8 +126,8 @@
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // Not found
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // Not found
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // Not found
-            CastingSpellID = 0xC38, // Not found // Script_UnitCastingInfo
-            ChannelSpellID = 0xC50, // Not found // Script_UnitChannelInfo
+            CastingSpellID = 0xC60, // Script_UnitCastingInfo
+            ChannelSpellID = 0xC78, // Script_UnitChannelInfo
             TransportGUID = 0x7E0, // Not found // CGUnit_C__GetTransportGUID
             DBCacheRow = 0x970, // Not found // CGUnit_C__GetUnitName
             CachedName = 0x64, // Not found // CGUnit_C__GetUnitName
@@ -153,9 +153,9 @@
         /// </summary>
         public enum Battleground
         {
-            statPvp = 0xACCAE8, // Not found
-            pvpExitWindow = 0xD26F38, // Not found
-            selectedBattlegroundId = 0xD26EDC, // Not found
+            statPvp = 0xB55908,
+            pvpExitWindow = 0xDAD168,
+            selectedBattlegroundId = 0xDAD10C,
         }
 
         /// <summary>
@@ -163,8 +163,8 @@
         /// </summary>
         public enum SpellBook
         {
-            knownSpell = 0xD266E0, // Not found
-            nbSpell = 0xD266DC, // Not found
+            knownSpell = 0xDAC8DC,
+            nbSpell = 0xDAC8D8,
         }
 
         /// <summary>
