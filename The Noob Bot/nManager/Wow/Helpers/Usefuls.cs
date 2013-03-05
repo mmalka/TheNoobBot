@@ -377,6 +377,27 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool IsFalling
+        {
+            get
+            {
+                try
+                {
+                    return (Convert.ToBoolean(
+                        Memory.WowMemory.Memory.ReadInt(
+                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                             (uint) Addresses.IsFalling.offset1)
+                            + (uint) Addresses.IsFalling.offset2)
+                        & (int) Addresses.IsFalling.flag));
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("IsFalling: " + e);
+                    return false;
+                }
+            }
+        }
+
         public static bool IsSwimming
         {
             get

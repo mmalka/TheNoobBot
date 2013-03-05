@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 16357
+    ///   Offset and Pointer for Wow 16650
     /// </summary>
     public static class Addresses
     {
@@ -15,10 +15,11 @@
 
         public enum ObjectManager
         {
-            objectManager = 0x462C, // Not found
+            objectManager = 0x4830,
             firstObject = 0xCC, // Not found
             nextObject = 0x3C, // Not found
             localGuid = 0xD0, // Not found
+            objectGUID = 0x30,
         }
 
         /// <summary>
@@ -30,15 +31,25 @@
             DX_DEVICE_IDX = 0x2808, // Not found
             ENDSCENE_IDX = 0xA8, // Not found
         }
+		
+        /// <summary>
+        ///   Is Falling (Script_IsFalling)
+        /// </summary>
+        public enum IsFalling
+        {
+            flag = 0x800,
+            offset1 = 0xE4,
+            offset2 = 0x38,
+        }
 
         /// <summary>
         ///   Is Swimming (Script_IsSwimming) [[base+offset1]+offset2]
         /// </summary>
         public enum IsSwimming
         {
-            flag = 0x100000, // Not found
-            offset1 = 0xE4, // Not found
-            offset2 = 0x38, // Not found
+            flag = 0x100000,
+            offset1 = 0xE4,
+            offset2 = 0x38,
         }
 
         /// <summary>
@@ -46,16 +57,17 @@
         /// </summary>
         public enum IsFlying
         {
-            flag = 0x1000000, // Not found
-            offset1 = 0xE4, // Not found
-            offset2 = 0x38, // Not found
+            flag = 0x1000000,
+            offset1 = 0xE4,
+            offset2 = 0x38,
         }
 
         public enum Party
         {
             PartyOffset = 0xDACA74,
-            NumOfPlayers = 0xC4, // Not found
-            PlayerGuid = 0x10, // Not found
+            NumOfPlayers = 0xC4,
+            NumOfPlayers_SuBGroup = 0xC8,
+            PlayerGuid = 0x10,
         }
 
         public enum PetBattle
@@ -74,7 +86,7 @@
             SpellMisc = 0xC814A4,
             FactionTemplate = 0xC7F4B0,
             Lock = 0xC80500,
-			LockType = 0xC8052C,
+            LockType = 0xC8052C,
             Map = 0xC822D4,
             ResearchSite = 0xC80C0C,
             QuestPOIPoint = 0xC80A54,
@@ -129,9 +141,9 @@
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // Not found
             CastingSpellID = 0xC60, // Script_UnitCastingInfo
             ChannelSpellID = 0xC78, // Script_UnitChannelInfo
-            TransportGUID = 0x7E0, // Not found // CGUnit_C__GetTransportGUID
-            DBCacheRow = 0x970, // Not found // CGUnit_C__GetUnitName
-            CachedName = 0x64, // Not found // CGUnit_C__GetUnitName
+            TransportGUID = 0x7F8, // CGUnit_C__HasVehicleTransport
+            DBCacheRow = 0x988, // CGUnit_C__GetUnitName
+            CachedName = 0x78, // CGUnit_C__GetUnitName
         }
 
         /// <summary>
