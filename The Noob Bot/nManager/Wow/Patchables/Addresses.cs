@@ -84,14 +84,14 @@
         /// </summary>
         public enum GameInfo
         {
-            continentId = 0xA55824, // Not found
-            buildWowVersion = 0xAFACDC, // Not found
-            gameState = 0xCC9EFA, // Not found
-            isLoadingOrConnecting = 0xC05F80, // Not found
-            AreaId = 0xAC2B9C, // Not found
-            lastWowErrorMessage = 0xCC92F8, // Not found
-            zoneMap = 0xCC9EF0, // Not found
-            subZoneMap = 0xCC9EEC, // Not found
+            continentId = 0xAD6814,
+            buildWowVersion = 0xB7E6C4,
+            gameState = 0xD4FF26,
+            isLoadingOrConnecting = 0xC89A50,
+            AreaId = 0xB4B94C,
+            lastWowErrorMessage = 0xD4F328,
+            zoneMap = 0xD4FF1C,
+            subZoneMap = 0xD4FF18,
         }
 
         /// <summary>
@@ -99,10 +99,10 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xD39520, // Not found
-            playerName = 0xE28468, // Not found
-            PlayerComboPoint = 0xCC9FDD, // Not found
-            RetrieveCorpseWindow = 0xCC9FB0, // Not found
+            petGUID = 0xDBE660,
+            playerName = 0xEAD4F0,
+            PlayerComboPoint = 0xD50009,
+            RetrieveCorpseWindow = 0xD4FFDC,
         }
 
         /// <summary>
