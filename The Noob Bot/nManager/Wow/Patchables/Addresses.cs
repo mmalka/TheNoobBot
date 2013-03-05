@@ -15,10 +15,10 @@
 
         public enum ObjectManager
         {
-            objectManager = 0x4830,
-            firstObject = 0xCC, // Not found
-            nextObject = 0x3C, // Not found
-            localGuid = 0xD0, // Not found
+            objectManager = 0x462C,
+            firstObject = 0xCC,
+            nextObject = 0x3C,
+            localGuid = 0xD0,
             objectGUID = 0x30,
         }
 
@@ -27,7 +27,7 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0xB9C4C,
+            DX_DEVICE = 0xB9C4C4,
             DX_DEVICE_IDX = 0x2808, // Not found
             ENDSCENE_IDX = 0xA8, // Not found
         }
