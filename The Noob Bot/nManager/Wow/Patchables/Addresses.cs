@@ -68,15 +68,15 @@
         /// </summary>
         public enum DBC
         {
-            Spell = 0xBFDBC8, // Not found
+            Spell = 0xC815D8,
             SpellCastTimes = 0xC81084,
-            SpellRange = 0xBFDB44, // Not found
-            SpellMisc = 0xBFDA68, // Not found
-            FactionTemplate = 0xBFBACC, // Not found
-            Lock = 0xBFCAF0, // Not found
-            Map = 0xBFE8C4, // Not found
-            ResearchSite = 0xBFD1D0, // Not found
-            QuestPOIPoint = 0xBFD018, // Not found
+            SpellRange = 0xC81580,
+            SpellMisc = 0xC7B57C,
+            FactionTemplate = 0xC7F4B0,
+            Lock = 0xC80500,
+            Map = 0xC822D4,
+            ResearchSite = 0xC80C0C,
+            QuestPOIPoint = 0xC7B57C,
         }
 
         /// <summary>
