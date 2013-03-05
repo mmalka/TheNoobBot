@@ -23,11 +23,17 @@ namespace nManager.Wow.Helpers
 
                 // Search if exist ingame:
                 Lua.LuaDoString("key1, key2 = GetBindingKey(\"" + action + "\");");
-                string kt = Lua.GetLocalizedText("key1");
-                if (kt != "")
+                string k1 = Lua.GetLocalizedText("key1");
+                string k2 = Lua.GetLocalizedText("key2");
+                if (k1 != "")
                 {
-                    _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = kt});
-                    return kt;
+                    _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = k1});
+                    return k1;
+                }
+                if (k2 != "")
+                {
+                    _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = k2});
+                    return k2;
                 }
 
                 // Create if don't exist:
