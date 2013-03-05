@@ -71,12 +71,13 @@
             Spell = 0xC815D8,
             SpellCastTimes = 0xC81084,
             SpellRange = 0xC81580,
-            SpellMisc = 0xC7B57C,
+            SpellMisc = 0xC814A4,
             FactionTemplate = 0xC7F4B0,
             Lock = 0xC80500,
+			LockType = 0xC8052C,
             Map = 0xC822D4,
             ResearchSite = 0xC80C0C,
-            QuestPOIPoint = 0xC7B57C,
+            QuestPOIPoint = 0xC80A54,
         }
 
         /// <summary>
@@ -204,13 +205,13 @@
         public enum FunctionWow
         {
             ClntObjMgrGetActivePlayer = 0x44AF7F,
-            FrameScript_ExecuteBuffer = 0x75E10, // Not found
-            CGPlayer_C__ClickToMove = 0x4B26E0, // Not found
-            ClntObjMgrGetActivePlayerObj = 0x33E0, // Not found
-            FrameScript__GetLocalizedText = 0x4AB6A0, // Not found
-            CGWorldFrame__Intersect = 0x721980, // Not found
-            Spell_C__HandleTerrainClick = 0x3FCD50, // Not found
-            Interact = 0x5A5DA0, // Not found
+            FrameScript_ExecuteBuffer = 0x75E10,
+            CGPlayer_C__ClickToMove = 0x4EBF80,
+            ClntObjMgrGetActivePlayerObj = 0x32B0,
+            FrameScript__GetLocalizedText = 0x4E4B80,
+            CGWorldFrame__Intersect = 0x75DC50,
+            Spell_C__HandleTerrainClick = 0x4390D0,
+            Interact = 0x5E2F20,
         }
 
         /// <summary>
@@ -218,9 +219,9 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xCCA28C, // Not found
-            Y = X + 0x4, // Not found
-            Z = Y + 0x4, // Not found
+            X = 0xD502B8,
+            Y = X + 0x4,
+            Z = Y + 0x4,
         }
 
         /// <summary>
@@ -228,10 +229,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xBF8508 + 0x8, // Not found
-            nameMaskOffset = 0x024, // Not found
-            nameBaseOffset = 0x01c, // Not found
-            nameStringOffset = 0x021, // Not found
+            nameStorePtr = 0xC7BEB0 + 0x8,
+            nameMaskOffset = 0x024,
+            nameBaseOffset = 0x01c,
+            nameStringOffset = 0x021,
         }
 
         /// <summary>
@@ -239,8 +240,8 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xE285F0 + 0x6, // Not found
-            battlerNetWindow = 0xC05F80, // Not found
+            realmName = 0xEADC30 + 0x6,
+            battlerNetWindow = 0xC89A50,
         }
 
         /// <summary>
@@ -248,8 +249,8 @@
         /// </summary>
         public enum AutoLoot
         {
-            AutoLoot_Activate_Pointer = 0xCCA134, // Not found
-            AutoLoot_Activate_Offset = 0x30, // Not found
+            AutoLoot_Activate_Pointer = 0xD50160,
+            AutoLoot_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -257,8 +258,8 @@
         /// </summary>
         public enum AutoSelfCast
         {
-            AutoSelfCast_Activate_Pointer = 0xCCA140, // Not found
-            AutoSelfCast_Activate_Offset = 0x30, // Not found
+            AutoSelfCast_Activate_Pointer = 0xD5016C,
+            AutoSelfCast_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -266,8 +267,8 @@
         /// </summary>
         public enum AutoInteract
         {
-            AutoInteract_Activate_Pointer = 0xCCA114, // Not found
-            AutoInteract_Activate_Offset = 0x30, // Not found
+            AutoInteract_Activate_Pointer = 0xD50140,
+            AutoInteract_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -276,11 +277,11 @@
         public enum Quests
         {
             // TODO Retrieve unknown Quests offsets
-            ActiveQuests = 0x0, // Not found // Not Update
-            SelectedQuestId = 0x0, // Not found // Not Update
-            TitleText = 0x0, // Not found // Not Update
-            GossipQuests = 0x0, // Not found // Not Update
-            GossipQuestNext = 0x0, // Not found // Not Update
+            ActiveQuests = 0x0, // Not found
+            SelectedQuestId = 0x0, // Not found
+            TitleText = 0x0, // Not found
+            GossipQuests = 0x0, // Not found
+            GossipQuestNext = 0x0, // Not found
         }
 
         /// <summary>
@@ -288,12 +289,12 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AURA_COUNT_1 = 0x1088, // Not found
-            AURA_COUNT_2 = 0xD8C, // Not found
-            AURA_TABLE_1 = 0xD88, // Not found
-            AURA_TABLE_2 = 0xD90, // Not found
-            AURA_SIZE = 0x30, // Not found
-            AURA_SPELL_ID = 0x18, // Not found
+            AURA_COUNT_1 = 0x10C8,
+            AURA_COUNT_2 = 0xDC8,
+            AURA_TABLE_1 = 0xDC8,
+            AURA_TABLE_2 = 0xDCC,
+            AURA_SIZE = 0x30,
+            AURA_SPELL_ID = 0x18,
             AURA_STACK = 0x1D, // Not found // ? // TODO Check for AURA_STACK offset
         }
 
@@ -302,7 +303,7 @@
         /// </summary>
         public enum PowerIndex
         {
-            PowerIndexArrays = 0xC7C91C, // Not found
+            PowerIndexArrays = 0xD0188C,
             Multiplicator = 0x10, // Not found
         }
     }

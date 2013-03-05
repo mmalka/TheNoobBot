@@ -10,12 +10,12 @@
 
         public enum ObjectFields
         {
-            Guid = 0,
-            Data = 2,
-            Type = 4,
-            Entry = 5,
-            Scale = 6,
-            End = 7,
+            Guid = 0x0,
+            Data = 0x2,
+            Type = 0x4,
+            Entry = 0x5,
+            Scale = 0x6,
+            End = 0x7,
         }
 
         public enum ItemFields
