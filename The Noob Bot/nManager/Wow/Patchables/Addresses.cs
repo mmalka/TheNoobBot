@@ -172,10 +172,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0xCCBD70, // Not found
-            NextMessage = 0x17C0, // Not found
-            msgFormatedChat = 0x3C, // Not found
-            chatBufferPos = 0xD25308, // Not found
+            chatBufferStart = 0xD51D98,
+            NextMessage = 0x17C8,
+            msgFormatedChat = 0x3C,
+            chatBufferPos = 0xDAB510,
         }
 
         /// <summary>
@@ -183,11 +183,11 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xC7CC90, // Not found
-            CTM_PUSH = CTM + 0x1C, // Not found
-            CTM_X = CTM + 0x8C, // Not found
-            CTM_Y = CTM_X + 0x4, // Not found
-            CTM_Z = CTM_Y + 0x4, // Not found
+            CTM = 0xD01C00,
+            CTM_PUSH = CTM + 0x1C,
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -203,8 +203,8 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x40E570, // Not found
-            FrameScript_ExecuteBuffer = 0x75AC0, // Not found
+            ClntObjMgrGetActivePlayer = 0x44AF7F,
+            FrameScript_ExecuteBuffer = 0x75E10, // Not found
             CGPlayer_C__ClickToMove = 0x4B26E0, // Not found
             ClntObjMgrGetActivePlayerObj = 0x33E0, // Not found
             FrameScript__GetLocalizedText = 0x4AB6A0, // Not found
