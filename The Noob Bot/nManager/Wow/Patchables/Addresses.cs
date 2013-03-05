@@ -216,7 +216,7 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x44AF7F,
+            ClntObjMgrGetActivePlayer = 0x44AF70,
             FrameScript_ExecuteBuffer = 0x75E10,
             CGPlayer_C__ClickToMove = 0x4EBF80,
             ClntObjMgrGetActivePlayerObj = 0x32B0,
