@@ -32,6 +32,9 @@ namespace nManager.Wow.ObjectManager
                         }
                     }
 
+                    if (BaseAddress == 0)
+                        return new Point(0, 0, 0);
+
                     var ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +

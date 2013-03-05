@@ -69,6 +69,8 @@ namespace nManager.Wow.MemoryClass
                 memory.ReadUInt((uint) memory.GetModule("Wow.exe").BaseAddress +
                                 (uint) Patchables.Addresses.Hooking.DX_DEVICE);
             uint pEnd = memory.ReadUInt(pDevice + (uint) Patchables.Addresses.Hooking.DX_DEVICE_IDX);
+            if (pEnd == 0)
+                return 0;
             uint pScene = memory.ReadUInt(pEnd);
             d3d9Adresse = memory.ReadUInt(pScene + (uint) Patchables.Addresses.Hooking.ENDSCENE_IDX);
 
