@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0x0; // 0xEADA68
+            public static uint clientConnection = 0xEADA68; // 0xEADA68
         }
 
         public enum ObjectManager
@@ -31,7 +31,7 @@
             DX_DEVICE_IDX = 0x2808, // Not found
             ENDSCENE_IDX = 0xA8, // Not found
         }
-		
+
         /// <summary>
         ///   Is Falling (Script_IsFalling)
         /// </summary>
@@ -113,7 +113,7 @@
         public enum Player
         {
             petGUID = 0xDBE660,
-            playerName = 0xEAD4F0,
+            playerName = 0xEADAA8,
             PlayerComboPoint = 0xD50009,
             RetrieveCorpseWindow = 0xD4FFDC,
         }
