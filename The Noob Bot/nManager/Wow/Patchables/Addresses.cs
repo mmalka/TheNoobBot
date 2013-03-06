@@ -10,7 +10,7 @@
         /// </summary>
         public class ObjectManagerClass
         {
-            public static uint clientConnection = 0xEADA68; // 0xEADA68
+            public static uint clientConnection = 0x0; // 0xEADA68
         }
 
         public enum ObjectManager
@@ -29,8 +29,8 @@
         public enum Hooking
         {
             DX_DEVICE = 0xB9C4C4,
-            DX_DEVICE_IDX = 0x2808, // Not found
-            ENDSCENE_IDX = 0xA8, // Not found
+            DX_DEVICE_IDX = 0x2808,
+            ENDSCENE_IDX = 0xA8,
         }
 
         /// <summary>

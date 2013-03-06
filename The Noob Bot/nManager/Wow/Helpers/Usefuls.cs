@@ -738,7 +738,7 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(5);
                 }
 
-                
+
                 return
                     Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
             }
