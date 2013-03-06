@@ -50,7 +50,7 @@ namespace nManager.Wow.Helpers
                                                          Descriptors.startDescriptors);
                     uint addressGD = descriptorsArray +
                                      ((uint) Descriptors.PlayerFields.Skill*Descriptors.multiplicator);
-                    var result = Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + 0x200); // To be updated.
+                    var result = Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillValue);
                     return result;
                 }
                 return 0;
@@ -75,7 +75,7 @@ namespace nManager.Wow.Helpers
                                                          Descriptors.startDescriptors);
                     uint addressGD = descriptorsArray +
                                      ((uint) Descriptors.PlayerFields.Skill*Descriptors.multiplicator);
-                    return Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + 0x400); // To be updated.
+                    return Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillMaxValue);
                 }
                 return 0;
             }

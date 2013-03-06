@@ -117,6 +117,9 @@
             playerName = 0xEADAA8,
             PlayerComboPoint = 0xD50009,
             RetrieveCorpseWindow = 0xD4FFDC,
+            // Some offsets to refine descriptor
+            SkillValue = 0x200,
+            SkillMaxValue = 0x400,
         }
 
         /// <summary>
