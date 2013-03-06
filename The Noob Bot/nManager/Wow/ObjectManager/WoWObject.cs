@@ -107,7 +107,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return (WoWObjectType) Memory.WowMemory.Memory.ReadInt(BaseAddress + (uint) Addresses.ObjectManager.objectTYPE);
+                    if (BaseAddress > 0)
+                        return (WoWObjectType) GetDescriptor<int>(Descriptors.ObjectFields.Type);
+                    return WoWObjectType.Object;
                 }
                 catch (Exception e)
                 {
