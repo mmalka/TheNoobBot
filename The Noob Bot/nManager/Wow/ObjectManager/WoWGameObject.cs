@@ -350,9 +350,11 @@ namespace nManager.Wow.ObjectManager
                                         ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
                                         bonus = 10;
                                 }
-
-                                //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + (Skill.GetValue(skill) + bonus));
-                                if (Skill.GetValue(skill) == 0 || Skill.GetValue(skill) + bonus < reqSkillValue)
+                                var currentSkillLevel = Skill.GetValue(skill);
+                                if (currentSkillLevel != 0)
+                                    currentSkillLevel += bonus;
+                                //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + currentSkillLevel);
+                                if (Skill.GetValue(skill) == 0 || currentSkillLevel < reqSkillValue)
                                     return false;
 
                                 return true;
