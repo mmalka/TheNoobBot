@@ -73,7 +73,7 @@
 
         public enum PetBattle
         {
-            IsInBattle = 0xDAC204, // LUA: C_PetBattles.IsInBattle
+            IsInBattle = 0xDAC204,
         }
 
         /// <summary>
@@ -127,7 +127,7 @@
             slotIsEnable = 0xDBFC18,
             startBar = 0xDC01BC, // STRUCTURE CHANGED ON 5.1.0.16309!
             nbBar = 0xDBFC18,
-            nextSlot = 0x4, // Not found
+            nextSlot = 0x4, // Valid ???
         }
 
         /// <summary>
@@ -157,9 +157,9 @@
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             DBCacheRow = 0x1B8,
             CachedName = 0xB0,
-            CachedData0 = 0x14, // Not found
-            CachedData1 = 0x18, // Not found
-            CachedData8 = 0x34, // Not found // (Data0 + 8 * 0x04)
+            CachedData0 = 0x14, // Valid ???
+            CachedData1 = 0x18, // Valid ???
+            CachedData8 = 0x34, // Valid ??? // (Data0 + 8 * 0x04)
         }
 
         /// <summary>
@@ -209,7 +209,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 36, // Not found
+            CGUnit_C__GetFacing = 36, // Valid ???
         }
 
         /// <summary>
@@ -242,7 +242,7 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xC7BEB0 + 0x8,
+            nameStorePtr = 0xC7BEB0 + 0x8, // Structure has changed, need to update.
             nameMaskOffset = 0x024,
             nameBaseOffset = 0x01c,
             nameStringOffset = 0x021,
@@ -290,11 +290,11 @@
         public enum Quests
         {
             // TODO Retrieve unknown Quests offsets
-            ActiveQuests = 0x0, // Not found
-            SelectedQuestId = 0x0, // Not found
-            TitleText = 0x0, // Not found
-            GossipQuests = 0x0, // Not found
-            GossipQuestNext = 0x0, // Not found
+            ActiveQuests = 0x0, // Valid ???
+            SelectedQuestId = 0x0, // Valid ???
+            TitleText = 0x0, // Valid ???
+            GossipQuests = 0x0, // Valid ???
+            GossipQuestNext = 0x0, // Valid ???
         }
 
         /// <summary>
@@ -308,7 +308,7 @@
             AURA_TABLE_2 = 0xDCC,
             AURA_SIZE = 0x30,
             AURA_SPELL_ID = 0x18,
-            AURA_STACK = 0x1D, // Not found // ? // TODO Check for AURA_STACK offset
+            AURA_STACK = 0x1D, // Valid ??? // TODO Check for AURA_STACK offset
         }
 
         /// <summary>
@@ -317,7 +317,7 @@
         public enum PowerIndex
         {
             PowerIndexArrays = 0xD0188C,
-            Multiplicator = 0x10, // Not found
+            Multiplicator = 0x10, // Valid ???
         }
     }
 }
