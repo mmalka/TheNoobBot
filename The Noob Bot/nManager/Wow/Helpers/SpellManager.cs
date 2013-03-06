@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Patchables;
@@ -12,6 +13,43 @@ namespace nManager.Wow.Helpers
 {
     public class SpellManager
     {
+
+        [StructLayout(LayoutKind.Explicit, Size = 0x10)]
+        private struct SpellInfo
+        {
+            public enum SpellState : uint
+            {
+                Known = 1, // the spell has been learnt and can be cast
+                FutureSpell = 2, // the spell is known but not yet learnt
+                PetAction = 3,
+                Flyout = 4
+            };
+
+            /// <summary>
+            /// The state of the spell in the spell book
+            /// </summary>
+            [FieldOffset(0x0)]
+            public readonly SpellState State;
+
+            /// <summary>
+            /// The spell identifier of the spell in the spell book
+            /// </summary>
+            [FieldOffset(0x4)]
+            public readonly uint ID; // it's an int in client, but we don't care
+
+            /// <summary>
+            /// The level of the spell level in the spell book
+            /// </summary>
+            [FieldOffset(0x8)]
+            public readonly uint Level;
+
+            /// <summary>
+            /// The tab where the spell is stored in the spell book
+            /// </summary>
+            [FieldOffset(0xC)]
+            public readonly uint TabId;
+        }
+
         private static readonly List<uint> MountDruidIdList = new List<uint>();
 
         public static List<uint> MountDruidId()
@@ -418,9 +456,9 @@ namespace nManager.Wow.Helpers
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
                         var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                        var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
-                        if (isKnown == 1)
-                            spellBook.Add(Memory.WowMemory.Memory.ReadUInt(Struct + 0x4)); // To be updated.
+                        var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                        if (si.State == SpellInfo.SpellState.Known)
+                            spellBook.Add(si.ID);
                         Application.DoEvents();
                     }
 
@@ -448,10 +486,9 @@ namespace nManager.Wow.Helpers
                 var j = 0;
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-
-                    var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
-                    if (3 == Memory.WowMemory.Memory.ReadUInt(Struct + 0x8) && isKnown == 2) // To be updated.
+                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i * 4);
+                    var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                    if (si.State == SpellInfo.SpellState.Known)
                         j++;
                 }
                 return j;
@@ -525,15 +562,14 @@ namespace nManager.Wow.Helpers
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
                     var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
-                    if (isKnown == 1)
+                    var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                    if (si.State == SpellInfo.SpellState.Known)
                     {
-                        uint id = Memory.WowMemory.Memory.ReadUInt(Struct + 0x4); // To be updated.
-                        if (!_spellBookID.Contains(id))
+                        if (!_spellBookID.Contains(si.ID))
                         {
-                            _spellBookID.Add(id);
-                            _spellBookName.Add(SpellListManager.SpellNameByIdExperimental(id));
-                            _spellBookSpell.Add(SpellInfoLUA(id));
+                            _spellBookID.Add(si.ID);
+                            _spellBookName.Add(SpellListManager.SpellNameByIdExperimental(si.ID));
+                            _spellBookSpell.Add(SpellInfoLUA(si.ID));
                         }
                     }
                     Application.DoEvents();
