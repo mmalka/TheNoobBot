@@ -1037,7 +1037,7 @@ namespace nManager.Wow.ObjectManager
                          (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
             uint result =
                 Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                 (uint) Addresses.PowerIndex.PowerIndexArrays + index*4);
+                                                 (uint) Addresses.PowerIndex.PowerIndexArrays + index*4); // To be updated. (Use Get Descriptors)
             return result;
         }
 
@@ -1048,7 +1048,7 @@ namespace nManager.Wow.ObjectManager
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
                                                  ((uint) Descriptors.UnitFields.Power*Descriptors.multiplicator +
-                                                  index*4));
+                                                  index*4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
 
@@ -1059,7 +1059,7 @@ namespace nManager.Wow.ObjectManager
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
                                                  ((uint) Descriptors.UnitFields.MaxPower*Descriptors.multiplicator +
-                                                  index*4));
+                                                  index*4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
 

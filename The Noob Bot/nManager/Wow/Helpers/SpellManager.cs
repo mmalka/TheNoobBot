@@ -53,6 +53,7 @@ namespace nManager.Wow.Helpers
             {
                 for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
                      i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     // To be updated.
                      i = i + (int) Addresses.BarManager.nextSlot)
                 {
                     uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
@@ -92,6 +93,7 @@ namespace nManager.Wow.Helpers
             {
                 for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
                      i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     // To be updated.
                      i = i + (int) Addresses.BarManager.nextSlot)
                 {
                     if (Memory.WowMemory.Memory.ReadUInt((uint) i) == spellId)
@@ -130,6 +132,7 @@ namespace nManager.Wow.Helpers
             {
                 for (int i = (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar;
                      i <= (int) Memory.WowProcess.WowModule + (int) Addresses.BarManager.startBar + 0x11C;
+                     // To be updated.
                      i = i + (int) Addresses.BarManager.nextSlot)
                 {
                     uint sIdt = Memory.WowMemory.Memory.ReadUInt((uint) i);
@@ -417,7 +420,7 @@ namespace nManager.Wow.Helpers
                         var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                         var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
                         if (isKnown == 1)
-                            spellBook.Add(Memory.WowMemory.Memory.ReadUInt(Struct + 0x4));
+                            spellBook.Add(Memory.WowMemory.Memory.ReadUInt(Struct + 0x4)); // To be updated.
                         Application.DoEvents();
                     }
 
@@ -448,7 +451,7 @@ namespace nManager.Wow.Helpers
                     var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
 
                     var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
-                    if (3 == Memory.WowMemory.Memory.ReadUInt(Struct + 0x8) && isKnown == 2)
+                    if (3 == Memory.WowMemory.Memory.ReadUInt(Struct + 0x8) && isKnown == 2) // To be updated.
                         j++;
                 }
                 return j;
@@ -525,7 +528,7 @@ namespace nManager.Wow.Helpers
                     var isKnown = Memory.WowMemory.Memory.ReadInt(Struct);
                     if (isKnown == 1)
                     {
-                        uint id = Memory.WowMemory.Memory.ReadUInt(Struct + 0x4);
+                        uint id = Memory.WowMemory.Memory.ReadUInt(Struct + 0x4); // To be updated.
                         if (!_spellBookID.Contains(id))
                         {
                             _spellBookID.Add(id);
