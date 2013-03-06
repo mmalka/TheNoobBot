@@ -706,7 +706,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return "NameToFind";
                 var mask =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                      (uint) Addresses.PlayerNameStore.nameStorePtr +

@@ -157,9 +157,9 @@
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             DBCacheRow = 0x1B8,
             CachedName = 0xB0,
-            CachedData0 = 0x14, // Valid ???
-            CachedData1 = 0x18, // Valid ???
-            CachedData8 = 0x34, // Valid ??? // (Data0 + 8 * 0x04)
+            CachedData0 = 0x14,
+            CachedData1 = 0x18,
+            CachedData8 = 0x34, // (Data0 + 8 * 0x04)
         }
 
         /// <summary>
@@ -209,7 +209,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 36, // Valid ???
+            CGUnit_C__GetFacing = 0x24,
         }
 
         /// <summary>
@@ -242,10 +242,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xC7BEB0 + 0x8, // Structure has changed, need to update.
+            nameStorePtr = 0xC7BEB0 + 0x8,
             nameMaskOffset = 0x024,
-            nameBaseOffset = 0x01c,
-            nameStringOffset = 0x021,
+            nameBaseOffset = 0x18,
+            nameStringOffset = 0x21,
         }
 
         /// <summary>
@@ -317,7 +317,7 @@
         public enum PowerIndex
         {
             PowerIndexArrays = 0xD0188C,
-            Multiplicator = 0x10, // Valid ???
+            Multiplicator = 0x10,
         }
     }
 }
