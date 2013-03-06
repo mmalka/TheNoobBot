@@ -134,11 +134,11 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x858, // Not found
-            UNIT_FIELD_X = 0x7E8, // Not found
-            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // Not found
-            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // Not found
-            UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // Not found
+            UNIT_SPEED = 0x870,
+            UNIT_FIELD_X = 0x800,
+            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
+            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
+            UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xC60, // Script_UnitCastingInfo
             ChannelSpellID = 0xC78, // Script_UnitChannelInfo
             TransportGUID = 0x7F8, // CGUnit_C__HasVehicleTransport
@@ -151,11 +151,11 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0xF0, // Not found
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // Not found
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // Not found
-            DBCacheRow = 0x1B8, // Not found
-            CachedName = 0xB4, // Not found
+            GAMEOBJECT_FIELD_X = 0x1EC,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            DBCacheRow = 0x1B8,
+            CachedName = 0xB0,
             CachedData0 = 0x14, // Not found
             CachedData1 = 0x18, // Not found
             CachedData8 = 0x34, // Not found // (Data0 + 8 * 0x04)
@@ -233,7 +233,7 @@
         {
             X = 0xD502B8,
             Y = X + 0x4,
-            Z = Y + 0x4,
+            Z = X + 0x8,
         }
 
         /// <summary>
