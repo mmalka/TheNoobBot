@@ -75,29 +75,23 @@ namespace nManager.Wow.Class
                             }
 
                             var range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
-
-                            try
+                            if (range.Id != 0)
                             {
                                 var tMaxRange = range.RangeMax[0];
                                 MaxRange = range.RangeMax[1];
                                 if (tMaxRange > MaxRange)
                                     MaxRange = tMaxRange;
-                            }
-                            catch
-                            {
-                                MaxRange = 0;
-                            }
-                            try
-                            {
                                 var tMinRange = range.RangeMin[0];
                                 MinRange = range.RangeMin[0];
                                 if (tMinRange > MinRange)
                                     MinRange = tMinRange;
                             }
-                            catch
+                            else
                             {
+                                MaxRange = 0;
                                 MinRange = 0;
                             }
+
                             Name = SpellManager.SpellListManager.SpellNameById(spellId);
                             try
                             {
