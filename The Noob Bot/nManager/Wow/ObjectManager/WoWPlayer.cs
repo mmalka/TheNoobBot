@@ -132,54 +132,6 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public uint BarTwo
-        {
-            get
-            {
-                try
-                {
-                    return GetDescriptor<uint>((uint) Descriptors.UnitFields.Power);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > BarTwo: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint BarTwoMax
-        {
-            get
-            {
-                try
-                {
-                    return GetDescriptor<uint>((uint) Descriptors.UnitFields.MaxPower);
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > BarTwoMax: " + e);
-                    return 0;
-                }
-            }
-        }
-
-        public uint BarTwoPercentage
-        {
-            get
-            {
-                try
-                {
-                    return BarTwo*100/BarTwoMax;
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > BarTwoPercentage: " + e);
-                    return 0;
-                }
-            }
-        }
-
         public int ComboPoint
         {
             get
