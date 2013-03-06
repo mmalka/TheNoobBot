@@ -352,7 +352,7 @@ namespace nManager.Wow.ObjectManager
                                 }
 
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + (Skill.GetValue(skill) + bonus));
-                                if (Skill.GetValue(skill) + bonus < reqSkillValue)
+                                if (Skill.GetValue(skill) == 0 || Skill.GetValue(skill) + bonus < reqSkillValue)
                                     return false;
 
                                 return true;
