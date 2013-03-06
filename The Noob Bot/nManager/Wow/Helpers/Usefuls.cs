@@ -706,6 +706,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                return "NameToFind";
                 var mask =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                      (uint) Addresses.PlayerNameStore.nameStorePtr +
@@ -737,6 +738,7 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(5);
                 }
 
+                
                 return
                     Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
             }
