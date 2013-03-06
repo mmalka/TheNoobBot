@@ -160,10 +160,10 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint) currentObject + 0x30);
+                        ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint)currentObject + (uint)Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
-                            var objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + 0x10);
+                            var objType = (WoWObjectType)Memory.WowMemory.Memory.ReadInt((uint)currentObject + (uint)Addresses.ObjectManager.objectTYPE);
 
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE

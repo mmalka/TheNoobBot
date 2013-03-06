@@ -20,6 +20,7 @@
             nextObject = 0x3C,
             localGuid = 0xD0,
             objectGUID = 0x30,
+            objectTYPE = 0x10,
         }
 
         /// <summary>
