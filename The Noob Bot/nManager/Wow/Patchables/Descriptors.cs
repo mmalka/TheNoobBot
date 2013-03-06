@@ -217,7 +217,8 @@
             ModPetHaste = UnitFields.End + 1816,
             SummonedBattlePetGUID = UnitFields.End + 1817,
             OverrideSpellsID = UnitFields.End + 1819,
-            End = UnitFields.End + 1820,
+            LfgBonusFactionID = UnitFields.End + 1820,
+            End = UnitFields.End + 1821,
         }
 
         public enum GameObjectFields
