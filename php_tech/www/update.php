@@ -1,5 +1,5 @@
 <?php
 if(isset($_GET['show']) && $_GET['show'] == 'desc')
-  echo '(WoW 5.1.0a)';
+  echo '(WoW 5.2.0)';
 else
-echo '1.3.15';
+echo '1.4.0';
