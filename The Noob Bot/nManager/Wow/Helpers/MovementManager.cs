@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Class;
@@ -105,6 +106,46 @@ namespace nManager.Wow.Helpers
                 }
                 return null;
             }
+        }
+
+        public static List<Point> ConvertFlyingToFeet(List<Point> profile)
+        {
+            try
+            {
+                Logging.Write("The selected profile is a Flying profile, but we are not able to fly.");
+                Logging.Write("We highly recommand you to use a real Ground Profile instead, the conversion can cause issues.");
+                Logging.Write("Starting OnTheFly Flying Profile conversion to Ground Profile...");
+                var tmpList = new List<Point>();
+                var pt = new List<Point>();
+                foreach (var t in profile)
+                {
+                    var curr = t.Type.ToLower() == "flying" ? PathFinder.GetZPosition(t) : t.Z;
+                    if (curr == 0)
+                        continue; // GetZ fail mainly mean that the current point is over an unaccessible element, so just continue until we find a valid route.
+                    if (pt.Any())
+                    {
+                        bool resultSuccess;
+                        pt = PathFinder.FindPath(pt[pt.Count() - 1], new Point(t.X, t.Y, curr), Usefuls.ContinentNameMpq, out resultSuccess);
+                        if (!resultSuccess)
+                            continue; // PathFinder fail mainly mean that the current point is over an unaccessible element, so just continue until we find a valid route.
+                    }
+                    else
+                    {
+                        pt.Add(new Point(t.X, t.Y, curr));
+                    }
+                    tmpList.AddRange(pt);
+                }
+                Logging.WriteDebug("Convert Flying Profile to Ground Profile: Original profile : " + profile.Count + " Checkpoints, After conversion : " + tmpList.Count +
+                                   " Checkpoints");
+                Logging.Write("OnTheFly Flying Profile conversion terminated.");
+                return tmpList;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("ConvertFlyingToFeet(List<Point> Profile): " + exception);
+            }
+            Logging.Write("OnTheFly Flying Profile conversion to Ground Profile failed, please use a real Ground Profile...");
+            return profile;
         }
 
         public static void LaunchThreadMovementManager()

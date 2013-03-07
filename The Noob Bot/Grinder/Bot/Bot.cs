@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 using Grinder.Profile;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
@@ -115,7 +117,7 @@ namespace Grinder.Bot
         {
             try
             {
-                nManager.Wow.Bot.Tasks.FishingTask.StopLoopFish();
+                FishingTask.StopLoopFish();
                 CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
@@ -161,6 +163,9 @@ namespace Grinder.Bot
             _grinding.FactionsTarget = Profile.GrinderZones[ZoneIdProfile].TargetFactions;
             _grinding.MaxTargetLevel = Profile.GrinderZones[ZoneIdProfile].MaxTargetLevel;
             _grinding.MinTargetLevel = Profile.GrinderZones[ZoneIdProfile].MinTargetLevel;
+
+            if (MountTask.GetMountCapacity() != MountCapacity.Fly && Profile.GrinderZones[ZoneIdProfile].Points.Count(p => p.Type.ToLower() == "flying") > 0)
+                Profile.GrinderZones[ZoneIdProfile].Points = MovementManager.ConvertFlyingToFeet(Profile.GrinderZones[ZoneIdProfile].Points);
 
             _movementLoop.PathLoop = Profile.GrinderZones[ZoneIdProfile].Points;
         }

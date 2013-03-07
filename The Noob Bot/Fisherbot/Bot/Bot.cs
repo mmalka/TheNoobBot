@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using Fisherbot.Profile;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -34,6 +35,9 @@ namespace Fisherbot.Bot
                                                                         FisherbotSetting.CurrentSetting.fishSchoolProfil);
                         if (Profile.Points.Count <= 0)
                             return false;
+
+                        if (MountTask.GetMountCapacity() != MountCapacity.Fly && Profile.Points.Count(p => p.Type.ToLower() == "flying") > 0)
+                            Profile.Points = MovementManager.ConvertFlyingToFeet(Profile.Points);
                     }
                     else
                     {

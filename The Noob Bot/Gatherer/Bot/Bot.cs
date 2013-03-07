@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 
 namespace Gatherer.Bot
@@ -43,6 +44,9 @@ namespace Gatherer.Bot
 
                 // Load CC:
                 CombatClass.LoadCombatClass();
+
+                if (MountTask.GetMountCapacity() != MountCapacity.Fly && Profile.Points.Count(p => p.Type.ToLower() == "flying") > 0)
+                    Profile.Points = MovementManager.ConvertFlyingToFeet(Profile.Points);
 
                 // FSM
                 Fsm.States.Clear();
