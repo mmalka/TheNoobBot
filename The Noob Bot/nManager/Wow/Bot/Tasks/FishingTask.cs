@@ -145,9 +145,6 @@ namespace nManager.Wow.Bot.Tasks
             {
                 Logging.WriteError("FishingTask > LoopFishThread(): " + e);
             }
-            // ReSharper disable FunctionNeverReturns
         }
-
-        // ReSharper restore FunctionNeverReturns
     }
 }

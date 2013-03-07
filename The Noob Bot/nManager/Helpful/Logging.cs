@@ -227,10 +227,7 @@ namespace nManager.Helpful
                 }
                 Thread.Sleep(30);
             }
-            // ReSharper disable FunctionNeverReturns
         }
-
-        // ReSharper restore FunctionNeverReturns
 
         public static void NewFile()
         {

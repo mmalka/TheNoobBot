@@ -81,10 +81,8 @@ namespace The_Noob_Bot
             {
                 Logging.WriteError("Remote > ThreadBotRemote()#2: " + e);
             }
-            // ReSharper disable FunctionNeverReturns
         }
 
-        // ReSharper restore FunctionNeverReturns
         private Channel channel;
         private List<string> channelWhisper = new List<string>();
 

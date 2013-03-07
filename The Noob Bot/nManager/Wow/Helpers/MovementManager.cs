@@ -220,10 +220,7 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("ThreadMovementManager()#3: " + exception);
             }
-            // ReSharper disable FunctionNeverReturns
         }
-
-        // ReSharper restore FunctionNeverReturns
 
         private static void GroundMovementManager(int firstIdPoint)
         {
@@ -995,10 +992,7 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("ThreadMoveTo()#2: " + exception);
             }
-            // ReSharper disable FunctionNeverReturns
         }
-
-        // ReSharper restore FunctionNeverReturns
 
         private static bool MoveToLocation(Point position)
         {

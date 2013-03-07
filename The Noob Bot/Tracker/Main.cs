@@ -1,13 +1,11 @@
-﻿// ReSharper disable CheckNamespace
-
-using System;
+﻿using System;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Products;
 using Tracker;
 
 public class Main : IProduct
-// ReSharper restore CheckNamespace
+
 {
     #region IProduct Members
 

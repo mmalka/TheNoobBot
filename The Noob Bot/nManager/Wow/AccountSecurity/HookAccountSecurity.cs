@@ -115,10 +115,7 @@ namespace nManager.Wow.AccountSecurity
                 accountSecurityThreadIsAlive = false;
                 Logging.WriteError("loopAccountSecurityThread(): " + exception);
             }
-            // ReSharper disable FunctionNeverReturns
         }
-
-        // ReSharper restore FunctionNeverReturns
 
         private static bool hook()
         {
