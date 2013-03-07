@@ -32,31 +32,31 @@ namespace nManager.Wow.Bot.Tasks
             if (startupCheck)
             {
                 // 1st Check if mounts in general settings exist
-                if (groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
                     !SpellManager.ExistSpellBookLUA(groundMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
                     groundMount = string.Empty;
                 }
-                if (aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) &&
+                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) &&
                     !SpellManager.ExistSpellBookLUA(aquaMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
                     aquaMount = string.Empty;
                 }
-                if (flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) &&
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) &&
                     !SpellManager.ExistSpellBookLUA(flyMount))
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
                     flyMount = string.Empty;
                 }
-                if (aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
+                if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
                     _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
                 startupCheck = false;
             }
-            if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount == string.Empty && flyMount == string.Empty &&
-                aquaMount == string.Empty)
+            if (ObjectManager.ObjectManager.Me.Level < 16 || (groundMount == string.Empty && flyMount == string.Empty &&
+                                                              aquaMount == string.Empty))
             {
                 if (_noMountsInSettings != 1)
                 {
@@ -67,7 +67,7 @@ namespace nManager.Wow.Bot.Tasks
             }
 
             // Wherever we are if we have an aquatic mount and are swimming
-            if (Usefuls.IsSwimming && aquaMount != string.Empty)
+            if (ObjectManager.ObjectManager.Me.Level >= 18 && Usefuls.IsSwimming && aquaMount != string.Empty)
             {
                 // We are in Vashjir and the Abyssal Seahorse is selected
                 if (aquaMount == _localizedAbysalMountName &&
@@ -82,7 +82,7 @@ namespace nManager.Wow.Bot.Tasks
                 }
             }
 
-            if (Usefuls.IsOutdoors)
+            if (ObjectManager.ObjectManager.Me.Level >= 58 && Usefuls.IsOutdoors)
             {
                 if (flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
@@ -116,7 +116,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
                 }
-                if (groundMount != string.Empty)
+                if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount != string.Empty)
                     return MountCapacity.Ground;
             }
             return MountCapacity.Feet;
