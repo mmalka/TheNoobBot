@@ -13,7 +13,6 @@ namespace nManager.Wow.Helpers
 {
     public class SpellManager
     {
-
         [StructLayout(LayoutKind.Explicit, Size = 0x10)]
         private struct SpellInfo
         {
@@ -28,26 +27,22 @@ namespace nManager.Wow.Helpers
             /// <summary>
             /// The state of the spell in the spell book
             /// </summary>
-            [FieldOffset(0x0)]
-            public readonly SpellState State;
+            [FieldOffset(0x0)] public readonly SpellState State;
 
             /// <summary>
             /// The spell identifier of the spell in the spell book
             /// </summary>
-            [FieldOffset(0x4)]
-            public readonly uint ID; // it's an int in client, but we don't care
+            [FieldOffset(0x4)] public readonly uint ID; // it's an int in client, but we don't care
 
             /// <summary>
             /// The level of the spell level in the spell book
             /// </summary>
-            [FieldOffset(0x8)]
-            public readonly uint Level;
+            [FieldOffset(0x8)] public readonly uint Level;
 
             /// <summary>
             /// The tab where the spell is stored in the spell book
             /// </summary>
-            [FieldOffset(0xC)]
-            public readonly uint TabId;
+            [FieldOffset(0xC)] public readonly uint TabId;
         }
 
         private static readonly List<uint> MountDruidIdList = new List<uint>();
@@ -456,7 +451,7 @@ namespace nManager.Wow.Helpers
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
                         var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                        var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                        var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                         if (si.State == SpellInfo.SpellState.Known)
                             spellBook.Add(si.ID);
                         Application.DoEvents();
@@ -486,8 +481,8 @@ namespace nManager.Wow.Helpers
                 var j = 0;
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i * 4);
-                    var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
+                    var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                     if (si.State == SpellInfo.SpellState.Known)
                         j++;
                 }
@@ -562,7 +557,7 @@ namespace nManager.Wow.Helpers
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
                     var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    var si = (SpellInfo)Memory.WowMemory.Memory.ReadObject(Struct, typeof(SpellInfo));
+                    var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                     if (si.State == SpellInfo.SpellState.Known)
                     {
                         if (!_spellBookID.Contains(si.ID))

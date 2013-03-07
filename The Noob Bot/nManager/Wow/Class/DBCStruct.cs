@@ -93,8 +93,10 @@ namespace nManager.Wow.Class
         public struct SpellRangeRec
         {
             public int Id;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] public float[] RangeMin;
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 2)] public float[] RangeMax;
+            public float MinRangeHostile;
+            public float MinRangeFriend;
+            public float MaxRangeHostile;
+            public float MaxRangeFriend;
             public int Flags;
             public int DisplayName_lang;
             public int DisplayNameShort_lang;

@@ -554,18 +554,18 @@ public class DruidRestoration
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 80 && MightyBash.KnownSpell && MightyBash.IsSpellUsable
-                 && _mySettings.UseMightyBash && MightyBash.IsDistanceGood)
+                 && _mySettings.UseMightyBash && MightyBash.IsHostileDistanceGood)
         {
             MightyBash.Launch();
             _onCd = new Timer(1000*5);
             return;
         }
-        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsDistanceGood
+        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
                  && _mySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
         {
             MassEntanglement.Launch();
 
-            if (WildCharge.KnownSpell && WildCharge.IsDistanceGood && WildCharge.IsSpellUsable
+            if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && _mySettings.UseWildCharge)
             {
                 Thread.Sleep(200);
@@ -573,12 +573,12 @@ public class DruidRestoration
             }
             return;
         }
-        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsDistanceGood
+        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
                  && _mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
         {
             UrsolsVortex.Launch();
 
-            if (WildCharge.KnownSpell && WildCharge.IsDistanceGood && WildCharge.IsSpellUsable
+            if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && _mySettings.UseWildCharge)
             {
                 Thread.Sleep(200);
@@ -591,7 +591,7 @@ public class DruidRestoration
         {
             NaturesGrasp.Launch();
 
-            if (WildCharge.KnownSpell && WildCharge.IsDistanceGood && WildCharge.IsSpellUsable
+            if (WildCharge.KnownSpell && WildCharge.IsHostileDistanceGood && WildCharge.IsSpellUsable
                 && _mySettings.UseWildCharge)
             {
                 Thread.Sleep(200);
@@ -791,7 +791,7 @@ public class DruidRestoration
             Lua.RunMacroText("/use 10");
             _engineeringTimer = new Timer(1000*60);
         }
-        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsDistanceGood
+        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
                  && _mySettings.UseForceofNature)
         {
             SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
@@ -1592,7 +1592,7 @@ public class ShamanRestoration
         if (TotemicProjection.KnownSpell && TotemicProjection.IsSpellUsable && _mySettings.UseTotemicProjection)
             TotemicProjection.Launch();
 
-        if (FlameShock.KnownSpell && FlameShock.IsSpellUsable && FlameShock.IsDistanceGood
+        if (FlameShock.KnownSpell && FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood
             && _mySettings.UseFlameShock && LC != 1)
         {
             FlameShock.Launch();
@@ -1600,7 +1600,7 @@ public class ShamanRestoration
         }
         else
         {
-            if (EarthShock.KnownSpell && EarthShock.IsSpellUsable && EarthShock.IsDistanceGood
+            if (EarthShock.KnownSpell && EarthShock.IsSpellUsable && EarthShock.IsHostileDistanceGood
                 && _mySettings.UseEarthShock)
             {
                 EarthShock.Launch();
@@ -1862,7 +1862,7 @@ public class ShamanRestoration
     private void Decast()
     {
         if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && _mySettings.UseWindShear
-            && WindShear.KnownSpell && WindShear.IsSpellUsable && WindShear.IsDistanceGood)
+            && WindShear.KnownSpell && WindShear.IsSpellUsable && WindShear.IsHostileDistanceGood)
         {
             WindShear.Launch();
             return;
@@ -1886,7 +1886,7 @@ public class ShamanRestoration
         }
 
         if (ObjectManager.Target.GetMove && !FrostShock.TargetHaveBuff && _mySettings.UseFrostShock
-            && FrostShock.KnownSpell && FrostShock.IsSpellUsable && FrostShock.IsDistanceGood)
+            && FrostShock.KnownSpell && FrostShock.IsSpellUsable && FrostShock.IsHostileDistanceGood)
         {
             FrostShock.Launch();
             return;
@@ -1894,7 +1894,7 @@ public class ShamanRestoration
         else
         {
             if (ObjectManager.Target.GetMove && _mySettings.UseEarthbindTotem && EarthTotemReady()
-                && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsDistanceGood)
+                && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
             {
                 EarthbindTotem.Launch();
                 return;
@@ -1931,13 +1931,13 @@ public class ShamanRestoration
             _engineeringTimer = new Timer(1000*60);
         }
         else if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
-                 && _mySettings.UseUnleashElements && UnleashElements.IsDistanceGood)
+                 && _mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
             UnleashElements.Launch();
             return;
         }
         else if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
-                 && _mySettings.UseElementalBlast && ElementalBlast.IsDistanceGood)
+                 && _mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
         {
             ElementalBlast.Launch();
             return;
@@ -2403,7 +2403,7 @@ public class PriestDiscipline
 
     private void Pull()
     {
-        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsDistanceGood
+        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsHostileDistanceGood
             && _mySettings.UseHolyFire)
         {
             HolyFire.Launch();
@@ -2411,7 +2411,7 @@ public class PriestDiscipline
         }
         else
         {
-            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsDistanceGood
+            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsHostileDistanceGood
                 && _mySettings.UseShadowWordPain)
             {
                 ShadowWordPain.Launch();
@@ -2683,7 +2683,7 @@ public class PriestDiscipline
         }
         else
         {
-            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
+            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
                 && _mySettings.UseShadowfiend && ObjectManager.Me.InCombat)
             {
                 WoWUnit unit = null;
@@ -3049,7 +3049,7 @@ public class PriestHoly
 
     private void Pull()
     {
-        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsDistanceGood
+        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsHostileDistanceGood
             && _mySettings.UseHolyFire)
         {
             HolyFire.Launch();
@@ -3057,7 +3057,7 @@ public class PriestHoly
         }
         else
         {
-            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsDistanceGood
+            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsHostileDistanceGood
                 && _mySettings.UseShadowWordPain)
             {
                 ShadowWordPain.Launch();
@@ -3345,7 +3345,7 @@ public class PriestHoly
         }
         else
         {
-            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsDistanceGood
+            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
                 && _mySettings.UseShadowfiend && ObjectManager.Me.InCombat)
             {
                 WoWUnit unit = null;
@@ -3713,7 +3713,7 @@ public class MonkMistweaver
 
     private void Pull()
     {
-        if (!ObjectManager.Target.InCombat && Provoke.IsSpellUsable && Provoke.IsDistanceGood
+        if (!ObjectManager.Target.InCombat && Provoke.IsSpellUsable && Provoke.IsHostileDistanceGood
             && _mySettings.UseProvoke && Provoke.KnownSpell)
         {
             Provoke.Launch();
@@ -3781,7 +3781,7 @@ public class MonkMistweaver
 
     private void DefenseCycle()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && _mySettings.UseGrappleWeapon && GrappleWeapon.IsDistanceGood
+        if (ObjectManager.Me.HealthPercent < 95 && _mySettings.UseGrappleWeapon && GrappleWeapon.IsHostileDistanceGood
             && GrappleWeapon.KnownSpell && GrappleWeapon.IsSpellUsable && GrappleWeaponTimer.IsReady)
         {
             GrappleWeapon.Launch();
@@ -3803,7 +3803,7 @@ public class MonkMistweaver
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && ChargingOxWave.IsSpellUsable && ChargingOxWave.KnownSpell
-                 && _mySettings.UseChargingOxWave && ChargingOxWave.IsDistanceGood)
+                 && _mySettings.UseChargingOxWave && ChargingOxWave.IsHostileDistanceGood)
         {
             ChargingOxWave.Launch();
             _onCd = new Timer(1000*3);
@@ -3901,7 +3901,7 @@ public class MonkMistweaver
             return;
         }
         else if (ObjectManager.Me.HealthPercent < 90 && ExpelHarm.KnownSpell && ExpelHarm.IsSpellUsable
-                 && _mySettings.UseExpelHarm && ExpelHarm.IsDistanceGood)
+                 && _mySettings.UseExpelHarm && ExpelHarm.IsHostileDistanceGood)
         {
             ExpelHarm.Launch();
             return;
@@ -3958,7 +3958,7 @@ public class MonkMistweaver
         else
         {
             if (SpearHandStrike.KnownSpell && _mySettings.UseSpearHandStrike && ObjectManager.Target.IsCast
-                && SpearHandStrike.IsSpellUsable && SpearHandStrike.IsDistanceGood)
+                && SpearHandStrike.IsSpellUsable && SpearHandStrike.IsHostileDistanceGood)
             {
                 SpearHandStrike.Launch();
                 return;
@@ -3966,7 +3966,7 @@ public class MonkMistweaver
         }
 
         if (ObjectManager.Target.GetMove && !Disable.TargetHaveBuff && _mySettings.UseDisable
-            && Disable.KnownSpell && Disable.IsSpellUsable && Disable.IsDistanceGood)
+            && Disable.KnownSpell && Disable.IsSpellUsable && Disable.IsHostileDistanceGood)
         {
             Disable.Launch();
             return;
@@ -4007,14 +4007,14 @@ public class MonkMistweaver
             ChiBrew.Launch();
             return;
         }
-        else if (TouchofDeath.IsSpellUsable && TouchofDeath.KnownSpell && TouchofDeath.IsDistanceGood
+        else if (TouchofDeath.IsSpellUsable && TouchofDeath.KnownSpell && TouchofDeath.IsHostileDistanceGood
                  && _mySettings.UseTouchofDeath)
         {
             TouchofDeath.Launch();
             return;
         }
         else if (InvokeXuentheWhiteTiger.IsSpellUsable && InvokeXuentheWhiteTiger.KnownSpell
-                 && _mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.IsDistanceGood)
+                 && _mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.IsHostileDistanceGood)
         {
             InvokeXuentheWhiteTiger.Launch();
             return;
@@ -4033,7 +4033,7 @@ public class MonkMistweaver
         }
         else
         {
-            if (RushingJadeWind.IsSpellUsable && RushingJadeWind.KnownSpell && RushingJadeWind.IsDistanceGood
+            if (RushingJadeWind.IsSpellUsable && RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood
                 && _mySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
             {
                 RushingJadeWind.Launch();

@@ -22,8 +22,10 @@ namespace nManager.Wow.Class
         public int Cost;
         public string Icon = "";
         public string IsFunnel = "";
-        public float MaxRange;
-        public float MinRange;
+        public float MaxRangeHostile;
+        public float MinRangeHostile;
+        public float MaxRangeFriend;
+        public float MinRangeFriend;
         public string Name = "";
         public string NameInGame = "";
         public string PowerType = "";
@@ -77,19 +79,17 @@ namespace nManager.Wow.Class
                             var range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
                             if (range.Id != 0)
                             {
-                                var tMaxRange = range.RangeMax[0];
-                                MaxRange = range.RangeMax[1];
-                                if (tMaxRange > MaxRange)
-                                    MaxRange = tMaxRange;
-                                var tMinRange = range.RangeMin[0];
-                                MinRange = range.RangeMin[0];
-                                if (tMinRange > MinRange)
-                                    MinRange = tMinRange;
+                                MaxRangeHostile = range.MaxRangeHostile;
+                                MinRangeHostile = range.MinRangeHostile;
+                                MaxRangeFriend = range.MaxRangeFriend;
+                                MinRangeFriend = range.MinRangeFriend;
                             }
                             else
                             {
-                                MaxRange = 0;
-                                MinRange = 0;
+                                MaxRangeHostile = 0;
+                                MinRangeHostile = 0;
+                                MaxRangeFriend = 0;
+                                MinRangeFriend = 0;
                             }
 
                             Name = SpellManager.SpellListManager.SpellNameById(spellId);
@@ -102,8 +102,10 @@ namespace nManager.Wow.Class
                                 NameInGame = "";
                             }
 
-                            if (MaxRange < 5.0f)
-                                MaxRange = 5.0f;
+                            if (MaxRangeHostile < 5.0f)
+                                MaxRangeHostile = 5.0f;
+                            if (MaxRangeFriend < 5.0f)
+                                MaxRangeFriend = 5.0f;
                             KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
                             Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                             Ids.Add(Id);
@@ -116,8 +118,10 @@ namespace nManager.Wow.Class
                     Logging.WriteError("Spell(uint spellId): " + exception);
                 }
                 CastTime = 0;
-                MaxRange = 5.0f;
-                MinRange = 5.0f;
+                MaxRangeHostile = 5.0f;
+                MinRangeHostile = 0f;
+                MaxRangeFriend = 5.0f;
+                MinRangeFriend = 0f;
                 NameInGame = "";
             }
         }
@@ -159,14 +163,14 @@ namespace nManager.Wow.Class
                 Cost = tSpell.Cost;
                 Icon = tSpell.Icon;
                 IsFunnel = tSpell.IsFunnel;
-                MaxRange = tSpell.MaxRange;
-                MinRange = tSpell.MinRange;
+                MaxRangeHostile = tSpell.MaxRangeHostile;
+                MinRangeHostile = tSpell.MinRangeHostile;
+                MaxRangeFriend = tSpell.MaxRangeFriend;
+                MinRangeFriend = tSpell.MinRangeFriend;
                 Name = tSpell.Name;
                 NameInGame = tSpell.NameInGame;
                 PowerType = tSpell.PowerType;
                 Rank = tSpell.Rank;
-                if (MaxRange < 5.0f)
-                    MaxRange = 5.0f;
                 KnownSpell = tSpell.KnownSpell;
                 Ids.AddRange(tSpell.Ids);
                 Ids.Add(Id);
@@ -204,30 +208,42 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
-        /// Gets if the player distance to cast spell is good.
+        /// Return true if the player distance from casting a spell to a Hostile unit is good.
+        /// Else, return false.
         /// </summary>
-        /// <value>
-        /// 	<c>true</c> if the distance good; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsDistanceGood
+        public bool IsHostileDistanceGood
         {
             get
             {
                 try
                 {
-                    if (MaxRange < 5.0f)
-                        MaxRange = 5.0f;
-
-                    if (ObjectManager.ObjectManager.Target.GetDistance <= MaxRange &&
-                        (ObjectManager.ObjectManager.Target.GetDistance >= MinRange))
-                    {
-                        return true;
-                    }
-                    return false;
+                    return ObjectManager.ObjectManager.Target.GetDistance <= MaxRangeHostile &&
+                           (ObjectManager.ObjectManager.Target.GetDistance >= MinRangeHostile);
                 }
                 catch (Exception exception)
                 {
-                    Logging.WriteError("Spell > IsDistanceGood: " + exception);
+                    Logging.WriteError("Spell > IsHostileDistanceGood: " + exception);
+                    return true;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Return true if the player distance from casting a spell to a friendly unit is good.
+        /// Else, return false.
+        /// </summary>
+        public bool IsFriendDistanceGood
+        {
+            get
+            {
+                try
+                {
+                    return ObjectManager.ObjectManager.Target.GetDistance <= MaxRangeFriend &&
+                           (ObjectManager.ObjectManager.Target.GetDistance >= MaxRangeFriend);
+                }
+                catch (Exception exception)
+                {
+                    Logging.WriteError("Spell > IsFriendlyDistanceGood: " + exception);
                     return true;
                 }
             }
