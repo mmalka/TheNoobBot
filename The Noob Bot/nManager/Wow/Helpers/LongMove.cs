@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using Math = nManager.Helpful.Math;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Helpers
 {
@@ -14,6 +16,7 @@ namespace nManager.Wow.Helpers
         private static bool _usedLoop;
 
         private static Point _pointLongMove = new Point();
+        private static Timer RegenPath = new Timer(0);
 
         public static bool IsLongMove
         {
@@ -66,115 +69,131 @@ namespace nManager.Wow.Helpers
                 _usedLoop = true;
 
                 //MovementManager.StopMove();
-                Bot.Tasks.MountTask.Mount(false);
+                MountTask.Mount(false);
 
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
-                var timerSit = new Helpful.Timer(2500);
+                var timerSit = new Timer(2500);
 
-                while (Products.Products.IsStarted && ObjectManager.ObjectManager.Me.IsMounted &&
+                while (Products.Products.IsStarted && (ObjectManager.ObjectManager.Me.IsMounted || MountTask.GetMountCapacity() == MountCapacity.Feet) &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
                 {
-                    if (!MovementManager.IsUnStuck)
+                    if (MountTask.GetMountCapacity() == MountCapacity.Feet)
                     {
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) > 15)
+                        if (RegenPath.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f)
                         {
-                            Point meTemps = ObjectManager.ObjectManager.Me.Position;
-                            meTemps.Z = meTemps.Z - 2;
+                            RegenPath = new Timer(1000*60);
+                            var getFullPath = PathFinder.FindPath(point);
+                            MovementManager.Go(getFullPath);
+                            RegenPath.Reset();
+                        }
+                        else
+                        {
+                            Thread.Sleep(1000);
+                        }
+                    }
+                    else
+                    {
+                        if (!MovementManager.IsUnStuck)
+                        {
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(point) > 15)
+                            {
+                                Point meTemps = ObjectManager.ObjectManager.Me.Position;
+                                meTemps.Z = meTemps.Z - 2;
 
-                            var temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
-                            if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
-                            {
-                                temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
-                                                                          100);
-                                temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
-                            }
-                            if (TraceLine.TraceLineGo(meTemps, temps) ||
-                                (ObjectManager.ObjectManager.Me.Position.Z + 10 < point.Z &&
-                                 point.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 100))
-                            {
-                                MovementsAction.Descend(false);
-                                MovementsAction.Ascend(true);
-                                timerSit = new Helpful.Timer(1000);
-                                // If distance to colission < 40 stop moveto
-                                temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
+                                var temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
                                 if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
-                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                              point, 40);
+                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
+                                                                              100);
                                     temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                 }
-                                if (TraceLine.TraceLineGo(meTemps, temps))
+                                if (TraceLine.TraceLineGo(meTemps, temps) ||
+                                    (ObjectManager.ObjectManager.Me.Position.Z + 10 < point.Z &&
+                                     point.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 100))
                                 {
-                                    MovementManager.StopMoveTo(false);
-                                }
-                                // End Stop move to
-                                Thread.Sleep(800);
-                                if (pTemps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1f)
-                                {
-                                    MovementManager.UnStuckFly();
+                                    MovementsAction.Descend(false);
+                                    MovementsAction.Ascend(true);
+                                    timerSit = new Helpful.Timer(1000);
+                                    // If distance to colission < 40 stop moveto
+                                    temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
+                                    if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
+                                    {
+                                        temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                                  point, 40);
+                                        temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
+                                    }
+                                    if (TraceLine.TraceLineGo(meTemps, temps))
+                                    {
+                                        MovementManager.StopMoveTo(false);
+                                    }
+                                    // End Stop move to
+                                    Thread.Sleep(800);
+                                    if (pTemps.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 1f)
+                                    {
+                                        MovementManager.UnStuckFly();
+                                    }
+                                    else
+                                    {
+                                        pTemps = ObjectManager.ObjectManager.Me.Position;
+                                    }
                                 }
                                 else
                                 {
-                                    pTemps = ObjectManager.ObjectManager.Me.Position;
-                                }
-                            }
-                            else
-                            {
-                                MovementsAction.Ascend(false);
+                                    MovementsAction.Ascend(false);
 
-                                if (timerSit.IsReady)
-                                {
-                                    // If distance to ground > 100
-                                    temps = new Point(ObjectManager.ObjectManager.Me.Position.X,
-                                                      ObjectManager.ObjectManager.Me.Position.Y,
-                                                      ObjectManager.ObjectManager.Me.Position.Z - altitude);
-                                    var tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
-                                                            ObjectManager.ObjectManager.Me.Position.Y,
-                                                            ObjectManager.ObjectManager.Me.Position.Z + 5f);
-                                    var temps2 = Math.GetPostion2DOfLineByDistance(tempsMe, point, 80);
-                                    temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
-                                    if (!TraceLine.TraceLineGo(tempsMe, temps))
-                                        if (!TraceLine.TraceLineGo(tempsMe, temps2))
-                                            MovementsAction.Descend(true);
+                                    if (timerSit.IsReady)
+                                    {
+                                        // If distance to ground > 100
+                                        temps = new Point(ObjectManager.ObjectManager.Me.Position.X,
+                                                          ObjectManager.ObjectManager.Me.Position.Y,
+                                                          ObjectManager.ObjectManager.Me.Position.Z - altitude);
+                                        var tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
+                                                                ObjectManager.ObjectManager.Me.Position.Y,
+                                                                ObjectManager.ObjectManager.Me.Position.Z + 5f);
+                                        var temps2 = Math.GetPostion2DOfLineByDistance(tempsMe, point, 80);
+                                        temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
+                                        if (!TraceLine.TraceLineGo(tempsMe, temps))
+                                            if (!TraceLine.TraceLineGo(tempsMe, temps2))
+                                                MovementsAction.Descend(true);
+                                            else
+                                            {
+                                                timerSit = new Helpful.Timer(1000);
+                                                MovementsAction.Descend(false);
+                                            }
                                         else
                                         {
                                             timerSit = new Helpful.Timer(1000);
                                             MovementsAction.Descend(false);
                                         }
-                                    else
-                                    {
-                                        timerSit = new Helpful.Timer(1000);
-                                        MovementsAction.Descend(false);
+                                        // End Stop move ground
                                     }
-                                    // End Stop move ground
-                                }
-                                MovementManager.MoveTo(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z);
-                                if (Others.Times > (timer + 1500))
-                                {
                                     MovementManager.MoveTo(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z);
-                                    timer = Others.Times;
+                                    if (Others.Times > (timer + 1500))
+                                    {
+                                        MovementManager.MoveTo(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z);
+                                        timer = Others.Times;
+                                    }
                                 }
                             }
+                            else
+                            {
+                                MovementsAction.Descend(false);
+                                MovementsAction.Ascend(false);
+                                MovementManager.MoveTo(point);
+                            }
                         }
-                        else
+
+                        if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying)
                         {
                             MovementsAction.Descend(false);
                             MovementsAction.Ascend(false);
-                            MovementManager.MoveTo(point);
+                            Bot.Tasks.MountTask.Mount(false);
+                            MovementsAction.Ascend(true);
+                            Thread.Sleep(1300);
+                            MovementsAction.Ascend(false);
                         }
                     }
-
-                    if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying)
-                    {
-                        MovementsAction.Descend(false);
-                        MovementsAction.Ascend(false);
-                        Bot.Tasks.MountTask.Mount(false);
-                        MovementsAction.Ascend(true);
-                        Thread.Sleep(1300);
-                        MovementsAction.Ascend(false);
-                    }
-
                     Thread.Sleep(150); //50
                 }
                 MovementsAction.Descend(false);
