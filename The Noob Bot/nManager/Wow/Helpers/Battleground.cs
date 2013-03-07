@@ -9,18 +9,7 @@ namespace nManager.Wow.Helpers
     {
         public static void JoinBattlegroundQueue(BattlegroundId id)
         {
-            Memory.WowMemory.Memory.WriteUInt(
-                Memory.WowProcess.WowModule + (uint) Addresses.Battleground.selectedBattlegroundId, (uint) id);
-            Thread.Sleep(100);
-            Lua.LuaDoString("JoinBattlefield(0);");
-        }
-
-        public static BattlegroundId GetSelectedBattlegroundId()
-        {
-            return
-                (BattlegroundId)
-                Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                 (uint) Addresses.Battleground.selectedBattlegroundId);
+            Lua.LuaDoString("JoinBattlefield(" + (uint) id + ");");
         }
 
         public static int QueueingStatus()
