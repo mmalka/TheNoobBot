@@ -1183,7 +1183,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return (Health > 1);
+                    return MaxHealth > 1 ? Health > 1 : Health > 0;
                 }
                 catch (Exception e)
                 {

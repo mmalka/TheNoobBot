@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Text;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 using nManager.Helpful;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
+using nManager.Wow.Patchables;
 
 namespace Test_Product
 {
@@ -18,6 +23,7 @@ namespace Test_Product
         {
             try
             {
+                /*
                 var myConn =
                     new MySqlConnection(
                         "server=over-game.eu; user id=thenoobbot_npcdb; password=4KJmBv5u3VRaVPwV; database=thenoobbot_npcdb;");
@@ -682,21 +688,22 @@ namespace Test_Product
 
             //var idEquiped = nManager.Wow.ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15 * 2);
             */
-                /*DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int)Addresses.DBC.spell);
-            var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
-            for (int i = 0; i < DBCSpell.MaxIndex - 1; i++)
-            {
-                if (DBCSpell.HasRow(i))
+                /*
+                DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
+                var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+                for (int i = 0; i < DBCSpell.MaxIndex - 1; i++)
                 {
-                    var t = DBCSpell.GetRow(i);
+                    if (DBCSpell.HasRow(i))
+                    {
+                        var t = DBCSpell.GetRow(i);
 
-                    sw.Write(t.SpellId + ";" + Memory.WowMemory.Memory.ReadUTF8String(t.Name) + Environment.NewLine);
+                        sw.Write(t.SpellId + ";" + Memory.WowMemory.Memory.ReadUTF8String(t.Name) + Environment.NewLine);
+                    }
                 }
-            }
-            sw.Close();
+                sw.Close();
 
-            //Cheat.AntiAfkPulse();
-            /*
+                //Cheat.AntiAfkPulse();
+                /*
             //D3D9
             const int VMT_ENDSCENE = 42;
             using (var d3d = new Direct3D())
