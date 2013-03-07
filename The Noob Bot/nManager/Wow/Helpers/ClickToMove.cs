@@ -14,9 +14,7 @@ namespace nManager.Wow.Helpers
             {
                 if (x == 0 && y == 0 && z == 0 && guid == 0)
                     return;
-                Logging.WriteDebug("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision +
-                                   ")");
-
+                
                 // Allocate Memory:
                 var posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
                 var guidCodecave = Memory.WowMemory.Memory.AllocateMemory(0x8);
@@ -57,7 +55,8 @@ namespace nManager.Wow.Helpers
                     };
 
                 Memory.WowMemory.InjectAndExecute(asm);
-
+                Logging.WriteNavigator("MoveTo(" + x + ", " + y + ", " + z + ", " + guid + ", " + action + ", " + precision +
+                                   ")");
                 Memory.WowMemory.Memory.FreeMemory(posCodecave);
                 Memory.WowMemory.Memory.FreeMemory(guidCodecave);
                 Memory.WowMemory.Memory.FreeMemory(precisionCodecave);
