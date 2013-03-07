@@ -23,8 +23,8 @@ public class Main : IProduct
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Fisherbot\\");
             FisherbotSetting.Load();
 
-            if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FisherbotPoolName))
-                FisherbotSetting.CurrentSetting.FisherbotPoolName = Fishing.FishingPolesName();
+            if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FishingPoleName))
+                FisherbotSetting.CurrentSetting.FishingPoleName = Fishing.FishingPolesName();
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.weaponName))
                 FisherbotSetting.CurrentSetting.weaponName =
                     ItemsManager.GetNameById(

@@ -42,7 +42,7 @@ namespace Fisherbot
             FisherbotSetting.CurrentSetting.fishSchool = fishSchool.Value;
             FisherbotSetting.CurrentSetting.fishSchoolProfil = fishSchoolProfil.Text;
             FisherbotSetting.CurrentSetting.lureName = lureName.Text;
-            FisherbotSetting.CurrentSetting.FisherbotPoolName = FisherbotPoolName.Text;
+            FisherbotSetting.CurrentSetting.FishingPoleName = FisherbotPoolName.Text;
             FisherbotSetting.CurrentSetting.weaponName = weaponName.Text;
             FisherbotSetting.CurrentSetting.precisionMode = precisionMode.Value;
             FisherbotSetting.CurrentSetting.Save();
@@ -57,7 +57,7 @@ namespace Fisherbot
             fishSchool.Value = FisherbotSetting.CurrentSetting.fishSchool;
             fishSchoolProfil.Text = FisherbotSetting.CurrentSetting.fishSchoolProfil;
             lureName.Text = FisherbotSetting.CurrentSetting.lureName;
-            FisherbotPoolName.Text = FisherbotSetting.CurrentSetting.FisherbotPoolName;
+            FisherbotPoolName.Text = FisherbotSetting.CurrentSetting.FishingPoleName;
             weaponName.Text = FisherbotSetting.CurrentSetting.weaponName;
             precisionMode.Value = FisherbotSetting.CurrentSetting.precisionMode;
         }

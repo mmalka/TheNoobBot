@@ -45,7 +45,7 @@ namespace Fisherbot.Bot
         public bool fishSchool;
         public string fishSchoolProfil = "";
         public string lureName = "";
-        public string FisherbotPoolName = "";
+        public string FishingPoleName = "";
         public string weaponName = "";
         public bool precisionMode = true;
 

@@ -209,7 +209,7 @@ namespace Fisherbot.Bot
             }
 
             // Fish
-            Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FisherbotPoolName);
+            Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
             if (FisherbotSetting.CurrentSetting.fishSchool)
                 FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.useLure,
                                      FisherbotSetting.CurrentSetting.lureName,

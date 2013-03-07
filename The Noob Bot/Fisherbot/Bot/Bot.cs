@@ -25,8 +25,7 @@ namespace Fisherbot.Bot
                 // If Fish School Load Profile
                 if (FisherbotSetting.CurrentSetting.fishSchool)
                 {
-                    if (!string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.FisherbotPoolName) &&
-                        File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +
+                    if (File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +
                                     FisherbotSetting.CurrentSetting.fishSchoolProfil))
                     {
                         Profile =
