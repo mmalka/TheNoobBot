@@ -53,6 +53,7 @@ namespace nManager.Wow.Class
         [StructLayout(LayoutKind.Sequential)]
         public struct SpellMiscRec
         {
+            public int unk1;
             public int int0;
             public int int4;
             public int int8;
