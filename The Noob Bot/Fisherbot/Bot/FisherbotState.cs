@@ -158,8 +158,8 @@ namespace Fisherbot.Bot
             else
             {
                 ObjectManager.Me.Rotation = FisherbotSetting.CurrentSetting.FisherbotRotation;
-                Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.STRAFELEFT);
-                Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.STRAFERIGHT);
+                MovementsAction.StrafeLeft(false);
+                MovementsAction.StrafeRight(false);
             }
 
             // Ce met a la bonne distance du banc de poisson
@@ -174,8 +174,8 @@ namespace Fisherbot.Bot
                     if (nbIsSwimming*100 > TimeTryFindGoodPos)
                     {
                         FishingTask.StopLoopFish();
-                        Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-                        Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+                        MovementsAction.MoveBackward(false);
+                        MovementsAction.MoveForward(false);
                         Logging.Write("BlackList " + _node.Name);
                         nManagerSetting.AddBlackList(_node.Guid);
                         return;
@@ -185,20 +185,20 @@ namespace Fisherbot.Bot
 
                     if (Usefuls.IsSwimming || _node.GetDistance < DistanceMin)
                     {
-                        Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-                        Keybindings.DownKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
+                        MovementsAction.MoveForward(false);
+                        MovementsAction.MoveBackward(true);
                     }
                     if (_node.GetDistance > DistanceMax)
                     {
-                        Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-                        Keybindings.DownKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+                        MovementsAction.MoveBackward(false);
+                        MovementsAction.MoveForward(true);
                     }
 
                     nbIsSwimming++;
                     Thread.Sleep(100);
                 }
-                Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-                Keybindings.UpKeybindings(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
+                MovementsAction.MoveBackward(false);
+                MovementsAction.MoveForward(false);
                 if (timer.IsReady)
                 {
                     Logging.Write("Fishing failed - Out of range" + timer.IsReady.ToString());

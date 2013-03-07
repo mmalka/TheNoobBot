@@ -150,7 +150,7 @@ namespace nManager.Wow.Helpers
                     {
                         int rJump = Others.Random(1, 30);
                         if (rJump == 5)
-                            Keybindings.PressKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Jump();
                         MovementManager.MoveTo(targetNpc);
                     }
                     // Create path if the mob is out of sight or out of range

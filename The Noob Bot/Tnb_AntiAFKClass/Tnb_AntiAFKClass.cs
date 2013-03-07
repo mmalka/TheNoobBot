@@ -70,7 +70,7 @@ public class AntiAfk
 
         while (Main.loop)
         {
-            Keybindings.PressKeybindings(nManager.Wow.Enums.Keybindings.JUMP);
+            MovementsAction.Jump();
             Thread.Sleep(new Random().Next(45000, 90000));
         }
     }

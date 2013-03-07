@@ -134,9 +134,9 @@ namespace nManager.Wow.Bot.States
                 Point tPointCorps;
                 if (ObjectManager.ObjectManager.Me.IsMounted)
                 {
-                    Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                    MovementsAction.Ascend(true);
                     Thread.Sleep(500);
-                    Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                    MovementsAction.Ascend(false);
                     tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
                     tPointCorps.Z = tPointCorps.Z + 10;
                     LongMove.LongMoveByNewThread(tPointCorps);

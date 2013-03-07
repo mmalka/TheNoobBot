@@ -263,9 +263,9 @@ namespace nManager.Wow.Bot.Tasks
                     if (Usefuls.IsSwimming)
                     {
                         Logging.WriteNavigator("Going out of water");
-                        Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                        MovementsAction.Ascend(true);
                         Thread.Sleep(1750);
-                        Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                        MovementsAction.Ascend(false);
                     }
                     if (Usefuls.IsOutdoors)
                     {
@@ -342,20 +342,20 @@ namespace nManager.Wow.Bot.Tasks
         public static void Takeoff()
         {
             Logging.WriteNavigator("Take-off in progress.");
-            Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+            MovementsAction.Ascend(true);
             var t = new Timer(950);
             while (!Usefuls.IsFlying && !t.IsReady)
             {
                 Thread.Sleep(50);
             }
             Thread.Sleep(150);
-            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+            MovementsAction.Ascend(false);
         }
 
         public static void Land()
         {
             Logging.WriteNavigator("Landing in progress.");
-            Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+            MovementsAction.Descend(true);
             var t = new Timer(15000);
             while (Usefuls.IsFlying && !t.IsReady)
             {
@@ -365,7 +365,7 @@ namespace nManager.Wow.Bot.Tasks
                     t.ForceReady();
             }
             Thread.Sleep(150);
-            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+            MovementsAction.Descend(false);
         }
 
         public static void DismountMount(bool stopMove = true)

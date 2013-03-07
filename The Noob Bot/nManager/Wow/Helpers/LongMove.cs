@@ -93,8 +93,8 @@ namespace nManager.Wow.Helpers
                                 (ObjectManager.ObjectManager.Me.Position.Z + 10 < point.Z &&
                                  point.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 100))
                             {
-                                Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Descend(false);
+                                MovementsAction.Ascend(true);
                                 timerSit = new Helpful.Timer(1000);
                                 // If distance to colission < 40 stop moveto
                                 temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
@@ -121,7 +121,7 @@ namespace nManager.Wow.Helpers
                             }
                             else
                             {
-                                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Ascend(false);
 
                                 if (timerSit.IsReady)
                                 {
@@ -136,16 +136,16 @@ namespace nManager.Wow.Helpers
                                     temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
                                     if (!TraceLine.TraceLineGo(tempsMe, temps))
                                         if (!TraceLine.TraceLineGo(tempsMe, temps2))
-                                            Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+                                            MovementsAction.Descend(true);
                                         else
                                         {
                                             timerSit = new Helpful.Timer(1000);
-                                            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                                            MovementsAction.Descend(false);
                                         }
                                     else
                                     {
                                         timerSit = new Helpful.Timer(1000);
-                                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                                        MovementsAction.Descend(false);
                                     }
                                     // End Stop move ground
                                 }
@@ -159,26 +159,26 @@ namespace nManager.Wow.Helpers
                         }
                         else
                         {
-                            Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Descend(false);
+                            MovementsAction.Ascend(false);
                             MovementManager.MoveTo(point);
                         }
                     }
 
                     if (ObjectManager.ObjectManager.Me.IsMounted && !Usefuls.IsFlying)
                     {
-                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                        Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                        MovementsAction.Descend(false);
+                        MovementsAction.Ascend(false);
                         Bot.Tasks.MountTask.Mount(false);
-                        Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                        MovementsAction.Ascend(true);
                         Thread.Sleep(1300);
-                        Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                        MovementsAction.Ascend(false);
                     }
 
                     Thread.Sleep(150); //50
                 }
-                Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
-                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                MovementsAction.Descend(false);
+                MovementsAction.Ascend(false);
                 _used = false;
                 _usedLoop = false;
             }
@@ -194,8 +194,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
-                Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                MovementsAction.Ascend(false);
+                MovementsAction.Descend(false);
                 _used = false;
                 _usedLoop = false;
             }

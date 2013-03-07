@@ -130,6 +130,7 @@
     <Compile Include="Wow\Bot\States\Looting.cs" />
     <Compile Include="Wow\Bot\States\MillingState.cs" />
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
+    <Compile Include="Wow\Helpers\MovementsAction.cs" />
     <Compile Include="Wow\Bot\States\Pause.cs" />
     <Compile Include="Wow\Bot\States\ProspectingState.cs" />
     <Compile Include="Wow\Bot\States\Regeneration.cs" />

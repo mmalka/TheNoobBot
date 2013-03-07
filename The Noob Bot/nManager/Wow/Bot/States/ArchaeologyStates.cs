@@ -157,7 +157,7 @@ namespace nManager.Wow.Bot.States
                         if (myState == LocState.looting)
                             if (timerLooting != null && timerLooting.IsReady)
                             {
-                                Keybindings.PressKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Jump();
                                 Thread.Sleep(2000);
                             }
                             else
@@ -271,9 +271,9 @@ namespace nManager.Wow.Bot.States
                             // Get Line to next cast survey
                             var p1 = ObjectManager.ObjectManager.Me.Position;
                             Thread.Sleep(50);
-                            Keybindings.DownKeybindings(Enums.Keybindings.MOVEFORWARD);
+                            MovementsAction.MoveForward(true);
                             Thread.Sleep(200);
-                            Keybindings.UpKeybindings(Enums.Keybindings.MOVEFORWARD);
+                            MovementsAction.MoveForward(false);
                             var p2 = ObjectManager.ObjectManager.Me.Position;
 
                             if (p1.X == p2.X && p1.Y == p2.Y)
@@ -281,9 +281,9 @@ namespace nManager.Wow.Bot.States
                                 ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
                                 p2 = ObjectManager.ObjectManager.Me.Position;
                                 Thread.Sleep(50);
-                                Keybindings.DownKeybindings(Enums.Keybindings.MOVEBACKWARD);
+                                MovementsAction.MoveBackward(true);
                                 Thread.Sleep(200);
-                                Keybindings.UpKeybindings(Enums.Keybindings.MOVEBACKWARD);
+                                MovementsAction.MoveBackward(false);
                                 p1 = ObjectManager.ObjectManager.Me.Position;
                             }
                             if (p1.X == p2.X && p1.Y == p2.Y) // Get if p1 != p2 (else wowerror)

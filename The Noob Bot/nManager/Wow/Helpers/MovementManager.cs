@@ -298,7 +298,7 @@ namespace nManager.Wow.Helpers
 
                             int rJump = Others.Random(1, 5000);
                             if (rJump == 5)
-                                Keybindings.PressKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Jump();
                         }
                         catch (Exception exception)
                         {
@@ -354,9 +354,9 @@ namespace nManager.Wow.Helpers
                             return;
                         while (!Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
-                            Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(true);
                             Thread.Sleep(300);
-                            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(false);
                         }
 
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 10 && _movement)
@@ -426,9 +426,9 @@ namespace nManager.Wow.Helpers
                         }
                         while (!Usefuls.IsSwimming && !Usefuls.IsFlying && ObjectManager.ObjectManager.Me.IsMounted)
                         {
-                            Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(true);
                             Thread.Sleep(300);
-                            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(false);
                         }
 
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 7 && _movement)
@@ -471,15 +471,15 @@ namespace nManager.Wow.Helpers
             {
                 IsUnStuck = true;
                 Logging.WriteDebug("UnStuck() started.");
-                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
-                Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                MovementsAction.Ascend(false);
+                MovementsAction.Descend(false);
                 Logging.WriteDebug("Jump / Down released.");
                 if (ObjectManager.ObjectManager.Me.IsMounted)
                 {
                     Logging.WriteDebug("UnStuck - We are currently mounted.");
-                    Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                    MovementsAction.Ascend(true);
                     Thread.Sleep(Others.Random(500, 1000));
-                    Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                    MovementsAction.Ascend(false);
                     Logging.WriteDebug("UnStuck - Jump attempt done.");
 
                     // if fly mode:
@@ -585,9 +585,9 @@ namespace nManager.Wow.Helpers
                         int k = Others.Random(1, 3);
                         if (k == 2)
                         {
-                            Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(true);
                             Thread.Sleep(Others.Random(500, 1000));
-                            Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                            MovementsAction.Ascend(false);
                             Logging.WriteDebug("UnStuck - k = 2, Jump attempt done.");
                         }
 
@@ -633,9 +633,9 @@ namespace nManager.Wow.Helpers
                     // Reset position to our current location and StopMove.
                     StopMove();
                 }
-                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                MovementsAction.Ascend(true);
                 Thread.Sleep(Others.Random(500, 1000));
-                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                MovementsAction.Ascend(false);
                 Logging.WriteDebug("Flying UnStuck - Jump attempt done.");
 
                 var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
@@ -738,16 +738,16 @@ namespace nManager.Wow.Helpers
                             int k = Others.Random(1, 4);
                             if (k == 2)
                             {
-                                Keybindings.DownKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Ascend(true);
                                 Thread.Sleep(Others.Random(500, 1000));
-                                Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
+                                MovementsAction.Ascend(false);
                                 Logging.WriteDebug("Flying UnStuck - Jump attempt done.");
                             }
                             if (k == 3)
                             {
-                                Keybindings.DownKeybindings(Enums.Keybindings.SITORSTAND);
+                                MovementsAction.Descend(true);
                                 Thread.Sleep(Others.Random(500, 1000));
-                                Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                                MovementsAction.Descend(false);
                                 Logging.WriteDebug("Flying UnStuck - Down attempt done.");
                             }
                         }
@@ -1132,11 +1132,11 @@ namespace nManager.Wow.Helpers
                 {
                     if (UpKey)
                     {
-                        Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
-                        Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
+                        MovementsAction.Ascend(false);
+                        MovementsAction.Descend(false);
                     }
-                    Keybindings.PressKeybindings(Enums.Keybindings.MOVEFORWARD);
-                    Keybindings.PressKeybindings(Enums.Keybindings.MOVEBACKWARD);
+                    MovementsAction.MoveForward(false);
+                    MovementsAction.MoveBackward(false);
                 }
             }
             catch (Exception exception)

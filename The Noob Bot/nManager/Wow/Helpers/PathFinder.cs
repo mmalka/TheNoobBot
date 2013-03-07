@@ -268,18 +268,14 @@ namespace nManager.Wow.Helpers
                     int trys = 0;
                     while (!result && trys <= 2)
                     {
-                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
-                                         Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        MovementsAction.MoveForward(true);
                         Thread.Sleep(1000);
-                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
-                                         Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        MovementsAction.Ascend(true);
                         Thread.Sleep(100);
-                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
-                                       Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        MovementsAction.Ascend(false);
                         points = FindPath(to, out result);
                         Thread.Sleep(200);
-                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
-                                       Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        MovementsAction.MoveForward(false);
                         trys++;
                     }
                 }

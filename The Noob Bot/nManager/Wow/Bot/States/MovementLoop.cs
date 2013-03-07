@@ -51,22 +51,18 @@ namespace nManager.Wow.Bot.States
                     if (Battleground.IsInBattleground() && !Battleground.IsFinishBattleground() &&
                         !Battleground.BattlegroundIsStarted() && _battleground == 0)
                     {
-                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
-                                         Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        MovementsAction.MoveForward(true);
                         Thread.Sleep(1000);
-                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
-                                       Keybindings.GetKeyByAction(Enums.Keybindings.MOVEFORWARD));
+                        MovementsAction.MoveForward(false);
                         _battleground++;
                     }
                     else if (!Battleground.IsInBattleground() && _outOfBattlegroundAntiAfk.IsReady)
                     {
                         _battleground = 0;
                         _outOfBattlegroundAntiAfk.Reset();
-                        Keyboard.DownKey(Memory.WowProcess.MainWindowHandle,
-                                         Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        MovementsAction.Ascend(true);
                         Thread.Sleep(300);
-                        Keyboard.UpKey(Memory.WowProcess.MainWindowHandle,
-                                       Keybindings.GetKeyByAction(Enums.Keybindings.JUMP));
+                        MovementsAction.Ascend(false);
                     }
                     return false;
                 }

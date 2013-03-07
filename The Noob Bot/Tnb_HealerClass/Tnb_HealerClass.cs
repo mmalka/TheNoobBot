@@ -13,7 +13,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Keybindings = nManager.Wow.Helpers.Keybindings;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
@@ -958,12 +957,6 @@ public class DruidRestoration
 
 public class PaladinHoly
 {
-    private readonly string MoveBackward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-
-    private readonly string MoveForward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-
     private readonly PaladinHolySettings _mySettings = PaladinHolySettings.GetSettings();
 
     #region Professions & Racial
@@ -1395,12 +1388,6 @@ public class PaladinHoly
 
 public class ShamanRestoration
 {
-    private readonly string MoveBackward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-
-    private readonly string MoveForward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-
     private readonly ShamanRestorationSettings _mySettings = ShamanRestorationSettings.GetSettings();
 
     #region General Timers & Variables
@@ -2215,12 +2202,6 @@ public class ShamanRestoration
 
 public class PriestDiscipline
 {
-    private readonly string MoveBackward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-
-    private readonly string MoveForward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-
     private readonly PriestDisciplineSettings _mySettings = PriestDisciplineSettings.GetSettings();
 
     #region General Timers & Variables
@@ -2859,12 +2840,6 @@ public class PriestDiscipline
 
 public class PriestHoly
 {
-    private readonly string MoveBackward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-
-    private readonly string MoveForward =
-        Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
-
     private readonly PriestHolySettings _mySettings = PriestHolySettings.GetSettings();
 
     #region General Timers & Variables
@@ -3533,8 +3508,6 @@ public class PriestHoly
 
 public class MonkMistweaver
 {
-    private readonly string MoveBackward = Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEBACKWARD);
-    private readonly string MoveForward = Keybindings.GetKeyByAction(nManager.Wow.Enums.Keybindings.MOVEFORWARD);
     private readonly MonkMistweaverSettings _mySettings = MonkMistweaverSettings.GetSettings();
 
     #region General Timers & Variables
