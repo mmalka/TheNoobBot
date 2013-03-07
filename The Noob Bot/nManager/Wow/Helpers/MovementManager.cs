@@ -245,7 +245,7 @@ namespace nManager.Wow.Helpers
                     {
                         try
                         {
-                            if (_points[firstIdPoint].Type.ToLower() == "swimming")
+                            if (_points[idPoint].Type.ToLower() == "swimming")
                             {
                                 return;
                             }
