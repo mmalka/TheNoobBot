@@ -188,7 +188,7 @@ namespace nManager.Wow.Helpers
                         {
                             MovementsAction.Descend(false);
                             MovementsAction.Ascend(false);
-                            Bot.Tasks.MountTask.Mount(false);
+                            MountTask.Mount(false);
                             MovementsAction.Ascend(true);
                             Thread.Sleep(1300);
                             MovementsAction.Ascend(false);
@@ -200,12 +200,14 @@ namespace nManager.Wow.Helpers
                 MovementsAction.Ascend(false);
                 _used = false;
                 _usedLoop = false;
+                RegenPath.ForceReady();
             }
             catch (Exception exception)
             {
                 Logging.WriteError("LongMove > LongMoveGo(Point point): " + exception);
                 _used = false;
                 _usedLoop = false;
+                RegenPath.ForceReady();
             }
         }
 
