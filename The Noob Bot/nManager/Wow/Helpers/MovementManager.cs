@@ -158,11 +158,11 @@ namespace nManager.Wow.Helpers
                                     if (_loop)
                                         _currentTargetedPoint = targetPoint;
                                     if (_points[targetPoint].Type.ToLower() == "flying")
-                                        FlyMouvementManager(targetPoint);
+                                        FlyMovementManager(targetPoint);
                                     else if (_points[targetPoint].Type.ToLower() == "swimming")
-                                        AquaticMouvementManager(targetPoint);
+                                        AquaticMovementManager(targetPoint);
                                     else
-                                        GroundMouvementManager(targetPoint);
+                                        GroundMovementManager(targetPoint);
 
                                     Statistics.OffsetStats = 0x53;
                                 }
@@ -184,7 +184,7 @@ namespace nManager.Wow.Helpers
 
         // ReSharper restore FunctionNeverReturns
 
-        private static void GroundMouvementManager(int firstIdPoint)
+        private static void GroundMovementManager(int firstIdPoint)
         {
             try
             {
@@ -319,7 +319,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static void FlyMouvementManager(int firstIdPoint)
+        private static void FlyMovementManager(int firstIdPoint)
         {
             try
             {
@@ -391,7 +391,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static void AquaticMouvementManager(int firstIdPoint)
+        private static void AquaticMovementManager(int firstIdPoint)
         {
             try
             {
