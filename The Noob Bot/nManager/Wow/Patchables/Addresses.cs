@@ -98,14 +98,14 @@
         /// </summary>
         public enum GameInfo
         {
-            continentId = 0xAD6814, // Not found
-            buildWowVersion = 0xB7F6C4, // Not found
-            gameState = 0xD50F26, // Not found
-            isLoadingOrConnecting = 0xC8AA50, // Not found
-            AreaId = 0xB4C94C, // Not found
-            lastWowErrorMessage = 0xD50328, // Not found
-            zoneMap = 0xD50F1C, // Not found
-            subZoneMap = 0xD50F18, // Not found
+            continentId = 0xAD7814,
+            buildWowVersion = 0xB7F6C4,
+            gameState = 0xD50F26,
+            isLoadingOrConnecting = 0xC8AA50,
+            AreaId = 0xB4D94C,
+            lastWowErrorMessage = 0xD51328,
+            zoneMap = 0xD50F1C,
+            subZoneMap = 0xD50F18,
         }
 
         /// <summary>
@@ -113,13 +113,13 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xDBF660, // Not found
-            playerName = 0xEAEAA8, // Not found
-            PlayerComboPoint = 0xD51009, // Not found
-            RetrieveCorpseWindow = 0xD50FDC, // Not found
+            petGUID = 0xDBF660,
+            playerName = 0xEAEAA8,
+            PlayerComboPoint = 0xD51009,
+            RetrieveCorpseWindow = 0xD50FDC,
             // Some offsets to refine descriptor
-            SkillValue = 0x200, // Not found
-            SkillMaxValue = 0x400, // Not found
+            SkillValue = 0x200,
+            SkillMaxValue = 0x400,
         }
 
         /// <summary>
@@ -127,10 +127,10 @@
         /// </summary>
         public enum BarManager
         {
-            slotIsEnable = 0xDC0C18, // Not found
-            startBar = 0xDC11BC, // Not found
-            nbBar = 0xDC0C18, // Not found
-            nextSlot = 0x4, // Not found
+            slotIsEnable = 0xDC0C18,
+            startBar = 0xDC11BC,
+            nbBar = 0xDC0C18,
+            nextSlot = 0x4,
         }
 
         /// <summary>
@@ -138,16 +138,16 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x870, // Not found
-            UNIT_FIELD_X = 0x800, // Not found
-            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // Not found
-            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // Not found
-            UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // Not found
-            CastingSpellID = 0xC60, // Not found // Script_UnitCastingInfo
-            ChannelSpellID = 0xC78, // Not found // Script_UnitChannelInfo
-            TransportGUID = 0x7F8, // Not found // CGUnit_C__HasVehicleTransport
-            DBCacheRow = 0x988, // Not found // CGUnit_C__GetUnitName
-            CachedName = 0x78, // Not found // CGUnit_C__GetUnitName
+            UNIT_SPEED = 0x870,
+            UNIT_FIELD_X = 0x800,
+            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
+            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
+            UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
+            CastingSpellID = 0xC60, // Script_UnitCastingInfo
+            ChannelSpellID = 0xC78, // Script_UnitChannelInfo
+            TransportGUID = 0x7F8, // CGUnit_C__HasVehicleTransport
+            DBCacheRow = 0x988, // CGUnit_C__GetUnitName
+            CachedName = 0x78, // CGUnit_C__GetUnitName
         }
 
         /// <summary>
@@ -170,9 +170,9 @@
         /// </summary>
         public enum Battleground
         {
-            statPvp = 0xB56908, // Not found
-            pvpExitWindow = 0xDAE168, // Not found
-            selectedBattlegroundId = 0xDAE10C, // Not found
+            statPvp = 0xB56908,
+            pvpExitWindow = 0xDAE168,
+            selectedBattlegroundId = 0xDAE10C,
         }
 
         /// <summary>
@@ -180,8 +180,8 @@
         /// </summary>
         public enum SpellBook
         {
-            knownSpell = 0xDAD8DC, // Not found
-            nbSpell = 0xDAD8D8, // Not found
+            knownSpell = 0xDAD8DC,
+            nbSpell = 0xDAD8D8,
         }
 
         /// <summary>
@@ -189,10 +189,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0xD52D98, // Not found
-            NextMessage = 0x17C8, // Not found
-            msgFormatedChat = 0x3C, // Not found
-            chatBufferPos = 0xDAC510, // Not found
+            chatBufferStart = 0xD52D98,
+            NextMessage = 0x17C8,
+            msgFormatedChat = 0x3C,
+            chatBufferPos = 0xDAC510,
         }
 
         /// <summary>
