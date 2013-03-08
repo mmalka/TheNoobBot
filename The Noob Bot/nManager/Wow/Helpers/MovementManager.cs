@@ -288,9 +288,9 @@ namespace nManager.Wow.Helpers
                                 return;
                             }
                             // GoTo next Point
-                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 2.0f &&
+                            if ((((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f &&
                                    ObjectManager.ObjectManager.Me.IsMounted) ||
-                                  ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 2.0f) &&
+                                  ObjectManager.ObjectManager.Me.Position.DistanceTo2D(_points[idPoint]) <= 3.0f) &&
                                  ObjectManager.ObjectManager.Me.Position.DistanceZ(_points[idPoint]) <= 10.5f) &&
                                 _movement)
                             {
@@ -397,7 +397,7 @@ namespace nManager.Wow.Helpers
                             MovementsAction.Ascend(false);
                         }
 
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 10 && _movement)
+                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(_points[idPoint]) < 15 && _movement)
                         {
                             idPoint++;
                             if (idPoint > _points.Count - 1)
