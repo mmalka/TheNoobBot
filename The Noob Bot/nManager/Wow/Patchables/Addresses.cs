@@ -15,12 +15,12 @@
 
         public enum ObjectManager
         {
-            objectManager = 0x462C, // Not found
-            firstObject = 0xCC, // Not found
-            nextObject = 0x3C, // Not found
-            localGuid = 0xD0, // Not found
-            objectGUID = 0x30, // Not found
-            objectTYPE = 0x10, // Not found
+            objectManager = 0x462C,
+            firstObject = 0xCC,
+            nextObject = 0x3C,
+            localGuid = 0xD0,
+            objectGUID = 0x30,
+            objectTYPE = 0x10,
         }
 
         /// <summary>
@@ -28,9 +28,9 @@
         /// </summary>
         public enum Hooking
         {
-            DX_DEVICE = 0xB9C4C4, // Not found
-            DX_DEVICE_IDX = 0x2808, // Not found
-            ENDSCENE_IDX = 0xA8, // Not found
+            DX_DEVICE = 0xB9D4C4,
+            DX_DEVICE_IDX = 0x2808,
+            ENDSCENE_IDX = 0xA8,
         }
 
         /// <summary>
@@ -38,9 +38,9 @@
         /// </summary>
         public enum IsFalling
         {
-            flag = 0x800, // Not found
-            offset1 = 0xE4, // Not found
-            offset2 = 0x38, // Not found
+            flag = 0x800,
+            offset1 = 0xE4,
+            offset2 = 0x38,
         }
 
         /// <summary>
@@ -48,9 +48,9 @@
         /// </summary>
         public enum IsSwimming
         {
-            flag = 0x100000, // Not found
-            offset1 = 0xE4, // Not found
-            offset2 = 0x38, // Not found
+            flag = 0x100000,
+            offset1 = 0xE4,
+            offset2 = 0x38,
         }
 
         /// <summary>
@@ -58,22 +58,22 @@
         /// </summary>
         public enum IsFlying
         {
-            flag = 0x1000000, // Not found
-            offset1 = 0xE4, // Not found
-            offset2 = 0x38, // Not found
+            flag = 0x1000000,
+            offset1 = 0xE4,
+            offset2 = 0x38,
         }
 
         public enum Party
         {
-            PartyOffset = 0xDACA74, // Not found
-            NumOfPlayers = 0xC4, // Not found
-            NumOfPlayers_SuBGroup = 0xC8, // Not found
-            PlayerGuid = 0x10, // Not found
+            PartyOffset = 0xDADA74,
+            NumOfPlayers = 0xC4,
+            NumOfPlayers_SuBGroup = 0xC8,
+            PlayerGuid = 0x10,
         }
 
         public enum PetBattle
         {
-            IsInBattle = 0xDAC204, // Not found
+            IsInBattle = 0xDAD204,
         }
 
         /// <summary>
@@ -81,16 +81,16 @@
         /// </summary>
         public enum DBC
         {
-            Spell = 0xC815D8, // Not found
-            SpellCastTimes = 0xC81084, // Not found
-            SpellRange = 0xC81580, // Not found
-            SpellMisc = 0xC814A4, // Not found
-            FactionTemplate = 0xC7F4B0, // Not found
-            Lock = 0xC80500, // Not found
-            LockType = 0xC8052C, // Not found
-            Map = 0xC822D4, // Not found
-            ResearchSite = 0xC80C0C, // Not found
-            QuestPOIPoint = 0xC80A54, // Not found
+            Spell = 0xC825D8,
+            SpellCastTimes = 0xC82084,
+            SpellRange = 0xC82580,
+            SpellMisc = 0xC824A4,
+            FactionTemplate = 0xC804B0,
+            Lock = 0xC81500,
+            LockType = 0xC8152C,
+            Map = 0xC832D4,
+            ResearchSite = 0xC81C0C,
+            QuestPOIPoint = 0xC81A54,
         }
 
         /// <summary>
@@ -99,13 +99,13 @@
         public enum GameInfo
         {
             continentId = 0xAD6814, // Not found
-            buildWowVersion = 0xB7E6C4, // Not found
-            gameState = 0xD4FF26, // Not found
-            isLoadingOrConnecting = 0xC89A50, // Not found
-            AreaId = 0xB4B94C, // Not found
-            lastWowErrorMessage = 0xD4F328, // Not found
-            zoneMap = 0xD4FF1C, // Not found
-            subZoneMap = 0xD4FF18, // Not found
+            buildWowVersion = 0xB7F6C4, // Not found
+            gameState = 0xD50F26, // Not found
+            isLoadingOrConnecting = 0xC8AA50, // Not found
+            AreaId = 0xB4C94C, // Not found
+            lastWowErrorMessage = 0xD50328, // Not found
+            zoneMap = 0xD50F1C, // Not found
+            subZoneMap = 0xD50F18, // Not found
         }
 
         /// <summary>
@@ -113,10 +113,10 @@
         /// </summary>
         public enum Player
         {
-            petGUID = 0xDBE660, // Not found
-            playerName = 0xEADAA8, // Not found
-            PlayerComboPoint = 0xD50009, // Not found
-            RetrieveCorpseWindow = 0xD4FFDC, // Not found
+            petGUID = 0xDBF660, // Not found
+            playerName = 0xEAEAA8, // Not found
+            PlayerComboPoint = 0xD51009, // Not found
+            RetrieveCorpseWindow = 0xD50FDC, // Not found
             // Some offsets to refine descriptor
             SkillValue = 0x200, // Not found
             SkillMaxValue = 0x400, // Not found
@@ -127,9 +127,9 @@
         /// </summary>
         public enum BarManager
         {
-            slotIsEnable = 0xDBFC18, // Not found
-            startBar = 0xDC01BC, // Not found
-            nbBar = 0xDBFC18, // Not found
+            slotIsEnable = 0xDC0C18, // Not found
+            startBar = 0xDC11BC, // Not found
+            nbBar = 0xDC0C18, // Not found
             nextSlot = 0x4, // Not found
         }
 
@@ -155,14 +155,14 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x1EC, // Not found
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // Not found
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // Not found
-            DBCacheRow = 0x1B8, // Not found
-            CachedName = 0xB0, // Not found
-            CachedData0 = 0x14, // Not found
-            CachedData1 = 0x18, // Not found
-            CachedData8 = 0x34, // Not found // (Data0 + 8 * 0x04)
+            GAMEOBJECT_FIELD_X = 0x1EC,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            DBCacheRow = 0x1B8,
+            CachedName = 0xB0,
+            CachedData0 = 0x14,
+            CachedData1 = 0x18,
+            CachedData8 = 0x34, // (Data0 + 8 * 0x04)
         }
 
         /// <summary>
@@ -170,9 +170,9 @@
         /// </summary>
         public enum Battleground
         {
-            statPvp = 0xB55908, // Not found
-            pvpExitWindow = 0xDAD168, // Not found
-            selectedBattlegroundId = 0xDAD10C, // Not found
+            statPvp = 0xB56908, // Not found
+            pvpExitWindow = 0xDAE168, // Not found
+            selectedBattlegroundId = 0xDAE10C, // Not found
         }
 
         /// <summary>
@@ -180,8 +180,8 @@
         /// </summary>
         public enum SpellBook
         {
-            knownSpell = 0xDAC8DC, // Not found
-            nbSpell = 0xDAC8D8, // Not found
+            knownSpell = 0xDAD8DC, // Not found
+            nbSpell = 0xDAD8D8, // Not found
         }
 
         /// <summary>
@@ -189,10 +189,10 @@
         /// </summary>
         public enum Chat
         {
-            chatBufferStart = 0xD51D98, // Not found
+            chatBufferStart = 0xD52D98, // Not found
             NextMessage = 0x17C8, // Not found
             msgFormatedChat = 0x3C, // Not found
-            chatBufferPos = 0xDAB510, // Not found
+            chatBufferPos = 0xDAC510, // Not found
         }
 
         /// <summary>
@@ -200,11 +200,11 @@
         /// </summary>
         public enum ClickToMove
         {
-            CTM = 0xD01C00, // Not found
-            CTM_PUSH = CTM + 0x1C, // Not found
-            CTM_X = CTM + 0x8C, // Not found
-            CTM_Y = CTM_X + 0x4, // Not found
-            CTM_Z = CTM_Y + 0x4, // Not found
+            CTM = 0xD02C00,
+            CTM_PUSH = CTM + 0x1C,
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -212,7 +212,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 0x24, // Not found
+            CGUnit_C__GetFacing = 0x24,
         }
 
         /// <summary>
@@ -220,14 +220,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x44AF70, // Not found
-            FrameScript_ExecuteBuffer = 0x75E10, // Not found
-            CGPlayer_C__ClickToMove = 0x4EBF80, // Not found
-            ClntObjMgrGetActivePlayerObj = 0x32B0, // Not found
-            FrameScript__GetLocalizedText = 0x4E4B80, // Not found
-            CGWorldFrame__Intersect = 0x75DC50, // Not found
-            Spell_C__HandleTerrainClick = 0x4390D0, // Not found
-            Interact = 0x5E2F20, // Not found
+            ClntObjMgrGetActivePlayer = 0x44B1C0,
+            FrameScript_ExecuteBuffer = 0x75E20,
+            CGPlayer_C__ClickToMove = 0x4EC210,
+            ClntObjMgrGetActivePlayerObj = 0x32B0,
+            FrameScript__GetLocalizedText = 0x4E4E10,
+            CGWorldFrame__Intersect = 0x75DF00,
+            Spell_C__HandleTerrainClick = 0x439310,
+            Interact = 0x5E3200,
         }
 
         /// <summary>
@@ -235,9 +235,9 @@
         /// </summary>
         public enum CorpsePlayer
         {
-            X = 0xD502B8, // Not found
-            Y = X + 0x4, // Not found
-            Z = X + 0x8, // Not found
+            X = 0xD512B8,
+            Y = X + 0x4,
+            Z = X + 0x8,
         }
 
         /// <summary>
@@ -245,10 +245,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xC7BEB0 + 0x8, // Not found
-            nameMaskOffset = 0x024, // Not found
-            nameBaseOffset = 0x18, // Not found
-            nameStringOffset = 0x21, // Not found
+            nameStorePtr = 0xC7CEB0 + 0x8,
+            nameMaskOffset = 0x024,
+            nameBaseOffset = 0x18,
+            nameStringOffset = 0x21,
         }
 
         /// <summary>
@@ -256,8 +256,8 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xEADC30 + 0x6, // Not found
-            battlerNetWindow = 0xC89A50, // Not found
+            realmName = 0xEAEC30 + 0x6,
+            battlerNetWindow = 0xC8AA50,
         }
 
         /// <summary>
@@ -265,8 +265,8 @@
         /// </summary>
         public enum AutoLoot
         {
-            AutoLoot_Activate_Pointer = 0xD50160, // Not found
-            AutoLoot_Activate_Offset = 0x30, // Not found
+            AutoLoot_Activate_Pointer = 0xD51160,
+            AutoLoot_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -274,8 +274,8 @@
         /// </summary>
         public enum AutoSelfCast
         {
-            AutoSelfCast_Activate_Pointer = 0xD5016C, // Not found
-            AutoSelfCast_Activate_Offset = 0x30, // Not found
+            AutoSelfCast_Activate_Pointer = 0xD5116C,
+            AutoSelfCast_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -283,8 +283,8 @@
         /// </summary>
         public enum AutoInteract
         {
-            AutoInteract_Activate_Pointer = 0xD50140, // Not found
-            AutoInteract_Activate_Offset = 0x30, // Not found
+            AutoInteract_Activate_Pointer = 0xD51140,
+            AutoInteract_Activate_Offset = 0x30,
         }
 
         /// <summary>
@@ -305,13 +305,13 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AURA_COUNT_1 = 0x10C8, // Not found
-            AURA_COUNT_2 = 0xDC8, // Not found
-            AURA_TABLE_1 = 0xDC8, // Not found
-            AURA_TABLE_2 = 0xDCC, // Not found
-            AURA_SIZE = 0x30, // Not found
-            AURA_SPELL_ID = 0x18, // Not found
-            AURA_STACK = 0x1D, // Not found // Valid ??? // TODO Check for AURA_STACK offset
+            AURA_COUNT_1 = 0x10C8,
+            AURA_COUNT_2 = 0xDC8,
+            AURA_TABLE_1 = 0xDC8,
+            AURA_TABLE_2 = 0xDCC,
+            AURA_SIZE = 0x30,
+            AURA_SPELL_ID = 0x18,
+            AURA_STACK = 0x1D, // Valid ??? // TODO Check for AURA_STACK offset
         }
 
         /// <summary>
@@ -319,8 +319,8 @@
         /// </summary>
         public enum PowerIndex
         {
-            PowerIndexArrays = 0xD0188C, // Not found
-            Multiplicator = 0x10, // Not found
+            PowerIndexArrays = 0xD0288C,
+            Multiplicator = 0x10,
         }
     }
 }
