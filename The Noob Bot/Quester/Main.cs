@@ -7,7 +7,6 @@ using nManager.Helpful;
 using nManager.Products;
 
 public class Main : IProduct
-
 {
     #region IProduct Members
 

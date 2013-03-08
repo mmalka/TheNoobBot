@@ -5,7 +5,6 @@ using nManager.Products;
 using Tracker;
 
 public class Main : IProduct
-
 {
     #region IProduct Members
 

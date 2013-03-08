@@ -9,7 +9,6 @@ using nManager.Products;
 using nManager.Wow.ObjectManager;
 
 public class Main : IProduct
-
 {
     #region IProduct Members
 
