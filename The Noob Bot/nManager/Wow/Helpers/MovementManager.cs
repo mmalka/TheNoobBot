@@ -1158,20 +1158,22 @@ namespace nManager.Wow.Helpers
         /// <summary>
         /// Stop Player.
         /// </summary>
-        public static void StopMoveTo(bool UpKey = true)
+        public static void StopMoveTo(bool stabilizeZAxis = true)
         {
             try
             {
                 _loopMoveTo = false;
                 if (ObjectManager.ObjectManager.Me.GetMove)
                 {
-                    if (UpKey)
+                    if (stabilizeZAxis)
                     {
                         MovementsAction.Ascend(false);
                         MovementsAction.Descend(false);
                     }
                     MovementsAction.MoveForward(false);
                     MovementsAction.MoveBackward(false);
+                    MovementsAction.StrafeLeft(false);
+                    MovementsAction.StrafeRight(false);
                 }
             }
             catch (Exception exception)
