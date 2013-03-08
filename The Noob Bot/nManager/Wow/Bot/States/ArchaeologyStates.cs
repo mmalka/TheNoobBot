@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 
@@ -46,6 +48,12 @@ namespace nManager.Wow.Bot.States
         private LocState myState = LocState.iddle;
         private Helpful.Timer timerLooting;
 
+        private int _bestPathId;
+        private int _lastPathId;
+        private bool _bestPathStatus;
+        private bool _currentFindPathStatus;
+        private readonly List<List<Point>> _pathFound = new List<List<Point>>();
+
         public override bool NeedToRun
         {
             get
@@ -75,22 +83,28 @@ namespace nManager.Wow.Bot.States
                 if (listDigsitesZone.Count > 0)
                 {
                     var tDigsitesZone = new Digsite {name = "", px = "", py = ""};
-                    float distance = 99999999999999999;
-                    float priority = -999999999999;
+                    var distance = 99999999999999999f;
+                    var priority = -999999999999f;
                     foreach (var t in listDigsitesZone)
                     {
-                        if (!BlackListDigsites.Contains(t.px + t.py + t.continentId) && t.Active)
+                        if (BlackListDigsites.Contains(t.px + t.py + t.continentId) || !t.Active) continue;
+                        if (!(t.PriorityDigsites >= priority) && (MountTask.GetMountCapacity() != MountCapacity.Feet || _bestPathStatus)) continue;
+                        if (!(t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < distance) && (MountTask.GetMountCapacity() != MountCapacity.Feet || _bestPathStatus))
+                            continue;
+                        if (MountTask.GetMountCapacity() == MountCapacity.Feet)
                         {
-                            if (t.PriorityDigsites >= priority)
-                            {
-                                if (t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < distance)
-                                {
-                                    priority = t.PriorityDigsites;
-                                    distance = t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position);
-                                    tDigsitesZone = t;
-                                }
-                            }
+                            _pathFound.AddRange(new[]
+                                {PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.position, Usefuls.ContinentNameMpq, out _currentFindPathStatus)});
+                            _lastPathId = _pathFound.Count - 1;
+                            _bestPathStatus = _currentFindPathStatus;
+                            if (_bestPathStatus && !_currentFindPathStatus)
+                                continue;
+                            if (_bestPathStatus)
+                                _bestPathId = _pathFound.Count - 1;
                         }
+                        priority = t.PriorityDigsites;
+                        distance = t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                        tDigsitesZone = t;
                     }
                     if (tDigsitesZone.px != "")
                     {
@@ -147,7 +161,7 @@ namespace nManager.Wow.Bot.States
                 try
                 {
                     if (myState != LocState.iddle)
-                        Tasks.MountTask.DismountMount();
+                        MountTask.DismountMount();
 
                     ObjectManager.WoWGameObject t =
                         ObjectManager.ObjectManager.GetNearestWoWGameObject(
@@ -219,7 +233,14 @@ namespace nManager.Wow.Bot.States
                     else if (digsitesZone.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 450)
                     {
                         Logging.Write("Go to Digsite " + digsitesZone.name);
-                        MovementManager.Go(new List<Point>(new[] {digsitesZone.position})); // MoveTo Digsite
+                        if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                        {
+                            if (_bestPathId == 0)
+                                _bestPathId = _lastPathId;
+                            MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
+                        }
+                        else
+                            MovementManager.Go(new List<Point>(new[] {digsitesZone.position}));
                         myState = LocState.iddle;
                         return;
                     }
@@ -238,7 +259,7 @@ namespace nManager.Wow.Bot.States
                                 return;
 
                             if (myState == LocState.iddle)
-                                Tasks.MountTask.DismountMount();
+                                MountTask.DismountMount();
 
                             surveySpell.Launch();
                             myState = LocState.survey;
@@ -246,7 +267,14 @@ namespace nManager.Wow.Bot.States
                             if (nbCastSurveyError > 3)
                             {
                                 Logging.Write("Go to Digsite " + digsitesZone.name);
-                                MovementManager.Go(new List<Point>(new[] {digsitesZone.position})); // MoveTo Digsite
+                                if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                                {
+                                    if (_bestPathId == 0)
+                                        _bestPathId = _lastPathId;
+                                    MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
+                                }
+                                else
+                                    MovementManager.Go(new List<Point>(new[] {digsitesZone.position})); // MoveTo Digsite
                                 nbCastSurveyError = 0;
                                 return;
                             }
@@ -337,7 +365,7 @@ namespace nManager.Wow.Bot.States
                                     {
                                         return;
                                     }
-                                    Tasks.MountTask.Mount();
+                                    MountTask.Mount();
                                     LongMove.LongMoveByNewThread(p);
                                     var timer =
                                         new Helpful.Timer(1000*
@@ -363,7 +391,7 @@ namespace nManager.Wow.Bot.States
                                         LongMove.StopLongMove();
                                     }
                                     MovementManager.StopMove();
-                                    Tasks.MountTask.DismountMount();
+                                    MountTask.DismountMount();
                                     nbStuck = 0;
                                 }
                                 else //  walk to next position
