@@ -26,7 +26,7 @@ namespace Battlegrounder.Bot
                 Fsm.States.Clear();
 
                 Fsm.AddState(new Pause {Priority = 12});
-                Fsm.AddState(new ToTown {Priority = 1});
+                Fsm.AddState(new ToTown {Priority = 11});
                 Fsm.AddState(new Talents {Priority = 10});
                 Fsm.AddState(new Trainers {Priority = 9});
                 Fsm.AddState(new Resurrect {Priority = 8});
