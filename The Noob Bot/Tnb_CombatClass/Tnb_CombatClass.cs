@@ -9,12 +9,11 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Keybindings = nManager.Wow.Helpers.Keybindings;
+using MovementsAction = nManager.Wow.Helpers.MovementsAction;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
