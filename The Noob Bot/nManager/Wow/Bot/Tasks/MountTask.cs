@@ -55,10 +55,9 @@ namespace nManager.Wow.Bot.Tasks
 
                 startupCheck = false;
             }
-            if (ObjectManager.ObjectManager.Me.Level < 16 || (groundMount == string.Empty && flyMount == string.Empty &&
-                                                              aquaMount == string.Empty))
+            if (ObjectManager.ObjectManager.Me.Level < 16 || (groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty))
             {
-                if (_noMountsInSettings != 1)
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && _noMountsInSettings != 1)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.No_mounts_in_settings));
                     _noMountsInSettings++;
@@ -116,7 +115,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 20 && groundMount != string.Empty)
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty)
                     return MountCapacity.Ground;
             }
             return MountCapacity.Feet;
