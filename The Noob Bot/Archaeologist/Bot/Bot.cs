@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using nManager;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 
@@ -35,24 +36,24 @@ namespace Archaeologist.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new nManager.Wow.Bot.States.Pause {Priority = 12});
-                Fsm.AddState(new nManager.Wow.Bot.States.Resurrect {Priority = 11});
-                Fsm.AddState(new nManager.Wow.Bot.States.IsAttacked {Priority = 10});
-                Fsm.AddState(new nManager.Wow.Bot.States.Regeneration {Priority = 9});
-                Fsm.AddState(new nManager.Wow.Bot.States.Looting {Priority = 8});
-                Fsm.AddState(new nManager.Wow.Bot.States.Farming {Priority = 7});
-                Fsm.AddState(new nManager.Wow.Bot.States.MillingState {Priority = 6});
-                Fsm.AddState(new nManager.Wow.Bot.States.ProspectingState {Priority = 5});
-                Fsm.AddState(new nManager.Wow.Bot.States.ToTown {Priority = 4});
-                Fsm.AddState(new nManager.Wow.Bot.States.Talents {Priority = 3});
-                Fsm.AddState(new nManager.Wow.Bot.States.Trainers {Priority = 2});
-                Fsm.AddState(new nManager.Wow.Bot.States.ArchaeologyStates
+                Fsm.AddState(new Pause { Priority = 12 });
+                Fsm.AddState(new Resurrect { Priority = 11 });
+                Fsm.AddState(new IsAttacked { Priority = 10 });
+                Fsm.AddState(new Looting { Priority = 9 });
+                Fsm.AddState(new Regeneration { Priority = 8 });
+                Fsm.AddState(new ToTown { Priority = 7 });
+                Fsm.AddState(new Talents { Priority = 6 });
+                Fsm.AddState(new Trainers { Priority = 5 });
+                Fsm.AddState(new MillingState { Priority = 4 });
+                Fsm.AddState(new ProspectingState { Priority = 3 });
+                Fsm.AddState(new Farming { Priority = 2 });
+                Fsm.AddState(new ArchaeologyStates
                     {
                         Priority = 1,
                         SolvingEveryXMin = ArchaeologistSetting.CurrentSetting.solvingEveryXMin,
                         MaxTryByDigsite = ArchaeologistSetting.CurrentSetting.maxTryByDigsite
                     });
-                Fsm.AddState(new nManager.Wow.Bot.States.Idle {Priority = 0});
+                Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6); // Fsm.StartEngine(25);
