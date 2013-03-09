@@ -3545,6 +3545,76 @@
     </position>
     <px>0.17323940992355</px>
     <py>0.35356950759888</py>
+    <PriorityDigsites>0</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Kor'vess Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>910</X>
+	 <Y>3690</Y>
+	 <Z>90</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.32766759395599</px>
+    <py>0.55698144435883</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Venomous Ledge Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>-110</X>
+	 <Y>4685</Y>
+	 <Z>90</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.26134598255157</px>
+    <py>0.65598046779633</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Kzzok Warcamp Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>2430</X>
+	 <Y>5630</Y>
+	 <Z>95</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.20146960020065</px>
+    <py>0.41128665208817</py>
+    <PriorityDigsites>0</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>West Sra'vess Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>2617.36</X>
+	 <Y>6009.557</Y>
+	 <Z>92.54052</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.17710655927658</px>
+    <py>0.39359444379807</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>West Sik'vess Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>1475</X>
+	 <Y>4600</Y>
+	 <Z>275</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.26830685138702</px>
+    <py>0.50390487909317</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
