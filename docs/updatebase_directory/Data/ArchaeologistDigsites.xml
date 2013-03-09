@@ -3484,11 +3484,67 @@
     <position>
       <X>1000</X>
       <Y>1200</Y>
-      <Z>400</Z>
+      <Z>410</Z>
       <Type>Flying</Type>
     </position>
     <px>0.483578145504</px>
     <py>0.54944050312042</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Amber Quarry Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>-1850</X>
+      <Y>4570</Y>
+      <Z>50</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.27069157361984</px>
+    <py>0.82236450910568</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>The Underbough Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>2422</X>
+	 <Y>3670</Y>
+	 <Z>270</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.32869881391525</px>
+    <py>0.41206008195877</py>
+    <PriorityDigsites>1</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>The Feeding Pits Digsite</name>
+    <continentId>870</continentId>
+	<position>
+	 <X>2400</X>
+	 <Y>5980</Y>
+	 <Z>60</Z>
+	 <Type>Flying</Type>
+	</position>
+    <px>0.17923349142075</px>
+    <py>0.41370362043381</py>
+    <PriorityDigsites>0</PriorityDigsites>
+    <Active>true</Active>
+  </Digsite>
+  <Digsite>
+    <name>Ikz'ka Ridge Digsite</name>
+    <continentId>870</continentId>
+    <position>
+      <X>3020</X>
+      <Y>6070</Y>
+      <Z>90</Z>
+      <Type>Flying</Type>
+    </position>
+    <px>0.17323940992355</px>
+    <py>0.35356950759888</py>
     <PriorityDigsites>1</PriorityDigsites>
     <Active>true</Active>
   </Digsite>
