@@ -228,6 +228,7 @@
             CGWorldFrame__Intersect = 0x75DF00,
             Spell_C__HandleTerrainClick = 0x439310,
             Interact = 0x5E3200,
+            LastHardwareAction = 0xB9D1B0,
         }
 
         /// <summary>

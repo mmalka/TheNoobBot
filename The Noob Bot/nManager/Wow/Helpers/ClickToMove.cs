@@ -12,6 +12,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Usefuls.UpdateLastHardwareAction();
                 if (x == 0 && y == 0 && z == 0 && guid == 0)
                     return;
 

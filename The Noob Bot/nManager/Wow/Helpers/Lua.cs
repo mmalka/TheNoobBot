@@ -44,6 +44,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Usefuls.UpdateLastHardwareAction();
                 if (command.Replace(" ", "").Length <= 0)
                     return;
 

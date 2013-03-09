@@ -13,6 +13,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Usefuls.UpdateLastHardwareAction();
                 if (baseAddress > 0)
                 {
                     var to = new WoWObject(baseAddress);

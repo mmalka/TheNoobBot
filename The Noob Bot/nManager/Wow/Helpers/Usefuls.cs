@@ -747,5 +747,15 @@ namespace nManager.Wow.Helpers
                 return "";
             }
         }
+
+        private static readonly Object ThisLock = new Object();
+
+        public static void UpdateLastHardwareAction()
+        {
+            lock (ThisLock)
+            {
+                Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.LastHardwareAction, (uint) Environment.TickCount);
+            }
+        }
     }
 }
