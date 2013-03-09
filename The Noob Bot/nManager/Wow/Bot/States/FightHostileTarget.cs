@@ -50,8 +50,7 @@ namespace nManager.Wow.Bot.States
                 _unit = ObjectManager.ObjectManager.Target;
 
                 if (_unit.IsValid && !_unit.IsDead && _unit.IsAlive && _unit.Health > 0)
-                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated ||
-                        _unit.Reaction == Reaction.Unfriendly || _unit.Reaction == Reaction.Neutral)
+                    if (_unit.Reaction == Reaction.Hostile || _unit.Reaction == Reaction.Hated)
                         return true;
                 _unit = new WoWUnit(0);
                 return false;
