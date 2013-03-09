@@ -83,7 +83,7 @@ namespace nManager.Wow.Helpers
                         bool found = false;
                         foreach (Npc npc1 in ListNpc)
                         {
-                            if (npc1.Position.DistanceTo(npc.Position) < 1 && npc1.Entry == npc.Entry)
+                            if (npc1.Position.DistanceTo(npc.Position) < 1 && npc1.Entry == npc.Entry && npc1.Type == npc.Type)
                             {
                                 found = true;
                                 break;
