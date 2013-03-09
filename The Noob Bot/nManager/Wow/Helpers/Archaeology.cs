@@ -298,6 +298,17 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(500);
                     }
                 }
+                for (uint i = 95375; i <= 95390; i++)
+                {
+                    var item = ObjectManager.ObjectManager.GetWoWItemById(i);
+                    if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
+                        !ItemsManager.IsUsableItemById(i)) continue;
+                    while (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                    {
+                        ItemsManager.UseItem(i);
+                        Thread.Sleep(500);
+                    }
+                }
             }
             catch (Exception e)
             {
