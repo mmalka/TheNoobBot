@@ -21,17 +21,11 @@ public class Main : nManager.Helpful.Interface.IScriptOnlineManager
                 }
             }
             else*/
-            if (nManager.Information.Version == "1.4.2")
+            if (nManager.Information.Version == "1.4.4")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEADA68;
-            }
-			else if (nManager.Information.Version == "1.4.3")
-            {
-                //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
-                //System.IO.File.Delete("nManager2.dll");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEADA68;
+                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEAEA68;
             }
             else
             {

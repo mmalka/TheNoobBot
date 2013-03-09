@@ -21,17 +21,11 @@
                 }
             }
             else*/
-            if (nManager.Information.Version == "1.3.15")
+            if (nManager.Information.Version == "1.4.4")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xE28428;
-            }
-            else if (nManager.Information.Version == "1.4.2")
-            {
-                //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
-                //System.IO.File.Delete("nManager2.dll");
-                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEADA68;
+                nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEAEA68;
             }
             else
             {
