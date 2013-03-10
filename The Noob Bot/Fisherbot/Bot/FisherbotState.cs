@@ -156,8 +156,8 @@ namespace Fisherbot.Bot
             else
             {
                 ObjectManager.Me.Rotation = FisherbotSetting.CurrentSetting.FisherbotRotation;
-                MovementsAction.StrafeLeft(false);
-                MovementsAction.StrafeRight(false);
+                MovementsAction.StrafeLeft(true, true);
+                MovementsAction.StrafeRight(true, true);
             }
 
             // Ce met a la bonne distance du banc de poisson

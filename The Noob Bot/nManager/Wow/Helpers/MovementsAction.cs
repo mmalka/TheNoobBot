@@ -12,8 +12,9 @@ namespace nManager.Wow.Helpers
             Ascend(false);
         }
 
-        public static void Ascend(bool start)
+        public static void Ascend(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("Ascend(" + start + ")");
             if (UseLUAToMove)
             {
@@ -26,10 +27,17 @@ namespace nManager.Wow.Helpers
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.JUMP);
             }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
+            }
         }
 
-        public static void Descend(bool start)
+        public static void Descend(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("Descend(" + start + ")");
             if (UseLUAToMove)
             {
@@ -42,10 +50,17 @@ namespace nManager.Wow.Helpers
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.SITORSTAND);
             }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
+            }
         }
 
-        public static void MoveBackward(bool start)
+        public static void MoveBackward(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("MoveBackward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -58,10 +73,17 @@ namespace nManager.Wow.Helpers
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.MOVEBACKWARD);
             }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
+            }
         }
 
-        public static void MoveForward(bool start)
+        public static void MoveForward(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("MoveForward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -74,10 +96,17 @@ namespace nManager.Wow.Helpers
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.MOVEFORWARD);
             }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
+            }
         }
 
-        public static void StrafeLeft(bool start)
+        public static void StrafeLeft(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("StrafeLeft(" + start + ")");
             if (UseLUAToMove)
             {
@@ -90,10 +119,17 @@ namespace nManager.Wow.Helpers
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.STRAFELEFT);
             }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
+            }
         }
 
-        public static void StrafeRight(bool start)
+        public static void StrafeRight(bool start, bool redo = false)
         {
+            beginning:
             Logging.WriteFileOnly("StrafeRight(" + start + ")");
             if (UseLUAToMove)
             {
@@ -105,6 +141,12 @@ namespace nManager.Wow.Helpers
                     Keybindings.DownKeybindings(Enums.Keybindings.STRAFERIGHT);
                 else
                     Keybindings.UpKeybindings(Enums.Keybindings.STRAFERIGHT);
+            }
+            if (redo)
+            {
+                redo = false;
+                start = !start;
+                goto beginning;
             }
         }
     }

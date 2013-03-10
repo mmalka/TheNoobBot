@@ -1170,10 +1170,10 @@ namespace nManager.Wow.Helpers
                         MovementsAction.Ascend(false);
                         MovementsAction.Descend(false);
                     }
-                    MovementsAction.MoveForward(false);
-                    MovementsAction.MoveBackward(false);
-                    MovementsAction.StrafeLeft(false);
-                    MovementsAction.StrafeRight(false);
+                    MovementsAction.MoveForward(true, true);
+                    MovementsAction.MoveBackward(true, true);
+                    MovementsAction.StrafeLeft(true, true);
+                    MovementsAction.StrafeRight(true, true);
                 }
             }
             catch (Exception exception)
