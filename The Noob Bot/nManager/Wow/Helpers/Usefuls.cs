@@ -292,8 +292,9 @@ namespace nManager.Wow.Helpers
                         int t;
                         try
                         {
-                            if (Lua.GetLocalizedText(randomString) != null)
-                                t = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                            string localized = Lua.GetLocalizedText(randomString);
+                            if (localized != null)
+                                t = Convert.ToInt32(localized);
                             else t = -1;
                         }
                         catch
