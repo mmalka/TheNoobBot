@@ -1158,7 +1158,7 @@ namespace nManager.Wow.Helpers
         /// <summary>
         /// Stop Player.
         /// </summary>
-        public static void StopMoveTo(bool stabilizeZAxis = true)
+        public static void StopMoveTo(bool stabilizeZAxis = true, bool stabilizeSides = false)
         {
             try
             {
@@ -1172,8 +1172,11 @@ namespace nManager.Wow.Helpers
                     }
                     MovementsAction.MoveForward(true, true);
                     MovementsAction.MoveBackward(true, true);
-                    MovementsAction.StrafeLeft(true, true);
-                    MovementsAction.StrafeRight(true, true);
+                    if (stabilizeSides)
+                    {
+                        MovementsAction.StrafeLeft(true, true);
+                        MovementsAction.StrafeRight(true, true);
+                    }
                 }
             }
             catch (Exception exception)
