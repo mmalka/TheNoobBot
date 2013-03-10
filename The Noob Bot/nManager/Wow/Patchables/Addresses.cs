@@ -128,7 +128,7 @@
         public enum BarManager
         {
             slotIsEnable = 0xDC0C18,
-            startBar = 0xDC11BC,
+            startBar = 0xDC11B8,
             nbBar = 0xDC0C18,
             nextSlot = 0x4,
         }
@@ -191,7 +191,7 @@
         {
             chatBufferStart = 0xD52D98,
             NextMessage = 0x17C8,
-            msgFormatedChat = 0x3C,
+            msgFormatedChat = 0x44,
             chatBufferPos = 0xDAC510,
         }
 
