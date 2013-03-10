@@ -51,7 +51,7 @@ namespace nManager.Wow.Helpers
                         Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                     }
                     else
-                        Logging.WriteError("Using the PathFinder since the destination is out of water");
+                        Logging.WriteNavigator("Using the PathFinder to destination out of water");
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to);
             }
@@ -108,7 +108,7 @@ namespace nManager.Wow.Helpers
                         Logging.WriteNavigator("Swimming to the destination using the PathFinder");
                     }
                     else
-                        Logging.WriteError("Using the PathFinder since the destination is out of water");
+                        Logging.WriteNavigator("Using the PathFinder to destination out of water");
                 }
                 return FindPath(ObjectManager.ObjectManager.Me.Position, to, Usefuls.ContinentNameMpq, out resultSuccess);
             }
