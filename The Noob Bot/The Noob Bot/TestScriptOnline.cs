@@ -21,7 +21,7 @@
                 }
             }
             else*/
-            if (nManager.Information.Version == "1.4.4")
+            if (nManager.Information.Version == "1.4.5")
             {
                 //System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + "2.exe");
                 //System.IO.File.Delete("nManager2.dll");
