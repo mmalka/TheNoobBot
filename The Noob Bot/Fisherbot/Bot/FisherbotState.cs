@@ -96,26 +96,24 @@ namespace Fisherbot.Bot
                 Point whereToGo = Fishing.FindTheUltimatePoint(_node.Position);
                 if (whereToGo.Type == "invalid")
                 {
-                    Logging.Write("invalide donc stop");
+                    Logging.Write("No valid point found");
                     nManagerSetting.AddBlackList(_node.Guid);
                     return;
                 }
                 var points = new List<Point>();
                 bool r;
                 points = PathFinder.FindPath(whereToGo, out r);
-                if (points.Count <= 1 || points.Count >= 15)
+                if (points.Count <= 1 || points.Count >= 20)
                 {
                     points.Clear();
                     points.Add(ObjectManager.Me.Position);
                     points.Add(whereToGo);
                 }
-                if (Usefuls.IsFlying)
+                else
                 {
-                    for (int i = 0; i <= points.Count - 1; i++)
-                    {
-                        points[i].Z = points[i].Z + 10;
-                        points[i].Type = "Flying";
-                    }
+                    for (int i = 0; i < points.Count; i++)
+                        if (points[i].Z < whereToGo.Z)
+                            points[i].Z = whereToGo.Z;
                 }
                 Logging.Write("Going to point > " + whereToGo.X + " ; " + whereToGo.Y + " ; " + whereToGo.Z + " ; " +
                               points[0].Type);
