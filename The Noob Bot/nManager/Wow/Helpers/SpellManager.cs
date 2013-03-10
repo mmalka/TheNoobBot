@@ -159,7 +159,7 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
-        public static string GetClienNameBySpellName(List<string> spellList)
+        public static string GetClientNameBySpellName(List<string> spellList)
         {
             try
             {
@@ -180,7 +180,7 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetClienNameBySpellName(List<string> spellList): " + exception);
+                Logging.WriteError("GetClientNameBySpellName(List<string> spellList): " + exception);
             }
             return "";
         }
@@ -614,7 +614,7 @@ namespace nManager.Wow.Helpers
                 var mountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
 
-                string key = GetClienNameBySpellName(mountList);
+                string key = GetClientNameBySpellName(mountList);
                 if (key != "")
                     Logging.Write("Found mount: " + key);
                 return key;
@@ -633,7 +633,7 @@ namespace nManager.Wow.Helpers
                 var flyMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
 
-                string key = GetClienNameBySpellName(flyMountList);
+                string key = GetClientNameBySpellName(flyMountList);
                 if (key != "")
                     Logging.Write("Found flying mount: " + key);
                 return key;
@@ -671,7 +671,7 @@ namespace nManager.Wow.Helpers
                 var aquaticMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
 
-                string key = GetClienNameBySpellName(aquaticMountList);
+                string key = GetClientNameBySpellName(aquaticMountList);
                 if (key != "")
                     Logging.Write("Found aquatic mount: " + key);
                 return key;
