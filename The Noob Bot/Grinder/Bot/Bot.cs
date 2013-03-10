@@ -78,18 +78,18 @@ namespace Grinder.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause { Priority = 14 });
-                Fsm.AddState(new SelectProfileState { Priority = 13 });
-                Fsm.AddState(new Resurrect { Priority = 12 });
-                Fsm.AddState(new IsAttacked { Priority = 11 });
-                Fsm.AddState(new Looting { Priority = 10 });
-                Fsm.AddState(new Regeneration { Priority = 9 });
-                Fsm.AddState(new ToTown { Priority = 8 });
-                Fsm.AddState(new Talents { Priority = 7 });
-                Fsm.AddState(new Trainers { Priority = 6 });
-                Fsm.AddState(new MillingState { Priority = 5 });
-                Fsm.AddState(new ProspectingState { Priority = 4 });
-                Fsm.AddState(new Farming { Priority = 3 });
+                Fsm.AddState(new Pause {Priority = 14});
+                Fsm.AddState(new SelectProfileState {Priority = 13});
+                Fsm.AddState(new Resurrect {Priority = 12});
+                Fsm.AddState(new IsAttacked {Priority = 11});
+                Fsm.AddState(new Looting {Priority = 10});
+                Fsm.AddState(new Regeneration {Priority = 9});
+                Fsm.AddState(new ToTown {Priority = 8});
+                Fsm.AddState(new Talents {Priority = 7});
+                Fsm.AddState(new Trainers {Priority = 6});
+                Fsm.AddState(new MillingState {Priority = 5});
+                Fsm.AddState(new ProspectingState {Priority = 4});
+                Fsm.AddState(new Farming {Priority = 3});
                 Fsm.AddState(_grinding);
                 Fsm.AddState(_movementLoop);
                 Fsm.AddState(new Idle {Priority = 0});
@@ -163,9 +163,6 @@ namespace Grinder.Bot
             _grinding.FactionsTarget = Profile.GrinderZones[ZoneIdProfile].TargetFactions;
             _grinding.MaxTargetLevel = Profile.GrinderZones[ZoneIdProfile].MaxTargetLevel;
             _grinding.MinTargetLevel = Profile.GrinderZones[ZoneIdProfile].MinTargetLevel;
-
-            if (MountTask.GetMountCapacity() != MountCapacity.Fly && Profile.GrinderZones[ZoneIdProfile].Points.Count(p => p.Type.ToLower() == "flying") > 0)
-                Profile.GrinderZones[ZoneIdProfile].Points = MovementManager.ConvertFlyingToFeet(Profile.GrinderZones[ZoneIdProfile].Points);
 
             _movementLoop.PathLoop = Profile.GrinderZones[ZoneIdProfile].Points;
         }

@@ -36,17 +36,17 @@ namespace Archaeologist.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause { Priority = 12 });
-                Fsm.AddState(new Resurrect { Priority = 11 });
-                Fsm.AddState(new IsAttacked { Priority = 10 });
-                Fsm.AddState(new Looting { Priority = 9 });
-                Fsm.AddState(new Regeneration { Priority = 8 });
-                Fsm.AddState(new ToTown { Priority = 7 });
-                Fsm.AddState(new Talents { Priority = 6 });
-                Fsm.AddState(new Trainers { Priority = 5 });
-                Fsm.AddState(new MillingState { Priority = 4 });
-                Fsm.AddState(new ProspectingState { Priority = 3 });
-                Fsm.AddState(new Farming { Priority = 2 });
+                Fsm.AddState(new Pause {Priority = 12});
+                Fsm.AddState(new Resurrect {Priority = 11});
+                Fsm.AddState(new IsAttacked {Priority = 10});
+                Fsm.AddState(new Looting {Priority = 9});
+                Fsm.AddState(new Regeneration {Priority = 8});
+                Fsm.AddState(new ToTown {Priority = 7});
+                Fsm.AddState(new Talents {Priority = 6});
+                Fsm.AddState(new Trainers {Priority = 5});
+                Fsm.AddState(new MillingState {Priority = 4});
+                Fsm.AddState(new ProspectingState {Priority = 3});
+                Fsm.AddState(new Farming {Priority = 2});
                 Fsm.AddState(new ArchaeologyStates
                     {
                         Priority = 1,

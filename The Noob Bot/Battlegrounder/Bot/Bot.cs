@@ -24,19 +24,19 @@ namespace Battlegrounder.Bot
 
                 // FSM
                 Fsm.States.Clear();
-                Fsm.AddState(new Pause { Priority = 17 });
-                Fsm.AddState(new Resurrect { Priority = 16 });
-                Fsm.AddState(new IsAttacked { Priority = 15 });
-                Fsm.AddState(new BattlegrounderQueueing { Priority = 14 });
-                Fsm.AddState(new BattlegrounderCurrentProfile { Priority = 13 });
-                Fsm.AddState(new Looting { Priority = 12 });
-                Fsm.AddState(new Regeneration { Priority = 11 });
-                Fsm.AddState(new ToTown { Priority = 10 });
-                Fsm.AddState(new Talents { Priority = 9 });
-                Fsm.AddState(new Trainers { Priority = 8 });
-                Fsm.AddState(new MillingState { Priority = 7 });
-                Fsm.AddState(new ProspectingState { Priority = 6 });
-                Fsm.AddState(new Farming { Priority = 5 });
+                Fsm.AddState(new Pause {Priority = 17});
+                Fsm.AddState(new Resurrect {Priority = 16});
+                Fsm.AddState(new IsAttacked {Priority = 15});
+                Fsm.AddState(new BattlegrounderQueueing {Priority = 14});
+                Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 13});
+                Fsm.AddState(new Looting {Priority = 12});
+                Fsm.AddState(new Regeneration {Priority = 11});
+                Fsm.AddState(new ToTown {Priority = 10});
+                Fsm.AddState(new Talents {Priority = 9});
+                Fsm.AddState(new Trainers {Priority = 8});
+                Fsm.AddState(new MillingState {Priority = 7});
+                Fsm.AddState(new ProspectingState {Priority = 6});
+                Fsm.AddState(new Farming {Priority = 5});
                 Fsm.AddState(Battlegrounding);
                 Fsm.AddState(new BattlegrounderCurrentProfile {Priority = 3});
                 Fsm.AddState(new BattlegrounderQueueing {Priority = 2});

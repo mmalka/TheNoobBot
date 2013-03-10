@@ -98,17 +98,17 @@ namespace Quester.Bot
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause { Priority = 13 });
-                Fsm.AddState(new Resurrect { Priority = 12 });
-                Fsm.AddState(new IsAttacked { Priority = 11 });
-                Fsm.AddState(new Looting { Priority = 10 });
-                Fsm.AddState(new Regeneration { Priority = 9 });
-                Fsm.AddState(new ToTown { Priority = 8 });
-                Fsm.AddState(new Talents { Priority = 7 });
-                Fsm.AddState(new Trainers { Priority = 6 });
-                Fsm.AddState(new MillingState { Priority = 5 });
-                Fsm.AddState(new ProspectingState { Priority = 4 });
-                Fsm.AddState(new Farming { Priority = 3 });
+                Fsm.AddState(new Pause {Priority = 13});
+                Fsm.AddState(new Resurrect {Priority = 12});
+                Fsm.AddState(new IsAttacked {Priority = 11});
+                Fsm.AddState(new Looting {Priority = 10});
+                Fsm.AddState(new Regeneration {Priority = 9});
+                Fsm.AddState(new ToTown {Priority = 8});
+                Fsm.AddState(new Talents {Priority = 7});
+                Fsm.AddState(new Trainers {Priority = 6});
+                Fsm.AddState(new MillingState {Priority = 5});
+                Fsm.AddState(new ProspectingState {Priority = 4});
+                Fsm.AddState(new Farming {Priority = 3});
                 Fsm.AddState(new QuesterState {Priority = QuesterStatePriority});
                 Fsm.AddState(new MovementLoop {Priority = 1});
                 Fsm.AddState(new Idle {Priority = 0});

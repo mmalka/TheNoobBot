@@ -46,9 +46,6 @@ namespace Gatherer.Bot
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
-                if (MountTask.GetMountCapacity() != MountCapacity.Fly && Profile.Points.Count(p => p.Type.ToLower() == "flying") > 0)
-                    Profile.Points = MovementManager.ConvertFlyingToFeet(Profile.Points);
-
                 // FSM
                 Fsm.States.Clear();
 
@@ -56,13 +53,13 @@ namespace Gatherer.Bot
                 Fsm.AddState(new Resurrect {Priority = 11});
                 Fsm.AddState(new IsAttacked {Priority = 10});
                 Fsm.AddState(new Looting {Priority = 9});
-                Fsm.AddState(new Regeneration { Priority = 8 });
-                Fsm.AddState(new ToTown { Priority = 7 });
-                Fsm.AddState(new Talents { Priority = 6 });
-                Fsm.AddState(new Trainers { Priority = 5 });
+                Fsm.AddState(new Regeneration {Priority = 8});
+                Fsm.AddState(new ToTown {Priority = 7});
+                Fsm.AddState(new Talents {Priority = 6});
+                Fsm.AddState(new Trainers {Priority = 5});
                 Fsm.AddState(new MillingState {Priority = 4});
                 Fsm.AddState(new ProspectingState {Priority = 3});
-                Fsm.AddState(new Farming { Priority = 2 });
+                Fsm.AddState(new Farming {Priority = 2});
                 Fsm.AddState(new MovementLoop {Priority = 1, PathLoop = Profile.Points});
                 Fsm.AddState(new Idle {Priority = 0});
 
