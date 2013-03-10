@@ -287,7 +287,7 @@ namespace nManager.Helpful
             {
                 try
                 {
-                    return "[" + LogType + "] " + DateTime.ToString("HH:mm") + " - " + Text;
+                    return "[" + LogType + "] " + DateTime.ToString("HH:mm:ss") + " - " + Text;
                 }
                 catch (Exception exception)
                 {
