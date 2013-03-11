@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
@@ -17,66 +18,36 @@ namespace nManager.Wow.Helpers
 
                 var itemId = new List<uint>
                     {
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 0*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 1*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 2*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 3*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 4*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 5*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 6*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 7*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 8*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 9*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 10*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 11*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 12*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 13*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 14*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 15*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 16*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 17*2),
-                        ObjectManager.ObjectManager.Me.GetDescriptor<uint>(
-                            Descriptors.PlayerFields.VisibleItems + 18*2)
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_AMMO).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_HEAD).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_NECK).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHOULDER).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_BODY).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_CHEST).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_WAIST).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_LEGS).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_FEET).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_WRIST).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_HAND).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER + 1).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET + 1).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_CLOAK).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_WEAPON).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHIELD).Entry,
+                        (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_RANGED).Entry
                     };
 
                 if (itemId.Count > 0)
                 {
                     List<WoWItem> objects = ObjectManager.ObjectManager.GetObjectWoWItem();
 
-                    foreach (var o in objects)
-                    {
-                        var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
-                                                                                            (uint)
-                                                                                            Descriptors.ObjectFields.
-                                                                                                        Entry);
-                        var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress,
-                                                                                                (uint)
-                                                                                                Descriptors.ItemFields.
-                                                                                                            Owner);
-
-                        if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid)
-                        {
-                            listItems.Add(o);
-                        }
-                    }
+                    listItems.AddRange(from o in objects
+                                       let itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress, (uint) Descriptors.ObjectFields.Entry)
+                                       let itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner)
+                                       where itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid
+                                       select o);
                 }
 
                 return listItems;
@@ -86,6 +57,15 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("GetEquippedItems(): " + exception);
             }
             return new List<WoWItem>();
+        }
+
+        public static WoWItem GetEquippedItem(int invSlot)
+        {
+            var guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*8));
+            var items = ObjectManager.ObjectManager.GetObjectWoWItem();
+            WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
+            var item = first ?? new WoWItem(0);
+            return item;
         }
 
         public static WoWItem GetEquippedItem(WoWInventorySlot inventorySlot, uint resultNb = 1)

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using nManager.Helpful;
+using nManager.Wow.Helpers;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
@@ -201,97 +203,63 @@ namespace nManager.Wow.ObjectManager
                     int durabilitys = 0;
                     int maxDurabilitys = 0;
 
-                    var ItemId = new List<uint>
+                    var itemId = new List<uint>
                         {
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 0*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 1*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 2*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 3*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 4*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 5*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 6*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 7*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 8*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 9*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 10*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 11*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 12*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 13*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 14*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 15*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 16*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 17*2),
-                            ObjectManager.Me.GetDescriptor<uint>(
-                                Descriptors.PlayerFields.VisibleItems + 18*2)
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_AMMO).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_HEAD).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_NECK).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHOULDER).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_BODY).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_CHEST).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WAIST).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_LEGS).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FEET).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WRIST).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_HAND).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER + 1).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET + 1).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_CLOAK).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WEAPON).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHIELD).Entry,
+                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_RANGED).Entry
                         };
 
                     WoWObject[] objects = ObjectManager.ObjectList.ToArray();
 
-                    foreach (WoWObject o in objects)
+                    foreach (WoWObject o in objects.Where(o => o.Type == WoWObjectType.Item))
                     {
-                        if (o.Type == WoWObjectType.Item)
+                        try
                         {
-                            try
-                            {
-                                var ItemIdTemp = GetDescriptor<uint>(o.GetBaseAddress,
-                                                                     (uint) Descriptors.ObjectFields.Entry);
-                                var ItemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress,
-                                                                         (uint)
-                                                                         Descriptors.ItemFields.Owner);
+                            var itemIdTemp = GetDescriptor<uint>(o.GetBaseAddress,
+                                                                 (uint) Descriptors.ObjectFields.Entry);
+                            var itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress,
+                                                                     (uint)
+                                                                     Descriptors.ItemFields.Owner);
 
-                                if (ItemId.Contains(ItemIdTemp) && ItemGuidOwner == Guid)
-                                {
-                                    var ItemDurability = GetDescriptor<int>(o.GetBaseAddress,
-                                                                            (uint)
-                                                                            Descriptors.ItemFields.Durability);
-                                    var ItemMaxDurability = GetDescriptor<int>(o.GetBaseAddress,
-                                                                               (uint)
-                                                                               Descriptors.ItemFields.MaxDurability);
-
-                                    if (ItemDurability > 0 && ItemMaxDurability > 0)
-                                    {
-                                        durabilitys += ItemDurability;
-                                        maxDurabilitys += ItemMaxDurability;
-                                    }
-                                }
-                            }
-                            catch (Exception e)
-                            {
-                                Logging.WriteError("WoWPlayer > GetDurability#1: " + e);
-                            }
+                            if (!itemId.Contains(itemIdTemp) || itemGuidOwner != Guid) continue;
+                            var itemDurability = GetDescriptor<int>(o.GetBaseAddress,
+                                                                    (uint)
+                                                                    Descriptors.ItemFields.Durability);
+                            var itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress,
+                                                                       (uint)
+                                                                       Descriptors.ItemFields.MaxDurability);
+                            durabilitys += itemDurability;
+                            maxDurabilitys += itemMaxDurability;
+                        }
+                        catch (Exception e)
+                        {
+                            Logging.WriteError("WoWPlayer > GetDurability#1: " + e);
                         }
                     }
-                    try
-                    {
-                        return durabilitys*100/maxDurabilitys;
-                    }
-                    catch
-                    {
-                        return 100;
-                    }
+                    return durabilitys*100/maxDurabilitys;
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWPlayer > GetDurability#2: " + e);
                 }
+                Logging.WriteError("Durability % finding had crashed, please report this issue, we are outputting 100% instead, it wont repair.");
                 return 100;
             }
         }
