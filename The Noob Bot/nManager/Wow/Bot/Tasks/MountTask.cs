@@ -10,10 +10,10 @@ namespace nManager.Wow.Bot.Tasks
 {
     public enum MountCapacity
     {
-        Feet = 0,
-        Swimm = 0,
-        Ground = 1,
-        Fly = 2,
+        Feet,
+        Ground,
+        Swimm,
+        Fly,
     }
 
     public class MountTask
