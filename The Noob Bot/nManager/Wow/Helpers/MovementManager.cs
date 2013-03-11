@@ -143,18 +143,26 @@ namespace nManager.Wow.Helpers
                     }
                     outputPoints.AddRange(tempPoints);
                 }
-                failCounter = (uint) (failCounter/inputPoints.Count*100);
-                if (failCounter > 60)
+                decimal failPercent = failCounter/inputPoints.Count*100;
+                if (failPercent > 0)
+                {
+                    failPercent = System.Math.Round(failPercent, 0);
+                    if (failPercent == 0)
+                        failPercent++;
+                }
+                else failPercent = 0;
+
+                if (failPercent > 60)
                 {
                     outputPoints = inputPoints;
                     conversionStatus = false;
-                    Logging.WriteDebug("The conversion has failed, " + failCounter + "% of the points have not been converted.");
+                    Logging.WriteDebug("The conversion has failed, " + failPercent + "% of the points have not been converted.");
                     return;
                 }
                 conversionStatus = true;
-                Logging.Write("The conversion has suceed.");
+                Logging.Write("The conversion has succeeded.");
                 Logging.WriteDebug("Conversion stats:");
-                Logging.WriteDebug(100 - failCounter + "% of the points have been succesfully converted into " + inputPoints.Count + " grounds points.");
+                Logging.WriteDebug(100 - failPercent + "% of the points have been succesfully converted into " + inputPoints.Count + " grounds points.");
             }
             catch (Exception exception)
             {
