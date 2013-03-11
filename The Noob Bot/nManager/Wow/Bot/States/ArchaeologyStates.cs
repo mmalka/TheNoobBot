@@ -33,9 +33,10 @@ namespace nManager.Wow.Bot.States
 
         private int _priority;
 
-        private List<string> BlackListDigsites = new List<string>();
-        private string LastZone = "";
+        private List<int> BlackListDigsites = new List<int>();
+        private int LastZone = 0;
         private Digsite digsitesZone = new Digsite();
+        private WoWQuestPOIPoint qPOI;
         private int _nbTryFarmInThisZone;
         private Spell surveySpell;
         private Helpful.Timer timerAutoSolving;
@@ -54,6 +55,11 @@ namespace nManager.Wow.Bot.States
         private bool _currentFindPathStatus;
         private readonly List<List<Point>> _pathFound = new List<List<Point>>();
 
+        private bool IsPointOutOfWater(Point p)
+        {
+            return !nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(p.X, p.Y, p.Z + 1000), p, Enums.CGWorldFrameHitFlags.HitTestLiquid);
+        }
+
         public override bool NeedToRun
         {
             get
@@ -68,7 +74,7 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (!BlackListDigsites.Contains(digsitesZone.px + digsitesZone.py + digsitesZone.continentId) &&
+                if (!BlackListDigsites.Contains(digsitesZone.id) &&
                     Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                     return true;
 
@@ -82,19 +88,23 @@ namespace nManager.Wow.Bot.States
 
                 if (listDigsitesZone.Count > 0)
                 {
-                    var tDigsitesZone = new Digsite {name = "", px = "", py = ""};
+                    var tDigsitesZone = new Digsite {id = 0, name = ""};
                     var distance = 99999999999999999f;
                     var priority = -999999999999f;
                     foreach (var t in listDigsitesZone)
                     {
-                        if (BlackListDigsites.Contains(t.px + t.py + t.continentId) || !t.Active) continue;
-                        if (!(t.PriorityDigsites >= priority) && (MountTask.GetMountCapacity() != MountCapacity.Feet || _bestPathStatus)) continue;
-                        if (!(t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < distance) && (MountTask.GetMountCapacity() != MountCapacity.Feet || _bestPathStatus))
+                        if (BlackListDigsites.Contains(t.id) || !t.Active) continue;
+                        if (!(t.PriorityDigsites >= priority) && ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
                             continue;
-                        if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                        WoWResearchSite OneSite = WoWResearchSite.FromName(t.name);
+                        WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
+                        Point middlePoint = Polygon.MiddlePoint;
+                        float dist = middlePoint.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                        if (!(dist < distance) && ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
+                            continue;
+                        if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
-                            _pathFound.AddRange(new[]
-                                {PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, t.position, Usefuls.ContinentNameMpq, out _currentFindPathStatus)});
+                            _pathFound.AddRange(new[] { PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, middlePoint, Usefuls.ContinentNameMpq, out _currentFindPathStatus) });
                             _lastPathId = _pathFound.Count - 1;
                             _bestPathStatus = _currentFindPathStatus;
                             if (_bestPathStatus && !_currentFindPathStatus)
@@ -103,10 +113,11 @@ namespace nManager.Wow.Bot.States
                                 _bestPathId = _pathFound.Count - 1;
                         }
                         priority = t.PriorityDigsites;
-                        distance = t.position.DistanceTo(ObjectManager.ObjectManager.Me.Position);
+                        distance = dist;
                         tDigsitesZone = t;
+                        qPOI = Polygon;
                     }
-                    if (tDigsitesZone.px != "")
+                    if (tDigsitesZone.id != 0)
                     {
                         if (surveySpell == null)
                             surveySpell = new Spell("Survey");
@@ -137,9 +148,9 @@ namespace nManager.Wow.Bot.States
                     return;
 
                 // Get if this zone is last zone
-                if (LastZone != digsitesZone.px + digsitesZone.py + digsitesZone.continentId)
+                if (LastZone != digsitesZone.id)
                     _nbTryFarmInThisZone = 0; // Reset nb try farm if zone is not last zone
-                LastZone = digsitesZone.px + digsitesZone.py + digsitesZone.continentId; // Set lastzone
+                LastZone = digsitesZone.id; // Set lastzone
 
                 // Solving Every X Min
                 if (timerAutoSolving == null)
@@ -223,24 +234,30 @@ namespace nManager.Wow.Bot.States
                     else if (_nbTryFarmInThisZone > MaxTryByDigsite) // If try > config try black list
                     {
                         nbLootAttempt = 0;
-                        BlackListDigsites.Add(digsitesZone.px + digsitesZone.py + digsitesZone.continentId);
+                        BlackListDigsites.Add(digsitesZone.id);
                         Logging.Write("Black List Digsite: " + digsitesZone.name);
                         myState = LocState.iddle;
                         return;
                     }
 
                         // Go To Zone
-                    else if (digsitesZone.position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 450)
+                    else if (qPOI != null && (qPOI.MiddlePoint.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 450
+                        || !qPOI.IsInside(ObjectManager.ObjectManager.Me.Position)))
                     {
                         Logging.Write("Go to Digsite " + digsitesZone.name);
-                        if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                        if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
                             if (_bestPathId == 0)
                                 _bestPathId = _lastPathId;
                             MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
                         }
                         else
-                            MovementManager.Go(new List<Point>(new[] {digsitesZone.position}));
+                        {
+                            Point destination = qPOI.MiddlePoint;
+                            destination.Type = "flying";
+                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                            MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
+                        }
                         myState = LocState.iddle;
                         return;
                     }
@@ -266,15 +283,19 @@ namespace nManager.Wow.Bot.States
                             nbCastSurveyError++;
                             if (nbCastSurveyError > 3)
                             {
-                                Logging.Write("Go to Digsite " + digsitesZone.name);
-                                if (MountTask.GetMountCapacity() == MountCapacity.Feet)
+                                if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                                 {
                                     if (_bestPathId == 0)
                                         _bestPathId = _lastPathId;
+                                    Logging.Write("Go to Digsite " + digsitesZone.name);
                                     MovementManager.Go(new List<Point>(_pathFound[_bestPathId]));
                                 }
                                 else
-                                    MovementManager.Go(new List<Point>(new[] {digsitesZone.position})); // MoveTo Digsite
+                                {
+                                    Point destination = qPOI.MiddlePoint;
+                                    Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
+                                    MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                                }
                                 nbCastSurveyError = 0;
                                 return;
                             }
@@ -323,14 +344,41 @@ namespace nManager.Wow.Bot.States
                                 Point p;
 
                                 if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
-                                    p = Math.GetPostion2DOfLineByDistance(p1, p2, 100 - 15 - 5);
+                                {
+                                    int d = 90;
+                                    p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                    p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                    p.Z = PathFinder.GetZPosition(p, true);
+                                    while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
+                                    {
+                                        //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
+                                        d +=5;
+                                        p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                        p.Z = PathFinder.GetZPosition(p, true);
+                                        if (d >= 160)
+                                            break;
+                                    }
+                                    d = 90;
+                                    while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
+                                    {
+                                        //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
+                                        d -= 10;
+                                        p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                        p.Z = PathFinder.GetZPosition(p, true);
+                                        if (d <= 10)
+                                            break;
+                                    }
+                                }
                                 else if (t.DisplayId == 10102) // Survey Tool (Yellow) 50 yard
                                     p = Math.GetPostion2DOfLineByDistance(p1, p2, 50 - 10 + 6);
                                 else // Survey Tool (Green) 25 yard
                                     p = Math.GetPostion2DOfLineByDistance(p1, p2, 13 + 2.5f);
 
                                 myState = LocState.goingNextPoint;
-                                p.Z = PathFinder.GetZPosition(p);
+                                p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                p.Z = PathFinder.GetZPosition(p, true);
                                 if (p.Z == 0)
                                     p.Z = ObjectManager.ObjectManager.Me.Position.Z;
                                 // Find Path

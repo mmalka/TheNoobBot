@@ -325,7 +325,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!File.Exists(path))
                     return false;
                 var data = File.ReadAllBytes(path);
-                Logging.WriteNavigator("Load finish: " + path);
+                Logging.WriteNavigator("Load finish: " + Continent + "_" + x + "_" + y + ".tile");
                 return LoadTile(data);
             }
             catch (Exception exception)
@@ -485,7 +485,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return new List<Point>();
         }
 
-        public float GetZ(Point position)
+        public float GetZ(Point position, bool strict = false)
         {
             var extents = new Point(0.5f, 2000.0f, 0.5f).ToFloatArray();
             var center = position.ToRecast().ToFloatArray();
@@ -504,7 +504,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 return 0;
             }
             float z = _query.GetPolyHeight(startRef, center);
-            if (z == 0) // it failed
+            if (z == 0 && !strict) // it failed but we are not strict, then search around
             {
                 float[] result;
                 var status = _query.closestPointOnPolyBoundary(startRef, center, out result);

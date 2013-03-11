@@ -10,6 +10,7 @@ namespace nManager.Wow.Helpers
 {
     public class Archaeology
     {
+
         private static List<Digsite> _allDigsiteZone = new List<Digsite>();
 
         public static void ClearList()
@@ -62,7 +63,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (_allDigsiteZone.Count <= 0)
+                // I don't know why it's null when called from DigSites List Management
+                // since it's a static method so the class is initialized fully before the 1st call can be made
+                if (_allDigsiteZone == null || _allDigsiteZone.Count <= 0)
                 {
                     var listDigsitesZone = new List<Digsite>();
 
@@ -73,7 +76,9 @@ namespace nManager.Wow.Helpers
                         listDigsitesZone =
                             XmlSerializer.Deserialize<List<Digsite>>(Application.StartupPath +
                                                                      "\\Data\\ArchaeologistDigsites.xml");
-
+                        listDigsitesZone = GenerateOrUpdate(listDigsitesZone);
+                        XmlSerializer.Serialize(Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
+                            listDigsitesZone);
                         listDigsitesZone = listDigsitesZone.OrderByDescending(c => c.PriorityDigsites).ToList();
 
                         Logging.Write(listDigsitesZone.Count + " Archaeology Digsites Zones in the data base.");
@@ -95,6 +100,38 @@ namespace nManager.Wow.Helpers
             return new List<Digsite>();
         }
 
+        public static List<Digsite> GenerateOrUpdate(List<Digsite> listDigsitesZoneFromXML)
+        {
+            listDigsitesZoneFromXML.OrderByDescending(c => c.id).ToList();
+            var fullList = new List<Digsite>();
+            var finalList = new List<Digsite>();
+
+            // Extracting the complete list from the DBC
+            WoWResearchSite curRec = WoWResearchSite.FromId(0); // This record is invalid
+            int MinIndex = curRec.MinIndex;
+            int MaxIndex = curRec.MaxIndex;
+            Digsite curDigSite;
+            for (int i = MinIndex; i <= MaxIndex; i++)
+            {
+                curRec = WoWResearchSite.FromId(i);
+                if (curRec.Record.Id != 0)
+                {
+                    curDigSite = new Digsite {id = (int)curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
+                    fullList.Add(curDigSite);
+                }
+            }
+            finalList = fullList.Concat(listDigsitesZoneFromXML)
+                .ToLookup(p => p.id)
+                .Select(g => g.Aggregate((p1, p2) => new Digsite
+                {
+                    id = p1.id,
+                    name = p1.name,
+                    PriorityDigsites = p2.PriorityDigsites,
+                    Active = p2.Active
+                })).ToList();
+            return finalList;
+        }
+
         public static List<Digsite> GetDigsitesZoneAvailable()
         {
             try
@@ -110,38 +147,20 @@ namespace nManager.Wow.Helpers
                     foreach (DigsitesZoneLua dl in digsitesZoneLua)
                     {
                         bool zonefound = false;
+                        WoWResearchSite RowRSite = WoWResearchSite.FromName(dl.name);
+                        WoWQuestPOIPoint qPOI = WoWQuestPOIPoint.FromSetId(RowRSite.Record.QuestIdPoint);
                         for (var i = 0; i <= _allDigsiteZone.Count - 1; i++)
                         {
-                            if (_allDigsiteZone[i].px == dl.px && _allDigsiteZone[i].py == dl.py &&
-                                _allDigsiteZone[i].continentId == continentId && _allDigsiteZone[i].Active)
+                            if (_allDigsiteZone[i].id == RowRSite.Record.Id && _allDigsiteZone[i].Active)
                             {
-                                var dt = _allDigsiteZone[i];
-
-                                try
-                                {
-                                    if (_allDigsiteZone[i].name != dl.name)
-                                    {
-                                        _allDigsiteZone[i].name = dl.name;
-                                        XmlSerializer.Serialize(
-                                            Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
-                                            _allDigsiteZone);
-                                    }
-                                }
-                                catch (Exception)
-                                {
-                                }
-
-                                dt.name = dl.name;
-                                resultList.Add(dt);
+                                resultList.Add(_allDigsiteZone[i]);
+                                Logging.Write("Digsite zone found: Name: " + dl.name + " - Distance = " +
+                                              qPOI.MiddlePoint.DistanceTo2D(ObjectManager.ObjectManager.Me.Position));
                                 zonefound = true;
-                                Logging.Write("Digsite zone found: Name: " + dl.name + " - Distance =" +
-                                              dt.position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
-                                break;
                             }
                         }
                         if (!zonefound)
-                            Logging.Write("Digsite zone not found in database: Name=" + dl.name + " px=" + dl.px +
-                                          " py=" + dl.py);
+                            Logging.Write("Digsite zone not found in database: Name=" + dl.name);
                     }
                 }
                 else
@@ -167,8 +186,7 @@ namespace nManager.Wow.Helpers
                 {
                     foreach (DigsitesZoneLua dl in digsitesZoneLua)
                     {
-                        if (digsitesZone.px == dl.px && digsitesZone.py == dl.py &&
-                            digsitesZone.continentId == continentId)
+                        if (digsitesZone.name == dl.name)
                         {
                             return true;
                         }
@@ -202,8 +220,7 @@ namespace nManager.Wow.Helpers
                 luaCommand = luaCommand + "for index = 1 , totalPOIs do ";
                 luaCommand = luaCommand + "	local name, description, textureIndex, px, py = GetMapLandmarkInfo(index) ";
                 luaCommand = luaCommand + "	if textureIndex == 177 then ";
-                luaCommand = luaCommand + "		" + randomString + " = " + randomString + " .. name .. '" + separator +
-                             "' .. px .. '" + separator + "' .. py .. '" + separatorDigsites + "' ";
+                luaCommand = luaCommand + "		" + randomString + " = " + randomString + " .. name .. '" + separatorDigsites + "' ";
                 luaCommand = luaCommand + "	end ";
                 luaCommand = luaCommand + "end ";
 
@@ -230,8 +247,6 @@ namespace nManager.Wow.Helpers
                                     var tDigsitesZoneLua = new DigsitesZoneLua
                                         {
                                             name = sDigsites[0],
-                                            px = sDigsites[1],
-                                            py = sDigsites[2]
                                         };
                                     resultList.Add(tDigsitesZoneLua);
                                 }
@@ -264,28 +279,29 @@ namespace nManager.Wow.Helpers
                 if (archaeologySpell == null)
                     archaeologySpell = new Spell("Archaeology");
 
-                for (int i = 1; i <= 12; i++)
+                Lua.RunMacroText("/cast " + archaeologySpell.NameInGame);
+                int j = 1;
+                while (j <= 12)
                 {
-                    Lua.RunMacroText("/cast " + archaeologySpell.NameInGame);
                     Lua.RunMacroText("/click ArchaeologyFrameSummaryButton");
-                    Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + i);
+                    Lua.RunMacroText("/click ArchaeologyFrameSummaryPageRace" + j);
+                    Thread.Sleep(100);
                     Lua.RunMacroText("/click ArchaeologyFrameArtifactPageSolveFrameSolveButton");
-
-                    Thread.Sleep(500);
+                    Thread.Sleep(400);
                     if (ObjectManager.ObjectManager.Me.IsCast)
                     {
                         if (Usefuls.GetContainerNumFreeSlots >= 1)
                         {
-                            i--;
+                            j--;
                         }
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(100);
                         }
                     }
-
-                    Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
+                    j++;
                 }
+                Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
                 if (ObjectManager.ObjectManager.Me.Level < 90) return;
                 for (uint i = 79896; i <= 79919; i++)
                 {

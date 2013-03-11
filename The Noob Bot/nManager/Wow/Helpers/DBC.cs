@@ -26,6 +26,11 @@ namespace nManager.Wow.Helpers
             get { return m_header.numRows; }
         }
 
+        public string String(uint address)
+        {
+            return (string)Memory.WowMemory.Memory.ReadUTF8String(address);
+        }
+
         public Dictionary<int, T> Rows
         {
             get { return m_rows; }

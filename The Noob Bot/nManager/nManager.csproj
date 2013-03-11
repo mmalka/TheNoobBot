@@ -224,6 +224,8 @@
     <Compile Include="Wow\Helpers\Vendor.cs" />
     <Compile Include="Wow\Helpers\WoWFactionTemplate.cs" />
     <Compile Include="Wow\Helpers\WoWLock.cs" />
+    <Compile Include="Wow\Helpers\WoWQuestPOIPoint.cs" />
+    <Compile Include="Wow\Helpers\WoWResearchSite.cs" />
     <Compile Include="Wow\Memory.cs" />
     <Compile Include="Wow\MemoryClass\D3D.cs" />
     <Compile Include="Wow\MemoryClass\Dictionnary.cs" />

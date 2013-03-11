@@ -230,11 +230,16 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static float GetZPosition(float x, float y, bool strict = false)
+        {
+            return GetZPosition(new Point(x, y, 0), strict);
+        }
+
         ///<summary>
         ///</summary>
         ///<param name="point"></param>
         ///<returns></returns>
-        public static float GetZPosition(Point point)
+        public static float GetZPosition(Point point, bool strict = false)
         {
             try
             {
@@ -245,7 +250,7 @@ namespace nManager.Wow.Helpers
                     _pather.Dispose();
                     _pather = new Pather(Usefuls.ContinentNameMpq);
                 }
-                return _pather.GetZ(point);
+                return _pather.GetZ(point, strict);
             }
             catch (Exception exception)
             {
