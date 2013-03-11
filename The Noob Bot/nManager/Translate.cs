@@ -406,6 +406,7 @@ namespace nManager
             TipOffUseGroundMountOff,
             TipOffEmptyGroundMount,
             TipOffEmptyFlyingMount,
+            TipOffMinimumDistanceToUseGroundMount,
             UseHearthstone,
             HearthstoneNotFound,
             UseMollE,

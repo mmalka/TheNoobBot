@@ -195,7 +195,7 @@ namespace nManager
         public bool UseSpiritHealer;
         public bool UseGroundMount = true;
         public string GroundMountName = "";
-        public float MinimumDistanceToUseMount = 15;
+        public uint MinimumDistanceToUseMount = 15;
         public bool IgnoreFightIfMounted = true;
         public string FlyingMountName = "";
         public string AquaticMountName = "";
@@ -208,7 +208,6 @@ namespace nManager
         public bool ActivateChestLooting;
         public bool ActivateBeastSkinning;
         public bool BeastNinjaSkinning;
-        // This settings is only used in Bot.States.Looting.cs, does it works as intented ? (Skin beasts killed by others player)
         public bool ActivateVeinsHarvesting = true;
         public bool ActivateHerbsHarvesting = true;
         public float DontHarvestIfPlayerNearRadius = 10;
@@ -266,7 +265,7 @@ namespace nManager
         public float MaxDistanceToGoToMailboxesOrNPCs = 1000;
         public bool AutoConfirmOnBoPItems = true;
         public bool ActivateAlwaysOnTopFeature;
-        public int RepairWhenDurabilityIsUnderPercent = 30;
+        public int RepairWhenDurabilityIsUnderPercent = 35;
         public int SendMailWhenLessThanXSlotLeft = 2;
         public int SellItemsWhenLessThanXSlotLeft = 2;
         public bool UseHearthstone;

@@ -5,6 +5,7 @@ using Archaeologist.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
+using nManager.Wow.Bot.Tasks;
 
 public class Main : IProduct
 {
@@ -93,6 +94,7 @@ public class Main : IProduct
 
     private string _looting;
     private string _useground;
+    private string _mindistground;
     private string _usefly;
 
     private void GetProductTipOff()
@@ -105,27 +107,26 @@ public class Main : IProduct
             else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level == 90 &&
                      !nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOnArchaeologist);
-            if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 20 &&
-                nManager.Wow.ObjectManager.ObjectManager.Me.Level < 60)
+            if (MountTask.GetMountCapacity() >= MountCapacity.Ground)
             {
                 if (!nManagerSetting.CurrentSetting.UseGroundMount)
                     _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
                 else if (nManagerSetting.CurrentSetting.UseGroundMount &&
                          string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
                     _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
+                if (nManagerSetting.CurrentSetting.MinimumDistanceToUseMount < 27 || nManagerSetting.CurrentSetting.MinimumDistanceToUseMount > 33)
+                    _mindistground = "\n" + Translate.Get(Translate.Id.TipOffMinimumDistanceToUseGroundMount);
             }
-            else if (nManager.Wow.ObjectManager.ObjectManager.Me.Level >= 60)
+            if (MountTask.GetMountCapacity() == MountCapacity.Fly)
             {
-                if (nManagerSetting.CurrentSetting.UseGroundMount)
-                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOff);
                 if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
                     _usefly = "\n" + Translate.Get(Translate.Id.TipOffEmptyFlyingMount);
             }
             if (_looting != null || _useground != null || _usefly != null)
             {
                 MessageBox.Show(
-                    string.Format("{0}\n{1}{2}{3}", Translate.Get(Translate.Id.ArchaeologistTipOffMessage), _looting,
-                                  _useground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
+                    string.Format("{0}\n{1}{2}{3}{4}", Translate.Get(Translate.Id.ArchaeologistTipOffMessage), _looting,
+                                  _useground, _mindistground, _usefly), Translate.Get(Translate.Id.ArchaeologistTipOffTitle));
             }
         }
         catch (Exception e)

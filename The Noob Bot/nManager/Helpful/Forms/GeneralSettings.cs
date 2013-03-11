@@ -262,7 +262,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseSpiritHealer = UseSpiritHealer.Value;
                 nManagerSetting.CurrentSetting.UseGroundMount = UseGroundMount.Value;
                 nManagerSetting.CurrentSetting.GroundMountName = GroundMountName.Text;
-                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount = MinimumDistanceToUseMount.Value;
+                nManagerSetting.CurrentSetting.MinimumDistanceToUseMount = (uint) MinimumDistanceToUseMount.Value;
                 nManagerSetting.CurrentSetting.IgnoreFightIfMounted = IgnoreFightIfMounted.Value;
                 nManagerSetting.CurrentSetting.FlyingMountName = FlyingMountName.Text;
                 nManagerSetting.CurrentSetting.AquaticMountName = AquaticMountName.Text;

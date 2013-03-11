@@ -810,7 +810,7 @@
       <Id>Ignore_Fight_if_in_Gound_Mount</Id>
     </Translation>
     <Translation>
-      <Text>Mount Distance</Text>
+      <Text>Minimum distance to use Ground Mount</Text>
       <Id>Mount_Distance</Id>
     </Translation>
     <Translation>
@@ -1328,6 +1328,10 @@
 	<Translation>
       <Text>We highly recommand to set a Flying Mount Name in General Settings => Mount options => Flying => Name of the Mount.</Text>
       <Id>TipOffEmptyFlyingMount</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to set the Minimum distance to use Ground Mount to 30 in General Settings => Mount options.</Text>
+      <Id>TipOffMinimumDistanceToUseGroundMount</Id>
     </Translation>
 	<Translation>
       <Text>Use Hearthstone</Text>
