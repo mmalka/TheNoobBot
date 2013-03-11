@@ -202,49 +202,18 @@ namespace nManager.Wow.ObjectManager
                 {
                     int durabilitys = 0;
                     int maxDurabilitys = 0;
-
-                    var itemId = new List<uint>
-                        {
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_AMMO).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_HEAD).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_NECK).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHOULDER).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_BODY).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_CHEST).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WAIST).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_LEGS).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FEET).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WRIST).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_HAND).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_FINGER + 1).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_TRINKET + 1).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_CLOAK).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_WEAPON).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_SHIELD).Entry,
-                            (uint) EquippedItems.GetEquippedItem((int) WoWInventorySlot.INVTYPE_RANGED).Entry
-                        };
-
                     WoWObject[] objects = ObjectManager.ObjectList.ToArray();
-
                     foreach (WoWObject o in objects.Where(o => o.Type == WoWObjectType.Item))
                     {
                         try
                         {
-                            var itemIdTemp = GetDescriptor<uint>(o.GetBaseAddress,
-                                                                 (uint) Descriptors.ObjectFields.Entry);
-                            var itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress,
-                                                                     (uint)
-                                                                     Descriptors.ItemFields.Owner);
-
-                            if (!itemId.Contains(itemIdTemp) || itemGuidOwner != Guid) continue;
-                            var itemDurability = GetDescriptor<int>(o.GetBaseAddress,
-                                                                    (uint)
-                                                                    Descriptors.ItemFields.Durability);
-                            var itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress,
-                                                                       (uint)
-                                                                       Descriptors.ItemFields.MaxDurability);
+                            var itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
+                            if (!EquippedItems.IsEquippedItemByGuid(o.Guid) || itemGuidOwner != Guid)
+                                continue;
+                            var itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.MaxDurability);
+                            if (itemMaxDurability == 0)
+                                continue;
+                            var itemDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Durability);
                             durabilitys += itemDurability;
                             maxDurabilitys += itemMaxDurability;
                         }

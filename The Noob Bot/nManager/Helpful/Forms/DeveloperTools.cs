@@ -8,6 +8,7 @@ using nManager.Helpful.Interface;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
+using nManager.Wow.Patchables;
 
 namespace nManager.Helpful.Forms
 {
@@ -105,7 +106,9 @@ namespace nManager.Helpful.Forms
                         wowO.Entry +
                         "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWItem</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry +
-                        "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>   </tr>";
+                        "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" +
+                        wowO.Guid + "</td>     <td>" + Wow.ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(wowO.GetBaseAddress, (uint) Descriptors.ItemFields.Owner) +
+                        "</td><td>IsEquipped by me ? " + EquippedItems.IsEquippedItemByGuid(wowO.Guid) + "</td>   </tr>";
                 }
                 // WoWCorpse
                 foreach (var wowO in ObjectManager.GetObjectWoWCorpse())

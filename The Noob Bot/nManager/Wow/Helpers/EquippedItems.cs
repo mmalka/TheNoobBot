@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using nManager.Helpful;
 using nManager.Wow.Enums;
@@ -61,11 +62,31 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(int invSlot)
         {
-            var guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*8));
+            var guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
             var items = ObjectManager.ObjectManager.GetObjectWoWItem();
             WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
             var item = first ?? new WoWItem(0);
             return item;
+        }
+
+        public static bool IsEquippedItemByGuid(ulong guid)
+        {
+            int slot;
+            ulong tmpguid = 0;
+            bool success = false;
+            for (slot = 0; slot < 19; slot++)
+            {
+                tmpguid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (slot*2));
+                if (tmpguid != guid) continue;
+                success = true;
+                break;
+            }
+            if (success)
+            {
+                var item = tmpguid == guid ? new WoWItem(ObjectManager.ObjectManager.GetObjectByGuid(tmpguid).GetBaseAddress) : new WoWItem(0);
+                return item.IsValid;
+            }
+            return false;
         }
 
         public static WoWItem GetEquippedItem(WoWInventorySlot inventorySlot, uint resultNb = 1)
