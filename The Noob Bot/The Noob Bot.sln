@@ -44,6 +44,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealerClass", "Tnb_HealerCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heal Bot", "Heal Bot\Heal Bot.csproj", "{7AFCF1B4-C1C3-4769-B35E-D8C434317773}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flying To Ground Profiles Converter", "Flying To Ground Profiles Converter\Flying To Ground Profiles Converter.csproj", "{86446A5F-B43E-4449-B30C-E626B5A1ABD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -311,6 +313,18 @@ Global
 		{7AFCF1B4-C1C3-4769-B35E-D8C434317773}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{7AFCF1B4-C1C3-4769-B35E-D8C434317773}.Release|Win32.ActiveCfg = Release|Any CPU
 		{7AFCF1B4-C1C3-4769-B35E-D8C434317773}.Release|x86.ActiveCfg = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|Win32.ActiveCfg = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|Win32.ActiveCfg = Release|Any CPU
+		{86446A5F-B43E-4449-B30C-E626B5A1ABD5}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1031,6 +1031,10 @@
       <Id>Grinder_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text>(Profils du Gatherer, Grinder et Fisherbot seulement)</Text>
+      <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
+    </Translation>
+    <Translation>
       <Text>(Minage et herboriste)</Text>
       <Id>Gatherer_Product_Description</Id>
     </Translation>

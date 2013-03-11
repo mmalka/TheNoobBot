@@ -330,6 +330,7 @@ namespace nManager
             Milling_Product_Description,
             Prospecting_Product_Description,
             Profiles_Converters_Product_Description,
+            Flying_To_Ground_Profiles_Converter_Description,
             Grinder_Product_Description,
             Gatherer_Product_Description,
             Damage_Dealer_Product_Description,

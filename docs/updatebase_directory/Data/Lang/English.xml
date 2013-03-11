@@ -1026,6 +1026,10 @@
       <Id>Profiles_Converters_Product_Description</Id>
     </Translation>
     <Translation>
+      <Text>(Gatherer, Grinder, Fisherbot profiles)</Text>
+      <Id>Flying_To_Ground_Profiles_Converter_Description</Id>
+    </Translation>
+    <Translation>
       <Text>(XP, Skinning, Reputation and Items)</Text>
       <Id>Grinder_Product_Description</Id>
     </Translation>

@@ -7,6 +7,7 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
 using Timer = nManager.Helpful.Timer;
+using CSharpMath = System.Math;
 using Math = nManager.Helpful.Math;
 
 namespace nManager.Wow.Helpers
@@ -108,44 +109,60 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static List<Point> ConvertFlyingToFeet(List<Point> profile)
+        public static void FlyingToGroundProfilesConverter(List<Point> inputPoints, out List<Point> outputPoints, out bool conversionStatus)
         {
             try
             {
-                Logging.Write("The selected profile is a Flying profile, but we are not able to fly.");
-                Logging.Write("We highly recommand you to use a real Ground Profile instead, the conversion can cause issues.");
-                Logging.Write("Starting OnTheFly Flying Profile conversion to Ground Profile...");
-                var tmpList = new List<Point>();
-                var pt = new List<Point>();
-                foreach (var t in profile)
+                Logging.Write(
+                    "Starting the conversion process. Keep in mind that the best profiles are handmade profiles.");
+                var tempPoints = new List<Point>();
+                outputPoints = new List<Point>();
+                uint failCounter = 0;
+                foreach (var inputPoint in inputPoints)
                 {
-                    var curr = t.Type.ToLower() == "flying" ? PathFinder.GetZPosition(t) : t.Z;
+                    var curr = inputPoint.Type.ToLower() == "flying" ? PathFinder.GetZPosition(inputPoint) : inputPoint.Z;
                     if (curr == 0)
-                        continue; // GetZ fail mainly mean that the current point is over an unaccessible element, so just continue until we find a valid route.
-                    if (pt.Any())
+                    {
+                        failCounter++;
+                        continue;
+                    }
+                    if (tempPoints.Any())
                     {
                         bool resultSuccess;
-                        pt = PathFinder.FindPath(pt[pt.Count() - 1], new Point(t.X, t.Y, curr), Usefuls.ContinentNameMpq, out resultSuccess);
+                        tempPoints = PathFinder.FindPath(tempPoints[tempPoints.Count() - 1], new Point(inputPoint.X, inputPoint.Y, curr), Usefuls.ContinentNameMpq,
+                                                         out resultSuccess);
                         if (!resultSuccess)
-                            continue; // PathFinder fail mainly mean that the current point is over an unaccessible element, so just continue until we find a valid route.
+                        {
+                            failCounter++;
+                            continue;
+                        }
                     }
                     else
                     {
-                        pt.Add(new Point(t.X, t.Y, curr));
+                        tempPoints.Add(new Point(inputPoint.X, inputPoint.Y, curr));
                     }
-                    tmpList.AddRange(pt);
+                    outputPoints.AddRange(tempPoints);
                 }
-                Logging.WriteDebug("Convert Flying Profile to Ground Profile: Original profile : " + profile.Count + " Checkpoints, After conversion : " + tmpList.Count +
-                                   " Checkpoints");
-                Logging.Write("OnTheFly Flying Profile conversion terminated.");
-                return tmpList;
+                failCounter = (uint) (failCounter/inputPoints.Count*100);
+                if (failCounter > 60)
+                {
+                    outputPoints = inputPoints;
+                    conversionStatus = false;
+                    Logging.WriteDebug("The conversion has failed, " + failCounter + "% of the points have not been converted.");
+                    return;
+                }
+                conversionStatus = true;
+                Logging.Write("The conversion has suceed.");
+                Logging.WriteDebug("Conversion stats:");
+                Logging.WriteDebug(100 - failCounter + "% of the points have been succesfully converted into " + inputPoints.Count + " grounds points.");
             }
             catch (Exception exception)
             {
-                Logging.WriteError("ConvertFlyingToFeet(List<Point> Profile): " + exception);
+                Logging.WriteError("FlyingToGroundProfilesConverter(List<Point> inputPoints, out List<Point> outputPoints, out bool conversionStatus): " + exception);
+                Logging.Write("The conversion has failed...");
+                outputPoints = inputPoints;
+                conversionStatus = false;
             }
-            Logging.Write("OnTheFly Flying Profile conversion to Ground Profile failed, please use a real Ground Profile...");
-            return profile;
         }
 
         public static void LaunchThreadMovementManager()
