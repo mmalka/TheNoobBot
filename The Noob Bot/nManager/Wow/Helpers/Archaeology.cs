@@ -102,7 +102,9 @@ namespace nManager.Wow.Helpers
 
         public static List<Digsite> GenerateOrUpdate(List<Digsite> listDigsitesZoneFromXML)
         {
-            listDigsitesZoneFromXML.OrderByDescending(c => c.id).ToList();
+            var doUpdate = listDigsitesZoneFromXML != null;
+            if (doUpdate)
+                listDigsitesZoneFromXML.OrderByDescending(c => c.id).ToList();
             var fullList = new List<Digsite>();
             var finalList = new List<Digsite>();
 
@@ -120,16 +122,20 @@ namespace nManager.Wow.Helpers
                     fullList.Add(curDigSite);
                 }
             }
-            finalList = fullList.Concat(listDigsitesZoneFromXML)
+            if (doUpdate)
+            {
+                finalList = fullList.Concat(listDigsitesZoneFromXML)
                 .ToLookup(p => p.id)
                 .Select(g => g.Aggregate((p1, p2) => new Digsite
-                {
-                    id = p1.id,
-                    name = p1.name,
-                    PriorityDigsites = p2.PriorityDigsites,
-                    Active = p2.Active
-                })).ToList();
-            return finalList;
+                    {
+                        id = p1.id,
+                        name = p1.name,
+                        PriorityDigsites = p2.PriorityDigsites,
+                        Active = p2.Active
+                    })).ToList();
+                return finalList;
+            }
+            return /*finalList = */fullList;
         }
 
         public static List<Digsite> GetDigsitesZoneAvailable()
