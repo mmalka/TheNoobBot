@@ -223,7 +223,7 @@
             ClntObjMgrGetActivePlayer = 0x44A5D0,
             FrameScript_ExecuteBuffer = 0x75910,
             CGPlayer_C__ClickToMove = 0x4EB200,
-            ClntObjMgrGetActivePlayerObj = 0x32B0,
+            ClntObjMgrGetActivePlayerObj = 0x32D0,
             FrameScript__GetLocalizedText = 0x4E3E00,
             CGWorldFrame__Intersect = 0x75D180,
             Spell_C__HandleTerrainClick = 0x438AD0,
