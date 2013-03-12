@@ -73,7 +73,7 @@
 
         public enum PetBattle
         {
-            IsInBattle = 0xDAD204,
+            IsInBattle = 0xB55080,
         }
 
         /// <summary>
@@ -102,8 +102,8 @@
             buildWowVersion = 0xB7F6C4,
             gameState = 0xD50F26,
             isLoadingOrConnecting = 0xC8AA50,
-            AreaId = 0xB4D94C,
-            lastWowErrorMessage = 0xD51328,
+            AreaId = 0xB56B60,
+            lastWowErrorMessage = 0xD50328,
             zoneMap = 0xD50F1C,
             subZoneMap = 0xD50F18,
         }
@@ -128,7 +128,7 @@
         public enum BarManager
         {
             slotIsEnable = 0xDC0C18,
-            startBar = 0xDC11B8,
+            startBar = 0xDC11BC,
             nbBar = 0xDC0C18,
             nextSlot = 0x4,
         }
@@ -155,7 +155,7 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0x1EC,
+            GAMEOBJECT_FIELD_X = 0xF0,
             GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
             GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
             DBCacheRow = 0x1B8,
@@ -220,15 +220,15 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x44B1C0,
+            ClntObjMgrGetActivePlayer = 0x44B240,
             FrameScript_ExecuteBuffer = 0x75E20,
-            CGPlayer_C__ClickToMove = 0x4EC210,
+            CGPlayer_C__ClickToMove = 0x4EC270,
             ClntObjMgrGetActivePlayerObj = 0x32B0,
-            FrameScript__GetLocalizedText = 0x4E4E10,
-            CGWorldFrame__Intersect = 0x75DF00,
-            Spell_C__HandleTerrainClick = 0x439310,
-            Interact = 0x5E3200,
-            LastHardwareAction = 0xB9D1B0,
+            FrameScript__GetLocalizedText = 0x4E4E70,
+            CGWorldFrame__Intersect = 0x75DEC0,
+            Spell_C__HandleTerrainClick = 0x439380,
+            Interact = 0x5E2F90,
+            LastHardwareAction = 0xB9D1B0, // to check
         }
 
         /// <summary>
