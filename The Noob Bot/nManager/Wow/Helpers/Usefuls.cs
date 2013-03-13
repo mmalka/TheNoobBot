@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using nManager.Helpful;
 using nManager.Wow.Patchables;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Helpers
 {
@@ -750,13 +751,29 @@ namespace nManager.Wow.Helpers
         }
 
         private static readonly Object ThisLock = new Object();
+        private static readonly Timer AfkTimer = new Timer(500);
+        private static string _key;
 
         public static void UpdateLastHardwareAction()
         {
-            return;
             lock (ThisLock)
             {
-                Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.LastHardwareAction, (uint) Environment.TickCount);
+                if (!InGame || IsLoadingOrConnecting)
+                {
+                    Thread.Sleep(10);
+                    return;
+                }
+                if (string.IsNullOrEmpty(_key))
+                {
+                    Thread.Sleep(10);
+                    _key = Keybindings.GetAFreeKey(true);
+                    AfkTimer.Reset();
+                }
+                if (!AfkTimer.IsReady) return;
+                Keyboard.DownKey(Memory.WowProcess.MainWindowHandle, _key);
+                Thread.Sleep(10);
+                Keyboard.UpKey(Memory.WowProcess.MainWindowHandle, _key);
+                AfkTimer.Reset();
             }
         }
     }

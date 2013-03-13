@@ -64,24 +64,30 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static string GetAFreeKey()
+        public static string GetAFreeKey(bool easyonly = false)
         {
             try
             {
                 foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"" + key + "\")");
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"" + key + "\", true)", false, false);
                     string result = Lua.GetLocalizedText(randomStringResult);
                     if (string.IsNullOrEmpty(result))
                     {
                         return key.ToString();
                     }
                 }
+                if (easyonly)
+                {
+                    return ""; /* We did not found any key for our Anti-AFK, if we use a combination,
+                                    * it will cast the Simple key as there is no binded action for the extended keybind.
+                                    */
+                }
                 foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-" + key + "\")");
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-" + key + "\", true)");
                     if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
                     {
                         return "CTRL-" + key;
@@ -90,7 +96,7 @@ namespace nManager.Wow.Helpers
                 foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"SHIFT-" + key + "\")");
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"SHIFT-" + key + "\", true)");
                     if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
                     {
                         return "SHIFT-" + key;
@@ -99,7 +105,7 @@ namespace nManager.Wow.Helpers
                 foreach (Helpful.Win32.UnreservedVK key in Enum.GetValues(typeof (Helpful.Win32.UnreservedVK)))
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-SHIFT-" + key + "\")");
+                    Lua.LuaDoString(randomStringResult + " = GetBindingAction(\"CTRL-SHIFT-" + key + "\", true)");
                     if (string.IsNullOrEmpty(Lua.GetLocalizedText(randomStringResult)))
                     {
                         return "CTRL-SHIFT-" + key;

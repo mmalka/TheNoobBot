@@ -40,11 +40,12 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void LuaDoString(string command, bool notInGameMode = false)
+        public static void LuaDoString(string command, bool notInGameMode = false, bool doAntiAfk = true)
         {
             try
             {
-                Usefuls.UpdateLastHardwareAction();
+                if (doAntiAfk) // Avoid loop while retrieving the AFK key to press.
+                    Usefuls.UpdateLastHardwareAction();
                 if (command.Replace(" ", "").Length <= 0)
                     return;
 
