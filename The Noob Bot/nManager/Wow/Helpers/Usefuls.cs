@@ -753,6 +753,7 @@ namespace nManager.Wow.Helpers
 
         public static void UpdateLastHardwareAction()
         {
+            return;
             lock (ThisLock)
             {
                 Memory.WowMemory.Memory.WriteUInt(Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.LastHardwareAction, (uint) Environment.TickCount);
