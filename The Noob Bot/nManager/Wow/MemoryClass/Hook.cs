@@ -317,6 +317,14 @@ namespace nManager.Wow.MemoryClass
             }
         }
 
+        private void CheckEndsceneHook()
+        {
+            var jmp = Memory.ReadByte(JumpAddress);
+            if (jmp == 0xE9) return;
+            ThreadHooked = false;
+            Logging.WriteError("ThreadHooked: False; JmpAddress: " + jmp);
+        }
+
         private uint GetJumpAdresse()
         {
             try
@@ -420,6 +428,7 @@ namespace nManager.Wow.MemoryClass
                     try
                     {
                         // Hook Wow:
+                        CheckEndsceneHook();
                         if (!Memory.IsProcessOpen || !ThreadHooked)
                             Hooking();
 
