@@ -44,6 +44,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                var jmp = Memory.WowMemory.Memory.ReadByte(Memory.WowMemory.JumpAddress);
+                if (jmp != 0xE9)
+                    Logging.WriteError("JmpAddress: " + jmp);
                 if (doAntiAfk) // Avoid loop while retrieving the AFK key to press.
                     Usefuls.UpdateLastHardwareAction();
                 if (command.Replace(" ", "").Length <= 0)
