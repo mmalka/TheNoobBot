@@ -169,7 +169,7 @@ namespace nManager.Wow.Bot.States
                 nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
                 nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
             {
-                if (_magicMountMammoth)
+                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
@@ -219,7 +219,7 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-                else if (_magicMountYak)
+                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
@@ -338,7 +338,7 @@ namespace nManager.Wow.Bot.States
                 Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
                 nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
             {
-                if (_magicMountMammoth)
+                if (_magicMountMammoth && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
@@ -388,7 +388,7 @@ namespace nManager.Wow.Bot.States
                         }
                     }
                 }
-                else if (_magicMountYak)
+                else if (_magicMountYak && MountTask.GetMountCapacity() >= MountCapacity.Ground)
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
