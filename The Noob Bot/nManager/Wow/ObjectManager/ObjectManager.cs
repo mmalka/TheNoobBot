@@ -1062,11 +1062,11 @@ namespace nManager.Wow.ObjectManager
             return 0;
         }
 
-        public static int GetNumberAttackPlayer()
+        public static int GetNumberAttackPlayer(int belowThisRange = 0)
         {
             try
             {
-                return GetUnitAttackPlayer().Count;
+                return belowThisRange > 0 ? GetUnitAttackPlayer().Count(unit => unit.GetDistance <= belowThisRange) : GetUnitAttackPlayer().Count;
             }
             catch (Exception e)
             {
