@@ -81,9 +81,9 @@ namespace nManager.Wow.Bot.Tasks
                 }
             }
 
-            if (ObjectManager.ObjectManager.Me.Level >= 58 && Usefuls.IsOutdoors)
+            if (Usefuls.IsOutdoors)
             {
-                if (flyMount != string.Empty && Usefuls.IsFlyableArea)
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
                     Enums.ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
 
