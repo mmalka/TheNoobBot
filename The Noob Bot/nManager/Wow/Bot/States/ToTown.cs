@@ -2,6 +2,7 @@
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -106,12 +107,12 @@ namespace nManager.Wow.Bot.States
 
                 if (ObjectManager.ObjectManager.Me.GetDurability <=
                     nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || _magicMountMammoth || _magicMountYak || _use74A ||
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0 || (MountTask.GetMountCapacity() >= MountCapacity.Ground && (_magicMountMammoth || _magicMountYak)) || _use74A ||
                      _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
                     return true;
 
                 if (Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
-                    (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 || _magicMountMammoth || _magicMountYak || _use74A ||
+                    (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0 || (MountTask.GetMountCapacity() >= MountCapacity.Ground && (_magicMountMammoth || _magicMountYak)) || _use74A ||
                      _use110G || _useJeeves) && nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
                     return true;
 
