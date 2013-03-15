@@ -17,14 +17,10 @@ namespace nManager.Wow.Bot.States
             get { return "Resurrect"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
+        public override int Priority { get; set; }
 
-        private int _priority;
-        private Timer BattlegroundResurrect = new Timer(-1);
+        private Timer _battlegroundResurrect = new Timer(0);
+        private bool _forceSpiritHealer;
 
         public override List<State> NextStates
         {
@@ -75,7 +71,7 @@ namespace nManager.Wow.Bot.States
 
             if (Battleground.IsInBattleground())
             {
-                BattlegroundResurrect = new Timer(1000*35);
+                _battlegroundResurrect = new Timer(1000*35);
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
                     Thread.Sleep(100);
@@ -101,10 +97,10 @@ namespace nManager.Wow.Bot.States
                     }*/
                 while (ObjectManager.ObjectManager.Me.IsDeadMe)
                 {
-                    if (BattlegroundResurrect.IsReady)
+                    if (_battlegroundResurrect.IsReady)
                     {
                         Interact.TeleportToSpiritHealer();
-                        BattlegroundResurrect = new Timer(1000*35);
+                        _battlegroundResurrect = new Timer(1000*35);
                         Logging.Write(
                             "The player have not been resurrected by any Battleground Spirit Healer in a reasonable time, Teleport back to the cimetary.");
                         Thread.Sleep(5000);
@@ -124,7 +120,7 @@ namespace nManager.Wow.Bot.States
 
             if (ObjectManager.ObjectManager.Me.PositionCorpse.X != 0 &&
                 ObjectManager.ObjectManager.Me.PositionCorpse.Y != 0 &&
-                !nManagerSetting.CurrentSetting.UseSpiritHealer)
+                !nManagerSetting.CurrentSetting.UseSpiritHealer && !_forceSpiritHealer)
             {
                 while (Usefuls.IsLoadingOrConnecting && Products.Products.IsStarted && Usefuls.InGame)
                 {
@@ -144,7 +140,14 @@ namespace nManager.Wow.Bot.States
                 else
                 {
                     tPointCorps = ObjectManager.ObjectManager.Me.PositionCorpse;
-                    List<Point> points = PathFinder.FindPath(tPointCorps);
+                    bool success;
+                    List<Point> points = PathFinder.FindPath(tPointCorps, out success);
+                    if (!success)
+                    {
+                        _forceSpiritHealer = true;
+                        Logging.Write("There in no easy acces to the corpse, use Spirit Healer instead.");
+                        return;
+                    }
                     if (points.Count > 1 || (points.Count <= 1 && !nManagerSetting.CurrentSetting.UseSpiritHealer))
                         MovementManager.Go(points);
                 }
@@ -203,7 +206,7 @@ namespace nManager.Wow.Bot.States
 
             #region Spirit Healer resurrection
 
-            if (nManagerSetting.CurrentSetting.UseSpiritHealer)
+            if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer)
             {
                 Thread.Sleep(4000);
                 var objectSpiritHealer =
@@ -242,6 +245,7 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(1000);
                     if (!ObjectManager.ObjectManager.Me.IsDeadMe)
                     {
+                        _forceSpiritHealer = false;
                         Logging.Write("The player have been resurrected by the Spirit Healer.");
                         Statistics.Deaths++;
                     }
