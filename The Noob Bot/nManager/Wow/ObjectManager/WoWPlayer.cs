@@ -315,14 +315,17 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        private static List<uint> _ghostSpells = new List<uint>();
+
         public bool IsDeadMe
         {
             get
             {
                 try
                 {
-                    return (Health <= 0 || Health == 0.01 || Health == 1) ||
-                           (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
+                    if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
+
+                    return (Health <= 0 || Health == 0.01 || Health == 1) || (PositionCorpse.X != 0 && PositionCorpse.Y != 0) || (HaveBuff(_ghostSpells));
                 }
                 catch (Exception e)
                 {
