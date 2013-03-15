@@ -1133,17 +1133,17 @@ public class PaladinHoly
     {
         if (SealOfInsight.KnownSpell && _mySettings.UseSealOfInsight)
         {
-            if (!SealOfInsight.TargetHaveBuff && SealOfInsight.IsSpellUsable)
+            if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
                 SealOfInsight.Launch();
         }
         else if (SealOfTruth.KnownSpell && _mySettings.UseSealOfTruth)
         {
-            if (!SealOfTruth.TargetHaveBuff && SealOfTruth.IsSpellUsable)
+            if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
         }
         else if (SealOfTheRighteousness.KnownSpell && _mySettings.UseSealOfTheRighteousness)
         {
-            if (!SealOfTheRighteousness.TargetHaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
         }
     }
