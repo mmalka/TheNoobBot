@@ -139,7 +139,7 @@ namespace nManager.Wow.Bot.States
                 if (_useMollE)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(2000);
                     var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
@@ -174,7 +174,7 @@ namespace nManager.Wow.Bot.States
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
                         if (Usefuls.IsFlying)
-                            Tasks.MountTask.Land();
+                            MountTask.Land();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
@@ -224,7 +224,7 @@ namespace nManager.Wow.Bot.States
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
                         if (Usefuls.IsFlying)
-                            Tasks.MountTask.Land();
+                            MountTask.Land();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
                         var cousinSlowhands =
@@ -251,7 +251,7 @@ namespace nManager.Wow.Bot.States
                 else if (_use74A)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(2000);
                     var unitA =
@@ -277,7 +277,7 @@ namespace nManager.Wow.Bot.States
                 else if (_use110G)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(34113));
                     Thread.Sleep(2000);
                     var unitG =
@@ -303,7 +303,7 @@ namespace nManager.Wow.Bot.States
                 else if (_useJeeves)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(2000);
                     var unitJeeves =
@@ -343,7 +343,7 @@ namespace nManager.Wow.Bot.States
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
                         if (Usefuls.IsFlying)
-                            Tasks.MountTask.Land();
+                            MountTask.Land();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
@@ -393,7 +393,7 @@ namespace nManager.Wow.Bot.States
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
                         if (Usefuls.IsFlying)
-                            Tasks.MountTask.Land();
+                            MountTask.Land();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
                         var cousinSlowhands =
@@ -418,7 +418,7 @@ namespace nManager.Wow.Bot.States
                 else if (_use74A)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(2000);
                     var unitA =
@@ -444,7 +444,7 @@ namespace nManager.Wow.Bot.States
                 else if (_use110G)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(31113));
                     Thread.Sleep(2000);
                     var unitG =
@@ -470,7 +470,7 @@ namespace nManager.Wow.Bot.States
                 else if (_useJeeves)
                 {
                     if (Usefuls.IsFlying)
-                        Tasks.MountTask.Land();
+                        MountTask.Land();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(2000);
                     var unitJeeves =
