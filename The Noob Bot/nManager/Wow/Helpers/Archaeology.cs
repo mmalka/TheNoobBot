@@ -37,16 +37,10 @@ namespace nManager.Wow.Helpers
                     if (_archaeologyItemsFindList == null)
                     {
                         _archaeologyItemsFindList = new List<int>();
-                        foreach (
-                            var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
+                        foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
                         {
-                            try
-                            {
+                            if (!string.IsNullOrWhiteSpace(i))
                                 _archaeologyItemsFindList.Add(Convert.ToInt32(i));
-                            }
-                            catch
-                            {
-                            }
                         }
                     }
                     return _archaeologyItemsFindList;
