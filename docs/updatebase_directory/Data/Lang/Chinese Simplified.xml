@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>其他选项</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>NPC/邮箱搜索范围</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>停止游戏 / TNB / 安全保护</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>新密语播放声音</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>发送邮件 ( 发送到预设的收件人 )</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>收件人</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>商人 ( 购买或出售 )</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>强制出售列表 ( 每行一个 )</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>拾取 / 获取选项</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>仅在城镇中选矿</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>食物 / 饮料 &amp;&amp; 使用百分百</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>当</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>坐骑选项</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>水下坐骑</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>职业 / 技能顺序设置</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>使用灵魂医者</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>自定义职业</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>关闭不保存</Text>
@@ -1116,6 +1120,10 @@
     <Translation>
       <Text>错误：检测到为魔兽世界客户端的64位版本。</Text>
       <Id>Title_WoW_Client_64bit</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

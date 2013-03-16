@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Altre opzioni</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>PNG/Casella della posta - raggio</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>Ferma gioco / tnb / sicurezza</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Avviso per nuovo sussurro</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Mail  (manda oggetti a alts)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Mail nome</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Commerciante  (Vendere o comprare)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Forza vendita  (un oggetto per linea)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Loot  Opzioni di farming</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Prospezione solo in città</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Cibo  / Bevande  (percentuale di utilizzo)</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>su</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Opzioni cavalcatura</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Acquatica</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Classe - Impostazioni sequenza personalizzata spell</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Usa Spirit Healer</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>Classe personalizzata</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Chiudi senza salvare</Text>
@@ -1117,6 +1121,10 @@
     <Translation>
       <Text>Togli FPS Massimi (raccomandato)</Text>
       <Id>Uncap_MaxFPS</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

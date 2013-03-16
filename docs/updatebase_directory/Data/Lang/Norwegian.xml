@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Andre_instillinger</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Npc_postboks_søk_radius</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>Stopp_spillet___tnb___Sikkerhet</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Sang_hvis_ny_personlig_melding</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Post__Send_Gjenstander_til_alts</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Post_mottaker</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Selger__Selg_eller_Kjøp</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Tving_Salgs_liste__en_gjenstand_per_linje</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Looting____Farming_Instillinger</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Framstill_bare_i_byer</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Mat___Drikke____prosentgrense_for_å_bruke</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>på</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Mount_instillinger</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Vann</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Klasse___Egendefinert_spell_sekvens_Instillinger</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Bruk_Spirit_Healer</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>Egendefinert_Klasse</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Lukk_uten_å_lagre</Text>
@@ -1120,6 +1124,10 @@
     <Translation>
       <Text>Fjern_MaksFPS</Text>
       <Id>Uncap_MaxFPS</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

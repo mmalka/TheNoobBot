@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Weitere Optionen</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Npc/Briefkasten Suchradius</Text>
@@ -538,8 +538,8 @@
       <Id>Use_Paths_Finder</Id>
     </Translation>
     <Translation>
-      <Text>Stop game / TNB / Security</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Text>Security System Management (Allow to Pause, Stop Tnb, Close WoW)</Text>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Sound bei flüstern</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Mail (Sende Gegenstände zu Twinks)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Empfänger</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Händler (Verkaufen der Kaufen)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Zwinge zu Verkaufen (ein Gegenstand pro Zeile)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Plünder &amp;&amp; Farm optionen</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Sondieren nur in Stadt</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Essen / Trinken &amp;&amp; Prozent zum benutzen</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>on</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Reittier Optionen</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Aquatic</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Klasse / Eigene Zauber Eigentschaften</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Benutze Geistheiler</Text>
@@ -854,8 +854,12 @@
       <Id>Assign_Talents</Id>
     </Translation>
     <Translation>
-      <Text>Custom Class</Text>
-      <Id>Custom_Class</Id>
+      <Text>Combat Class</Text>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Schließen ohne speichern</Text>
@@ -1108,6 +1112,10 @@
     <Translation>
       <Text>Random Battleground</Text>
       <Id>RandomBattleground</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

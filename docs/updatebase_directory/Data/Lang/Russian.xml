@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Другие настройки</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Поиск почты</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>Остановить игру   tnb   Безопасность</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Звук если шепнули</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Почта  Отправить предметы альтам</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Получатель</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Вендор  Продажа или Покупка</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Принудительно продать (один предмет в строке)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Опции добычи</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Просеивать тольк в городах</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Еда   Напитки   когда использовать</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>на</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Опции маунта</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Плавающий</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Класс   Настройки заклинаний</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Воскрешаться</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>Выбрать класс</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Закрыть без сохранения</Text>
@@ -1120,6 +1124,10 @@
     <Translation>
       <Text>Разблокировать MaxFPS</Text>
       <Id>Uncap_MaxFPS</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

@@ -30,7 +30,7 @@ namespace nManager.Helpful.Forms
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.expandablePanel7 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.AdvancedSettingsPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.AlwaysOnTopFeatureLabel = new DevComponents.DotNetBar.LabelX();
             this.ActivateAlwaysOnTopFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX73 = new DevComponents.DotNetBar.LabelX();
@@ -39,7 +39,7 @@ namespace nManager.Helpful.Forms
             this.labelX60 = new DevComponents.DotNetBar.LabelX();
             this.labelX42 = new DevComponents.DotNetBar.LabelX();
             this.ActivatePathFindingFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.expandablePanel5 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.SecuritySystemPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.UseHearthstoneLabel = new DevComponents.DotNetBar.LabelX();
             this.ActiveStopTNBAfterXMinutes = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.ActiveStopTNBAfterXStucks = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -71,7 +71,7 @@ namespace nManager.Helpful.Forms
             this.labelX24 = new DevComponents.DotNetBar.LabelX();
             this.labelX27 = new DevComponents.DotNetBar.LabelX();
             this.StopTNBIfBagAreFull = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.expandablePanel9 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.MailsManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.UseMollELabel = new DevComponents.DotNetBar.LabelX();
             this.UseMollE = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.SendMailWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
@@ -91,7 +91,7 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMaillingFeature = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.DontMailTheseItems = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX58 = new DevComponents.DotNetBar.LabelX();
-            this.expandablePanel8 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.NPCsRepairSellBuyPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.UseRobotLabel = new DevComponents.DotNetBar.LabelX();
             this.UseRobot = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.SellItemsWhenLessThanXSlotLeft = new DevComponents.Editors.IntegerInput();
@@ -115,7 +115,7 @@ namespace nManager.Helpful.Forms
             this.labelX41 = new DevComponents.DotNetBar.LabelX();
             this.DontSellTheseItems = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX46 = new DevComponents.DotNetBar.LabelX();
-            this.expandablePanel6 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.ReloggerManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.BattleNetSubAccount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX67 = new DevComponents.DotNetBar.LabelX();
             this.labelX38 = new DevComponents.DotNetBar.LabelX();
@@ -124,7 +124,7 @@ namespace nManager.Helpful.Forms
             this.labelX37 = new DevComponents.DotNetBar.LabelX();
             this.EmailOfTheBattleNetAccount = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX40 = new DevComponents.DotNetBar.LabelX();
-            this.expandablePanel4 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.LootingFarmingManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.button1 = new System.Windows.Forms.Button();
             this.DontHarvestTheFollowingObjects = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.AutoConfirmOnBoPItems = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -171,7 +171,7 @@ namespace nManager.Helpful.Forms
             this.labelX12 = new DevComponents.DotNetBar.LabelX();
             this.labelX18 = new DevComponents.DotNetBar.LabelX();
             this.ActivateMonsterLooting = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.expandablePanel3 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.RegenerationManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.DoRegenManaIfLow = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX9 = new DevComponents.DotNetBar.LabelX();
             this.labelX10 = new DevComponents.DotNetBar.LabelX();
@@ -183,7 +183,7 @@ namespace nManager.Helpful.Forms
             this.EatFoodWhenHealthIsUnderXPercent = new DevComponents.Editors.IntegerInput();
             this.FoodName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX11 = new DevComponents.DotNetBar.LabelX();
-            this.expandablePanel2 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.MountManagementPanelName = new DevComponents.DotNetBar.ExpandablePanel();
             this.AquaticMountName = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.labelX66 = new DevComponents.DotNetBar.LabelX();
             this.labelX57 = new DevComponents.DotNetBar.LabelX();
@@ -196,7 +196,11 @@ namespace nManager.Helpful.Forms
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
             this.labelX5 = new DevComponents.DotNetBar.LabelX();
             this.UseGroundMount = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.expandablePanel1 = new DevComponents.DotNetBar.ExpandablePanel();
+            this.SpellManagementSystemPanelName = new DevComponents.DotNetBar.ExpandablePanel();
+            this.HealerClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
+            this.HealerClassLabel = new DevComponents.DotNetBar.LabelX();
+            this.HealerClass = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.HealerClassSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.CombatClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.labelX59 = new DevComponents.DotNetBar.LabelX();
             this.UseSpiritHealer = new DevComponents.DotNetBar.Controls.SwitchButton();
@@ -210,7 +214,7 @@ namespace nManager.Helpful.Forms
             this.CanPullUnitsAlreadyInFight = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.AutoAssignTalents = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.CombatClassLabel = new DevComponents.DotNetBar.LabelX();
             this.CombatClass = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.CombatClassSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.closeB = new DevComponents.DotNetBar.ButtonX();
@@ -218,33 +222,33 @@ namespace nManager.Helpful.Forms
             this.saveAndCloseB = new DevComponents.DotNetBar.ButtonX();
             this.labelsToolTip = new System.Windows.Forms.ToolTip(this.components);
             this.panel1.SuspendLayout();
-            this.expandablePanel7.SuspendLayout();
+            this.AdvancedSettingsPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).BeginInit();
-            this.expandablePanel5.SuspendLayout();
+            this.SecuritySystemPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXStucks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBIfReceivedAtMostXWhispers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXLevelup)).BeginInit();
-            this.expandablePanel9.SuspendLayout();
+            this.MailsManagementPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SendMailWhenLessThanXSlotLeft)).BeginInit();
-            this.expandablePanel8.SuspendLayout();
+            this.NPCsRepairSellBuyPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SellItemsWhenLessThanXSlotLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepairWhenDurabilityIsUnderPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfFoodsWeGot)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfBeverageWeGot)).BeginInit();
-            this.expandablePanel6.SuspendLayout();
-            this.expandablePanel4.SuspendLayout();
+            this.ReloggerManagementPanelName.SuspendLayout();
+            this.LootingFarmingManagementPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.TimeBetweenEachMillingAttempt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeBetweenEachProspectingAttempt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.GatheringSearchRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DontHarvestIfMoreThanXUnitInAggroRange)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DontHarvestIfPlayerNearRadius)).BeginInit();
-            this.expandablePanel3.SuspendLayout();
+            this.RegenerationManagementPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DrinkBeverageWhenManaIsUnderXPercent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.EatFoodWhenHealthIsUnderXPercent)).BeginInit();
-            this.expandablePanel2.SuspendLayout();
+            this.MountManagementPanelName.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MinimumDistanceToUseMount)).BeginInit();
-            this.expandablePanel1.SuspendLayout();
+            this.SpellManagementSystemPanelName.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -254,54 +258,54 @@ namespace nManager.Helpful.Forms
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
-            this.panel1.Controls.Add(this.expandablePanel7);
-            this.panel1.Controls.Add(this.expandablePanel5);
-            this.panel1.Controls.Add(this.expandablePanel9);
-            this.panel1.Controls.Add(this.expandablePanel8);
-            this.panel1.Controls.Add(this.expandablePanel6);
-            this.panel1.Controls.Add(this.expandablePanel4);
-            this.panel1.Controls.Add(this.expandablePanel3);
-            this.panel1.Controls.Add(this.expandablePanel2);
-            this.panel1.Controls.Add(this.expandablePanel1);
+            this.panel1.Controls.Add(this.AdvancedSettingsPanelName);
+            this.panel1.Controls.Add(this.SecuritySystemPanelName);
+            this.panel1.Controls.Add(this.MailsManagementPanelName);
+            this.panel1.Controls.Add(this.NPCsRepairSellBuyPanelName);
+            this.panel1.Controls.Add(this.ReloggerManagementPanelName);
+            this.panel1.Controls.Add(this.LootingFarmingManagementPanelName);
+            this.panel1.Controls.Add(this.RegenerationManagementPanelName);
+            this.panel1.Controls.Add(this.MountManagementPanelName);
+            this.panel1.Controls.Add(this.SpellManagementSystemPanelName);
             this.panel1.ForeColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(1, 2);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(560, 401);
             this.panel1.TabIndex = 3;
             // 
-            // expandablePanel7
+            // AdvancedSettingsPanelName
             // 
-            this.expandablePanel7.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel7.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel7.Controls.Add(this.AlwaysOnTopFeatureLabel);
-            this.expandablePanel7.Controls.Add(this.ActivateAlwaysOnTopFeature);
-            this.expandablePanel7.Controls.Add(this.labelX73);
-            this.expandablePanel7.Controls.Add(this.AllowTNBToSetYourMaxFps);
-            this.expandablePanel7.Controls.Add(this.MaxDistanceToGoToMailboxesOrNPCs);
-            this.expandablePanel7.Controls.Add(this.labelX60);
-            this.expandablePanel7.Controls.Add(this.labelX42);
-            this.expandablePanel7.Controls.Add(this.ActivatePathFindingFeature);
-            this.expandablePanel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel7.Expanded = false;
-            this.expandablePanel7.ExpandedBounds = new System.Drawing.Rectangle(0, 208, 560, 155);
-            this.expandablePanel7.ExpandOnTitleClick = true;
-            this.expandablePanel7.Location = new System.Drawing.Point(0, 208);
-            this.expandablePanel7.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel7.Name = "expandablePanel7";
-            this.expandablePanel7.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel7.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel7.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel7.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel7.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel7.Style.GradientAngle = 90;
-            this.expandablePanel7.TabIndex = 12;
-            this.expandablePanel7.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel7.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel7.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel7.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel7.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel7.TitleStyle.GradientAngle = 90;
-            this.expandablePanel7.TitleText = "Other options";
+            this.AdvancedSettingsPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.AdvancedSettingsPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.AdvancedSettingsPanelName.Controls.Add(this.AlwaysOnTopFeatureLabel);
+            this.AdvancedSettingsPanelName.Controls.Add(this.ActivateAlwaysOnTopFeature);
+            this.AdvancedSettingsPanelName.Controls.Add(this.labelX73);
+            this.AdvancedSettingsPanelName.Controls.Add(this.AllowTNBToSetYourMaxFps);
+            this.AdvancedSettingsPanelName.Controls.Add(this.MaxDistanceToGoToMailboxesOrNPCs);
+            this.AdvancedSettingsPanelName.Controls.Add(this.labelX60);
+            this.AdvancedSettingsPanelName.Controls.Add(this.labelX42);
+            this.AdvancedSettingsPanelName.Controls.Add(this.ActivatePathFindingFeature);
+            this.AdvancedSettingsPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.AdvancedSettingsPanelName.Expanded = false;
+            this.AdvancedSettingsPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 208, 560, 155);
+            this.AdvancedSettingsPanelName.ExpandOnTitleClick = true;
+            this.AdvancedSettingsPanelName.Location = new System.Drawing.Point(0, 208);
+            this.AdvancedSettingsPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.AdvancedSettingsPanelName.Name = "AdvancedSettingsPanelName";
+            this.AdvancedSettingsPanelName.Size = new System.Drawing.Size(560, 26);
+            this.AdvancedSettingsPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.AdvancedSettingsPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.AdvancedSettingsPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.AdvancedSettingsPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.AdvancedSettingsPanelName.Style.GradientAngle = 90;
+            this.AdvancedSettingsPanelName.TabIndex = 12;
+            this.AdvancedSettingsPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.AdvancedSettingsPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.AdvancedSettingsPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.AdvancedSettingsPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.AdvancedSettingsPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.AdvancedSettingsPanelName.TitleStyle.GradientAngle = 90;
+            this.AdvancedSettingsPanelName.TitleText = "Advanced Settings";
             // 
             // AlwaysOnTopFeatureLabel
             // 
@@ -328,8 +332,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAlwaysOnTopFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAlwaysOnTopFeature.Location = new System.Drawing.Point(468, 62);
             this.ActivateAlwaysOnTopFeature.Name = "ActivateAlwaysOnTopFeature";
-            this.ActivateAlwaysOnTopFeature.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAlwaysOnTopFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAlwaysOnTopFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAlwaysOnTopFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAlwaysOnTopFeature.TabIndex = 29;
@@ -359,8 +361,6 @@ namespace nManager.Helpful.Forms
             this.AllowTNBToSetYourMaxFps.ForeColor = System.Drawing.Color.Black;
             this.AllowTNBToSetYourMaxFps.Location = new System.Drawing.Point(468, 33);
             this.AllowTNBToSetYourMaxFps.Name = "AllowTNBToSetYourMaxFps";
-            this.AllowTNBToSetYourMaxFps.OffText = Translate.Get(Translate.Id.NO);
-            this.AllowTNBToSetYourMaxFps.OnText = Translate.Get(Translate.Id.YES);
             this.AllowTNBToSetYourMaxFps.Size = new System.Drawing.Size(66, 22);
             this.AllowTNBToSetYourMaxFps.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AllowTNBToSetYourMaxFps.TabIndex = 27;
@@ -423,68 +423,66 @@ namespace nManager.Helpful.Forms
             this.ActivatePathFindingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivatePathFindingFeature.Location = new System.Drawing.Point(169, 34);
             this.ActivatePathFindingFeature.Name = "ActivatePathFindingFeature";
-            this.ActivatePathFindingFeature.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivatePathFindingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivatePathFindingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivatePathFindingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivatePathFindingFeature.TabIndex = 10;
             // 
-            // expandablePanel5
+            // SecuritySystemPanelName
             // 
-            this.expandablePanel5.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel5.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel5.Controls.Add(this.UseHearthstoneLabel);
-            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXMinutes);
-            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXStucks);
-            this.expandablePanel5.Controls.Add(this.ActiveStopTNBIfReceivedAtMostXWhispers);
-            this.expandablePanel5.Controls.Add(this.ActiveStopTNBAfterXLevelup);
-            this.expandablePanel5.Controls.Add(this.UseHearthstone);
-            this.expandablePanel5.Controls.Add(this.labelX39);
-            this.expandablePanel5.Controls.Add(this.labelX45);
-            this.expandablePanel5.Controls.Add(this.PlayASongIfNewWhispReceived);
-            this.expandablePanel5.Controls.Add(this.labelX34);
-            this.expandablePanel5.Controls.Add(this.labelX33);
-            this.expandablePanel5.Controls.Add(this.labelX43);
-            this.expandablePanel5.Controls.Add(this.labelX32);
-            this.expandablePanel5.Controls.Add(this.labelX31);
-            this.expandablePanel5.Controls.Add(this.RecordWhispsInLogFiles);
-            this.expandablePanel5.Controls.Add(this.labelX29);
-            this.expandablePanel5.Controls.Add(this.StopTNBIfPlayerHaveBeenTeleported);
-            this.expandablePanel5.Controls.Add(this.labelX44);
-            this.expandablePanel5.Controls.Add(this.labelX30);
-            this.expandablePanel5.Controls.Add(this.PauseTNBIfNearByPlayer);
-            this.expandablePanel5.Controls.Add(this.StopTNBIfHonorPointsLimitReached);
-            this.expandablePanel5.Controls.Add(this.StopTNBAfterXMinutes);
-            this.expandablePanel5.Controls.Add(this.labelX28);
-            this.expandablePanel5.Controls.Add(this.StopTNBAfterXStucks);
-            this.expandablePanel5.Controls.Add(this.labelX26);
-            this.expandablePanel5.Controls.Add(this.StopTNBIfReceivedAtMostXWhispers);
-            this.expandablePanel5.Controls.Add(this.labelX25);
-            this.expandablePanel5.Controls.Add(this.StopTNBAfterXLevelup);
-            this.expandablePanel5.Controls.Add(this.labelX24);
-            this.expandablePanel5.Controls.Add(this.labelX27);
-            this.expandablePanel5.Controls.Add(this.StopTNBIfBagAreFull);
-            this.expandablePanel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel5.Expanded = false;
-            this.expandablePanel5.ExpandedBounds = new System.Drawing.Rectangle(0, 182, 543, 380);
-            this.expandablePanel5.ExpandOnTitleClick = true;
-            this.expandablePanel5.Location = new System.Drawing.Point(0, 182);
-            this.expandablePanel5.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel5.Name = "expandablePanel5";
-            this.expandablePanel5.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel5.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel5.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel5.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel5.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel5.Style.GradientAngle = 90;
-            this.expandablePanel5.TabIndex = 11;
-            this.expandablePanel5.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel5.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel5.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel5.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel5.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel5.TitleStyle.GradientAngle = 90;
-            this.expandablePanel5.TitleText = "Stop Game / Bot / Security";
+            this.SecuritySystemPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.SecuritySystemPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.SecuritySystemPanelName.Controls.Add(this.UseHearthstoneLabel);
+            this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXMinutes);
+            this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXStucks);
+            this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBIfReceivedAtMostXWhispers);
+            this.SecuritySystemPanelName.Controls.Add(this.ActiveStopTNBAfterXLevelup);
+            this.SecuritySystemPanelName.Controls.Add(this.UseHearthstone);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX39);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX45);
+            this.SecuritySystemPanelName.Controls.Add(this.PlayASongIfNewWhispReceived);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX34);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX33);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX43);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX32);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX31);
+            this.SecuritySystemPanelName.Controls.Add(this.RecordWhispsInLogFiles);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX29);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfPlayerHaveBeenTeleported);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX44);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX30);
+            this.SecuritySystemPanelName.Controls.Add(this.PauseTNBIfNearByPlayer);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfHonorPointsLimitReached);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXMinutes);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX28);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXStucks);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX26);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfReceivedAtMostXWhispers);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX25);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBAfterXLevelup);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX24);
+            this.SecuritySystemPanelName.Controls.Add(this.labelX27);
+            this.SecuritySystemPanelName.Controls.Add(this.StopTNBIfBagAreFull);
+            this.SecuritySystemPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SecuritySystemPanelName.Expanded = false;
+            this.SecuritySystemPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 182, 543, 380);
+            this.SecuritySystemPanelName.ExpandOnTitleClick = true;
+            this.SecuritySystemPanelName.Location = new System.Drawing.Point(0, 182);
+            this.SecuritySystemPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.SecuritySystemPanelName.Name = "SecuritySystemPanelName";
+            this.SecuritySystemPanelName.Size = new System.Drawing.Size(560, 26);
+            this.SecuritySystemPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.SecuritySystemPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.SecuritySystemPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.SecuritySystemPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.SecuritySystemPanelName.Style.GradientAngle = 90;
+            this.SecuritySystemPanelName.TabIndex = 11;
+            this.SecuritySystemPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.SecuritySystemPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.SecuritySystemPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.SecuritySystemPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.SecuritySystemPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.SecuritySystemPanelName.TitleStyle.GradientAngle = 90;
+            this.SecuritySystemPanelName.TitleText = "Security System Management (Allow to Pause, Stop Tnb, Close WoW)";
             // 
             // UseHearthstoneLabel
             // 
@@ -512,8 +510,6 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXMinutes.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXMinutes.Location = new System.Drawing.Point(349, 237);
             this.ActiveStopTNBAfterXMinutes.Name = "ActiveStopTNBAfterXMinutes";
-            this.ActiveStopTNBAfterXMinutes.OffText = Translate.Get(Translate.Id.NO);
-            this.ActiveStopTNBAfterXMinutes.OnText = Translate.Get(Translate.Id.YES);
             this.ActiveStopTNBAfterXMinutes.Size = new System.Drawing.Size(66, 22);
             this.ActiveStopTNBAfterXMinutes.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXMinutes.TabIndex = 47;
@@ -528,8 +524,6 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXStucks.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXStucks.Location = new System.Drawing.Point(349, 207);
             this.ActiveStopTNBAfterXStucks.Name = "ActiveStopTNBAfterXStucks";
-            this.ActiveStopTNBAfterXStucks.OffText = Translate.Get(Translate.Id.NO);
-            this.ActiveStopTNBAfterXStucks.OnText = Translate.Get(Translate.Id.YES);
             this.ActiveStopTNBAfterXStucks.Size = new System.Drawing.Size(66, 22);
             this.ActiveStopTNBAfterXStucks.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXStucks.TabIndex = 46;
@@ -544,8 +538,6 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBIfReceivedAtMostXWhispers.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Location = new System.Drawing.Point(349, 179);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Name = "ActiveStopTNBIfReceivedAtMostXWhispers";
-            this.ActiveStopTNBIfReceivedAtMostXWhispers.OffText = Translate.Get(Translate.Id.NO);
-            this.ActiveStopTNBIfReceivedAtMostXWhispers.OnText = Translate.Get(Translate.Id.YES);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Size = new System.Drawing.Size(66, 22);
             this.ActiveStopTNBIfReceivedAtMostXWhispers.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBIfReceivedAtMostXWhispers.TabIndex = 45;
@@ -560,8 +552,6 @@ namespace nManager.Helpful.Forms
             this.ActiveStopTNBAfterXLevelup.ForeColor = System.Drawing.Color.Black;
             this.ActiveStopTNBAfterXLevelup.Location = new System.Drawing.Point(349, 149);
             this.ActiveStopTNBAfterXLevelup.Name = "ActiveStopTNBAfterXLevelup";
-            this.ActiveStopTNBAfterXLevelup.OffText = Translate.Get(Translate.Id.NO);
-            this.ActiveStopTNBAfterXLevelup.OnText = Translate.Get(Translate.Id.YES);
             this.ActiveStopTNBAfterXLevelup.Size = new System.Drawing.Size(66, 22);
             this.ActiveStopTNBAfterXLevelup.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActiveStopTNBAfterXLevelup.TabIndex = 44;
@@ -576,8 +566,6 @@ namespace nManager.Helpful.Forms
             this.UseHearthstone.ForeColor = System.Drawing.Color.Black;
             this.UseHearthstone.Location = new System.Drawing.Point(428, 34);
             this.UseHearthstone.Name = "UseHearthstone";
-            this.UseHearthstone.OffText = Translate.Get(Translate.Id.NO);
-            this.UseHearthstone.OnText = Translate.Get(Translate.Id.YES);
             this.UseHearthstone.Size = new System.Drawing.Size(66, 22);
             this.UseHearthstone.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseHearthstone.TabIndex = 42;
@@ -623,8 +611,6 @@ namespace nManager.Helpful.Forms
             this.PlayASongIfNewWhispReceived.ForeColor = System.Drawing.Color.Black;
             this.PlayASongIfNewWhispReceived.Location = new System.Drawing.Point(169, 350);
             this.PlayASongIfNewWhispReceived.Name = "PlayASongIfNewWhispReceived";
-            this.PlayASongIfNewWhispReceived.OffText = Translate.Get(Translate.Id.NO);
-            this.PlayASongIfNewWhispReceived.OnText = Translate.Get(Translate.Id.YES);
             this.PlayASongIfNewWhispReceived.Size = new System.Drawing.Size(66, 22);
             this.PlayASongIfNewWhispReceived.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PlayASongIfNewWhispReceived.TabIndex = 40;
@@ -715,8 +701,6 @@ namespace nManager.Helpful.Forms
             this.RecordWhispsInLogFiles.ForeColor = System.Drawing.Color.Black;
             this.RecordWhispsInLogFiles.Location = new System.Drawing.Point(169, 323);
             this.RecordWhispsInLogFiles.Name = "RecordWhispsInLogFiles";
-            this.RecordWhispsInLogFiles.OffText = Translate.Get(Translate.Id.NO);
-            this.RecordWhispsInLogFiles.OnText = Translate.Get(Translate.Id.YES);
             this.RecordWhispsInLogFiles.Size = new System.Drawing.Size(66, 22);
             this.RecordWhispsInLogFiles.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.RecordWhispsInLogFiles.TabIndex = 38;
@@ -746,8 +730,6 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfPlayerHaveBeenTeleported.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfPlayerHaveBeenTeleported.Location = new System.Drawing.Point(169, 120);
             this.StopTNBIfPlayerHaveBeenTeleported.Name = "StopTNBIfPlayerHaveBeenTeleported";
-            this.StopTNBIfPlayerHaveBeenTeleported.OffText = Translate.Get(Translate.Id.NO);
-            this.StopTNBIfPlayerHaveBeenTeleported.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfPlayerHaveBeenTeleported.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfPlayerHaveBeenTeleported.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfPlayerHaveBeenTeleported.TabIndex = 29;
@@ -792,8 +774,6 @@ namespace nManager.Helpful.Forms
             this.PauseTNBIfNearByPlayer.ForeColor = System.Drawing.Color.Black;
             this.PauseTNBIfNearByPlayer.Location = new System.Drawing.Point(169, 294);
             this.PauseTNBIfNearByPlayer.Name = "PauseTNBIfNearByPlayer";
-            this.PauseTNBIfNearByPlayer.OffText = Translate.Get(Translate.Id.NO);
-            this.PauseTNBIfNearByPlayer.OnText = Translate.Get(Translate.Id.YES);
             this.PauseTNBIfNearByPlayer.Size = new System.Drawing.Size(66, 22);
             this.PauseTNBIfNearByPlayer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.PauseTNBIfNearByPlayer.TabIndex = 36;
@@ -808,8 +788,6 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfHonorPointsLimitReached.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfHonorPointsLimitReached.Location = new System.Drawing.Point(169, 91);
             this.StopTNBIfHonorPointsLimitReached.Name = "StopTNBIfHonorPointsLimitReached";
-            this.StopTNBIfHonorPointsLimitReached.OffText = Translate.Get(Translate.Id.NO);
-            this.StopTNBIfHonorPointsLimitReached.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfHonorPointsLimitReached.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfHonorPointsLimitReached.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfHonorPointsLimitReached.TabIndex = 27;
@@ -972,56 +950,54 @@ namespace nManager.Helpful.Forms
             this.StopTNBIfBagAreFull.ForeColor = System.Drawing.Color.Black;
             this.StopTNBIfBagAreFull.Location = new System.Drawing.Point(169, 62);
             this.StopTNBIfBagAreFull.Name = "StopTNBIfBagAreFull";
-            this.StopTNBIfBagAreFull.OffText = Translate.Get(Translate.Id.NO);
-            this.StopTNBIfBagAreFull.OnText = Translate.Get(Translate.Id.YES);
             this.StopTNBIfBagAreFull.Size = new System.Drawing.Size(66, 22);
             this.StopTNBIfBagAreFull.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.StopTNBIfBagAreFull.TabIndex = 10;
             // 
-            // expandablePanel9
+            // MailsManagementPanelName
             // 
-            this.expandablePanel9.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel9.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel9.Controls.Add(this.UseMollELabel);
-            this.expandablePanel9.Controls.Add(this.UseMollE);
-            this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeft);
-            this.expandablePanel9.Controls.Add(this.SendMailWhenLessThanXSlotLeftLabel);
-            this.expandablePanel9.Controls.Add(this.MaillingFeatureRecipient);
-            this.expandablePanel9.Controls.Add(this.labelX56);
-            this.expandablePanel9.Controls.Add(this.MaillingFeatureSubject);
-            this.expandablePanel9.Controls.Add(this.ForceToMailTheseItems);
-            this.expandablePanel9.Controls.Add(this.labelX48);
-            this.expandablePanel9.Controls.Add(this.MailPurple);
-            this.expandablePanel9.Controls.Add(this.MailBlue);
-            this.expandablePanel9.Controls.Add(this.MailGreen);
-            this.expandablePanel9.Controls.Add(this.MailWhite);
-            this.expandablePanel9.Controls.Add(this.MailGray);
-            this.expandablePanel9.Controls.Add(this.labelX54);
-            this.expandablePanel9.Controls.Add(this.labelX55);
-            this.expandablePanel9.Controls.Add(this.ActivateAutoMaillingFeature);
-            this.expandablePanel9.Controls.Add(this.DontMailTheseItems);
-            this.expandablePanel9.Controls.Add(this.labelX58);
-            this.expandablePanel9.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel9.Expanded = false;
-            this.expandablePanel9.ExpandedBounds = new System.Drawing.Rectangle(0, 36, 543, 346);
-            this.expandablePanel9.ExpandOnTitleClick = true;
-            this.expandablePanel9.Location = new System.Drawing.Point(0, 156);
-            this.expandablePanel9.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel9.Name = "expandablePanel9";
-            this.expandablePanel9.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel9.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel9.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel9.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel9.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel9.Style.GradientAngle = 90;
-            this.expandablePanel9.TabIndex = 10;
-            this.expandablePanel9.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel9.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel9.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel9.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel9.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel9.TitleStyle.GradientAngle = 90;
-            this.expandablePanel9.TitleText = "Mail (Send Items to alts)";
+            this.MailsManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.MailsManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.MailsManagementPanelName.Controls.Add(this.UseMollELabel);
+            this.MailsManagementPanelName.Controls.Add(this.UseMollE);
+            this.MailsManagementPanelName.Controls.Add(this.SendMailWhenLessThanXSlotLeft);
+            this.MailsManagementPanelName.Controls.Add(this.SendMailWhenLessThanXSlotLeftLabel);
+            this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureRecipient);
+            this.MailsManagementPanelName.Controls.Add(this.labelX56);
+            this.MailsManagementPanelName.Controls.Add(this.MaillingFeatureSubject);
+            this.MailsManagementPanelName.Controls.Add(this.ForceToMailTheseItems);
+            this.MailsManagementPanelName.Controls.Add(this.labelX48);
+            this.MailsManagementPanelName.Controls.Add(this.MailPurple);
+            this.MailsManagementPanelName.Controls.Add(this.MailBlue);
+            this.MailsManagementPanelName.Controls.Add(this.MailGreen);
+            this.MailsManagementPanelName.Controls.Add(this.MailWhite);
+            this.MailsManagementPanelName.Controls.Add(this.MailGray);
+            this.MailsManagementPanelName.Controls.Add(this.labelX54);
+            this.MailsManagementPanelName.Controls.Add(this.labelX55);
+            this.MailsManagementPanelName.Controls.Add(this.ActivateAutoMaillingFeature);
+            this.MailsManagementPanelName.Controls.Add(this.DontMailTheseItems);
+            this.MailsManagementPanelName.Controls.Add(this.labelX58);
+            this.MailsManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MailsManagementPanelName.Expanded = false;
+            this.MailsManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 36, 543, 346);
+            this.MailsManagementPanelName.ExpandOnTitleClick = true;
+            this.MailsManagementPanelName.Location = new System.Drawing.Point(0, 156);
+            this.MailsManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.MailsManagementPanelName.Name = "MailsManagementPanelName";
+            this.MailsManagementPanelName.Size = new System.Drawing.Size(560, 26);
+            this.MailsManagementPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.MailsManagementPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.MailsManagementPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.MailsManagementPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.MailsManagementPanelName.Style.GradientAngle = 90;
+            this.MailsManagementPanelName.TabIndex = 10;
+            this.MailsManagementPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.MailsManagementPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.MailsManagementPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.MailsManagementPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.MailsManagementPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.MailsManagementPanelName.TitleStyle.GradientAngle = 90;
+            this.MailsManagementPanelName.TitleText = "Mails Management (Allow you to send items to Alt. Char)";
             // 
             // UseMollELabel
             // 
@@ -1048,8 +1024,6 @@ namespace nManager.Helpful.Forms
             this.UseMollE.ForeColor = System.Drawing.Color.Black;
             this.UseMollE.Location = new System.Drawing.Point(467, 35);
             this.UseMollE.Name = "UseMollE";
-            this.UseMollE.OffText = Translate.Get(Translate.Id.NO);
-            this.UseMollE.OnText = Translate.Get(Translate.Id.YES);
             this.UseMollE.Size = new System.Drawing.Size(66, 22);
             this.UseMollE.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseMollE.TabIndex = 42;
@@ -1275,8 +1249,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMaillingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMaillingFeature.Location = new System.Drawing.Point(169, 36);
             this.ActivateAutoMaillingFeature.Name = "ActivateAutoMaillingFeature";
-            this.ActivateAutoMaillingFeature.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoMaillingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoMaillingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoMaillingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMaillingFeature.TabIndex = 25;
@@ -1312,54 +1284,54 @@ namespace nManager.Helpful.Forms
             this.labelX58.TabIndex = 14;
             this.labelX58.Text = "Do not Mail List (one item by line)";
             // 
-            // expandablePanel8
+            // NPCsRepairSellBuyPanelName
             // 
-            this.expandablePanel8.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel8.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel8.Controls.Add(this.UseRobotLabel);
-            this.expandablePanel8.Controls.Add(this.UseRobot);
-            this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeft);
-            this.expandablePanel8.Controls.Add(this.RepairWhenDurabilityIsUnderPercent);
-            this.expandablePanel8.Controls.Add(this.SellItemsWhenLessThanXSlotLeftLabel);
-            this.expandablePanel8.Controls.Add(this.RepairWhenDurabilityIsUnderPercentLabel);
-            this.expandablePanel8.Controls.Add(this.ForceToSellTheseItems);
-            this.expandablePanel8.Controls.Add(this.labelX53);
-            this.expandablePanel8.Controls.Add(this.SellPurple);
-            this.expandablePanel8.Controls.Add(this.SellBlue);
-            this.expandablePanel8.Controls.Add(this.SellGreen);
-            this.expandablePanel8.Controls.Add(this.SellWhite);
-            this.expandablePanel8.Controls.Add(this.SellGray);
-            this.expandablePanel8.Controls.Add(this.labelX52);
-            this.expandablePanel8.Controls.Add(this.ActivateAutoSellingFeature);
-            this.expandablePanel8.Controls.Add(this.labelX51);
-            this.expandablePanel8.Controls.Add(this.ActivateAutoRepairFeature);
-            this.expandablePanel8.Controls.Add(this.NumberOfFoodsWeGot);
-            this.expandablePanel8.Controls.Add(this.labelX50);
-            this.expandablePanel8.Controls.Add(this.NumberOfBeverageWeGot);
-            this.expandablePanel8.Controls.Add(this.labelX41);
-            this.expandablePanel8.Controls.Add(this.DontSellTheseItems);
-            this.expandablePanel8.Controls.Add(this.labelX46);
-            this.expandablePanel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel8.Expanded = false;
-            this.expandablePanel8.ExpandedBounds = new System.Drawing.Rectangle(0, 85, 543, 341);
-            this.expandablePanel8.ExpandOnTitleClick = true;
-            this.expandablePanel8.Location = new System.Drawing.Point(0, 130);
-            this.expandablePanel8.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel8.Name = "expandablePanel8";
-            this.expandablePanel8.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel8.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel8.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel8.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel8.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel8.Style.GradientAngle = 90;
-            this.expandablePanel8.TabIndex = 9;
-            this.expandablePanel8.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel8.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel8.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel8.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel8.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel8.TitleStyle.GradientAngle = 90;
-            this.expandablePanel8.TitleText = "Vendor (Selling or Buying)";
+            this.NPCsRepairSellBuyPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.NPCsRepairSellBuyPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.UseRobotLabel);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.UseRobot);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellItemsWhenLessThanXSlotLeft);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.RepairWhenDurabilityIsUnderPercent);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellItemsWhenLessThanXSlotLeftLabel);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.RepairWhenDurabilityIsUnderPercentLabel);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.ForceToSellTheseItems);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX53);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellPurple);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellBlue);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellGreen);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellWhite);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.SellGray);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX52);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.ActivateAutoSellingFeature);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX51);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.ActivateAutoRepairFeature);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfFoodsWeGot);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX50);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.NumberOfBeverageWeGot);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX41);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.DontSellTheseItems);
+            this.NPCsRepairSellBuyPanelName.Controls.Add(this.labelX46);
+            this.NPCsRepairSellBuyPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.NPCsRepairSellBuyPanelName.Expanded = false;
+            this.NPCsRepairSellBuyPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 85, 543, 341);
+            this.NPCsRepairSellBuyPanelName.ExpandOnTitleClick = true;
+            this.NPCsRepairSellBuyPanelName.Location = new System.Drawing.Point(0, 130);
+            this.NPCsRepairSellBuyPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.NPCsRepairSellBuyPanelName.Name = "NPCsRepairSellBuyPanelName";
+            this.NPCsRepairSellBuyPanelName.Size = new System.Drawing.Size(560, 26);
+            this.NPCsRepairSellBuyPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.NPCsRepairSellBuyPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.NPCsRepairSellBuyPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.NPCsRepairSellBuyPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.NPCsRepairSellBuyPanelName.Style.GradientAngle = 90;
+            this.NPCsRepairSellBuyPanelName.TabIndex = 9;
+            this.NPCsRepairSellBuyPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.NPCsRepairSellBuyPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.NPCsRepairSellBuyPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.NPCsRepairSellBuyPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.NPCsRepairSellBuyPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.NPCsRepairSellBuyPanelName.TitleStyle.GradientAngle = 90;
+            this.NPCsRepairSellBuyPanelName.TitleText = "NPCs Management - Repairer, Vendor (Selling or Buying)";
             // 
             // UseRobotLabel
             // 
@@ -1386,8 +1358,6 @@ namespace nManager.Helpful.Forms
             this.UseRobot.ForeColor = System.Drawing.Color.Black;
             this.UseRobot.Location = new System.Drawing.Point(170, 35);
             this.UseRobot.Name = "UseRobot";
-            this.UseRobot.OffText = Translate.Get(Translate.Id.NO);
-            this.UseRobot.OnText = Translate.Get(Translate.Id.YES);
             this.UseRobot.Size = new System.Drawing.Size(66, 22);
             this.UseRobot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseRobot.TabIndex = 40;
@@ -1588,8 +1558,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSellingFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSellingFeature.Location = new System.Drawing.Point(169, 122);
             this.ActivateAutoSellingFeature.Name = "ActivateAutoSellingFeature";
-            this.ActivateAutoSellingFeature.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoSellingFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoSellingFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoSellingFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSellingFeature.TabIndex = 27;
@@ -1619,8 +1587,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoRepairFeature.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoRepairFeature.Location = new System.Drawing.Point(169, 93);
             this.ActivateAutoRepairFeature.Name = "ActivateAutoRepairFeature";
-            this.ActivateAutoRepairFeature.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoRepairFeature.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoRepairFeature.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoRepairFeature.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoRepairFeature.TabIndex = 25;
@@ -1720,39 +1686,39 @@ namespace nManager.Helpful.Forms
             this.labelX46.TabIndex = 14;
             this.labelX46.Text = "Do not Sell List (one item by line)";
             // 
-            // expandablePanel6
+            // ReloggerManagementPanelName
             // 
-            this.expandablePanel6.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel6.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel6.Controls.Add(this.BattleNetSubAccount);
-            this.expandablePanel6.Controls.Add(this.labelX67);
-            this.expandablePanel6.Controls.Add(this.labelX38);
-            this.expandablePanel6.Controls.Add(this.ActivateReloggerFeature);
-            this.expandablePanel6.Controls.Add(this.PasswordOfTheBattleNetAccount);
-            this.expandablePanel6.Controls.Add(this.labelX37);
-            this.expandablePanel6.Controls.Add(this.EmailOfTheBattleNetAccount);
-            this.expandablePanel6.Controls.Add(this.labelX40);
-            this.expandablePanel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel6.Expanded = false;
-            this.expandablePanel6.ExpandedBounds = new System.Drawing.Rectangle(0, 104, 543, 157);
-            this.expandablePanel6.ExpandOnTitleClick = true;
-            this.expandablePanel6.Location = new System.Drawing.Point(0, 104);
-            this.expandablePanel6.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel6.Name = "expandablePanel6";
-            this.expandablePanel6.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel6.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel6.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel6.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel6.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel6.Style.GradientAngle = 90;
-            this.expandablePanel6.TabIndex = 7;
-            this.expandablePanel6.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel6.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel6.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel6.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel6.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel6.TitleStyle.GradientAngle = 90;
-            this.expandablePanel6.TitleText = "Relogger";
+            this.ReloggerManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.ReloggerManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.ReloggerManagementPanelName.Controls.Add(this.BattleNetSubAccount);
+            this.ReloggerManagementPanelName.Controls.Add(this.labelX67);
+            this.ReloggerManagementPanelName.Controls.Add(this.labelX38);
+            this.ReloggerManagementPanelName.Controls.Add(this.ActivateReloggerFeature);
+            this.ReloggerManagementPanelName.Controls.Add(this.PasswordOfTheBattleNetAccount);
+            this.ReloggerManagementPanelName.Controls.Add(this.labelX37);
+            this.ReloggerManagementPanelName.Controls.Add(this.EmailOfTheBattleNetAccount);
+            this.ReloggerManagementPanelName.Controls.Add(this.labelX40);
+            this.ReloggerManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.ReloggerManagementPanelName.Expanded = false;
+            this.ReloggerManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 104, 543, 157);
+            this.ReloggerManagementPanelName.ExpandOnTitleClick = true;
+            this.ReloggerManagementPanelName.Location = new System.Drawing.Point(0, 104);
+            this.ReloggerManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.ReloggerManagementPanelName.Name = "ReloggerManagementPanelName";
+            this.ReloggerManagementPanelName.Size = new System.Drawing.Size(560, 26);
+            this.ReloggerManagementPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.ReloggerManagementPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.ReloggerManagementPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.ReloggerManagementPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.ReloggerManagementPanelName.Style.GradientAngle = 90;
+            this.ReloggerManagementPanelName.TabIndex = 7;
+            this.ReloggerManagementPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.ReloggerManagementPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.ReloggerManagementPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.ReloggerManagementPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.ReloggerManagementPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.ReloggerManagementPanelName.TitleStyle.GradientAngle = 90;
+            this.ReloggerManagementPanelName.TitleText = "AutoRelogger - (Allow you to automaticly relog your char after a disconnection)";
             // 
             // BattleNetSubAccount
             // 
@@ -1870,77 +1836,77 @@ namespace nManager.Helpful.Forms
             this.labelX40.TabIndex = 12;
             this.labelX40.Text = "Account Email";
             // 
-            // expandablePanel4
+            // LootingFarmingManagementPanelName
             // 
-            this.expandablePanel4.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel4.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel4.Controls.Add(this.button1);
-            this.expandablePanel4.Controls.Add(this.DontHarvestTheFollowingObjects);
-            this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItems);
-            this.expandablePanel4.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
-            this.expandablePanel4.Controls.Add(this.labelX69);
-            this.expandablePanel4.Controls.Add(this.OnlyUseMillingInTown);
-            this.expandablePanel4.Controls.Add(this.TimeBetweenEachMillingAttempt);
-            this.expandablePanel4.Controls.Add(this.labelX70);
-            this.expandablePanel4.Controls.Add(this.labelX71);
-            this.expandablePanel4.Controls.Add(this.ActivateAutoMilling);
-            this.expandablePanel4.Controls.Add(this.HerbsToBeMilled);
-            this.expandablePanel4.Controls.Add(this.labelX72);
-            this.expandablePanel4.Controls.Add(this.labelX68);
-            this.expandablePanel4.Controls.Add(this.MakeStackOfElementalsItems);
-            this.expandablePanel4.Controls.Add(this.labelX65);
-            this.expandablePanel4.Controls.Add(this.OnlyUseProspectingInTown);
-            this.expandablePanel4.Controls.Add(this.TimeBetweenEachProspectingAttempt);
-            this.expandablePanel4.Controls.Add(this.labelX64);
-            this.expandablePanel4.Controls.Add(this.labelX63);
-            this.expandablePanel4.Controls.Add(this.ActivateAutoProspecting);
-            this.expandablePanel4.Controls.Add(this.MineralsToProspect);
-            this.expandablePanel4.Controls.Add(this.labelX62);
-            this.expandablePanel4.Controls.Add(this.labelX61);
-            this.expandablePanel4.Controls.Add(this.ActivateAutoSmelting);
-            this.expandablePanel4.Controls.Add(this.labelX36);
-            this.expandablePanel4.Controls.Add(this.addBlackListHarvest);
-            this.expandablePanel4.Controls.Add(this.labelX35);
-            this.expandablePanel4.Controls.Add(this.HarvestDuringLongDistanceMovements);
-            this.expandablePanel4.Controls.Add(this.labelX23);
-            this.expandablePanel4.Controls.Add(this.BeastNinjaSkinning);
-            this.expandablePanel4.Controls.Add(this.GatheringSearchRadius);
-            this.expandablePanel4.Controls.Add(this.labelX22);
-            this.expandablePanel4.Controls.Add(this.DontHarvestIfMoreThanXUnitInAggroRange);
-            this.expandablePanel4.Controls.Add(this.labelX21);
-            this.expandablePanel4.Controls.Add(this.labelX20);
-            this.expandablePanel4.Controls.Add(this.ActivateHerbsHarvesting);
-            this.expandablePanel4.Controls.Add(this.labelX19);
-            this.expandablePanel4.Controls.Add(this.ActivateVeinsHarvesting);
-            this.expandablePanel4.Controls.Add(this.labelX17);
-            this.expandablePanel4.Controls.Add(this.ActivateBeastSkinning);
-            this.expandablePanel4.Controls.Add(this.labelX16);
-            this.expandablePanel4.Controls.Add(this.ActivateChestLooting);
-            this.expandablePanel4.Controls.Add(this.DontHarvestIfPlayerNearRadius);
-            this.expandablePanel4.Controls.Add(this.labelX12);
-            this.expandablePanel4.Controls.Add(this.labelX18);
-            this.expandablePanel4.Controls.Add(this.ActivateMonsterLooting);
-            this.expandablePanel4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel4.Expanded = false;
-            this.expandablePanel4.ExpandedBounds = new System.Drawing.Rectangle(0, 78, 543, 588);
-            this.expandablePanel4.ExpandOnTitleClick = true;
-            this.expandablePanel4.Location = new System.Drawing.Point(0, 78);
-            this.expandablePanel4.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel4.Name = "expandablePanel4";
-            this.expandablePanel4.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel4.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel4.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel4.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel4.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel4.Style.GradientAngle = 90;
-            this.expandablePanel4.TabIndex = 5;
-            this.expandablePanel4.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel4.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel4.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel4.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel4.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel4.TitleStyle.GradientAngle = 90;
-            this.expandablePanel4.TitleText = "Looting && Farming options";
+            this.LootingFarmingManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.LootingFarmingManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.LootingFarmingManagementPanelName.Controls.Add(this.button1);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestTheFollowingObjects);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItems);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.AutoConfirmOnBoPItemsLabel);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX69);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseMillingInTown);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachMillingAttempt);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX70);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX71);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoMilling);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.HerbsToBeMilled);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX72);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX68);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.MakeStackOfElementalsItems);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX65);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.OnlyUseProspectingInTown);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.TimeBetweenEachProspectingAttempt);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX64);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX63);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoProspecting);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.MineralsToProspect);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX62);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX61);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateAutoSmelting);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX36);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.addBlackListHarvest);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX35);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.HarvestDuringLongDistanceMovements);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX23);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.BeastNinjaSkinning);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.GatheringSearchRadius);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX22);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfMoreThanXUnitInAggroRange);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX21);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX20);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateHerbsHarvesting);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX19);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateVeinsHarvesting);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX17);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateBeastSkinning);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX16);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateChestLooting);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.DontHarvestIfPlayerNearRadius);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX12);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.labelX18);
+            this.LootingFarmingManagementPanelName.Controls.Add(this.ActivateMonsterLooting);
+            this.LootingFarmingManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.LootingFarmingManagementPanelName.Expanded = false;
+            this.LootingFarmingManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 71, 543, 588);
+            this.LootingFarmingManagementPanelName.ExpandOnTitleClick = true;
+            this.LootingFarmingManagementPanelName.Location = new System.Drawing.Point(0, 78);
+            this.LootingFarmingManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.LootingFarmingManagementPanelName.Name = "LootingFarmingManagementPanelName";
+            this.LootingFarmingManagementPanelName.Size = new System.Drawing.Size(560, 26);
+            this.LootingFarmingManagementPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.LootingFarmingManagementPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.LootingFarmingManagementPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.LootingFarmingManagementPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.LootingFarmingManagementPanelName.Style.GradientAngle = 90;
+            this.LootingFarmingManagementPanelName.TabIndex = 5;
+            this.LootingFarmingManagementPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.LootingFarmingManagementPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.LootingFarmingManagementPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.LootingFarmingManagementPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.LootingFarmingManagementPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.LootingFarmingManagementPanelName.TitleStyle.GradientAngle = 90;
+            this.LootingFarmingManagementPanelName.TitleText = "Looting/Farming Management";
             // 
             // button1
             // 
@@ -1980,8 +1946,6 @@ namespace nManager.Helpful.Forms
             this.AutoConfirmOnBoPItems.ForeColor = System.Drawing.Color.Black;
             this.AutoConfirmOnBoPItems.Location = new System.Drawing.Point(474, 30);
             this.AutoConfirmOnBoPItems.Name = "AutoConfirmOnBoPItems";
-            this.AutoConfirmOnBoPItems.OffText = Translate.Get(Translate.Id.NO);
-            this.AutoConfirmOnBoPItems.OnText = Translate.Get(Translate.Id.YES);
             this.AutoConfirmOnBoPItems.Size = new System.Drawing.Size(66, 22);
             this.AutoConfirmOnBoPItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoConfirmOnBoPItems.TabIndex = 61;
@@ -2026,8 +1990,6 @@ namespace nManager.Helpful.Forms
             this.OnlyUseMillingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseMillingInTown.Location = new System.Drawing.Point(170, 496);
             this.OnlyUseMillingInTown.Name = "OnlyUseMillingInTown";
-            this.OnlyUseMillingInTown.OffText = Translate.Get(Translate.Id.NO);
-            this.OnlyUseMillingInTown.OnText = Translate.Get(Translate.Id.YES);
             this.OnlyUseMillingInTown.Size = new System.Drawing.Size(66, 22);
             this.OnlyUseMillingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseMillingInTown.TabIndex = 58;
@@ -2090,8 +2052,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoMilling.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoMilling.Location = new System.Drawing.Point(170, 438);
             this.ActivateAutoMilling.Name = "ActivateAutoMilling";
-            this.ActivateAutoMilling.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoMilling.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoMilling.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoMilling.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoMilling.TabIndex = 54;
@@ -2152,8 +2112,6 @@ namespace nManager.Helpful.Forms
             this.MakeStackOfElementalsItems.ForeColor = System.Drawing.Color.Black;
             this.MakeStackOfElementalsItems.Location = new System.Drawing.Point(170, 541);
             this.MakeStackOfElementalsItems.Name = "MakeStackOfElementalsItems";
-            this.MakeStackOfElementalsItems.OffText = Translate.Get(Translate.Id.NO);
-            this.MakeStackOfElementalsItems.OnText = Translate.Get(Translate.Id.YES);
             this.MakeStackOfElementalsItems.Size = new System.Drawing.Size(66, 22);
             this.MakeStackOfElementalsItems.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.MakeStackOfElementalsItems.TabIndex = 50;
@@ -2183,8 +2141,6 @@ namespace nManager.Helpful.Forms
             this.OnlyUseProspectingInTown.ForeColor = System.Drawing.Color.Black;
             this.OnlyUseProspectingInTown.Location = new System.Drawing.Point(170, 377);
             this.OnlyUseProspectingInTown.Name = "OnlyUseProspectingInTown";
-            this.OnlyUseProspectingInTown.OffText = Translate.Get(Translate.Id.NO);
-            this.OnlyUseProspectingInTown.OnText = Translate.Get(Translate.Id.YES);
             this.OnlyUseProspectingInTown.Size = new System.Drawing.Size(66, 22);
             this.OnlyUseProspectingInTown.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.OnlyUseProspectingInTown.TabIndex = 48;
@@ -2247,8 +2203,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoProspecting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoProspecting.Location = new System.Drawing.Point(170, 319);
             this.ActivateAutoProspecting.Name = "ActivateAutoProspecting";
-            this.ActivateAutoProspecting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoProspecting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoProspecting.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoProspecting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoProspecting.TabIndex = 44;
@@ -2309,8 +2263,6 @@ namespace nManager.Helpful.Forms
             this.ActivateAutoSmelting.ForeColor = System.Drawing.Color.Black;
             this.ActivateAutoSmelting.Location = new System.Drawing.Point(474, 117);
             this.ActivateAutoSmelting.Name = "ActivateAutoSmelting";
-            this.ActivateAutoSmelting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateAutoSmelting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateAutoSmelting.Size = new System.Drawing.Size(66, 22);
             this.ActivateAutoSmelting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateAutoSmelting.TabIndex = 40;
@@ -2363,8 +2315,6 @@ namespace nManager.Helpful.Forms
             this.HarvestDuringLongDistanceMovements.ForeColor = System.Drawing.Color.Black;
             this.HarvestDuringLongDistanceMovements.Location = new System.Drawing.Point(170, 262);
             this.HarvestDuringLongDistanceMovements.Name = "HarvestDuringLongDistanceMovements";
-            this.HarvestDuringLongDistanceMovements.OffText = Translate.Get(Translate.Id.NO);
-            this.HarvestDuringLongDistanceMovements.OnText = Translate.Get(Translate.Id.YES);
             this.HarvestDuringLongDistanceMovements.Size = new System.Drawing.Size(66, 22);
             this.HarvestDuringLongDistanceMovements.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.HarvestDuringLongDistanceMovements.TabIndex = 33;
@@ -2394,8 +2344,6 @@ namespace nManager.Helpful.Forms
             this.BeastNinjaSkinning.ForeColor = System.Drawing.Color.Black;
             this.BeastNinjaSkinning.Location = new System.Drawing.Point(474, 88);
             this.BeastNinjaSkinning.Name = "BeastNinjaSkinning";
-            this.BeastNinjaSkinning.OffText = Translate.Get(Translate.Id.NO);
-            this.BeastNinjaSkinning.OnText = Translate.Get(Translate.Id.YES);
             this.BeastNinjaSkinning.Size = new System.Drawing.Size(66, 22);
             this.BeastNinjaSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.BeastNinjaSkinning.TabIndex = 31;
@@ -2491,8 +2439,6 @@ namespace nManager.Helpful.Forms
             this.ActivateHerbsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateHerbsHarvesting.Location = new System.Drawing.Point(170, 146);
             this.ActivateHerbsHarvesting.Name = "ActivateHerbsHarvesting";
-            this.ActivateHerbsHarvesting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateHerbsHarvesting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateHerbsHarvesting.Size = new System.Drawing.Size(66, 22);
             this.ActivateHerbsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateHerbsHarvesting.TabIndex = 25;
@@ -2522,8 +2468,6 @@ namespace nManager.Helpful.Forms
             this.ActivateVeinsHarvesting.ForeColor = System.Drawing.Color.Black;
             this.ActivateVeinsHarvesting.Location = new System.Drawing.Point(170, 117);
             this.ActivateVeinsHarvesting.Name = "ActivateVeinsHarvesting";
-            this.ActivateVeinsHarvesting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateVeinsHarvesting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateVeinsHarvesting.Size = new System.Drawing.Size(66, 22);
             this.ActivateVeinsHarvesting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateVeinsHarvesting.TabIndex = 23;
@@ -2553,8 +2497,6 @@ namespace nManager.Helpful.Forms
             this.ActivateBeastSkinning.ForeColor = System.Drawing.Color.Black;
             this.ActivateBeastSkinning.Location = new System.Drawing.Point(170, 88);
             this.ActivateBeastSkinning.Name = "ActivateBeastSkinning";
-            this.ActivateBeastSkinning.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateBeastSkinning.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateBeastSkinning.Size = new System.Drawing.Size(66, 22);
             this.ActivateBeastSkinning.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateBeastSkinning.TabIndex = 21;
@@ -2584,8 +2526,6 @@ namespace nManager.Helpful.Forms
             this.ActivateChestLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateChestLooting.Location = new System.Drawing.Point(170, 59);
             this.ActivateChestLooting.Name = "ActivateChestLooting";
-            this.ActivateChestLooting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateChestLooting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateChestLooting.Size = new System.Drawing.Size(66, 22);
             this.ActivateChestLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateChestLooting.TabIndex = 19;
@@ -2648,48 +2588,46 @@ namespace nManager.Helpful.Forms
             this.ActivateMonsterLooting.ForeColor = System.Drawing.Color.Black;
             this.ActivateMonsterLooting.Location = new System.Drawing.Point(170, 30);
             this.ActivateMonsterLooting.Name = "ActivateMonsterLooting";
-            this.ActivateMonsterLooting.OffText = Translate.Get(Translate.Id.NO);
-            this.ActivateMonsterLooting.OnText = Translate.Get(Translate.Id.YES);
             this.ActivateMonsterLooting.Size = new System.Drawing.Size(66, 22);
             this.ActivateMonsterLooting.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.ActivateMonsterLooting.TabIndex = 10;
             // 
-            // expandablePanel3
+            // RegenerationManagementPanelName
             // 
-            this.expandablePanel3.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel3.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel3.Controls.Add(this.DoRegenManaIfLow);
-            this.expandablePanel3.Controls.Add(this.labelX9);
-            this.expandablePanel3.Controls.Add(this.labelX10);
-            this.expandablePanel3.Controls.Add(this.DrinkBeverageWhenManaIsUnderXPercent);
-            this.expandablePanel3.Controls.Add(this.BeverageName);
-            this.expandablePanel3.Controls.Add(this.labelX15);
-            this.expandablePanel3.Controls.Add(this.labelX14);
-            this.expandablePanel3.Controls.Add(this.labelX13);
-            this.expandablePanel3.Controls.Add(this.EatFoodWhenHealthIsUnderXPercent);
-            this.expandablePanel3.Controls.Add(this.FoodName);
-            this.expandablePanel3.Controls.Add(this.labelX11);
-            this.expandablePanel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel3.Expanded = false;
-            this.expandablePanel3.ExpandedBounds = new System.Drawing.Rectangle(0, 52, 543, 88);
-            this.expandablePanel3.ExpandOnTitleClick = true;
-            this.expandablePanel3.Location = new System.Drawing.Point(0, 52);
-            this.expandablePanel3.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel3.Name = "expandablePanel3";
-            this.expandablePanel3.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel3.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel3.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel3.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel3.Style.GradientAngle = 90;
-            this.expandablePanel3.TabIndex = 4;
-            this.expandablePanel3.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel3.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel3.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel3.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel3.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel3.TitleStyle.GradientAngle = 90;
-            this.expandablePanel3.TitleText = "Food / Drink && percentage to be used";
+            this.RegenerationManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.RegenerationManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.RegenerationManagementPanelName.Controls.Add(this.DoRegenManaIfLow);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX9);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX10);
+            this.RegenerationManagementPanelName.Controls.Add(this.DrinkBeverageWhenManaIsUnderXPercent);
+            this.RegenerationManagementPanelName.Controls.Add(this.BeverageName);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX15);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX14);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX13);
+            this.RegenerationManagementPanelName.Controls.Add(this.EatFoodWhenHealthIsUnderXPercent);
+            this.RegenerationManagementPanelName.Controls.Add(this.FoodName);
+            this.RegenerationManagementPanelName.Controls.Add(this.labelX11);
+            this.RegenerationManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.RegenerationManagementPanelName.Expanded = false;
+            this.RegenerationManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 52, 560, 88);
+            this.RegenerationManagementPanelName.ExpandOnTitleClick = true;
+            this.RegenerationManagementPanelName.Location = new System.Drawing.Point(0, 52);
+            this.RegenerationManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.RegenerationManagementPanelName.Name = "RegenerationManagementPanelName";
+            this.RegenerationManagementPanelName.Size = new System.Drawing.Size(560, 26);
+            this.RegenerationManagementPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.RegenerationManagementPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.RegenerationManagementPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.RegenerationManagementPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.RegenerationManagementPanelName.Style.GradientAngle = 90;
+            this.RegenerationManagementPanelName.TabIndex = 4;
+            this.RegenerationManagementPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.RegenerationManagementPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.RegenerationManagementPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.RegenerationManagementPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.RegenerationManagementPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.RegenerationManagementPanelName.TitleStyle.GradientAngle = 90;
+            this.RegenerationManagementPanelName.TitleText = "Regeneration Management - Food / Drink && percentage to be used";
             // 
             // DoRegenManaIfLow
             // 
@@ -2701,8 +2639,6 @@ namespace nManager.Helpful.Forms
             this.DoRegenManaIfLow.ForeColor = System.Drawing.Color.Black;
             this.DoRegenManaIfLow.Location = new System.Drawing.Point(485, 57);
             this.DoRegenManaIfLow.Name = "DoRegenManaIfLow";
-            this.DoRegenManaIfLow.OffText = Translate.Get(Translate.Id.NO);
-            this.DoRegenManaIfLow.OnText = Translate.Get(Translate.Id.YES);
             this.DoRegenManaIfLow.Size = new System.Drawing.Size(66, 22);
             this.DoRegenManaIfLow.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DoRegenManaIfLow.TabIndex = 26;
@@ -2863,43 +2799,43 @@ namespace nManager.Helpful.Forms
             this.labelX11.TabIndex = 12;
             this.labelX11.Text = "Food";
             // 
-            // expandablePanel2
+            // MountManagementPanelName
             // 
-            this.expandablePanel2.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel2.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel2.Controls.Add(this.AquaticMountName);
-            this.expandablePanel2.Controls.Add(this.labelX66);
-            this.expandablePanel2.Controls.Add(this.labelX57);
-            this.expandablePanel2.Controls.Add(this.IgnoreFightIfMounted);
-            this.expandablePanel2.Controls.Add(this.MinimumDistanceToUseMount);
-            this.expandablePanel2.Controls.Add(this.labelX8);
-            this.expandablePanel2.Controls.Add(this.FlyingMountName);
-            this.expandablePanel2.Controls.Add(this.labelX7);
-            this.expandablePanel2.Controls.Add(this.GroundMountName);
-            this.expandablePanel2.Controls.Add(this.labelX6);
-            this.expandablePanel2.Controls.Add(this.labelX5);
-            this.expandablePanel2.Controls.Add(this.UseGroundMount);
-            this.expandablePanel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel2.Expanded = false;
-            this.expandablePanel2.ExpandedBounds = new System.Drawing.Rectangle(0, 26, 543, 217);
-            this.expandablePanel2.ExpandOnTitleClick = true;
-            this.expandablePanel2.Location = new System.Drawing.Point(0, 26);
-            this.expandablePanel2.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
-            this.expandablePanel2.Name = "expandablePanel2";
-            this.expandablePanel2.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel2.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel2.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel2.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel2.Style.GradientAngle = 90;
-            this.expandablePanel2.TabIndex = 3;
-            this.expandablePanel2.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel2.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel2.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel2.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel2.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel2.TitleStyle.GradientAngle = 90;
-            this.expandablePanel2.TitleText = "Mount options";
+            this.MountManagementPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.MountManagementPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.MountManagementPanelName.Controls.Add(this.AquaticMountName);
+            this.MountManagementPanelName.Controls.Add(this.labelX66);
+            this.MountManagementPanelName.Controls.Add(this.labelX57);
+            this.MountManagementPanelName.Controls.Add(this.IgnoreFightIfMounted);
+            this.MountManagementPanelName.Controls.Add(this.MinimumDistanceToUseMount);
+            this.MountManagementPanelName.Controls.Add(this.labelX8);
+            this.MountManagementPanelName.Controls.Add(this.FlyingMountName);
+            this.MountManagementPanelName.Controls.Add(this.labelX7);
+            this.MountManagementPanelName.Controls.Add(this.GroundMountName);
+            this.MountManagementPanelName.Controls.Add(this.labelX6);
+            this.MountManagementPanelName.Controls.Add(this.labelX5);
+            this.MountManagementPanelName.Controls.Add(this.UseGroundMount);
+            this.MountManagementPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.MountManagementPanelName.Expanded = false;
+            this.MountManagementPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 26, 543, 217);
+            this.MountManagementPanelName.ExpandOnTitleClick = true;
+            this.MountManagementPanelName.Location = new System.Drawing.Point(0, 26);
+            this.MountManagementPanelName.Margin = new System.Windows.Forms.Padding(3, 10, 10, 10);
+            this.MountManagementPanelName.Name = "MountManagementPanelName";
+            this.MountManagementPanelName.Size = new System.Drawing.Size(560, 26);
+            this.MountManagementPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.MountManagementPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.MountManagementPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.MountManagementPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.MountManagementPanelName.Style.GradientAngle = 90;
+            this.MountManagementPanelName.TabIndex = 3;
+            this.MountManagementPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.MountManagementPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.MountManagementPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.MountManagementPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.MountManagementPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.MountManagementPanelName.TitleStyle.GradientAngle = 90;
+            this.MountManagementPanelName.TitleText = "Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)";
             // 
             // AquaticMountName
             // 
@@ -2955,8 +2891,6 @@ namespace nManager.Helpful.Forms
             this.IgnoreFightIfMounted.ForeColor = System.Drawing.Color.Black;
             this.IgnoreFightIfMounted.Location = new System.Drawing.Point(169, 121);
             this.IgnoreFightIfMounted.Name = "IgnoreFightIfMounted";
-            this.IgnoreFightIfMounted.OffText = Translate.Get(Translate.Id.NO);
-            this.IgnoreFightIfMounted.OnText = Translate.Get(Translate.Id.YES);
             this.IgnoreFightIfMounted.Size = new System.Drawing.Size(66, 22);
             this.IgnoreFightIfMounted.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.IgnoreFightIfMounted.TabIndex = 19;
@@ -3077,52 +3011,106 @@ namespace nManager.Helpful.Forms
             this.UseGroundMount.ForeColor = System.Drawing.Color.Black;
             this.UseGroundMount.Location = new System.Drawing.Point(169, 34);
             this.UseGroundMount.Name = "UseGroundMount";
-            this.UseGroundMount.OffText = Translate.Get(Translate.Id.NO);
-            this.UseGroundMount.OnText = Translate.Get(Translate.Id.YES);
             this.UseGroundMount.Size = new System.Drawing.Size(66, 22);
             this.UseGroundMount.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseGroundMount.TabIndex = 10;
             // 
-            // expandablePanel1
+            // SpellManagementSystemPanelName
             // 
-            this.expandablePanel1.CanvasColor = System.Drawing.SystemColors.Control;
-            this.expandablePanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.expandablePanel1.Controls.Add(this.CombatClassResetSettingsButton);
-            this.expandablePanel1.Controls.Add(this.labelX59);
-            this.expandablePanel1.Controls.Add(this.UseSpiritHealer);
-            this.expandablePanel1.Controls.Add(this.labelX49);
-            this.expandablePanel1.Controls.Add(this.LearnNewSpells);
-            this.expandablePanel1.Controls.Add(this.labelX47);
-            this.expandablePanel1.Controls.Add(this.TrainNewSkills);
-            this.expandablePanel1.Controls.Add(this.labelX4);
-            this.expandablePanel1.Controls.Add(this.DontPullMonsters);
-            this.expandablePanel1.Controls.Add(this.labelX3);
-            this.expandablePanel1.Controls.Add(this.CanPullUnitsAlreadyInFight);
-            this.expandablePanel1.Controls.Add(this.labelX2);
-            this.expandablePanel1.Controls.Add(this.AutoAssignTalents);
-            this.expandablePanel1.Controls.Add(this.labelX1);
-            this.expandablePanel1.Controls.Add(this.CombatClass);
-            this.expandablePanel1.Controls.Add(this.CombatClassSettingsButton);
-            this.expandablePanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.expandablePanel1.Expanded = false;
-            this.expandablePanel1.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 543, 236);
-            this.expandablePanel1.ExpandOnTitleClick = true;
-            this.expandablePanel1.Location = new System.Drawing.Point(0, 0);
-            this.expandablePanel1.Name = "expandablePanel1";
-            this.expandablePanel1.Size = new System.Drawing.Size(560, 26);
-            this.expandablePanel1.Style.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel1.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
-            this.expandablePanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.expandablePanel1.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
-            this.expandablePanel1.Style.GradientAngle = 90;
-            this.expandablePanel1.TabIndex = 2;
-            this.expandablePanel1.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
-            this.expandablePanel1.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
-            this.expandablePanel1.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.expandablePanel1.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
-            this.expandablePanel1.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
-            this.expandablePanel1.TitleStyle.GradientAngle = 90;
-            this.expandablePanel1.TitleText = "Class / Custom spell sequence Settings";
+            this.SpellManagementSystemPanelName.CanvasColor = System.Drawing.SystemColors.Control;
+            this.SpellManagementSystemPanelName.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassResetSettingsButton);
+            this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassLabel);
+            this.SpellManagementSystemPanelName.Controls.Add(this.HealerClass);
+            this.SpellManagementSystemPanelName.Controls.Add(this.HealerClassSettingsButton);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassResetSettingsButton);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX59);
+            this.SpellManagementSystemPanelName.Controls.Add(this.UseSpiritHealer);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX49);
+            this.SpellManagementSystemPanelName.Controls.Add(this.LearnNewSpells);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX47);
+            this.SpellManagementSystemPanelName.Controls.Add(this.TrainNewSkills);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX4);
+            this.SpellManagementSystemPanelName.Controls.Add(this.DontPullMonsters);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX3);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CanPullUnitsAlreadyInFight);
+            this.SpellManagementSystemPanelName.Controls.Add(this.labelX2);
+            this.SpellManagementSystemPanelName.Controls.Add(this.AutoAssignTalents);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassLabel);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClass);
+            this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassSettingsButton);
+            this.SpellManagementSystemPanelName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.SpellManagementSystemPanelName.Expanded = false;
+            this.SpellManagementSystemPanelName.ExpandedBounds = new System.Drawing.Rectangle(0, 0, 543, 196);
+            this.SpellManagementSystemPanelName.ExpandOnTitleClick = true;
+            this.SpellManagementSystemPanelName.Location = new System.Drawing.Point(0, 0);
+            this.SpellManagementSystemPanelName.Name = "SpellManagementSystemPanelName";
+            this.SpellManagementSystemPanelName.Size = new System.Drawing.Size(560, 26);
+            this.SpellManagementSystemPanelName.Style.Alignment = System.Drawing.StringAlignment.Center;
+            this.SpellManagementSystemPanelName.Style.BackColor1.Color = System.Drawing.Color.WhiteSmoke;
+            this.SpellManagementSystemPanelName.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.SpellManagementSystemPanelName.Style.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.ItemText;
+            this.SpellManagementSystemPanelName.Style.GradientAngle = 90;
+            this.SpellManagementSystemPanelName.TabIndex = 2;
+            this.SpellManagementSystemPanelName.TitleStyle.Alignment = System.Drawing.StringAlignment.Center;
+            this.SpellManagementSystemPanelName.TitleStyle.BackColor1.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelBackground;
+            this.SpellManagementSystemPanelName.TitleStyle.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.SpellManagementSystemPanelName.TitleStyle.Border = DevComponents.DotNetBar.eBorderType.RaisedInner;
+            this.SpellManagementSystemPanelName.TitleStyle.ForeColor.ColorSchemePart = DevComponents.DotNetBar.eColorSchemePart.PanelText;
+            this.SpellManagementSystemPanelName.TitleStyle.GradientAngle = 90;
+            this.SpellManagementSystemPanelName.TitleText = "Spell Management System - Combat/Healer Class";
+            // 
+            // HealerClassResetSettingsButton
+            // 
+            this.HealerClassResetSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.HealerClassResetSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.HealerClassResetSettingsButton.Location = new System.Drawing.Point(432, 69);
+            this.HealerClassResetSettingsButton.Name = "HealerClassResetSettingsButton";
+            this.HealerClassResetSettingsButton.Size = new System.Drawing.Size(102, 23);
+            this.HealerClassResetSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.HealerClassResetSettingsButton.TabIndex = 33;
+            this.HealerClassResetSettingsButton.Text = "Reset Settings";
+            this.HealerClassResetSettingsButton.Click += new System.EventHandler(this.HealerClassResetSettingsButton_Click);
+            // 
+            // HealerClassLabel
+            // 
+            this.HealerClassLabel.BackColor = System.Drawing.Color.Transparent;
+            // 
+            // 
+            // 
+            this.HealerClassLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.HealerClassLabel.ForeColor = System.Drawing.Color.Black;
+            this.HealerClassLabel.Location = new System.Drawing.Point(11, 68);
+            this.HealerClassLabel.Name = "HealerClassLabel";
+            this.HealerClassLabel.Size = new System.Drawing.Size(160, 23);
+            this.HealerClassLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.HealerClassLabel.TabIndex = 32;
+            this.HealerClassLabel.Text = "Healer Class";
+            // 
+            // HealerClass
+            // 
+            this.HealerClass.DisplayMember = "Text";
+            this.HealerClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.HealerClass.ForeColor = System.Drawing.Color.Black;
+            this.HealerClass.FormattingEnabled = true;
+            this.HealerClass.ItemHeight = 16;
+            this.HealerClass.Location = new System.Drawing.Point(177, 69);
+            this.HealerClass.Name = "HealerClass";
+            this.HealerClass.Size = new System.Drawing.Size(159, 22);
+            this.HealerClass.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.HealerClass.TabIndex = 31;
+            // 
+            // HealerClassSettingsButton
+            // 
+            this.HealerClassSettingsButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.HealerClassSettingsButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.HealerClassSettingsButton.Location = new System.Drawing.Point(342, 69);
+            this.HealerClassSettingsButton.Name = "HealerClassSettingsButton";
+            this.HealerClassSettingsButton.Size = new System.Drawing.Size(75, 23);
+            this.HealerClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.HealerClassSettingsButton.TabIndex = 30;
+            this.HealerClassSettingsButton.Text = "Settings";
+            this.HealerClassSettingsButton.Click += new System.EventHandler(this.HealerClassSettingsButton_Click);
             // 
             // CombatClassResetSettingsButton
             // 
@@ -3144,7 +3132,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX59.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX59.ForeColor = System.Drawing.Color.Black;
-            this.labelX59.Location = new System.Drawing.Point(11, 213);
+            this.labelX59.Location = new System.Drawing.Point(301, 160);
             this.labelX59.Name = "labelX59";
             this.labelX59.Size = new System.Drawing.Size(160, 23);
             this.labelX59.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3159,10 +3147,8 @@ namespace nManager.Helpful.Forms
             // 
             this.UseSpiritHealer.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.UseSpiritHealer.ForeColor = System.Drawing.Color.Black;
-            this.UseSpiritHealer.Location = new System.Drawing.Point(177, 213);
+            this.UseSpiritHealer.Location = new System.Drawing.Point(467, 160);
             this.UseSpiritHealer.Name = "UseSpiritHealer";
-            this.UseSpiritHealer.OffText = Translate.Get(Translate.Id.NO);
-            this.UseSpiritHealer.OnText = Translate.Get(Translate.Id.YES);
             this.UseSpiritHealer.Size = new System.Drawing.Size(66, 22);
             this.UseSpiritHealer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseSpiritHealer.TabIndex = 27;
@@ -3175,7 +3161,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX49.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX49.ForeColor = System.Drawing.Color.Black;
-            this.labelX49.Location = new System.Drawing.Point(11, 127);
+            this.labelX49.Location = new System.Drawing.Point(11, 161);
             this.labelX49.Name = "labelX49";
             this.labelX49.Size = new System.Drawing.Size(160, 23);
             this.labelX49.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3190,10 +3176,8 @@ namespace nManager.Helpful.Forms
             // 
             this.LearnNewSpells.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.LearnNewSpells.ForeColor = System.Drawing.Color.Black;
-            this.LearnNewSpells.Location = new System.Drawing.Point(177, 127);
+            this.LearnNewSpells.Location = new System.Drawing.Point(177, 161);
             this.LearnNewSpells.Name = "LearnNewSpells";
-            this.LearnNewSpells.OffText = Translate.Get(Translate.Id.NO);
-            this.LearnNewSpells.OnText = Translate.Get(Translate.Id.YES);
             this.LearnNewSpells.Size = new System.Drawing.Size(66, 22);
             this.LearnNewSpells.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.LearnNewSpells.TabIndex = 25;
@@ -3206,7 +3190,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX47.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX47.ForeColor = System.Drawing.Color.Black;
-            this.labelX47.Location = new System.Drawing.Point(11, 98);
+            this.labelX47.Location = new System.Drawing.Point(11, 132);
             this.labelX47.Name = "labelX47";
             this.labelX47.Size = new System.Drawing.Size(160, 23);
             this.labelX47.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3221,10 +3205,8 @@ namespace nManager.Helpful.Forms
             // 
             this.TrainNewSkills.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.TrainNewSkills.ForeColor = System.Drawing.Color.Black;
-            this.TrainNewSkills.Location = new System.Drawing.Point(177, 98);
+            this.TrainNewSkills.Location = new System.Drawing.Point(177, 132);
             this.TrainNewSkills.Name = "TrainNewSkills";
-            this.TrainNewSkills.OffText = Translate.Get(Translate.Id.NO);
-            this.TrainNewSkills.OnText = Translate.Get(Translate.Id.YES);
             this.TrainNewSkills.Size = new System.Drawing.Size(66, 22);
             this.TrainNewSkills.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.TrainNewSkills.TabIndex = 23;
@@ -3237,7 +3219,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX4.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX4.ForeColor = System.Drawing.Color.Black;
-            this.labelX4.Location = new System.Drawing.Point(11, 185);
+            this.labelX4.Location = new System.Drawing.Point(301, 132);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(160, 23);
             this.labelX4.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3252,10 +3234,8 @@ namespace nManager.Helpful.Forms
             // 
             this.DontPullMonsters.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.DontPullMonsters.ForeColor = System.Drawing.Color.Black;
-            this.DontPullMonsters.Location = new System.Drawing.Point(177, 185);
+            this.DontPullMonsters.Location = new System.Drawing.Point(467, 132);
             this.DontPullMonsters.Name = "DontPullMonsters";
-            this.DontPullMonsters.OffText = Translate.Get(Translate.Id.NO);
-            this.DontPullMonsters.OnText = Translate.Get(Translate.Id.YES);
             this.DontPullMonsters.Size = new System.Drawing.Size(66, 22);
             this.DontPullMonsters.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.DontPullMonsters.TabIndex = 8;
@@ -3268,7 +3248,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX3.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX3.ForeColor = System.Drawing.Color.Black;
-            this.labelX3.Location = new System.Drawing.Point(11, 156);
+            this.labelX3.Location = new System.Drawing.Point(301, 103);
             this.labelX3.Name = "labelX3";
             this.labelX3.Size = new System.Drawing.Size(160, 23);
             this.labelX3.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3283,10 +3263,8 @@ namespace nManager.Helpful.Forms
             // 
             this.CanPullUnitsAlreadyInFight.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.CanPullUnitsAlreadyInFight.ForeColor = System.Drawing.Color.Black;
-            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(177, 156);
+            this.CanPullUnitsAlreadyInFight.Location = new System.Drawing.Point(467, 103);
             this.CanPullUnitsAlreadyInFight.Name = "CanPullUnitsAlreadyInFight";
-            this.CanPullUnitsAlreadyInFight.OffText = Translate.Get(Translate.Id.NO);
-            this.CanPullUnitsAlreadyInFight.OnText = Translate.Get(Translate.Id.YES);
             this.CanPullUnitsAlreadyInFight.Size = new System.Drawing.Size(66, 22);
             this.CanPullUnitsAlreadyInFight.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CanPullUnitsAlreadyInFight.TabIndex = 6;
@@ -3299,7 +3277,7 @@ namespace nManager.Helpful.Forms
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(11, 69);
+            this.labelX2.Location = new System.Drawing.Point(11, 103);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(160, 23);
             this.labelX2.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
@@ -3314,28 +3292,26 @@ namespace nManager.Helpful.Forms
             // 
             this.AutoAssignTalents.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.AutoAssignTalents.ForeColor = System.Drawing.Color.Black;
-            this.AutoAssignTalents.Location = new System.Drawing.Point(177, 70);
+            this.AutoAssignTalents.Location = new System.Drawing.Point(177, 104);
             this.AutoAssignTalents.Name = "AutoAssignTalents";
-            this.AutoAssignTalents.OffText = Translate.Get(Translate.Id.NO);
-            this.AutoAssignTalents.OnText = Translate.Get(Translate.Id.YES);
             this.AutoAssignTalents.Size = new System.Drawing.Size(66, 22);
             this.AutoAssignTalents.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.AutoAssignTalents.TabIndex = 4;
             // 
-            // labelX1
+            // CombatClassLabel
             // 
-            this.labelX1.BackColor = System.Drawing.Color.Transparent;
+            this.CombatClassLabel.BackColor = System.Drawing.Color.Transparent;
             // 
             // 
             // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(11, 40);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(160, 23);
-            this.labelX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.labelX1.TabIndex = 3;
-            this.labelX1.Text = "Custom Class";
+            this.CombatClassLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.CombatClassLabel.ForeColor = System.Drawing.Color.Black;
+            this.CombatClassLabel.Location = new System.Drawing.Point(11, 40);
+            this.CombatClassLabel.Name = "CombatClassLabel";
+            this.CombatClassLabel.Size = new System.Drawing.Size(160, 23);
+            this.CombatClassLabel.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.CombatClassLabel.TabIndex = 3;
+            this.CombatClassLabel.Text = "Combat Class";
             // 
             // CombatClass
             // 
@@ -3360,7 +3336,7 @@ namespace nManager.Helpful.Forms
             this.CombatClassSettingsButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.CombatClassSettingsButton.TabIndex = 1;
             this.CombatClassSettingsButton.Text = "Settings";
-            this.CombatClassSettingsButton.Click += new System.EventHandler(this.CombatClassConfigB_Click);
+            this.CombatClassSettingsButton.Click += new System.EventHandler(this.CombatClassSettingsButton_Click);
             // 
             // closeB
             // 
@@ -3422,33 +3398,33 @@ namespace nManager.Helpful.Forms
             this.Text = "General Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GeneralSettings_FormClosing);
             this.panel1.ResumeLayout(false);
-            this.expandablePanel7.ResumeLayout(false);
+            this.AdvancedSettingsPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MaxDistanceToGoToMailboxesOrNPCs)).EndInit();
-            this.expandablePanel5.ResumeLayout(false);
+            this.SecuritySystemPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXStucks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBIfReceivedAtMostXWhispers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.StopTNBAfterXLevelup)).EndInit();
-            this.expandablePanel9.ResumeLayout(false);
+            this.MailsManagementPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SendMailWhenLessThanXSlotLeft)).EndInit();
-            this.expandablePanel8.ResumeLayout(false);
+            this.NPCsRepairSellBuyPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.SellItemsWhenLessThanXSlotLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.RepairWhenDurabilityIsUnderPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfFoodsWeGot)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.NumberOfBeverageWeGot)).EndInit();
-            this.expandablePanel6.ResumeLayout(false);
-            this.expandablePanel4.ResumeLayout(false);
+            this.ReloggerManagementPanelName.ResumeLayout(false);
+            this.LootingFarmingManagementPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.TimeBetweenEachMillingAttempt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TimeBetweenEachProspectingAttempt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GatheringSearchRadius)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DontHarvestIfMoreThanXUnitInAggroRange)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DontHarvestIfPlayerNearRadius)).EndInit();
-            this.expandablePanel3.ResumeLayout(false);
+            this.RegenerationManagementPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DrinkBeverageWhenManaIsUnderXPercent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.EatFoodWhenHealthIsUnderXPercent)).EndInit();
-            this.expandablePanel2.ResumeLayout(false);
+            this.MountManagementPanelName.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MinimumDistanceToUseMount)).EndInit();
-            this.expandablePanel1.ResumeLayout(false);
+            this.SpellManagementSystemPanelName.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -3456,8 +3432,8 @@ namespace nManager.Helpful.Forms
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel2;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel1;
+        private DevComponents.DotNetBar.ExpandablePanel MountManagementPanelName;
+        private DevComponents.DotNetBar.ExpandablePanel SpellManagementSystemPanelName;
         private DevComponents.DotNetBar.LabelX labelX8;
         private DevComponents.DotNetBar.Controls.TextBoxX FlyingMountName;
         private DevComponents.DotNetBar.LabelX labelX7;
@@ -3471,15 +3447,15 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton CanPullUnitsAlreadyInFight;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.Controls.SwitchButton AutoAssignTalents;
-        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.LabelX CombatClassLabel;
         private DevComponents.DotNetBar.Controls.ComboBoxEx CombatClass;
         private DevComponents.DotNetBar.ButtonX CombatClassSettingsButton;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel4;
+        private DevComponents.DotNetBar.ExpandablePanel LootingFarmingManagementPanelName;
         private DevComponents.Editors.IntegerInput DontHarvestIfPlayerNearRadius;
         private DevComponents.DotNetBar.LabelX labelX12;
         private DevComponents.DotNetBar.LabelX labelX18;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateMonsterLooting;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel3;
+        private DevComponents.DotNetBar.ExpandablePanel RegenerationManagementPanelName;
         private DevComponents.DotNetBar.LabelX labelX9;
         private DevComponents.DotNetBar.LabelX labelX10;
         private DevComponents.Editors.IntegerInput DrinkBeverageWhenManaIsUnderXPercent;
@@ -3505,19 +3481,19 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateBeastSkinning;
         private DevComponents.DotNetBar.LabelX labelX16;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateChestLooting;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel6;
+        private DevComponents.DotNetBar.ExpandablePanel ReloggerManagementPanelName;
         private DevComponents.DotNetBar.Controls.TextBoxX PasswordOfTheBattleNetAccount;
         private DevComponents.DotNetBar.LabelX labelX37;
         private DevComponents.DotNetBar.Controls.TextBoxX EmailOfTheBattleNetAccount;
         private DevComponents.DotNetBar.LabelX labelX40;
         private DevComponents.DotNetBar.LabelX labelX38;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateReloggerFeature;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel8;
+        private DevComponents.DotNetBar.ExpandablePanel NPCsRepairSellBuyPanelName;
         private DevComponents.Editors.IntegerInput NumberOfBeverageWeGot;
         private DevComponents.DotNetBar.LabelX labelX41;
         private DevComponents.DotNetBar.Controls.TextBoxX DontSellTheseItems;
         private DevComponents.DotNetBar.LabelX labelX46;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel9;
+        private DevComponents.DotNetBar.ExpandablePanel MailsManagementPanelName;
         private DevComponents.DotNetBar.Controls.TextBoxX MaillingFeatureRecipient;
         private DevComponents.DotNetBar.LabelX labelX56;
         private DevComponents.DotNetBar.Controls.TextBoxX MaillingFeatureSubject;
@@ -3550,10 +3526,10 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton LearnNewSpells;
         private DevComponents.DotNetBar.LabelX labelX47;
         private DevComponents.DotNetBar.Controls.SwitchButton TrainNewSkills;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel7;
+        private DevComponents.DotNetBar.ExpandablePanel AdvancedSettingsPanelName;
         private DevComponents.DotNetBar.LabelX labelX42;
         private DevComponents.DotNetBar.Controls.SwitchButton ActivatePathFindingFeature;
-        private DevComponents.DotNetBar.ExpandablePanel expandablePanel5;
+        private DevComponents.DotNetBar.ExpandablePanel SecuritySystemPanelName;
         private DevComponents.DotNetBar.LabelX labelX39;
         private DevComponents.DotNetBar.LabelX labelX45;
         private DevComponents.DotNetBar.Controls.SwitchButton PlayASongIfNewWhispReceived;
@@ -3643,5 +3619,9 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton UseRobot;
         private DevComponents.DotNetBar.Controls.TextBoxX DontHarvestTheFollowingObjects;
         private System.Windows.Forms.Button button1;
+        private DevComponents.DotNetBar.ButtonX HealerClassResetSettingsButton;
+        private DevComponents.DotNetBar.LabelX HealerClassLabel;
+        private DevComponents.DotNetBar.Controls.ComboBoxEx HealerClass;
+        private DevComponents.DotNetBar.ButtonX HealerClassSettingsButton;
     }
 }

@@ -526,8 +526,8 @@
       <Id>Developer_Tools</Id>
     </Translation>
     <Translation>
-      <Text>Other options</Text>
-      <Id>Other_options</Id>
+      <Text>Advanced Settings</Text>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Npc/Mailbox Search Radius</Text>
@@ -538,8 +538,8 @@
       <Id>Use_Paths_Finder</Id>
     </Translation>
     <Translation>
-      <Text>Stop game / tnb / Security</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Text>Security System Management (Allow to Pause, Stop Tnb, Close WoW)</Text>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Song if New Whisper</Text>
@@ -590,8 +590,8 @@
       <Id>If_full_Bag</Id>
     </Translation>
     <Translation>
-      <Text>Mail (Send Items to alts)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Text>Mails Management (Allow you to send items to Alt. Char)</Text>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Mail Recipient</Text>
@@ -634,8 +634,8 @@
       <Id>Do_not_Mail_List__one_item_by_line</Id>
     </Translation>
     <Translation>
-      <Text>Vendor (Selling or Buying)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Text>NPCs Management - Repairer, Vendor (Selling or Buying)</Text>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Force Sell List (one item per line)</Text>
@@ -698,8 +698,8 @@
       <Id>Account_Email</Id>
     </Translation>
     <Translation>
-      <Text>Looting &amp;&amp; Farming options</Text>
-      <Id>Looting____Farming_options</Id>
+      <Text>Looting/Farming Management</Text>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Prospecting only in town</Text>
@@ -782,8 +782,8 @@
       <Id>Loot_Mobs</Id>
     </Translation>
     <Translation>
-      <Text>Food / Drink &amp;&amp; percentage to be used</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Text>Regeneration Management - Food / Drink && percentage to be used</Text>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>on</Text>
@@ -798,8 +798,8 @@
       <Id>Food</Id>
     </Translation>
     <Translation>
-      <Text>Mount options</Text>
-      <Id>Mount_options</Id>
+      <Text>Ingame Mount Management - (Allow you to use Ground/Fly/Swim mount)</Text>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Aquatic</Text>
@@ -826,8 +826,8 @@
       <Id>Use_Ground_Mount</Id>
     </Translation>
     <Translation>
-      <Text>Class / Custom spell sequence Settings</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Text>Spell Management System - Combat/Healer Class</Text>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Use Spirit Healer</Text>
@@ -854,8 +854,12 @@
       <Id>Assign_Talents</Id>
     </Translation>
     <Translation>
-      <Text>Custom Class</Text>
-      <Id>Custom_Class</Id>
+      <Text>Combat Class</Text>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Close without save</Text>
@@ -1348,6 +1352,10 @@
 	<Translation>
       <Text>Use Robot when up</Text>
       <Id>UseRobot</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

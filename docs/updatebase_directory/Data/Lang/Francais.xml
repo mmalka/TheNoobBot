@@ -528,7 +528,7 @@
     </Translation>
     <Translation>
       <Text>Options supplémentaires</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Zone de recherche de PNJ/Boite au lettre</Text>
@@ -540,7 +540,7 @@
     </Translation>
     <Translation>
       <Text>Arrêt du jeu / TNB / Securités</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Lancer un son si nouveau MP</Text>
@@ -592,7 +592,7 @@
     </Translation>
     <Translation>
       <Text>Courriers (Envoyer vos loots sur vos reroll)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Destinataire</Text>
@@ -636,7 +636,7 @@
     </Translation>
     <Translation>
       <Text>PNJ vendeurs (Achats / Ventes)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Items à vendre (un nom par ligne)</Text>
@@ -700,7 +700,7 @@
     </Translation>
     <Translation>
       <Text>Gestion des loots &amp;&amp; farms</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Prospecter seulement en ville</Text>
@@ -784,7 +784,7 @@
     </Translation>
     <Translation>
       <Text>Manger / Boire en dessous de X %</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>à</Text>
@@ -800,7 +800,7 @@
     </Translation>
     <Translation>
       <Text>Gestion des montures &amp;&amp; formes (Au sol, volante, Aquatique)</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Forme/monture Aquatique</Text>
@@ -828,7 +828,7 @@
     </Translation>
     <Translation>
       <Text>Classe / Cycles DPS à utiliser</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Utiliser le gardien des âmes</Text>
@@ -855,8 +855,12 @@
       <Id>Assign_Talents</Id>
     </Translation>
     <Translation>
-      <Text>Custom Class</Text>
-      <Id>Custom_Class</Id>
+      <Text>Combat Class</Text>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Fermer sans sauvegarder</Text>
@@ -1349,6 +1353,10 @@
 	<Translation>
       <Text>Use Robot when up</Text>
       <Id>UseRobot</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

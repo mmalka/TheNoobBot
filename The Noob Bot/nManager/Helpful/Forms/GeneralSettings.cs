@@ -12,7 +12,7 @@ namespace nManager.Helpful.Forms
                 InitializeComponent();
                 TranslateForm();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
 
                 LoadSetting(nManagerSetting.CurrentSetting);
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
@@ -22,6 +22,14 @@ namespace nManager.Helpful.Forms
                 foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
                 {
                     CombatClass.Items.Add(f);
+                }
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClass\\", "*.dll"))
+                {
+                    HealerClass.Items.Add(f);
+                }
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClass\\", "*.cs"))
+                {
+                    HealerClass.Items.Add(f);
                 }
             }
             catch (Exception e)
@@ -37,13 +45,15 @@ namespace nManager.Helpful.Forms
                 System.Drawing.SizeF size = g.MeasureString(label.Text, label.Font);
                 if (size.Width > label.Width)
                 {
-                    this.labelsToolTip.SetToolTip(label, label.Text);
+                    labelsToolTip.SetToolTip(label, label.Text);
                 }
             }
         }
 
         private void TranslateForm()
         {
+            string onText = Translate.Get(Translate.Id.YES);
+            string offText = Translate.Get(Translate.Id.NO);
             labelX45.Text = string.Format("{0}:", Translate.Get(Translate.Id.Security));
             SetToolTypeIfNeeded(labelX45);
             labelX34.Text = string.Format("{0}:", Translate.Get(Translate.Id.Close_game));
@@ -58,14 +68,14 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX24);
             addBlackListHarvest.Text = Translate.Get(Translate.Id.Add);
             SetToolTypeIfNeeded(addBlackListHarvest);
-            expandablePanel7.TitleText = Translate.Get(Translate.Id.Other_options);
-            SetToolTypeIfNeeded(expandablePanel7);
+            AdvancedSettingsPanelName.TitleText = Translate.Get(Translate.Id.AdvancedSettingsPanelName);
+            SetToolTypeIfNeeded(AdvancedSettingsPanelName);
             labelX60.Text = Translate.Get(Translate.Id.Npc_Mailbox_Search_Radius);
             SetToolTypeIfNeeded(labelX60);
             labelX42.Text = Translate.Get(Translate.Id.Use_Paths_Finder);
             SetToolTypeIfNeeded(labelX42);
-            expandablePanel5.TitleText = Translate.Get(Translate.Id.Stop_game___tnb___Security);
-            SetToolTypeIfNeeded(expandablePanel5);
+            SecuritySystemPanelName.TitleText = Translate.Get(Translate.Id.SecuritySystemPanelName);
+            SetToolTypeIfNeeded(SecuritySystemPanelName);
             labelX39.Text = Translate.Get(Translate.Id.Song_if_New_Whisper);
             SetToolTypeIfNeeded(labelX39);
             labelX33.Text = Translate.Get(Translate.Id.Min);
@@ -84,8 +94,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX25);
             labelX27.Text = Translate.Get(Translate.Id.If_full_Bag);
             SetToolTypeIfNeeded(labelX27);
-            expandablePanel9.TitleText = Translate.Get(Translate.Id.Mail__Send_Items_to_alts);
-            SetToolTypeIfNeeded(expandablePanel9);
+            MailsManagementPanelName.TitleText = Translate.Get(Translate.Id.MailsManagementPanelName);
+            SetToolTypeIfNeeded(MailsManagementPanelName);
             labelX56.Text = Translate.Get(Translate.Id.Mail_Recipient);
             SetToolTypeIfNeeded(labelX56);
             labelX48.Text = Translate.Get(Translate.Id.Force_Mail_List__one_item_by_line);
@@ -106,8 +116,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX55);
             labelX58.Text = Translate.Get(Translate.Id.Do_not_Mail_List__one_item_by_line);
             SetToolTypeIfNeeded(labelX58);
-            expandablePanel8.TitleText = Translate.Get(Translate.Id.Vendor__Selling_or_Buying);
-            SetToolTypeIfNeeded(expandablePanel8);
+            NPCsRepairSellBuyPanelName.TitleText = Translate.Get(Translate.Id.NPCsRepairSellBuyPanelName);
+            SetToolTypeIfNeeded(NPCsRepairSellBuyPanelName);
             labelX53.Text = Translate.Get(Translate.Id.Force_Sell_List__one_item_by_line);
             SetToolTypeIfNeeded(labelX53);
             SellPurple.Text = Translate.Get(Translate.Id.Sell_Purple_items);
@@ -130,8 +140,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX41);
             labelX46.Text = Translate.Get(Translate.Id.Do_not_Sell_List__one_item_by_line);
             SetToolTypeIfNeeded(labelX46);
-            expandablePanel6.TitleText = Translate.Get(Translate.Id.Relogger);
-            SetToolTypeIfNeeded(expandablePanel6);
+            ReloggerManagementPanelName.TitleText = Translate.Get(Translate.Id.ReloggerManagementPanelName);
+            SetToolTypeIfNeeded(ReloggerManagementPanelName);
             labelX67.Text = Translate.Get(Translate.Id.BattleNet_Account);
             SetToolTypeIfNeeded(labelX67);
             labelX38.Text = Translate.Get(Translate.Id.Relogger);
@@ -140,8 +150,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX37);
             labelX40.Text = Translate.Get(Translate.Id.Account_Email);
             SetToolTypeIfNeeded(labelX40);
-            expandablePanel4.TitleText = Translate.Get(Translate.Id.Looting____Farming_options);
-            SetToolTypeIfNeeded(expandablePanel4);
+            LootingFarmingManagementPanelName.TitleText = Translate.Get(Translate.Id.LootingFarmingManagementPanelName);
+            SetToolTypeIfNeeded(LootingFarmingManagementPanelName);
             labelX65.Text = Translate.Get(Translate.Id.Prospecting_only_in_town);
             SetToolTypeIfNeeded(labelX65);
             labelX64.Text = Translate.Get(Translate.Id.Prospecting_Every__in_minute);
@@ -182,8 +192,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX12);
             labelX18.Text = Translate.Get(Translate.Id.Loot_Mobs);
             SetToolTypeIfNeeded(labelX18);
-            expandablePanel3.TitleText = Translate.Get(Translate.Id.Food___Drink____percentage_to_be_used);
-            SetToolTypeIfNeeded(expandablePanel3);
+            RegenerationManagementPanelName.TitleText = Translate.Get(Translate.Id.RegenerationManagementPanelName);
+            SetToolTypeIfNeeded(RegenerationManagementPanelName);
             labelX10.Text = Translate.Get(Translate.Id.on);
             SetToolTypeIfNeeded(labelX10);
             labelX13.Text = Translate.Get(Translate.Id.on);
@@ -192,8 +202,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX15);
             labelX11.Text = Translate.Get(Translate.Id.Food);
             SetToolTypeIfNeeded(labelX11);
-            expandablePanel2.TitleText = Translate.Get(Translate.Id.Mount_options);
-            SetToolTypeIfNeeded(expandablePanel2);
+            MountManagementPanelName.TitleText = Translate.Get(Translate.Id.MountManagementPanelName);
+            SetToolTypeIfNeeded(MountManagementPanelName);
             labelX66.Text = Translate.Get(Translate.Id.Aquatic);
             SetToolTypeIfNeeded(labelX66);
             labelX57.Text = Translate.Get(Translate.Id.Ignore_Fight_if_in_Gound_Mount);
@@ -206,8 +216,8 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX6);
             labelX5.Text = Translate.Get(Translate.Id.Use_Ground_Mount);
             SetToolTypeIfNeeded(labelX5);
-            expandablePanel1.TitleText = Translate.Get(Translate.Id.Class___Custom_spell_sequence_Settings);
-            SetToolTypeIfNeeded(expandablePanel1);
+            SpellManagementSystemPanelName.TitleText = Translate.Get(Translate.Id.SpellManagementSystemPanelName);
+            SetToolTypeIfNeeded(SpellManagementSystemPanelName);
             labelX59.Text = Translate.Get(Translate.Id.Use_Spirit_Healer);
             SetToolTypeIfNeeded(labelX59);
             labelX49.Text = Translate.Get(Translate.Id.Train_New_Spells);
@@ -220,12 +230,18 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(labelX3);
             labelX2.Text = Translate.Get(Translate.Id.Assign_Talents);
             SetToolTypeIfNeeded(labelX2);
-            labelX1.Text = Translate.Get(Translate.Id.Custom_Class);
-            SetToolTypeIfNeeded(labelX1);
+            CombatClassLabel.Text = Translate.Get(Translate.Id.CombatClass);
+            SetToolTypeIfNeeded(CombatClassLabel);
+            HealerClassLabel.Text = Translate.Get(Translate.Id.HealerClass);
+            SetToolTypeIfNeeded(HealerClassLabel);
             CombatClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
             SetToolTypeIfNeeded(CombatClassSettingsButton);
+            HealerClassSettingsButton.Text = Translate.Get(Translate.Id.Settings);
+            SetToolTypeIfNeeded(HealerClassSettingsButton);
             CombatClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
             SetToolTypeIfNeeded(CombatClassResetSettingsButton);
+            HealerClassResetSettingsButton.Text = Translate.Get(Translate.Id.ResetSettings);
+            SetToolTypeIfNeeded(HealerClassResetSettingsButton);
             closeB.Text = Translate.Get(Translate.Id.Close_without_save);
             SetToolTypeIfNeeded(closeB);
             resetB.Text = Translate.Get(Translate.Id.Reset_Settings);
@@ -247,6 +263,90 @@ namespace nManager.Helpful.Forms
             UseMollELabel.Text = Translate.Get(Translate.Id.UseMollE);
             UseRobotLabel.Text = Translate.Get(Translate.Id.UseRobot);
             SetToolTypeIfNeeded(AlwaysOnTopFeatureLabel);
+            ActivateAlwaysOnTopFeature.OffText = offText;
+            ActivateAlwaysOnTopFeature.OnText = onText;
+            AllowTNBToSetYourMaxFps.OffText = offText;
+            AllowTNBToSetYourMaxFps.OnText = onText;
+            ActivatePathFindingFeature.OffText = offText;
+            ActivatePathFindingFeature.OnText = onText;
+            ActiveStopTNBAfterXMinutes.OffText = offText;
+            ActiveStopTNBAfterXMinutes.OnText = onText;
+            ActiveStopTNBAfterXStucks.OffText = offText;
+            ActiveStopTNBAfterXStucks.OnText = onText;
+            ActiveStopTNBIfReceivedAtMostXWhispers.OffText = offText;
+            ActiveStopTNBIfReceivedAtMostXWhispers.OnText = onText;
+            ActiveStopTNBAfterXLevelup.OffText = offText;
+            ActiveStopTNBAfterXLevelup.OnText = onText;
+            UseHearthstone.OffText = offText;
+            UseHearthstone.OnText = onText;
+            PlayASongIfNewWhispReceived.OffText = offText;
+            PlayASongIfNewWhispReceived.OnText = onText;
+            RecordWhispsInLogFiles.OffText = offText;
+            RecordWhispsInLogFiles.OnText = onText;
+            StopTNBIfPlayerHaveBeenTeleported.OffText = offText;
+            StopTNBIfPlayerHaveBeenTeleported.OnText = onText;
+            PauseTNBIfNearByPlayer.OffText = offText;
+            PauseTNBIfNearByPlayer.OnText = onText;
+            StopTNBIfHonorPointsLimitReached.OffText = offText;
+            StopTNBIfHonorPointsLimitReached.OnText = onText;
+            StopTNBIfBagAreFull.OffText = offText;
+            StopTNBIfBagAreFull.OnText = onText;
+            UseMollE.OffText = offText;
+            UseMollE.OnText = onText;
+            ActivateAutoMaillingFeature.OffText = offText;
+            ActivateAutoMaillingFeature.OnText = onText;
+            UseRobot.OffText = offText;
+            UseRobot.OnText = onText;
+            ActivateAutoSellingFeature.OffText = offText;
+            ActivateAutoSellingFeature.OnText = onText;
+            ActivateAutoRepairFeature.OffText = offText;
+            ActivateAutoRepairFeature.OnText = onText;
+            AutoConfirmOnBoPItems.OffText = offText;
+            AutoConfirmOnBoPItems.OnText = onText;
+            OnlyUseMillingInTown.OffText = offText;
+            OnlyUseMillingInTown.OnText = onText;
+            ActivateAutoMilling.OffText = offText;
+            ActivateAutoMilling.OnText = onText;
+            MakeStackOfElementalsItems.OffText = offText;
+            MakeStackOfElementalsItems.OnText = onText;
+            OnlyUseProspectingInTown.OffText = offText;
+            OnlyUseProspectingInTown.OnText = onText;
+            ActivateAutoProspecting.OffText = offText;
+            ActivateAutoProspecting.OnText = onText;
+            ActivateAutoSmelting.OffText = offText;
+            ActivateAutoSmelting.OnText = onText;
+            HarvestDuringLongDistanceMovements.OffText = offText;
+            HarvestDuringLongDistanceMovements.OnText = onText;
+            BeastNinjaSkinning.OffText = offText;
+            BeastNinjaSkinning.OnText = onText;
+            ActivateHerbsHarvesting.OffText = offText;
+            ActivateHerbsHarvesting.OnText = onText;
+            ActivateVeinsHarvesting.OffText = offText;
+            ActivateVeinsHarvesting.OnText = onText;
+            ActivateBeastSkinning.OffText = offText;
+            ActivateBeastSkinning.OnText = onText;
+            ActivateChestLooting.OffText = offText;
+            ActivateChestLooting.OnText = onText;
+            ActivateMonsterLooting.OffText = offText;
+            ActivateMonsterLooting.OnText = onText;
+            DoRegenManaIfLow.OffText = offText;
+            DoRegenManaIfLow.OnText = onText;
+            IgnoreFightIfMounted.OffText = offText;
+            IgnoreFightIfMounted.OnText = onText;
+            UseGroundMount.OffText = offText;
+            UseGroundMount.OnText = onText;
+            UseSpiritHealer.OffText = offText;
+            UseSpiritHealer.OnText = onText;
+            LearnNewSpells.OffText = offText;
+            LearnNewSpells.OnText = onText;
+            TrainNewSkills.OffText = offText;
+            TrainNewSkills.OnText = onText;
+            DontPullMonsters.OffText = offText;
+            DontPullMonsters.OnText = onText;
+            CanPullUnitsAlreadyInFight.OffText = offText;
+            CanPullUnitsAlreadyInFight.OnText = onText;
+            AutoAssignTalents.OffText = offText;
+            AutoAssignTalents.OnText = onText;
         }
 
         private void SaveSetting()
@@ -254,6 +354,7 @@ namespace nManager.Helpful.Forms
             try
             {
                 nManagerSetting.CurrentSetting.CombatClass = CombatClass.Text;
+                nManagerSetting.CurrentSetting.HealerClass = HealerClass.Text;
                 nManagerSetting.CurrentSetting.AutoAssignTalents = AutoAssignTalents.Value;
                 nManagerSetting.CurrentSetting.TrainNewSkills = TrainNewSkills.Value;
                 nManagerSetting.CurrentSetting.LearnNewSpells = LearnNewSpells.Value;
@@ -375,6 +476,7 @@ namespace nManager.Helpful.Forms
             try
             {
                 CombatClass.Text = managerSetting.CombatClass;
+                HealerClass.Text = managerSetting.HealerClass;
                 AutoAssignTalents.Value = managerSetting.AutoAssignTalents;
                 TrainNewSkills.Value = managerSetting.TrainNewSkills;
                 LearnNewSpells.Value = managerSetting.LearnNewSpells;
@@ -514,7 +616,7 @@ namespace nManager.Helpful.Forms
             {
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    var ret = MessageBox.Show(Translate.Get(Translate.Id.Do_you_want_save_this_setting) + "?",
+                    var ret = MessageBox.Show(string.Format("{0}?", Translate.Get(Translate.Id.Do_you_want_save_this_setting)),
                                               Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
                                               MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)
@@ -528,35 +630,29 @@ namespace nManager.Helpful.Forms
             }
         }
 
-        private void CombatClassConfigB_Click(object sender, EventArgs e)
+        private void CombatClassSettingsButton_Click(object sender, EventArgs e)
         {
-            try
-            {
-                nManager.Wow.Helpers.CombatClass.ShowConfigurationCombatClass(Application.StartupPath +
-                                                                              "\\CombatClasses\\" + CombatClass.Text);
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("GeneralSettings > CombatClassConfigB_Click(object sender, EventArgs e): " + ex);
-            }
+            Wow.Helpers.CombatClass.ShowConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text);
         }
 
         private void CombatClassResetSettingsButton_Click(object sender, EventArgs e)
         {
-            Wow.Helpers.CombatClass.ResetConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" +
-                                                                  CombatClass.Text);
+            Wow.Helpers.CombatClass.ResetConfigurationCombatClass(Application.StartupPath + "\\CombatClasses\\" + CombatClass.Text);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612&p=20876");
-            }
-            catch (Exception ex)
-            {
-                Logging.WriteError("Login > buttonX1_Click(object sender, EventArgs e): " + ex);
-            }
+            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=5612&p=20876");
+        }
+
+        private void HealerClassSettingsButton_Click(object sender, EventArgs e)
+        {
+            Wow.Helpers.HealerClass.ShowConfigurationHealerClass(Application.StartupPath + "\\HealerClass\\" + HealerClass.Text);
+        }
+
+        private void HealerClassResetSettingsButton_Click(object sender, EventArgs e)
+        {
+            Wow.Helpers.HealerClass.ResetConfigurationHealerClass(Application.StartupPath + "\\HealerClass\\" + HealerClass.Text);
         }
     }
 }

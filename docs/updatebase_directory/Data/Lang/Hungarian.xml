@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Egyéb beállítások</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Npc/Mailbox keresési távolság</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>Játék leállítása / tnb / Biztonság</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Hangjelzés új whispernél</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Posta (Levélküldés altoknak)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Levél Címzett</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Árus (Eladás, vásárlás vendornál)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Kötelezően eladandó (1 item/sor)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Loot és Farmi beállítások</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Prospecting csak városban</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Étel / Ital &amp;&amp; hány % nál használja</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>on</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Mount beállítások</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Vizi</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Class / egyedi spell rotáció Beállítások</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Használja a Spirit Healert</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>Egyedi class</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Bezárás mentés nélkül</Text>
@@ -1144,6 +1148,10 @@
 	<Translation>
       <Text>BoP Itemek automatikus elfogadása</Text>
       <Id>AutoConfirmOnBoPItems</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

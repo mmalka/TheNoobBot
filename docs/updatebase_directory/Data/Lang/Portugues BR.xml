@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>Outras opções</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>Raio de busca de Npc/Caixa de Correio</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>Parar o Jogo / TNB / Segurança</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Som se receber susurro</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>Correio (mandar items para Alts)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Destinatário</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>Vendedor (comprar ou vender)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>Forçar venda da lista (um item por linha)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>Opções de Saque &amp;&amp; Coleta</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Prospecção somente na cidade</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>Comida / bebida &amp;&amp; porcentagem para ser usada</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Ligado</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>Opções de Montaria</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>Aquatica</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>Classe / Sequencia de feitiços customizada</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>Usar Spirit Healer</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>Classe customizada</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>Fechar sem salvar</Text>
@@ -1116,6 +1120,10 @@
     <Translation>
       <Text>Erro : Detectado World of Warcraft 64bit</Text>
       <Id>Title_WoW_Client_64bit</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>

@@ -527,7 +527,7 @@
     </Translation>
     <Translation>
       <Text>기타 옵션</Text>
-      <Id>Other_options</Id>
+      <Id>AdvancedSettingsPanelName</Id>
     </Translation>
     <Translation>
       <Text>NPC/우체통 찾기 반경</Text>
@@ -539,7 +539,7 @@
     </Translation>
     <Translation>
       <Text>게임 종료 / TNB / 보안</Text>
-      <Id>Stop_game___tnb___Security</Id>
+      <Id>SecuritySystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>새로운 귓말 받을 시 알림</Text>
@@ -591,7 +591,7 @@
     </Translation>
     <Translation>
       <Text>우편 (Send Items to alts)</Text>
-      <Id>Mail__Send_Items_to_alts</Id>
+      <Id>MailsManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>우편 받을 캐릭터</Text>
@@ -635,7 +635,7 @@
     </Translation>
     <Translation>
       <Text>상인 (팔기 or 사기)</Text>
-      <Id>Vendor__Selling_or_Buying</Id>
+      <Id>NPCsRepairSellBuyPanelName</Id>
     </Translation>
     <Translation>
       <Text>팔 아이템 목록 (1줄에 1개의 아이템만)</Text>
@@ -699,7 +699,7 @@
     </Translation>
     <Translation>
       <Text>루팅 &amp; 채집 옵션</Text>
-      <Id>Looting____Farming_options</Id>
+      <Id>LootingFarmingManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>마을 안에서만 제련</Text>
@@ -783,7 +783,7 @@
     </Translation>
     <Translation>
       <Text>음식/음료의 사용되는 비율</Text>
-      <Id>Food___Drink____percentage_to_be_used</Id>
+      <Id>RegenerationManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>on</Text>
@@ -799,7 +799,7 @@
     </Translation>
     <Translation>
       <Text>탈것 옵션</Text>
-      <Id>Mount_options</Id>
+      <Id>MountManagementPanelName</Id>
     </Translation>
     <Translation>
       <Text>물 속 탈것</Text>
@@ -827,7 +827,7 @@
     </Translation>
     <Translation>
       <Text>직업 / 커스텀 기술 사용 설정</Text>
-      <Id>Class___Custom_spell_sequence_Settings</Id>
+      <Id>SpellManagementSystemPanelName</Id>
     </Translation>
     <Translation>
       <Text>영혼치유사 사용</Text>
@@ -855,7 +855,11 @@
     </Translation>
     <Translation>
       <Text>커스텀 클래스</Text>
-      <Id>Custom_Class</Id>
+      <Id>CombatClass</Id>
+    </Translation>
+    <Translation>
+      <Text>Healer Class</Text>
+      <Id>HealerClass</Id>
     </Translation>
     <Translation>
       <Text>저장 하지 않고 닫기</Text>
@@ -1120,6 +1124,10 @@
 	<Translation>
       <Text>MaxFPS (재실행됨) 제거</Text>
       <Id>Uncap_MaxFPS</Id>
+    </Translation>
+	<Translation>
+      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
 </Language>
