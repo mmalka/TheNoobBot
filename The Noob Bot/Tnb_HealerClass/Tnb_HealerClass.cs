@@ -1574,28 +1574,6 @@ public class ShamanRestoration
         }
     }
 
-    private void Pull()
-    {
-        if (TotemicProjection.KnownSpell && TotemicProjection.IsSpellUsable && _mySettings.UseTotemicProjection)
-            TotemicProjection.Launch();
-
-        if (FlameShock.KnownSpell && FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood
-            && _mySettings.UseFlameShock && LC != 1)
-        {
-            FlameShock.Launch();
-            return;
-        }
-        else
-        {
-            if (EarthShock.KnownSpell && EarthShock.IsSpellUsable && EarthShock.IsHostileDistanceGood
-                && _mySettings.UseEarthShock)
-            {
-                EarthShock.Launch();
-                return;
-            }
-        }
-    }
-
     private void HealingFight()
     {
         Buff();
@@ -2382,26 +2360,6 @@ public class PriestDiscipline
         }
     }
 
-    private void Pull()
-    {
-        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsHostileDistanceGood
-            && _mySettings.UseHolyFire)
-        {
-            HolyFire.Launch();
-            return;
-        }
-        else
-        {
-            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsHostileDistanceGood
-                && _mySettings.UseShadowWordPain)
-            {
-                ShadowWordPain.Launch();
-                ShadowWordPainTimer = new Timer(1000*14);
-                return;
-            }
-        }
-    }
-
     private void HealingFight()
     {
         if (_onCd.IsReady)
@@ -3019,26 +2977,6 @@ public class PriestHoly
         {
             Levitate.Launch();
             LevitateTimer = new Timer(1000*60*9);
-        }
-    }
-
-    private void Pull()
-    {
-        if (HolyFire.IsSpellUsable && HolyFire.KnownSpell && HolyFire.IsHostileDistanceGood
-            && _mySettings.UseHolyFire)
-        {
-            HolyFire.Launch();
-            return;
-        }
-        else
-        {
-            if (ShadowWordPain.IsSpellUsable && ShadowWordPain.KnownSpell && ShadowWordPain.IsHostileDistanceGood
-                && _mySettings.UseShadowWordPain)
-            {
-                ShadowWordPain.Launch();
-                ShadowWordPainTimer = new Timer(1000*14);
-                return;
-            }
         }
     }
 
@@ -3681,16 +3619,6 @@ public class MonkMistweaver
             {
             }
             Thread.Sleep(150);
-        }
-    }
-
-    private void Pull()
-    {
-        if (!ObjectManager.Target.InCombat && Provoke.IsSpellUsable && Provoke.IsHostileDistanceGood
-            && _mySettings.UseProvoke && Provoke.KnownSpell)
-        {
-            Provoke.Launch();
-            return;
         }
     }
 
