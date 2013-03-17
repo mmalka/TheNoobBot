@@ -335,8 +335,6 @@ namespace nManager.Wow.Helpers
         private struct DigsitesZoneLua
         {
             public string name;
-            public string px;
-            public string py;
         }
     }
 }
