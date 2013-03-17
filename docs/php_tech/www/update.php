@@ -2,4 +2,4 @@
 if(isset($_GET['show']) && $_GET['show'] == 'desc')
   echo '(WoW 5.2.0)';
 else
-echo '1.5.4';
+echo '1.5.5';
