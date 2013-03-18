@@ -212,7 +212,7 @@
         /// </summary>
         public enum VMT
         {
-            CGUnit_C__GetFacing = 0x24,
+            CGUnit_C__GetFacing = 0x24, // MovementGetTransportFacing
         }
 
         /// <summary>
