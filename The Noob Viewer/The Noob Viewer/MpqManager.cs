@@ -38,18 +38,18 @@ namespace meshDatabase
             else
                 root = path;
 
-            var files = Directory.GetFiles(root + "Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
+            var files = Directory.GetFiles(root + "Data\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderBy(s => s);
 
             List<string> PatchFiles = new List<string> {};
             foreach (var file in files)
             {
-                if (IgnoredMPQs.Contains(Path.GetFileName(file)))
-                    continue;
                 if (file.Contains("-update-"))
                 {
                     PatchFiles.Add(file);
                     continue;
                 }
+                if (IgnoredMPQs.Contains(Path.GetFileNameWithoutExtension(file)))
+                    continue;
                 var archive = new CArchive(file);
                 Console.WriteLine("Opened " + file + " with " + archive.FileCount + " files...");
                 _archives.Add(Path.GetFileNameWithoutExtension(file), archive);
@@ -60,7 +60,7 @@ namespace meshDatabase
                 {
                     CArchive mainArch = arc.Value;
                     Console.WriteLine("Patching " + arc.Key + " with " + file);
-                    mainArch.Patch(file, "base");
+                    mainArch.Patch(file, null);
                 }
             }
 
@@ -90,7 +90,7 @@ namespace meshDatabase
 
                 _locale = new CArchive(file);
 
-                var allfiles = Directory.GetFiles(dir + "\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderByDescending(s => s);
+                var allfiles = Directory.GetFiles(dir + "\\", "*.MPQ", SearchOption.TopDirectoryOnly).OrderBy(s => s);
 
                 foreach (var patchfile in allfiles)
                 {
@@ -123,7 +123,7 @@ namespace meshDatabase
 
         public static Stream GetFile(string path)
         {
-            var archive = _archives.Values.FirstOrDefault(a => a.FileExists(path));
+            var archive = _archives.Values.LastOrDefault(a => a.FileExists(path));
             if (archive == null)
                 throw new FileNotFoundException("Unable to find " + path);
             var result = new CFileStream(archive, path);

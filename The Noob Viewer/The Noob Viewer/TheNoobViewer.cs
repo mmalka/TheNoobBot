@@ -207,6 +207,7 @@ namespace TheNoobViewer
             Vashjir.Checked = false;
             Deepholm.Checked = false;
             Darkmoon.Checked = false;
+            IsleThunder.Checked = false;
             ignorewater = false;
         }
 
@@ -284,7 +285,15 @@ namespace TheNoobViewer
             continent = "Darkmoonfaire";
             toolStripStatusContinent.Text = "Current continent: Darkmoon Island";
         }
-        
+
+        private void IsleThunder_Click(object sender, EventArgs e)
+        {
+            uncheckAll();
+            IsleThunder.Checked = true;
+            continent = "MoguIslandDailyArea";
+            toolStripStatusContinent.Text = "Current continent: Isle of Thunder";
+        }
+
         private void menuWebLink_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(GetDefaultBrowserPath(), "http://www.thenoobbot.com");
