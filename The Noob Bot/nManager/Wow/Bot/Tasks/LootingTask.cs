@@ -92,10 +92,9 @@ namespace nManager.Wow.Bot.Tasks
                                             if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
                                                 WoWUnit unit = wowUnit;
-                                                foreach (var u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 10))
+                                                foreach (var u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
                                                 {
-                                                    nManagerSetting.AddBlackList(u.Guid, 1000*4);
-                                                    // TODO: Find the real WoW AoE Range. Superior of 10 for sure, just blacklist 5 seconds the time the Flag IsLootable disapear.
+                                                    nManagerSetting.AddBlackList(u.Guid, 2500);
                                                 }
                                                 nManagerSetting.AddBlackList(wowUnit.Guid, 1000*60*5);
                                                 break;
