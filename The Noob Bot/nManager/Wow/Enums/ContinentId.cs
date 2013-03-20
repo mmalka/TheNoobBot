@@ -720,6 +720,10 @@
 
         ///<summary>LevelDesignLand-DevOnly</summary>
         //LevelDesignLand-DevOnly=1060,
+
+        ///<summary>MoguIslandDailyArea</summary>
+        MoguIslandDailyArea = 1064,
+
         ///<summary>StormwindGunshipPandariaStartArea</summary>
         StormwindGunshipPandariaStartArea = 1066,
 
@@ -731,6 +735,7 @@
 
         ///<summary>JadeForestHordeStartingArea</summary>
         JadeForestHordeStartingArea = 1076,
+
         None = 9999999,
     }
 }

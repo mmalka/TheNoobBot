@@ -587,6 +587,9 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.LostIsles:
                             retS = "LostIsles";
                             break;
+                        case Enums.ContinentId.MoguIslandDailyArea:
+                            retS = "MoguIslandDailyArea";
+                            break;
                         default:
                             retS = "MapId_" + cId;
                             break;
