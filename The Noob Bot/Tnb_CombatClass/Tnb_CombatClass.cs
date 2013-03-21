@@ -13730,11 +13730,12 @@ public class PaladinRetribution
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent < 95.0f && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && mySettings.UseFlashOfLight)
             {
                 FlashOfLight.Launch(true, true, true);
+                Thread.Sleep(200);
                 return;
             }
         }
@@ -13845,7 +13846,7 @@ public class PaladinRetribution
             Inquisition.Launch();
             InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
                   (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
                  (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable &&
                  TemplarsVerdict.IsHostileDistanceGood &&
@@ -13854,7 +13855,7 @@ public class PaladinRetribution
         {
             TemplarsVerdict.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() >= 2 ||
+        else if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
                   (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
                  mySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
                  DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
@@ -13873,8 +13874,8 @@ public class PaladinRetribution
         {
             Exorcism.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || !mySettings.UseHammerOfTheRighteous ||
-                  ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows) &&
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || !mySettings.UseHammerOfTheRighteous) &&
+                  (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows) &&
                  mySettings.UseCrusaderStrike &&
                  CrusaderStrike.KnownSpell && CrusaderStrike.IsHostileDistanceGood &&
                  CrusaderStrike.IsSpellUsable)
@@ -13894,7 +13895,7 @@ public class PaladinRetribution
         {
             Judgment.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 1 ||
+        else if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
                   (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) &&
                  TemplarsVerdict.KnownSpell &&
                  (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
@@ -13903,7 +13904,7 @@ public class PaladinRetribution
         {
             TemplarsVerdict.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() >= 2 ||
+        else if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
                   (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) &&
                  DivineStorm.KnownSpell &&
                  (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
