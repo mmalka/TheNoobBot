@@ -220,14 +220,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x44B120,
-            FrameScript_ExecuteBuffer = 0x75DF0,
-            CGPlayer_C__ClickToMove = 0x4EBD40,
+            ClntObjMgrGetActivePlayer = 0x44B200,
+            FrameScript_ExecuteBuffer = 0x75E90,
+            CGPlayer_C__ClickToMove = 0x4EBEE0, // CGUnit_C__InitializeTrackingState
             ClntObjMgrGetActivePlayerObj = 0x32C0,
-            FrameScript__GetLocalizedText = 0x4E4940,
-            CGWorldFrame__Intersect = 0x75DF60,
-            Spell_C__HandleTerrainClick = 0x4393E0,
-            Interact = 0x5E3230,
+            FrameScript__GetLocalizedText = 0x4E4AE0,
+            CGWorldFrame__Intersect = 0x75E080,
+            Spell_C__HandleTerrainClick = 0x439500,
+            Interact = 0x5E3380,
         }
 
         /// <summary>
