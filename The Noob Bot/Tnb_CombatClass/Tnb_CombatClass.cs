@@ -4346,7 +4346,9 @@ public class MageArcane
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
+    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
+    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
@@ -4703,31 +4705,26 @@ public class MageArcane
             return;
         }
         else if (ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
-                 && mySettings.UseConjureManaGem)
+                 && mySettings.UseConjureManaGem && ConjureManaGemTimer.IsReady)
         {
             ConjureManaGem.Launch();
+            ConjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
         else
         {
             if (ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65499) == 0
-                // 85-89
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43523) == 0
-                // 84-80
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43518) == 0
-                // 79-74
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65517) == 0
-                // 73-64
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65516) == 0
-                // 63-54
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65515) == 0
-                // 53-44
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65500) == 0
-                // 43-38
-                && mySettings.UseConjureRefreshment)
+                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+                && ItemsManager.GetItemCountByIdLUA(65500) == 0 // 43-38
+                && mySettings.UseConjureRefreshment && ConjureRefreshmentTimer.IsReady)
             {
                 ConjureRefreshment.Launch();
+                ConjureRefreshmentTimer = new Timer(1000*60*10);
                 return;
             }
         }
@@ -5159,7 +5156,9 @@ public class MageFrost
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
+    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
+    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
@@ -5545,31 +5544,26 @@ public class MageFrost
             return;
         }
         else if (ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
-                 && mySettings.UseConjureManaGem)
+                 && mySettings.UseConjureManaGem && ConjureManaGemTimer.IsReady)
         {
             ConjureManaGem.Launch();
+            ConjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
         else
         {
             if (ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65499) == 0
-                // 85-89
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43523) == 0
-                // 84-80
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43518) == 0
-                // 79-74
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65517) == 0
-                // 73-64
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65516) == 0
-                // 63-54
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65515) == 0
-                // 53-44
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65500) == 0
-                // 43-38
-                && mySettings.UseConjureRefreshment)
+                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+                && ItemsManager.GetItemCountByIdLUA(65500) == 0 // 43-38
+                && mySettings.UseConjureRefreshment && ConjureRefreshmentTimer.IsReady)
             {
                 ConjureRefreshment.Launch();
+                ConjureRefreshmentTimer = new Timer(1000*60*10);
                 return;
             }
         }
@@ -6018,7 +6012,9 @@ public class MageFire
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
+    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
+    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
 
     #endregion
@@ -6396,26 +6392,27 @@ public class MageFire
             Evocation.Launch();
             return;
         }
+        else if (ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
+                 && mySettings.UseConjureManaGem && ConjureManaGemTimer.IsReady)
+        {
+            ConjureManaGem.Launch();
+            ConjureManaGemTimer = new Timer(1000*60*5);
+            return;
+        }
         else
         {
             if (ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65499) == 0
-                // 85-89
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43523) == 0
-                // 84-80
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(43518) == 0
-                // 79-74
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65517) == 0
-                // 73-64
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65516) == 0
-                // 63-54
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65515) == 0
-                // 53-44
-                && ConjureRefreshment.KnownSpell && ItemsManager.GetItemCountByIdLUA(65500) == 0
-                // 43-38
-                && mySettings.UseConjureRefreshment)
+                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+                && ItemsManager.GetItemCountByIdLUA(65500) == 0 // 43-38
+                && mySettings.UseConjureRefreshment && ConjureRefreshmentTimer.IsReady)
             {
                 ConjureRefreshment.Launch();
+                ConjureRefreshmentTimer = new Timer(1000*60*10);
                 return;
             }
         }
