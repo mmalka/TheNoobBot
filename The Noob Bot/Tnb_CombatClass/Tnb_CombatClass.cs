@@ -13639,7 +13639,8 @@ public class PaladinRetribution
 
     private void Combat()
     {
-        AvoidMelee();
+        if (mySettings.DoAvoidMelee)
+            AvoidMelee();
         DPSCycle();
         DPSBurst();
         DPSCycle();
