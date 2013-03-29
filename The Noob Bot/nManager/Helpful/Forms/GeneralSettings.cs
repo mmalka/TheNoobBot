@@ -23,11 +23,11 @@ namespace nManager.Helpful.Forms
                 {
                     CombatClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClass\\", "*.dll"))
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.dll"))
                 {
                     HealerClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClass\\", "*.cs"))
+                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
                 {
                     HealerClass.Items.Add(f);
                 }
