@@ -25,10 +25,10 @@ namespace meshDatabase
             return read.GetValue("InstallPath").ToString();
         }
 
-        public static void Initialize(string path = null)
+        public static bool Initialize(string path = null)
         {
             if (_initialized)
-                return;
+                return true;
 
             _initialized = true;
 
@@ -50,9 +50,20 @@ namespace meshDatabase
                 }
                 if (IgnoredMPQs.Contains(Path.GetFileNameWithoutExtension(file)))
                     continue;
-                var archive = new CArchive(file);
-                Console.WriteLine("Opened " + file + " with " + archive.FileCount + " files...");
-                _archives.Add(Path.GetFileNameWithoutExtension(file), archive);
+                try
+                {
+                    var archive = new CArchive(file);
+                    Console.WriteLine("Opened " + file + " with " + archive.FileCount + " files...");
+                    _archives.Add(Path.GetFileNameWithoutExtension(file), archive);
+                }
+                catch (IOException ex)
+                {
+                    if (ex.Message.Contains("Unable to open"))
+                        System.Windows.Forms.MessageBox.Show("TheNoobViewer cannot open Wow data files\nThey are probably locked by a running game instance\n\nTheNoobViewer will stop.", "Unrecoverable error", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+                    else
+                        throw;
+                    return false;
+                }
             }
             foreach (var file in PatchFiles)
             {
@@ -64,13 +75,13 @@ namespace meshDatabase
                 }
             }
 
-            InitializeDBC(root);
+            return InitializeDBC(root);
         }
 
-        public static void InitializeDBC(string path = null)
+        public static bool InitializeDBC(string path = null)
         {
             if (_initializedDBC)
-                return;
+                return true;
 
             string root = "";
             if (path == null)
@@ -107,6 +118,7 @@ namespace meshDatabase
             if (_locale == null)
                 throw new FileNotFoundException("InitializeDBC()");
             _initializedDBC = true;
+            return true;
         }
 
         public static DBC GetDBC(string name)
