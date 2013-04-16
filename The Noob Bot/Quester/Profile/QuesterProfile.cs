@@ -113,6 +113,7 @@ namespace Quester.Profile
 
         // Move To
         public Point MoveTo = new Point();
+        internal bool IsUsedMoveTo = false;
 
         // Wait
         public int WaitMs = 0;

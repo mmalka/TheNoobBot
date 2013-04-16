@@ -120,14 +120,7 @@ namespace Quester.Tasks
             // MOVE TO
             if (questObjective.Objective == Objective.MoveTo)
             {
-                if (!MovementManager.InMovement)
-                {
-                    if (questObjective.MoveTo.DistanceTo(ObjectManager.Me.Position) <= 4)
-                    {
-                        return true;
-                    }
-                }
-                return false;
+                return questObjective.IsUsedMoveTo;
             }
 
             // WAIT
@@ -437,6 +430,8 @@ namespace Quester.Tasks
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.MoveTo));
                     }
+                    else
+                        questObjective.IsUsedMoveTo = true;
                 }
             }
 
@@ -717,8 +712,9 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        Keybindings.PressKeybindings(questObjective.Keys);
+                        Keybindings.DownKeybindings(questObjective.Keys);
                         Thread.Sleep(questObjective.WaitMsPressKey);
+                        Keybindings.UpKeybindings(questObjective.Keys);
                         questObjective.IsUsedPressKey = true;
                     }
                 }
@@ -867,7 +863,7 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        Logging.Write("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
+                        Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
                         ItemsManager.UseItem(ItemsManager.GetNameById((uint)questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMsUseItem);
                         questObjective.CurrentCount++; // This is not correct
@@ -1057,11 +1053,6 @@ namespace Quester.Tasks
                         return;
 
                     MovementManager.MoveTo(position);
-                    if (position.DistanceTo(ObjectManager.Me.Position) < 7)
-                        Interact.InteractGameObject(baseAddress);
-                    Thread.Sleep(300);
-                    if (nGameObj.IsValid)
-                        Thread.Sleep(3000); // to let the Gameobject open
                 }
                 MovementManager.StopMove();
 
@@ -1078,7 +1069,8 @@ namespace Quester.Tasks
                     Quest.CloseQuestWindow();
                     Interact.InteractGameObject(baseAddress);
                     Thread.Sleep(Usefuls.Latency + 600);
-                    //Interact.InteractGameObject(baseAddress);
+                    if (nGameObj.IsValid)
+                        Thread.Sleep(2500); // to let the Gameobject open
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
@@ -1089,13 +1081,10 @@ namespace Quester.Tasks
                                  i >= 1 && !Quest.GetLogQuestId().Contains(CurrentQuest.Id);
                                  i--)
                             {
-                                /*if (i <= 0)
-                                    i = 1;*/
-
                                 Logging.Write("We have " + Quest.GetNumGossipAvailableQuests() + " quests and we selected the " + i + " one");
                                 //int countQuestInLog = Quest.GetLogQuestId().Count;
 
-                                Thread.Sleep(Usefuls.Latency + 800);
+                                //Thread.Sleep(Usefuls.Latency + 800);
                                 Quest.SelectGossipAvailableQuest(i);
                                 Thread.Sleep(Usefuls.Latency + 800);
                                 Quest.AcceptQuest();
