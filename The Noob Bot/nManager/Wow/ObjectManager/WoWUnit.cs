@@ -1183,7 +1183,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return MaxHealth > 1 ? Health > 1 : Health > 0;
+                    return GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) != 0x20 && (MaxHealth > 1 ? Health > 1 : Health > 0);
                 }
                 catch (Exception e)
                 {
