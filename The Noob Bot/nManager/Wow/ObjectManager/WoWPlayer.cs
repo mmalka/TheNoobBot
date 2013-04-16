@@ -222,7 +222,7 @@ namespace nManager.Wow.ObjectManager
                             Logging.WriteError("WoWPlayer > GetDurability#1: " + e);
                         }
                     }
-                    return durabilitys*100/maxDurabilitys;
+                    return maxDurabilitys == 0 ? 100 : durabilitys * 100 / maxDurabilitys;
                 }
                 catch (Exception e)
                 {
