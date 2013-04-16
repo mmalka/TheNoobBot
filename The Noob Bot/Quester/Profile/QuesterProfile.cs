@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
+using nManager.Wow.ObjectManager;
 
 namespace Quester.Profile
 {
@@ -16,10 +17,10 @@ namespace Quester.Profile
         // Remove all quests not for character class/race
         public void Filter()
         {
-            int exp = (int) nManager.Wow.ObjectManager.ObjectManager.Me.WowRace - 1;
+            int exp = (int) ObjectManager.Me.WowRace - 1;
             //exp = 1 - 1; // Human
             uint mBitRace = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
-            exp = (int) nManager.Wow.ObjectManager.ObjectManager.Me.WowClass - 1;
+            exp = (int) ObjectManager.Me.WowClass - 1;
             //exp = 2 - 1; // Paladin
             uint mBitClass = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
 
@@ -50,7 +51,7 @@ namespace Quester.Profile
     }
 
     [Serializable]
-    public class Quest
+    public class Quest : IComparable
     {
         public string Name = "";
         public int ClassMask = 0;
@@ -59,11 +60,33 @@ namespace Quester.Profile
         public int MinLevel = 0;
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
+        public int ItemPickUp = 0;
         public Npc PickUp = new Npc();
         public Npc TurnIn = new Npc();
         public string ScriptCondition = "";
         public string ScriptConditionIsFinish = "";
         public List<QuestObjective> Objectives = new List<QuestObjective>();
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+                return 1;
+
+            Quest otherQuest = obj as Quest;
+            if (otherQuest.ItemPickUp != 0)
+                if (this.ItemPickUp != 0)
+                    return 0;
+                else
+                    return 1;
+            else if (this.ItemPickUp != 0)
+                return -1;
+
+            if (otherQuest.PickUp.Position != null)
+                return this.PickUp.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherQuest.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
+            else
+                throw new ArgumentException("Object is not a Quest");
+        }
+
     }
 
     [Serializable]

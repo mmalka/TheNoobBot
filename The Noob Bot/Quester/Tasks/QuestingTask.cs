@@ -20,6 +20,7 @@ namespace Quester.Tasks
         public static Profile.Quest CurrentQuest = new Profile.Quest();
         private static int _currentQuestObjectiveId = -1;
         public static Profile.QuestObjective CurrentQuestObjective;
+        private static Timer waitTimer;
 
         public static void SelectQuest()
         {
@@ -27,14 +28,13 @@ namespace Quester.Tasks
             CurrentQuest = new Profile.Quest();
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
-            Quester.Bot.Bot.Profile.Quests.Sort(
-                delegate(Profile.Quest q1, Profile.Quest q2)
-                    {
-                        return
-                            q1.PickUp.Position.DistanceTo(ObjectManager.Me.Position)
-                              .CompareTo(q2.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
-                    }
-                );
+
+            /*Quester.Bot.Bot.Profile.Quests.Sort(delegate(Profile.Quest q1, Profile.Quest q2)
+            {
+                return q1.PickUp.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(q2.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
+            }
+            );*/
+            Quester.Bot.Bot.Profile.Quests.Sort();
 
             foreach (var quest in Quester.Bot.Bot.Profile.Quests)
             {
@@ -43,12 +43,13 @@ namespace Quester.Tasks
                     if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                         if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                             quest.NeedQuestCompletedId.Count == 0)
-                            if (Script.Run(quest.ScriptCondition)) // Condition
-                            {
-                                CurrentQuest = quest;
-                                Logging.Write(quest.Name + ": Lvl " + quest.MinLevel + " - " + quest.MaxLevel);
-                                break;
-                            }
+                            if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint)quest.ItemPickUp) > 0))
+                                if (Script.Run(quest.ScriptCondition)) // Condition
+                                {
+                                    CurrentQuest = quest;
+                                    Logging.Write(quest.Name + ": Lvl " + quest.MinLevel + " - " + quest.MaxLevel);
+                                    break;
+                                }
             }
         }
 
@@ -434,8 +435,13 @@ namespace Quester.Tasks
             // WAIT
             if (questObjective.Objective == Objective.Wait)
             {
-                Thread.Sleep(questObjective.WaitMs);
-                questObjective.IsUsedWaitMs = true;
+                if (waitTimer == null)
+                    waitTimer = new Timer(questObjective.WaitMs);
+                if (waitTimer.IsReady)
+                {
+                    questObjective.IsUsedWaitMs = true;
+                    waitTimer = null;
+                }
             }
 
             // TRAIN ALL SPELLS
@@ -597,7 +603,7 @@ namespace Quester.Tasks
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
                 {
                     // Mounting Mount
-                    MountTask.Mount(); // not yet
+                    MountTask.Mount();
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
@@ -843,6 +849,8 @@ namespace Quester.Tasks
         private static void PickUpTurnInQuest(bool pickUp, bool turnIn)
         {
             Npc npc = null;
+            int item = CurrentQuest.ItemPickUp;
+
             if (pickUp)
             {
                 QuestStatus = "Pick-Up Quest";
@@ -852,6 +860,14 @@ namespace Quester.Tasks
             {
                 QuestStatus = "Turn-In Quest";
                 npc = CurrentQuest.TurnIn;
+            }
+
+            if (pickUp && item != 0)
+            {
+                ItemsManager.UseItem(ItemsManager.GetNameById((uint)item));
+                Thread.Sleep(250);
+                Quest.AcceptQuest();
+                return;
             }
 
             if (npc == null)
@@ -981,6 +997,8 @@ namespace Quester.Tasks
                     if (position.DistanceTo(ObjectManager.Me.Position) < 7)
                         Interact.InteractGameObject(baseAddress);
                     Thread.Sleep(300);
+                    if (nGameObj.IsValid)
+                        Thread.Sleep(3000); // to let the Gameobject open
                 }
                 MovementManager.StopMove();
 
@@ -1002,51 +1020,53 @@ namespace Quester.Tasks
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
                         Quest.AcceptQuest();
-                        for (var i = Quest.GetNumGossipAvailableQuests();
-                             i >= 1 && !Quest.GetLogQuestId().Contains(CurrentQuest.Id);
-                             i--)
+                        if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // if it was not that simple
                         {
-                            if (i <= 0)
-                                i = 1;
+                            for (var i = Quest.GetNumGossipAvailableQuests();
+                                 i >= 1 && !Quest.GetLogQuestId().Contains(CurrentQuest.Id);
+                                 i--)
+                            {
+                                /*if (i <= 0)
+                                    i = 1;*/
 
-                            //int countQuestInLog = Quest.GetLogQuestId().Count;
+                                Logging.Write("We have " + Quest.GetNumGossipAvailableQuests() + " quests and we selected the " + i + " one");
+                                //int countQuestInLog = Quest.GetLogQuestId().Count;
 
-                            Interact.InteractGameObject(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 1000);
-                            Quest.SelectGossipAvailableQuest(i);
-                            Thread.Sleep(Usefuls.Latency + 1000);
-                            Quest.AcceptQuest();
-                            Thread.Sleep(Usefuls.Latency + 1000);
-                            //Quest.CloseQuestWindow(); // no need to do this
-                            //Thread.Sleep(Usefuls.Latency + 1000);
-
-                            //if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id) && Quest.GetLogQuestId().Count > countQuestInLog)
-                            //    Quest.AbandonLastQuest();
+                                Thread.Sleep(Usefuls.Latency + 800);
+                                Quest.SelectGossipAvailableQuest(i);
+                                Thread.Sleep(Usefuls.Latency + 800);
+                                Quest.AcceptQuest();
+                                Thread.Sleep(Usefuls.Latency + 800);
+                                Quest.CloseQuestWindow();
+                            }
                         }
                     }
                     if (turnIn)
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
                         Quest.CompleteQuest();
-                        for (var i = Quest.GetNumGossipActiveQuests();
-                             i >= 1 && Quest.GetLogQuestId().Contains(CurrentQuest.Id);
-                             i--)
+                        if (Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // if it was not that simple
                         {
-                            if (i <= 0)
-                                i = 1;
-
-                            Interact.InteractGameObject(baseAddress);
-                            Thread.Sleep(Usefuls.Latency + 200);
-                            Quest.SelectGossipActiveQuest(i);
-                            Thread.Sleep(Usefuls.Latency + 200);
-                            Quest.SelectGossipOption(npc.SelectGossipOption);
-                            Thread.Sleep(Usefuls.Latency + 200);
+                            for (var i = Quest.GetNumGossipActiveQuests();
+                                i >= 1 && Quest.GetLogQuestId().Contains(CurrentQuest.Id);
+                                i--)
+                            {
+                                Quest.SelectGossipActiveQuest(i);
+                                Thread.Sleep(Usefuls.Latency + 800);
+                                Quest.SelectGossipOption(npc.SelectGossipOption);
+                                Thread.Sleep(Usefuls.Latency + 800);
+                                Quest.CompleteQuest();
+                            }
+                        }
+                        if (Quest.GetLogQuestId().Contains(CurrentQuest.Id))
+                        {
+                            Quest.SelectGossipOption(1);
+                            Thread.Sleep(Usefuls.Latency + 800);
                             Quest.CompleteQuest();
-                            Thread.Sleep(Usefuls.Latency + 200);
-                            //Quest.CloseQuestWindow(); // no need to do this
-                            //Thread.Sleep(Usefuls.Latency + 200);
                         }
                         Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                        Thread.Sleep(Usefuls.Latency + 800);
+                        Quest.CloseQuestWindow();
                     }
                     Thread.Sleep(Usefuls.Latency);
                 }
