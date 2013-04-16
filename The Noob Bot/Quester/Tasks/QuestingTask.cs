@@ -208,6 +208,14 @@ namespace Quester.Tasks
                 return questObjective.IsUsedUseRuneForge;
             }
 
+            // APPLY BUFF
+            if (questObjective.Objective == Objective.ApplyBuff)
+            {
+                if (questObjective.CurrentCount >= questObjective.BuffCount)
+                    return true;
+                return false;
+            }
+
             return false;
         }
 
@@ -804,6 +812,7 @@ namespace Quester.Tasks
                     }
                 }
             }
+
             // USE RUNEFORGE
             if (questObjective.Objective == Objective.UseRuneForge)
             {
@@ -831,6 +840,60 @@ namespace Quester.Tasks
                         Thread.Sleep(questObjective.WaitMsUseRuneForge);
                         Lua.LuaDoString("CloseTradeSkill()");
                         questObjective.IsUsedUseRuneForge = true;
+                    }
+                }
+            }
+
+            // APPLY BUFF
+            if (questObjective.Objective == Objective.ApplyBuff)
+            {
+                List<WoWUnit> allUnits = ObjectManager.GetWoWUnitByEntry(questObjective.Entry);
+                WoWUnit wowUnit;
+                List<WoWUnit> allProperUnits = new List<WoWUnit>();
+                foreach (WoWUnit unit in allUnits)
+                {
+                    if (!unit.HaveBuff((uint)questObjective.BuffId))
+                        allProperUnits.Add(unit);
+                }
+                wowUnit = ObjectManager.GetNearestWoWUnit(allProperUnits);
+
+                if (wowUnit.IsValid && !MovementManager.InMovement)
+                {
+                    if (wowUnit.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    {
+                        MountTask.Mount();
+                        MovementManager.Go(PathFinder.FindPath(wowUnit.Position));
+                    }
+                    else
+                    {
+                        MountTask.DismountMount(true);
+                        Logging.Write("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
+                        ItemsManager.UseItem(ItemsManager.GetNameById((uint)questObjective.UseItemId));
+                        Thread.Sleep(questObjective.WaitMsUseItem);
+                        questObjective.CurrentCount++; // This is not correct
+                    }
+                }
+                else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
+                {
+                    // Mounting Mount
+                    MountTask.Mount();
+                    // Need GoTo Zone:
+                    if (
+                        questObjective.PathHotspots[
+                            nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                                                           ObjectManager.Me.Position)].DistanceTo(
+                                                                               ObjectManager.Me.Position) > 5)
+                    {
+                        MovementManager.Go(
+                            PathFinder.FindPath(
+                                questObjective.PathHotspots[
+                                    nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                                                                   ObjectManager.Me.Position)]));
+                    }
+                    else
+                    {
+                        // Start Move
+                        MovementManager.GoLoop(questObjective.PathHotspots);
                     }
                 }
             }
@@ -1014,8 +1077,8 @@ namespace Quester.Tasks
                 {
                     Quest.CloseQuestWindow();
                     Interact.InteractGameObject(baseAddress);
-                    Thread.Sleep(Usefuls.Latency + 200);
-                    Interact.InteractGameObject(baseAddress);
+                    Thread.Sleep(Usefuls.Latency + 600);
+                    //Interact.InteractGameObject(baseAddress);
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);

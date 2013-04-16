@@ -62,11 +62,10 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("SelectGossipAvailableQuest(" + GossipOption + ")");
         }
 
-        public static void CloseQuestWindow() // ToDo: Fix
+        public static void CloseQuestWindow()
         {
-            Lua.RunMacroText("/click SpellbookMicroButton");
+            Lua.RunMacroText("/script CloseQuest()");
             Thread.Sleep(150);
-            Lua.RunMacroText("/click SpellbookMicroButton");
         }
 
         public static void AcceptQuest()
@@ -114,7 +113,7 @@ namespace nManager.Wow.Helpers
             Thread.Sleep(500);
             Lua.RunMacroText("/script GetQuestReward(1)"); // or /script SelectGossipOption(1)?
             Thread.Sleep(500);
-            Lua.RunMacroText("/script AcceptQuest() ");
+            //Lua.RunMacroText("/script AcceptQuest() ");
         }
 
         public static List<int> GetLogQuestId()
@@ -136,7 +135,6 @@ namespace nManager.Wow.Helpers
                             typeof (Quest.PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
-                        Console.WriteLine("q: " + playerQuest.ID);
                         list.Add(playerQuest.ID);
                     }
                 }

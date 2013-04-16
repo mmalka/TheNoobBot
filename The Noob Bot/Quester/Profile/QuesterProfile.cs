@@ -164,6 +164,9 @@ namespace Quester.Profile
         internal bool IsUsedUseRuneForge = false;
         public int WaitMsUseRuneForge = 0;
         public Point PositionUseRuneForge = new Point();
+        // Apply buff from item AOE
+        public int BuffId = 0;
+        public int BuffCount = 0;
     }
 
     [Serializable]
@@ -187,6 +190,7 @@ namespace Quester.Profile
         UseItemAOE,
         UseSpellAOE,
         UseRuneForge,
+        ApplyBuff,
     }
 
     [Serializable]
