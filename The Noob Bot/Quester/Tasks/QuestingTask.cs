@@ -87,6 +87,10 @@ namespace Quester.Tasks
             if (questObjective == null)
                 return true;
 
+            // shortcut since we do objective one by one, for kill it can be completed before we do them all
+            if (Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+                return true;
+
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
 
@@ -1074,6 +1078,59 @@ namespace Quester.Tasks
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
+                        int id = Quest.GetQuestID();
+                        if (id == CurrentQuest.Id)
+                        {
+                            Quest.AcceptQuest();
+                            Quest.CloseQuestWindow();
+                        }
+                        else if (id != 0)
+                            Quest.CloseQuestWindow();
+                        else
+                        {
+                            int gossipid = 1;
+                            while (Quest.GetAvailableTitle(gossipid) != "")
+                            {
+                                //Logging.Write("Retour: " + Quest.GetAvailableTitle(gossipid));
+                                Quest.SelectAvailableQuest(gossipid);
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                id = Quest.GetQuestID();
+                                if (id == CurrentQuest.Id)
+                                {
+                                    Quest.AcceptQuest();
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    Quest.CloseQuestWindow();
+                                    break;
+                                }
+                                else
+                                {
+                                    Quest.CloseQuestWindow();
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    Interact.InteractGameObject(baseAddress);
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                }
+                                gossipid++;
+                            }
+                        }
+                        /*
+                        Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
+                        if (Quest.GetNumGossipAvailableQuests() >= 1)
+                            Logging.Write("We have " + Quest.GetNumGossipAvailableQuests() + " available quests on this NPC");
+                        else
+                        {
+                            Logging.Write("GetNumGossipAvailableQuests returned 0");
+                            Logging.Write("Quete 1 :" + Quest.GetAvailableTitle(1));
+                            Lua.LuaDoString("SelectAvailableQuest(1)");
+                            Thread.Sleep(500);
+                            string randomString = Others.GetRandomString(Others.Random(4, 10));
+                            Lua.LuaDoString(randomString + " = GetQuestID()");
+                            Logging.Write(Lua.GetLocalizedText(randomString));
+                            //Logging.Write("Test ID: " + Quest.test());
+                            //Logging.Write("Number: " + Quest.test2());
+                        }
+                        List<Quest.GossipQuest> titi = Quest.GetAllAvailableQuestIdInGossip();
+                        foreach (Quest.GossipQuest q in titi)
+                            Logging.Write(q.ID + " : " + q.Title);
                         Quest.AcceptQuest();
                         if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // if it was not that simple
                         {
@@ -1091,11 +1148,50 @@ namespace Quester.Tasks
                                 Thread.Sleep(Usefuls.Latency + 800);
                                 Quest.CloseQuestWindow();
                             }
-                        }
+                        }*/
                     }
                     if (turnIn)
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
+                        int id = Quest.GetQuestID();
+                        if (id == CurrentQuest.Id)
+                        {
+                            Quest.CompleteQuest();
+                            Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                            Quest.CloseQuestWindow();
+                        }
+                        else if (id != 0)
+                            Quest.CloseQuestWindow();
+                        else
+                        {
+                            int gossipid = 1;
+                            while (Quest.GetActiveTitle(gossipid) != "")
+                            {
+                                //Logging.Write("Retour: " + Quest.GetActiveTitle(gossipid));
+                                Quest.SelectActiveQuest(gossipid);
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                id = Quest.GetQuestID();
+                                if (id == CurrentQuest.Id)
+                                {
+                                    Quest.CompleteQuest();
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    Quest.CloseQuestWindow();
+                                    Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                                    break;
+                                }
+                                else
+                                {
+                                    Quest.CloseQuestWindow();
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    Interact.InteractGameObject(baseAddress);
+                                    Thread.Sleep(Usefuls.Latency + 500);
+                                }
+                                gossipid++;
+                            }
+                        }
+                        /*Logging.Write("'" + Quest.GetLogQuestTitle(CurrentQuest.Id) + "' in QuestLog");
+                        if (Quest.GetNumGossipActiveQuests() >= 1)
+                            Logging.Write("We have " + Quest.GetNumGossipActiveQuests() + " active quests on this NPC");
                         Quest.CompleteQuest();
                         if (Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // if it was not that simple
                         {
@@ -1103,6 +1199,7 @@ namespace Quester.Tasks
                                 i >= 1 && Quest.GetLogQuestId().Contains(CurrentQuest.Id);
                                 i--)
                             {
+                                Logging.Write("We have " + Quest.GetNumGossipActiveQuests() + " active quests and we selected the " + i + " one");
                                 Quest.SelectGossipActiveQuest(i);
                                 Thread.Sleep(Usefuls.Latency + 800);
                                 Quest.SelectGossipOption(npc.SelectGossipOption);
@@ -1119,6 +1216,7 @@ namespace Quester.Tasks
                         Quest.FinishedQuestSet.Add(CurrentQuest.Id);
                         Thread.Sleep(Usefuls.Latency + 800);
                         Quest.CloseQuestWindow();
+                        */
                     }
                     Thread.Sleep(Usefuls.Latency);
                 }
@@ -1132,3 +1230,6 @@ namespace Quester.Tasks
         // end PickUpTurnInQuest
     }
 }
+
+// some maybe useful stuffs
+// GetNumQuestPOIWorldEffects May we find hotspots with this?
