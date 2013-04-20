@@ -73,27 +73,6 @@ namespace nManager.Wow.Helpers
             Lua.RunMacroText("/script AcceptQuest() ");
         }
 
-        /*public static List<GossipQuest> GetAllAvailableQuestIdInGossip()
-        {
-            List<GossipQuest> result = new List<GossipQuest>();
-
-            //uint availableQuests = ObjectManager.ObjectManager.Me.GetBaseAddress + (uint)Addresses.Quests.GossipQuests;
-            uint availableQuests = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.Quests.GossipQuests);
-            //uint availableQuests = Memory.WowProcess.WowModule + (uint)Addresses.Quests.GossipQuests;
-            for (int i = 0; i < 40; i++)
-            {
-                int questId = Memory.WowMemory.Memory.ReadInt(availableQuests);
-                if (questId == 0)
-                    continue;
-                GossipQuest one = new GossipQuest();
-                one.ID = questId;
-                one.Title = Memory.WowMemory.Memory.ReadUTF8String(availableQuests + (uint)Addresses.Quests.TitleText);
-                result.Add(one);
-                availableQuests += (uint)Addresses.Quests.GossipQuestNext;
-            }
-            return result;
-        }*/
-
         public static int GetQuestID()
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
@@ -125,64 +104,6 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("SelectActiveQuest(" + index + ")");
         }
 
-        /*public static List<String> GetAllTitleOfAvailableQuestsInGossip()
-        {
-            List<String> result = new List<String>();
-            const string separator = "^";
-
-            string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("numNewQuests = GetNumGossipAvailableQuests();" +
-                randomString + " = ''; " +
-                "_ = { GetGossipAvailableQuests() }; " +
-                "index = 0; " +
-                "while (index < numNewQuests) do" +
-                    randomString + " = " + randomString + " .. _[(1+(index*5))]; .. '" + separator + "';" +
-                "end");
-            string resultLua = Lua.GetLocalizedText(randomString);
-            if (resultLua.Replace(" ", "").Length > 0)
-            {
-                string[] sQuestTitles = resultLua.Split(Convert.ToChar(separator));
-                foreach (string s in sQuestTitles)
-                {
-                    if (s.Replace(" ", "").Length > 0)
-                    {
-                        result.Add(s);
-                    }
-                }
-            }
-            return result;
-        }*/
-
-        /*public static int GetNumGossipAvailableQuests()
-        {
-            try
-            {
-                string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + " = GetNumGossipAvailableQuests();");
-                string titi = Lua.GetLocalizedText(randomString);
-                int res = Convert.ToInt32(titi);
-                return res;
-            }
-            catch
-            {
-                return 0;
-            }
-        }*/
-
-        /*public static int GetNumGossipActiveQuests()
-        {
-            try
-            {
-                string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + " = GetNumGossipActiveQuests();");
-                return Convert.ToInt32(Lua.GetLocalizedText(randomString));
-            }
-            catch
-            {
-                return 0;
-            }
-        }*/
-
         public static void SelectGossipActiveQuest(int GossipOption)
         {
             Lua.LuaDoString("SelectGossipActiveQuest(" + GossipOption + ")");
@@ -194,7 +115,6 @@ namespace nManager.Wow.Helpers
             Thread.Sleep(500);
             Lua.RunMacroText("/script GetQuestReward(1)"); // or /script SelectGossipOption(1)?
             Thread.Sleep(500);
-            //Lua.RunMacroText("/script AcceptQuest() ");
         }
 
         public static List<int> GetLogQuestId()
@@ -272,11 +192,5 @@ namespace nManager.Wow.Helpers
                 Failed = 2,
             }
         }
-
-        /*public struct GossipQuest
-        {
-            public int ID;
-            public String Title;
-        }*/
     }
 }
