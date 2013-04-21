@@ -46,6 +46,10 @@ namespace nManager.Wow.Enums
 
         HitTestAll =
             HitTestWMO | HitTestBoundingModels | HitTestNothing | HitTestLiquid | HitTestGround | HitTestUnknown,
+
+        HitTestAllButLiquid =
+            HitTestWMO | HitTestBoundingModels | HitTestNothing | HitTestGround | HitTestUnknown,
+
         HitTestGroundAndStructures = HitTestLOS | HitTestGround
     }
 }

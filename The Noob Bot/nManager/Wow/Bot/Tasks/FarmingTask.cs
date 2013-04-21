@@ -46,20 +46,8 @@ namespace nManager.Wow.Bot.Tasks
                         Point pt = node.Position;
                         pt.Z = pt.Z + 1.5f;
 
-                        /*
-                        if (ObjectManager.Me.Position.Z > node.Position.Z)
-                            zT = ObjectManager.Me.Position.Z + 5.0f;
-                        else
-                            zT = node.Position.Z + 10f;
-
-                        
-                        
-                        if (!TraceLine.TraceLineGo(pt) && ObjectManager.Me.Position.DistanceTo2D(node.Position) < 100)
-                            zT = node.Position.Z + 1.5f;
-                        */
-                        // Replace code:
                         if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z)
-                            zT = /*ObjectManager.ObjectManager.Me*/ node.Position.Z + 5.5f;
+                            zT = node.Position.Z + 5.5f;
                         else
                             zT = node.Position.Z + 2.5f;
 
@@ -67,14 +55,14 @@ namespace nManager.Wow.Bot.Tasks
                         n.Z = n.Z + 2.5f;
                         var n2 = new Point(n);
                         n2.Z = n2.Z + 100;
-                        if (TraceLine.TraceLineGo(n2, n))
+                        if (TraceLine.TraceLineGo(n2, n, Enums.CGWorldFrameHitFlags.HitTestAllButLiquid))
                         {
                             Logging.Write("Node stuck");
                             nManagerSetting.AddBlackList(node.Guid, 1000*60*2);
                             return;
                         }
 
-                        MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
+                        MovementManager.MoveTo(node.Position.X, node.Position.Y, zT, true);
 
                         int timer = Others.Times +
                                     ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position)/3*1000) +
@@ -86,56 +74,45 @@ namespace nManager.Wow.Bot.Tasks
                                !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
                                Others.Times < timer)
                         {
-                            //pt.Z = pt.Z + 1.5f;
-                            /*if (!TraceLine.TraceLineGo(pt) &&
-                                ObjectManager.Me.Position.DistanceTo2D(node.Position) < 100 &&
-                                node.Position.Z + 1.6f > zT)
-                                zT = node.Position.Z + 1.5f;
-                            */
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) >= 10.0f)
                             {
                                 var temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
                                 if (temps.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
-                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                              temps, 100);
-                                    temps.Z = ObjectManager.ObjectManager.Me.Position.Z + 1.5f;
+                                    temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
                                 }
                                 if (TraceLine.TraceLineGo(temps))
                                     zT = ObjectManager.ObjectManager.Me.Position.Z;
                                 else
-                                    zT = node.Position.Z + 2.5f;
-
+                                    zT = temps.Z;
 
                                 if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z + 2.5f)
-                                    MovementManager.MoveTo(ObjectManager.ObjectManager.Me.Position.X,
-                                                           ObjectManager.ObjectManager.Me.Position.Y,
-                                                           node.Position.Z + 5.0f);
+                                {
+                                    // elevate in a 45° angle instead of 90°
+                                    Point direction = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                                        node.Position,
+                                                                                        (node.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
+                                    // if there is an obstacle, then go mostly vertical but not 90° to prevent spinning around
+                                    if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
+                                                              direction,
+                                                              Enums.CGWorldFrameHitFlags.HitTestAllButLiquid))
+                                        direction = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                                                                        node.Position, 1.0f);
+                                    MovementManager.MoveTo(direction.X, direction.Y, node.Position.Z + 5.0f);
+                                }
                                 else
                                 {
-                                    var temps1 =
-                                        Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                          node.Position,
-                                                                          ObjectManager.ObjectManager.Me.Position
-                                                                                       .DistanceTo2D(node.Position) +
-                                                                          0.9f);
-                                    MovementManager.MoveTo(temps1.X, temps1.Y, zT);
+                                    MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
                                 }
                             }
 
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 10.0f &&
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 5.0f &&
                                 ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) >= 6 && !toMine)
                             {
                                 toMine = true;
                                 zT = node.Position.Z + 1.5f;
-                                var temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                              node.Position,
-                                                                              ObjectManager.ObjectManager.Me.Position
-                                                                                           .DistanceTo2D(node.Position) +
-                                                                              0.9f);
-                                MovementManager.MoveTo(temps.X, temps.Y, zT);
-
-                                if (TraceLine.TraceLineGo(node.Position) && node.GetDistance > 4.0f)
+                                MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
+                                if (node.GetDistance > 4.0f &&  TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                                 {
                                     Logging.Write("Node outside view");
                                     nManagerSetting.AddBlackList(node.Guid, 1000*120);
@@ -143,7 +120,7 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                             }
                             else if ((ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 1.1f ||
-                                      (!ObjectManager.ObjectManager.Me.IsMounted &&
+                                      (!Usefuls.IsFlying &&
                                        ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) < 3.0f)) &&
                                      ObjectManager.ObjectManager.Me.Position.DistanceZ(node.Position) < 6)
                             {
