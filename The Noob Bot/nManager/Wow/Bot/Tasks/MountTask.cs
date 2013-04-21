@@ -276,7 +276,7 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(250);
+                        Thread.Sleep(750 + Usefuls.Latency); // to stop moving/falling
                         Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
                         SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.FlyingMountName);
                         if (ObjectManager.ObjectManager.Me.InCombat)
