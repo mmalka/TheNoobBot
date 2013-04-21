@@ -27,6 +27,7 @@ namespace nManager.Wow.Helpers
 
         private static bool _first;
         private static int _lastNbStuck;
+        private static bool _farm;
 
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
@@ -1051,11 +1052,15 @@ namespace nManager.Wow.Helpers
                     if (ObjectManager.ObjectManager.Me.Position.DistanceTo(position) <= 0.6)
                         return true;
 
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(position) <= 3.0 &&
+                        ObjectManager.ObjectManager.Me.Position.DistanceZ(position) < 6 && _farm)
+                        return true;
+
                     Point posP = ObjectManager.ObjectManager.Me.Position;
 
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
-                        Thread.Sleep(10);
+                        Thread.Sleep(100);
                     }
                     if (ClickToMove.GetClickToMovePosition().DistanceTo(position) > 1 ||
                         ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.Move)
@@ -1111,7 +1116,7 @@ namespace nManager.Wow.Helpers
         /// Moves to Position.
         /// </summary>
         /// <param name="point">The point.</param>
-        public static void MoveTo(Point point)
+        public static void MoveTo(Point point, bool Farm = false)
         {
             try
             {
@@ -1120,6 +1125,7 @@ namespace nManager.Wow.Helpers
                     if (_workerMoveTo == null)
                         LaunchThreadMoveTo();
 
+                    _farm = Farm;
                     _pointTo = new Point(point.X, point.Y, point.Z);
                     _loopMoveTo = true;
                 }
@@ -1136,11 +1142,11 @@ namespace nManager.Wow.Helpers
         /// <param name="x">X.</param>
         /// <param name="y">Y.</param>
         /// <param name="z">Z.</param>
-        public static void MoveTo(float x, float y, float z)
+        public static void MoveTo(float x, float y, float z, bool Farm = false)
         {
             try
             {
-                MoveTo(new Point(x, y, z));
+                MoveTo(new Point(x, y, z), Farm);
             }
             catch (Exception exception)
             {
@@ -1168,11 +1174,11 @@ namespace nManager.Wow.Helpers
         /// Moves to.
         /// </summary>
         /// <param name="obj">The GameObject.</param>
-        public static void MoveTo(WoWGameObject obj)
+        public static void MoveTo(WoWGameObject obj, bool Farm = false)
         {
             try
             {
-                MoveTo(obj.Position);
+                MoveTo(obj.Position, Farm);
             }
             catch (Exception exception)
             {
