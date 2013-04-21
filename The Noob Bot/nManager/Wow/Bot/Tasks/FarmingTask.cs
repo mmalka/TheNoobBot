@@ -250,6 +250,8 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
                                     MountTask.Mount();
                             }
+                            if (!r)
+                                points.Add(new Point(node.Position));
                             MovementManager.Go(points);
                         }
 

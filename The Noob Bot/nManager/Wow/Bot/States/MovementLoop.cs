@@ -108,7 +108,10 @@ namespace nManager.Wow.Bot.States
                 PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 /*&&
                 PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200*/)
             {
-                List<Point> npoints = PathFinder.FindPath(PathLoop[_currentPoint]);
+                bool bResult;
+                List<Point> npoints = PathFinder.FindPath(PathLoop[_currentPoint], out bResult);
+                if (!bResult)
+                    npoints.Add(new Point(PathLoop[_currentPoint]));
                 MovementManager.Go(npoints);
                 return;
             }
