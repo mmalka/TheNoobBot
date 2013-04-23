@@ -14,14 +14,13 @@
                 System.IO.File.Delete("nManager" + random + ".dll");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEAEA68;
             }
-            else if (nManager.Information.Version == "1.5.9" &&
-                nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe") != "B54825F877A01BDF6447980FA2A858B8" ||
-                nManager.Helpful.Others.GetFileMd5CheckSum("nManager" + random + ".dll") != "87A76FAA79EE0B2ED65C6EA68ECE8608")
+            else if (nManager.Information.Version == "1.6.1" &&
+                (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe") != "01411B7B0A52FB865E0408971AA8C71D" ||
+                nManager.Helpful.Others.GetFileMd5CheckSum("nManager" + random + ".dll") != "BB2C4300A351511992318FA209781269"))
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
                 System.Windows.Forms.MessageBox.Show("Update available, please update TheNoobBot to the next version or get an official release version on TheNoobBot.com if you are using a cracked version.");
-                System.Windows.Forms.MessageBox.Show("Important note: Take care because \"WTF Hacks\" cracks of TheNoobBot are having keyloggers to steal your WoW datas.");
                 nManager.Helpful.Logging.WriteDebug("Update available, please update TheNoobBot to the next version or get an official release version on TheNoobBot.com if you are using a cracked version.");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0x8BE6E0;
                 System.Threading.Thread.Sleep(1000 * 60 * 3);
@@ -29,13 +28,13 @@
                 {
                 }
             }
-            else if (nManager.Information.Version == "1.5.9")
+            else if (nManager.Information.Version == "1.6.1")
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xEAEA68;
             }
-            else if (nManager.Information.Version != "1.5.9")
+            else
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");

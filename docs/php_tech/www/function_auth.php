@@ -2,9 +2,9 @@
 /*
 List functions:
 
-$mysql = connectionMysql();
+$mysql = 
 closeMysql($mysql);
-closeMysql();
+
 
 $bool = existUserName($userName);
 $userId = verifUserNameAndPassword($userName, $password);
@@ -19,7 +19,8 @@ $hash = randomKeyValue($random);
 $DHMS = secondeToStringDayHourMin($time);
 */
 
-
+if (isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
+	$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 $dbServer = "services.thenoobcompany.com";
 $dbName = "thenoobbot_site";
 $dbUser = "thenoobbot_chk";
@@ -45,21 +46,15 @@ function connectionMysql()
 	mysql_select_db($dbName) or die ("Connection error");
 	return $mysql;
 }
-function closeMysql()
-{
-	global $mysql;
-	if ($mysql != NULL)
-		mysql_close($mysql);
-	$mysql = NULL;
-}
+connectionMysql();
 function existUserName($userName)
 {
 	global $tableUsersName;
-	connectionMysql();
+	
 	$requete="SELECT * FROM $tableUsersName WHERE user_login = '$userName';";
 	$query = mysql_query($requete) or die(mysql_error());
 	$row = mysql_fetch_array($query);
-	closeMysql();
+	
 	
 	if ($row)
 		return true;
@@ -69,7 +64,7 @@ function existUserName($userName)
 function verifUserNameAndPassword($userName, $password)
 {
 	global $tableUsersName;
-	connectionMysql();
+	
 	$query = mysql_query("SELECT * FROM $tableUsersName 
                               WHERE user_login = '$userName'") or die(mysql_error());
 	$row = mysql_fetch_array($query);
@@ -82,11 +77,11 @@ function verifUserNameAndPassword($userName, $password)
 		$idUser = $row['ID'];
 		if($wp_hasher->CheckPassword($password, $password_hashed)
 			   || $password_hashed == md5($password)) {
-			closeMysql();
+			
 			return $idUser;
 		}
 	}
-	closeMysql();
+	
 	return -1;
 }
 function getEndTimeSubscription($userName, $password)
@@ -95,19 +90,19 @@ function getEndTimeSubscription($userName, $password)
 	$userId = verifUserNameAndPassword($userName, $password);
 	if ($userId > 0)
 	{
-		connectionMysql();
+		
 		$query = mysql_query("SELECT * FROM $tableSubscription 
                               WHERE idMember = $userId ") or die(mysql_error());
 		$row = mysql_fetch_array($query);
 		if ($row)
 		{
 			$result = $row['endDate'];
-			closeMysql();
+			
 			return $result;
 		}
 		
 	}
-	closeMysql();
+	
 	return 0;
 }
 function getEndTimeSubscriptionPLATINIUM($userName, $password)
@@ -116,19 +111,19 @@ function getEndTimeSubscriptionPLATINIUM($userName, $password)
 	$userId = verifUserNameAndPassword($userName, $password);
 	if ($userId > 0)
 	{
-		connectionMysql();
+		
 		$query = mysql_query("SELECT * FROM $tableSubscriptionPLATINIUM 
                               WHERE idMember = $userId ") or die(mysql_error());
 		$row = mysql_fetch_array($query);
 		if ($row)
 		{
 			$result = $row['endDate'];
-			closeMysql();
+			
 			return $result;
 		}
 		
 	}
-	closeMysql();
+	
 	return 0;
 }
 
@@ -138,7 +133,7 @@ function getSessionKey($userName, $password)
 	$idUser = verifUserNameAndPassword($userName, $password);
 	if ($idUser > 0 && getEndTimeSubscription($userName, $password) >= time())
 	{
-		connectionMysql();
+		
 		$query = mysql_query("SELECT * FROM $tableCurrentConnection 
 								  WHERE idUser = $idUser ") or die(mysql_error());
 		$row = mysql_fetch_array($query);
@@ -165,10 +160,10 @@ function getSessionKey($userName, $password)
               $kill = 0;
             $sql = "UPDATE `$tableStats` SET `onlineTime` = `onlineTime`+$onlineTime, `level` = `level`+$level, `honnor` = honnor+$honnor, `exp` = `exp`+$exp, `farm` = `farm`+$farm, `kill` = `kill`+$kill WHERE idUser = $idUser;";
             mysql_query($sql);
-			closeMysql();			
+						
 			return $row['sessionKey'];
 		}
-		closeMysql();
+		
 	}
     else
       echo "SNVConnect";
@@ -186,21 +181,21 @@ function createSessionKey($userName, $password)
 				$sessionKey = md5($secret . "PLATINIUM" . $userName);
 			else
 				$sessionKey = md5($secret . $_SERVER['REMOTE_ADDR'] . $userName);
-			connectionMysql();
+			
 			mysql_query("DELETE FROM $tableCurrentConnection WHERE idUser=$idUser");
 			mysql_query("INSERT INTO $tableCurrentConnection VALUES(NULL, '$sessionKey', $idUser, ".time().")");
             $FirstConnexionCheck = mysql_query("SELECT idUser FROM $tableStats WHERE idUser=$idUser;");
             if(!mysql_num_rows($FirstConnexionCheck))
               mysql_query("INSERT INTO $tableStats VALUES($idUser, 0, 0, 0, 0, 0, 0)");
-			closeMysql();
+			
 			return $sessionKey;
 		}
 		else
 		{
-			connectionMysql();
+			
 			mysql_query("DELETE FROM $tableCurrentConnection WHERE idUser=$idUser");
 			mysql_query("INSERT INTO $tableCurrentConnection VALUES(NULL, 'trial', $idUser, ".(time()+(20*60)).")");
-			closeMysql();
+			
 			echo "SNVConnect";
 		}
 	}
@@ -216,16 +211,9 @@ function createSessionKey($userName, $password)
 
 function botOnline()
 {
-	global $tableCurrentConnection;
-	connectionMysql();
-	$query = mysql_query("SELECT id FROM $tableCurrentConnection 
-                              WHERE lastTime > ".(time()-160)) or die(mysql_error());
-	$result = mysql_num_rows($query);
-	closeMysql();
-    $n = intval($result);
-
-	
-	return $n;
+	$query = mysql_query("SELECT online_bots, multiplicator FROM `tnb_stats` ORDER by id DESC LIMIT 1") or die(mysql_error());
+	$result = mysql_fetch_assoc($query);
+	return intval($result["online_bots"]*$result["multiplicator"]);
 }
 
 function randomKeyValue($random)
@@ -281,7 +269,7 @@ function addOrEditRemoteSession($userName, $password, $sessionKey, $forServer)
 	$idUser = verifUserNameAndPassword($userName, $password);
 	if ($idUser > 0 && getEndTimeSubscription($userName, $password) >= time())
 	{
-		connectionMysql();
+		
 		$query = mysql_query("SELECT * FROM $tableRemote 
 								  WHERE ( idUser = $idUser AND sessionKey = $sessionKey )") or die(mysql_error());
 		$row = mysql_fetch_array($query);
@@ -294,7 +282,7 @@ function addOrEditRemoteSession($userName, $password, $sessionKey, $forServer)
 		{
 			mysql_query("INSERT INTO $tableRemote VALUES(NULL, $idUser, $sessionKey, '$forServer', '', ".time().")") or die(mysql_error());
 		}
-		closeMysql();
+		
 	}
 	return $ret;
 }
@@ -302,10 +290,10 @@ function addOrEditRemoteSession($userName, $password, $sessionKey, $forServer)
 function cleanBDD()
 {
 	global $tableRemote, $tableCurrentConnection;
-	connectionMysql();
+	
 	mysql_query("DELETE FROM $tableCurrentConnection WHERE lastTime < ".(time()-(3600*24))."") or die(mysql_error());
 	mysql_query("DELETE FROM $tableRemote WHERE lastTime < ".(time()-13)."") or die(mysql_error());
-	closeMysql();
+	
 }
 
 function getOldSubscription($email, $password)
@@ -315,14 +303,14 @@ function getOldSubscription($email, $password)
 	$Orders = "tblorders";
 	$Invoices = "tblinvoices";
 	
-	connectionMysql();
+	
 	
 	$reponse = mysql_query("SELECT * FROM $tableemail WHERE email = '$email'");
 	while ($donnees = mysql_fetch_array($reponse) )
 	{
 		if ($donnees['transfered'] != "0")
 		{
-			closeMysql();
+			
 			return "";
 			die;
 		}
@@ -344,7 +332,7 @@ function getOldSubscription($email, $password)
 						$timestamp = mktime(0, 0, 0, $month, $day, $year);
 					if ($timestamp > time())
 					{
-						closeMysql();
+						
 						return "true";
 						die;
 					}
@@ -364,7 +352,7 @@ function getOldSubscription($email, $password)
 								{
 									if ($donnees4['status'] == "Paid")
 									{
-										closeMysql();
+										
 										return "true";
 										die;
 									}
@@ -376,7 +364,7 @@ function getOldSubscription($email, $password)
 			}
 		}
 	}
-closeMysql();
+
 return "";
 }
 ?>

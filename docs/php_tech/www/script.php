@@ -1,5 +1,6 @@
 <?php
-
+if (isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
+	$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 $R = htmlspecialchars($_GET["r"]);
 $IP = preg_replace("/[^0-9]/", "", $_SERVER["REMOTE_ADDR"]);
 
