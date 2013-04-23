@@ -188,8 +188,8 @@ namespace nManager
         public string CombatClass = "Tnb_CombatClass.dll";
         public string HealerClass = "Tnb_HealerClass.dll";
         public bool AutoAssignTalents;
-        public bool TrainNewSkills = true;
-        public bool LearnNewSpells = true;
+        public bool TrainNewSkills = false; // To be fixed.
+        public bool LearnNewSpells = false; // To be removed.
         public bool CanPullUnitsAlreadyInFight;
         public bool DontPullMonsters;
         public bool UseSpiritHealer;
