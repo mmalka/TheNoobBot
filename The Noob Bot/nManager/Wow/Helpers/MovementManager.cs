@@ -1353,5 +1353,56 @@ namespace nManager.Wow.Helpers
         }
 
         #endregion
+
+        #region Melee Control System
+
+        private static uint _currFightMeleeControl;
+        private static readonly Timer MeleeControlTimer = new Timer(5000);
+        private static readonly Timer MeleeControlMovementTimer = new Timer(3000);
+
+        private static void MeleeControl (uint minDist, uint maxDist, bool resetCount)
+        {
+            if (_currFightMeleeControl > 5 || (_currFightMeleeControl != 0 && !MeleeControlTimer.IsReady))
+                return;
+            MeleeControlTimer.Reset(); // No reasons to spam the check, and less than 5 seconds of inactivity is not 'dramatical'.
+            if (_currFightMeleeControl > 0 && resetCount)
+                _currFightMeleeControl = 0;
+            if (ObjectManager.ObjectManager.Target.GetDistance < minDist && ObjectManager.ObjectManager.Target.InCombatWithMe)
+            {
+                Logging.WriteFight("Under the minimal distance from the target, move closer.");
+                _currFightMeleeControl++;
+                GetToMelee(maxDist, maxDist);
+            }
+            if (ObjectManager.ObjectManager.Target.GetDistance > maxDist && ObjectManager.ObjectManager.Target.InCombatWithMe)
+            {
+                Logging.WriteFight("Over the maximal distance from the target, move closer.");
+                _currFightMeleeControl++;
+                AvoidMelee(minDist, maxDist);
+            }
+            /*
+             * resetCount must be set true after each target switching (pull part) of the CombatClass.
+             * TODO: Check if there is no ravines in front/back of us using the GetZ function if not too greedy for perfs.
+             */
+       }
+
+        private static void AvoidMelee(uint minDist, uint maxDist)
+        {
+            MeleeControlMovementTimer.Reset();
+            MovementsAction.MoveBackward(true);
+            while (ObjectManager.ObjectManager.Target.GetDistance < minDist && ObjectManager.ObjectManager.Target.GetDistance < maxDist && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+                Thread.Sleep(50);
+            MovementsAction.MoveBackward(false);
+        }
+
+        private static void GetToMelee(uint minDist, uint maxDist)
+        {
+            MeleeControlMovementTimer.Reset();
+            MovementsAction.MoveForward(true);
+            while (ObjectManager.ObjectManager.Target.GetDistance > maxDist && ObjectManager.ObjectManager.Target.GetDistance > minDist && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+                Thread.Sleep(50);
+            MovementsAction.MoveForward(false);
+        }
+
+        #endregion
     }
 }
