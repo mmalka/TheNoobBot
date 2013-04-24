@@ -1574,7 +1574,7 @@ public class DeathknightApprentice
     public class DeathknightApprenticeSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -1634,7 +1634,7 @@ public class DeathknightApprentice
             AddControlInWinForm("Use Mind Freeze", "UseMindFreeze", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
             AddControlInWinForm("Use Death Strike", "UseDeathStrike", "Healing Spell", "AtPercentage");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -2347,7 +2347,7 @@ public class DeathknightBlood
     public class DeathknightBloodSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
         public int UseAntiMagicShellAtPercentage = 100;
@@ -2483,7 +2483,7 @@ public class DeathknightBlood
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineer Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -3211,7 +3211,7 @@ public class DeathknightUnholy
     public class DeathknightUnholySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
         public int UseAntiMagicShellAtPercentage = 100;
@@ -3341,7 +3341,7 @@ public class DeathknightUnholy
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -4098,7 +4098,7 @@ public class DeathknightFrost
     public class DeathknightFrostSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAntiMagicShell = true;
         public int UseAntiMagicShellAtPercentage = 100;
@@ -4231,7 +4231,7 @@ public class DeathknightFrost
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Duel Wield", "UseDuelWield", "Game Settings");
             AddControlInWinForm("Use Two Hander", "UseTwoHander", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -4909,7 +4909,7 @@ public class MageArcane
     public class MageArcaneSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBarrage = true;
@@ -5043,7 +5043,7 @@ public class MageArcane
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
             AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -5761,7 +5761,7 @@ public class MageFrost
     public class MageFrostSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBrilliance = true;
@@ -5901,7 +5901,7 @@ public class MageFrost
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
             AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -6592,7 +6592,7 @@ public class MageFire
     public class MageFireSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAlterTime = true;
         public bool UseArcaneBrilliance = true;
@@ -6728,7 +6728,7 @@ public class MageFire
             AddControlInWinForm("Use Evocation Glyph", "UseEvocationGlyph", "Game Settings");
             AddControlInWinForm("Use Invocation Talent", "UseInvocationTalent", "Game Settings");
             AddControlInWinForm("Use Rune of Power Talent", "UseRuneofPowerTalent", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -7477,7 +7477,7 @@ public class WarlockDemonology
     public class WarlockDemonologySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -7617,7 +7617,7 @@ public class WarlockDemonology
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -8299,7 +8299,7 @@ public class WarlockDestruction
     public class WarlockDestructionSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -8434,7 +8434,7 @@ public class WarlockDestruction
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -9168,7 +9168,7 @@ public class WarlockAffliction
     public class WarlockAfflictionSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAgony = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
@@ -9296,7 +9296,7 @@ public class WarlockAffliction
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -10023,7 +10023,7 @@ public class DruidBalance
     public class DruidBalanceSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -10139,7 +10139,7 @@ public class DruidBalance
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -10914,7 +10914,7 @@ public class DruidFeral
     public class DruidFeralSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -11042,7 +11042,7 @@ public class DruidFeral
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -11605,7 +11605,7 @@ public class DruidRestoration
     public class DruidRestorationSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -11715,7 +11715,7 @@ public class DruidRestoration
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -12375,7 +12375,7 @@ public class DruidGuardian
     public class DruidGuardianSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -12494,7 +12494,7 @@ public class DruidGuardian
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -12884,7 +12884,7 @@ public class PaladinHoly
     public class PaladinHolySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -12967,7 +12967,7 @@ public class PaladinHoly
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -13392,7 +13392,7 @@ public class PaladinProtection
     public class PaladinProtectionSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -13477,7 +13477,7 @@ public class PaladinProtection
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -13953,7 +13953,7 @@ public class PaladinRetribution
     {
         public string CombatPotion = "Potion of Mogu Power";
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public string FlaskOrBattleElixir = "Flask of Winter's Bite";
         public string GuardianElixir = "";
         public bool RefreshWeakenedBlows = true;
@@ -14059,7 +14059,7 @@ public class PaladinRetribution
             AddControlInWinForm("Teasure Finding Potion Name", "TeasureFindingPotion", "Flask & Potion Management");
             AddControlInWinForm("Use Well Fed Buff", "UseWellFedBuff", "Flask & Potion Management");
             AddControlInWinForm("Well Fed Buff Name", "WellFedBuff", "Flask & Potion Management");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -14845,7 +14845,7 @@ public class ShamanEnhancement
     public class ShamanEnhancementSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
@@ -14977,7 +14977,7 @@ public class ShamanEnhancement
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -15766,7 +15766,7 @@ public class ShamanRestoration
     public class ShamanRestorationSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
@@ -15903,7 +15903,7 @@ public class ShamanRestoration
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -16645,7 +16645,7 @@ public class ShamanElemental
     public class ShamanElementalSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAncestralGuidance = true;
         public bool UseAncestralSwiftness = true;
@@ -16771,7 +16771,7 @@ public class ShamanElemental
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -17415,7 +17415,7 @@ public class PriestShadow
     public class PriestShadowSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
@@ -17541,7 +17541,7 @@ public class PriestShadow
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -18109,7 +18109,7 @@ public class PriestDiscipline
     public class PriestDisciplineSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -18230,7 +18230,7 @@ public class PriestDiscipline
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -18816,7 +18816,7 @@ public class PriestHoly
     public class PriestHolySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseArchangel = true;
@@ -18945,7 +18945,7 @@ public class PriestHoly
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Glyph of Lightspring", "UseGlyphofLightspring", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -19616,7 +19616,7 @@ public class RogueCombat
     public class RogueCombatSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAdrenalineRush = true;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
@@ -19739,7 +19739,7 @@ public class RogueCombat
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -20380,7 +20380,7 @@ public class RogueSubtlety
     public class RogueSubtletySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
         public bool UseArcaneTorrentForDecast = true;
@@ -20498,7 +20498,7 @@ public class RogueSubtlety
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -21155,7 +21155,7 @@ public class RogueAssassination
     public class RogueAssassinationSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseAmbush = true;
         public bool UseArcaneTorrentForDecast = true;
@@ -21275,7 +21275,7 @@ public class RogueAssassination
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Shadow Focus Talent?", "UseShadowFocus", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -22020,7 +22020,7 @@ public class WarriorArms
     public class WarriorArmsSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -22148,7 +22148,7 @@ public class WarriorArms
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -22906,7 +22906,7 @@ public class WarriorProtection
     public class WarriorProtectionSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -23040,7 +23040,7 @@ public class WarriorProtection
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -23734,7 +23734,7 @@ public class WarriorFury
     public class WarriorFurySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
@@ -23862,7 +23862,7 @@ public class WarriorFury
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -24545,7 +24545,7 @@ public class HunterMarksmanship
     public class HunterMarksmanshipSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAMurderofCrows = true;
         public bool UseAimedShot = true;
         public bool UseAlchFlask = true;
@@ -24673,7 +24673,7 @@ public class HunterMarksmanship
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -25421,7 +25421,7 @@ public class HunterBeastMastery
     public class HunterBeastMasterySettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAMurderofCrows = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
@@ -25561,7 +25561,7 @@ public class HunterBeastMastery
             AddControlInWinForm("Use Chimera Pet", "UseChimeraPet", "Game Settings");
             AddControlInWinForm("Use Spirit Beast Pet", "UseSpiritBeastPet", "Game Settings");
             AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -26279,7 +26279,7 @@ public class HunterSurvival
     public class HunterSurvivalSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAMurderofCrows = true;
         public bool UseAlchFlask = true;
         public bool UseArcaneShot = true;
@@ -26407,7 +26407,7 @@ public class HunterSurvival
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Revive Pet in Combat", "UseCombatRevive", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -26962,7 +26962,7 @@ public class MonkBrewmaster
     public class MonkBrewmasterSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
@@ -27065,7 +27065,7 @@ public class MonkBrewmaster
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -27586,7 +27586,7 @@ public class MonkWindwalker
     public class MonkWindwalkerSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
@@ -27685,7 +27685,7 @@ public class MonkWindwalker
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
@@ -28258,7 +28258,7 @@ public class MonkMistweaver
     public class MonkMistweaverSettings : Settings
     {
         public bool DoAvoidMelee = false;
-        public int DoAvoidMeleeDistance = 2;
+        public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
         public bool UseArcaneTorrent = true;
         public bool UseBerserking = true;
@@ -28369,7 +28369,7 @@ public class MonkMistweaver
             AddControlInWinForm("Use Trinket", "UseTrinket", "Game Settings");
             AddControlInWinForm("Use Engineering Gloves", "UseEngGlove", "Game Settings");
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
-            AddControlInWinForm("Do avoid melee", "DoAvoidMelee", "Game Settings");
+            AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
 
