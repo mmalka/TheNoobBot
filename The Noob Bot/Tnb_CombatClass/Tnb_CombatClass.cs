@@ -17382,7 +17382,7 @@ public class PriestShadow
             return;
         }
         else if (mySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !VampiricTouch.KnownSpell)
+                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
@@ -17391,7 +17391,7 @@ public class PriestShadow
         }
             // Blizzard API Calls for Mind Flay using Smite Function
         else if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !VampiricTouch.KnownSpell)
+                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
