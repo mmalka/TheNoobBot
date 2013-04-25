@@ -17385,20 +17385,19 @@ public class PriestShadow
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
                  && mySettings.UseMindFlay && ShadowWordPain.TargetHaveBuff && VampiricTouch.TargetHaveBuff
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                 && ObjectManager.Me.ShadowOrbs != 3 && ObjectManager.Me.Level > 27)
+                 && ObjectManager.Me.ShadowOrbs != 3 && ShadowWordPain.KnownSpell && VampiricTouch.KnownSpell)
         {
             Smite.Launch();
             return;
         }
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseMindFlay && ShadowWordPain.TargetHaveBuff && ObjectManager.Me.Level < 28
-                 && ObjectManager.Me.Level > 2)
+                 && mySettings.UseMindFlay && ShadowWordPain.TargetHaveBuff && ShadowWordPain.KnownSpell)
         {
             Smite.Launch();
             return;
         }
         else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseMindFlay && ObjectManager.Me.Level < 3)
+                 && mySettings.UseMindFlay && !ShadowWordPain.KnownSpell && !VampiricTouch.KnownSpell)
         {
             Smite.Launch();
             return;
