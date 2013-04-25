@@ -13873,7 +13873,7 @@ public class PaladinRetribution
             Exorcism.Launch();
         }
         else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || !mySettings.UseHammerOfTheRighteous) &&
-                  (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows) &&
+                 (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows) &&
                  mySettings.UseCrusaderStrike &&
                  CrusaderStrike.KnownSpell && CrusaderStrike.IsHostileDistanceGood &&
                  CrusaderStrike.IsSpellUsable)
@@ -17381,23 +17381,19 @@ public class PriestShadow
             MindBlast.Launch();
             return;
         }
-            // Blizzard API Calls for Mind Flay using Smite Function
-        else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseMindFlay && ShadowWordPain.TargetHaveBuff && VampiricTouch.TargetHaveBuff
+        else if (mySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
+                 && (ShadowWordPain.TargetHaveBuff || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !VampiricTouch.KnownSpell)
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                 && ObjectManager.Me.ShadowOrbs != 3 && ShadowWordPain.KnownSpell && VampiricTouch.KnownSpell)
+                 && ObjectManager.Me.ShadowOrbs != 3)
         {
-            Smite.Launch();
+            MindFlay.Launch();
             return;
         }
-        else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseMindFlay && ShadowWordPain.TargetHaveBuff && ShadowWordPain.KnownSpell)
-        {
-            Smite.Launch();
-            return;
-        }
-        else if (!ObjectManager.Me.IsCast && Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseMindFlay && !ShadowWordPain.KnownSpell && !VampiricTouch.KnownSpell)
+            // Blizzard API Calls for Mind Flay using Smite Function
+        else if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
+                 && (ShadowWordPain.TargetHaveBuff || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !VampiricTouch.KnownSpell)
+                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
+                 && ObjectManager.Me.ShadowOrbs != 3)
         {
             Smite.Launch();
             return;
