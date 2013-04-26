@@ -86,8 +86,8 @@ namespace The_Noob_Bot
             // 
             // MainMinimized
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(187, 64);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);

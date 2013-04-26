@@ -89,8 +89,8 @@ namespace Grinder.Bot
             // 
             // LoadProfile
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(284, 91);
             this.Controls.Add(this.createProfileB);
             this.Controls.Add(this.labelX1);

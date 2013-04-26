@@ -83,8 +83,8 @@ namespace nManager.Helpful.Forms
             // 
             // Translate_Tools
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(625, 396);
             this.Controls.Add(this.loadB);
             this.Controls.Add(this.saveB);

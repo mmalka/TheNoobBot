@@ -87,8 +87,8 @@ namespace Flying_To_Ground_Profiles_Converter
             // 
             // WelcomeForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.ClientSize = new System.Drawing.Size(524, 142);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.labelX2);
