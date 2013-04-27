@@ -16536,8 +16536,8 @@ public class ShamanElemental
             LavaBurst.Launch();
             return;
         }
-        else if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
-                 && mySettings.UseEarthShock && LightningShield.BuffStack > 4)
+        else if (mySettings.UseEarthShock && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood && EarthShock.IsSpellUsable
+                 && (LightningShield.BuffStack > 4 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
         {
             EarthShock.Launch();
             return;
@@ -16556,9 +16556,9 @@ public class ShamanElemental
             SearingTotem.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && ChainLightning.KnownSpell
-                 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood && mySettings.UseChainLightning
-                 && LightningShield.BuffStack < 6)
+        else if (ObjectManager.GetNumberAttackPlayer() > 1 && mySettings.UseChainLightning && ChainLightning.KnownSpell
+                 && ChainLightning.IsHostileDistanceGood && ChainLightning.IsSpellUsable 
+                 && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
         {
             if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                 && mySettings.UseAncestralSwiftness)
@@ -16571,8 +16571,8 @@ public class ShamanElemental
         }
         else
         {
-            if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                && mySettings.UseLightningBolt && LightningShield.BuffStack < 6)
+            if (mySettings.UseLightningBolt && LightningBolt.KnownSpell && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable
+                && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
             {
                 if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                     && mySettings.UseAncestralSwiftness)
