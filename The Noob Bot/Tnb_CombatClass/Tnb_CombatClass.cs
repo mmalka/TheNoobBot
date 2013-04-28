@@ -23900,7 +23900,6 @@ public class HunterMarksmanship
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer SteadyFocusTimer = new Timer(0);
     private Timer TrinketTimer = new Timer(0);
 
     #endregion
@@ -23926,6 +23925,7 @@ public class HunterMarksmanship
     private readonly Spell FeignDeath = new Spell("Feign Death");
     private readonly Spell HuntersMark = new Spell("Hunter's Mark");
     private readonly Spell Misdirection = new Spell("Misdirection");
+    private readonly Spell SteadyFocus = new Spell("Steady Focus");
 
     #endregion
 
@@ -24484,28 +24484,23 @@ public class HunterMarksmanship
             AimedShot.Launch();
             return;
         }
-        else if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                 && mySettings.UseSteadyShot && (!ObjectManager.Me.HaveBuff(53220) || SteadyFocusTimer.IsReady))
+        else if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
+                 && SteadyFocusTimer.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
         {
             SteadyShot.Launch();
-            SteadyFocusTimer = new Timer(1000*6);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && mySettings.UseSteadyShot)
+        else if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood
+                 && MultiShot.IsSpellUsable)
         {
-            if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
-            {
-                MultiShot.Launch();
-                return;
-            }
-            else
-            {
-                if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood)
-                {
-                    SteadyShot.Launch();
-                    return;
-                }
-            }
+            MultiShot.Launch();
+            return;
+        }
+        else if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && mySettings.UseSteadyShot && SteadyShot.KnownSpell 
+                && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable && ObjectManager.Me.FocusPercentage < 40)
+        {
+            SteadyShot.Launch();
+            return;
         }
         else if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
                  && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 64)
