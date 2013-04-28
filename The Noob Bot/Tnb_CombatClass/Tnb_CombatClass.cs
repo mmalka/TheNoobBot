@@ -24386,6 +24386,18 @@ public class HunterMarksmanship
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
+        else if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
+                 && mySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
+        {
+            AimedShot.Launch();
+            return;
+        }
+        else if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
+                 && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
+        {
+            SteadyShot.Launch();
+            return;
+        }
         else if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
                  && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
         {
@@ -24485,7 +24497,7 @@ public class HunterMarksmanship
             return;
         }
         else if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
-                 && SteadyFocusTimer.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
+                 && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
         {
             SteadyShot.Launch();
             return;
