@@ -26,7 +26,7 @@ namespace The_Noob_Bot
         };
         private const string UrlWebServer = "http://tech.theprivatebot.com/";
         private const string ScripLogintUrl = UrlWebServer + "auth.php";
-        private const string ScripUpdate = UrlWebServer + "update.php";
+        private const string ScripUpdate = UrlWebServer + "update_434.php";
         private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
         private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
         private const string ScripServerMyIp = UrlWebServer + "myIp.php";
@@ -424,7 +424,7 @@ namespace The_Noob_Bot
                             {
                                 case DialogResult.Yes:
                                     Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
-                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
+                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/downloads/TPB_TNB-" + resultReq + ".rar");
 
                                     try
                                     {
