@@ -340,7 +340,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+                Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
             }
             catch (Exception ex)
             {
@@ -352,7 +352,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                Others.OpenWebBrowserOrApplication("http://thenoobbot.com/login/?action=register");
+                Others.OpenWebBrowserOrApplication("http://theprivatebot.com/login/?action=register");
             }
             catch (Exception ex)
             {

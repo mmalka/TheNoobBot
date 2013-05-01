@@ -163,7 +163,7 @@ namespace The_Noob_Bot
             this.buttonX1.Size = new System.Drawing.Size(183, 17);
             this.buttonX1.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.buttonX1.TabIndex = 10;
-            this.buttonX1.Text = "http://www.TheNoobBot.com/";
+            this.buttonX1.Text = "http://www.thenoobbot.com/";
             this.buttonX1.Click += new System.EventHandler(this.buttonX1_Click);
             // 
             // langChooseCb

@@ -24,7 +24,7 @@ namespace The_Noob_Bot
             "PEConnect",
             "LEConnect",
         };
-        private const string UrlWebServer = "http://tech.thenoobbot.com/";
+        private const string UrlWebServer = "http://tech.theprivatebot.com/";
         private const string ScripLogintUrl = UrlWebServer + "auth.php";
         private const string ScripUpdate = UrlWebServer + "update.php";
         private const string ScripServerIsOnline = UrlWebServer + "isOnline.php";
@@ -99,7 +99,7 @@ namespace The_Noob_Bot
                 if (repC == retStr[1])
                 {
                     MessageBox.Show(
-                        Translate.Get(Translate.Id.Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) + ": http://thenoobbot.com/.",
+                        Translate.Get(Translate.Id.Subscription_finished__renew_it_if_you_want_use_no_limited_version_of_the_tnb_again_here) + ": http://theprivatebot.com/.",
                         Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Information);
                     MessageBox.Show(
                         Translate.Get(Translate.Id.You_starting_trial_version__the_tnb_will_automatically_stopped_after____min),
@@ -110,11 +110,11 @@ namespace The_Noob_Bot
                 }
 
                 if (repC == retStr[3])
-                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) + ": http://thenoobbot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_password__go_to_this_address_if_you_have_forget_your_password) + ": http://theprivatebot.com/login/?action=lostpassword", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else if (repC == retStr[4])
-                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Translate.Get(Translate.Id.Incorrect_user_name__go_here_if_you_want_create_an_account_and_buy_The_Noob_Bot) + ": http://theprivatebot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
-                    MessageBox.Show(Translate.Get(Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) + ": http://thenoobbot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Translate.Get(Translate.Id.Login_error__try_to_disable_your_antivirus__go_to_the_website_if_you_need_help) + ": http://theprivatebot.com/", Translate.Get(Translate.Id.Error), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 EndInformation();
             }
             catch (Exception e)
@@ -423,8 +423,8 @@ namespace The_Noob_Bot
                             switch (dr)
                             {
                                 case DialogResult.Yes:
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
+                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/");
+                                    Others.OpenWebBrowserOrApplication("http://theprivatebot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
 
                                     try
                                     {

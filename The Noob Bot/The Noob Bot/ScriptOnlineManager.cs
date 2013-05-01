@@ -22,7 +22,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                const string UrlWebServer = "http://tech.thenoobbot.com/";
+                const string UrlWebServer = "http://tech.theprivatebot.com/";
                 const string ScripServerMyIp = UrlWebServer + "myIp.php";
 
                 // KeyDecrypt
@@ -64,7 +64,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                const string httpAddress = "http://tech.thenoobbot.com/script.php";
+                const string httpAddress = "http://tech.theprivatebot.com/script.php";
                 string sr;
                 int random = Others.Random(0, 5000);
                 try

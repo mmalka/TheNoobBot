@@ -29,7 +29,7 @@ namespace The_Noob_Bot
         private readonly Thread _work;
         private bool _firstActive;
 
-        private const string RemoteScript = "http://tech.thenoobbot.com/remote.php";
+        private const string RemoteScript = "http://tech.theprivatebot.com/remote.php";
         private int _sessionKey;
 
         internal Remote()
