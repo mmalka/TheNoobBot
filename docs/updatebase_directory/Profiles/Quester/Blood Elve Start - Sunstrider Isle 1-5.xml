@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Quests>
+
+<!-- Main quest line -->
+        <Quest>
+          <Name>Reclaiming Sunstrider Isle</Name>
+          <Id>8325</Id>
+          <MinLevel>1</MinLevel>
+          <MaxLevel>4</MaxLevel>
+          <PickUp>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>6</Count>
+                <Entry>
+                    <int>15274</int>
+                </Entry>
+                <Hotspots>
+                    <Point>
+					 <X>10279.71</X>
+					 <Y>-6345.525</Y>
+					 <Z>23.56811</Z>
+                    </Point>
+                    <Point>
+					 <X>10401.25</X>
+					 <Y>-6228.733</Y>
+					 <Z>32.73214</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+        <Quest>
+          <Name>Unfortunate Measures</Name>
+          <Id>8326</Id>
+          <MinLevel>1</MinLevel>
+          <MaxLevel>6</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+                <CollectItemId>20797</CollectItemId>
+                <CollectCount>8</CollectCount>
+                <Entry>
+                    <int>15366</int>
+                    <int>15372</int>
+                </Entry>
+                <Hotspots>
+                    <Point>
+					 <X>10262.66</X>
+					 <Y>-6245.344</Y>
+					 <Z>23.76003</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+        <Quest>
+          <Name>Paladin Training</Name>
+          <Id>9676</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>6</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Jesthenis Sunstriker</Name>
+            <Entry>15280</Entry>
+            <Position>
+             <X>10366.67</X>
+             <Y>-6431.529</Y>
+             <Z>38.53442</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Solanian's Belongings</Name>
+          <Id>8330</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>7</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>PickUpObject</Objective>
+                <Entry>
+                    <int>180512</int> <!-- Solanian's Journal -->
+                </Entry>
+                <CollectItemId>20472</CollectItemId>
+                <CollectCount>1</CollectCount>
+                <Hotspots>
+                    <Point>
+                     <X>10223.86</X>
+                     <Y>-6344.173</Y>
+                     <Z>30.84076</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <QuestObjective>
+                <Objective>PickUpObject</Objective>
+                <Entry>
+                    <int>180510</int> <!-- Solanian's Scrying Orb -->
+                </Entry>
+                <CollectItemId>20470</CollectItemId>
+                <CollectCount>1</CollectCount>
+                <Hotspots>
+                    <Point>
+                     <X>10093.04</X>
+                     <Y>-6218.321</Y>
+                     <Z>16.66767</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <QuestObjective>
+                <Objective>PickUpObject</Objective>
+                <Entry>
+                    <int>180511</int> <!-- Scroll of Scourge Magic -->
+                </Entry>
+                <CollectItemId>20471</CollectItemId>
+                <CollectCount>1</CollectCount>
+                <Hotspots>
+                    <Point>
+                     <X>10294.89</X>
+                     <Y>-6030.453</Y>
+                     <Z>28.44272</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>The Shrine of Dath'Remar</Name>
+          <Id>8345</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>7</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>InteractWith</Objective>
+				<EntryInteractWith>180516</EntryInteractWith> <!-- Shrine of Dath'Remar -->
+                <PositionInteractWith>
+                     <X>10405.8</X>
+                     <Y>-5946.007</Y>
+                     <Z>42.50818</Z>
+                </PositionInteractWith>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>A Fistful of Slivers</Name>
+          <Id>8336</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>7</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Arcanist Ithanas</Name>
+            <Entry>15296</Entry>
+            <Position>
+              <X>10413.7</X>
+              <Y>-6372.463</Y>
+              <Z>35.64339</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Arcanist Ithanas</Name>
+            <Entry>15296</Entry>
+            <Position>
+              <X>10413.7</X>
+              <Y>-6372.463</Y>
+              <Z>35.64339</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+                <CollectItemId>20482</CollectItemId>
+                <CollectCount>6</CollectCount>
+                <Entry>
+                    <int>15274</int> <!-- Mana Wyrm -->
+                    <int>15294</int> <!-- Feral Tender -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+					 <X>10233.04</X>
+					 <Y>-6331.622</Y>
+					 <Z>30.8401</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Thirst Unending</Name>
+          <Id>8346</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>6</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8325</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Arcanist Helion</Name>
+            <Entry>15297</Entry>
+            <Position>
+              <X>10419.66</X>
+              <Y>-6318.618</Y>
+              <Z>35.57385</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Arcanist Helion</Name>
+            <Entry>15297</Entry>
+            <Position>
+              <X>10419.66</X>
+              <Y>-6318.618</Y>
+              <Z>35.57385</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>UseSpellAOE</Objective>
+                <UseSpellId>28730</UseSpellId>
+				<EntryAOE>
+                    <int>15274</int> <!-- Mana Wyrm -->
+                </EntryAOE>
+				<Range>
+                    <float>8</float>
+				</Range>
+                <PositionUseSpell>
+                    <Point>
+					 <X>10233.04</X>
+					 <Y>-6331.622</Y>
+					 <Z>30.8401</Z>
+                    </Point>
+                </PositionUseSpell>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Report to Lanthan Perilon</Name>
+          <Id>8327</Id>
+          <MinLevel>1</MinLevel>
+          <MaxLevel>6</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8326</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Ways of the Light</Name>
+          <Id>10069</Id>
+          <MinLevel>2</MinLevel>
+          <MaxLevel>6</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>9676</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Name>Jesthenis Sunstriker</Name>
+            <Entry>15280</Entry>
+            <Position>
+             <X>10366.67</X>
+             <Y>-6431.529</Y>
+             <Z>38.53442</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>UseSpell</Objective>
+                <UseSpellId>105361</UseSpellId>
+                <PositionUseSpell>
+                    <Point>
+					 <X>10345.46</X>
+					 <Y>-6366.245</Y>
+					 <Z>34.79651</Z>
+                    </Point>
+                </PositionUseSpell>
+            </QuestObjective>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>1</Count>
+                <Entry>
+                    <int>44937</int>
+                </Entry>
+                <Hotspots>
+                    <Point>
+					 <X>10345.46</X>
+					 <Y>-6366.245</Y>
+					 <Z>34.79651</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Aggression</Name>
+          <Id>8334</Id>
+          <MinLevel>1</MinLevel>
+          <MaxLevel>7</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8327</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>7</Count>
+                <Entry>
+                    <int>15271</int> <!-- Tender -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10335.81</X>
+                     <Y>-6054.489</Y>
+                     <Z>25.62166</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>7</Count>
+                <Entry>
+                    <int>15294</int> <!-- Feral Tender -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10335.81</X>
+                     <Y>-6054.489</Y>
+                     <Z>25.62166</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Felendren the Banished</Name>
+          <Id>8335</Id>
+          <MinLevel>1</MinLevel>
+          <MaxLevel>8</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8334</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </TurnIn>
+          <Objectives>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>8</Count>
+                <Entry>
+                    <int>15273</int> <!-- Arcane Wraith -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10174</X>
+                     <Y>-6047.451</Y>
+                     <Z>25.54031</Z>
+                    </Point>
+                    <Point>
+                     <X>10126.59</X>
+                     <Y>-6060.782</Y>
+                     <Z>25.57061</Z>
+                    </Point>
+                    <Point>
+                     <X>10073.3</X>
+                     <Y>-6041.656</Y>
+                     <Z>42.1649</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <!--<QuestObjective> <!-- Work Arround to Gather Tainted Arcane Silver Quest Start object --><!--
+                <Objective>KillMob</Objective>
+                <CollectItemId>20483</CollectItemId> <!-- Tainted Arcane Sliver --><!--
+                <CollectCount>1</CollectCount>
+                <Entry>
+                    <int>15298</int> <!-- Tainted Arcane Wraith --><!--
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10073.3</X>
+                     <Y>-6041.656</Y>
+                     <Z>42.1649</Z>
+                    </Point>
+                    <Point>
+                     <X>10126.88</X>
+                     <Y>-5992.934</Y>
+                     <Z>109.024</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <QuestObjective> <!-- Work Arround to Start Tainted Arcane Silver Quest --><!--
+                <Objective>UseItem</Objective>
+                <UseItemId>
+					<int>20483</int>
+				</UseItemId> <!-- Tainted Arcane Sliver --><!--
+				<WaitMsUseItem>
+					<int>3000</int>
+				</WaitMsUseItem>
+            </QuestObjective>-->
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+				<Count>2</Count>
+                <Entry>
+                    <int>15298</int> <!-- Tainted Arcane Wraith -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10073.3</X>
+                     <Y>-6041.656</Y>
+                     <Z>42.1649</Z>
+                    </Point>
+                    <Point>
+                     <X>10126.88</X>
+                     <Y>-5992.934</Y>
+                     <Z>109.024</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+            <QuestObjective>
+                <Objective>KillMob</Objective>
+                <CollectItemId>20799</CollectItemId>
+                <CollectCount>1</CollectCount>
+                <Entry>
+                    <int>15367</int> <!-- Felendren the Banished -->
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10126.88</X>
+                     <Y>-5992.934</Y>
+                     <Z>109.024</Z>
+                    </Point>
+                </Hotspots>
+            </QuestObjective>
+          </Objectives>
+        </Quest>
+
+		<Quest>
+          <Name>Aiding the Outrunners</Name>
+          <Id>8347</Id>
+          <MinLevel>4</MinLevel>
+          <MaxLevel>8</MaxLevel>
+          <NeedQuestCompletedId>
+            <int>8335</int>
+          </NeedQuestCompletedId>
+          <PickUp>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+          </PickUp>
+          <TurnIn>
+			<Entry>15301</Entry>
+			<Name>Outrunner Alarion</Name>
+			<Position>
+			  <X>9984.044</X>
+			  <Y>-6478.019</Y>
+			  <Z>0.9976389</Z>
+			</Position>
+          </TurnIn>
+          <Objectives>
+          </Objectives>
+        </Quest>
+
+    </Quests>
+    <Blackspots />
+</QuesterProfile>
