@@ -13432,6 +13432,7 @@ public class PaladinRetribution
 
     private readonly Spell BlessingOfKings = new Spell("Blessing of Kings");
     private readonly Spell BlessingOfMight = new Spell("Blessing of Might");
+    private readonly Spell SealOfCommand = new Spell("Seal of Command");
     private readonly Spell SealOfInsight = new Spell("Seal of Insight");
     private readonly Spell SealOfJustice = new Spell("Seal of Justice");
     private readonly Spell SealOfTheRighteousness = new Spell("Seal of Righteousness");
@@ -13466,6 +13467,7 @@ public class PaladinRetribution
 
     #region Defensive Cooldown
 
+    private readonly Spell Reckoning = new Spell("Reckoning");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
@@ -13537,13 +13539,17 @@ public class PaladinRetribution
 
     private void Pull()
     {
-        if (Exorcism.KnownSpell && Exorcism.IsHostileDistanceGood && Exorcism.IsSpellUsable && mySettings.UseExorcism)
+        if (mySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
         }
-        else if (Judgment.KnownSpell && Judgment.IsHostileDistanceGood && Judgment.IsSpellUsable && mySettings.UseJudgment)
+        else if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
+        }
+        else if (mySettings.UseReckoning && Reckoning.KnownSpell && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
+        {
+            Reckoning.Launch();   
         }
     }
 
@@ -13598,27 +13604,30 @@ public class PaladinRetribution
 
     private void Seal()
     {
-        if (SealOfTruth.KnownSpell &&
-            (ObjectManager.GetNumberAttackPlayer() <= 7 || !mySettings.UseSealOfTheRighteousness) &&
-            mySettings.UseSealOfTruth)
+        if (mySettings.UseSealOfTruth && SealOfTruth.KnownSpell && (ObjectManager.GetNumberAttackPlayer() <= 7 || !mySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
                 SealOfTruth.Launch();
         }
-        else if (SealOfTheRighteousness.KnownSpell && mySettings.UseSealOfTheRighteousness)
+        else if (mySettings.UseSealOfTheRighteousness && SealOfTheRighteousness.KnownSpell)
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
                 SealOfTheRighteousness.Launch();
         }
-        else if (SealOfJustice.KnownSpell && mySettings.UseSealOfJustice)
+        else if (mySettings.UseSealOfJustice && SealOfJustice.KnownSpell)
         {
             if (!SealOfJustice.HaveBuff && SealOfJustice.IsSpellUsable)
                 SealOfJustice.Launch();
         }
-        else if (SealOfInsight.KnownSpell && mySettings.UseSealOfInsight)
+        else if (mySettings.UseSealOfInsight && SealOfInsight.KnownSpell)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
                 SealOfInsight.Launch();
+        }
+        else if (mySettings.UseSealOfCommand && SealOfCommand.KnownSpell)
+        {
+            if (!SealOfCommand.HaveBuff && SealOfCommand.IsSpellUsable)
+                SealOfCommand.Launch();
         }
     }
 
@@ -13893,7 +13902,9 @@ public class PaladinRetribution
         public bool UseJudgment = true;
         public bool UseLayOnHands = true;
         public bool UseLifeblood = true;
+        public bool UseReckoning = true;
         public bool UseSacredShield = true;
+        public bool UseSealOfCommand = true;
         public bool UseSealOfInsight = false;
         public bool UseSealOfJustice = false;
         public bool UseSealOfTheRighteousness = true;
@@ -13926,6 +13937,7 @@ public class PaladinRetribution
             AddControlInWinForm("Use Seal of Truth", "UseSealOfTruth", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Justice", "UseSealOfJustice", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Seal of Insight", "UseSealOfInsight", "Paladin Seals & Buffs");
+            AddControlInWinForm("Use Seal of Command", "UseSealOfCommand", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Might", "UseBlessingOfMight", "Paladin Seals & Buffs");
             AddControlInWinForm("Use Blessing of Kings", "UseBlessingOfKings", "Paladin Seals & Buffs");
             /* Offensive Spell */
@@ -13943,6 +13955,7 @@ public class PaladinRetribution
             AddControlInWinForm("Use Holy Avenger", "UseHolyAvenger", "Offensive Cooldown");
             AddControlInWinForm("Use Avenging Wrath", "UseAvengingWrath", "Offensive Cooldown");
             /* Defensive Cooldown */
+            AddControlInWinForm("Use Reckoning", "UseReckoning", "Defensive Cooldown");
             AddControlInWinForm("Refresh Weakened Blows", "RefreshWeakenedBlows", "Defensive Cooldown");
             AddControlInWinForm("Use Divine Protection", "UseDivineProtection", "Defensive Cooldown");
             AddControlInWinForm("Use Devotion Aura", "UseDevotionAura", "Defensive Cooldown");
