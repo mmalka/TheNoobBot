@@ -13744,14 +13744,13 @@ public class PaladinRetribution
 
     private void DPSCycle()
     {
-        if (HammerOfJustice.KnownSpell && HammerOfJustice.IsHostileDistanceGood && HammerOfJustice.IsSpellUsable &&
-            mySettings.UseHammerOfJustice && ObjectManager.Target.IsStunnable)
+        if (mySettings.UseHammerOfJustice && HammerOfJustice.KnownSpell && HammerOfJustice.IsSpellUsable && HammerOfJustice.IsHostileDistanceGood &&
+            ObjectManager.Target.IsStunnable)
         {
             HammerOfJustice.Launch();
             return;
         }
-        if (Inquisition.KnownSpell && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) &&
-            Inquisition.IsSpellUsable && mySettings.UseInquisition &&
+        if (mySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) &&
             (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             Inquisition.Launch();
@@ -13775,13 +13774,11 @@ public class PaladinRetribution
         {
             DivineStorm.Launch();
         }
-        else if (HammerOfWrath.KnownSpell && HammerOfWrath.IsHostileDistanceGood && HammerOfWrath.IsSpellUsable &&
-                 mySettings.UseHammerOfWrath)
+        else if (mySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
             HammerOfWrath.Launch();
         }
-        else if (Exorcism.KnownSpell && Exorcism.IsHostileDistanceGood && Exorcism.IsSpellUsable &&
-                 mySettings.UseExorcism)
+        else if (mySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
         }
@@ -13799,8 +13796,7 @@ public class PaladinRetribution
         {
             HammerOfTheRighteous.Launch();
         }
-        else if (Judgment.KnownSpell && Judgment.IsHostileDistanceGood && Judgment.IsSpellUsable &&
-                 mySettings.UseJudgment)
+        else if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
         }
@@ -13822,8 +13818,7 @@ public class PaladinRetribution
         {
             DivineStorm.Launch();
         }
-        else if (mySettings.UseSacredShield && SacredShield.KnownSpell &&
-                 SacredShield.IsHostileDistanceGood && SacredShield.IsSpellUsable
+        else if (mySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsSpellUsable && SacredShield.IsHostileDistanceGood
                  && (!mySettings.UseInquisition || !Inquisition.KnownSpell || Inquisition.HaveBuff)
                  && (!mySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
                  && (!mySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
