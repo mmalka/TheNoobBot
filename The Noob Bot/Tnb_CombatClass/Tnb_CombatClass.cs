@@ -13824,13 +13824,12 @@ public class PaladinRetribution
         }
         else if (mySettings.UseSacredShield && SacredShield.KnownSpell &&
                  SacredShield.IsHostileDistanceGood && SacredShield.IsSpellUsable
-                 && (!Inquisition.KnownSpell || Inquisition.HaveBuff)
-                 && (!TemplarsVerdict.KnownSpell || TemplarsVerdict.IsSpellUsable)
-                 && (!Judgment.KnownSpell || Judgment.IsSpellUsable)
-                 && (!Judgment.KnownSpell || Judgment.IsSpellUsable)
-                 && (!CrusaderStrike.KnownSpell || CrusaderStrike.IsSpellUsable)
-                 && (!HammerOfWrath.KnownSpell || HammerOfWrath.IsSpellUsable)
-                 && (!Exorcism.KnownSpell || Exorcism.IsSpellUsable))
+                 && (!mySettings.UseInquisition || !Inquisition.KnownSpell || Inquisition.HaveBuff)
+                 && (!mySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
+                 && (!mySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
+                 && (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || !CrusaderStrike.IsSpellUsable)
+                 && (!mySettings.UseHammerOfWrath || !HammerOfWrath.KnownSpell || !HammerOfWrath.IsSpellUsable)
+                 && (!mySettings.UseExorcism || !Exorcism.KnownSpell || !Exorcism.IsSpellUsable))
         {
             // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
             SacredShield.Launch();
