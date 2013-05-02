@@ -13785,19 +13785,17 @@ public class PaladinRetribution
         {
             Exorcism.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 3 || !mySettings.UseHammerOfTheRighteous) &&
-                 (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows) &&
-                 mySettings.UseCrusaderStrike &&
-                 CrusaderStrike.KnownSpell && CrusaderStrike.IsHostileDistanceGood &&
-                 CrusaderStrike.IsSpellUsable)
+        else if (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
+                 (!mySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
+                  (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
+                   (ObjectManager.GetNumberAttackPlayer() <= 3 && (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows)))))
         {
             CrusaderStrike.Launch();
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() >= 4 ||
-                  (!ObjectManager.Target.HaveBuff(115798) && mySettings.RefreshWeakenedBlows) ||
-                  (!mySettings.UseCrusaderStrike && !mySettings.UseHammerOfTheRighteous)) &&
-                 HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsHostileDistanceGood &&
-                 HammerOfTheRighteous.IsSpellUsable && !ObjectManager.Me.HaveBuff(90174))
+        else if (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
+                 (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
+                  (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
+                   (ObjectManager.GetNumberAttackPlayer() >= 4 || (!ObjectManager.Target.HaveBuff(115798) && mySettings.RefreshWeakenedBlows)))))
         {
             HammerOfTheRighteous.Launch();
         }
@@ -17303,7 +17301,8 @@ public class PriestShadow
             return;
         }
         else if (mySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
+                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
+                 (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
@@ -17312,7 +17311,8 @@ public class PriestShadow
         }
             // Blizzard API Calls for Mind Flay using Smite Function
         else if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) && (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
+                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
+                 (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
                  && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
                  && ObjectManager.Me.ShadowOrbs != 3)
         {
