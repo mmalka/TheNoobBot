@@ -526,12 +526,12 @@
                     </Point>
                 </Hotspots>
             </QuestObjective>
-            <!--<QuestObjective> <!-- Work Arround to Gather Tainted Arcane Silver Quest Start object --><!--
+            <!-- <QuestObjective> Work Arround to Gather Tainted Arcane Silver Quest Start object --><!--
                 <Objective>KillMob</Objective>
-                <CollectItemId>20483</CollectItemId> <!-- Tainted Arcane Sliver --><!--
+                <CollectItemId>20483</CollectItemId> Tainted Arcane Sliver
                 <CollectCount>1</CollectCount>
                 <Entry>
-                    <int>15298</int> <!-- Tainted Arcane Wraith --><!--
+                    <int>15298</int> Tainted Arcane Wraith
                 </Entry>
                 <Hotspots>
                     <Point>
@@ -546,15 +546,15 @@
                     </Point>
                 </Hotspots>
             </QuestObjective>
-            <QuestObjective> <!-- Work Arround to Start Tainted Arcane Silver Quest --><!--
+            <QuestObjective> Work Arround to Start Tainted Arcane Silver Quest
                 <Objective>UseItem</Objective>
                 <UseItemId>
 					<int>20483</int>
-				</UseItemId> <!-- Tainted Arcane Sliver --><!--
+				</UseItemId> Tainted Arcane Sliver
 				<WaitMsUseItem>
 					<int>3000</int>
 				</WaitMsUseItem>
-            </QuestObjective>-->
+            </QuestObjective> -->
             <QuestObjective>
                 <Objective>KillMob</Objective>
 				<Count>2</Count>
