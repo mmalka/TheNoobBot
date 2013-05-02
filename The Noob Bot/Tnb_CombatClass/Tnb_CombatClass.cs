@@ -13636,12 +13636,12 @@ public class PaladinRetribution
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (BlessingOfKings.KnownSpell && mySettings.UseBlessingOfKings)
+        if (mySettings.UseBlessingOfKings && BlessingOfKings.KnownSpell)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
                 BlessingOfKings.Launch();
         }
-        else if (BlessingOfMight.KnownSpell && mySettings.UseBlessingOfMight)
+        else if (mySettings.UseBlessingOfMight && BlessingOfMight.KnownSpell)
         {
             if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
                 BlessingOfMight.Launch();
@@ -13652,28 +13652,26 @@ public class PaladinRetribution
     {
         if (ObjectManager.Me.HealthPercent < 95.0f && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
         {
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && mySettings.UseFlashOfLight)
+            if (mySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch(true, true, true);
                 Thread.Sleep(200);
                 return;
             }
         }
-        if (DivineShield.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5 &&
-            DivineShield.IsSpellUsable && mySettings.UseDivineShield)
+        if (mySettings.UseDivineShield && DivineShield.KnownSpell && DivineShield.IsSpellUsable && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 5)
         {
             DivineShield.Launch();
             return;
         }
-        if (LayOnHands.KnownSpell && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20 &&
-            !ObjectManager.Me.HaveBuff(25771) && LayOnHands.IsSpellUsable && mySettings.UseLayOnHands)
+        if (mySettings.UseLayOnHands && LayOnHands.KnownSpell && LayOnHands.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) && ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent <= 20)
         {
             LayOnHands.Launch();
             return;
         }
         if (ObjectManager.Me.ManaPercentage < 10)
         {
-            if (ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && mySettings.UseArcaneTorrentForResource)
+            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable)
             {
                 ArcaneTorrent.Launch();
                 return;
@@ -13681,11 +13679,11 @@ public class PaladinRetribution
         }
         if (ObjectManager.Me.HealthPercent > 0 && ObjectManager.Me.HealthPercent < 50)
         {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && mySettings.UseWordOfGlory)
+            if (mySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
                 WordOfGlory.Launch();
-            if (DevotionAura.KnownSpell && DevotionAura.IsSpellUsable && mySettings.UseDevotionAura)
+            if (mySettings.UseDevotionAura && DevotionAura.KnownSpell && DevotionAura.IsSpellUsable)
                 DevotionAura.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && mySettings.UseFlashOfLight)
+            if (mySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
                 return;
@@ -13693,14 +13691,13 @@ public class PaladinRetribution
         }
         if (ObjectManager.Me.HealthPercent >= 0 && ObjectManager.Me.HealthPercent < 30)
         {
-            if (WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable && mySettings.UseWordOfGlory)
+            if (mySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
                 WordOfGlory.Launch();
-            if (DivineProtection.KnownSpell && DivineProtection.IsSpellUsable && mySettings.UseDivineProtection)
+            if (mySettings.UseDivineProtection && DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
                 DivineProtection.Launch();
-            else if (HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771) &&
-                     mySettings.UseHandOfProtection)
+            else if (mySettings.UseHandOfProtection && HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
                 HandOfProtection.Launch();
-            if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && mySettings.UseFlashOfLight)
+            if (mySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
             }
@@ -13709,42 +13706,33 @@ public class PaladinRetribution
 
     private void DPSBurst()
     {
-        if (!GuardianOfAncientKings.KnownSpell || GuardianOfAncientKings.HaveBuff ||
-            !GuardianOfAncientKings.IsSpellUsable)
+        if (!mySettings.UseGuardianOfAncientKings || !GuardianOfAncientKings.KnownSpell || GuardianOfAncientKings.HaveBuff || !GuardianOfAncientKings.IsSpellUsable)
         {
-            if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && AvengingWrath.KnownSpell &&
-                AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
+            if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
             {
                 if (mySettings.UseAvengingWrath)
                     AvengingWrath.Launch();
-                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell &&
-                    mySettings.UseInquisition && Inquisition.IsSpellUsable &&
-                    (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+                if (mySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
                     InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
                 }
-                if (HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && mySettings.UseHolyAvenger)
+                if (mySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable)
                     HolyAvenger.Launch();
             }
-            else if ((!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady) && HolyAvenger.KnownSpell &&
-                     HolyAvenger.IsSpellUsable && mySettings.UseHolyAvenger)
+            else if (mySettings.UseHolyAvenger && HolyAvenger.KnownSpell && HolyAvenger.IsSpellUsable && (!GuardianOfAncientKings.KnownSpell || BurstTime.IsReady))
             {
                 HolyAvenger.Launch();
-                if ((!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && Inquisition.KnownSpell &&
-                    mySettings.UseInquisition && Inquisition.IsSpellUsable &&
-                    (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+                if (mySettings.UseInquisition && Inquisition.KnownSpell && Inquisition.IsSpellUsable && (!Inquisition.HaveBuff || InquisitionToUseInPriotiy.IsReady) && (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
                 {
                     Inquisition.Launch();
                     InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
                 }
-                if (AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable && mySettings.UseAvengingWrath)
+                if (mySettings.UseAvengingWrath && AvengingWrath.KnownSpell && AvengingWrath.IsSpellUsable)
                     AvengingWrath.Launch();
             }
         }
-        else if (GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable &&
-                 mySettings.UseGuardianOfAncientKings && AvengingWrath.IsSpellUsable &&
-                 (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
+        else if (mySettings.UseGuardianOfAncientKings && GuardianOfAncientKings.KnownSpell && GuardianOfAncientKings.IsSpellUsable && AvengingWrath.IsSpellUsable && (!HolyAvenger.KnownSpell || HolyAvenger.IsSpellUsable))
         {
             GuardianOfAncientKings.Launch();
             BurstTime = new Timer(1000*6.5);
