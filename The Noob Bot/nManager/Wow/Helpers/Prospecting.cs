@@ -18,12 +18,21 @@ namespace nManager.Wow.Helpers
                 var itemArray = "";
                 foreach (var i in items)
                 {
+                    if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
+                    {
+                        items.Add(i.Replace("'", "’"));
+                    }
                     if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
                             itemArray = itemArray + ", ";
                         itemArray = itemArray + "\"" + i + "\"";
                     }
+                }
+                if (string.IsNullOrEmpty(itemArray))
+                {
+                    Logging.Write("Prospecting interrupted, no items founds from the list, check that the names are correctly typed and that you have at least 5 of them.");
+                    return;
                 }
                 var macro =
                     "myTable = {" + itemArray + "} " +
@@ -68,6 +77,10 @@ namespace nManager.Wow.Helpers
                 var itemArray = "";
                 foreach (var i in items)
                 {
+                    if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
+                    {
+                        items.Add(i.Replace("'", "’"));
+                    }
                     if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
