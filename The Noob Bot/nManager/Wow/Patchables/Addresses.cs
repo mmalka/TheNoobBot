@@ -8,9 +8,14 @@
         /// <summary>
         /// ObjectManager
         /// </summary>
-        public class ObjectManager
+        /// 
+        public class ObjectManagerClass
         {
             public static uint clientConnection = 0x0; // 0x9BE7E0
+        }
+
+        public class ObjectManager
+        {
             public static uint objectManager = 0x463C;
             public static uint firstObject = 0xC0;
             public static uint nextObject = 0x3C;

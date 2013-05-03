@@ -137,13 +137,13 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 // Make sure we have a valid address for the objmgr.
-                while (Addresses.ObjectManager.clientConnection == 0)
+                while (Addresses.ObjectManagerClass.clientConnection == 0)
                     Thread.Sleep(10);
 
                 ObjectManagerAddress =
                     Memory.WowMemory.Memory.ReadUInt(
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         Addresses.ObjectManager.clientConnection) +
+                                                         Addresses.ObjectManagerClass.clientConnection) +
                         Addresses.ObjectManager.objectManager);
 
                 // These are 'hard coded' in the client. I don't remember the last time they changed.

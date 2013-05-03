@@ -106,8 +106,8 @@ namespace The_Noob_Bot
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
                 {
-                    //String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
-                    //MessageBox.Show(text);
+                    String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
+                    MessageBox.Show(text);
                     return;
                 }
 
