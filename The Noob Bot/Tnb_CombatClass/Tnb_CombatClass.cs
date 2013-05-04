@@ -1876,9 +1876,7 @@ public class DeathknightBlood
 
     private void Combat()
     {
-        if (!FrostPresence.HaveBuff || !UnholyPresence.HaveBuff || !BloodPresence.HaveBuff || !HornofWinter.HaveBuff || (ObjectManager.Me.GetMove && ObjectManager.GetNumberAttackPlayer() == 0)
-            || AlchFlaskTimer.IsReady)
-            Buff();
+        Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
@@ -2272,7 +2270,7 @@ public class DeathknightBlood
         }
 
         if (mySettings.UseSoulReaper && SoulReaper.KnownSpell && SoulReaper.IsHostileDistanceGood && SoulReaper.IsSpellUsable
-                 && ObjectManager.Target.HealthPercent < 35 && (ObjectManager.Me.HealthPercent > 90 || !mySettings.UseDeathstrike))
+                 && ObjectManager.Target.HealthPercent < 35 && (ObjectManager.Me.HealthPercent > 90 || !mySettings.UseDeathStrike))
         {
             SoulReaper.Launch();
             return;
@@ -2715,9 +2713,7 @@ public class DeathknightUnholy
 
     private void Combat()
     {
-        if (!FrostPresence.HaveBuff || !UnholyPresence.HaveBuff || !BloodPresence.HaveBuff || !HornofWinter.HaveBuff || (ObjectManager.Me.GetMove && ObjectManager.GetNumberAttackPlayer() == 0)
-            || AlchFlaskTimer.IsReady || ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            Buff();
+        Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
@@ -3523,9 +3519,7 @@ public class DeathknightFrost
 
     private void Combat()
     {
-        if (!FrostPresence.HaveBuff || !UnholyPresence.HaveBuff || !BloodPresence.HaveBuff || !HornofWinter.HaveBuff || (ObjectManager.Me.GetMove && ObjectManager.GetNumberAttackPlayer() == 0)
-            || AlchFlaskTimer.IsReady)
-            Buff();
+        Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
@@ -4388,12 +4382,11 @@ public class MageArcane
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
         if (OnCD.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -4421,11 +4414,9 @@ public class MageArcane
 
         if (mySettings.UseArcaneBrilliance && ArcaneBrilliance.KnownSpell && !ArcaneBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable
             && !ObjectManager.Me.HaveBuff(61316))
-        {
             ArcaneBrilliance.Launch();
-            return;
-        }
-        else if (mySettings.UseMageArmor && MageArmor.KnownSpell && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
+
+        if (mySettings.UseMageArmor && MageArmor.KnownSpell && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
         {
             MageArmor.Launch();
             return;
@@ -4441,20 +4432,11 @@ public class MageArcane
             MoltenArmor.Launch();
             return;
         }
-        else if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 0 && IceFloes.IsSpellUsable
-                 && ObjectManager.Me.GetMove)
+
+        if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.Me.GetMove && BlazingSpeed.IsSpellUsable)
         {
-            IceFloes.Launch();
+            BlazingSpeed.Launch();
             return;
-        }
-        else
-        {
-            if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && BlazingSpeed.IsSpellUsable
-                && ObjectManager.Me.GetMove)
-            {
-                BlazingSpeed.Launch();
-                return;
-            }
         }
     }
 
@@ -4592,6 +4574,12 @@ public class MageArcane
             GiftoftheNaaru.Launch();
             return;
         }
+        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        {
+            ColdSnap.Launch();
+            return;
+        }
         else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage 
                  && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
@@ -4708,60 +4696,52 @@ public class MageArcane
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
             Berserking.Launch();
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (mySettings.UseTierFive && MageBomb.KnownSpell && MageBomb.IsHostileDistanceGood && MageBomb.IsSpellUsable
-                 && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
-        {
-            MageBomb.Launch();
-            return;
-        }
-        else if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(114003))
-        {
+
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+                 && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-            return;
-        }
         else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116011))
-        {
+                 && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-            return;
-        }
-        else if (mySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 40 && ArcanePower.IsSpellUsable)
-        {
+
+        if (mySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 40 && ArcanePower.IsSpellUsable)
             ArcanePower.Launch();
-            return;
-        }
-        else if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
-        {
+
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
-            return;
-        }
-        else
+
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+            && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
+            && !ObjectManager.Me.HaveBuff(95809))
         {
-            if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
-                && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
-                && !ObjectManager.Me.HaveBuff(95809))
-            {
-                TimeWarp.Launch();
-                return;
-            }
+            TimeWarp.Launch();
+            return;
         }
     }
 
     private void DPSCycle()
     {
+        if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
+        {
+            IceFloes.Launch();
+            return;
+        }
+
         if (mySettings.UseFlamestrike && Flamestrike.KnownSpell && Flamestrike.IsHostileDistanceGood && Flamestrike.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 1 && FlamestrikeTimer.IsReady)
         {
@@ -4773,6 +4753,13 @@ public class MageArcane
                  && ObjectManager.GetNumberAttackPlayer() > 4)
         {
             ArcaneExplosion.Launch();
+            return;
+        }
+
+        if (mySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && MageBomb.IsSpellUsable
+            && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
+        {
+            MageBomb.Launch();
             return;
         }
         else if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable
@@ -4845,6 +4832,7 @@ public class MageArcane
         public bool UseBlink = true;
         public bool UseBloodFury = true;
         public bool UseColdSnap = true;
+        public int UseColdSnapAtPercentage = 70;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
         public bool UseConjureManaGem = true;
@@ -4933,7 +4921,6 @@ public class MageArcane
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Deep Freeze", "UseDeepFreeze", "Defensive Cooldown", "AtPercentage");
@@ -4948,6 +4935,7 @@ public class MageArcane
             AddControlInWinForm("Use Slow", "UseSlow", "Defensive Cooldown");
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
+            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
@@ -5140,7 +5128,7 @@ public class MageFrost
         }
 
         if (mySettings.UseIceLance && IceLance.KnownSpell && IceLance.IsHostileDistanceGood && IceLance.IsSpellUsable)
-                IceLance.Launch();
+            IceLance.Launch();
 
         if (mySettings.UseFreeze && ObjectManager.Me.Level > 9 && FreezeTimer.IsReady && ObjectManager.Target.GetDistance < 41
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
@@ -5197,12 +5185,11 @@ public class MageFrost
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
         if (OnCD.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -5217,7 +5204,6 @@ public class MageFrost
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonWaterElemental.Launch();
-            return;
         }
 
         if (mySettings.UseIceBlock && IceBlock.KnownSpell && ObjectManager.Me.HaveBuff(87023) && !ObjectManager.Me.HaveBuff(41425))
@@ -5238,11 +5224,9 @@ public class MageFrost
 
         if (mySettings.UseArcaneBrilliance && ArcaneBrilliance.KnownSpell && !ArcaneBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable
             && !ObjectManager.Me.HaveBuff(61316))
-        {
             ArcaneBrilliance.Launch();
-            return;
-        }
-        else if (mySettings.UseFrostArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
+
+        if (mySettings.UseFrostArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
         {
             FrostArmor.Launch();
             return;
@@ -5258,20 +5242,11 @@ public class MageFrost
             MageArmor.Launch();
             return;
         }
-        else if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 0 && IceFloes.IsSpellUsable
-                 && ObjectManager.Me.GetMove)
+
+        if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && BlazingSpeed.IsSpellUsable && ObjectManager.Me.GetMove)
         {
-            IceFloes.Launch();
+            BlazingSpeed.Launch();
             return;
-        }
-        else
-        {
-            if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && BlazingSpeed.IsSpellUsable
-                && ObjectManager.Me.GetMove)
-            {
-                BlazingSpeed.Launch();
-                return;
-            }
         }
     }
 
@@ -5409,6 +5384,12 @@ public class MageFrost
             GiftoftheNaaru.Launch();
             return;
         }
+        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        {
+            ColdSnap.Launch();
+            return;
+        }
         else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage 
                  && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
@@ -5505,67 +5486,57 @@ public class MageFrost
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
             Berserking.Launch();
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (mySettings.UseTierFive && MageBomb.KnownSpell && MageBomb.IsHostileDistanceGood && MageBomb.IsSpellUsable
-                 && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
-        {
-            MageBomb.Launch();
-            return;
-        }
-        else if (FrozenOrb.IsSpellUsable && FrozenOrb.KnownSpell && FrozenOrb.IsHostileDistanceGood
+
+        if (FrozenOrb.IsSpellUsable && FrozenOrb.KnownSpell && FrozenOrb.IsHostileDistanceGood
                  && mySettings.UseFrozenOrb)
-        {
             FrozenOrb.Launch();
-            return;
-        }
-        else if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(114003))
-        {
+
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+                 && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-            return;
-        }
         else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116011))
-        {
+                 && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-            return;
-        }
-        else if (mySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 40 && IcyVeins.IsSpellUsable
+
+        if (mySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 40 && IcyVeins.IsSpellUsable
                  && !TimeWarp.HaveBuff)
-        {
             IcyVeins.Launch();
-            return;
-        }
-        else if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
-        {
+
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
-            return;
-        }
-        else
-        {
-            if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
                 && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
                 && !ObjectManager.Me.HaveBuff(95809))
-            {
-                TimeWarp.Launch();
-                return;
-            }
+        {
+            TimeWarp.Launch();
+            return;
         }
     }
 
     private void DPSCycle()
     {
+        if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
+        {
+            IceFloes.Launch();
+            return;
+        }
+
         if (mySettings.UseFlamestrike && Flamestrike.KnownSpell && Flamestrike.IsHostileDistanceGood && Flamestrike.IsSpellUsable
             && FlamestrikeTimer.IsReady && ObjectManager.GetNumberAttackPlayer() > 4)
         {
@@ -5579,11 +5550,19 @@ public class MageFrost
             ArcaneExplosion.Launch();
             return;
         }
+
+        if (mySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && MageBomb.IsSpellUsable
+                 && !ObjectManager.Target.HaveBuff(114923) && !ObjectManager.Target.HaveBuff(44457))
+        {
+            MageBomb.Launch();
+            return;
+        }
         else if (mySettings.UseFreeze && ObjectManager.Me.Level > 9 && FreezeTimer.IsReady && ObjectManager.Target.GetDistance < 41
                  && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
             FreezeTimer = new Timer(1000*25);
+            Thread.Sleep(400);
             return;
         }
         else if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
@@ -5653,6 +5632,7 @@ public class MageFrost
         public bool UseBlizzard = true;
         public bool UseBloodFury = true;
         public bool UseColdSnap = true;
+        public int UseColdSnapAtPercentage = 70;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
         public bool UseConjureManaGem = true;
@@ -5751,7 +5731,6 @@ public class MageFrost
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
             AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Deep Freeze", "UseDeepFreeze", "Defensive Cooldown", "AtPercentage");
@@ -5765,6 +5744,7 @@ public class MageFrost
             AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
+            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
@@ -6019,12 +5999,11 @@ public class MageFire
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
+        DPSCycle();
         if (OnCD.IsReady)
             DefenseCycle();
-        DPSCycle();
         Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -6052,40 +6031,20 @@ public class MageFire
 
         if (mySettings.UseArcaneBrilliance && ArcaneBrilliance.KnownSpell && !ArcaneBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable
             && !ObjectManager.Me.HaveBuff(61316))
-        {
             ArcaneBrilliance.Launch();
-            return;
-        }
-        else if (mySettings.UseMoltenArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
-        {
+
+        if (mySettings.UseMoltenArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
             MoltenArmor.Launch();
-            return;
-        }
         else if (mySettings.UseFrostArmor && !mySettings.UseMoltenArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
-        {
             FrostArmor.Launch();
-            return;
-        }
         else if (mySettings.UseMageArmor && MageArmor.KnownSpell && !mySettings.UseMoltenArmor && !mySettings.UseFrostArmor
                  && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
-        {
             MageArmor.Launch();
-            return;
-        }
-        else if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 0 && IceFloes.IsSpellUsable
-                 && ObjectManager.Me.GetMove)
+
+        if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.Me.GetMove && BlazingSpeed.IsSpellUsable)
         {
-            IceFloes.Launch();
+            BlazingSpeed.Launch();
             return;
-        }
-        else
-        {
-            if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && BlazingSpeed.IsSpellUsable
-                && ObjectManager.Me.GetMove)
-            {
-                BlazingSpeed.Launch();
-                return;
-            }
         }
     }
 
@@ -6223,6 +6182,12 @@ public class MageFire
             GiftoftheNaaru.Launch();
             return;
         }
+        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        {
+            ColdSnap.Launch();
+            return;
+        }
         else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage 
                  && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
@@ -6319,61 +6284,53 @@ public class MageFire
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
             Berserking.Launch();
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (mySettings.UseTierFive && MageBomb.KnownSpell && MageBomb.IsHostileDistanceGood && MageBomb.IsSpellUsable
-                 && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
-        {
-            MageBomb.Launch();
-            return;
-        }
-        else if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(114003))
-        {
+
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+                 && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-            return;
-        }
         else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116011))
-        {
+                 && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-            return;
-        }
-        else if (mySettings.UseCombustion && Combustion.KnownSpell && Combustion.IsHostileDistanceGood && Combustion.IsSpellUsable
+
+        if (mySettings.UseCombustion && Combustion.KnownSpell && Combustion.IsHostileDistanceGood && Combustion.IsSpellUsable
                  && ObjectManager.Target.HaveBuff(12654))
-        {
             Combustion.Launch();
-            return;
-        }
-        else if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
-        {
+
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
-            return;
-        }
-        else
-        {
-            if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
                 && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
                 && !ObjectManager.Me.HaveBuff(95809))
-            {
-                TimeWarp.Launch();
-                return;
-            }
+        {
+            TimeWarp.Launch();
+            return;
         }
     }
 
     private void DPSCycle()
     {
+        if (mySettings.UseIceFloes && IceFloes.KnownSpell && ObjectManager.Me.GetMove && IceFloes.IsSpellUsable)
+        {
+            IceFloes.Launch();
+            return;
+        }
+
         if (mySettings.UseFlamestrike && Flamestrike.KnownSpell && Flamestrike.IsHostileDistanceGood && Flamestrike.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 4 && FlamestrikeTimer.IsReady)
         {
@@ -6385,6 +6342,13 @@ public class MageFire
                  && ObjectManager.GetNumberAttackPlayer() > 4)
         {
             ArcaneExplosion.Launch();
+            return;
+        }
+
+        if (mySettings.UseTierFive && MageBomb.KnownSpell && ObjectManager.Target.GetDistance < 41 && MageBomb.IsSpellUsable
+                 && !ObjectManager.Target.HaveBuff(114954) && !ObjectManager.Target.HaveBuff(44457))
+        {
+            MageBomb.Launch();
             return;
         }
         else if (mySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
@@ -6417,7 +6381,8 @@ public class MageFire
         else
         {
             if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable
-                && !ObjectManager.Me.HaveBuff(48107) && !ObjectManager.Me.HaveBuff(48108))
+                && (!ObjectManager.Me.HaveBuff(48107) || !mySettings.UseInfernoBlast || !InfernoBlast.IsSpellUsable) 
+                && (!ObjectManager.Me.HaveBuff(48108) || !mySettings.UsePyroblast))
             {
                 Fireball.Launch();
                 return;
@@ -6454,6 +6419,7 @@ public class MageFire
         public bool UseBlink = true;
         public bool UseBloodFury = true;
         public bool UseColdSnap = true;
+        public int UseColdSnapAtPercentage = 70;
         public bool UseCombustion = true;
         public bool UseConeofCold = true;
         public int UseConeofColdAtPercentage = 45;
@@ -6494,7 +6460,7 @@ public class MageFire
         public bool UseInvocationTalent = false;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
-        public bool UseMageArmor = true;
+        public bool UseMageArmor = false;
         public bool UseMirrorImage = true;
         public bool UseMoltenArmor = true;
         public bool UsePresenceofMind = true;
@@ -6550,7 +6516,6 @@ public class MageFire
             AddControlInWinForm("Use Time Warp", "UseTimeWarp", "Offensive Cooldown");
             /* Defensive Cooldown */
             AddControlInWinForm("Use Blink", "UseBlink", "Defensive Cooldown");
-            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown");
             AddControlInWinForm("Use Cone of Cold", "UseConeofCold", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Counterspell", "UseCounterspell", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use DeepFreeze", "UseDeepFreeze", "Defensive Cooldown", "AtPercentage");
@@ -6564,6 +6529,7 @@ public class MageFire
             AddControlInWinForm("Use Ring of Frost", "UseRingofFrost", "Defensive Cooldown");
             AddControlInWinForm("Use Temporal Shield", "UseTemporalShield", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
+            AddControlInWinForm("Use Cold Snap", "UseColdSnap", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Conjure Mana Gem", "UseConjureManaGem", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Conjure Refreshment", "UseConjureRefreshment", "Healing Spell");
             AddControlInWinForm("Use Evocation to regen Health", "UseEvocationForHP", "Healing Spell", "AtPercentage");
