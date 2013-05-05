@@ -1808,7 +1808,7 @@ public class DeathknightBlood
     private void BuffPath()
     {
         if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
-            && (!PathofFrost.HaveBuff || PathofFrostBuffTimer.IsReady) && PathofFrostTimer.IsReady)
+            && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
             PathofFrostBuffTimer = new Timer(1000*10);
@@ -2651,7 +2651,7 @@ public class DeathknightUnholy
     private void BuffPath()
     {
         if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
-            && (!PathofFrost.HaveBuff || PathofFrostBuffTimer.IsReady) && PathofFrostTimer.IsReady)
+            && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
             PathofFrostBuffTimer = new Timer(1000*10);
@@ -3451,7 +3451,7 @@ public class DeathknightFrost
     private void BuffPath()
     {
         if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
-            && (!PathofFrost.HaveBuff || PathofFrostBuffTimer.IsReady) && PathofFrostTimer.IsReady)
+            && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
             PathofFrostBuffTimer = new Timer(1000*10);
