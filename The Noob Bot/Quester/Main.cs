@@ -16,8 +16,6 @@ public class Main : IProduct
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\");
             QuesterSetting.Load();
-            Logging.Write("Requesting the list of already done quests to the server...");
-            nManager.Wow.Helpers.Quest.RequestQuestsCompleted();
             Logging.Status = "Initialize Quester Complete";
             Logging.Write("Initialize Quester Complete");
         }
