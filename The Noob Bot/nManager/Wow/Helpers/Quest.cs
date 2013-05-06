@@ -213,7 +213,7 @@ namespace nManager.Wow.Helpers
             int index = Convert.ToInt32(Lua.GetLocalizedText(randomString));
             if (index > 0)
             {
-                Lua.LuaDoString("SelectQuestLogEntry(" + index + ") SetAbandonQuest() name =  GetAbandonQuestName() print(\"Abandon \", name) AbandonQuest()");
+                Lua.LuaDoString("SelectQuestLogEntry(" + index + ") SetAbandonQuest() AbandonQuest()");
                 Thread.Sleep(Usefuls.Latency + 500);
             }
         }
