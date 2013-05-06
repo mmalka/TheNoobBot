@@ -940,8 +940,7 @@ namespace Quester.Tasks
             MountTask.Mount(); // not good yet
 
             // Find path
-            if (npc.Position.DistanceTo(ObjectManager.Me.Position) <
-                nManagerSetting.CurrentSetting.GatheringSearchRadius)
+            if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 80)
             {
                 WoWUnit tNpc = ObjectManager.GetNearestWoWUnit(ObjectManager.GetWoWUnitByEntry(npc.Entry), npc.Position);
                 WoWGameObject tGameObj =
@@ -964,7 +963,7 @@ namespace Quester.Tasks
                 if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 3.8f)
                     MovementManager.StopMove();
 
-                if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 80 && timerNpc.IsReady)
+                if (npc.Position.DistanceTo(ObjectManager.Me.Position) <= 80)
                 {
                     var listUnit = ObjectManager.GetWoWUnitByEntry(npc.Entry);
                     if (listUnit.Count > 0)
@@ -1073,76 +1072,136 @@ namespace Quester.Tasks
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
-                        int id = Quest.GetQuestID();
-                        if (id == CurrentQuest.Id)
+                        // GetNumGossipActiveQuests() == 1 because of auto accepted quests
+                        if ((Quest.GetNumGossipAvailableQuests() == 0 && Quest.GetNumGossipActiveQuests() == 1) ||
+                            (Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 0))
                         {
                             Quest.AcceptQuest();
                             Quest.CloseQuestWindow();
                         }
-                        else if (id != 0)
-                            Quest.CloseQuestWindow();
+                        /*else if (id != 0)
+                            Quest.CloseQuestWindow();*/
                         else
                         {
-                            int gossipid = 1;
-                            while (Quest.GetAvailableTitle(gossipid) != "")
+                            if (Quest.GetGossipAvailableQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
                             {
-                                Quest.SelectAvailableQuest(gossipid);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
+                                for (int i = 1; i <= Quest.GetNumGossipAvailableQuests(); i++)
                                 {
-                                    Quest.AcceptQuest();
+                                    Quest.SelectGossipAvailableQuest(i);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Quest.CloseQuestWindow();
-                                    break;
+                                    int id = Quest.GetQuestID();
+                                    if (id == CurrentQuest.Id)
+                                    {
+                                        Quest.AcceptQuest();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Quest.CloseQuestWindow();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Quest.CloseQuestWindow();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Quest.AbandonQuest(id);
+                                        Interact.InteractGameObject(baseAddress);
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                    }
                                 }
-                                else
+                            }
+                            else
+                            {
+                                int gossipid = 1;
+                                while (Quest.GetAvailableTitle(gossipid) != "")
                                 {
-                                    Quest.CloseQuestWindow();
+                                    Quest.SelectAvailableQuest(gossipid);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractGameObject(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    int id = Quest.GetQuestID();
+                                    if (id == CurrentQuest.Id)
+                                    {
+                                        Quest.AcceptQuest();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Quest.CloseQuestWindow();
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Quest.CloseQuestWindow();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Quest.AbandonQuest(id);
+                                        Interact.InteractGameObject(baseAddress);
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                    }
+                                    gossipid++;
                                 }
-                                gossipid++;
                             }
                         }
                     }
                     if (turnIn)
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
-                        int id = Quest.GetQuestID();
-                        if (id == CurrentQuest.Id)
+                        if (Quest.GetNumGossipAvailableQuests() + Quest.GetNumGossipActiveQuests() + Quest.GetNumGossipOptions() == 0)
                         {
                             Quest.CompleteQuest();
+                            Thread.Sleep(Usefuls.Latency + 500);
+                            int id = Quest.GetQuestID();
                             Quest.FinishedQuestSet.Add(CurrentQuest.Id);
                             Quest.CloseQuestWindow();
+                            Quest.AbandonQuest(id);
                         }
-                        else if (id != 0)
-                            Quest.CloseQuestWindow();
+                        /*else if (id != 0)
+                            Quest.CloseQuestWindow();*/
                         else
                         {
-                            int gossipid = 1;
-                            while (Quest.GetActiveTitle(gossipid) != "")
+                            if (Quest.GetGossipActiveQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
                             {
-                                Quest.SelectActiveQuest(gossipid);
-                                Thread.Sleep(Usefuls.Latency + 500);
-                                id = Quest.GetQuestID();
-                                if (id == CurrentQuest.Id)
+                                for (int i = 1; i <= Quest.GetNumGossipActiveQuests(); i++)
                                 {
-                                    Quest.CompleteQuest();
+                                    Quest.SelectGossipActiveQuest(i);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Quest.CloseQuestWindow();
-                                    Quest.FinishedQuestSet.Add(CurrentQuest.Id);
-                                    break;
+                                    int id = Quest.GetQuestID();
+                                    if (id == CurrentQuest.Id)
+                                    {
+                                        Quest.CompleteQuest();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        id = Quest.GetQuestID();
+                                        Quest.CloseQuestWindow();
+                                        Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                                        Quest.AbandonQuest(id);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Quest.CloseQuestWindow();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Interact.InteractGameObject(baseAddress);
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                    }
                                 }
-                                else
+                            }
+                            else
+                            {
+                                int gossipid = 1;
+                                while (Quest.GetActiveTitle(gossipid) != "")
                                 {
-                                    Quest.CloseQuestWindow();
+                                    Quest.SelectActiveQuest(gossipid);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractGameObject(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
+                                    int id = Quest.GetQuestID();
+                                    if (id == CurrentQuest.Id)
+                                    {
+                                        Quest.CompleteQuest();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Quest.CloseQuestWindow();
+                                        Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                                        break;
+                                    }
+                                    else
+                                    {
+                                        Quest.CloseQuestWindow();
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                        Interact.InteractGameObject(baseAddress);
+                                        Thread.Sleep(Usefuls.Latency + 500);
+                                    }
+                                    gossipid++;
                                 }
-                                gossipid++;
                             }
                         }
                     }

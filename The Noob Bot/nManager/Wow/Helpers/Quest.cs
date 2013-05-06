@@ -22,24 +22,22 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static void RequestQuestsCompleted()
-        {
-            Lua.LuaDoString("QueryQuestsCompleted()");
-        }
-
         public static void ConsumeQuestsCompletedRequest()
         {
             string luaTable = Others.GetRandomString(Others.Random(4, 10));
             string luaResultStr = Others.GetRandomString(Others.Random(4, 10));
             string command = "";
             command += "local " + luaTable + " = GetQuestsCompleted() ";
+            command += "if " + luaTable + " == nil then " + luaResultStr + " = \"NIL\" else ";
             command += luaResultStr + " = \"\" ";
             command += "for key,value in pairs(" + luaTable + ") do "; // value is "true" always
             command += luaResultStr + " = " + luaResultStr + " .. \"^\" .. key ";
-            command += "end";
+            command += "end end";
             Lua.LuaDoString(command);
             string sResult = Lua.GetLocalizedText(luaResultStr);
 
+            if (sResult == "NIL")
+                return;
             foreach (string toto in sResult.Split(Convert.ToChar("^")))
             {
                 if (toto != string.Empty)
@@ -64,19 +62,57 @@ namespace nManager.Wow.Helpers
 
         public static void CloseQuestWindow()
         {
-            Lua.RunMacroText("/script CloseQuest()");
+            Lua.LuaDoString("CloseQuest()");
+            Lua.LuaDoString("CloseGossip()");
             Thread.Sleep(150);
         }
 
         public static void AcceptQuest()
         {
-            Lua.RunMacroText("/script AcceptQuest() ");
+            Lua.LuaDoString("AcceptQuest() ");
         }
 
         public static int GetQuestID()
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestID()");
+            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+        }
+
+        public static bool GetGossipAvailableQuestsWorks()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + ", _ = GetGossipAvailableQuests()");
+            string result = Lua.GetLocalizedText(randomString);
+            return (result != "");
+        }
+
+        public static bool GetGossipActiveQuestsWorks()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + ", _ = GetGossipActiveQuests()");
+            string result = Lua.GetLocalizedText(randomString);
+            return (result != "");
+        }
+
+        public static int GetNumGossipAvailableQuests()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetNumGossipAvailableQuests()");
+            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+        }
+
+        public static int GetNumGossipActiveQuests()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetNumGossipActiveQuests()");
+            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+        }
+
+        public static int GetNumGossipOptions()
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetNumGossipOptions()");
             return Convert.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
@@ -104,16 +140,30 @@ namespace nManager.Wow.Helpers
             Lua.LuaDoString("SelectActiveQuest(" + index + ")");
         }
 
-        public static void SelectGossipActiveQuest(int GossipOption)
+        public static void SelectGossipActiveQuest(int index)
         {
-            Lua.LuaDoString("SelectGossipActiveQuest(" + GossipOption + ")");
+            Lua.LuaDoString("SelectGossipActiveQuest(" + index + ")");
         }
 
         public static void CompleteQuest()
         {
-            Lua.RunMacroText("/script CompleteQuest()");
+            Lua.LuaDoString("CompleteQuest()");
             Thread.Sleep(500);
-            Lua.RunMacroText("/script GetQuestReward(1)"); // or /script SelectGossipOption(1)?
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetNumQuestChoices()");
+            int numRewards = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            Logging.WriteDebug("There is " + numRewards + " rewards");
+            for (int i = 1; i <= numRewards; i++)
+            {
+                string randomString2 = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomString2 + " = GetQuestItemLink(\"choice\", " + i + ")");
+                string itemLink = Lua.GetLocalizedText(randomString2);
+                Lua.LuaDoString("link = GetQuestItemLink(\"choice\", " + i + "); " +
+                    randomString2 +" = link and select(11, GetItemInfo(link));");
+                int price = Convert.ToInt32(Lua.GetLocalizedText(randomString2));
+                Logging.WriteDebug("This item has a value of " + price);
+            }
+            Lua.LuaDoString("GetQuestReward(1)");
             Thread.Sleep(500);
         }
 
@@ -156,9 +206,16 @@ namespace nManager.Wow.Helpers
             return ret;
         }
 
-        public static void AbandonLastQuest()
+        public static void AbandonQuest(int questId)
         {
-            Lua.LuaDoString("SetAbandonQuest() AbandonQuest()");
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + questId + ")");
+            int index = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            if (index > 0)
+            {
+                Lua.LuaDoString("SelectQuestLogEntry(" + index + ") SetAbandonQuest() name =  GetAbandonQuestName() print(\"Abandon \", name) AbandonQuest()");
+                Thread.Sleep(Usefuls.Latency + 500);
+            }
         }
 
         public static bool GetLogQuestIsComplete(int questId) // we could also use the PlayerQuest struct from memory
