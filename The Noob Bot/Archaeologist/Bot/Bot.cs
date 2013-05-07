@@ -42,7 +42,7 @@ namespace Archaeologist.Bot
                 Fsm.AddState(new Looting {Priority = 9});
                 Fsm.AddState(new Regeneration {Priority = 8});
                 Fsm.AddState(new ToTown {Priority = 7});
-                Fsm.AddState(new Talents {Priority = 6});
+                Fsm.AddState(new LevelupCheck {Priority = 6});
                 Fsm.AddState(new Trainers {Priority = 5});
                 Fsm.AddState(new MillingState {Priority = 4});
                 Fsm.AddState(new ProspectingState {Priority = 3});

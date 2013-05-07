@@ -4,11 +4,11 @@ using nManager.Wow.Helpers;
 
 namespace nManager.Wow.Bot.States
 {
-    public class Talents : State
+    public class LevelupCheck : State
     {
         public override string DisplayName
         {
-            get { return "Talents"; }
+            get { return "LevelupCheck"; }
         }
 
         public override int Priority
@@ -43,24 +43,21 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                // Firts:
+                // Collect our initial Level at product start.
                 if (_lastLevel <= 0)
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
-                // We need to update the SpellBook and eventually the talents if we are over level 10.
-                if (_lastLevel != ObjectManager.ObjectManager.Me.Level)
-                    return true;
-
-                return false;
+                // Update the SpellBook and eventually the talents on level-ups.
+                return _lastLevel != ObjectManager.ObjectManager.Me.Level;
             }
         }
 
         public override void Run()
         {
             _lastLevel = ObjectManager.ObjectManager.Me.Level;
-            if (ObjectManager.ObjectManager.Me.Level > 10 && nManagerSetting.CurrentSetting.AutoAssignTalents)
-                Talent.DoTalents(); // If the bot just level-up to level 10, there is no chance the user already choose a specialisation.
-            SpellManager.UpdateSpellBook(); // Also reset Combat/Healer classes.
+            if (ObjectManager.ObjectManager.Me.Level >= 15 && nManagerSetting.CurrentSetting.AutoAssignTalents)
+                Talent.DoTalents(); // First talent at level 15.
+            SpellManager.UpdateSpellBook(); // It also reset Combat/Healer classes.
         }
     }
 }

@@ -139,7 +139,7 @@
     <Compile Include="Wow\Bot\States\Resurrect.cs" />
     <Compile Include="Wow\Bot\States\SmeltingState.cs" />
     <Compile Include="Wow\Bot\States\StopBotIf.cs" />
-    <Compile Include="Wow\Bot\States\Talents.cs" />
+    <Compile Include="Wow\Bot\States\LevelupCheck.cs" />
     <Compile Include="Wow\Bot\States\ToTown.cs" />
     <Compile Include="Wow\Bot\States\Trainers.cs" />
     <Compile Include="Wow\Bot\Tasks\FarmingTask.cs" />

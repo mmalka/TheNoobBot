@@ -71,7 +71,7 @@ namespace Fisherbot.Bot
                 Fsm.AddState(new Looting {Priority = 10});
                 Fsm.AddState(new Regeneration {Priority = 9});
                 Fsm.AddState(new ToTown {Priority = 8});
-                Fsm.AddState(new Talents {Priority = 7});
+                Fsm.AddState(new LevelupCheck {Priority = 7});
                 Fsm.AddState(new Trainers {Priority = 6});
                 Fsm.AddState(new MillingState {Priority = 5});
                 Fsm.AddState(new ProspectingState {Priority = 4});
