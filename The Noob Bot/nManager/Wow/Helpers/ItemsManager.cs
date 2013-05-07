@@ -129,7 +129,7 @@ namespace nManager.Wow.Helpers
                         Lua.LuaDoString(
                             "local nameItem = \"" + nameItem + "\" " +
                             "_, itemLink = GetItemInfo(nameItem); " +
-                            "print(itemLink)  _,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
+                            "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
                             );
                         string ret = Lua.GetLocalizedText(randomString);
                         return Convert.ToInt32(ret);
