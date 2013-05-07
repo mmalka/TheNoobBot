@@ -1680,12 +1680,414 @@
 
         <!-- They Sent Assassins (Mage)-->
         <!-- They Sent Assassins (Paladin)-->
+        <Quest>
+            <Name>They Sent Assassins</Name>
+            <Id>28793</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>8</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28785</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>8</Count>
+                    <Entry>
+                        <int>50039</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                         <X>-8754.975</X>
+                         <Y>-160.024</Y>
+                         <Z>83.98845</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+
         <!-- They Sent Assassins (Priest)-->
         <!-- They Sent Assassins (Rogue)-->
         <!-- They Sent Assassins (Warlock)-->
         <!-- They Sent Assassins (Warrior)-->
         <!-- They Sent Assassins (Hunter)-->
         <!-- They Sent Assassins (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 7 : The Rear is Clear - Report to Marshal McBride. (197) -->
+
+        <!-- The Rear is Clear (Mage)-->
+        <!-- The Rear is Clear (Paladin)-->
+        <Quest>
+            <Name>The Rear is Clear</Name>
+            <Id>28819</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>8</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28793</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Sergeant Willem</Name>
+                <Entry>823</Entry>
+                <Position>
+                    <X>-8827.983</X>
+                    <Y>-158.608</Y>
+                    <Z>79.84843</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            </Objectives>
+        </Quest>
+
+        <!-- The Rear is Clear (Priest)-->
+        <!-- The Rear is Clear (Rogue)-->
+        <!-- The Rear is Clear (Warlock)-->
+        <!-- The Rear is Clear (Warrior)-->
+        <!-- The Rear is Clear (Hunter)-->
+        <!-- The Rear is Clear (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 8 : Blackrock Invasion - Recover 8 Blackrock Orc Weapons (item 58361 kill Blackrock Invader (42937)) -->
+
+        <!-- Blackrock Invasion (Mage)-->
+        <!-- Blackrock Invasion (Paladin)-->
+        <Quest>
+            <Name>Blackrock Invasion</Name>
+            <Id>26389</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>8</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28819</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <CollectItemId>58361</CollectItemId>
+                    <CollectCount>8</CollectCount>
+                    <Entry>
+                        <int>42937</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                         <X>-9093.773</X>
+                         <Y>-335.1914</Y>
+                         <Z>73.45333</Z>
+                        </Point>
+                        <Point>
+                         <X>-8952.048</X>
+                         <Y>-423.5256</Y>
+                         <Z>72.49785</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+
+        <!-- Blackrock Invasion (Priest)-->
+        <!-- Blackrock Invasion (Rogue)-->
+        <!-- Blackrock Invasion (Warlock)-->
+        <!-- Blackrock Invasion (Warrior)-->
+        <!-- Blackrock Invasion (Hunter)-->
+        <!-- Blackrock Invasion (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 9 : Ending the Invasion! - Kill Kurtok the Slayer (42938) -->
+
+        <!-- Ending the Invasion! (Mage)-->
+        <!-- Ending the Invasion! (Paladin)-->
+        <Quest>
+            <Name>Ending the Invasion!</Name>
+            <Id>26390</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>2</MinLevel>
+            <MaxLevel>10</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26389</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+                <QuestObjective>
+                    <Objective>KillMob</Objective>
+                    <Count>1</Count>
+                    <Entry>
+                        <int>42938</int>
+                    </Entry>
+                    <Hotspots>
+                        <Point>
+                          <X>-8883.111</X>
+                          <Y>-442.0399</Y>
+                          <Z>68.05946</Z>
+                        </Point>
+                    </Hotspots>
+                </QuestObjective>
+            </Objectives>
+        </Quest>
+
+        <!-- Ending the Invasion! (Priest)-->
+        <!-- Ending the Invasion! (Rogue)-->
+        <!-- Ending the Invasion! (Warlock)-->
+        <!-- Ending the Invasion! (Warrior)-->
+        <!-- Ending the Invasion! (Hunter)-->
+        <!-- Ending the Invasion! (Druid + Shaman + DK most probably)-->
+
+<!-- Quest 10 : Report to Goldshire - Go to Marshal Dughan (240) -->
+
+        <!-- Report to Goldshire (Mage)-->
+        <!-- Report to Goldshire (Paladin)-->
+        <Quest>
+            <Name>Report to Goldshire</Name>
+            <Id>54</Id>
+            <ClassMask>2</ClassMask> <!-- Paladin -->
+            <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <MinLevel>1</MinLevel>
+            <MaxLevel>10</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>26390</int>
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Marshal McBride</Name>
+                <Entry>197</Entry>
+                <Position>
+                    <X>-8913.087</X>
+                    <Y>-137.4986</Y>
+                    <Z>80.85626</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Marshal Dughan</Name>
+                <Entry>240</Entry>
+                <Position>
+                  <X>-9465.521</X>
+                  <Y>74.00694</Y>
+                  <Z>56.59602</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+              <QuestObjective>
+                <Objective>MoveTo</Objective>
+                <MoveTo>
+                  <X>-9188.98</X>
+                  <Y>-120.2488</Y>
+                  <Z>71.22906</Z>
+                </MoveTo>
+              </QuestObjective>
+              <QuestObjective>
+                <Objective>MoveTo</Objective>
+                <MoveTo>
+                  <X>-9353.46</X>
+                  <Y>-42.33495</Y>
+                  <Z>64.84639</Z>
+                </MoveTo>
+              </QuestObjective>
+            </Objectives>
+        </Quest>
+
+        <!-- Report to Goldshire (Priest)-->
+        <!-- Report to Goldshire (Rogue)-->
+        <!-- Report to Goldshire (Warlock)-->
+        <!-- Report to Goldshire (Warrior)-->
+        <!-- Report to Goldshire (Hunter)-->
+        <!-- Report to Goldshire (Druid + Shaman + DK most probably)-->
+
+<!-- Other Quests -->
+
+        <!-- Fear No Evil (Mage)-->
+        <!-- Fear No Evil (Paladin)-->
+        <Quest>
+            <Name>Fear No Evil</Name>
+            <Id>28809</Id>
+            <MinLevel>2</MinLevel>
+            <MaxLevel>8</MaxLevel>
+            <NeedQuestCompletedId>
+                <int>28785</int> <!-- join the battle paladin -->
+            </NeedQuestCompletedId>
+            <PickUp>
+                <Name>Brother Paxton</Name>
+                <Entry>951</Entry>
+                <Position>
+                  <X>-8819.465</X>
+                  <Y>-149.8123</Y>
+                  <Z>81.20303</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Brother Paxton</Name>
+                <Entry>951</Entry>
+                <Position>
+                  <X>-8819.465</X>
+                  <Y>-149.8123</Y>
+                  <Z>81.20303</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            <QuestObjective>
+                <Objective>UseItem</Objective>
+                <UseItemId>65733</UseItemId>
+                <EntryAOE>50047</EntryAOE>
+                <Count>4</Count>
+                <WaitMsUseItem>2000</WaitMsUseItem>
+                <PositionUseItem>
+                  <X>-8751.833</X>
+                  <Y>-154.1666</Y>
+                  <Z>83.59311</Z>
+                </PositionUseItem>
+            </QuestObjective>
+            </Objectives>
+        </Quest>
+        <!-- Fear No Evil (Priest)-->
+        <!-- Fear No Evil (Rogue)-->
+        <!-- Fear No Evil (Warlock)-->
+        <!-- Fear No Evil (Warrior)-->
+        <!-- Fear No Evil (Hunter)-->
+        <!-- Fear No Evil (Druid + Shaman + DK most probably)-->
+
+        <Quest>
+            <Name>Extinguishing Hope</Name>
+            <Id>26391</Id>
+            <MinLevel>2</MinLevel>
+            <MaxLevel>8</MaxLevel>
+            <PickUp>
+                <Name>Milly Osworth</Name>
+                <Entry>9296</Entry>
+                <Position>
+                  <X>-8923.88</X>
+                  <Y>-135.8889</Y>
+                  <Z>81.02888</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Milly Osworth</Name>
+                <Entry>9296</Entry>
+                <Position>
+                  <X>-8923.88</X>
+                  <Y>-135.8889</Y>
+                  <Z>81.02888</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+            <QuestObjective>
+                <Objective>UseItem</Objective>
+                <UseItemId>58362</UseItemId>
+                <EntryAOE>42940</EntryAOE> <!-- Northshire Vineyards Fire Trigger  -->
+                <Count>10</Count> <!-- it's 8 but I put 10 for security raison because I found 1 Vineyards Fire Trigger bugged, the bot will stop as soon as quest is done anyway -->
+                <WaitMsUseItem>6000</WaitMsUseItem>
+                <PositionUseItem>
+                  <X>-9093.773</X>
+                  <Y>-335.1914</Y>
+                  <Z>73.45333</Z>
+                </PositionUseItem>
+            </QuestObjective>
+            </Objectives>
+        </Quest>
+
+        <Quest>
+            <Name>Rest and Relaxation</Name>
+            <Id>2158</Id>
+            <MinLevel>1</MinLevel>
+            <MaxLevel>10</MaxLevel>
+            <PickUp>
+                <Name>Falkhaan Isenstrider</Name>
+                <Entry>6774</Entry>
+                <Position>
+                  <X>-9044.558</X>
+                  <Y>-45.98166</Y>
+                  <Z>88.3374</Z>
+                </Position>
+            </PickUp>
+            <TurnIn>
+                <Name>Innkeeper Farley</Name>
+                <Entry>295</Entry>
+                <Position>
+                  <X>-9462.663</X>
+                  <Y>16.19151</Y>
+                  <Z>56.96306</Z>
+                </Position>
+            </TurnIn>
+            <Objectives>
+              <QuestObjective>
+                <Objective>MoveTo</Objective>
+                <MoveTo>
+                  <X>-9188.98</X>
+                  <Y>-120.2488</Y>
+                  <Z>71.22906</Z>
+                </MoveTo>
+              </QuestObjective>
+              <QuestObjective>
+                <Objective>MoveTo</Objective>
+                <MoveTo>
+                  <X>-9353.46</X>
+                  <Y>-42.33495</Y>
+                  <Z>64.84639</Z>
+                </MoveTo>
+              </QuestObjective>
+            </Objectives>
+        </Quest>
 
     </Quests>
     <Blackspots />
