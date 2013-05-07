@@ -63,7 +63,7 @@ public class Main : ICombatClass
             Logging.WriteFight("Loading combat system.");
             switch (ObjectManager.Me.WowClass)
             {
-                    #region DeathKnight Specialisation checking
+                #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
                     var BloodRites = new Spell("Blood Rites");
@@ -168,9 +168,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Mage Specialisation checking
+                #region Mage Specialisation checking
 
                 case WoWClass.Mage:
                     var MageArcaneSpell = new Spell("Arcane Blast");
@@ -275,9 +275,9 @@ public class Main : ICombatClass
                         break;
                     }
 
-                    #endregion
+                #endregion
 
-                    #region Warlock Specialisation checking
+                #region Warlock Specialisation checking
 
                 case WoWClass.Warlock:
                     var WarlockDemonologySpell = new Spell("Summon Felguard");
@@ -381,9 +381,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Druid Specialisation checking
+                #region Druid Specialisation checking
 
                 case WoWClass.Druid:
                     var DruidFeralSpell = new Spell("Tiger's Fury");
@@ -507,9 +507,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Paladin Specialisation checking
+                #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
                     var PaladinRetributionSpell = new Spell("Templar's Verdict");
@@ -604,9 +604,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Shaman Specialisation checking
+                #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
                     var ShamanEnhancementSpell = new Spell("Lava Lash");
@@ -709,9 +709,9 @@ public class Main : ICombatClass
                         break;
                     }
 
-                    #endregion
+                #endregion
 
-                    #region Priest Specialisation checking
+                #region Priest Specialisation checking
 
                 case WoWClass.Priest:
                     var PriestShadowSpell = new Spell("Mind Flay");
@@ -814,9 +814,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Rogue Specialisation checking
+                #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
                     var RogueCombatSpell = new Spell("Blade Flurry");
@@ -916,9 +916,9 @@ public class Main : ICombatClass
                         break;
                     }
 
-                    #endregion
+                #endregion
 
-                    #region Warrior Specialisation checking
+                #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
                     var WarriorArmsSpell = new Spell("Mortal Strike");
@@ -1018,9 +1018,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Hunter Specialisation checking
+                #region Hunter Specialisation checking
 
                 case WoWClass.Hunter:
                     var HunterMarksmanshipSpell = new Spell("Aimed Shot");
@@ -1124,9 +1124,9 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
-                    #region Monk Specialisation checking
+                #region Monk Specialisation checking
 
                 case WoWClass.Monk:
                     var MonkBrewmasterSpell = new Spell("Dizzying Haze");
@@ -1226,7 +1226,7 @@ public class Main : ICombatClass
                     }
                     break;
 
-                    #endregion
+                #endregion
 
                 default:
                     Dispose();
@@ -1323,7 +1323,7 @@ public class DeathknightApprentice
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance < 30)
                                 Combat();
                         }
 
@@ -1780,13 +1780,13 @@ public class DeathknightBlood
                             if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -2137,10 +2137,10 @@ public class DeathknightBlood
             Berserking.Launch();
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        
+
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        
+
         if (mySettings.UseBloodTapForDPS && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
             BloodTap.Launch();
 
@@ -2178,7 +2178,7 @@ public class DeathknightBlood
             DeathCoil.Launch();
             return;
         }
-        
+
         if (mySettings.UsePlagueLeech && mySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
                  && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && BloodPlagueTimer.IsReady && BloodPlague.TargetHaveBuff && FrostFeverTimer.IsReady && FrostFever.TargetHaveBuff)
         {
@@ -2212,21 +2212,21 @@ public class DeathknightBlood
             BloodPlagueTimer = new Timer(1000*27);
             FrostFeverTimer = new Timer(1000*27);
         }
-        
+
         if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable
                  && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && (BloodPlagueTimer.IsReady || !BloodPlague.TargetHaveBuff))
         {
             PlagueStrike.Launch();
             BloodPlagueTimer = new Timer(1000*27);
         }
-        
+
         if (mySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && IcyTouch.IsSpellUsable
                  && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && (FrostFeverTimer.IsReady || !FrostFever.TargetHaveBuff))
         {
             IcyTouch.Launch();
             FrostFeverTimer = new Timer(1000*27);
         }
-        
+
         if (ObjectManager.GetNumberAttackPlayer() > 1 || ObjectManager.Me.HaveBuff(81141))
         {
             if (mySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsHostileDistanceGood && BloodBoil.IsSpellUsable
@@ -2623,13 +2623,13 @@ public class DeathknightUnholy
                             if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -2735,7 +2735,7 @@ public class DeathknightUnholy
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (mySettings.UseRaiseDead && RaiseDead.KnownSpell && RaiseDead.IsSpellUsable && Fight.InFight
+        if (mySettings.UseRaiseDead && RaiseDead.KnownSpell && RaiseDead.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 0
             && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
@@ -2970,25 +2970,25 @@ public class DeathknightUnholy
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        
+
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
             Berserking.Launch();
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        
+
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        
+
         if (mySettings.UseBloodTap && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
             BloodTap.Launch();
-        
+
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        
+
         if (mySettings.UseUnholyFrenzy && UnholyFrenzy.KnownSpell && ObjectManager.Target.GetDistance < 30 && UnholyFrenzy.IsSpellUsable)
             UnholyFrenzy.Launch();
 
@@ -3015,7 +3015,7 @@ public class DeathknightUnholy
             DeathCoil.Launch();
             return;
         }
-        
+
         if (mySettings.UsePlagueLeech && mySettings.UseOutbreak && PlagueLeech.KnownSpell && Outbreak.KnownSpell && PlagueLeech.IsHostileDistanceGood
                  && Outbreak.IsSpellUsable && PlagueLeech.IsSpellUsable && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff)
         {
@@ -3033,7 +3033,7 @@ public class DeathknightUnholy
         else if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable
                  && !Outbreak.IsSpellUsable && !UnholyBlight.IsSpellUsable && (!BloodPlague.TargetHaveBuff || !FrostFever.TargetHaveBuff))
             PlagueStrike.Launch();
-        
+
         if (mySettings.UsePestilence && (!RoilingBlood.KnownSpell || !mySettings.UseBloodBoil) && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood && Pestilence.IsSpellUsable
                  && FrostFever.TargetHaveBuff && BloodPlague.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2)
         {
@@ -3041,7 +3041,7 @@ public class DeathknightUnholy
             PestilenceTimer = new Timer(1000 * 30);
             return;
         }
-        
+
         if (mySettings.UseDarkTransformation && DarkTransformationTimer.IsReady && DT == 1)
         {
             if (mySettings.UseDeathCoil && DeathCoil.IsSpellUsable && DeathCoil.IsHostileDistanceGood && DeathCoil.KnownSpell)
@@ -3423,13 +3423,13 @@ public class DeathknightFrost
                             if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -4563,7 +4563,7 @@ public class MageArcane
             return;
 
         if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
@@ -4665,13 +4665,13 @@ public class MageArcane
 
     private void DPSBurst()
     {
-        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 30 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
+        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
             && ObjectManager.Target.InCombat && ArcanePower.HaveBuff && ObjectManager.Me.BuffStack(114664) > 3)
         {
             AlterTime.Launch();
             AlterTimeTimer = new Timer(1000 * 4);
         }
-        else if (mySettings.UseAlterTime && mySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 30 && AlterTime.IsSpellUsable
+        else if (mySettings.UseAlterTime && mySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable
                      && AlterTime.HaveBuff && ObjectManager.Target.InCombat && ObjectManager.Me.BuffStack(114664) > 3 && AlterTimeTimer.IsReady)
         {
             if (ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneBarrage.IsSpellUsable)
@@ -4682,14 +4682,14 @@ public class MageArcane
             return;
         }
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
@@ -4697,35 +4697,35 @@ public class MageArcane
             TrinketTwoTimer = new Timer(1000*60*2);
         }
 
-        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
 
-        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
 
-        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
 
-        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
 
-        if (mySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 40 && ArcanePower.IsSpellUsable)
+        if (mySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArcanePower.IsSpellUsable)
             ArcanePower.Launch();
 
-        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
 
-        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
             && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
             && !ObjectManager.Me.HaveBuff(95809))
         {
@@ -4892,7 +4892,7 @@ public class MageArcane
             ConfigWinForm(new Point(500, 400), "Mage Arcane Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -5200,7 +5200,7 @@ public class MageFrost
             return;
 
         if (mySettings.UseSummonWaterElemental && SummonWaterElemental.IsSpellUsable && SummonWaterElemental.KnownSpell
-            && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && Fight.InFight)
+            && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonWaterElemental.Launch();
@@ -5373,7 +5373,7 @@ public class MageFrost
             return;
 
         if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
@@ -5468,18 +5468,18 @@ public class MageFrost
 
     private void DPSBurst()
     {
-        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 30 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
+        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
             && ObjectManager.Target.InCombat && IcyVeins.HaveBuff && ObjectManager.Me.HaveBuff(57761) && ObjectManager.Me.BuffStack(44544) > 1)
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
@@ -5487,15 +5487,15 @@ public class MageFrost
             TrinketTwoTimer = new Timer(1000*60*2);
         }
 
-        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
 
-        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
 
-        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
@@ -5506,21 +5506,21 @@ public class MageFrost
                  && mySettings.UseFrozenOrb)
             FrozenOrb.Launch();
 
-        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
 
-        if (mySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 40 && IcyVeins.IsSpellUsable
+        if (mySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 41 && IcyVeins.IsSpellUsable
                  && !TimeWarp.HaveBuff)
             IcyVeins.Launch();
 
-        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
 
-        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
                 && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
                 && !ObjectManager.Me.HaveBuff(95809))
         {
@@ -5698,7 +5698,7 @@ public class MageFrost
             ConfigWinForm(new Point(500, 400), "Mage Frost Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
@@ -6171,7 +6171,7 @@ public class MageFire
             return;
 
         if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
@@ -6266,18 +6266,18 @@ public class MageFire
 
     private void DPSBurst()
     {
-        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 30 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
+        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
             && ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
@@ -6285,25 +6285,25 @@ public class MageFire
             TrinketTwoTimer = new Timer(1000*60*2);
         }
 
-        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
 
-        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
 
-        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
 
-        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116257))
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 40 && Evocation.IsSpellUsable
+        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
                  && !ObjectManager.Me.HaveBuff(116014))
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
 
@@ -6311,10 +6311,10 @@ public class MageFire
                  && ObjectManager.Target.HaveBuff(12654))
             Combustion.Launch();
 
-        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 40 && MirrorImage.IsSpellUsable)
+        if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
             MirrorImage.Launch();
 
-        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 40
+        if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
                 && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
                 && !ObjectManager.Me.HaveBuff(95809))
         {
@@ -6484,7 +6484,7 @@ public class MageFire
             ConfigWinForm(new Point(500, 400), "Mage Fire Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
@@ -6632,7 +6632,6 @@ public class WarlockDemonology
     private readonly Spell SummonVoidwalker = new Spell("Summon Voidwalker");
     private readonly Spell TouchofChaos = new Spell("Touch of Chaos");
     private readonly Spell VoidRay = new Spell("Void Ray");
-    private Timer CorruptionTimer = new Timer(0);
     private Timer DoomTimer = new Timer(0);
 
     #endregion
@@ -6693,8 +6692,7 @@ public class WarlockDemonology
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && mySettings.UseLowCombat)
+                            if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 41)
@@ -6724,11 +6722,10 @@ public class WarlockDemonology
     private void Pull()
     {
         //Blizzard API calls for Doom using the Corruption Function
-        if (Corruption.IsSpellUsable && Corruption.KnownSpell && Corruption.IsHostileDistanceGood
-            && mySettings.UseDoom && ObjectManager.Me.DemonicFury > 199)
+        if (mySettings.UseDoom && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+            && ObjectManager.Me.DemonicFury > 199)
         {
-            if (Metamorphosis.IsSpellUsable && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff
-                && mySettings.UseMetamorphosis)
+            if (mySettings.UseMetamorphosis && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff && Metamorphosis.IsSpellUsable)
             {
                 Metamorphosis.Launch();
                 Thread.Sleep(400);
@@ -6750,34 +6747,31 @@ public class WarlockDemonology
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        DefenseCycle();
+        if (OnCD.IsReady)
+            DefenseCycle();
         Heal();
 
-        if (LifeTap.KnownSpell && LifeTap.IsSpellUsable &&
-            ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage
-            && mySettings.UseLifeTap)
+        if (mySettings.UseLifeTap && LifeTap.KnownSpell && LifeTap.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage)
         {
             LifeTap.Launch();
             return;
         }
+        else if (mySettings.UseFelFlame && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable)
+        {
+            FelFlame.Launch();
+            return;
+        }
         else
         {
-            if (FelFlame.IsSpellUsable && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood
-                && mySettings.UseFelFlame)
+            if (mySettings.UseHellfire && Hellfire.KnownSpell && Hellfire.IsHostileDistanceGood && Hellfire.IsSpellUsable)
             {
-                FelFlame.Launch();
+                Hellfire.Launch();
+                Thread.Sleep(200);
+                while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
+                    Thread.Sleep(200);
                 return;
             }
-        }
-
-        if (Hellfire.IsSpellUsable && Hellfire.KnownSpell && Hellfire.IsHostileDistanceGood
-            && mySettings.UseHellfire)
-        {
-            Hellfire.Launch();
-            Thread.Sleep(200);
-            while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-                Thread.Sleep(200);
-            return;
         }
     }
 
@@ -6786,12 +6780,17 @@ public class WarlockDemonology
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        if (OnCD.IsReady)
+        DPSCycle();
+        if (OnCD.IsReady && (ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage))
             DefenseCycle();
-        DPSCycle();
-        Heal();
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
+            Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -6803,29 +6802,26 @@ public class WarlockDemonology
 
         Pet();
 
-        if (DarkIntent.IsSpellUsable && DarkIntent.KnownSpell && !DarkIntent.HaveBuff
-            && mySettings.UseDarkIntent)
+        if (mySettings.UseDarkIntent && DarkIntent.KnownSpell && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
         {
             DarkIntent.Launch();
             return;
         }
-        else if (SoulLink.IsSpellUsable && SoulLink.KnownSpell && !SoulLink.HaveBuff
-                 && mySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        else if (mySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             SoulLink.Launch();
             return;
         }
-        else if (Soulstone.IsSpellUsable && Soulstone.KnownSpell && !Soulstone.HaveBuff
-                 && mySettings.UseSoulstone)
+        else if (mySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
         {
             Soulstone.Launch();
             return;
         }
         else
         {
-            if (CreateHealthstone.IsSpellUsable && CreateHealthstone.KnownSpell &&
-                ItemsManager.GetItemCountByIdLUA(5512) == 0
-                && mySettings.UseCreateHealthstone)
+            if (mySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
+                && ItemsManager.GetItemCountByIdLUA(5512) == 0)
             {
                 Logging.WriteFight(" - Create Healthstone - ");
                 CreateHealthstone.Launch();
@@ -6837,8 +6833,8 @@ public class WarlockDemonology
 
     private void Pet()
     {
-        if (HealthFunnel.IsSpellUsable && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0
-            && mySettings.UseHealthFunnel && ObjectManager.Pet.HealthPercent < 50)
+        if (mySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable
+            && ObjectManager.Pet.HealthPercent < 50)
         {
             HealthFunnel.Launch();
             while (ObjectManager.Me.IsCast)
@@ -6849,42 +6845,41 @@ public class WarlockDemonology
             }
         }
 
-        if (SummonFelhunter.IsSpellUsable && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && Fight.InFight
-            && mySettings.UseSummonFelhunter && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonFelhunter.Launch();
         }
-        else if (SummonFelguard.IsSpellUsable && SummonFelguard.KnownSpell && !GrimoireofSacrifice.HaveBuff && Fight.InFight
-                 && mySettings.UseSummonFelguard && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonFelguard && SummonFelguard.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelguard.IsSpellUsable
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonFelguard.Launch();
         }
-        else if (SummonImp.IsSpellUsable && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && Fight.InFight
-                 && mySettings.UseSummonImp && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonImp.Launch();
         }
-        else if (SummonVoidwalker.IsSpellUsable && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && Fight.InFight
-                 && mySettings.UseSummonVoidwalker && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonVoidwalker.Launch();
         }
-        else if (SummonSuccubus.IsSpellUsable && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && Fight.InFight
-                 && mySettings.UseSummonSuccubus && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Launch();
         }
+
         Thread.Sleep(200);
-        if (GrimoireofSacrifice.IsSpellUsable && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff
-            && mySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-        {
+        if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
             GrimoireofSacrifice.Launch();
-        }
     }
 
     private void AvoidMelee()
@@ -6909,47 +6904,42 @@ public class WarlockDemonology
 
     private void DefenseCycle()
     {
-        if (UnendingResolve.IsSpellUsable && UnendingResolve.KnownSpell
-            && mySettings.UseUnendingResolve &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage)
+        if (mySettings.UseUnendingResolve && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable 
+            && ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage)
         {
             UnendingResolve.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (HowlofTerror.IsSpellUsable && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseHowlofTerror &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
+        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (DarkBargain.IsSpellUsable && DarkBargain.KnownSpell
-                 && mySettings.UseDarkBargain && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
+        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (SacrificialPact.IsSpellUsable && SacrificialPact.KnownSpell
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
-                 && mySettings.UseSacrificialPact &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage)
+        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (Shadowfury.IsSpellUsable && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood
-                 && mySettings.UseShadowfury && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
+        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
@@ -6957,9 +6947,7 @@ public class WarlockDemonology
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
+            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
             {
                 Stoneform.Launch();
                 OnCD = new Timer(1000*8);
@@ -6973,47 +6961,42 @@ public class WarlockDemonology
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
-            && mySettings.UseArcaneTorrentForResource)
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (DarkRegeneration.IsSpellUsable && DarkRegeneration.KnownSpell
-                 && mySettings.UseDarkRegeneration &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
+        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage &&
-                 ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady)
+        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (MortalCoil.IsSpellUsable && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood
-                 && mySettings.UseMortalCoil &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
+        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
         else
         {
-            if (DrainLife.IsSpellUsable && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood
-                && mySettings.UseDrainLife && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
+            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
             {
                 DrainLife.Launch();
                 while (ObjectManager.Me.IsCast)
@@ -7025,26 +7008,24 @@ public class WarlockDemonology
 
     private void Decast()
     {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (TwilightWard.IsSpellUsable && TwilightWard.KnownSpell &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage
-                 && mySettings.UseTwilightWard && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
         else
         {
-            if (CommandDemon.IsSpellUsable && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 40
-                && mySettings.UseSummonFelhunter && ObjectManager.Target.IsCast &&
-                ObjectManager.Target.IsTargetingMe
-                && mySettings.UseCommandDemon)
+            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
             {
                 CommandDemon.Launch();
                 return;
@@ -7054,68 +7035,52 @@ public class WarlockDemonology
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+
+        if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-                 && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
-        {
+
+        if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
+            && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
             DarkSoul.Launch();
-            return;
-        }
-        else if (SummonDoomguard.KnownSpell && SummonDoomguard.IsSpellUsable
-                 && mySettings.UseSummonDoomguard && SummonDoomguard.IsHostileDistanceGood)
-        {
+
+        if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
             SummonDoomguard.Launch();
-            return;
-        }
-        else if (SummonInfernal.KnownSpell && SummonInfernal.IsSpellUsable
-                 && mySettings.UseSummonInfernal && SummonInfernal.IsHostileDistanceGood)
-        {
+        else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-            return;
-        }
-        else if (ArchimondesVengeance.KnownSpell && ArchimondesVengeance.IsSpellUsable
-                 && mySettings.UseArchimondesVengeance)
-        {
+
+        if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
             ArchimondesVengeance.Launch();
-            return;
-        }
-        else
+
+        if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
-            if (GrimoireofService.KnownSpell && GrimoireofService.IsSpellUsable
-                && mySettings.UseGrimoireofService && ObjectManager.Target.GetDistance < 40)
-            {
-                GrimoireofService.Launch();
-                return;
-            }
+            GrimoireofService.Launch();
+            return;
         }
     }
 
@@ -7125,94 +7090,86 @@ public class WarlockDemonology
         {
             if (ObjectManager.Me.DemonicFury > 199)
             {
-                if (Corruption.KnownSpell && Corruption.IsSpellUsable && Corruption.IsHostileDistanceGood
-                    && mySettings.UseCorruption)
-                {
+                if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
                     Corruption.Launch();
-                    CorruptionTimer = new Timer(1000*20);
-                }
 
                 if (mySettings.UseMetamorphosis)
                     MetamorphosisCombat();
-                return;
             }
         }
 
         if (Metamorphosis.HaveBuff)
             MetamorphosisCombat();
 
-        if (CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable && mySettings.UseCurseoftheElements
-            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff)
+        if (mySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && !CurseoftheElements.TargetHaveBuff && CurseoftheElements.IsSpellUsable 
+            && CurseoftheElements.IsHostileDistanceGood)
         {
             CurseoftheElements.Launch();
             return;
         }
-        else if (CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable &&
-                 mySettings.UseCurseofEnfeeblement
-                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff &&
-                 !mySettings.UseCurseoftheElements)
+        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
+                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage < 75 && LifeTap.KnownSpell && LifeTap.IsSpellUsable
-                 && mySettings.UseLifeTap)
+        else if (mySettings.UseLifeTap && LifeTap.KnownSpell && ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage && LifeTap.IsSpellUsable)
         {
             LifeTap.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.IsSpellUsable && HarvestLife.KnownSpell
-                 && mySettings.UseHarvestLife && HarvestLife.IsHostileDistanceGood)
+        else if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable
+                 && HarvestLife.IsHostileDistanceGood)
         {
             HarvestLife.Launch();
             while (ObjectManager.Me.IsCast)
-            {
                 Thread.Sleep(200);
-            }
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && CommandDemon.IsSpellUsable && CommandDemon.KnownSpell
-                 && CommandDemon.IsHostileDistanceGood && ObjectManager.Pet.Guid == 207 && ObjectManager.Pet.Health > 0
-                 && mySettings.UseCommandDemon)
+        else if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable
+                 && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
+        {
+            DrainLife.Launch();
+            while (ObjectManager.Me.IsCast)
+                Thread.Sleep(200);
+            return;
+        }
+        else if (mySettings.UseCommandDemon && mySettings.UseSummonFelguard && CommandDemon.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && CommandDemon.IsSpellUsable
+                 && CommandDemon.IsHostileDistanceGood && ObjectManager.Pet.Health > 0)
         {
             CommandDemon.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Hellfire.IsSpellUsable && Hellfire.KnownSpell
-                 && mySettings.UseHellfire && ObjectManager.Target.GetDistance < 20
-                 && (!HarvestLife.KnownSpell || !mySettings.UseHarvestLife))
+        else if (mySettings.UseHellfire && (!HarvestLife.KnownSpell || !mySettings.UseHarvestLife) && ObjectManager.GetNumberAttackPlayer() > 4 
+                 && Hellfire.KnownSpell && ObjectManager.Target.GetDistance < 20 && Hellfire.IsSpellUsable)
         {
             Hellfire.Launch();
             Thread.Sleep(200);
             while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-            {
                 Thread.Sleep(200);
-            }
             return;
         }
-        else if (Corruption.KnownSpell && Corruption.IsSpellUsable && Corruption.IsHostileDistanceGood
-                 && mySettings.UseCorruption && (!Corruption.TargetHaveBuff || CorruptionTimer.IsReady))
+        else if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+                 && !Corruption.TargetHaveBuff)
         {
             Corruption.Launch();
-            CorruptionTimer = new Timer(1000*20);
             return;
         }
-        else if (HandofGuldan.KnownSpell && HandofGuldan.IsSpellUsable && HandofGuldan.IsHostileDistanceGood
-                 && mySettings.UseHandofGuldan && !ObjectManager.Target.HaveBuff(47960))
+        else if (mySettings.UseHandofGuldan && HandofGuldan.KnownSpell && HandofGuldan.IsHostileDistanceGood && HandofGuldan.IsSpellUsable
+                 && !ObjectManager.Target.HaveBuff(47960))
         {
             HandofGuldan.Launch();
             return;
         }
-        else if (SoulFire.KnownSpell && SoulFire.IsSpellUsable && SoulFire.IsHostileDistanceGood
-                 && mySettings.UseSoulFire && ObjectManager.Me.HaveBuff(122355))
+        else if (mySettings.UseSoulFire && SoulFire.KnownSpell && SoulFire.IsHostileDistanceGood && SoulFire.IsSpellUsable
+                 && ObjectManager.Me.HaveBuff(122355))
         {
             SoulFire.Launch();
             return;
         }
         else
         {
-            if (ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-                && mySettings.UseShadowBolt)
+            if (mySettings.UseShadowBolt && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
             {
                 ShadowBolt.Launch();
                 return;
@@ -7224,7 +7181,7 @@ public class WarlockDemonology
     {
         while (ObjectManager.Me.DemonicFury > 100)
         {
-            if (Metamorphosis.KnownSpell && Metamorphosis.IsSpellUsable && !Metamorphosis.HaveBuff)
+            if (mySettings.UseMetamorphosis && Metamorphosis.KnownSpell && !Metamorphosis.HaveBuff && Metamorphosis.IsSpellUsable)
             {
                 Metamorphosis.Launch();
                 Thread.Sleep(700);
@@ -7232,42 +7189,40 @@ public class WarlockDemonology
 
             if (ObjectManager.GetNumberAttackPlayer() > 2)
             {
-                if (Hellfire.KnownSpell && Hellfire.IsSpellUsable && Metamorphosis.HaveBuff
-                    && mySettings.UseImmolationAura && ObjectManager.Target.GetDistance < 20)
+                if (mySettings.UseImmolationAura && Hellfire.KnownSpell && Metamorphosis.HaveBuff && Hellfire.IsSpellUsable
+                    && ObjectManager.Target.GetDistance < 20)
                 {
                     Hellfire.Launch();
                     Thread.Sleep(200);
                 }
-                else if (CarrionSwarm.IsSpellUsable && CarrionSwarm.KnownSpell
-                         && Metamorphosis.HaveBuff && ObjectManager.Target.GetDistance < 20)
+                else if (mySettings.UseCarrionSwarm && CarrionSwarm.KnownSpell && Metamorphosis.HaveBuff && CarrionSwarm.IsSpellUsable
+                         && ObjectManager.Target.GetDistance < 20)
                 {
                     CarrionSwarm.Launch();
                     Thread.Sleep(200);
                 }
                 else
                 {
-                    if (FelFlame.IsSpellUsable && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood
-                        && mySettings.UseVoidRay && Metamorphosis.HaveBuff)
+                    if (mySettings.UseVoidRay && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable
+                        && Metamorphosis.HaveBuff)
                     {
                         FelFlame.Launch();
                         Thread.Sleep(200);
                     }
                 }
             }
-
             else
             {
-                if (Corruption.IsHostileDistanceGood && Metamorphosis.HaveBuff
-                    && Corruption.KnownSpell && Corruption.IsSpellUsable && mySettings.UseDoom
-                    && (DoomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
+                if (mySettings.UseDoom && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Metamorphosis.HaveBuff
+                    && Corruption.IsSpellUsable && (DoomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
                 {
                     Corruption.Launch();
                     DoomTimer = new Timer(1000*60);
                     Thread.Sleep(200);
                 }
 
-                if (ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-                    && mySettings.UseTouchofChaos && Metamorphosis.HaveBuff)
+                if (mySettings.UseTouchofChaos && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
+                    && Metamorphosis.HaveBuff)
                 {
                     ShadowBolt.Launch();
                     Thread.Sleep(200);
@@ -7331,7 +7286,7 @@ public class WarlockDemonology
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
         public bool UseHandofGuldan = true;
-        public bool UseHarvestLife = true;
+        public bool UseHarvestLife = false;
         public bool UseHealthFunnel = true;
         public bool UseHellfire = true;
         public bool UseHowlofTerror = true;
@@ -7379,7 +7334,7 @@ public class WarlockDemonology
             ConfigWinForm(new Point(500, 400), "Warlock Demonology Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
@@ -7584,8 +7539,7 @@ public class WarlockDestruction
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && mySettings.UseLowCombat)
+                            if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 41)
@@ -7613,9 +7567,8 @@ public class WarlockDestruction
 
     private void Pull()
     {
-        if (CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable
-            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff
-            && mySettings.UseCurseoftheElements)
+        if (mySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable
+            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff)
         {
             CurseoftheElements.Launch();
             return;
@@ -7627,35 +7580,19 @@ public class WarlockDestruction
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        DefenseCycle();
+        if (OnCD.IsReady)
+            DefenseCycle();
         Heal();
 
         // Blizzard API Calls for Incinerate using Shadow Bolt Function
-        if (ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-            && mySettings.UseIncinerate)
+        if (mySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
         {
             ShadowBolt.Launch();
             return;
         }
-
-        if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
-        {
-            if (ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-                && mySettings.UseIncinerate)
-            {
-                ShadowBolt.Launch();
-                return;
-            }
-        }
-
-        if (RainofFire.IsSpellUsable && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood
-            && mySettings.UseRainofFire)
+        else if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(200);
-            }
             return;
         }
     }
@@ -7665,12 +7602,18 @@ public class WarlockDestruction
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        if (OnCD.IsReady)
+        DPSCycle();
+        if (OnCD.IsReady && (ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage))
             DefenseCycle();
-        DPSCycle();
-        Heal();
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
+            Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -7682,96 +7625,84 @@ public class WarlockDestruction
 
         Pet();
 
-        if (!DarkIntent.HaveBuff && DarkIntent.KnownSpell && DarkIntent.IsSpellUsable
-            && mySettings.UseDarkIntent)
+        if (mySettings.UseDarkIntent && DarkIntent.KnownSpell && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
         {
             DarkIntent.Launch();
             return;
         }
-        else if (!SoulLink.HaveBuff && SoulLink.KnownSpell && SoulLink.IsSpellUsable
-                 && mySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        else if (mySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             SoulLink.Launch();
             return;
         }
-        if (!Soulstone.HaveBuff && Soulstone.KnownSpell && Soulstone.IsSpellUsable
-            && mySettings.UseSoulstone)
+        else if (mySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
         {
             Soulstone.Launch();
             return;
         }
         else
         {
-            if (ItemsManager.GetItemCountByIdLUA(5512) == 0 && CreateHealthstone.KnownSpell
-                && CreateHealthstone.IsSpellUsable && mySettings.UseCreateHealthstone)
+            if (mySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
+                && ItemsManager.GetItemCountByIdLUA(5512) == 0)
             {
                 Logging.WriteFight(" - Create Healthstone - ");
-                Thread.Sleep(200);
                 CreateHealthstone.Launch();
-                Thread.Sleep(200);
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
             }
         }
     }
 
     private void Pet()
     {
-        if (HealthFunnel.KnownSpell)
+        if (mySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable
+            && ObjectManager.Pet.HealthPercent < 50)
         {
-            if (ObjectManager.Pet.HealthPercent > 0 && ObjectManager.Pet.HealthPercent < 50
-                && HealthFunnel.IsSpellUsable && HealthFunnel.KnownSpell && mySettings.UseHealthFunnel)
+            HealthFunnel.Launch();
+            while (ObjectManager.Me.IsCast)
             {
-                HealthFunnel.Launch();
-                while (ObjectManager.Me.IsCast)
-                {
-                    if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
-                        break;
-                    Thread.Sleep(100);
-                }
+                if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
+                    break;
+                Thread.Sleep(100);
             }
         }
 
-        if (mySettings.UseFlamesofXoroth && FlamesofXoroth.KnownSpell && FlamesofXoroth.IsSpellUsable && Fight.InFight
+        if (mySettings.UseFlamesofXoroth && FlamesofXoroth.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 0 && FlamesofXoroth.IsSpellUsable
             && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
         {
             FlamesofXoroth.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && SummonFelhunter.IsSpellUsable && Fight.InFight
-                 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonFelhunter.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && SummonImp.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonImp.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell &&
-                 SummonVoidwalker.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonVoidwalker.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell &&
-                 SummonSuccubus.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
+
         Thread.Sleep(200);
-        if (GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
-            && mySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-        {
+        if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
             GrimoireofSacrifice.Launch();
-        }
     }
 
     private void AvoidMelee()
@@ -7796,44 +7727,42 @@ public class WarlockDestruction
 
     private void DefenseCycle()
     {
-        if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseUnendingResolve
-            && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable)
+        if (mySettings.UseUnendingResolve && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable 
+            && ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage)
         {
             UnendingResolve.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseHowlofTerror
-                 && HowlofTerror.KnownSpell && HowlofTerror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && mySettings.UseDarkBargain
-                 && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable)
+        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && mySettings.UseSacrificialPact
-                 && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
                  && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseShadowfury
-                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
-            Shadowfury.Launch();
+            SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
@@ -7841,9 +7770,7 @@ public class WarlockDestruction
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
+            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
             {
                 Stoneform.Launch();
                 OnCD = new Timer(1000*8);
@@ -7857,58 +7784,51 @@ public class WarlockDestruction
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
-            && mySettings.UseArcaneTorrentForResource)
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable &&
-                 EmberTap.KnownSpell
-                 && mySettings.UseEmberTap)
+        else if (mySettings.UseEmberTap && EmberTap.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
         {
             EmberTap.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && DarkRegeneration.IsSpellUsable &&
-                 DarkRegeneration.KnownSpell
-                 && mySettings.UseDarkRegeneration)
+        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady)
+        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 85 && MortalCoil.IsSpellUsable && MortalCoil.KnownSpell
-                 && mySettings.UseMortalCoil && MortalCoil.IsHostileDistanceGood)
+        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 70 && DrainLife.KnownSpell
-                && mySettings.UseDrainLife && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable)
+            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
             {
                 DrainLife.Launch();
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
                 return;
             }
         }
@@ -7916,23 +7836,24 @@ public class WarlockDestruction
 
     private void Decast()
     {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable)
+        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseSummonFelhunter
-                && CommandDemon.IsSpellUsable && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 40)
+            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
             {
                 CommandDemon.Launch();
                 return;
@@ -7942,175 +7863,148 @@ public class WarlockDestruction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+
+        if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-                 && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
-        {
+
+        if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
+            && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
             DarkSoul.Launch();
-            return;
-        }
-        else if (SummonDoomguard.KnownSpell && SummonDoomguard.IsSpellUsable
-                 && mySettings.UseSummonDoomguard && SummonDoomguard.IsHostileDistanceGood)
-        {
+
+        if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
             SummonDoomguard.Launch();
-            return;
-        }
-        else if (SummonInfernal.KnownSpell && SummonInfernal.IsSpellUsable
-                 && mySettings.UseSummonInfernal && SummonInfernal.IsHostileDistanceGood)
-        {
+        else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-            return;
-        }
-        else if (ArchimondesVengeance.KnownSpell && ArchimondesVengeance.IsSpellUsable
-                 && mySettings.UseArchimondesVengeance)
-        {
+
+        if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
             ArchimondesVengeance.Launch();
-            return;
-        }
-        else
+
+        if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
-            if (GrimoireofService.KnownSpell && GrimoireofService.IsSpellUsable
-                && mySettings.UseGrimoireofService && ObjectManager.Target.GetDistance < 40)
-            {
-                GrimoireofService.Launch();
-                return;
-            }
+            GrimoireofService.Launch();
+            return;
         }
     }
 
     private void DPSCycle()
     {
-        if (CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable && mySettings.UseCurseoftheElements
-            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff)
+        if (mySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
+            && !CurseoftheElements.TargetHaveBuff)
         {
             CurseoftheElements.Launch();
             return;
         }
-        else if (CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable &&
-                 mySettings.UseCurseofEnfeeblement
-                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff &&
-                 !mySettings.UseCurseoftheElements)
+        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsHostileDistanceGood && CurseofEnfeeblement.IsSpellUsable
+                 && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
         }
+
+        if (ObjectManager.GetNumberAttackPlayer() > 4)
+        {
             // Blizzard API Calls for Immolate using Corruption Function
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && FireandBrimstone.IsSpellUsable &&
-                 FireandBrimstone.KnownSpell
-                 && !ObjectManager.Target.HaveBuff(348) && Corruption.IsSpellUsable && Corruption.KnownSpell &&
-                 Corruption.IsHostileDistanceGood
-                 && mySettings.UseFireandBrimstone && mySettings.UseImmolate)
-        {
-            FireandBrimstone.Launch();
-            Thread.Sleep(200);
-            Corruption.Launch();
-            ImmolateTimer = new Timer(1000*12);
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && ObjectManager.Target.HaveBuff(348)
-                 && mySettings.UseHarvestLife && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable
-                 && HarvestLife.IsHostileDistanceGood)
-        {
-            HarvestLife.Launch();
-            while (ObjectManager.Me.IsCast)
+            if (mySettings.UseFireandBrimstone && mySettings.UseImmolate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable 
+            && !ObjectManager.Target.HaveBuff(348) && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
             {
+                FireandBrimstone.Launch();
                 Thread.Sleep(200);
-            }
-            return;
-        }
-            // Blizzard API Calls for Incinerate using Shadow Bolt Function
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && FireandBrimstone.IsSpellUsable &&
-                 FireandBrimstone.KnownSpell
-                 && ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-                 && mySettings.UseFireandBrimstone && mySettings.UseIncinerate)
-        {
-            FireandBrimstone.Launch();
-            Thread.Sleep(200);
-            ShadowBolt.Launch();
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && RainofFire.IsSpellUsable &&
-                 RainofFire.KnownSpell
-                 && RainofFire.IsHostileDistanceGood && mySettings.UseRainofFire)
-        {
-            SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-            while (ObjectManager.Me.IsCast)
-            {
-                Thread.Sleep(200);
-            }
-            return;
-        }
-        else if (Conflagrate.KnownSpell && Conflagrate.IsSpellUsable && Conflagrate.IsHostileDistanceGood
-                 && mySettings.UseConflagrate)
-        {
-            Conflagrate.Launch();
-            return;
-        }
-        else
-        {
-            if (Corruption.IsSpellUsable && Corruption.KnownSpell && Corruption.IsHostileDistanceGood
-                && mySettings.UseImmolate && !ObjectManager.Target.HaveBuff(348) ||
-                ImmolateTimer.IsReady)
-            {
                 Corruption.Launch();
                 ImmolateTimer = new Timer(1000*12);
                 return;
             }
-        }
-
-        if (ObjectManager.Target.HealthPercent < 20)
-        {
-            if (Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
-                && !ObjectManager.Me.HaveBuff(117828) && mySettings.UseShadowburn)
+            else if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && HarvestLife.KnownSpell 
+                 && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
             {
-                Shadowburn.Launch();
+                HarvestLife.Launch();
+                while (ObjectManager.Me.IsCast)
+                    Thread.Sleep(200);
                 return;
             }
+            else if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && DrainLife.KnownSpell 
+                 && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
+            {
+                DrainLife.Launch();
+                while (ObjectManager.Me.IsCast)
+                    Thread.Sleep(200);
+                return;
+            }
+            // Blizzard API Calls for Incinerate using Shadow Bolt Function
+            else if (mySettings.UseFireandBrimstone && mySettings.UseIncinerate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable 
+                 && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
+            {
+                FireandBrimstone.Launch();
+                Thread.Sleep(200);
+                ShadowBolt.Launch();
+                return;
+            }
+            else
+            {
+                if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
+                {
+                    SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
+                    return;
+                }
+            }
+        }
+
+        if (mySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable)
+        {
+            Conflagrate.Launch();
+            return;
+        }
+        else if (mySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+                && !ObjectManager.Target.HaveBuff(348) || ImmolateTimer.IsReady)
+        {
+            Corruption.Launch();
+            ImmolateTimer = new Timer(1000*12);
+            return;
+        }
+        else if (ObjectManager.Target.HealthPercent < 20 && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
+            && !ObjectManager.Me.HaveBuff(117828) && mySettings.UseShadowburn)
+        {
+            Shadowburn.Launch();
+            return;
+        }
+        else if (mySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable
+                && !ObjectManager.Me.HaveBuff(117828))
+        {
+            ChaosBolt.Launch();
+            return;
         }
         else
         {
-            if (ChaosBolt.KnownSpell && ChaosBolt.IsSpellUsable && ChaosBolt.IsHostileDistanceGood
-                && !ObjectManager.Me.HaveBuff(117828) && mySettings.UseChaosBolt)
+            if (mySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
             {
-                ChaosBolt.Launch();
+                ShadowBolt.Launch();
                 return;
             }
-        }
-
-        if (ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood
-            && mySettings.UseIncinerate)
-        {
-            ShadowBolt.Launch();
-            return;
         }
     }
 
@@ -8163,7 +8057,7 @@ public class WarlockDestruction
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
-        public bool UseHarvestLife = true;
+        public bool UseHarvestLife = false;
         public bool UseHealthFunnel = true;
         public bool UseHowlofTerror = true;
         public int UseHowlofTerrorAtPercentage = 20;
@@ -8206,7 +8100,7 @@ public class WarlockDestruction
         {
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials", "AtPercentage");
@@ -8413,8 +8307,7 @@ public class WarlockAffliction
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
-                                && mySettings.UseLowCombat)
+                            if (mySettings.UseLowCombat && ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84)
                             {
                                 LC = 1;
                                 if (ObjectManager.Target.GetDistance < 41)
@@ -8444,18 +8337,19 @@ public class WarlockAffliction
     {
         if (!Agony.TargetHaveBuff && !Corruption.TargetHaveBuff && !UnstableAffliction.TargetHaveBuff)
         {
-            if (Soulburn.IsSpellUsable && Soulburn.KnownSpell && SoulSwap.IsSpellUsable && SoulSwap.KnownSpell
-                && SoulSwap.IsHostileDistanceGood && mySettings.UseSoulSwap && mySettings.UseSoulburn)
+            if (mySettings.UseSoulSwap && mySettings.UseSoulburn && Soulburn.KnownSpell && SoulSwap.KnownSpell && Soulburn.IsSpellUsable && SoulSwap.IsSpellUsable
+                && SoulSwap.IsHostileDistanceGood)
             {
                 if (!Soulburn.HaveBuff)
                 {
                     Soulburn.Launch();
                     Thread.Sleep(200);
                 }
+
                 SoulSwap.Launch();
-                AgonyTimer = new Timer(1000*20);
+                AgonyTimer = new Timer(1000*21);
                 CorruptionTimer = new Timer(1000*15);
-                UnstableAfflictionTimer = new Timer(1000*10);
+                UnstableAfflictionTimer = new Timer(1000*11);
             }
         }
         return;
@@ -8466,55 +8360,33 @@ public class WarlockAffliction
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        DefenseCycle();
+        if (OnCD.IsReady)
+            DefenseCycle();
         Heal();
 
-        if (ObjectManager.Me.ManaPercentage < 75 && LifeTap.KnownSpell && LifeTap.IsSpellUsable
-            && mySettings.UseLifeTap)
+        if (mySettings.UseLifeTap && LifeTap.KnownSpell && ObjectManager.Me.ManaPercentage < 75 && LifeTap.IsSpellUsable)
         {
             LifeTap.Launch();
             return;
         }
 
-        if (MaleficGrasp.KnownSpell && MaleficGrasp.IsSpellUsable && MaleficGrasp.IsHostileDistanceGood
-            && mySettings.UseMaleficGrasp)
+        if (mySettings.UseMaleficGrasp && MaleficGrasp.KnownSpell && MaleficGrasp.IsHostileDistanceGood && MaleficGrasp.IsSpellUsable)
         {
             MaleficGrasp.Launch();
             Thread.Sleep(200);
             while (ObjectManager.Me.IsCast)
-            {
                 Thread.Sleep(200);
-            }
         }
-
-        if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
+        else
         {
-            if (MaleficGrasp.KnownSpell && MaleficGrasp.IsSpellUsable && MaleficGrasp.IsHostileDistanceGood
-                && mySettings.UseMaleficGrasp)
-            {
-                MaleficGrasp.Launch();
-                Thread.Sleep(200);
-                while (ObjectManager.Me.IsCast)
-                {
-                    Thread.Sleep(200);
-                }
-            }
-        }
-
-        if (ObjectManager.Target.HealthPercent > 90)
-        {
-            if (RainofFire.IsSpellUsable && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood
-                && mySettings.UseRainofFire)
+            if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
                 return;
             }
         }
-        return;
     }
 
     private void Combat()
@@ -8522,12 +8394,17 @@ public class WarlockAffliction
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
-        if (OnCD.IsReady)
+        DPSCycle();
+        if (OnCD.IsReady && (ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage))
             DefenseCycle();
-        DPSCycle();
-        Heal();
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage
+            || ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
+            Heal();
         Decast();
-        DPSCycle();
         DPSBurst();
         DPSCycle();
     }
@@ -8539,90 +8416,78 @@ public class WarlockAffliction
 
         Pet();
 
-        if (!DarkIntent.HaveBuff && DarkIntent.KnownSpell && DarkIntent.IsSpellUsable
-            && mySettings.UseDarkIntent)
+        if (mySettings.UseDarkIntent && DarkIntent.KnownSpell && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
         {
             DarkIntent.Launch();
             return;
         }
-        else if (!SoulLink.HaveBuff && SoulLink.KnownSpell && SoulLink.IsSpellUsable
-                 && mySettings.UseSoulLink && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        else if (mySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable
+                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             SoulLink.Launch();
             return;
         }
-        if (!Soulstone.HaveBuff && Soulstone.KnownSpell && Soulstone.IsSpellUsable
-            && mySettings.UseSoulstone)
+        else if (mySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
         {
             Soulstone.Launch();
             return;
         }
         else
         {
-            if (ItemsManager.GetItemCountByIdLUA(5512) == 0 && CreateHealthstone.KnownSpell
-                && CreateHealthstone.IsSpellUsable && mySettings.UseCreateHealthstone)
+            if (mySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
+                && ItemsManager.GetItemCountByIdLUA(5512) == 0)
             {
                 Logging.WriteFight(" - Create Healthstone - ");
-                Thread.Sleep(200);
                 CreateHealthstone.Launch();
-                Thread.Sleep(200);
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
             }
         }
     }
 
     private void Pet()
     {
-        if (HealthFunnel.KnownSpell)
+        if (mySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable
+            && ObjectManager.Pet.HealthPercent < 50)
         {
-            if (ObjectManager.Pet.HealthPercent > 0 && ObjectManager.Pet.HealthPercent < 50
-                && HealthFunnel.IsSpellUsable && HealthFunnel.KnownSpell && mySettings.UseHealthFunnel)
+            HealthFunnel.Launch();
+            while (ObjectManager.Me.IsCast)
             {
-                HealthFunnel.Launch();
-                while (ObjectManager.Me.IsCast)
-                {
-                    if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
-                        break;
-                    Thread.Sleep(100);
-                }
+                if (ObjectManager.Pet.HealthPercent > 85 || ObjectManager.Pet.IsDead)
+                    break;
+                Thread.Sleep(100);
             }
         }
 
-        if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && SummonFelhunter.IsSpellUsable && Fight.InFight &&
-            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonFelhunter.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && SummonImp.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonImp.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell &&
-                 SummonVoidwalker.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonVoidwalker.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell &&
-                 SummonSuccubus.IsSpellUsable && Fight.InFight &&
-                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable 
+                 && ObjectManager.GetNumberAttackPlayer() > 0 && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
+            Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Launch();
-            Logging.WriteFight(" - PET DEAD - ");
         }
+
         Thread.Sleep(200);
-        if (GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
-            && mySettings.UseGrimoireofSacrifice && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
-        {
+        if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
             GrimoireofSacrifice.Launch();
-        }
     }
 
     private void AvoidMelee()
@@ -8647,44 +8512,42 @@ public class WarlockAffliction
 
     private void DefenseCycle()
     {
-        if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseUnendingResolve
-            && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable)
+        if (mySettings.UseUnendingResolve && UnendingResolve.KnownSpell && UnendingResolve.IsSpellUsable 
+            && ObjectManager.Me.HealthPercent <= mySettings.UseUnendingResolveAtPercentage)
         {
             UnendingResolve.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseHowlofTerror
-                 && HowlofTerror.KnownSpell && HowlofTerror.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && mySettings.UseDarkBargain
-                 && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable)
+        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && mySettings.UseSacrificialPact
-                 && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
                  && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseShadowfury
-                 && Shadowfury.KnownSpell && Shadowfury.IsSpellUsable && ObjectManager.Target.GetDistance < 8)
+        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
-            Shadowfury.Launch();
+            SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
@@ -8692,9 +8555,7 @@ public class WarlockAffliction
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
+            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
             {
                 Stoneform.Launch();
                 OnCD = new Timer(1000*8);
@@ -8708,51 +8569,46 @@ public class WarlockAffliction
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
-            && mySettings.UseArcaneTorrentForResource)
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 65 && DarkRegeneration.IsSpellUsable &&
-                 DarkRegeneration.KnownSpell
-                 && mySettings.UseDarkRegeneration)
+        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 75 && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady)
+        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 85 && MortalCoil.IsSpellUsable && MortalCoil.KnownSpell
-                 && mySettings.UseMortalCoil && MortalCoil.IsHostileDistanceGood)
+        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Me.HealthPercent < 70 && DrainLife.KnownSpell
-                && mySettings.UseDrainLife && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable)
+            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
             {
                 DrainLife.Launch();
                 while (ObjectManager.Me.IsCast)
-                {
                     Thread.Sleep(200);
-                }
                 return;
             }
         }
@@ -8760,23 +8616,24 @@ public class WarlockAffliction
 
     private void Decast()
     {
-        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable)
+        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
         else
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseSummonFelhunter
-                && CommandDemon.IsSpellUsable && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 40)
+            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
             {
                 CommandDemon.Launch();
                 return;
@@ -8786,204 +8643,169 @@ public class WarlockAffliction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+
+        if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-        else if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
-                 && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 40)
-        {
+
+        if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
+            && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
             DarkSoul.Launch();
-            return;
-        }
-        else if (SummonDoomguard.KnownSpell && SummonDoomguard.IsSpellUsable
-                 && mySettings.UseSummonDoomguard && SummonDoomguard.IsHostileDistanceGood)
-        {
+
+        if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
             SummonDoomguard.Launch();
-            return;
-        }
-        else if (SummonInfernal.KnownSpell && SummonInfernal.IsSpellUsable
-                 && mySettings.UseSummonInfernal && SummonInfernal.IsHostileDistanceGood)
-        {
+        else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-            return;
-        }
-        else if (ArchimondesVengeance.KnownSpell && ArchimondesVengeance.IsSpellUsable
-                 && mySettings.UseArchimondesVengeance)
-        {
+
+        if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
             ArchimondesVengeance.Launch();
-            return;
-        }
-        else
+
+        if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
-            if (GrimoireofService.KnownSpell && GrimoireofService.IsSpellUsable
-                && mySettings.UseGrimoireofService && ObjectManager.Target.GetDistance < 40)
-            {
-                GrimoireofService.Launch();
-                return;
-            }
+            GrimoireofService.Launch();
+            return;
         }
     }
 
     private void DPSCycle()
     {
-        if (CurseoftheElements.KnownSpell && CurseoftheElements.IsSpellUsable && mySettings.UseCurseoftheElements
-            && CurseoftheElements.IsHostileDistanceGood && !CurseoftheElements.TargetHaveBuff)
+        if (mySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && CurseoftheElements.IsHostileDistanceGood && CurseoftheElements.IsSpellUsable
+            && !CurseoftheElements.TargetHaveBuff)
         {
             CurseoftheElements.Launch();
             return;
         }
-        else if (CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable &&
-                 mySettings.UseCurseofEnfeeblement
-                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff &&
-                 !mySettings.UseCurseoftheElements)
+        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
+                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
         }
-        else if (CurseofExhaustion.KnownSpell && CurseofExhaustion.IsSpellUsable &&
-                 mySettings.UseCurseofExhaustion
-                 && CurseofExhaustion.IsHostileDistanceGood && !CurseofExhaustion.TargetHaveBuff &&
-                 !mySettings.UseCurseoftheElements
-                 && !mySettings.UseCurseofEnfeeblement)
+        else if (mySettings.UseCurseofExhaustion && !mySettings.UseCurseoftheElements && !mySettings.UseCurseofEnfeeblement && CurseofExhaustion.KnownSpell && CurseofExhaustion.IsSpellUsable
+                 && CurseofExhaustion.IsHostileDistanceGood && !CurseofExhaustion.TargetHaveBuff)
         {
             CurseofExhaustion.Launch();
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage < 75 && LifeTap.KnownSpell && LifeTap.IsSpellUsable
-                 && mySettings.UseLifeTap)
+
+        if (mySettings.UseLifeTap && LifeTap.KnownSpell && ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage && LifeTap.IsSpellUsable)
         {
             LifeTap.Launch();
             return;
         }
-        else if (ObjectManager.Target.HealthPercent < 20)
+
+        if (ObjectManager.Target.HealthPercent < 20 && mySettings.UseDrainSoul)
         {
-            if (DrainSoul.KnownSpell && DrainSoul.IsSpellUsable && mySettings.UseDrainSoul &&
-                DrainSoul.IsHostileDistanceGood)
+            if (DrainSoul.KnownSpell && DrainSoul.IsHostileDistanceGood && DrainSoul.IsSpellUsable)
             {
                 DrainSoul.Launch();
-                while (ObjectManager.Me.IsCast && !AgonyTimer.IsReady && !CorruptionTimer.IsReady
-                       && !UnstableAfflictionTimer.IsReady)
-                {
+                while (ObjectManager.Me.IsCast && !AgonyTimer.IsReady && !CorruptionTimer.IsReady && !UnstableAfflictionTimer.IsReady)
                     Thread.Sleep(200);
-                }
             }
 
             if (AgonyTimer.IsReady || CorruptionTimer.IsReady || UnstableAfflictionTimer.IsReady)
             {
-                if (Soulburn.IsSpellUsable && Soulburn.KnownSpell && SoulSwap.IsSpellUsable &&
-                    SoulSwap.KnownSpell
-                    && SoulSwap.IsHostileDistanceGood && mySettings.UseSoulburn && mySettings.UseSoulSwap)
+                if (mySettings.UseSoulburn && mySettings.UseSoulSwap && Soulburn.KnownSpell && SoulSwap.KnownSpell && Soulburn.IsSpellUsable && SoulSwap.IsSpellUsable
+                    && SoulSwap.IsHostileDistanceGood)
                 {
                     Soulburn.Launch();
                     Thread.Sleep(200);
                     SoulSwap.Launch();
-                    AgonyTimer = new Timer(1000*20);
+                    AgonyTimer = new Timer(1000*21);
                     CorruptionTimer = new Timer(1000*15);
-                    UnstableAfflictionTimer = new Timer(1000*10);
+                    UnstableAfflictionTimer = new Timer(1000*11);
                 }
             }
-            return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && Soulburn.IsSpellUsable && Soulburn.KnownSpell &&
-                 !Corruption.TargetHaveBuff
-                 && SeedofCorruption.IsSpellUsable && SeedofCorruption.KnownSpell &&
-                 SeedofCorruption.IsHostileDistanceGood
-                 && mySettings.UseSoulburn && mySettings.UseSeedofCorruption)
+
+        if (ObjectManager.GetNumberAttackPlayer() > 4)
         {
-            Soulburn.Launch();
-            Thread.Sleep(200);
-            SeedofCorruption.Launch();
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.IsSpellUsable &&
-                 HarvestLife.KnownSpell
-                 && HarvestLife.IsHostileDistanceGood && mySettings.UseHarvestLife)
-        {
-            HarvestLife.Launch();
-            while (ObjectManager.Me.IsCast)
+            if (mySettings.UseSoulburn && mySettings.UseSeedofCorruption && Soulburn.KnownSpell && SeedofCorruption.KnownSpell
+                 && !Corruption.TargetHaveBuff && Soulburn.IsSpellUsable && SeedofCorruption.IsSpellUsable && SeedofCorruption.IsHostileDistanceGood)
             {
+                Soulburn.Launch();
                 Thread.Sleep(200);
+                SeedofCorruption.Launch();
+                return;
             }
-            return;
-        }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && RainofFire.IsSpellUsable &&
-                 RainofFire.KnownSpell
-                 && RainofFire.IsHostileDistanceGood && mySettings.UseRainofFire)
-        {
-            SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-            while (ObjectManager.Me.IsCast)
+            else if (mySettings.UseHarvestLife && HarvestLife.KnownSpell && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
             {
-                Thread.Sleep(200);
+                HarvestLife.Launch();
+                while (ObjectManager.Me.IsCast)
+                    Thread.Sleep(200);
+                return;
             }
-            return;
+            else if (mySettings.UseHarvestLife && DrainLife.KnownSpell && DrainLife.IsSpellUsable && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
+            {
+                DrainLife.Launch();
+                while (ObjectManager.Me.IsCast)
+                    Thread.Sleep(200);
+                return;
+            }
+            else if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
+            {
+                SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
+                while (ObjectManager.Me.IsCast)
+                    Thread.Sleep(200);
+                return;
+            }
         }
-        else if (Agony.KnownSpell && Agony.IsSpellUsable && Agony.IsHostileDistanceGood &&
-                 mySettings.UseAgony
-                 && (!Agony.TargetHaveBuff || AgonyTimer.IsReady))
+
+        if (mySettings.UseAgony && Agony.KnownSpell && Agony.IsHostileDistanceGood && Agony.IsSpellUsable && (!Agony.TargetHaveBuff || AgonyTimer.IsReady))
         {
             Agony.Launch();
-            AgonyTimer = new Timer(1000*20);
-            return;
+            AgonyTimer = new Timer(1000*21);
         }
-        else if (Corruption.KnownSpell && Corruption.IsSpellUsable && Corruption.IsHostileDistanceGood
-                 && mySettings.UseCorruption &&
-                 (!Corruption.TargetHaveBuff || CorruptionTimer.IsReady))
+
+        if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+            && (!Corruption.TargetHaveBuff || CorruptionTimer.IsReady))
         {
             Corruption.Launch();
             CorruptionTimer = new Timer(1000*15);
-            return;
         }
-        else if (UnstableAffliction.KnownSpell && UnstableAffliction.IsSpellUsable &&
-                 UnstableAffliction.IsHostileDistanceGood
-                 && mySettings.UseUnstableAffliction &&
-                 (!UnstableAffliction.TargetHaveBuff || UnstableAfflictionTimer.IsReady))
+
+        if (mySettings.UseUnstableAffliction && UnstableAffliction.KnownSpell && UnstableAffliction.IsHostileDistanceGood && UnstableAffliction.IsSpellUsable
+            && (!UnstableAffliction.TargetHaveBuff || UnstableAfflictionTimer.IsReady))
         {
             UnstableAffliction.Launch();
-            UnstableAfflictionTimer = new Timer(1000*10);
-            return;
+            UnstableAfflictionTimer = new Timer(1000*11);
         }
-        else if (Haunt.KnownSpell && Haunt.IsSpellUsable && Haunt.IsHostileDistanceGood &&
-                 !Haunt.TargetHaveBuff
-                 && mySettings.UseHaunt)
+
+        if (mySettings.UseHaunt && Haunt.KnownSpell && Haunt.IsHostileDistanceGood && !Haunt.TargetHaveBuff && Haunt.IsSpellUsable)
         {
             Haunt.Launch();
             return;
         }
-            // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
+        // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
         else
         {
-            if (!ObjectManager.Me.IsCast && ShadowBolt.KnownSpell &&
-                ShadowBolt.IsSpellUsable
-                && !AgonyTimer.IsReady && !CorruptionTimer.IsReady &&
-                !UnstableAfflictionTimer.IsReady
-                && ShadowBolt.IsHostileDistanceGood && mySettings.UseMaleficGrasp)
+            if (mySettings.UseMaleficGrasp && !ObjectManager.Me.IsCast && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
+                && !AgonyTimer.IsReady && !CorruptionTimer.IsReady && !UnstableAfflictionTimer.IsReady)
             {
                 ShadowBolt.Launch();
                 return;
@@ -9019,14 +8841,18 @@ public class WarlockAffliction
         public bool UseCommandDemon = true;
         public bool UseCorruption = true;
         public bool UseCreateHealthstone = true;
+        public int UseCreateHealthstoneAtPercentage = 75;
         public bool UseCurseofEnfeeblement = false;
         public bool UseCurseofExhaustion = false;
         public bool UseCurseoftheElements = true;
         public bool UseDarkBargain = true;
+        public int UseDarkBargainAtPercentage = 40;
         public bool UseDarkIntent = true;
         public bool UseDarkRegeneration = true;
+        public int UseDarkRegenerationAtPercentage = 65;
         public bool UseDarkSoul = true;
         public bool UseDrainLife = true;
+        public int UseDrainLifeAtPercentage = 70;
         public bool UseDrainSoul = true;
         public bool UseEngGlove = true;
         public bool UseFelFlame = true;
@@ -9034,20 +8860,25 @@ public class WarlockAffliction
         public int UseGiftoftheNaaruAtPercentage = 80;
         public bool UseGrimoireofSacrifice = true;
         public bool UseGrimoireofService = true;
-        public bool UseHarvestLife = true;
+        public bool UseHarvestLife = false;
         public bool UseHaunt = true;
         public bool UseHealthFunnel = true;
         public bool UseHowlofTerror = true;
+        public int UseHowlofTerrorAtPercentage = 20;
         public bool UseLifeTap = true;
+        public int UseLifeTapAtPercentage = 75;
         public bool UseLifeblood = true;
         public bool UseLowCombat = true;
         public bool UseMaleficGrasp = true;
         public bool UseMortalCoil = true;
+        public int UseMortalCoilAtPercentage = 85;
         public bool UseRainofFire = true;
         public bool UseSacrificialPact = true;
+        public int UseSacrificialPactAtPercentage = 95;
         public bool UseSeedofCorruption = true;
         public bool UseShadowBolt = true;
         public bool UseShadowfury = true;
+        public int UseShadowfuryAtPercentage = 90;
         public bool UseSoulLink = true;
         public bool UseSoulSwap = true;
         public bool UseSoulburn = true;
@@ -9063,8 +8894,10 @@ public class WarlockAffliction
         public bool UseTrinketOne = true;
         public bool UseTrinketTwo = true;
         public bool UseTwilightWard = true;
+        public int UseTwilightWardAtPercentage = 100;
         public bool UseUnboundWill = true;
         public bool UseUnendingResolve = true;
+        public int UseUnendingResolveAtPercentage = 70;
         public bool UseUnstableAffliction = true;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
@@ -9074,7 +8907,7 @@ public class WarlockAffliction
             ConfigWinForm(new Point(500, 400), "Warlock Affliction Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -9115,20 +8948,20 @@ public class WarlockAffliction
             AddControlInWinForm("Use Summon Doomguard", "UseSummonDoomguard", "Offensive Cooldown");
             AddControlInWinForm("Use Summon Infernal", "UseSummonInfernal", "Offensive Cooldown");
             /* Defensive Cooldown */
-            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown");
-            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown");
-            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown");
-            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown");
-            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown");
+            AddControlInWinForm("Use Dark Bargain", "UseDarkBargain", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Howl of Terror", "UseHowlofTerror", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Sacrificial Pact", "UseSacrificialPact", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Shadowfury", "UseShadowfury", "Defensive Cooldown", "AtPercentage");
+            AddControlInWinForm("Use Twilight Ward", "UseTwilightWard", "Defensive Cooldown", "AtPercentage");
             AddControlInWinForm("Use Unbound Will", "UseUnboundWill", "Defensive Cooldown");
-            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown");
+            AddControlInWinForm("Use Unending Resolve", "UseUnendingResolve", "Defensive Cooldown", "AtPercentage");
             /* Healing Spell */
-            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell");
-            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell");
-            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell");
+            AddControlInWinForm("Use Create Healthstone", "UseCreateHealthstone", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Dark Regeneration", "UseDarkRegeneration", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Drain Life", "UseDrainLife", "Healing Spell", "AtPercentage");
             AddControlInWinForm("Use Health Funnel", "UseHealthFunnel", "Healing Spell");
-            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell");
-            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell");
+            AddControlInWinForm("Use Life Tap", "UseLifeTap", "Healing Spell", "AtPercentage");
+            AddControlInWinForm("Use Mortal Coil", "UseMortalCoil", "Healing Spell", "AtPercentage");
             /* Game Settings */
             AddControlInWinForm("Use Low Combat Settings", "UseLowCombat", "Game Settings");
             AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
@@ -9548,7 +9381,7 @@ public class DruidBalance
             return;
         }
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
+                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
                  && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -9582,7 +9415,7 @@ public class DruidBalance
             return;
 
         if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
+            ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage
             && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
@@ -9693,30 +9526,30 @@ public class DruidBalance
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -9730,19 +9563,19 @@ public class DruidBalance
             return;
         }
         else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                 && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             Incarnation.Launch();
             return;
         }
         else if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
-                 && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             HeartoftheWild.Launch();
             return;
         }
         else if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
-                 && ObjectManager.Target.GetDistance < 30)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             NaturesVigil.Launch();
             return;
@@ -9750,7 +9583,7 @@ public class DruidBalance
         else
         {
             if (CelestialAlignment.KnownSpell && mySettings.UseCelestialAlignment &&
-                ObjectManager.Target.GetDistance < 30
+                ObjectManager.Target.GetDistance < 41
                 && (CelestialAlignment.IsSpellUsable || ObjectManager.Me.HaveBuff(112071)))
             {
                 if (!ObjectManager.Me.HaveBuff(112071))
@@ -9795,13 +9628,13 @@ public class DruidBalance
             return;
         }
         else if (Starfall.KnownSpell && Starfall.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 40 && mySettings.UseStarfall)
+                 ObjectManager.Target.GetDistance < 41 && mySettings.UseStarfall)
         {
             Starfall.Launch();
             return;
         }
         else if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-                 && ObjectManager.Target.GetDistance < 40 && WildMushroomDetonate.KnownSpell &&
+                 && ObjectManager.Target.GetDistance < 41 && WildMushroomDetonate.KnownSpell &&
                  WildMushroom.IsSpellUsable
                  && mySettings.UseWildMushroom)
         {
@@ -9815,7 +9648,7 @@ public class DruidBalance
             return;
         }
         else if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 30 && mySettings.UseHurricane)
+                 ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
@@ -9931,7 +9764,7 @@ public class DruidBalance
             ConfigWinForm(new Point(500, 400), "Druid Balance Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -10138,12 +9971,12 @@ public class DruidFeral
                             if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                                 && mySettings.UseLowCombat)
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -10362,7 +10195,7 @@ public class DruidFeral
                  && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && mySettings.UseTyphoon
-                && ObjectManager.Target.GetDistance < 40 && mySettings.UseTyphoon)
+                && ObjectManager.Target.GetDistance < 41 && mySettings.UseTyphoon)
             {
                 Typhoon.Launch();
                 Thread.Sleep(200);
@@ -10392,7 +10225,7 @@ public class DruidFeral
             return;
         }
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
+                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
                  && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -10773,7 +10606,6 @@ public class DruidFeral
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBarkskin = true;
         public bool UseBerserk = true;
         public bool UseBerserking = true;
@@ -11214,7 +11046,7 @@ public class DruidRestoration
             return;
         }
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
+                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
                  && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -11248,7 +11080,7 @@ public class DruidRestoration
             return;
 
         if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
+            ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage
             && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
@@ -11379,30 +11211,30 @@ public class DruidRestoration
 
     public void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -11418,7 +11250,7 @@ public class DruidRestoration
         else
         {
             if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                && ObjectManager.Target.GetDistance < 30)
+                && ObjectManager.Target.GetDistance < 41)
             {
                 Incarnation.Launch();
                 return;
@@ -11436,7 +11268,7 @@ public class DruidRestoration
             return;
         }
         else if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 30 && mySettings.UseHurricane)
+                 ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
@@ -11526,7 +11358,7 @@ public class DruidRestoration
             ConfigWinForm(new Point(500, 400), "Druid Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -11719,12 +11551,12 @@ public class DruidGuardian
                             if (ObjectManager.Target.Level < 70 && ObjectManager.Me.Level > 84
                                 && mySettings.UseLowCombat)
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -12015,7 +11847,7 @@ public class DruidGuardian
                  && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && mySettings.UseTyphoon
-                && ObjectManager.Target.GetDistance < 40 && mySettings.UseTyphoon)
+                && ObjectManager.Target.GetDistance < 41 && mySettings.UseTyphoon)
             {
                 Typhoon.Launch();
                 Thread.Sleep(200);
@@ -12045,7 +11877,7 @@ public class DruidGuardian
             return;
         }
         else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 40 && ObjectManager.Me.HealthPercent < 70
+                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
                  && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
@@ -12250,7 +12082,6 @@ public class DruidGuardian
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBarkskin = true;
         public bool UseBearForm = true;
         public bool UseBearHug = true;
@@ -12800,7 +12631,7 @@ public class PaladinHoly
             ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -13308,7 +13139,7 @@ public class PaladinProtection
             ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -13442,15 +13273,15 @@ public class PaladinRetribution
 
     #region Flask & Potion Management
 
-    private readonly uint CombatPotion = (uint) ItemsManager.GetIdByName(mySettings.CombatPotion);
+    private readonly uint CombatPotion = (uint)ItemsManager.GetIdByName(mySettings.CombatPotion);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly uint FlaskOrBattleElixir = (uint) ItemsManager.GetIdByName(mySettings.FlaskOrBattleElixir);
-    private readonly uint GuardianElixir = (uint) ItemsManager.GetIdByName(mySettings.GuardianElixir);
+    private readonly uint FlaskOrBattleElixir = (uint)ItemsManager.GetIdByName(mySettings.FlaskOrBattleElixir);
+    private readonly uint GuardianElixir = (uint)ItemsManager.GetIdByName(mySettings.GuardianElixir);
 
     private readonly WoWItem Hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private readonly uint TeasureFindingPotion = (uint) ItemsManager.GetIdByName(mySettings.TeasureFindingPotion);
-    private readonly uint WellFedBuff = (uint) ItemsManager.GetIdByName(mySettings.WellFedBuff);
+    private readonly uint TeasureFindingPotion = (uint)ItemsManager.GetIdByName(mySettings.TeasureFindingPotion);
+    private readonly uint WellFedBuff = (uint)ItemsManager.GetIdByName(mySettings.WellFedBuff);
 
     #endregion
 
@@ -13505,7 +13336,7 @@ public class PaladinRetribution
         }
         else if (mySettings.UseReckoning && Reckoning.KnownSpell && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
         {
-            Reckoning.Launch();   
+            Reckoning.Launch();
         }
     }
 
@@ -13869,7 +13700,7 @@ public class PaladinRetribution
             ConfigWinForm(new Point(500, 400), "Paladin Retribution Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
             AddControlInWinForm("Use Stoneform", "UseStoneform", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -14135,7 +13966,7 @@ public class ShamanEnhancement
             EarthShock.Launch();
             return;
         }
-            // Blizzard API Calls for Stormstrike using Primal Strike Function
+        // Blizzard API Calls for Stormstrike using Primal Strike Function
         else if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
                  && mySettings.UseStormstrike)
         {
@@ -14593,7 +14424,7 @@ public class ShamanEnhancement
             FireNova.Launch();
             return;
         }
-            // Blizzard API Calls for Stormstrike using Primal Strike Function
+        // Blizzard API Calls for Stormstrike using Primal Strike Function
         else if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
                  && mySettings.UseStormstrike)
         {
@@ -14783,7 +14614,7 @@ public class ShamanEnhancement
             ConfigWinForm(new Point(500, 400), "Shaman Enhancement Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -15271,7 +15102,7 @@ public class ShamanRestoration
             return;
 
         if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
+            ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage
             && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
@@ -15412,30 +15243,30 @@ public class ShamanRestoration
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -15455,19 +15286,19 @@ public class ShamanRestoration
             return;
         }
         else if (Ascendance.KnownSpell && Ascendance.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
         {
             Ascendance.Launch();
             return;
         }
         else if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
         {
             FireElementalTotem.Launch();
             return;
         }
         else if (StormlashTotem.KnownSpell && AirTotemReady()
-                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
         {
             if (!StormlashTotem.IsSpellUsable && mySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -15481,14 +15312,14 @@ public class ShamanRestoration
             return;
         }
         else if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 40 && !ObjectManager.Me.HaveBuff(57724))
+                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
 
         else if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 40 && !ObjectManager.Me.HaveBuff(57723))
+                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
@@ -15715,7 +15546,7 @@ public class ShamanRestoration
             ConfigWinForm(new Point(500, 400), "Shaman Restoration Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -16171,7 +16002,7 @@ public class ShamanElemental
             return;
 
         if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell &&
-            ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForResourceAtPercentage
+            ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage
             && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
@@ -16288,30 +16119,30 @@ public class ShamanElemental
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -16331,19 +16162,19 @@ public class ShamanElemental
             return;
         }
         else if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
-                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
         {
             Ascendance.Launch();
             return;
         }
         else if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
         {
             FireElementalTotem.Launch();
             return;
         }
         else if (StormlashTotem.KnownSpell && AirTotemReady()
-                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
         {
             if (!StormlashTotem.IsSpellUsable && mySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -16357,14 +16188,14 @@ public class ShamanElemental
             return;
         }
         else if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 40 && !ObjectManager.Me.HaveBuff(57724))
+                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
 
         else if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 40 && !ObjectManager.Me.HaveBuff(57723))
+                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
@@ -16596,7 +16427,7 @@ public class ShamanElemental
             ConfigWinForm(new Point(500, 400), "Shaman Elemental Settings");
             /* Professions & Racials */
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
-            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -17045,6 +16876,13 @@ public class PriestShadow
 
     private void Heal()
     {
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+
         if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
@@ -17124,6 +16962,14 @@ public class PriestShadow
 
     private void Decast()
     {
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+
         if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseSilence
             && Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsHostileDistanceGood
             && ObjectManager.Target.HealthPercent <= mySettings.UseSilenceAtPercentage)
@@ -17145,30 +16991,30 @@ public class PriestShadow
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -17176,7 +17022,7 @@ public class PriestShadow
             EngineeringTimer = new Timer(1000*60);
         }
         else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
@@ -17194,8 +17040,8 @@ public class PriestShadow
 
     private void DPSCycle()
     {
-        if (ObjectManager.Me.ManaPercentage < 80 && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && mySettings.UseArcaneTorrent)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
+            && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
@@ -17282,7 +17128,7 @@ public class PriestShadow
             MindFlay.Launch();
             return;
         }
-            // Blizzard API Calls for Mind Flay using Smite Function
+        // Blizzard API Calls for Mind Flay using Smite Function
         else if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
                  && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
                  (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
@@ -17311,7 +17157,10 @@ public class PriestShadow
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseCascade = true;
@@ -17381,7 +17230,8 @@ public class PriestShadow
         {
             ConfigWinForm(new Point(500, 400), "Shadow Priest Settings");
             /* Professions and Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
@@ -17632,6 +17482,7 @@ public class PriestDiscipline
             DefenseCycle();
         DPSCycle();
         Heal();
+        Decast();
         DPSCycle();
         HealingBurst();
         DPSCycle();
@@ -17770,6 +17621,13 @@ public class PriestDiscipline
 
     private void Heal()
     {
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+
         if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
@@ -17862,32 +17720,43 @@ public class PriestDiscipline
         }
     }
 
+    private void Decast()
+    {
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+    }
+
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -17895,13 +17764,13 @@ public class PriestDiscipline
             EngineeringTimer = new Timer(1000*60);
         }
         else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
         }
         else if (Archangel.IsSpellUsable && Archangel.KnownSpell && ObjectManager.Me.BuffStack(81661) > 4
-                 && mySettings.UseArchangel && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseArchangel && ObjectManager.Target.GetDistance < 41)
         {
             Archangel.Launch();
             return;
@@ -17925,8 +17794,8 @@ public class PriestDiscipline
 
     private void DPSCycle()
     {
-        if (ObjectManager.Me.ManaPercentage < 80 && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && mySettings.UseArcaneTorrent)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
+            && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
@@ -18014,7 +17883,10 @@ public class PriestDiscipline
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArchangel = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -18084,7 +17956,8 @@ public class PriestDiscipline
         {
             ConfigWinForm(new Point(500, 400), "Discipline Priest Settings");
             /* Professions and Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
@@ -18332,6 +18205,7 @@ public class PriestHoly
             DefenseCycle();
         DPSCycle();
         Heal();
+        Decast();
         DPSCycle();
         HealingBurst();
         DPSCycle();
@@ -18479,6 +18353,13 @@ public class PriestHoly
 
     private void Heal()
     {
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+
         if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
@@ -18590,32 +18471,43 @@ public class PriestHoly
         }
     }
 
+    private void Decast()
+    {
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+    }
+
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -18623,7 +18515,7 @@ public class PriestHoly
             EngineeringTimer = new Timer(1000*60);
         }
         else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
@@ -18641,8 +18533,8 @@ public class PriestHoly
 
     private void DPSCycle()
     {
-        if (ObjectManager.Me.ManaPercentage < 80 && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-            && mySettings.UseArcaneTorrent)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
+            && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
@@ -18730,7 +18622,10 @@ public class PriestHoly
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseArchangel = true;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
@@ -18805,7 +18700,8 @@ public class PriestHoly
         {
             ConfigWinForm(new Point(500, 400), "Holy Priest Settings");
             /* Professions and Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions and Racials");
+            AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions and Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions and Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions and Racials", "AtPercentage");
@@ -19012,13 +18908,13 @@ public class RogueCombat
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -19544,7 +19440,6 @@ public class RogueCombat
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBladeFlurry = true;
         public bool UseBloodFury = true;
@@ -19808,13 +19703,13 @@ public class RogueSubtlety
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -20315,7 +20210,6 @@ public class RogueSubtlety
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseBurstofSpeed = true;
@@ -20576,13 +20470,13 @@ public class RogueAssassination
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -20683,7 +20577,7 @@ public class RogueAssassination
                 SliceandDiceTimer = new Timer(1000*(6 + (5*6)));
             return;
         }
-            // Blizzard API Calls for Dispatch using Sinister Strike Function
+        // Blizzard API Calls for Dispatch using Sinister Strike Function
         else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
                  && mySettings.UseDispatch)
         {
@@ -21098,7 +20992,6 @@ public class RogueAssassination
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBloodFury = true;
         public bool UseBurstofSpeed = true;
@@ -21369,13 +21262,13 @@ public class WarriorArms
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -21970,7 +21863,6 @@ public class WarriorArms
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -22247,13 +22139,13 @@ public class WarriorProtection
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -22864,7 +22756,6 @@ public class WarriorProtection
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -23143,13 +23034,13 @@ public class WarriorFury
                                 && mySettings.UseLowCombat)
                             {
                                 LC = 1;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     LowCombat();
                             }
                             else
                             {
                                 LC = 0;
-                                if (ObjectManager.Target.GetDistance < 41)
+                                if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
                         }
@@ -23700,7 +23591,6 @@ public class WarriorFury
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAvatar = true;
         public bool UseBattleShout = true;
         public bool UseBattleStance = true;
@@ -24109,25 +23999,25 @@ public class HunterMarksmanship
     private void Pet()
     {
         if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && Fight.InFight)
+            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && Fight.InFight)
+                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && Fight.InFight)
+                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && Fight.InFight)
+                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet4.Launch();
             Thread.Sleep(1000);
@@ -24135,7 +24025,7 @@ public class HunterMarksmanship
         else
         {
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && Fight.InFight)
+                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && ObjectManager.GetNumberAttackPlayer() > 0)
             {
                 CallPet5.Launch();
                 Thread.Sleep(1000);
@@ -24144,14 +24034,14 @@ public class HunterMarksmanship
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && Fight.InFight)
+            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
                  && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -24325,30 +24215,30 @@ public class HunterMarksmanship
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -24379,7 +24269,7 @@ public class HunterMarksmanship
             return;
         }
         else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
@@ -24404,7 +24294,7 @@ public class HunterMarksmanship
             return;
         }
         else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 40)
+                 ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
@@ -24422,7 +24312,7 @@ public class HunterMarksmanship
             return;
         }
         else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             RapidFire.Launch();
             return;
@@ -24529,7 +24419,6 @@ public class HunterMarksmanship
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -24946,25 +24835,25 @@ public class HunterBeastMastery
     private void Pet()
     {
         if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && Fight.InFight)
+            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && Fight.InFight)
+                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && Fight.InFight)
+                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && Fight.InFight)
+                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet4.Launch();
             Thread.Sleep(1000);
@@ -24972,7 +24861,7 @@ public class HunterBeastMastery
         else
         {
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && Fight.InFight)
+                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && ObjectManager.GetNumberAttackPlayer() > 0)
             {
                 CallPet5.Launch();
                 Thread.Sleep(1000);
@@ -24981,14 +24870,14 @@ public class HunterBeastMastery
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10)
+            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
                  && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -25178,30 +25067,30 @@ public class HunterBeastMastery
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -25220,7 +25109,7 @@ public class HunterBeastMastery
             return;
         }
         else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
@@ -25245,7 +25134,7 @@ public class HunterBeastMastery
             return;
         }
         else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 40)
+                 ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
@@ -25263,18 +25152,18 @@ public class HunterBeastMastery
             return;
         }
         else if (BestialWrath.KnownSpell && BestialWrath.IsSpellUsable && mySettings.UseBestialWrath
-                 && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             BestialWrath.Launch();
             return;
         }
         else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 40 && !BestialWrath.HaveBuff)
+                 && ObjectManager.Target.GetDistance < 41 && !BestialWrath.HaveBuff)
         {
             RapidFire.Launch();
             return;
         }
-        else if (mySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 40
+        else if (mySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 41
                  && AncientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
                  && ObjectManager.Pet.IsAlive && !RapidFire.HaveBuff && !BestialWrath.HaveBuff)
         {
@@ -25353,7 +25242,7 @@ public class HunterBeastMastery
             }
         }
         else if (KillCommand.KnownSpell && KillCommand.IsSpellUsable && KillCommand.IsHostileDistanceGood
-                 && mySettings.UseKillCommand && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseKillCommand && ObjectManager.Target.GetDistance < 41)
         {
             KillCommand.Launch();
             return;
@@ -25412,7 +25301,6 @@ public class HunterBeastMastery
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -25838,25 +25726,25 @@ public class HunterSurvival
     private void Pet()
     {
         if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && Fight.InFight)
+            && CallPet1.KnownSpell && CallPet1.IsSpellUsable && mySettings.UsePet1 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet1.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && Fight.InFight)
+                 && CallPet2.KnownSpell && CallPet2.IsSpellUsable && mySettings.UsePet2 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet2.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && Fight.InFight)
+                 && CallPet3.KnownSpell && CallPet3.IsSpellUsable && mySettings.UsePet3 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet3.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && Fight.InFight)
+                 && CallPet4.KnownSpell && CallPet4.IsSpellUsable && mySettings.UsePet4 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             CallPet4.Launch();
             Thread.Sleep(1000);
@@ -25864,7 +25752,7 @@ public class HunterSurvival
         else
         {
             if (!ObjectManager.Me.IsCast && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
-                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && Fight.InFight)
+                && CallPet5.KnownSpell && CallPet5.IsSpellUsable && mySettings.UsePet5 && ObjectManager.GetNumberAttackPlayer() > 0)
             {
                 CallPet5.Launch();
                 Thread.Sleep(1000);
@@ -25873,14 +25761,14 @@ public class HunterSurvival
 
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && Fight.InFight)
+            && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.GetNumberAttackPlayer() > 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
         }
         else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
                  && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -26054,30 +25942,30 @@ public class HunterSurvival
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -26096,7 +25984,7 @@ public class HunterSurvival
             return;
         }
         else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
@@ -26121,7 +26009,7 @@ public class HunterSurvival
             return;
         }
         else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 40)
+                 ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
@@ -26139,7 +26027,7 @@ public class HunterSurvival
             return;
         }
         else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 40)
+                 && ObjectManager.Target.GetDistance < 41)
         {
             RapidFire.Launch();
             return;
@@ -26278,7 +26166,6 @@ public class HunterSurvival
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
-        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseAspectoftheHawk = true;
         public bool UseBarrage = true;
         public bool UseBerserking = true;
@@ -26543,7 +26430,7 @@ public class MonkBrewmaster
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance < 30)
                                 Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -26784,7 +26671,7 @@ public class MonkBrewmaster
 
     private void Decast()
     {
-        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrent && ArcaneTorrent.IsSpellUsable
+        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
         {
             ArcaneTorrent.Launch();
@@ -26936,14 +26823,16 @@ public class MonkBrewmaster
             Jab.Launch();
             return;
         }
+        else if (TigerPalm.KnownSpell && TigerPalm.IsSpellUsable && TigerPalm.IsHostileDistanceGood && ObjectManager.Target.HaveBuff(115307)
+                && mySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 && !ObjectManager.Me.HaveBuff(121125))
+        {
+            TigerPalm.Launch();
+            return;
+        }
         else
         {
-            if (TigerPalm.KnownSpell && TigerPalm.IsSpellUsable && TigerPalm.IsHostileDistanceGood && ObjectManager.Target.HaveBuff(115307)
-                && mySettings.UseTigerPalm && ObjectManager.Me.Chi < 2 && !ObjectManager.Me.HaveBuff(121125))
-            {
-                TigerPalm.Launch();
-                return;
-            }
+            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.EnergyPercentage < 90)
+                ArcaneTorrent.Launch();
         }
     }
 
@@ -26964,7 +26853,9 @@ public class MonkBrewmaster
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
         public bool UseBerserking = true;
         public bool UseBlackoutKick = true;
         public bool UseBloodFury = true;
@@ -27015,7 +26906,8 @@ public class MonkBrewmaster
         {
             ConfigWinForm(new Point(500, 400), "Brewmaster Monk Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -27204,7 +27096,7 @@ public class MonkWindwalker
                                 lastTarget = ObjectManager.Me.Target;
                             }
 
-                            if (ObjectManager.Target.GetDistance < 41)
+                            if (ObjectManager.Target.GetDistance < 30)
                                 Combat();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -27418,7 +27310,7 @@ public class MonkWindwalker
 
     private void Decast()
     {
-        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrent && ArcaneTorrent.IsSpellUsable
+        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
         {
             ArcaneTorrent.Launch();
@@ -27569,14 +27461,16 @@ public class MonkWindwalker
             ExpelHarm.Launch();
             return;
         }
+        else if (Jab.KnownSpell && Jab.IsSpellUsable && mySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
+                && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864) && Jab.IsHostileDistanceGood)
+        {
+            Jab.Launch();
+            return;
+        }
         else
         {
-            if (Jab.KnownSpell && Jab.IsSpellUsable && mySettings.UseJab && !ObjectManager.Me.HaveBuff(116768)
-                && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864) && Jab.IsHostileDistanceGood)
-            {
-                Jab.Launch();
-                return;
-            }
+            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.EnergyPercentage < 90)
+                ArcaneTorrent.Launch();
         }
     }
 
@@ -27597,7 +27491,9 @@ public class MonkWindwalker
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
         public bool UseBerserking = true;
         public bool UseBlackoutKick = true;
         public bool UseBloodFury = true;
@@ -27645,7 +27541,8 @@ public class MonkWindwalker
         {
             ConfigWinForm(new Point(500, 400), "Windwalker Monk Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
@@ -27911,7 +27808,7 @@ public class MonkMistweaver
             return;
         }
         else if (ObjectManager.GetNumberAttackPlayer() > 0 && SummonJadeSerpentStatue.IsSpellUsable && SummonJadeSerpentStatue.KnownSpell
-                 && mySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance < 40)
+                 && mySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance < 41)
         {
             SummonJadeSerpentStatue.Launch();
             return;
@@ -28020,6 +27917,13 @@ public class MonkMistweaver
 
     private void Heal()
     {
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable 
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseArcaneTorrentForResourceAtPercentage)
+        {
+            ArcaneTorrent.Launch();
+            return;
+        }
+
         if (ObjectManager.Me.ManaPercentage < 50 && ManaTea.KnownSpell && ManaTea.IsSpellUsable
             && mySettings.UseManaTea && ObjectManager.Me.BuffStack(115867) > 4
             && ObjectManager.GetNumberAttackPlayer() == 0)
@@ -28112,7 +28016,7 @@ public class MonkMistweaver
 
     private void Decast()
     {
-        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrent && ArcaneTorrent.IsSpellUsable
+        if (ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
             && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8)
         {
             ArcaneTorrent.Launch();
@@ -28144,30 +28048,30 @@ public class MonkMistweaver
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 1.");
             Lua.RunMacroText("/use 13");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketOneTimer = new Timer(1000*60*2);
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Trinket 2.");
             Lua.RunMacroText("/use 14");
             Lua.RunMacroText("/script UIErrorsFrame:Clear()");
             TrinketTwoTimer = new Timer(1000*60*2);
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBloodFury)
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseLifeblood)
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
@@ -28278,7 +28182,10 @@ public class MonkMistweaver
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
         public bool UseAlchFlask = true;
-        public bool UseArcaneTorrent = true;
+        public bool UseArcaneTorrentForDecast = true;
+        public int UseArcaneTorrentForDecastAtPercentage = 100;
+        public bool UseArcaneTorrentForResource = true;
+        public int UseArcaneTorrentForResourceAtPercentage = 80;
         public bool UseBerserking = true;
         public bool UseBlackoutKick = true;
         public bool UseBloodFury = true;
@@ -28333,7 +28240,8 @@ public class MonkMistweaver
         {
             ConfigWinForm(new Point(500, 400), "Mistweaver Monk Settings");
             /* Professions & Racials */
-            AddControlInWinForm("Use Arcane Torrent", "UseArcaneTorrent", "Professions & Racials");
+            AddControlInWinForm("Use Arcane Torrent For Decast", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
+            AddControlInWinForm("Use Arcane Torrent For Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Berserking", "UseBerserking", "Professions & Racials");
             AddControlInWinForm("Use Blood Fury", "UseBloodFury", "Professions & Racials");
             AddControlInWinForm("Use Gift of the Naaru", "UseGiftoftheNaaru", "Professions & Racials");
