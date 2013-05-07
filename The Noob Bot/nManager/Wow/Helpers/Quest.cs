@@ -38,10 +38,10 @@ namespace nManager.Wow.Helpers
 
             if (sResult == "NIL")
                 return;
-            foreach (string toto in sResult.Split(Convert.ToChar("^")))
+            foreach (string strQuestId in sResult.Split(Convert.ToChar("^")))
             {
-                if (toto != string.Empty)
-                    FinishedQuestSet.Add(Convert.ToInt32(toto));
+                if (strQuestId != string.Empty)
+                    FinishedQuestSet.Add(Convert.ToInt32(strQuestId));
             }
         }
 

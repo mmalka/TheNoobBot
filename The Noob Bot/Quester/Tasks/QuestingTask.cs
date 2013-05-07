@@ -113,7 +113,7 @@ namespace Quester.Tasks
             // USE ITEM
             if (questObjective.Objective == Objective.UseItem)
             {
-                return questObjective.IsUsedUseItem;
+                return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsUsedUseItem;
             }
 
             // MOVE TO
@@ -393,11 +393,6 @@ namespace Quester.Tasks
                         else if (unit.IsValid)
                         {
                             questObjective.PositionUseItem = new Point(unit.Position);
-                            Interact.InteractGameObject(unit.GetBaseAddress);
-                        }
-                        else
-                        {
-                            return;
                         }
                     }
 
@@ -411,8 +406,32 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount(true);
                         MovementManager.StopMove();
+                        if (questObjective.EntryAOE > 0)
+                        {
+                            var node =
+                                ObjectManager.GetNearestWoWGameObject(
+                                    ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                            var unit =
+                                ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                            if (node.IsValid)
+                            {
+                                MovementManager.Face(node);
+                                Interact.InteractGameObject(node.GetBaseAddress);
+                                nManagerSetting.AddBlackList(node.Guid, 30 * 1000);
+                            }
+                            else if (unit.IsValid)
+                            {
+                                MovementManager.Face(unit);
+                                Interact.InteractGameObject(unit.GetBaseAddress);
+                                nManagerSetting.AddBlackList(unit.Guid, 30 * 1000);
+                            }
+                        }
                         ItemsManager.UseItem(ItemsManager.GetNameById((uint) questObjective.UseItemId));
-                        questObjective.IsUsedUseItem = true;
+                        if (questObjective.Count > 0)
+                            questObjective.CurrentCount++;
+                        else
+                            questObjective.IsUsedUseItem = true;
                         Thread.Sleep(questObjective.WaitMsUseItem);
                     }
                 }
@@ -1072,15 +1091,17 @@ namespace Quester.Tasks
                     if (pickUp)
                     {
                         Logging.Write("PickUp Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
+                        int id = Quest.GetQuestID();
                         // GetNumGossipActiveQuests() == 1 because of auto accepted quests
-                        if ((Quest.GetNumGossipAvailableQuests() == 0 && Quest.GetNumGossipActiveQuests() == 1) ||
-                            (Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 0))
+                        if (!(Quest.GetNumGossipAvailableQuests() == 1 && Quest.GetNumGossipActiveQuests() == 1) && id == CurrentQuest.Id)
                         {
                             Quest.AcceptQuest();
+                            Thread.Sleep(Usefuls.Latency + 500);
+                        }
+                        if (Quest.GetLogQuestId().Contains(CurrentQuest.Id))
+                        {
                             Quest.CloseQuestWindow();
                         }
-                        /*else if (id != 0)
-                            Quest.CloseQuestWindow();*/
                         else
                         {
                             if (Quest.GetGossipAvailableQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
@@ -1089,7 +1110,7 @@ namespace Quester.Tasks
                                 {
                                     Quest.SelectGossipAvailableQuest(i);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    int id = Quest.GetQuestID();
+                                    id = Quest.GetQuestID();
                                     if (id == CurrentQuest.Id)
                                     {
                                         Quest.AcceptQuest();
@@ -1114,7 +1135,7 @@ namespace Quester.Tasks
                                 {
                                     Quest.SelectAvailableQuest(gossipid);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    int id = Quest.GetQuestID();
+                                    id = Quest.GetQuestID();
                                     if (id == CurrentQuest.Id)
                                     {
                                         Quest.AcceptQuest();
@@ -1138,17 +1159,19 @@ namespace Quester.Tasks
                     if (turnIn)
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
-                        if (Quest.GetNumGossipAvailableQuests() + Quest.GetNumGossipActiveQuests() + Quest.GetNumGossipOptions() == 0)
+                        int id = Quest.GetQuestID();
+                        if (Quest.GetNumGossipAvailableQuests() == 0 && id == CurrentQuest.Id)
                         {
                             Quest.CompleteQuest();
                             Thread.Sleep(Usefuls.Latency + 500);
-                            int id = Quest.GetQuestID();
+                        }
+                        if (!Quest.GetLogQuestId().Contains(CurrentQuest.Id)) // It's no more in the quest log, then we did turn in it sucessfuly
+                        {
+                            id = Quest.GetQuestID();
                             Quest.FinishedQuestSet.Add(CurrentQuest.Id);
                             Quest.CloseQuestWindow();
                             Quest.AbandonQuest(id);
                         }
-                        /*else if (id != 0)
-                            Quest.CloseQuestWindow();*/
                         else
                         {
                             if (Quest.GetGossipActiveQuestsWorks()) // 2 quest gossip systems = 2 different codes :(
@@ -1157,14 +1180,16 @@ namespace Quester.Tasks
                                 {
                                     Quest.SelectGossipActiveQuest(i);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    int id = Quest.GetQuestID();
+                                    id = Quest.GetQuestID();
                                     if (id == CurrentQuest.Id)
                                     {
                                         Quest.CompleteQuest();
                                         Thread.Sleep(Usefuls.Latency + 500);
+                                        // here it can be the next quest id presented automatically when the current one is turned in
                                         id = Quest.GetQuestID();
                                         Quest.CloseQuestWindow();
                                         Quest.FinishedQuestSet.Add(CurrentQuest.Id);
+                                        // If it was auto-accepted, then abandon it. I'll make this better later.
                                         Quest.AbandonQuest(id);
                                         break;
                                     }
@@ -1184,7 +1209,7 @@ namespace Quester.Tasks
                                 {
                                     Quest.SelectActiveQuest(gossipid);
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    int id = Quest.GetQuestID();
+                                    id = Quest.GetQuestID();
                                     if (id == CurrentQuest.Id)
                                     {
                                         Quest.CompleteQuest();
