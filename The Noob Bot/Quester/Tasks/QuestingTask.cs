@@ -1160,7 +1160,7 @@ namespace Quester.Tasks
                     {
                         Logging.Write("turnIn Quest " + CurrentQuest.Name + " id: " + CurrentQuest.Id);
                         int id = Quest.GetQuestID();
-                        if (Quest.GetNumGossipAvailableQuests() == 0 && id == CurrentQuest.Id)
+                        if (id == CurrentQuest.Id) // this may fail
                         {
                             Quest.CompleteQuest();
                             Thread.Sleep(Usefuls.Latency + 500);
