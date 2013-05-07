@@ -47,10 +47,9 @@ namespace nManager.Wow.Bot.States
                 if (_lastLevel <= 0)
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
-                // Need Talents
-                if (nManagerSetting.CurrentSetting.AutoAssignTalents)
-                    if (ObjectManager.ObjectManager.Me.Level >= 10 && _lastLevel != ObjectManager.ObjectManager.Me.Level)
-                        return true;
+                // We need to update the SpellBook and eventually the talents if we are over level 10.
+                if (_lastLevel != ObjectManager.ObjectManager.Me.Level)
+                    return true;
 
                 return false;
             }
@@ -59,8 +58,9 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             _lastLevel = ObjectManager.ObjectManager.Me.Level;
-            Talent.DoTalents();
-            SpellManager.UpdateSpellBook();
+            if (ObjectManager.ObjectManager.Me.Level > 10 && nManagerSetting.CurrentSetting.AutoAssignTalents)
+                Talent.DoTalents(); // If the bot just level-up to level 10, there is no chance the user already choose a specialisation.
+            SpellManager.UpdateSpellBook(); // Also reset Combat/Healer classes.
         }
     }
 }

@@ -580,6 +580,10 @@ namespace nManager.Wow.Helpers
                 {
                     CombatClass.ResetCombatClass();
                 }
+                if (HealerClass.IsAliveHealerClass)
+                {
+                    HealerClass.ResetHealerClass();
+                }
             }
             catch (Exception exception)
             {

@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow;
+using nManager.Wow.Helpers;
 using Process = System.Diagnostics.Process;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 using InteractGame = System.Threading.Thread;
