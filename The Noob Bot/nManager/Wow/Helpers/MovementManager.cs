@@ -571,10 +571,12 @@ namespace nManager.Wow.Helpers
                 // Simply try to jump over or dismount if needed
                 if (_distmountAttempt.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3)
                 {
-                    float dx = 1.5f * (float)CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
-                    float dy = 1.5f * (float)CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
-                    Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy, ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
-                    _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y, ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                    float dx = 1.5f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
+                    float dy = 1.5f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
+                    Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
+                                              ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
+                    _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
+                                                  ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     if (ObjectManager.ObjectManager.Me.IsMounted && !nManager.Wow.Helpers.TraceLine.TraceLineGo(_distmountAttempt, inFront, CGWorldFrameHitFlags.HitTestAll))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
@@ -583,8 +585,10 @@ namespace nManager.Wow.Helpers
                         StuckCount++;
                         return;
                     }
-                    _jumpOverAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y, ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
-                    inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy, ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
+                    _jumpOverAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
+                                                 ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
+                    inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
+                                        ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
                     if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(_jumpOverAttempt, inFront, CGWorldFrameHitFlags.HitTestAll))
                     {
                         Logging.WriteNavigator("UnStuck - Jumping over.");
@@ -1402,17 +1406,16 @@ namespace nManager.Wow.Helpers
         #region NPC/Object Finder
 
         private static string FoundType = "none";
-        private static uint TargetBaseAddress = 0;
 
-        private static void FindTarget(Npc Target)
+        public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
         {
             Logging.Write("Initiate target finding, currently looking for: " + Target.Name);
             if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
-
-            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-            WoWGameObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+            // We can't stop the FindTarget if we have not found the Target from the Memory, that's why we don't check for <= 5f yet.
+            TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+            TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             if (TargetIsNPC.IsValid)
             {
                 Target.Position = TargetIsNPC.Position;
@@ -1425,8 +1428,10 @@ namespace nManager.Wow.Helpers
             }
 
             GeneratePath:
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
+                return Target;
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
-                return;
+                return Target;
             List<Point> points = PathFinder.FindPath(Target.Position);
             Go(points);
 
@@ -1469,19 +1474,22 @@ namespace nManager.Wow.Helpers
                             FoundType = "none";
                         break;
                     default:
-                        TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                        TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                        if (TargetIsNPC.IsValid)
+                        if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 80)
                         {
-                            Target.Position = TargetIsNPC.Position;
-                            FoundType = "NPC";
-                            goto GeneratePath;
-                        }
-                        if (TargetIsObject.IsValid)
-                        {
-                            Target.Position = TargetIsObject.Position;
-                            FoundType = "OBJ";
-                            goto GeneratePath;
+                            TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+                            TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+                            if (TargetIsNPC.IsValid && Target.Position.DistanceTo(TargetIsNPC.Position) > 1)
+                            {
+                                Target.Position = TargetIsNPC.Position;
+                                FoundType = "NPC";
+                                goto GeneratePath;
+                            }
+                            if (TargetIsObject.IsValid && Target.Position.DistanceTo(TargetIsObject.Position) > 1)
+                            {
+                                Target.Position = TargetIsObject.Position;
+                                FoundType = "OBJ";
+                                goto GeneratePath;
+                            }
                         }
                         break;
                 }
@@ -1499,7 +1507,6 @@ namespace nManager.Wow.Helpers
                         Target.Position = TargetIsNPC.Position;
                         if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                             goto GeneratePath;
-                        TargetBaseAddress = TargetIsNPC.GetBaseAddress;
                         Target.Position = TargetIsNPC.Position;
                     }
                 }
@@ -1511,7 +1518,6 @@ namespace nManager.Wow.Helpers
                         Target.Position = TargetIsObject.Position;
                         if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                             goto GeneratePath;
-                        TargetBaseAddress = TargetIsObject.GetBaseAddress;
                         Target.Position = TargetIsObject.Position;
                     }
                 }
@@ -1521,7 +1527,7 @@ namespace nManager.Wow.Helpers
                 }
             }
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
-                return;
+                return Target;
             if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
                 goto GeneratePath;
             Logging.Write("Terminate target finding, found: " + Target.Name);
@@ -1532,6 +1538,7 @@ namespace nManager.Wow.Helpers
              * We must find a way to use the InteractWith system in a way we can use this functions from every NPC/Object movements.
              * (Quester PickUp, TurnIn, Mailbox, Repairer, Seller...)
              */
+            return Target;
         }
 
         #endregion
