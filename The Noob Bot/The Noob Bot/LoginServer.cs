@@ -446,6 +446,9 @@ namespace The_Noob_Bot
         {
             try
             {
+                if (Information.Version == "DevVersionRestrict")
+                    return;
+#pragma warning disable 162
                 string resultReq = Others.GetRequest(ScriptUpdate, "null=null");
                 if (resultReq != null)
                 {
@@ -491,6 +494,7 @@ namespace The_Noob_Bot
                         }
                     }
                 }
+#pragma warning restore 162
             }
             catch /*(Exception e)*/
             {
