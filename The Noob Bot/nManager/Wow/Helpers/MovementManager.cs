@@ -1429,20 +1429,20 @@ namespace nManager.Wow.Helpers
 
             var timerPathFinder = new Timer(0);
             GeneratePath:
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f)
                 return Target;
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                 return Target;
             List<Point> points = PathFinder.FindPath(Target.Position);
             Go(points);
-
+            // Note I check for 3.5 yards rather than 5, because if it's a Patrolling QuestGiver, you will lose 1-2 seconds more to be able to InteractWith him, so better be closer at start.
             var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
             while (InMovement && Usefuls.InGame && !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
                    !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
                 if (timer.IsReady)
                     goto GeneratePath;
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 5f)
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f)
                     StopMove();
                 /* The following code check 2 things.
                  * 1: Does the real Target (Memory) is at a different place than the Target Position in the Profile ?
@@ -1506,7 +1506,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5 &&
+            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.5f &&
                    Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
             {
                 switch (FoundType)
@@ -1533,7 +1533,7 @@ namespace nManager.Wow.Helpers
                 if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                     return Target;
             }
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5)
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.5f)
                 goto GeneratePath;
             Logging.Write("Terminate target finding, found: " + Target.Name);
             return Target;
