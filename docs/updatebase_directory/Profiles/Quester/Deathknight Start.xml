@@ -1,5 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Questers>
+      <Npc>
+        <Entry>25462</Entry>
+        <Name>The Lich King</Name>
+        <Position>
+          <X>2345.299</X>
+          <Y>-5671.679</Y>
+          <Z>426.0314</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Entry>28357</Entry>
+        <Name>Instructor Razuvious</Name>
+        <Position>
+          <X>2482.108</X>
+          <Y>-5553.094</Y>
+          <Z>420.6425</Z>
+        </Position>
+      </Npc>
+    </Questers>
     <Quests>
 <!-- Quest 1 -->
         <!--In Service Of The Lich King (Deathknight)-->
@@ -9,24 +29,8 @@
             <ClassMask>40</ClassMask> <!-- Deathnight -->
             <MinLevel>55</MinLevel>
             <MaxLevel>58</MaxLevel>
-            <PickUp>
-                <Entry>25462</Entry>
-                <Name>The Lich King</Name>
-                <Position>
-                  <X>2345.299</X>
-                  <Y>-5671.679</Y>
-                  <Z>426.0314</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Entry>28357</Entry>
-                <Name>Instructor Razuvious</Name>
-                <Position>
-                  <X>2482.108</X>
-                  <Y>-5553.094</Y>
-                  <Z>420.6425</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>25462</PickUp>
+            <TurnIn>28357</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -43,24 +47,8 @@
             <NeedQuestCompletedId>
                 <int>12593</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Entry>28357</Entry>
-                <Name>Instructor Razuvious</Name>
-                <Position>
-                  <X>2482.108</X>
-                  <Y>-5553.094</Y>
-                  <Z>420.6425</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Entry>28357</Entry>
-                <Name>Instructor Razuvious</Name>
-                <Position>
-                  <X>2482.108</X>
-                  <Y>-5553.094</Y>
-                  <Z>420.6425</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>28357</PickUp>
+            <TurnIn>28357</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>InteractWith</Objective>
@@ -96,24 +84,8 @@
             <NeedQuestCompletedId>
                 <int>12619</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Entry>28357</Entry>
-                <Name>Instructor Razuvious</Name>
-                <Position>
-                  <X>2482.108</X>
-                  <Y>-5553.094</Y>
-                  <Z>420.6425</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Entry>28357</Entry>
-                <Name>Instructor Razuvious</Name>
-                <Position>
-                  <X>2482.108</X>
-                  <Y>-5553.094</Y>
-                  <Z>420.6425</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>28357</PickUp>
+            <TurnIn>28357</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>EquipItem</Objective>
@@ -122,9 +94,9 @@
                 <QuestObjective>
                     <Objective>UseRuneForge</Objective>
                     <PositionUseRuneForge>
-                             <X>2505.863</X>
-                             <Y>-5562.321</Y>
-                             <Z>420.6461</Z>
+                        <X>2505.863</X>
+                        <Y>-5562.321</Y>
+                        <Z>420.6461</Z>
                     </PositionUseRuneForge>
                     <WaitMsUseRuneForge>7500</WaitMsUseRuneForge>
                 </QuestObjective>
