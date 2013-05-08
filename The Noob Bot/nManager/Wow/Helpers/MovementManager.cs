@@ -1528,13 +1528,9 @@ namespace nManager.Wow.Helpers
                         }
                         break;
                     default:
-                        if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10f)
-                        {
-                            Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" + Target.Position.Y + ";" + Target.Position.Z + ").");
-                            return Target;
-                        }
-                        else
-                            goto GeneratePath;
+                        Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
+                                      Target.Position.Y + ";" + Target.Position.Z + ").");
+                        return Target;
                 }
                 if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                     return Target;
