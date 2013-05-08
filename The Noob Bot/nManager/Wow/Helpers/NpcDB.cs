@@ -83,7 +83,7 @@ namespace nManager.Wow.Helpers
                         bool found = false;
                         foreach (Npc npc1 in ListNpc)
                         {
-                            if (npc1.Position.DistanceTo(npc.Position) < 1 && npc1.Entry == npc.Entry && npc1.Type == npc.Type)
+                            if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 1)
                             {
                                 found = true;
                                 break;
@@ -163,6 +163,16 @@ namespace nManager.Wow.Helpers
                     ex);
                 return new Npc();
             }
+        }
+
+        public static Npc GetNpcByEntry(int entry)
+        {
+            foreach (var npc in ListNpc)
+            {
+                if (npc.Entry == entry)
+                    return npc;
+            }
+            return new Npc();
         }
     }
 }

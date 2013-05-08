@@ -13,6 +13,7 @@ namespace Quester.Profile
         public List<QuesterBlacklistRadius> Blackspots = new List<QuesterBlacklistRadius>();
         public List<Npc> AvoidMobs = new List<Npc>();
         public List<Quest> Quests = new List<Quest>();
+        public List<Npc> Questers = new List<Npc>();
 
         // Remove all quests not for character class/race
         public void Filter()
@@ -61,8 +62,8 @@ namespace Quester.Profile
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
         public int ItemPickUp = 0;
-        public Npc PickUp = new Npc();
-        public Npc TurnIn = new Npc();
+        public int PickUp = 0;
+        public int TurnIn = 0;
         public string ScriptCondition = "";
         public string ScriptConditionIsFinish = "";
         public List<QuestObjective> Objectives = new List<QuestObjective>();
@@ -81,8 +82,10 @@ namespace Quester.Profile
             else if (this.ItemPickUp != 0)
                 return -1;
 
-            if (otherQuest.PickUp.Position != null)
-                return this.PickUp.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherQuest.PickUp.Position.DistanceTo(ObjectManager.Me.Position));
+            Npc otherNpc = Quester.Bot.Bot.FindQuesterById(otherQuest.PickUp);
+            Npc currentNpc = Quester.Bot.Bot.FindQuesterById(PickUp);
+            if (otherNpc.Position != null)
+                return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
             else
                 throw new ArgumentException("Object is not a Quest");
         }
