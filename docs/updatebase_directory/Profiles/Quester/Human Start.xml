@@ -1,5 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Questers>
+      <Npc>
+        <Name>Marshal McBride</Name>
+        <Entry>197</Entry>
+        <Position>
+            <X>-8913.087</X>
+            <Y>-137.4986</Y>
+            <Z>80.85626</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Khelden Bremen</Name>
+        <Entry>198</Entry>
+        <Position>
+            <X>-8851.673</X>
+            <Y>-188.2821</Y>
+            <Z>89.31502</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Ashley Blank</Name>
+        <Entry>43278</Entry>
+        <Position>
+            <X>-8924.773</X>
+            <Y>-149.8822</Y>
+            <Z>81.36666</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Brother Sammuel</Name>
+        <Entry>925</Entry>
+        <Position>
+            <X>-8914.645</X>
+            <Y>-215.0427</Y>
+            <Z>82.11885</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Priestess Anetta</Name>
+        <Entry>375</Entry>
+        <Position>
+            <X>-8853.5</X>
+            <Y>-193.4498</Y>
+            <Z>81.93213</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Jorik Kerridan</Name>
+        <Entry>915</Entry>
+        <Position>
+            <X>-8863.427</X>
+            <Y>-211.0484</Y>
+            <Z>80.5799</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Drusilla La Salle</Name>
+        <Entry>459</Entry>
+        <Position>
+            <X>-8926.925</X>
+            <Y>-195.6243</Y>
+            <Z>80.58209</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Llane Beshere</Name>
+        <Entry>911</Entry>
+        <Position>
+            <X>-8918.371</X>
+            <Y>-208.3983</Y>
+            <Z>82.1265</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Sergeant Willem</Name>
+        <Entry>823</Entry>
+        <Position>
+            <X>-8827.983</X>
+            <Y>-158.608</Y>
+            <Z>79.84843</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Marshal Dughan</Name>
+        <Entry>240</Entry>
+        <Position>
+          <X>-9465.521</X>
+          <Y>74.00694</Y>
+          <Z>56.59602</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Brother Paxton</Name>
+        <Entry>951</Entry>
+        <Position>
+          <X>-8819.465</X>
+          <Y>-149.8123</Y>
+          <Z>81.20303</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Milly Osworth</Name>
+        <Entry>9296</Entry>
+        <Position>
+          <X>-8923.88</X>
+          <Y>-135.8889</Y>
+          <Z>81.02888</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Falkhaan Isenstrider</Name>
+        <Entry>6774</Entry>
+        <Position>
+          <X>-9044.558</X>
+          <Y>-45.98166</Y>
+          <Z>88.3374</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Innkeeper Farley</Name>
+        <Entry>295</Entry>
+        <Position>
+          <X>-9462.663</X>
+          <Y>16.19151</Y>
+          <Z>56.96306</Z>
+        </Position>
+      </Npc>
+    </Questers>
     <Quests>
 <!-- Quest 1 -->
         <!--Beating Them Back! (Mage)-->
@@ -10,24 +138,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -55,24 +167,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -100,24 +196,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -145,24 +225,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -190,24 +254,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -235,24 +283,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -280,24 +312,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -325,24 +341,8 @@
             <RaceMask>1101</RaceMask> <!-- Alliance -->
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -375,24 +375,8 @@
             <NeedQuestCompletedId>
                 <int>28757</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -423,24 +407,8 @@
             <NeedQuestCompletedId>
                 <int>28762</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -471,24 +439,8 @@
             <NeedQuestCompletedId>
                 <int>28763</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -519,24 +471,8 @@
             <NeedQuestCompletedId>
                 <int>28764</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -567,24 +503,8 @@
             <NeedQuestCompletedId>
                 <int>28765</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -615,24 +535,8 @@
             <NeedQuestCompletedId>
                 <int>28766</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -663,24 +567,8 @@
             <NeedQuestCompletedId>
                 <int>28767</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -711,24 +599,8 @@
             <NeedQuestCompletedId>
                 <int>29078</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -761,24 +633,8 @@
             <NeedQuestCompletedId>
                 <int>28769</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Khelden Bremen</Name>
-                <Entry>198</Entry>
-                <Position>
-                    <X>-8851.673</X>
-                    <Y>-188.2821</Y>
-                    <Z>89.31502</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>198</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -795,24 +651,8 @@
             <NeedQuestCompletedId>
                 <int>28770</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Brother Sammuel</Name>
-                <Entry>925</Entry>
-                <Position>
-                    <X>-8914.645</X>
-                    <Y>-215.0427</Y>
-                    <Z>82.11885</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>925</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -829,24 +669,8 @@
             <NeedQuestCompletedId>
                 <int>28771</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Priestess Anetta</Name>
-                <Entry>375</Entry>
-                <Position>
-                    <X>-8853.5</X>
-                    <Y>-193.4498</Y>
-                    <Z>81.93213</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>375</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -863,24 +687,8 @@
             <NeedQuestCompletedId>
                 <int>28772</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Jorik Kerridan</Name>
-                <Entry>915</Entry>
-                <Position>
-                    <X>-8863.427</X>
-                    <Y>-211.0484</Y>
-                    <Z>80.5799</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>915</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -897,24 +705,8 @@
             <NeedQuestCompletedId>
                 <int>28773</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Drusilla La Salle</Name>
-                <Entry>459</Entry>
-                <Position>
-                    <X>-8926.925</X>
-                    <Y>-195.6243</Y>
-                    <Z>80.58209</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>459</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -931,24 +723,8 @@
             <NeedQuestCompletedId>
                 <int>28774</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Llane Beshere</Name>
-                <Entry>911</Entry>
-                <Position>
-                    <X>-8918.371</X>
-                    <Y>-208.3983</Y>
-                    <Z>82.1265</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>911</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -965,24 +741,8 @@
             <NeedQuestCompletedId>
                 <int>28759</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Ashley Blank</Name>
-                <Entry>43278</Entry>
-                <Position>
-                    <X>-8924.773</X>
-                    <Y>-149.8822</Y>
-                    <Z>81.36666</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>43278</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1003,24 +763,8 @@
             <NeedQuestCompletedId>
                 <int>3104</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Khelden Bremen</Name>
-                <Entry>198</Entry>
-                <Position>
-                    <X>-8851.673</X>
-                    <Y>-188.2821</Y>
-                    <Z>89.31502</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Khelden Bremen</Name>
-                <Entry>198</Entry>
-                <Position>
-                    <X>-8851.673</X>
-                    <Y>-188.2821</Y>
-                    <Z>89.31502</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>198</PickUp>
+            <TurnIn>198</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>TrainSpells</Objective>
@@ -1059,44 +803,9 @@
             <NeedQuestCompletedId>
                 <int>3101</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Brother Sammuel</Name>
-                <Entry>925</Entry>
-                <Position>
-                    <X>-8914.645</X>
-                    <Y>-215.0427</Y>
-                    <Z>82.11885</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Brother Sammuel</Name>
-                <Entry>925</Entry>
-                <Position>
-                    <X>-8914.645</X>
-                    <Y>-215.0427</Y>
-                    <Z>82.11885</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>925</PickUp>
+            <TurnIn>925</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Seal of Righteousness -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>925</EntryInteractWith>
-                    <PositionInteractWith>
-                        <X>-8914.645</X>
-                        <Y>-215.0427</Y>
-                        <Z>82.11885</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
-                <!-- <QuestObjective>  Buy Judgement
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>925</EntryInteractWith>
-                    <GossipOptionsInteractWith>2</GossipOptionsInteractWith>
-                    <PositionInteractWith>
-                        <X>-8914.645</X>
-                        <Y>-215.0427</Y>
-                        <Z>82.11885</Z>
-                    </PositionInteractWith>
-                </QuestObjective> -->
                 <QuestObjective> <!-- Use Seal of Righteousness on self -->
                     <Objective>UseSpell</Objective>
                     <UseSpellId>20154</UseSpellId>
@@ -1130,34 +839,9 @@
             <NeedQuestCompletedId>
                 <int>3103</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Priestess Anetta</Name>
-                <Entry>375</Entry>
-                <Position>
-                    <X>-8853.5</X>
-                    <Y>-193.4498</Y>
-                    <Z>81.93213</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Priestess Anetta</Name>
-                <Entry>375</Entry>
-                <Position>
-                    <X>-8853.5</X>
-                    <Y>-193.4498</Y>
-                    <Z>81.93213</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>375</PickUp>
+            <TurnIn>375</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Flash Heal -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>375</EntryInteractWith>
-                    <PositionInteractWith>
-                        <X>-8853.5</X>
-                        <Y>-193.4498</Y>
-                        <Z>81.93213</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
                 <QuestObjective> <!-- Cast Flash Heal on Wounded Trainee -->
                     <Objective>UseSpell</Objective>
                     <EntryAOE>44564</EntryAOE>
@@ -1187,34 +871,9 @@
             <NeedQuestCompletedId>
                 <int>3102</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Jorik Kerridan</Name>
-                <Entry>915</Entry>
-                <Position>
-                    <X>-8863.427</X>
-                    <Y>-211.0484</Y>
-                    <Z>80.5799</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Jorik Kerridan</Name>
-                <Entry>915</Entry>
-                <Position>
-                    <X>-8863.427</X>
-                    <Y>-211.0484</Y>
-                    <Z>80.5799</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>915</PickUp>
+            <TurnIn>915</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Eviscerate -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>915</EntryInteractWith>
-                    <PositionInteractWith>
-                        <X>-8863.427</X>
-                        <Y>-211.0484</Y>
-                        <Z>80.5799</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
                 <QuestObjective> <!-- Cast Eviscerate on Training Dummy -->
                     <Objective>UseSpell</Objective>
                     <EntryAOE>44548</EntryAOE>
@@ -1243,34 +902,9 @@
             <NeedQuestCompletedId>
                 <int>3105</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Drusilla La Salle</Name>
-                <Entry>459</Entry>
-                <Position>
-                    <X>-8926.925</X>
-                    <Y>-195.6243</Y>
-                    <Z>80.58209</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Drusilla La Salle</Name>
-                <Entry>459</Entry>
-                <Position>
-                    <X>-8926.925</X>
-                    <Y>-195.6243</Y>
-                    <Z>80.58209</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>459</PickUp>
+            <TurnIn>459</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Immolate -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>459</EntryInteractWith>
-                    <PositionInteractWith>
-                    <X>-8926.925</X>
-                    <Y>-195.6243</Y>
-                    <Z>80.58209</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
                 <QuestObjective> <!-- Cast Immolate on Training Dummy -->
                     <Objective>UseSpell</Objective>
                     <EntryAOE>44548</EntryAOE>
@@ -1299,34 +933,9 @@
             <NeedQuestCompletedId>
                 <int>3100</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Llane Beshere</Name>
-                <Entry>911</Entry>
-                <Position>
-                    <X>-8918.371</X>
-                    <Y>-208.3983</Y>
-                    <Z>82.1265</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Llane Beshere</Name>
-                <Entry>911</Entry>
-                <Position>
-                    <X>-8918.371</X>
-                    <Y>-208.3983</Y>
-                    <Z>82.1265</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>911</PickUp>
+            <TurnIn>911</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Charge -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>911</EntryInteractWith>
-                    <PositionInteractWith>
-                        <X>-8918.371</X>
-                        <Y>-208.3983</Y>
-                        <Z>82.1265</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
                 <QuestObjective> <!-- Cast Charge on Training Dummy -->
                     <Objective>UseSpell</Objective>
                     <EntryAOE>44548</EntryAOE>
@@ -1355,34 +964,9 @@
             <NeedQuestCompletedId>
                 <int>28759</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Ashley Blank</Name>
-                <Entry>43278</Entry>
-                <Position>
-                    <X>-8924.773</X>
-                    <Y>-149.8822</Y>
-                    <Z>81.36666</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Ashley Blank</Name>
-                <Entry>43278</Entry>
-                <Position>
-                    <X>-8924.773</X>
-                    <Y>-149.8822</Y>
-                    <Z>81.36666</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>43278</PickUp>
+            <TurnIn>43278</TurnIn>
             <Objectives>
-                <QuestObjective> <!-- Buy Steady Shot -->
-                    <Objective>TrainSpells</Objective>
-                    <EntryInteractWith>43287</EntryInteractWith>
-                    <PositionInteractWith>
-                        <X>-8924.773</X>
-                        <Y>-149.8822</Y>
-                        <Z>81.36666</Z>
-                    </PositionInteractWith>
-                </QuestObjective>
                 <QuestObjective> <!-- Cast Steady Shot on Training Dummy -->
                     <Objective>UseSpell</Objective>
                     <EntryAOE>44548</EntryAOE>
@@ -1415,24 +999,8 @@
             <NeedQuestCompletedId>
                 <int>26916</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Khelden Bremen</Name>
-                <Entry>198</Entry>
-                <Position>
-                    <X>-8851.673</X>
-                    <Y>-188.2821</Y>
-                    <Z>89.31502</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>198</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1449,24 +1017,8 @@
             <NeedQuestCompletedId>
                 <int>26918</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Brother Sammuel</Name>
-                <Entry>925</Entry>
-                <Position>
-                    <X>-8914.645</X>
-                    <Y>-215.0427</Y>
-                    <Z>82.11885</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>925</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1483,24 +1035,8 @@
             <NeedQuestCompletedId>
                 <int>26919</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Priestess Anetta</Name>
-                <Entry>375</Entry>
-                <Position>
-                    <X>-8853.5</X>
-                    <Y>-193.4498</Y>
-                    <Z>81.93213</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>375</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1517,24 +1053,8 @@
             <NeedQuestCompletedId>
                 <int>26915</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Jorik Kerridan</Name>
-                <Entry>915</Entry>
-                <Position>
-                    <X>-8863.427</X>
-                    <Y>-211.0484</Y>
-                    <Z>80.5799</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>915</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1551,24 +1071,8 @@
             <NeedQuestCompletedId>
                 <int>26914</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Drusilla La Salle</Name>
-                <Entry>459</Entry>
-                <Position>
-                    <X>-8926.925</X>
-                    <Y>-195.6243</Y>
-                    <Z>80.58209</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>459</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1585,24 +1089,8 @@
             <NeedQuestCompletedId>
                 <int>26913</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Llane Beshere</Name>
-                <Entry>911</Entry>
-                <Position>
-                    <X>-8918.371</X>
-                    <Y>-208.3983</Y>
-                    <Z>82.1265</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>911</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1619,24 +1107,8 @@
             <NeedQuestCompletedId>
                 <int>26917</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Ashley Blank</Name>
-                <Entry>43278</Entry>
-                <Position>
-                    <X>-8924.773</X>
-                    <Y>-149.8822</Y>
-                    <Z>81.36666</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>43278</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1653,24 +1125,8 @@
             <NeedQuestCompletedId>
                 <int>29079</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1690,24 +1146,8 @@
             <NeedQuestCompletedId>
                 <int>28785</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>823</PickUp>
+            <TurnIn>823</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -1747,24 +1187,8 @@
             <NeedQuestCompletedId>
                 <int>28793</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Sergeant Willem</Name>
-                <Entry>823</Entry>
-                <Position>
-                    <X>-8827.983</X>
-                    <Y>-158.608</Y>
-                    <Z>79.84843</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>823</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
             </Objectives>
         </Quest>
@@ -1790,24 +1214,8 @@
             <NeedQuestCompletedId>
                 <int>28819</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -1853,24 +1261,8 @@
             <NeedQuestCompletedId>
                 <int>26389</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>197</TurnIn>
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
@@ -1910,24 +1302,8 @@
             <NeedQuestCompletedId>
                 <int>26390</int>
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Marshal McBride</Name>
-                <Entry>197</Entry>
-                <Position>
-                    <X>-8913.087</X>
-                    <Y>-137.4986</Y>
-                    <Z>80.85626</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Marshal Dughan</Name>
-                <Entry>240</Entry>
-                <Position>
-                  <X>-9465.521</X>
-                  <Y>74.00694</Y>
-                  <Z>56.59602</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>197</PickUp>
+            <TurnIn>240</TurnIn>
             <Objectives>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -1967,24 +1343,8 @@
             <NeedQuestCompletedId>
                 <int>28785</int> <!-- join the battle paladin -->
             </NeedQuestCompletedId>
-            <PickUp>
-                <Name>Brother Paxton</Name>
-                <Entry>951</Entry>
-                <Position>
-                  <X>-8819.465</X>
-                  <Y>-149.8123</Y>
-                  <Z>81.20303</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Brother Paxton</Name>
-                <Entry>951</Entry>
-                <Position>
-                  <X>-8819.465</X>
-                  <Y>-149.8123</Y>
-                  <Z>81.20303</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>951</PickUp>
+            <TurnIn>951</TurnIn>
             <Objectives>
             <QuestObjective>
                 <Objective>UseItem</Objective>
@@ -2012,24 +1372,8 @@
             <Id>26391</Id>
             <MinLevel>2</MinLevel>
             <MaxLevel>8</MaxLevel>
-            <PickUp>
-                <Name>Milly Osworth</Name>
-                <Entry>9296</Entry>
-                <Position>
-                  <X>-8923.88</X>
-                  <Y>-135.8889</Y>
-                  <Z>81.02888</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Milly Osworth</Name>
-                <Entry>9296</Entry>
-                <Position>
-                  <X>-8923.88</X>
-                  <Y>-135.8889</Y>
-                  <Z>81.02888</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>9296</PickUp>
+            <TurnIn>9296</TurnIn>
             <Objectives>
             <QuestObjective>
                 <Objective>UseItem</Objective>
@@ -2051,24 +1395,8 @@
             <Id>2158</Id>
             <MinLevel>1</MinLevel>
             <MaxLevel>10</MaxLevel>
-            <PickUp>
-                <Name>Falkhaan Isenstrider</Name>
-                <Entry>6774</Entry>
-                <Position>
-                  <X>-9044.558</X>
-                  <Y>-45.98166</Y>
-                  <Z>88.3374</Z>
-                </Position>
-            </PickUp>
-            <TurnIn>
-                <Name>Innkeeper Farley</Name>
-                <Entry>295</Entry>
-                <Position>
-                  <X>-9462.663</X>
-                  <Y>16.19151</Y>
-                  <Z>56.96306</Z>
-                </Position>
-            </TurnIn>
+            <PickUp>6774</PickUp>
+            <TurnIn>295</TurnIn>
             <Objectives>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
