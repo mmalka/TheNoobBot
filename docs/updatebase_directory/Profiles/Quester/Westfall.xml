@@ -1,5 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Questers>
+      <Npc>
+        <Name>Lieutenant Horatio Laine</Name>
+        <Entry>42308</Entry>
+        <Position>
+          <X>-9849.861</X>
+          <Y>914.8265</Y>
+          <Z>30.26556</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Lieutenant Horatio Laine</Name>
+        <Entry>42558</Entry>
+        <Position>
+         <X>-9855.188</X>
+         <Y>1275.784</Y>
+         <Z>40.90203</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Two-Shoed Lou</Name>
+        <Entry>42405</Entry>
+        <Position>
+         <X>-9852.489</X>
+         <Y>1278.62</Y>
+         <Z>40.90818</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Farmer Saldean</Name>
+        <Entry>233</Entry>
+        <Position>
+         <X>-10128.83</X>
+         <Y>1055.301</Y>
+         <Z>36.25266</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Salma Saldean</Name>
+        <Entry>235</Entry>
+        <Position>
+         <X>-10112.21</X>
+         <Y>1042.078</Y>
+         <Z>37.47145</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Hope Saldean</Name>
+        <Entry>42575</Entry>
+        <Position>
+          <X>-10499.07</X>
+          <Y>1022.682</Y>
+          <Z>60.52733</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Marshal Gryan Stoutmantle</Name>
+        <Entry>234</Entry>
+        <Position>
+          <X>-10508.79</X>
+          <Y>1045.233</Y>
+          <Z>60.51798</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Agent Kearnen</Name>
+        <Entry>7024</Entry>
+        <Position>
+          <X>-11042.13</X>
+          <Y>625.1042</Y>
+          <Z>36.90501</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Captain Alpert</Name>
+        <Entry>42425</Entry>
+        <Position>
+          <X>-10896.19</X>
+          <Y>1543.047</Y>
+          <Z>54.6491</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Thoralius the Wise</Name>
+        <Entry>42651</Entry>
+        <Position>
+          <X>-10917.14</X>
+          <Y>1512.413</Y>
+          <Z>50.74004</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>King Varian Wrynn</Name>
+        <Entry>29611</Entry>
+        <Position>
+          <X>-8363.06</X>
+          <Y>232.2361</Y>
+          <Z>156.9904</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Captain Danuvin</Name>
+        <Entry>821</Entry>
+        <Position> <!-- This is in between 2 possibles position -->
+         <X>-10535.34</X>
+         <Y>1051.264</Y>
+         <Z>56.60637</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Watch Captain Parker</Name>
+        <Entry>464</Entry>
+        <Position>
+         <X>-9609.64</X>
+         <Y>-1902.4</Y>
+         <Z>59.8859</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Captain Grayson</Name>
+        <Entry>392</Entry>
+        <Position>
+          <X>-11397.82</X>
+          <Y>1949.042</Y>
+          <Z>10.01412</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Scout Galiaan</Name>
+        <Entry>878</Entry>
+        <Position> <!-- This is in between 2 possibles position -->
+         <X>-10535.34</X>
+         <Y>1051.264</Y>
+         <Z>56.60637</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Old Jug</Name>
+        <Entry>34</Entry>
+        <Position>
+         <X>-9797.025</X>
+         <Y>1594.08</Y>
+         <Z>39.86066</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Locked Chest</Name>
+        <Entry>33</Entry>
+        <Position>
+         <X>-9794.084</X>
+         <Y>2106.768</Y>
+         <Z>12.26917</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Captain's Footlocker</Name>
+        <Entry>35</Entry>
+        <Position>
+         <X>-10514.16</X>
+         <Y>2110.144</Y>
+         <Z>3.191349</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Broken Barrel</Name>
+        <Entry>36</Entry>
+        <Position>
+         <X>-10514.64</X>
+         <Y>1597.932</Y>
+         <Z>27.63224</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Magistrate Solomon</Name>
+        <Entry>344</Entry>
+        <Position>
+          <X>-9218.61</X>
+          <Y>-2221.804</Y>
+          <Z>67.5397</Z>
+        </Position>
+      </Npc>
+    </Questers>
     <Quests>
 
 <!-- Main quest line -->
@@ -13,24 +195,8 @@
           <NeedQuestCompletedId>
             <int>26378</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42308</PickUp>
+          <TurnIn>42308</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
@@ -80,24 +246,8 @@
           <NeedQuestCompletedId>
             <int>26209</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42308</PickUp>
+          <TurnIn>42308</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -131,24 +281,8 @@
           <NeedQuestCompletedId>
             <int>26209</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42308</PickUp>
+          <TurnIn>42308</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -187,24 +321,8 @@
           <NeedQuestCompletedId>
             <int>26214</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42308</Entry>
-            <Position>
-              <X>-9849.861</X>
-              <Y>914.8265</Y>
-              <Z>30.26556</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Two-Shoed Lou</Name>
-            <Entry>42405</Entry>
-            <Position>
-             <X>-9852.489</X>
-             <Y>1278.62</Y>
-             <Z>40.90818</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42308</PickUp>
+          <TurnIn>42405</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -217,24 +335,8 @@
           <NeedQuestCompletedId>
             <int>26215</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Two-Shoed Lou</Name>
-            <Entry>42405</Entry>
-            <Position>
-             <X>-9852.489</X>
-             <Y>1278.62</Y>
-             <Z>40.90818</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Two-Shoed Lou</Name>
-            <Entry>42405</Entry>
-            <Position>
-             <X>-9852.489</X>
-             <Y>1278.62</Y>
-             <Z>40.90818</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42405</PickUp>
+          <TurnIn>42405</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>UseItem</Objective>
@@ -257,24 +359,8 @@
           <NeedQuestCompletedId>
             <int>26228</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Two-Shoed Lou</Name>
-            <Entry>42405</Entry>
-            <Position>
-             <X>-9852.489</X>
-             <Y>1278.62</Y>
-             <Z>40.90818</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42558</Entry>
-            <Position>
-             <X>-9855.188</X>
-             <Y>1275.784</Y>
-             <Z>40.90203</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42405</PickUp>
+          <TurnIn>42558</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -299,24 +385,8 @@
           <NeedQuestCompletedId>
             <int>26232</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Lieutenant Horatio Laine</Name>
-            <Entry>42558</Entry>
-            <Position>
-             <X>-9855.188</X>
-             <Y>1275.784</Y>
-             <Z>40.90203</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42558</PickUp>
+          <TurnIn>233</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -329,24 +399,8 @@
           <NeedQuestCompletedId>
             <int>26236</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>233</PickUp>
+          <TurnIn>233</TurnIn>
           <Objectives>
              <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -383,24 +437,8 @@
           <NeedQuestCompletedId>
             <int>26237</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Salma Saldean</Name>
-            <Entry>235</Entry>
-            <Position>
-             <X>-10112.21</X>
-             <Y>1042.078</Y>
-             <Z>37.47145</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Salma Saldean</Name>
-            <Entry>235</Entry>
-            <Position>
-             <X>-10112.21</X>
-             <Y>1042.078</Y>
-             <Z>37.47145</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>235</PickUp>
+          <TurnIn>235</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -520,24 +558,8 @@
           <NeedQuestCompletedId>
             <int>26241</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Salma Saldean</Name>
-            <Entry>235</Entry>
-            <Position>
-             <X>-10112.21</X>
-             <Y>1042.078</Y>
-             <Z>37.47145</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>233</PickUp>
+          <TurnIn>235</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -550,24 +572,8 @@
           <NeedQuestCompletedId>
             <int>26270</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Salma Saldean</Name>
-            <Entry>235</Entry>
-            <Position>
-             <X>-10112.21</X>
-             <Y>1042.078</Y>
-             <Z>37.47145</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Hope Saldean</Name>
-            <Entry>42575</Entry>
-            <Position>
-              <X>-10499.07</X>
-              <Y>1022.682</Y>
-              <Z>60.52733</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>235</PickUp>
+          <TurnIn>42575</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -580,24 +586,8 @@
           <NeedQuestCompletedId>
             <int>26266</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Hope Saldean</Name>
-            <Entry>42575</Entry>
-            <Position>
-              <X>-10499.07</X>
-              <Y>1022.682</Y>
-              <Z>60.52733</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Hope Saldean</Name>
-            <Entry>42575</Entry>
-            <Position>
-              <X>-10499.07</X>
-              <Y>1022.682</Y>
-              <Z>60.52733</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42575</PickUp>
+          <TurnIn>42575</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>ApplyBuff</Objective>
@@ -669,24 +659,8 @@
           <NeedQuestCompletedId>
             <int>26266</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>234</PickUp>
+          <TurnIn>234</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -724,24 +698,8 @@
           <NeedQuestCompletedId>
             <int>26286</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Agent Kearnen</Name>
-            <Entry>7024</Entry>
-            <Position>
-              <X>-11042.13</X>
-              <Y>625.1042</Y>
-              <Z>36.90501</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>234</PickUp>
+          <TurnIn>7024</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -754,24 +712,8 @@
           <NeedQuestCompletedId>
             <int>26289</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Agent Kearnen</Name>
-            <Entry>7024</Entry>
-            <Position>
-              <X>-11042.13</X>
-              <Y>625.1042</Y>
-              <Z>36.90501</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Agent Kearnen</Name>
-            <Entry>7024</Entry>
-            <Position>
-              <X>-11042.13</X>
-              <Y>625.1042</Y>
-              <Z>36.90501</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>7024</PickUp>
+          <TurnIn>7024</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -813,24 +755,8 @@
           <NeedQuestCompletedId>
             <int>26290</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Agent Kearnen</Name>
-            <Entry>7024</Entry>
-            <Position>
-              <X>-11042.13</X>
-              <Y>625.1042</Y>
-              <Z>36.90501</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>7024</PickUp>
+          <TurnIn>234</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -843,24 +769,8 @@
           <NeedQuestCompletedId>
             <int>26291</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>234</PickUp>
+          <TurnIn>42425</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -873,24 +783,8 @@
           <NeedQuestCompletedId>
             <int>26292</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42425</PickUp>
+          <TurnIn>42425</TurnIn>
           <Objectives>
               <QuestObjective>
                 <Objective>PickUpObject</Objective>
@@ -963,24 +857,8 @@
           <NeedQuestCompletedId>
             <int>26295</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42425</PickUp>
+          <TurnIn>42425</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -1005,24 +883,8 @@
           <NeedQuestCompletedId>
             <int>26297</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Thoralius the Wise</Name>
-            <Entry>42651</Entry>
-            <Position>
-              <X>-10917.14</X>
-              <Y>1512.413</Y>
-              <Z>50.74004</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42425</PickUp>
+          <TurnIn>42651</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1035,24 +897,8 @@
           <NeedQuestCompletedId>
             <int>26319</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Thoralius the Wise</Name>
-            <Entry>42651</Entry>
-            <Position>
-              <X>-10917.14</X>
-              <Y>1512.413</Y>
-              <Z>50.74004</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>42651</PickUp>
+          <TurnIn>234</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -1122,24 +968,8 @@
           <NeedQuestCompletedId>
             <int>26320</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10508.79</X>
-              <Y>1045.233</Y>
-              <Z>60.51798</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>King Varian Wrynn</Name>
-            <Entry>29611</Entry>
-            <Position>
-              <X>-8363.06</X>
-              <Y>232.2361</Y>
-              <Z>156.9904</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>234</PickUp>
+          <TurnIn>29611</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -1156,24 +986,8 @@
           <NeedQuestCompletedId>
             <int>26322</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>King Varian Wrynn</Name>
-            <Entry>29611</Entry>
-            <Position>
-              <X>-8363.06</X>
-              <Y>232.2361</Y>
-              <Z>156.9904</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10558.18</X>
-              <Y>1043.743</Y>
-              <Z>57.32744</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>29611</PickUp>
+          <TurnIn>234</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1186,24 +1000,8 @@
           <NeedQuestCompletedId>
             <int>26370</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Marshal Gryan Stoutmantle</Name>
-            <Entry>234</Entry>
-            <Position>
-              <X>-10558.18</X>
-              <Y>1043.743</Y>
-              <Z>57.32744</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Magistrate Solomon</Name>
-            <Entry>344</Entry>
-            <Position>
-              <X>-9218.61</X>
-              <Y>-2221.804</Y>
-              <Z>67.5397</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>234</PickUp>
+          <TurnIn>344</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
@@ -1227,15 +1025,7 @@
           <MinLevel>10</MinLevel>
           <MaxLevel>17</MaxLevel>
           <ItemPickUp>57935</ItemPickUp>
-          <TurnIn>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </TurnIn>
+          <TurnIn>233</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1249,24 +1039,8 @@
           <NeedQuestCompletedId>
             <int>26252</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Farmer Saldean</Name>
-            <Entry>233</Entry>
-            <Position>
-             <X>-10128.83</X>
-             <Y>1055.301</Y>
-             <Z>36.25266</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>233</PickUp>
+          <TurnIn>233</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
@@ -1293,15 +1067,7 @@
           <MinLevel>9</MinLevel>
           <MaxLevel>18</MaxLevel>
           <ItemPickUp>1357</ItemPickUp>
-          <TurnIn>
-            <Name>Captain's Footlocker</Name>
-            <Entry>35</Entry>
-            <Position>
-             <X>-10514.16</X>
-             <Y>2110.144</Y>
-             <Z>3.191349</Z>
-            </Position>
-          </TurnIn>
+          <TurnIn>35</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1314,24 +1080,8 @@
           <NeedQuestCompletedId>
             <int>26353</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain's Footlocker</Name>
-            <Entry>35</Entry>
-            <Position>
-             <X>-10514.16</X>
-             <Y>2110.144</Y>
-             <Z>3.191349</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Broken Barrel</Name>
-            <Entry>36</Entry>
-            <Position>
-             <X>-10514.64</X>
-             <Y>1597.932</Y>
-             <Z>27.63224</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>35</PickUp>
+          <TurnIn>36</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1344,24 +1094,8 @@
           <NeedQuestCompletedId>
             <int>26354</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Broken Barrel</Name>
-            <Entry>36</Entry>
-            <Position>
-             <X>-10514.64</X>
-             <Y>1597.932</Y>
-             <Z>27.63224</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Old Jug</Name>
-            <Entry>34</Entry>
-            <Position>
-             <X>-9797.025</X>
-             <Y>1594.08</Y>
-             <Z>39.86066</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>36</PickUp>
+          <TurnIn>34</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1374,24 +1108,8 @@
           <NeedQuestCompletedId>
             <int>26355</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Old Jug</Name>
-            <Entry>34</Entry>
-            <Position>
-             <X>-9797.025</X>
-             <Y>1594.08</Y>
-             <Z>39.86066</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Locked Chest</Name>
-            <Entry>33</Entry>
-            <Position>
-             <X>-9794.084</X>
-             <Y>2106.768</Y>
-             <Z>12.26917</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>34</PickUp>
+          <TurnIn>33</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1402,15 +1120,7 @@
           <MinLevel>12</MinLevel>
           <MaxLevel>20</MaxLevel>
           <ItemPickUp>58117</ItemPickUp>
-          <TurnIn>
-            <Name>Captain Alpert</Name>
-            <Entry>42425</Entry>
-            <Position>
-              <X>-10896.19</X>
-              <Y>1543.047</Y>
-              <Z>54.6491</Z>
-            </Position>
-          </TurnIn>
+          <TurnIn>42425</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1443,24 +1153,8 @@
           <NeedQuestCompletedId>
             <int>26271</int> <!-- not 100% sure but this is enough -->
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Danuvin</Name>
-            <Entry>821</Entry>
-            <Position> <!-- This is in between 2 possibles position -->
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Danuvin</Name>
-            <Entry>821</Entry>
-            <Position> <!-- This is in between 2 possibles position -->
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>821</PickUp>
+          <TurnIn>821</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1502,24 +1196,8 @@
           <NeedQuestCompletedId>
             <int>26287</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Danuvin</Name>
-            <Entry>821</Entry>
-            <Position>
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Danuvin</Name>
-            <Entry>821</Entry>
-            <Position> <!-- This is in between 2 possibles position -->
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>821</PickUp>
+          <TurnIn>821</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1594,24 +1272,8 @@
           <NeedQuestCompletedId>
             <int>26271</int> <!-- not 100% sure but this is enough -->
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Scout Galiaan</Name>
-            <Entry>878</Entry>
-            <Position> <!-- This is in between 2 possibles position -->
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>878</PickUp>
+          <TurnIn>392</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -1624,24 +1286,8 @@
           <NeedQuestCompletedId>
             <int>26371</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>392</PickUp>
+          <TurnIn>392</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1692,24 +1338,8 @@
           <NeedQuestCompletedId>
             <int>26371</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>392</PickUp>
+          <TurnIn>392</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1737,24 +1367,8 @@
           <NeedQuestCompletedId>
             <int>26371</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Captain Grayson</Name>
-            <Entry>392</Entry>
-            <Position>
-              <X>-11397.82</X>
-              <Y>1949.042</Y>
-              <Z>10.01412</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>392</PickUp>
+          <TurnIn>392</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -1792,24 +1406,8 @@
           <NeedQuestCompletedId>
             <int>26287</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Captain Danuvin</Name>
-            <Entry>821</Entry>
-            <Position>
-             <X>-10535.34</X>
-             <Y>1051.264</Y>
-             <Z>56.60637</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Watch Captain Parker</Name>
-            <Entry>464</Entry>
-            <Position>
-             <X>-9609.64</X>
-             <Y>-1902.4</Y>
-             <Z>59.8859</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>821</PickUp>
+          <TurnIn>464</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
