@@ -952,7 +952,6 @@ namespace Quester.Tasks
 
             // Go To NPC:
             MovementManager.StopMove();
-            Logging.Write("Goto " + npc.Name);
             // Launch script
             //Script.Run(npc.Script); ToDo: probably add this
             // Mounting Mount
