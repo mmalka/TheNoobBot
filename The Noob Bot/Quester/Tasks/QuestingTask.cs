@@ -957,21 +957,23 @@ namespace Quester.Tasks
                 return;
 
             // Go To QuestGiver:
-            MovementManager.StopMove();
-            // FindTarget use "Go" (including StopMove), do we really need a StopMove here ?
-
             // Launch script
             //Script.Run(npc.Script); ToDo: Support scripts for special case quests.
 
             //Start target finding based on QuestGiver.
             WoWUnit TargetIsNPC;
             WoWObject TargetIsObject;
-            uint baseAddress = 0;
+            uint baseAddress;
             Npc Target = MovementManager.FindTarget(npc, out TargetIsNPC, out TargetIsObject);
             if (TargetIsNPC.IsValid)
                 baseAddress = TargetIsNPC.GetBaseAddress;
             else if (TargetIsObject.IsValid)
                 baseAddress = TargetIsObject.GetBaseAddress;
+            else
+            {
+                baseAddress = 0;
+                // ToDo: Stop working on that quest.
+            }
             //End target finding based on QuestGiver.
 
             if (Target.Position.DistanceTo(ObjectManager.Me.Position) < 6)
