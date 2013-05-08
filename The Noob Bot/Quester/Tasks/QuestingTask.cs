@@ -21,6 +21,7 @@ namespace Quester.Tasks
         private static int _currentQuestObjectiveId = -1;
         public static Profile.QuestObjective CurrentQuestObjective;
         private static Timer waitTimer;
+        private static bool completed = false;
 
         public static void SelectQuest()
         {
@@ -43,8 +44,13 @@ namespace Quester.Tasks
                                 {
                                     CurrentQuest = quest;
                                     Logging.Write(quest.Name + ": Lvl " + quest.MinLevel + " - " + quest.MaxLevel);
-                                    break;
+                                    return;
                                 }
+            }
+            if (!completed)
+            {
+                Logging.Write("There is no more quest to do.");
+                completed = true;
             }
         }
 
@@ -931,12 +937,12 @@ namespace Quester.Tasks
             if (pickUp)
             {
                 QuestStatus = "Pick-Up Quest";
-                npc = CurrentQuest.PickUp;
+                npc = Quester.Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
             }
             if (turnIn)
             {
                 QuestStatus = "Turn-In Quest";
-                npc = CurrentQuest.TurnIn;
+                npc = Quester.Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
             }
 
             if (pickUp && item != 0)

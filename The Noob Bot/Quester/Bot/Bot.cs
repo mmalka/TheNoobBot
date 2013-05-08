@@ -62,7 +62,22 @@ namespace Quester.Bot
                             return false;
                         }
                     }
-
+                    // Now check the integrity by checking we have all NPC required
+                    foreach (Profile.Quest q in Profile.Quests)
+                    {
+                        if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0)
+                        {
+                            MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
+                                "\nThe quest is " +  q.Name + ". Cannot continues!");
+                            return false;
+                        }
+                        if (FindQuesterById(q.TurnIn).Entry == 0)
+                        {
+                            MessageBox.Show("Your profile is missing the definition of NPC entry " + q.TurnIn +
+                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                            return false;
+                        }
+                    }
                     Logging.Write("Loaded " + Profile.Quests.Count + " quests");
                     Profile.Filter();
                     Logging.Write(Profile.Quests.Count + " quests left after filtering on class/race");
@@ -146,5 +161,16 @@ namespace Quester.Bot
                 Logging.WriteError("Quester > Bot > Bot  > Dispose(): " + e);
             }
         }
+
+        public static Npc FindQuesterById(int entry)
+        {
+            foreach (Npc npc in Profile.Questers)
+            {
+                if (npc.Entry == entry)
+                    return npc;
+            }
+            return NpcDB.GetNpcByEntry(entry);
+        }
+
     }
 }
