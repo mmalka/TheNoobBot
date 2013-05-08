@@ -1431,8 +1431,8 @@ namespace nManager.Wow.Helpers
 
             var timerPathFinder = new Timer(0);
             GeneratePath:
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f)
-                return Target;
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f && FoundType != "none")
+                goto End;
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                 return Target;
             List<Point> points = PathFinder.FindPath(Target.Position);
@@ -1531,12 +1531,17 @@ namespace nManager.Wow.Helpers
                         }
                         break;
                     default:
-                        Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
-                                      Target.Position.Y + ";" + Target.Position.Z + ").");
-                        return Target;
+                        goto End;
                 }
                 if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                     return Target;
+            }
+            End:
+            if (FoundType == "none" && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
+            {
+                Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
+                              Target.Position.Y + ";" + Target.Position.Z + ").");
+                return Target;
             }
             if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.5f)
                 goto GeneratePath;
