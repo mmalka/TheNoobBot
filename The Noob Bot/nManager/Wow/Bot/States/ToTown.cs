@@ -247,78 +247,21 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(18232));
-                    Thread.Sleep(2000);
-                    var unitA =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
-                    if (unitA.IsValid && unitA.IsAlive)
-                    {
-                        var npcA = new Npc
-                            {
-                                Entry = unitA.Entry,
-                                Position = unitA.Position,
-                                Name = unitA.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 0,
-                                Type = Npc.NpcType.Repair
-                            };
+                    var npcA = DoSpawnRobot("74A", Npc.NpcType.Repair);
+                    if (npcA != null)
                         listNPCs.Add(npcA);
-                    }
                 }
                 else if (_use110G)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(34113));
-                    Thread.Sleep(2000);
-                    var unitG =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
-                    if (unitG.IsValid && unitG.IsAlive)
-                    {
-                        var npcG = new Npc
-                            {
-                                Entry = unitG.Entry,
-                                Position = unitG.Position,
-                                Name = unitG.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 0,
-                                Type = Npc.NpcType.Repair
-                            };
+                    var npcG = DoSpawnRobot("110G", Npc.NpcType.Repair);
+                    if (npcG != null)
                         listNPCs.Add(npcG);
-                    }
                 }
                 else if (_useJeeves)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(49040));
-                    Thread.Sleep(2000);
-                    var unitJeeves =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
-                    if (unitJeeves.IsValid && unitJeeves.IsAlive)
-                    {
-                        var npcJeeves = new Npc
-                            {
-                                Entry = unitJeeves.Entry,
-                                Position = unitJeeves.Position,
-                                Name = unitJeeves.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 2,
-                                Type = Npc.NpcType.Repair
-                            };
+                    var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Repair);
+                    if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
-                    }
                 }
                 else
                 {
@@ -409,78 +352,21 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(18232));
-                    Thread.Sleep(2000);
-                    var unitA =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(14337));
-                    if (unitA.IsValid && unitA.IsAlive)
-                    {
-                        var npcA = new Npc
-                            {
-                                Entry = unitA.Entry,
-                                Position = unitA.Position,
-                                Name = unitA.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 0,
-                                Type = Npc.NpcType.Vendor
-                            };
+                    var npcA = DoSpawnRobot("74A", Npc.NpcType.Vendor);
+                    if (npcA != null)
                         listNPCs.Add(npcA);
-                    }
                 }
                 else if (_use110G)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(31113));
-                    Thread.Sleep(2000);
-                    var unitG =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(24780));
-                    if (unitG.IsValid && unitG.IsAlive)
-                    {
-                        var npcG = new Npc
-                            {
-                                Entry = unitG.Entry,
-                                Position = unitG.Position,
-                                Name = unitG.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 0,
-                                Type = Npc.NpcType.Vendor
-                            };
+                    var npcG = DoSpawnRobot("110G", Npc.NpcType.Vendor);
+                    if (npcG != null)
                         listNPCs.Add(npcG);
-                    }
                 }
                 else if (_useJeeves)
                 {
-                    MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(49040));
-                    Thread.Sleep(2000);
-                    var unitJeeves =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(35642));
-                    if (unitJeeves.IsValid && unitJeeves.IsAlive)
-                    {
-                        var npcJeeves = new Npc
-                            {
-                                Entry = unitJeeves.Entry,
-                                Position = unitJeeves.Position,
-                                Name = unitJeeves.Name,
-                                ContinentId = (ContinentId) Usefuls.ContinentId,
-                                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                                              ? Npc.FactionType.Horde
-                                              : Npc.FactionType.Alliance,
-                                SelectGossipOption = 2,
-                                Type = Npc.NpcType.Vendor
-                            };
+                    var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Vendor);
+                    if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
-                    }
                 }
                 else
                 {
@@ -665,6 +551,52 @@ namespace nManager.Wow.Bot.States
                     millingState.Run();
                 }
             }
+        }
+
+        private static Npc DoSpawnRobot(string Robot, Npc.NpcType Type)
+        {
+            uint RobotItemId;
+            int RobotEntryId;
+            int GossipOption = 0;
+            switch (Robot)
+            {
+                case "74A":
+                    RobotItemId = 18232;
+                    RobotEntryId = 14337;
+                    break;
+                case "110G":
+                    RobotItemId = 34113;
+                    RobotEntryId = 24780;
+                    break;
+                case "Jeeves":
+                    RobotItemId = 49040;
+                    RobotEntryId = 35642;
+                    GossipOption = 2;
+                    break;
+                default:
+                    return null;
+            }
+            MountTask.DismountMount();
+            ItemsManager.UseItem(ItemsManager.GetNameById(RobotItemId));
+            Thread.Sleep(2000);
+            var unitRobot =
+                ObjectManager.ObjectManager.GetNearestWoWUnit(
+                    ObjectManager.ObjectManager.GetWoWUnitByEntry(RobotEntryId));
+            if (!unitRobot.IsValid || !unitRobot.IsAlive)
+                return null;
+            var npcRobot = new Npc
+            {
+                Entry = unitRobot.Entry,
+                Position = unitRobot.Position,
+                Name = unitRobot.Name,
+                ContinentId = (ContinentId)Usefuls.ContinentId,
+                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                              ? Npc.FactionType.Horde
+                              : Npc.FactionType.Alliance,
+                SelectGossipOption = GossipOption,
+                Type = Type
+            };
+            return npcRobot;
         }
     }
 }
