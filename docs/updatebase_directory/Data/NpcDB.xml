@@ -18345,34 +18345,6 @@
     <Entry>26309</Entry>
     <Name>Weapons Vendor</Name>
     <Position>
-      <X>10346.3</X>
-      <Y>-6395.76</Y>
-      <Z>42.2989</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Neutral</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
-    <Entry>26309</Entry>
-    <Name>Weapons Vendor</Name>
-    <Position>
-      <X>10346.3</X>
-      <Y>-6395.76</Y>
-      <Z>42.2989</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Neutral</Faction>
-    <Type>Repair</Type>
-    <ContinentId>Outland</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
-    <Entry>26309</Entry>
-    <Name>Weapons Vendor</Name>
-    <Position>
       <X>-4181.76</X>
       <Y>-12471.6</Y>
       <Z>48.4961</Z>
