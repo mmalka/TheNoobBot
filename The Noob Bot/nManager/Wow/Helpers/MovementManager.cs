@@ -1409,7 +1409,7 @@ namespace nManager.Wow.Helpers
 
         public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
         {
-            Logging.Write("Initiate target finding, currently looking for: " + Target.Name);
+            Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
             if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
