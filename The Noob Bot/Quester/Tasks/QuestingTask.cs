@@ -956,14 +956,14 @@ namespace Quester.Tasks
             if (npc == null)
                 return;
 
-            // Go To NPC:
+            // Go To QuestGiver:
             MovementManager.StopMove();
-            // Launch script
-            //Script.Run(npc.Script); ToDo: probably add this
-            // Mounting Mount
-            MountTask.Mount(); // not good yet
+            // FindTarget use "Go" (including StopMove), do we really need a StopMove here ?
 
-            // Find path
+            // Launch script
+            //Script.Run(npc.Script); ToDo: Support scripts for special case quests.
+
+            //Start target finding based on QuestGiver.
             WoWUnit TargetIsNPC;
             WoWObject TargetIsObject;
             uint baseAddress = 0;
@@ -972,6 +972,7 @@ namespace Quester.Tasks
                 baseAddress = TargetIsNPC.GetBaseAddress;
             else if (TargetIsObject.IsValid)
                 baseAddress = TargetIsObject.GetBaseAddress;
+            //End target finding based on QuestGiver.
 
             if (Target.Position.DistanceTo(ObjectManager.Me.Position) < 6)
             {
