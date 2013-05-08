@@ -1,31 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <Questers>
+        <Npc>
+            <Name>Magistrix Erona</Name>
+            <Entry>15278</Entry>
+            <Position>
+              <X>10351.96</X>
+              <Y>-6359.932</Y>
+              <Z>34.03353</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Name>Jesthenis Sunstriker</Name>
+            <Entry>15280</Entry>
+            <Position>
+             <X>10366.67</X>
+             <Y>-6431.529</Y>
+             <Z>38.53442</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Name>Well Watcher Solanian</Name>
+            <Entry>15295</Entry>
+            <Position>
+              <X>10376.43</X>
+              <Y>-6406.689</Y>
+              <Z>49.71607</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Name>Arcanist Ithanas</Name>
+            <Entry>15296</Entry>
+            <Position>
+              <X>10413.7</X>
+              <Y>-6372.463</Y>
+              <Z>35.64339</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Name>Arcanist Helion</Name>
+            <Entry>15297</Entry>
+            <Position>
+              <X>10419.66</X>
+              <Y>-6318.618</Y>
+              <Z>35.57385</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Entry>15281</Entry>
+            <Name>Lanthan Perilon</Name>
+            <Position>
+              <X>10302.25</X>
+              <Y>-6229.303</Y>
+              <Z>26.62262</Z>
+            </Position>
+        </Npc>
+        <Npc>
+            <Entry>15301</Entry>
+            <Name>Outrunner Alarion</Name>
+            <Position>
+              <X>9984.044</X>
+              <Y>-6478.019</Y>
+              <Z>0.9976389</Z>
+            </Position>
+        </Npc>
+    </Questers>
     <Quests>
-
 <!-- Main quest line -->
         <Quest>
           <Name>Reclaiming Sunstrider Isle</Name>
           <Id>8325</Id>
           <MinLevel>1</MinLevel>
           <MaxLevel>4</MaxLevel>
-          <PickUp>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15278</PickUp>
+          <TurnIn>15278</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -57,24 +105,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15278</PickUp>
+          <TurnIn>15278</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -103,24 +135,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Jesthenis Sunstriker</Name>
-            <Entry>15280</Entry>
-            <Position>
-             <X>10366.67</X>
-             <Y>-6431.529</Y>
-             <Z>38.53442</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15278</PickUp>
+          <TurnIn>15280</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -133,24 +149,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Well Watcher Solanian</Name>
-            <Entry>15295</Entry>
-            <Position>
-              <X>10376.43</X>
-              <Y>-6406.689</Y>
-              <Z>49.71607</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Well Watcher Solanian</Name>
-            <Entry>15295</Entry>
-            <Position>
-              <X>10376.43</X>
-              <Y>-6406.689</Y>
-              <Z>49.71607</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15295</PickUp>
+          <TurnIn>15295</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>PickUpObject</Objective>
@@ -208,24 +208,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Well Watcher Solanian</Name>
-            <Entry>15295</Entry>
-            <Position>
-              <X>10376.43</X>
-              <Y>-6406.689</Y>
-              <Z>49.71607</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Well Watcher Solanian</Name>
-            <Entry>15295</Entry>
-            <Position>
-              <X>10376.43</X>
-              <Y>-6406.689</Y>
-              <Z>49.71607</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15295</PickUp>
+          <TurnIn>15295</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
@@ -247,24 +231,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Arcanist Ithanas</Name>
-            <Entry>15296</Entry>
-            <Position>
-              <X>10413.7</X>
-              <Y>-6372.463</Y>
-              <Z>35.64339</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Arcanist Ithanas</Name>
-            <Entry>15296</Entry>
-            <Position>
-              <X>10413.7</X>
-              <Y>-6372.463</Y>
-              <Z>35.64339</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15296</PickUp>
+          <TurnIn>15296</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -293,24 +261,8 @@
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Arcanist Helion</Name>
-            <Entry>15297</Entry>
-            <Position>
-              <X>10419.66</X>
-              <Y>-6318.618</Y>
-              <Z>35.57385</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Arcanist Helion</Name>
-            <Entry>15297</Entry>
-            <Position>
-              <X>10419.66</X>
-              <Y>-6318.618</Y>
-              <Z>35.57385</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15297</PickUp>
+          <TurnIn>15297</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>UseSpellAOE</Objective>
@@ -336,24 +288,8 @@
           <NeedQuestCompletedId>
             <int>8326</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Magistrix Erona</Name>
-            <Entry>15278</Entry>
-            <Position>
-              <X>10351.96</X>
-              <Y>-6359.932</Y>
-              <Z>34.03353</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15278</PickUp>
+          <TurnIn>15281</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -366,24 +302,8 @@
           <NeedQuestCompletedId>
             <int>9676</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Name>Jesthenis Sunstriker</Name>
-            <Entry>15280</Entry>
-            <Position>
-             <X>10366.67</X>
-             <Y>-6431.529</Y>
-             <Z>38.53442</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Name>Jesthenis Sunstriker</Name>
-            <Entry>15280</Entry>
-            <Position>
-             <X>10366.67</X>
-             <Y>-6431.529</Y>
-             <Z>38.53442</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15280</PickUp>
+          <TurnIn>15280</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>UseSpell</Objective>
@@ -421,24 +341,8 @@
           <NeedQuestCompletedId>
             <int>8327</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15281</PickUp>
+          <TurnIn>15281</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -479,24 +383,8 @@
           <NeedQuestCompletedId>
             <int>8334</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </TurnIn>
+          <PickUp>15281</PickUp>
+          <TurnIn>15281</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -587,24 +475,8 @@
           <NeedQuestCompletedId>
             <int>8335</int>
           </NeedQuestCompletedId>
-          <PickUp>
-            <Entry>15281</Entry>
-            <Name>Lanthan Perilon</Name>
-            <Position>
-              <X>10302.25</X>
-              <Y>-6229.303</Y>
-              <Z>26.62262</Z>
-            </Position>
-          </PickUp>
-          <TurnIn>
-			<Entry>15301</Entry>
-			<Name>Outrunner Alarion</Name>
-			<Position>
-			  <X>9984.044</X>
-			  <Y>-6478.019</Y>
-			  <Z>0.9976389</Z>
-			</Position>
-          </TurnIn>
+          <PickUp>15281</PickUp>
+          <TurnIn>15301</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
@@ -615,15 +487,7 @@
           <MinLevel>1</MinLevel>
           <MaxLevel>9</MaxLevel>
           <ItemPickUp>20483</ItemPickUp>
-          <TurnIn>
-            <Name>Arcanist Helion</Name>
-            <Entry>15297</Entry>
-            <Position>
-              <X>10419.66</X>
-              <Y>-6318.618</Y>
-              <Z>35.57385</Z>
-            </Position>
-          </TurnIn>
+          <TurnIn>15297</TurnIn>
           <Objectives>
           </Objectives>
         </Quest>
