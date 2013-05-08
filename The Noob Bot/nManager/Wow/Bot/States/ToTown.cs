@@ -388,7 +388,7 @@ namespace nManager.Wow.Bot.States
                     //End target finding based on Seller.
                     if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
                     {
-                        // ToDo: Dynamically remove this Target from the NPC Db.
+                        NpcDB.DelNpc(npc);
                     }
                     else
                     {
@@ -460,7 +460,7 @@ namespace nManager.Wow.Bot.States
                 //End target finding based on Mailbox.
                 if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
                 {
-                    // ToDo: Dynamically remove this Target from the NPC Db.
+                    NpcDB.DelNpc(mailBox);
                 }
                 else
                 {

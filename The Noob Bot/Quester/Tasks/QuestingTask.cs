@@ -972,6 +972,7 @@ namespace Quester.Tasks
             else
             {
                 baseAddress = 0;
+                //NpcDB.DelNpc(npc); // I don't particularly recommand it for Quester, as we can simply abort this quest and log it.
                 // ToDo: Stop working on that quest.
             }
             //End target finding based on QuestGiver.

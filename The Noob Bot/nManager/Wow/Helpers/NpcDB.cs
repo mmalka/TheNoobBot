@@ -71,6 +71,28 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static void DelNpc(Npc npc)
+        {
+            try
+            {
+                LoadList(); // Do we really need it here as ListNpc get{ LoadList() } ??
+                lock (typeof(NpcDB))
+                {
+                    foreach (Npc npc1 in ListNpc)
+                    {
+                        if (npc1.Entry != npc.Entry || npc1.Type != npc.Type || !(npc1.Position.DistanceTo(npc.Position) < 1)) continue;
+                        ListNpc.Remove(npc1);
+                        break;
+                    }
+                    XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logging.WriteError("NpcDB > DelNpc(Npc npc): " + ex);
+            }
+        }
+
         public static void AddNpcRange(List<Npc> npcList)
         {
             try
