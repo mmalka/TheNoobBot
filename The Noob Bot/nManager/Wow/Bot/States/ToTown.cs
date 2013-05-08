@@ -129,17 +129,16 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             MovementManager.StopMove();
-            var listVendor = new List<Npc>();
+            var listNPCs = new List<Npc>();
             Npc mailBox = null;
 
-            // MailBox
+            // If we need to send items.
             if (nManagerSetting.CurrentSetting.ActivateAutoMaillingFeature &&
                 nManagerSetting.CurrentSetting.MaillingFeatureRecipient != string.Empty)
             {
                 if (_useMollE)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(2000);
                     var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
@@ -164,7 +163,7 @@ namespace nManager.Wow.Bot.States
                 if (mailBox == null && NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
                     mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
             }
-            // If need repair
+            // If we need to repair.
             if (ObjectManager.ObjectManager.Me.GetDurability <=
                 nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
                 nManagerSetting.CurrentSetting.ActivateAutoRepairFeature)
@@ -173,8 +172,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
-                        if (Usefuls.IsFlying)
-                            MountTask.Land();
+                        MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
@@ -194,7 +192,7 @@ namespace nManager.Wow.Bot.States
                                         SelectGossipOption = 0,
                                         Type = Npc.NpcType.Repair
                                     };
-                                listVendor.Add(drixBlackwrenchNpc);
+                                listNPCs.Add(drixBlackwrenchNpc);
                             }
                         }
                         else
@@ -214,7 +212,7 @@ namespace nManager.Wow.Bot.States
                                         SelectGossipOption = 0,
                                         Type = Npc.NpcType.Repair
                                     };
-                                listVendor.Add(gnimoNpc);
+                                listNPCs.Add(gnimoNpc);
                             }
                         }
                     }
@@ -223,8 +221,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
-                        if (Usefuls.IsFlying)
-                            MountTask.Land();
+                        MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
                         var cousinSlowhands =
@@ -244,14 +241,13 @@ namespace nManager.Wow.Bot.States
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Repair
                                 };
-                            listVendor.Add(cousinSlowhandsNpc);
+                            listNPCs.Add(cousinSlowhandsNpc);
                         }
                     }
                 }
                 else if (_use74A)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(2000);
                     var unitA =
@@ -271,13 +267,12 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 0,
                                 Type = Npc.NpcType.Repair
                             };
-                        listVendor.Add(npcA);
+                        listNPCs.Add(npcA);
                     }
                 }
                 else if (_use110G)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(34113));
                     Thread.Sleep(2000);
                     var unitG =
@@ -297,13 +292,12 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 0,
                                 Type = Npc.NpcType.Repair
                             };
-                        listVendor.Add(npcG);
+                        listNPCs.Add(npcG);
                     }
                 }
                 else if (_useJeeves)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(2000);
                     var unitJeeves =
@@ -323,18 +317,18 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 2,
                                 Type = Npc.NpcType.Repair
                             };
-                        listVendor.Add(npcJeeves);
+                        listNPCs.Add(npcJeeves);
                     }
                 }
                 else
                 {
                     if (NpcDB.GetNpcNearby(Npc.NpcType.Repair).Entry > 0)
-                        listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Repair));
+                        listNPCs.Add(NpcDB.GetNpcNearby(Npc.NpcType.Repair));
                 }
             }
 
-            // If need sell
-            if (NeededBuyFood() || NeededBuyDrink() ||
+            // If we need to sell.
+            if (NeedFoodSupplies() || NeedDrinkSupplies() ||
                 Usefuls.GetContainerNumFreeSlots <= nManagerSetting.CurrentSetting.SellItemsWhenLessThanXSlotLeft &&
                 nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
             {
@@ -342,8 +336,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
-                        if (Usefuls.IsFlying)
-                            MountTask.Land();
+                        MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
@@ -363,7 +356,7 @@ namespace nManager.Wow.Bot.States
                                         SelectGossipOption = 0,
                                         Type = Npc.NpcType.Vendor
                                     };
-                                listVendor.Add(mojodishuNpc);
+                                listNPCs.Add(mojodishuNpc);
                             }
                         }
                         else
@@ -383,7 +376,7 @@ namespace nManager.Wow.Bot.States
                                         SelectGossipOption = 0,
                                         Type = Npc.NpcType.Vendor
                                     };
-                                listVendor.Add(hakmuddArgusNpc);
+                                listNPCs.Add(hakmuddArgusNpc);
                             }
                         }
                     }
@@ -392,8 +385,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
-                        if (Usefuls.IsFlying)
-                            MountTask.Land();
+                        MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
                         var cousinSlowhands =
@@ -411,14 +403,13 @@ namespace nManager.Wow.Bot.States
                                     SelectGossipOption = 0,
                                     Type = Npc.NpcType.Vendor
                                 };
-                            listVendor.Add(cousinSlowhandsNpc);
+                            listNPCs.Add(cousinSlowhandsNpc);
                         }
                     }
                 }
                 else if (_use74A)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(18232));
                     Thread.Sleep(2000);
                     var unitA =
@@ -438,13 +429,12 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 0,
                                 Type = Npc.NpcType.Vendor
                             };
-                        listVendor.Add(npcA);
+                        listNPCs.Add(npcA);
                     }
                 }
                 else if (_use110G)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(31113));
                     Thread.Sleep(2000);
                     var unitG =
@@ -464,13 +454,12 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 0,
                                 Type = Npc.NpcType.Vendor
                             };
-                        listVendor.Add(npcG);
+                        listNPCs.Add(npcG);
                     }
                 }
                 else if (_useJeeves)
                 {
-                    if (Usefuls.IsFlying)
-                        MountTask.Land();
+                    MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(49040));
                     Thread.Sleep(2000);
                     var unitJeeves =
@@ -490,137 +479,54 @@ namespace nManager.Wow.Bot.States
                                 SelectGossipOption = 2,
                                 Type = Npc.NpcType.Vendor
                             };
-                        listVendor.Add(npcJeeves);
+                        listNPCs.Add(npcJeeves);
                     }
                 }
                 else
                 {
                     if (NpcDB.GetNpcNearby(Npc.NpcType.Vendor).Entry > 0)
-                        listVendor.Add(NpcDB.GetNpcNearby(Npc.NpcType.Vendor));
+                        listNPCs.Add(NpcDB.GetNpcNearby(Npc.NpcType.Vendor));
                 }
             }
 
-            #region Vendor
+            #region Repairer, Seller/Buyer
 
-            if (listVendor.Count > 0)
+            if (listNPCs.Count > 0)
             {
-                foreach (var vendor in listVendor)
+                foreach (var npc in listNPCs)
                 {
-                    Logging.Write("Go to vendor");
-                    if (vendor.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.7f)
+                    //Start target finding based on Seller.
+                    WoWUnit TargetIsNPC;
+                    WoWObject TargetIsObject;
+                    Npc Target = MovementManager.FindTarget(npc, out TargetIsNPC, out TargetIsObject);
+                    //End target finding based on Seller.
+                    if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
                     {
-                        var pointsVendor = new List<Point>();
-                        if ((vendor.Position.Type.ToLower() == "flying") &&
-                            nManagerSetting.CurrentSetting.FlyingMountName != "")
-                        {
-                            pointsVendor.Add(new Point(vendor.Position));
-                        }
-                        else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
-                        {
-                            vendor.Position.Type = "Swimming";
-                            pointsVendor.Add(vendor.Position);
-                        }
-                        else
-                        {
-                            pointsVendor = PathFinder.FindPath(vendor.Position);
-                        }
-
-                        MovementManager.Go(pointsVendor);
-                        var timer = new Timer(((int) Math.DistanceListPoint(pointsVendor)/3*1000) + 5000);
-
-                        while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                               !(ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                               !ObjectManager.ObjectManager.Me.IsDeadMe)
-                        {
-                            if (timer.IsReady)
-                                MovementManager.StopMove();
-                            if (vendor.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                                MovementManager.StopMove();
-                            Thread.Sleep(100);
-                        }
+                        // ToDo: Dynamically remove this Target from the NPC Db.
                     }
-
-                    var vendorObj =
-                        ObjectManager.ObjectManager.GetNearestWoWUnit(
-                            ObjectManager.ObjectManager.GetWoWUnitByEntry(vendor.Entry));
-                    if (vendorObj.IsValid)
+                    else
                     {
-                        Logging.Write("Vendor named " + vendorObj.Name);
-                        if (vendorObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.7f)
+                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
+                        DoProspectingInTown();
+                        DoMillingInTown();
+                        Interact.InteractGameObject(baseAddress);
+                        Thread.Sleep(500);
+                        if (Target.SelectGossipOption != 0)
+                            Lua.LuaDoString("SelectGossipOption(" + Target.SelectGossipOption + ")");
+                        Thread.Sleep(1000);
+
+                        // NPC Repairer
+                        if (Target.Type == Npc.NpcType.Repair)
                         {
-                            Thread.Sleep(500);
-                            MovementManager.StopMoveTo();
+                            Logging.Write("Repair items from " + Target.Name + " (" + Target.Entry + ").");
+                            Vendor.RepairAllItems();
                             Thread.Sleep(1000);
-                            List<Point> listPoint = PathFinder.FindPath(vendorObj.Position);
-
-                            MovementManager.Go(listPoint);
-                            var timer = new Timer(((int) Math.DistanceListPoint(listPoint)/3*1000) + 5000);
-                            while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                                   !(ObjectManager.ObjectManager.Me.InCombat &&
-                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                   !ObjectManager.ObjectManager.Me.IsDeadMe)
-                            {
-                                if (timer.IsReady)
-                                    MovementManager.StopMove();
-                                if (vendorObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                                    MovementManager.StopMove();
-                                Thread.Sleep(100);
-                            }
                         }
+                        // End NPC Repairer
 
-                        // Prospection
-                        if (!_magicMountMammoth && !_magicMountYak &&
-                            nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
-                            nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
-                            nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
+                        if (Target.Type == Npc.NpcType.Vendor)
                         {
-                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
-                            {
-                                var prospectingState = new ProspectingState();
-                                prospectingState.Run();
-                            }
-                        }
-                        // End Prospection
-
-
-                        // Milling
-                        if (!_magicMountMammoth && !_magicMountYak &&
-                            nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
-                            nManagerSetting.CurrentSetting.ActivateAutoMilling &&
-                            nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
-                        {
-                            if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
-                            {
-                                var millingState = new MillingState();
-                                millingState.Run();
-                            }
-                        }
-                        // End Milling
-
-                        if (ObjectManager.ObjectManager.Me.Position.DistanceTo(vendorObj.Position) < 5 &&
-                            Products.Products.IsStarted &&
-                            !(ObjectManager.ObjectManager.Me.InCombat &&
-                              !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                        {
-                            Interact.InteractGameObject(vendorObj.GetBaseAddress);
-                            Thread.Sleep(500);
-                            if (vendor.SelectGossipOption != 0)
-                                Lua.LuaDoString("SelectGossipOption(" + vendor.SelectGossipOption + ")");
-                            Thread.Sleep(1000);
-
-                            // Repair:
-                            if (vendor.Type == Npc.NpcType.Repair)
-                            {
-                                Logging.Write("Repair items");
-                                Vendor.RepairAllItems();
-                                Thread.Sleep(1000);
-                            }
-
-                            // Sell:
+                            // NPC Buyer
                             var vQuality = new List<WoWItemQuality>();
                             if (nManagerSetting.CurrentSetting.SellGray)
                                 vQuality.Add(WoWItemQuality.Poor);
@@ -634,166 +540,82 @@ namespace nManager.Wow.Bot.States
                                 vQuality.Add(WoWItemQuality.Epic);
                             Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
                                              nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
-                            Logging.Write("Sell items");
+                            Logging.Write("Selling items to " + Target.Name + " (" + Target.Entry + ").");
                             Thread.Sleep(3000);
+                            // End NPC Buyer
 
-
-                            // Buy:
-                            if (vendor.Type == Npc.NpcType.Vendor)
+                            // NPC Seller
+                            Logging.Write("Buying beverages and food from " + Target.Name + " (" + Target.Entry + ").");
+                            for (int i = 0; i < 10 && NeedFoodSupplies(); i++)
                             {
-                                Logging.Write("Buy drink and food");
-                                for (int i = 0; i < 10 && NeededBuyFood(); i++)
-                                {
-                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.FoodName, 1);
-                                }
-                                for (int i = 0; i < 10 && NeededBuyDrink(); i++)
-                                {
-                                    Vendor.BuyItem(nManagerSetting.CurrentSetting.BeverageName, 1);
-                                }
+                                Vendor.BuyItem(nManagerSetting.CurrentSetting.FoodName, 1);
                             }
-
-
-                            Lua.LuaDoString("CloseMerchant()");
+                            for (int i = 0; i < 10 && NeedDrinkSupplies(); i++)
+                            {
+                                Vendor.BuyItem(nManagerSetting.CurrentSetting.BeverageName, 1);
+                            }
                         }
-                        else
-                        {
-                            Logging.Write("Unable to reach the vendor");
-                        }
+                        // End NPC Seller
+                        Lua.LuaDoString("CloseMerchant()");
                     }
                 }
             }
 
-            #endregion Vendor
+            #endregion Repairer, Seller/Buyer
 
-            #region Mail
+            #region Mailbox
 
             if (mailBox != null)
             {
-                Logging.Write("Go to mailbox");
-                var pointsMail = new List<Point>();
-                if ((mailBox.Position.Type.ToLower() == "flying") &&
-                    nManagerSetting.CurrentSetting.FlyingMountName != "")
+                //Start target finding based on Mailbox.
+                WoWUnit TargetIsNPC;
+                WoWObject TargetIsObject;
+                Npc Target = MovementManager.FindTarget(mailBox, out TargetIsNPC, out TargetIsObject);
+                //End target finding based on Mailbox.
+                if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
                 {
-                    pointsMail.Add(mailBox.Position);
-                }
-                else if (nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
-                {
-                    mailBox.Position.Type = "Swimming";
-                    pointsMail.Add(mailBox.Position);
+                    // ToDo: Dynamically remove this Target from the NPC Db.
                 }
                 else
                 {
-                    pointsMail = PathFinder.FindPath(mailBox.Position);
-                }
-
-
-                MovementManager.Go(pointsMail);
-                var timer = new Timer(((int) Math.DistanceListPoint(pointsMail)/3*1000) + 5000);
-                Thread.Sleep(700);
-                while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                       !(ObjectManager.ObjectManager.Me.InCombat &&
-                         !(ObjectManager.ObjectManager.Me.IsMounted &&
-                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                       !ObjectManager.ObjectManager.Me.IsDeadMe)
-                {
-                    if (timer.IsReady)
-                        MovementManager.StopMove();
-                    if (mailBox.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                        MovementManager.StopMove();
-                    Thread.Sleep(100);
-                }
-
-                // Prospection
-                if (nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
-                    nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
-                    nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
-                {
-                    if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
-                    {
-                        var prospectingState = new ProspectingState();
-                        prospectingState.Run();
-                    }
-                }
-                // End Prospection
-
-                WoWGameObject mailBoxObj =
-                    ObjectManager.ObjectManager.GetNearestWoWGameObject(
-                        ObjectManager.ObjectManager.GetWoWGameObjectByEntry(mailBox.Entry));
-                if (mailBoxObj.IsValid)
-                {
+                    uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
+                    DoProspectingInTown();
+                    DoMillingInTown();
+                    Interact.InteractGameObject(baseAddress);
                     Thread.Sleep(500);
-                    MovementManager.StopMoveTo();
-                    Thread.Sleep(1000);
-                    List<Point> listPoint = PathFinder.FindPath(mailBoxObj.Position);
+                    var mQuality = new List<WoWItemQuality>();
+                    if (nManagerSetting.CurrentSetting.MailGray)
+                        mQuality.Add(WoWItemQuality.Poor);
+                    if (nManagerSetting.CurrentSetting.MailWhite)
+                        mQuality.Add(WoWItemQuality.Common);
+                    if (nManagerSetting.CurrentSetting.MailGreen)
+                        mQuality.Add(WoWItemQuality.Uncommon);
+                    if (nManagerSetting.CurrentSetting.MailBlue)
+                        mQuality.Add(WoWItemQuality.Rare);
+                    if (nManagerSetting.CurrentSetting.MailPurple)
+                        mQuality.Add(WoWItemQuality.Epic);
 
-                    Logging.Write("MailBox found");
-
-                    MovementManager.Go(listPoint);
-                    timer = new Timer(((int) Math.DistanceListPoint(listPoint)/3*1000) + 5000);
-                    while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat &&
-                             !(ObjectManager.ObjectManager.Me.IsMounted &&
-                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                           !ObjectManager.ObjectManager.Me.IsDeadMe)
+                    var MailSendingCompleted = false;
+                    for (var i = 7; i > 0 && !MailSendingCompleted; i--)
                     {
-                        if (timer.IsReady)
-                            MovementManager.StopMove();
-                        if (mailBoxObj.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 3.7f)
-                            MovementManager.StopMove();
-                        Thread.Sleep(100);
-                    }
-
-                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(mailBoxObj.Position) < 5 &&
-                        Products.Products.IsStarted &&
-                        !(ObjectManager.ObjectManager.Me.InCombat &&
-                          !(ObjectManager.ObjectManager.Me.IsMounted &&
-                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                    {
-                        Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
+                        Interact.InteractGameObject(baseAddress);
+                        Thread.Sleep(1000);
+                        Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
+                                         nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
+                                         nManagerSetting.CurrentSetting.ForceToMailTheseItems,
+                                         nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
+                                         out MailSendingCompleted);
                         Thread.Sleep(500);
-                        var mQuality = new List<WoWItemQuality>();
-                        if (nManagerSetting.CurrentSetting.MailGray)
-                            mQuality.Add(WoWItemQuality.Poor);
-                        if (nManagerSetting.CurrentSetting.MailWhite)
-                            mQuality.Add(WoWItemQuality.Common);
-                        if (nManagerSetting.CurrentSetting.MailGreen)
-                            mQuality.Add(WoWItemQuality.Uncommon);
-                        if (nManagerSetting.CurrentSetting.MailBlue)
-                            mQuality.Add(WoWItemQuality.Rare);
-                        if (nManagerSetting.CurrentSetting.MailPurple)
-                            mQuality.Add(WoWItemQuality.Epic);
-
-                        var needRunAgain = true;
-                        for (var i = 7; i > 0 && needRunAgain; i--)
-                        {
-                            Interact.InteractGameObject(mailBoxObj.GetBaseAddress);
-                            Thread.Sleep(1000);
-                            Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
-                                             nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
-                                             nManagerSetting.CurrentSetting.ForceToMailTheseItems,
-                                             nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
-                                             out needRunAgain);
-                            Thread.Sleep(500);
-                        }
-                        Logging.Write("Mail sending at " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient);
                     }
-                    else
-                    {
-                        Logging.Write("Unable to reach the mail box");
-                    }
-                }
-                else
-                {
-                    Logging.Write("MailBox not found");
+                    Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + Target.Name + " (" + Target.Entry + ").");
                 }
             }
 
-            #endregion Mail
+            #endregion Mailbox
         }
 
-        private bool NeededBuyFood()
+        private bool NeedFoodSupplies()
         {
-            // food
             if (nManagerSetting.CurrentSetting.FoodName != "" && nManagerSetting.CurrentSetting.NumberOfFoodsWeGot > 0)
             {
                 if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.FoodName) <
@@ -803,9 +625,8 @@ namespace nManager.Wow.Bot.States
             return false;
         }
 
-        private bool NeededBuyDrink()
+        private bool NeedDrinkSupplies()
         {
-            // Drink
             if (nManagerSetting.CurrentSetting.BeverageName != "" &&
                 nManagerSetting.CurrentSetting.NumberOfBeverageWeGot > 0)
             {
@@ -814,6 +635,36 @@ namespace nManager.Wow.Bot.States
                     return true;
             }
             return false;
+        }
+
+        private void DoProspectingInTown()
+        {
+            if (!_magicMountMammoth && !_magicMountYak &&
+                nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
+                nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
+                nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
+            {
+                if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
+                {
+                    var prospectingState = new ProspectingState();
+                    prospectingState.Run();
+                }
+            }
+        }
+
+        private void DoMillingInTown()
+        {
+            if (!_magicMountMammoth && !_magicMountYak &&
+                nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
+                nManagerSetting.CurrentSetting.ActivateAutoMilling &&
+                nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
+            {
+                if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
+                {
+                    var millingState = new MillingState();
+                    millingState.Run();
+                }
+            }
         }
     }
 }

@@ -9,9 +9,8 @@ namespace nManager.Wow.Helpers
     {
         public static void SendMessage(string target, string titleMsg, string txtMsg, List<String> itemSend,
                                        List<string> itemNoSend, List<Enums.WoWItemQuality> itemQuality,
-                                       out bool needRunAgain)
+                                       out bool MailSendingCompleted)
         {
-            needRunAgain = false;
             try
             {
                 string syntaxSellItem = itemSend.Aggregate("", (current, s) => current + " or namei == \"" + s + "\" ");
@@ -61,11 +60,12 @@ namespace nManager.Wow.Helpers
 
                 scriptLua = scriptLua + "end ";
 
-                needRunAgain = Convert.ToInt32(Lua.LuaDoString(scriptLua, "numAttachments")) > 0;
+                MailSendingCompleted = Convert.ToInt32(Lua.LuaDoString(scriptLua, "numAttachments")) <= 0;
                 System.Threading.Thread.Sleep(Usefuls.Latency + 1000);
             }
             catch (Exception exception)
             {
+                MailSendingCompleted = true;
                 Logging.WriteError(
                     "Mail > SendMessage(string target, string titleMsg, string txtMsg, List<String> itemSend, List<string> itemNoSend, List<Enums.WoWItemQuality> itemQuality): " +
                     exception);
