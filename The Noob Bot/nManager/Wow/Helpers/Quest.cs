@@ -155,13 +155,20 @@ namespace nManager.Wow.Helpers
             Logging.WriteDebug("There is " + numRewards + " rewards");
             for (int i = 1; i <= numRewards; i++)
             {
-                string randomString2 = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString2 + " = GetQuestItemLink(\"choice\", " + i + ")");
-                string itemLink = Lua.GetLocalizedText(randomString2);
-                Lua.LuaDoString("link = GetQuestItemLink(\"choice\", " + i + "); " +
-                    randomString2 +" = link and select(11, GetItemInfo(link));");
-                int price = Convert.ToInt32(Lua.GetLocalizedText(randomString2));
-                Logging.WriteDebug("This item has a value of " + price);
+                string sName = Others.GetRandomString(Others.Random(4, 10));
+                string sQuality = Others.GetRandomString(Others.Random(4, 10));
+                string sIlevel = Others.GetRandomString(Others.Random(4, 10));
+                string sEquipSlot = Others.GetRandomString(Others.Random(4, 10));
+                string sPrice = Others.GetRandomString(Others.Random(4, 10));
+
+                string command = "link = GetQuestItemLink(\"choice\", " + i + "); ";
+                command += sName +  ",_," + sQuality + "," + sIlevel + ",_,_,_,_," +  sEquipSlot + ",_," + sPrice + "=GetItemInfo(link);";
+                //command += sPrice + " = link and select(11, GetItemInfo(link));";
+                Lua.LuaDoString(command);
+                int price = Convert.ToInt32(Lua.GetLocalizedText(sPrice));
+                int quality = Convert.ToInt32(Lua.GetLocalizedText(sQuality));
+                int iLevel = Convert.ToInt32(Lua.GetLocalizedText(sIlevel));
+                Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + Lua.GetLocalizedText(sEquipSlot) + "\" has a value of " + price);
             }
             Lua.LuaDoString("GetQuestReward(1)");
             Thread.Sleep(500);
