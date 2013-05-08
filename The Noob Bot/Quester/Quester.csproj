@@ -38,8 +38,10 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\Bot.cs" />
@@ -50,6 +52,12 @@
       <DependentUpon>LoadProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Bot\QuesterState.cs" />
+    <Compile Include="Profile\ProfileManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\ProfileManager.Designer.cs">
+      <DependentUpon>ProfileManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="Profile\QuesterProfile.cs" />
     <Compile Include="Bot\QuesterSetting.cs" />
     <Compile Include="Main.cs" />
@@ -66,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Bot\LoadProfile.resx" />
+    <EmbeddedResource Include="Profile\ProfileManager.resx">
+      <DependentUpon>ProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

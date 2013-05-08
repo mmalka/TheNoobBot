@@ -71,8 +71,8 @@ namespace Quester.Bot
         {
             try
             {
-                //var f = new ProfileCreator();
-                //f.ShowDialog();
+                var f = new ProfileManager();
+                f.ShowDialog();
                 RefreshProfileList();
             }
             catch (Exception e)
