@@ -590,7 +590,7 @@ namespace Grinder.Profile
             this.MaximizeBox = false;
             this.Name = "ProfileCreator";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).EndInit();

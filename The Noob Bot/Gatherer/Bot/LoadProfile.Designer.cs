@@ -104,7 +104,7 @@ namespace Gatherer.Bot
             this.MinimumSize = new System.Drawing.Size(300, 129);
             this.Name = "LoadProfile";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Load Gatherer Profile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadProfile_FormClosing);
             this.ResumeLayout(false);

@@ -3395,7 +3395,7 @@ namespace nManager.Helpful.Forms
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "GeneralSettings";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "General Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GeneralSettings_FormClosing);
             this.panel1.ResumeLayout(false);

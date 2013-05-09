@@ -91,6 +91,7 @@ namespace Quester.Bot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(284, 91);
             this.Controls.Add(this.createProfileB);
             this.Controls.Add(this.labelX1);
@@ -103,7 +104,7 @@ namespace Quester.Bot
             this.MinimumSize = new System.Drawing.Size(300, 129);
             this.Name = "LoadProfile";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Load Quester Profile";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.LoadProfile_FormClosing);
             this.ResumeLayout(false);

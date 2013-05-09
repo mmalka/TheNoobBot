@@ -1323,7 +1323,7 @@ namespace Battlegrounder
             this.MaximizeBox = false;
             this.Name = "SettingsBattlegrounderForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Battlegrounder Settings";
             ((System.ComponentModel.ISupportInitialize)(this.RequeueAfterXMinutes)).EndInit();

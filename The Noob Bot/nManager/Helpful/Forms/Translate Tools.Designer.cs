@@ -94,7 +94,7 @@ namespace nManager.Helpful.Forms
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "Translate_Tools";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Translate Tools";
             ((System.ComponentModel.ISupportInitialize)(this.listDigsitesDGV)).EndInit();
             this.ResumeLayout(false);

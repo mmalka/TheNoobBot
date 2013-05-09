@@ -281,7 +281,7 @@ namespace Battlegrounder.Profile
             this.MinimumSize = new System.Drawing.Size(395, 470);
             this.Name = "ProfileCreator";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.DistanceBetweenRecord)).EndInit();

@@ -290,7 +290,7 @@ namespace Fisherbot
             this.MaximizeBox = false;
             this.Name = "SettingsFisherbotForm";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Settings Fisherbot";
             this.ResumeLayout(false);
 

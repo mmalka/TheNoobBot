@@ -211,7 +211,7 @@ namespace Fisherbot.Profile
             this.MinimumSize = new System.Drawing.Size(395, 417);
             this.Name = "ProfileCreator";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "Profile Creator";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ProfileCreator_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.nSeparatorDistance)).EndInit();

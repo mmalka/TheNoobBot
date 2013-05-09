@@ -172,7 +172,7 @@ namespace Archaeologist
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "DigSites_List_Management";
             this.ShowIcon = false;
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.Text = "DigSites list Management";
             ((System.ComponentModel.ISupportInitialize)(this.listDigsitesDGV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.solvingEveryXMin)).EndInit();
