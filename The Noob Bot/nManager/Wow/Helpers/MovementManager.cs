@@ -1405,12 +1405,15 @@ namespace nManager.Wow.Helpers
 
         #region NPC/Object Finder
 
-        private static string FoundType = "none";
-        private static bool LastChance = true;
+        private static string FoundType;
+        private static bool LastChance;
 
         public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
         {
             Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
+            LastChance = true;
+            FoundType = "none";
+            Random rand = new Random();
             if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
@@ -1446,7 +1449,7 @@ namespace nManager.Wow.Helpers
             {
                 if (timer.IsReady)
                     goto GeneratePath;
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f)
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.Next(2500, 5000) / 1000f) && FoundType != "none")
                     StopMove();
                 /* The following code check 2 things.
                  * 1: Does the real Target (Memory) is at a different place than the Target Position in the Profile ?
@@ -1542,6 +1545,7 @@ namespace nManager.Wow.Helpers
             {
                 if (LastChance)
                 {
+                    Logging.WriteDebug("Last chance used when searching for Target " + Target.Name + " (" + Target.Entry + ").");
                     LastChance = false;
                     TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                     TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
