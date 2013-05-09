@@ -590,7 +590,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseSpell)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseSpell) < 5.0f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseSpell) < questObjective.Range)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -617,7 +617,7 @@ namespace Quester.Tasks
                     }
 
                     if (questObjective.PositionUseSpell.X != 0 &&
-                        questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > 5.0f)
+                        questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
