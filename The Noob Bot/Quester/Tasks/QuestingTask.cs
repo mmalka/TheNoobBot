@@ -36,9 +36,8 @@ namespace Quester.Tasks
 
             foreach (var quest in Quester.Bot.Bot.Profile.Quests)
             {
-                if (_HARDMODE_ && ObjectManager.Me.Level >= quest.MinLevel &&
-                      (ObjectManager.Me.Level >= quest.QuestLevel || quest.QuestLevel <= 3) && // Level
-                      ObjectManager.Me.Level <= quest.MaxLevel)
+                if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
+                      (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel || quest.QuestLevel <= 3)) // Level
                     if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                         if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                             quest.NeedQuestCompletedId.Count == 0)
@@ -53,9 +52,8 @@ namespace Quester.Tasks
             // I hate to duplicate code, but I found this easier to unlock quest where My Level >= QuestLevel-1
             foreach (var quest in Quester.Bot.Bot.Profile.Quests)
             {
-                if (_HARDMODE_ && ObjectManager.Me.Level >= quest.MinLevel &&
-                      (ObjectManager.Me.Level >= quest.QuestLevel-1 || quest.QuestLevel <= 3) && // Level
-                      ObjectManager.Me.Level <= quest.MaxLevel)
+                if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
+                      (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel-1 || quest.QuestLevel <= 3)) // Level
                     if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                         if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                             quest.NeedQuestCompletedId.Count == 0)
