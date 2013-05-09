@@ -1406,6 +1406,7 @@ namespace nManager.Wow.Helpers
         #region NPC/Object Finder
 
         private static string FoundType = "none";
+        private static bool LastChance = true;
 
         public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
         {
@@ -1539,6 +1540,14 @@ namespace nManager.Wow.Helpers
             End:
             if (FoundType == "none" && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
             {
+                if (LastChance)
+                {
+                    LastChance = false;
+                    TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+                    TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+                    FoundType = TargetIsNPC.IsValid ? "NPC" : TargetIsObject.IsValid ? "NPC" : "none";
+                    goto End;
+                }
                 Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
                               Target.Position.Y + ";" + Target.Position.Z + ").");
                 return Target;
