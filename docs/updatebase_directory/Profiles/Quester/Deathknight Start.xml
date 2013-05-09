@@ -27,6 +27,7 @@
             <Name>In Service Of The Lich King</Name>
             <Id>12593</Id>
             <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <QuestLevel>55</QuestLevel>
             <MinLevel>55</MinLevel>
             <MaxLevel>58</MaxLevel>
             <PickUp>25462</PickUp>
@@ -42,6 +43,7 @@
             <Name>The Emblazoned Runeblade</Name>
             <Id>12619</Id>
             <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <QuestLevel>55</QuestLevel>
             <MinLevel>55</MinLevel>
             <MaxLevel>58</MaxLevel>
             <NeedQuestCompletedId>
@@ -79,6 +81,7 @@
             <Name>Runeforging: Preparation For Battle</Name>
             <Id>12842</Id>
             <ClassMask>40</ClassMask> <!-- Deathnight -->
+            <QuestLevel>55</QuestLevel>
             <MinLevel>55</MinLevel>
             <MaxLevel>58</MaxLevel>
             <NeedQuestCompletedId>

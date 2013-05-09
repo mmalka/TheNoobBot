@@ -72,6 +72,7 @@
           <Id>8325</Id>
           <MinLevel>1</MinLevel>
           <MaxLevel>4</MaxLevel>
+          <QuestLevel>1</QuestLevel>
           <PickUp>15278</PickUp>
           <TurnIn>15278</TurnIn>
           <Objectives>
@@ -102,6 +103,7 @@
           <Id>8326</Id>
           <MinLevel>1</MinLevel>
           <MaxLevel>6</MaxLevel>
+          <QuestLevel>3</QuestLevel>
           <NeedQuestCompletedId>
             <int>8325</int>
           </NeedQuestCompletedId>
@@ -130,6 +132,7 @@
         <Quest>
           <Name>Paladin Training</Name>
           <Id>9676</Id>
+          <QuestLevel>3</QuestLevel>
           <MinLevel>2</MinLevel>
           <MaxLevel>6</MaxLevel>
           <NeedQuestCompletedId>
@@ -144,6 +147,7 @@
 		<Quest>
           <Name>Solanian's Belongings</Name>
           <Id>8330</Id>
+          <QuestLevel>4</QuestLevel>
           <MinLevel>2</MinLevel>
           <MaxLevel>7</MaxLevel>
           <NeedQuestCompletedId>
@@ -203,6 +207,7 @@
 		<Quest>
           <Name>The Shrine of Dath'Remar</Name>
           <Id>8345</Id>
+          <QuestLevel>1</QuestLevel>
           <MinLevel>2</MinLevel>
           <MaxLevel>7</MaxLevel>
           <NeedQuestCompletedId>
@@ -226,6 +231,7 @@
 		<Quest>
           <Name>A Fistful of Slivers</Name>
           <Id>8336</Id>
+          <QuestLevel>4</QuestLevel>
           <MinLevel>2</MinLevel>
           <MaxLevel>7</MaxLevel>
           <NeedQuestCompletedId>
@@ -256,6 +262,7 @@
 		<Quest>
           <Name>Thirst Unending</Name>
           <Id>8346</Id>
+          <QuestLevel>3</QuestLevel>
           <MinLevel>2</MinLevel>
           <MaxLevel>6</MaxLevel>
           <NeedQuestCompletedId>
@@ -283,6 +290,7 @@
 		<Quest>
           <Name>Report to Lanthan Perilon</Name>
           <Id>8327</Id>
+          <QuestLevel>3</QuestLevel>
           <MinLevel>1</MinLevel>
           <MaxLevel>6</MaxLevel>
           <NeedQuestCompletedId>
@@ -297,6 +305,7 @@
 		<Quest>
           <Name>Ways of the Light</Name>
           <Id>10069</Id>
+          <QuestLevel>3</QuestLevel>
           <MinLevel>3</MinLevel>
           <MaxLevel>7</MaxLevel>
           <NeedQuestCompletedId>
@@ -336,6 +345,7 @@
 		<Quest>
           <Name>Aggression</Name>
           <Id>8334</Id>
+          <QuestLevel>4</QuestLevel>
           <MinLevel>1</MinLevel>
           <MaxLevel>7</MaxLevel>
           <NeedQuestCompletedId>
@@ -378,6 +388,7 @@
 		<Quest>
           <Name>Felendren the Banished</Name>
           <Id>8335</Id>
+          <QuestLevel>5</QuestLevel>
           <MinLevel>1</MinLevel>
           <MaxLevel>8</MaxLevel>
           <NeedQuestCompletedId>
@@ -470,6 +481,7 @@
 		<Quest>
           <Name>Aiding the Outrunners</Name>
           <Id>8347</Id>
+          <QuestLevel>5</QuestLevel>
           <MinLevel>4</MinLevel>
           <MaxLevel>8</MaxLevel>
           <NeedQuestCompletedId>
@@ -484,6 +496,7 @@
         <Quest>
           <Name>Tainted Arcane Sliver</Name>
           <Id>8338</Id>
+          <QuestLevel>4</QuestLevel>
           <MinLevel>1</MinLevel>
           <MaxLevel>9</MaxLevel>
           <ItemPickUp>20483</ItemPickUp>

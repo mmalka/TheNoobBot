@@ -58,6 +58,7 @@ namespace Quester.Profile
         public int ClassMask = 0;
         public int RaceMask = 0;
         public int Id = 0;
+        public int QuestLevel = 0;
         public int MinLevel = 0;
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed

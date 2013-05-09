@@ -136,6 +136,7 @@
             <Id>28757</Id>
             <ClassMask>128</ClassMask> <!-- Mage -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -143,7 +144,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -163,8 +164,9 @@
         <Quest>
             <Name>Beating Them Back!</Name>
             <Id>28762</Id>
-            <ClassMask>2 </ClassMask> <!-- Paladin -->
+            <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -172,7 +174,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -194,6 +196,7 @@
             <Id>28763</Id>
             <ClassMask>16</ClassMask> <!-- Priest -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -201,7 +204,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -223,6 +226,7 @@
             <Id>28764</Id>
             <ClassMask>8</ClassMask> <!-- Rogue -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -230,7 +234,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -252,6 +256,7 @@
             <Id>28765</Id>
             <ClassMask>256</ClassMask> <!-- Warlock -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -259,7 +264,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -281,6 +286,7 @@
             <Id>28766</Id>
             <ClassMask>1</ClassMask> <!-- Warrior -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -288,7 +294,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -310,6 +316,7 @@
             <Id>28767</Id>
             <ClassMask>4</ClassMask> <!-- Hunter -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -317,7 +324,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -339,6 +346,7 @@
             <Id>29078</Id>
             <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <PickUp>197</PickUp>
@@ -346,7 +354,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>6</Count>
+                    <Count>-1</Count> <!-- 6 -->
                     <Entry>
                         <int>49871</int>
                     </Entry>
@@ -370,6 +378,7 @@
             <Id>28769</Id>
             <ClassMask>128</ClassMask> <!-- Mage -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -380,7 +389,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -402,6 +411,7 @@
             <Id>28770</Id>
             <ClassMask>2 </ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -412,7 +422,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -434,6 +444,7 @@
             <Id>28771</Id>
             <ClassMask>16</ClassMask> <!-- Priest -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -444,7 +455,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -466,6 +477,7 @@
             <Id>28772</Id>
             <ClassMask>8</ClassMask> <!-- Rogue -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -476,7 +488,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -498,6 +510,7 @@
             <Id>28773</Id>
             <ClassMask>256</ClassMask> <!-- Warlock -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -508,7 +521,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -530,6 +543,7 @@
             <Id>28774</Id>
             <ClassMask>1</ClassMask> <!-- Warrior -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -540,7 +554,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -562,6 +576,7 @@
             <Id>28759</Id>
             <ClassMask>4</ClassMask> <!-- Hunter -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -572,7 +587,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -594,6 +609,7 @@
             <Id>29079</Id>
             <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>5</MaxLevel>
             <NeedQuestCompletedId>
@@ -604,7 +620,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>49874</int>
                     </Entry>
@@ -628,6 +644,7 @@
             <Id>3104</Id>
             <ClassMask>128</ClassMask> <!-- Mage -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -646,6 +663,7 @@
             <Id>3101</Id>
             <ClassMask>2 </ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -664,6 +682,7 @@
             <Id>3103</Id>
             <ClassMask>16</ClassMask> <!-- Priest -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -682,6 +701,7 @@
             <Id>3102</Id>
             <ClassMask>8</ClassMask> <!-- Rogue -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -700,6 +720,7 @@
             <Id>3105</Id>
             <ClassMask>256</ClassMask> <!-- Warlock -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -718,6 +739,7 @@
             <Id>3100</Id>
             <ClassMask>1</ClassMask> <!-- Warrior -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -736,6 +758,7 @@
             <Id>28759</Id>
             <ClassMask>4</ClassMask> <!-- Hunter -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -758,6 +781,7 @@
             <Id>26916</Id>
             <ClassMask>128</ClassMask> <!-- Mage -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -798,6 +822,7 @@
             <Id>26918</Id>
             <ClassMask>2 </ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -834,6 +859,7 @@
             <Id>26919</Id>
             <ClassMask>16</ClassMask> <!-- Priest -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -866,6 +892,7 @@
             <Id>26915</Id>
             <ClassMask>8</ClassMask> <!-- Rogue -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -897,6 +924,7 @@
             <Id>26914</Id>
             <ClassMask>256</ClassMask> <!-- Warlock -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -928,6 +956,7 @@
             <Id>26913</Id>
             <ClassMask>1</ClassMask> <!-- Warrior -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -959,6 +988,7 @@
             <Id>26917</Id>
             <ClassMask>4</ClassMask> <!-- Hunter -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -994,6 +1024,7 @@
             <Id>28784</Id>
             <ClassMask>128</ClassMask> <!-- Mage -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1012,6 +1043,7 @@
             <Id>28785</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1030,6 +1062,7 @@
             <Id>28786</Id>
             <ClassMask>16</ClassMask> <!-- Priest -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1048,6 +1081,7 @@
             <Id>28787</Id>
             <ClassMask>8</ClassMask> <!-- Rogue -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1066,6 +1100,7 @@
             <Id>28784</Id>
             <ClassMask>256</ClassMask> <!-- Warlock -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1084,6 +1119,7 @@
             <Id>28789</Id>
             <ClassMask>1</ClassMask> <!-- Warrior -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1102,6 +1138,7 @@
             <Id>28780</Id>
             <ClassMask>4</ClassMask> <!-- Hunter -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1120,6 +1157,7 @@
             <Id>29080</Id>
             <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>3</MinLevel>
             <MaxLevel>6</MaxLevel>
             <NeedQuestCompletedId>
@@ -1141,6 +1179,7 @@
             <Id>28793</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>3</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>8</MaxLevel>
             <NeedQuestCompletedId>
@@ -1151,7 +1190,7 @@
             <Objectives>
                 <QuestObjective>
                     <Objective>KillMob</Objective>
-                    <Count>8</Count>
+                    <Count>-1</Count> <!-- 8 -->
                     <Entry>
                         <int>50039</int>
                     </Entry>
@@ -1182,6 +1221,7 @@
             <Id>28819</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>4</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>8</MaxLevel>
             <NeedQuestCompletedId>
@@ -1209,6 +1249,7 @@
             <Id>26389</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>4</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>8</MaxLevel>
             <NeedQuestCompletedId>
@@ -1256,6 +1297,7 @@
             <Id>26390</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>5</QuestLevel>
             <MinLevel>2</MinLevel>
             <MaxLevel>10</MaxLevel>
             <NeedQuestCompletedId>
@@ -1297,6 +1339,7 @@
             <Id>54</Id>
             <ClassMask>2</ClassMask> <!-- Paladin -->
             <RaceMask>1101</RaceMask> <!-- Alliance -->
+            <QuestLevel>5</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>10</MaxLevel>
             <NeedQuestCompletedId>
@@ -1338,6 +1381,7 @@
         <Quest>
             <Name>Fear No Evil</Name>
             <Id>28809</Id>
+            <QuestLevel>3</QuestLevel>
             <MinLevel>2</MinLevel>
             <MaxLevel>8</MaxLevel>
             <NeedQuestCompletedId>
@@ -1370,6 +1414,7 @@
         <Quest>
             <Name>Extinguishing Hope</Name>
             <Id>26391</Id>
+            <QuestLevel>4</QuestLevel>
             <MinLevel>2</MinLevel>
             <MaxLevel>8</MaxLevel>
             <PickUp>9296</PickUp>
@@ -1393,6 +1438,7 @@
         <Quest>
             <Name>Rest and Relaxation</Name>
             <Id>2158</Id>
+            <QuestLevel>5</QuestLevel>
             <MinLevel>1</MinLevel>
             <MaxLevel>10</MaxLevel>
             <PickUp>6774</PickUp>

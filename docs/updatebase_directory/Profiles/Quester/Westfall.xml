@@ -190,6 +190,7 @@
         <Quest>
           <Name>Murder Was The Case That They Gave Me</Name>
           <Id>26209</Id>
+          <QuestLevel>11</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>16</MaxLevel>
           <NeedQuestCompletedId>
@@ -241,6 +242,7 @@
         <Quest>
           <Name>Hot On the Trail: The Riverpaw Clan</Name>
           <Id>26213</Id>
+          <QuestLevel>10</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>15</MaxLevel>
           <NeedQuestCompletedId>
@@ -276,6 +278,7 @@
         <Quest>
           <Name>Hot On the Trail: Murlocs</Name>
           <Id>26214</Id>
+          <QuestLevel>11</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>15</MaxLevel>
           <NeedQuestCompletedId>
@@ -316,6 +319,7 @@
         <Quest>
           <Name>Meet Two-Shoed Lou</Name>
           <Id>26215</Id>
+          <QuestLevel>11</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>16</MaxLevel>
           <NeedQuestCompletedId>
@@ -330,6 +334,7 @@
         <Quest>
           <Name>Livin' the Life</Name>
           <Id>26228</Id>
+          <QuestLevel>11</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>16</MaxLevel>
           <NeedQuestCompletedId>
@@ -354,6 +359,7 @@
         <Quest>
           <Name>Lou's Parting Thoughts</Name>
           <Id>26232</Id>
+          <QuestLevel>12</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>17</MaxLevel>
           <NeedQuestCompletedId>
@@ -380,6 +386,7 @@
         <Quest>
           <Name>Shakedown at the Saldean's</Name>
           <Id>26236</Id>
+          <QuestLevel>12</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>17</MaxLevel>
           <NeedQuestCompletedId>
@@ -394,6 +401,7 @@
         <Quest>
           <Name>Times are Tough</Name>
           <Id>26237</Id>
+          <QuestLevel>12</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>17</MaxLevel>
           <NeedQuestCompletedId>
@@ -432,6 +440,7 @@
         <Quest>
           <Name>Westfall Stew</Name>
           <Id>26241</Id>
+          <QuestLevel>12</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>17</MaxLevel>
           <NeedQuestCompletedId>
@@ -553,6 +562,7 @@
         <Quest>
           <Name>You Have Our Thanks</Name>
           <Id>26270</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -567,6 +577,7 @@
         <Quest>
           <Name>Hope for the People</Name>
           <Id>26266</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -581,6 +592,7 @@
         <Quest>
           <Name>Feeding the Hungry and the Hopeless</Name>
           <Id>26271</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -654,8 +666,9 @@
         <Quest>
           <Name>In Defense of Westfall</Name>
           <Id>26286</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>11</MinLevel>
-          <MaxLevel>20</MaxLevel>
+          <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
             <int>26266</int>
           </NeedQuestCompletedId>
@@ -693,6 +706,7 @@
         <Quest>
           <Name>Find Agent Kearnen</Name>
           <Id>26289</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -707,6 +721,7 @@
         <Quest> <!-- Small problem for this one: the path finder does not find a path to the top of the tower -->
           <Name>Secrets of the Tower</Name>
           <Id>26290</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -750,6 +765,7 @@
         <Quest>
           <Name>Big Trouble in Moonbrook</Name>
           <Id>26291</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -764,6 +780,7 @@
         <Quest>
           <Name>To Moonbrook!</Name>
           <Id>26292</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -778,6 +795,7 @@
         <Quest>
           <Name>Propaganda</Name>
           <Id>26295</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -852,6 +870,7 @@
         <Quest>
           <Name>The Dawning of a New Day</Name>
           <Id>26297</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -878,6 +897,7 @@
         <Quest>
           <Name>Secrets Revealed</Name>
           <Id>26319</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -892,6 +912,7 @@
         <Quest>
           <Name>A Vision of the Past</Name>
           <Id>26320</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -963,6 +984,7 @@
         <Quest>
           <Name>Rise of the Brotherhood</Name>
           <Id>26322</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -981,6 +1003,7 @@
         <Quest>
           <Name>Return to Sentinel Hill</Name>
           <Id>26370</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -995,6 +1018,7 @@
         <Quest>
           <Name>Threat to the Kingdom</Name>
           <Id>26761</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -1022,6 +1046,7 @@
         <Quest>
           <Name>Heart of the Watcher</Name>
           <Id>26252</Id>
+          <QuestLevel>12</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>17</MaxLevel>
           <ItemPickUp>57935</ItemPickUp>
@@ -1034,6 +1059,7 @@
         <Quest>
           <Name>It's Alive!</Name>
           <Id>26257</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>10</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -1064,6 +1090,7 @@
         <Quest>
           <Name>Captain Sanders' Hidden Treasure</Name>
           <Id>26353</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>18</MaxLevel>
           <ItemPickUp>1357</ItemPickUp>
@@ -1075,6 +1102,7 @@
         <Quest>
           <Name>Captain Sanders' Hidden Treasure</Name>
           <Id>26354</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -1089,6 +1117,7 @@
         <Quest>
           <Name>Captain Sanders' Hidden Treasure</Name>
           <Id>26355</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -1103,6 +1132,7 @@
         <Quest>
           <Name>Captain Sanders' Hidden Treasure</Name>
           <Id>26356</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>9</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -1117,6 +1147,7 @@
         <Quest>
           <Name>Evidence Collection</Name>
           <Id>26296</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>20</MaxLevel>
           <ItemPickUp>58117</ItemPickUp>
@@ -1148,6 +1179,7 @@
         <Quest>
           <Name>The Westfall Brigade</Name>
           <Id>26287</Id>
+          <QuestLevel>13</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>18</MaxLevel>
           <NeedQuestCompletedId>
@@ -1191,6 +1223,7 @@
         <Quest>
           <Name>Jango Spothide</Name>
           <Id>26288</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>11</MinLevel>
           <MaxLevel>20</MaxLevel>
           <NeedQuestCompletedId>
@@ -1267,6 +1300,7 @@
         <Quest>
           <Name>The Legend of Captain Grayson</Name>
           <Id>26371</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -1281,6 +1315,7 @@
         <Quest>
           <Name>The Coast Isn't Clear</Name>
           <Id>26348</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -1333,6 +1368,7 @@
         <Quest>
           <Name>The Coastal Menace</Name>
           <Id>26349</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -1362,6 +1398,7 @@
         <Quest>
           <Name>Keeper of the Flame</Name>
           <Id>26347</Id>
+          <QuestLevel>14</QuestLevel>
           <MinLevel>12</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
@@ -1401,6 +1438,7 @@
         <Quest>
           <Name>Hero's Call: Redridge Mountains!</Name>
           <Id>26365</Id>
+          <QuestLevel>15</QuestLevel>
           <MinLevel>14</MinLevel>
           <MaxLevel>21</MaxLevel>
           <NeedQuestCompletedId>
