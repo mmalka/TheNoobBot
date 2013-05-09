@@ -1406,7 +1406,6 @@ namespace nManager.Wow.Helpers
         #region NPC/Object Finder
 
         private static string FoundType = "none";
-        private static bool LastChance = true;
 
         public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
         {
@@ -1532,24 +1531,7 @@ namespace nManager.Wow.Helpers
                         }
                         break;
                     default:
-                        TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                        TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                        if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
-                            goto End;
-                        if (TargetIsNPC.IsValid)
-                        {
-                            Target.Position = TargetIsNPC.Position;
-                            Target.Name = TargetIsNPC.Name;
-                            FoundType = "NPC";
-                        }
-                        else if (TargetIsObject.IsValid)
-                        {
-                            Target.Position = TargetIsObject.Position;
-                            Target.Name = TargetIsObject.Name;
-                            FoundType = "OBJ";
-                        }
-                        _points[_points.Count - 1] = Target.Position;
-                        break;
+                        goto End;
                 }
                 if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                     return Target;
@@ -1557,11 +1539,6 @@ namespace nManager.Wow.Helpers
             End:
             if (FoundType == "none" && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
             {
-                if (LastChance)
-                {
-                    LastChance = false;
-                    goto GeneratePath;
-                }
                 Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
                               Target.Position.Y + ";" + Target.Position.Z + ").");
                 return Target;
