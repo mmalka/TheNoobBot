@@ -267,6 +267,7 @@ namespace Fisherbot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(304, 263);
             this.Controls.Add(this.labelX7);
             this.Controls.Add(this.precisionMode);

@@ -103,6 +103,7 @@ namespace Profiles_Converters
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(216, 130);
             this.Controls.Add(this.labelX4);
             this.Controls.Add(this.labelX3);

@@ -767,6 +767,7 @@ namespace The_Noob_Bot
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.ClientSize = new System.Drawing.Size(445, 330);
             this.Controls.Add(this.buttonX1);
             this.Controls.Add(this.labelX2);

@@ -229,6 +229,7 @@ namespace Tracker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(339, 344);
             this.Controls.Add(this.labelX3);
             this.Controls.Add(this.labelX2);

@@ -3384,6 +3384,7 @@ namespace nManager.Helpful.Forms
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(564, 437);
             this.Controls.Add(this.closeB);

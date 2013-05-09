@@ -256,6 +256,7 @@ namespace Battlegrounder.Profile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.ClientSize = new System.Drawing.Size(379, 432);
             this.Controls.Add(this.AddZoneButton);
             this.Controls.Add(this.DelZoneButton);
