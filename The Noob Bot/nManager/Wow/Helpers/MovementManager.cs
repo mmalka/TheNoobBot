@@ -1545,7 +1545,7 @@ namespace nManager.Wow.Helpers
                     LastChance = false;
                     TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                     TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                    FoundType = TargetIsNPC.IsValid ? "NPC" : TargetIsObject.IsValid ? "NPC" : "none";
+                    FoundType = TargetIsNPC.IsValid ? "NPC" : TargetIsObject.IsValid ? "OBJ" : "none";
                     goto End;
                 }
                 Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
