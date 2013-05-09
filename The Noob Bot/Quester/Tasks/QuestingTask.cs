@@ -21,7 +21,7 @@ namespace Quester.Tasks
         private static int _currentQuestObjectiveId = -1;
         public static Profile.QuestObjective CurrentQuestObjective;
         private static Timer waitTimer;
-        private static bool completed = false;
+        public static bool completed = false;
 
         private static bool _HARDMODE_ = false;
 
@@ -34,38 +34,24 @@ namespace Quester.Tasks
 
             Quester.Bot.Bot.Profile.Quests.Sort();
 
-            foreach (var quest in Quester.Bot.Bot.Profile.Quests)
+            for (int relax = 0; relax <= 2; relax++) // search quest with level = mine, then level = mine+1, then +2
             {
-                if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
-                      (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel || quest.QuestLevel <= 3)) // Level
-                    if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
-                        if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
-                            quest.NeedQuestCompletedId.Count == 0)
-                            if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint) quest.ItemPickUp) > 0))
-                                if (Script.Run(quest.ScriptCondition)) // Condition
-                                {
-                                    CurrentQuest = quest;
-                                    Logging.Write(quest.Name + ": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
-                                    return;
-                                }
+                foreach (var quest in Quester.Bot.Bot.Profile.Quests)
+                {
+                    if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
+                          (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
+                        if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
+                            if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
+                                quest.NeedQuestCompletedId.Count == 0)
+                                if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint)quest.ItemPickUp) > 0))
+                                    if (Script.Run(quest.ScriptCondition)) // Condition
+                                    {
+                                        CurrentQuest = quest;
+                                        Logging.Write(quest.Name + ": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                                        return;
+                                    }
+                }
             }
-            // I hate to duplicate code, but I found this easier to unlock quest where My Level >= QuestLevel-1
-            foreach (var quest in Quester.Bot.Bot.Profile.Quests)
-            {
-                if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
-                      (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel-1 || quest.QuestLevel <= 3)) // Level
-                    if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
-                        if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
-                            quest.NeedQuestCompletedId.Count == 0)
-                            if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint)quest.ItemPickUp) > 0))
-                                if (Script.Run(quest.ScriptCondition)) // Condition
-                                {
-                                    CurrentQuest = quest;
-                                    Logging.Write(quest.Name + ": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
-                                    return;
-                                }
-            }
-
             if (!completed)
             {
                 Logging.Write("There is no more quest to do.");

@@ -82,8 +82,7 @@ namespace Quester.Bot
                     Profile.Filter();
                     Logging.Write(Profile.Quests.Count + " quests left after filtering on class/race");
 
-                    if (Profile.Quests.Count <= 0)
-                        return false;
+                    Quester.Tasks.QuestingTask.completed = false;
 
                     nManager.Wow.Helpers.Quest.ConsumeQuestsCompletedRequest();
                     Logging.Write("received " + nManager.Wow.Helpers.Quest.FinishedQuestSet.Count + " quests.");
