@@ -1199,6 +1199,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    if (ObjectManager.Target.IsNpcQuestGiver)
+                        return false;
                     return (Health <= 0 || Health == 0.01 ||
                             GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) == 0x20) ||
                            (Health == 1 && GetMove);
@@ -1533,6 +1535,23 @@ namespace nManager.Wow.ObjectManager
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > IsNpcRepair: " + e);
+                    return false;
+                }
+            }
+        }
+
+        public bool IsNpcQuestGiver
+        {
+            get
+            {
+                try
+                {
+                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
+                    return Convert.ToBoolean(flags & 0x00000002);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > IsNpcQuestGiver: " + e);
                     return false;
                 }
             }
