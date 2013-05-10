@@ -41,7 +41,7 @@ namespace Quester.Profile
             // 
             this.LoadSimpleProfile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.LoadSimpleProfile.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.LoadSimpleProfile.Location = new System.Drawing.Point(12, 135);
+            this.LoadSimpleProfile.Location = new System.Drawing.Point(12, 178);
             this.LoadSimpleProfile.Name = "LoadSimpleProfile";
             this.LoadSimpleProfile.Size = new System.Drawing.Size(241, 22);
             this.LoadSimpleProfile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -52,7 +52,7 @@ namespace Quester.Profile
             // GroupedProfilesList
             // 
             this.GroupedProfilesList.FormattingEnabled = true;
-            this.GroupedProfilesList.Location = new System.Drawing.Point(287, 34);
+            this.GroupedProfilesList.Location = new System.Drawing.Point(287, 77);
             this.GroupedProfilesList.Name = "GroupedProfilesList";
             this.GroupedProfilesList.Size = new System.Drawing.Size(241, 95);
             this.GroupedProfilesList.TabIndex = 1;
@@ -62,7 +62,7 @@ namespace Quester.Profile
             // 
             this.LoadGroupedProfile.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.LoadGroupedProfile.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.LoadGroupedProfile.Location = new System.Drawing.Point(287, 135);
+            this.LoadGroupedProfile.Location = new System.Drawing.Point(287, 178);
             this.LoadGroupedProfile.Name = "LoadGroupedProfile";
             this.LoadGroupedProfile.Size = new System.Drawing.Size(240, 22);
             this.LoadGroupedProfile.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -73,7 +73,7 @@ namespace Quester.Profile
             // SimpleProfilesList
             // 
             this.SimpleProfilesList.FormattingEnabled = true;
-            this.SimpleProfilesList.Location = new System.Drawing.Point(12, 34);
+            this.SimpleProfilesList.Location = new System.Drawing.Point(12, 77);
             this.SimpleProfilesList.Name = "SimpleProfilesList";
             this.SimpleProfilesList.Size = new System.Drawing.Size(241, 95);
             this.SimpleProfilesList.TabIndex = 5;
@@ -86,7 +86,7 @@ namespace Quester.Profile
             // 
             this.GroupedProfileListLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.GroupedProfileListLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.GroupedProfileListLabel.Location = new System.Drawing.Point(287, 12);
+            this.GroupedProfileListLabel.Location = new System.Drawing.Point(287, 55);
             this.GroupedProfileListLabel.Name = "GroupedProfileListLabel";
             this.GroupedProfileListLabel.Size = new System.Drawing.Size(241, 16);
             this.GroupedProfileListLabel.TabIndex = 7;
@@ -99,7 +99,7 @@ namespace Quester.Profile
             // 
             this.SimpleProfilesListLabel.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.SimpleProfilesListLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.SimpleProfilesListLabel.Location = new System.Drawing.Point(12, 12);
+            this.SimpleProfilesListLabel.Location = new System.Drawing.Point(12, 55);
             this.SimpleProfilesListLabel.Name = "SimpleProfilesListLabel";
             this.SimpleProfilesListLabel.Size = new System.Drawing.Size(241, 16);
             this.SimpleProfilesListLabel.TabIndex = 8;
@@ -109,7 +109,7 @@ namespace Quester.Profile
             // 
             this.QuesterProfileManagementSystemButton.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.QuesterProfileManagementSystemButton.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.QuesterProfileManagementSystemButton.Location = new System.Drawing.Point(12, 179);
+            this.QuesterProfileManagementSystemButton.Location = new System.Drawing.Point(12, 12);
             this.QuesterProfileManagementSystemButton.Name = "QuesterProfileManagementSystemButton";
             this.QuesterProfileManagementSystemButton.Size = new System.Drawing.Size(515, 22);
             this.QuesterProfileManagementSystemButton.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
