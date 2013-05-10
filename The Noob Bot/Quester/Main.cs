@@ -5,10 +5,18 @@ using Quester.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
+using nManager.Wow.ObjectManager;
 
 public class Main : IProduct
 {
     #region IProduct Members
+
+    private bool _isStarted;
+    private string _looting;
+    private string _radius;
+    private string _selling;
+    private string _usefly;
+    private string _useground;
 
     public void Initialize()
     {
@@ -19,6 +27,7 @@ public class Main : IProduct
             QuesterSettings.Load();
             Logging.Status = "Initialize Quester Complete";
             Logging.Write("Initialize Quester Complete");
+            GetProductTipOff();
         }
         catch (Exception e)
         {
@@ -96,7 +105,45 @@ public class Main : IProduct
         get { return _isStarted; }
     }
 
-    private bool _isStarted;
+    private void GetProductTipOff()
+    {
+        try
+        {
+            if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting)
+                _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOn);
+            if (!nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
+                _selling = "\n" + Translate.Get(Translate.Id.TipOffSellingOnQuester);
+            if (nManagerSetting.CurrentSetting.GatheringSearchRadius < 100)
+                _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusHigh);
+            if (ObjectManager.Me.Level >= 20 &&
+                ObjectManager.Me.Level < 60)
+            {
+                if (!nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
+                else if (nManagerSetting.CurrentSetting.UseGroundMount &&
+                         string.IsNullOrEmpty(nManagerSetting.CurrentSetting.GroundMountName))
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffEmptyGroundMount);
+            }
+            else if (ObjectManager.Me.Level >= 60)
+            {
+                if (nManagerSetting.CurrentSetting.UseGroundMount)
+                    _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOff);
+                if (string.IsNullOrEmpty(nManagerSetting.CurrentSetting.FlyingMountName))
+                    _usefly = "\n" + Translate.Get(Translate.Id.TipOffEmptyFlyingMount);
+            }
+
+            if (_looting != null || _radius != null || _selling != null || _usefly != null || _useground != null)
+            {
+                MessageBox.Show(
+                    string.Format("{0}\n{1}{2}{3}{4}{5}", Translate.Get(Translate.Id.QuesterTipOffMessage), _selling, _looting,
+                                  _radius, _useground, _usefly), Translate.Get(Translate.Id.QuesterTipOffTitle));
+            }
+        }
+        catch (Exception e)
+        {
+            Logging.WriteError("Quester > Main > GetProductTipOff(): " + e);
+        }
+    }
 
     #endregion
 }

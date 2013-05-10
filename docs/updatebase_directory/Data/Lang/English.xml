@@ -1286,6 +1286,14 @@
       <Id>GathererTipOffMessage</Id>
     </Translation>
 	<Translation>
+      <Text>Quester - Settings Tip-off</Text>
+      <Id>QuesterTipOffTitle</Id>
+    </Translation>
+	<Translation>
+      <Text>Your General Settings are not optimized for the Quester product: </Text>
+      <Id>QuesterTipOffMessage</Id>
+    </Translation>
+	<Translation>
       <Text>Archaeologist - Settings Tip-off</Text>
       <Id>ArchaeologistTipOffTitle</Id>
     </Translation>
@@ -1308,6 +1316,10 @@
 	<Translation>
       <Text>We highly recommand to deactivate the Looting function out of Pandaria in General Settings => Looting &amp; Farming options => Loot mobs => OFF</Text>
       <Id>TipOffLootingOffArchaeologist</Id>
+    </Translation>
+	<Translation>
+      <Text>We highly recommand to activate the Selling function while questing, in General Settings => NPCs Management - Repairer, Vendor (Selling or Buying) => Selling => ON</Text>
+      <Id>TipOffSellingOnQuester</Id>
     </Translation>
 	<Translation>
       <Text>We highly recommand to set the Search Radius value at most to 30 yards in General Settings => Looting &amp; Farming options => Search Radius => -30</Text>
