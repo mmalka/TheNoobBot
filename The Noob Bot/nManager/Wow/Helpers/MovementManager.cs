@@ -1408,7 +1408,7 @@ namespace nManager.Wow.Helpers
         private static string FoundType;
         private static bool LastChance;
 
-        public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject)
+        public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject, float SpecialRange = 0)
         {
             Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
             LastChance = true;
@@ -1435,7 +1435,7 @@ namespace nManager.Wow.Helpers
 
             var timerPathFinder = new Timer(0);
             GeneratePath:
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 4.5f && FoundType != "none")
+            if ((Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 4.5f || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange) && FoundType != "none")
                 goto End;
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                 return Target;
@@ -1449,7 +1449,7 @@ namespace nManager.Wow.Helpers
             {
                 if (timer.IsReady)
                     goto GeneratePath;
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.NextDouble()*2f+2.5f) && FoundType != "none")
+                if ((Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.NextDouble()*2f+2.5f)) && FoundType != "none")
                     StopMove();
                 /* The following code check 2 things.
                  * 1: Does the real Target (Memory) is at a different place than the Target Position in the Profile ?
@@ -1511,8 +1511,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f &&
-                   Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
+            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > SpecialRange && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
             {
                 switch (FoundType)
                 {
@@ -1541,7 +1540,7 @@ namespace nManager.Wow.Helpers
                     return Target;
             }
             End:
-            if (FoundType == "none" && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
+            if (FoundType == "none" && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15 || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange))
             {
                 if (LastChance)
                 {
@@ -1556,7 +1555,7 @@ namespace nManager.Wow.Helpers
                               Target.Position.Y + ";" + Target.Position.Z + ").");
                 return Target;
             }
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f)
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > SpecialRange)
                 goto GeneratePath;
             Logging.Write("Terminate target finding, found: " + Target.Name + " (" + Target.Entry + ").");
             return Target;
