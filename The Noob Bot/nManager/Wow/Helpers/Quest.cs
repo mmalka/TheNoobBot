@@ -24,6 +24,7 @@ namespace nManager.Wow.Helpers
 
         public static void ConsumeQuestsCompletedRequest()
         {
+            FinishedQuestSet.Clear();
             string luaTable = Others.GetRandomString(Others.Random(4, 10));
             string luaResultStr = Others.GetRandomString(Others.Random(4, 10));
             string command = "";
