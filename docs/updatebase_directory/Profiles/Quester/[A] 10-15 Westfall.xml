@@ -413,7 +413,7 @@
                  <Y>1404.543</Y>
                  <Z>54.10345</Z>
                 </Position>
-                <WaitMsUseItem>90000</WaitMsUseItem> <!-- 1 minute 30 secs -->
+                <WaitMs>90000</WaitMs> <!-- 1 minute 30 secs -->
             </QuestObjective>
           </Objectives>
         </Quest>
@@ -672,7 +672,7 @@
                 <BuffId>79451</BuffId>
                 <BuffCount>20</BuffCount>
                 <UseItemId>57991</UseItemId>
-                <WaitMsUseItem>7500</WaitMsUseItem>
+                <WaitMs>7500</WaitMs>
                 <Range>5.0</Range>
                 <Hotspots>
                     <Point>
@@ -994,7 +994,7 @@
             <QuestObjective>
                 <Objective>PressKey</Objective>
                 <Keys>MOVEFORWARD</Keys>
-                <WaitMsPressKey>3000</WaitMsPressKey>
+                <WaitMs>3000</WaitMs>
                 <Position>
                  <X>-11208.43</X>
                  <Y>1674.8</Y>
@@ -1029,7 +1029,7 @@
             <QuestObjective>
                 <Objective>PressKey</Objective>
                 <Keys>MOVEFORWARD</Keys>
-                <WaitMsPressKey>3000</WaitMsPressKey>
+                <WaitMs>3000</WaitMs>
                 <Position>
                  <X>-14.3259</X>
                  <Y>-386.358</Y>
@@ -1142,7 +1142,7 @@
             <QuestObjective>
                 <Objective>UseItem</Objective>
                 <UseItemId>57954</UseItemId>
-                <WaitMsUseItem>1000</WaitMsUseItem>
+                <WaitMs>1000</WaitMs>
             </QuestObjective>
             <QuestObjective>
             </QuestObjective>

@@ -69,7 +69,7 @@
                              <Y>-5562.321</Y>
                              <Z>420.6461</Z>
                     </Position>
-                    <WaitMsUseItem>11000</WaitMsUseItem>
+                    <WaitMs>11000</WaitMs>
                 </QuestObjective>
             </Objectives>
         </Quest>
@@ -101,7 +101,7 @@
                         <Y>-5562.321</Y>
                         <Z>420.6461</Z>
                     </Position>
-                    <WaitMsUseRuneForge>7500</WaitMsUseRuneForge>
+                    <WaitMs>7500</WaitMs>
                 </QuestObjective>
             </Objectives>
         </Quest>

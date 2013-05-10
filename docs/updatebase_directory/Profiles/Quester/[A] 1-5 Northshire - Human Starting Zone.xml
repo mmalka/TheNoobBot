@@ -873,7 +873,7 @@
                     <EntryAOE>44564</EntryAOE>
                     <UseSpellId>2061</UseSpellId>
                     <Count>5</Count>
-                    <WaitMsUseSpell>3000</WaitMsUseSpell>
+                    <WaitMs>3000</WaitMs>
                     <Hotspots>
                         <Point>
                             <X>-8856.279</X>
@@ -1395,7 +1395,7 @@
                 <UseItemId>65733</UseItemId>
                 <EntryAOE>50047</EntryAOE>
                 <Count>4</Count>
-                <WaitMsUseItem>2000</WaitMsUseItem>
+                <WaitMs>2000</WaitMs>
                 <Position>
                   <X>-8751.833</X>
                   <Y>-154.1666</Y>
@@ -1425,7 +1425,7 @@
                 <UseItemId>58362</UseItemId>
                 <EntryAOE>42940</EntryAOE> <!-- Northshire Vineyards Fire Trigger  -->
                 <Count>10</Count> <!-- it's 8 but I put 10 for security raison because I found 1 Vineyards Fire Trigger bugged, the bot will stop as soon as quest is done anyway -->
-                <WaitMsUseItem>6000</WaitMsUseItem>
+                <WaitMs>6000</WaitMs>
                 <Position>
                   <X>-9093.773</X>
                   <Y>-335.1914</Y>

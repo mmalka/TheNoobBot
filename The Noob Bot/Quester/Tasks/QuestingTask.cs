@@ -98,11 +98,7 @@ namespace Quester.Tasks
             {
                 obj.CollectCount = 0;
                 obj.CurrentCount = 0;
-                obj.IsUsedUseItem = false;
-                obj.IsUsedMoveTo = false;
-                obj.IsUsedWaitMs = false;
-                obj.IsUsedUseSpell = false;
-                // etc, one will be left after merge of all these
+                obj.IsObjectiveCompleted = false;
             }
             SelectNextQuestObjective();
         }
@@ -145,55 +141,55 @@ namespace Quester.Tasks
             // USE ITEM
             if (questObjective.Objective == Objective.UseItem)
             {
-                return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsUsedUseItem;
+                return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsObjectiveCompleted;
             }
 
             // MOVE TO
             if (questObjective.Objective == Objective.MoveTo)
             {
-                return questObjective.IsUsedMoveTo;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // WAIT
             if (questObjective.Objective == Objective.Wait)
             {
-                return questObjective.IsUsedWaitMs;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // TRAIN ALL SPELLS
             if (questObjective.Objective == Objective.TrainSpells)
             {
-                return questObjective.IsUsedTrainSpells;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // INTERACT WITH
             if (questObjective.Objective == Objective.InteractWith)
             {
-                return questObjective.IsUsedInteractWith;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // USE SPELL
             if (questObjective.Objective == Objective.UseSpell)
             {
-                return questObjective.IsUsedUseSpell;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // EQUIP ITEM
             if (questObjective.Objective == Objective.EquipItem)
             {
-                return questObjective.IsUsedEquipItem;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
-                return questObjective.IsUsedPickUpQuest;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
-                return questObjective.IsUsedTurnInQuest;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // USE VEHICLE
@@ -211,25 +207,25 @@ namespace Quester.Tasks
             // PRESS KEY
             if (questObjective.Objective == Objective.PressKey)
             {
-                return questObjective.IsUsedPressKey;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // USE SPELL AOE
             if (questObjective.Objective == Objective.UseSpellAOE)
             {
-                return questObjective.IsUsedUseSpellAOE;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // USE ITEM AOE
             if (questObjective.Objective == Objective.UseItemAOE)
             {
-                return questObjective.IsUsedUseItemAOE;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // USE RUNEFORGE
             if (questObjective.Objective == Objective.UseRuneForge)
             {
-                return questObjective.IsUsedUseRuneForge;
+                return questObjective.IsObjectiveCompleted;
             }
 
             // APPLY BUFF
@@ -463,8 +459,8 @@ namespace Quester.Tasks
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
                         else
-                            questObjective.IsUsedUseItem = true;
-                        Thread.Sleep(questObjective.WaitMsUseItem);
+                            questObjective.IsObjectiveCompleted = true;
+                        Thread.Sleep(questObjective.WaitMs);
                     }
                 }
             }
@@ -481,7 +477,7 @@ namespace Quester.Tasks
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
-                        questObjective.IsUsedMoveTo = true;
+                        questObjective.IsObjectiveCompleted = true;
                 }
             }
 
@@ -492,7 +488,7 @@ namespace Quester.Tasks
                     waitTimer = new Timer(questObjective.WaitMs);
                 if (waitTimer.IsReady)
                 {
-                    questObjective.IsUsedWaitMs = true;
+                    questObjective.IsObjectiveCompleted = true;
                     waitTimer = null;
                 }
             }
@@ -540,7 +536,7 @@ namespace Quester.Tasks
 
                         Trainer.TrainingSpell();
                         SpellManager.UpdateSpellBook();
-                        questObjective.IsUsedTrainSpells = true;
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -600,7 +596,7 @@ namespace Quester.Tasks
                             Thread.Sleep(Usefuls.Latency + 500);
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
-                        questObjective.IsUsedInteractWith = true;
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -666,9 +662,9 @@ namespace Quester.Tasks
                             while (!t.IsSpellUsable)
                                 Thread.Sleep(50);
                             t.Launch();
-                            Thread.Sleep(questObjective.WaitMsUseSpell);
+                            Thread.Sleep(questObjective.WaitMs);
                         }
-                        questObjective.IsUsedUseSpell = true;
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
@@ -702,21 +698,21 @@ namespace Quester.Tasks
                 if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
                     return;
                 ItemsManager.EquipItemByName(ItemsManager.GetNameById((uint) questObjective.EquipItemId));
-                questObjective.IsUsedEquipItem = true;
+                questObjective.IsObjectiveCompleted = true;
             }
 
             // PICK UP QUEST
             if (questObjective.Objective == Objective.PickUpQuest)
             {
                 PickUpQuest();
-                questObjective.IsUsedPickUpQuest = true;
+                questObjective.IsObjectiveCompleted = true;
             }
 
             // TURN IN QUEST
             if (questObjective.Objective == Objective.TurnInQuest)
             {
                 TurnInQuest();
-                questObjective.IsUsedTurnInQuest = true;
+                questObjective.IsObjectiveCompleted = true;
             }
 
             // USE VEHICLE
@@ -781,9 +777,9 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount(true);
                         Keybindings.DownKeybindings(questObjective.Keys);
-                        Thread.Sleep(questObjective.WaitMsPressKey);
+                        Thread.Sleep(questObjective.WaitMs);
                         Keybindings.UpKeybindings(questObjective.Keys);
-                        questObjective.IsUsedPressKey = true;
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -827,8 +823,8 @@ namespace Quester.Tasks
                         MountTask.DismountMount(true);
                         SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
                                                               questObjective.Position);
-                        Thread.Sleep(questObjective.WaitMsUseSpell);
-                        questObjective.IsUsedUseSpellAOE = true;
+                        Thread.Sleep(questObjective.WaitMs);
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -871,8 +867,8 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount(true);
                         ItemsManager.UseItem((uint) questObjective.UseItemId, questObjective.Position);
-                        Thread.Sleep(questObjective.WaitMsUseItem);
-                        questObjective.IsUsedUseItemAOE = true;
+                        Thread.Sleep(questObjective.WaitMs);
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -901,9 +897,9 @@ namespace Quester.Tasks
                         Lua.RunMacroText("/click CharacterMainHandSlot");
                         Thread.Sleep(500);
                         Lua.LuaDoString("ReplaceEnchant()");
-                        Thread.Sleep(questObjective.WaitMsUseRuneForge);
+                        Thread.Sleep(questObjective.WaitMs);
                         Lua.LuaDoString("CloseTradeSkill()");
-                        questObjective.IsUsedUseRuneForge = true;
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
             }
@@ -933,7 +929,7 @@ namespace Quester.Tasks
                         MountTask.DismountMount(true);
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
                         ItemsManager.UseItem(ItemsManager.GetNameById((uint) questObjective.UseItemId));
-                        Thread.Sleep(questObjective.WaitMsUseItem);
+                        Thread.Sleep(questObjective.WaitMs);
                         questObjective.CurrentCount++; // This is not correct
                     }
                 }

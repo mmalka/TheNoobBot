@@ -108,61 +108,34 @@ namespace Quester.Profile
         public string Script = "";
         public string ScriptCondition = "";
         public string ScriptConditionIsComplete = "";
+        internal bool IsObjectiveCompleted = false;
 
         // Use Item
-        internal bool IsUsedUseItem = false;
-        public int WaitMsUseItem = 0;
         public int UseItemId = 0;
         public Point Position = new Point();
 
-        // Move To
-        internal bool IsUsedMoveTo = false;
-
         // Wait
         public int WaitMs = 0;
-        internal bool IsUsedWaitMs = false;
 
         // InteractWith
         public int EntryInteractWith = 0;
-        public bool IsUsedInteractWith;
         public int GossipOptionsInteractWith = -1;
 
-        // Train all Spells
-        internal bool IsUsedTrainSpells = false;
-
         // UseSpell
-        internal bool IsUsedUseSpell = false;
-        public int WaitMsUseSpell = 0;
         public int UseSpellId = 0;
 
         // EquipItem
-        internal bool IsUsedEquipItem = false;
         public int EquipItemId = 0;
-
-        // PickUpQuest
-        internal bool IsUsedPickUpQuest = false;
-
-        // TurnInQuest
-        internal bool IsUsedTurnInQuest = false;
 
         // UseVehicule
         public int EntryVehicle = 0;
 
         // PressKey
-        internal bool IsUsedPressKey = false;
-        public int WaitMsPressKey = 0;
         public Keybindings Keys = Keybindings.NONE;
 
         // UseItemAOE & UseSpellAOE & AOE ATTACK MOB
         public float Range = 5.0f;
         public int EntryAOE = 0;
-        // UseItemAOE
-        internal bool IsUsedUseItemAOE = false;
-        // UseSpellAOE
-        internal bool IsUsedUseSpellAOE = false;
-        // Use RuneForge
-        internal bool IsUsedUseRuneForge = false;
-        public int WaitMsUseRuneForge = 0;
         // Apply buff from item AOE
         public int BuffId = 0;
         public int BuffCount = 0;
