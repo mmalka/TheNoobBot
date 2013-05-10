@@ -907,7 +907,7 @@ namespace Quester.Tasks
 
         public static void TurnInQuest()
         {
-            if (!Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+            if (!Quest.GetLogQuestIsComplete(CurrentQuest.Id) && CurrentQuest.Objectives.Count > 0)
             {
                 ResetQuestObjective();
                 return;
