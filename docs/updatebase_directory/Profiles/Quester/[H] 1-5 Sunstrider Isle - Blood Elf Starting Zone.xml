@@ -646,7 +646,7 @@
 				<EntryAOE>44937</EntryAOE>
 				<UseSpellId>589</UseSpellId>
 				<Range>15</Range> 
-				<Count>5</Count>
+				<Count>10</Count>
 				<Hotspots>
 					<Point>
 					 <X>10331.89</X>
