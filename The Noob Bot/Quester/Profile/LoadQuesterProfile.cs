@@ -130,11 +130,9 @@ namespace Quester.Profile
         {
             try
             {
-                if (ex.CloseReason == CloseReason.UserClosing)
-                {
-                    QuesterSettings.CurrentSettings.LastProfile = "";
-                    QuesterSettings.CurrentSettings.LastProfileSimple = true;
-                }
+                if (ex.CloseReason != CloseReason.UserClosing) return;
+                QuesterSettings.CurrentSettings.LastProfile = "";
+                QuesterSettings.CurrentSettings.LastProfileSimple = true;
             }
             catch (Exception e)
             {

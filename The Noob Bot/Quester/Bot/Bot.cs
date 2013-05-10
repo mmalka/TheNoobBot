@@ -27,28 +27,30 @@ namespace Quester.Bot
                 Profile = new QuesterProfile();
                 var f = new LoadQuesterProfile();
                 f.ShowDialog();
-                if (!string.IsNullOrWhiteSpace(QuesterSettings.CurrentSettings.LastProfile) && ((QuesterSettings.CurrentSettings.LastProfileSimple && File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)) ||
-                    (!QuesterSettings.CurrentSettings.LastProfileSimple && File.Exists(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile))))
+                if (!string.IsNullOrWhiteSpace(QuesterSettings.CurrentSettings.LastProfile) &&
+                    ((QuesterSettings.CurrentSettings.LastProfileSimple &&
+                      File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)) ||
+                     (!QuesterSettings.CurrentSettings.LastProfileSimple &&
+                      File.Exists(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile))))
                 {
-                    if (QuesterSettings.CurrentSettings.LastProfileSimple)
-                    Profile = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile);
-                    else Profile = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile);
+                    Profile = QuesterSettings.CurrentSettings.LastProfileSimple
+                                  ? XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)
+                                  : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
+                                                                              QuesterSettings.CurrentSettings.LastProfile);
 
                     foreach (var include in Profile.Includes)
                     {
                         try
                         {
-                            if (Tasks.Script.Run(include.ScriptCondition))
+                            if (!Tasks.Script.Run(include.ScriptCondition)) continue;
+                            //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " + include.PathFile);
+                            var profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
+                            if (profileInclude != null)
                             {
-                                //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " + include.PathFile);
-                                var profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
-                                if (profileInclude != null)
-                                {
-                                    Profile.Questers.AddRange(profileInclude.Questers);
-                                    Profile.Blackspots.AddRange(profileInclude.Blackspots);
-                                    Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);
-                                    Profile.Quests.AddRange(profileInclude.Quests);
-                                }
+                                Profile.Questers.AddRange(profileInclude.Questers);
+                                Profile.Blackspots.AddRange(profileInclude.Blackspots);
+                                Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);
+                                Profile.Quests.AddRange(profileInclude.Quests);
                             }
                         }
 
@@ -65,13 +67,13 @@ namespace Quester.Bot
                         if (q.ItemPickUp == 0 && FindQuesterById(q.PickUp).Entry == 0)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.PickUp +
-                                "\nThe quest is " +  q.Name + ". Cannot continues!");
+                                            "\nThe quest is " + q.Name + ". Cannot continues!");
                             return false;
                         }
                         if (FindQuesterById(q.TurnIn).Entry == 0)
                         {
                             MessageBox.Show("Your profile is missing the definition of NPC entry " + q.TurnIn +
-                                "\nThe quest is " + q.Name + ". Cannot continues!");
+                                            "\nThe quest is " + q.Name + ". Cannot continues!");
                             return false;
                         }
                     }
@@ -85,10 +87,7 @@ namespace Quester.Bot
                     Logging.Write("received " + nManager.Wow.Helpers.Quest.FinishedQuestSet.Count + " quests.");
                 }
                 else
-                {
-                    MessageBox.Show(Translate.Get(Translate.Id.Please_select_an_profile));
                     return false;
-                }
 
                 // Black List:
                 var blackListDic = new Dictionary<Point, float>();
