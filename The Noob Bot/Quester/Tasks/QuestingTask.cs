@@ -94,6 +94,16 @@ namespace Quester.Tasks
             QuestStatus = "Reset Quest Objective";
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
+            foreach (QuestObjective obj in CurrentQuest.Objectives)
+            {
+                obj.CollectCount = 0;
+                obj.CurrentCount = 0;
+                obj.IsUsedUseItem = false;
+                obj.IsUsedMoveTo = false;
+                obj.IsUsedWaitMs = false;
+                obj.IsUsedUseSpell = false;
+                // etc, one will be left after merge of all these
+            }
             SelectNextQuestObjective();
         }
 
@@ -960,6 +970,11 @@ namespace Quester.Tasks
 
         public static void TurnInQuest()
         {
+            if (!Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+            {
+                ResetQuestObjective();
+                return;
+            }
             PickUpTurnInQuest(false, true);
         }
 
