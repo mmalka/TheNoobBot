@@ -6,9 +6,9 @@ using nManager.Wow.Class;
 namespace Quester.Bot
 {
     [Serializable]
-    public class QuesterSetting : Settings
+    public class QuesterSettings : Settings
     {
-        public static QuesterSetting CurrentSetting { get; set; }
+        public static QuesterSettings CurrentSettings { get; set; }
 
         public bool Save()
         {
@@ -29,10 +29,10 @@ namespace Quester.Bot
             {
                 if (File.Exists(AdviserFilePathAndName("Quester")))
                 {
-                    CurrentSetting = Load<QuesterSetting>(AdviserFilePathAndName("Quester"));
+                    CurrentSettings = Load<QuesterSettings>(AdviserFilePathAndName("Quester"));
                     return true;
                 }
-                CurrentSetting = new QuesterSetting();
+                CurrentSettings = new QuesterSettings();
             }
             catch (Exception e)
             {
@@ -43,6 +43,7 @@ namespace Quester.Bot
 
         internal Point QuesterPosition = new Point();
         internal float QuesterRotation = 0;
-        public string profileName = "";
+        public string LastProfile = "";
+        public bool LastProfileSimple = true;
     }
 }

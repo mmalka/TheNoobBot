@@ -1473,5 +1473,33 @@
       <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
       <Id>CantSaveEmptyGroupedExisting</Id>
     </Translation>
+	<Translation>
+      <Text>Load a Quester Profile</Text>
+      <Id>LoadQuesterProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>There is no simple profiles to load, make sure to download the latest TheNoobBot version to get profiles</Text>
+      <Id>NoSimpleProfileToLoad</Id>
+    </Translation>
+	<Translation>
+      <Text>There is no grouped profiles to load, please create one or download one from TheNoobBot community forum</Text>
+      <Id>NoGroupedProfileToLoad</Id>
+    </Translation>
+	<Translation>
+      <Text>Simple Profile List</Text>
+      <Id>SimpleProfilesList</Id>
+    </Translation>
+	<Translation>
+      <Text>Grouped Profile List</Text>
+      <Id>GroupedProfilesList</Id>
+    </Translation>
+	<Translation>
+      <Text>Load a Simple Profile</Text>
+      <Id>LoadSimpleProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>Load a Grouped Profile</Text>
+      <Id>LoadGroupedProfile</Id>
+    </Translation>
   </Translations>
 </Language>

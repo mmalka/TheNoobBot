@@ -45,18 +45,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bot\Bot.cs" />
-    <Compile Include="Bot\LoadProfile.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Bot\LoadProfile.designer.cs">
-      <DependentUpon>LoadProfile.cs</DependentUpon>
-    </Compile>
     <Compile Include="Bot\QuesterState.cs" />
     <Compile Include="Profile\GroupedProfileManager.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Profile\GroupedProfileManager.Designer.cs">
       <DependentUpon>GroupedProfileManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Profile\LoadQuesterProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Profile\LoadQuesterProfile.designer.cs">
+      <DependentUpon>LoadQuesterProfile.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile\ProfileManager.cs">
       <SubType>Form</SubType>
@@ -65,7 +65,7 @@
       <DependentUpon>ProfileManager.cs</DependentUpon>
     </Compile>
     <Compile Include="Profile\QuesterProfile.cs" />
-    <Compile Include="Bot\QuesterSetting.cs" />
+    <Compile Include="Bot\QuesterSettings.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tasks\QuestingTask.cs" />
@@ -79,9 +79,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Bot\LoadProfile.resx" />
     <EmbeddedResource Include="Profile\GroupedProfileManager.resx">
       <DependentUpon>GroupedProfileManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Profile\LoadQuesterProfile.resx">
+      <DependentUpon>LoadQuesterProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Profile\ProfileManager.resx">
       <DependentUpon>ProfileManager.cs</DependentUpon>

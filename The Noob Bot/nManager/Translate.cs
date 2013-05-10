@@ -439,7 +439,14 @@ namespace nManager
             MoveUp,
             MoveDown,
             CantSaveEmptyGroupedNew,
-            CantSaveEmptyGroupedExisting
+            CantSaveEmptyGroupedExisting,
+            LoadQuesterProfile,
+            NoSimpleProfileToLoad,
+            NoGroupedProfileToLoad,
+            SimpleProfilesList,
+            GroupedProfilesList,
+            LoadSimpleProfile,
+            LoadGroupedProfile
         };
 
         [Serializable]

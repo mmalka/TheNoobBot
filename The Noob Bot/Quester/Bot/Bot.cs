@@ -25,16 +25,14 @@ namespace Quester.Bot
             try
             {
                 Profile = new QuesterProfile();
-                var f = new LoadProfile();
+                var f = new LoadQuesterProfile();
                 f.ShowDialog();
-                // Load Profile
-                if (!string.IsNullOrWhiteSpace(QuesterSetting.CurrentSetting.profileName) &&
-                    File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" +
-                                QuesterSetting.CurrentSetting.profileName))
+                if (!string.IsNullOrWhiteSpace(QuesterSettings.CurrentSettings.LastProfile) && ((QuesterSettings.CurrentSettings.LastProfileSimple && File.Exists(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile)) ||
+                    (!QuesterSettings.CurrentSettings.LastProfileSimple && File.Exists(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile))))
                 {
-                    Profile =
-                        XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" +
-                                                                  QuesterSetting.CurrentSetting.profileName);
+                    if (QuesterSettings.CurrentSettings.LastProfileSimple)
+                    Profile = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + QuesterSettings.CurrentSettings.LastProfile);
+                    else Profile = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + QuesterSettings.CurrentSettings.LastProfile);
 
                     foreach (var include in Profile.Includes)
                     {
@@ -42,14 +40,13 @@ namespace Quester.Bot
                         {
                             if (Tasks.Script.Run(include.ScriptCondition))
                             {
-                                //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " +
-                                //            include.PathFile);
-                                var profileInclude =
-                                    XmlSerializer.Deserialize<QuesterProfile>(
-                                        Application.StartupPath + "\\Profiles\\Quester\\" +
-                                        include.PathFile);
+                                //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " + include.PathFile);
+                                var profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
                                 if (profileInclude != null)
                                 {
+                                    Profile.Questers.AddRange(profileInclude.Questers);
+                                    Profile.Blackspots.AddRange(profileInclude.Blackspots);
+                                    Profile.AvoidMobs.AddRange(profileInclude.AvoidMobs);
                                     Profile.Quests.AddRange(profileInclude.Quests);
                                 }
                             }
