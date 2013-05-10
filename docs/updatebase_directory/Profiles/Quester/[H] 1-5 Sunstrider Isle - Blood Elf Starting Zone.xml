@@ -745,6 +745,19 @@
 			<QuestObjective>
 				<Objective>UseSpell</Objective>
 				<EntryAOE>44937</EntryAOE>
+				<UseSpellId>100780</UseSpellId>
+				<Count>1</Count>
+				<Hotspots>
+					<Point>
+					 <X>10331.89</X>
+					 <Y>-6370.064</Y>
+					 <Z>33.70367</Z>
+					</Point>
+				</Hotspots>
+			</QuestObjective>
+			<QuestObjective>
+				<Objective>UseSpell</Objective>
+				<EntryAOE>44937</EntryAOE>
 				<UseSpellId>100787</UseSpellId>
 				<Count>1</Count>
 				<Hotspots>
