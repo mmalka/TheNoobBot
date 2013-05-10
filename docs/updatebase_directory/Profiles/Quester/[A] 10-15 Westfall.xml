@@ -2,6 +2,33 @@
 <QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <Questers>
       <Npc>
+        <Name>Deputy Rainer</Name>
+        <Entry>963</Entry>
+        <Position>
+           <X>-9662.75</X>
+           <Y>694.321</Y>
+           <Z>36.9357</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Marshal Dughan</Name>
+        <Entry>240</Entry>
+        <Position>
+          <X>-9465.521</X>
+          <Y>74.00694</Y>
+          <Z>56.59602</Z>
+        </Position>
+      </Npc>
+      <Npc>
+        <Name>Guard Thomas</Name>
+        <Entry>261</Entry>
+        <Position>
+          <X>-9610.23</X>
+          <Y>-1032.05</Y>
+          <Z>41.3058</Z>
+        </Position>
+      </Npc>
+      <Npc>
         <Name>Lieutenant Horatio Laine</Name>
         <Entry>42308</Entry>
         <Position>
@@ -183,6 +210,41 @@
       </Npc>
     </Questers>
     <Quests>
+
+        <!-- Multiple time the same quest from several NPC -->
+        <Quest>
+          <Name>Hero's Call: Westfall!</Name>
+          <Id>26378</Id>
+          <RaceMask>1101</RaceMask>
+          <QuestLevel>10</QuestLevel>
+          <MinLevel>9</MinLevel>
+          <MaxLevel>15</MaxLevel>
+          <PickUp>240</PickUp>
+          <TurnIn>42308</TurnIn>
+        </Quest>
+
+        <Quest>
+          <Name>Hero's Call: Westfall!</Name>
+          <Id>26378</Id>
+          <RaceMask>1101</RaceMask>
+          <QuestLevel>10</QuestLevel>
+          <MinLevel>9</MinLevel>
+          <MaxLevel>15</MaxLevel>
+          <PickUp>261</PickUp>
+          <TurnIn>42308</TurnIn>
+        </Quest>
+
+        <Quest>
+          <Name>Hero's Call: Westfall!</Name>
+          <Id>26378</Id>
+          <RaceMask>1101</RaceMask>
+          <QuestLevel>10</QuestLevel>
+          <MinLevel>9</MinLevel>
+          <MaxLevel>15</MaxLevel>
+          <PickUp>963</PickUp>
+          <TurnIn>42308</TurnIn>
+        </Quest>
+        <!-- Marshal Haggard (294), Marshal McCree (42256) to be done -->
 
 <!-- Main quest line -->
 
