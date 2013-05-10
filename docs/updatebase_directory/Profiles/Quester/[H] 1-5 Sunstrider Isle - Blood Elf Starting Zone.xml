@@ -646,7 +646,7 @@
 				<EntryAOE>44937</EntryAOE>
 				<UseSpellId>589</UseSpellId>
 				<Range>15</Range> 
-				<Count>10</Count>
+				<Count>5</Count>
 				<Hotspots>
 					<Point>
 					 <X>10331.89</X>
@@ -737,21 +737,8 @@
 			<QuestObjective>
 				<Objective>UseSpell</Objective>
 				<EntryAOE>44937</EntryAOE>
-				<UseSpellId>100780</UseSpellId>
-				<Count>2</Count>
-				<Hotspots>
-					<Point>
-					 <X>10331.89</X>
-					 <Y>-6370.064</Y>
-					 <Z>33.70367</Z>
-					</Point>
-				</Hotspots>
-			</QuestObjective>
-			<QuestObjective>
-				<Objective>UseSpell</Objective>
-				<EntryAOE>44937</EntryAOE>
 				<UseSpellId>100787</UseSpellId>
-				<Count>4</Count>
+				<Count>1</Count>
 				<Hotspots>
 					<Point>
 					 <X>10331.89</X>

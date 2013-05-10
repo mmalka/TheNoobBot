@@ -644,6 +644,8 @@ namespace Quester.Tasks
                         Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
+                            while (!t.IsSpellUsable)
+                                Thread.Sleep(50);
                             t.Launch();
                             Thread.Sleep(questObjective.WaitMsUseSpell);
                         }
