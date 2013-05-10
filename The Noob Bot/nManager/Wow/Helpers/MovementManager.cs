@@ -1449,7 +1449,7 @@ namespace nManager.Wow.Helpers
             {
                 if (timer.IsReady)
                     goto GeneratePath;
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.Next(2500, 5000) / 1000f) && FoundType != "none")
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.NextDouble()*2f+2.5f) && FoundType != "none")
                     StopMove();
                 /* The following code check 2 things.
                  * 1: Does the real Target (Memory) is at a different place than the Target Position in the Profile ?
