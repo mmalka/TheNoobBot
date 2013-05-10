@@ -22,6 +22,9 @@ public class Main : IProduct
         try
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\");
+            Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\ProfileType\\");
+            Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\CSharpProfile\\");
+            Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\AfkSomewhere\\");
             BattlegrounderSetting.Load();
             Logging.Status = "Initialize Battlegrounder Complete";
             Logging.Write("Initialize Battlegrounder Complete");

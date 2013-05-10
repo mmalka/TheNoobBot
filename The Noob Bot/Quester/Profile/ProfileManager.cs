@@ -1,7 +1,7 @@
 using System;
+using System.IO;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
-using nManager;
 using nManager.Helpful;
 
 namespace Quester.Profile
@@ -25,29 +25,29 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            /*
-             * this.Text = nManager.Translate.Get(nManager.Translate.Id.none); // Form Title
-             * 
-             * ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerAddGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerEditGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerGroupedDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerRemoveGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerAdd.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerEdit.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerSimpleDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             * ProfileManagerRemove.Text = nManager.Translate.Get(nManager.Translate.Id.none);
-             */
+
+            this.Text = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileManagementSystem); // Form Title
+
+              ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
+              ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager);
+              ProfileManagerAddGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.AddGrouped);
+              ProfileManagerEditGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.EditGrouped);
+              ProfileManagerGroupedDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedDocumentation);
+              ProfileManagerRemoveGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveGrouped);
+              ProfileManagerAdd.Text = nManager.Translate.Get(nManager.Translate.Id.AddSimple);
+              ProfileManagerEdit.Text = nManager.Translate.Get(nManager.Translate.Id.EditSimple);
+              ProfileManagerSimpleDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleDocumentation);
+              ProfileManagerRemove.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveSimple);
+             
         }
 
         private void RefreshProfileManagerForm()
         {
-            RefreshGroupedProfileList();
+            RefreshGroupedProfileList(true);
             RefreshSimpleProfileList();
         }
 
-        private void RefreshGroupedProfileList()
+        private void RefreshGroupedProfileList(bool Load = false)
         {
             try
             {
@@ -57,9 +57,22 @@ namespace Quester.Profile
                 {
                     ExistingGroupedProfiles.Items.Add(f);
                 }
-                if (CurrentSelection > ExistingGroupedProfiles.Items.Count - 1)
-                    CurrentSelection = ExistingGroupedProfiles.Items.Count - 1;
-                ExistingGroupedProfiles.SelectedIndex = CurrentSelection;
+                if (Load && ExistingGroupedProfiles.Items.Count > 0)
+                    ExistingGroupedProfiles.SelectedIndex = 0;
+                else if (CurrentSelection <= ExistingGroupedProfiles.Items.Count - 1 && ExistingGroupedProfiles.Items.Count > 0)
+                    ExistingGroupedProfiles.SelectedIndex = CurrentSelection;
+                else if (ExistingGroupedProfiles.Items.Count > 0)
+                    ExistingGroupedProfiles.SelectedIndex = 0;
+                if (ExistingGroupedProfiles.Items.Count > 0)
+                {
+                    ProfileManagerEditGrouped.Show();
+                    ProfileManagerRemoveGrouped.Show();
+                }
+                else
+                {
+                    ProfileManagerEditGrouped.Hide();
+                    ProfileManagerRemoveGrouped.Hide();
+                }
             }
             catch (Exception e)
             {
@@ -67,7 +80,7 @@ namespace Quester.Profile
             }
         }
 
-        private void RefreshSimpleProfileList()
+        private void RefreshSimpleProfileList(bool Load = false)
         {
             try
             {
@@ -77,9 +90,12 @@ namespace Quester.Profile
                 {
                     ExistingSimpleProfiles.Items.Add(f);
                 }
-                if (CurrentSelection > ExistingSimpleProfiles.Items.Count - 1)
-                    CurrentSelection = ExistingSimpleProfiles.Items.Count - 1;
-                ExistingSimpleProfiles.SelectedIndex = CurrentSelection;
+                if (Load && ExistingSimpleProfiles.Items.Count > 0)
+                    ExistingSimpleProfiles.SelectedIndex = 0;
+                else if (CurrentSelection <= ExistingSimpleProfiles.Items.Count - 1 && ExistingSimpleProfiles.Items.Count > 0)
+                    ExistingSimpleProfiles.SelectedIndex = CurrentSelection;
+                else if (ExistingSimpleProfiles.Items.Count > 0)
+                    ExistingSimpleProfiles.SelectedIndex = 0;
             }
             catch (Exception e)
             {
@@ -89,14 +105,21 @@ namespace Quester.Profile
 
         private void ProfileManagerAddGrouped_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The Grouped Profile system is not yet available, but you can read the Documentation.");
-            RefreshProfileManagerForm();
+            var f = new GroupedProfileManager();
+            f.ShowDialog();
+            RefreshGroupedProfileList();
         }
 
-        private void ProfileManagerEditGrouped_Click(object sender, EventArgs e)
+        private void DoProfileManagerEditGrouped(object sender, EventArgs e)
         {
-            MessageBox.Show("The Grouped Profile system is not yet available, but you can read the Documentation.");
-            RefreshProfileManagerForm();
+            if (ExistingGroupedProfiles.Items.Count > 0)
+            {
+                var f = new GroupedProfileManager(ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString());
+                f.ShowDialog();
+            }
+            else
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoGroupedProfileToEdit));
+            RefreshGroupedProfileList();
         }
 
         private void ProfileManagerGroupedDocumentation_Click(object sender, EventArgs e)
@@ -106,19 +129,37 @@ namespace Quester.Profile
 
         private void ProfileManagerRemoveGrouped_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The Grouped Profile system is not yet available, but you can read the Documentation.");
-            RefreshProfileManagerForm();
+            if (ExistingGroupedProfiles.Items.Count > 0)
+            {
+                string path = ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString();
+                string fullpath = Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + path;
+                if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
+                {
+                    DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveGroupedProfile) + path + " ?"), nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (check == DialogResult.Yes)
+                        File.Delete(fullpath);
+                }
+                else
+                {
+                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoGroupedProfileToDelete));
+                }
+            }
+            else
+            {
+                MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.NoGroupedProfileToDelete));
+            }
+            RefreshGroupedProfileList();
         }
 
         private void ProfileManagerAdd_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The Simple Profile system is not yet available, but you can read the Documentation.");
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
             RefreshProfileManagerForm();
         }
 
         private void ProfileManageEdit_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The Simple Profile system is not yet available, but you can read the Documentation.");
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
             RefreshProfileManagerForm();
         }
 
@@ -129,7 +170,7 @@ namespace Quester.Profile
 
         private void ProfileManagerRemove_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("The Simple Profile system is not yet available, but you can read the Documentation.");
+            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.FeatureNotYetAvailable));
             RefreshProfileManagerForm();
         }
     }

@@ -1357,5 +1357,121 @@
       <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
       <Id>ReloggerManagementPanelName</Id>
     </Translation>
+	<Translation>
+      <Text>Quester Profile Management System</Text>
+      <Id>QuesterProfileManagementSystem</Id>
+    </Translation>
+	<Translation>
+      <Text>Grouped Profile Manager</Text>
+      <Id>GroupedProfileManager</Id>
+    </Translation>
+	<Translation>
+      <Text>Simple Profile Manager</Text>
+      <Id>SimpleProfileManager</Id>
+    </Translation>
+	<Translation>
+      <Text>Grouped Quest Profile File</Text>
+      <Id>GroupedQuestProfileFile</Id>
+    </Translation>
+	<Translation>
+      <Text>There is no Grouped Profile to edit</Text>
+      <Id>NoGroupedProfileToEdit</Id>
+    </Translation>
+	<Translation>
+      <Text>Remove Grouped Profile</Text>
+      <Id>RemoveGroupedProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>Confirm</Text>
+      <Id>Confirm</Id>
+    </Translation>
+	<Translation>
+      <Text>There is no Grouped Profile to delete.</Text>
+      <Id>NoGroupedProfileToDelete</Id>
+    </Translation>
+	<Translation>
+      <Text>This feature is not yet available</Text>
+      <Id>FeatureNotYetAvailable</Id>
+    </Translation>
+	<Translation>
+      <Text>Create a grouped profile</Text>
+      <Id>AddGrouped</Id>
+    </Translation>
+	<Translation>
+      <Text>Edit a grouped profile</Text>
+      <Id>EditGrouped</Id>
+    </Translation>
+	<Translation>
+      <Text>Grouped Profile Documentation</Text>
+      <Id>GroupedDocumentation</Id>
+    </Translation>
+	<Translation>
+      <Text>Remove a grouped profile</Text>
+      <Id>RemoveGrouped</Id>
+    </Translation>
+	<Translation>
+      <Text>Create a simple profile</Text>
+      <Id>AddSimple</Id>
+    </Translation>
+	<Translation>
+      <Text>Edit a simple profile</Text>
+      <Id>EditSimple</Id>
+    </Translation>
+	<Translation>
+      <Text>Simple Profile Documentation</Text>
+      <Id>SimpleDocumentation</Id>
+    </Translation>
+	<Translation>
+      <Text>Remove a simple profile</Text>
+      <Id>RemoveSimple</Id>
+    </Translation>
+	<Translation>
+      <Text>Available profiles :</Text>
+      <Id>AvailableSimpleProfiles</Id>
+    </Translation>
+	<Translation>
+      <Text>Currently grouped profiles :</Text>
+      <Id>CurrentlyGroupedProfiles</Id>
+    </Translation>
+	<Translation>
+      <Text>Group the selected profile</Text>
+      <Id>GroupSelectedProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>Ungroup selected profile</Text>
+      <Id>UngroupSelectedProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>Ungroup ALL Profiles</Text>
+      <Id>UngroupAllProfiles</Id>
+    </Translation>
+	<Translation>
+      <Text>Save as new &amp;&amp; Close</Text>
+      <Id>SaveGroupedProfileAs</Id>
+    </Translation>
+	<Translation>
+      <Text>Save &amp;&amp; Close</Text>
+      <Id>SaveGroupedProfile</Id>
+    </Translation>
+	<Translation>
+      <Text>Cancel &amp;&amp; Close</Text>
+      <Id>CancelGroupedProfileEdition</Id>
+    </Translation>
+	<Translation>
+      <Text>Move Up</Text>
+      <Id>MoveUp</Id>
+    </Translation>
+	<Translation>
+      <Text>Move Down</Text>
+      <Id>MoveDown</Id>
+    </Translation>
+	<Translation>
+      <Text>You can't save an empty Grouped Profile</Text>
+      <Id>CantSaveEmptyGroupedNew</Id>
+    </Translation>
+	<Translation>
+      <Text>You can't save an empty Grouped Profile, if you want to delete it, Cancel then delete it from the previous window</Text>
+      <Id>CantSaveEmptyGroupedExisting</Id>
+    </Translation>
   </Translations>
 </Language>

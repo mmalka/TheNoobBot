@@ -15,6 +15,7 @@ public class Main : IProduct
         try
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\");
+            Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\");
             QuesterSetting.Load();
             Logging.Status = "Initialize Quester Complete";
             Logging.Write("Initialize Quester Complete");
