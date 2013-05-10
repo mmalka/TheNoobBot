@@ -10,7 +10,6 @@ namespace Quester.Profile
     public partial class GroupedProfileManager : MetroForm
     {
         private readonly QuesterProfile Profile = new QuesterProfile();
-        private readonly QuesterProfile ProfileToSave = new QuesterProfile();
         private readonly string fullpath = "";
 
         public GroupedProfileManager(string path = "")
@@ -113,17 +112,18 @@ namespace Quester.Profile
         {
             if (CurrentlyGroupedProfiles.Items.Count > 0)
             {
+                Profile.Includes.Clear();
                 foreach (string PathFile in CurrentlyGroupedProfiles.Items)
                 {
                     string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
                     if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
                     {
-                        ProfileToSave.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
+                        Profile.Includes.Add(new Include { PathFile = PathFile, ScriptCondition = "" });
                     }
                 }
                 string FileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\", nManager.Translate.Get(nManager.Translate.Id.GroupedQuestProfileFile) + " (*.xml)|*.xml");
                 if (FileToSaveAs != "")
-                    XmlSerializer.Serialize(FileToSaveAs, ProfileToSave);
+                    XmlSerializer.Serialize(FileToSaveAs, Profile);
                 Close();
             }
             else
@@ -136,15 +136,16 @@ namespace Quester.Profile
         {
             if (CurrentlyGroupedProfiles.Items.Count > 0)
             {
+                Profile.Includes.Clear();
                 foreach (string PathFile in CurrentlyGroupedProfiles.Items)
                 {
                     string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
                     if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
                     {
-                        ProfileToSave.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
+                        Profile.Includes.Add(new Include { PathFile = PathFile, ScriptCondition = "" });
                     }
                 }
-                XmlSerializer.Serialize(fullpath, ProfileToSave);
+                XmlSerializer.Serialize(fullpath, Profile);
                 Close();
             }
             else
