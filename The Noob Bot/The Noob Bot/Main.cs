@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -107,10 +108,7 @@ namespace The_Noob_Bot
                 if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
                     nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
-                    foreach (var item in Bag.GetBagItem())
-                    {
-                        items.Add(item.Name);
-                    }
+                    items.AddRange(from item in Bag.GetBagItem() let iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry) where iteminfo.ItemRarity > 0 select item.Name);
                     Logging.Write(items.Count + " items found");
                     if (items.Count == 0)
                     {
