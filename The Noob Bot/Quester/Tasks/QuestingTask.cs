@@ -48,11 +48,11 @@ namespace Quester.Tasks
                 foreach (var quest in Quester.Bot.Bot.Profile.Quests)
                 {
                     if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
-                          (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
+                        (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
                             if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                                 quest.NeedQuestCompletedId.Count == 0)
-                                if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint)quest.ItemPickUp) > 0))
+                                if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint) quest.ItemPickUp) > 0))
                                     if (Script.Run(quest.ScriptCondition)) // Condition
                                     {
                                         CurrentQuest = quest;
@@ -144,50 +144,15 @@ namespace Quester.Tasks
                 return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsObjectiveCompleted;
             }
 
-            // MOVE TO
-            if (questObjective.Objective == Objective.MoveTo)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // WAIT
-            if (questObjective.Objective == Objective.Wait)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // TRAIN ALL SPELLS
-            if (questObjective.Objective == Objective.TrainSpells)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // INTERACT WITH
-            if (questObjective.Objective == Objective.InteractWith)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // USE SPELL
-            if (questObjective.Objective == Objective.UseSpell)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // EQUIP ITEM
-            if (questObjective.Objective == Objective.EquipItem)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // PICK UP QUEST
-            if (questObjective.Objective == Objective.PickUpQuest)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // TURN IN QUEST
-            if (questObjective.Objective == Objective.TurnInQuest)
+            /* MOVE TO || WAIT || TRAIN ALL SPELLS || 
+             * INTERACT WITH || USE SPELL || EQUIP ITEM || 
+             * PICK UP QUEST || TURN IN QUEST || PRESS KEY || 
+             * USE SPELL AOE || USE ITEM AOE || USE RUNEFORGE
+             */
+            if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.TrainSpells ||
+                questObjective.Objective == Objective.InteractWith || questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem ||
+                questObjective.Objective == Objective.PickUpQuest || questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey ||
+                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -202,30 +167,6 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.EjectVehicle)
             {
                 return !Usefuls.PlayerUsingVehicle;
-            }
-
-            // PRESS KEY
-            if (questObjective.Objective == Objective.PressKey)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // USE SPELL AOE
-            if (questObjective.Objective == Objective.UseSpellAOE)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // USE ITEM AOE
-            if (questObjective.Objective == Objective.UseItemAOE)
-            {
-                return questObjective.IsObjectiveCompleted;
-            }
-
-            // USE RUNEFORGE
-            if (questObjective.Objective == Objective.UseRuneForge)
-            {
-                return questObjective.IsObjectiveCompleted;
             }
 
             // APPLY BUFF
@@ -639,10 +580,10 @@ namespace Quester.Tasks
                         {
                             var node =
                                 ObjectManager.GetNearestWoWGameObject(
-                                    ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                                    ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
                             var unit =
                                 ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                                    ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
