@@ -5,12 +5,14 @@ using Quester.Bot;
 using Quester.Profile;
 using nManager;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 using Quest = nManager.Wow.Helpers.Quest;
 using Timer = nManager.Helpful.Timer;
 using nManager.Wow.Bot.Tasks;
+using Keybindings = nManager.Wow.Helpers.Keybindings;
 
 namespace Quester.Tasks
 {
@@ -773,43 +775,40 @@ namespace Quester.Tasks
             // USE ITEM AOE
             if (questObjective.Objective == Objective.UseItemAOE)
             {
-                if (!MovementManager.InMovement ||
-                    questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                if (!MovementManager.InMovement || questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
-                    if (questObjective.EntryAOE > 0)
+                    var Target = new Npc
+                        {
+                            Entry = questObjective.EntryAOE,
+                            Position = questObjective.Position,
+                            Name = "Unknown",
+                            ContinentId = (ContinentId) Usefuls.ContinentId,
+                            Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                            SelectGossipOption = questObjective.GossipOptionsInteractWith
+                        };
+                    WoWUnit TargetIsNPC;
+                    WoWObject TargetIsObject;
+                    Target = questObjective.Range > 5f
+                                 ? MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject, questObjective.Range)
+                                 : MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject);
+                    //End target finding based on EntryAOE.
+                    if (questObjective.EntryAOE <= 0 && !TargetIsNPC.IsValid && !TargetIsObject.IsValid)
                     {
-                        var node =
-                            ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
-                        var unit =
-                            ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
-                        Point pos = new Point();
-                        if (node.IsValid)
-                        {
-                            questObjective.Position = new Point(node.Position);
-                        }
-                        else if (unit.IsValid)
-                        {
-                            questObjective.Position = new Point(unit.Position);
-                        }
-                        else
-                        {
-                            return;
-                        }
+                        ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                        Thread.Sleep(questObjective.WaitMs);
+                        questObjective.IsObjectiveCompleted = true;
                     }
-
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    else if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
                     {
-                        MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
+                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
+                        Interact.InteractGameObject(baseAddress);
+                        ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                        Thread.Sleep(questObjective.WaitMs);
+                        questObjective.IsObjectiveCompleted = true;
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
-                        ItemsManager.UseItem((uint) questObjective.UseItemId, questObjective.Position);
-                        Thread.Sleep(questObjective.WaitMs);
-                        questObjective.IsObjectiveCompleted = true;
+                        return; // target not found
                     }
                 }
             }
