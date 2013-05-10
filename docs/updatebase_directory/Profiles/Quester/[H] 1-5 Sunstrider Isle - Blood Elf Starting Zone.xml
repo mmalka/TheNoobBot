@@ -507,19 +507,27 @@
           <PickUp>43010</PickUp>
           <TurnIn>43010</TurnIn>
           <Objectives>
+            <QuestObjective>
+              <Objective>MoveTo</Objective>
+              <Position>
+                 <X>10371.88</X>
+                 <Y>-6351.023</Y>
+                 <Z>33.21012</Z>
+              </Position>
+            </QuestObjective>
 			<QuestObjective>
-				<Objective>UseSpell</Objective>
-				<EntryAOE>44937</EntryAOE>
-				<UseSpellId>100</UseSpellId>
-				<Range>12</Range> 
-				<Count>1</Count>
-				<Hotspots>
-					<Point>
-					 <X>10331.89</X>
-					 <Y>-6370.064</Y>
-					 <Z>33.70367</Z>
-					</Point>
-				</Hotspots>
+                <Objective>KillMob</Objective>
+                <Count>-1</Count>
+                <Entry>
+                    <int>44937</int>
+                </Entry>
+                <Hotspots>
+                    <Point>
+                     <X>10371.88</X>
+                     <Y>-6351.023</Y>
+                     <Z>33.21012</Z>
+                    </Point>
+                </Hotspots>
 			</QuestObjective>
           </Objectives>
         </Quest>
