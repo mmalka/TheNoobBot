@@ -1435,7 +1435,7 @@ namespace nManager.Wow.Helpers
 
             var timerPathFinder = new Timer(0);
             GeneratePath:
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.5f && FoundType != "none")
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 4.5f && FoundType != "none")
                 goto End;
             if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
                 return Target;
@@ -1511,7 +1511,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.5f &&
+            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f &&
                    Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
             {
                 switch (FoundType)
@@ -1556,7 +1556,7 @@ namespace nManager.Wow.Helpers
                               Target.Position.Y + ";" + Target.Position.Z + ").");
                 return Target;
             }
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 3.5f)
+            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f)
                 goto GeneratePath;
             Logging.Write("Terminate target finding, found: " + Target.Name + " (" + Target.Entry + ").");
             return Target;
