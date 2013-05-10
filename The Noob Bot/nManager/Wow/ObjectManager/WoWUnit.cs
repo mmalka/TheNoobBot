@@ -1199,7 +1199,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (ObjectManager.Target.IsNpcQuestGiver)
+                    if (IsNpcQuestGiver)
                         return false;
                     return (Health <= 0 || Health == 0.01 ||
                             GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) == 0x20) ||
