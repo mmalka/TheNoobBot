@@ -737,7 +737,7 @@
 			<QuestObjective>
 				<Objective>UseSpell</Objective>
 				<EntryAOE>44937</EntryAOE>
-				<UseSpellId>Tiger Palm</UseSpellId>
+				<UseSpellId>100787</UseSpellId>
 				<Range>5</Range> 
 				<Count>1</Count>
 				<Hotspots>
