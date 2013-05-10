@@ -1045,7 +1045,10 @@ namespace Quester.Tasks
                                 {
                                     Quest.AcceptQuest();
                                     Thread.Sleep(Usefuls.Latency + 500);
+                                    id = Quest.GetQuestID();
                                     Quest.CloseQuestWindow();
+                                    if (id != CurrentQuest.Id)
+                                        Quest.AbandonQuest(id);
                                     break;
                                 }
                                 else
@@ -1070,7 +1073,10 @@ namespace Quester.Tasks
                                 {
                                     Quest.AcceptQuest();
                                     Thread.Sleep(Usefuls.Latency + 500);
+                                    id = Quest.GetQuestID();
                                     Quest.CloseQuestWindow();
+                                    if (id != CurrentQuest.Id)
+                                        Quest.AbandonQuest(id);
                                     break;
                                 }
                                 else
