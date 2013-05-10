@@ -55,20 +55,20 @@
                 <QuestObjective>
                     <Objective>InteractWith</Objective>
                     <EntryInteractWith>190584</EntryInteractWith>
-                    <PositionInteractWith>
+                    <Position>
                          <X>2535.668</X>
                          <Y>-5607.533</Y>
                          <Z>420.6514</Z>
-                    </PositionInteractWith>
+                    </Position>
                 </QuestObjective>
                 <QuestObjective>
                     <Objective>UseItem</Objective>
                     <UseItemId>38607</UseItemId>
-                    <PositionUseItem>
+                    <Position>
                              <X>2505.863</X>
                              <Y>-5562.321</Y>
                              <Z>420.6461</Z>
-                    </PositionUseItem>
+                    </Position>
                     <WaitMsUseItem>11000</WaitMsUseItem>
                 </QuestObjective>
             </Objectives>
@@ -96,11 +96,11 @@
                 </QuestObjective>
                 <QuestObjective>
                     <Objective>UseRuneForge</Objective>
-                    <PositionUseRuneForge>
+                    <Position>
                         <X>2505.863</X>
                         <Y>-5562.321</Y>
                         <Z>420.6461</Z>
-                    </PositionUseRuneForge>
+                    </Position>
                     <WaitMsUseRuneForge>7500</WaitMsUseRuneForge>
                 </QuestObjective>
             </Objectives>

@@ -388,7 +388,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseItem)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseItem) < 5.0f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.Position) < questObjective.Range)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -401,19 +401,19 @@ namespace Quester.Tasks
                         Point pos = new Point();
                         if (node.IsValid)
                         {
-                            questObjective.PositionUseItem = new Point(node.Position);
+                            questObjective.Position = new Point(node.Position);
                         }
                         else if (unit.IsValid)
                         {
-                            questObjective.PositionUseItem = new Point(unit.Position);
+                            questObjective.Position = new Point(unit.Position);
                         }
                     }
 
-                    if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
-                        questObjective.PositionUseItem.X != 0)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range &&
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseItem));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
@@ -455,11 +455,11 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.MoveTo.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
-                        questObjective.MoveTo.X != 0)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range &&
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.MoveTo));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                         questObjective.IsUsedMoveTo = true;
@@ -483,12 +483,12 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) >
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) >
                         nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        questObjective.PositionInteractWith.X != 0)
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionInteractWith));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
@@ -532,12 +532,12 @@ namespace Quester.Tasks
                 Thread.Sleep(500);
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.PositionInteractWith.DistanceTo(ObjectManager.Me.Position) >
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) >
                         nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        questObjective.PositionInteractWith.X != 0)
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionInteractWith));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
@@ -590,7 +590,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseSpell)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionUseSpell) < questObjective.Range)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.Position) < questObjective.Range)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -603,28 +603,44 @@ namespace Quester.Tasks
                         Point pos = new Point();
                         if (node.IsValid)
                         {
-                            questObjective.PositionUseSpell = new Point(node.Position);
+                            questObjective.Position = new Point(node.Position);
                         }
                         else if (unit.IsValid)
                         {
-                            Interact.InteractGameObject(unit.GetBaseAddress);
-                            questObjective.PositionUseSpell = new Point(unit.Position);
-                        }
-                        else
-                        {
-                            return;
+                            questObjective.Position = new Point(unit.Position);
                         }
                     }
 
-                    if (questObjective.PositionUseSpell.X != 0 &&
-                        questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.X != 0 &&
+                        questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
                         MountTask.DismountMount(true);
+                        if (questObjective.EntryAOE > 0)
+                        {
+                            var node =
+                                ObjectManager.GetNearestWoWGameObject(
+                                    ObjectManager.GetWoWGameObjectById(new List<int>() { questObjective.EntryAOE }));
+                            var unit =
+                                ObjectManager.GetNearestWoWUnit(
+                                    ObjectManager.GetWoWUnitByEntry(new List<int>() { questObjective.EntryAOE }));
+                            if (node.IsValid)
+                            {
+                                MovementManager.Face(node);
+                                Interact.InteractGameObject(node.GetBaseAddress);
+                                MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
+                            }
+                            else if (unit.IsValid)
+                            {
+                                MovementManager.Face(unit);
+                                Interact.InteractGameObject(unit.GetBaseAddress);
+                                MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
+                            }
+                        }
                         Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
@@ -687,19 +703,19 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.PositionVehicle.DistanceTo(ObjectManager.Me.Position) >
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) >
                         nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        questObjective.PositionVehicle.X != 0)
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionVehicle));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryVehicle}),
-                                questObjective.PositionVehicle);
+                                questObjective.Position);
                         if (!unit.IsValid)
                         {
                             return;
@@ -732,13 +748,13 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.PressKey)
             {
                 if (!MovementManager.InMovement ||
-                    ObjectManager.Me.Position.DistanceTo(questObjective.PositionPressKey) < 5.0f)
+                    ObjectManager.Me.Position.DistanceTo(questObjective.Position) < 5.0f)
                 {
-                    if (questObjective.PositionPressKey.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
-                        questObjective.PositionPressKey.X != 0)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5.0f &&
+                        questObjective.Position.X != 0)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionPressKey));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
@@ -755,7 +771,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseSpellAOE)
             {
                 if (!MovementManager.InMovement ||
-                    questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                    questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -768,11 +784,11 @@ namespace Quester.Tasks
                         Point pos = new Point();
                         if (node.IsValid)
                         {
-                            questObjective.PositionUseSpell = new Point(node.Position);
+                            questObjective.Position = new Point(node.Position);
                         }
                         else if (unit.IsValid)
                         {
-                            questObjective.PositionUseSpell = new Point(unit.Position);
+                            questObjective.Position = new Point(unit.Position);
                         }
                         else
                         {
@@ -780,16 +796,16 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.PositionUseSpell.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseSpell));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
                         MountTask.DismountMount(true);
                         SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
-                                                              questObjective.PositionUseSpell);
+                                                              questObjective.Position);
                         Thread.Sleep(questObjective.WaitMsUseSpell);
                         questObjective.IsUsedUseSpellAOE = true;
                     }
@@ -800,7 +816,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseItemAOE)
             {
                 if (!MovementManager.InMovement ||
-                    questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                    questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
                     if (questObjective.EntryAOE > 0)
                     {
@@ -813,11 +829,11 @@ namespace Quester.Tasks
                         Point pos = new Point();
                         if (node.IsValid)
                         {
-                            questObjective.PositionUseItem = new Point(node.Position);
+                            questObjective.Position = new Point(node.Position);
                         }
                         else if (unit.IsValid)
                         {
-                            questObjective.PositionUseItem = new Point(unit.Position);
+                            questObjective.Position = new Point(unit.Position);
                         }
                         else
                         {
@@ -825,15 +841,15 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.PositionUseItem.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseItem));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {
                         MountTask.DismountMount(true);
-                        ItemsManager.UseItem((uint) questObjective.UseItemId, questObjective.PositionUseItem);
+                        ItemsManager.UseItem((uint) questObjective.UseItemId, questObjective.Position);
                         Thread.Sleep(questObjective.WaitMsUseItem);
                         questObjective.IsUsedUseItemAOE = true;
                     }
@@ -844,12 +860,12 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.UseRuneForge)
             {
                 if (!MovementManager.InMovement ||
-                    questObjective.PositionUseRuneForge.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                    questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
                 {
-                    if (questObjective.PositionUseRuneForge.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.PositionUseRuneForge));
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                     else
                     {

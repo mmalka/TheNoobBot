@@ -142,7 +142,7 @@
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
-				<Count>6</Count>
+				<Count>-1</Count><!-- 6 -->
                 <Entry>
                     <int>15274</int>
                 </Entry>
@@ -407,11 +407,11 @@
             <QuestObjective>
                 <Objective>InteractWith</Objective>
 				<EntryInteractWith>180516</EntryInteractWith>
-                <PositionInteractWith>
+                <Position>
                      <X>10405.8</X>
                      <Y>-5946.007</Y>
                      <Z>42.50818</Z>
-                </PositionInteractWith>
+                </Position>
             </QuestObjective>
           </Objectives>
         </Quest>
@@ -466,13 +466,13 @@
                 <UseSpellId>28730</UseSpellId>
 				<EntryAOE>15274</EntryAOE>
 				<Range>8</Range>
-                <PositionUseSpell>
+                <Position>
                     <Point>
 					 <X>10233.04</X>
 					 <Y>-6331.622</Y>
 					 <Z>30.8401</Z>
                     </Point>
-                </PositionUseSpell>
+                </Position>
             </QuestObjective>
           </Objectives>
         </Quest>
@@ -511,7 +511,7 @@
 				<Objective>UseSpell</Objective>
 				<EntryAOE>44937</EntryAOE>
 				<UseSpellId>100</UseSpellId>
-				<Range>15</Range> 
+				<Range>12</Range> 
 				<Count>1</Count>
 				<Hotspots>
 					<Point>
@@ -541,13 +541,13 @@
             <QuestObjective>
                 <Objective>UseSpell</Objective>
                 <UseSpellId>105361</UseSpellId>
-                <PositionUseSpell>
+                <Position>
                     <Point>
 					 <X>10345.46</X>
 					 <Y>-6366.245</Y>
 					 <Z>34.79651</Z>
                     </Point>
-                </PositionUseSpell>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>KillMob</Objective>

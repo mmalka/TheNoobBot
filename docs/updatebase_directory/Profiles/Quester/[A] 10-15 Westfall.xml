@@ -201,38 +201,38 @@
           <Objectives>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
-                <PositionInteractWith>
+                <Position>
                      <X>-9825.86</X>
                      <Y>977.6051</Y>
                      <Z>29.13114</Z>
-                </PositionInteractWith>
+                </Position>
                 <EntryInteractWith>42386</EntryInteractWith>
             </QuestObjective>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
-                <PositionInteractWith>
+                <Position>
                      <X>-9825.86</X>
                      <Y>977.6051</Y>
                      <Z>29.13114</Z>
-                </PositionInteractWith>
+                </Position>
                 <EntryInteractWith>42386</EntryInteractWith>
             </QuestObjective>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
-                <PositionInteractWith>
+                <Position>
                      <X>-9825.86</X>
                      <Y>977.6051</Y>
                      <Z>29.13114</Z>
-                </PositionInteractWith>
+                </Position>
                 <EntryInteractWith>42386</EntryInteractWith>
             </QuestObjective>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
-                <PositionInteractWith>
+                <Position>
                      <X>-9825.86</X>
                      <Y>977.6051</Y>
                      <Z>29.13114</Z>
-                </PositionInteractWith>
+                </Position>
                 <EntryInteractWith>42386</EntryInteractWith>
             </QuestObjective>
           </Objectives>
@@ -346,11 +346,11 @@
             <QuestObjective>
                 <Objective>UseItem</Objective>
                 <UseItemId>57761</UseItemId>
-                <PositionUseItem>
+                <Position>
                  <X>-9851.116</X>
                  <Y>1404.543</Y>
                  <Z>54.10345</Z>
-                </PositionUseItem>
+                </Position>
                 <WaitMsUseItem>90000</WaitMsUseItem> <!-- 1 minute 30 secs -->
             </QuestObjective>
           </Objectives>
@@ -370,11 +370,11 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-9859.41</X>
                  <Y>1327.115</Y>
                  <Z>41.9034</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -732,28 +732,28 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-11138.51</X>
                  <Y>551.0759</Y>
                  <Z>35.95947</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>UseItem</Objective>
                 <UseItemId>58112</UseItemId>
-                <PositionUseItem>
+                <Position>
                  <X>-11138.51</X>
                  <Y>551.0759</Y>
                  <Z>35.95947</Z>
-                </PositionUseItem>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-11132.36</X>
                  <Y>555.1247</Y>
                  <Z>70.38676</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -881,11 +881,11 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-11022.47</X>
                  <Y>1486.453</Y>
                  <Z>43.18197</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
              <QuestObjective>
                 <Objective>Wait</Objective>
@@ -923,21 +923,21 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-11208.43</X>
                  <Y>1674.8</Y>
                  <Z>24.60166</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>PressKey</Objective>
                 <Keys>MOVEFORWARD</Keys>
                 <WaitMsPressKey>3000</WaitMsPressKey>
-                <PositionPressKey>
+                <Position>
                  <X>-11208.43</X>
                  <Y>1674.8</Y>
                  <Z>24.60166</Z>
-                </PositionPressKey>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -946,11 +946,11 @@
             <QuestObjective>
                 <Objective>UseItem</Objective>
                 <UseItemId>58147</UseItemId>
-                <PositionUseItem>
+                <Position>
                  <X>-13.74608</X>
                  <Y>-379.1622</Y>
                  <Z>60.93187</Z>
-                </PositionUseItem>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -958,21 +958,21 @@
             </QuestObjective>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-14.3259</X>
                  <Y>-386.358</Y>
                  <Z>62.76491</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>PressKey</Objective>
                 <Keys>MOVEFORWARD</Keys>
                 <WaitMsPressKey>3000</WaitMsPressKey>
-                <PositionPressKey>
+                <Position>
                  <X>-14.3259</X>
                  <Y>-386.358</Y>
                  <Z>62.76491</Z>
-                </PositionPressKey>
+                </Position>
             </QuestObjective>
             <QuestObjective>
                 <Objective>Wait</Objective>
@@ -1029,11 +1029,11 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-9804.153</X>
                  <Y>838.1756</Y>
                  <Z>29.16481</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
           </Objectives>
         </Quest>
@@ -1070,11 +1070,11 @@
           <Objectives>
             <QuestObjective>
                 <Objective>InteractWith</Objective>
-                <PositionInteractWith>
+                <Position>
                      <X>-10179.65</X>
                      <Y>1307.409</Y>
                      <Z>36.74248</Z>
-                </PositionInteractWith>
+                </Position>
                 <EntryInteractWith>42381</EntryInteractWith>
             </QuestObjective>
             <QuestObjective>
@@ -1449,11 +1449,11 @@
           <Objectives>
             <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                  <X>-9804.153</X>
                  <Y>838.1756</Y>
                  <Z>29.16481</Z>
-                </MoveTo>
+                </Position>
             </QuestObjective>
           </Objectives>
         </Quest>

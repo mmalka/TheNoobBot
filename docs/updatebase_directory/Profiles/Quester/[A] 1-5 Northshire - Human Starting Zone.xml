@@ -793,11 +793,11 @@
                 <QuestObjective>
                     <Objective>TrainSpells</Objective>
                     <EntryInteractWith>198</EntryInteractWith>
-                    <PositionInteractWith>
+                    <Position>
                         <X>-8851.673</X>
                         <Y>-188.2821</Y>
                         <Z>89.31502</Z>
-                    </PositionInteractWith>
+                    </Position>
                 </QuestObjective>
                 <QuestObjective>
                     <Objective>UseSpell</Objective>
@@ -1350,19 +1350,19 @@
             <Objectives>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                   <X>-9188.98</X>
                   <Y>-120.2488</Y>
                   <Z>71.22906</Z>
-                </MoveTo>
+                </Position>
               </QuestObjective>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                   <X>-9353.46</X>
                   <Y>-42.33495</Y>
                   <Z>64.84639</Z>
-                </MoveTo>
+                </Position>
               </QuestObjective>
             </Objectives>
         </Quest>
@@ -1396,11 +1396,11 @@
                 <EntryAOE>50047</EntryAOE>
                 <Count>4</Count>
                 <WaitMsUseItem>2000</WaitMsUseItem>
-                <PositionUseItem>
+                <Position>
                   <X>-8751.833</X>
                   <Y>-154.1666</Y>
                   <Z>83.59311</Z>
-                </PositionUseItem>
+                </Position>
             </QuestObjective>
             </Objectives>
         </Quest>
@@ -1426,11 +1426,11 @@
                 <EntryAOE>42940</EntryAOE> <!-- Northshire Vineyards Fire Trigger  -->
                 <Count>10</Count> <!-- it's 8 but I put 10 for security raison because I found 1 Vineyards Fire Trigger bugged, the bot will stop as soon as quest is done anyway -->
                 <WaitMsUseItem>6000</WaitMsUseItem>
-                <PositionUseItem>
+                <Position>
                   <X>-9093.773</X>
                   <Y>-335.1914</Y>
                   <Z>73.45333</Z>
-                </PositionUseItem>
+                </Position>
             </QuestObjective>
             </Objectives>
         </Quest>
@@ -1446,19 +1446,19 @@
             <Objectives>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                   <X>-9188.98</X>
                   <Y>-120.2488</Y>
                   <Z>71.22906</Z>
-                </MoveTo>
+                </Position>
               </QuestObjective>
               <QuestObjective>
                 <Objective>MoveTo</Objective>
-                <MoveTo>
+                <Position>
                   <X>-9353.46</X>
                   <Y>-42.33495</Y>
                   <Z>64.84639</Z>
-                </MoveTo>
+                </Position>
               </QuestObjective>
             </Objectives>
         </Quest>

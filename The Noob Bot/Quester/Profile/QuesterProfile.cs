@@ -113,10 +113,9 @@ namespace Quester.Profile
         internal bool IsUsedUseItem = false;
         public int WaitMsUseItem = 0;
         public int UseItemId = 0;
-        public Point PositionUseItem = new Point();
+        public Point Position = new Point();
 
         // Move To
-        public Point MoveTo = new Point();
         internal bool IsUsedMoveTo = false;
 
         // Wait
@@ -124,7 +123,6 @@ namespace Quester.Profile
         internal bool IsUsedWaitMs = false;
 
         // InteractWith
-        public Point PositionInteractWith = new Point();
         public int EntryInteractWith = 0;
         public bool IsUsedInteractWith;
         public int GossipOptionsInteractWith = -1;
@@ -136,7 +134,6 @@ namespace Quester.Profile
         internal bool IsUsedUseSpell = false;
         public int WaitMsUseSpell = 0;
         public int UseSpellId = 0;
-        public Point PositionUseSpell = new Point();
 
         // EquipItem
         internal bool IsUsedEquipItem = false;
@@ -150,13 +147,11 @@ namespace Quester.Profile
 
         // UseVehicule
         public int EntryVehicle = 0;
-        public Point PositionVehicle = new Point();
 
         // PressKey
         internal bool IsUsedPressKey = false;
         public int WaitMsPressKey = 0;
         public Keybindings Keys = Keybindings.NONE;
-        public Point PositionPressKey = new Point();
 
         // UseItemAOE & UseSpellAOE & AOE ATTACK MOB
         public float Range = 5.0f;
@@ -168,7 +163,6 @@ namespace Quester.Profile
         // Use RuneForge
         internal bool IsUsedUseRuneForge = false;
         public int WaitMsUseRuneForge = 0;
-        public Point PositionUseRuneForge = new Point();
         // Apply buff from item AOE
         public int BuffId = 0;
         public int BuffCount = 0;
