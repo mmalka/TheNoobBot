@@ -38,6 +38,15 @@ namespace Quester.Tasks
             {
                 foreach (var quest in Quester.Bot.Bot.Profile.Quests)
                 {
+                    if (Quest.GetLogQuestId().Contains(quest.Id))
+                    {
+                        CurrentQuest = quest;
+                        Logging.Write("resuming \"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                        return;
+                    }
+                }
+                foreach (var quest in Quester.Bot.Bot.Profile.Quests)
+                {
                     if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
                           (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
@@ -47,7 +56,7 @@ namespace Quester.Tasks
                                     if (Script.Run(quest.ScriptCondition)) // Condition
                                     {
                                         CurrentQuest = quest;
-                                        Logging.Write(quest.Name + ": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                                        Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
                                         return;
                                     }
                 }
