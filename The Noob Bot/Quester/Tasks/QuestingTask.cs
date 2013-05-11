@@ -258,12 +258,7 @@ namespace Quester.Tasks
                             ObjectManager.GetWoWUnitByFaction(questObjective.Factions));
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
-                    wowUnit.GetDistance <= nManager.nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                    CurrentQuestObjective.PathHotspots[
-                        nManager.Helpful.Math.NearestPointOfListPoints(CurrentQuestObjective.PathHotspots,
-                                                                       wowUnit.Position)].DistanceTo(wowUnit.Position) <=
-                    nManagerSetting.CurrentSetting.GatheringSearchRadius && !nManagerSetting.IsBlackListed(wowUnit.Guid) &&
-                    wowUnit.IsAlive && wowUnit.IsValid &&
+                    !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     Logging.Write("Attacking Lvl " + wowUnit.Name);
@@ -313,10 +308,6 @@ namespace Quester.Tasks
                     ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectById(questObjective.Entry));
 
                 if (!nManagerSetting.IsBlackListedZone(node.Position) &&
-                    node.GetDistance < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                    CurrentQuestObjective.PathHotspots[
-                        nManager.Helpful.Math.NearestPointOfListPoints(CurrentQuestObjective.PathHotspots, node.Position)
-                        ].DistanceTo(node.Position) <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                     !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
                 {
                     uint tNumber = Statistics.Farms;
@@ -448,14 +439,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) >
-                        nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        questObjective.Position.X != 0)
-                    {
-                        MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
-                    }
-                    else
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) < questObjective.Range)
                     {
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
@@ -488,6 +472,11 @@ namespace Quester.Tasks
                         SpellManager.UpdateSpellBook();
                         questObjective.IsObjectiveCompleted = true;
                     }
+                    else
+                    {
+                        MountTask.Mount();
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
+                    }
                 }
             }
 
@@ -497,14 +486,7 @@ namespace Quester.Tasks
                 Thread.Sleep(500);
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) >
-                        nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        questObjective.Position.X != 0)
-                    {
-                        MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
-                    }
-                    else
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) < questObjective.Range)
                     {
                         var node =
                             ObjectManager.GetNearestWoWGameObject(
@@ -547,6 +529,11 @@ namespace Quester.Tasks
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
                         questObjective.IsObjectiveCompleted = true;
+                    }
+                    else
+                    {
+                        MountTask.Mount();
+                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                     }
                 }
             }
