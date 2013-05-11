@@ -244,15 +244,60 @@
         <Z>7.93905</Z>
       </Position>
     </Npc>
-    <!--<Npc>
-      <Entry>xxxxx</Entry>
-      <Name>xxxxx</Name>
+    <Npc>
+      <Entry>16191</Entry>
+      <Name>Sathren Azuredawn</Name>
       <Position>
-        <X>xxxxx</X>
-        <Y>xxxxxx</Y>
-        <Z>xxxxx</Z>
+        <X>9580.713</X>
+        <Y>-7054.052</Y>
+        <Z>18.64527</Z>
       </Position>
-    </Npc>-->
+    </Npc>
+    <Npc>
+      <Entry>16192</Entry>
+      <Name>Skymistress Gloaming</Name>
+      <Position>
+        <X>9376.08</X>
+        <Y>-7165.447</Y>
+        <Z>8.966657</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>15399</Entry>
+      <Name>Lieutenant Dawnrunner</Name>
+      <Position>
+        <X>8980.838</X>
+        <Y>-7458.359</Y>
+        <Z>86.68749</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>15400</Entry>
+      <Name>Arathel Sunforge</Name>
+      <Position>
+        <X>8986.426</X>
+        <Y>-7419.066</Y>
+        <Z>89.40356</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>15951</Entry>
+      <Name>Magister Duskwither</Name>
+      <Position>
+        <X>9026.355</X>
+        <Y>-7458.026</Y>
+        <Z>103.2739</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>19456</Entry>
+      <Name>Whitebark's Spirit</Name>
+      <Position>
+        <X>8203.438</X>
+        <Y>-6327.629</Y>
+        <Z>64.50932</Z>
+      </Position>
+    </Npc>
 
   </Questers>
   <Quests>
@@ -566,7 +611,7 @@
           <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
-          <Objective>UseItemAOE</Objective>
+          <Objective>UseItem</Objective>
           <UseItemId>22473</UseItemId>
           <EntryAOE>15945</EntryAOE>
           <Count>1</Count>
@@ -840,7 +885,6 @@
       </Objectives>
     </Quest>
 
-    <!-- This quest is bugged because of a Continent issue. But the BuyItem works (tested closer to the NPC) -->
     <Quest>
       <Name>The Party Never Ends</Name>
       <Id>9067</Id>
@@ -1036,6 +1080,103 @@
     </Quest>
 
     <Quest>
+      <Name>Goods from Silvermoon City</Name>
+      <Id>9130</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>10</MaxLevel>
+      <QuestLevel>7</QuestLevel>
+      <PickUp>16261</PickUp>
+      <TurnIn>44036</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Fly to Silvermoon City</Name>
+      <Id>9133</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>10</MaxLevel>
+      <QuestLevel>7</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9130</int>
+      </NeedQuestCompletedId>
+      <PickUp>44036</PickUp>
+      <TurnIn>16191</TurnIn>
+      <Objectives> <!-- We can't use Flight Path yet, but it's not a step so we can do it by walking. -->
+        <!--<QuestObjective>
+          <Objective>UseFlightPath</Objective> 
+          <FlightPathDestination>XXXXX</FlightPathDestination> --> <!-- probably a px, py ?? -->
+          <!-- <EntryInteractWith>44036</EntryInteractWith>
+          <WaitMs>31000</WaitMs> --> <!-- Time to get to Silvermoon (30.7sec exactly) -->
+        <!-- </QuestObjective> -->
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Skymistress Gloaming</Name>
+      <Id>9134</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>10</MaxLevel>
+      <QuestLevel>7</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9133</int>
+      </NeedQuestCompletedId>
+      <PickUp>16191</PickUp>
+      <TurnIn>16192</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Return to Sathiel</Name>
+      <Id>9135</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>10</MaxLevel>
+      <QuestLevel>7</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9134</int>
+      </NeedQuestCompletedId>
+      <PickUp>16192</PickUp>
+      <TurnIn>16261</TurnIn>
+      <Objectives> <!-- We can't use Flight Path yet, but it's not a step so we can do it by walking. -->
+        <!--<QuestObjective>
+          <Objective>UseFlightPath</Objective> 
+          <FlightPathDestination>XXXXX</FlightPathDestination> --> <!-- probably a px, py ?? -->
+          <!-- <EntryInteractWith>44036</EntryInteractWith>
+          <WaitMs>33000</WaitMs> --> <!-- Time to get to Fairbreeze Village (32.5sec exactly) -->
+        <!-- </QuestObjective> -->
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Farstrider Retreat</Name>
+      <Id>9359</Id>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <PickUp>15939</PickUp>
+      <TurnIn>15399</TurnIn>
+      <Objectives>
+	  </Objectives>
+    </Quest>
+
+    <!--<Quest> Final Quest
+      <Name>Missing in the Ghostlands</Name>
+      <Id>9359</Id>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNotCompletedId>
+        <int>9147</int>
+        <int>28560</int>
+      </NeedQuestNotCompletedId>
+      <PickUp>16210</PickUp>
+      <TurnIn>16183</TurnIn>
+      <Objectives>
+	  </Objectives>
+    </Quest>-->
+
+    <Quest>
       <Name>Captain Kelisendra's Lost Rutters</Name>
       <Id>8887</Id>
       <MinLevel>5</MinLevel>
@@ -1048,16 +1189,68 @@
     </Quest>
 
     <Quest>
-      <Name>Goods from Silvermoon City</Name>
-      <Id>9130</Id>
-      <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
-      <QuestLevel>7</QuestLevel>
-      <PickUp>16261</PickUp>
-      <TurnIn>44036</TurnIn>
+      <Name>Old Whitebark's Pendant</Name>
+      <Id>8474</Id>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <ItemPickUp>23228</ItemPickUp>
+      <TurnIn>15398</TurnIn>
       <Objectives>
       </Objectives>
     </Quest>
+
+    <!--<Quest>
+      <Name>Whitebark's Memory</Name>
+      <Id>10166</Id>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8474</int>
+      </NeedQuestCompletedId>
+      <PickUp>15398</PickUp>
+      <TurnIn>19456</TurnIn>-->
+      <!--<Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <UseItemId>28209</UseItemId>
+          <Position>
+            <X>8212.013</X>
+            <Y>-6335.674</Y>
+            <Z>64.51009</Z>
+          </Position>
+          <WaitMs>2000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>19456</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8212.013</X>
+              <Y>-6335.674</Y>
+              <Z>64.51009</Z>
+            </Point>
+          </Hotspots>
+		  <WaitMs>1000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>8212.013</X>
+            <Y>-6335.674</Y>
+            <Z>64.51009</Z>
+          </Position>
+          <EntryInteractWith>19456</EntryInteractWith>
+          <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
+          <WaitMs>500</WaitMs>
+        </QuestObjective>-->
+		<!-- Need to read the story, we will need to modify this part --> <!--
+      </Objectives>
+    </Quest>-->
   </Quests>
   <Blackspots />
 </QuesterProfile>
