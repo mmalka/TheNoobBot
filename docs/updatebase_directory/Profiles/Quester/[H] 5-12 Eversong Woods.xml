@@ -946,6 +946,128 @@
     </Quest>
 
     <Quest>
+      <Name>Grimscale Pirates!</Name>
+      <Id>8886</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>11</MaxLevel>
+      <QuestLevel>8</QuestLevel>
+      <PickUp>15921</PickUp>
+      <TurnIn>15921</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectItemId>21771</CollectItemId>
+          <CollectCount>6</CollectCount>
+          <Entry>
+            <int>180917</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8838.159</X>
+              <Y>-5773.695</Y>
+              <Z>0.5050032</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Lost Armaments</Name>
+      <Id>8480</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>10</MaxLevel>
+      <QuestLevel>7</QuestLevel>
+      <PickUp>15404</PickUp>
+      <TurnIn>15404</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectItemId>22413</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>181107</int>
+            <int>3661</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8790.834</X>
+              <Y>-6074.633</Y>
+              <Z>4.752062</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Wretched Ringleader</Name>
+      <Id>9076</Id>
+      <MinLevel>5</MinLevel>
+      <MaxLevel>11</MaxLevel>
+      <QuestLevel>8</QuestLevel>
+      <PickUp>15404</PickUp>
+      <TurnIn>15404</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>22487</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Entry>
+            <int>16294</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8763.01</X>
+              <Y>-6103.008</Y>
+              <Z>73.0795</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Defending Fairbreeze Village</Name>
+      <Id>9252</Id>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>12</MaxLevel>
+      <QuestLevel>9</QuestLevel>
+      <PickUp>15942</PickUp>
+      <TurnIn>15942</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>4</Count>
+          <Entry>
+            <int>15657</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8473.65</X>
+              <Y>-6960.588</Y>
+              <Z>93.16967</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>4</Count>
+          <Entry>
+            <int>15658</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8473.65</X>
+              <Y>-6960.588</Y>
+              <Z>93.16967</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
       <Name>The Wayward Apprentice</Name>
       <Id>9254</Id>
       <MinLevel>7</MinLevel>
@@ -986,6 +1108,50 @@
               <X>8784.803</X>
               <Y>-7050.142</Y>
               <Z>34.89985</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Unexpected Results</Name>
+      <Id>8488</Id>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>12</MaxLevel>
+      <QuestLevel>9</QuestLevel>
+      <PickUp>15402</PickUp>
+      <TurnIn>15402</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>Wait</Objective>
+          <WaitMs>3000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>1</Count>
+          <Entry>
+            <int>15958</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8711.104</X>
+              <Y>-7160.939</Y>
+              <Z>43.43666</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>3</Count>
+          <Entry>
+            <int>15656</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8711.104</X>
+              <Y>-7160.939</Y>
+              <Z>43.43666</Z>
             </Point>
           </Hotspots>
         </QuestObjective>
