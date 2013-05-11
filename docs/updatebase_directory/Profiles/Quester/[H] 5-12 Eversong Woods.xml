@@ -717,6 +717,9 @@
           <MinLevel>6</MinLevel>
           <MaxLevel>10</MaxLevel>
           <QuestLevel>7</QuestLevel>
+          <NeedQuestCompletedId>
+            <int>8483</int>
+          </NeedQuestCompletedId>
           <PickUp>15403</PickUp>
           <TurnIn>15939</TurnIn>
           <Objectives>
@@ -732,8 +735,8 @@
           <NeedQuestCompletedId>
             <int>9256</int>
           </NeedQuestCompletedId>
-          <PickUp>15945</PickUp>
-          <TurnIn>15970</TurnIn>
+          <PickUp>15939</PickUp>
+          <TurnIn>15939</TurnIn>
           <Objectives>
             <QuestObjective>
                 <Objective>KillMob</Objective>
@@ -787,6 +790,11 @@
 					 <Y>-6949.527</Y>
 					 <Z>9.362593</Z>
 					</Point>
+                    <Point>
+                     <X>9103.423</X>
+                     <Y>-6963.014</Y>
+                     <Z>14.90832</Z>
+                    </Point>
                 </Hotspots>
             </QuestObjective>
           </Objectives>
@@ -833,7 +841,6 @@
         </Quest>
 		
 		<!-- This quest is bugged because of a Continent issue. But the BuyItem works (tested closer to the NPC) -->
-		<!--
 		<Quest>
           <Name>The Party Never Ends</Name>
           <Id>9067</Id>
@@ -853,11 +860,9 @@
                 <EntryAOE>16442</EntryAOE>
                 <Name>Vinemaster Suntouched</Name>
 				<Position>
-					<Point>
 					  <X>9681.587</X>
 					  <Y>-7363.878</Y>
 					  <Z>11.93286</Z>
-					</Point>
                 </Position>
             </QuestObjective>
             <QuestObjective>
@@ -867,11 +872,9 @@
                 <EntryAOE>16443</EntryAOE>
 				<Name>Zalene Firstlight</Name>
                 <Position>
-					<Point>
 					  <X>8990.876</X>
 					  <Y>-7462.583</Y>
 					  <Z>86.68723</Z>
-					</Point>
                 </Position>
             </QuestObjective>
             <QuestObjective>
@@ -881,16 +884,13 @@
                 <EntryAOE>16444</EntryAOE>
 				<Name>Halis Dawnstrider</Name>
                 <Position>
-					<Point>
 					  <X>8731.693</X>
 					  <Y>-6656.498</Y>
 					  <Z>70.58597</Z>
-					</Point>
                 </Position>
             </QuestObjective>
           </Objectives>
         </Quest>
-		-->
 
 		<Quest>
           <Name>The Wayward Apprentice</Name>
