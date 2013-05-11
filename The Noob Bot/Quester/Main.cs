@@ -15,6 +15,7 @@ public class Main : IProduct
     private string _looting;
     private string _radius;
     private string _selling;
+    private string _sellingQuality;
     private string _usefly;
     private string _useground;
 
@@ -112,11 +113,13 @@ public class Main : IProduct
             if (!nManagerSetting.CurrentSetting.ActivateMonsterLooting)
                 _looting = "\n" + Translate.Get(Translate.Id.TipOffLootingOn);
             if (!nManagerSetting.CurrentSetting.ActivateAutoSellingFeature)
+            {
                 _selling = "\n" + Translate.Get(Translate.Id.TipOffSellingOnQuester);
+                _sellingQuality = "\n" + Translate.Get(Translate.Id.TipOffSellingQualityQuester);
+            }
             if (nManagerSetting.CurrentSetting.GatheringSearchRadius < 100)
                 _radius = "\n" + Translate.Get(Translate.Id.TipOffRadiusHigh);
-            if (ObjectManager.Me.Level >= 20 &&
-                ObjectManager.Me.Level < 60)
+            if (ObjectManager.Me.Level >= 20 && ObjectManager.Me.Level < 60)
             {
                 if (!nManagerSetting.CurrentSetting.UseGroundMount)
                     _useground = "\n" + Translate.Get(Translate.Id.TipOffUseGroundMountOn);
@@ -135,7 +138,7 @@ public class Main : IProduct
             if (_looting != null || _radius != null || _selling != null || _usefly != null || _useground != null)
             {
                 MessageBox.Show(
-                    string.Format("{0}\n{1}{2}{3}{4}{5}", Translate.Get(Translate.Id.QuesterTipOffMessage), _selling, _looting,
+                    string.Format("{0}\n{1}{2}{3}{4}{5}{6}", Translate.Get(Translate.Id.QuesterTipOffMessage), _selling, _sellingQuality, _looting,
                                   _radius, _useground, _usefly), Translate.Get(Translate.Id.QuesterTipOffTitle));
             }
         }
