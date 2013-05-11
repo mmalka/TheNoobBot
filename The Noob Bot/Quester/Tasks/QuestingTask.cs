@@ -52,15 +52,16 @@ namespace Quester.Tasks
                     if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
                         (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
                         if (!Quest.GetQuestCompleted(quest.Id)) // Quest not completed
-                            if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
-                                quest.NeedQuestCompletedId.Count == 0)
-                                if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint) quest.ItemPickUp) > 0))
-                                    if (Script.Run(quest.ScriptCondition)) // Condition
-                                    {
-                                        CurrentQuest = quest;
-                                        Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
-                                        return;
-                                    }
+                            if (!Quest.GetQuestCompleted(quest.NeedQuestNotCompletedId)) // Quest done which discalify this one
+                                if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
+                                    quest.NeedQuestCompletedId.Count == 0)
+                                    if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint) quest.ItemPickUp) > 0))
+                                        if (Script.Run(quest.ScriptCondition)) // Condition
+                                        {
+                                            CurrentQuest = quest;
+                                            Logging.Write("\"" + quest.Name + "\": Lvl " + quest.QuestLevel + " (" + quest.MinLevel + " - " + quest.MaxLevel + ")");
+                                            return;
+                                        }
                 }
             }
             if (!completed)
@@ -262,8 +263,12 @@ namespace Quester.Tasks
                     (nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     Logging.Write("Attacking Lvl " + wowUnit.Name);
-                    Fight.StartFight(wowUnit.Guid);
-                    if (wowUnit.IsDead)
+                    ulong Unkillable = Fight.StartFight(wowUnit.Guid);
+                    if (!wowUnit.IsDead && Unkillable != 0)
+                    {
+                        nManagerSetting.AddBlackList(Unkillable, 3 * 60 * 1000);
+                    }
+                    else if (wowUnit.IsDead)
                     {
                         Statistics.Kills++;
                         questObjective.CurrentCount++;

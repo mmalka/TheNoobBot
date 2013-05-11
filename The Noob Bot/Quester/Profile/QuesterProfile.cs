@@ -62,6 +62,7 @@ namespace Quester.Profile
         public int MinLevel = 0;
         public int MaxLevel = 0;
         public List<int> NeedQuestCompletedId = new List<int>(); // req 1 in list completed
+        public List<int> NeedQuestNotCompletedId = new List<int>();
         public int ItemPickUp = 0;
         public int PickUp = 0;
         public int TurnIn = 0;
