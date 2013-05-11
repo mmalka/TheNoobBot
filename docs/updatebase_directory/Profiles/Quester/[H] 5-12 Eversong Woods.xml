@@ -298,6 +298,15 @@
         <Z>64.50932</Z>
       </Position>
     </Npc>
+	<Npc>
+      <Entry>16183</Entry>
+      <Name>Courier Dawnstrider</Name>
+      <Position>
+        <X>8119.714</X>
+        <Y>-6899.624</Y>
+        <Z>70.759</Z>
+      </Position>
+    </Npc>
 
   </Questers>
   <Quests>
@@ -1160,22 +1169,6 @@
 	  </Objectives>
     </Quest>
 
-    <!--<Quest> Final Quest
-      <Name>Missing in the Ghostlands</Name>
-      <Id>9359</Id>
-      <MinLevel>8</MinLevel>
-      <MaxLevel>13</MaxLevel>
-      <QuestLevel>10</QuestLevel>
-      <NeedQuestNotCompletedId>
-        <int>9147</int>
-        <int>28560</int>
-      </NeedQuestNotCompletedId>
-      <PickUp>16210</PickUp>
-      <TurnIn>16183</TurnIn>
-      <Objectives>
-	  </Objectives>
-    </Quest>-->
-
     <Quest>
       <Name>Captain Kelisendra's Lost Rutters</Name>
       <Id>8887</Id>
@@ -1251,6 +1244,23 @@
 		<!-- Need to read the story, we will need to modify this part --> <!--
       </Objectives>
     </Quest>-->
+
+    <Quest> <!-- Final Quest -->
+      <Name>Missing in the Ghostlands</Name>
+      <Id>9144</Id>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNotCompletedId>
+        <int>9147</int>
+        <int>28560</int>
+      </NeedQuestNotCompletedId>
+      <PickUp>16210</PickUp>
+      <TurnIn>16183</TurnIn>
+      <Objectives>
+	  </Objectives>
+    </Quest>
+
   </Quests>
   <Blackspots />
 </QuesterProfile>
