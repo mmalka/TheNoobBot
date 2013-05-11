@@ -101,8 +101,9 @@ namespace Quester.Profile
         internal int CurrentCount = 0;
         internal List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
+        public string Name = "Not defined";
         public List<uint> Factions = new List<uint>();
-        public int CollectItemId = 0;
+        public uint CollectItemId = 0;
         public int CollectCount = 0;
         public List<Point> Hotspots = new List<Point>();
         public string Script = "";
@@ -145,24 +146,25 @@ namespace Quester.Profile
     public enum Objective
     {
         None,
-        PickUpObject,
-        KillMob,
-        UseItem,
-        MoveTo,
-        Wait,
-        InteractWith,
-        TrainSpells,
-        UseSpell,
-        EquipItem,
-        PickUpQuest,
-        TurnInQuest,
-        UseVehicle,
-        EjectVehicle,
-        PressKey,
-        UseItemAOE,
-        UseSpellAOE,
-        UseRuneForge,
         ApplyBuff,
+        BuyItem,
+        EjectVehicle,
+        EquipItem,
+        InteractWith,
+        KillMob,
+        MoveTo,
+        PickUpObject,
+        PickUpQuest,
+        PressKey,
+        UseItem,
+        TrainSpells,
+        TurnInQuest,
+        UseSpell,
+        UseItemAOE,
+        UseRuneForge,
+        UseSpellAOE,
+        UseVehicle,
+        Wait,
     }
 
     [Serializable]

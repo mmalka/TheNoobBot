@@ -117,9 +117,9 @@ namespace Quester.Tasks
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
 
-            // COLLECT ITEM)
+            // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
-                if (ItemsManager.GetItemCountByIdLUA((uint) questObjective.CollectItemId) < questObjective.CollectCount)
+                if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) < questObjective.CollectCount)
                     return false;
 
             // KILL MOB
@@ -154,7 +154,8 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.TrainSpells ||
                 questObjective.Objective == Objective.InteractWith || questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem ||
                 questObjective.Objective == Objective.PickUpQuest || questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey ||
-                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
+                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge ||
+                questObjective.Objective == Objective.BuyItem)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -805,6 +806,42 @@ namespace Quester.Tasks
                         ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
+                    }
+                    else
+                    {
+                        return; // target not found
+                    }
+                }
+            }
+
+            // BUY ITEM
+            if (questObjective.Objective == Objective.BuyItem)
+            {
+                if (!MovementManager.InMovement || questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                {
+                    var Target = new Npc
+                        {
+                            Entry = questObjective.EntryAOE,
+                            Position = questObjective.Position,
+                            Name = questObjective.Name,
+                            ContinentId = (ContinentId) Usefuls.ContinentId,
+                            Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                            SelectGossipOption = questObjective.GossipOptionsInteractWith
+                        };
+                    WoWUnit TargetIsNPC;
+                    WoWObject TargetIsObject;
+                    Target = questObjective.Range > 5f
+                                 ? MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject, questObjective.Range)
+                                 : MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject);
+                    if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
+                    {
+                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
+                        Interact.InteractGameObject(baseAddress);
+                        Thread.Sleep(500 + Usefuls.Latency);
+                        Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
+                        Thread.Sleep(questObjective.WaitMs);
+                        if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
+                            questObjective.IsObjectiveCompleted = true;
                     }
                     else
                     {
