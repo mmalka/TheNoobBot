@@ -839,7 +839,10 @@ namespace Quester.Tasks
                         Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
                         Thread.Sleep(questObjective.WaitMs == 0 ? 1000 + Usefuls.Latency : questObjective.WaitMs);
                         if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
+                        {
+                            nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetNameById(questObjective.CollectItemId));
                             questObjective.IsObjectiveCompleted = true;
+                        }
                     }
                     else
                     {
