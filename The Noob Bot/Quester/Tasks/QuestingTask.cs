@@ -98,7 +98,6 @@ namespace Quester.Tasks
             CurrentQuestObjective = null;
             foreach (QuestObjective obj in CurrentQuest.Objectives)
             {
-                obj.CollectCount = 0;
                 obj.CurrentCount = 0;
                 obj.IsObjectiveCompleted = false;
             }
@@ -146,6 +145,14 @@ namespace Quester.Tasks
                 return questObjective.Count > 0 ? questObjective.CurrentCount >= questObjective.Count : questObjective.IsObjectiveCompleted;
             }
 
+            // BUY ITEM
+            if (questObjective.Objective == Objective.BuyItem)
+            {
+                if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
+                    return true;
+                return false;
+            }
+
             /* MOVE TO || WAIT || TRAIN ALL SPELLS || 
              * INTERACT WITH || USE SPELL || EQUIP ITEM || 
              * PICK UP QUEST || TURN IN QUEST || PRESS KEY || 
@@ -154,8 +161,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.TrainSpells ||
                 questObjective.Objective == Objective.InteractWith || questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem ||
                 questObjective.Objective == Objective.PickUpQuest || questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey ||
-                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge ||
-                questObjective.Objective == Objective.BuyItem)
+                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -839,7 +845,7 @@ namespace Quester.Tasks
                         Interact.InteractGameObject(baseAddress);
                         Thread.Sleep(500 + Usefuls.Latency);
                         Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
-                        Thread.Sleep(questObjective.WaitMs);
+                        Thread.Sleep(questObjective.WaitMs == 0 ? 1000 + Usefuls.Latency : questObjective.WaitMs);
                         if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
                             questObjective.IsObjectiveCompleted = true;
                     }
@@ -847,6 +853,11 @@ namespace Quester.Tasks
                     {
                         return; // target not found
                     }
+                }
+                else
+                {
+                    MountTask.Mount();
+                    MovementManager.Go(PathFinder.FindPath(questObjective.Position));
                 }
             }
 
@@ -943,7 +954,7 @@ namespace Quester.Tasks
 
         public static void TurnInQuest()
         {
-            if (!Quest.GetLogQuestIsComplete(CurrentQuest.Id) && CurrentQuest.Objectives.Count > 0)
+            if (CurrentQuest.Objectives.Count > 0 && !Quest.GetLogQuestIsComplete(CurrentQuest.Id))
             {
                 ResetQuestObjective();
                 return;
