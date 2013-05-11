@@ -28,6 +28,15 @@
           <Z>41.3058</Z>
         </Position>
       </Npc>
+       <Npc>
+        <Name>Marshal McCree</Name>
+        <Entry>42256</Entry>
+        <Position>
+          <X>-9468.153</X>
+          <Y>-1305.781</Y>
+          <Z>44.15007</Z>
+        </Position>
+       </Npc>
       <Npc>
         <Name>Lieutenant Horatio Laine</Name>
         <Entry>42308</Entry>
@@ -244,7 +253,18 @@
           <PickUp>963</PickUp>
           <TurnIn>42308</TurnIn>
         </Quest>
-        <!-- Marshal Haggard (294), Marshal McCree (42256) to be done -->
+
+        <Quest>
+          <Name>Hero's Call: Westfall!</Name>
+          <Id>26378</Id>
+          <RaceMask>1101</RaceMask>
+          <QuestLevel>10</QuestLevel>
+          <MinLevel>9</MinLevel>
+          <MaxLevel>15</MaxLevel>
+          <PickUp>42256</PickUp>
+          <TurnIn>42308</TurnIn>
+        </Quest>
+        <!-- Marshal Haggard (294) to be done -->
 
 <!-- Main quest line -->
 
