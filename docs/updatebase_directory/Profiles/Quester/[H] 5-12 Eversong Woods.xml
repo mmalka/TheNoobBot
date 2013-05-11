@@ -905,15 +905,15 @@
     </Quest>
 
     <Quest>
-      <Name>The Wayward Apprentice</Name>
+      <Name>Corrupted Soil</Name>
       <Id>8487</Id>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <NeedQuestCompletedId>
         <int>9254</int>
       </NeedQuestCompletedId>
-      <PickUp>16210</PickUp>
+      <PickUp>15402</PickUp>
       <TurnIn>15402</TurnIn>
       <Objectives>
         <Objective>PickUpObject</Objective>
