@@ -680,8 +680,8 @@
       <NeedQuestCompletedId>
         <int>8884</int>
       </NeedQuestCompletedId>
-      <PickUp>15945</PickUp>
-      <TurnIn>15970</TurnIn>
+      <PickUp>15920</PickUp>
+      <TurnIn>15920</TurnIn>
       <Objectives>
         <QuestObjective>
           <Objective>KillMob</Objective>
@@ -916,24 +916,26 @@
       <PickUp>15402</PickUp>
       <TurnIn>15402</TurnIn>
       <Objectives>
-        <Objective>PickUpObject</Objective>
-        <CollectItemId>20771</CollectItemId>
-        <CollectCount>8</CollectCount>
-        <Entry>
-          <int>180921</int>
-        </Entry>
-        <Hotspots>
-          <Point>
-            <X>8691.576</X>
-            <Y>-7022.985</Y>
-            <Z>53.26054</Z>
-          </Point>
-          <Point>
-            <X>8784.803</X>
-            <Y>-7050.142</Y>
-            <Z>34.89985</Z>
-          </Point>
-        </Hotspots>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectItemId>20771</CollectItemId>
+          <CollectCount>8</CollectCount>
+          <Entry>
+            <int>180921</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8691.576</X>
+              <Y>-7022.985</Y>
+              <Z>53.26054</Z>
+            </Point>
+            <Point>
+              <X>8784.803</X>
+              <Y>-7050.142</Y>
+              <Z>34.89985</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
       </Objectives>
     </Quest>
 
