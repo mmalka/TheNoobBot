@@ -307,6 +307,15 @@
         <Z>70.759</Z>
       </Position>
     </Npc>
+	<Npc>
+      <Entry>16362</Entry>
+      <Name>Runewarden Deryan</Name>
+      <Position>
+        <X>8235.502</X>
+        <Y>-6664.062</Y>
+        <Z>84.47708</Z>
+      </Position>
+    </Npc>
 
   </Questers>
   <Quests>
@@ -1159,6 +1168,21 @@
     </Quest>
 
     <Quest>
+      <Name>Research Note</Name>
+      <Id>9255</Id>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>12</MaxLevel>
+      <QuestLevel>9</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8488</int>
+      </NeedQuestCompletedId>
+      <PickUp>15402</PickUp>
+      <TurnIn>16210</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
       <Name>Ranger Sareyn</Name>
       <Id>9358</Id>
       <MinLevel>8</MinLevel>
@@ -1410,6 +1434,60 @@
 		<!-- Need to read the story, we will need to modify this part --> <!--
       </Objectives>
     </Quest>-->
+
+    <Quest>
+      <Name>Runewarden Deryan</Name>
+      <Id>9253</Id>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNoCompletedId>
+        <int>8490</int>
+      </NeedQuestNoCompletedId>
+      <PickUp>15942</PickUp>
+      <TurnIn>16362</TurnIn>
+      <Objectives>
+	  </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Powering our Defenses</Name>
+      <Id>8490</Id>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9253</int>
+      </NeedQuestCompletedId>
+      <PickUp>16362</PickUp>
+      <TurnIn>16362</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseItem</Objective>
+          <UseItemId>22693</UseItemId>
+          <Count>1</Count>
+          <Position>
+            <X>8275.916</X>
+            <Y>-7215.937</Y>
+            <Z>137.7881</Z>
+          </Position>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>12</Count>
+          <Entry>
+            <int>17086</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8273.62</X>
+              <Y>-7214.229</Y>
+              <Z>138.1812</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+	  </Objectives>
+    </Quest>
 
     <Quest> <!-- Final Quest -->
       <Name>Missing in the Ghostlands</Name>
