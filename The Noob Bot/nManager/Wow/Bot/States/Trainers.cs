@@ -69,12 +69,6 @@ namespace nManager.Wow.Bot.States
                     (Skill.GetMaxValue(SkillLine.Mining) - Skill.GetValue(SkillLine.Mining)) <= 10 &&
                     Skill.GetValue(SkillLine.Mining) > 0)
                     return true;
-                // Spell
-                if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level &&
-                    nManagerSetting.CurrentSetting.LearnNewSpells)
-                    if (NpcDB.GetNpcNearby(MyTrainerClass()).Entry > 0 &&
-                        SpellManager.SpellAvailable() > 0)
-                        return true;
 
                 return false;
             }
@@ -95,24 +89,13 @@ namespace nManager.Wow.Bot.States
                 (Skill.GetMaxValue(SkillLine.Mining) - Skill.GetValue(SkillLine.Mining)) <= 10 &&
                 Skill.GetValue(SkillLine.Mining) > 0 && trainer == null)
                 NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
-            // Spell
-            if (ObjectManager.ObjectManager.Me.Level >= 3 && _lastLevel != ObjectManager.ObjectManager.Me.Level &&
-                nManagerSetting.CurrentSetting.LearnNewSpells)
-                if (NpcDB.GetNpcNearby(MyTrainerClass()).Entry > 0 && SpellManager.SpellAvailable() > 0 &&
-                    trainer == null)
-                    trainer = NpcDB.GetNpcNearby(MyTrainerClass());
 
             if (trainer == null)
                 return;
 
-            if (trainer.Type == MyTrainerClass())
-                _lastLevel = ObjectManager.ObjectManager.Me.Level;
-
             // Go To Pos Trainer:
             MovementManager.StopMove();
             Logging.Write("Go to trainer");
-            if (trainer.Type == MyTrainerClass())
-                Logging.Write(SpellManager.SpellAvailable() + " Spell Available");
             // Mounting Mount
             MountTask.Mount();
 
@@ -193,38 +176,6 @@ namespace nManager.Wow.Bot.States
             {
                 Logging.Write("Trainer " + trainer.Type + " no found");
             }
-        }
-
-        private Npc.NpcType MyTrainerClass()
-        {
-            switch (ObjectManager.ObjectManager.Me.WowClass)
-            {
-                case WoWClass.None:
-                    return Npc.NpcType.None;
-                case WoWClass.Warrior:
-                    return Npc.NpcType.WarriorTrainer;
-                case WoWClass.Paladin:
-                    return Npc.NpcType.PaladinTrainer;
-                case WoWClass.Hunter:
-                    return Npc.NpcType.HunterTrainer;
-                case WoWClass.Rogue:
-                    return Npc.NpcType.RogueTrainer;
-                case WoWClass.Priest:
-                    return Npc.NpcType.PriestTrainer;
-                case WoWClass.DeathKnight:
-                    return Npc.NpcType.DeathKnightTrainer;
-                case WoWClass.Shaman:
-                    return Npc.NpcType.ShamanTrainer;
-                case WoWClass.Mage:
-                    return Npc.NpcType.MageTrainer;
-                case WoWClass.Warlock:
-                    return Npc.NpcType.WarlockTrainer;
-                case WoWClass.Druid:
-                    return Npc.NpcType.DruidTrainer;
-                case WoWClass.Monk:
-                    return Npc.NpcType.MonkTrainer;
-            }
-            return Npc.NpcType.None;
         }
     }
 }

@@ -280,7 +280,6 @@ namespace nManager
             Use_Ground_Mount,
             SpellManagementSystemPanelName,
             Use_Spirit_Healer,
-            Train_New_Spells,
             Train_New_Skills,
             Don_t_start_fighting,
             Can_attack_units_already_in_fight,

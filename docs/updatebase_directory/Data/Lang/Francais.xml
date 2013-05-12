@@ -835,10 +835,6 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Apprendre les sorts</Text>
-      <Id>Train_New_Spells</Id>
-    </Translation>
-    <Translation>
       <Text>Apprendre les métiers</Text>
       <Id>Train_New_Skills</Id>
     </Translation>

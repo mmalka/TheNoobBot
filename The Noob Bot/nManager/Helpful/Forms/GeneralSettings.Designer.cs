@@ -204,8 +204,6 @@ namespace nManager.Helpful.Forms
             this.CombatClassResetSettingsButton = new DevComponents.DotNetBar.ButtonX();
             this.labelX59 = new DevComponents.DotNetBar.LabelX();
             this.UseSpiritHealer = new DevComponents.DotNetBar.Controls.SwitchButton();
-            this.labelX49 = new DevComponents.DotNetBar.LabelX();
-            this.LearnNewSpells = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX47 = new DevComponents.DotNetBar.LabelX();
             this.TrainNewSkills = new DevComponents.DotNetBar.Controls.SwitchButton();
             this.labelX4 = new DevComponents.DotNetBar.LabelX();
@@ -3026,8 +3024,6 @@ namespace nManager.Helpful.Forms
             this.SpellManagementSystemPanelName.Controls.Add(this.CombatClassResetSettingsButton);
             this.SpellManagementSystemPanelName.Controls.Add(this.labelX59);
             this.SpellManagementSystemPanelName.Controls.Add(this.UseSpiritHealer);
-            this.SpellManagementSystemPanelName.Controls.Add(this.labelX49);
-            this.SpellManagementSystemPanelName.Controls.Add(this.LearnNewSpells);
             this.SpellManagementSystemPanelName.Controls.Add(this.labelX47);
             this.SpellManagementSystemPanelName.Controls.Add(this.TrainNewSkills);
             this.SpellManagementSystemPanelName.Controls.Add(this.labelX4);
@@ -3152,35 +3148,6 @@ namespace nManager.Helpful.Forms
             this.UseSpiritHealer.Size = new System.Drawing.Size(66, 22);
             this.UseSpiritHealer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.UseSpiritHealer.TabIndex = 27;
-            // 
-            // labelX49
-            // 
-            this.labelX49.BackColor = System.Drawing.Color.Transparent;
-            // 
-            // 
-            // 
-            this.labelX49.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX49.ForeColor = System.Drawing.Color.Black;
-            this.labelX49.Location = new System.Drawing.Point(11, 161);
-            this.labelX49.Name = "labelX49";
-            this.labelX49.Size = new System.Drawing.Size(160, 23);
-            this.labelX49.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
-            this.labelX49.TabIndex = 26;
-            this.labelX49.Text = "Train New Spells";
-            // 
-            // LearnNewSpells
-            // 
-            this.LearnNewSpells.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.LearnNewSpells.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.LearnNewSpells.ForeColor = System.Drawing.Color.Black;
-            this.LearnNewSpells.Location = new System.Drawing.Point(177, 161);
-            this.LearnNewSpells.Name = "LearnNewSpells";
-            this.LearnNewSpells.Size = new System.Drawing.Size(66, 22);
-            this.LearnNewSpells.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.LearnNewSpells.TabIndex = 25;
             // 
             // labelX47
             // 
@@ -3523,8 +3490,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.Controls.SwitchButton ActivateAutoRepairFeature;
         private DevComponents.Editors.IntegerInput NumberOfFoodsWeGot;
         private DevComponents.DotNetBar.LabelX labelX50;
-        private DevComponents.DotNetBar.LabelX labelX49;
-        private DevComponents.DotNetBar.Controls.SwitchButton LearnNewSpells;
         private DevComponents.DotNetBar.LabelX labelX47;
         private DevComponents.DotNetBar.Controls.SwitchButton TrainNewSkills;
         private DevComponents.DotNetBar.ExpandablePanel AdvancedSettingsPanelName;

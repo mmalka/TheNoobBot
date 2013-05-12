@@ -160,7 +160,6 @@ namespace Quester.Profile
         PickUpQuest,
         PressKey,
         UseItem,
-        TrainSpells,
         TurnInQuest,
         UseSpell,
         UseItemAOE,

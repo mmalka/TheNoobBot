@@ -834,10 +834,6 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>새로운 주문 배움</Text>
-      <Id>Train_New_Spells</Id>
-    </Translation>
-    <Translation>
       <Text>새로운 스킬 배움</Text>
       <Id>Train_New_Skills</Id>
     </Translation>

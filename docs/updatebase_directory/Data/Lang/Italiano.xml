@@ -834,10 +834,6 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Impara nuove abilità</Text>
-      <Id>Train_New_Spells</Id>
-    </Translation>
-    <Translation>
       <Text>Impara nuove professioni</Text>
       <Id>Train_New_Skills</Id>
     </Translation>

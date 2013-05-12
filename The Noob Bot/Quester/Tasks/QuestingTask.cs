@@ -154,15 +154,15 @@ namespace Quester.Tasks
                 return false;
             }
 
-            /* MOVE TO || WAIT || TRAIN ALL SPELLS || 
-             * INTERACT WITH || USE SPELL || EQUIP ITEM || 
-             * PICK UP QUEST || TURN IN QUEST || PRESS KEY || 
-             * USE SPELL AOE || USE ITEM AOE || USE RUNEFORGE
+            /* MOVE TO || WAIT || INTERACT WITH ||
+             * USE SPELL || EQUIP ITEM || PICK UP QUEST ||
+             * TURN IN QUEST || PRESS KEY || USE ITEM AOE ||
+             * USE SPELL AOE || USE RUNEFORGE
              */
-            if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.TrainSpells ||
-                questObjective.Objective == Objective.InteractWith || questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem ||
-                questObjective.Objective == Objective.PickUpQuest || questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey ||
-                questObjective.Objective == Objective.UseItemAOE || questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
+            if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.InteractWith ||
+                questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
+                questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
+                questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -266,7 +266,7 @@ namespace Quester.Tasks
                     ulong Unkillable = Fight.StartFight(wowUnit.Guid);
                     if (!wowUnit.IsDead && Unkillable != 0)
                     {
-                        nManagerSetting.AddBlackList(Unkillable, 3 * 60 * 1000);
+                        nManagerSetting.AddBlackList(Unkillable, 3*60*1000);
                     }
                     else if (wowUnit.IsDead)
                     {
@@ -436,52 +436,6 @@ namespace Quester.Tasks
                 {
                     questObjective.IsObjectiveCompleted = true;
                     waitTimer = null;
-                }
-            }
-
-            // TRAIN ALL SPELLS
-            if (questObjective.Objective == Objective.TrainSpells)
-            {
-                if (!MovementManager.InMovement)
-                {
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) < questObjective.Range)
-                    {
-                        var unit =
-                            ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryInteractWith}));
-                        Point pos = new Point();
-                        uint baseAddress;
-                        if (unit.IsValid)
-                        {
-                            pos = new Point(unit.Position);
-                            baseAddress = unit.GetBaseAddress;
-                        }
-                        else
-                        {
-                            return;
-                        }
-
-                        Thread.Sleep(500);
-                        MovementManager.Go(PathFinder.FindPath(pos));
-                        Thread.Sleep(1000);
-                        while (MovementManager.InMovement && pos.DistanceTo(ObjectManager.Me.Position) > 3.9f)
-                        {
-                            if (ObjectManager.Me.IsDeadMe || (ObjectManager.Me.InCombat && !ObjectManager.Me.IsMounted))
-                                return;
-                            Thread.Sleep(100);
-                        }
-                        MountTask.DismountMount(true);
-                        Interact.InteractGameObject(baseAddress);
-
-                        Trainer.TrainingSpell();
-                        SpellManager.UpdateSpellBook();
-                        questObjective.IsObjectiveCompleted = true;
-                    }
-                    else
-                    {
-                        MountTask.Mount();
-                        MovementManager.Go(PathFinder.FindPath(questObjective.Position));
-                    }
                 }
             }
 

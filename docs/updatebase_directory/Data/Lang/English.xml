@@ -834,10 +834,6 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Train New Spells</Text>
-      <Id>Train_New_Spells</Id>
-    </Translation>
-    <Translation>
       <Text>Train New Skills</Text>
       <Id>Train_New_Skills</Id>
     </Translation>

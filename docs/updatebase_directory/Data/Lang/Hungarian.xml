@@ -834,10 +834,6 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Új spellek tanulása</Text>
-      <Id>Train_New_Spells</Id>
-    </Translation>
-    <Translation>
       <Text>Új skillek tanulása</Text>
       <Id>Train_New_Skills</Id>
     </Translation>

@@ -220,8 +220,6 @@ namespace nManager.Helpful.Forms
             SetToolTypeIfNeeded(SpellManagementSystemPanelName);
             labelX59.Text = Translate.Get(Translate.Id.Use_Spirit_Healer);
             SetToolTypeIfNeeded(labelX59);
-            labelX49.Text = Translate.Get(Translate.Id.Train_New_Spells);
-            SetToolTypeIfNeeded(labelX49);
             labelX47.Text = Translate.Get(Translate.Id.Train_New_Skills);
             SetToolTypeIfNeeded(labelX47);
             labelX4.Text = Translate.Get(Translate.Id.Don_t_start_fighting);
@@ -337,8 +335,6 @@ namespace nManager.Helpful.Forms
             UseGroundMount.OnText = onText;
             UseSpiritHealer.OffText = offText;
             UseSpiritHealer.OnText = onText;
-            LearnNewSpells.OffText = offText;
-            LearnNewSpells.OnText = onText;
             TrainNewSkills.OffText = offText;
             TrainNewSkills.OnText = onText;
             DontPullMonsters.OffText = offText;
@@ -357,7 +353,6 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.HealerClass = HealerClass.Text;
                 nManagerSetting.CurrentSetting.AutoAssignTalents = AutoAssignTalents.Value;
                 nManagerSetting.CurrentSetting.TrainNewSkills = TrainNewSkills.Value;
-                nManagerSetting.CurrentSetting.LearnNewSpells = LearnNewSpells.Value;
                 nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight = CanPullUnitsAlreadyInFight.Value;
                 nManagerSetting.CurrentSetting.DontPullMonsters = DontPullMonsters.Value;
                 nManagerSetting.CurrentSetting.UseSpiritHealer = UseSpiritHealer.Value;
@@ -479,7 +474,6 @@ namespace nManager.Helpful.Forms
                 HealerClass.Text = managerSetting.HealerClass;
                 AutoAssignTalents.Value = managerSetting.AutoAssignTalents;
                 TrainNewSkills.Value = managerSetting.TrainNewSkills;
-                LearnNewSpells.Value = managerSetting.LearnNewSpells;
                 CanPullUnitsAlreadyInFight.Value = managerSetting.CanPullUnitsAlreadyInFight;
                 DontPullMonsters.Value = managerSetting.DontPullMonsters;
                 UseSpiritHealer.Value = managerSetting.UseSpiritHealer;
