@@ -356,13 +356,13 @@ public class CaptureTheFlag
             {
                 while (true)
                 {
-                    Interact.InteractGameObject(obj.GetBaseAddress);
+                    Interact.InteractWith(obj.GetBaseAddress);
                     Thread.Sleep(Usefuls.Latency + 100);
                     if (CurrentInformationsHasChanged(Main.InternalIgnoreFight, isHoldingWGFlag,
                                                       isSomeoneHoldingMyFlag,
                                                       isSomeoneHoldingThemFlag, inCombat))
                         return;
-                    Interact.InteractGameObject(obj.GetBaseAddress);
+                    Interact.InteractWith(obj.GetBaseAddress);
                     Thread.Sleep(Usefuls.Latency + 100);
                 }
             }

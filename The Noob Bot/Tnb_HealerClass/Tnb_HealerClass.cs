@@ -410,10 +410,10 @@ public class DruidRestoration
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -421,7 +421,7 @@ public class DruidRestoration
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -452,11 +452,11 @@ public class DruidRestoration
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {
@@ -1035,10 +1035,10 @@ public class PaladinHoly
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -1046,7 +1046,7 @@ public class PaladinHoly
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -1077,11 +1077,11 @@ public class PaladinHoly
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {
@@ -1504,10 +1504,10 @@ public class ShamanRestoration
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -1515,7 +1515,7 @@ public class ShamanRestoration
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -1546,11 +1546,11 @@ public class ShamanRestoration
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {
@@ -2280,10 +2280,10 @@ public class PriestDiscipline
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2291,7 +2291,7 @@ public class PriestDiscipline
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -2322,11 +2322,11 @@ public class PriestDiscipline
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {
@@ -2633,7 +2633,7 @@ public class PriestDiscipline
                 if (unit != null)
                     if (unit.IsValid)
                     {
-                        Interact.InteractGameObject(unit.GetBaseAddress);
+                        Interact.InteractWith(unit.GetBaseAddress);
                         Shadowfiend.Launch();
                     }
                 return;
@@ -2900,10 +2900,10 @@ public class PriestHoly
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -2911,7 +2911,7 @@ public class PriestHoly
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -2942,11 +2942,11 @@ public class PriestHoly
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {
@@ -3269,7 +3269,7 @@ public class PriestHoly
                 if (unit != null)
                     if (unit.IsValid)
                     {
-                        Interact.InteractGameObject(unit.GetBaseAddress);
+                        Interact.InteractWith(unit.GetBaseAddress);
                         Shadowfiend.Launch();
                     }
                 return;
@@ -3552,10 +3552,10 @@ public class MonkMistweaver
                     if (ObjectManager.Me.Target > 0)
                     {
                         if (UnitRelation.GetReaction(ObjectManager.Target.Faction) != Reaction.Friendly)
-                            Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                            Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     }
                     else
-                        Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                        Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                     if (!ObjectManager.Me.IsMounted)
                     {
                         if (Heal.IsHealing)
@@ -3563,7 +3563,7 @@ public class MonkMistweaver
                             if (ObjectManager.Me.HealthPercent < 100 && !Party.IsInGroup())
                             {
                                 if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(ObjectManager.Me.GetBaseAddress);
+                                    Interact.InteractWith(ObjectManager.Me.GetBaseAddress);
                             }
                             else if (Party.IsInGroup())
                             {
@@ -3594,11 +3594,11 @@ public class MonkMistweaver
                                     if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.range)
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
-                                        Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                        Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                                     }
                                 }
                                 else if (ObjectManager.Me.Target != ObjectManager.Me.Guid)
-                                    Interact.InteractGameObject(lowestHpPlayer.GetBaseAddress);
+                                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
                             }
                             else
                             {

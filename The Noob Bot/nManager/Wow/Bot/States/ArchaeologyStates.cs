@@ -213,7 +213,7 @@ namespace nManager.Wow.Bot.States
                         }
                         MovementManager.StopMove(); // avoid a red wow error
                         Thread.Sleep(150);
-                        Interact.InteractGameObject(t.GetBaseAddress);
+                        Interact.InteractWith(t.GetBaseAddress);
                         while (ObjectManager.ObjectManager.Me.IsCast)
                         {
                             Thread.Sleep(50);

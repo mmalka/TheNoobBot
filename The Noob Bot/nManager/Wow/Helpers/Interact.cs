@@ -9,7 +9,7 @@ namespace nManager.Wow.Helpers
 {
     public class Interact
     {
-        public static void InteractGameObject(uint baseAddress)
+        public static void InteractWith(uint baseAddress)
         {
             try
             {

@@ -391,13 +391,13 @@ namespace Quester.Tasks
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
-                                Interact.InteractGameObject(node.GetBaseAddress);
+                                Interact.InteractWith(node.GetBaseAddress);
                                 nManagerSetting.AddBlackList(node.Guid, 30*1000);
                             }
                             else if (unit.IsValid)
                             {
                                 MovementManager.Face(unit);
-                                Interact.InteractGameObject(unit.GetBaseAddress);
+                                Interact.InteractWith(unit.GetBaseAddress);
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
@@ -480,7 +480,7 @@ namespace Quester.Tasks
                         }
                         MountTask.DismountMount(true);
                         MovementManager.StopMove();
-                        Interact.InteractGameObject(baseAddress);
+                        Interact.InteractWith(baseAddress);
 
                         if (questObjective.GossipOptionsInteractWith != -1)
                         {
@@ -542,13 +542,13 @@ namespace Quester.Tasks
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
-                                Interact.InteractGameObject(node.GetBaseAddress);
+                                Interact.InteractWith(node.GetBaseAddress);
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                             else if (unit.IsValid)
                             {
                                 MovementManager.Face(unit);
-                                Interact.InteractGameObject(unit.GetBaseAddress);
+                                Interact.InteractWith(unit.GetBaseAddress);
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                         }
@@ -644,7 +644,7 @@ namespace Quester.Tasks
                             Thread.Sleep(100);
                         }
                         MountTask.DismountMount(true);
-                        Interact.InteractGameObject(unit.GetBaseAddress);
+                        Interact.InteractWith(unit.GetBaseAddress);
                         Thread.Sleep(Usefuls.Latency + 500);
                     }
                 }
@@ -754,7 +754,7 @@ namespace Quester.Tasks
                     else if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
                     {
                         uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
-                        Interact.InteractGameObject(baseAddress);
+                        Interact.InteractWith(baseAddress);
                         ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
@@ -788,7 +788,7 @@ namespace Quester.Tasks
                     if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
                     {
                         uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
-                        Interact.InteractGameObject(baseAddress);
+                        Interact.InteractWith(baseAddress);
                         Thread.Sleep(500 + Usefuls.Latency);
                         Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
                         Thread.Sleep(questObjective.WaitMs == 0 ? 1000 + Usefuls.Latency : questObjective.WaitMs);
@@ -962,7 +962,7 @@ namespace Quester.Tasks
             if (Target.Position.DistanceTo(ObjectManager.Me.Position) < 6)
             {
                 Quest.CloseQuestWindow();
-                Interact.InteractGameObject(baseAddress);
+                Interact.InteractWith(baseAddress);
                 Thread.Sleep(Usefuls.Latency + 600);
                 if (TargetIsObject.IsValid)
                     Thread.Sleep(2500); // to let the Gameobject open
@@ -1004,7 +1004,7 @@ namespace Quester.Tasks
                                     Quest.CloseQuestWindow();
                                     Thread.Sleep(Usefuls.Latency + 500);
                                     Quest.AbandonQuest(id);
-                                    Interact.InteractGameObject(baseAddress);
+                                    Interact.InteractWith(baseAddress);
                                     Thread.Sleep(Usefuls.Latency + 500);
                                 }
                             }
@@ -1032,7 +1032,7 @@ namespace Quester.Tasks
                                     Quest.CloseQuestWindow();
                                     Thread.Sleep(Usefuls.Latency + 500);
                                     Quest.AbandonQuest(id);
-                                    Interact.InteractGameObject(baseAddress);
+                                    Interact.InteractWith(baseAddress);
                                     Thread.Sleep(Usefuls.Latency + 500);
                                 }
                                 gossipid++;
@@ -1081,7 +1081,7 @@ namespace Quester.Tasks
                                 {
                                     Quest.CloseQuestWindow();
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractGameObject(baseAddress);
+                                    Interact.InteractWith(baseAddress);
                                     Thread.Sleep(Usefuls.Latency + 500);
                                 }
                             }
@@ -1106,7 +1106,7 @@ namespace Quester.Tasks
                                 {
                                     Quest.CloseQuestWindow();
                                     Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractGameObject(baseAddress);
+                                    Interact.InteractWith(baseAddress);
                                     Thread.Sleep(Usefuls.Latency + 500);
                                 }
                                 gossipid++;

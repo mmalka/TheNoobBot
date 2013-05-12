@@ -395,7 +395,7 @@ namespace nManager.Wow.Bot.States
                         uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                         DoProspectingInTown();
                         DoMillingInTown();
-                        Interact.InteractGameObject(baseAddress);
+                        Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
                         if (Target.SelectGossipOption != 0)
                             Lua.LuaDoString("SelectGossipOption(" + Target.SelectGossipOption + ")");
@@ -467,7 +467,7 @@ namespace nManager.Wow.Bot.States
                     uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                     DoProspectingInTown();
                     DoMillingInTown();
-                    Interact.InteractGameObject(baseAddress);
+                    Interact.InteractWith(baseAddress);
                     Thread.Sleep(500);
                     var mQuality = new List<WoWItemQuality>();
                     if (nManagerSetting.CurrentSetting.MailGray)
@@ -484,7 +484,7 @@ namespace nManager.Wow.Bot.States
                     var MailSendingCompleted = false;
                     for (var i = 7; i > 0 && !MailSendingCompleted; i--)
                     {
-                        Interact.InteractGameObject(baseAddress);
+                        Interact.InteractWith(baseAddress);
                         Thread.Sleep(1000);
                         Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
                                          nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",

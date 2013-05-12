@@ -141,11 +141,11 @@ namespace nManager.Wow.Bot.Tasks
                                 if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                     Usefuls.DisMount();
                                 Thread.Sleep(Usefuls.Latency + 300);
-                                Interact.InteractGameObject(node.GetBaseAddress);
+                                Interact.InteractWith(node.GetBaseAddress);
                                 Thread.Sleep(Usefuls.Latency + 200);
                                 if (!ObjectManager.ObjectManager.Me.IsCast)
                                 {
-                                    Interact.InteractGameObject(node.GetBaseAddress);
+                                    Interact.InteractWith(node.GetBaseAddress);
                                     Thread.Sleep(Usefuls.Latency + 200);
                                 }
                                 while (ObjectManager.ObjectManager.Me.IsCast)
@@ -288,7 +288,7 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     return;
                                 }
-                                Interact.InteractGameObject(node.GetBaseAddress);
+                                Interact.InteractWith(node.GetBaseAddress);
                                 if (ObjectManager.ObjectManager.Me.InCombat)
                                 {
                                     return;
