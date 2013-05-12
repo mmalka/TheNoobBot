@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using nManager;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
@@ -111,6 +112,7 @@ namespace Quester.Profile
         public string ScriptCondition = "";
         public string ScriptConditionIsComplete = "";
         internal bool IsObjectiveCompleted = false;
+        public bool CanPullUnitsAlreadyInFight = nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight;
 
         // Use Item
         public int UseItemId = 0;

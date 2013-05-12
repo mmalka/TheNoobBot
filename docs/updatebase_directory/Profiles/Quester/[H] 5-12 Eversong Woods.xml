@@ -1474,15 +1474,16 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>KillMob</Objective>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Count>12</Count>
           <Entry>
             <int>17086</int>
           </Entry>
           <Hotspots>
             <Point>
-              <X>8273.62</X>
-              <Y>-7214.229</Y>
-              <Z>138.1812</Z>
+              <X>8271.103</X>
+              <Y>-7207.351</Y>
+              <Z>138.5031</Z>
             </Point>
           </Hotspots>
         </QuestObjective>

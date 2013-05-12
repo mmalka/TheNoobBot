@@ -260,7 +260,7 @@ namespace Quester.Tasks
 
                 if (!IsInAvoidMobsList(wowUnit) && !nManagerSetting.IsBlackListedZone(wowUnit.Position) &&
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
-                    (nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
+                    (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
                     Logging.Write("Attacking Lvl " + wowUnit.Name);
                     ulong Unkillable = Fight.StartFight(wowUnit.Guid);
