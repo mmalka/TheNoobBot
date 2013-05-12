@@ -1137,6 +1137,7 @@
           <WaitMs>3000</WaitMs>
         </QuestObjective>
         <QuestObjective>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <Count>1</Count>
           <Entry>
@@ -1151,6 +1152,7 @@
           </Hotspots>
         </QuestObjective>
         <QuestObjective>
+          <CanPullUnitsAlreadyInFight>true</CanPullUnitsAlreadyInFight>
           <Objective>KillMob</Objective>
           <Count>3</Count>
           <Entry>
