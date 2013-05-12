@@ -135,7 +135,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28757</Id>
       <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -165,7 +165,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28762</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -195,7 +195,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28763</Id>
       <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -225,7 +225,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28764</Id>
       <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -255,7 +255,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28765</Id>
       <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -285,7 +285,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28766</Id>
       <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -315,7 +315,7 @@
       <Name>Beating Them Back!</Name>
       <Id>28767</Id>
       <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -345,7 +345,7 @@
       <Name>Beating Them Back!</Name>
       <Id>29078</Id>
       <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -377,7 +377,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28769</Id>
       <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -410,7 +410,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28770</Id>
       <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -443,7 +443,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28771</Id>
       <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -476,7 +476,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28772</Id>
       <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -509,7 +509,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28773</Id>
       <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -542,7 +542,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28774</Id>
       <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -575,7 +575,7 @@
       <Name>Lions for Lambs</Name>
       <Id>28759</Id>
       <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -608,7 +608,7 @@
       <Name>Lions for Lambs</Name>
       <Id>29079</Id>
       <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>5</MaxLevel>
@@ -643,7 +643,7 @@
       <Name>Glyphic Letter</Name>
       <Id>3104</Id>
       <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -662,7 +662,7 @@
       <Name>Consecrated Letter</Name>
       <Id>3101</Id>
       <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -681,7 +681,7 @@
       <Name>Hallowed Letter</Name>
       <Id>3103</Id>
       <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -700,7 +700,7 @@
       <Name>Encrypted Letter</Name>
       <Id>3102</Id>
       <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -719,7 +719,7 @@
       <Name>Tainted Letter</Name>
       <Id>3105</Id>
       <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -738,7 +738,7 @@
       <Name>Simple Letter</Name>
       <Id>3100</Id>
       <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -757,7 +757,7 @@
       <Name>Etched Letter</Name>
       <Id>28759</Id>
       <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -780,7 +780,7 @@
       <Name>Mastering the Arcane</Name>
       <Id>26916</Id>
       <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -821,7 +821,7 @@
       <Name>The Power of the Light</Name>
       <Id>26918</Id>
       <ClassMask>2 </ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -858,7 +858,7 @@
       <Name>Healing the Wounded</Name>
       <Id>26919</Id>
       <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -891,7 +891,7 @@
       <Name>The Deepest Cut</Name>
       <Id>26915</Id>
       <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -923,7 +923,7 @@
       <Name>Immolation</Name>
       <Id>26914</Id>
       <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -955,7 +955,7 @@
       <Name>Charging into Battle</Name>
       <Id>26913</Id>
       <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -987,7 +987,7 @@
       <Name>The Hunter's Path</Name>
       <Id>26917</Id>
       <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1023,7 +1023,7 @@
       <Name>Join the Battle!</Name>
       <Id>28784</Id>
       <ClassMask>128</ClassMask> <!-- Mage -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1042,7 +1042,7 @@
       <Name>Join the Battle!</Name>
       <Id>28785</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1061,7 +1061,7 @@
       <Name>Join the Battle!</Name>
       <Id>28786</Id>
       <ClassMask>16</ClassMask> <!-- Priest -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1080,7 +1080,7 @@
       <Name>Join the Battle!</Name>
       <Id>28787</Id>
       <ClassMask>8</ClassMask> <!-- Rogue -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1099,7 +1099,7 @@
       <Name>Join the Battle!</Name>
       <Id>28784</Id>
       <ClassMask>256</ClassMask> <!-- Warlock -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1118,7 +1118,7 @@
       <Name>Join the Battle!</Name>
       <Id>28789</Id>
       <ClassMask>1</ClassMask> <!-- Warrior -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1137,7 +1137,7 @@
       <Name>Join the Battle!</Name>
       <Id>28780</Id>
       <ClassMask>4</ClassMask> <!-- Hunter -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1156,7 +1156,7 @@
       <Name>Join the Battle!</Name>
       <Id>29080</Id>
       <ClassMask>1120</ClassMask> <!-- Druid + Shaman + DK -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>3</MinLevel>
       <MaxLevel>6</MaxLevel>
@@ -1178,7 +1178,7 @@
       <Name>They Sent Assassins</Name>
       <Id>28793</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>3</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1220,7 +1220,7 @@
       <Name>The Rear is Clear</Name>
       <Id>28819</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1248,7 +1248,7 @@
       <Name>Blackrock Invasion</Name>
       <Id>26389</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>4</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>8</MaxLevel>
@@ -1296,7 +1296,7 @@
       <Name>Ending the Invasion!</Name>
       <Id>26390</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>2</MinLevel>
       <MaxLevel>10</MaxLevel>
@@ -1338,7 +1338,7 @@
       <Name>Report to Goldshire</Name>
       <Id>54</Id>
       <ClassMask>2</ClassMask> <!-- Paladin -->
-      <RaceMask>1101</RaceMask> <!-- Alliance -->
+      <RaceMask>16777216</RaceMask> <!-- Alliance -->
       <QuestLevel>5</QuestLevel>
       <MinLevel>1</MinLevel>
       <MaxLevel>10</MaxLevel>
