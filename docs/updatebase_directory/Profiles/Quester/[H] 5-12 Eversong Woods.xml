@@ -852,7 +852,6 @@
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
-        <int>9359</int>
         <int>9256</int>
       </NeedQuestCompletedId>
       <PickUp>15939</PickUp>
@@ -1433,6 +1432,9 @@
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8892</int>
+      </NeedQuestCompletedId>
       <PickUp>15939</PickUp>
       <TurnIn>15399</TurnIn>
       <Objectives>
@@ -1639,7 +1641,7 @@
             <Z>74.90952</Z>
           </Position>
           <EntryInteractWith>180911</EntryInteractWith>
-          <WaitMs>3500</WaitMs>
+          <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1649,7 +1651,17 @@
             <Z>144.4753</Z>
           </Position>
           <EntryInteractWith>180916</EntryInteractWith>
-          <WaitMs>5500</WaitMs>
+          <WaitMs>6000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9335.961</X>
+            <Y>-7883.816</Y>
+            <Z>144.4753</Z>
+          </Position>
+          <EntryInteractWith>180916</EntryInteractWith>
+          <WaitMs>6000</WaitMs>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -1659,6 +1671,26 @@
             <Z>160.3558</Z>
           </Position>
           <EntryInteractWith>180919</EntryInteractWith>
+          <WaitMs>6000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9336.154</X>
+            <Y>-7884.226</Y>
+            <Z>160.3558</Z>
+          </Position>
+          <EntryInteractWith>180919</EntryInteractWith>
+          <WaitMs>6000</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9290.018</X>
+            <Y>-7917.325</Y>
+            <Z>178.9283</Z>
+          </Position>
+          <EntryInteractWith>180920</EntryInteractWith>
           <WaitMs>5500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1679,7 +1711,7 @@
             <Z>176.1297</Z>
           </Position>
           <EntryInteractWith>180912</EntryInteractWith>
-          <WaitMs>3500</WaitMs>
+          <WaitMs>5000</WaitMs>
         </QuestObjective>
       </Objectives>
     </Quest>
