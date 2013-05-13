@@ -852,6 +852,7 @@
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <NeedQuestCompletedId>
+        <int>9359</int>
         <int>9256</int>
       </NeedQuestCompletedId>
       <PickUp>15939</PickUp>
