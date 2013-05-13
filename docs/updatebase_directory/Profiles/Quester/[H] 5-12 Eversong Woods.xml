@@ -316,6 +316,42 @@
         <Z>84.47708</Z>
       </Position>
     </Npc>
+	<Npc>
+      <Entry>15924</Entry>
+      <Name>Apprentice Loralthalis</Name>
+      <Position>
+        <X>9185.402</X>
+        <Y>-7827.135</Y>
+        <Z>98.36075</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>181011</Entry>
+      <Name>Magister Duskwither's Journal</Name>
+      <Position>
+        <X>9330.795</X>
+        <Y>-7897.802</Y>
+        <Z>159.3244</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>15969</Entry>
+      <Name>Groundskeeper Wyllithen</Name>
+      <Position>
+        <X>9500.106</X>
+        <Y>-7871.476</Y>
+        <Z>16.12427</Z>
+      </Position>
+    </Npc>
+	<Npc>
+      <Entry>15406</Entry>
+      <Name>Ven'jashi</Name>
+      <Position>
+        <X>8666.612</X>
+        <Y>-7960.889</Y>
+        <Z>151.793</Z>
+      </Position>
+    </Npc>
 
   </Questers>
   <Quests>
@@ -323,6 +359,7 @@
     <Quest>
       <Name>Slain by the Wretched</Name>
       <Id>9704</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -335,6 +372,7 @@
     <Quest>
       <Name>Package Recovery</Name>
       <Id>9705</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -350,6 +388,7 @@
     <Quest>
       <Name>Completing the Delivery</Name>
       <Id>8350</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -365,6 +404,7 @@
     <Quest>
       <Name>Major Malfunction</Name>
       <Id>8472</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -392,6 +432,7 @@
     <Quest>
       <Name>Unstable Mana Crystals</Name>
       <Id>8463</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -419,6 +460,7 @@
     <Quest>
       <Name>Darnassian Intrusions</Name>
       <Id>9352</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -449,6 +491,7 @@
     <Quest>
       <Name>Wanted: Thaelis the Hungerer</Name>
       <Id>8468</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -476,6 +519,7 @@
     <Quest>
       <Name>Delivery to the North Sanctum</Name>
       <Id>8895</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -491,6 +535,7 @@
     <Quest>
       <Name>Malfunction at the West Sanctum</Name>
       <Id>9119</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>8</MaxLevel>
       <QuestLevel>5</QuestLevel>
@@ -506,6 +551,7 @@
     <Quest>
       <Name>Arcane Instability</Name>
       <Id>8486</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -549,6 +595,7 @@
     <Quest>
       <Name>Roadside Ambush</Name>
       <Id>9035</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -561,6 +608,7 @@
     <Quest>
       <Name>Soaked Pages</Name>
       <Id>9062</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -591,6 +639,7 @@
     <Quest>
       <Name>Taking the Fall</Name>
       <Id>9064</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -606,6 +655,7 @@
     <Quest>
       <Name>Swift Discipline</Name>
       <Id>9066</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -646,6 +696,7 @@
     <Quest>
       <Name>Incriminating Documents</Name>
       <Id>8482</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -658,6 +709,7 @@
     <Quest>
       <Name>The Dwarven Spy</Name>
       <Id>8483</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -709,6 +761,7 @@
     <Quest>
       <Name>Fish Heads, Fish Heads...</Name>
       <Id>8884</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -737,6 +790,7 @@
     <Quest>
       <Name>The Ring of Mmmrrrggglll</Name>
       <Id>8885</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -777,6 +831,7 @@
     <Quest>
       <Name>Fairbreeze Village</Name>
       <Id>9256</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>6</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -792,6 +847,7 @@
     <Quest>
       <Name>Situation at Sunsail Anchorage</Name>
       <Id>8892</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -835,6 +891,7 @@
     <Quest>
       <Name>The Dead Scar</Name>
       <Id>8475</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>9</MaxLevel>
       <QuestLevel>6</QuestLevel>
@@ -866,6 +923,7 @@
     <Quest>
       <Name>Pelt Collection</Name>
       <Id>8491</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>4</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -894,6 +952,7 @@
     <Quest>
       <Name>Saltheril's Haven</Name>
       <Id>9395</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -906,6 +965,7 @@
     <Quest>
       <Name>The Party Never Ends</Name>
       <Id>9067</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -957,6 +1017,7 @@
     <Quest>
       <Name>Grimscale Pirates!</Name>
       <Id>8886</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
       <QuestLevel>8</QuestLevel>
@@ -984,6 +1045,7 @@
     <Quest>
       <Name>Lost Armaments</Name>
       <Id>8480</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -1012,6 +1074,7 @@
     <Quest>
       <Name>Wretched Ringleader</Name>
       <Id>9076</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
       <QuestLevel>8</QuestLevel>
@@ -1039,6 +1102,7 @@
     <Quest>
       <Name>Defending Fairbreeze Village</Name>
       <Id>9252</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1079,6 +1143,7 @@
     <Quest>
       <Name>The Wayward Apprentice</Name>
       <Id>9254</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1091,6 +1156,7 @@
     <Quest>
       <Name>Corrupted Soil</Name>
       <Id>8487</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1126,6 +1192,7 @@
     <Quest>
       <Name>Unexpected Results</Name>
       <Id>8488</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1172,6 +1239,7 @@
     <Quest>
       <Name>Research Note</Name>
       <Id>9255</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1187,6 +1255,7 @@
     <Quest>
       <Name>Ranger Sareyn</Name>
       <Id>9358</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1199,6 +1268,7 @@
     <Quest>
       <Name>Defending Fairbreeze Village</Name>
       <Id>9358</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1242,6 +1312,7 @@
     <Quest>
       <Name>The Scorched Grove</Name>
       <Id>9258</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1254,6 +1325,7 @@
     <Quest>
       <Name>A Somber Task</Name>
       <Id>8473</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>6</MinLevel>
       <MaxLevel>12</MaxLevel>
       <QuestLevel>9</QuestLevel>
@@ -1283,6 +1355,7 @@
     <Quest>
       <Name>Goods from Silvermoon City</Name>
       <Id>9130</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -1295,6 +1368,7 @@
     <Quest>
       <Name>Fly to Silvermoon City</Name>
       <Id>9133</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -1316,6 +1390,7 @@
     <Quest>
       <Name>Skymistress Gloaming</Name>
       <Id>9134</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -1331,6 +1406,7 @@
     <Quest>
       <Name>Return to Sathiel</Name>
       <Id>9135</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>10</MaxLevel>
       <QuestLevel>7</QuestLevel>
@@ -1352,6 +1428,7 @@
     <Quest>
       <Name>Farstrider Retreat</Name>
       <Id>9359</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1362,8 +1439,330 @@
     </Quest>
 
     <Quest>
+      <Name>Amani Encroachment</Name>
+      <Id>8476</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9359</int>
+      </NeedQuestCompletedId>
+      <PickUp>15399</PickUp>
+      <TurnIn>15399</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>5</Count>
+          <Entry>
+            <int>15641</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8662.752</X>
+              <Y>-7930</Y>
+              <Z>152.9165</Z>
+            </Point>
+            <Point>
+              <X>8562.502</X>
+              <Y>-7923.995</Y>
+              <Z>154.9117</Z>
+            </Point>
+            <Point>
+              <X>8504.317</X>
+              <Y>-7962.423</Y>
+              <Z>157.2202</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>5</Count>
+          <Entry>
+            <int>15643</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8662.752</X>
+              <Y>-7930</Y>
+              <Z>152.9165</Z>
+            </Point>
+            <Point>
+              <X>8562.502</X>
+              <Y>-7923.995</Y>
+              <Z>154.9117</Z>
+            </Point>
+            <Point>
+              <X>8504.317</X>
+              <Y>-7962.423</Y>
+              <Z>157.2202</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+	  </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>The Spearcrafter's Hammer</Name>
+      <Id>8477</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>7</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <PickUp>15400</PickUp>
+      <TurnIn>15400</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <CollectItemId>20759</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Entry>
+            <int>15408</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8668.465</X>
+              <Y>-7939.925</Y>
+              <Z>153.3263</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>The Magister's Apprentice</Name>
+      <Id>8888</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNoCompletedId>
+        <int>8889</int>
+        <int>9394</int>
+      </NeedQuestNoCompletedId>
+      <PickUp>15951</PickUp>
+      <TurnIn>15924</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Where's Wyllithen?</Name>
+      <Id>9394</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNoCompletedId>
+        <int>8894</int>
+      </NeedQuestNoCompletedId>
+      <PickUp>15924</PickUp>
+      <TurnIn>15969</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Cleaning up the Grounds</Name>
+      <Id>8894</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestNoCompletedId>
+        <int>9394</int> <!-- Force the bot making more XP -->
+      </NeedQuestNoCompletedId>
+      <PickUp>15969</PickUp>
+      <TurnIn>15969</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>6</Count>
+          <Entry>
+            <int>15966</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>9463.385</X>
+              <Y>-7908.404</Y>
+              <Z>14.95541</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>KillMob</Objective>
+          <Count>6</Count>
+          <Entry>
+            <int>15967</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>9463.385</X>
+              <Y>-7908.404</Y>
+              <Z>14.95541</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <!--<Quest>
+      <Name>Abandoned Investigations</Name>
+      <Id>8891</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <PickUp>181011</PickUp>
+      <TurnIn>15951</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>-->
+
+    <Quest>
+      <Name>Deactivating the Spire</Name>
+      <Id>8889</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <PickUp>15924</PickUp>
+      <TurnIn>15924</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9336.156</X>
+            <Y>-7883.435</Y>
+            <Z>74.90952</Z>
+          </Position>
+          <EntryInteractWith>180911</EntryInteractWith>
+          <WaitMs>3500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9335.961</X>
+            <Y>-7883.816</Y>
+            <Z>144.4753</Z>
+          </Position>
+          <EntryInteractWith>180916</EntryInteractWith>
+          <WaitMs>5500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9336.154</X>
+            <Y>-7884.226</Y>
+            <Z>160.3558</Z>
+          </Position>
+          <EntryInteractWith>180919</EntryInteractWith>
+          <WaitMs>5500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9290.018</X>
+            <Y>-7917.325</Y>
+            <Z>178.9283</Z>
+          </Position>
+          <EntryInteractWith>180920</EntryInteractWith>
+          <WaitMs>5500</WaitMs>
+        </QuestObjective>
+        <QuestObjective>
+          <Objective>InteractWith</Objective>
+          <Position>
+            <X>9286.038</X>
+            <Y>-7916.087</Y>
+            <Z>176.1297</Z>
+          </Position>
+          <EntryInteractWith>180912</EntryInteractWith>
+          <WaitMs>3500</WaitMs>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Zul'Marosh</Name>
+      <Id>8479</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>14</MaxLevel>
+      <QuestLevel>11</QuestLevel>
+      <PickUp>15406</PickUp>
+      <TurnIn>15406</TurnIn>
+      <Objectives>
+        <QuestObjective>
+          <Objective>PickUpObject</Objective>
+          <CollectItemId>20760</CollectItemId>
+          <CollectCount>1</CollectCount>
+          <Entry>
+            <int>180921</int>
+          </Entry>
+          <Hotspots>
+            <Point>
+              <X>8425.401</X>
+              <Y>-7566.305</Y>
+              <Z>174.5999</Z>
+            </Point>
+          </Hotspots>
+        </QuestObjective>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Word from the Spire</Name>
+      <Id>8890</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>13</MaxLevel>
+      <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8889</int>
+      </NeedQuestCompletedId>
+      <PickUp>15924</PickUp>
+      <TurnIn>15951</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Amani Invasion</Name>
+      <Id>9360</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>14</MaxLevel>
+      <QuestLevel>11</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8479</int> <!-- not really, but in order to get the item -->
+      </NeedQuestCompletedId>
+      <ItemPickUp>23249</ItemPickUp>
+      <TurnIn>15399</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
+      <Name>Warning Fairbreeze Village</Name>
+      <Id>9363</Id>
+      <RaceMask>33555378</RaceMask>
+      <MinLevel>8</MinLevel>
+      <MaxLevel>14</MaxLevel>
+      <QuestLevel>11</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9360</int>
+      </NeedQuestCompletedId>
+      <PickUp>15399</PickUp>
+      <TurnIn>15939</TurnIn>
+      <Objectives>
+      </Objectives>
+    </Quest>
+
+    <Quest>
       <Name>Captain Kelisendra's Lost Rutters</Name>
       <Id>8887</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
       <QuestLevel>8</QuestLevel>
@@ -1376,6 +1775,7 @@
     <Quest>
       <Name>Old Whitebark's Pendant</Name>
       <Id>8474</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1388,6 +1788,7 @@
     <!--<Quest>
       <Name>Whitebark's Memory</Name>
       <Id>10166</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1440,6 +1841,7 @@
     <Quest>
       <Name>Runewarden Deryan</Name>
       <Id>9253</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1455,6 +1857,7 @@
     <Quest>
       <Name>Powering our Defenses</Name>
       <Id>8490</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
@@ -1495,6 +1898,7 @@
     <Quest> <!-- Final Quest -->
       <Name>Missing in the Ghostlands</Name>
       <Id>9144</Id>
+      <RaceMask>33555378</RaceMask>
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
