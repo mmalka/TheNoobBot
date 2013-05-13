@@ -1435,6 +1435,9 @@
       <NeedQuestCompletedId>
         <int>8892</int>
       </NeedQuestCompletedId>
+      <NeedQuestNoCompletedId>
+        <int>8476</int>
+      </NeedQuestNoCompletedId>
       <PickUp>15939</PickUp>
       <TurnIn>15399</TurnIn>
       <Objectives>
@@ -1784,6 +1787,7 @@
       <MaxLevel>14</MaxLevel>
       <QuestLevel>11</QuestLevel>
       <NeedQuestCompletedId>
+        <int>8479</int>
         <int>9360</int>
       </NeedQuestCompletedId>
       <PickUp>15399</PickUp>
