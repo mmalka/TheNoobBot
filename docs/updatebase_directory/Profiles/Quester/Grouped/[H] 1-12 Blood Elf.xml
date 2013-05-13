@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<QuesterProfile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Includes>
+    <Include>
+      <PathFile>[H] 1-5 Sunstrider Isle - Blood Elf Starting Zone.xml</PathFile>
+      <ScriptCondition />
+    </Include>
+    <Include>
+      <PathFile>[H] 5-12 Eversong Woods.xml</PathFile>
+      <ScriptCondition />
+    </Include>
+  </Includes>
+  <Blackspots />
+  <AvoidMobs />
+  <Quests />
+  <Questers />
+</QuesterProfile>
