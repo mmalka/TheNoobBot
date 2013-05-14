@@ -1047,7 +1047,7 @@
       <Id>8480</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>10</MaxLevel>
+      <MaxLevel>12</MaxLevel>
       <QuestLevel>7</QuestLevel>
       <PickUp>15404</PickUp>
       <TurnIn>15404</TurnIn>
@@ -1076,8 +1076,11 @@
       <Id>9076</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>5</MinLevel>
-      <MaxLevel>11</MaxLevel>
+      <MaxLevel>13</MaxLevel>
       <QuestLevel>8</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>8480</int>
+      </NeedQuestCompletedId>
       <PickUp>15404</PickUp>
       <TurnIn>15404</TurnIn>
       <Objectives>
