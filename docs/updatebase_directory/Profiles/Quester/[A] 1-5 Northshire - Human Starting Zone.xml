@@ -791,15 +791,6 @@
       <TurnIn>198</TurnIn>
       <Objectives>
         <QuestObjective>
-          <Objective>TrainSpells</Objective>
-          <EntryInteractWith>198</EntryInteractWith>
-          <Position>
-            <X>-8851.673</X>
-            <Y>-188.2821</Y>
-            <Z>89.31502</Z>
-          </Position>
-        </QuestObjective>
-        <QuestObjective>
           <Objective>UseSpell</Objective>
           <EntryAOE>44548</EntryAOE>
           <UseSpellId>7268</UseSpellId>
