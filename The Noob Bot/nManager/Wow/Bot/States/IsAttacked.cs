@@ -45,6 +45,12 @@ namespace nManager.Wow.Bot.States
                     if (_unit.IsValid)
                         return true;
 
+                _unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
+                if (_unit != null)
+                {
+                    Logging.Write("I aggro " + _unit.Name);
+                    return true;
+                }
                 return false;
             }
         }

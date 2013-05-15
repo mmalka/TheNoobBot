@@ -1075,6 +1075,14 @@ namespace nManager.Wow.ObjectManager
             return 0;
         }
 
+        public static WoWUnit GetUnitInAggroRange()
+        {
+            foreach (var u in GetObjectWoWUnit())
+                if (u.IsValid && u.IsAlive && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.75f))
+                    return new WoWUnit(u.GetBaseAddress);
+            return null;
+        }
+
         public static List<WoWUnit> GetUnitAttackPlayer(List<WoWUnit> listWoWUnit)
         {
             try
