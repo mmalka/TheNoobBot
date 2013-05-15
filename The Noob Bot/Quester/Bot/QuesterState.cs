@@ -59,9 +59,16 @@ namespace Quester.Bot
         public override void Run()
         {
             // Get or set selected quest
-            int q = QuestingTask.CurrentQuest.Id;
-            if (Quest.GetQuestCompleted(q) || q == 0 ||
-                ObjectManager.Me.Level > QuestingTask.CurrentQuest.MaxLevel)
+            if (QuestingTask.CurrentQuest != null)
+            {
+                int id = QuestingTask.CurrentQuest.Id;
+                if (Quest.GetQuestCompleted(id) || id == 0)
+                {
+                    QuestingTask.SelectQuest();
+                    return;
+                }
+            }
+            else
             {
                 QuestingTask.SelectQuest();
                 return;

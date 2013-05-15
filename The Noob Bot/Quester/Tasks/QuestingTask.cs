@@ -19,7 +19,7 @@ namespace Quester.Tasks
     internal class QuestingTask
     {
         private static string QuestStatus = "";
-        public static Profile.Quest CurrentQuest = new Profile.Quest();
+        public static Profile.Quest CurrentQuest;
         private static int _currentQuestObjectiveId = -1;
         public static Profile.QuestObjective CurrentQuestObjective;
         private static Timer waitTimer;
@@ -30,7 +30,7 @@ namespace Quester.Tasks
         public static void SelectQuest()
         {
             QuestStatus = "Select Quest";
-            CurrentQuest = new Profile.Quest();
+            CurrentQuest = null;
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
 
