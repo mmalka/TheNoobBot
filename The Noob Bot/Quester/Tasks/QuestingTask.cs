@@ -739,21 +739,18 @@ namespace Quester.Tasks
                             Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                             SelectGossipOption = questObjective.GossipOptionsInteractWith
                         };
-                    WoWUnit TargetIsNPC;
-                    WoWObject TargetIsObject;
-                    Target = questObjective.Range > 5f
-                                 ? MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject, questObjective.Range)
-                                 : MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject);
+                    uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
+                    if (MovementManager.InMovement)
+                        return;
                     //End target finding based on EntryAOE.
-                    if (questObjective.EntryAOE <= 0 && !TargetIsNPC.IsValid && !TargetIsObject.IsValid)
+                    if (questObjective.EntryAOE <= 0 && baseAddress == 0)
                     {
                         ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
                     }
-                    else if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
+                    else if (baseAddress != 0)
                     {
-                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                         Interact.InteractWith(baseAddress);
                         ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
                         Thread.Sleep(questObjective.WaitMs);
@@ -780,14 +777,11 @@ namespace Quester.Tasks
                             Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
                             SelectGossipOption = questObjective.GossipOptionsInteractWith
                         };
-                    WoWUnit TargetIsNPC;
-                    WoWObject TargetIsObject;
-                    Target = questObjective.Range > 5f
-                                 ? MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject, questObjective.Range)
-                                 : MovementManager.FindTarget(Target, out TargetIsNPC, out TargetIsObject);
-                    if (TargetIsNPC.IsValid || TargetIsObject.IsValid)
+                    uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
+                    if (MovementManager.InMovement)
+                        return;
+                    if (baseAddress != 0)
                     {
-                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500 + Usefuls.Latency);
                         Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
@@ -943,27 +937,17 @@ namespace Quester.Tasks
             //Script.Run(npc.Script); ToDo: Support scripts for special case quests.
 
             //Start target finding based on QuestGiver.
-            WoWUnit TargetIsNPC;
-            WoWObject TargetIsObject;
-            uint baseAddress;
-            Npc Target = MovementManager.FindTarget(npc, out TargetIsNPC, out TargetIsObject);
-            if (TargetIsNPC.IsValid)
-                baseAddress = TargetIsNPC.GetBaseAddress;
-            else if (TargetIsObject.IsValid)
-                baseAddress = TargetIsObject.GetBaseAddress;
-            else
-            {
-                baseAddress = 0;
-                //NpcDB.DelNpc(npc); // I don't particularly recommand it for Quester, as we can simply abort this quest and log it.
-                // ToDo: Stop working on that quest.
-            }
+            uint baseAddress = MovementManager.FindTarget(ref npc);
+            if (MovementManager.InMovement)
+                return;
             //End target finding based on QuestGiver.
 
-            if (Target.Position.DistanceTo(ObjectManager.Me.Position) < 6)
+            if (npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
             {
                 Quest.CloseQuestWindow();
                 Interact.InteractWith(baseAddress);
                 Thread.Sleep(Usefuls.Latency + 600);
+                WoWObject TargetIsObject = ObjectManager.GetNearestWoWGameObject(ObjectManager.GetWoWGameObjectByEntry(npc.Entry), npc.Position);
                 if (TargetIsObject.IsValid)
                     Thread.Sleep(2500); // to let the Gameobject open
                 if (pickUp)

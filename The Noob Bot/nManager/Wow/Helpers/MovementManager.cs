@@ -32,6 +32,8 @@ namespace nManager.Wow.Helpers
         private static Point _jumpOverAttempt = new Point();
         private static Point _distmountAttempt = new Point();
 
+        private static Timer _updatePathSpecialTimer = new Timer();
+
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
 
@@ -1405,160 +1407,70 @@ namespace nManager.Wow.Helpers
 
         #region NPC/Object Finder
 
-        private static string FoundType;
-        private static bool LastChance;
-
-        public static Npc FindTarget(Npc Target, out WoWUnit TargetIsNPC, out WoWObject TargetIsObject, float SpecialRange = 0)
+        public static uint UpdateTarget(ref Npc Target)
         {
-            Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
-            LastChance = true;
-            FoundType = "none";
             Random rand = new Random();
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
-                Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
-                MountTask.Mount();
-            // We can't stop the FindTarget if we have not found the Target from the Memory, that's why we don't check for <= 5f yet.
-            TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-            TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+            WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+            WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             if (TargetIsNPC.IsValid)
             {
                 Target.Position = TargetIsNPC.Position;
                 Target.Name = TargetIsNPC.Name;
-                FoundType = "NPC";
+                return TargetIsNPC.GetBaseAddress;
             }
             else if (TargetIsObject.IsValid)
             {
                 Target.Position = TargetIsObject.Position;
                 Target.Name = TargetIsObject.Name;
-                FoundType = "OBJ";
+                return TargetIsObject.GetBaseAddress;
             }
+            return 0;
+        }
 
-            var timerPathFinder = new Timer(0);
-            GeneratePath:
-            if ((Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 4.5f || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange) && FoundType != "none")
-                goto End;
-            if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
-                return Target;
-            List<Point> points = PathFinder.FindPath(Target.Position);
-            Go(points);
-            // Check < 3.5 yards instead of 5 yards to avoid losing few seconds while approaching a Patrolling Target.
-            // Also being more Human by not standing at the farthest distance from the Target.
-            var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
-            while (InMovement && Usefuls.InGame && !(ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted) &&
-                   !ObjectManager.ObjectManager.Me.IsDeadMe)
+        public static uint FindTarget(ref Npc Target, float SpecialRange = 0)
+        {
+            if (!InMovement)
+                Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
+
+            if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
+                Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
+                MountTask.Mount();
+
+            uint baseaddress = UpdateTarget(ref Target);
+
+            // Normal "Go to destination code", launch the movement thread by calling Go(), then return
+            if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
             {
-                if (timer.IsReady)
-                    goto GeneratePath;
-                if ((Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= (rand.NextDouble()*2f+2.5f)) && FoundType != "none")
-                    StopMove();
-                /* The following code check 2 things.
-                 * 1: Does the real Target (Memory) is at a different place than the Target Position in the Profile ?
-                 * 2: Did the real Target (Memory) mooved ?
-                 */
-                switch (FoundType)
+                List<Point> points = PathFinder.FindPath(Target.Position);
+                _updatePathSpecialTimer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                Go(points);
+                return 0;
+            }
+            // We are in movement and want to update the path if necessary
+            if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
+            {
+                // Out of range of the position
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
                 {
-                    case "NPC":
-                        TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                        if (TargetIsNPC.IsValid && TargetIsNPC.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 50 &&
-                            Target.Position.DistanceTo(TargetIsNPC.Position) > 1 &&
-                            timerPathFinder.IsReady)
-                        {
-                            Target.Position = TargetIsNPC.Position;
-                            Target.Name = TargetIsNPC.Name;
-                            timerPathFinder = new Timer(5000);
-                            goto GeneratePath;
-                        }
-                        if (!TargetIsNPC.IsValid)
-                            FoundType = "none";
-                        break;
-                    case "OBJ":
-                        TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                        if (TargetIsObject.IsValid && TargetIsObject.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 50 &&
-                            Target.Position.DistanceTo(TargetIsObject.Position) > 1 &&
-                            timerPathFinder.IsReady)
-                        {
-                            Target.Position = TargetIsObject.Position;
-                            Target.Name = TargetIsObject.Name;
-                            timerPathFinder = new Timer(5000);
-                            goto GeneratePath;
-                        }
-                        if (!TargetIsObject.IsValid)
-                            FoundType = "none";
-                        break;
-                    default:
+                    if (_updatePathSpecialTimer.IsReady)
+                    {
+                        List<Point> points = PathFinder.FindPath(Target.Position);
                         if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 50)
-                        {
-                            TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                            TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                            if (TargetIsNPC.IsValid && Target.Position.DistanceTo(TargetIsNPC.Position) > 1 && timerPathFinder.IsReady)
-                            {
-                                Target.Position = TargetIsNPC.Position;
-                                Target.Name = TargetIsNPC.Name;
-                                timerPathFinder = new Timer(5000);
-                                FoundType = "NPC";
-                                goto GeneratePath;
-                            }
-                            if (TargetIsObject.IsValid && Target.Position.DistanceTo(TargetIsObject.Position) > 1 && timerPathFinder.IsReady)
-                            {
-                                Target.Position = TargetIsObject.Position;
-                                Target.Name = TargetIsObject.Name;
-                                timerPathFinder = new Timer(5000);
-                                FoundType = "OBJ";
-                                goto GeneratePath;
-                            }
-                        }
-                        break;
+                            _updatePathSpecialTimer = new Timer(5000);
+                        else
+                            _updatePathSpecialTimer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                        Go(points);
+                        return 0;
+                    }
                 }
-            }
-
-            while (InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > SpecialRange && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15)
-            {
-                switch (FoundType)
+                else
                 {
-                    case "NPC":
-                        TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                        if (TargetIsNPC.IsValid && TargetIsNPC.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 15)
-                        {
-                            Target.Position = TargetIsNPC.Position;
-                            Target.Name = TargetIsNPC.Name;
-                            _points[_points.Count - 1] = Target.Position;
-                        }
-                        break;
-                    case "OBJ":
-                        TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                        if (TargetIsObject.IsValid && TargetIsObject.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 15)
-                        {
-                            Target.Position = TargetIsObject.Position;
-                            Target.Name = TargetIsObject.Name;
-                            _points[_points.Count - 1] = Target.Position;
-                        }
-                        break;
-                    default:
-                        goto End;
+                    // Ready or not we are near enough of the target
+                    StopMove();
+                    return baseaddress;
                 }
-                if (ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsMounted)
-                    return Target;
             }
-            End:
-            if (FoundType == "none" && (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 15 || Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= SpecialRange))
-            {
-                if (LastChance)
-                {
-                    Logging.WriteDebug("Last chance used when searching for Target " + Target.Name + " (" + Target.Entry + ").");
-                    LastChance = false;
-                    TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
-                    TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
-                    FoundType = TargetIsNPC.IsValid ? "NPC" : TargetIsObject.IsValid ? "OBJ" : "none";
-                    goto End;
-                }
-                Logging.Write("Aborting FindTarget, it seems the Target " + Target.Name + " (" + Target.Entry + ") is not spawn at coordonate (" + Target.Position.X + ";" +
-                              Target.Position.Y + ";" + Target.Position.Z + ").");
-                return Target;
-            }
-            if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4.5f && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > SpecialRange)
-                goto GeneratePath;
-            Logging.Write("Terminate target finding, found: " + Target.Name + " (" + Target.Entry + ").");
-            return Target;
+            return baseaddress;
         }
 
         #endregion

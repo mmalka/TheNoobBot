@@ -128,7 +128,6 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            MovementManager.StopMove();
             var listNPCs = new List<Npc>();
             Npc mailBox = null;
 
@@ -138,6 +137,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (_useMollE)
                 {
+                    MovementManager.StopMove();
                     MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(2000);
@@ -172,6 +172,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
+                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -221,6 +222,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
+                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -247,18 +249,21 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
+                    MovementManager.StopMove();
                     var npcA = DoSpawnRobot("74A", Npc.NpcType.Repair);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
+                    MovementManager.StopMove();
                     var npcG = DoSpawnRobot("110G", Npc.NpcType.Repair);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
+                    MovementManager.StopMove();
                     var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Repair);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
@@ -279,6 +284,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
+                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -328,6 +334,7 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
+                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -352,18 +359,21 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
+                    MovementManager.StopMove();
                     var npcA = DoSpawnRobot("74A", Npc.NpcType.Vendor);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
+                    MovementManager.StopMove();
                     var npcG = DoSpawnRobot("110G", Npc.NpcType.Vendor);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
+                    MovementManager.StopMove();
                     var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Vendor);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
@@ -379,20 +389,18 @@ namespace nManager.Wow.Bot.States
 
             if (listNPCs.Count > 0)
             {
+                listNPCs.Sort(delegate(Npc n1, Npc n2) { return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)); });
                 foreach (var npc in listNPCs)
                 {
+                    Npc Target = npc;
                     //Start target finding based on Seller.
-                    WoWUnit TargetIsNPC;
-                    WoWObject TargetIsObject;
-                    Npc Target = MovementManager.FindTarget(npc, out TargetIsNPC, out TargetIsObject);
-                    //End target finding based on Seller.
-                    if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
-                    {
-                        NpcDB.DelNpc(npc);
-                    }
+                    uint baseAddress = MovementManager.FindTarget(ref Target);
+                    if (MovementManager.InMovement)
+                        return;
+                    if (baseAddress == 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
+                        NpcDB.DelNpc(Target);
                     else
                     {
-                        uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                         DoProspectingInTown();
                         DoMillingInTown();
                         Interact.InteractWith(baseAddress);
@@ -454,17 +462,16 @@ namespace nManager.Wow.Bot.States
             if (mailBox != null)
             {
                 //Start target finding based on Mailbox.
-                WoWUnit TargetIsNPC;
-                WoWObject TargetIsObject;
-                Npc Target = MovementManager.FindTarget(mailBox, out TargetIsNPC, out TargetIsObject);
+                uint baseAddress = MovementManager.FindTarget(ref mailBox);
+                if (MovementManager.InMovement)
+                    return;
                 //End target finding based on Mailbox.
-                if (!TargetIsNPC.IsValid && !TargetIsObject.IsValid)
+                if (baseAddress == 0 && mailBox.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
                 {
                     NpcDB.DelNpc(mailBox);
                 }
                 else
                 {
-                    uint baseAddress = TargetIsNPC.IsValid ? TargetIsNPC.GetBaseAddress : TargetIsObject.GetBaseAddress;
                     DoProspectingInTown();
                     DoMillingInTown();
                     Interact.InteractWith(baseAddress);
@@ -493,7 +500,7 @@ namespace nManager.Wow.Bot.States
                                          out MailSendingCompleted);
                         Thread.Sleep(500);
                     }
-                    Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + Target.Name + " (" + Target.Entry + ").");
+                    Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + mailBox.Name + " (" + mailBox.Entry + ").");
                 }
             }
 
