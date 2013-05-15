@@ -1806,7 +1806,7 @@ public class DeathknightBlood
 
     private void BuffPath()
     {
-        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
+        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && PathofFrost.IsSpellUsable
             && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
@@ -2639,7 +2639,7 @@ public class DeathknightUnholy
 
     private void BuffPath()
     {
-        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
+        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && PathofFrost.IsSpellUsable
             && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
@@ -3432,7 +3432,7 @@ public class DeathknightFrost
 
     private void BuffPath()
     {
-        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !Fight.InFight && PathofFrost.IsSpellUsable
+        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && ObjectManager.GetNumberAttackPlayer() == 0 && PathofFrost.IsSpellUsable
             && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
         {
             PathofFrost.Launch();
@@ -9198,7 +9198,7 @@ public class DruidBalance
 
         if (AstralCommunion.KnownSpell && AstralCommunion.IsSpellUsable && mySettings.UseAstralCommunion
             && !ObjectManager.Me.HaveBuff(48518) && !ObjectManager.Me.HaveBuff(48517)
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+            && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             AstralCommunion.Launch();
             while (ObjectManager.Me.IsCast)
@@ -9383,7 +9383,7 @@ public class DruidBalance
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+        else if (ObjectManager.Me.HealthPercent < 95 && ObjectManager.GetNumberAttackPlayer() == 0
                  && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
@@ -10226,7 +10226,7 @@ public class DruidFeral
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+        else if (ObjectManager.Me.HealthPercent < 50 && ObjectManager.GetNumberAttackPlayer() == 0
                  && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
@@ -11048,7 +11048,7 @@ public class DruidRestoration
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+        else if (ObjectManager.Me.HealthPercent < 95 && ObjectManager.GetNumberAttackPlayer() == 0
                  && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
@@ -11688,7 +11688,7 @@ public class DruidGuardian
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0
+        else if (ObjectManager.Me.HealthPercent < 50 && ObjectManager.GetNumberAttackPlayer() == 0
                  && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
@@ -12359,7 +12359,7 @@ public class PaladinHoly
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent < 95 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && mySettings.UseDivineLight)
             {
@@ -12830,7 +12830,7 @@ public class PaladinProtection
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent < 95 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             if (FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable && mySettings.UseFlashOfLight)
             {
@@ -13385,7 +13385,7 @@ public class PaladinRetribution
 
     private void Heal()
     {
-        if (ObjectManager.Me.HealthPercent < 95.0f && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+        if (ObjectManager.Me.HealthPercent < 95 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             if (mySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
@@ -13967,7 +13967,7 @@ public class ShamanEnhancement
 
         if (WaterWalking.IsSpellUsable && WaterWalking.KnownSpell &&
             (!WaterWalking.HaveBuff || WaterWalkingTimer.IsReady)
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseWaterWalking)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseWaterWalking)
         {
             WaterWalking.Launch();
             WaterWalkingTimer = new Timer(1000*60*9);
@@ -14113,7 +14113,7 @@ public class ShamanEnhancement
             return;
 
         if (ObjectManager.Me.ManaPercentage < 50 && TotemicRecall.KnownSpell && TotemicRecall.IsSpellUsable
-            && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight
+            && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0
             && TotemicRecallReady())
         {
             TotemicRecall.Launch();
@@ -14121,7 +14121,7 @@ public class ShamanEnhancement
         }
 
         if (ObjectManager.Me.HealthPercent < 95 && HealingSurge.KnownSpell && HealingSurge.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseHealingSurge)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             while (ObjectManager.Me.IsCast)
@@ -14893,7 +14893,7 @@ public class ShamanRestoration
 
         if (WaterWalking.IsSpellUsable && WaterWalking.KnownSpell &&
             (!WaterWalking.HaveBuff || WaterWalkingTimer.IsReady)
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseWaterWalking)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseWaterWalking)
         {
             WaterWalking.Launch();
             WaterWalkingTimer = new Timer(1000*60*9);
@@ -15057,7 +15057,7 @@ public class ShamanRestoration
             return;
         }
         else if (ObjectManager.Me.ManaPercentage < 50 && TotemicRecall.KnownSpell && TotemicRecall.IsSpellUsable
-                 && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight
+                 && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0
                  && TotemicRecallReady())
         {
             TotemicRecall.Launch();
@@ -15074,7 +15074,7 @@ public class ShamanRestoration
         }
 
         if (ObjectManager.Me.HealthPercent < 95 && HealingSurge.KnownSpell && HealingSurge.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseHealingSurge)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             while (ObjectManager.Me.IsCast)
@@ -15820,7 +15820,7 @@ public class ShamanElemental
 
         if (WaterWalking.IsSpellUsable && WaterWalking.KnownSpell &&
             (!WaterWalking.HaveBuff || WaterWalkingTimer.IsReady)
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseWaterWalking)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseWaterWalking)
         {
             WaterWalking.Launch();
             WaterWalkingTimer = new Timer(1000*60*9);
@@ -15959,7 +15959,7 @@ public class ShamanElemental
         else
         {
             if (ObjectManager.Me.ManaPercentage < 50 && TotemicRecall.KnownSpell && TotemicRecall.IsSpellUsable
-                && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight
+                && mySettings.UseTotemicRecall && ObjectManager.GetNumberAttackPlayer() == 0
                 && TotemicRecallReady())
             {
                 TotemicRecall.Launch();
@@ -15968,7 +15968,7 @@ public class ShamanElemental
         }
 
         if (ObjectManager.Me.HealthPercent < 95 && HealingSurge.KnownSpell && HealingSurge.IsSpellUsable
-            && ObjectManager.GetNumberAttackPlayer() == 0 && !Fight.InFight && mySettings.UseHealingSurge)
+            && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             while (ObjectManager.Me.IsCast)
@@ -16609,7 +16609,7 @@ public class PriestShadow
 
     private void BuffLevitate()
     {
-        if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
             && (!Levitate.HaveBuff || LevitateTimer.IsReady))
         {
             Levitate.Launch();
@@ -16831,21 +16831,21 @@ public class PriestShadow
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
         {
             FlashHeal.Launch(false);
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
                  HymnofHope.KnownSpell
                  && HymnofHope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 && mySettings.UseHymnofHope)
         {
             HymnofHope.Launch(false);
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= mySettings.UseDispersionManaAtPercentage &&
+        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseDispersionManaAtPercentage &&
                  ObjectManager.GetNumberAttackPlayer() == 0
                  && Dispersion.KnownSpell && Dispersion.IsSpellUsable && mySettings.UseDispersionMana)
         {
@@ -17393,7 +17393,7 @@ public class PriestDiscipline
 
     private void BuffLevitate()
     {
-        if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
             && (!Levitate.HaveBuff || LevitateTimer.IsReady))
         {
             Levitate.Launch();
@@ -17576,7 +17576,7 @@ public class PriestDiscipline
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
         {
@@ -17590,7 +17590,7 @@ public class PriestDiscipline
             InnerFocus.Launch();
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
                  HymnofHope.KnownSpell
                  && HymnofHope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 &&
                  mySettings.UseHymnofHope)
@@ -18116,7 +18116,7 @@ public class PriestHoly
 
     private void BuffLevitate()
     {
-        if (!Fight.InFight && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
+        if (ObjectManager.GetNumberAttackPlayer() == 0 && Levitate.KnownSpell && Levitate.IsSpellUsable && mySettings.UseLevitate
             && (!Levitate.HaveBuff || LevitateTimer.IsReady))
         {
             Levitate.Launch();
@@ -18308,7 +18308,7 @@ public class PriestHoly
             return;
         }
 
-        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage && !Fight.InFight &&
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealNonCombatAtPercentage &&
             ObjectManager.GetNumberAttackPlayer() == 0
             && FlashHeal.KnownSpell && FlashHeal.IsSpellUsable && mySettings.UseFlashHealNonCombat)
         {
@@ -18322,7 +18322,7 @@ public class PriestHoly
             DivineHymn.Launch();
             return;
         }
-        else if (!Fight.InFight && ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
                  HymnofHope.KnownSpell
                  && HymnofHope.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() == 0 &&
                  mySettings.UseHymnofHope)
@@ -23937,7 +23937,7 @@ public class HunterMarksmanship
         }
 
         if (mySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+            && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Camouflage.Launch();
             return;
@@ -24111,7 +24111,7 @@ public class HunterMarksmanship
         }
         else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
                  && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             FeedPet.Launch();
             return;
@@ -24773,7 +24773,7 @@ public class HunterBeastMastery
         }
 
         if (mySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+            && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Camouflage.Launch();
             return;
@@ -24963,7 +24963,7 @@ public class HunterBeastMastery
         }
         else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
                  && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             FeedPet.Launch();
             return;
@@ -25664,7 +25664,7 @@ public class HunterSurvival
         }
 
         if (mySettings.UseCamouflage && Camouflage.KnownSpell && Camouflage.IsSpellUsable && !Camouflage.HaveBuff
-            && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+            && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             Camouflage.Launch();
             return;
@@ -25838,7 +25838,7 @@ public class HunterSurvival
         }
         else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
                  && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !Fight.InFight && ObjectManager.GetNumberAttackPlayer() == 0)
+                 && ObjectManager.GetNumberAttackPlayer() == 0)
         {
             FeedPet.Launch();
             return;
