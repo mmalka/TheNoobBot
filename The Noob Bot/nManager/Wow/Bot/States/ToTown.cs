@@ -137,7 +137,6 @@ namespace nManager.Wow.Bot.States
             {
                 if (_useMollE)
                 {
-                    MovementManager.StopMove();
                     MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(2000);
@@ -172,7 +171,6 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
-                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -222,7 +220,6 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
-                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -249,21 +246,18 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    MovementManager.StopMove();
                     var npcA = DoSpawnRobot("74A", Npc.NpcType.Repair);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
-                    MovementManager.StopMove();
                     var npcG = DoSpawnRobot("110G", Npc.NpcType.Repair);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
-                    MovementManager.StopMove();
                     var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Repair);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
@@ -284,7 +278,6 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_travelersTundraMammoth.IsSpellUsable)
                     {
-                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _travelersTundraMammoth.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -334,7 +327,6 @@ namespace nManager.Wow.Bot.States
                 {
                     if (_grandExpeditionYak.IsSpellUsable)
                     {
-                        MovementManager.StopMove();
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
@@ -359,21 +351,18 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    MovementManager.StopMove();
                     var npcA = DoSpawnRobot("74A", Npc.NpcType.Vendor);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
-                    MovementManager.StopMove();
                     var npcG = DoSpawnRobot("110G", Npc.NpcType.Vendor);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
-                    MovementManager.StopMove();
                     var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Vendor);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
