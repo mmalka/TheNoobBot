@@ -1107,7 +1107,7 @@
       <Id>9252</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <PickUp>15942</PickUp>
       <TurnIn>15942</TurnIn>
@@ -1148,7 +1148,7 @@
       <Id>9254</Id>
       <RaceMask>33555378</RaceMask>
       <MinLevel>7</MinLevel>
-      <MaxLevel>12</MaxLevel>
+      <MaxLevel>14</MaxLevel>
       <QuestLevel>9</QuestLevel>
       <PickUp>16210</PickUp>
       <TurnIn>15402</TurnIn>
@@ -1885,6 +1885,9 @@
       <MinLevel>8</MinLevel>
       <MaxLevel>13</MaxLevel>
       <QuestLevel>10</QuestLevel>
+      <NeedQuestCompletedId>
+        <int>9252</int>
+      </NeedQuestCompletedId>
       <NeedQuestNoCompletedId>
         <int>8490</int>
       </NeedQuestNoCompletedId>
