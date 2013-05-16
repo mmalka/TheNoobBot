@@ -1183,7 +1183,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) != 0x20 && (MaxHealth > 1 ? Health > 1 : Health > 0);
+                    return !GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead) &&
+                           (MaxHealth > 1 ? Health > 1 : Health > 0);
                 }
                 catch (Exception e)
                 {
@@ -1202,7 +1203,7 @@ namespace nManager.Wow.ObjectManager
                     if (IsNpcQuestGiver)
                         return false;
                     return (Health <= 0 || Health == 0.01 ||
-                            GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags) == 0x20) ||
+                           GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)) ||
                            (Health == 1 && GetMove);
                 }
                 catch (Exception e)
@@ -1219,51 +1220,43 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags);
-                    if (dynFlags == 13 || dynFlags == 1)
-                        return true;
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Lootable);
                 }
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > IsLootable: " + e);
                     return false;
                 }
-                return false;
             }
         }
 
-        public bool IsTagged
+        public bool IsTapped
         {
             get
             {
                 try
                 {
-                    var dynFlags = GetDescriptor<Int32>(Descriptors.UnitFields.DynamicFlags);
-                    if (dynFlags == 4)
-                        return true;
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Tapped);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTagged: " + e);
+                    Logging.WriteError("WoWUnit > IsTapped: " + e);
                     return false;
                 }
-                return false;
             }
         }
 
-        public bool IsTaggedByMe
+        public bool IsTappedByMe
         {
             get
             {
                 try
                 {
-                    if (base.Guid == ObjectManager.Me.Target)
-                        return true;
-                    return false;
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.TappedByMe);
                 }
                 catch (Exception e)
                 {
-                    Logging.WriteError("WoWUnit > IsTaggedByMe: " + e);
+                    Logging.WriteError("WoWUnit > IsTappedByMe: " + e);
                     return false;
                 }
             }
@@ -1428,8 +1421,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x4000000);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Skinnable);
                 }
                 catch (Exception e)
                 {
@@ -1445,8 +1437,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x00002000);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Silenced);
+
                 }
                 catch (Exception e)
                 {
@@ -1462,8 +1454,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x00040000);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Stunned);
                 }
                 catch (Exception e)
                 {
@@ -1479,8 +1470,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x00400000);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Confused);
                 }
                 catch (Exception e)
                 {
@@ -1512,8 +1502,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00004000);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1529,8 +1518,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00001000);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanRepair);
                 }
                 catch (Exception e)
                 {
@@ -1546,8 +1534,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00000002);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver);
                 }
                 catch (Exception e)
                 {
@@ -1563,8 +1550,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00000080);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Vendor);
                 }
                 catch (Exception e)
                 {
@@ -1580,8 +1566,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00010000);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Innkeeper);
                 }
                 catch (Exception e)
                 {
@@ -1597,8 +1582,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00000200);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SellsFood);
                 }
                 catch (Exception e)
                 {
@@ -1614,8 +1598,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.NpcFlags);
-                    return Convert.ToBoolean(flags & 0x00000010);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanTrain);
                 }
                 catch (Exception e)
                 {
@@ -1663,8 +1646,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x0000800);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PetInCombat);
                 }
                 catch (Exception e)
                 {
@@ -1690,8 +1672,7 @@ namespace nManager.Wow.ObjectManager
                             }
                         }
                     }
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x0080000) && !IsDead;
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat);
                 }
                 catch (Exception e)
                 {
@@ -1774,8 +1755,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x1000);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PvPFlagged);
                 }
                 catch (Exception e)
                 {
@@ -1791,8 +1771,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var flags = GetDescriptor<Int32>(Descriptors.UnitFields.Flags);
-                    return Convert.ToBoolean(flags & 0x0000008);
+                   return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
                 }
                 catch (Exception e)
                 {
@@ -1932,7 +1911,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return ((GetDescriptor<uint>(Descriptors.UnitFields.DynamicFlags) & 2) != 0);
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.TrackUnit);
                 }
                 catch (Exception e)
                 {

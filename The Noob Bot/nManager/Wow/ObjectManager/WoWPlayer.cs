@@ -161,7 +161,6 @@ namespace nManager.Wow.ObjectManager
                 {
                     bool petAttack = false;
                     bool isdead = false;
-                    var flags = GetDescriptor<Int32>((uint) Descriptors.UnitFields.Flags);
                     try
                     {
                         if (GetBaseAddress == ObjectManager.Me.GetBaseAddress)
@@ -173,7 +172,7 @@ namespace nManager.Wow.ObjectManager
                                     !ObjectManager.Pet.IsDead)
                                     petAttack = true;
 
-                            if (Convert.ToBoolean(flags & 0x0080000) && !isdead)
+                            if (!isdead && GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat))
                                 if (ObjectManager.GetNumberAttackPlayer() > 0)
                                     return true;
                                 else
@@ -184,7 +183,7 @@ namespace nManager.Wow.ObjectManager
                     {
                         Logging.WriteError("WoWPlayer > InCombat#1: " + e);
                     }
-                    return ((Convert.ToBoolean(flags & 0x0080000) || petAttack) && !isdead);
+                    return (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat) || petAttack) && !isdead;
                 }
                 catch (Exception e)
                 {
@@ -343,7 +342,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (Guid == ObjectManager.Me.Guid) return IsDeadMe;
                     return (Health <= 0 || Health == 0.01 ||
-                            GetDescriptor<Int32>((uint) Descriptors.UnitFields.DynamicFlags) == 0x20);
+                           (GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)));
                 }
                 catch (Exception e)
                 {
