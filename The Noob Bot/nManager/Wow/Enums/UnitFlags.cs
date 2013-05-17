@@ -34,6 +34,15 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
+    public enum UnitFlags2 : int
+    {
+        None = 0,
+        FeignDeath = 0x1,
+        NoModel = 0x2,
+        ForceAutoRunForward = 0x40,
+    }
+
+    [Flags]
     public enum UnitNPCFlags : int
     {
         None = 0,
