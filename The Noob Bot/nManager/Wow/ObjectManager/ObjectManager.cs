@@ -1078,7 +1078,7 @@ namespace nManager.Wow.ObjectManager
         public static WoWUnit GetUnitInAggroRange()
         {
             foreach (var u in GetObjectWoWUnit())
-                if (u.IsValid && u.IsAlive && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.75f))
+                if (u.IsValid && u.IsAlive && !u.NotAttackable && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.75f))
                     return new WoWUnit(u.GetBaseAddress);
             return null;
         }

@@ -1781,6 +1781,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool NotAttackable
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.NotAttackable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > NotAttackable: " + e);
+                    return false;
+                }
+            }
+        }
+
         public ulong TransportGuid
         {
             get
