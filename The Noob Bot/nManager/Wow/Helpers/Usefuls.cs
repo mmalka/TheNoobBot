@@ -753,6 +753,14 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool IsCompletedAchievement(int achievementId)
+        {
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString("_, _, _, mycheck = GetAchievementInfo(" + achievementId + "); if mycheck then " + randomString + "=\"1\" else " + randomString + "=\"0\" end");
+            string ret = Lua.GetLocalizedText(randomString);
+            return ret == "1";
+        }
+
         private static readonly Object ThisLock = new Object();
         private static readonly Timer AfkTimer = new Timer(500);
         private static string _key;

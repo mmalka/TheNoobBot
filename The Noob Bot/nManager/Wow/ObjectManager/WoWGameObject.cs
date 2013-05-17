@@ -10,6 +10,17 @@ namespace nManager.Wow.ObjectManager
 {
     public class WoWGameObject : WoWObject
     {
+        public enum GameObjectFlags : int
+        {
+            GO_FLAG_IN_USE = 0x00000001,            //disables interaction while animated
+            GO_FLAG_LOCKED = 0x00000002,            //require key, spell, event, etc to be opened. Makes "Locked" appear in tooltip
+            GO_FLAG_INTERACT_COND = 0x00000004,     //cannot interact (condition to interact)
+            GO_FLAG_TRANSPORT = 0x00000008,         //any kind of transport? Object can transport (elevator, boat, car)
+            GO_FLAG_NO_INTERACT = 0x00000010,       //players cannot interact with this go
+            GO_FLAG_NODESPAWN = 0x00000020,         //never despawn, typically for doors, they just change state
+            GO_FLAG_TRIGGERED = 0x00000040,         //typically, summoned objects. Triggered by spell or other events
+        };
+
         public WoWGameObject(uint address)
             : base(address)
         {
@@ -21,7 +32,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<ulong>((uint) Descriptors.GameObjectFields.CreatedBy);
+                    return GetDescriptor<ulong>(Descriptors.GameObjectFields.CreatedBy);
                 }
                 catch (Exception e)
                 {
@@ -212,6 +223,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public GameObjectFlags GOFlags
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<GameObjectFlags>(Descriptors.GameObjectFields.Flags);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("GameObjectFields > Flags: " + e);
+                }
+                return 0;
+            }
+        }
+
         public uint LockEntry
         {
             get
@@ -220,15 +247,15 @@ namespace nManager.Wow.ObjectManager
                 {
                     switch (GOType)
                     {
-                        case WoWGameObjectType.Door: // 0
-                        case WoWGameObjectType.Button: // 1
+                        case WoWGameObjectType.Door:        // 0
+                        case WoWGameObjectType.Button:      // 1
                             return Data1;
-                        case WoWGameObjectType.Questgiver: // 2
-                        case WoWGameObjectType.Chest: // 3
-                        case WoWGameObjectType.Trap: // 6  This lock is generaly a check for DISARM_TRAP capacity
-                        case WoWGameObjectType.Goober: // 10
-                        case WoWGameObjectType.FlagStand: // 24
-                        case WoWGameObjectType.FlagDrop: // 26
+                        case WoWGameObjectType.Questgiver:  // 2
+                        case WoWGameObjectType.Chest:       // 3
+                        case WoWGameObjectType.Trap:        // 6  This lock is generaly a check for DISARM_TRAP capacity
+                        case WoWGameObjectType.Goober:      // 10
+                        case WoWGameObjectType.FlagStand:   // 24
+                        case WoWGameObjectType.FlagDrop:    // 26
                             return Data0;
                         default:
                             return 0;
@@ -263,8 +290,8 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                    //    return SkillLine.Lockpicking;
+                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                //    return SkillLine.Lockpicking;
                 default:
                     break;
             }
@@ -275,6 +302,10 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
+                if (GOFlags.HasFlag(GameObjectFlags.GO_FLAG_IN_USE) ||
+                    GOFlags.HasFlag(GameObjectFlags.GO_FLAG_INTERACT_COND))
+                    return false;
+
                 if (nManagerSetting.CurrentSetting.DontHarvestTheFollowingObjects.Count > 0)
                 {
                     int entryid = 0;
@@ -307,7 +338,10 @@ namespace nManager.Wow.ObjectManager
                             case WoWGameObjectLockKeyType.LOCK_KEY_SKILL: // Do we have the skill ?
                                 SkillLine skill = SkillByLockType((WoWGameObjectLockType) Row.Record.LockType[j]);
                                 if (skill == SkillLine.None) // Lock Type unsupported by now
+                                {
+                                    //Logging.WriteDebug("GameObject \"" + Name + "\" (ID " + Entry + ", Type " + GOType + (GOType == WoWGameObjectType.Goober ? ", Quest: " + Data1 : "") + (GOType == WoWGameObjectType.Chest ? ", Quest: " + Data8 : "") + ", Lock " + LockEntry + ") has a SKILL LockType " + Row.Record.LockType[j] + " which is not supported");
                                     return false;
+                                }
                                 // Most of quest chests but also treasures
                                 if (skill == SkillLine.Free)
                                     break;
@@ -340,14 +374,14 @@ namespace nManager.Wow.ObjectManager
                                 int bonus = 0;
                                 if (skill == SkillLine.Herbalism)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(85663) > 0) // Herbalist's Spade
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(85663) > 0)    // Herbalist's Spade
                                         bonus = 10;
                                 }
                                 else if (skill == SkillLine.Mining)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(2901) > 0)     // Mining pick
                                         bonus = 10;
                                 }
                                 var currentSkillLevel = Skill.GetValue(skill);
@@ -380,10 +414,12 @@ namespace nManager.Wow.ObjectManager
                     if (Data8 != 0 && !Quest.GetLogQuestId().Contains((int) Data8))
                         return false; // Quest check
 
-                    if (Entry == 210565 || Entry == 214945)
-                        return true; // Hardcoding for Dark Soil & Onyx Egg
+                    // Refuse Dark Soil if we are below level 90 or we comleted achievement "Friends on the Farm"
+                    if (Entry == 210565 && (ObjectManager.Me.Level  < 90 || Usefuls.IsCompletedAchievement(6552)))
+                        return false;
 
-                    return false; // disable everything else for the moment
+                    //if (Entry == 214945) // Onyx Egg. Maybe we should disabled them when exalted with Cloud Serpents
+                    //    return false;
                 }
                 return true;
             }
