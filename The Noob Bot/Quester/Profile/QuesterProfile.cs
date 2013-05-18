@@ -113,6 +113,7 @@ namespace Quester.Profile
         public string ScriptConditionIsComplete = "";
         internal bool IsObjectiveCompleted = false;
         public bool CanPullUnitsAlreadyInFight = nManagerSetting.CurrentSetting.CanPullUnitsAlreadyInFight;
+        public bool IgnoreQuestCompleted = false;
 
         // Use Item
         public int UseItemId = 0;

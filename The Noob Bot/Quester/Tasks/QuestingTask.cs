@@ -104,13 +104,24 @@ namespace Quester.Tasks
             SelectNextQuestObjective();
         }
 
+        public static bool AllForcedObjectiveComplete()
+        {
+            foreach (QuestObjective obj in CurrentQuest.Objectives)
+            {
+                QuestObjective objective = obj;
+                if (objective.IgnoreQuestCompleted && !QuestObjectiveIsFinish(ref objective))
+                    return false;
+            }
+            return true;
+        }
+
         public static bool QuestObjectiveIsFinish(ref QuestObjective questObjective)
         {
             if (questObjective == null)
                 return true;
 
             // shortcut since we do objective one by one, for kill it can be completed before we do them all
-            if (Quest.GetLogQuestIsComplete(CurrentQuest.Id))
+            if (!questObjective.IgnoreQuestCompleted && Quest.GetLogQuestIsComplete(CurrentQuest.Id))
                 return true;
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)

@@ -76,7 +76,7 @@ namespace Quester.Bot
 
             // Need PickUp or TurnIn
             if (QuestingTask.CurrentQuest.Id != -1 &&
-                (Quest.GetLogQuestIsComplete(QuestingTask.CurrentQuest.Id) ||
+                ((Quest.GetLogQuestIsComplete(QuestingTask.CurrentQuest.Id) && QuestingTask.AllForcedObjectiveComplete()) ||
                  QuestingTask.CurrentQuest.Objectives.Count <= 0) &&
                 Quest.GetLogQuestId().Contains(QuestingTask.CurrentQuest.Id) &&
                 QuestingTask.CurrentQuest.ScriptConditionIsFinish.Replace(" ", "").Length <= 0) // TurnIn
