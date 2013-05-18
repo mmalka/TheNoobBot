@@ -7931,7 +7931,8 @@ public class WarlockDestruction
             }
         }
 
-        if (mySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable)
+        if (mySettings.UseConflagrate && Conflagrate.KnownSpell && Conflagrate.IsHostileDistanceGood && Conflagrate.IsSpellUsable && ObjectManager.Me.BurningEmbers < 31
+            && ObjectManager.Me.BuffStack(117828) < 1)
         {
             Conflagrate.Launch();
             return;
@@ -7944,13 +7945,13 @@ public class WarlockDestruction
             return;
         }
         else if (ObjectManager.Target.HealthPercent < 20 && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
-            && !ObjectManager.Me.HaveBuff(117828) && mySettings.UseShadowburn)
+                 && mySettings.UseShadowburn)
         {
             Shadowburn.Launch();
             return;
         }
         else if (mySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable
-                && !ObjectManager.Me.HaveBuff(117828))
+                 && (!ObjectManager.Me.HaveBuff(117828) || ObjectManager.Me.HaveBuff(113858)))
         {
             ChaosBolt.Launch();
             return;
