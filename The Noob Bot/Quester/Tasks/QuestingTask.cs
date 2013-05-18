@@ -82,8 +82,7 @@ namespace Quester.Tasks
                     if (Script.Run(CurrentQuest.Objectives[_currentQuestObjectiveId].ScriptCondition))
                         // Script condition
                     {
-                        CurrentQuestObjective =
-                            CurrentQuest.Objectives[_currentQuestObjectiveId];
+                        CurrentQuestObjective = CurrentQuest.Objectives[_currentQuestObjectiveId];
                         break;
                     }
                 }
@@ -249,6 +248,16 @@ namespace Quester.Tasks
             // KILL MOB
             if (questObjective.Objective == Objective.KillMob)
             {
+                // Count mobs killed by the defense system
+                List<int> entryList = questObjective.Entry;
+                int alreadyKilled = Quest.KilledMobsToCount.FindAll(delegate(int val) { return entryList.Contains(val); }).Count;
+                if (alreadyKilled > 0)
+                {
+                    questObjective.CurrentCount += alreadyKilled;
+                    Quest.KilledMobsToCount.RemoveAll(delegate(int val) { return entryList.Contains(val); });
+                    return;
+                }
+
                 WoWUnit wowUnit =
                     ObjectManager.GetNearestWoWUnit(
                         ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
@@ -271,7 +280,10 @@ namespace Quester.Tasks
                     else if (wowUnit.IsDead)
                     {
                         Statistics.Kills++;
-                        questObjective.CurrentCount++;
+                        if (!wowUnit.IsTapped || (wowUnit.IsTapped && wowUnit.IsTappedByMe))
+                        {
+                            questObjective.CurrentCount++;
+                        }
                         Thread.Sleep(Usefuls.Latency + 1000);
                         while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
                                ObjectManager.GetUnitAttackPlayer().Count <= 0)
@@ -1023,6 +1035,7 @@ namespace Quester.Tasks
                             }
                         }
                     }
+                    Quest.KilledMobsToCount.Clear();
                 }
                 if (turnIn)
                 {

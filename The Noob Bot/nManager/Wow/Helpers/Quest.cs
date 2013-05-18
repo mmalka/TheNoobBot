@@ -11,6 +11,7 @@ namespace nManager.Wow.Helpers
     public class Quest
     {
         public static List<int> FinishedQuestSet = new List<int>();
+        public static List<int> KilledMobsToCount = new List<int>();
 
         public static bool GetQuestCompleted(List<int> qList)
         {

@@ -70,10 +70,18 @@ namespace nManager.Wow.Bot.States
             MovementManager.StopMove();
             MovementManager.StopMove();
             Logging.Write("Player Attacked by " + _unit.Name + " (lvl " + _unit.Level + ")");
-            Fight.StartFight(_unit.Guid);
-            if (_unit.IsDead)
+            ulong UnkillableMob = Fight.StartFight(_unit.Guid);
+            if (!_unit.IsDead && UnkillableMob != 0)
+            {
+                Logging.Write("Blacklisting " + _unit.Name);
+                nManagerSetting.AddBlackList(UnkillableMob, 2 * 60 * 1000); // 2 minutes
+            }
+            else if (_unit.IsDead)
             {
                 Statistics.Kills++;
+                if (Products.Products.ProductName == "Quester" && (!_unit.IsTapped || (_unit.IsTapped && _unit.IsTappedByMe)))
+                    Quest.KilledMobsToCount.Add(_unit.Entry); // we may update a quest requiring killing this unit
+
                 Thread.Sleep(Usefuls.Latency + 800);
                 while (!ObjectManager.ObjectManager.Me.IsMounted && ObjectManager.ObjectManager.Me.InCombat &&
                        ObjectManager.ObjectManager.GetUnitAttackPlayer().Count <= 0)
