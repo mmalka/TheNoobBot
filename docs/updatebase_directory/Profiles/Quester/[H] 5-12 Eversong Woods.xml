@@ -1380,13 +1380,15 @@
       </NeedQuestCompletedId>
       <PickUp>44036</PickUp>
       <TurnIn>16191</TurnIn>
-      <Objectives> <!-- We can't use Flight Path yet, but it's not a step so we can do it by walking. -->
-        <!--<QuestObjective>
-          <Objective>UseFlightPath</Objective> 
-          <FlightPathDestination>XXXXX</FlightPathDestination> --> <!-- probably a px, py ?? -->
-          <!-- <EntryInteractWith>44036</EntryInteractWith>
-          <WaitMs>31000</WaitMs> --> <!-- Time to get to Silvermoon (30.7sec exactly) -->
-        <!-- </QuestObjective> -->
+      <Objectives>
+        <QuestObjective>
+          <Objective>UseFlightPath</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <FlightDestinationX>0.59152400493622</FlightDestinationX>
+          <FlightDestinationY>0.81615418195724</FlightDestinationY>
+          <EntryInteractWith>44036</EntryInteractWith>
+          <WaitMs>31000</WaitMs> <!-- Time to get to Silvermoon (30.7sec exactly) -->
+        </QuestObjective>
       </Objectives>
     </Quest>
 
@@ -1418,13 +1420,15 @@
       </NeedQuestCompletedId>
       <PickUp>16192</PickUp>
       <TurnIn>16261</TurnIn>
-      <Objectives> <!-- We can't use Flight Path yet, but it's not a step so we can do it by walking. -->
-        <!--<QuestObjective>
+      <Objectives>
+        <QuestObjective>
           <Objective>UseFlightPath</Objective> 
-          <FlightPathDestination>XXXXX</FlightPathDestination> --> <!-- probably a px, py ?? -->
-          <!-- <EntryInteractWith>44036</EntryInteractWith>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
+          <FlightDestinationX>0.57375419139862</FlightDestinationX>
+          <FlightDestinationY>0.79429793357849</FlightDestinationY>
+          <EntryInteractWith>16192</EntryInteractWith>
           <WaitMs>33000</WaitMs> --> <!-- Time to get to Fairbreeze Village (32.5sec exactly) -->
-        <!-- </QuestObjective> -->
+        </QuestObjective>
       </Objectives>
     </Quest>
 
