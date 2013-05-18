@@ -143,6 +143,10 @@ namespace Quester.Profile
         // Apply buff from item AOE
         public int BuffId = 0;
         public int BuffCount = 0;
+
+        // Use taxi
+        public string FlightDestinationX = "";
+        public string FlightDestinationY = "";
     }
 
     [Serializable]
@@ -161,9 +165,10 @@ namespace Quester.Profile
         PressKey,
         UseItem,
         TurnInQuest,
-        UseSpell,
+        UseFlightPath,
         UseItemAOE,
         UseRuneForge,
+        UseSpell,
         UseSpellAOE,
         UseVehicle,
         Wait,

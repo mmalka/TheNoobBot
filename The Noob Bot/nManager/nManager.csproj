@@ -217,6 +217,7 @@
     <Compile Include="Wow\Helpers\Smelting.cs" />
     <Compile Include="Wow\Helpers\SpellManager.cs" />
     <Compile Include="Wow\Helpers\Talent.cs" />
+    <Compile Include="Wow\Helpers\Taxi.cs" />
     <Compile Include="Wow\Helpers\TraceLine.cs" />
     <Compile Include="Wow\Helpers\Tracker.cs" />
     <Compile Include="Wow\Helpers\Trainer.cs" />

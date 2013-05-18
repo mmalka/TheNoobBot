@@ -161,7 +161,7 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.InteractWith ||
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
                 questObjective.Objective == Objective.TurnInQuest || questObjective.Objective == Objective.PressKey || questObjective.Objective == Objective.UseItemAOE ||
-                questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge)
+                questObjective.Objective == Objective.UseSpellAOE || questObjective.Objective == Objective.UseRuneForge || questObjective.Objective == Objective.UseFlightPath)
             {
                 return questObjective.IsObjectiveCompleted;
             }
@@ -898,6 +898,39 @@ namespace Quester.Tasks
                         // Start Move
                         MovementManager.GoLoop(questObjective.PathHotspots);
                     }
+                }
+            }
+
+            // USE TAXI
+            if (questObjective.Objective == Objective.UseFlightPath)
+            {
+                Npc taxiMan = Quester.Bot.Bot.FindQuesterById(questObjective.EntryInteractWith);
+
+                uint baseAddress = MovementManager.FindTarget(ref taxiMan);
+                if (MovementManager.InMovement)
+                    return;
+
+                if (baseAddress != 0)
+                {
+                    Interact.InteractWith(baseAddress);
+                    Thread.Sleep(500 + Usefuls.Latency);
+                    if (!Taxi.IsTaxiWindowOpen())
+                    {
+                        Taxi.FindAndOpenTaxiGossip();
+                        Thread.Sleep(500 + Usefuls.Latency);
+                    }
+                    if (!Taxi.IsTaxiWindowOpen())
+                    {
+                        Logging.Write("There is a big problem !!!!!!");
+                        return;
+                    }
+                    Taxi.TakeTaxi(questObjective.FlightDestinationX, questObjective.FlightDestinationY);
+                    Thread.Sleep(questObjective.WaitMs);
+                    questObjective.IsObjectiveCompleted = true;
+                }
+                else
+                {
+                    return; // target not found
                 }
             }
         }
