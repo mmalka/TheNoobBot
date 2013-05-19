@@ -1715,6 +1715,7 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
+          <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <Position>
             <X>9286.038</X>
             <Y>-7916.087</Y>
