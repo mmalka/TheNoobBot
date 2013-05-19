@@ -5570,7 +5570,7 @@ public class MageFrost
         }
 
         if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
-            && ObjectManager.Me.Level < 10)
+            && ObjectManager.Me.Level < 12)
         {
             FrostfireBolt.Launch();
             return;
