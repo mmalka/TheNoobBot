@@ -167,7 +167,7 @@ namespace Quester.Tasks
             /* MOVE TO || WAIT || INTERACT WITH ||
              * USE SPELL || EQUIP ITEM || PICK UP QUEST ||
              * TURN IN QUEST || PRESS KEY || USE ITEM AOE ||
-             * USE SPELL AOE || USE RUNEFORGE
+             * USE SPELL AOE || USE RUNEFORGE || USE FLIGHT PATH
              */
             if (questObjective.Objective == Objective.MoveTo || questObjective.Objective == Objective.Wait || questObjective.Objective == Objective.InteractWith ||
                 questObjective.Objective == Objective.UseSpell || questObjective.Objective == Objective.EquipItem || questObjective.Objective == Objective.PickUpQuest ||
@@ -282,7 +282,10 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
-                    Logging.Write("Attacking Lvl " + wowUnit.Name);
+                    ulong addr = MovementManager.FindTarget(wowUnit, wowUnit.AggroDistance * 1.1f);
+                    if (MovementManager.InMovement)
+                        return;
+                    Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
                     ulong Unkillable = Fight.StartFight(wowUnit.Guid);
                     if (!wowUnit.IsDead && Unkillable != 0)
                     {
@@ -295,11 +298,11 @@ namespace Quester.Tasks
                         {
                             questObjective.CurrentCount++;
                         }
-                        Thread.Sleep(Usefuls.Latency + 1000);
+                        Thread.Sleep(1000 + Usefuls.Latency);
                         while (!ObjectManager.Me.IsMounted && ObjectManager.Me.InCombat &&
                                ObjectManager.GetUnitAttackPlayer().Count <= 0)
                         {
-                            Thread.Sleep(10);
+                            Thread.Sleep(100);
                         }
                         Fight.StopFight();
                     }
@@ -751,79 +754,68 @@ namespace Quester.Tasks
             // USE ITEM AOE
             if (questObjective.Objective == Objective.UseItemAOE)
             {
-                if (!MovementManager.InMovement || questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                var Target = new Npc
+                    {
+                        Entry = questObjective.EntryAOE,
+                        Position = questObjective.Position,
+                        Name = "Unknown",
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                        SelectGossipOption = questObjective.GossipOptionsInteractWith
+                    };
+                uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
+                if (MovementManager.InMovement)
+                    return;
+                //End target finding based on EntryAOE.
+                if (questObjective.EntryAOE <= 0 && baseAddress == 0)
                 {
-                    var Target = new Npc
-                        {
-                            Entry = questObjective.EntryAOE,
-                            Position = questObjective.Position,
-                            Name = "Unknown",
-                            ContinentId = (ContinentId) Usefuls.ContinentId,
-                            Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
-                            SelectGossipOption = questObjective.GossipOptionsInteractWith
-                        };
-                    uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
-                    if (MovementManager.InMovement)
-                        return;
-                    //End target finding based on EntryAOE.
-                    if (questObjective.EntryAOE <= 0 && baseAddress == 0)
-                    {
-                        ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
-                        Thread.Sleep(questObjective.WaitMs);
-                        questObjective.IsObjectiveCompleted = true;
-                    }
-                    else if (baseAddress != 0)
-                    {
-                        Interact.InteractWith(baseAddress);
-                        ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
-                        Thread.Sleep(questObjective.WaitMs);
-                        questObjective.IsObjectiveCompleted = true;
-                    }
-                    else
-                    {
-                        return; // target not found
-                    }
+                    ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                    Thread.Sleep(questObjective.WaitMs);
+                    questObjective.IsObjectiveCompleted = true;
+                }
+                else if (baseAddress != 0)
+                {
+                    Interact.InteractWith(baseAddress);
+                    ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                    Thread.Sleep(questObjective.WaitMs);
+                    questObjective.IsObjectiveCompleted = true;
+                }
+                else
+                {
+                    return; // target not found
                 }
             }
 
             // BUY ITEM
             if (questObjective.Objective == Objective.BuyItem)
             {
-                if (!MovementManager.InMovement || questObjective.Position.DistanceTo(ObjectManager.Me.Position) <= questObjective.Range)
+                var Target = new Npc
+                    {
+                        Entry = questObjective.EntryAOE,
+                        Position = questObjective.Position,
+                        Name = questObjective.Name,
+                        ContinentId = (ContinentId) Usefuls.ContinentId,
+                        Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
+                        SelectGossipOption = questObjective.GossipOptionsInteractWith
+                    };
+                uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
+                if (MovementManager.InMovement)
+                    return;
+                if (baseAddress != 0)
                 {
-                    var Target = new Npc
-                        {
-                            Entry = questObjective.EntryAOE,
-                            Position = questObjective.Position,
-                            Name = questObjective.Name,
-                            ContinentId = (ContinentId) Usefuls.ContinentId,
-                            Faction = ObjectManager.Me.PlayerFaction.ToLower() == "horde" ? Npc.FactionType.Horde : Npc.FactionType.Alliance,
-                            SelectGossipOption = questObjective.GossipOptionsInteractWith
-                        };
-                    uint baseAddress = MovementManager.FindTarget(ref Target, questObjective.Range > 5f ? questObjective.Range : 0);
-                    if (MovementManager.InMovement)
-                        return;
-                    if (baseAddress != 0)
+                    Interact.InteractWith(baseAddress);
+                    Thread.Sleep(500 + Usefuls.Latency);
+                    Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
+                    Thread.Sleep(questObjective.WaitMs == 0 ? 2000 + Usefuls.Latency : questObjective.WaitMs);
+                    if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
                     {
-                        Interact.InteractWith(baseAddress);
-                        Thread.Sleep(500 + Usefuls.Latency);
-                        Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
-                        Thread.Sleep(questObjective.WaitMs == 0 ? 1000 + Usefuls.Latency : questObjective.WaitMs);
-                        if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
-                        {
-                            nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetNameById(questObjective.CollectItemId));
-                            questObjective.IsObjectiveCompleted = true;
-                        }
-                    }
-                    else
-                    {
-                        return; // target not found
+                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetNameById(questObjective.CollectItemId));
+                        questObjective.IsObjectiveCompleted = true;
                     }
                 }
                 else
                 {
-                    MountTask.Mount();
-                    MovementManager.Go(PathFinder.FindPath(questObjective.Position));
+                    return; // target not found
                 }
             }
 

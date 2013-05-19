@@ -1078,8 +1078,17 @@ namespace nManager.Wow.ObjectManager
         public static WoWUnit GetUnitInAggroRange()
         {
             foreach (var u in GetObjectWoWUnit())
-                if (u.IsValid && u.IsAlive && !u.NotAttackable && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.75f))
-                    return new WoWUnit(u.GetBaseAddress);
+            {
+                if (u.IsValid && u.IsAlive && !u.NotAttackable && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.90f))
+                {
+                    bool r;
+                    List<Point> points = PathFinder.FindPath(u.Position, out r);
+                    if (!r)
+                        points.Add(u.Position);
+                    if (nManager.Helpful.Math.DistanceListPoint(points) < u.AggroDistance * 4)
+                        return new WoWUnit(u.GetBaseAddress);
+                }
+            }
             return null;
         }
 

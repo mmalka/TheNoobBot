@@ -85,8 +85,8 @@ namespace Quester.Profile
             else if (this.ItemPickUp != 0)
                 return -1;
 
-            Npc otherNpc = Quester.Bot.Bot.FindQuesterById(otherQuest.PickUp);
             Npc currentNpc = Quester.Bot.Bot.FindQuesterById(PickUp);
+            Npc otherNpc = Quester.Bot.Bot.FindQuesterById(otherQuest.PickUp);
             if (otherNpc.Position != null)
                 return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
             else

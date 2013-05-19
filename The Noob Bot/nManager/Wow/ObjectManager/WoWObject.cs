@@ -63,7 +63,7 @@ namespace nManager.Wow.ObjectManager
                 float i = 0;
                 foreach (var iUnit in units)
                 {
-                    if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= iUnit.AggroDistance &&
+                    if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= (iUnit.AggroDistance + 1f) &&
                         UnitRelation.GetReaction(ObjectManager.Me, iUnit) == Reaction.Hostile)
                     {
                         if (iUnit.MaxHealth > ObjectManager.Me.MaxHealth/2)

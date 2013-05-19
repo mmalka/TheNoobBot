@@ -115,26 +115,18 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public int AggroDistance
+        public float AggroDistance
         {
             get
             {
                 try
                 {
-                    int num = 20;
-                    if (ObjectManager.Me.Level > Level)
-                    {
-                        num -= Math.Abs((int) (ObjectManager.Me.Level - Level));
-                    }
-                    if (ObjectManager.Me.Level < Level)
-                    {
-                        num += Math.Abs((int) (ObjectManager.Me.Level - Level));
-                    }
+                    float num = 20 - (((int)ObjectManager.Me.Level - (int)Level) * 1.1f);
                     if (num < 5)
-                    {
                         num = 5;
-                    }
-                    return (num + 3);
+                    else if (num > 45)
+                        num = 45;
+                    return num;
                 }
                 catch (Exception e)
                 {

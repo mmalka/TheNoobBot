@@ -106,7 +106,7 @@ namespace Quester.Bot
                 if (QuestingTask.CurrentQuestObjective == null && QuestingTask.CurrentQuest.Objectives.Count > 0)
                     QuestingTask.ResetQuestObjective();
                 if (QuestingTask.CurrentQuestObjectiveIsFinish())
-                    QuestingTask.TurnInQuest();
+                    return;
                 else if (QuestingTask.CurrentQuestObjective == null)
                     QuestingTask.TurnInQuest();
                 else

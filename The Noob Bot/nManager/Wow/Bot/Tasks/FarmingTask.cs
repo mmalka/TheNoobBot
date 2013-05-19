@@ -15,6 +15,8 @@ namespace nManager.Wow.Bot.Tasks
 {
     public static class FarmingTask
     {
+        private static ulong _lastnode;
+
         public static void Pulse(IEnumerable<WoWGameObject> nodes)
         {
             try
@@ -213,7 +215,6 @@ namespace nManager.Wow.Bot.Tasks
                 nodes = nodes.OrderBy(x => x.GetDistance).ToList();
                 foreach (var node in nodes)
                 {
-                    MovementManager.StopMove();
                     if ((int) node.GetBaseAddress > 0)
                     {
                         var points = new List<Point>();
@@ -241,8 +242,6 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                             }
                             // fallback to ground mount or feet
-                            bool r;
-                            points = PathFinder.FindPath(node.Position, out r);
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
                                 nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
                                 nManagerSetting.CurrentSetting.UseGroundMount)
@@ -250,83 +249,48 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
                                     MountTask.Mount();
                             }
-                            if (!r)
-                                points.Add(new Point(node.Position));
-                            MovementManager.Go(points);
-                        }
-
-                        Logging.Write("Farm " + node.Name + " > " + node.Position);
-                        var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
-                        while ((int) node.GetBaseAddress > 0 && Products.Products.IsStarted &&
-                               !ObjectManager.ObjectManager.Me.IsDeadMe &&
-                               !(ObjectManager.ObjectManager.Me.InCombat &&
-                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                               !timer.IsReady)
-                        {
-                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) <= 4.0f)
+                            uint addr = MovementManager.FindTarget(node, 5.0f);
+                            if (_lastnode != node.Guid)
                             {
-                                MovementManager.StopMove();
-
-                                if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                    MountTask.DismountMount();
-
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                Thread.Sleep(800);
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                while (ObjectManager.ObjectManager.Me.GetMove)
-                                {
-                                    Thread.Sleep(50);
-                                }
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                Interact.InteractWith(node.GetBaseAddress);
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                Thread.Sleep(500);
-                                while (ObjectManager.ObjectManager.Me.IsCast)
-                                {
-                                    Thread.Sleep(50);
-                                }
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                Thread.Sleep(Usefuls.Latency + 1250);
-                                if (ObjectManager.ObjectManager.Me.InCombat)
-                                {
-                                    return;
-                                }
-                                if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
-                                    LootingTask.ConfirmOnBoPItems();
-                                Statistics.Farms++;
-                                nManagerSetting.AddBlackList(node.Guid, 1000*20); //60 * 5); // 20 sec instead of 5 min
-                                Logging.Write("Farm successful");
-                                if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
-                                    !ObjectManager.ObjectManager.Me.InCombat)
-                                    Elemental.AutoMakeElemental();
-                                return;
+                                _lastnode = node.Guid;
+                                Logging.Write("Farm " + node.Name + " > " + node.Position);
                             }
-
-                            Thread.Sleep(30);
+                            if (MovementManager.InMovement)
+                                return;
+                        }
+                        Thread.Sleep(500 + Usefuls.Latency);
+                        while (ObjectManager.ObjectManager.Me.GetMove)
+                        {
+                            Thread.Sleep(250);
+                        }
+                        Interact.InteractWith(node.GetBaseAddress);
+                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        {
+                            return;
+                        }
+                        Thread.Sleep(250);
+                        while (ObjectManager.ObjectManager.Me.IsCast)
+                        {
+                            Thread.Sleep(250);
                         }
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
-                            MountTask.DismountMount();
                             return;
                         }
-                        if (timer.IsReady)
-                            nManagerSetting.AddBlackList(node.Guid);
+                        Thread.Sleep(Usefuls.Latency + 1250);
+                        if (ObjectManager.ObjectManager.Me.InCombat)
+                        {
+                            return;
+                        }
+                        if (nManagerSetting.CurrentSetting.AutoConfirmOnBoPItems)
+                            LootingTask.ConfirmOnBoPItems();
+                        Statistics.Farms++;
+                        nManagerSetting.AddBlackList(node.Guid, 1000*20); //60 * 5); // 20 sec instead of 5 min
+                        Logging.Write("Farm successful");
+                        if (nManagerSetting.CurrentSetting.MakeStackOfElementalsItems &&
+                            !ObjectManager.ObjectManager.Me.InCombat)
+                            Elemental.AutoMakeElemental();
+                        return;
                     }
                     MovementManager.StopMove();
                     nManagerSetting.AddBlackList(node.Guid);

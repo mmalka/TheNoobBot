@@ -31,8 +31,10 @@ namespace nManager.Wow.Helpers
         private static bool _farm;
         private static Point _jumpOverAttempt = new Point();
         private static Point _distmountAttempt = new Point();
+        private static uint _cacheTargetAddress = 0;
 
         private static Timer _updatePathSpecialTimer = new Timer();
+        private static Timer _maxTimerForStuckDetection = new Timer();
 
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
@@ -1407,19 +1409,22 @@ namespace nManager.Wow.Helpers
 
         #region NPC/Object Finder
 
-        public static uint UpdateTarget(ref Npc Target)
+        public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {
             Random rand = new Random();
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
             WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+            asMoved = false;
             if (TargetIsNPC.IsValid)
             {
+                asMoved = Target.Position.DistanceTo(TargetIsNPC.Position) > 5;
                 Target.Position = TargetIsNPC.Position;
                 Target.Name = TargetIsNPC.Name;
                 return TargetIsNPC.GetBaseAddress;
             }
             else if (TargetIsObject.IsValid)
             {
+                asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 5;
                 Target.Position = TargetIsObject.Position;
                 Target.Name = TargetIsObject.Name;
                 return TargetIsObject.GetBaseAddress;
@@ -1427,24 +1432,40 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
+        public static uint FindTarget(WoWObject Object, float SpecialRange = 0)
+        {
+            Npc temp = new Npc { Entry = Object.Entry, Position = Object.Position, Name = Object.Name };
+            return FindTarget(ref temp, SpecialRange);
+        }
+
+        public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0)
+        {
+            Npc temp = new Npc { Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name };
+            return FindTarget(ref temp, SpecialRange);
+        }
+
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0)
         {
-            if (!InMovement)
-                Logging.Write("Initiate target finding, currently looking for: " + Target.Name + " (" + Target.Entry + ").");
-
             if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
 
-            uint baseaddress = UpdateTarget(ref Target);
+            bool patherResult, requiresUpdate;
+            uint baseAddress;
 
             // Normal "Go to destination code", launch the movement thread by calling Go(), then return
             if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
             {
-                List<Point> points = PathFinder.FindPath(Target.Position);
-                _updatePathSpecialTimer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
+                baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
+                _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                _cacheTargetAddress = baseAddress;
+                _updatePathSpecialTimer = new Timer(5000);
+                if (!patherResult)
+                    points.Add(Target.Position);
                 Go(points);
-                return 0;
+                return baseAddress;
             }
             // We are in movement and want to update the path if necessary
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
@@ -1452,25 +1473,44 @@ namespace nManager.Wow.Helpers
                 // Out of range of the position
                 if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
                 {
-                    if (_updatePathSpecialTimer.IsReady)
+                    baseAddress = UpdateTarget(ref Target, out requiresUpdate);
+                    if (baseAddress != 0 && baseAddress != _cacheTargetAddress)
                     {
-                        List<Point> points = PathFinder.FindPath(Target.Position);
-                        if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 50)
-                            _updatePathSpecialTimer = new Timer(5000);
-                        else
-                            _updatePathSpecialTimer = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 5000);
-                        Go(points);
-                        return 0;
+                        _cacheTargetAddress = baseAddress;
+                        requiresUpdate = true;
+                    }
+                    if (_updatePathSpecialTimer.IsReady || requiresUpdate)
+                    {
+                        _updatePathSpecialTimer = new Timer(5000);
+                        if (requiresUpdate)
+                        {
+                            List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
+                            if (!patherResult)
+                                points.Add(Target.Position);
+                            _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                            Go(points);
+                        }
+                        return baseAddress;
+                    }
+                    if (_maxTimerForStuckDetection.IsReady)
+                    {
+                        WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+                        WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
+                        if (TargetIsUnit.IsValid)
+                            nManager.nManagerSetting.AddBlackList(TargetIsUnit.Guid);
+                        else if (TargetIsObject.IsValid)
+                            nManager.nManagerSetting.AddBlackList(TargetIsObject.Guid);
+                        StopMove();
                     }
                 }
                 else
                 {
                     // Ready or not we are near enough of the target
                     StopMove();
-                    return baseaddress;
+                    return UpdateTarget(ref Target, out requiresUpdate);
                 }
             }
-            return baseaddress;
+            return UpdateTarget(ref Target, out requiresUpdate);
         }
 
         #endregion
