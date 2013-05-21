@@ -175,6 +175,14 @@
         }
 
         /// <summary>
+        ///   Fishing
+        /// </summary>
+        public enum Fishing
+        {
+            BobberHasMoved = 0xC4,
+        }
+
+        /// <summary>
         ///   Spell Book
         /// </summary>
         public enum SpellBook
