@@ -1494,7 +1494,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SpiritHealer);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.SpiritHealer);
                 }
                 catch (Exception e)
                 {
@@ -1510,7 +1510,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanRepair);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.CanRepair);
                 }
                 catch (Exception e)
                 {
@@ -1526,7 +1526,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.QuestGiver);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.QuestGiver);
                 }
                 catch (Exception e)
                 {
@@ -1542,7 +1542,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Vendor);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.Vendor);
                 }
                 catch (Exception e)
                 {
@@ -1558,7 +1558,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.Innkeeper);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.Innkeeper);
                 }
                 catch (Exception e)
                 {
@@ -1574,7 +1574,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.SellsFood);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.SellsFood);
                 }
                 catch (Exception e)
                 {
@@ -1590,7 +1590,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlags).HasFlag(UnitNPCFlags.CanTrain);
+                    return GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.CanTrain);
                 }
                 catch (Exception e)
                 {
