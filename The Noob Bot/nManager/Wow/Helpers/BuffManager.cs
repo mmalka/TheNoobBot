@@ -31,8 +31,8 @@ namespace nManager.Wow.Helpers
 
                     if (currentAura > 0)
                     {
-                        int spellId = Memory.WowMemory.Memory.ReadUInt(currentAura + (uint)Addresses.UnitBaseGetUnitAura.AuraSpellId);
-                        int stack = Memory.WowMemory.Memory.ReadUInt(currentAura + (uint)Addresses.UnitBaseGetUnitAura.AuraStack);
+                        int spellId = Memory.WowMemory.Memory.ReadInt(currentAura + (uint)Addresses.UnitBaseGetUnitAura.AuraSpellId);
+                        int stack = Memory.WowMemory.Memory.ReadInt(currentAura + (uint)Addresses.UnitBaseGetUnitAura.AuraStack);
                         if (spellId > 0 && buffId.Contains((uint)spellId))
                             return stack;
                     }
