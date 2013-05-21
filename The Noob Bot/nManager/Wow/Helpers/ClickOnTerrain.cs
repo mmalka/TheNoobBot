@@ -90,7 +90,7 @@ namespace nManager.Wow.Helpers
                         "push " + codeCaveStructClickOnTerrain,
                         "mov ebx, " +
                         (Memory.WowProcess.WowModule +
-                         (uint) Addresses.FunctionWow.Spell_C__HandleTerrainClick),
+                         (uint) Addresses.FunctionWow.Spell_C_HandleTerrainClick),
                         "call ebx",
                         "add esp, 0x4",
                         "@out:",
