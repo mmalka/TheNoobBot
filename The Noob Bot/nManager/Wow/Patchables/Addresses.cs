@@ -322,13 +322,12 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AURA_COUNT_1 = 0x10F8,
-            AURA_COUNT_2 = 0xDF8,
-            AURA_TABLE_1 = 0xDF8,
-            AURA_TABLE_2 = 0xDFC,
-            AURA_SIZE = 0x30,
-            AURA_SPELL_ID = 0x18,
-            AURA_STACK = 0x1D,
+            AuraCount = 0x300,
+            AuraTable1 = 0xDF8,
+            AuraTable2 = 0x4,
+            AuraSize = 0x30,
+            AuraSpellId = 0x18,
+            AuraStack = 0x1D, // Script_UnitBuff
         }
 
         /// <summary>
