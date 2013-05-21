@@ -1175,7 +1175,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return !GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead) &&
+                    return !GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead) &&
                            (MaxHealth > 1 ? Health > 1 : Health > 0);
                 }
                 catch (Exception e)
@@ -1195,7 +1195,7 @@ namespace nManager.Wow.ObjectManager
                     if (IsNpcQuestGiver)
                         return false;
                     return (Health <= 0 || Health == 0.01 ||
-                           GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)) ||
+                           GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)) ||
                            (Health == 1 && GetMove);
                 }
                 catch (Exception e)
@@ -1212,7 +1212,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Lootable);
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Lootable);
                 }
                 catch (Exception e)
                 {
@@ -1228,7 +1228,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.Tapped);
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Tapped);
                 }
                 catch (Exception e)
                 {
@@ -1244,7 +1244,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.TappedByMe);
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.TappedByMe);
                 }
                 catch (Exception e)
                 {
@@ -1919,7 +1919,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.DynamicFlags).HasFlag(UnitDynamicFlags.TrackUnit);
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.TrackUnit);
                 }
                 catch (Exception e)
                 {
@@ -1931,7 +1931,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var descriptor = GetDescriptor<uint>(Descriptors.UnitFields.DynamicFlags);
+                    var descriptor = GetDescriptor<uint>(Descriptors.ObjectFields.DynamicFlags);
                     long t;
                     if (value)
                     {
@@ -1945,7 +1945,7 @@ namespace nManager.Wow.ObjectManager
                     var descriptorsArray =
                         Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
                     var addressGD = descriptorsArray +
-                                    ((uint) Descriptors.UnitFields.DynamicFlags*Descriptors.multiplicator);
+                                    ((uint) Descriptors.ObjectFields.DynamicFlags*Descriptors.multiplicator);
                     Memory.WowMemory.Memory.WriteInt64(addressGD, t);
                 }
                 catch (Exception e)

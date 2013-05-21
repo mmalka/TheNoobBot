@@ -6,7 +6,7 @@
     public static class Descriptors
     {
         public const uint multiplicator = 4; // 4 or 1
-        public static readonly uint startDescriptors = 0x8;
+        public static readonly uint startDescriptors = 0x4;
 
         public enum ObjectFields
         {
@@ -14,8 +14,9 @@
             Data = 0x2,
             Type = 0x4,
             Entry = 0x5,
-            Scale = 0x6,
-            End = 0x7,
+            DynamicFlags = 0x6,
+            Scale = 0x7,
+            End = 0x8, // CGObjectData_Size
         }
 
         public enum ItemFields
@@ -35,7 +36,7 @@
             MaxDurability = ObjectFields.End + 58,
             CreatePlayedTime = ObjectFields.End + 59,
             ModifiersMask = ObjectFields.End + 60,
-            End = ObjectFields.End + 61,
+            End = ObjectFields.End + 61, // CGItemData_Size 
         }
 
         public enum ContainerFields
@@ -89,42 +90,42 @@
             PetNameTimestamp = ObjectFields.End + 67,
             PetExperience = ObjectFields.End + 68,
             PetNextLevelExperience = ObjectFields.End + 69,
-            DynamicFlags = ObjectFields.End + 70,
-            ModCastingSpeed = ObjectFields.End + 71,
-            ModSpellHaste = ObjectFields.End + 72,
-            ModHaste = ObjectFields.End + 73,
-            ModHasteRegen = ObjectFields.End + 74,
-            CreatedBySpell = ObjectFields.End + 75,
-            NpcFlags = ObjectFields.End + 76,
-            EmoteState = ObjectFields.End + 78,
-            Stats = ObjectFields.End + 79,
-            StatPosBuff = ObjectFields.End + 84,
-            StatNegBuff = ObjectFields.End + 89,
-            Resistances = ObjectFields.End + 94,
-            ResistanceBuffModsPositive = ObjectFields.End + 101,
-            ResistanceBuffModsNegative = ObjectFields.End + 108,
-            BaseMana = ObjectFields.End + 115,
-            BaseHealth = ObjectFields.End + 116,
-            ShapeshiftForm = ObjectFields.End + 117,
-            AttackPower = ObjectFields.End + 118,
-            AttackPowerModPos = ObjectFields.End + 119,
-            AttackPowerModNeg = ObjectFields.End + 120,
-            AttackPowerMultiplier = ObjectFields.End + 121,
-            RangedAttackPower = ObjectFields.End + 122,
-            RangedAttackPowerModPos = ObjectFields.End + 123,
-            RangedAttackPowerModNeg = ObjectFields.End + 124,
-            RangedAttackPowerMultiplier = ObjectFields.End + 125,
-            MinRangedDamage = ObjectFields.End + 126,
-            MaxRangedDamage = ObjectFields.End + 127,
-            PowerCostModifier = ObjectFields.End + 128,
-            PowerCostMultiplier = ObjectFields.End + 135,
-            MaxHealthModifier = ObjectFields.End + 142,
-            HoverHeight = ObjectFields.End + 143,
-            MinItemLevel = ObjectFields.End + 144,
-            MaxItemLevel = ObjectFields.End + 145,
-            WildBattlePetLevel = ObjectFields.End + 146,
-            BattlePetCompanionNameTimestamp = ObjectFields.End + 147,
-            End = ObjectFields.End + 148,
+            ModCastingSpeed = ObjectFields.End + 70,
+            ModSpellHaste = ObjectFields.End + 71,
+            ModHaste = ObjectFields.End + 72,
+            ModHasteRegen = ObjectFields.End + 73,
+            CreatedBySpell = ObjectFields.End + 74,
+            NpcFlags = ObjectFields.End + 75,
+            NpcFlagsUnk = ObjectFields.End + 76,
+            EmoteState = ObjectFields.End + 77,
+            Stats = ObjectFields.End + 78,
+            StatPosBuff = ObjectFields.End + 83,
+            StatNegBuff = ObjectFields.End + 88,
+            Resistances = ObjectFields.End + 93,
+            ResistanceBuffModsPositive = ObjectFields.End + 100,
+            ResistanceBuffModsNegative = ObjectFields.End + 107,
+            BaseMana = ObjectFields.End + 114,
+            BaseHealth = ObjectFields.End + 115,
+            ShapeshiftForm = ObjectFields.End + 116,
+            AttackPower = ObjectFields.End + 117,
+            AttackPowerModPos = ObjectFields.End + 118,
+            AttackPowerModNeg = ObjectFields.End + 119,
+            AttackPowerMultiplier = ObjectFields.End + 120,
+            RangedAttackPower = ObjectFields.End + 121,
+            RangedAttackPowerModPos = ObjectFields.End + 122,
+            RangedAttackPowerModNeg = ObjectFields.End + 123,
+            RangedAttackPowerMultiplier = ObjectFields.End + 124,
+            MinRangedDamage = ObjectFields.End + 125,
+            MaxRangedDamage = ObjectFields.End + 126,
+            PowerCostModifier = ObjectFields.End + 127,
+            PowerCostMultiplier = ObjectFields.End + 134,
+            MaxHealthModifier = ObjectFields.End + 141,
+            HoverHeight = ObjectFields.End + 142,
+            MinItemLevel = ObjectFields.End + 143,
+            MaxItemLevel = ObjectFields.End + 144,
+            WildBattlePetLevel = ObjectFields.End + 145,
+            BattlePetCompanionNameTimestamp = ObjectFields.End + 146,
+            End = ObjectFields.End + 147, // CGUnitData_Size
         }
 
         public enum PlayerFields
@@ -143,7 +144,7 @@
             VisibleItems = UnitFields.End + 761,
             PlayerTitle = UnitFields.End + 799,
             FakeInebriation = UnitFields.End + 800,
-            HomePlayerRealm = UnitFields.End + 801,
+            VirtualPlayerRealm = UnitFields.End + 801,
             CurrentSpecID = UnitFields.End + 802,
             TaxiMountAnimKitID = UnitFields.End + 803,
             CurrentBattlePetBreedQuality = UnitFields.End + 804,
@@ -158,10 +159,10 @@
             MaxTalentTiers = UnitFields.End + 1440,
             TrackCreatureMask = UnitFields.End + 1441,
             TrackResourceMask = UnitFields.End + 1442,
-            Expertise = UnitFields.End + 1443,
-            Local_combatRatingExpertise = UnitFields.End + 1444,
+            MainhandExpertise = UnitFields.End + 1443,
+            RangedExpertise = UnitFields.End + 1444,
             OffhandExpertise = UnitFields.End + 1445,
-            RangedExpertise = UnitFields.End + 1446,
+            CombatRatingExpertise = UnitFields.End + 1446,
             BlockPercentage = UnitFields.End + 1447,
             DodgePercentage = UnitFields.End + 1448,
             ParryPercentage = UnitFields.End + 1449,
@@ -218,7 +219,10 @@
             SummonedBattlePetGUID = UnitFields.End + 1817,
             OverrideSpellsID = UnitFields.End + 1819,
             LfgBonusFactionID = UnitFields.End + 1820,
-            End = UnitFields.End + 1821,
+            LootSpecID = UnitFields.End + 1821,
+            OverrideZonePVPType = UnitFields.End + 1822,
+            ItemLevelDelta = UnitFields.End + 1823,
+            End = UnitFields.End + 1824, // CGPlayerData_Size
         }
 
         public enum GameObjectFields
@@ -227,11 +231,11 @@
             DisplayID = ObjectFields.End + 2,
             Flags = ObjectFields.End + 3,
             ParentRotation = ObjectFields.End + 4,
-            AnimProgress = ObjectFields.End + 8,
-            FactionTemplate = ObjectFields.End + 9,
-            Level = ObjectFields.End + 10,
-            PercentHealth = ObjectFields.End + 11,
-            End = ObjectFields.End + 12,
+            FactionTemplate = ObjectFields.End + 8,
+            Level = ObjectFields.End + 9,
+            PercentHealth = ObjectFields.End + 10,
+            StateSpellVisualID = ObjectFields.End + 11,
+            End = ObjectFields.End + 12, // CGGameObjectData_Size
         }
 
         public enum DynamicObjectFields
@@ -241,7 +245,7 @@
             SpellID = ObjectFields.End + 3,
             Radius = ObjectFields.End + 4,
             CastTime = ObjectFields.End + 5,
-            End = ObjectFields.End + 6,
+            End = ObjectFields.End + 6, // CGDynamicObjectData_Size
         }
 
         public enum CorpseFields
