@@ -13,6 +13,7 @@
         TwinPeaks = 108, // Twin Peaks
         BattleforGilneas = 120, // Battle For Gilneas
         TempleofKotmogu = 699, // Temple of Kotmogu
-        SilvershardMines = 708 // Silvershard Mines
+        SilvershardMines = 708, // Silvershard Mines
+        DeepwindGorge = 754 // Deepwind Gorge
     }
 }

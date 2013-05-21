@@ -676,6 +676,9 @@
         ///<summary>MantidDungeon</summary>
         MantidDungeon = 1011,
 
+        ///<summary>GoldRushBG</summary>
+        GoldRushBG = 1011,
+
         ///<summary>MonkAreaScenario</summary>
         MonkAreaScenario = 1014,
 

@@ -72,13 +72,13 @@ namespace nManager.Wow.Enums
     public enum UnitDynamicFlags : int
     {
         None = 0,
-        Lootable = 0x1,
-        TrackUnit = 0x2,
-        Tapped = 0x4,
-        TappedByMe = 0x8,
-        SpecialInfo = 0x10,
-        Dead = 0x20,
-        ReferAFriendLinked = 0x40,
-        IsTappedByAllThreatList = 0x80,
+        Lootable = 0x2,
+        TrackUnit = 0x2, // not found
+        Tapped = 0x8,
+        TappedByMe = 0x10,
+        SpecialInfo = 0x10, // not found
+        Dead = 0x18,
+        ReferAFriendLinked = 0x40, // not found
+        IsTappedByAllThreatList = 0x100, // not found
     }
 }

@@ -209,6 +209,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public int GetDynamicFlags
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<Int32>((uint) Descriptors.ObjectFields.DynamicFlags);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWObject > Type: " + e);
+                    return 0;
+                }
+            }
+        }
+
         internal T GetDescriptor<T>(Descriptors.ObjectFields field) where T : struct
         {
             try

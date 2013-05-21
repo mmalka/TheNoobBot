@@ -7,8 +7,15 @@ namespace nManager.Wow.Helpers
 {
     public class Battleground
     {
+        public static void SetPVPRoles()
+        {
+            Lua.LuaDoString("SetPVPRoles(0, 0, 1);");
+            // Tank, Heal, DPS
+            // We need to allow the bot to heal in BG with a settings, then we can tick Heal as well.
+        }
         public static void JoinBattlegroundQueue(BattlegroundId id)
         {
+            SetPVPRoles();
             Lua.LuaDoString("JoinBattlefield(" + (uint) id + ");");
         }
 
@@ -119,6 +126,9 @@ namespace nManager.Wow.Helpers
 
                 case ContinentId.ValleyOfPower:
                     return BattlegroundId.TempleofKotmogu;
+
+                case ContinentId.GoldRushBG:
+                    return BattlegroundId.DeepwindGorge;
             }
             return BattlegroundId.None;
         }
