@@ -1195,7 +1195,7 @@ namespace nManager.Wow.ObjectManager
                     if (IsNpcQuestGiver)
                         return false;
                     return (Health <= 0 || Health == 0.01 ||
-                           GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)) ||
+                           (Health < 1 && MaxHealth > 1 && GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead))) ||
                            (Health == 1 && GetMove);
                 }
                 catch (Exception e)

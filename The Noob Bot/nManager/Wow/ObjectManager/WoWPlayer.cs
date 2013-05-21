@@ -342,7 +342,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (Guid == ObjectManager.Me.Guid) return IsDeadMe;
                     return (Health <= 0 || Health == 0.01 ||
-                           (GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)));
+                           (Health < 1 && MaxHealth > 1 && GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)));
                 }
                 catch (Exception e)
                 {
