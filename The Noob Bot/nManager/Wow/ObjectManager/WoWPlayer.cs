@@ -322,9 +322,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
-
-                    return (Health <= 0 || Health == 0.01 || Health == 1) || (PositionCorpse.X != 0 && PositionCorpse.Y != 0) || (HaveBuff(_ghostSpells));
+                   return (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
                 }
                 catch (Exception e)
                 {
@@ -340,9 +338,16 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (Guid == ObjectManager.Me.Guid) return IsDeadMe;
-                    return (Health <= 0 || Health == 0.01 ||
-                           (Health < 1 && MaxHealth > 1 && GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead)));
+                    if (!IsValid)
+                        return true;
+                    if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
+                    if (HaveBuff(_ghostSpells))
+                        return true;
+                    if (Health <= 0)
+                        return true;
+                    if (Guid == ObjectManager.Me.Guid && IsDeadMe) 
+                        return true;
+                    return false;
                 }
                 catch (Exception e)
                 {

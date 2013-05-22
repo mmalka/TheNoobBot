@@ -1175,8 +1175,13 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return !GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead) &&
-                           (MaxHealth > 1 ? Health > 1 : Health > 0);
+                    if (IsNpcQuestGiver)
+                        return true;
+                    if (MaxHealth > 1 ? Health > 1 : Health > 0)
+                        return true;
+                    if (Health > 0 && !Convert.ToBoolean((GetDynamicFlags >> 6) & 1))
+                        return true;
+                    return false;
                 }
                 catch (Exception e)
                 {
@@ -1192,11 +1197,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    if (IsNpcQuestGiver)
-                        return false;
-                    return (Health <= 0 || Health == 0.01 ||
-                           (Health < 1 && MaxHealth > 1 && GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead))) ||
-                           (Health == 1 && GetMove);
+                    if (!IsValid)
+                        return true;
+                    return !IsAlive;
                 }
                 catch (Exception e)
                 {

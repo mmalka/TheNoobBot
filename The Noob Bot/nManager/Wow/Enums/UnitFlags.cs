@@ -72,13 +72,13 @@ namespace nManager.Wow.Enums
     public enum UnitDynamicFlags : int
     {
         None = 0,
+        Invisible = 0x1,
         Lootable = 0x2,
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        SpecialInfo = 0x10, // not found // What is it ?
-        Dead = 0x18, // half working, so, not it.
-        ReferAFriendLinked = 0x40, // not found yet
-        IsTappedByAllThreatList = 0x100, // not found // What is it ?
+        SpecialInfo = 0x20, // IsDead too, but not always set by blizzard
+        ReferAFriendLinked = 0x80, // not found yet
+        IsTappedByAllThreatList = 0x100, // good flag but never set, the lua UnitIsTappedByAllThreatList is then fucked up as well.
     }
 }
