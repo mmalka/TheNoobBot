@@ -322,6 +322,13 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    if (!IsValid)
+                        return true;
+                    if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
+                    if (HaveBuff(_ghostSpells))
+                        return true;
+                    if (Health <= 0)
+                        return true;
                    return (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
                 }
                 catch (Exception e)
@@ -340,12 +347,12 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (!IsValid)
                         return true;
+                    if (Guid == ObjectManager.Me.Guid && IsDeadMe)
+                        return true;
                     if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
                     if (HaveBuff(_ghostSpells))
                         return true;
                     if (Health <= 0)
-                        return true;
-                    if (Guid == ObjectManager.Me.Guid && IsDeadMe) 
                         return true;
                     return false;
                 }

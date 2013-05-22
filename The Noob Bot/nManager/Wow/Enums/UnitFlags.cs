@@ -77,8 +77,8 @@ namespace nManager.Wow.Enums
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        SpecialInfo = 0x20, // IsDead too, but not always set by blizzard
-        ReferAFriendLinked = 0x80, // not found yet
-        IsTappedByAllThreatList = 0x100, // good flag but never set, the lua UnitIsTappedByAllThreatList is then fucked up as well.
+        SpecialInfo = 0x20, // Can be used to confirm a NPC is dead, but take care because it can pop on living creatures, must check Health !
+        ReferAFriendLinked = 0x80,
+        IsTappedByAllThreatList = 0x100, // Flag OK, but Blizzard broke the function, so it's not updated.
     }
 }
