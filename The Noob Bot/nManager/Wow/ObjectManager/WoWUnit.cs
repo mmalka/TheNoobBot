@@ -1175,6 +1175,8 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
+                    if (!IsValid)
+                        return false;
                     if (IsNpcQuestGiver)
                         return true;
                     if (MaxHealth > 1 ? Health > 1 : Health > 0)
