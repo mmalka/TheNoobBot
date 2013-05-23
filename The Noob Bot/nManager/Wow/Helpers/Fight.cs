@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 using Math = nManager.Helpful.Math;
@@ -68,7 +69,10 @@ namespace nManager.Wow.Helpers
                 }
                 if (TraceLine.TraceLineGo(targetNpc.Position)) // If obstacle
                 {
-                    List<Point> points = PathFinder.FindPath(targetNpc.Position);
+                    bool resultSucces;
+                    List<Point> points = PathFinder.FindPath(targetNpc.Position, out resultSucces);
+                    if (!resultSucces && !Usefuls.IsFlying && MountTask.GetMountCapacity() >= MountCapacity.Fly)
+                        MountTask.Mount();
                     MovementManager.Go(points);
                     timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 15000;
 

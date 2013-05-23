@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -463,6 +464,8 @@ public class DruidRestoration
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -1088,6 +1091,8 @@ public class PaladinHoly
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -1557,6 +1562,8 @@ public class ShamanRestoration
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -2333,6 +2340,8 @@ public class PriestDiscipline
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -2953,6 +2962,8 @@ public class PriestHoly
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
@@ -3605,6 +3616,8 @@ public class MonkMistweaver
                                 Heal.IsHealing = false;
                                 break;
                             }
+                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                                MountTask.DismountMount(false);
                             HealingFight();
                         }
                         else if (!ObjectManager.Me.IsCast)
