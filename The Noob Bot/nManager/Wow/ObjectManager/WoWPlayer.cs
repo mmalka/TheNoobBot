@@ -168,15 +168,12 @@ namespace nManager.Wow.ObjectManager
                             if (IsDeadMe)
                                 isdead = true;
                             if (ObjectManager.Pet.GetBaseAddress > 0)
-                                if (ObjectManager.GetNumberAttackPlayer() > 0 && ObjectManager.Pet.InCombat &&
-                                    !ObjectManager.Pet.IsDead)
+                                if (ObjectManager.Pet.InCombat && !ObjectManager.Pet.IsDead)
                                     petAttack = true;
 
                             if (!isdead && GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat))
-                                if (ObjectManager.GetNumberAttackPlayer() > 0)
                                     return true;
-                                else
-                                    return (petAttack);
+                            return (petAttack);
                         }
                     }
                     catch (Exception e)
