@@ -249,7 +249,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && !onFlyMount())
+                if (ObjectManager.ObjectManager.Me.IsMounted && (!onFlyMount() && !ObjectManager.ObjectManager.Me.IsDeadMe))
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
