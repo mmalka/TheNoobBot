@@ -2,6 +2,7 @@
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
@@ -59,7 +60,9 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            MovementManager.StopMove();
+            MountTask.DismountMount();
+            if (ObjectManager.ObjectManager.Me.IsMounted)
+                return;
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
             ulong unkillableMob = Fight.StartFightDamageDealer(_unit.Guid);
             if (!_unit.IsDead && unkillableMob != 0)

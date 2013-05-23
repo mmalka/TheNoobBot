@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -52,7 +53,7 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            MovementManager.StopMove();
+            MountTask.DismountMount();
             Heal.StartHealBot();
             while (ObjectManager.ObjectManager.Me.HealthPercent < 100 ||
                    (Party.IsInGroup() &&

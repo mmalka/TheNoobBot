@@ -173,7 +173,7 @@ namespace nManager.Wow.ObjectManager
 
                             if (!isdead && GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat))
                                     return true;
-                            return (petAttack);
+                            return petAttack;
                         }
                     }
                     catch (Exception e)
