@@ -33,9 +33,6 @@ namespace nManager.Wow.Helpers
         private static Point _distmountAttempt = new Point();
         private static uint _cacheTargetAddress = 0;
 
-        private static Timer _updatePathSpecialTimer = new Timer();
-        private static Timer _maxTimerForStuckDetection = new Timer();
-
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
 
@@ -1409,6 +1406,11 @@ namespace nManager.Wow.Helpers
 
         #region NPC/Object Finder
 
+        private static Timer _updatePathSpecialTimer = new Timer();
+        private static Timer _maxTimerForStuckDetection = new Timer();
+        private static Npc _trakedTarget = new Npc();
+        private static ulong _trakedTargetGuid = 0;
+
         public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {
             Random rand = new Random();
@@ -1434,14 +1436,22 @@ namespace nManager.Wow.Helpers
 
         public static uint FindTarget(WoWObject Object, float SpecialRange = 0)
         {
-            Npc temp = new Npc { Entry = Object.Entry, Position = Object.Position, Name = Object.Name };
-            return FindTarget(ref temp, SpecialRange);
+            if (_trakedTargetGuid != Object.Guid)
+            {
+                _trakedTarget = new Npc { Entry = Object.Entry, Position = Object.Position, Name = Object.Name };
+                _trakedTargetGuid = Object.Guid;
+            }
+            return FindTarget(ref _trakedTarget, SpecialRange);
         }
 
         public static uint FindTarget(WoWUnit Unit, float SpecialRange = 0)
         {
-            Npc temp = new Npc { Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name };
-            return FindTarget(ref temp, SpecialRange);
+            if (_trakedTargetGuid != Unit.Guid)
+            {
+                _trakedTarget = new Npc { Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name };
+                _trakedTargetGuid = Unit.Guid;
+            }
+            return FindTarget(ref _trakedTarget, SpecialRange);
         }
 
         public static uint FindTarget(ref Npc Target, float SpecialRange = 0)
