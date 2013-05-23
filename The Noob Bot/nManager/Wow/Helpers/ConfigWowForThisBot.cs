@@ -35,17 +35,17 @@ namespace nManager.Wow.Helpers
                 }
                 Thread.Sleep(50);
                 Memory.WowMemory.Memory.WriteInt(
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.AutoInteract.AutoInteract_Activate_Pointer) +
-                    (uint) Addresses.AutoInteract.AutoInteract_Activate_Offset, 1);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoInteract_Activate_Pointer) +
+                    (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 Memory.WowMemory.Memory.WriteInt(
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.AutoSelfCast.AutoSelfCast_Activate_Pointer) +
-                    (uint) Addresses.AutoSelfCast.AutoSelfCast_Activate_Offset, 1);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoDismount_Activate_Pointer) +
+                    (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 Memory.WowMemory.Memory.WriteInt(
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.AutoLoot.AutoLoot_Activate_Pointer) +
-                    (uint) Addresses.AutoLoot.AutoLoot_Activate_Offset, 1);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoLoot_Activate_Pointer) +
+                    (uint) Addresses.ActivateSettings.Activate_Offset, 1);
+                Memory.WowMemory.Memory.WriteInt(
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.ActivateSettings.AutoSelfCast_Activate_Pointer) +
+                    (uint) Addresses.ActivateSettings.Activate_Offset, 1);
                 Lua.LuaDoString("SetCVar(\"ScriptErrors\", \"0\")");
                 if (nManagerSetting.CurrentSetting.AllowTNBToSetYourMaxFps)
                 {

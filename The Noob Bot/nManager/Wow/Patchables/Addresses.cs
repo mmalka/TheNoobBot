@@ -269,39 +269,15 @@
         }
 
         /// <summary>
-        ///   Active AutoLoot
+        ///   Activate some settings
         /// </summary>
-        public enum AutoLoot
-        {
-            AutoLoot_Activate_Pointer = 0xCE1628,
-            AutoLoot_Activate_Offset = 0x30,
-        }
-
-        /// <summary>
-        ///   Active Auto Cast
-        /// </summary>
-        public enum AutoSelfCast
-        {
-            AutoSelfCast_Activate_Pointer = 0xCE1634,
-            AutoSelfCast_Activate_Offset = 0x30,
-        }
-
-        /// <summary>
-        ///   Active Auto Interact CTM
-        /// </summary>
-        public enum AutoInteract
+        public enum ActivateSettings
         {
             AutoInteract_Activate_Pointer = 0xCE1608, // CGUnit_C__CanAutoInteract
-            AutoInteract_Activate_Offset = 0x30,
-        }
-
-        /// <summary>
-        ///   Active Dismount when casting spell even when flying
-        /// </summary>
-        public enum AutoDismount
-        {
-            AutoInteract_Activate_Pointer = 0xCE1614, // CGUnit_C__CanAutoDismount
-            AutoInteract_Activate_Offset = 0x30,
+            AutoDismount_Activate_Pointer = 0xCE1614, // CGUnit_C__CanAutoDismount
+            AutoLoot_Activate_Pointer = 0xCE1628,
+            AutoSelfCast_Activate_Pointer = 0xCE1634,
+            Activate_Offset = 0x30,
         }
 
         /// <summary>
