@@ -3,7 +3,7 @@
     public static class Information
     {
         public const string TargetWowVersion = "5.3.0";
-        public const int TargetWowBuild = 16981;
+        public const int TargetWowBuild = 16983;
         public const string Version = "DevVersionRestrict"; // next = 1.7.0
     }
 }
