@@ -1079,7 +1079,10 @@ namespace nManager.Wow.ObjectManager
         {
             foreach (var u in GetObjectWoWUnit())
             {
-                if (u.IsValid && u.IsAlive && !u.NotAttackable && UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile && u.GetDistance < (u.AggroDistance * 0.90f))
+                if (u.IsValid && u.IsAlive && !u.NotAttackable &&
+                    UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile &&
+                    u.GetDistance < (u.AggroDistance * 0.90f) &&
+                    !(u.InCombat && !u.IsTargetingMe))
                 {
                     bool r;
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
