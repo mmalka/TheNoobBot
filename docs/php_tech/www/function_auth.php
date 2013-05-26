@@ -1,24 +1,6 @@
 <?php
-/*
-List functions:
-
-$mysql = 
-closeMysql($mysql);
-
-
-$bool = existUserName($userName);
-$userId = verifUserNameAndPassword($userName, $password);
-$intTime = getEndTimeSubscription($userName, $password);
-
-$sessionKey = getSessionKey($userName, $password);
-$sessionKey = createSessionKey($userName, $password);
-
-$numberOnlineBot = botOnline();
-
-$hash = randomKeyValue($random);
-$DHMS = secondeToStringDayHourMin($time);
-*/
-
+if (isset($_SERVER["HTTP_USER_AGENT"] == "")
+	exit (0);
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
 	$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];
 $dbServer = "services.thenoobcompany.com";
