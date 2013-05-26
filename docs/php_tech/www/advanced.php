@@ -63,7 +63,7 @@ switch ($type)
     $value = 'day';
     $nom = "Last thirty-one days";
     break;
-  case "month": // mois - année 12
+  case "month": // mois - annÃ©e 12
     $count = 12;
     $value = 'month';
     $nom = "Last twelve months";
@@ -122,7 +122,7 @@ for ($i = $count; $i > 0; $i--)
         {
           if ($H == 0)
           {
-            $thistime = date('\l\e d/m \à \m\i\n\u\i\t', strtotime("-$y $value"));
+            $thistime = date('\l\e d/m \Ã  \m\i\n\u\i\t', strtotime("-$y $value"));
           }
         }
         else

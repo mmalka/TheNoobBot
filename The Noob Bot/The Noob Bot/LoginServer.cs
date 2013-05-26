@@ -12,26 +12,65 @@ using Process = System.Diagnostics.Process;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 using InteractGame = System.Threading.Thread;
 using HookInfoz = System.Diagnostics.Process;
+using Timer = nManager.Helpful.Timer;
 
 namespace The_Noob_Bot
 {
     internal static class LoginServer
     {
-        private static string[] retStr =
+        private static readonly string[] retStr =
             {
                 "NOKConnect",
                 "SNVConnect",
                 "OKConnect",
                 "PEConnect",
-                "LEConnect",
+                "LEConnect"
             };
 
-        private const string UrlWebServer = "http://tech.thenoobbot.com/";
-        private const string ScriptLogintUrl = UrlWebServer + "auth.php";
-        private const string ScriptUpdate = UrlWebServer + "update.php";
-        private const string ScriptServerIsOnline = UrlWebServer + "isOnline.php";
-        private const string AccountSecurityLog = UrlWebServer + "AccountSecurity.log";
-        private const string ScriptServerMyIp = UrlWebServer + "myIp.php";
+        private static string _cachedSrv;
+        private static readonly Timer CachedSrvTimer = new Timer(15000);
+        private static readonly string[] Servers = new[] {"http://tech.thenoobbot.com/", "http://auth2.thenoobbot.com/"};
+
+        private static string UrlWebServer
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(_cachedSrv) || CachedSrvTimer.IsReady)
+                {
+                    foreach (var server in Servers.Where(server => Others.GetRequest(server + "isOnline.php", "") == "true"))
+                    {
+                        _cachedSrv = server;
+                        CachedSrvTimer.Reset();
+                        return server;
+                    }
+                }
+                else
+                {
+                    return _cachedSrv;
+                }
+                return Servers[0];
+            }
+        }
+        private static string ScriptLoginUrl
+        {
+            get { return UrlWebServer + "auth.php"; }
+        }
+
+        private static string ScriptUpdate
+        {
+            get { return UrlWebServer + "update.php"; }
+        }
+
+        private static string ScriptServerIsOnline
+        {
+            get { return UrlWebServer + "isOnline.php"; }
+        }
+
+        private static string ScriptServerMyIp
+        {
+            get { return UrlWebServer + "myIp.php"; }
+        }
+
         internal static int StartTime;
 
         private static string _ip;
@@ -77,12 +116,12 @@ namespace The_Noob_Bot
                 try
                 {
                     _ip = GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1];
-                    var resultConnectReq = GetReqWithAuthHeader(ScriptLogintUrl + "?create=true", Login, Password);
+                    var resultConnectReq = GetReqWithAuthHeader(ScriptLoginUrl + "?create=true", Login, Password);
                     var goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
                     repC = resultConnectReq[1];
 
                     var randomKey = Others.Random(1, 9999);
-                    var resultRandom = GetReqWithAuthHeader(ScriptLogintUrl + "?random=true",
+                    var resultRandom = GetReqWithAuthHeader(ScriptLoginUrl + "?random=true",
                                                             randomKey.ToString(CultureInfo.InvariantCulture),
                                                             randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
@@ -294,7 +333,7 @@ namespace The_Noob_Bot
                         // End Statistique
 
                         string resultReqLoop =
-                            GetReqWithAuthHeader(ScriptLogintUrl + reqStatistique, Login, Password)[0];
+                            GetReqWithAuthHeader(ScriptLoginUrl + reqStatistique, Login, Password)[0];
                         if (TrueResultLoop != resultReqLoop)
                         {
                             if (!lastResult)
@@ -500,59 +539,6 @@ namespace The_Noob_Bot
             catch /*(Exception e)*/
             {
                 //Logging.WriteError("LoginServer > CheckUpdateThread(): " + e);
-            }
-        }
-
-
-        internal static void CheckAccountSecurity()
-        {
-            try
-            {
-                var checkAccountSecurityThreadLaunch = new Thread(CheckAccountSecurityThread)
-                    {Name = "CheckAccountSecurity"};
-                checkAccountSecurityThreadLaunch.Start();
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("LoginServer > CheckAccountSecurity(): " + e);
-            }
-        }
-
-        private static void CheckAccountSecurityThread()
-        {
-            try
-            {
-                string resultReq = Others.GetRequest(AccountSecurityLog, "");
-                if (resultReq != null)
-                {
-                    if (resultReq.Any())
-                    {
-                        if (resultReq != Information.Version)
-                        {
-                            var dr =
-                                MessageBox.Show(
-                                    Translate.Get(
-                                        Translate.Id.
-                                                  The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb) +
-                                    ". ", "/!\\ " + Translate.Get(Translate.Id.Suspect_Activity) + " /!\\",
-                                    MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-                            switch (dr)
-                            {
-                                case DialogResult.Yes:
-                                    Memory.WowProcess.KillWowProcess();
-                                    EndInformation();
-                                    break;
-                                case DialogResult.No:
-                                    break;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                Logging.WriteError("LoginServer > CheckAccountSecurityThread(): " + e);
             }
         }
 
