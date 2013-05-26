@@ -1,5 +1,5 @@
 <?php
-if (isset($_SERVER["HTTP_USER_AGENT"] == "")
+if (!isset($_SERVER["HTTP_USER_AGENT"]) || $_SERVER["HTTP_USER_AGENT"] == "")
 	exit (0);
 if (isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
 	$_SERVER["REMOTE_ADDR"] = $_SERVER["HTTP_CF_CONNECTING_IP"];
