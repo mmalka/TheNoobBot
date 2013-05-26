@@ -3,7 +3,7 @@
 include ("fusionchart.php");
 $dbServer = "services.thenoobcompany.com";
 $dbUser = "thenoobbot_chk";
-$dbPassword = "0";
+$dbPassword = "XXXXXXXXXXXXXXXXX";
 $mysql = mysql_connect($dbServer, $dbUser, $dbPassword) or die(mysql_error());
 $type = $_GET['type'];
 $db_site = "thenoobbot_site";

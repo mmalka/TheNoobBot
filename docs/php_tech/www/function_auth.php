@@ -24,7 +24,7 @@ if (isset($_SERVER["HTTP_CF_CONNECTING_IP"]))
 $dbServer = "services.thenoobcompany.com";
 $dbName = "thenoobbot_site";
 $dbUser = "thenoobbot_chk";
-$dbPassword = "AFjuVhFmKXsQ2wAj";
+$dbPassword = "XXXXXXXXXXXXXXXXX";
 
 $tableUsersName = "wp_users";
 $tableSubscription = "wp_SWW_Subscription";
@@ -146,9 +146,14 @@ function getSessionKey($userName, $password)
             $level = intval($_GET['level']);
             if($level > 3)
               $level = 1;
-            $honnor = intval($_GET['honnor']);
-            if($honnor > 4000 or $honnor < 0)
-              $honnor = 0;
+			  if (isset($_GET['honnor']))
+			  {
+				$honnor = intval($_GET['honnor']);
+				if($honnor > 4000 or $honnor < 0)
+				  $honnor = 0;
+			  }
+			  else
+				$honnor = 0;
             $exp = intval($_GET['exp']);
             if($exp > 10000000 or $exp < 0)
               $exp = 0;
