@@ -13,10 +13,13 @@ namespace nManager.Wow.Enums
         Preparation = 0x20,
         PlusMob = 0x40,
         NotAttackable = 0x100,
+        Flag_9_0x200 = 0x200,
         Looting = 0x400,
         PetInCombat = 0x800,
         PvPFlagged = 0x1000,
         Silenced = 0x2000,
+        Flag_14_0x4000 = 0x4000,
+        Flag_15_0x8000 = 0x8000,
         Pacified = 0x20000,
         Stunned = 0x40000,
         CanPerformAction_Mask1 = 0x60000,
@@ -77,7 +80,10 @@ namespace nManager.Wow.Enums
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        SpecialInfo = 0x20, // Can be used to confirm a NPC is dead, but take care because it can pop on living creatures, must check Health !
+        Dead = 0x20,    // It's a visual Dead status (Gray, 0 HP...) but the creature lives and can interact.
+                        // Some quester are like this, you interact with the corpse if your are neutral at least
+                        // Some mobs are like this, you then neither attack them, nor skin them
+        Flag_7_0x40 = 0x40,
         ReferAFriendLinked = 0x80,
         IsTappedByAllThreatList = 0x100, // Flag OK, but Blizzard broke the function, so it's not updated.
     }
