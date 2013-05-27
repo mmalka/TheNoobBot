@@ -46,11 +46,14 @@ namespace nManager.Wow.Bot.States
                     if (_unit.IsValid)
                         return true;
 
-                _unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
-                if (_unit != null)
+                if (!nManagerSetting.CurrentSetting.DontPullMonsters)
                 {
-                    Logging.Write("Pulling " + _unit.Name);
-                    return true;
+                    _unit = ObjectManager.ObjectManager.GetUnitInAggroRange();
+                    if (_unit != null)
+                    {
+                        Logging.Write("Pulling " + _unit.Name);
+                        return true;
+                    }
                 }
                 return false;
             }

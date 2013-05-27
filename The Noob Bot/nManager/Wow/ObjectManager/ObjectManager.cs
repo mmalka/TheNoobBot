@@ -1080,7 +1080,7 @@ namespace nManager.Wow.ObjectManager
             foreach (var u in GetObjectWoWUnit())
             {
                 if (u.IsValid && u.IsAlive && !u.NotAttackable &&
-                    UnitRelation.GetReaction(ObjectManager.Me, u) == Reaction.Hostile &&
+                    UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
                     u.GetDistance < (u.AggroDistance * 0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
                 {
@@ -1088,7 +1088,7 @@ namespace nManager.Wow.ObjectManager
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
                     if (!r)
                         points.Add(u.Position);
-                    if (nManager.Helpful.Math.DistanceListPoint(points) < u.AggroDistance * 4)
+                    if (Helpful.Math.DistanceListPoint(points) < u.AggroDistance * 4)
                         return new WoWUnit(u.GetBaseAddress);
                 }
             }
