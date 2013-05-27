@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful.Interface;
+using nManager.Wow;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -407,21 +408,29 @@ namespace nManager.Helpful.Forms
                 Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
             }
         }
-
         private void getTargetInfoAdv_Click(object sender, EventArgs e)
         {
             infoTb.Text = "";
             if (ObjectManager.Target.IsValid)
             {
+                string questStatusText = "";
+                if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.QuestGiver))
+                {
+                    var questStatusFlag = (UnitQuestGiverStatus)Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint)Addresses.Quests.QuestGiverStatus);
+                    if (questStatusFlag > 0x0)
+                        questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
+                }
                 infoTb.Text =
+                    "BaseAddress: " + ObjectManager.Target.GetBaseAddress + Environment.NewLine +
                     "Name: " + ObjectManager.Target.Name + Environment.NewLine +
                     "Entry: " + ObjectManager.Target.Entry + Environment.NewLine +
-                    "Position" + ObjectManager.Target.Position + Environment.NewLine +
+                    "Position: " + ObjectManager.Target.Position + Environment.NewLine +
                     "Faction: " + (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) + Environment.NewLine +
                     "ContinentId: " + (ContinentId) (Usefuls.ContinentId) + Environment.NewLine +
                     "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                     "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
                     "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0) + Environment.NewLine +
+                    questStatusText +
                     "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
             }
         }
