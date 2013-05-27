@@ -76,17 +76,18 @@ namespace nManager.Wow.Enums
     public enum UnitDynamicFlags : int
     {
         None = 0,
-        Invisible = 0x1, // Maybe something intended to detect botter, we may need to don't touch a monster having this flag for security purpose.
-                         // A Game Master can easily add this flag to a creature near a Grinder bot, and the bot will begin to fight against that creature.
-                         // Even if the creature is totally invisible and not possible to target with "Tab" for example.
+        Invisible = 0x1,                 // Maybe something intended to detect botter, we may need to don't touch a monster having this flag for security purpose.
+                                         // A Game Master can easily add this flag to a creature near a Grinder bot, and the bot will begin to fight against that creature.
+                                         // Even if the creature is totally invisible and not possible to target with "Tab" for example.
+                                         // Write memory |1 and you will see the monster disapear, but the objectmanager still handle it.
         Lootable = 0x2,
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        Dead = 0x20,    // It's a visual Dead status (Gray, 0 HP...) but the creature lives and can interact.
-                        // Some quester are like this, you interact with the corpse if your are neutral at least
-                        // Some mobs are like this, you then neither attack them, nor skin them
-        Flag_7_0x40 = 0x40,
+        Flag_6_0x20 = 0x20,              // Unknown Flag.
+        Dead = 0x40,                     // It's a visual Dead status (Gray, 0 HP...) but the creature lives and can interact.
+                                         // Some quester are like this, you interact with the corpse if your are neutral at least
+                                         // Some mobs are like this, you then neither attack them, nor skin them
         ReferAFriendLinked = 0x80,
         IsTappedByAllThreatList = 0x100, // Flag OK, but Blizzard broke the function, so it's not updated.
     }
