@@ -19,7 +19,8 @@ namespace nManager.Wow.Enums
         PvPFlagged = 0x1000,
         Silenced = 0x2000,
         Flag_14_0x4000 = 0x4000,
-        ServerControlled = 0x8000,
+        Flag_15_0x8000 = 0x8000, // To me, it looks like "ServerControlled" in the mean of "patrol NPC", 
+                                 // but I let you do it, I'm definitly not good at guessing flags.
         Pacified = 0x20000,
         Stunned = 0x40000,
         CanPerformAction_Mask1 = 0x60000,
