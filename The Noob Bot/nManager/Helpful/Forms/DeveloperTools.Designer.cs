@@ -40,15 +40,16 @@ namespace nManager.Helpful.Forms
             this.launchLuaB = new DevComponents.DotNetBar.ButtonX();
             this.launchCSharpScriptB = new DevComponents.DotNetBar.ButtonX();
             this.translateToolsB = new DevComponents.DotNetBar.ButtonX();
+            this.getTargetInfoAdv = new DevComponents.DotNetBar.ButtonX();
             this.SuspendLayout();
             // 
             // getAllInfo
             // 
             this.getAllInfo.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.getAllInfo.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.getAllInfo.Location = new System.Drawing.Point(421, 309);
+            this.getAllInfo.Location = new System.Drawing.Point(234, 357);
             this.getAllInfo.Name = "getAllInfo";
-            this.getAllInfo.Size = new System.Drawing.Size(113, 58);
+            this.getAllInfo.Size = new System.Drawing.Size(278, 52);
             this.getAllInfo.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.getAllInfo.TabIndex = 21;
             this.getAllInfo.Text = "Get informations of all ingame objects";
@@ -67,40 +68,40 @@ namespace nManager.Helpful.Forms
             this.infoTb.Multiline = true;
             this.infoTb.Name = "infoTb";
             this.infoTb.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.infoTb.Size = new System.Drawing.Size(522, 291);
+            this.infoTb.Size = new System.Drawing.Size(501, 279);
             this.infoTb.TabIndex = 22;
             // 
             // targetInfoB
             // 
             this.targetInfoB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.targetInfoB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.targetInfoB.Location = new System.Drawing.Point(337, 309);
+            this.targetInfoB.Location = new System.Drawing.Point(272, 295);
             this.targetInfoB.Name = "targetInfoB";
-            this.targetInfoB.Size = new System.Drawing.Size(78, 58);
+            this.targetInfoB.Size = new System.Drawing.Size(75, 56);
             this.targetInfoB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.targetInfoB.TabIndex = 23;
-            this.targetInfoB.Text = "Get Taget informations";
+            this.targetInfoB.Text = "Npc Infos for the target";
             this.targetInfoB.Click += new System.EventHandler(this.targetInfoB_Click);
             // 
             // myPositionB
             // 
             this.myPositionB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.myPositionB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.myPositionB.Location = new System.Drawing.Point(163, 309);
+            this.myPositionB.Location = new System.Drawing.Point(97, 295);
             this.myPositionB.Name = "myPositionB";
-            this.myPositionB.Size = new System.Drawing.Size(81, 58);
+            this.myPositionB.Size = new System.Drawing.Size(78, 56);
             this.myPositionB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.myPositionB.TabIndex = 24;
-            this.myPositionB.Text = "Get My Position";
+            this.myPositionB.Text = "Player\'s position";
             this.myPositionB.Click += new System.EventHandler(this.myPositionB_Click);
             // 
             // npcType
             // 
             this.npcType.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.npcType.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.npcType.Location = new System.Drawing.Point(75, 310);
+            this.npcType.Location = new System.Drawing.Point(12, 295);
             this.npcType.Name = "npcType";
-            this.npcType.Size = new System.Drawing.Size(82, 21);
+            this.npcType.Size = new System.Drawing.Size(79, 22);
             this.npcType.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.npcType.TabIndex = 25;
             this.npcType.Text = "Npc type list";
@@ -110,9 +111,9 @@ namespace nManager.Helpful.Forms
             // 
             this.npcFactionListB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.npcFactionListB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.npcFactionListB.Location = new System.Drawing.Point(75, 346);
+            this.npcFactionListB.Location = new System.Drawing.Point(12, 321);
             this.npcFactionListB.Name = "npcFactionListB";
-            this.npcFactionListB.Size = new System.Drawing.Size(82, 21);
+            this.npcFactionListB.Size = new System.Drawing.Size(79, 28);
             this.npcFactionListB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.npcFactionListB.TabIndex = 26;
             this.npcFactionListB.Text = "Npc faction list";
@@ -122,9 +123,9 @@ namespace nManager.Helpful.Forms
             // 
             this.addByNameNpcB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.addByNameNpcB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.addByNameNpcB.Location = new System.Drawing.Point(250, 336);
+            this.addByNameNpcB.Location = new System.Drawing.Point(180, 321);
             this.addByNameNpcB.Name = "addByNameNpcB";
-            this.addByNameNpcB.Size = new System.Drawing.Size(81, 31);
+            this.addByNameNpcB.Size = new System.Drawing.Size(86, 30);
             this.addByNameNpcB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.addByNameNpcB.TabIndex = 28;
             this.addByNameNpcB.Text = "Get infomations by name";
@@ -139,9 +140,9 @@ namespace nManager.Helpful.Forms
             this.nameNpcTb.Border.Class = "TextBoxBorder";
             this.nameNpcTb.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.nameNpcTb.ForeColor = System.Drawing.Color.Black;
-            this.nameNpcTb.Location = new System.Drawing.Point(250, 309);
+            this.nameNpcTb.Location = new System.Drawing.Point(180, 295);
             this.nameNpcTb.Name = "nameNpcTb";
-            this.nameNpcTb.Size = new System.Drawing.Size(81, 22);
+            this.nameNpcTb.Size = new System.Drawing.Size(86, 22);
             this.nameNpcTb.TabIndex = 27;
             this.nameNpcTb.Text = "Name";
             // 
@@ -149,9 +150,9 @@ namespace nManager.Helpful.Forms
             // 
             this.launchLuaB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.launchLuaB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.launchLuaB.Location = new System.Drawing.Point(12, 313);
+            this.launchLuaB.Location = new System.Drawing.Point(120, 357);
             this.launchLuaB.Name = "launchLuaB";
-            this.launchLuaB.Size = new System.Drawing.Size(57, 54);
+            this.launchLuaB.Size = new System.Drawing.Size(108, 52);
             this.launchLuaB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.launchLuaB.TabIndex = 29;
             this.launchLuaB.Text = "Launch Lua script";
@@ -161,9 +162,9 @@ namespace nManager.Helpful.Forms
             // 
             this.launchCSharpScriptB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.launchCSharpScriptB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.launchCSharpScriptB.Location = new System.Drawing.Point(12, 373);
+            this.launchCSharpScriptB.Location = new System.Drawing.Point(12, 357);
             this.launchCSharpScriptB.Name = "launchCSharpScriptB";
-            this.launchCSharpScriptB.Size = new System.Drawing.Size(57, 54);
+            this.launchCSharpScriptB.Size = new System.Drawing.Size(102, 52);
             this.launchCSharpScriptB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.launchCSharpScriptB.TabIndex = 30;
             this.launchCSharpScriptB.Text = "Launch C# script";
@@ -173,20 +174,32 @@ namespace nManager.Helpful.Forms
             // 
             this.translateToolsB.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.translateToolsB.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
-            this.translateToolsB.Location = new System.Drawing.Point(75, 373);
+            this.translateToolsB.Location = new System.Drawing.Point(434, 295);
             this.translateToolsB.Name = "translateToolsB";
-            this.translateToolsB.Size = new System.Drawing.Size(82, 54);
+            this.translateToolsB.Size = new System.Drawing.Size(79, 56);
             this.translateToolsB.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.translateToolsB.TabIndex = 31;
-            this.translateToolsB.Text = "Translate Tools";
+            this.translateToolsB.Text = "Translation Manager ";
             this.translateToolsB.Click += new System.EventHandler(this.translateToolsB_Click);
+            // 
+            // getTargetInfoAdv
+            // 
+            this.getTargetInfoAdv.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.getTargetInfoAdv.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.getTargetInfoAdv.Location = new System.Drawing.Point(353, 295);
+            this.getTargetInfoAdv.Name = "getTargetInfoAdv";
+            this.getTargetInfoAdv.Size = new System.Drawing.Size(75, 56);
+            this.getTargetInfoAdv.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.getTargetInfoAdv.TabIndex = 32;
+            this.getTargetInfoAdv.Text = "Advanced Infos on the Target";
+            this.getTargetInfoAdv.Click += new System.EventHandler(this.getTargetInfoAdv_Click);
             // 
             // Developer_Tools
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(100F, 100F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.ClientSize = new System.Drawing.Size(546, 426);
+            this.ClientSize = new System.Drawing.Size(524, 409);
+            this.Controls.Add(this.getTargetInfoAdv);
             this.Controls.Add(this.translateToolsB);
             this.Controls.Add(this.launchCSharpScriptB);
             this.Controls.Add(this.launchLuaB);
@@ -202,9 +215,10 @@ namespace nManager.Helpful.Forms
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.MaximumSize = new System.Drawing.Size(562, 464);
-            this.MinimumSize = new System.Drawing.Size(562, 464);
+            this.MaximumSize = new System.Drawing.Size(540, 447);
+            this.MinimumSize = new System.Drawing.Size(540, 447);
             this.Name = "Developer_Tools";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Developer Tools";
             this.ResumeLayout(false);
 
@@ -223,5 +237,6 @@ namespace nManager.Helpful.Forms
         private DevComponents.DotNetBar.ButtonX launchLuaB;
         private DevComponents.DotNetBar.ButtonX launchCSharpScriptB;
         private DevComponents.DotNetBar.ButtonX translateToolsB;
+        private DevComponents.DotNetBar.ButtonX getTargetInfoAdv;
     }
 }

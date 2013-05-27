@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful.Interface;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
@@ -404,6 +405,24 @@ namespace nManager.Helpful.Forms
             catch (Exception e)
             {
                 Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
+            }
+        }
+
+        private void getTargetInfoAdv_Click(object sender, EventArgs e)
+        {
+            infoTb.Text = "";
+            if (ObjectManager.Target.IsValid)
+            {
+                infoTb.Text =
+                    "Name: " + ObjectManager.Target.Name + Environment.NewLine +
+                    "Entry: " + ObjectManager.Target.Entry + Environment.NewLine +
+                    "Position" + ObjectManager.Target.Position + Environment.NewLine +
+                    "Faction: " + (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) + Environment.NewLine +
+                    "ContinentId: " + (ContinentId) (Usefuls.ContinentId) + Environment.NewLine +
+                    "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
+                    "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
+                    "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0) + Environment.NewLine +
+                    "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
             }
         }
     }
