@@ -75,7 +75,9 @@ namespace nManager.Wow.Enums
     public enum UnitDynamicFlags : int
     {
         None = 0,
-        Invisible = 0x1,
+        Invisible = 0x1, // Maybe something intended to detect botter, we may need to don't touch a monster having this flag for security purpose.
+                         // A Game Master can easily add this flag to a creature near a Grinder bot, and the bot will begin to fight against that creature.
+                         // Even if the creature is totally invisible and not possible to target with "Tab" for example.
         Lootable = 0x2,
         TrackUnit = 0x4,
         Tapped = 0x8,
@@ -87,4 +89,21 @@ namespace nManager.Wow.Enums
         ReferAFriendLinked = 0x80,
         IsTappedByAllThreatList = 0x100, // Flag OK, but Blizzard broke the function, so it's not updated.
     }
+
+    [Flags]
+    public enum UnitQuestGiverStatus : int
+    {
+        None = 0x0,
+        Unavailable = 0x1,
+        LowLevelAvailable = 0x2,
+        LowLevelTurnInRepeatable = 0x3,
+        LowLevelAvailableRepeatable = 0x4,
+        Incomplete = 0x5,
+        TurnInRepeatable = 0x6,
+        AvailableRepeatable = 0x7,
+        Available = 0x8,
+        TurnInInvisible = 0x9, // '?' hidden on the MiniMap.
+        TurnIn = 0xA,
+    }
+
 }

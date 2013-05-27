@@ -286,6 +286,7 @@
         public enum Quests
         {
             // TODO Retrieve unknown Quests offsets
+            QuestGiverStatus = 0xB4,
             ActiveQuests = 0x0, //not found
             SelectedQuestId = 0x0, //not found
             TitleText = 0x0, //not found

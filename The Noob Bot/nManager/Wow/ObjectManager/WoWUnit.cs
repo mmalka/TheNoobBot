@@ -1713,6 +1713,24 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool CanTurnIn
+        {
+            get
+            {
+                try
+                {
+                    var questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                    return questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnIn) || questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInInvisible) ||
+                           questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInRepeatable) || questGiverStatus.HasFlag(UnitQuestGiverStatus.LowLevelTurnInRepeatable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > CanTurnIn: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool IsMounted
         {
             get
