@@ -84,7 +84,7 @@ namespace nManager.Wow.Enums
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        Flag_6_0x20 = 0x20,              // Unknown Flag.
+        SpecialInfo = 0x20,              // Unknown Flag.
         Dead = 0x40,                     // It's a visual Dead status (Gray, 0 HP...) but the creature lives and can interact.
                                          // Some quester are like this, you interact with the corpse if your are neutral at least
                                          // Some mobs are like this, you then neither attack them, nor skin them
