@@ -1177,13 +1177,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (!IsValid)
                         return false;
-                    if (IsNpcQuestGiver)
-                        return true;
-                    if (MaxHealth > 1 ? Health > 1 : Health > 0)
-                        return true;
-                    if (Health > 0 && !Convert.ToBoolean((GetDynamicFlags >> 6) & 1))
-                        return true;
-                    return false;
+                    return !IsDead;
                 }
                 catch (Exception e)
                 {
@@ -1193,6 +1187,8 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        private static List<uint> _ghostSpells = new List<uint>();
+
         public bool IsDead
         {
             get
@@ -1201,7 +1197,18 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (!IsValid)
                         return true;
-                    return !IsAlive;
+                    if (IsNpcQuestGiver)
+                        return false;
+                    if (Guid == ObjectManager.Me.Guid)
+                        return ObjectManager.Me.IsDeadMe;
+                    if (Type == WoWObjectType.Player)
+                    {
+                        if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
+                        if (HaveBuff(_ghostSpells))
+                            return true;
+                        return Health <= 1 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead);
+                    }
+                    return Health <= 0 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead);
                 }
                 catch (Exception e)
                 {

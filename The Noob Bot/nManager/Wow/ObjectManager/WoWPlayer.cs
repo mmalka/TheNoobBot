@@ -324,9 +324,9 @@ namespace nManager.Wow.ObjectManager
                     if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
                     if (HaveBuff(_ghostSpells))
                         return true;
-                    if (Health <= 0)
+                    if (Health <= 1 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead))
                         return true;
-                   return (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
+                    return (PositionCorpse.X != 0 && PositionCorpse.Y != 0);
                 }
                 catch (Exception e)
                 {
@@ -336,7 +336,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public new bool IsDead
+        /*public new bool IsDead
         {
             get
             {
@@ -349,9 +349,7 @@ namespace nManager.Wow.ObjectManager
                     if (_ghostSpells.Count <= 0) _ghostSpells = SpellManager.SpellListManager.SpellIdByName("Ghost");
                     if (HaveBuff(_ghostSpells))
                         return true;
-                    if (Health <= 0)
-                        return true;
-                    return false;
+                    return Health <= 1 || GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags).HasFlag(UnitDynamicFlags.Dead);
                 }
                 catch (Exception e)
                 {
@@ -359,7 +357,7 @@ namespace nManager.Wow.ObjectManager
                 }
                 return false;
             }
-        }
+        }*/
 
         public bool forceIsCast { set; get; }
 
