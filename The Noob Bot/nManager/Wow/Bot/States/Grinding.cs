@@ -87,7 +87,6 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            MountTask.DismountMount();
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
             ulong UnkillableMob = Fight.StartFight(_unit.Guid);
             if (!_unit.IsDead && UnkillableMob != 0)
