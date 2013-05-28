@@ -1819,6 +1819,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool PlayerControlled
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > PlayerControlled: " + e);
+                    return false;
+                }
+            }
+        }
+
         public ulong TransportGuid
         {
             get
@@ -1984,6 +2000,23 @@ namespace nManager.Wow.ObjectManager
                 }
             }
         }
+
+        public bool Invisible
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitDynamicFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitDynamicFlags.Invisible);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > Invisible: " + e);
+                    return false;
+                }
+            }
+        }
+
 
         public T GetDescriptor<T>(Descriptors.UnitFields field) where T : struct
         {

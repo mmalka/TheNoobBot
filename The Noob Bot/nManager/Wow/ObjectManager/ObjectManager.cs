@@ -551,7 +551,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     try
                     {
-                        if (factions.Contains(a.Faction) && !a.IsDead && (pvp || !a.InCombat || a.InCombatWithMe))
+                        if (factions.Contains(a.Faction) && !a.IsDead && !a.Invisible && (pvp || !a.InCombat || a.InCombatWithMe))
                             objectReturn.Add(a);
                     }
                     catch (Exception e)
@@ -647,7 +647,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => names.Contains(a.Name) && !a.IsDead).ToList();
+                return listWoWUnit.Where(a => names.Contains(a.Name) && !a.IsDead && !a.Invisible).ToList();
             }
             catch (Exception e)
             {
@@ -700,7 +700,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => entrys.Contains(a.Entry) && !a.IsDead).ToList();
+                return listWoWUnit.Where(a => entrys.Contains(a.Entry) && !a.IsDead && !a.Invisible).ToList();
             }
             catch (Exception e)
             {
@@ -1079,7 +1079,7 @@ namespace nManager.Wow.ObjectManager
         {
             foreach (var u in GetObjectWoWUnit())
             {
-                if (u.IsValid && u.IsAlive && !u.NotAttackable &&
+                if (u.IsValid && u.IsAlive && !u.NotAttackable && !u.PlayerControlled &&
                     UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
                     u.GetDistance < (u.AggroDistance * 0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
