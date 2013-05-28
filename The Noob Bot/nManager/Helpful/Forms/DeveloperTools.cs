@@ -421,12 +421,13 @@ namespace nManager.Helpful.Forms
                         questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
                 }
                 infoTb.Text =
-                    "BaseAddress: " + ObjectManager.Target.GetBaseAddress + Environment.NewLine +
                     "Name: " + ObjectManager.Target.Name + Environment.NewLine +
+                    "BaseAddress: " + ObjectManager.Target.GetBaseAddress + Environment.NewLine +
                     "Entry: " + ObjectManager.Target.Entry + Environment.NewLine +
                     "Position: " + ObjectManager.Target.Position + Environment.NewLine +
                     "Faction: " + (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) + Environment.NewLine +
                     "ContinentId: " + (ContinentId) (Usefuls.ContinentId) + Environment.NewLine +
+                    "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
                     "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                     "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
                     "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0) + Environment.NewLine +
