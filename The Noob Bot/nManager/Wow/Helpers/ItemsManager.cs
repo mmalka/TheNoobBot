@@ -56,6 +56,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 Lua.LuaDoString("EquipItemByName(\"" + itemName + "\")");
+                Logging.Write("Equip item " + itemName);
             }
             catch (Exception exception)
             {
@@ -67,7 +68,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Lua.RunMacroText("/use " + GetNameById(itemId));
+                var itemName = GetNameById(itemId);
+                Lua.RunMacroText("/use " + itemName);
+                Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ")");
             }
             catch (Exception exception)
             {
@@ -80,6 +83,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 Lua.RunMacroText("/use " + itemName);
+                Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ")");
             }
             catch (Exception exception)
             {
@@ -91,7 +95,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                var itemName = GetNameById(itemId);
                 ClickOnTerrain.Item(itemId, point);
+                Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ") at position: " + point);
             }
             catch (Exception exception)
             {
