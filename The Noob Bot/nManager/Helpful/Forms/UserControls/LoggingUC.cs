@@ -104,16 +104,16 @@ namespace nManager.Helpful.Forms.UserControls
                 Logging.LogType flag = Logging.LogType.None;
 
                 if (normalCb.Value)
-                    flag |= Logging.LogType.Normal;
+                    flag |= Logging.LogType.S;
                 if (debugCb.Value)
                 {
-                    flag |= Logging.LogType.Debug;
-                    flag |= Logging.LogType.Error;
+                    flag |= Logging.LogType.D;
+                    flag |= Logging.LogType.E;
                 }
                 if (fightCb.Value)
-                    flag |= Logging.LogType.Fight;
+                    flag |= Logging.LogType.F;
                 if (navigatorCb.Value)
-                    flag |= Logging.LogType.Navigator;
+                    flag |= Logging.LogType.N;
 
                 return flag;
             }

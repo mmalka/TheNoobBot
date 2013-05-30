@@ -539,7 +539,7 @@ namespace The_Noob_Bot
                     targetHealthL.Text = "-/-";
                     targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " -";
                 }
-                var log = Logging.ReadLast(Logging.LogType.Normal);
+                var log = Logging.ReadLast(Logging.LogType.S);
                 lastLogL.Text = log.ToString();
                 lastLogL.ForeColor = log.Color;
 

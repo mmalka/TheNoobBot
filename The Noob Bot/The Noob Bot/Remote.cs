@@ -117,11 +117,11 @@ namespace The_Noob_Bot
                                                        cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
-                Logging.LogType flag = Logging.LogType.Normal;
-                flag |= Logging.LogType.Debug;
-                flag |= Logging.LogType.Error;
-                flag |= Logging.LogType.Fight;
-                flag |= Logging.LogType.Navigator;
+                Logging.LogType flag = Logging.LogType.S;
+                flag |= Logging.LogType.D;
+                flag |= Logging.LogType.E;
+                flag |= Logging.LogType.F;
+                flag |= Logging.LogType.N;
 
                 var packetClient = new PacketClient
                     {

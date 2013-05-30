@@ -138,27 +138,27 @@ namespace nManager.Helpful
 
         public static void Write(string text)
         {
-            Write(text, LogType.Normal, Color.Black);
+            Write(text, LogType.S, Color.Black);
         }
 
         public static void WriteDebug(string text)
         {
-            Write(text, LogType.Debug, Color.MediumVioletRed);
+            Write(text, LogType.D, Color.MediumVioletRed);
         }
 
         public static void WriteNavigator(string text)
         {
-            Write(text, LogType.Navigator, Color.Blue);
+            Write(text, LogType.N, Color.Blue);
         }
 
         public static void WriteFight(string text)
         {
-            Write(text, LogType.Fight, Color.Green);
+            Write(text, LogType.F, Color.Green);
         }
 
         public static void WriteFileOnly(string text)
         {
-            Write(text, LogType.FileOnly, Color.Gray);
+            Write(text, LogType.IO, Color.Gray);
         }
 
         public static void WriteError(string text, bool skipThreadAbortExceptionError = true)
@@ -169,7 +169,7 @@ namespace nManager.Helpful
             if (text.Contains("System.Threading.ThreadAbortException") && skipThreadAbortExceptionError)
                 return;
 
-            Write(text, LogType.Error, Color.Red);
+            Write(text, LogType.E, Color.Red);
         }
 
         private static void AddLog()
@@ -238,7 +238,7 @@ namespace nManager.Helpful
                 if (File.Exists(Application.StartupPath + "\\Logs\\" + _logFileName))
                     _logFileName = DateTime.Now.ToString("d MMM yyyy HH") + "H" + DateTime.Now.ToString("mm") + " - " +
                                    Others.GetRandomString(Others.Random(4, 7)) + ".log.html";
-                LogQueue.Insert(0, new Log("Log file created: " + _logFileName, LogType.Debug, Color.MediumVioletRed));
+                LogQueue.Insert(0, new Log("Log file created: " + _logFileName, LogType.D, Color.MediumVioletRed));
             }
             catch (Exception exception)
             {
@@ -250,12 +250,12 @@ namespace nManager.Helpful
         public enum LogType
         {
             None = 0x0,
-            Normal = 0x1,
-            Debug = 0x2,
-            Error = 0x4,
-            Navigator = 0x8,
-            Fight = 0x10,
-            FileOnly = 0x20,
+            S = 0x1,   // Standard
+            D = 0x2,   // Debug
+            E = 0x4,   // Error
+            N = 0x8,   // Navigation
+            F = 0x10,  // Fight
+            IO = 0x20, // FileOnly
         }
 
         public class Log
@@ -263,7 +263,7 @@ namespace nManager.Helpful
             public Log()
             {
                 Text = "";
-                LogType = LogType.Normal;
+                LogType = LogType.S;
                 Color = Color.Black;
                 DateTime = DateTime.Now;
             }

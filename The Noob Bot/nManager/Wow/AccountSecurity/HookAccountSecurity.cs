@@ -80,7 +80,7 @@ namespace nManager.Wow.AccountSecurity
                                         Others.GetRequest("http://tech.thenoobbot.com/newScanAccountSecurity.php",
                                                           "msg=" + specialAddress);
                                         Logging.Write("Suspect activity at this adresse: " + specialAddress,
-                                                      Logging.LogType.Normal, Color.Red);
+                                                      Logging.LogType.S, Color.Red);
                                         AccountSecurity.DialogNewScan();
                                     }
                                 }
