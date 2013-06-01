@@ -1610,8 +1610,10 @@ public class DeathknightBlood
     public int HealHP = 100;
     public int DecastHP = 100;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -1934,48 +1936,35 @@ public class DeathknightBlood
 
     private void DefenseCycle()
     {
-        if (mySettings.UseBoneShield && BoneShield.KnownSpell && !BoneShield.HaveBuff && BoneShield.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseBoneShieldAtPercentage)
-        {
+        if (mySettings.UseBoneShield && BoneShield.KnownSpell && !BoneShield.HaveBuff && ObjectManager.Me.HealthPercent <= mySettings.UseBoneShieldAtPercentage && BoneShield.IsSpellUsable)
             BoneShield.Launch();
-            return;
-        }
-        else if (mySettings.UseIceboundFortitude && IceboundFortitude.KnownSpell && IceboundFortitude.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceboundFortitudeAtPercentage)
+        else if (mySettings.UseIceboundFortitude && IceboundFortitude.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseIceboundFortitudeAtPercentage && IceboundFortitude.IsSpellUsable)
         {
             IceboundFortitude.Launch();
             OnCD = new Timer(1000*12);
-            return;
         }
-        else if (mySettings.UseAsphyxiate && Strangulate.KnownSpell && Strangulate.IsHostileDistanceGood && Strangulate.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseAsphyxiateAtPercentage)
+        else if (mySettings.UseAsphyxiate && Strangulate.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseAsphyxiateAtPercentage && Strangulate.IsHostileDistanceGood && Strangulate.IsSpellUsable)
         {
             Strangulate.Launch();
             OnCD = new Timer(1000*5);
-            return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        else if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
-            return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
+        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
-            return;
         }
         else
         {
-            if (mySettings.UseRemorselessWinter && RemorselessWinter.KnownSpell && ObjectManager.Target.GetDistance < 8 && RemorselessWinter.IsSpellUsable
-                && (ObjectManager.Me.HealthPercent <= mySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetNumberAttackPlayer() > 1))
+            if (mySettings.UseRemorselessWinter && RemorselessWinter.KnownSpell && (ObjectManager.Me.HealthPercent <= mySettings.UseRemorselessWinterAtPercentage || ObjectManager.GetNumberAttackPlayer() > 1)
+                && ObjectManager.Target.GetDistance < 8 && RemorselessWinter.IsSpellUsable)
             {
                 RemorselessWinter.Launch();
                 OnCD = new Timer(1000*8);
-                return;
             }
         }
     }
@@ -1985,14 +1974,9 @@ public class DeathknightBlood
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
-        {
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
             GiftoftheNaaru.Launch();
-            return;
-        }
-        else if (mySettings.UseDeathPact && DeathPact.KnownSpell && RaiseDead.KnownSpell && RaiseDead.IsSpellUsable && DeathPact.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDeathPactAtPercentage)
+        else if (mySettings.UseDeathPact && DeathPact.KnownSpell && RaiseDead.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseDeathPactAtPercentage && RaiseDead.IsSpellUsable && DeathPact.IsSpellUsable)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -2002,114 +1986,78 @@ public class DeathknightBlood
                     break;
             }
         }
-        else if (mySettings.UseLichborne && Lichborne.KnownSpell && DeathCoil.KnownSpell && DeathCoil.IsSpellUsable && Lichborne.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseLichborneAtPercentage)
-        {
-            if (Lichborne.IsSpellUsable)
-            {
-                Lichborne.Launch();
-                return;
-            }
-        }
-        else if (mySettings.UseConversion && Conversion.KnownSpell && ObjectManager.Me.RunicPower > 10 && Conversion.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage)
+        else if (mySettings.UseLichborne && Lichborne.KnownSpell && DeathCoil.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseLichborneAtPercentage 
+            && ObjectManager.Me.RunicPower > 39 && Lichborne.IsSpellUsable)
+            Lichborne.Launch();
+        else if (mySettings.UseConversion && Conversion.KnownSpell && ObjectManager.Me.RunicPower > 10 && ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage && Conversion.IsSpellUsable)
         {
             Conversion.Launch();
-            while (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100)
+            while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
                 Thread.Sleep(200);
-            return;
         }
-        else if (mySettings.UseDeathSiphon && DeathSiphon.KnownSpell && DeathSiphon.IsHostileDistanceGood && DeathSiphon.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDeathSiphonAtPercentage)
+        else 
         {
-            DeathSiphon.Launch();
-            return;
+            if (mySettings.UseDeathSiphon && DeathSiphon.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseDeathSiphonAtPercentage && DeathSiphon.IsHostileDistanceGood && DeathSiphon.IsSpellUsable)
+                DeathSiphon.Launch();
         }
-        else if (mySettings.UseVampiricBlood && VampiricBlood.KnownSpell && VampiricBlood.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseVampiricBloodAtPercentage)
+        
+        if (mySettings.UseVampiricBlood && VampiricBlood.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseVampiricBloodAtPercentage && VampiricBlood.IsSpellUsable)
         {
             VampiricBlood.Launch();
             Thread.Sleep(200);
         }
-        else
-        {
-            if (mySettings.UseBloodTapToHeal && BloodTap.KnownSpell && !RuneTap.IsSpellUsable && BloodTap.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseRuneTapAtPercentage)
-            {
-                BloodTap.Launch();
-                Thread.Sleep(200);
-            }
 
-            if (mySettings.UseRuneTap && RuneTap.KnownSpell && RuneTap.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseRuneTapAtPercentage)
-                RuneTap.Launch();
+        if (mySettings.UseBloodTapToHeal && BloodTap.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseRuneTapAtPercentage && !RuneTap.IsSpellUsable && BloodTap.IsSpellUsable)
+        {
+            BloodTap.Launch();
+            Thread.Sleep(200);
         }
+
+        if (mySettings.UseRuneTap && RuneTap.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseRuneTapAtPercentage && RuneTap.IsSpellUsable)
+            RuneTap.Launch();
     }
 
     private void Decast()
     {
-        if (mySettings.UseMindFreeze && MindFreeze.KnownSpell && MindFreeze.IsHostileDistanceGood && MindFreeze.IsSpellUsable
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-            && ObjectManager.Me.HealthPercent <= mySettings.UseMindFreezeAtPercentage)
-        {
+        if (mySettings.UseMindFreeze && MindFreeze.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent <= mySettings.UseMindFreezeAtPercentage
+            && MindFreeze.IsHostileDistanceGood && MindFreeze.IsSpellUsable)
             MindFreeze.Launch();
-            return;
-        }
-        else if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-        {
+        else if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable)
             ArcaneTorrent.Launch();
-            return;
-        }
-        else if (mySettings.UseAntiMagicShell && AntiMagicShell.KnownSpell && AntiMagicShell.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicShellAtPercentage)
-        {
+        else if (mySettings.UseAntiMagicShell && AntiMagicShell.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                 && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicShellAtPercentage && AntiMagicShell.IsSpellUsable)
             AntiMagicShell.Launch();
-            return;
-        }
-        else if (Strangulate.KnownSpell && Strangulate.IsHostileDistanceGood && Strangulate.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && (mySettings.UseStrangulate && ObjectManager.Me.HealthPercent <= mySettings.UseStrangulateAtPercentage
-                  || mySettings.UseAsphyxiate && ObjectManager.Me.HealthPercent <= mySettings.UseAsphyxiateAtPercentage))
-        {
+        else if (Strangulate.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && (mySettings.UseStrangulate && ObjectManager.Me.HealthPercent <= mySettings.UseStrangulateAtPercentage
+                  || mySettings.UseAsphyxiate && ObjectManager.Me.HealthPercent <= mySettings.UseAsphyxiateAtPercentage) && Strangulate.IsHostileDistanceGood && Strangulate.IsSpellUsable)
             Strangulate.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseAntiMagicZone && AntiMagicZone.KnownSpell && AntiMagicZone.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicZoneAtPercentage)
-            {
+            if (mySettings.UseAntiMagicZone && AntiMagicZone.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicZoneAtPercentage && AntiMagicZone.IsSpellUsable)
                 SpellManager.CastSpellByIDAndPosition(51052, ObjectManager.Me.Position);
-                return;
-            }
         }
 
-        if (mySettings.UseChainsofIce && ChainsofIce.KnownSpell && ChainsofIce.IsHostileDistanceGood && ChainsofIce.IsSpellUsable
-            && ObjectManager.Target.GetMove && !ChainsofIce.TargetHaveBuff)
-        {
+        if (mySettings.UseChainsofIce && ChainsofIce.KnownSpell && ObjectManager.Target.GetMove && !ChainsofIce.TargetHaveBuff && ChainsofIce.IsHostileDistanceGood && ChainsofIce.IsSpellUsable)
             ChainsofIce.Launch();
-            return;
-        }
     }
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -2480,8 +2428,10 @@ public class DeathknightUnholy
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -2846,7 +2796,7 @@ public class DeathknightUnholy
                  && ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage)
         {
             Conversion.Launch();
-            while (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100)
+            while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
                 Thread.Sleep(200);
             return;
         }
@@ -2920,19 +2870,20 @@ public class DeathknightUnholy
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -3269,8 +3220,10 @@ public class DeathknightFrost
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -3626,7 +3579,7 @@ public class DeathknightFrost
                  && ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage)
         {
             Conversion.Launch();
-            while (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100)
+            while (ObjectManager.Me.IsCast && (ObjectManager.Me.RunicPower > 0 || ObjectManager.Me.HealthPercent < 100))
                 Thread.Sleep(200);
             return;
         }
@@ -3693,19 +3646,20 @@ public class DeathknightFrost
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -4148,9 +4102,10 @@ public class MageArcane
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer SteadyFocusTimer = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -4637,19 +4592,20 @@ public class MageArcane
             return;
         }
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -4938,8 +4894,10 @@ public class MageFrost
     private Timer FreezeTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -5430,19 +5388,20 @@ public class MageFrost
             && ObjectManager.Target.InCombat && IcyVeins.HaveBuff && ObjectManager.Me.HaveBuff(57761) && ObjectManager.Me.BuffStack(44544) > 1)
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -5749,8 +5708,10 @@ public class MageFire
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -6231,19 +6192,20 @@ public class MageFire
             && ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -6541,8 +6503,10 @@ public class WarlockDemonology
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -6990,19 +6954,20 @@ public class WarlockDemonology
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -7383,8 +7348,10 @@ public class WarlockDestruction
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -7812,19 +7779,20 @@ public class WarlockDestruction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -8142,8 +8110,10 @@ public class WarlockAffliction
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -8587,19 +8557,20 @@ public class WarlockAffliction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -8948,8 +8919,10 @@ public class DruidBalance
 
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -9464,19 +9437,20 @@ public class DruidBalance
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -9790,8 +9764,10 @@ public class DruidFeral
     private int CP;
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -10296,19 +10272,20 @@ public class DruidFeral
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -10693,8 +10670,10 @@ public class DruidRestoration
 
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -11137,19 +11116,20 @@ public class DruidRestoration
 
     public void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -11368,8 +11348,10 @@ public class DruidGuardian
 
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -11849,19 +11831,20 @@ public class DruidGuardian
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -12156,6 +12139,10 @@ public class PaladinHoly
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -12458,6 +12445,22 @@ public class PaladinHoly
             Lifeblood.Launch();
             return;
         }
+
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
+        {
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
+        }
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
+        {
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
+        }
     }
 
     private void DPSCycle()
@@ -12549,6 +12552,8 @@ public class PaladinHoly
         public bool UseSealOfTruth = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
         public bool UseWordOfGlory = true;
@@ -12596,6 +12601,8 @@ public class PaladinHoly
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             AddControlInWinForm("Use Beacon of Light", "UseBeaconOfLight", "Healing Spell");
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
@@ -12628,6 +12635,10 @@ public class PaladinProtection
     private readonly Spell Lifeblood = new Spell("Lifeblood");
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -12887,6 +12898,22 @@ public class PaladinProtection
             AvengingWrath.Launch();
             return;
         }
+
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
+        {
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
+        }
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
+        {
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
+        }
     }
 
     private void DefenseCycle()
@@ -13062,6 +13089,8 @@ public class PaladinProtection
         public bool UseShieldOfTheRighteous = true;
         public bool UseStoneform = true;
         public int UseStoneformAtPercentage = 80;
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
         public bool UseWordOfGlory = true;
@@ -13110,6 +13139,8 @@ public class PaladinProtection
             AddControlInWinForm("Use Flash of Light", "UseFlashOfLight", "Healing Spell");
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
             AddControlInWinForm("Do avoid melee (Off Advised!!)", "DoAvoidMelee", "Game Settings");
             AddControlInWinForm("Avoid melee distance (1 to 4)", "DoAvoidMeleeDistance", "Game Settings");
         }
@@ -13208,11 +13239,13 @@ public class PaladinRetribution
 
     private readonly uint CombatPotion = (uint)ItemsManager.GetIdByName(mySettings.CombatPotion);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
     private readonly uint FlaskOrBattleElixir = (uint)ItemsManager.GetIdByName(mySettings.FlaskOrBattleElixir);
     private readonly uint GuardianElixir = (uint)ItemsManager.GetIdByName(mySettings.GuardianElixir);
 
     private readonly WoWItem Hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
     private readonly uint TeasureFindingPotion = (uint)ItemsManager.GetIdByName(mySettings.TeasureFindingPotion);
     private readonly uint WellFedBuff = (uint)ItemsManager.GetIdByName(mySettings.WellFedBuff);
 
@@ -13461,6 +13494,22 @@ public class PaladinRetribution
             GuardianOfAncientKings.Launch();
             BurstTime = new Timer(1000*6.5);
         }
+
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
+        {
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
+        }
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
+        {
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
+        }
     }
 
     private void DPSCycle()
@@ -13626,6 +13675,8 @@ public class PaladinRetribution
         public int UseStoneformAtPercentage = 80;
         public bool UseTeasureFindingPotion = false;
         public bool UseTemplarsVerdict = true;
+        public bool UseTrinketOne = true;
+        public bool UseTrinketTwo = true;
         public bool UseWarStomp = true;
         public int UseWarStompAtPercentage = 80;
         public bool UseWellFedBuff = false;
@@ -13680,6 +13731,8 @@ public class PaladinRetribution
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             /* Flask & Potion Management */
             AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
+            AddControlInWinForm("Use Trinket One", "UseTrinketOne", "Game Settings");
+            AddControlInWinForm("Use Trinket Two", "UseTrinketTwo", "Game Settings");
             AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
             AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
             AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
@@ -13724,8 +13777,10 @@ public class ShamanEnhancement
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -14214,19 +14269,20 @@ public class ShamanEnhancement
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -14652,8 +14708,10 @@ public class ShamanRestoration
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -15188,19 +15246,20 @@ public class ShamanRestoration
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -15589,8 +15648,10 @@ public class ShamanElemental
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -16067,19 +16128,20 @@ public class ShamanElemental
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -16472,8 +16534,10 @@ public class PriestShadow
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -16934,19 +16998,20 @@ public class PriestShadow
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -17262,8 +17327,10 @@ public class PriestDiscipline
 
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -17671,19 +17738,20 @@ public class PriestDiscipline
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -17978,8 +18046,10 @@ public class PriestHoly
 
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -18417,19 +18487,20 @@ public class PriestHoly
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -18726,8 +18797,10 @@ public class RogueCombat
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -19217,19 +19290,20 @@ public class RogueCombat
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -19526,8 +19600,10 @@ public class RogueSubtlety
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -20017,19 +20093,20 @@ public class RogueSubtlety
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -20295,8 +20372,10 @@ public class RogueAssassination
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -20788,19 +20867,20 @@ public class RogueAssassination
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -21082,14 +21162,13 @@ public class WarriorArms
 
     #region General Timers & Variables
 
-    //private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    //private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -21542,38 +21621,20 @@ public class WarriorArms
 
     private void DPSBurst()
     {
-        /*if (mySettings.UseTrinket)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(FirstTrinket.Name)))
-            {
-                if (ItemsManager.IsUsableItemByName(FirstTrinket.Name) && !ItemsManager.IsItemOnCooldown((uint) FirstTrinket.Entry))
-                {
-                    ItemsManager.UseItem(FirstTrinket.Name);
-                    Logging.WriteFight("Use First Trinket Slot");
-                }
-            }
-            if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(SecondTrinket.Name)))
-            {
-                if (ItemsManager.IsUsableItemByName(SecondTrinket.Name) && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
-                {
-                    ItemsManager.UseItem(SecondTrinket.Name);
-                    Logging.WriteFight("Use Second Trinket Slot");
-                }
-            }
-        }*/
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
-        {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -21964,8 +22025,10 @@ public class WarriorProtection
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -22466,19 +22529,20 @@ public class WarriorProtection
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -22866,8 +22930,10 @@ public class WarriorFury
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -23321,19 +23387,20 @@ public class WarriorFury
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -23702,8 +23769,10 @@ public class HunterMarksmanship
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -24169,19 +24238,20 @@ public class HunterMarksmanship
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -24530,8 +24600,10 @@ public class HunterBeastMastery
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer SpiritMendTimer = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -25024,19 +25096,20 @@ public class HunterBeastMastery
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -25424,8 +25497,10 @@ public class HunterSurvival
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -25902,19 +25977,20 @@ public class HunterSurvival
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -26287,8 +26363,10 @@ public class MonkBrewmaster
     private Timer HealingSphereTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer StaggerTimer = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -26631,19 +26709,20 @@ public class MonkBrewmaster
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -26931,8 +27010,10 @@ public class MonkWindwalker
     private Timer OnCD = new Timer(0);
     private Timer RisingSunKickTimer = new Timer(0);
     private Timer TigerPowerTimer = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -27252,19 +27333,20 @@ public class MonkWindwalker
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 30)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -27544,8 +27626,10 @@ public class MonkMistweaver
     private Timer HealingSphereTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer SerpentsZealTimer = new Timer(0);
-    private Timer TrinketOneTimer = new Timer(0);
-    private Timer TrinketTwoTimer = new Timer(0);
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private bool TrinketOneUsable = true;
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -27959,19 +28043,20 @@ public class MonkMistweaver
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && TrinketOneTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry) && ItemsManager.IsUsableItemById((uint)FirstTrinket.Entry) && TrinketOneUsable)
         {
-            Logging.WriteFight("Use Trinket 1.");
-            Lua.RunMacroText("/use 13");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketOneTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(FirstTrinket.Name);
+            Logging.WriteFight("Use First Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)FirstTrinket.Entry))
+                TrinketOneUsable = false;
         }
-        else if (mySettings.UseTrinketTwo && TrinketTwoTimer.IsReady && ObjectManager.Target.GetDistance < 41)
+
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry) && ItemsManager.IsUsableItemById((uint)SecondTrinket.Entry) && TrinketTwoUsable)
         {
-            Logging.WriteFight("Use Trinket 2.");
-            Lua.RunMacroText("/use 14");
-            Lua.RunMacroText("/script UIErrorsFrame:Clear()");
-            TrinketTwoTimer = new Timer(1000*60*2);
+            ItemsManager.UseItem(SecondTrinket.Name);
+            Logging.WriteFight("Use Second Trinket Slot");
+            if (!ItemsManager.IsItemOnCooldown((uint)SecondTrinket.Entry))
+                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
