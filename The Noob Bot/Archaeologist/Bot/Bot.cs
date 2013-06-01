@@ -57,7 +57,7 @@ namespace Archaeologist.Bot
 
                 Fsm.States.Sort();
                 Fsm.StartEngine(6); // Fsm.StartEngine(25);
-
+                Archaeology.Initialize();
                 return true;
             }
             catch (Exception e)

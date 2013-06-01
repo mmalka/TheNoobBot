@@ -11,7 +11,12 @@ namespace nManager.Wow.Helpers
     public class Archaeology
     {
 
-        private static List<Digsite> _allDigsiteZone = new List<Digsite>();
+        private static List<Digsite> _allDigsiteZone;
+
+        public static void Initialize()
+        {
+             _allDigsiteZone = new List<Digsite>();
+        }
 
         public static void ClearList()
         {

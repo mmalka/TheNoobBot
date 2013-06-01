@@ -29,9 +29,16 @@ namespace nManager.Wow.Class
             set { _active = value; }
         }
 
+        public Point Center
+        {
+            get { return _center; }
+            set { _center = value; }
+        }
+
         private int _id;
         private string _name;
         private float _priorityDigsites;
         private bool _active;
+        private Point _center;
     }
 }
