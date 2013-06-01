@@ -1343,8 +1343,7 @@ public class DeathknightApprentice
 
     private void Pull()
     {
-        if (mySettings.UseDeathGrip && DeathGrip.KnownSpell && DeathGrip.IsHostileDistanceGood && DeathGrip.IsSpellUsable
-            && ObjectManager.Target.GetDistance > Main.range)
+        if (mySettings.UseDeathGrip && DeathGrip.KnownSpell && DeathGrip.IsHostileDistanceGood && ObjectManager.Target.GetDistance > Main.range && DeathGrip.IsSpellUsable)
         {
             DeathGrip.Launch();
             MovementManager.StopMove();
@@ -1374,12 +1373,12 @@ public class DeathknightApprentice
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (mySettings.UseBloodPresence && BloodPresence.KnownSpell && BloodPresence.IsSpellUsable && !BloodPresence.HaveBuff
-            && (ObjectManager.GetNumberAttackPlayer() >= 3 || ObjectManager.Me.HealthPercent <= mySettings.UseBloodPresenceAtPercentage))
+        if (mySettings.UseBloodPresence && BloodPresence.KnownSpell && !BloodPresence.HaveBuff && (ObjectManager.GetNumberAttackPlayer() >= 3 
+            || ObjectManager.Me.HealthPercent <= mySettings.UseBloodPresenceAtPercentage) && BloodPresence.IsSpellUsable)
             BloodPresence.Launch();
         else
         {
-            if (mySettings.UseFrostPresence && FrostPresence.KnownSpell && FrostPresence.IsSpellUsable && !FrostPresence.HaveBuff)
+            if (mySettings.UseFrostPresence && FrostPresence.KnownSpell && !FrostPresence.HaveBuff && FrostPresence.IsSpellUsable)
                 FrostPresence.Launch();
         }
     }
@@ -1406,145 +1405,94 @@ public class DeathknightApprentice
 
     private void DefenseCycle()
     {
-        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
-        {
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
             Stoneform.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
-            {
+            if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && ObjectManager.Target.GetDistance < 8
+                && WarStomp.IsSpellUsable)
                 WarStomp.Launch();
-                return;
-            }
         }
     }
 
     private void Heal()
     {
-        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
-        {
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
             GiftoftheNaaru.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood && DeathStrike.IsSpellUsable
-                && ObjectManager.Target.IsValid && ObjectManager.Target.IsAlive
-                && ObjectManager.Me.HealthPercent <= mySettings.UseDeathStrikeAtPercentage)
-            {
+            if (mySettings.UseDeathStrike && DeathStrike.KnownSpell && ObjectManager.Target.IsValid && ObjectManager.Target.IsAlive && ObjectManager.Me.HealthPercent <= mySettings.UseDeathStrikeAtPercentage 
+                && DeathStrike.IsHostileDistanceGood && DeathStrike.IsSpellUsable)
                 DeathStrike.Launch();
-                return;
-            }
         }
     }
 
     private void Decast()
     {
-        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
-            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-        {
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable)
             ArcaneTorrent.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseMindFreeze && MindFreeze.KnownSpell && MindFreeze.IsHostileDistanceGood && MindFreeze.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent <= mySettings.UseMindFreezeAtPercentage)
-            {
+            if (mySettings.UseMindFreeze && MindFreeze.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+                && ObjectManager.Me.HealthPercent <= mySettings.UseMindFreezeAtPercentage && MindFreeze.IsHostileDistanceGood && MindFreeze.IsSpellUsable)
                 MindFreeze.Launch();
-                return;
-            }
         }
 
-        if (mySettings.UseChainsofIce && ChainsofIce.KnownSpell && ChainsofIce.IsHostileDistanceGood && ChainsofIce.IsSpellUsable
-            && ObjectManager.Target.GetMove && !ChainsofIce.TargetHaveBuff)
-        {
+        if (mySettings.UseChainsofIce && ChainsofIce.KnownSpell && ObjectManager.Target.GetMove && !ChainsofIce.TargetHaveBuff && ChainsofIce.IsHostileDistanceGood && ChainsofIce.IsSpellUsable)
             ChainsofIce.Launch();
-            return;
-        }
     }
 
     private void DPSBurst()
     {
-        if (mySettings.UseRaiseDead && RaiseDead.IsSpellUsable && ObjectManager.Target.GetDistance < 30 && RaiseDead.KnownSpell)
+        if (mySettings.UseRaiseDead && RaiseDead.KnownSpell && ObjectManager.Target.GetDistance < 30 && RaiseDead.IsSpellUsable)
             RaiseDead.Launch();
-        else if (mySettings.UseLifeblood && Lifeblood.IsSpellUsable && ObjectManager.Target.GetDistance < 30 && Lifeblood.KnownSpell)
+        
+        if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
             Lifeblood.Launch();
-        else if (mySettings.UseBerserking && Berserking.IsSpellUsable && ObjectManager.Target.GetDistance < 30 && Berserking.KnownSpell)
+        
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
             Berserking.Launch();
         else
         {
-            if (mySettings.UseBloodFury && BloodFury.IsSpellUsable && ObjectManager.Target.GetDistance < 30 && BloodFury.KnownSpell)
+            if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
                 BloodFury.Launch();
         }
     }
 
     private void DPSCycle()
     {
-        if (mySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && IcyTouch.IsSpellUsable
-            && (!FrostFever.TargetHaveBuff || FrostFeverTimer.IsReady))
+        if (mySettings.UseIcyTouch && IcyTouch.KnownSpell && (!FrostFever.TargetHaveBuff || FrostFeverTimer.IsReady) && IcyTouch.IsHostileDistanceGood && IcyTouch.IsSpellUsable)
         {
             IcyTouch.Launch();
             FrostFeverTimer = new Timer(1000*27);
-            return;
         }
-        else if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable
-                 && (!BloodPlague.TargetHaveBuff || BloodPlagueTimer.IsReady))
+        else if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && (!BloodPlague.TargetHaveBuff || BloodPlagueTimer.IsReady) && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable)
         {
             PlagueStrike.Launch();
             BloodPlagueTimer = new Timer(1000*27);
-            return;
         }
-        else if (mySettings.UsePestilence && Pestilence.KnownSpell && Pestilence.IsHostileDistanceGood && Pestilence.IsSpellUsable
-                 && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff
-                 && ObjectManager.GetNumberAttackPlayer() > 1 && PestilenceTimer.IsReady)
+        else if (mySettings.UsePestilence && Pestilence.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 1 && PestilenceTimer.IsReady
+                 && Pestilence.IsHostileDistanceGood && Pestilence.IsSpellUsable)
         {
             Pestilence.Launch();
             PestilenceTimer = new Timer(1000*30);
-            return;
         }
-        else if (mySettings.UseBloodBoil && BloodBoil.KnownSpell && ObjectManager.Target.GetDistance < 10 && BloodBoil.IsSpellUsable
-                 && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff
-                 && ObjectManager.GetNumberAttackPlayer() > 2)
-        {
+        else if (mySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodPlague.TargetHaveBuff && FrostFever.TargetHaveBuff && ObjectManager.GetNumberAttackPlayer() > 2
+                 && ObjectManager.Target.GetDistance < 11 && BloodBoil.IsSpellUsable)
             BloodBoil.Launch();
-            return;
-        }
         else if (mySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable)
-        {
             DeathCoil.Launch();
-            return;
-        }
         else if (mySettings.UseBloodStrike && BloodStrike.KnownSpell && BloodStrike.IsHostileDistanceGood && BloodStrike.IsSpellUsable)
-        {
             BloodStrike.Launch();
-            return;
-        }
         else if (mySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && IcyTouch.IsSpellUsable)
-        {
             IcyTouch.Launch();
-            return;
-        }
         else if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable)
-        {
             PlagueStrike.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable
-                && ObjectManager.Me.RunicPowerPercentage < 86)
-            {
+            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.RunicPowerPercentage < 86 && ArcaneTorrent.IsSpellUsable)
                 ArcaneTorrent.Launch();
-                return;
-            }
         }
     }
 
@@ -1655,10 +1603,12 @@ public class DeathknightBlood
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int DRW = 1;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
+    public int DefenseHP = 100;
+    public int HealHP = 100;
+    public int DecastHP = 100;
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
     private Timer TrinketTwoTimer = new Timer(0);
@@ -1757,6 +1707,7 @@ public class DeathknightBlood
     {
         Main.range = 5.0f;
         UInt64 lastTarget = 0;
+        LowHP();
 
         while (Main.loop)
         {
@@ -1804,10 +1755,69 @@ public class DeathknightBlood
         }
     }
 
+    private void LowHP()
+    {
+        if (mySettings.UseBoneShieldAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseBoneShieldAtPercentage;
+
+        if (mySettings.UseIceboundFortitudeAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseIceboundFortitudeAtPercentage;
+
+        if (mySettings.UseAsphyxiateAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseAsphyxiateAtPercentage;
+
+        if (mySettings.UseStoneformAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseStoneformAtPercentage;
+
+        if (mySettings.UseWarStompAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseWarStompAtPercentage;
+
+        if (mySettings.UseRemorselessWinterAtPercentage < DefenseHP)
+            DefenseHP = mySettings.UseRemorselessWinterAtPercentage;
+
+        if (mySettings.UseGiftoftheNaaruAtPercentage < HealHP)
+            HealHP = mySettings.UseGiftoftheNaaruAtPercentage;
+
+        if (mySettings.UseDeathPactAtPercentage < HealHP)
+            HealHP = mySettings.UseDeathPactAtPercentage;
+
+        if (mySettings.UseLichborneAtPercentage < HealHP)
+            HealHP = mySettings.UseLichborneAtPercentage;
+
+        if (mySettings.UseConversionAtPercentage < HealHP)
+            HealHP = mySettings.UseConversionAtPercentage;
+
+        if (mySettings.UseDeathSiphonAtPercentage < HealHP)
+            HealHP = mySettings.UseDeathSiphonAtPercentage;
+
+        if (mySettings.UseVampiricBloodAtPercentage < HealHP)
+            HealHP = mySettings.UseVampiricBloodAtPercentage;
+
+        if (mySettings.UseRuneTapAtPercentage < HealHP)
+            HealHP = mySettings.UseRuneTapAtPercentage;
+
+        if (mySettings.UseMindFreezeAtPercentage < DecastHP)
+            DecastHP = mySettings.UseMindFreezeAtPercentage;
+
+        if (mySettings.UseArcaneTorrentForDecastAtPercentage < DecastHP)
+            DecastHP = mySettings.UseArcaneTorrentForDecastAtPercentage;
+
+        if (mySettings.UseAntiMagicShellAtPercentage < DecastHP)
+            DecastHP = mySettings.UseAntiMagicShellAtPercentage;
+
+        if (mySettings.UseStrangulateAtPercentage < DecastHP)
+            DecastHP = mySettings.UseStrangulateAtPercentage;
+
+        if (mySettings.UseAsphyxiateAtPercentage < DecastHP)
+            DecastHP = mySettings.UseAsphyxiateAtPercentage;
+
+        if (mySettings.UseAntiMagicZoneAtPercentage < DecastHP)
+            DecastHP = mySettings.UseAntiMagicZoneAtPercentage;
+    }
+
     private void BuffPath()
     {
-        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !ObjectManager.Me.InCombat && PathofFrost.IsSpellUsable
-            && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady)
+        if (mySettings.UsePathofFrost && PathofFrost.KnownSpell && !ObjectManager.Me.InCombat && (!PathofFrost.HaveBuff || PathofFrostTimer.IsReady) && PathofFrostBuffTimer.IsReady && PathofFrost.IsSpellUsable)
         {
             PathofFrost.Launch();
             PathofFrostBuffTimer = new Timer(1000*10);
@@ -1817,8 +1827,7 @@ public class DeathknightBlood
 
     private void Pull()
     {
-        if (mySettings.UseDeathGrip && DeathGrip.KnownSpell && DeathGrip.IsHostileDistanceGood && DeathGrip.IsSpellUsable
-            && ObjectManager.Target.GetDistance > Main.range)
+        if (mySettings.UseDeathGrip && DeathGrip.KnownSpell && DeathGrip.IsHostileDistanceGood && ObjectManager.Target.GetDistance > Main.range && DeathGrip.IsSpellUsable)
         {
             DeathGrip.Launch();
             MovementManager.StopMove();
@@ -1843,33 +1852,17 @@ public class DeathknightBlood
         Heal();
 
         if (mySettings.UseIcyTouch && IcyTouch.KnownSpell && IcyTouch.IsHostileDistanceGood && IcyTouch.IsSpellUsable)
-        {
             IcyTouch.Launch();
-            return;
-        }
-        else if (mySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && DeathCoil.IsSpellUsable
-                 && ObjectManager.Target.GetDistance > Main.range)
-        {
+        else if (mySettings.UseDeathCoil && DeathCoil.KnownSpell && DeathCoil.IsHostileDistanceGood && ObjectManager.Target.GetDistance > Main.range && DeathCoil.IsSpellUsable)
             DeathCoil.Launch();
-            return;
-        }
         else if (mySettings.UseRuneStrike && RuneStrike.KnownSpell && RuneStrike.IsHostileDistanceGood && RuneStrike.IsSpellUsable)
-        {
             RuneStrike.Launch();
-            return;
-        }
         else if (mySettings.UsePlagueStrike && PlagueStrike.KnownSpell && PlagueStrike.IsHostileDistanceGood && PlagueStrike.IsSpellUsable)
-        {
             PlagueStrike.Launch();
-            return;
-        }
         else
         {
-            if (mySettings.UseBloodBoil && BloodBoil.KnownSpell && BloodBoil.IsHostileDistanceGood && BloodBoil.IsSpellUsable)
-            {
+            if (mySettings.UseBloodBoil && BloodBoil.KnownSpell && ObjectManager.Target.GetDistance < 11 && BloodBoil.IsSpellUsable)
                 BloodBoil.Launch();
-                return;
-            }
         }
     }
 
@@ -1879,14 +1872,12 @@ public class DeathknightBlood
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
-        if (OnCD.IsReady)
+        if (OnCD.IsReady && ObjectManager.Me.HealthPercent <= DefenseHP)
             DefenseCycle();
-        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseDeathPactAtPercentage 
-            || ObjectManager.Me.HealthPercent <= mySettings.UseLichborneAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage 
-            || ObjectManager.Me.HealthPercent <= mySettings.UseDeathSiphonAtPercentage || ObjectManager.Me.HealthPercent <= mySettings.UseVampiricBloodAtPercentage
-            || ObjectManager.Me.HealthPercent <= mySettings.UseRuneTapAtPercentage)
+        if (ObjectManager.Me.HealthPercent <= HealHP)
             Heal();
-        Decast();
+        if (ObjectManager.Me.HealthPercent <= DecastHP || (mySettings.UseChainsofIce && ObjectManager.Target.GetMove))
+            Decast();
         DPSBurst();
         DPSCycle();
     }
@@ -1913,16 +1904,12 @@ public class DeathknightBlood
             HornofWinter.Launch();
 
         if (mySettings.UseDeathsAdvance && DeathsAdvance.KnownSpell && !ObjectManager.Me.InCombat && DeathsAdvance.IsSpellUsable
-                 && ObjectManager.Me.GetMove)
+            && ObjectManager.Me.GetMove)
             DeathsAdvance.Launch();
 
-        if (mySettings.UseAlchFlask && AlchFlaskTimer.IsReady && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -2489,7 +2476,6 @@ public class DeathknightUnholy
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int DT = 1;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
@@ -2752,13 +2738,9 @@ public class DeathknightUnholy
                  && ObjectManager.Me.GetMove)
             DeathsAdvance.Launch();
 
-        if (mySettings.UseAlchFlask && AlchFlaskTimer.IsReady && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -3284,7 +3266,6 @@ public class DeathknightFrost
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -3543,13 +3524,9 @@ public class DeathknightFrost
                  && ObjectManager.Me.GetMove)
             DeathsAdvance.Launch();
 
-        if (mySettings.UseAlchFlask && AlchFlaskTimer.IsReady && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -4168,7 +4145,6 @@ public class MageArcane
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -4413,6 +4389,10 @@ public class MageArcane
             BlazingSpeed.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -4954,7 +4934,6 @@ public class MageFrost
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer FreezeTimer = new Timer(0);
     public int LC = 0;
@@ -5195,6 +5174,10 @@ public class MageFrost
                 OnCD = new Timer(1000*10);
                 return;
             }
+
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
 
         if (mySettings.UseArcaneBrilliance && ArcaneBrilliance.KnownSpell && !ArcaneBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable
@@ -5763,7 +5746,6 @@ public class MageFire
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -6021,6 +6003,10 @@ public class MageFire
             BlazingSpeed.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -6552,7 +6538,6 @@ public class WarlockDemonology
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -6795,6 +6780,10 @@ public class WarlockDemonology
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -7391,7 +7380,6 @@ public class WarlockDestruction
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -7609,6 +7597,10 @@ public class WarlockDestruction
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -8147,7 +8139,6 @@ public class WarlockAffliction
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -8392,6 +8383,10 @@ public class WarlockAffliction
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -8951,7 +8946,6 @@ public class DruidBalance
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
@@ -9208,14 +9202,9 @@ public class DruidBalance
             }
             return;
         }
-        else if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask && Alchemy.KnownSpell
-                 && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
         else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
                  && mySettings.UseMarkoftheWild)
         {
@@ -9798,7 +9787,6 @@ public class DruidFeral
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private int CP;
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
@@ -10052,14 +10040,9 @@ public class DruidFeral
             MarkoftheWild.Launch();
             return;
         }
-        else if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask && Alchemy.KnownSpell
-                 && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
         else if (!ObjectManager.Me.InCombat && mySettings.UseDash
                  && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
                  && ObjectManager.Me.GetMove)
@@ -10708,7 +10691,6 @@ public class DruidRestoration
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
@@ -10871,14 +10853,9 @@ public class DruidRestoration
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask && Alchemy.KnownSpell
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
         else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
                  && mySettings.UseMarkoftheWild)
         {
@@ -11389,7 +11366,6 @@ public class DruidGuardian
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
@@ -11610,14 +11586,9 @@ public class DruidGuardian
             MarkoftheWild.Launch();
             return;
         }
-        else if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask && Alchemy.KnownSpell
-                 && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
         else if (!ObjectManager.Me.InCombat && mySettings.UseDash
                  && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
                  && ObjectManager.Me.GetMove)
@@ -12313,7 +12284,13 @@ public class PaladinHoly
     private void Buffs()
     {
         if (!ObjectManager.Me.IsMounted)
+        {
             Blessing();
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
+        }
+
         Seal();
     }
 
@@ -12536,6 +12513,7 @@ public class PaladinHoly
     {
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -12579,6 +12557,7 @@ public class PaladinHoly
         {
             ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -12786,6 +12765,9 @@ public class PaladinProtection
         if (!ObjectManager.Me.IsMounted)
         {
             Blessing();
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
         Seal();
     }
@@ -13043,6 +13025,7 @@ public class PaladinProtection
     {
         public bool DoAvoidMelee = false;
         public int DoAvoidMeleeDistance = 0;
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -13087,6 +13070,7 @@ public class PaladinProtection
         {
             ConfigWinForm(new Point(500, 400), "Paladin Protection Settings");
             /* Professions & Racials */
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Arcane Torrent for Interrupt", "UseArcaneTorrentForDecast", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Arcane Torrent for Resource", "UseArcaneTorrentForResource", "Professions & Racials", "AtPercentage");
             AddControlInWinForm("Use Lifeblood", "UseLifeblood", "Professions & Racials");
@@ -13334,6 +13318,10 @@ public class PaladinRetribution
                     !ItemsManager.IsItemOnCooldown(GuardianElixir) && ItemsManager.IsUsableItemById(GuardianElixir))
                     ItemsManager.UseItem(mySettings.GuardianElixir);
             Blessing();
+
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
         Seal();
     }
@@ -13596,6 +13584,7 @@ public class PaladinRetribution
         public string GuardianElixir = "";
         public bool RefreshWeakenedBlows = true;
         public string TeasureFindingPotion = "Potion of Luck";
+        public bool UseAlchFlask = true;
         public bool UseArcaneTorrentForDecast = true;
         public int UseArcaneTorrentForDecastAtPercentage = 100;
         public bool UseArcaneTorrentForResource = true;
@@ -13690,6 +13679,7 @@ public class PaladinRetribution
             AddControlInWinForm("Use Lay on Hands", "UseLayOnHands", "Healing Spell");
             AddControlInWinForm("Use Word of Glory", "UseWordOfGlory", "Healing Spell");
             /* Flask & Potion Management */
+            AddControlInWinForm("Use Alchemist Flask", "UseAlchFlask", "Game Settings");
             AddControlInWinForm("Use Flask or Battle Elixir", "UseFlaskOrBattleElixir", "Flask & Potion Management");
             AddControlInWinForm("Flask or Battle Elixir Name", "FlaskOrBattleElixir", "Flask & Potion Management");
             AddControlInWinForm("Use Guardian Elixir", "UseGuardianElixir", "Flask & Potion Management");
@@ -13731,7 +13721,6 @@ public class ShamanEnhancement
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -14034,6 +14023,10 @@ public class ShamanEnhancement
             GhostWolf.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -14656,7 +14649,6 @@ public class ShamanRestoration
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -14970,6 +14962,10 @@ public class ShamanRestoration
             GhostWolf.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -15590,7 +15586,6 @@ public class ShamanElemental
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -15878,6 +15873,10 @@ public class ShamanElemental
             GhostWolf.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -16470,7 +16469,6 @@ public class PriestShadow
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -16712,13 +16710,9 @@ public class PriestShadow
             InnerWill.Launch();
             return;
         }
-        else if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask
-                 && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
         else
         {
             if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable
@@ -17266,7 +17260,6 @@ public class PriestDiscipline
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
@@ -17462,13 +17455,9 @@ public class PriestDiscipline
         }
         else
         {
-            if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask
-                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-            {
-                Logging.WriteFight("Use Alchi Flask");
-                Lua.RunMacroText("/use item:75525");
-                AlchFlaskTimer = new Timer(1000*60*60*2);
-            }
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
     }
 
@@ -17987,7 +17976,6 @@ public class PriestHoly
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer TrinketOneTimer = new Timer(0);
@@ -18203,13 +18191,9 @@ public class PriestHoly
         }
         else
         {
-            if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask
-                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-            {
-                Logging.WriteFight("Use Alchi Flask");
-                Lua.RunMacroText("/use item:75525");
-                AlchFlaskTimer = new Timer(1000*60*60*2);
-            }
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
     }
 
@@ -18738,7 +18722,6 @@ public class RogueCombat
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
@@ -19074,6 +19057,10 @@ public class RogueCombat
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -19535,7 +19522,6 @@ public class RogueSubtlety
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
@@ -19871,6 +19857,10 @@ public class RogueSubtlety
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -20301,7 +20291,6 @@ public class RogueAssassination
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
@@ -20639,6 +20628,10 @@ public class RogueAssassination
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -21092,7 +21085,6 @@ public class WarriorArms
     //private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     //private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -21381,6 +21373,10 @@ public class WarriorArms
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -21965,7 +21961,6 @@ public class WarriorProtection
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -22267,6 +22262,10 @@ public class WarriorProtection
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -22864,7 +22863,6 @@ public class WarriorFury
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -23154,6 +23152,10 @@ public class WarriorFury
                 return;
             }
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -23697,7 +23699,6 @@ public class HunterMarksmanship
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -23943,6 +23944,10 @@ public class HunterMarksmanship
             Camouflage.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -24518,7 +24523,6 @@ public class HunterBeastMastery
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer AncientHysteriaTimer = new Timer(0);
     private Timer BurrowAttackTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
@@ -24779,6 +24783,10 @@ public class HunterBeastMastery
             Camouflage.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -25413,7 +25421,6 @@ public class HunterSurvival
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
@@ -25670,6 +25677,10 @@ public class HunterSurvival
             Camouflage.Launch();
             return;
         }
+
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void Pet()
@@ -26270,7 +26281,6 @@ public class MonkBrewmaster
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     public int ElusiveBrewStack = 0;
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
@@ -26412,8 +26422,6 @@ public class MonkBrewmaster
 
     private void Combat()
     {
-        if (!LegacyoftheEmperor.HaveBuff || !StanceoftheSturdyOx.HaveBuff || (!ObjectManager.Me.HaveBuff(126119) && ObjectManager.Me.InCombat) || (TigersLust.KnownSpell && !ObjectManager.Me.InCombat)  
-            || (Roll.KnownSpell && !ObjectManager.Me.InCombat) || (ItemsManager.GetItemCountByIdLUA(75525) == 1 && AlchFlaskTimer.IsReady))
         Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
@@ -26452,13 +26460,9 @@ public class MonkBrewmaster
                  && ObjectManager.Target.GetDistance < 30 && ObjectManager.Target.InCombat)
             SpellManager.CastSpellByIDAndPosition(115315, ObjectManager.Target.Position);
 
-        if (mySettings.UseAlchFlask && ItemsManager.GetItemCountByIdLUA(75525) == 1 && AlchFlaskTimer.IsReady)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -26921,7 +26925,6 @@ public class MonkWindwalker
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
     private Timer HealingSphereTimer = new Timer(0);
@@ -27056,10 +27059,7 @@ public class MonkWindwalker
 
     private void Combat()
     {
-        if (!LegacyoftheEmperor.HaveBuff || !LegacyoftheWhiteTiger.HaveBuff || (TigersLust.KnownSpell && !ObjectManager.Me.InCombat)  
-            || !StanceoftheFierceTiger.HaveBuff || (Roll.KnownSpell && !ObjectManager.Me.InCombat) 
-            || (ItemsManager.GetItemCountByIdLUA(75525) == 1 && AlchFlaskTimer.IsReady))
-            Buff();
+        Buff();
         if (mySettings.DoAvoidMelee)
             AvoidMelee();
         DPSCycle();
@@ -27095,13 +27095,9 @@ public class MonkWindwalker
                  && !TigersLust.HaveBuff && Roll.IsSpellUsable && ObjectManager.Target.GetDistance > 14)
             Roll.Launch();
 
-        if (mySettings.UseAlchFlask && ItemsManager.GetItemCountByIdLUA(75525) == 1 && AlchFlaskTimer.IsReady)
-        {
-            Logging.WriteFight("Use Alchi Flask");
-            Lua.RunMacroText("/use item:75525");
-            AlchFlaskTimer = new Timer(1000*60*60*2);
-            return;
-        }
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            ItemsManager.UseItem("Alchemist's Flask");
     }
 
     private void AvoidMelee()
@@ -27543,7 +27539,6 @@ public class MonkMistweaver
 
     #region General Timers & Variables
 
-    private Timer AlchFlaskTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
     private Timer HealingSphereTimer = new Timer(0);
@@ -27735,13 +27730,9 @@ public class MonkMistweaver
         }
         else
         {
-            if (AlchFlaskTimer.IsReady && mySettings.UseAlchFlask
-                && ItemsManager.GetItemCountByIdLUA(75525) == 1)
-            {
-                Logging.WriteFight("Use Alchi Flask");
-                Lua.RunMacroText("/use item:75525");
-                AlchFlaskTimer = new Timer(1000*60*60*2);
-            }
+            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                ItemsManager.UseItem("Alchemist's Flask");
         }
     }
 
