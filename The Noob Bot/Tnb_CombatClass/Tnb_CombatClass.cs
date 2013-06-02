@@ -1911,7 +1911,7 @@ public class DeathknightBlood
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -2690,7 +2690,7 @@ public class DeathknightUnholy
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -3479,7 +3479,7 @@ public class DeathknightFrost
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -4347,7 +4347,7 @@ public class MageArcane
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -5135,7 +5135,7 @@ public class MageFrost
 
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
 
         if (mySettings.UseArcaneBrilliance && ArcaneBrilliance.KnownSpell && !ArcaneBrilliance.HaveBuff && ArcaneBrilliance.IsSpellUsable
@@ -5967,7 +5967,7 @@ public class MageFire
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -6747,7 +6747,7 @@ public class WarlockDemonology
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -7567,7 +7567,7 @@ public class WarlockDestruction
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -8356,7 +8356,7 @@ public class WarlockAffliction
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -9177,7 +9177,7 @@ public class DruidBalance
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
         else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
                  && mySettings.UseMarkoftheWild)
         {
@@ -10018,7 +10018,7 @@ public class DruidFeral
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
         else if (!ObjectManager.Me.InCombat && mySettings.UseDash
                  && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
                  && ObjectManager.Me.GetMove)
@@ -10834,7 +10834,7 @@ public class DruidRestoration
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
         else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
                  && mySettings.UseMarkoftheWild)
         {
@@ -11570,7 +11570,7 @@ public class DruidGuardian
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
         else if (!ObjectManager.Me.InCombat && mySettings.UseDash
                  && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
                  && ObjectManager.Me.GetMove)
@@ -12275,7 +12275,7 @@ public class PaladinHoly
             Blessing();
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
 
         Seal();
@@ -12778,7 +12778,7 @@ public class PaladinProtection
             Blessing();
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
         Seal();
     }
@@ -13354,7 +13354,7 @@ public class PaladinRetribution
 
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
         Seal();
     }
@@ -14081,7 +14081,7 @@ public class ShamanEnhancement
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -15023,7 +15023,7 @@ public class ShamanRestoration
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -15937,7 +15937,7 @@ public class ShamanElemental
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -16776,7 +16776,7 @@ public class PriestShadow
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
         else
         {
             if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable
@@ -17524,7 +17524,7 @@ public class PriestDiscipline
         {
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
     }
 
@@ -18263,7 +18263,7 @@ public class PriestHoly
         {
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
     }
 
@@ -19133,7 +19133,7 @@ public class RogueCombat
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -19936,7 +19936,7 @@ public class RogueSubtlety
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -20710,7 +20710,7 @@ public class RogueAssassination
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -21455,7 +21455,7 @@ public class WarriorArms
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -22328,7 +22328,7 @@ public class WarriorProtection
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -23221,7 +23221,7 @@ public class WarriorFury
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -24016,7 +24016,7 @@ public class HunterMarksmanship
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -24858,7 +24858,7 @@ public class HunterBeastMastery
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -25755,7 +25755,7 @@ public class HunterSurvival
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void Pet()
@@ -26540,7 +26540,7 @@ public class MonkBrewmaster
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -27178,7 +27178,7 @@ public class MonkWindwalker
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem("Alchemist's Flask");
+            ItemsManager.UseItem(75525);
     }
 
     private void AvoidMelee()
@@ -27816,7 +27816,7 @@ public class MonkMistweaver
         {
             if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
                 && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem("Alchemist's Flask");
+                ItemsManager.UseItem(75525);
         }
     }
 
