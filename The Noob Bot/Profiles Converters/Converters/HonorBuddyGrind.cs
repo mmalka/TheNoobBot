@@ -118,9 +118,9 @@ namespace Profiles_Converters.Converters
                                                         {
                                                             var pT =
                                                                 new nManager.MiscStructs.Point(
-                                                                   System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                                   System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                                   System.Convert.ToSingle(z.Value.Replace(".", ",")));
+                                                                   System.Convert.ToSingle(x.Value),
+                                                                   System.Convert.ToSingle(y.Value),
+                                                                   System.Convert.ToSingle(z.Value));
                                                             _profile.GrinderZones[
                                                                 _profile.GrinderZones.Count() - 1].Mailboxes.Add(pT);
                                                         }
@@ -158,9 +158,9 @@ namespace Profiles_Converters.Converters
                                                         {
                                                             var pT =
                                                                 new nManager.MiscStructs.Point(
-                                                                   System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                                   System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                                   System.Convert.ToSingle(z.Value.Replace(".", ",")));
+                                                                   System.Convert.ToSingle(x.Value),
+                                                                   System.Convert.ToSingle(y.Value),
+                                                                   System.Convert.ToSingle(z.Value));
                                                             _profile.GrinderZones[
                                                                 _profile.GrinderZones.Count() - 1].Vendors.Add(pT);
                                                         }
@@ -203,9 +203,9 @@ namespace Profiles_Converters.Converters
                                                             {
                                                                 var pT =
                                                                     new Point(
-                                                                        System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                                        System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                                        System.Convert.ToSingle(z.Value.Replace(".", ",")));
+                                                                        System.Convert.ToSingle(x.Value),
+                                                                        System.Convert.ToSingle(y.Value),
+                                                                        System.Convert.ToSingle(z.Value));
                                                                 _profile.GrinderZones[
                                                                     _profile.GrinderZones.Count() - 1].BlackListRadius.
                                                                                                        Add(new GrinderBlackListRadius
@@ -308,12 +308,9 @@ namespace Profiles_Converters.Converters
                                                                 {
                                                                     var pT =
                                                                         new Point(
-                                                                            System.Convert.ToSingle(x.Value.Replace(
-                                                                                ".", ",")),
-                                                                            System.Convert.ToSingle(y.Value.Replace(
-                                                                                ".", ",")),
-                                                                            System.Convert.ToSingle(z.Value.Replace(
-                                                                                ".", ",")));
+                                                                            System.Convert.ToSingle(x.Value),
+                                                                            System.Convert.ToSingle(y.Value),
+                                                                            System.Convert.ToSingle(z.Value));
                                                                     _profile.GrinderZones[
                                                                         _profile.GrinderZones.Count() - 1].Points.Add
                                                                         (pT);

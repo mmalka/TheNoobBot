@@ -61,11 +61,11 @@ namespace Profiles_Converters.Converters
                                     {
                                         _profile.Points.Add(new Point(
                                                                 System.Convert.ToSingle(
-                                                                    positionTempsString[0].Replace(".", ",")),
+                                                                    positionTempsString[0]),
                                                                 System.Convert.ToSingle(
-                                                                    positionTempsString[1].Replace(".", ",")),
+                                                                    positionTempsString[1]),
                                                                 System.Convert.ToSingle(
-                                                                    positionTempsString[2].Replace(".", ",")),
+                                                                    positionTempsString[2]),
                                                                 "Flying"));
                                     }
                                     catch
@@ -105,9 +105,9 @@ namespace Profiles_Converters.Converters
                                                             {
                                                                 Position =
                                                                     new Point(
-                                                                    System.Convert.ToSingle(x.Value.Replace(".", ",")),
-                                                                    System.Convert.ToSingle(y.Value.Replace(".", ",")),
-                                                                    System.Convert.ToSingle(z.Value.Replace(".", ",")),
+                                                                    System.Convert.ToSingle(x.Value),
+                                                                    System.Convert.ToSingle(y.Value),
+                                                                    System.Convert.ToSingle(z.Value),
                                                                     "Flying"),
                                                                 Entry =
                                                                     System.Convert.ToInt32(childVendors.Attribute("Entry")),

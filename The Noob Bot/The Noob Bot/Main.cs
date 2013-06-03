@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
@@ -20,6 +22,25 @@ namespace The_Noob_Bot
         public static string MinimizesWindowBoutonText = "";
         public static bool MinimizesWindowBoutonActive;
         public static Image MinimizesWindowBoutonImage;
+
+        public void SetDefaultCulture(CultureInfo culture)
+        {
+            Type type = typeof(CultureInfo);
+            try
+            {
+                type.InvokeMember("s_userDefaultCulture",
+                            BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                            null,
+                            culture,
+                            new object[] { culture });
+                type.InvokeMember("s_userDefaultUICulture",
+                            BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                            null,
+                            culture,
+                            new object[] { culture });
+            }
+            catch { }
+        }
 
         public Main()
         {
@@ -60,6 +81,8 @@ namespace The_Noob_Bot
         {
             try
             {
+                // 1st set the culture to invariant
+                SetDefaultCulture(CultureInfo.InvariantCulture);
                 ScriptOnlineManager.LoadScript();
                 // Create folder:
                 Directory.CreateDirectory(Application.StartupPath + "\\Logs\\");

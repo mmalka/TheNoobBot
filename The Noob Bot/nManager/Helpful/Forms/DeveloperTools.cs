@@ -169,9 +169,9 @@ namespace nManager.Helpful.Forms
                         "    <Entry>" + ObjectManager.Target.Entry + "</Entry>" + Environment.NewLine +
                         "    <Name>" + ObjectManager.Target.Name + "</Name>" + Environment.NewLine +
                         "    <Position>" + Environment.NewLine +
-                        "      <X>" + pos.X.ToString().Replace(",", ".") + "</X>" + Environment.NewLine +
-                        "      <Y>" + pos.Y.ToString().Replace(",", ".") + "</Y>" + Environment.NewLine +
-                        "      <Z>" + pos.Z.ToString().Replace(",", ".") + "</Z>" + Environment.NewLine +
+                        "      <X>" + pos.X + "</X>" + Environment.NewLine +
+                        "      <Y>" + pos.Y + "</Y>" + Environment.NewLine +
+                        "      <Z>" + pos.Z + "</Z>" + Environment.NewLine +
                         "      <Type>" + pos.Type + "</Type>" + Environment.NewLine +
                         "    </Position>" + Environment.NewLine +
                         "    <Faction>" +
@@ -180,7 +180,9 @@ namespace nManager.Helpful.Forms
                         "    <Type>None</Type>" + Environment.NewLine +
                         "    <ContinentId>" + (Wow.Enums.ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
                         Environment.NewLine +
-                        "  </Npc>";
+                        "  </Npc>" +
+                        Environment.NewLine + Environment.NewLine +
+                        "Distance: " + pos.DistanceTo(ObjectManager.Me.Position);
                 }
             }
             catch (Exception ex)
@@ -202,9 +204,9 @@ namespace nManager.Helpful.Forms
                         "" + Environment.NewLine +
                         "" + Environment.NewLine +
                         "<Position>" + Environment.NewLine +
-                        " <X>" + ObjectManager.Me.Position.X.ToString().Replace(",", ".") + "</X>" + Environment.NewLine +
-                        " <Y>" + ObjectManager.Me.Position.Y.ToString().Replace(",", ".") + "</Y>" + Environment.NewLine +
-                        " <Z>" + ObjectManager.Me.Position.Z.ToString().Replace(",", ".") + "</Z>" + Environment.NewLine +
+                        " <X>" + ObjectManager.Me.Position.X + "</X>" + Environment.NewLine +
+                        " <Y>" + ObjectManager.Me.Position.Y + "</Y>" + Environment.NewLine +
+                        " <Z>" + ObjectManager.Me.Position.Z + "</Z>" + Environment.NewLine +
                         " <Type>" + ObjectManager.Me.Position.Type + "</Type>" + Environment.NewLine +
                         "</Position>";
                 }
@@ -313,9 +315,9 @@ namespace nManager.Helpful.Forms
                     "    <Entry>" + npc.Entry + "</Entry>" + Environment.NewLine +
                     "    <Name>" + npc.Name + "</Name>" + Environment.NewLine +
                     "    <Position>" + Environment.NewLine +
-                    "      <X>" + npc.Position.X.ToString().Replace(",", ".") + "</X>" + Environment.NewLine +
-                    "      <Y>" + npc.Position.Y.ToString().Replace(",", ".") + "</Y>" + Environment.NewLine +
-                    "      <Z>" + npc.Position.Z.ToString().Replace(",", ".") + "</Z>" + Environment.NewLine +
+                    "      <X>" + npc.Position.X + "</X>" + Environment.NewLine +
+                    "      <Y>" + npc.Position.Y + "</Y>" + Environment.NewLine +
+                    "      <Z>" + npc.Position.Z + "</Z>" + Environment.NewLine +
                     "      <Type>" + npc.Position.Type + "</Type>" + Environment.NewLine +
                     "    </Position>" + Environment.NewLine +
                     "    <Faction>" +
