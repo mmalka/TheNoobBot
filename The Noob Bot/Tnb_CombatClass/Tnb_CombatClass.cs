@@ -1611,9 +1611,7 @@ public class DeathknightBlood
     public int DecastHP = 100;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -2044,20 +2042,16 @@ public class DeathknightBlood
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -2429,9 +2423,7 @@ public class DeathknightUnholy
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -2870,20 +2862,16 @@ public class DeathknightUnholy
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -3221,9 +3209,7 @@ public class DeathknightFrost
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -3646,20 +3632,16 @@ public class DeathknightFrost
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -4103,9 +4085,7 @@ public class MageArcane
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -4592,20 +4572,16 @@ public class MageArcane
             return;
         }
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -4895,9 +4871,7 @@ public class MageFrost
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -5388,20 +5362,16 @@ public class MageFrost
             && ObjectManager.Target.InCombat && IcyVeins.HaveBuff && ObjectManager.Me.HaveBuff(57761) && ObjectManager.Me.BuffStack(44544) > 1)
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -5709,9 +5679,7 @@ public class MageFire
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -6192,20 +6160,16 @@ public class MageFire
             && ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
             AlterTime.Launch();
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -6504,9 +6468,7 @@ public class WarlockDemonology
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -6954,20 +6916,16 @@ public class WarlockDemonology
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -7349,9 +7307,7 @@ public class WarlockDestruction
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -7779,20 +7735,16 @@ public class WarlockDestruction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -8111,9 +8063,7 @@ public class WarlockAffliction
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -8557,20 +8507,16 @@ public class WarlockAffliction
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
@@ -8920,9 +8866,7 @@ public class DruidBalance
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -9437,20 +9381,16 @@ public class DruidBalance
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -9765,9 +9705,7 @@ public class DruidFeral
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -10272,20 +10210,16 @@ public class DruidFeral
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -10671,9 +10605,7 @@ public class DruidRestoration
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -11116,20 +11048,16 @@ public class DruidRestoration
 
     public void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -11349,9 +11277,7 @@ public class DruidGuardian
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -11831,20 +11757,16 @@ public class DruidGuardian
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -12140,9 +12062,7 @@ public class PaladinHoly
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -12446,20 +12366,16 @@ public class PaladinHoly
             return;
         }
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
     }
 
@@ -12636,9 +12552,7 @@ public class PaladinProtection
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -12899,20 +12813,16 @@ public class PaladinProtection
             return;
         }
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
     }
 
@@ -13239,13 +13149,11 @@ public class PaladinRetribution
 
     private readonly int CombatPotion = ItemsManager.GetIdByName(mySettings.CombatPotion);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly int FlaskOrBattleElixir = ItemsManager.GetIdByName(mySettings.FlaskOrBattleElixir);
     private readonly int GuardianElixir = ItemsManager.GetIdByName(mySettings.GuardianElixir);
 
     private readonly WoWItem Hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
     private readonly int TeasureFindingPotion = ItemsManager.GetIdByName(mySettings.TeasureFindingPotion);
     private readonly int WellFedBuff = ItemsManager.GetIdByName(mySettings.WellFedBuff);
 
@@ -13495,20 +13403,16 @@ public class PaladinRetribution
             BurstTime = new Timer(1000*6.5);
         }
 
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
     }
 
@@ -13778,9 +13682,7 @@ public class ShamanEnhancement
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -14269,20 +14171,16 @@ public class ShamanEnhancement
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -14709,9 +14607,7 @@ public class ShamanRestoration
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -15246,20 +15142,16 @@ public class ShamanRestoration
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -15649,9 +15541,7 @@ public class ShamanElemental
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -16128,20 +16018,16 @@ public class ShamanElemental
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -16535,9 +16421,7 @@ public class PriestShadow
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -16998,20 +16882,16 @@ public class PriestShadow
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -17328,9 +17208,7 @@ public class PriestDiscipline
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -17738,20 +17616,16 @@ public class PriestDiscipline
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -18047,9 +17921,7 @@ public class PriestHoly
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -18487,20 +18359,16 @@ public class PriestHoly
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -18798,9 +18666,7 @@ public class RogueCombat
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -19290,20 +19156,16 @@ public class RogueCombat
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -19601,9 +19463,7 @@ public class RogueSubtlety
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -20093,20 +19953,16 @@ public class RogueSubtlety
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -20373,9 +20229,7 @@ public class RogueAssassination
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -20867,20 +20721,16 @@ public class RogueAssassination
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -21166,9 +21016,7 @@ public class WarriorArms
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -21621,20 +21469,16 @@ public class WarriorArms
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -22026,9 +21870,7 @@ public class WarriorProtection
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -22529,20 +22371,16 @@ public class WarriorProtection
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -22931,9 +22769,7 @@ public class WarriorFury
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -23387,20 +23223,16 @@ public class WarriorFury
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
                  && mySettings.UseBerserking)
@@ -23770,9 +23602,7 @@ public class HunterMarksmanship
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -24238,20 +24068,16 @@ public class HunterMarksmanship
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -24601,9 +24427,7 @@ public class HunterBeastMastery
     private Timer OnCD = new Timer(0);
     private Timer SpiritMendTimer = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -25096,20 +24920,16 @@ public class HunterBeastMastery
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -25498,9 +25318,7 @@ public class HunterSurvival
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -25977,20 +25795,16 @@ public class HunterSurvival
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)
@@ -26364,9 +26178,7 @@ public class MonkBrewmaster
     private Timer OnCD = new Timer(0);
     private Timer StaggerTimer = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -26709,20 +26521,16 @@ public class MonkBrewmaster
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -27011,9 +26819,7 @@ public class MonkWindwalker
     private Timer RisingSunKickTimer = new Timer(0);
     private Timer TigerPowerTimer = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -27333,20 +27139,16 @@ public class MonkWindwalker
 
     private void DPSBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
@@ -27627,9 +27429,7 @@ public class MonkMistweaver
     private Timer OnCD = new Timer(0);
     private Timer SerpentsZealTimer = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private bool TrinketOneUsable = true;
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
-    private bool TrinketTwoUsable = true;
 
     #endregion
 
@@ -28043,20 +27843,16 @@ public class MonkMistweaver
 
     private void HealingBurst()
     {
-        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry) && TrinketOneUsable)
+        if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(FirstTrinket.Entry))
-                TrinketOneUsable = false;
         }
 
-        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry) && TrinketTwoUsable)
+        if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
-            if (!ItemsManager.IsItemOnCooldown(SecondTrinket.Entry))
-                TrinketTwoUsable = false;
         }
         else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
                  && mySettings.UseBerserking)

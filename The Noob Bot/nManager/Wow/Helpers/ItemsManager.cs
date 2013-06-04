@@ -182,6 +182,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (string.IsNullOrEmpty(GetItemSpellByItemId(Entry)))
+                    return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + Entry + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
@@ -199,6 +201,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (string.IsNullOrEmpty(GetItemSpellByItemName(Name)))
+                    return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + Name + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
