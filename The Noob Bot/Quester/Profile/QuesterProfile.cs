@@ -105,7 +105,7 @@ namespace Quester.Profile
         public List<int> Entry = new List<int>();
         public string Name = "Not defined";
         public List<uint> Factions = new List<uint>();
-        public uint CollectItemId = 0;
+        public int CollectItemId = 0;
         public int CollectCount = 0;
         public List<Point> Hotspots = new List<Point>();
         public string Script = "";

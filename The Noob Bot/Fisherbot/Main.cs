@@ -25,7 +25,7 @@ public class Main : IProduct
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.weaponName))
                 FisherbotSetting.CurrentSetting.weaponName =
                     ItemsManager.GetNameById(
-                        ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2));
+                        (int) ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2));
 
             Logging.Status = "Initialize Fisherbot Complete";
             Logging.Write("Initialize Fisherbot Complete");

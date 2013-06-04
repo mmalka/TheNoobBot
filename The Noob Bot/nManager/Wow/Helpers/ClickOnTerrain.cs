@@ -38,16 +38,16 @@ namespace nManager.Wow.Helpers
             Pulse(point);
         }
 
-        public static void Item(uint itemId, Point point)
+        public static void Item(int Entry, Point point)
         {
-            if (itemId <= 0)
+            if (Entry <= 0)
                 return;
             if (point == null)
                 return;
             if (point.X == 0 && point.Y == 0)
                 return;
 
-            ItemsManager.UseItem(ItemsManager.GetNameById(itemId));
+            ItemsManager.UseItem(ItemsManager.GetNameById(Entry));
 
 
             Thread.Sleep(Usefuls.Latency + 50);

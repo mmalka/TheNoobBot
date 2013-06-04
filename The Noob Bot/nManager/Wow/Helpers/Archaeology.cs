@@ -308,7 +308,7 @@ namespace nManager.Wow.Helpers
                 }
                 Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
                 if (ObjectManager.ObjectManager.Me.Level < 90) return;
-                for (uint i = 79896; i <= 79917; i++)
+                for (int i = 79896; i <= 79917; i++)
                 {
                     if (i == 79906 || i == 79907)
                         continue;
@@ -321,7 +321,7 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(500);
                     }
                 }
-                for (uint i = 95375; i <= 95382; i++)
+                for (int i = 95375; i <= 95382; i++)
                 {
                     var item = ObjectManager.ObjectManager.GetWoWItemById(i);
                     if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||

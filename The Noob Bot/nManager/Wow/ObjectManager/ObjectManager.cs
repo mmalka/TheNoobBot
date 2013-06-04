@@ -327,7 +327,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static WoWItem GetWoWItemById(uint entry)
+        public static WoWItem GetWoWItemById(int entry)
         {
             try
             {

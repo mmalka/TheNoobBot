@@ -330,7 +330,7 @@ namespace nManager.Wow.ObjectManager
                                 break;
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_ITEM: // Do we have the key(s) ?
-                                uint itemId = Row.Record.LockType[j];
+                                int itemId = (int) Row.Record.LockType[j];
                                 if (ItemsManager.GetItemCountByIdLUA(itemId) < 0)
                                     return false;
                                 break;

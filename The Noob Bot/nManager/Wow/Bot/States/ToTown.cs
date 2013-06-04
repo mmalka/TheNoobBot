@@ -551,7 +551,7 @@ namespace nManager.Wow.Bot.States
 
         private static Npc DoSpawnRobot(string Robot, Npc.NpcType Type)
         {
-            uint RobotItemId;
+            int RobotItemId;
             int RobotEntryId;
             int GossipOption = 0;
             switch (Robot)

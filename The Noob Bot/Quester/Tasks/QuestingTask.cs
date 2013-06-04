@@ -55,7 +55,7 @@ namespace Quester.Tasks
                             if (!Quest.GetQuestCompleted(quest.NeedQuestNotCompletedId)) // Quest done which discalify this one
                                 if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                                     quest.NeedQuestCompletedId.Count == 0)
-                                    if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA((uint) quest.ItemPickUp) > 0))
+                                    if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA(quest.ItemPickUp) > 0))
                                         if (Script.Run(quest.ScriptCondition)) // Condition
                                         {
                                             CurrentQuest = quest;
@@ -427,7 +427,7 @@ namespace Quester.Tasks
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
-                        ItemsManager.UseItem(ItemsManager.GetNameById((uint) questObjective.UseItemId));
+                        ItemsManager.UseItem(ItemsManager.GetNameById(questObjective.UseItemId));
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
                         else
@@ -619,7 +619,7 @@ namespace Quester.Tasks
             {
                 if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
                     return;
-                ItemsManager.EquipItemByName(ItemsManager.GetNameById((uint) questObjective.EquipItemId));
+                ItemsManager.EquipItemByName(ItemsManager.GetNameById(questObjective.EquipItemId));
                 questObjective.IsObjectiveCompleted = true;
             }
 
@@ -769,14 +769,14 @@ namespace Quester.Tasks
                 //End target finding based on EntryAOE.
                 if (questObjective.EntryAOE <= 0 && baseAddress == 0)
                 {
-                    ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                    ItemsManager.UseItem(questObjective.UseItemId, Target.Position);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
                 }
                 else if (baseAddress != 0)
                 {
                     Interact.InteractWith(baseAddress);
-                    ItemsManager.UseItem((uint) questObjective.UseItemId, Target.Position);
+                    ItemsManager.UseItem(questObjective.UseItemId, Target.Position);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
                 }
@@ -874,7 +874,7 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount(true);
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
-                        ItemsManager.UseItem(ItemsManager.GetNameById((uint) questObjective.UseItemId));
+                        ItemsManager.UseItem(ItemsManager.GetNameById(questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.CurrentCount++; // This is not correct
                     }
@@ -971,7 +971,7 @@ namespace Quester.Tasks
 
             if (pickUp && item != 0)
             {
-                ItemsManager.UseItem(ItemsManager.GetNameById((uint) item));
+                ItemsManager.UseItem(ItemsManager.GetNameById(item));
                 Thread.Sleep(250);
                 Quest.AcceptQuest();
                 return;

@@ -107,7 +107,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    foreach (uint i in listLure)
+                    foreach (int i in listLure)
                     {
                         if (ItemsManager.GetItemCountByIdLUA(i) > 0)
                         {
@@ -135,9 +135,9 @@ namespace nManager.Wow.Helpers
             {
                 foreach (int i in listLure)
                 {
-                    if (ItemsManager.GetItemCountByIdLUA((uint) i) > 0)
+                    if (ItemsManager.GetItemCountByIdLUA(i) > 0)
                     {
-                        return ItemsManager.GetNameById((uint) i);
+                        return ItemsManager.GetNameById(i);
                     }
                 }
             }
@@ -174,7 +174,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    foreach (uint i in ListFishingPoles)
+                    foreach (int i in ListFishingPoles)
                     {
                         if (ItemsManager.GetItemCountByIdLUA(i) > 0)
                         {
@@ -200,7 +200,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                foreach (uint i in ListFishingPoles)
+                foreach (int i in ListFishingPoles)
                 {
                     if (ItemsManager.GetItemCountByIdLUA(i) > 0)
                     {
@@ -222,7 +222,7 @@ namespace nManager.Wow.Helpers
                 var idEquiped =
                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
                 if (fishingPoleName != string.Empty)
-                    if (ItemsManager.GetNameById(idEquiped) == fishingPoleName)
+                    if (ItemsManager.GetNameById((int) idEquiped) == fishingPoleName)
                         return true;
 
                 if (ListFishingPoles.Contains(idEquiped))
