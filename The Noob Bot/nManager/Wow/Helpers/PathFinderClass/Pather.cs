@@ -487,7 +487,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public float GetZ(Point position, bool strict = false)
         {
-            var extents = new Point(0.5f, 2000.0f, 0.5f).ToFloatArray();
+            float[] extents;
+            if (strict)
+                extents = new Point(0.5f, 2000.0f, 0.5f).ToFloatArray();
+            else
+                extents = new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
             var center = position.ToRecast().ToFloatArray();
 
             float tx, ty;
