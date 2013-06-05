@@ -12,6 +12,7 @@ namespace nManager.Wow.Helpers
     {
         private List<Point> _SetPoints;
         private Point _MiddlePoint = new Point(0, 0, 0);
+        private bool _MiddlePointSet = false;
 
         private static DBC<QuestPOIPointDbcRecord> qpPointDbc;
 
@@ -62,8 +63,16 @@ namespace nManager.Wow.Helpers
                     middleX += (int)_SetPoints[i].X;
                     middleY += (int)_SetPoints[i].Y;
                 }
-                return new Point(middleX / _SetPoints.Count, middleY / _SetPoints.Count, 0);
+                float x = middleX / _SetPoints.Count;
+                float y = middleY / _SetPoints.Count;
+                float z = PathFinder.GetZPosition(x, y, false);
+                return new Point(x, y, z + 80.0f);
             }
+        }
+
+        public bool ValidPoint
+        {
+            get { return _MiddlePointSet; }
         }
 
         public Point MiddlePoint
@@ -146,6 +155,7 @@ namespace nManager.Wow.Helpers
                 {
                     _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ + 2.0f);
                 }
+                _MiddlePointSet = true;
                 return _MiddlePoint;
             }
         }

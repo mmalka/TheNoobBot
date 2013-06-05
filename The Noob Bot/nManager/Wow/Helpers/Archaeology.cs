@@ -160,7 +160,7 @@ namespace nManager.Wow.Helpers
                             {
                                 resultList.Add(_allDigsiteZone[i]);
                                 Logging.Write("Digsite zone found: Name: " + dl.name + " - Distance = " +
-                                              qPOI.MiddlePoint.DistanceTo2D(ObjectManager.ObjectManager.Me.Position));
+                                              qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position));
                                 zonefound = true;
                             }
                         }
