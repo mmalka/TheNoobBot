@@ -159,8 +159,8 @@ namespace nManager.Wow.Helpers
                                 " = startTime .. \"^\" .. duration .. \"^\" .. enable");
                 string[] itemInfoArray = Lua.GetLocalizedText(randomString).Split(Convert.ToChar("^"));
 
-                uint itemStartTime = Convert.ToUInt32(itemInfoArray[0]);
-                uint itemDuration = Convert.ToUInt32(itemInfoArray[1]);
+                float itemStartTime = Convert.ToSingle(itemInfoArray[0]);
+                float itemDuration = Convert.ToSingle(itemInfoArray[1]);
                 uint itemEnable = Convert.ToUInt32(itemInfoArray[2]);
 
                 if (itemStartTime == 0 && itemDuration == 0)
