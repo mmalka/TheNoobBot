@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -756,12 +757,25 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        private static List<int> _achievementsDoneCache = new List<int>();
+        private static List<int> _achievementsNotDoneCache = new List<int>();
+
         public static bool IsCompletedAchievement(int achievementId)
         {
+            if (_achievementsDoneCache.Contains(achievementId))
+                return true;
+            else if (_achievementsNotDoneCache.Contains(achievementId))
+                return false;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString("_, _, _, mycheck = GetAchievementInfo(" + achievementId + "); if mycheck then " + randomString + "=\"1\" else " + randomString + "=\"0\" end");
             string ret = Lua.GetLocalizedText(randomString);
-            return ret == "1";
+            if (ret == "1")
+            {
+                _achievementsDoneCache.Add(achievementId);
+                return true;
+            }
+            _achievementsNotDoneCache.Add(achievementId);
+            return false;
         }
 
         private static readonly Object ThisLock = new Object();
