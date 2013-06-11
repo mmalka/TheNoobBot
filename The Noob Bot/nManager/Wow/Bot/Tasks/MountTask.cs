@@ -21,7 +21,10 @@ namespace nManager.Wow.Bot.Tasks
         private static int _nbTry;
         private static int _noMountsInSettings;
         private static string _localizedAbysalMountName = string.Empty;
-        private static bool startupCheck = true;
+        private static bool _startupCheck = true;
+        private static bool _Wisdom4Winds = false;
+        private static bool _ColdWeather = false;
+        private static bool _FlightMasterLicense = false;
 
         public static MountCapacity GetMountCapacity()
         {
@@ -29,7 +32,7 @@ namespace nManager.Wow.Bot.Tasks
             string groundMount = nManagerSetting.CurrentSetting.GroundMountName;
             string flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
 
-            if (startupCheck)
+            if (_startupCheck)
             {
                 // 1st Check if mounts in general settings exist
                 if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
@@ -53,7 +56,14 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
                     _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
-                startupCheck = false;
+                Spell Wisdom4Winds = new Spell(115913);
+                _Wisdom4Winds = Wisdom4Winds.KnownSpell;
+                Spell ColdWeather = new Spell(115913);
+                _ColdWeather = ColdWeather.KnownSpell;
+                Spell FlightMasterLicense = new Spell(115913);
+                _FlightMasterLicense = FlightMasterLicense.KnownSpell;
+
+                _startupCheck = false;
             }
             if (ObjectManager.ObjectManager.Me.Level < 16 || (groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty))
             {
@@ -88,21 +98,17 @@ namespace nManager.Wow.Bot.Tasks
                     Enums.ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
-                    Spell Wisdom4Winds = new Spell(115913);
-                    if (cont == Enums.ContinentId.Pandaria &&
-                        Wisdom4Winds.KnownSpell)
+                    if (_Wisdom4Winds && cont == Enums.ContinentId.Pandaria)
                         return MountCapacity.Fly;
 
                     // We are in Northfend with "Cold Weather Flying" aura
-                    Spell ColdWeather = new Spell(54197);
-                    if (cont == Enums.ContinentId.Northrend && ColdWeather.KnownSpell)
+                    if (_ColdWeather && cont == Enums.ContinentId.Northrend)
                         return MountCapacity.Fly;
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
-                    Spell FlightMasterLicense = new Spell(90267);
-                    if ((cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor ||
-                         cont == Enums.ContinentId.Maelstrom) &&
-                        FlightMasterLicense.KnownSpell)
+                    if (_FlightMasterLicense &&
+                        (cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor ||
+                         cont == Enums.ContinentId.Maelstrom))
                         return MountCapacity.Fly;
 
                     // We are in Outland and Expert Flying or better
@@ -276,7 +282,8 @@ namespace nManager.Wow.Bot.Tasks
                         {
                             return;
                         }
-                        Thread.Sleep(750 + Usefuls.Latency); // to stop moving/falling
+                        while (ObjectManager.ObjectManager.Me.GetMove)
+                            Thread.Sleep(50 + Usefuls.Latency); // to stop moving/falling
                         Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
                         SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.FlyingMountName);
                         if (ObjectManager.ObjectManager.Me.InCombat)
