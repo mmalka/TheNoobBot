@@ -52,8 +52,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.WowClass != WoWClass.Druid)
-                    return null;
                 if (MountDruidIdList.Count <= 0)
                 {
                     MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
@@ -743,10 +741,7 @@ namespace nManager.Wow.Helpers
                 var listIdSpellFound = new List<UInt32>();
                 try
                 {
-                    _spellName = spellName;
-                    var listSpellFound = ListSpell.FindAll(FindByName);
-                    listIdSpellFound.AddRange(listSpellFound.Select(tempsSpell => tempsSpell.Id));
-
+                    listIdSpellFound.AddRange(from current in ListSpell where current.Name.ToLower() == spellName.ToLower() select current.Id);
                     return listIdSpellFound;
                 }
                 catch (Exception exception)
@@ -756,31 +751,14 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            private static bool FindByName(SpellList tempsSpell)
-            {
-                try
-                {
-                    if (tempsSpell.Name.ToLower() == _spellName.ToLower())
-                    {
-                        return true;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("FindByName(SpellList tempsSpell): " + exception);
-                }
-                return false;
-            }
-
             public static string SpellNameById(UInt32 spellId)
             {
                 try
                 {
-                    _spellId = spellId;
-                    List<SpellList> listSpellFound = ListSpell.FindAll(FindById);
-                    if (listSpellFound.Count > 0)
-                        return listSpellFound[0].Name;
-                    return "";
+                    foreach (var current in ListSpell.Where(current => current.Id == spellId))
+                    {
+                        return current.Name;
+                    }
                 }
                 catch (Exception exception)
                 {
@@ -793,7 +771,6 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    _spellId = spellId;
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
@@ -806,27 +783,6 @@ namespace nManager.Wow.Helpers
                     Logging.WriteError("SpellNameByIdExperimental(UInt32 spellId): " + exception);
                 }
                 return "";
-            }
-
-            private static uint _spellId;
-
-            private static bool FindById(SpellList tempsSpell)
-            {
-                try
-                {
-                    if (tempsSpell.Id == _spellId)
-                    {
-                        return true;
-                    }
-                    {
-                        return false;
-                    }
-                }
-                catch (Exception exception)
-                {
-                    Logging.WriteError("FindById(SpellList tempsSpell): " + exception);
-                }
-                return false;
             }
         }
     }
