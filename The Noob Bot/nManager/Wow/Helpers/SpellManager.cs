@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -51,6 +52,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (ObjectManager.ObjectManager.Me.WowClass != WoWClass.Druid)
+                    return null;
                 if (MountDruidIdList.Count <= 0)
                 {
                     MountDruidIdList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
