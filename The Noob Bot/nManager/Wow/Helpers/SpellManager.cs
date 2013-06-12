@@ -711,7 +711,6 @@ namespace nManager.Wow.Helpers
         {
             public static List<SpellList> ListSpell { get; private set; }
             public static List<string> ListSpellName { get; private set; }
-            private static string _spellName = "";
 
             internal static void LoadSpellListe(string fileName)
             {
