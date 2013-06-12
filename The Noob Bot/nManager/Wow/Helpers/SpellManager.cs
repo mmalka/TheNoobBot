@@ -533,7 +533,9 @@ namespace nManager.Wow.Helpers
                 {
                     if (_spellBookSpell.Count <= 0)
                     {
-                        var spellBook = SpellBookID().Select(SpellInfoLUA).ToList();
+                        var spellBook = new List<Spell>();
+                        foreach (Spell spell in SpellBookID().Select(SpellInfoLUA))
+                            spellBook.Add(spell);
                         _spellBookSpell = spellBook;
                     }
                 }
