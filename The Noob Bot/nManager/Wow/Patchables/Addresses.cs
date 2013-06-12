@@ -1,7 +1,7 @@
 ﻿namespace nManager.Wow.Patchables
 {
     /// <summary>
-    ///   Offset and Pointer for Wow 16977
+    ///   Offset and Pointer for Wow 17055
     /// </summary>
     public static class Addresses
     {
@@ -84,7 +84,7 @@
             Spell = 0xC099B0,
             SpellCastTimes = 0xC09488,
             SpellRange = 0xC09958,
-            SpellMisc = 0xC0E41C, // not found
+            SpellMisc = 0xC0987C,
             FactionTemplate = 0xC07888,
             Lock = 0xC088D8,
             Map = 0xC0A740,
