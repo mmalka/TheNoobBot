@@ -89,7 +89,7 @@
             Lock = 0xC088D8,
             Map = 0xC0A740,
             ResearchSite = 0xC09010,
-            QuestPOIPoint = 0xC0D9F8, // not found
+            QuestPOIPoint = 0xC08E58,
         }
 
         /// <summary>
