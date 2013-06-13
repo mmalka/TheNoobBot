@@ -471,6 +471,12 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
+        public static bool IsSpellBookLoaded()
+        {
+            var nb = Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint)Addresses.SpellBook.nbSpell);
+            return nb == SpellBook().Count;
+        }
+
         public static int SpellAvailable()
         {
             try
