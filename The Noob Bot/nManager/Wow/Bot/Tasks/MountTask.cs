@@ -4,7 +4,6 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
-using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.Tasks
@@ -57,12 +56,11 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
                     _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
-                // Repported FlyingMount issue is related to this, the SpellBook is not yet loaded on every computer (especially old ones !!).
                 var wisdom4Winds = new Spell(115913);
                 _wisdom4Winds = wisdom4Winds.KnownSpell;
-                var coldWeather = new Spell(115913);
+                var coldWeather = new Spell(54197);
                 _coldWeather = coldWeather.KnownSpell;
-                var flightMasterLicense = new Spell(115913);
+                var flightMasterLicense = new Spell(90267);
                 _flightMasterLicense = flightMasterLicense.KnownSpell;
 
                 _startupCheck = false;
