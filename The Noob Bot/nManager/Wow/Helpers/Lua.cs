@@ -177,7 +177,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.FreeMemory(luaGetLocalizedTextSpace);
 
                 // Remove the LUA variable
-                LuaDoString(commandline + " = nil");
+                //LuaDoString(commandline + " = nil");
 
                 // Uninstall the hook
                 return sResult;
