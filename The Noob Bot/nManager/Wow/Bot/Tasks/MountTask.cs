@@ -35,8 +35,6 @@ namespace nManager.Wow.Bot.Tasks
 
             if (_startupCheck)
             {
-                if (!SpellManager.IsSpellBookLoaded())
-                    return MountCapacity.Feet; // do not process _startupCheck until the SpellBook is not fully loaded.
                 // 1st Check if mounts in general settings exist
                 if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
                     !SpellManager.ExistSpellBookLUA(groundMount))
