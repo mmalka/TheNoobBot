@@ -22,9 +22,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
                     uint displayPower = descriptorsArray +
-                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
+                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
                     return (WoWClass) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
                 }
                 catch (Exception e)
@@ -41,9 +41,9 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
                     uint displayPower = descriptorsArray +
-                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
+                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
                     return (WoWRace) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[0];
                 }
                 catch (Exception e)
@@ -399,9 +399,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray =
-                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors);
                     uint addressGD = descriptorsArray +
-                                     ((uint) Descriptors.PlayerFields.TrackCreatureMask*Descriptors.multiplicator);
+                                     ((uint) Descriptors.PlayerFields.TrackCreatureMask*Descriptors.Multiplicator);
                     Memory.WowMemory.Memory.WriteUInt(addressGD, (uint) value);
                 }
                 catch (Exception e)
@@ -446,9 +446,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray =
-                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors);
                     uint addressGD = descriptorsArray +
-                                     ((uint) Descriptors.PlayerFields.TrackResourceMask*Descriptors.multiplicator);
+                                     ((uint) Descriptors.PlayerFields.TrackResourceMask*Descriptors.Multiplicator);
                     Memory.WowMemory.Memory.WriteUInt(addressGD, (uint) value);
                 }
                 catch (Exception e)

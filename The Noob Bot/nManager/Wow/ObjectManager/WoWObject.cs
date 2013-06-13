@@ -260,8 +260,8 @@ namespace nManager.Wow.ObjectManager
 
                 if (baseAddress > 0)
                 {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(baseAddress + Descriptors.startDescriptors);
-                    uint addressGD = descriptorsArray + (field*Descriptors.multiplicator);
+                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(baseAddress + Descriptors.StartDescriptors);
+                    uint addressGD = descriptorsArray + (field*Descriptors.Multiplicator);
 
                     if (typeof (T) == typeof (string))
                     {

@@ -12,8 +12,8 @@ namespace nManager.Wow.Helpers
             {
                 uint descriptorsArray =
                     Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                     Descriptors.startDescriptors);
-                uint addressGD = descriptorsArray + ((uint) Descriptors.PlayerFields.Skill*Descriptors.multiplicator);
+                                                     Descriptors.StartDescriptors);
+                uint addressGD = descriptorsArray + ((uint) Descriptors.PlayerFields.Skill*Descriptors.Multiplicator);
                 uint v2 = 0;
                 uint id = 0;
                 do
@@ -47,9 +47,9 @@ namespace nManager.Wow.Helpers
                 {
                     uint descriptorsArray =
                         Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                         Descriptors.startDescriptors);
+                                                         Descriptors.StartDescriptors);
                     uint addressGD = descriptorsArray +
-                                     ((uint) Descriptors.PlayerFields.Skill*Descriptors.multiplicator);
+                                     ((uint) Descriptors.PlayerFields.Skill*Descriptors.Multiplicator);
                     var result = Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillValue);
                     return result;
                 }
@@ -72,9 +72,9 @@ namespace nManager.Wow.Helpers
                 {
                     uint descriptorsArray =
                         Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                         Descriptors.startDescriptors);
+                                                         Descriptors.StartDescriptors);
                     uint addressGD = descriptorsArray +
-                                     ((uint) Descriptors.PlayerFields.Skill*Descriptors.multiplicator);
+                                     ((uint) Descriptors.PlayerFields.Skill*Descriptors.Multiplicator);
                     return Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillMaxValue);
                 }
                 return 0;

@@ -1022,9 +1022,9 @@ namespace nManager.Wow.ObjectManager
 
         private uint GetPowerIndexByPowerType(Enums.PowerType powerType)
         {
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint displayPower = descriptorsArray +
-                                ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.multiplicator);
+                                ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
             uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint) powerType +
                          (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
             uint result =
@@ -1036,10 +1036,10 @@ namespace nManager.Wow.ObjectManager
         public uint GetPowerByPowerType(Enums.PowerType powerType)
         {
             uint index = GetPowerIndexByPowerType(powerType);
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.multiplicator +
+                                                 ((uint) Descriptors.UnitFields.Power*Descriptors.Multiplicator +
                                                   index*4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
@@ -1047,10 +1047,10 @@ namespace nManager.Wow.ObjectManager
         public uint GetMaxPowerByPowerType(Enums.PowerType powerType)
         {
             uint index = GetPowerIndexByPowerType(powerType);
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.startDescriptors);
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint powerValue =
                 Memory.WowMemory.Memory.ReadUInt(descriptorsArray +
-                                                 ((uint) Descriptors.UnitFields.MaxPower*Descriptors.multiplicator +
+                                                 ((uint) Descriptors.UnitFields.MaxPower*Descriptors.Multiplicator +
                                                   index*4)); // To be updated. (Use Get Descriptors)
             return powerValue;
         }
@@ -1303,8 +1303,8 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     Memory.WowMemory.Memory.WriteUInt64(
-                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors) +
-                        (uint) Descriptors.UnitFields.Target*Descriptors.multiplicator, value);
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors) +
+                        (uint) Descriptors.UnitFields.Target*Descriptors.Multiplicator, value);
                 }
                 catch (Exception e)
                 {
@@ -1989,9 +1989,9 @@ namespace nManager.Wow.ObjectManager
                     }
 
                     var descriptorsArray =
-                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.startDescriptors);
+                        Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors);
                     var addressGD = descriptorsArray +
-                                    ((uint) Descriptors.ObjectFields.DynamicFlags*Descriptors.multiplicator);
+                                    ((uint) Descriptors.ObjectFields.DynamicFlags*Descriptors.Multiplicator);
                     Memory.WowMemory.Memory.WriteInt64(addressGD, t);
                 }
                 catch (Exception e)

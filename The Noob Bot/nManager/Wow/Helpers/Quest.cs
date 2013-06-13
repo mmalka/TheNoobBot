@@ -182,8 +182,8 @@ namespace nManager.Wow.Helpers
             {
                 uint descriptorsArray =
                     Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                     Descriptors.startDescriptors);
-                uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.multiplicator);
+                                                     Descriptors.StartDescriptors);
+                uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
 
                 List<int> list = new List<int>();
                 for (int index = 0; index < 50; ++index)

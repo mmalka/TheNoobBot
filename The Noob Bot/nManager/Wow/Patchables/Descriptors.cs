@@ -5,8 +5,8 @@
     /// </summary>
     public static class Descriptors
     {
-        public const uint multiplicator = 4; // 4 or 1
-        public static readonly uint startDescriptors = 0x4;
+        public const uint Multiplicator = 4; // 4 or 1
+        public static readonly uint StartDescriptors = 0x4;
 
         public enum ObjectFields
         {
