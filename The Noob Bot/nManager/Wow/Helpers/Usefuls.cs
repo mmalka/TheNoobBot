@@ -757,24 +757,24 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static List<int> _achievementsDoneCache = new List<int>();
-        private static List<int> _achievementsNotDoneCache = new List<int>();
+        private static readonly List<int> AchievementsDoneCache = new List<int>();
+        private static readonly List<int> AchievementsNotDoneCache = new List<int>();
 
         public static bool IsCompletedAchievement(int achievementId)
         {
-            if (_achievementsDoneCache.Contains(achievementId))
+            if (AchievementsDoneCache.Contains(achievementId))
                 return true;
-            else if (_achievementsNotDoneCache.Contains(achievementId))
+            if (AchievementsNotDoneCache.Contains(achievementId))
                 return false;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("_, _, _, mycheck = GetAchievementInfo(" + achievementId + "); if mycheck then " + randomString + "=\"1\" else " + randomString + "=\"0\" end");
+            Lua.LuaDoString("_, _, _, " + randomString + " = GetAchievementInfo(" + achievementId + ");");
             string ret = Lua.GetLocalizedText(randomString);
-            if (ret == "1")
+            if (ret == "true")
             {
-                _achievementsDoneCache.Add(achievementId);
+                AchievementsDoneCache.Add(achievementId);
                 return true;
             }
-            _achievementsNotDoneCache.Add(achievementId);
+            AchievementsNotDoneCache.Add(achievementId);
             return false;
         }
 
