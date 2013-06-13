@@ -427,6 +427,7 @@ namespace nManager.Wow.Helpers
 
         private static List<UInt32> _spellBookID = new List<UInt32>();
         private static bool _usedSbid;
+        public static bool SpellBookLoaded;
 
         public static List<UInt32> SpellBookID()
         {
@@ -461,6 +462,7 @@ namespace nManager.Wow.Helpers
                     _spellBookID = spellBook;
                     _usedSbid = false;
                     Logging.Write("Initialize SpellBook Finished (" + _spellBookID.Count + " spell found)");
+                    SpellBookLoaded = true;
                 }
                 return _spellBookID;
             }
