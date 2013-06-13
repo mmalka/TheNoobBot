@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
+using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.Tasks
@@ -22,9 +23,9 @@ namespace nManager.Wow.Bot.Tasks
         private static int _noMountsInSettings;
         private static string _localizedAbysalMountName = string.Empty;
         private static bool _startupCheck = true;
-        private static bool _Wisdom4Winds = false;
-        private static bool _ColdWeather = false;
-        private static bool _FlightMasterLicense = false;
+        private static bool _wisdom4Winds;
+        private static bool _coldWeather;
+        private static bool _flightMasterLicense;
 
         public static MountCapacity GetMountCapacity()
         {
@@ -54,14 +55,15 @@ namespace nManager.Wow.Bot.Tasks
                     flyMount = string.Empty;
                 }
                 if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
-                    _localizedAbysalMountName = Helpers.SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
+                    _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
-                Spell Wisdom4Winds = new Spell(115913);
-                _Wisdom4Winds = Wisdom4Winds.KnownSpell;
-                Spell ColdWeather = new Spell(115913);
-                _ColdWeather = ColdWeather.KnownSpell;
-                Spell FlightMasterLicense = new Spell(115913);
-                _FlightMasterLicense = FlightMasterLicense.KnownSpell;
+                // Repported FlyingMount issue is related to this, the SpellBook is not yet loaded on every computer (especially old ones !!).
+                var wisdom4Winds = new Spell(115913);
+                _wisdom4Winds = wisdom4Winds.KnownSpell;
+                var coldWeather = new Spell(115913);
+                _coldWeather = coldWeather.KnownSpell;
+                var flightMasterLicense = new Spell(115913);
+                _flightMasterLicense = flightMasterLicense.KnownSpell;
 
                 _startupCheck = false;
             }
@@ -98,15 +100,15 @@ namespace nManager.Wow.Bot.Tasks
                     Enums.ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
-                    if (_Wisdom4Winds && cont == Enums.ContinentId.Pandaria)
+                    if (_wisdom4Winds && cont == Enums.ContinentId.Pandaria)
                         return MountCapacity.Fly;
 
                     // We are in Northfend with "Cold Weather Flying" aura
-                    if (_ColdWeather && cont == Enums.ContinentId.Northrend)
+                    if (_coldWeather && cont == Enums.ContinentId.Northrend)
                         return MountCapacity.Fly;
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
-                    if (_FlightMasterLicense &&
+                    if (_flightMasterLicense &&
                         (cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor ||
                          cont == Enums.ContinentId.Maelstrom))
                         return MountCapacity.Fly;
