@@ -36,9 +36,9 @@
                 System.IO.File.Delete("nManager" + random + ".dll");
                 nManager.Wow.Patchables.Addresses.ObjectManagerClass.clientConnection = 0xE416A0;
             }
-            else if (nManager.Information.Version == "1.7.0" &&
-                (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe") != "CD645FD452C00FCC31AB9D514D894AC9" ||
-                nManager.Helpful.Others.GetFileMd5CheckSum("nManager" + random + ".dll") != "2BE10870AFB5D8E72B2768F81C7FFC13"))
+            else if (nManager.Information.Version == "1.7.1" &&
+                (nManager.Helpful.Others.GetFileMd5CheckSum(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe") != "B0AD049A84607ACF1D6FE81654D28F8E" ||
+                nManager.Helpful.Others.GetFileMd5CheckSum("nManager" + random + ".dll") != "F93DD6EB83F6A988E3FA022A9F0E721A"))
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
@@ -50,7 +50,7 @@
                 {
                 }
             }
-            else if (nManager.Information.Version == "1.7.0")
+            else if (nManager.Information.Version == "1.7.1")
             {
                 System.IO.File.Delete(System.Diagnostics.Process.GetCurrentProcess().ProcessName + random + ".exe");
                 System.IO.File.Delete("nManager" + random + ".dll");
