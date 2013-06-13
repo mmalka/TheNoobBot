@@ -21,11 +21,10 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                MessageBox.Show(Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game) + ".");
+                MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.Please_select_exe_in_the_install_folder_of_the_game)));
                 string path = Others.DialogBoxOpenFile("", "Profile files (Wow.exe)|Wow.exe");
-                RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
-                if (key == null)
-                    key = Registry.LocalMachine.CreateSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
+                RegistryKey key = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft") ??
+                                  Registry.LocalMachine.CreateSubKey("SOFTWARE\\Blizzard Entertainment\\World of Warcraft");
                 if (key != null) key.SetValue("InstallPath", path.Replace("Wow.exe", ""), RegistryValueKind.String);
             }
             catch (Exception e)
@@ -39,7 +38,7 @@ namespace nManager.Wow.Helpers
         /// Launch World Of Warcraft.
         /// </summary>
         /// <typeparam></typeparam>
-        /// <param></param>
+        /// <param name="param"></param>
         /// <returns></returns>
         public static int LaunchWow(string param = "")
         {
@@ -194,7 +193,7 @@ namespace nManager.Wow.Helpers
         }
 
         private static int _lastContainerNumFreeSlots;
-        private static Helpful.Timer _timerContainerNumFreeSlots = new Helpful.Timer(0);
+        private static Timer _timerContainerNumFreeSlots = new Timer(0);
 
         public static int GetContainerNumFreeSlots
         {
@@ -207,7 +206,7 @@ namespace nManager.Wow.Helpers
                         if (!_timerContainerNumFreeSlots.IsReady)
                             return _lastContainerNumFreeSlots;
 
-                        _timerContainerNumFreeSlots = new Helpful.Timer(1000);
+                        _timerContainerNumFreeSlots = new Timer(1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         _lastContainerNumFreeSlots =
                             Convert.ToInt32(
@@ -273,7 +272,7 @@ namespace nManager.Wow.Helpers
         }
 
         private static int _lastHonorPoint;
-        private static readonly Helpful.Timer TimerHonorPoint = new Helpful.Timer(1000);
+        private static readonly Timer TimerHonorPoint = new Timer(1000);
 
         public static int GetHonorPoint
         {
@@ -318,7 +317,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private static Helpful.Timer _timePlayerUsingVehicle = new Helpful.Timer(0);
+        private static Timer _timePlayerUsingVehicle = new Timer(0);
         private static bool _lastResultPlayerUsingVehicle;
 
         public static bool PlayerUsingVehicle
@@ -338,7 +337,7 @@ namespace nManager.Wow.Helpers
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomString + " = UnitUsingVehicle(\"player\");");
                         _lastResultPlayerUsingVehicle = Convert.ToBoolean(Lua.GetLocalizedText(randomString) == "1");
-                        _timePlayerUsingVehicle = new Helpful.Timer(500);
+                        _timePlayerUsingVehicle = new Timer(500);
                         return _lastResultPlayerUsingVehicle;
                     }
                     catch (Exception e)
@@ -351,7 +350,7 @@ namespace nManager.Wow.Helpers
         }
 
         private static int _lastLatency;
-        private static Helpful.Timer _timerLatency = new Helpful.Timer(0);
+        private static Timer _timerLatency = new Timer(0);
 
         public static int Latency
         {
@@ -364,7 +363,7 @@ namespace nManager.Wow.Helpers
                         if (!_timerLatency.IsReady)
                             return _lastLatency;
 
-                        _timerLatency = new Helpful.Timer(30*1000);
+                        _timerLatency = new Timer(30*1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats (); " + randomString +
                                         " = lagHome + lagWorld");
