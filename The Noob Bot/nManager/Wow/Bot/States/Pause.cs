@@ -12,13 +12,7 @@ namespace nManager.Wow.Bot.States
             get { return "Pause"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {

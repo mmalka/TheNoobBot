@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading;
 using nManager.FiniteStateMachine;
-using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
@@ -16,13 +15,7 @@ namespace nManager.Wow.Bot.States
             get { return "HealFriendlyTarget"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {

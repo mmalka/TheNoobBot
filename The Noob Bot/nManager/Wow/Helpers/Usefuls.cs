@@ -199,21 +199,21 @@ namespace nManager.Wow.Helpers
 
         public static int ContainerNumFreeSlots(BagType bagType)
         {
-            int Unspecified = 0;
-            int Quiver = 0;
-            int AmmoPouch = 0;
-            int SoulBag = 0;
-            int LeatherworkingBag = 0;
-            int InscriptionBag = 0;
-            int HerbBag = 0;
-            int EnchantingBag = 0;
-            int EngineeringBag = 0;
-            int Keyring = 0;
-            int GemBag = 0;
-            int MiningBag = 0;
-            int Unknown = 0;
-            int VanityPets = 0;
-            int LureBag = 0;
+            int unspecified = 0;
+            int quiver = 0;
+            int ammoPouch = 0;
+            int soulBag = 0;
+            int leatherworkingBag = 0;
+            int inscriptionBag = 0;
+            int herbBag = 0;
+            int enchantingBag = 0;
+            int engineeringBag = 0;
+            int keyring = 0;
+            int gemBag = 0;
+            int miningBag = 0;
+            int unknown = 0;
+            int vanityPets = 0;
+            int lureBag = 0;
             string bag0FreeSlots = Others.GetRandomString(Others.Random(4, 10));
             string bag0Type = Others.GetRandomString(Others.Random(4, 10));
             string bag1FreeSlots = Others.GetRandomString(Others.Random(4, 10));
@@ -253,70 +253,70 @@ namespace nManager.Wow.Helpers
                         continue;
                     if (currBagType == BagType.Unspecified)
                     {
-                        Unspecified += currBagFreeSlots;
+                        unspecified += currBagFreeSlots;
                     }
                     if (bagType == BagType.Unspecified || !currBagType.HasFlag(bagType))
                         continue;
 
                     if (bagType == BagType.MiningBag)
-                        MiningBag += currBagFreeSlots;
+                        miningBag += currBagFreeSlots;
                     if (bagType == BagType.HerbBag)
-                        HerbBag += currBagFreeSlots;
+                        herbBag += currBagFreeSlots;
                     if (bagType == BagType.LeatherworkingBag)
-                        LeatherworkingBag += currBagFreeSlots;
+                        leatherworkingBag += currBagFreeSlots;
                     if (bagType == BagType.GemBag)
-                        GemBag += currBagFreeSlots;
+                        gemBag += currBagFreeSlots;
                     if (bagType == BagType.EnchantingBag)
-                        EnchantingBag += currBagFreeSlots;
+                        enchantingBag += currBagFreeSlots;
                     if (bagType == BagType.InscriptionBag)
-                        InscriptionBag += currBagFreeSlots;
+                        inscriptionBag += currBagFreeSlots;
                     if (bagType == BagType.LureBag)
-                        LureBag += currBagFreeSlots;
+                        lureBag += currBagFreeSlots;
                     if (bagType == BagType.SoulBag)
-                        SoulBag += currBagFreeSlots;
+                        soulBag += currBagFreeSlots;
                     if (bagType == BagType.VanityPets)
-                        VanityPets += currBagFreeSlots;
+                        vanityPets += currBagFreeSlots;
                     if (bagType == BagType.Unknown)
-                        Unknown += currBagFreeSlots;
+                        unknown += currBagFreeSlots;
                     if (bagType == BagType.AmmoPouch)
-                        AmmoPouch += currBagFreeSlots;
+                        ammoPouch += currBagFreeSlots;
                     if (bagType == BagType.Keyring)
-                        Keyring += currBagFreeSlots;
+                        keyring += currBagFreeSlots;
                     if (bagType == BagType.Quiver)
-                        Quiver += currBagFreeSlots;
+                        quiver += currBagFreeSlots;
                     if (bagType == BagType.EngineeringBag)
-                        EngineeringBag += currBagFreeSlots;
+                        engineeringBag += currBagFreeSlots;
                 }
                 if (bagType == BagType.Unspecified)
-                    return Unspecified;
+                    return unspecified;
                 if (bagType == BagType.MiningBag)
-                    return MiningBag + Unspecified;
+                    return miningBag + unspecified;
                 if (bagType == BagType.HerbBag)
-                    return HerbBag + Unspecified;
+                    return herbBag + unspecified;
                 if (bagType == BagType.LeatherworkingBag)
-                    return LeatherworkingBag + Unspecified;
+                    return leatherworkingBag + unspecified;
                 if (bagType == BagType.GemBag)
-                    return GemBag + Unspecified;
+                    return gemBag + unspecified;
                 if (bagType == BagType.EnchantingBag)
-                    return EnchantingBag + Unspecified;
+                    return enchantingBag + unspecified;
                 if (bagType == BagType.InscriptionBag)
-                    return InscriptionBag + Unspecified;
+                    return inscriptionBag + unspecified;
                 if (bagType == BagType.LureBag)
-                    return LureBag + Unspecified;
+                    return lureBag + unspecified;
                 if (bagType == BagType.SoulBag)
-                    return SoulBag + Unspecified;
+                    return soulBag + unspecified;
                 if (bagType == BagType.VanityPets)
-                    return VanityPets + Unspecified;
+                    return vanityPets + unspecified;
                 if (bagType == BagType.Unknown)
-                    return Unknown + Unspecified;
+                    return unknown + unspecified;
                 if (bagType == BagType.AmmoPouch)
-                    return AmmoPouch + Unspecified;
+                    return ammoPouch + unspecified;
                 if (bagType == BagType.Keyring)
-                    return Keyring + Unspecified;
+                    return keyring + unspecified;
                 if (bagType == BagType.Quiver)
-                    return Quiver + Unspecified;
+                    return quiver + unspecified;
                 if (bagType == BagType.EngineeringBag)
-                    return EngineeringBag + Unspecified;
+                    return engineeringBag + unspecified;
             }
             return 0;
         }
@@ -631,7 +631,7 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     return
-                        ((Enums.ContinentId)
+                        ((ContinentId)
                          (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                           (uint) Addresses.GameInfo.continentId))).ToString();
                 }
@@ -654,7 +654,7 @@ namespace nManager.Wow.Helpers
                                                         (uint) Addresses.GameInfo.continentId);
 
                     string retS;
-                    switch ((Enums.ContinentId) cId)
+                    switch ((ContinentId) cId)
                     {
                         case Enums.ContinentId.PVPZone04:
                             retS = "PVPZone04";

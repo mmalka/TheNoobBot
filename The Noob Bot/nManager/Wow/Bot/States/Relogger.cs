@@ -7,20 +7,14 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Bot.States
 {
-    internal class relogger : State
+    internal class Relogger : State
     {
         public override string DisplayName
         {
             get { return "relogger"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
@@ -62,8 +56,7 @@ namespace nManager.Wow.Bot.States
 
             while (Products.Products.IsStarted)
             {
-                if (Logging.Status != "relogger")
-                    Logging.Status = "relogger";
+                Logging.Status = "relogger";
 
                 var s = new Login.SettingsLogin
                     {

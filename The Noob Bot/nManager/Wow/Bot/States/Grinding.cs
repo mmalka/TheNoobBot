@@ -2,8 +2,6 @@
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
-using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -16,13 +14,7 @@ namespace nManager.Wow.Bot.States
             get { return "Grinding"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {
@@ -88,11 +80,11 @@ namespace nManager.Wow.Bot.States
         public override void Run()
         {
             Logging.Write("Player Attack " + _unit.Name + " (lvl " + _unit.Level + ")");
-            ulong UnkillableMob = Fight.StartFight(_unit.Guid);
-            if (!_unit.IsDead && UnkillableMob != 0)
+            ulong unkillableMob = Fight.StartFight(_unit.Guid);
+            if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Can't reach " + _unit.Name + ", blacklisting it.");
-                nManagerSetting.AddBlackList(UnkillableMob, 2*60*1000); // 2 minutes
+                nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
             }
             else if (_unit.IsDead)
             {

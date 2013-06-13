@@ -86,32 +86,32 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            int _currentPoint;
-            float PathIdentity = Math.DistanceListPoint(PathLoop);
-            if (_loopPathId != PathIdentity) // If path changed, then we need to find the nearest point
+            int currentPoint;
+            float pathIdentity = Math.DistanceListPoint(PathLoop);
+            if (_loopPathId != pathIdentity) // If path changed, then we need to find the nearest point
             {
-                _currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
-                MovementManager.PointId = _currentPoint;
+                currentPoint = Math.NearestPointOfListPoints(PathLoop, ObjectManager.ObjectManager.Me.Position);
+                MovementManager.PointId = currentPoint;
             }
             else // If the path did not change, let's return to the last point we were using
             {
-                _currentPoint = MovementManager.PointId + 1;
-                if (_currentPoint > PathLoop.Count - 1)
-                    _currentPoint = 0;
+                currentPoint = MovementManager.PointId + 1;
+                if (currentPoint > PathLoop.Count - 1)
+                    currentPoint = 0;
             }
             if (_loopPathId == -1f)
-                _loopPathId = PathIdentity;
+                _loopPathId = pathIdentity;
             // Too far away, then we don't care for fly/swim but we need pathfinder to go by foot before anything else
             // This simply does not work. Grinder for low level (on ground) still go straitline in front for long distance
-            if (PathLoop[_currentPoint].Type.ToLower() != "flying" &&
-                PathLoop[_currentPoint].Type.ToLower() != "swimming" &&
-                PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 /*&&
+            if (PathLoop[currentPoint].Type.ToLower() != "flying" &&
+                PathLoop[currentPoint].Type.ToLower() != "swimming" &&
+                PathLoop[currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) > 7 /*&&
                 PathLoop[_currentPoint].DistanceTo2D(ObjectManager.ObjectManager.Me.Position) <= 200*/)
             {
                 bool bResult;
-                List<Point> npoints = PathFinder.FindPath(PathLoop[_currentPoint], out bResult);
+                List<Point> npoints = PathFinder.FindPath(PathLoop[currentPoint], out bResult);
                 if (!bResult)
-                    npoints.Add(new Point(PathLoop[_currentPoint]));
+                    npoints.Add(new Point(PathLoop[currentPoint]));
                 MovementManager.Go(npoints);
                 return;
             }

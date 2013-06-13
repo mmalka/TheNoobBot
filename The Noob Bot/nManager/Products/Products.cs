@@ -11,9 +11,9 @@ namespace nManager.Products
 {
     public class Products
     {
-        private static IProduct instanceFromOtherAssembly;
-        private static Assembly assembly;
-        private static object obj;
+        private static IProduct _instanceFromOtherAssembly;
+        private static Assembly _assembly;
+        private static object _obj;
         private static readonly Engine Fsm = new Engine(false);
 
         public static void LoadProducts(string nameDll)
@@ -30,25 +30,25 @@ namespace nManager.Products
                     }
 
                     ProductName = nameDll;
-                    instanceFromOtherAssembly = null;
-                    assembly = null;
-                    obj = null;
+                    _instanceFromOtherAssembly = null;
+                    _assembly = null;
+                    _obj = null;
 
-                    assembly = Assembly.LoadFrom(Application.StartupPath + "\\Products\\" + nameDll + ".dll");
-                    obj = assembly.CreateInstance("Main", false);
-                    instanceFromOtherAssembly = obj as IProduct;
-                    instanceFromOtherAssembly.Initialize();
+                    _assembly = Assembly.LoadFrom(Application.StartupPath + "\\Products\\" + nameDll + ".dll");
+                    _obj = _assembly.CreateInstance("Main", false);
+                    _instanceFromOtherAssembly = _obj as IProduct;
+                    if (_instanceFromOtherAssembly != null) _instanceFromOtherAssembly.Initialize();
                 }
             }
             catch (Exception e)
             {
                 ProductName = "";
-                MessageBox.Show("Exception: " + e);
+                MessageBox.Show(string.Format("Exception: {0}", e));
                 Logging.WriteError("LoadProducts(string nameDll): " + e);
                 DisposeProduct();
-                instanceFromOtherAssembly = null;
-                assembly = null;
-                obj = null;
+                _instanceFromOtherAssembly = null;
+                _assembly = null;
+                _obj = null;
             }
         }
 
@@ -64,7 +64,7 @@ namespace nManager.Products
             catch (Exception e)
             {
                 ProductName = "";
-                MessageBox.Show("Exception: " + e);
+                MessageBox.Show(string.Format("Exception: {0}", e));
                 Logging.WriteError("LoadProductsWithoutInit(string nameDll)(string nameDll): " + e);
             }
             return null;
@@ -99,18 +99,18 @@ namespace nManager.Products
             try
             {
                 ProductStop();
-                if (instanceFromOtherAssembly != null)
-                    instanceFromOtherAssembly.Dispose();
-                instanceFromOtherAssembly = null;
-                assembly = null;
-                obj = null;
+                if (_instanceFromOtherAssembly != null)
+                    _instanceFromOtherAssembly.Dispose();
+                _instanceFromOtherAssembly = null;
+                _assembly = null;
+                _obj = null;
             }
             catch (Exception e)
             {
                 Logging.WriteError("ThreadDisposeProduct(): " + e);
-                instanceFromOtherAssembly = null;
-                assembly = null;
-                obj = null;
+                _instanceFromOtherAssembly = null;
+                _assembly = null;
+                _obj = null;
             }
             _isDisposed = true;
         }
@@ -118,23 +118,23 @@ namespace nManager.Products
 
         public static bool IsAliveProduct
         {
-            get { return (instanceFromOtherAssembly != null); }
+            get { return (_instanceFromOtherAssembly != null); }
         }
 
         public static bool ProductStart()
         {
             try
             {
-                if (instanceFromOtherAssembly != null)
+                if (_instanceFromOtherAssembly != null)
                 {
                     _inPause = false;
 
-                    instanceFromOtherAssembly.Start();
+                    _instanceFromOtherAssembly.Start();
                     Statistics.Reset();
 
                     // Fsm
                     Fsm.States.Clear();
-                    Fsm.AddState(new Wow.Bot.States.relogger {Priority = 10});
+                    Fsm.AddState(new Wow.Bot.States.Relogger {Priority = 10});
                     Fsm.AddState(new Wow.Bot.States.StopBotIf {Priority = 5});
                     Fsm.AddState(new Wow.Bot.States.Idle {Priority = 1});
                     Fsm.States.Sort();
@@ -169,9 +169,9 @@ namespace nManager.Products
             try
             {
                 Fsm.StopEngine();
-                if (instanceFromOtherAssembly != null)
+                if (_instanceFromOtherAssembly != null)
                 {
-                    instanceFromOtherAssembly.Stop();
+                    _instanceFromOtherAssembly.Stop();
                     Thread.Sleep(500);
                     MovementManager.StopMove();
                     Fight.StopFight();
@@ -191,9 +191,9 @@ namespace nManager.Products
         {
             try
             {
-                if (instanceFromOtherAssembly != null)
+                if (_instanceFromOtherAssembly != null)
                 {
-                    instanceFromOtherAssembly.Settings();
+                    _instanceFromOtherAssembly.Settings();
                     return true;
                 }
             }
@@ -210,9 +210,9 @@ namespace nManager.Products
             {
                 try
                 {
-                    if (instanceFromOtherAssembly != null)
+                    if (_instanceFromOtherAssembly != null)
                     {
-                        return instanceFromOtherAssembly.IsStarted;
+                        return _instanceFromOtherAssembly.IsStarted;
                     }
                 }
                 catch (Exception e)

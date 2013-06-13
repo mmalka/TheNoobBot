@@ -136,7 +136,7 @@
     <Compile Include="Wow\Bot\States\Pause.cs" />
     <Compile Include="Wow\Bot\States\ProspectingState.cs" />
     <Compile Include="Wow\Bot\States\Regeneration.cs" />
-    <Compile Include="Wow\Bot\States\Reloger.cs" />
+    <Compile Include="Wow\Bot\States\Relogger.cs" />
     <Compile Include="Wow\Bot\States\Resurrect.cs" />
     <Compile Include="Wow\Bot\States\SmeltingState.cs" />
     <Compile Include="Wow\Bot\States\StopBotIf.cs" />

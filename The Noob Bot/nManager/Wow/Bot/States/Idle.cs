@@ -11,13 +11,7 @@ namespace nManager.Wow.Bot.States
             get { return "Idle"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public int TimeSleepMs = 60;
 

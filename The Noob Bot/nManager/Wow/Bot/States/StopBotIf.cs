@@ -8,7 +8,6 @@ using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
 using Point = nManager.Wow.Class.Point;
 using Timer = nManager.Helpful.Timer;
 
@@ -21,13 +20,7 @@ namespace nManager.Wow.Bot.States
             get { return "StopBotIf"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {
@@ -58,7 +51,7 @@ namespace nManager.Wow.Bot.States
         private uint _startedLevel;
         private int _startedTime;
         private bool _inPause;
-        private Channel _whisperChannel = new Channel();
+        private readonly Channel _whisperChannel = new Channel();
         private int _numberWhisper;
 
         public override void Run()

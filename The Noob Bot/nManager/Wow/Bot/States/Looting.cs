@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using nManager.FiniteStateMachine;
-using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -17,13 +15,7 @@ namespace nManager.Wow.Bot.States
             get { return "Looting"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override bool NeedToRun
         {

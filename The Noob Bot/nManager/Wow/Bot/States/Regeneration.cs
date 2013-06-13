@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
@@ -14,13 +15,7 @@ namespace nManager.Wow.Bot.States
         }
 
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         public override List<State> NextStates
         {

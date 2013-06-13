@@ -13,14 +13,9 @@ namespace nManager.Wow.Bot.States
             get { return "Milling"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
+        public override int Priority { get; set; }
 
-        private int _priority;
-        private int lastTimeRunning;
+        private int _lastTimeRunning;
 
         public override bool NeedToRun
         {
@@ -35,7 +30,7 @@ namespace nManager.Wow.Bot.States
                 if (nManagerSetting.CurrentSetting.HerbsToBeMilled.Count <= 0)
                     return false;
 
-                if ((lastTimeRunning + (nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt*60*1000)) >
+                if ((_lastTimeRunning + (nManagerSetting.CurrentSetting.TimeBetweenEachMillingAttempt*60*1000)) >
                     Others.Times)
                     return false;
 
@@ -71,7 +66,7 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            lastTimeRunning = Others.Times;
+            _lastTimeRunning = Others.Times;
             MovementManager.StopMove();
             Thread.Sleep(500);
             Tasks.MountTask.DismountMount();
