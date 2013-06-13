@@ -19,8 +19,7 @@ namespace nManager.Wow.Enums
         PvPFlagged = 0x1000,
         Silenced = 0x2000,
         Flag_14_0x4000 = 0x4000,
-        Flag_15_0x8000 = 0x8000, // To me, it looks like "ServerControlled" in the mean of "patrol NPC", 
-                                 // but I let you do it, I'm definitly not good at guessing flags.
+        Flag_15_0x8000 = 0x8000,
         Pacified = 0x20000,
         Stunned = 0x40000,
         CanPerformAction_Mask1 = 0x60000,
@@ -76,18 +75,13 @@ namespace nManager.Wow.Enums
     public enum UnitDynamicFlags : int
     {
         None = 0,
-        Invisible = 0x1,                 // Maybe something intended to detect botter, we may need to don't touch a monster having this flag for security purpose.
-                                         // A Game Master can easily add this flag to a creature near a Grinder bot, and the bot will begin to fight against that creature.
-                                         // Even if the creature is totally invisible and not possible to target with "Tab" for example.
-                                         // Write memory |1 and you will see the monster disapear, but the objectmanager still handle it.
+        Invisible = 0x1,
         Lootable = 0x2,
         TrackUnit = 0x4,
         Tapped = 0x8,
         TappedByMe = 0x10,
-        SpecialInfo = 0x20,              // Unknown Flag.
-        Dead = 0x40,                     // It's a visual Dead status (Gray, 0 HP...) but the creature lives and can interact.
-                                         // Some quester are like this, you interact with the corpse if your are neutral at least
-                                         // Some mobs are like this, you then neither attack them, nor skin them
+        SpecialInfo = 0x20, // Unknown Flag.
+        Dead = 0x40,
         ReferAFriendLinked = 0x80,
         IsTappedByAllThreatList = 0x100, // Flag OK, but Blizzard broke the function, so it's not updated.
     }
@@ -108,4 +102,24 @@ namespace nManager.Wow.Enums
         TurnIn = 0xA,
     }
 
+    [Flags]
+    public enum BagType : int
+    {
+        None = 0x1000000,
+        Unspecified = 0x0,
+        Quiver = 0x1,
+        AmmoPouch = 0x2,
+        SoulBag = 0x4,
+        LeatherworkingBag = 0x8,
+        InscriptionBag = 0x10,
+        HerbBag = 0x20,
+        EnchantingBag = 0x40,
+        EngineeringBag = 0x80,
+        Keyring = 0x100,
+        GemBag = 0x200,
+        MiningBag = 0x400,
+        Unknown = 0x800,
+        VanityPets = 0x1000,
+        LureBag = 0x8000,
+    }
 }

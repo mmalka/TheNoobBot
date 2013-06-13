@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
@@ -194,6 +196,130 @@ namespace nManager.Wow.Helpers
 
         private static int _lastContainerNumFreeSlots;
         private static Timer _timerContainerNumFreeSlots = new Timer(0);
+
+        public static int ContainerNumFreeSlots(BagType bagType)
+        {
+            int Unspecified = 0;
+            int Quiver = 0;
+            int AmmoPouch = 0;
+            int SoulBag = 0;
+            int LeatherworkingBag = 0;
+            int InscriptionBag = 0;
+            int HerbBag = 0;
+            int EnchantingBag = 0;
+            int EngineeringBag = 0;
+            int Keyring = 0;
+            int GemBag = 0;
+            int MiningBag = 0;
+            int Unknown = 0;
+            int VanityPets = 0;
+            int LureBag = 0;
+            string bag0FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag0Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag1FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag1Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag2FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag2Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag3FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag3Type = Others.GetRandomString(Others.Random(4, 10));
+            string bag4FreeSlots = Others.GetRandomString(Others.Random(4, 10));
+            string bag4Type = Others.GetRandomString(Others.Random(4, 10));
+            string randomString = Others.GetRandomString(Others.Random(4, 10));
+            Lua.LuaDoString(bag0FreeSlots + "," + bag0Type + " = GetContainerNumFreeSlots(0); " +
+                         bag1FreeSlots + "," + bag1Type + " = GetContainerNumFreeSlots(1); " +
+                         bag2FreeSlots + "," + bag2Type + " = GetContainerNumFreeSlots(2); " +
+                         bag3FreeSlots + "," + bag3Type + " = GetContainerNumFreeSlots(3); " +
+                         bag4FreeSlots + "," + bag4Type + " = GetContainerNumFreeSlots(4); " +
+                         "if(" + bag1Type + " == nil) then " + bag1Type + " = 16777216 end " +
+                         "if(" + bag2Type + " == nil) then " + bag2Type + " = 16777216 end " +
+                         "if(" + bag3Type + " == nil) then " + bag3Type + " = 16777216 end " +
+                         "if(" + bag4Type + " == nil) then " + bag4Type + " = 16777216 end " +
+                         randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
+                         bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
+                         " .. \",\" .. " + bag4Type);
+            var result = Lua.GetLocalizedText(randomString);
+            if (!string.IsNullOrEmpty(result) && result.Contains(";"))
+            {
+                string[][] bags = result.Split(';').Select(s => s.Split(',')).ToArray();
+                foreach (string[] t in bags)
+                {
+                    if (t.Count() <= 1)
+                        continue;
+                    if (t[0] == "0")
+                        continue;
+                    var currBagFreeSlots = Convert.ToInt32(t[0]);
+                    var currBagType = (BagType) Convert.ToInt32(t[1]);
+                    if (currBagType.HasFlag(BagType.None))
+                        continue;
+                    if (currBagType == BagType.Unspecified)
+                    {
+                        Unspecified += currBagFreeSlots;
+                    }
+                    if (bagType == BagType.Unspecified || !currBagType.HasFlag(bagType))
+                        continue;
+
+                    if (bagType == BagType.MiningBag)
+                        MiningBag += currBagFreeSlots;
+                    if (bagType == BagType.HerbBag)
+                        HerbBag += currBagFreeSlots;
+                    if (bagType == BagType.LeatherworkingBag)
+                        LeatherworkingBag += currBagFreeSlots;
+                    if (bagType == BagType.GemBag)
+                        GemBag += currBagFreeSlots;
+                    if (bagType == BagType.EnchantingBag)
+                        EnchantingBag += currBagFreeSlots;
+                    if (bagType == BagType.InscriptionBag)
+                        InscriptionBag += currBagFreeSlots;
+                    if (bagType == BagType.LureBag)
+                        LureBag += currBagFreeSlots;
+                    if (bagType == BagType.SoulBag)
+                        SoulBag += currBagFreeSlots;
+                    if (bagType == BagType.VanityPets)
+                        VanityPets += currBagFreeSlots;
+                    if (bagType == BagType.Unknown)
+                        Unknown += currBagFreeSlots;
+                    if (bagType == BagType.AmmoPouch)
+                        AmmoPouch += currBagFreeSlots;
+                    if (bagType == BagType.Keyring)
+                        Keyring += currBagFreeSlots;
+                    if (bagType == BagType.Quiver)
+                        Quiver += currBagFreeSlots;
+                    if (bagType == BagType.EngineeringBag)
+                        EngineeringBag += currBagFreeSlots;
+                }
+                if (bagType == BagType.Unspecified)
+                    return Unspecified;
+                if (bagType == BagType.MiningBag)
+                    return MiningBag + Unspecified;
+                if (bagType == BagType.HerbBag)
+                    return HerbBag + Unspecified;
+                if (bagType == BagType.LeatherworkingBag)
+                    return LeatherworkingBag + Unspecified;
+                if (bagType == BagType.GemBag)
+                    return GemBag + Unspecified;
+                if (bagType == BagType.EnchantingBag)
+                    return EnchantingBag + Unspecified;
+                if (bagType == BagType.InscriptionBag)
+                    return InscriptionBag + Unspecified;
+                if (bagType == BagType.LureBag)
+                    return LureBag + Unspecified;
+                if (bagType == BagType.SoulBag)
+                    return SoulBag + Unspecified;
+                if (bagType == BagType.VanityPets)
+                    return VanityPets + Unspecified;
+                if (bagType == BagType.Unknown)
+                    return Unknown + Unspecified;
+                if (bagType == BagType.AmmoPouch)
+                    return AmmoPouch + Unspecified;
+                if (bagType == BagType.Keyring)
+                    return Keyring + Unspecified;
+                if (bagType == BagType.Quiver)
+                    return Quiver + Unspecified;
+                if (bagType == BagType.EngineeringBag)
+                    return EngineeringBag + Unspecified;
+            }
+            return 0;
+        }
 
         public static int GetContainerNumFreeSlots
         {
