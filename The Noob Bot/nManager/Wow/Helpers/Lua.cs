@@ -176,6 +176,9 @@ namespace nManager.Wow.Helpers
                 // Free memory allocated for command
                 Memory.WowMemory.Memory.FreeMemory(luaGetLocalizedTextSpace);
 
+                // Remove the LUA variable
+                LuaDoString(commandline + " = nil");
+
                 // Uninstall the hook
                 return sResult;
             }
