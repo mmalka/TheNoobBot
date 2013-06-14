@@ -51,6 +51,7 @@ namespace The_Noob_Bot
                 return Servers[0];
             }
         }
+
         private static string ScriptLoginUrl
         {
             get { return UrlWebServer + "auth.php"; }
@@ -351,6 +352,7 @@ namespace The_Noob_Bot
                         }
                         else
                             lastResult = true;
+                        Others.LUAGlobalVarDestructor();
                         InteractGame.Sleep(55000);
                     }
                 }

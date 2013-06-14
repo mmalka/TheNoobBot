@@ -10,8 +10,10 @@ using System.Net;
 using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using nManager.Wow.Helpers;
 
 namespace nManager.Helpful
 {
@@ -219,6 +221,29 @@ namespace nManager.Helpful
             }
         }
 
+        public static List<String> LUAVariableToDestruct = new List<string>();
+
+        public static void LUAGlobalVarDestructor()
+        {
+            if (!Usefuls.InGame || Usefuls.IsLoadingOrConnecting)
+                return;
+            string toExec = "";
+            if (LUAVariableToDestruct.Count <= 0) return;
+            lock (LUAVariableToDestruct)
+            {
+                foreach (string lua in LUAVariableToDestruct)
+                {
+                    if (!Regex.IsMatch(lua, @"^[a-zA-Z]+$"))
+                        continue;
+                    toExec = toExec + lua + " = nil; ";
+                }
+                LUAVariableToDestruct.Clear();
+            }
+            if (string.IsNullOrWhiteSpace(toExec)) return;
+            Thread.Sleep(50); // Gives times to the latest LUA Var to be used if recently added to the list.
+            Lua.LuaDoString(toExec);
+        }
+
         public static string GetRandomString(int maxSize)
         {
             try
@@ -234,6 +259,7 @@ namespace nManager.Helpful
                 {
                     result.Append(chars[b%(chars.Length - 1)]);
                 }
+                LUAVariableToDestruct.Add(result.ToString());
                 return result.ToString();
             }
             catch (Exception e)
