@@ -259,7 +259,10 @@ namespace nManager.Helpful
                 {
                     result.Append(chars[b%(chars.Length - 1)]);
                 }
-                LUAVariableToDestruct.Add(result.ToString());
+                lock (LUAVariableToDestruct)
+                {
+                    LUAVariableToDestruct.Add(result.ToString());
+                }
                 return result.ToString();
             }
             catch (Exception e)
