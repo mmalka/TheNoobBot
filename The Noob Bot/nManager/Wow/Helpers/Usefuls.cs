@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
 using Microsoft.Win32;
@@ -334,12 +335,14 @@ namespace nManager.Wow.Helpers
 
                         _timerContainerNumFreeSlots = new Timer(1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        _lastContainerNumFreeSlots =
-                            Convert.ToInt32(
-                                Lua.LuaDoString(
-                                    randomString + " = 0; for i = 0, 4 do if GetContainerNumFreeSlots(i) ~= nil then " +
-                                    randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ",
-                                    randomString));
+                        var result = Lua.LuaDoString(
+                            randomString + " = 0; for i = 0, 4 do if GetContainerNumFreeSlots(i) ~= nil then " +
+                            randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ",
+                            randomString);
+                        if (Regex.IsMatch(result, @"^[0-9]+$"))
+                            _lastContainerNumFreeSlots = Convert.ToInt32(result);
+                        else
+                            Logging.WriteError("GetContainerNumFreeSlots failed, \"" + result + "\" returned.");
                         return _lastContainerNumFreeSlots;
                     }
 

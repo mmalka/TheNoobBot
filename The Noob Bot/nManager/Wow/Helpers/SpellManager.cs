@@ -775,7 +775,7 @@ namespace nManager.Wow.Helpers
                 try
                 {
                     string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomStringResult + " = GetSpellInfo(" + spellId + ")");
+                    Lua.LuaDoString(randomStringResult + ",_,_,_,_,_,_,_,_ = GetSpellInfo(" + spellId + ")");
                     string sResult = Lua.GetLocalizedText(randomStringResult);
                     Logging.WriteDebug("SpellNameByIdExperimental(UInt32 spellId): " + sResult + ";" +
                                        SpellNameById(spellId) + ";" + spellId);
