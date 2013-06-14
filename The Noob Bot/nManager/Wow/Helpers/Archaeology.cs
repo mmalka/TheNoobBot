@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 
 namespace nManager.Wow.Helpers
@@ -307,7 +308,7 @@ namespace nManager.Wow.Helpers
                     j++;
                 }
                 Lua.RunMacroText("/click ArchaeologyFrameCloseButton");
-                if (ObjectManager.ObjectManager.Me.Level < 90) return;
+                if (ObjectManager.ObjectManager.Me.Level < 90 || Usefuls.GetContainerNumFreeSlots <= 0) return;
                 for (int i = 79896; i <= 79917; i++)
                 {
                     if (i == 79906 || i == 79907)
@@ -317,6 +318,7 @@ namespace nManager.Wow.Helpers
                         !ItemsManager.IsUsableItemById(i)) continue;
                     while (ItemsManager.GetItemCountByIdLUA(i) > 0)
                     {
+                        MountTask.DismountMount();
                         ItemsManager.UseItem(i);
                         Thread.Sleep(500);
                     }
@@ -328,6 +330,7 @@ namespace nManager.Wow.Helpers
                         !ItemsManager.IsUsableItemById(i)) continue;
                     while (ItemsManager.GetItemCountByIdLUA(i) > 0)
                     {
+                        MountTask.DismountMount();
                         ItemsManager.UseItem(i);
                         Thread.Sleep(500);
                     }
