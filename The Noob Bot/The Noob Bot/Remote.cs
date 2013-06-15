@@ -164,7 +164,7 @@ namespace The_Noob_Bot
                 {
                     try
                     {
-                        string[] t = result[0].Split(Convert.ToChar("|"));
+                        string[] t = result[0].Split('|');
                         if (t.Length >= 3)
                         {
                             result[0] = t[0];

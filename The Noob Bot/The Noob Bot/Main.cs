@@ -399,7 +399,7 @@ namespace The_Noob_Bot
                 var productName = listProductsCb.Text;
                 if (productName.Contains(" - "))
                 {
-                    string[] texte2 = productName.Split(Convert.ToChar("-"));
+                    string[] texte2 = productName.Split('-');
                     if (texte2.Length > 0)
                         productName = texte2[0].Remove(texte2[0].Length - 1);
                 }

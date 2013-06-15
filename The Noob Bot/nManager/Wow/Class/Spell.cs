@@ -68,8 +68,7 @@ namespace nManager.Wow.Class
                                 DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
                             try
                             {
-                                CastTime = Convert.ToSingle(castTimeRec.CastTime)/
-                                           1000;
+                                CastTime = (float)castTimeRec.CastTime/1000;
                             }
                             catch
                             {

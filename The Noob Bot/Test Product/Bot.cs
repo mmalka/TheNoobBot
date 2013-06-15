@@ -497,7 +497,7 @@ namespace Test_Product
             foreach (var point in path)
             {
                 var l = t[(int)point.Y].ToCharArray();
-                l[(int)point.X] = Convert.ToChar(n.ToString());
+                l[(int)point.X] = Others.ToChar(n.ToString());
                 t[(int)point.Y] = new String(l);
                 n++;
                 if (n > 9)

@@ -38,7 +38,7 @@ namespace The_Noob_Bot
                 }
 
 
-                string[] listByteS = cipherString.Split(Convert.ToChar(" "));
+                string[] listByteS = cipherString.Split(' ');
                 var retList = new List<byte>();
                 foreach (var s in listByteS)
                 {

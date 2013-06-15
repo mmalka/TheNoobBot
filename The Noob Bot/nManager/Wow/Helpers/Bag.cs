@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 var itemId = new List<uint>();
-                var linkItemArray = listLinkItem.Split(Convert.ToChar("^"));
+                var linkItemArray = listLinkItem.Split('^');
 
                 foreach (string sR in linkItemArray)
                 {
@@ -48,7 +48,7 @@ namespace nManager.Wow.Helpers
                     {
                         try
                         {
-                            itemId.Add(Others.ToUInt32(sR.Split(Convert.ToChar(":"))[1]));
+                            itemId.Add(Others.ToUInt32(sR.Split(':')[1]));
                         }
                         catch (Exception exception)
                         {

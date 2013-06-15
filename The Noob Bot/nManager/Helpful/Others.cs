@@ -61,6 +61,18 @@ namespace nManager.Helpful
             return uint.TryParse(value.Trim(), out res) ? res : 0;
         }
 
+        public static float ToSingle(string value)
+        {
+            float res;
+            return float.TryParse(value.Trim(), out res) ? res : 0;
+        }
+
+        public static char ToChar(string value)
+        {
+            char res;
+            return char.TryParse(value.Trim(), out res) ? res : '\u0000';
+        }
+
         public static string[] TextToArrayByLine(string text)
         {
             try
@@ -495,12 +507,8 @@ namespace nManager.Helpful
                 return new List<string>();
             return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
                 {
-                    var name =
-                        Path.GetFileName(subfolder);
-                    return name != null
-                               ? name.ToString(
-                                   CultureInfo.InvariantCulture)
-                               : null;
+                    var name = Path.GetFileName(subfolder);
+                    return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
                 }).ToList();
         }
 
@@ -795,7 +803,7 @@ namespace nManager.Helpful
         {
             try
             {
-                string[] texte2 = encryptText.Split(Convert.ToChar("-"));
+                string[] texte2 = encryptText.Split('-');
                 var listBytes = new List<byte>();
                 int key = HardDriveID();
 

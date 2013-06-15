@@ -193,7 +193,7 @@ namespace nManager.Wow.Helpers
                 barAndSlot = barAndSlot.Replace("{", "");
                 barAndSlot = barAndSlot.Replace("}", "");
                 barAndSlot = barAndSlot.Replace(" ", "");
-                var keySlot = barAndSlot.Split(Convert.ToChar(";"));
+                var keySlot = barAndSlot.Split(';');
 
 
                 if (Others.ToUInt32(keySlot[0]) == 1)

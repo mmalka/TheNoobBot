@@ -151,7 +151,7 @@ namespace The_Noob_Bot
                 if (listProcessLb.SelectedIndex >= 0)
                 {
                     string[] idStringArray =
-                        listProcessLb.SelectedItem.ToString().Replace(" ", "").Split(Convert.ToChar("-"));
+                        listProcessLb.SelectedItem.ToString().Replace(" ", "").Split('-');
 
                     var idProcess = Others.ToInt32(idStringArray[0]);
 
@@ -259,7 +259,7 @@ namespace The_Noob_Bot
                     try
                     {
                         string texte = Others.EncryptStringToString(strReader.ReadLine());
-                        string[] texte2 = texte.Split(Convert.ToChar("#"));
+                        string[] texte2 = texte.Split('#');
                         userNameTb.Text = texte2[0];
                         passwordTb.Text = texte2[1];
                         if (userNameTb.Text != "")

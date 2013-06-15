@@ -60,11 +60,11 @@ namespace Profiles_Converters.Converters
                                     try
                                     {
                                         _profile.Points.Add(new Point(
-                                                                System.Convert.ToSingle(
+                                                                Others.ToSingle(
                                                                     positionTempsString[0]),
-                                                                System.Convert.ToSingle(
+                                                                Others.ToSingle(
                                                                     positionTempsString[1]),
-                                                                System.Convert.ToSingle(
+                                                                Others.ToSingle(
                                                                     positionTempsString[2]),
                                                                 "Flying"));
                                     }
@@ -105,9 +105,9 @@ namespace Profiles_Converters.Converters
                                                             {
                                                                 Position =
                                                                     new Point(
-                                                                    System.Convert.ToSingle(x.Value),
-                                                                    System.Convert.ToSingle(y.Value),
-                                                                    System.Convert.ToSingle(z.Value),
+                                                                    Others.ToSingle(x.Value),
+                                                                    Others.ToSingle(y.Value),
+                                                                    Others.ToSingle(z.Value),
                                                                     "Flying"),
                                                                 Entry =
                                                                     System.Convert.ToInt32(childVendors.Attribute("Entry")),
@@ -158,8 +158,7 @@ namespace Profiles_Converters.Converters
                                         if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
                                                            out yF))
                                         {
-                                            if (float.TryParse(z.Value, NumberStyles.Number,
-                                                               CultureInfo.InvariantCulture, out zF))
+                                            if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
                                             {
                                                 var pT = new Point(xF, yF, zF, "Flying");
                                                 _profile.Points.Add(pT);

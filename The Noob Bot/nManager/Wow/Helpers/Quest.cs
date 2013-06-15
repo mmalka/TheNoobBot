@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
 
             if (sResult == "NIL")
                 return;
-            foreach (string strQuestId in sResult.Split(Convert.ToChar("^")))
+            foreach (string strQuestId in sResult.Split('^'))
             {
                 if (strQuestId != string.Empty)
                     FinishedQuestSet.Add(Others.ToInt32(strQuestId));

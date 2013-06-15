@@ -575,7 +575,7 @@ namespace Grinder.Profile
                 {
                     if (text.Replace(" ", "").Replace(";", "").Length > 0)
                     {
-                        string[] factionTempsString = text.Replace(" ", "").Split(Convert.ToChar(";"));
+                        string[] factionTempsString = text.Replace(" ", "").Split(';');
                         _profile.GrinderZones[idZone].TargetEntry.Clear();
                         foreach (string t in factionTempsString)
                         {

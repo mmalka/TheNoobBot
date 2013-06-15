@@ -1,9 +1,8 @@
 ﻿using System;
 using System.CodeDom.Compiler;
-using System.Reflection;
+using System.Linq;
 using System.Windows.Forms;
 using Microsoft.CSharp;
-using nManager;
 using nManager.Helpful;
 
 namespace Quester.Tasks
@@ -17,14 +16,10 @@ namespace Quester.Tasks
                 if (script.Replace(" ", "") == string.Empty)
                     return true;
 
-                if (script[0] == Convert.ToChar("="))
+                if (script[0] == '=')
                 {
                     script = Others.ReadFile(Application.StartupPath + "\\Profiles\\Quester\\" + script.Replace("=", ""));
                 }
-
-                IScript _instanceFromOtherAssembly = null;
-                Assembly _assembly = null;
-                object _obj = null;
 
 
                 CodeDomProvider cc = new CSharpCodeProvider();
@@ -58,19 +53,17 @@ namespace Quester.Tasks
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);
                 if (cr.Errors.HasErrors)
                 {
-                    String text = "Compilator Error :\n";
-                    foreach (CompilerError err in cr.Errors)
-                        text += err + "\n";
+                    String text = cr.Errors.Cast<CompilerError>().Aggregate("Compilator Error :\n", (current, err) => current + (err + "\n"));
                     Logging.Write(text);
                     return true;
                 }
 
-                _assembly = cr.CompiledAssembly;
+                var assembly = cr.CompiledAssembly;
 
-                _obj = _assembly.CreateInstance("Main", true);
-                _instanceFromOtherAssembly = _obj as IScript;
+                var obj = assembly.CreateInstance("Main", true);
+                var instanceFromOtherAssembly = obj as IScript;
 
-                return _instanceFromOtherAssembly.Script();
+                return instanceFromOtherAssembly != null && instanceFromOtherAssembly.Script();
             }
             catch
             {

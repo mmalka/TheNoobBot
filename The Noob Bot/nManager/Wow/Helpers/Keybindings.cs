@@ -210,7 +210,7 @@ namespace nManager.Wow.Helpers
                 barAndSlot = barAndSlot.Replace("{", "");
                 barAndSlot = barAndSlot.Replace("}", "");
                 barAndSlot = barAndSlot.Replace(" ", "");
-                string[] keySlot = barAndSlot.Split(Convert.ToChar(";"));
+                string[] keySlot = barAndSlot.Split(';');
 
 
                 try

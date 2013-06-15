@@ -240,7 +240,7 @@ namespace nManager.Wow.Helpers
                 {
                     try
                     {
-                        string[] sDigsitesArray = resultLua.Split(Convert.ToChar(separatorDigsites));
+                        string[] sDigsitesArray = resultLua.Split(Others.ToChar(separatorDigsites));
 
                         foreach (string s in sDigsitesArray)
                         {
@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
                             {
                                 try
                                 {
-                                    string[] sDigsites = s.Split(Convert.ToChar(separator));
+                                    string[] sDigsites = s.Split(Others.ToChar(separator));
                                     var tDigsitesZoneLua = new DigsitesZoneLua
                                         {
                                             name = sDigsites[0],

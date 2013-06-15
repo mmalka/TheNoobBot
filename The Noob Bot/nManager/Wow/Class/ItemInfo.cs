@@ -39,7 +39,7 @@ namespace nManager.Wow.Class
                         " = itemName .. \"^\" .. itemLink .. \"^\" .. itemRarity .. \"^\" .. itemLevel .. \"^\" .. itemMinLevel .. \"^\" .. itemType .. \"^\" .. itemSubType .. \"^\" .. itemStackCount .. \"^\" .. itemEquipLoc .. \"^\" .. itemTexture .. \"^\" .. itemSellPrice");
                     sResult = Lua.GetLocalizedText(randomString);
                 }
-                string[] itemInfoArray = sResult.Split(Convert.ToChar("^"));
+                string[] itemInfoArray = sResult.Split('^');
 
                 ItemName = itemInfoArray[0];
                 ItemLink = itemInfoArray[1];
@@ -77,7 +77,7 @@ namespace nManager.Wow.Class
                         " = itemName .. \"^\" .. itemLink .. \"^\" .. itemRarity .. \"^\" .. itemLevel .. \"^\" .. itemMinLevel .. \"^\" .. itemType .. \"^\" .. itemSubType .. \"^\" .. itemStackCount .. \"^\" .. itemEquipLoc .. \"^\" .. itemTexture .. \"^\" .. itemSellPrice");
                     sResult = Lua.GetLocalizedText(randomString);
                 }
-                string[] intemInfoArray = sResult.Split(Convert.ToChar("^"));
+                string[] intemInfoArray = sResult.Split('^');
 
                 ItemName = intemInfoArray[0];
                 ItemLink = intemInfoArray[1];

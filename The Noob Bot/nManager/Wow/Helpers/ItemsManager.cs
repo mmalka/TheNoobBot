@@ -156,10 +156,10 @@ namespace nManager.Wow.Helpers
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + Entry + "); " + randomString +
                                 " = startTime .. \"^\" .. duration .. \"^\" .. enable");
-                string[] itemInfoArray = Lua.GetLocalizedText(randomString).Split(Convert.ToChar("^"));
+                string[] itemInfoArray = Lua.GetLocalizedText(randomString).Split('^');
 
-                float itemStartTime = Convert.ToSingle(itemInfoArray[0]);
-                float itemDuration = Convert.ToSingle(itemInfoArray[1]);
+                float itemStartTime = Others.ToSingle(itemInfoArray[0]);
+                float itemDuration = Others.ToSingle(itemInfoArray[1]);
                 uint itemEnable = Others.ToUInt32(itemInfoArray[2]);
 
                 if (itemStartTime == 0 && itemDuration == 0)
