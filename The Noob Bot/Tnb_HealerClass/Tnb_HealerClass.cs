@@ -3998,5 +3998,6 @@ namespace HealerClass
     }
 
     #endregion
+
 // ReSharper restore ObjectCreationAsStatement
 }
