@@ -86,22 +86,20 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new ArgumentException("DLL not found.", "szDllPath");
 
             uint dwBaseAddress = RETURN_ERROR;
-            uint lpLoadLibrary, lpAsmStub;
-            CONTEXT ctx;
             StringBuilder AssemblyStub = new StringBuilder();
             ManagedFasm fasm = new ManagedFasm(hProcess);
 
-            lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            uint lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
             if (lpLoadLibrary == 0)
                 return RETURN_ERROR;
 
-            lpAsmStub = SMemory.AllocateMemory(hProcess);
+            uint lpAsmStub = SMemory.AllocateMemory(hProcess);
             if (lpAsmStub == 0)
                 return RETURN_ERROR;
 
             if (SThread.SuspendThread(hThread) != uint.MaxValue)
             {
-                ctx = SThread.GetThreadContext(hThread, CONTEXT_FLAGS.CONTEXT_CONTROL);
+                CONTEXT ctx = SThread.GetThreadContext(hThread, CONTEXT_FLAGS.CONTEXT_CONTROL);
                 if (ctx.Eip > 0)
                 {
                     try
@@ -168,14 +166,11 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the base address of the injected dll on success, zero on failure.</returns>
         public static uint InjectDllRedirectThread(IntPtr hProcess, int dwProcessId, string szDllPath)
         {
-            IntPtr hThread;
-            uint dwBaseAddress;
-
-            hThread = SThread.OpenThread(SThread.GetMainThreadId(dwProcessId));
+            IntPtr hThread = SThread.OpenThread(SThread.GetMainThreadId(dwProcessId));
             if (hThread == IntPtr.Zero)
                 return RETURN_ERROR;
 
-            dwBaseAddress = InjectDllRedirectThread(hProcess, hThread, szDllPath);
+            uint dwBaseAddress = InjectDllRedirectThread(hProcess, hThread, szDllPath);
 
             Imports.CloseHandle(hThread);
 

@@ -16,10 +16,6 @@ namespace nManager.Wow.Helpers
                                                          ((uint) Addresses.VMT.CGUnit_C__GetFacing*4));
                     if (VTable <= 0)
                         return 0;
-                    Addresses.ObjectManager objectManagerBase = Addresses.ObjectManager.objectManager;
-                    if (objectManagerBase <= 0)
-                        return 0;
-
                     uint result_Codecave = Memory.WowMemory.Memory.AllocateMemory(0x4 + 1 + Others.Random(1, 25));
                     if (result_Codecave <= 0)
                         return 0;
