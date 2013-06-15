@@ -10,27 +10,26 @@ namespace nManager.Wow.Helpers
 {
     internal class WoWQuestPOIPoint
     {
-        private List<Point> _SetPoints;
-        private Point _MiddlePoint = new Point(0, 0, 0);
-        private bool _MiddlePointSet = false;
+        private readonly List<Point> _setPoints;
+        private Point _middlePoint = new Point(0, 0, 0);
+        private bool _middlePointSet;
 
-        private static DBC<QuestPOIPointDbcRecord> qpPointDbc;
+        private static DBC<QuestPOIPointDbcRecord> _qpPointDBC;
 
         private WoWQuestPOIPoint(uint setId)
         {
-            _SetPoints = new List<Point>();
-            QuestPOIPointDbcRecord qpPointDbcRecord;
-            if (qpPointDbc == null)
-                qpPointDbc = new DBC<QuestPOIPointDbcRecord>((int) Addresses.DBC.QuestPOIPoint);
+            _setPoints = new List<Point>();
+            if (_qpPointDBC == null)
+                _qpPointDBC = new DBC<QuestPOIPointDbcRecord>((int) Addresses.DBC.QuestPOIPoint);
             bool flag = false;
-            for (int id = qpPointDbc.MinIndex; id <= qpPointDbc.MaxIndex; id++)
+            for (int id = _qpPointDBC.MinIndex; id <= _qpPointDBC.MaxIndex; id++)
             {
-                qpPointDbcRecord = qpPointDbc.GetRow((int) id);
+                QuestPOIPointDbcRecord qpPointDbcRecord = _qpPointDBC.GetRow(id);
                 if (qpPointDbcRecord.Id == id)
                 {
                     if (qpPointDbcRecord.SetId == setId)
                     {
-                        _SetPoints.Add(new Point(qpPointDbcRecord.X, qpPointDbcRecord.Y, 0));
+                        _setPoints.Add(new Point(qpPointDbcRecord.X, qpPointDbcRecord.Y, 0));
                         flag = true;
                     }
                     else if (flag)
@@ -47,24 +46,24 @@ namespace nManager.Wow.Helpers
 
         public List<Point> PointList
         {
-            get { return _SetPoints; }
+            get { return _setPoints; }
         }
 
         public Point Center
         {
             get
             {
-                if (_SetPoints.Count == 0)
+                if (_setPoints.Count == 0)
                     return new Point(0, 0, 0, "invalid");
                 int middleX = 0;
                 int middleY = 0;
-                for (int i = 0; i < _SetPoints.Count; i++)
+                for (int i = 0; i < _setPoints.Count; i++)
                 {
-                    middleX += (int) _SetPoints[i].X;
-                    middleY += (int) _SetPoints[i].Y;
+                    middleX += (int) _setPoints[i].X;
+                    middleY += (int) _setPoints[i].Y;
                 }
-                float x = middleX/_SetPoints.Count;
-                float y = middleY/_SetPoints.Count;
+                float x = middleX/_setPoints.Count;
+                float y = middleY/_setPoints.Count;
                 float z = PathFinder.GetZPosition(x, y, false);
                 return new Point(x, y, z + 80.0f);
             }
@@ -72,7 +71,7 @@ namespace nManager.Wow.Helpers
 
         public bool ValidPoint
         {
-            get { return _MiddlePointSet; }
+            get { return _middlePointSet; }
         }
 
         public Point MiddlePoint
@@ -80,16 +79,16 @@ namespace nManager.Wow.Helpers
             get
             {
                 // We have it already, then return it
-                if (_MiddlePoint.X != 0 || _MiddlePoint.Y != 0)
-                    return _MiddlePoint;
+                if (_middlePoint.X != 0 || _middlePoint.Y != 0)
+                    return _middlePoint;
 
                 // We don't have it, then compute it
-                _MiddlePoint = Center;
-                float curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y, true);
-                float anotherZ = PathFinder.GetZPosition(_MiddlePoint.X + 8, _MiddlePoint.Y + 8, true);
-                if (!IsInside(_MiddlePoint) || curZ == 0 || (uint) (anotherZ - curZ) >= 11 ||
-                    TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ),
-                                          new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                _middlePoint = Center;
+                float curZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y, true);
+                float anotherZ = PathFinder.GetZPosition(_middlePoint.X + 8, _middlePoint.Y + 8, true);
+                if (!IsInside(_middlePoint) || curZ == 0 || (uint) (anotherZ - curZ) >= 11 ||
+                    TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y, curZ),
+                                          new Point(_middlePoint.X, _middlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                 {
                     bool found = false;
                     int delta = 0;
@@ -97,54 +96,54 @@ namespace nManager.Wow.Helpers
                     do
                     {
                         delta += 5;
-                        if (IsInside(new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, 0)))
+                        if (IsInside(new Point(_middlePoint.X + delta, _middlePoint.Y, 0)))
                         {
-                            curZ = PathFinder.GetZPosition(_MiddlePoint.X + delta, _MiddlePoint.Y, true);
-                            anotherZ = PathFinder.GetZPosition(_MiddlePoint.X + delta + 8, _MiddlePoint.Y, true);
+                            curZ = PathFinder.GetZPosition(_middlePoint.X + delta, _middlePoint.Y, true);
+                            anotherZ = PathFinder.GetZPosition(_middlePoint.X + delta + 8, _middlePoint.Y, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
-                                !TraceLine.TraceLineGo(new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ),
-                                                       new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                !TraceLine.TraceLineGo(new Point(_middlePoint.X + delta, _middlePoint.Y, curZ),
+                                                       new Point(_middlePoint.X + delta, _middlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
-                                _MiddlePoint = new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ + 2.0f);
+                                _middlePoint = new Point(_middlePoint.X + delta, _middlePoint.Y, curZ + 2.0f);
                                 found = true;
                                 continue;
                             }
                         }
-                        if (IsInside(new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, 0)))
+                        if (IsInside(new Point(_middlePoint.X - delta, _middlePoint.Y, 0)))
                         {
-                            curZ = PathFinder.GetZPosition(_MiddlePoint.X - delta, _MiddlePoint.Y, true);
-                            anotherZ = PathFinder.GetZPosition(_MiddlePoint.X - delta - 8, _MiddlePoint.Y, true);
+                            curZ = PathFinder.GetZPosition(_middlePoint.X - delta, _middlePoint.Y, true);
+                            anotherZ = PathFinder.GetZPosition(_middlePoint.X - delta - 8, _middlePoint.Y, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
-                                !TraceLine.TraceLineGo(new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ),
-                                                       new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                !TraceLine.TraceLineGo(new Point(_middlePoint.X - delta, _middlePoint.Y, curZ),
+                                                       new Point(_middlePoint.X - delta, _middlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
-                                _MiddlePoint = new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ + 2.0f);
+                                _middlePoint = new Point(_middlePoint.X - delta, _middlePoint.Y, curZ + 2.0f);
                                 found = true;
                                 continue;
                             }
                         }
-                        if (IsInside(new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, 0)))
+                        if (IsInside(new Point(_middlePoint.X, _middlePoint.Y + delta, 0)))
                         {
-                            curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y + delta, true);
-                            anotherZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y + delta + 8, true);
+                            curZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y + delta, true);
+                            anotherZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y + delta + 8, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
-                                !TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ),
-                                                       new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                !TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y + delta, curZ),
+                                                       new Point(_middlePoint.X, _middlePoint.Y + delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
-                                _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ + 2.0f);
+                                _middlePoint = new Point(_middlePoint.X, _middlePoint.Y + delta, curZ + 2.0f);
                                 found = true;
                                 continue;
                             }
                         }
-                        if (IsInside(new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, 0)))
+                        if (IsInside(new Point(_middlePoint.X, _middlePoint.Y - delta, 0)))
                         {
-                            curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y - delta, true);
-                            anotherZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y - delta - 8, true);
+                            curZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y - delta, true);
+                            anotherZ = PathFinder.GetZPosition(_middlePoint.X, _middlePoint.Y - delta - 8, true);
                             if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
-                                !TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ),
-                                                       new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                !TraceLine.TraceLineGo(new Point(_middlePoint.X, _middlePoint.Y - delta, curZ),
+                                                       new Point(_middlePoint.X, _middlePoint.Y - delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
-                                _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ + 2.0f);
+                                _middlePoint = new Point(_middlePoint.X, _middlePoint.Y - delta, curZ + 2.0f);
                                 found = true;
                             }
                         }
@@ -153,26 +152,26 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ + 2.0f);
+                    _middlePoint = new Point(_middlePoint.X, _middlePoint.Y, curZ + 2.0f);
                 }
-                _MiddlePointSet = true;
-                return _MiddlePoint;
+                _middlePointSet = true;
+                return _middlePoint;
             }
         }
 
         // An implementation of the shortest ray-trace algorythm for PiP problem I could make
         public bool IsInside(Point p)
         {
-            int c = _SetPoints.Count;
+            int c = _setPoints.Count;
             int hits = 0;
             var px = (int) p.X;
             var py = (int) p.Y;
             for (int i = 0; i < c; i++)
             {
-                var x1 = (int) _SetPoints[i].X;
-                var y1 = (int) _SetPoints[i].Y;
-                var x2 = (int) _SetPoints[(i + 1)%c].X;
-                var y2 = (int) _SetPoints[(i + 1)%c].Y;
+                var x1 = (int) _setPoints[i].X;
+                var y1 = (int) _setPoints[i].Y;
+                var x2 = (int) _setPoints[(i + 1)%c].X;
+                var y2 = (int) _setPoints[(i + 1)%c].Y;
                 if ((y1 - py)*(y2 - py) < 0)
                 {
                     int ix = x1 + (x2 - x1)*(py - y1)/(y2 - y1);

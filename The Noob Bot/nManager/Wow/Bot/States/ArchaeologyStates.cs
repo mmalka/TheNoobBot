@@ -13,11 +13,11 @@ namespace nManager.Wow.Bot.States
     {
         private enum LocState
         {
-            looting,
-            goingNextPoint,
-            survey,
-            iddle,
-            solve,
+            Looting,
+            GoingNextPoint,
+            Survey,
+            Iddle,
+            Solve,
         }
 
         public override string DisplayName
@@ -40,7 +40,7 @@ namespace nManager.Wow.Bot.States
         public int MaxTryByDigsite = 30;
         private int nbCastSurveyError = 0;
 
-        private LocState myState = LocState.iddle;
+        private LocState myState = LocState.Iddle;
         private Helpful.Timer timerLooting;
 
         private int _bestPathId;
@@ -166,7 +166,7 @@ namespace nManager.Wow.Bot.States
                 int nbStuck = 0; // Nb of stuck direct
                 try
                 {
-                    if (myState != LocState.iddle)
+                    if (myState != LocState.Iddle)
                         MountTask.DismountMount();
 
                     ObjectManager.WoWGameObject t =
@@ -174,7 +174,7 @@ namespace nManager.Wow.Bot.States
                             ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Archaeology.ArchaeologyItemsFindList));
                     if (t.GetBaseAddress > 0) // If found then loot
                     {
-                        if (myState == LocState.looting)
+                        if (myState == LocState.Looting)
                             if (timerLooting != null && timerLooting.IsReady)
                             {
                                 MovementsAction.Jump();
@@ -219,7 +219,7 @@ namespace nManager.Wow.Bot.States
                         }
                         Statistics.Farms++;
                         nbLootAttempt++;
-                        myState = LocState.looting;
+                        myState = LocState.Looting;
                         if (timerLooting == null)
                             timerLooting = new Helpful.Timer(1000*5);
                         else
@@ -231,7 +231,7 @@ namespace nManager.Wow.Bot.States
                         nbLootAttempt = 0;
                         BlackListDigsites.Add(digsitesZone.id);
                         Logging.Write("Black List Digsite: " + digsitesZone.name);
-                        myState = LocState.iddle;
+                        myState = LocState.Iddle;
                         nbCastSurveyError = 0;
                         return;
                     }
@@ -268,7 +268,7 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
                             MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                         }
-                        myState = LocState.iddle;
+                        myState = LocState.Iddle;
                         return;
                     }
                     // Find loot with Survey
@@ -276,19 +276,19 @@ namespace nManager.Wow.Bot.States
                     t =
                         ObjectManager.ObjectManager.GetNearestWoWGameObject(
                             ObjectManager.ObjectManager.GetWoWGameObjectByDisplayId(Archaeology.SurveyList));
-                    if (t.GetBaseAddress <= 0 || myState == LocState.goingNextPoint ||
+                    if (t.GetBaseAddress <= 0 || myState == LocState.GoingNextPoint ||
                         // recast if we moved even if last is still spawned
-                        myState == LocState.looting)
+                        myState == LocState.Looting)
                         // after we looted we need to recast survey spell, even if the previous one is still spawned
                     {
                         if (!Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                             return;
 
-                        if (myState == LocState.iddle)
+                        if (myState == LocState.Iddle)
                             MountTask.DismountMount();
 
                         surveySpell.Launch();
-                        myState = LocState.survey;
+                        myState = LocState.Survey;
                         Thread.Sleep(250); // let's wait a bit
                         nbCastSurveyError++;
                         if (nbCastSurveyError > 3)
@@ -314,7 +314,7 @@ namespace nManager.Wow.Bot.States
                     }
                     else
                     {
-                        if (myState == LocState.goingNextPoint)
+                        if (myState == LocState.GoingNextPoint)
                             return;
                         nbCastSurveyError = 0; // Reset try cast survey
                         if ((ObjectManager.ObjectManager.Me.InCombat &&
@@ -386,7 +386,7 @@ namespace nManager.Wow.Bot.States
                             else // Survey Tool (Green) 25 yard
                                 p = Math.GetPostion2DOfLineByDistance(p1, p2, 13 + 2.5f);
 
-                            myState = LocState.goingNextPoint;
+                            myState = LocState.GoingNextPoint;
                             p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                             p.Z = PathFinder.GetZPosition(p, true);
                             if (p.Z == 0)

@@ -10,15 +10,15 @@ namespace nManager
 {
     public class Pulsator
     {
-        private const string md5Key = "5c9c3ef2f438f88b0aeea7dd152833b4";
-        private static string tempSecretKey = "";
+        private const string MD5Key = "5c9c3ef2f438f88b0aeea7dd152833b4";
+        private static string _tempSecretKey = "";
 
         public static void Pulse(int processId, string secretKey)
         {
             try
             {
-                tempSecretKey = Others.EncrypterMD5(secretKey);
-                if (md5Key != tempSecretKey)
+                _tempSecretKey = Others.EncrypterMD5(secretKey);
+                if (MD5Key != _tempSecretKey)
                     return;
 
                 SpellManager.SpellListManager.LoadSpellListe(Application.StartupPath + "\\Data\\spell.txt");
@@ -127,7 +127,7 @@ namespace nManager
             {
                 int id = Wow.Memory.WowProcess.ProcessId;
                 Dispose();
-                Pulse(id, tempSecretKey);
+                Pulse(id, _tempSecretKey);
             }
             catch (Exception e)
             {

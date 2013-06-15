@@ -1,26 +1,24 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using nManager.Wow.Enums;
+﻿using System.Runtime.InteropServices;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
     internal class WoWResearchSite
     {
-        private ResearchSiteDbcRecord rSiteDbcRecord_0;
+        private ResearchSiteDbcRecord _rSiteDBCRecord0;
 
-        private static DBC<ResearchSiteDbcRecord> rSiteDbc;
+        private static DBC<ResearchSiteDbcRecord> _rSiteDBC;
 
         private WoWResearchSite(string name)
         {
-            if (rSiteDbc == null)
-                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-            for (int id = rSiteDbc.MinIndex; id <= rSiteDbc.MaxIndex; id++)
+            if (_rSiteDBC == null)
+                _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
+            for (int id = _rSiteDBC.MinIndex; id <= _rSiteDBC.MaxIndex; id++)
             {
-                rSiteDbcRecord_0 = rSiteDbc.GetRow((int) id);
-                if (rSiteDbcRecord_0.Id == id)
+                _rSiteDBCRecord0 = _rSiteDBC.GetRow(id);
+                if (_rSiteDBCRecord0.Id == id)
                 {
-                    string temp = rSiteDbc.String(rSiteDbcRecord_0.NameOffset);
+                    string temp = _rSiteDBC.String(_rSiteDBCRecord0.NameOffset);
                     if (temp == name)
                     {
                         return;
@@ -31,12 +29,12 @@ namespace nManager.Wow.Helpers
 
         private WoWResearchSite(int reqId)
         {
-            if (rSiteDbc == null)
-                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-            for (int id = rSiteDbc.MinIndex; id <= rSiteDbc.MaxIndex; id++)
+            if (_rSiteDBC == null)
+                _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
+            for (int id = _rSiteDBC.MinIndex; id <= _rSiteDBC.MaxIndex; id++)
             {
-                rSiteDbcRecord_0 = rSiteDbc.GetRow((int) id);
-                if (rSiteDbcRecord_0.Id == id && id == reqId)
+                _rSiteDBCRecord0 = _rSiteDBC.GetRow(id);
+                if (_rSiteDBCRecord0.Id == id && id == reqId)
                 {
                     return;
                 }
@@ -56,12 +54,12 @@ namespace nManager.Wow.Helpers
 
         public ResearchSiteDbcRecord Record
         {
-            get { return this.rSiteDbcRecord_0; }
+            get { return _rSiteDBCRecord0; }
         }
 
         public string Name
         {
-            get { return rSiteDbc.String(this.rSiteDbcRecord_0.NameOffset); }
+            get { return _rSiteDBC.String(_rSiteDBCRecord0.NameOffset); }
         }
 
         // I don't like to expose this, but did not find another way
@@ -69,9 +67,9 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                if (rSiteDbc == null)
-                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-                return rSiteDbc.MinIndex;
+                if (_rSiteDBC == null)
+                    _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
+                return _rSiteDBC.MinIndex;
             }
         }
 
@@ -79,9 +77,9 @@ namespace nManager.Wow.Helpers
         {
             get
             {
-                if (rSiteDbc == null)
-                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
-                return rSiteDbc.MaxIndex;
+                if (_rSiteDBC == null)
+                    _rSiteDBC = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
+                return _rSiteDBC.MaxIndex;
             }
         }
 

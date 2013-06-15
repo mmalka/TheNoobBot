@@ -1,6 +1,6 @@
 namespace Archaeologist
 {
-    partial class DigSites_List_Management
+    partial class DigSitesListManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -170,7 +170,7 @@ namespace Archaeologist
             this.Controls.Add(this.listDigsitesDGV);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "DigSites_List_Management";
+            this.Name = "DigSitesListManagement";
             this.ShowIcon = false;
             this.ShowInTaskbar = true;
             this.Text = "DigSites list Management";

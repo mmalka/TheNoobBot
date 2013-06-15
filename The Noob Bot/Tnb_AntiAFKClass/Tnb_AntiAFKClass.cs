@@ -9,69 +9,72 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
-public class Main : ICombatClass
+namespace AntiAFKClass
 {
-    internal static float range = 5.0f;
-    internal static bool loop = true;
-
-    #region ICombatClass Members
-
-    public float Range
+    public class Main : ICombatClass
     {
-        get { return range; }
-    }
+        internal static float InternalRange = 5.0f;
+        internal static bool InternalLoop = true;
 
-    public void Initialize()
-    {
-        try
+        #region ICombatClass Members
+
+        public float Range
         {
-            if (!loop)
-                loop = true;
-            Logging.WriteFight("Loading Anti AFK system.");
-
-            new AntiAfk();
+            get { return InternalRange; }
         }
-        catch (Exception exception)
+
+        public void Initialize()
         {
-            Logging.WriteError("Initialize(): " + exception);
+            try
+            {
+                if (!InternalLoop)
+                    InternalLoop = true;
+                Logging.WriteFight("Loading Anti AFK system.");
+
+                new AntiAfk();
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Initialize(): " + exception);
+            }
+            Logging.WriteFight("Anti AFK system stopped.");
         }
-        Logging.WriteFight("Anti AFK system stopped.");
+
+        public void Dispose()
+        {
+            Logging.WriteFight("Anti AFK system stopped.");
+            InternalLoop = false;
+        }
+
+        public void ShowConfiguration()
+        {
+            MessageBox.Show("There is no settings available");
+        }
+
+        public void ResetConfiguration()
+        {
+            MessageBox.Show("There is no settings available");
+        }
+
+        #endregion
     }
 
-    public void Dispose()
+    public class AntiAfk
     {
-        Logging.WriteFight("Anti AFK system stopped.");
-        loop = false;
-    }
-
-    public void ShowConfiguration()
-    {
-        MessageBox.Show("There is no settings available");
-    }
-
-    public void ResetConfiguration()
-    {
-        MessageBox.Show("There is no settings available");
-    }
-
-    #endregion
-}
-
-public class AntiAfk
-{
-    /**
+        /**
       * Author : VesperCore
       * Utility : Anti_AFK; to be used with a profile with only 1 point.
     **/
 
-    public AntiAfk()
-    {
-        Main.range = 5.0f;
-
-        while (Main.loop)
+        public AntiAfk()
         {
-            MovementsAction.Jump();
-            Thread.Sleep(new Random().Next(45000, 90000));
+            Main.InternalRange = 5.0f;
+
+            while (Main.InternalLoop)
+            {
+                MovementsAction.Jump();
+                Thread.Sleep(new Random().Next(45000, 90000));
+            }
         }
     }
 }

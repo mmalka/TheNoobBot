@@ -23,8 +23,8 @@ namespace Milling
                 return;
             }
 
-            var Milling = new nManager.Wow.Bot.States.MillingState();
-            Milling.Run();
+            var milling = new nManager.Wow.Bot.States.MillingState();
+            milling.Run();
             Logging.Write("Milling finished.");
             nManager.Products.Products.ProductStop();
         }

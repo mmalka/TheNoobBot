@@ -42,7 +42,7 @@ namespace nManager.Wow.AccountSecurity
         {
             try
             {
-                HookAccountSecurity.disposeHook();
+                HookAccountSecurity.DisposeHook();
             }
             catch (Exception exception)
             {

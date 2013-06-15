@@ -28,7 +28,7 @@ namespace Grinder.Profile
                 }
                 npcTypeC.Text = Npc.NpcType.None.ToString();
 
-                refreshListZones();
+                RefreshListZones();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
@@ -98,13 +98,13 @@ namespace Grinder.Profile
                 {
                     _profile = new GrinderProfile();
                     _profile = XmlSerializer.Deserialize<GrinderProfile>(file);
-                    refreshForm();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Grinder > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
-                refreshForm();
+                RefreshForm();
             }
         }
 
@@ -122,9 +122,9 @@ namespace Grinder.Profile
             }
         }
 
-        private int idZone;
+        private int _idZone;
 
-        private void refreshListZones()
+        private void RefreshListZones()
         {
             lock (typeof (ProfileCreator))
             {
@@ -142,9 +142,9 @@ namespace Grinder.Profile
                         // if (!listZoneCb.Items.Contains(p.Name))
                         listZoneCb.Items.Add(p.Name);
                     }
-                    if (listZoneCb.SelectedIndex != idZone)
+                    if (listZoneCb.SelectedIndex != _idZone)
                     {
-                        listZoneCb.SelectedIndex = idZone;
+                        listZoneCb.SelectedIndex = _idZone;
                         return;
                     }
                 }
@@ -154,7 +154,7 @@ namespace Grinder.Profile
             }
         }
 
-        private void refreshForm()
+        private void RefreshForm()
         {
             lock (typeof (ProfileCreator))
             {
@@ -162,7 +162,7 @@ namespace Grinder.Profile
                 {
                     // Target entry
                     var text = "";
-                    foreach (var entry in _profile.GrinderZones[idZone].TargetEntry)
+                    foreach (var entry in _profile.GrinderZones[_idZone].TargetEntry)
                     {
                         if (text != "")
                             text = text + " ; ";
@@ -176,8 +176,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Player Level
-                    maxLevelPlayer.ValueObject = (int) _profile.GrinderZones[idZone].MaxLevel;
-                    minLevelPlayer.ValueObject = (int) _profile.GrinderZones[idZone].MinLevel;
+                    maxLevelPlayer.ValueObject = (int) _profile.GrinderZones[_idZone].MaxLevel;
+                    minLevelPlayer.ValueObject = (int) _profile.GrinderZones[_idZone].MinLevel;
                 }
                 catch
                 {
@@ -185,8 +185,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    maxLevelTarget.ValueObject = (int) _profile.GrinderZones[idZone].MaxTargetLevel;
-                    minLevelTarget.ValueObject = (int) _profile.GrinderZones[idZone].MinTargetLevel;
+                    maxLevelTarget.ValueObject = (int) _profile.GrinderZones[_idZone].MaxTargetLevel;
+                    minLevelTarget.ValueObject = (int) _profile.GrinderZones[_idZone].MinTargetLevel;
                 }
                 catch
                 {
@@ -194,7 +194,7 @@ namespace Grinder.Profile
                 try
                 {
                     // Name Zone
-                    zoneNameTb.Text = _profile.GrinderZones[idZone].Name;
+                    zoneNameTb.Text = _profile.GrinderZones[_idZone].Name;
                 }
                 catch
                 {
@@ -203,7 +203,7 @@ namespace Grinder.Profile
                 {
                     // Way
                     listPoint.Items.Clear();
-                    foreach (var p in _profile.GrinderZones[idZone].Points)
+                    foreach (var p in _profile.GrinderZones[_idZone].Points)
                     {
                         listPoint.Items.Add(p.ToString());
                     }
@@ -217,7 +217,7 @@ namespace Grinder.Profile
                 {
                     // BlackList
                     listBlackRadius.Items.Clear();
-                    foreach (var b in _profile.GrinderZones[idZone].BlackListRadius)
+                    foreach (var b in _profile.GrinderZones[_idZone].BlackListRadius)
                     {
                         listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                     }
@@ -231,7 +231,7 @@ namespace Grinder.Profile
                 {
                     // Npc
                     listNpc.Items.Clear();
-                    foreach (var n in _profile.GrinderZones[idZone].Npc)
+                    foreach (var n in _profile.GrinderZones[_idZone].Npc)
                     {
                         listNpc.Items.Add(n.Name + " - " + n.Type + " - " + n.Faction);
                     }
@@ -278,21 +278,21 @@ namespace Grinder.Profile
                 int lastRotation = 0;
                 _loopRecordPoint = true;
 
-                _profile.GrinderZones[idZone].Points.Add(ObjectManager.Me.Position);
-                refreshForm();
+                _profile.GrinderZones[_idZone].Points.Add(ObjectManager.Me.Position);
+                RefreshForm();
 
                 while (_loopRecordPoint)
                 {
-                    var lastPoint = _profile.GrinderZones[idZone].Points[_profile.GrinderZones[idZone].Points.Count - 1];
+                    var lastPoint = _profile.GrinderZones[_idZone].Points[_profile.GrinderZones[_idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
                          lastRotation != (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
-                        _profile.GrinderZones[idZone].Points.Add(ObjectManager.Me.Position);
+                        _profile.GrinderZones[_idZone].Points.Add(ObjectManager.Me.Position);
                         lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
-                        refreshForm();
+                        RefreshForm();
                     }
                     Application.DoEvents();
                     Thread.Sleep(50);
@@ -309,8 +309,8 @@ namespace Grinder.Profile
             try
             {
                 if (listPoint.SelectedIndex >= 0)
-                    _profile.GrinderZones[idZone].Points.RemoveAt(listPoint.SelectedIndex);
-                refreshForm();
+                    _profile.GrinderZones[_idZone].Points.RemoveAt(listPoint.SelectedIndex);
+                RefreshForm();
             }
             catch (Exception e)
             {
@@ -324,8 +324,8 @@ namespace Grinder.Profile
             try
             {
                 if (listBlackRadius.SelectedIndex >= 0)
-                    _profile.GrinderZones[idZone].BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
-                refreshForm();
+                    _profile.GrinderZones[_idZone].BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -338,14 +338,14 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones[idZone].BlackListRadius.Add(new GrinderBlackListRadius
+                _profile.GrinderZones[_idZone].BlackListRadius.Add(new GrinderBlackListRadius
                     {
                         Position =
                             ObjectManager.Me
                                          .Position,
                         Radius = radiusN.Value
                     });
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -359,8 +359,8 @@ namespace Grinder.Profile
             try
             {
                 if (listNpc.SelectedIndex >= 0)
-                    _profile.GrinderZones[idZone].Npc.RemoveAt(listNpc.SelectedIndex);
-                refreshForm();
+                    _profile.GrinderZones[_idZone].Npc.RemoveAt(listNpc.SelectedIndex);
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -387,8 +387,8 @@ namespace Grinder.Profile
                         Position = ObjectManager.Target.Position,
                         Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
                     };
-                _profile.GrinderZones[idZone].Npc.Add(npc);
-                refreshForm();
+                _profile.GrinderZones[_idZone].Npc.Add(npc);
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -455,8 +455,8 @@ namespace Grinder.Profile
                 if (nManager.Wow.Helpers.Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
 
-                _profile.GrinderZones[idZone].Npc.Add(npc);
-                refreshForm();
+                _profile.GrinderZones[_idZone].Npc.Add(npc);
+                RefreshForm();
                 nameNpcTb.Text = "";
             }
             catch (Exception ex)
@@ -469,8 +469,8 @@ namespace Grinder.Profile
         {
             try
             {
-                idZone = listZoneCb.SelectedIndex;
-                refreshForm();
+                _idZone = listZoneCb.SelectedIndex;
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -483,8 +483,8 @@ namespace Grinder.Profile
             try
             {
                 _profile.GrinderZones.Add(new GrinderZone {Name = nManager.Wow.Helpers.Usefuls.MapZoneName});
-                idZone = _profile.GrinderZones.Count - 1;
-                refreshListZones();
+                _idZone = _profile.GrinderZones.Count - 1;
+                RefreshListZones();
             }
             catch (Exception ex)
             {
@@ -496,9 +496,9 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones.RemoveAt(idZone);
-                idZone = _profile.GrinderZones.Count - 1;
-                refreshListZones();
+                _profile.GrinderZones.RemoveAt(_idZone);
+                _idZone = _profile.GrinderZones.Count - 1;
+                RefreshListZones();
             }
             catch (Exception ex)
             {
@@ -510,8 +510,8 @@ namespace Grinder.Profile
         {
             try
             {
-                _profile.GrinderZones[idZone].Name = zoneNameTb.Text;
-                refreshListZones();
+                _profile.GrinderZones[_idZone].Name = zoneNameTb.Text;
+                RefreshListZones();
             }
             catch (Exception ex)
             {
@@ -526,8 +526,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Player Level
-                    _profile.GrinderZones[idZone].MaxLevel = (uint) maxLevelPlayer.Value;
-                    _profile.GrinderZones[idZone].MinLevel = (uint) minLevelPlayer.Value;
+                    _profile.GrinderZones[_idZone].MaxLevel = (uint) maxLevelPlayer.Value;
+                    _profile.GrinderZones[_idZone].MinLevel = (uint) minLevelPlayer.Value;
                 }
                 catch
                 {
@@ -535,8 +535,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target Level
-                    _profile.GrinderZones[idZone].MaxTargetLevel = (uint) maxLevelTarget.Value;
-                    _profile.GrinderZones[idZone].MinTargetLevel = (uint) minLevelTarget.Value;
+                    _profile.GrinderZones[_idZone].MaxTargetLevel = (uint) maxLevelTarget.Value;
+                    _profile.GrinderZones[_idZone].MinTargetLevel = (uint) minLevelTarget.Value;
                 }
                 catch
                 {
@@ -576,14 +576,14 @@ namespace Grinder.Profile
                     if (text.Replace(" ", "").Replace(";", "").Length > 0)
                     {
                         string[] factionTempsString = text.Replace(" ", "").Split(';');
-                        _profile.GrinderZones[idZone].TargetEntry.Clear();
+                        _profile.GrinderZones[_idZone].TargetEntry.Clear();
                         foreach (string t in factionTempsString)
                         {
                             try
                             {
                                 if (t != "")
-                                    if (!_profile.GrinderZones[idZone].TargetEntry.Contains(Others.ToInt32(t)))
-                                        _profile.GrinderZones[idZone].TargetEntry.Add(Others.ToInt32(t));
+                                    if (!_profile.GrinderZones[_idZone].TargetEntry.Contains(Others.ToInt32(t)))
+                                        _profile.GrinderZones[_idZone].TargetEntry.Add(Others.ToInt32(t));
                             }
                             catch
                             {

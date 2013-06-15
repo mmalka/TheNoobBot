@@ -16,13 +16,13 @@ namespace nManager.Wow.MemoryClass
             return D3D9Adresse(processId) == 0;
         }
 
-        private static uint d3d11Adresse;
+        private static uint _d3D11Adresse;
 
         public static uint D3D11Adresse()
         {
-            if (d3d11Adresse <= 0)
+            if (_d3D11Adresse <= 0)
             {
-                const int VMT_PRESENT = 8;
+                const int vmtPresent = 8;
                 using (var rf = new RenderForm())
                 {
                     var desc = new SwapChainDescription
@@ -51,16 +51,16 @@ namespace nManager.Wow.MemoryClass
                             using (sc)
                             {
                                 var memory = new Magic.BlackMagic(System.Diagnostics.Process.GetCurrentProcess().Id);
-                                d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint) sc.ComPointer) + 4*VMT_PRESENT);
+                                _d3D11Adresse = memory.ReadUInt(memory.ReadUInt((uint) sc.ComPointer) + 4*vmtPresent);
                             }
                         }
                     }
                 }
             }
-            return d3d11Adresse;
+            return _d3D11Adresse;
         }
 
-        private static uint d3d9Adresse;
+        private static uint _d3D9Adresse;
 
         public static uint D3D9Adresse(int processId)
         {
@@ -72,9 +72,9 @@ namespace nManager.Wow.MemoryClass
             if (pEnd == 0)
                 return 0;
             uint pScene = memory.ReadUInt(pEnd);
-            d3d9Adresse = memory.ReadUInt(pScene + (uint) Patchables.Addresses.Hooking.ENDSCENE_IDX);
+            _d3D9Adresse = memory.ReadUInt(pScene + (uint) Patchables.Addresses.Hooking.ENDSCENE_IDX);
 
-            return d3d9Adresse;
+            return _d3D9Adresse;
         }
 
         public static byte[] OriginalBytes { get; set; }

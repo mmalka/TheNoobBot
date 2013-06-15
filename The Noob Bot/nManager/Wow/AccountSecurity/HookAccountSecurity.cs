@@ -15,11 +15,11 @@ namespace nManager.Wow.AccountSecurity
     {
         #region address
 
-        private static uint codeCave_DetourPtr;
-        private static uint codeCave_ScanDump;
-        internal static uint scanFunction;
-        internal static uint currentAddressReadDump;
-        internal static uint startDetourPtr;
+        private static uint _codeCaveDetourPtr;
+        private static uint _codeCaveScanDump;
+        internal static uint ScanFunction;
+        internal static uint CurrentAddressReadDump;
+        internal static uint StartDetourPtr;
 
         #endregion
 
@@ -30,7 +30,7 @@ namespace nManager.Wow.AccountSecurity
             [FieldOffset(0x4)] public int Length;
         }
 
-        private static bool accountSecurityThreadIsAlive;
+        private static bool _accountSecurityThreadIsAlive;
 
         internal static void Pulse()
         {
@@ -38,10 +38,10 @@ namespace nManager.Wow.AccountSecurity
             {
                 lock (typeof (HookAccountSecurity))
                 {
-                    if (!accountSecurityThreadIsAlive)
+                    if (!_accountSecurityThreadIsAlive)
                     {
-                        accountSecurityThreadIsAlive = true;
-                        var checkUpdateThreadLaunch = new Thread(loopAccountSecurityThread)
+                        _accountSecurityThreadIsAlive = true;
+                        var checkUpdateThreadLaunch = new Thread(LoopAccountSecurityThread)
                             {
                                 Name =
                                     "loopAccountSecurity"
@@ -56,7 +56,7 @@ namespace nManager.Wow.AccountSecurity
             }
         }
 
-        private static void loopAccountSecurityThread()
+        private static void LoopAccountSecurityThread()
         {
             try
             {
@@ -64,13 +64,13 @@ namespace nManager.Wow.AccountSecurity
                 {
                     if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting && Memory.WowMemory.ThreadHooked)
                     {
-                        if (hook())
+                        if (Hook())
                         {
-                            if (Memory.WowMemory.Memory.ReadUInt(codeCave_ScanDump) > currentAddressReadDump)
+                            if (Memory.WowMemory.Memory.ReadUInt(_codeCaveScanDump) > CurrentAddressReadDump)
                             {
                                 var dumpScanTemps =
                                     (DumpScan)
-                                    Memory.WowMemory.Memory.ReadObject(currentAddressReadDump, typeof (DumpScan));
+                                    Memory.WowMemory.Memory.ReadObject(CurrentAddressReadDump, typeof (DumpScan));
                                 if (dumpScanTemps.Length > 0)
                                 {
                                     var specialAddress = GetSpecialAddressScan(dumpScanTemps);
@@ -87,21 +87,21 @@ namespace nManager.Wow.AccountSecurity
 
                                 dumpScanTemps.Length = 0;
                                 dumpScanTemps.Address = 0;
-                                Memory.WowMemory.Memory.WriteObject(currentAddressReadDump, dumpScanTemps);
+                                Memory.WowMemory.Memory.WriteObject(CurrentAddressReadDump, dumpScanTemps);
 
-                                currentAddressReadDump = currentAddressReadDump +
+                                CurrentAddressReadDump = CurrentAddressReadDump +
                                                          (uint) Marshal.SizeOf(typeof (DumpScan));
                             }
                             else
                             {
-                                if (Memory.WowMemory.Memory.ReadUInt(codeCave_ScanDump) >
-                                    codeCave_ScanDump + 0x4 + (0x7*100000))
+                                if (Memory.WowMemory.Memory.ReadUInt(_codeCaveScanDump) >
+                                    _codeCaveScanDump + 0x4 + (0x7*100000))
                                 {
-                                    Memory.WowMemory.Memory.WriteUInt(codeCave_ScanDump, codeCave_ScanDump + 0x4);
+                                    Memory.WowMemory.Memory.WriteUInt(_codeCaveScanDump, _codeCaveScanDump + 0x4);
                                     Thread.Sleep(10);
-                                    if (Memory.WowMemory.Memory.ReadUInt(codeCave_ScanDump) < codeCave_ScanDump)
+                                    if (Memory.WowMemory.Memory.ReadUInt(_codeCaveScanDump) < _codeCaveScanDump)
                                     {
-                                        currentAddressReadDump = codeCave_ScanDump + 0x4;
+                                        CurrentAddressReadDump = _codeCaveScanDump + 0x4;
                                     }
                                 }
                             }
@@ -112,12 +112,12 @@ namespace nManager.Wow.AccountSecurity
             }
             catch (Exception exception)
             {
-                accountSecurityThreadIsAlive = false;
+                _accountSecurityThreadIsAlive = false;
                 Logging.WriteError("loopAccountSecurityThread(): " + exception);
             }
         }
 
-        private static bool hook()
+        private static bool Hook()
         {
             try
             {
@@ -127,11 +127,11 @@ namespace nManager.Wow.AccountSecurity
                 if (AccountSecurityScanFonctionAddress() <= 0)
                     return false;
 
-                lock (Hook.Locker)
+                lock (MemoryClass.Hook.Locker)
                 {
-                    if (Memory.WowMemory.Memory.ReadByte(scanFunction) == 0x8B ||
-                        (Memory.WowMemory.Memory.ReadByte(scanFunction) == 0xE9 && codeCave_ScanDump <= 0 &&
-                         codeCave_DetourPtr <= 0))
+                    if (Memory.WowMemory.Memory.ReadByte(ScanFunction) == 0x8B ||
+                        (Memory.WowMemory.Memory.ReadByte(ScanFunction) == 0xE9 && _codeCaveScanDump <= 0 &&
+                         _codeCaveDetourPtr <= 0))
                     {
                         /* ORIGINAL FUNCTION SCANAccountSecurity
         56                         - push esi
@@ -155,30 +155,30 @@ namespace nManager.Wow.AccountSecurity
                     */
 
                         // Free last hook
-                        if (codeCave_ScanDump > 0)
+                        if (_codeCaveScanDump > 0)
                         {
-                            Memory.WowMemory.Memory.FreeMemory(codeCave_ScanDump - startDetourPtr);
-                            codeCave_ScanDump = 0;
+                            Memory.WowMemory.Memory.FreeMemory(_codeCaveScanDump - StartDetourPtr);
+                            _codeCaveScanDump = 0;
                         }
                         // Free last hook
-                        if (codeCave_DetourPtr > 0)
+                        if (_codeCaveDetourPtr > 0)
                         {
-                            Memory.WowMemory.Memory.FreeMemory(codeCave_DetourPtr - startDetourPtr);
-                            codeCave_DetourPtr = 0;
+                            Memory.WowMemory.Memory.FreeMemory(_codeCaveDetourPtr - StartDetourPtr);
+                            _codeCaveDetourPtr = 0;
                         }
 
 
                         // Alloc codecave
-                        startDetourPtr = (uint) Others.Random(5, 60);
-                        codeCave_DetourPtr = Memory.WowMemory.Memory.AllocateMemory((0xFA + Others.Random(60, 90))) +
-                                             startDetourPtr;
-                        codeCave_ScanDump = Memory.WowMemory.Memory.AllocateMemory(0x4 + (0x8*100000));
+                        StartDetourPtr = (uint) Others.Random(5, 60);
+                        _codeCaveDetourPtr = Memory.WowMemory.Memory.AllocateMemory((0xFA + Others.Random(60, 90))) +
+                                             StartDetourPtr;
+                        _codeCaveScanDump = Memory.WowMemory.Memory.AllocateMemory(0x4 + (0x8*100000));
 
-                        if (codeCave_DetourPtr - startDetourPtr <= 0 || codeCave_ScanDump <= 0)
+                        if (_codeCaveDetourPtr - StartDetourPtr <= 0 || _codeCaveScanDump <= 0)
                         {
-                            codeCave_DetourPtr = 0;
-                            startDetourPtr = 0;
-                            codeCave_ScanDump = 0;
+                            _codeCaveDetourPtr = 0;
+                            StartDetourPtr = 0;
+                            _codeCaveScanDump = 0;
                             return false;
                         }
 
@@ -189,140 +189,140 @@ namespace nManager.Wow.AccountSecurity
                         int nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("pushfd");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("pushad");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
-                        Memory.WowMemory.Memory.Asm.AddLine("mov eax, [" + codeCave_ScanDump + "]");
+                        Memory.WowMemory.Memory.Asm.AddLine("mov eax, [" + _codeCaveScanDump + "]");
                         // On met le pt dans eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov [eax],esi");
                         // On met l'adresse lit par le AccountSecurity dans eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("add eax, 4"); // On ajouter 4 a eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("test ebx, ebx"); // Test si long == 0 pour quitter
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("je @out");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov [eax],edx");
                         // On écrit la longueur lit par le AccountSecurity.
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("add eax, 4"); // On ajouter 4 a eax
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
-                        Memory.WowMemory.Memory.Asm.AddLine("mov [" + codeCave_ScanDump + "], eax");
+                        Memory.WowMemory.Memory.Asm.AddLine("mov [" + _codeCaveScanDump + "], eax");
                         // On met le nouveau pt pour le prochain dump
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("@out:");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("popad");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("popfd");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         // Original code
                         Memory.WowMemory.Memory.Asm.AddLine("mov ecx,edx");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("mov edi,eax");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         Memory.WowMemory.Memory.Asm.AddLine("shr ecx,02");
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
                         // Return to AccountSecurityscan
-                        Memory.WowMemory.Memory.Asm.AddLine("jmp " + (scanFunction + 0xA));
+                        Memory.WowMemory.Memory.Asm.AddLine("jmp " + (ScanFunction + 0xA));
                         nR = Others.Random(1, 3);
                         for (int i = nR; i >= 1; i--)
                         {
-                            Memory.WowMemory.Memory.Asm.AddLine(Hook.ProtectHook());
+                            Memory.WowMemory.Memory.Asm.AddLine(MemoryClass.Hook.ProtectHook());
                         }
 
                         // Inject detour func
-                        Memory.WowMemory.Memory.Asm.Inject(codeCave_DetourPtr);
+                        Memory.WowMemory.Memory.Asm.Inject(_codeCaveDetourPtr);
 
-                        Memory.WowMemory.Memory.WriteUInt(codeCave_ScanDump, codeCave_ScanDump + 0x4);
-                        currentAddressReadDump = codeCave_ScanDump + 0x4;
+                        Memory.WowMemory.Memory.WriteUInt(_codeCaveScanDump, _codeCaveScanDump + 0x4);
+                        CurrentAddressReadDump = _codeCaveScanDump + 0x4;
 
 
                         // JUMP
                         Memory.WowMemory.Memory.Asm.Clear();
                         //Hook
-                        Memory.WowMemory.Memory.Asm.AddLine("jmp " + codeCave_DetourPtr);
+                        Memory.WowMemory.Memory.Asm.AddLine("jmp " + _codeCaveDetourPtr);
                         Memory.WowMemory.Memory.Asm.AddLine("nop");
                         Memory.WowMemory.Memory.Asm.AddLine("nop");
                         Memory.WowMemory.Memory.Asm.AddLine("nop");
                         Memory.WowMemory.Memory.Asm.AddLine("nop");
-                        Memory.WowMemory.Memory.Asm.Inject(scanFunction);
+                        Memory.WowMemory.Memory.Asm.Inject(ScanFunction);
 
                         Memory.WowMemory.Memory.Asm.Clear();
 
                         //Logging.Write("AccountSecurity protection activated.");
                     }
 
-                    if (codeCave_ScanDump == 0 || codeCave_DetourPtr == 0)
+                    if (_codeCaveScanDump == 0 || _codeCaveDetourPtr == 0)
                     {
                         return false;
                     }
@@ -337,30 +337,30 @@ namespace nManager.Wow.AccountSecurity
             }
         }
 
-        internal static void disposeHook()
+        internal static void DisposeHook()
         {
             try
             {
                 if (AccountSecurityScanFonctionAddress() <= 0)
                     return;
 
-                Memory.WowMemory.Memory.WriteBytes(scanFunction,
+                Memory.WowMemory.Memory.WriteBytes(ScanFunction,
                                                    new byte[] {0x8B, 0xCA, 0x8B, 0xF8, 0xC1, 0xE9, 0x02, 0x74, 0x02});
 
                 // Free last hook
-                if (codeCave_ScanDump > 0)
+                if (_codeCaveScanDump > 0)
                 {
-                    Memory.WowMemory.Memory.FreeMemory(codeCave_ScanDump - startDetourPtr);
-                    codeCave_ScanDump = 0;
+                    Memory.WowMemory.Memory.FreeMemory(_codeCaveScanDump - StartDetourPtr);
+                    _codeCaveScanDump = 0;
                 }
                 // Free last hook
-                if (codeCave_DetourPtr > 0)
+                if (_codeCaveDetourPtr > 0)
                 {
-                    Memory.WowMemory.Memory.FreeMemory(codeCave_DetourPtr);
-                    codeCave_DetourPtr = 0;
+                    Memory.WowMemory.Memory.FreeMemory(_codeCaveDetourPtr);
+                    _codeCaveDetourPtr = 0;
                 }
 
-                accountSecurityThreadIsAlive = false;
+                _accountSecurityThreadIsAlive = false;
             }
             catch (Exception exception)
             {
@@ -368,39 +368,39 @@ namespace nManager.Wow.AccountSecurity
             }
         }
 
-        private static Timer timeFindAddressAccountSecurity = new Timer(1000*10);
-        private static int lastProcessId = Memory.WowProcess.ProcessId;
-        private static int nbTest;
+        private static Timer _timeFindAddressAccountSecurity = new Timer(1000*10);
+        private static int _lastProcessId = Memory.WowProcess.ProcessId;
+        private static int _nbTest;
 
         private static uint AccountSecurityScanFonctionAddress()
         {
             try
             {
-                if (lastProcessId != Memory.WowProcess.ProcessId || Memory.WowProcess.ProcessId == 0)
+                if (_lastProcessId != Memory.WowProcess.ProcessId || Memory.WowProcess.ProcessId == 0)
                 {
-                    scanFunction = 0;
-                    nbTest = 0;
-                    codeCave_DetourPtr = 0;
-                    codeCave_ScanDump = 0;
+                    ScanFunction = 0;
+                    _nbTest = 0;
+                    _codeCaveDetourPtr = 0;
+                    _codeCaveScanDump = 0;
                 }
 
-                if (scanFunction > 0)
+                if (ScanFunction > 0)
                 {
-                    if (Memory.WowMemory.Memory.ReadByte(scanFunction) == 0xE9)
+                    if (Memory.WowMemory.Memory.ReadByte(ScanFunction) == 0xE9)
                     {
-                        return scanFunction;
+                        return ScanFunction;
                     }
                 }
-                if ((nbTest >= 1 && lastProcessId == Memory.WowProcess.ProcessId) || !Memory.WowMemory.ThreadHooked)
+                if ((_nbTest >= 1 && _lastProcessId == Memory.WowProcess.ProcessId) || !Memory.WowMemory.ThreadHooked)
                 {
-                    return scanFunction;
+                    return ScanFunction;
                 }
-                if (timeFindAddressAccountSecurity.IsReady && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
+                if (_timeFindAddressAccountSecurity.IsReady && Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                 {
                     Thread.Sleep(1000);
-                    nbTest++;
-                    timeFindAddressAccountSecurity = new Timer(1000*60);
-                    lastProcessId = Memory.WowProcess.ProcessId;
+                    _nbTest++;
+                    _timeFindAddressAccountSecurity = new Timer(1000*60);
+                    _lastProcessId = Memory.WowProcess.ProcessId;
 
                     //const uint MaxAddress = 0x10000000;
                     //uint address = 0x01000000;
@@ -456,15 +456,15 @@ namespace nManager.Wow.AccountSecurity
                     var result =
                         MemoryClass.Usefuls.FindPattern(new byte[] {0x8b, 0xca, 0x8b, 0xf8, 0xc1, 0xe9, 2, 0x74, 2},
                                                         "xxxxxxxxx");
-                    scanFunction = (result != null) ? result.dwAddress : 0;
+                    ScanFunction = (result != null) ? result.dwAddress : 0;
                 }
             }
             catch (Exception exception)
             {
-                scanFunction = 0;
+                ScanFunction = 0;
                 Logging.WriteError("AccountSecurityScanFonctionAddress(): " + exception);
             }
-            return scanFunction;
+            return ScanFunction;
         }
 
         internal static string GetSpecialAddressScan(DumpScan dumpScan)
@@ -475,10 +475,10 @@ namespace nManager.Wow.AccountSecurity
                 if (GetSpecialAddressScan(dumpScan, AccountSecurityScanFonctionAddress(), 0x9))
                     return "AccountSecurityscan jump hook fonction";
                 // Verif AccountSecurityscan hook fonction
-                if (GetSpecialAddressScan(dumpScan, codeCave_DetourPtr, 0xFA + startDetourPtr))
+                if (GetSpecialAddressScan(dumpScan, _codeCaveDetourPtr, 0xFA + StartDetourPtr))
                     return "AccountSecurityscan hook fonction";
                 // Verif stockage dump scan AccountSecurity
-                if (GetSpecialAddressScan(dumpScan, codeCave_ScanDump, 0x4 + (0x8*100)))
+                if (GetSpecialAddressScan(dumpScan, _codeCaveScanDump, 0x4 + (0x8*100)))
                     return "stockage dump scan wawa";
                 // Vérif hook jump endscene
                 if (GetSpecialAddressScan(dumpScan, Memory.WowMemory.JumpAddress, 0x5))

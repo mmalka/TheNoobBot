@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace nManager.Helpful.Forms
 {
-    public partial class Translate_Tools : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class TranslateTools : DevComponents.DotNetBar.Metro.MetroForm
     {
         private Translate.Language _translation = new Translate.Language();
 
-        public Translate_Tools()
+        public TranslateTools()
         {
             try
             {

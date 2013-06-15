@@ -7,15 +7,15 @@ namespace nManager.Wow.Helpers
 {
     public class WoWLock
     {
-        private LockDbcRecord lockDbcRecord_0;
+        private readonly LockDbcRecord _lockDBCRecord0;
 
-        private static DBC<LockDbcRecord> lockDBC;
+        private static DBC<LockDbcRecord> _lockDBC;
 
         private WoWLock(uint id)
         {
-            if (lockDBC == null)
-                lockDBC = new DBC<LockDbcRecord>((int) Addresses.DBC.Lock);
-            lockDbcRecord_0 = lockDBC.GetRow((int) id);
+            if (_lockDBC == null)
+                _lockDBC = new DBC<LockDbcRecord>((int) Addresses.DBC.Lock);
+            _lockDBCRecord0 = _lockDBC.GetRow((int) id);
         }
 
         // Factory function
@@ -26,7 +26,7 @@ namespace nManager.Wow.Helpers
 
         public LockDbcRecord Record
         {
-            get { return this.lockDbcRecord_0; }
+            get { return _lockDBCRecord0; }
         }
 
         [StructLayout(LayoutKind.Sequential)]

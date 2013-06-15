@@ -1,91 +1,93 @@
 ﻿using System;
 using System.Windows.Forms;
-using Heal_Bot.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-public class Main : IProduct
+namespace Heal_Bot
 {
-    #region IProduct Members
-
-    private bool _isStarted;
-
-    public void Initialize()
+    public class Main : IProduct
     {
-        try
-        {
-            Logging.Status = "Initialize Heal Bot Complete";
-            Logging.Write("Initialize Heal Bot Complete");
-        }
-        catch (Exception e)
-        {
-            Logging.WriteError("Heal Bot > Main > Initialize(): " + e);
-        }
-    }
+        #region IProduct Members
 
-    public void Dispose()
-    {
-        try
-        {
-            Stop();
-            Logging.Status = "Dispose Heal Bot Complete";
-            Logging.Write("Dispose Heal Bot Complete");
-        }
-        catch (Exception e)
-        {
-            Logging.WriteError("Heal Bot > Main > Dispose(): " + e);
-        }
-    }
+        private bool _isStarted;
 
-    public void Start()
-    {
-        try
+        public void Initialize()
         {
-            if (Bot.Pulse())
+            try
             {
-                _isStarted = true;
-                Logging.Status = "Heal Bot started";
+                Logging.Status = "Initialize Heal Bot Complete";
+                Logging.Write("Initialize Heal Bot Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Heal Bot > Main > Initialize(): " + e);
             }
         }
-        catch (Exception e)
-        {
-            Logging.WriteError("Heal Bot > Main > Start(): " + e);
-        }
-    }
 
-    public void Stop()
-    {
-        try
+        public void Dispose()
         {
-            Bot.Dispose();
-            _isStarted = false;
-            Logging.Status = "Heal Bot stoped";
+            try
+            {
+                Stop();
+                Logging.Status = "Dispose Heal Bot Complete";
+                Logging.Write("Dispose Heal Bot Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Heal Bot > Main > Dispose(): " + e);
+            }
         }
-        catch (Exception e)
-        {
-            Logging.WriteError("Heal Bot > Main > Stop(): " + e);
-        }
-    }
 
-    public void Settings()
-    {
-        try
+        public void Start()
         {
-            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Heal Bot Complete";
-            Logging.Write("Settings Heal Bot Complete");
+            try
+            {
+                if (Bot.Bot.Pulse())
+                {
+                    _isStarted = true;
+                    Logging.Status = "Heal Bot started";
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Heal Bot > Main > Start(): " + e);
+            }
         }
-        catch (Exception e)
+
+        public void Stop()
         {
-            Logging.WriteError("Heal Bot > Main > Settings(): " + e);
+            try
+            {
+                Bot.Bot.Dispose();
+                _isStarted = false;
+                Logging.Status = "Heal Bot stoped";
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Heal Bot > Main > Stop(): " + e);
+            }
         }
-    }
 
-    public bool IsStarted
-    {
-        get { return _isStarted; }
-    }
+        public void Settings()
+        {
+            try
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
+                Logging.Status = "Settings Heal Bot Complete";
+                Logging.Write("Settings Heal Bot Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Heal Bot > Main > Settings(): " + e);
+            }
+        }
 
-    #endregion
+        public bool IsStarted
+        {
+            get { return _isStarted; }
+        }
+
+        #endregion
+    }
 }

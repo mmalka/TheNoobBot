@@ -16,7 +16,7 @@ namespace Gatherer.Bot
                 RefreshProfileList();
                 TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                listProfileCb.Text = GathererSetting.CurrentSetting.profileName;
+                listProfileCb.Text = GathererSetting.CurrentSetting.ProfileName;
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
@@ -56,7 +56,7 @@ namespace Gatherer.Bot
         {
             try
             {
-                GathererSetting.CurrentSetting.profileName = listProfileCb.Text;
+                GathererSetting.CurrentSetting.ProfileName = listProfileCb.Text;
                 GathererSetting.CurrentSetting.Save();
                 Dispose();
             }
@@ -88,7 +88,7 @@ namespace Gatherer.Bot
             {
                 if (ex.CloseReason == CloseReason.UserClosing)
                 {
-                    GathererSetting.CurrentSetting.profileName = "";
+                    GathererSetting.CurrentSetting.ProfileName = "";
                 }
             }
             catch (Exception e)

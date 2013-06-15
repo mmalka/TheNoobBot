@@ -15,7 +15,7 @@ namespace Battlegrounder.Profile
     {
         private bool _loopRecordPoint;
         private BattlegrounderProfile _profile = new BattlegrounderProfile();
-        private int idZone;
+        private int _idZone;
 
         public ProfileCreator()
         {
@@ -23,7 +23,7 @@ namespace Battlegrounder.Profile
             {
                 InitializeComponent();
                 Translate();
-                refreshListZones();
+                RefreshListZones();
                 CurrentBattlegroundInfo();
                 TopMost = true;
             }
@@ -79,8 +79,8 @@ namespace Battlegrounder.Profile
                 {
                     _profile = new BattlegrounderProfile();
                     _profile = XmlSerializer.Deserialize<BattlegrounderProfile>(file);
-                    refreshListZones();
-                    refreshForm();
+                    RefreshListZones();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
@@ -88,8 +88,8 @@ namespace Battlegrounder.Profile
                 Logging.WriteError(
                     "Battlegrounder > Bot > ProfileCreator > LoadButton_Click(object sender, EventArgs e): " +
                     ex);
-                refreshListZones();
-                refreshForm();
+                RefreshListZones();
+                RefreshForm();
             }
         }
 
@@ -108,7 +108,7 @@ namespace Battlegrounder.Profile
             }
         }
 
-        private void refreshListZones()
+        private void RefreshListZones()
         {
             lock (typeof (ProfileCreator))
             {
@@ -126,9 +126,9 @@ namespace Battlegrounder.Profile
                         // if (!listZoneCb.Items.Contains(p.Name))
                         ZoneList.Items.Add(p.Name);
                     }
-                    if (ZoneList.SelectedIndex != idZone)
+                    if (ZoneList.SelectedIndex != _idZone)
                     {
-                        ZoneList.SelectedIndex = idZone;
+                        ZoneList.SelectedIndex = _idZone;
                     }
                 }
                 catch
@@ -137,7 +137,7 @@ namespace Battlegrounder.Profile
             }
         }
 
-        private void refreshForm()
+        private void RefreshForm()
         {
             lock (typeof (ProfileCreator))
             {
@@ -145,7 +145,7 @@ namespace Battlegrounder.Profile
                 {
                     // Way
                     RecordedPoints.Items.Clear();
-                    foreach (Point p in _profile.BattlegrounderZones[idZone].Points)
+                    foreach (Point p in _profile.BattlegrounderZones[_idZone].Points)
                     {
                         RecordedPoints.Items.Add(p.ToString());
                     }
@@ -159,7 +159,7 @@ namespace Battlegrounder.Profile
                 {
                     // BlackList
                     RecordedBlackListRadius.Items.Clear();
-                    foreach (BattlegrounderBlackListRadius b in _profile.BattlegrounderZones[idZone].BlackListRadius)
+                    foreach (BattlegrounderBlackListRadius b in _profile.BattlegrounderZones[_idZone].BlackListRadius)
                     {
                         RecordedBlackListRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                     }
@@ -209,23 +209,23 @@ namespace Battlegrounder.Profile
                 int lastRotation = 0;
                 _loopRecordPoint = true;
 
-                _profile.BattlegrounderZones[idZone].Points.Add(ObjectManager.Me.Position);
-                refreshForm();
+                _profile.BattlegrounderZones[_idZone].Points.Add(ObjectManager.Me.Position);
+                RefreshForm();
 
                 while (_loopRecordPoint)
                 {
                     Point lastPoint =
-                        _profile.BattlegrounderZones[idZone].Points[
-                            _profile.BattlegrounderZones[idZone].Points.Count - 1];
+                        _profile.BattlegrounderZones[_idZone].Points[
+                            _profile.BattlegrounderZones[_idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > DistanceBetweenRecord.Value) &&
                          lastRotation != (int) Math.RadianToDegree(ObjectManager.Me.Rotation)) ||
                         disZTemp >= distanceZSeparator)
                     {
-                        _profile.BattlegrounderZones[idZone].Points.Add(ObjectManager.Me.Position);
+                        _profile.BattlegrounderZones[_idZone].Points.Add(ObjectManager.Me.Position);
                         lastRotation = (int) Math.RadianToDegree(ObjectManager.Me.Rotation);
-                        refreshForm();
+                        RefreshForm();
                     }
                     Application.DoEvents();
                     Thread.Sleep(50);
@@ -245,8 +245,8 @@ namespace Battlegrounder.Profile
                 if (CanRecord())
                 {
                     if (RecordedPoints.SelectedIndex >= 0)
-                        _profile.BattlegrounderZones[idZone].Points.RemoveAt(RecordedPoints.SelectedIndex);
-                    refreshForm();
+                        _profile.BattlegrounderZones[_idZone].Points.RemoveAt(RecordedPoints.SelectedIndex);
+                    RefreshForm();
                 }
             }
             catch (Exception e)
@@ -266,9 +266,9 @@ namespace Battlegrounder.Profile
                 if (CanRecord())
                 {
                     if (RecordedBlackListRadius.SelectedIndex >= 0)
-                        _profile.BattlegrounderZones[idZone].BlackListRadius.RemoveAt(
+                        _profile.BattlegrounderZones[_idZone].BlackListRadius.RemoveAt(
                             RecordedBlackListRadius.SelectedIndex);
-                    refreshForm();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
@@ -286,13 +286,13 @@ namespace Battlegrounder.Profile
             {
                 if (CanRecord())
                 {
-                    _profile.BattlegrounderZones[idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
+                    _profile.BattlegrounderZones[_idZone].BlackListRadius.Add(new BattlegrounderBlackListRadius
                         {
                             Position =
                                 ObjectManager.Me.Position,
                             Radius = Radius.Value
                         });
-                    refreshForm();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
@@ -310,11 +310,11 @@ namespace Battlegrounder.Profile
 
         public void CurrentBattlegroundInfo()
         {
-            var Bg = new Battleground();
+            var bg = new Battleground();
             if (Battleground.IsInBattleground())
             {
-                if (!string.IsNullOrEmpty(Bg.NonLocalizedName))
-                    CurrentBattleground.Text = string.Format("Profile for the Battleground: {0}", Bg.NonLocalizedName);
+                if (!string.IsNullOrEmpty(bg.NonLocalizedName))
+                    CurrentBattleground.Text = string.Format("Profile for the Battleground: {0}", bg.NonLocalizedName);
             }
             else
             {
@@ -349,9 +349,9 @@ namespace Battlegrounder.Profile
             {
                 if (CanRecord(true))
                 {
-                    _profile.BattlegrounderZones.RemoveAt(idZone);
-                    idZone = _profile.BattlegrounderZones.Count - 1;
-                    refreshListZones();
+                    _profile.BattlegrounderZones.RemoveAt(_idZone);
+                    _idZone = _profile.BattlegrounderZones.Count - 1;
+                    RefreshListZones();
                 }
             }
             catch (Exception e)
@@ -378,16 +378,16 @@ namespace Battlegrounder.Profile
                         return;
                     }
 
-                    var Bg = new Battleground();
+                    var bg = new Battleground();
                     _profile.BattlegrounderZones.Add(new BattlegrounderZone
                         {
-                            Name = Bg.NonLocalizedName,
+                            Name = bg.NonLocalizedName,
                             BattlegroundId =
                                 Battleground.GetCurrentBattleground()
                                             .ToString()
                         });
-                    idZone = _profile.BattlegrounderZones.Count - 1;
-                    refreshListZones();
+                    _idZone = _profile.BattlegrounderZones.Count - 1;
+                    RefreshListZones();
                 }
             }
             catch (Exception e)
@@ -408,8 +408,8 @@ namespace Battlegrounder.Profile
                     _loopRecordPoint = false;
                     recordWayB.Text = nManager.Translate.Get(nManager.Translate.Id.Record_Way);
                 }
-                idZone = ZoneList.SelectedIndex;
-                refreshForm();
+                _idZone = ZoneList.SelectedIndex;
+                RefreshForm();
             }
             catch (Exception ex)
             {

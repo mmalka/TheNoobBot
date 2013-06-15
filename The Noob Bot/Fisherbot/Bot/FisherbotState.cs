@@ -8,7 +8,6 @@ using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Keybindings = nManager.Wow.Helpers.Keybindings;
 
 namespace Fisherbot.Bot
 {
@@ -42,7 +41,7 @@ namespace Fisherbot.Bot
                     !Products.IsStarted)
                     return false;
 
-                if (FisherbotSetting.CurrentSetting.fishSchool)
+                if (FisherbotSetting.CurrentSetting.FishSchool)
                 {
                     // Get farm:
                     _node = new WoWGameObject(0);
@@ -85,7 +84,7 @@ namespace Fisherbot.Bot
                 Logging.Write("Fish " + _node.Name + " > " + _node.Position);
             }
 
-            if (FisherbotSetting.CurrentSetting.fishSchool)
+            if (FisherbotSetting.CurrentSetting.FishSchool)
             {
                 Point whereToGo = Fishing.FindTheUltimatePoint(_node.Position);
                 if (whereToGo.Type == "invalid")
@@ -94,9 +93,8 @@ namespace Fisherbot.Bot
                     nManagerSetting.AddBlackList(_node.Guid);
                     return;
                 }
-                var points = new List<Point>();
                 bool r;
-                points = PathFinder.FindPath(whereToGo, out r);
+                List<Point> points = PathFinder.FindPath(whereToGo, out r);
                 if (points.Count <= 1 || points.Count >= 20)
                 {
                     points.Clear();
@@ -114,7 +112,7 @@ namespace Fisherbot.Bot
                 MovementManager.Go(points);
 
                 timer = new nManager.Helpful.Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
-                while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted &&
+                while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&
                        !ObjectManager.Me.IsDeadMe &&
                        !(ObjectManager.Me.InCombat &&
                          !(ObjectManager.Me.IsMounted &&
@@ -202,22 +200,22 @@ namespace Fisherbot.Bot
 
             // Fish
             Fishing.EquipFishingPoles(FisherbotSetting.CurrentSetting.FishingPoleName);
-            if (FisherbotSetting.CurrentSetting.fishSchool)
-                FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.useLure,
-                                     FisherbotSetting.CurrentSetting.lureName,
-                                     FisherbotSetting.CurrentSetting.precisionMode);
+            if (FisherbotSetting.CurrentSetting.FishSchool)
+                FishingTask.LoopFish(_node.Guid, FisherbotSetting.CurrentSetting.UseLure,
+                                     FisherbotSetting.CurrentSetting.LureName,
+                                     FisherbotSetting.CurrentSetting.PrecisionMode);
             else
-                FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.useLure,
-                                     FisherbotSetting.CurrentSetting.lureName);
+                FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
+                                     FisherbotSetting.CurrentSetting.LureName);
 
-            timer = FisherbotSetting.CurrentSetting.fishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(1000*120);
-            while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted &&
+            timer = FisherbotSetting.CurrentSetting.FishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(1000*120);
+            while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&
                    !ObjectManager.Me.IsDeadMe &&
                    !ObjectManager.Me.InCombat && !timer.IsReady &&
                    FishingTask.IsLaunched)
             {
                 if (ObjectManager.Me.Position.DistanceTo2D(FisherbotSetting.CurrentSetting.FisherbotPosition) > 3.5f &&
-                    !FisherbotSetting.CurrentSetting.fishSchool)
+                    !FisherbotSetting.CurrentSetting.FishSchool)
                 {
                     break;
                 }
@@ -225,7 +223,7 @@ namespace Fisherbot.Bot
             }
 
             FishingTask.StopLoopFish();
-            ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.weaponName);
+            ItemsManager.EquipItemByName(FisherbotSetting.CurrentSetting.WeaponName);
         }
     }
 }

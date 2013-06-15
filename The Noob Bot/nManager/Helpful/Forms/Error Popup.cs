@@ -1,21 +1,20 @@
 using System;
-using System.Windows.Forms;
 
 namespace nManager.Helpful.Forms
 {
-    public partial class Error_Popup : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class ErrorPopup : DevComponents.DotNetBar.Metro.MetroForm
     {
-        public Error_Popup(string ErrorMessage)
+        public ErrorPopup(string errorMessage)
         {
             InitializeComponent();
-            ErrorDescription.Text = ErrorMessage;
+            ErrorDescription.Text = errorMessage;
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                this.TopMost = true;
+                TopMost = true;
         }
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

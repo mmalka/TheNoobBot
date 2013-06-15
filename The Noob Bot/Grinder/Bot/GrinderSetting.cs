@@ -40,6 +40,6 @@ namespace Grinder.Bot
             return false;
         }
 
-        public string profileName = "";
+        public string ProfileName = "";
     }
 }

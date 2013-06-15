@@ -41,13 +41,13 @@ namespace Fisherbot.Bot
             return false;
         }
 
-        public bool useLure = true;
-        public bool fishSchool;
-        public string fishSchoolProfil = "";
-        public string lureName = "";
+        public bool UseLure = true;
+        public bool FishSchool;
+        public string FishSchoolProfil = "";
+        public string LureName = "";
         public string FishingPoleName = "";
-        public string weaponName = "";
-        public bool precisionMode = true;
+        public string WeaponName = "";
+        public bool PrecisionMode = true;
 
         internal Point FisherbotPosition = new Point();
         internal float FisherbotRotation;

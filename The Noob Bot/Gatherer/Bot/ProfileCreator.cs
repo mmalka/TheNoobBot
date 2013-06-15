@@ -82,13 +82,13 @@ namespace Gatherer.Bot
                 {
                     _profile = new GathererProfile();
                     _profile = XmlSerializer.Deserialize<GathererProfile>(file);
-                    refreshForm();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Gatherer > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
-                refreshForm();
+                RefreshForm();
             }
         }
 
@@ -106,7 +106,7 @@ namespace Gatherer.Bot
             }
         }
 
-        private void refreshForm()
+        private void RefreshForm()
         {
             try
             {
@@ -187,7 +187,7 @@ namespace Gatherer.Bot
                 _loopRecordPoint = true;
 
                 _profile.Points.Add(ObjectManager.Me.Position);
-                refreshForm();
+                RefreshForm();
 
                 while (_loopRecordPoint)
                 {
@@ -200,7 +200,7 @@ namespace Gatherer.Bot
                     {
                         _profile.Points.Add(ObjectManager.Me.Position);
                         lastRotation = (int) nManager.Helpful.Math.RadianToDegree(ObjectManager.Me.Rotation);
-                        refreshForm();
+                        RefreshForm();
                     }
                     Application.DoEvents();
                     Thread.Sleep(50);
@@ -218,7 +218,7 @@ namespace Gatherer.Bot
             {
                 if (listPoint.SelectedIndex >= 0)
                     _profile.Points.RemoveAt(listPoint.SelectedIndex);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception e)
             {
@@ -233,7 +233,7 @@ namespace Gatherer.Bot
             {
                 if (listBlackRadius.SelectedIndex >= 0)
                     _profile.BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -248,7 +248,7 @@ namespace Gatherer.Bot
             {
                 _profile.BlackListRadius.Add(new GathererBlackListRadius
                     {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -264,7 +264,7 @@ namespace Gatherer.Bot
             {
                 if (listNpc.SelectedIndex >= 0)
                     _profile.Npc.RemoveAt(listNpc.SelectedIndex);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -292,7 +292,7 @@ namespace Gatherer.Bot
                         Type = (Npc.NpcType) Enum.Parse(typeof (Npc.NpcType), npcTypeC.Text, true)
                     };
                 _profile.Npc.Add(npc);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -360,7 +360,7 @@ namespace Gatherer.Bot
                     npc.Position.Type = "Flying";
 
                 _profile.Npc.Add(npc);
-                refreshForm();
+                RefreshForm();
                 nameNpcTb.Text = "";
             }
             catch (Exception ex)

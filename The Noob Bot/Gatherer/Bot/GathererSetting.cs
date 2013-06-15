@@ -48,8 +48,8 @@ namespace Gatherer.Bot
             return false;
         }
 
-        public string profileName = "";
+        public string ProfileName = "";
 
-        public bool pathingReverseDirection;
+        public bool PathingReverseDirection;
     }
 }

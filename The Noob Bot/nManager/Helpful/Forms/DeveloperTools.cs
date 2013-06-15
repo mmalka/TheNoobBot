@@ -14,9 +14,9 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Helpful.Forms
 {
-    public partial class Developer_Tools : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class DeveloperTools : DevComponents.DotNetBar.Metro.MetroForm
     {
-        public Developer_Tools()
+        public DeveloperTools()
         {
             try
             {
@@ -353,7 +353,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                var t = new Translate_Tools();
+                var t = new TranslateTools();
                 t.Show();
             }
             catch (Exception ex)
@@ -394,14 +394,14 @@ namespace nManager.Helpful.Forms
                     return;
                 }
 
-                var _assembly = cr.CompiledAssembly;
+                var assembly = cr.CompiledAssembly;
 
-                var _obj = _assembly.CreateInstance("Main", true);
-                var _instanceFromOtherAssembly = _obj as IScriptOnlineManager;
+                var obj = assembly.CreateInstance("Main", true);
+                var instanceFromOtherAssembly = obj as IScriptOnlineManager;
 
 
-                if (_instanceFromOtherAssembly != null)
-                    _instanceFromOtherAssembly.Initialize();
+                if (instanceFromOtherAssembly != null)
+                    instanceFromOtherAssembly.Initialize();
                 else
                     Logging.WriteError("grzGRDSFfezfsgfvsdg error");
             }

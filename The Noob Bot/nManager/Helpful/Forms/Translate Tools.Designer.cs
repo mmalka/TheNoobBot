@@ -1,6 +1,6 @@
 namespace nManager.Helpful.Forms
 {
-    partial class Translate_Tools
+    partial class TranslateTools
     {
         /// <summary>
         /// Required designer variable.
@@ -92,7 +92,7 @@ namespace nManager.Helpful.Forms
             this.Controls.Add(this.listDigsitesDGV);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Name = "Translate_Tools";
+            this.Name = "TranslateTools";
             this.ShowIcon = false;
             this.ShowInTaskbar = true;
             this.Text = "Translate Tools";

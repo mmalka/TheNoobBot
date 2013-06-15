@@ -1,6 +1,6 @@
 namespace nManager.Helpful.Forms
 {
-    partial class Developer_Tools
+    partial class DeveloperTools
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@ namespace nManager.Helpful.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Developer_Tools));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeveloperTools));
             this.getAllInfo = new DevComponents.DotNetBar.ButtonX();
             this.infoTb = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.targetInfoB = new DevComponents.DotNetBar.ButtonX();
@@ -217,7 +217,7 @@ namespace nManager.Helpful.Forms
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(540, 447);
             this.MinimumSize = new System.Drawing.Size(540, 447);
-            this.Name = "Developer_Tools";
+            this.Name = "DeveloperTools";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Developer Tools";
             this.ResumeLayout(false);

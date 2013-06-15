@@ -1,6 +1,6 @@
 namespace nManager.Helpful.Forms
 {
-    partial class Error_Popup
+    partial class ErrorPopup
     {
         /// <summary>
         /// Required designer variable.
@@ -67,7 +67,7 @@ namespace nManager.Helpful.Forms
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Error_Popup";
+            this.Name = "ErrorPopup";
             this.ShowIcon = false;
             this.ShowInTaskbar = true;
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;

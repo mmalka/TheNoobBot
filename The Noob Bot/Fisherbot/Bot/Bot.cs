@@ -25,23 +25,17 @@ namespace Fisherbot.Bot
                 Profile = new FisherbotProfile();
 
                 // If Fish School Load Profile
-                if (FisherbotSetting.CurrentSetting.fishSchool)
+                if (FisherbotSetting.CurrentSetting.FishSchool)
                 {
-                    if (File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +
-                                    FisherbotSetting.CurrentSetting.fishSchoolProfil))
+                    if (File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +FisherbotSetting.CurrentSetting.FishSchoolProfil))
                     {
-                        Profile =
-                            XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath +
-                                                                        "\\Profiles\\Fisherbot\\" +
-                                                                        FisherbotSetting.CurrentSetting.fishSchoolProfil);
+                        Profile =XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath +"\\Profiles\\Fisherbot\\" +FisherbotSetting.CurrentSetting.FishSchoolProfil);
                         if (Profile.Points.Count <= 0)
                             return false;
                     }
                     else
                     {
-                        MessageBox.Show(
-                            nManager.Translate.Get(
-                                nManager.Translate.Id.Please_select_an_profile_or_disable_School_Fish_option));
+                        MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.Please_select_an_profile_or_disable_School_Fish_option));
                         return false;
                     }
                 }
@@ -56,7 +50,7 @@ namespace Fisherbot.Bot
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
-                if (!FisherbotSetting.CurrentSetting.fishSchool)
+                if (!FisherbotSetting.CurrentSetting.FishSchool)
                 {
                     FisherbotSetting.CurrentSetting.FisherbotPosition = ObjectManager.Me.Position;
                     FisherbotSetting.CurrentSetting.FisherbotRotation = ObjectManager.Me.Rotation;
@@ -103,7 +97,7 @@ namespace Fisherbot.Bot
         {
             try
             {
-                nManager.Wow.Bot.Tasks.FishingTask.StopLoopFish();
+                FishingTask.StopLoopFish();
                 CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();

@@ -4,9 +4,9 @@ using nManager.Helpful;
 
 namespace Archaeologist
 {
-    public partial class DigSites_List_Management : DevComponents.DotNetBar.Metro.MetroForm
+    public partial class DigSitesListManagement : DevComponents.DotNetBar.Metro.MetroForm
     {
-        public DigSites_List_Management()
+        public DigSitesListManagement()
         {
             try
             {
@@ -16,8 +16,8 @@ namespace Archaeologist
                 var list = nManager.Wow.Helpers.Archaeology.GetAllDigsitesZone();
                 listDigsitesDGV.DataSource = list;
 
-                solvingEveryXMin.Value = Bot.ArchaeologistSetting.CurrentSetting.solvingEveryXMin;
-                maxTryByDigsite.Value = Bot.ArchaeologistSetting.CurrentSetting.maxTryByDigsite;
+                solvingEveryXMin.Value = Bot.ArchaeologistSetting.CurrentSetting.SolvingEveryXMin;
+                maxTryByDigsite.Value = Bot.ArchaeologistSetting.CurrentSetting.MaxTryByDigsite;
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     TopMost = true;
             }
@@ -40,8 +40,8 @@ namespace Archaeologist
         {
             try
             {
-                Bot.ArchaeologistSetting.CurrentSetting.solvingEveryXMin = solvingEveryXMin.Value;
-                Bot.ArchaeologistSetting.CurrentSetting.maxTryByDigsite = maxTryByDigsite.Value;
+                Bot.ArchaeologistSetting.CurrentSetting.SolvingEveryXMin = solvingEveryXMin.Value;
+                Bot.ArchaeologistSetting.CurrentSetting.MaxTryByDigsite = maxTryByDigsite.Value;
                 Bot.ArchaeologistSetting.CurrentSetting.Save();
                 XmlSerializer.Serialize(
                     Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",

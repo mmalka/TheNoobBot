@@ -17,7 +17,7 @@ namespace Grinder.Bot
                 RefreshProfileList();
                 TopMost = true;
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
-                listProfileCb.Text = GrinderSetting.CurrentSetting.profileName;
+                listProfileCb.Text = GrinderSetting.CurrentSetting.ProfileName;
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
             }
@@ -57,7 +57,7 @@ namespace Grinder.Bot
         {
             try
             {
-                GrinderSetting.CurrentSetting.profileName = listProfileCb.Text;
+                GrinderSetting.CurrentSetting.ProfileName = listProfileCb.Text;
                 GrinderSetting.CurrentSetting.Save();
                 Dispose();
             }
@@ -88,7 +88,7 @@ namespace Grinder.Bot
             {
                 if (ex.CloseReason == CloseReason.UserClosing)
                 {
-                    GrinderSetting.CurrentSetting.profileName = "";
+                    GrinderSetting.CurrentSetting.ProfileName = "";
                 }
             }
             catch (Exception e)

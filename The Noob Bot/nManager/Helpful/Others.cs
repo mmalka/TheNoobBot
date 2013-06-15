@@ -921,9 +921,12 @@ namespace nManager.Helpful
                     headerResult = response.Headers.Get("retn");
                 }
                 var stm = response.GetResponseStream();
-                var r = new StreamReader(stm);
-                var sourceResult = r.ReadToEnd();
-                return new List<string> {ToUtf8(headerResult), ToUtf8(sourceResult)};
+                if (stm != null)
+                {
+                    var r = new StreamReader(stm);
+                    var sourceResult = r.ReadToEnd();
+                    return new List<string> {ToUtf8(headerResult), ToUtf8(sourceResult)};
+                }
             }
             catch (Exception exception)
             {

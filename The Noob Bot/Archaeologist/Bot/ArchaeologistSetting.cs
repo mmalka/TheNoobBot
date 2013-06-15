@@ -40,7 +40,7 @@ namespace Archaeologist.Bot
             return false;
         }
 
-        public int solvingEveryXMin = 20;
-        public int maxTryByDigsite = 50;
+        public int SolvingEveryXMin = 20;
+        public int MaxTryByDigsite = 50;
     }
 }

@@ -24,16 +24,16 @@ namespace Gatherer.Bot
                 f.ShowDialog();
                 if (
                     !File.Exists(Application.StartupPath + "\\Profiles\\Gatherer\\" +
-                                 GathererSetting.CurrentSetting.profileName))
+                                 GathererSetting.CurrentSetting.ProfileName))
                     return false;
                 Profile =
                     XmlSerializer.Deserialize<GathererProfile>(Application.StartupPath + "\\Profiles\\Gatherer\\" +
-                                                               GathererSetting.CurrentSetting.profileName);
+                                                               GathererSetting.CurrentSetting.ProfileName);
                 if (Profile.Points.Count <= 0)
                     return false;
 
                 // Reverse profil
-                if (GathererSetting.CurrentSetting.pathingReverseDirection)
+                if (GathererSetting.CurrentSetting.PathingReverseDirection)
                     Profile.Points.Reverse();
 
                 NpcDB.AddNpcRange(Profile.Npc);

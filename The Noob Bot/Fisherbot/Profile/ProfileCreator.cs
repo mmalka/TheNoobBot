@@ -67,13 +67,13 @@ namespace Fisherbot.Profile
                 {
                     _profile = new FisherbotProfile();
                     _profile = XmlSerializer.Deserialize<FisherbotProfile>(file);
-                    refreshForm();
+                    RefreshForm();
                 }
             }
             catch (Exception ex)
             {
                 Logging.WriteError("Fisherbot > Bot > ProfileCreator > loadB_Click(object sender, EventArgs e): " + ex);
-                refreshForm();
+                RefreshForm();
             }
         }
 
@@ -91,7 +91,7 @@ namespace Fisherbot.Profile
             }
         }
 
-        private void refreshForm()
+        private void RefreshForm()
         {
             try
             {
@@ -157,7 +157,7 @@ namespace Fisherbot.Profile
                 _loopRecordPoint = true;
 
                 _profile.Points.Add(ObjectManager.Me.Position);
-                refreshForm();
+                RefreshForm();
 
                 while (_loopRecordPoint)
                 {
@@ -168,7 +168,7 @@ namespace Fisherbot.Profile
                         disZTemp >= distanceZSeparator)
                     {
                         _profile.Points.Add(ObjectManager.Me.Position);
-                        refreshForm();
+                        RefreshForm();
                     }
                     Application.DoEvents();
                     Thread.Sleep(50);
@@ -186,7 +186,7 @@ namespace Fisherbot.Profile
             {
                 if (listPoint.SelectedIndex >= 0)
                     _profile.Points.RemoveAt(listPoint.SelectedIndex);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception e)
             {
@@ -201,7 +201,7 @@ namespace Fisherbot.Profile
             {
                 if (listBlackRadius.SelectedIndex >= 0)
                     _profile.BlackListRadius.RemoveAt(listBlackRadius.SelectedIndex);
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {
@@ -216,7 +216,7 @@ namespace Fisherbot.Profile
             {
                 _profile.BlackListRadius.Add(new FisherbotBlackListRadius
                     {Position = ObjectManager.Me.Position, Radius = radiusN.Value});
-                refreshForm();
+                RefreshForm();
             }
             catch (Exception ex)
             {

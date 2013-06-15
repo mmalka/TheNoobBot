@@ -9,7 +9,9 @@ using nManager.Wow.ObjectManager;
 namespace nManager
 {
     [Serializable]
+// ReSharper disable InconsistentNaming
     public class nManagerSetting : Settings
+// ReSharper restore InconsistentNaming
     {
         private static nManagerSetting _currentSetting;
         private static string _lastName = "";

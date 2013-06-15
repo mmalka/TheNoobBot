@@ -10,25 +10,25 @@ namespace Fisherbot
         public SettingsFisherbotForm()
         {
             InitializeComponent();
-            translate();
+            Translate();
             fishSchoolProfil.DropDownStyle = ComboBoxStyle.DropDownList;
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                 this.TopMost = true;
             Load();
         }
 
-        private void translate()
+        private void Translate()
         {
-            labelX1.Text = Translate.Get(Translate.Id.Use_Lure);
-            labelX2.Text = Translate.Get(Translate.Id.Fish_School);
-            labelX3.Text = Translate.Get(Translate.Id.Lure_Name) + "*";
-            labelX4.Text = Translate.Get(Translate.Id.Fishing_Pole_Name);
-            labelX5.Text = Translate.Get(Translate.Id.Weapon_Name);
-            labelX6.Text = "* = " + Translate.Get(Translate.Id.If_special__If_empty__default_items_is_used);
-            saveB.Text = Translate.Get(Translate.Id.Save_and_Close);
-            profileCreatorB.Text = Translate.Get(Translate.Id.Profile_Creator);
-            labelX7.Text = Translate.Get(Translate.Id.Precision_Mode__fish_school);
-            Text = Translate.Get(Translate.Id.Settings_Fisherbot);
+            labelX1.Text = nManager.Translate.Get(nManager.Translate.Id.Use_Lure);
+            labelX2.Text = nManager.Translate.Get(nManager.Translate.Id.Fish_School);
+            labelX3.Text = nManager.Translate.Get(nManager.Translate.Id.Lure_Name) + "*";
+            labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Fishing_Pole_Name);
+            labelX5.Text = nManager.Translate.Get(nManager.Translate.Id.Weapon_Name);
+            labelX6.Text = "* = " + nManager.Translate.Get(nManager.Translate.Id.If_special__If_empty__default_items_is_used);
+            saveB.Text = nManager.Translate.Get(nManager.Translate.Id.Save_and_Close);
+            profileCreatorB.Text = nManager.Translate.Get(nManager.Translate.Id.Profile_Creator);
+            labelX7.Text = nManager.Translate.Get(nManager.Translate.Id.Precision_Mode__fish_school);
+            Text = nManager.Translate.Get(nManager.Translate.Id.Settings_Fisherbot);
         }
 
         private void saveB_Click(object sender, System.EventArgs e)
@@ -38,13 +38,13 @@ namespace Fisherbot
 
         private void Save()
         {
-            FisherbotSetting.CurrentSetting.useLure = useLure.Value;
-            FisherbotSetting.CurrentSetting.fishSchool = fishSchool.Value;
-            FisherbotSetting.CurrentSetting.fishSchoolProfil = fishSchoolProfil.Text;
-            FisherbotSetting.CurrentSetting.lureName = lureName.Text;
+            FisherbotSetting.CurrentSetting.UseLure = useLure.Value;
+            FisherbotSetting.CurrentSetting.FishSchool = fishSchool.Value;
+            FisherbotSetting.CurrentSetting.FishSchoolProfil = fishSchoolProfil.Text;
+            FisherbotSetting.CurrentSetting.LureName = lureName.Text;
             FisherbotSetting.CurrentSetting.FishingPoleName = FisherbotPoolName.Text;
-            FisherbotSetting.CurrentSetting.weaponName = weaponName.Text;
-            FisherbotSetting.CurrentSetting.precisionMode = precisionMode.Value;
+            FisherbotSetting.CurrentSetting.WeaponName = weaponName.Text;
+            FisherbotSetting.CurrentSetting.PrecisionMode = precisionMode.Value;
             FisherbotSetting.CurrentSetting.Save();
             Dispose();
         }
@@ -53,13 +53,13 @@ namespace Fisherbot
         {
             RefreshProfilesList();
 
-            useLure.Value = FisherbotSetting.CurrentSetting.useLure;
-            fishSchool.Value = FisherbotSetting.CurrentSetting.fishSchool;
-            fishSchoolProfil.Text = FisherbotSetting.CurrentSetting.fishSchoolProfil;
-            lureName.Text = FisherbotSetting.CurrentSetting.lureName;
+            useLure.Value = FisherbotSetting.CurrentSetting.UseLure;
+            fishSchool.Value = FisherbotSetting.CurrentSetting.FishSchool;
+            fishSchoolProfil.Text = FisherbotSetting.CurrentSetting.FishSchoolProfil;
+            lureName.Text = FisherbotSetting.CurrentSetting.LureName;
             FisherbotPoolName.Text = FisherbotSetting.CurrentSetting.FishingPoleName;
-            weaponName.Text = FisherbotSetting.CurrentSetting.weaponName;
-            precisionMode.Value = FisherbotSetting.CurrentSetting.precisionMode;
+            weaponName.Text = FisherbotSetting.CurrentSetting.WeaponName;
+            precisionMode.Value = FisherbotSetting.CurrentSetting.PrecisionMode;
         }
 
         private void RefreshProfilesList()

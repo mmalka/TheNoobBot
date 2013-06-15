@@ -1,91 +1,93 @@
 ﻿using System;
 using System.Windows.Forms;
-using Damage_Dealer.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-public class Main : IProduct
+namespace Damage_Dealer
 {
-    #region IProduct Members
-
-    private bool _isStarted;
-
-    public void Initialize()
+    public class Main : IProduct
     {
-        try
-        {
-            Logging.Status = "Initialize Damage Dealer Complete";
-            Logging.Write("Initialize Damage Dealer Complete");
-        }
-        catch (Exception e)
-        {
-            Logging.WriteError("Damage Dealer > Main > Initialize(): " + e);
-        }
-    }
+        #region IProduct Members
 
-    public void Dispose()
-    {
-        try
-        {
-            Stop();
-            Logging.Status = "Dispose Damage Dealer Complete";
-            Logging.Write("Dispose Damage Dealer Complete");
-        }
-        catch (Exception e)
-        {
-            Logging.WriteError("Damage Dealer > Main > Dispose(): " + e);
-        }
-    }
+        private bool _isStarted;
 
-    public void Start()
-    {
-        try
+        public void Initialize()
         {
-            if (Bot.Pulse())
+            try
             {
-                _isStarted = true;
-                Logging.Status = "Damage Dealer started";
+                Logging.Status = "Initialize Damage Dealer Complete";
+                Logging.Write("Initialize Damage Dealer Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Damage Dealer > Main > Initialize(): " + e);
             }
         }
-        catch (Exception e)
-        {
-            Logging.WriteError("Damage Dealer > Main > Start(): " + e);
-        }
-    }
 
-    public void Stop()
-    {
-        try
+        public void Dispose()
         {
-            Bot.Dispose();
-            _isStarted = false;
-            Logging.Status = "Damage Dealer stoped";
+            try
+            {
+                Stop();
+                Logging.Status = "Dispose Damage Dealer Complete";
+                Logging.Write("Dispose Damage Dealer Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Damage Dealer > Main > Dispose(): " + e);
+            }
         }
-        catch (Exception e)
-        {
-            Logging.WriteError("Damage Dealer > Main > Stop(): " + e);
-        }
-    }
 
-    public void Settings()
-    {
-        try
+        public void Start()
         {
-            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Damage Dealer Complete";
-            Logging.Write("Settings Damage Dealer Complete");
+            try
+            {
+                if (Bot.Bot.Pulse())
+                {
+                    _isStarted = true;
+                    Logging.Status = "Damage Dealer started";
+                }
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Damage Dealer > Main > Start(): " + e);
+            }
         }
-        catch (Exception e)
+
+        public void Stop()
         {
-            Logging.WriteError("Damage Dealer > Main > Settings(): " + e);
+            try
+            {
+                Bot.Bot.Dispose();
+                _isStarted = false;
+                Logging.Status = "Damage Dealer stoped";
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Damage Dealer > Main > Stop(): " + e);
+            }
         }
-    }
 
-    public bool IsStarted
-    {
-        get { return _isStarted; }
-    }
+        public void Settings()
+        {
+            try
+            {
+                MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
+                Logging.Status = "Settings Damage Dealer Complete";
+                Logging.Write("Settings Damage Dealer Complete");
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("Damage Dealer > Main > Settings(): " + e);
+            }
+        }
 
-    #endregion
+        public bool IsStarted
+        {
+            get { return _isStarted; }
+        }
+
+        #endregion
+    }
 }

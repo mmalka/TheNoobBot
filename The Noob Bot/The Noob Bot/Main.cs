@@ -628,7 +628,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var f = new Developer_Tools();
+                var f = new DeveloperTools();
                 f.ShowDialog();
             }
             catch (Exception ex)
