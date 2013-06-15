@@ -193,7 +193,7 @@ namespace nManager.Helpful
                                 var switchButton = new SwitchButton
                                     {
                                         BackColor = Color.WhiteSmoke,
-                                        Value = Convert.ToBoolean(fieldInfo.GetValue(this)),
+                                        Value = Others.ToBoolean(fieldInfo.GetValue(this) as string),
                                         ForeColor = Color.Black,
                                         Location = new Point(10, posY),
                                         Name = f.FieldName,

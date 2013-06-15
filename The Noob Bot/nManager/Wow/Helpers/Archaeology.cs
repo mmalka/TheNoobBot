@@ -11,12 +11,11 @@ namespace nManager.Wow.Helpers
 {
     public class Archaeology
     {
-
         private static List<Digsite> _allDigsiteZone;
 
         public static void Initialize()
         {
-             _allDigsiteZone = new List<Digsite>();
+            _allDigsiteZone = new List<Digsite>();
         }
 
         public static void ClearList()
@@ -46,7 +45,7 @@ namespace nManager.Wow.Helpers
                         foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
                         {
                             if (!string.IsNullOrWhiteSpace(i))
-                                _archaeologyItemsFindList.Add(Convert.ToInt32(i));
+                                _archaeologyItemsFindList.Add(Others.ToInt32(i));
                         }
                     }
                     return _archaeologyItemsFindList;
@@ -78,7 +77,7 @@ namespace nManager.Wow.Helpers
                                                                      "\\Data\\ArchaeologistDigsites.xml");
                         listDigsitesZone = GenerateOrUpdate(listDigsitesZone);
                         XmlSerializer.Serialize(Application.StartupPath + "\\Data\\ArchaeologistDigsites.xml",
-                            listDigsitesZone);
+                                                listDigsitesZone);
                         listDigsitesZone = listDigsitesZone.OrderByDescending(c => c.PriorityDigsites).ToList();
 
                         Logging.Write(listDigsitesZone.Count + " Archaeology Digsites Zones in the data base.");
@@ -118,24 +117,24 @@ namespace nManager.Wow.Helpers
                 curRec = WoWResearchSite.FromId(i);
                 if (curRec.Record.Id != 0)
                 {
-                    curDigSite = new Digsite {id = (int)curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
+                    curDigSite = new Digsite {id = (int) curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
                     fullList.Add(curDigSite);
                 }
             }
             if (doUpdate)
             {
                 finalList = fullList.Concat(listDigsitesZoneFromXML)
-                .ToLookup(p => p.id)
-                .Select(g => g.Aggregate((p1, p2) => new Digsite
-                    {
-                        id = p1.id,
-                        name = p1.name,
-                        PriorityDigsites = p2.PriorityDigsites,
-                        Active = p2.Active
-                    })).ToList();
+                                    .ToLookup(p => p.id)
+                                    .Select(g => g.Aggregate((p1, p2) => new Digsite
+                                        {
+                                            id = p1.id,
+                                            name = p1.name,
+                                            PriorityDigsites = p2.PriorityDigsites,
+                                            Active = p2.Active
+                                        })).ToList();
                 return finalList;
             }
-            return /*finalList = */fullList;
+            return /*finalList = */ fullList;
         }
 
         public static List<Digsite> GetDigsitesZoneAvailable()

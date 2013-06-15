@@ -74,7 +74,7 @@ namespace Test_Product
                         // alliance
                         currentFaction = Npc.FactionType.Alliance;
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 64))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 64))
                     {
                         var newtype = Npc.NpcType.None;
                         if (npcresult.GetString("subname").Contains("Alchemy"))
@@ -123,7 +123,7 @@ namespace Test_Product
                                     Type = newtype
                                 });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 128))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 128))
                     {
                         newList.Add(new Npc
                             {
@@ -138,7 +138,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Vendor
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4096))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 4096))
                     {
                         newList.Add(new Npc
                             {
@@ -153,7 +153,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Repair
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8192))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 8192))
                     {
                         newList.Add(new Npc
                             {
@@ -168,7 +168,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.FlightMaster
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 16384))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 16384))
                     {
                         newList.Add(new Npc
                             {
@@ -183,7 +183,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.SpiritHealer
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 32768))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 32768))
                     {
                         newList.Add(new Npc
                             {
@@ -198,7 +198,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.SpiritGuide
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 65536))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 65536))
                     {
                         newList.Add(new Npc
                             {
@@ -213,7 +213,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Innkeeper
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 131072))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 131072))
                     {
                         newList.Add(new Npc
                             {
@@ -228,7 +228,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Banker
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 1048576))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 1048576))
                     {
                         newList.Add(new Npc
                             {
@@ -243,7 +243,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Battlemaster
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 2097152))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 2097152))
                     {
                         newList.Add(new Npc
                             {
@@ -258,7 +258,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.Auctioneer
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 4194304))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 4194304))
                     {
                         newList.Add(new Npc
                             {
@@ -273,7 +273,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.StableMaster
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 8388608))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 8388608))
                     {
                         newList.Add(new Npc
                             {
@@ -288,7 +288,7 @@ namespace Test_Product
                                 Type = Npc.NpcType.GuildBanker
                             });
                     }
-                    if (Convert.ToBoolean(npcresult.GetUInt32("npcflag") & 67108864))
+                    if (Others.ToBoolean(npcresult.GetUInt32("npcflag") & 67108864))
                     {
                         newList.Add(new Npc
                             {

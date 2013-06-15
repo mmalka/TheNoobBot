@@ -43,15 +43,15 @@ namespace nManager.Wow.Class
 
                 ItemName = itemInfoArray[0];
                 ItemLink = itemInfoArray[1];
-                ItemRarity = Convert.ToInt32(itemInfoArray[2]);
-                ItemLevel = Convert.ToInt32(itemInfoArray[3]);
-                ItemMinLevel = Convert.ToInt32(itemInfoArray[4]);
+                ItemRarity = Others.ToInt32(itemInfoArray[2]);
+                ItemLevel = Others.ToInt32(itemInfoArray[3]);
+                ItemMinLevel = Others.ToInt32(itemInfoArray[4]);
                 ItemType = itemInfoArray[5];
                 ItemSubType = itemInfoArray[6];
-                ItemStackCount = Convert.ToInt32(itemInfoArray[7]);
+                ItemStackCount = Others.ToInt32(itemInfoArray[7]);
                 ItemEquipLoc = itemInfoArray[8];
                 ItemTexture = itemInfoArray[9];
-                ItemSellPrice = Convert.ToInt32(itemInfoArray[10]);
+                ItemSellPrice = Others.ToInt32(itemInfoArray[10]);
             }
             catch (Exception exception)
             {
@@ -81,15 +81,15 @@ namespace nManager.Wow.Class
 
                 ItemName = intemInfoArray[0];
                 ItemLink = intemInfoArray[1];
-                ItemRarity = Convert.ToInt32(intemInfoArray[2]);
-                ItemLevel = Convert.ToInt32(intemInfoArray[3]);
-                ItemMinLevel = Convert.ToInt32(intemInfoArray[4]);
+                ItemRarity = Others.ToInt32(intemInfoArray[2]);
+                ItemLevel = Others.ToInt32(intemInfoArray[3]);
+                ItemMinLevel = Others.ToInt32(intemInfoArray[4]);
                 ItemType = intemInfoArray[5];
                 ItemSubType = intemInfoArray[6];
-                ItemStackCount = Convert.ToInt32(intemInfoArray[7]);
+                ItemStackCount = Others.ToInt32(intemInfoArray[7]);
                 ItemEquipLoc = intemInfoArray[8];
                 ItemTexture = intemInfoArray[9];
-                ItemSellPrice = Convert.ToInt32(intemInfoArray[10]);
+                ItemSellPrice = Others.ToInt32(intemInfoArray[10]);
             }
             catch (Exception exception)
             {

@@ -28,7 +28,7 @@ namespace nManager.Wow.Helpers
 
         public string String(uint address)
         {
-            return (string)Memory.WowMemory.Memory.ReadUTF8String(address);
+            return (string) Memory.WowMemory.Memory.ReadUTF8String(address);
         }
 
         public Dictionary<int, T> Rows

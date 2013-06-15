@@ -13,6 +13,7 @@ namespace nManager.Wow.Helpers
             // Tank, Heal, DPS
             // We need to allow the bot to heal in BG with a settings, then we can tick Heal as well.
         }
+
         public static void JoinBattlegroundQueue(BattlegroundId id)
         {
             SetPVPRoles();

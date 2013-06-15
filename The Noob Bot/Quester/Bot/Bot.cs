@@ -166,6 +166,5 @@ namespace Quester.Bot
             }
             return NpcDB.GetNpcByEntry(entry);
         }
-
     }
 }

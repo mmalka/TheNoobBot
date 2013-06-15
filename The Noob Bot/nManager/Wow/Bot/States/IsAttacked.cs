@@ -77,7 +77,7 @@ namespace nManager.Wow.Bot.States
             if (!_unit.IsDead && unkillableMob != 0)
             {
                 Logging.Write("Blacklisting " + _unit.Name);
-                nManagerSetting.AddBlackList(unkillableMob, 2 * 60 * 1000); // 2 minutes
+                nManagerSetting.AddBlackList(unkillableMob, 2*60*1000); // 2 minutes
             }
             else if (_unit.IsDead)
             {

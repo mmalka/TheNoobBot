@@ -39,20 +39,18 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            
-              this.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager); // Form Title
+            this.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager); // Form Title
 
-              AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles);
-              CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles);
-              GroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.GroupSelectedProfile);
-              UngroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupSelectedProfile);
-              UngroupAllProfiles.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupAllProfiles);
-              SaveGroupedProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfileAs);
-              SaveGroupedProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfile);
-              CancelGroupedProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelGroupedProfileEdition);
-              MoveUpButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveUp);
-              MoveDownButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveDown);
-             
+            AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles);
+            CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles);
+            GroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.GroupSelectedProfile);
+            UngroupSelectedProfile.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupSelectedProfile);
+            UngroupAllProfiles.Tooltip = nManager.Translate.Get(nManager.Translate.Id.UngroupAllProfiles);
+            SaveGroupedProfileAs.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfileAs);
+            SaveGroupedProfile.Text = nManager.Translate.Get(nManager.Translate.Id.SaveGroupedProfile);
+            CancelGroupedProfileEdition.Text = nManager.Translate.Get(nManager.Translate.Id.CancelGroupedProfileEdition);
+            MoveUpButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveUp);
+            MoveDownButton.Text = nManager.Translate.Get(nManager.Translate.Id.MoveDown);
         }
 
         private void ShowGroupedProfileManagerForm()
@@ -118,10 +116,11 @@ namespace Quester.Profile
                     string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
                     if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
                     {
-                        Profile.Includes.Add(new Include { PathFile = PathFile, ScriptCondition = "" });
+                        Profile.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
                     }
                 }
-                string FileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\", nManager.Translate.Get(nManager.Translate.Id.GroupedQuestProfileFile) + " (*.xml)|*.xml");
+                string FileToSaveAs = Others.DialogBoxSaveFile(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\",
+                                                               nManager.Translate.Get(nManager.Translate.Id.GroupedQuestProfileFile) + " (*.xml)|*.xml");
                 if (FileToSaveAs != "")
                     XmlSerializer.Serialize(FileToSaveAs, Profile);
                 Close();
@@ -142,7 +141,7 @@ namespace Quester.Profile
                     string FullPathToFile = Application.StartupPath + "\\Profiles\\Quester\\" + PathFile;
                     if (!string.IsNullOrWhiteSpace(PathFile) && File.Exists(FullPathToFile))
                     {
-                        Profile.Includes.Add(new Include { PathFile = PathFile, ScriptCondition = "" });
+                        Profile.Includes.Add(new Include {PathFile = PathFile, ScriptCondition = ""});
                     }
                 }
                 XmlSerializer.Serialize(fullpath, Profile);
@@ -230,7 +229,5 @@ namespace Quester.Profile
         {
             MoveItem(1);
         }
-
-
     }
 }

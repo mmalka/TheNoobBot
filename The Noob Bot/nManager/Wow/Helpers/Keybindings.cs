@@ -220,17 +220,17 @@ namespace nManager.Wow.Helpers
                         int lastBar =
                             Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                             (uint) Addresses.BarManager.nbBar);
-                        if (lastBar != Convert.ToInt32(keySlot[0]) - 1)
+                        if (lastBar != Others.ToInt32(keySlot[0]) - 1)
                         {
                             Memory.WowMemory.Memory.WriteInt(
                                 Memory.WowProcess.WowModule + (uint) Addresses.BarManager.nbBar,
-                                Convert.ToInt32(keySlot[0]) - 1);
+                                Others.ToInt32(keySlot[0]) - 1);
                         }
                         Thread.Sleep(300);
-                        PressSlotKey(Convert.ToInt32(keySlot[1]));
+                        PressSlotKey(Others.ToInt32(keySlot[1]));
                         Thread.Sleep(10);
 
-                        if (lastBar != Convert.ToInt32(keySlot[0]) - 1)
+                        if (lastBar != Others.ToInt32(keySlot[0]) - 1)
                         {
                             Memory.WowMemory.Memory.WriteInt(
                                 Memory.WowProcess.WowModule + (uint) Addresses.BarManager.nbBar, lastBar);

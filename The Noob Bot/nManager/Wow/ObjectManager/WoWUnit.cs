@@ -121,7 +121,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    float num = 20 - (((int)ObjectManager.Me.Level - (int)Level) * 1.1f);
+                    float num = 20 - (((int) ObjectManager.Me.Level - (int) Level)*1.1f);
                     if (num < 5)
                         num = 5;
                     else if (num > 45)
@@ -1442,7 +1442,6 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Silenced);
-
                 }
                 catch (Exception e)
                 {
@@ -1793,7 +1792,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                   return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.PlayerControlled);
                 }
                 catch (Exception e)
                 {

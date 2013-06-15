@@ -92,7 +92,6 @@ namespace Quester.Profile
             else
                 throw new ArgumentException("Object is not a Quest");
         }
-
     }
 
     [Serializable]

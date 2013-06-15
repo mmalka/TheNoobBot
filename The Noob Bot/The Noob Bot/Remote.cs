@@ -181,7 +181,7 @@ namespace The_Noob_Bot
                 {
                     if (result[0] == "")
                         result[0] = "0";
-                    switch ((FlagRequest) Convert.ToInt32(result[0]))
+                    switch ((FlagRequest) Others.ToInt32(result[0]))
                     {
                         case FlagRequest.CloseBot:
                             Logging.WriteDebug("Remote: Close bot.");

@@ -29,7 +29,7 @@ namespace nManager.Wow.Helpers
                         {
                             try
                             {
-                                _listFishingPoles.Add(Convert.ToUInt32(i));
+                                _listFishingPoles.Add(Others.ToUInt32(i));
                             }
                             catch
                             {
@@ -61,7 +61,7 @@ namespace nManager.Wow.Helpers
                         {
                             try
                             {
-                                _listLure.Add(Convert.ToUInt32(i));
+                                _listLure.Add(Others.ToUInt32(i));
                             }
                             catch
                             {

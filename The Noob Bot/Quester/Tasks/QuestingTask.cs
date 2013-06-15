@@ -282,7 +282,7 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
-                    ulong addr = MovementManager.FindTarget(wowUnit, wowUnit.AggroDistance * 1.1f);
+                    ulong addr = MovementManager.FindTarget(wowUnit, wowUnit.AggroDistance*1.1f);
                     if (MovementManager.InMovement)
                         return;
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);

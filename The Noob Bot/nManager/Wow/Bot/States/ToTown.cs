@@ -378,7 +378,9 @@ namespace nManager.Wow.Bot.States
 
             if (listNPCs.Count > 0)
             {
-                listNPCs.Sort(delegate(Npc n1, Npc n2) { return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)); });
+                listNPCs.Sort(
+                    delegate(Npc n1, Npc n2)
+                        { return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)); });
                 foreach (var npc in listNPCs)
                 {
                     Npc Target = npc;
@@ -581,17 +583,17 @@ namespace nManager.Wow.Bot.States
             if (!unitRobot.IsValid || !unitRobot.IsAlive)
                 return null;
             var npcRobot = new Npc
-            {
-                Entry = unitRobot.Entry,
-                Position = unitRobot.Position,
-                Name = unitRobot.Name,
-                ContinentId = (ContinentId)Usefuls.ContinentId,
-                Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
-                              ? Npc.FactionType.Horde
-                              : Npc.FactionType.Alliance,
-                SelectGossipOption = GossipOption,
-                Type = Type
-            };
+                {
+                    Entry = unitRobot.Entry,
+                    Position = unitRobot.Position,
+                    Name = unitRobot.Name,
+                    ContinentId = (ContinentId) Usefuls.ContinentId,
+                    Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
+                                  ? Npc.FactionType.Horde
+                                  : Npc.FactionType.Alliance,
+                    SelectGossipOption = GossipOption,
+                    Type = Type
+                };
             return npcRobot;
         }
     }

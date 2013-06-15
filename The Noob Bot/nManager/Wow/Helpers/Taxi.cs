@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = NumTaxiNodes()");
             string result = Lua.GetLocalizedText(randomString);
-            return Convert.ToInt32(result) > 0;
+            return Others.ToInt32(result) > 0;
         }
 
         public static void FindAndOpenTaxiGossip()
@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
             command += "if type == \"Taxi\" then " + randomString + " = i end i++ ";
             command += "end";
             Lua.LuaDoString(command);
-            int index = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            int index = Others.ToInt32(Lua.GetLocalizedText(randomString));
             Lua.LuaDoString("SelectGossipOption(" + index + ")");
         }
 
@@ -30,7 +30,7 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = NumTaxiNodes()");
-            int nbTaxiNode = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            int nbTaxiNode = Others.ToInt32(Lua.GetLocalizedText(randomString));
             for (int id = 1; id <= nbTaxiNode; id++)
             {
                 string chkpx = Others.GetRandomString(Others.Random(4, 10));

@@ -196,7 +196,7 @@ namespace nManager.Wow.Helpers
                 var keySlot = barAndSlot.Split(Convert.ToChar(";"));
 
 
-                if (Convert.ToUInt32(keySlot[0]) == 1)
+                if (Others.ToUInt32(keySlot[0]) == 1)
                 {
                     int numBarOne = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                                     (uint) Addresses.BarManager.startBar);
@@ -205,7 +205,7 @@ namespace nManager.Wow.Helpers
                 }
 
                 uint adresse = Memory.WowProcess.WowModule + (uint) Addresses.BarManager.slotIsEnable +
-                               (4*12*(Convert.ToUInt32(keySlot[0]) - 1)) + (4*(Convert.ToUInt32(keySlot[1]) - 1));
+                               (4*12*(Others.ToUInt32(keySlot[0]) - 1)) + (4*(Others.ToUInt32(keySlot[1]) - 1));
 
                 return Memory.WowMemory.Memory.ReadUInt(adresse) == 1;
             }
@@ -728,7 +728,7 @@ namespace nManager.Wow.Helpers
                         foreach (string tempsSpell in listSpellTemps)
                         {
                             string[] tmpSpell = tempsSpell.Split(';');
-                            ListSpell.Add(new SpellList(Convert.ToUInt32(tmpSpell[0]), tmpSpell[1]));
+                            ListSpell.Add(new SpellList(Others.ToUInt32(tmpSpell[0]), tmpSpell[1]));
                             ListSpellName.Add(tmpSpell[1]);
                         }
                     }

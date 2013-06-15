@@ -34,7 +34,7 @@ namespace The_Noob_Bot
                         ip[i].ToString() == "3" || ip[i].ToString() == "4" || ip[i].ToString() == "5" ||
                         ip[i].ToString() == "6" || ip[i].ToString() == "7" || ip[i].ToString() == "8" ||
                         ip[i].ToString() == "9")
-                        keyDecrypt += Convert.ToInt32(ip[i].ToString());
+                        keyDecrypt += Others.ToInt32(ip[i].ToString());
                 }
 
 

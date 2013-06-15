@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomString + " = GetItemCount(\"" + Name + "\");");
-                    return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                    return Others.ToInt32(Lua.GetLocalizedText(randomString));
                 }
             }
             catch (Exception exception)
@@ -36,7 +36,7 @@ namespace nManager.Wow.Helpers
                     Lua.LuaDoString(randomString + " = GetItemCount(" + Entry + ");");
                     try
                     {
-                        return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
                     }
                     catch
                     {
@@ -137,8 +137,7 @@ namespace nManager.Wow.Helpers
                             "_, itemLink = GetItemInfo(nameItem); " +
                             "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
                             );
-                        string ret = Lua.GetLocalizedText(randomString);
-                        return Convert.ToInt32(ret);
+                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
                     }
                     return 0;
                 }
@@ -161,7 +160,7 @@ namespace nManager.Wow.Helpers
 
                 float itemStartTime = Convert.ToSingle(itemInfoArray[0]);
                 float itemDuration = Convert.ToSingle(itemInfoArray[1]);
-                uint itemEnable = Convert.ToUInt32(itemInfoArray[2]);
+                uint itemEnable = Others.ToUInt32(itemInfoArray[2]);
 
                 if (itemStartTime == 0 && itemDuration == 0)
                     return false;

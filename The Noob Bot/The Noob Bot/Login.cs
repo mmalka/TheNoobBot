@@ -153,7 +153,7 @@ namespace The_Noob_Bot
                     string[] idStringArray =
                         listProcessLb.SelectedItem.ToString().Replace(" ", "").Split(Convert.ToChar("-"));
 
-                    var idProcess = Convert.ToInt32(idStringArray[0]);
+                    var idProcess = Others.ToInt32(idStringArray[0]);
 
                     if (!Hook.IsInGame(idProcess))
                     {

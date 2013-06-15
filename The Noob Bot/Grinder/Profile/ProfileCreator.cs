@@ -582,8 +582,8 @@ namespace Grinder.Profile
                             try
                             {
                                 if (t != "")
-                                    if (!_profile.GrinderZones[idZone].TargetEntry.Contains(Convert.ToInt32(t)))
-                                        _profile.GrinderZones[idZone].TargetEntry.Add(Convert.ToInt32(t));
+                                    if (!_profile.GrinderZones[idZone].TargetEntry.Contains(Others.ToInt32(t)))
+                                        _profile.GrinderZones[idZone].TargetEntry.Add(Others.ToInt32(t));
                             }
                             catch
                             {

@@ -94,7 +94,8 @@ namespace nManager.Wow.Bot.States
                     foreach (var t in listDigsitesZone)
                     {
                         if (BlackListDigsites.Contains(t.id) || !t.Active) continue;
-                        if (!(t.PriorityDigsites >= priority) && ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
+                        if (!(t.PriorityDigsites >= priority) &&
+                            ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
                             continue;
                         WoWResearchSite OneSite = WoWResearchSite.FromName(t.name);
                         WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
@@ -104,7 +105,7 @@ namespace nManager.Wow.Bot.States
                             continue;
                         if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
                         {
-                            _pathFound.AddRange(new[] { PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus) });
+                            _pathFound.AddRange(new[] {PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus)});
                             _lastPathId = _pathFound.Count - 1;
                             _bestPathStatus = _currentFindPathStatus;
                             if (_bestPathStatus && !_currentFindPathStatus)
@@ -262,16 +263,16 @@ namespace nManager.Wow.Bot.States
                         {
                             Point destination = qPOI.MiddlePoint;
                             destination.Type = "flying";
-                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
-                            MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                            MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                         }
                         else
                         {
                             // here we need to go to center, THEN compute middle point
                             Point destination = qPOI.Center;
                             destination.Type = "flying";
-                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
-                            MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                            Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                            MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                         }
                         myState = LocState.iddle;
                         return;
@@ -284,7 +285,7 @@ namespace nManager.Wow.Bot.States
                     if (t.GetBaseAddress <= 0 || myState == LocState.goingNextPoint ||
                         // recast if we moved even if last is still spawned
                         myState == LocState.looting)
-                    // after we looted we need to recast survey spell, even if the previous one is still spawned
+                        // after we looted we need to recast survey spell, even if the previous one is still spawned
                     {
                         if (!Archaeology.DigsiteZoneIsAvailable(digsitesZone))
                             return;
@@ -308,8 +309,8 @@ namespace nManager.Wow.Bot.States
                             else
                             {
                                 Point destination = qPOI.MiddlePoint;
-                                Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int)destination.Z);
-                                MovementManager.Go(new List<Point>(new[] { destination })); // MoveTo Digsite
+                                Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                                MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
                             }
                             nbCastSurveyError = 0;
                             return;
@@ -323,8 +324,8 @@ namespace nManager.Wow.Bot.States
                             return;
                         nbCastSurveyError = 0; // Reset try cast survey
                         if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                             !(ObjectManager.ObjectManager.Me.IsMounted &&
+                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                         {
                             return;
                         }
@@ -413,7 +414,7 @@ namespace nManager.Wow.Bot.States
                             // Go to next position
                             if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
                                 nbStuck >= 2)
-                            // Use fly mount
+                                // Use fly mount
                             {
                                 p.Z = PathFinder.GetZPosition(p);
 
@@ -423,24 +424,24 @@ namespace nManager.Wow.Bot.States
                                     p.Z = p.Z + 5.0f;
 
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     return;
                                 }
                                 MountTask.Mount();
                                 LongMove.LongMoveByNewThread(p);
                                 var timer =
-                                    new Helpful.Timer(1000 *
-                                                        points[points.Count - 1].DistanceTo(
-                                                            ObjectManager.ObjectManager.Me.Position) / 3);
+                                    new Helpful.Timer(1000*
+                                                      points[points.Count - 1].DistanceTo(
+                                                          ObjectManager.ObjectManager.Me.Position)/3);
 
                                 while (LongMove.IsLongMove && !timer.IsReady &&
-                                        ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
+                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
                                 {
                                     if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                            !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                     {
                                         LongMove.StopLongMove();
                                         return;
@@ -464,19 +465,19 @@ namespace nManager.Wow.Bot.States
                                         points[i].Type = "flying";
 
                                 MovementManager.Go(points);
-                                float d = Math.DistanceListPoint(points) / 3;
+                                float d = Math.DistanceListPoint(points)/3;
                                 if (d > 200)
                                     d = 200;
-                                var tm_t = 1000 * d / 2 + 1200;
+                                var tm_t = 1000*d/2 + 1200;
                                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                                     tm_t /= 0.6f;
                                 var timer = new Helpful.Timer(tm_t);
                                 while (MovementManager.InMovement && !timer.IsReady &&
-                                        ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
+                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
                                 {
                                     if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                            !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                     {
                                         return;
                                     }
@@ -485,17 +486,17 @@ namespace nManager.Wow.Bot.States
                                 // incremente nbstuck if player is stuck
                                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) < 5 ||
                                     (MovementManager.InMovement &&
-                                        !(ObjectManager.ObjectManager.Me.InCombat &&
-                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                            (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                        timer.IsReady))
+                                     !(ObjectManager.ObjectManager.Me.InCombat &&
+                                       !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                         (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                     timer.IsReady))
                                     nbStuck++;
                                 else
                                     nbStuck = 0;
 
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                        !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                                     !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     return;
                                 }

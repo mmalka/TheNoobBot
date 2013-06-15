@@ -1438,7 +1438,7 @@ namespace nManager.Wow.Helpers
         {
             if (_trakedTargetGuid != Object.Guid)
             {
-                _trakedTarget = new Npc { Entry = Object.Entry, Position = Object.Position, Name = Object.Name };
+                _trakedTarget = new Npc {Entry = Object.Entry, Position = Object.Position, Name = Object.Name};
                 _trakedTargetGuid = Object.Guid;
             }
             return FindTarget(ref _trakedTarget, SpecialRange);
@@ -1448,7 +1448,7 @@ namespace nManager.Wow.Helpers
         {
             if (_trakedTargetGuid != Unit.Guid)
             {
-                _trakedTarget = new Npc { Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name };
+                _trakedTarget = new Npc {Entry = Unit.Entry, Position = Unit.Position, Name = Unit.Name};
                 _trakedTargetGuid = Unit.Guid;
             }
             return FindTarget(ref _trakedTarget, SpecialRange);
@@ -1464,12 +1464,12 @@ namespace nManager.Wow.Helpers
             uint baseAddress;
 
             // Normal "Go to destination code", launch the movement thread by calling Go(), then return
-            if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
+            if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
             {
                 baseAddress = UpdateTarget(ref Target, out requiresUpdate);
                 List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                 Logging.Write("Looking for " + Target.Name + " (" + Target.Entry + ").");
-                _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                _maxTimerForStuckDetection = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
                 _cacheTargetAddress = baseAddress;
                 _updatePathSpecialTimer = new Timer(5000);
                 if (!patherResult)
@@ -1481,7 +1481,7 @@ namespace nManager.Wow.Helpers
             if (InMovement && Usefuls.InGame && !ObjectManager.ObjectManager.Me.InCombat && !ObjectManager.ObjectManager.Me.IsDeadMe)
             {
                 // Out of range of the position
-                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble() * 2f + 2.5f))
+                if (Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > (SpecialRange > 0 ? SpecialRange : new Random().NextDouble()*2f + 2.5f))
                 {
                     baseAddress = UpdateTarget(ref Target, out requiresUpdate);
                     if (baseAddress != 0 && baseAddress != _cacheTargetAddress)
@@ -1497,14 +1497,15 @@ namespace nManager.Wow.Helpers
                             List<Point> points = PathFinder.FindPath(Target.Position, out patherResult);
                             if (!patherResult)
                                 points.Add(Target.Position);
-                            _maxTimerForStuckDetection = new Timer(((int)Math.DistanceListPoint(points) / 3 * 1000) + 4000);
+                            _maxTimerForStuckDetection = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 4000);
                             Go(points);
                         }
                         return baseAddress;
                     }
                     if (_maxTimerForStuckDetection.IsReady)
                     {
-                        WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
+                        WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry),
+                                                                                                       Target.Position);
                         WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                         if (TargetIsUnit.IsValid)
                             nManager.nManagerSetting.AddBlackList(TargetIsUnit.Guid);

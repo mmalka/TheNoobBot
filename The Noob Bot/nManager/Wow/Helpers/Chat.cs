@@ -237,7 +237,7 @@ namespace nManager.Wow.Helpers
                 if (lecture != "")
                 {
                     ActuelRead++;
-                    unMsg.Canal = Convert.ToInt32(stringBetween(lecture, "Type: [", "]"));
+                    unMsg.Canal = Others.ToInt32(stringBetween(lecture, "Type: [", "]"));
                     unMsg.Pseudo = Others.ToUtf8(stringBetween(lecture, "Name: [", "]"));
                     unMsg.Msg = Others.ToUtf8(stringBetween(lecture, "Text: [", "]"));
                 }

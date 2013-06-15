@@ -410,6 +410,7 @@ namespace nManager.Helpful.Forms
                 Logging.WriteError("grzGRDSFfezfsgfvsdg#2: " + e);
             }
         }
+
         private void getTargetInfoAdv_Click(object sender, EventArgs e)
         {
             infoTb.Text = "";
@@ -418,7 +419,7 @@ namespace nManager.Helpful.Forms
                 string questStatusText = "";
                 if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.QuestGiver))
                 {
-                    var questStatusFlag = (UnitQuestGiverStatus)Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint)Addresses.Quests.QuestGiverStatus);
+                    var questStatusFlag = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                     if (questStatusFlag > 0x0)
                         questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
                 }

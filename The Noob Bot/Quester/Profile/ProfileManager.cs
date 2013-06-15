@@ -25,20 +25,18 @@ namespace Quester.Profile
 
         private void Translate()
         {
-
             this.Text = nManager.Translate.Get(nManager.Translate.Id.QuesterProfileManagementSystem); // Form Title
 
-              ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
-              ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager);
-              ProfileManagerAddGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.AddGrouped);
-              ProfileManagerEditGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.EditGrouped);
-              ProfileManagerGroupedDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedDocumentation);
-              ProfileManagerRemoveGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveGrouped);
-              ProfileManagerAdd.Text = nManager.Translate.Get(nManager.Translate.Id.AddSimple);
-              ProfileManagerEdit.Text = nManager.Translate.Get(nManager.Translate.Id.EditSimple);
-              ProfileManagerSimpleDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleDocumentation);
-              ProfileManagerRemove.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveSimple);
-             
+            ProfileManagerGroupedLabel.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager);
+            ProfileManagerSimpleLabel.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleProfileManager);
+            ProfileManagerAddGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.AddGrouped);
+            ProfileManagerEditGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.EditGrouped);
+            ProfileManagerGroupedDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedDocumentation);
+            ProfileManagerRemoveGrouped.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveGrouped);
+            ProfileManagerAdd.Text = nManager.Translate.Get(nManager.Translate.Id.AddSimple);
+            ProfileManagerEdit.Text = nManager.Translate.Get(nManager.Translate.Id.EditSimple);
+            ProfileManagerSimpleDocumentation.Text = nManager.Translate.Get(nManager.Translate.Id.SimpleDocumentation);
+            ProfileManagerRemove.Text = nManager.Translate.Get(nManager.Translate.Id.RemoveSimple);
         }
 
         private void RefreshProfileManagerForm()
@@ -135,7 +133,8 @@ namespace Quester.Profile
                 string fullpath = Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" + path;
                 if (!string.IsNullOrWhiteSpace(path) && File.Exists(fullpath))
                 {
-                    DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveGroupedProfile) + path + " ?"), nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult check = MessageBox.Show(string.Format("{0}", nManager.Translate.Get(nManager.Translate.Id.RemoveGroupedProfile) + path + " ?"),
+                                                         nManager.Translate.Get(nManager.Translate.Id.Confirm), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (check == DialogResult.Yes)
                         File.Delete(fullpath);
                 }

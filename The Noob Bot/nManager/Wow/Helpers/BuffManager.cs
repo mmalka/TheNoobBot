@@ -11,21 +11,21 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                int auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint)Addresses.UnitBaseGetUnitAura.AURA_COUNT_1);
-                uint auraTable = baseAddress + (uint)Addresses.UnitBaseGetUnitAura.AURA_TABLE_1;
+                int auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_COUNT_1);
+                uint auraTable = baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_TABLE_1;
                 if (auraCount == -1)
                 {
-                    auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint)Addresses.UnitBaseGetUnitAura.AURA_COUNT_2);
-                    auraTable = Memory.WowMemory.Memory.ReadUInt(baseAddress + (uint)Addresses.UnitBaseGetUnitAura.AURA_TABLE_2);
+                    auraCount = Memory.WowMemory.Memory.ReadInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_COUNT_2);
+                    auraTable = Memory.WowMemory.Memory.ReadUInt(baseAddress + (uint) Addresses.UnitBaseGetUnitAura.AURA_TABLE_2);
                 }
                 for (uint i = 0; i < auraCount && i < 200; i++)
                 {
-                    int spellID = Memory.WowMemory.Memory.ReadInt(auraTable + ((uint)Addresses.UnitBaseGetUnitAura.AURA_SIZE * i) +
-                                                        (uint)Addresses.UnitBaseGetUnitAura.AURA_SPELL_ID);
+                    int spellID = Memory.WowMemory.Memory.ReadInt(auraTable + ((uint) Addresses.UnitBaseGetUnitAura.AURA_SIZE*i) +
+                                                                  (uint) Addresses.UnitBaseGetUnitAura.AURA_SPELL_ID);
                     if (spellID > 0)
                     {
-                        if (buffId.Contains((uint)spellID))
-                            return Memory.WowMemory.Memory.ReadByte(auraTable + ((uint)Addresses.UnitBaseGetUnitAura.AURA_SIZE * i) + (uint)Addresses.UnitBaseGetUnitAura.AURA_STACK);
+                        if (buffId.Contains((uint) spellID))
+                            return Memory.WowMemory.Memory.ReadByte(auraTable + ((uint) Addresses.UnitBaseGetUnitAura.AURA_SIZE*i) + (uint) Addresses.UnitBaseGetUnitAura.AURA_STACK);
                     }
                 }
                 return -1;

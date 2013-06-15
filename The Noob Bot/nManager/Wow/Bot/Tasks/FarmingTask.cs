@@ -106,7 +106,7 @@ namespace nManager.Wow.Bot.Tasks
                             toMine = true;
                             zT = node.Position.Z + 1.5f;
                             MovementManager.MoveTo(node.Position.X, node.Position.Y, zT);
-                            if (node.GetDistance > 4.0f &&  TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
+                            if (node.GetDistance > 4.0f && TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, node.Position, CGWorldFrameHitFlags.HitTestAllButLiquid))
                             {
                                 Logging.Write("Node outside view");
                                 nManagerSetting.AddBlackList(node.Guid, 1000*120);

@@ -43,7 +43,7 @@ namespace nManager.Wow.Helpers
             foreach (string strQuestId in sResult.Split(Convert.ToChar("^")))
             {
                 if (strQuestId != string.Empty)
-                    FinishedQuestSet.Add(Convert.ToInt32(strQuestId));
+                    FinishedQuestSet.Add(Others.ToInt32(strQuestId));
             }
         }
 
@@ -78,7 +78,7 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestID()");
-            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
         public static bool GetGossipAvailableQuestsWorks()
@@ -101,21 +101,21 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetNumGossipAvailableQuests()");
-            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
         public static int GetNumGossipActiveQuests()
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetNumGossipActiveQuests()");
-            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
         public static int GetNumGossipOptions()
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetNumGossipOptions()");
-            return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            return Others.ToInt32(Lua.GetLocalizedText(randomString));
         }
 
         public static String GetAvailableTitle(int index)
@@ -153,7 +153,7 @@ namespace nManager.Wow.Helpers
             Thread.Sleep(500);
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetNumQuestChoices()");
-            int numRewards = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            int numRewards = Others.ToInt32(Lua.GetLocalizedText(randomString));
             Logging.WriteDebug("There is " + numRewards + " rewards");
             for (int i = 1; i <= numRewards; i++)
             {
@@ -164,12 +164,12 @@ namespace nManager.Wow.Helpers
                 string sPrice = Others.GetRandomString(Others.Random(4, 10));
 
                 string command = "link = GetQuestItemLink(\"choice\", " + i + "); ";
-                command += sName +  ",_," + sQuality + "," + sIlevel + ",_,_,_,_," +  sEquipSlot + ",_," + sPrice + "=GetItemInfo(link);";
+                command += sName + ",_," + sQuality + "," + sIlevel + ",_,_,_,_," + sEquipSlot + ",_," + sPrice + "=GetItemInfo(link);";
                 //command += sPrice + " = link and select(11, GetItemInfo(link));";
                 Lua.LuaDoString(command);
-                int price = Convert.ToInt32(Lua.GetLocalizedText(sPrice));
-                int quality = Convert.ToInt32(Lua.GetLocalizedText(sQuality));
-                int iLevel = Convert.ToInt32(Lua.GetLocalizedText(sIlevel));
+                int price = Others.ToInt32(Lua.GetLocalizedText(sPrice));
+                int quality = Others.ToInt32(Lua.GetLocalizedText(sQuality));
+                int iLevel = Others.ToInt32(Lua.GetLocalizedText(sIlevel));
                 Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + Lua.GetLocalizedText(sEquipSlot) + "\" has a value of " + price);
             }
             Lua.LuaDoString("GetQuestReward(1)");
@@ -210,7 +210,7 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString("questIndex = GetQuestLogIndexByID(" + questId + ");" +
-                randomString + ", _ = GetQuestLogTitle(questIndex);");
+                            randomString + ", _ = GetQuestLogTitle(questIndex);");
             string ret = Lua.GetLocalizedText(randomString);
             return ret;
         }
@@ -219,7 +219,7 @@ namespace nManager.Wow.Helpers
         {
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(randomString + " = GetQuestLogIndexByID(" + questId + ")");
-            int index = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+            int index = Others.ToInt32(Lua.GetLocalizedText(randomString));
             if (index > 0)
             {
                 Lua.LuaDoString("SelectQuestLogEntry(" + index + ") SetAbandonQuest() AbandonQuest()");
@@ -230,10 +230,11 @@ namespace nManager.Wow.Helpers
         public static bool GetLogQuestIsComplete(int questId) // we could also use the PlayerQuest struct from memory
         {
             try
-            { // title, level, questTag, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily, questID, startEvent, displayQuestID = GetQuestLogTitle(questIndex)
+            {
+                // title, level, questTag, suggestedGroup, isHeader, isCollapsed, isComplete, isDaily, questID, startEvent, displayQuestID = GetQuestLogTitle(questIndex)
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString("questIndex = GetQuestLogIndexByID(" + questId + ");" +
-                    "_, _, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");
+                                "_, _, _, _, _, _, " + randomString + " = GetQuestLogTitle(questIndex);");
                 string ret = Lua.GetLocalizedText(randomString);
                 return ret == "1";
             }

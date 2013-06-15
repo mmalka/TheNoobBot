@@ -69,26 +69,25 @@ namespace Profiles_Converters.Converters
 
                                     if (childSubProfile.Name == "MinLevel" && _profile.GrinderZones.Any())
                                     {
-                                        _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MinLevel =
-                                            System.Convert.ToUInt32(childSubProfile.Value);
+                                        _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MinLevel = Others.ToUInt32(childSubProfile.Value);
                                     }
 
                                     if (childSubProfile.Name == "MaxLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MaxLevel =
-                                            System.Convert.ToUInt32(childSubProfile.Value);
+                                            Others.ToUInt32(childSubProfile.Value);
                                     }
 
                                     if (childSubProfile.Name == "TargetMinLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MinTargetLevel
-                                            = System.Convert.ToUInt32(childSubProfile.Value);
+                                            = Others.ToUInt32(childSubProfile.Value);
                                     }
 
                                     if (childSubProfile.Name == "TargetMaxLevel" && _profile.GrinderZones.Any())
                                     {
                                         _profile.GrinderZones[_profile.GrinderZones.Count() - 1].MaxTargetLevel
-                                            = System.Convert.ToUInt32(childSubProfile.Value);
+                                            = Others.ToUInt32(childSubProfile.Value);
                                     }
                                     /*
                                     if (childSubProfile.Name == "Mailboxes" && _profile.GrinderZones.Any())
@@ -242,14 +241,14 @@ namespace Profiles_Converters.Converters
                                                 _profile.GrinderZones.Any())
                                             {
                                                 _profile.GrinderZones[_profile.GrinderZones.Count() - 1].
-                                                    MinTargetLevel = System.Convert.ToUInt32(childGrindArea.Value);
+                                                    MinTargetLevel = Others.ToUInt32(childGrindArea.Value);
                                             }
 
                                             if (childGrindArea.Name == "TargetMaxLevel" &&
                                                 _profile.GrinderZones.Any())
                                             {
                                                 _profile.GrinderZones[_profile.GrinderZones.Count() - 1].
-                                                    MaxTargetLevel = System.Convert.ToUInt32(childGrindArea.Value);
+                                                    MaxTargetLevel = Others.ToUInt32(childGrindArea.Value);
                                             }
 
                                             if (childGrindArea.Name == "Factions" && _profile.GrinderZones.Any())

@@ -250,11 +250,11 @@ namespace nManager.Helpful
         public enum LogType
         {
             None = 0x0,
-            S = 0x1,   // Standard
-            D = 0x2,   // Debug
-            E = 0x4,   // Error
-            N = 0x8,   // Navigation
-            F = 0x10,  // Fight
+            S = 0x1, // Standard
+            D = 0x2, // Debug
+            E = 0x4, // Error
+            N = 0x8, // Navigation
+            F = 0x10, // Fight
             IO = 0x20, // FileOnly
         }
 

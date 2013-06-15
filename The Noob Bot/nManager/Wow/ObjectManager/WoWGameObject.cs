@@ -12,13 +12,13 @@ namespace nManager.Wow.ObjectManager
     {
         public enum GameObjectFlags : int
         {
-            GO_FLAG_IN_USE = 0x00000001,            //disables interaction while animated
-            GO_FLAG_LOCKED = 0x00000002,            //require key, spell, event, etc to be opened. Makes "Locked" appear in tooltip
-            GO_FLAG_INTERACT_COND = 0x00000004,     //cannot interact (condition to interact)
-            GO_FLAG_TRANSPORT = 0x00000008,         //any kind of transport? Object can transport (elevator, boat, car)
-            GO_FLAG_NO_INTERACT = 0x00000010,       //players cannot interact with this go
-            GO_FLAG_NODESPAWN = 0x00000020,         //never despawn, typically for doors, they just change state
-            GO_FLAG_TRIGGERED = 0x00000040,         //typically, summoned objects. Triggered by spell or other events
+            GO_FLAG_IN_USE = 0x00000001, //disables interaction while animated
+            GO_FLAG_LOCKED = 0x00000002, //require key, spell, event, etc to be opened. Makes "Locked" appear in tooltip
+            GO_FLAG_INTERACT_COND = 0x00000004, //cannot interact (condition to interact)
+            GO_FLAG_TRANSPORT = 0x00000008, //any kind of transport? Object can transport (elevator, boat, car)
+            GO_FLAG_NO_INTERACT = 0x00000010, //players cannot interact with this go
+            GO_FLAG_NODESPAWN = 0x00000020, //never despawn, typically for doors, they just change state
+            GO_FLAG_TRIGGERED = 0x00000040, //typically, summoned objects. Triggered by spell or other events
         };
 
         public WoWGameObject(uint address)
@@ -247,15 +247,15 @@ namespace nManager.Wow.ObjectManager
                 {
                     switch (GOType)
                     {
-                        case WoWGameObjectType.Door:        // 0
-                        case WoWGameObjectType.Button:      // 1
+                        case WoWGameObjectType.Door: // 0
+                        case WoWGameObjectType.Button: // 1
                             return Data1;
-                        case WoWGameObjectType.Questgiver:  // 2
-                        case WoWGameObjectType.Chest:       // 3
-                        case WoWGameObjectType.Trap:        // 6  This lock is generaly a check for DISARM_TRAP capacity
-                        case WoWGameObjectType.Goober:      // 10
-                        case WoWGameObjectType.FlagStand:   // 24
-                        case WoWGameObjectType.FlagDrop:    // 26
+                        case WoWGameObjectType.Questgiver: // 2
+                        case WoWGameObjectType.Chest: // 3
+                        case WoWGameObjectType.Trap: // 6  This lock is generaly a check for DISARM_TRAP capacity
+                        case WoWGameObjectType.Goober: // 10
+                        case WoWGameObjectType.FlagStand: // 24
+                        case WoWGameObjectType.FlagDrop: // 26
                             return Data0;
                         default:
                             return 0;
@@ -290,8 +290,8 @@ namespace nManager.Wow.ObjectManager
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_TINKERING: // 12
                 case WoWGameObjectLockType.LOCKTYPE_OPEN_KNEELING: // 13
                     return SkillLine.None;
-                //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
-                //    return SkillLine.Lockpicking;
+                    //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
+                    //    return SkillLine.Lockpicking;
                 default:
                     break;
             }
@@ -374,14 +374,14 @@ namespace nManager.Wow.ObjectManager
                                 int bonus = 0;
                                 if (skill == SkillLine.Herbalism)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(85663) > 0)    // Herbalist's Spade
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(85663) > 0) // Herbalist's Spade
                                         bonus = 10;
                                 }
                                 else if (skill == SkillLine.Mining)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 ||  // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(2901) > 0)     // Mining pick
+                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
                                         bonus = 10;
                                 }
                                 var currentSkillLevel = Skill.GetValue(skill);
@@ -415,7 +415,7 @@ namespace nManager.Wow.ObjectManager
                         return false; // Quest check
 
                     // Refuse Dark Soil if we are below level 90 or we comleted achievement "Friends on the Farm"
-                    if (Entry == 210565 && (ObjectManager.Me.Level  < 90 || Usefuls.IsCompletedAchievement(6552)))
+                    if (Entry == 210565 && (ObjectManager.Me.Level < 90 || Usefuls.IsCompletedAchievement(6552)))
                         return false;
 
                     //if (Entry == 214945) // Onyx Egg. Maybe we should disabled them when exalted with Cloud Serpents

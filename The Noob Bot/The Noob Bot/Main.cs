@@ -25,21 +25,23 @@ namespace The_Noob_Bot
 
         public void SetDefaultCulture(CultureInfo culture)
         {
-            Type type = typeof(CultureInfo);
+            Type type = typeof (CultureInfo);
             try
             {
                 type.InvokeMember("s_userDefaultCulture",
-                            BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                            null,
-                            culture,
-                            new object[] { culture });
+                                  BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                  null,
+                                  culture,
+                                  new object[] {culture});
                 type.InvokeMember("s_userDefaultUICulture",
-                            BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
-                            null,
-                            culture,
-                            new object[] { culture });
+                                  BindingFlags.SetField | BindingFlags.NonPublic | BindingFlags.Static,
+                                  null,
+                                  culture,
+                                  new object[] {culture});
             }
-            catch { }
+            catch
+            {
+            }
         }
 
         public Main()

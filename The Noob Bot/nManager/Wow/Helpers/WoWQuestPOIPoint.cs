@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace nManager.Wow.Helpers
 {
-    class WoWQuestPOIPoint
+    internal class WoWQuestPOIPoint
     {
         private List<Point> _SetPoints;
         private Point _MiddlePoint = new Point(0, 0, 0);
@@ -21,11 +21,11 @@ namespace nManager.Wow.Helpers
             _SetPoints = new List<Point>();
             QuestPOIPointDbcRecord qpPointDbcRecord;
             if (qpPointDbc == null)
-                qpPointDbc = new DBC<QuestPOIPointDbcRecord>((int)Addresses.DBC.QuestPOIPoint);
+                qpPointDbc = new DBC<QuestPOIPointDbcRecord>((int) Addresses.DBC.QuestPOIPoint);
             bool flag = false;
             for (int id = qpPointDbc.MinIndex; id <= qpPointDbc.MaxIndex; id++)
             {
-                qpPointDbcRecord = qpPointDbc.GetRow((int)id);
+                qpPointDbcRecord = qpPointDbc.GetRow((int) id);
                 if (qpPointDbcRecord.Id == id)
                 {
                     if (qpPointDbcRecord.SetId == setId)
@@ -60,11 +60,11 @@ namespace nManager.Wow.Helpers
                 int middleY = 0;
                 for (int i = 0; i < _SetPoints.Count; i++)
                 {
-                    middleX += (int)_SetPoints[i].X;
-                    middleY += (int)_SetPoints[i].Y;
+                    middleX += (int) _SetPoints[i].X;
+                    middleY += (int) _SetPoints[i].Y;
                 }
-                float x = middleX / _SetPoints.Count;
-                float y = middleY / _SetPoints.Count;
+                float x = middleX/_SetPoints.Count;
+                float y = middleY/_SetPoints.Count;
                 float z = PathFinder.GetZPosition(x, y, false);
                 return new Point(x, y, z + 80.0f);
             }
@@ -87,9 +87,9 @@ namespace nManager.Wow.Helpers
                 _MiddlePoint = Center;
                 float curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y, true);
                 float anotherZ = PathFinder.GetZPosition(_MiddlePoint.X + 8, _MiddlePoint.Y + 8, true);
-                if (!IsInside(_MiddlePoint) || curZ == 0 || (uint)(anotherZ - curZ) >= 11 ||
+                if (!IsInside(_MiddlePoint) || curZ == 0 || (uint) (anotherZ - curZ) >= 11 ||
                     TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ),
-                    new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                          new Point(_MiddlePoint.X, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                 {
                     bool found = false;
                     int delta = 0;
@@ -101,9 +101,9 @@ namespace nManager.Wow.Helpers
                         {
                             curZ = PathFinder.GetZPosition(_MiddlePoint.X + delta, _MiddlePoint.Y, true);
                             anotherZ = PathFinder.GetZPosition(_MiddlePoint.X + delta + 8, _MiddlePoint.Y, true);
-                            if (curZ != 0 && (uint)(anotherZ - curZ) < 8 &&
+                            if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ),
-                                new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                                       new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
                                 _MiddlePoint = new Point(_MiddlePoint.X + delta, _MiddlePoint.Y, curZ + 2.0f);
                                 found = true;
@@ -114,9 +114,9 @@ namespace nManager.Wow.Helpers
                         {
                             curZ = PathFinder.GetZPosition(_MiddlePoint.X - delta, _MiddlePoint.Y, true);
                             anotherZ = PathFinder.GetZPosition(_MiddlePoint.X - delta - 8, _MiddlePoint.Y, true);
-                            if (curZ != 0 && (uint)(anotherZ - curZ) < 8 &&
+                            if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ),
-                                new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                                       new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
                                 _MiddlePoint = new Point(_MiddlePoint.X - delta, _MiddlePoint.Y, curZ + 2.0f);
                                 found = true;
@@ -127,9 +127,9 @@ namespace nManager.Wow.Helpers
                         {
                             curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y + delta, true);
                             anotherZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y + delta + 8, true);
-                            if (curZ != 0 && (uint)(anotherZ - curZ) < 8 &&
+                            if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ),
-                                new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                                       new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
                                 _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y + delta, curZ + 2.0f);
                                 found = true;
@@ -140,9 +140,9 @@ namespace nManager.Wow.Helpers
                         {
                             curZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y - delta, true);
                             anotherZ = PathFinder.GetZPosition(_MiddlePoint.X, _MiddlePoint.Y - delta - 8, true);
-                            if (curZ != 0 && (uint)(anotherZ - curZ) < 8 &&
+                            if (curZ != 0 && (uint) (anotherZ - curZ) < 8 &&
                                 !TraceLine.TraceLineGo(new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ),
-                                new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
+                                                       new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ + 50), CGWorldFrameHitFlags.HitTestAll))
                             {
                                 _MiddlePoint = new Point(_MiddlePoint.X, _MiddlePoint.Y - delta, curZ + 2.0f);
                                 found = true;
@@ -165,27 +165,27 @@ namespace nManager.Wow.Helpers
         {
             int c = _SetPoints.Count;
             int hits = 0;
-            int px = (int)p.X;
-            int py = (int)p.Y;
+            int px = (int) p.X;
+            int py = (int) p.Y;
             for (int i = 0; i < c; i++)
             {
-                int x1 = (int)_SetPoints[i].X;
-                int y1 = (int)_SetPoints[i].Y;
-                int x2 = (int)_SetPoints[(i + 1) % c].X;
-                int y2 = (int)_SetPoints[(i + 1) % c].Y;
-                if ((y1 - py) * (y2 - py) < 0)
+                int x1 = (int) _SetPoints[i].X;
+                int y1 = (int) _SetPoints[i].Y;
+                int x2 = (int) _SetPoints[(i + 1)%c].X;
+                int y2 = (int) _SetPoints[(i + 1)%c].Y;
+                if ((y1 - py)*(y2 - py) < 0)
                 {
-                    int ix = x1 + (x2 - x1) * (py - y1) / (y2 - y1);
+                    int ix = x1 + (x2 - x1)*(py - y1)/(y2 - y1);
                     if (ix < px)
                         hits++;
                 }
             }
-            if ((hits % 2) != 0)
+            if ((hits%2) != 0)
                 return true;
 
             return false;
         }
-   
+
         [StructLayout(LayoutKind.Sequential)]
         private struct QuestPOIPointDbcRecord
         {
@@ -194,6 +194,5 @@ namespace nManager.Wow.Helpers
             public int Y;
             public uint SetId;
         }
-
     }
 }

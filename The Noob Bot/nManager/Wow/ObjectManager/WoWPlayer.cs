@@ -172,7 +172,7 @@ namespace nManager.Wow.ObjectManager
                                     petAttack = true;
 
                             if (!isdead && (GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.Combat) || ObjectManager.GetNumberAttackPlayer() > 0))
-                                    return true;
+                                return true;
                             return petAttack;
                         }
                     }
@@ -218,7 +218,7 @@ namespace nManager.Wow.ObjectManager
                             Logging.WriteError("WoWPlayer > GetDurability#1: " + e);
                         }
                     }
-                    return maxDurabilitys == 0 ? 100 : durabilitys * 100 / maxDurabilitys;
+                    return maxDurabilitys == 0 ? 100 : durabilitys*100/maxDurabilitys;
                 }
                 catch (Exception e)
                 {

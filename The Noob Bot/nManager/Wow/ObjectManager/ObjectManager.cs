@@ -1081,14 +1081,14 @@ namespace nManager.Wow.ObjectManager
             {
                 if (u.IsValid && u.IsAlive && !u.NotAttackable && !u.PlayerControlled &&
                     UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
-                    u.GetDistance < (u.AggroDistance * 0.90f) &&
+                    u.GetDistance < (u.AggroDistance*0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
                 {
                     bool r;
                     List<Point> points = PathFinder.FindPath(u.Position, out r);
                     if (!r)
                         points.Add(u.Position);
-                    if (Helpful.Math.DistanceListPoint(points) < u.AggroDistance * 4)
+                    if (Helpful.Math.DistanceListPoint(points) < u.AggroDistance*4)
                         return new WoWUnit(u.GetBaseAddress);
                 }
             }

@@ -5,7 +5,7 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
-    class WoWResearchSite
+    internal class WoWResearchSite
     {
         private ResearchSiteDbcRecord rSiteDbcRecord_0;
 
@@ -14,10 +14,10 @@ namespace nManager.Wow.Helpers
         private WoWResearchSite(string name)
         {
             if (rSiteDbc == null)
-                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int)Addresses.DBC.ResearchSite);
+                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
             for (int id = rSiteDbc.MinIndex; id <= rSiteDbc.MaxIndex; id++)
             {
-                rSiteDbcRecord_0 = rSiteDbc.GetRow((int)id);
+                rSiteDbcRecord_0 = rSiteDbc.GetRow((int) id);
                 if (rSiteDbcRecord_0.Id == id)
                 {
                     string temp = rSiteDbc.String(rSiteDbcRecord_0.NameOffset);
@@ -32,10 +32,10 @@ namespace nManager.Wow.Helpers
         private WoWResearchSite(int reqId)
         {
             if (rSiteDbc == null)
-                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int)Addresses.DBC.ResearchSite);
+                rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
             for (int id = rSiteDbc.MinIndex; id <= rSiteDbc.MaxIndex; id++)
             {
-                rSiteDbcRecord_0 = rSiteDbc.GetRow((int)id);
+                rSiteDbcRecord_0 = rSiteDbc.GetRow((int) id);
                 if (rSiteDbcRecord_0.Id == id && id == reqId)
                 {
                     return;
@@ -61,7 +61,7 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get { return rSiteDbc.String(this.rSiteDbcRecord_0.NameOffset);  }
+            get { return rSiteDbc.String(this.rSiteDbcRecord_0.NameOffset); }
         }
 
         // I don't like to expose this, but did not find another way
@@ -70,16 +70,17 @@ namespace nManager.Wow.Helpers
             get
             {
                 if (rSiteDbc == null)
-                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int)Addresses.DBC.ResearchSite);
+                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
                 return rSiteDbc.MinIndex;
             }
         }
+
         public int MaxIndex
         {
             get
             {
                 if (rSiteDbc == null)
-                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int)Addresses.DBC.ResearchSite);
+                    rSiteDbc = new DBC<ResearchSiteDbcRecord>((int) Addresses.DBC.ResearchSite);
                 return rSiteDbc.MaxIndex;
             }
         }

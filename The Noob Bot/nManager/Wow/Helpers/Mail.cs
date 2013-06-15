@@ -60,7 +60,7 @@ namespace nManager.Wow.Helpers
 
                 scriptLua = scriptLua + "end ";
 
-                MailSendingCompleted = Convert.ToInt32(Lua.LuaDoString(scriptLua, "numAttachments")) <= 0;
+                MailSendingCompleted = Others.ToInt32(Lua.LuaDoString(scriptLua, "numAttachments")) <= 0;
                 System.Threading.Thread.Sleep(Usefuls.Latency + 1000);
             }
             catch (Exception exception)
@@ -77,7 +77,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 return
-                    Convert.ToInt32(
+                    Others.ToInt32(
                         Lua.LuaDoString(
                             "numAttachments = 0; for i=1, ATTACHMENTS_MAX_SEND do local itemName, itemTexture, stackCount, quality = GetSendMailItem(i); if itemName then numAttachments = numAttachments + 1; end end",
                             "numAttachments"));

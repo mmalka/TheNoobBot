@@ -188,8 +188,7 @@ namespace nManager.Helpful
         {
             try
             {
-                Native.SendMessage(mainWindowHandle, Native.DownKeyVk, Convert.ToInt32(key),
-                                   Convert.ToInt32(0));
+                Native.SendMessage(mainWindowHandle, Native.DownKeyVk, (int) key, 0);
             }
             catch (Exception exception)
             {
@@ -207,8 +206,7 @@ namespace nManager.Helpful
         {
             try
             {
-                Native.SendMessage(mainWindowHandle, Native.UpKeyVk, Convert.ToInt32(key),
-                                   Convert.ToInt32(0));
+                Native.SendMessage(mainWindowHandle, Native.UpKeyVk, (int) key, 0);
             }
             catch (Exception exception)
             {
@@ -226,11 +224,9 @@ namespace nManager.Helpful
         {
             try
             {
-                Native.SendMessage(mainWindowHandle, Native.DownKeyVk, Convert.ToInt32(key),
-                                   Convert.ToInt32(0));
+                Native.SendMessage(mainWindowHandle, Native.DownKeyVk, (int) key, 0);
                 Thread.Sleep(100);
-                Native.SendMessage(mainWindowHandle, Native.UpKeyVk, Convert.ToInt32(key),
-                                   Convert.ToInt32(0));
+                Native.SendMessage(mainWindowHandle, Native.UpKeyVk, (int) key, 0);
             }
             catch (Exception exception)
             {

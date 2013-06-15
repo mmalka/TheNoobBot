@@ -94,7 +94,7 @@ namespace nManager.Wow.Helpers
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomStringResult + " = GetNumGroupMembers(\"" + partyType + "\");");
                 string sResult = Lua.GetLocalizedText(randomStringResult);
-                return Convert.ToUInt32(sResult);
+                return Others.ToUInt32(sResult);
             }
             catch (Exception e)
             {
@@ -138,7 +138,7 @@ namespace nManager.Wow.Helpers
                 string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomStringResult + " = IsInGroup(\"" + partyType + "\")");
                 string sResult = Lua.GetLocalizedText(randomStringResult);
-                return Convert.ToBoolean(sResult);
+                return Others.ToBoolean(sResult);
             }
             catch (Exception exception)
             {

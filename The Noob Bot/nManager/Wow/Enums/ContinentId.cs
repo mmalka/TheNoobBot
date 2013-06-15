@@ -723,7 +723,6 @@
 
         ///<summary>LevelDesignLand-DevOnly</summary>
         //LevelDesignLand-DevOnly=1060,
-
         ///<summary>MoguIslandDailyArea</summary>
         MoguIslandDailyArea = 1064,
 

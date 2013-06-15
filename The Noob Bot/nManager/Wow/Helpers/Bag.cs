@@ -48,7 +48,7 @@ namespace nManager.Wow.Helpers
                     {
                         try
                         {
-                            itemId.Add(Convert.ToUInt32(sR.Split(Convert.ToChar(":"))[1]));
+                            itemId.Add(Others.ToUInt32(sR.Split(Convert.ToChar(":"))[1]));
                         }
                         catch (Exception exception)
                         {

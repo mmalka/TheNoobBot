@@ -142,7 +142,7 @@ namespace nManager.Wow.Helpers
                     {
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomString + " = GetMoney()");
-                        return Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
                     }
                     catch (Exception e)
                     {
@@ -227,17 +227,17 @@ namespace nManager.Wow.Helpers
             string bag4Type = Others.GetRandomString(Others.Random(4, 10));
             string randomString = Others.GetRandomString(Others.Random(4, 10));
             Lua.LuaDoString(bag0FreeSlots + "," + bag0Type + " = GetContainerNumFreeSlots(0); " +
-                         bag1FreeSlots + "," + bag1Type + " = GetContainerNumFreeSlots(1); " +
-                         bag2FreeSlots + "," + bag2Type + " = GetContainerNumFreeSlots(2); " +
-                         bag3FreeSlots + "," + bag3Type + " = GetContainerNumFreeSlots(3); " +
-                         bag4FreeSlots + "," + bag4Type + " = GetContainerNumFreeSlots(4); " +
-                         "if(" + bag1Type + " == nil) then " + bag1Type + " = 16777216 end " +
-                         "if(" + bag2Type + " == nil) then " + bag2Type + " = 16777216 end " +
-                         "if(" + bag3Type + " == nil) then " + bag3Type + " = 16777216 end " +
-                         "if(" + bag4Type + " == nil) then " + bag4Type + " = 16777216 end " +
-                         randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
-                         bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
-                         " .. \",\" .. " + bag4Type);
+                            bag1FreeSlots + "," + bag1Type + " = GetContainerNumFreeSlots(1); " +
+                            bag2FreeSlots + "," + bag2Type + " = GetContainerNumFreeSlots(2); " +
+                            bag3FreeSlots + "," + bag3Type + " = GetContainerNumFreeSlots(3); " +
+                            bag4FreeSlots + "," + bag4Type + " = GetContainerNumFreeSlots(4); " +
+                            "if(" + bag1Type + " == nil) then " + bag1Type + " = 16777216 end " +
+                            "if(" + bag2Type + " == nil) then " + bag2Type + " = 16777216 end " +
+                            "if(" + bag3Type + " == nil) then " + bag3Type + " = 16777216 end " +
+                            "if(" + bag4Type + " == nil) then " + bag4Type + " = 16777216 end " +
+                            randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
+                            bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
+                            " .. \",\" .. " + bag4Type);
             var result = Lua.GetLocalizedText(randomString);
             if (!string.IsNullOrEmpty(result) && result.Contains(";"))
             {
@@ -248,8 +248,8 @@ namespace nManager.Wow.Helpers
                         continue;
                     if (t[0] == "0")
                         continue;
-                    var currBagFreeSlots = Convert.ToInt32(t[0]);
-                    var currBagType = (BagType) Convert.ToInt32(t[1]);
+                    var currBagFreeSlots = Others.ToInt32(t[0]);
+                    var currBagType = (BagType) Others.ToInt32(t[1]);
                     if (currBagType.HasFlag(BagType.None))
                         continue;
                     if (currBagType == BagType.Unspecified)
@@ -340,7 +340,7 @@ namespace nManager.Wow.Helpers
                             randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ",
                             randomString);
                         if (Regex.IsMatch(result, @"^[0-9]+$"))
-                            _lastContainerNumFreeSlots = Convert.ToInt32(result);
+                            _lastContainerNumFreeSlots = Others.ToInt32(result);
                         else
                             Logging.WriteError("GetContainerNumFreeSlots failed, \"" + result + "\" returned.");
                         return _lastContainerNumFreeSlots;
@@ -424,7 +424,7 @@ namespace nManager.Wow.Helpers
                         {
                             string localized = Lua.GetLocalizedText(randomString);
                             if (localized != null)
-                                t = Convert.ToInt32(localized);
+                                t = Others.ToInt32(localized);
                             else t = -1;
                         }
                         catch
@@ -465,7 +465,7 @@ namespace nManager.Wow.Helpers
 
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
                         Lua.LuaDoString(randomString + " = UnitUsingVehicle(\"player\");");
-                        _lastResultPlayerUsingVehicle = Convert.ToBoolean(Lua.GetLocalizedText(randomString) == "1");
+                        _lastResultPlayerUsingVehicle = Lua.GetLocalizedText(randomString) == "1";
                         _timePlayerUsingVehicle = new Timer(500);
                         return _lastResultPlayerUsingVehicle;
                     }
@@ -494,9 +494,9 @@ namespace nManager.Wow.Helpers
 
                         _timerLatency = new Timer(30*1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats (); " + randomString +
+                        Lua.LuaDoString("_, _, lagHome, lagWorld = GetNetStats(); " + randomString +
                                         " = lagHome + lagWorld");
-                        _lastLatency = Convert.ToInt32(Lua.GetLocalizedText(randomString));
+                        _lastLatency = Others.ToInt32(Lua.GetLocalizedText(randomString));
                         return _lastLatency;
                     }
                     catch (Exception e)
