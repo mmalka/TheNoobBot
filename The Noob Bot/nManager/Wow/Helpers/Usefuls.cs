@@ -259,65 +259,85 @@ namespace nManager.Wow.Helpers
                     if (bagType == BagType.Unspecified || !currBagType.HasFlag(bagType))
                         continue;
 
-                    if (bagType == BagType.MiningBag)
-                        miningBag += currBagFreeSlots;
-                    if (bagType == BagType.HerbBag)
-                        herbBag += currBagFreeSlots;
-                    if (bagType == BagType.LeatherworkingBag)
-                        leatherworkingBag += currBagFreeSlots;
-                    if (bagType == BagType.GemBag)
-                        gemBag += currBagFreeSlots;
-                    if (bagType == BagType.EnchantingBag)
-                        enchantingBag += currBagFreeSlots;
-                    if (bagType == BagType.InscriptionBag)
-                        inscriptionBag += currBagFreeSlots;
-                    if (bagType == BagType.LureBag)
-                        lureBag += currBagFreeSlots;
-                    if (bagType == BagType.SoulBag)
-                        soulBag += currBagFreeSlots;
-                    if (bagType == BagType.VanityPets)
-                        vanityPets += currBagFreeSlots;
-                    if (bagType == BagType.Unknown)
-                        unknown += currBagFreeSlots;
-                    if (bagType == BagType.AmmoPouch)
-                        ammoPouch += currBagFreeSlots;
-                    if (bagType == BagType.Keyring)
-                        keyring += currBagFreeSlots;
-                    if (bagType == BagType.Quiver)
-                        quiver += currBagFreeSlots;
-                    if (bagType == BagType.EngineeringBag)
-                        engineeringBag += currBagFreeSlots;
+                    switch (bagType)
+                    {
+                        case BagType.MiningBag:
+                            miningBag += currBagFreeSlots;
+                            break;
+                        case BagType.HerbBag:
+                            herbBag += currBagFreeSlots;
+                            break;
+                        case BagType.LeatherworkingBag:
+                            leatherworkingBag += currBagFreeSlots;
+                            break;
+                        case BagType.GemBag:
+                            gemBag += currBagFreeSlots;
+                            break;
+                        case BagType.EnchantingBag:
+                            enchantingBag += currBagFreeSlots;
+                            break;
+                        case BagType.InscriptionBag:
+                            inscriptionBag += currBagFreeSlots;
+                            break;
+                        case BagType.LureBag:
+                            lureBag += currBagFreeSlots;
+                            break;
+                        case BagType.SoulBag:
+                            soulBag += currBagFreeSlots;
+                            break;
+                        case BagType.VanityPets:
+                            vanityPets += currBagFreeSlots;
+                            break;
+                        case BagType.Unknown:
+                            unknown += currBagFreeSlots;
+                            break;
+                        case BagType.AmmoPouch:
+                            ammoPouch += currBagFreeSlots;
+                            break;
+                        case BagType.Keyring:
+                            keyring += currBagFreeSlots;
+                            break;
+                        case BagType.Quiver:
+                            quiver += currBagFreeSlots;
+                            break;
+                        case BagType.EngineeringBag:
+                            engineeringBag += currBagFreeSlots;
+                            break;
+                    }
                 }
-                if (bagType == BagType.Unspecified)
-                    return unspecified;
-                if (bagType == BagType.MiningBag)
-                    return miningBag + unspecified;
-                if (bagType == BagType.HerbBag)
-                    return herbBag + unspecified;
-                if (bagType == BagType.LeatherworkingBag)
-                    return leatherworkingBag + unspecified;
-                if (bagType == BagType.GemBag)
-                    return gemBag + unspecified;
-                if (bagType == BagType.EnchantingBag)
-                    return enchantingBag + unspecified;
-                if (bagType == BagType.InscriptionBag)
-                    return inscriptionBag + unspecified;
-                if (bagType == BagType.LureBag)
-                    return lureBag + unspecified;
-                if (bagType == BagType.SoulBag)
-                    return soulBag + unspecified;
-                if (bagType == BagType.VanityPets)
-                    return vanityPets + unspecified;
-                if (bagType == BagType.Unknown)
-                    return unknown + unspecified;
-                if (bagType == BagType.AmmoPouch)
-                    return ammoPouch + unspecified;
-                if (bagType == BagType.Keyring)
-                    return keyring + unspecified;
-                if (bagType == BagType.Quiver)
-                    return quiver + unspecified;
-                if (bagType == BagType.EngineeringBag)
-                    return engineeringBag + unspecified;
+                switch (bagType)
+                {
+                    case BagType.Unspecified:
+                            return unspecified;
+                    case BagType.MiningBag:
+                            return miningBag + unspecified;
+                    case BagType.HerbBag:
+                            return herbBag + unspecified;
+                    case BagType.LeatherworkingBag:
+                            return leatherworkingBag + unspecified;
+                    case BagType.GemBag:
+                            return gemBag + unspecified;
+                    case BagType.EnchantingBag:
+                            return enchantingBag + unspecified;
+                    case BagType.InscriptionBag:
+                            return inscriptionBag + unspecified;
+                    case BagType.LureBag:
+                            return lureBag + unspecified;
+                    case BagType.SoulBag:
+                            return soulBag + unspecified;
+                    case BagType.VanityPets:
+                            return vanityPets + unspecified;
+                    case BagType.Unknown:
+                            return unknown + unspecified;
+                    case BagType.AmmoPouch:
+                            return ammoPouch + unspecified;
+                    case BagType.Keyring:
+                            return keyring + unspecified;
+                    case BagType.Quiver:
+                            return quiver + unspecified;
+                    case BagType.EngineeringBag:
+                            return engineeringBag + unspecified;
+                }
             }
             return 0;
         }

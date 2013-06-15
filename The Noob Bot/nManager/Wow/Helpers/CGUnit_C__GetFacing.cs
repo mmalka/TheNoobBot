@@ -24,13 +24,11 @@ namespace nManager.Wow.Helpers
                     string[] asm = new[]
                         {
                             "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
+                            (Memory.WowProcess.WowModule +(uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                             "test eax, eax",
                             "je @out",
                             "call " +
-                            (Memory.WowProcess.WowModule +
-                             (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
+                            (Memory.WowProcess.WowModule +(uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayerObj),
                             "test eax, eax",
                             "je @out",
                             "mov ecx, " + baseAddress,
