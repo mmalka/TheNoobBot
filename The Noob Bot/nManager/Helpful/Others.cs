@@ -28,7 +28,7 @@ namespace nManager.Helpful
         {
             try
             {
-                if (string.IsNullOrEmpty(text))
+                if (String.IsNullOrEmpty(text))
                 {
                     return text;
                 }
@@ -41,6 +41,24 @@ namespace nManager.Helpful
                 Logging.WriteError("ToUtf8(string text): " + exception);
             }
             return "";
+        }
+
+        public static bool ToBoolean(string value)
+        {
+            bool res;
+            return bool.TryParse(value, out res) && res;
+        }
+
+        public static int ToInt32(string value)
+        {
+            int res;
+            return int.TryParse(value.Trim(), out res) ? res : 0;
+        }
+
+        public static uint ToUInt32(string value)
+        {
+            uint res;
+            return uint.TryParse(value.Trim(), out res) ? res : 0;
         }
 
         public static string[] TextToArrayByLine(string text)
@@ -221,7 +239,7 @@ namespace nManager.Helpful
             }
         }
 
-        public static List<String> LUAVariableToDestruct = new List<string>();
+        public static List<string> LUAVariableToDestruct = new List<string>();
 
         public static void LUAGlobalVarDestructor()
         {
@@ -239,7 +257,7 @@ namespace nManager.Helpful
                 }
                 LUAVariableToDestruct.Clear();
             }
-            if (string.IsNullOrWhiteSpace(toExec)) return;
+            if (String.IsNullOrWhiteSpace(toExec)) return;
             Thread.Sleep(50); // Gives times to the latest LUA Var to be used if recently added to the list.
             Lua.LuaDoString(toExec);
         }
@@ -302,7 +320,7 @@ namespace nManager.Helpful
             try
             {
                 var r = new Random(unchecked((int) DateTime.Now.Ticks));
-                return r.Next(from, to);
+                return r.Next(@from, to);
             }
             catch (Exception exception)
             {
@@ -468,7 +486,7 @@ namespace nManager.Helpful
         /// <param name ="pathDirectory"></param>
         /// <param name ="searchPattern"></param>
         /// <returns></returns>
-        public static List<String> GetFilesDirectory(string pathDirectory, string searchPattern = "")
+        public static List<string> GetFilesDirectory(string pathDirectory, string searchPattern = "")
         {
             string path = "";
             if (!pathDirectory.Contains(":"))
@@ -481,8 +499,7 @@ namespace nManager.Helpful
                         Path.GetFileName(subfolder);
                     return name != null
                                ? name.ToString(
-                                   CultureInfo
-                                       .InvariantCulture)
+                                   CultureInfo.InvariantCulture)
                                : null;
                 }).ToList();
         }
@@ -500,7 +517,7 @@ namespace nManager.Helpful
             string result;
             try
             {
-                if (!string.IsNullOrWhiteSpace(data))
+                if (!String.IsNullOrWhiteSpace(data))
                     url = url + "?" + data;
                 var httpWRequest = (HttpWebRequest) WebRequest.Create(url);
                 httpWRequest.UserAgent = "TheNoobBot";
@@ -702,8 +719,9 @@ namespace nManager.Helpful
             {
                 var resulMb =
                     MessageBox.Show(
-                        Translate.Get(Translate.Id
-                                               .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
+                        Translate.Get(
+                            Translate.Id
+                                     .Visual_C________redistributable_X___package_is_requis_for_this_tnb__It_is_not_installed_on_your_computer__do_you_want_install_this_now___If_this_is_not_installed_on_your_computer_the_tnb_don_t_work_correctly),
                         "Visual C++ 2010 redistributable X86 " + Translate.Get(Translate.Id.Requis),
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
@@ -750,7 +768,7 @@ namespace nManager.Helpful
                 string chaineEncrypt = "";
                 string chaine = text;
                 byte[] test = Encoding.UTF8.GetBytes(chaine);
-                int key = Convert.ToInt32(Convert.ToInt32(HardDriveID()));
+                int key = HardDriveID();
                 for (int i = 0; i <= test.Length - 1; i++)
                 {
                     if (chaineEncrypt != "")
@@ -778,12 +796,12 @@ namespace nManager.Helpful
             try
             {
                 string[] texte2 = encryptText.Split(Convert.ToChar("-"));
-                var listBytes = new List<Byte>();
-                int key = Convert.ToInt32(Convert.ToInt32(HardDriveID()));
+                var listBytes = new List<byte>();
+                int key = HardDriveID();
 
                 for (int i = 0; i <= texte2.Length - 1; i++)
                 {
-                    listBytes.Add(Convert.ToByte(Convert.ToInt32(texte2[i]) - key - 15));
+                    listBytes.Add(Convert.ToByte(ToInt32(texte2[i]) - key - 15));
                 }
                 byte[] arrayBytes = listBytes.ToArray();
                 return Encoding.UTF8.GetString(arrayBytes, 0, arrayBytes.Length);
