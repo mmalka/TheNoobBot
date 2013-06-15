@@ -255,8 +255,9 @@ namespace nManager.Wow.Helpers
                     if (currBagType == BagType.Unspecified)
                     {
                         unspecified += currBagFreeSlots;
+                        continue;
                     }
-                    if (bagType == BagType.Unspecified || !currBagType.HasFlag(bagType))
+                    if (!currBagType.HasFlag(bagType))
                         continue;
 
                     switch (bagType)
