@@ -520,11 +520,7 @@ namespace nManager.Wow.MemoryClass
         {
             try
             {
-                uint pJump = 0;
-                if (D3D.IsD3D11(processId))
-                    pJump = D3D.D3D11Adresse();
-                else
-                    pJump = D3D.D3D9Adresse(processId);
+                uint pJump = D3D.IsD3D11(processId) ? D3D.D3D11Adresse() : D3D.D3D9Adresse(processId);
                 var memory = new BlackMagic(processId);
                 return memory.ReadByte(pJump) == 0xE9;
             }

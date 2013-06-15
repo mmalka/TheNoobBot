@@ -101,7 +101,7 @@ namespace nManager.Helpful.Forms.UserControls
         {
             try
             {
-                Logging.LogType flag = Logging.LogType.None;
+                var flag = Logging.LogType.None;
 
                 if (normalCb.Value)
                     flag |= Logging.LogType.S;

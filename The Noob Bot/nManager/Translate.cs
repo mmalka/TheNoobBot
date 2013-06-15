@@ -31,10 +31,8 @@ namespace nManager
             _translate = new Language();
 
             _translate =
-                XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\" + fileName);
-
-            if (_translate == null)
-                _translate = XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
+                XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\" + fileName) ??
+                XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
 
             return true;
         }

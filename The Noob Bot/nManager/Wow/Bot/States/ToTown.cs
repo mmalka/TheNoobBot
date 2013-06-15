@@ -379,37 +379,36 @@ namespace nManager.Wow.Bot.States
             if (listNPCs.Count > 0)
             {
                 listNPCs.Sort(
-                    delegate(Npc n1, Npc n2)
-                        { return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)); });
+                    (n1, n2) => n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)));
                 foreach (var npc in listNPCs)
                 {
-                    Npc Target = npc;
+                    Npc target = npc;
                     //Start target finding based on Seller.
-                    uint baseAddress = MovementManager.FindTarget(ref Target);
+                    uint baseAddress = MovementManager.FindTarget(ref target);
                     if (MovementManager.InMovement)
                         return;
-                    if (baseAddress == 0 && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
-                        NpcDB.DelNpc(Target);
+                    if (baseAddress == 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
+                        NpcDB.DelNpc(target);
                     else
                     {
                         DoProspectingInTown();
                         DoMillingInTown();
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
-                        if (Target.SelectGossipOption != 0)
-                            Lua.LuaDoString("SelectGossipOption(" + Target.SelectGossipOption + ")");
+                        if (target.SelectGossipOption != 0)
+                            Lua.LuaDoString("SelectGossipOption(" + target.SelectGossipOption + ")");
                         Thread.Sleep(1000);
 
                         // NPC Repairer
-                        if (Target.Type == Npc.NpcType.Repair)
+                        if (target.Type == Npc.NpcType.Repair)
                         {
-                            Logging.Write("Repair items from " + Target.Name + " (" + Target.Entry + ").");
+                            Logging.Write("Repair items from " + target.Name + " (" + target.Entry + ").");
                             Vendor.RepairAllItems();
                             Thread.Sleep(1000);
                         }
                         // End NPC Repairer
 
-                        if (Target.Type == Npc.NpcType.Vendor)
+                        if (target.Type == Npc.NpcType.Vendor)
                         {
                             // NPC Buyer
                             var vQuality = new List<WoWItemQuality>();
@@ -425,12 +424,12 @@ namespace nManager.Wow.Bot.States
                                 vQuality.Add(WoWItemQuality.Epic);
                             Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
                                              nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
-                            Logging.Write("Selling items to " + Target.Name + " (" + Target.Entry + ").");
+                            Logging.Write("Selling items to " + target.Name + " (" + target.Entry + ").");
                             Thread.Sleep(3000);
                             // End NPC Buyer
 
                             // NPC Seller
-                            Logging.Write("Buying beverages and food from " + Target.Name + " (" + Target.Entry + ").");
+                            Logging.Write("Buying beverages and food from " + target.Name + " (" + target.Entry + ").");
                             for (int i = 0; i < 10 && NeedFoodSupplies(); i++)
                             {
                                 Vendor.BuyItem(nManagerSetting.CurrentSetting.FoodName, 1);

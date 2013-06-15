@@ -54,10 +54,7 @@ namespace Profiles_Converters.Converters
                             {
                                 _profile.GrinderZones.Add(new GrinderZone {Hotspots = true});
                                 XElement child2;
-                                if (subProfile)
-                                    child2 = new XElement(child);
-                                else
-                                    child2 = new XElement(xml);
+                                child2 = subProfile ? new XElement(child) : new XElement(xml);
 
                                 foreach (XElement childSubProfile in child2.Elements())
                                 {
@@ -178,19 +175,11 @@ namespace Profiles_Converters.Converters
                                         {
                                             if (childVendors.Name.ToString().ToLower() == "Blackspot".ToLower())
                                             {
-                                                XAttribute x = childVendors.Attribute("X");
-                                                if (x == null)
-                                                    x = childVendors.Attribute("x");
-                                                XAttribute y = childVendors.Attribute("Y");
-                                                if (y == null)
-                                                    y = childVendors.Attribute("y");
-                                                XAttribute z = childVendors.Attribute("Z");
-                                                if (z == null)
-                                                    z = childVendors.Attribute("z");
+                                                XAttribute x = childVendors.Attribute("X") ?? childVendors.Attribute("x");
+                                                XAttribute y = childVendors.Attribute("Y") ?? childVendors.Attribute("y");
+                                                XAttribute z = childVendors.Attribute("Z") ?? childVendors.Attribute("z");
 
-                                                XAttribute r = childVendors.Attribute("Radius");
-                                                if (r == null)
-                                                    r = childVendors.Attribute("radius");
+                                                XAttribute r = childVendors.Attribute("Radius") ?? childVendors.Attribute("radius");
 
                                                 if (x != null)
                                                 {
@@ -289,15 +278,9 @@ namespace Profiles_Converters.Converters
                                                 {
                                                     if (childHotspots.Name == "Hotspot")
                                                     {
-                                                        XAttribute x = childHotspots.Attribute("X");
-                                                        if (x == null)
-                                                            x = childHotspots.Attribute("x");
-                                                        XAttribute y = childHotspots.Attribute("Y");
-                                                        if (y == null)
-                                                            y = childHotspots.Attribute("y");
-                                                        XAttribute z = childHotspots.Attribute("Z");
-                                                        if (z == null)
-                                                            z = childHotspots.Attribute("z");
+                                                        XAttribute x = childHotspots.Attribute("X") ?? childHotspots.Attribute("x");
+                                                        XAttribute y = childHotspots.Attribute("Y") ?? childHotspots.Attribute("y");
+                                                        XAttribute z = childHotspots.Attribute("Z") ?? childHotspots.Attribute("z");
 
                                                         if (x != null)
                                                         {

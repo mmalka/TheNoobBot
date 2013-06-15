@@ -76,7 +76,7 @@ namespace nManager.Wow.MemoryClass.Magic
             }
             catch
             {
-                byte[] numbers = new byte[nSize];
+                var numbers = new byte[nSize];
                 return numbers;
             }
             finally

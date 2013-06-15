@@ -25,7 +25,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             lWindows = new List<IntPtr>();
 
-            Imports.EnumWindowsProc callback = new Imports.EnumWindowsProc(EnumWindowsCallback);
+            var callback = new Imports.EnumWindowsProc(EnumWindowsCallback);
             return Imports.EnumWindows(callback, IntPtr.Zero);
         }
 
@@ -49,7 +49,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns an array of window handles.</returns>
         public static IntPtr[] EnumMainWindows()
         {
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
 
             foreach (System.Diagnostics.Process proc in procs)
@@ -69,7 +69,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (Classname == null) Classname = String.Empty;
             if (WindowTitle == null) WindowTitle = String.Empty;
 
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
 
             lock (lWindowsLock)
             {
@@ -120,7 +120,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (Classname == null) Classname = String.Empty;
             if (WindowTitle == null) WindowTitle = String.Empty;
 
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
 
             foreach (System.Diagnostics.Process proc in procs)
@@ -165,7 +165,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (Classname == null) Classname = String.Empty;
             if (WindowTitle == null) WindowTitle = String.Empty;
 
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
 
             lock (lWindowsLock)
             {
@@ -216,7 +216,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (Classname == null) Classname = String.Empty;
             if (WindowTitle == null) WindowTitle = String.Empty;
 
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcesses();
 
             foreach (System.Diagnostics.Process proc in procs)
@@ -276,7 +276,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>ProcessName may contain the trailing extension or not, though it would be less problematic if any file extension were omitted (i.e. '.exe').</remarks>
         public static IntPtr[] FindWindowsByProcessName(string ProcessName)
         {
-            List<IntPtr> hWnds = new List<IntPtr>();
+            var hWnds = new List<IntPtr>();
 
             if (ProcessName.EndsWith(".exe"))
                 ProcessName = ProcessName.Remove(ProcessName.Length - 4, 4);

@@ -282,14 +282,7 @@ namespace nManager.Wow.Helpers
                             Interact.InteractWith(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             MovementManager.StopMove();
                             // Switch Target
-                            if (ObjectManager.ObjectManager.Target.Guid == 0)
-                            {
-                                targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
-                            }
-                            else
-                            {
-                                targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
-                            }
+                            targetNpc = new WoWUnit(ObjectManager.ObjectManager.Target.GetBaseAddress);
                             goto figthStart;
                         }
 

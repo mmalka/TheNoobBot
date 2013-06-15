@@ -1883,8 +1883,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<UInt32> idBuffs = new List<UInt32>();
-                idBuffs.Add(idBuff);
+                var idBuffs = new List<UInt32> {idBuff};
                 return BuffManager.AuraStack(BaseAddress, idBuffs);
             }
             catch (Exception e)

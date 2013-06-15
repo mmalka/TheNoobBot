@@ -289,10 +289,10 @@ namespace nManager.Wow.Helpers
                             Bot.Tasks.MountTask.Mount(false);
                         if (Usefuls.IsFlying)
                         {
-                            List<Point> tmpList = new List<Point>();
+                            var tmpList = new List<Point>();
                             for (var i = 0; i < _points.Count; i++)
                             {
-                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
+                                var pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
                                 tmpList.Add(pt);
                             }
                             _points = tmpList;
@@ -574,7 +574,7 @@ namespace nManager.Wow.Helpers
                 {
                     float dx = 1.5f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
                     float dy = 1.5f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
-                    Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
+                    var inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                                               ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                                                   ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
@@ -1413,7 +1413,7 @@ namespace nManager.Wow.Helpers
 
         public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {
-            Random rand = new Random();
+            var rand = new Random();
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
             WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             asMoved = false;

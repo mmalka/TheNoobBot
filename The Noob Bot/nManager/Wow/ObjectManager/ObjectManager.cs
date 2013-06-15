@@ -148,8 +148,8 @@ namespace nManager.Wow.ObjectManager
                         (uint) Addresses.ObjectManager.objectManager);
 
                 // These are 'hard coded' in the client. I don't remember the last time they changed.
-                uint firstObject = (uint) Addresses.ObjectManager.firstObject;
-                uint nextObject = (uint) Addresses.ObjectManager.nextObject;
+                const uint firstObject = (uint) Addresses.ObjectManager.firstObject;
+                const uint nextObject = (uint) Addresses.ObjectManager.nextObject;
                 ulong localPlayerGuid =
                     Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
@@ -350,10 +350,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
-                List<WoWGameObject> retList = new List<WoWGameObject>();
+                var retList = new List<WoWGameObject>();
                 foreach (WoWObject a in tempsListObj)
                 {
-                    WoWGameObject b = new WoWGameObject(a.GetBaseAddress);
+                    var b = new WoWGameObject(a.GetBaseAddress);
                     if (b.GOType == reqtype)
                         retList.Add(b);
                 }

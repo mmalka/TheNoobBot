@@ -35,7 +35,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint FindPattern(string szPattern, string szMask, char Delimiter)
         {
             string[] saPattern = szPattern.Split(Delimiter);
-            byte[] bPattern = new byte[saPattern.Length];
+            var bPattern = new byte[saPattern.Length];
 
             for (int i = 0; i < bPattern.Length; i++)
                 bPattern[i] = Convert.ToByte(saPattern[i], 0x10);
@@ -56,7 +56,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint FindPattern(ProcessModule pModule, string szPattern, string szMask, char Delimiter)
         {
             string[] saPattern = szPattern.Split(Delimiter);
-            byte[] bPattern = new byte[saPattern.Length];
+            var bPattern = new byte[saPattern.Length];
 
             for (int i = 0; i < bPattern.Length; i++)
                 bPattern[i] = Convert.ToByte(saPattern[i], 0x10);
@@ -86,7 +86,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint FindPattern(ProcessModuleCollection pModules, string szPattern, string szMask, char Delimiter)
         {
             string[] saPattern = szPattern.Split(Delimiter);
-            byte[] bPattern = new byte[saPattern.Length];
+            var bPattern = new byte[saPattern.Length];
 
             for (int i = 0; i < bPattern.Length; i++)
                 bPattern[i] = Convert.ToByte(saPattern[i], 0x10);
@@ -139,7 +139,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint FindPattern(uint dwStart, int nSize, string szPattern, string szMask, char Delimiter)
         {
             string[] saPattern = szPattern.Split(Delimiter);
-            byte[] bPattern = new byte[saPattern.Length];
+            var bPattern = new byte[saPattern.Length];
 
             for (int i = 0; i < bPattern.Length; i++)
                 bPattern[i] = Convert.ToByte(saPattern[i], 0x10);

@@ -25,13 +25,7 @@ namespace nManager.Wow.Bot.States
             get { return "Archaeology"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         private List<int> BlackListDigsites = new List<int>();
         private int LastZone = 0;

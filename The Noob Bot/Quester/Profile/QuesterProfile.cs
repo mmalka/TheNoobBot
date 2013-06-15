@@ -21,17 +21,14 @@ namespace Quester.Profile
         {
             int exp = (int) ObjectManager.Me.WowRace - 1;
             //exp = 1 - 1; // Human
-            uint mBitRace = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
+            uint mBitRace = exp >= 0 ? (uint) Math.Pow(2, exp) : 0;
             exp = (int) ObjectManager.Me.WowClass - 1;
             //exp = 2 - 1; // Paladin
-            uint mBitClass = exp >= 0 ? (uint) System.Math.Pow(2, exp) : 0;
+            uint mBitClass = exp >= 0 ? (uint) Math.Pow(2, exp) : 0;
 
-            Quests.RemoveAll(delegate(Quest quest)
-                {
-                    return ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
-                            (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
-                           );
-                }
+            Quests.RemoveAll(quest => ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
+                                       (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
+                                      )
                 );
         }
 
@@ -76,21 +73,23 @@ namespace Quester.Profile
             if (obj == null)
                 return 1;
 
-            Quest otherQuest = obj as Quest;
-            if (otherQuest.ItemPickUp != 0)
-                if (this.ItemPickUp != 0)
+            var otherQuest = obj as Quest;
+            if (otherQuest != null && otherQuest.ItemPickUp != 0)
+                if (ItemPickUp != 0)
                     return 0;
                 else
                     return 1;
-            else if (this.ItemPickUp != 0)
+            if (ItemPickUp != 0)
                 return -1;
 
-            Npc currentNpc = Quester.Bot.Bot.FindQuesterById(PickUp);
-            Npc otherNpc = Quester.Bot.Bot.FindQuesterById(otherQuest.PickUp);
-            if (otherNpc.Position != null)
-                return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
-            else
+            Npc currentNpc = Bot.Bot.FindQuesterById(PickUp);
+            if (otherQuest != null)
+            {
+                Npc otherNpc = Bot.Bot.FindQuesterById(otherQuest.PickUp);
+                if (otherNpc.Position != null)
+                    return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
                 throw new ArgumentException("Object is not a Quest");
+            }
         }
     }
 

@@ -485,15 +485,14 @@ namespace nManager.Wow.MemoryClass.Magic
         public string ReadASCIIString(uint dwAddress)
         {
             string retTemp = "";
-            byte[] Buf = new Byte[1 - 1];
-            Buf = ReadBytes(dwAddress, 1);
+            byte[] buf = ReadBytes(dwAddress, 1);
             int i = 0;
-            while (Buf[0] != 0 && i <= 200)
+            while (buf[0] != 0 && i <= 200)
             {
                 i++;
-                retTemp = retTemp + Convert.ToChar(Buf[0]);
+                retTemp = retTemp + Convert.ToChar(buf[0]);
                 dwAddress = dwAddress + 1;
-                Buf = ReadBytes(dwAddress, 1);
+                buf = ReadBytes(dwAddress, 1);
                 //Thread.Sleep(1);
             }
             return retTemp;
@@ -502,16 +501,15 @@ namespace nManager.Wow.MemoryClass.Magic
         public String ReadUTF8String(uint dwAddress)
         {
             string retTemp = "";
-            byte[] Buf = new Byte[1 - 1];
-            byte[] listByte = new byte[201];
-            Buf = ReadBytes(dwAddress, 200);
+            var listByte = new byte[201];
+            byte[] buf = ReadBytes(dwAddress, 200);
             int i = 0;
-            while (Buf[0] != 0 && i <= 200)
+            while (buf[0] != 0 && i <= 200)
             {
-                listByte[i] = Buf[0];
+                listByte[i] = buf[0];
                 i++;
                 dwAddress = dwAddress + 1;
-                Buf = ReadBytes(dwAddress, 1);
+                buf = ReadBytes(dwAddress, 1);
                 //Thread.Sleep(1);
             }
             retTemp = Others.ToUtf8(listByte);

@@ -95,7 +95,7 @@ namespace nManager.Wow.Bot.Tasks
             {
                 if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
-                    Enums.ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
+                    var cont = (Enums.ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
                     if (_wisdom4Winds && cont == Enums.ContinentId.Pandaria)
@@ -112,11 +112,11 @@ namespace nManager.Wow.Bot.Tasks
                         return MountCapacity.Fly;
 
                     // We are in Outland and Expert Flying or better
-                    Spell ExpertRider = new Spell(34090);
-                    Spell ArtisanRider = new Spell(34091);
-                    Spell MasterRider = new Spell(90265);
+                    var expertRider = new Spell(34090);
+                    var artisanRider = new Spell(34091);
+                    var masterRider = new Spell(90265);
                     if (cont == Enums.ContinentId.Outland &&
-                        (ExpertRider.KnownSpell || ArtisanRider.KnownSpell || MasterRider.KnownSpell))
+                        (expertRider.KnownSpell || artisanRider.KnownSpell || masterRider.KnownSpell))
                         return MountCapacity.Fly;
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"

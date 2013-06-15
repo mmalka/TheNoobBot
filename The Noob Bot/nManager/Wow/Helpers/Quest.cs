@@ -185,14 +185,14 @@ namespace nManager.Wow.Helpers
                                                      Descriptors.StartDescriptors);
                 uint addressQL = descriptorsArray + ((uint) Descriptors.PlayerFields.QuestLog*Descriptors.Multiplicator);
 
-                List<int> list = new List<int>();
+                var list = new List<int>();
                 for (int index = 0; index < 50; ++index)
                 {
-                    Quest.PlayerQuest playerQuest =
-                        (Quest.PlayerQuest)
+                    var playerQuest =
+                        (PlayerQuest)
                         Memory.WowMemory.Memory.ReadObject(
-                            (uint) (addressQL + (Marshal.SizeOf(typeof (Quest.PlayerQuest))*index)),
-                            typeof (Quest.PlayerQuest));
+                            (uint) (addressQL + (Marshal.SizeOf(typeof (PlayerQuest))*index)),
+                            typeof (PlayerQuest));
                     if (playerQuest.ID > 0)
                     {
                         list.Add(playerQuest.ID);

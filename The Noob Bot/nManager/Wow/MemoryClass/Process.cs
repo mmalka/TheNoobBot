@@ -44,19 +44,13 @@ namespace nManager.Wow.MemoryClass
         /// </value>
         public IntPtr MainWindowHandle { get; internal set; }
 
-        private int _processId = 0;
-
         /// <summary>
         /// Gets or sets the process id.
         /// </summary>
         /// <value>
         /// The process id.
         /// </value>
-        public int ProcessId
-        {
-            get { return _processId; }
-            set { _processId = value; }
-        }
+        public int ProcessId { get; set; }
 
         /// <summary>
         /// Return a list of process.

@@ -54,7 +54,7 @@ namespace Profiles_Converters.Converters
                             if (tempsPosition.Replace(" ", "").Length > 0)
                             {
                                 var positionTempsString =
-                                    tempsPosition.Replace("  ", " ").Split(System.Convert.ToChar(" "));
+                                    tempsPosition.Replace("  ", " ").Split(' ');
                                 if (positionTempsString.Length == 3)
                                 {
                                     try
@@ -140,24 +140,18 @@ namespace Profiles_Converters.Converters
                             {
                                 if (childHotspots.Name.ToString().ToLower() == "Hotspot".ToLower())
                                 {
-                                    XAttribute x = childHotspots.Attribute("X");
-                                    if (x == null)
-                                        x = childHotspots.Attribute("x");
-                                    XAttribute y = childHotspots.Attribute("Y");
-                                    if (y == null)
-                                        y = childHotspots.Attribute("y");
-                                    XAttribute z = childHotspots.Attribute("Z");
-                                    if (z == null)
-                                        z = childHotspots.Attribute("z");
+                                    XAttribute x = childHotspots.Attribute("X") ?? childHotspots.Attribute("x");
+                                    XAttribute y = childHotspots.Attribute("Y") ?? childHotspots.Attribute("y");
+                                    XAttribute z = childHotspots.Attribute("Z") ?? childHotspots.Attribute("z");
                                     float xF;
-                                    float yF;
-                                    float zF;
                                     if (float.TryParse(x.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
                                                        out xF))
                                     {
+                                        float yF;
                                         if (float.TryParse(y.Value, NumberStyles.Number, CultureInfo.InvariantCulture,
                                                            out yF))
                                         {
+                                            float zF;
                                             if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
                                             {
                                                 var pT = new Point(xF, yF, zF, "Flying");

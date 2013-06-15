@@ -12,13 +12,7 @@ namespace Grinder.Bot
             get { return "SelectProfileState"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         private uint _lastLevel;
 

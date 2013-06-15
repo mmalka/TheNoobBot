@@ -61,7 +61,7 @@ namespace Grinder.Bot
                         blackListDic.Add(b.Position, b.Radius);
                     }
                 }
-                nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Add Npc
                 foreach (var zone in Profile.GrinderZones)

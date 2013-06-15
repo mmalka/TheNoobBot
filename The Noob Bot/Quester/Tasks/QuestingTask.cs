@@ -261,11 +261,11 @@ namespace Quester.Tasks
             {
                 // Count mobs killed by the defense system
                 List<int> entryList = questObjective.Entry;
-                int alreadyKilled = Quest.KilledMobsToCount.FindAll(delegate(int val) { return entryList.Contains(val); }).Count;
+                int alreadyKilled = Quest.KilledMobsToCount.FindAll(entryList.Contains).Count;
                 if (alreadyKilled > 0)
                 {
                     questObjective.CurrentCount += alreadyKilled;
-                    Quest.KilledMobsToCount.RemoveAll(delegate(int val) { return entryList.Contains(val); });
+                    Quest.KilledMobsToCount.RemoveAll(entryList.Contains);
                     return;
                 }
 
@@ -385,7 +385,7 @@ namespace Quester.Tasks
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
-                        Point pos = new Point();
+                        var pos = new Point();
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -479,7 +479,7 @@ namespace Quester.Tasks
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryInteractWith}));
-                        Point pos = new Point();
+                        Point pos;
                         uint baseAddress;
                         if (node.IsValid)
                         {
@@ -537,7 +537,7 @@ namespace Quester.Tasks
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
-                        Point pos = new Point();
+                        var pos = new Point();
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -578,7 +578,7 @@ namespace Quester.Tasks
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                         }
-                        Spell t = new Spell((uint) questObjective.UseSpellId);
+                        var t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
                             while (!t.IsSpellUsable)
@@ -720,7 +720,7 @@ namespace Quester.Tasks
                         var unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
-                        Point pos = new Point();
+                        var pos = new Point();
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -833,7 +833,7 @@ namespace Quester.Tasks
                     else
                     {
                         MountTask.DismountMount(true);
-                        Spell runeforging = new Spell("Runeforging");
+                        var runeforging = new Spell("Runeforging");
                         Lua.RunMacroText("/cast " + runeforging.NameInGame);
                         Thread.Sleep(500);
                         Lua.RunMacroText("/script DoTradeSkill(GetTradeSkillSelectionIndex())");
@@ -854,14 +854,13 @@ namespace Quester.Tasks
             if (questObjective.Objective == Objective.ApplyBuff)
             {
                 List<WoWUnit> allUnits = ObjectManager.GetWoWUnitByEntry(questObjective.Entry);
-                WoWUnit wowUnit;
-                List<WoWUnit> allProperUnits = new List<WoWUnit>();
+                var allProperUnits = new List<WoWUnit>();
                 foreach (WoWUnit unit in allUnits)
                 {
                     if (!unit.HaveBuff((uint) questObjective.BuffId))
                         allProperUnits.Add(unit);
                 }
-                wowUnit = ObjectManager.GetNearestWoWUnit(allProperUnits);
+                WoWUnit wowUnit = ObjectManager.GetNearestWoWUnit(allProperUnits);
 
                 if (wowUnit.IsValid && !MovementManager.InMovement)
                 {

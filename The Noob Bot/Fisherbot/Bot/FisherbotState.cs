@@ -19,13 +19,7 @@ namespace Fisherbot.Bot
             get { return "FisherbotState"; }
         }
 
-        public override int Priority
-        {
-            get { return _priority; }
-            set { _priority = value; }
-        }
-
-        private int _priority;
+        public override int Priority { get; set; }
 
         private WoWGameObject _node;
         private const float DistanceMarge = 19f;
@@ -216,10 +210,7 @@ namespace Fisherbot.Bot
                 FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.useLure,
                                      FisherbotSetting.CurrentSetting.lureName);
 
-            if (FisherbotSetting.CurrentSetting.fishSchool)
-                timer = new nManager.Helpful.Timer(2*60*1000);
-            else
-                timer = new nManager.Helpful.Timer(1000*120);
+            timer = FisherbotSetting.CurrentSetting.fishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(1000*120);
             while ((_node.IsValid || !FisherbotSetting.CurrentSetting.fishSchool) && Products.IsStarted &&
                    !ObjectManager.Me.IsDeadMe &&
                    !ObjectManager.Me.InCombat && !timer.IsReady &&

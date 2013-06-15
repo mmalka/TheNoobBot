@@ -284,8 +284,7 @@ namespace nManager.Wow.Helpers
                     float offset2 = diameter*(float) System.Math.Cos(angle);
                     to = new Point(fishingHole.X + offset1, fishingHole.Y - offset2, fishingHole.Z);
                     to.Z = to.Z - 0.8f;
-                    from = new Point(to);
-                    from.Z = fishingHole.Z + 20.0f;
+                    from = new Point(to) {Z = fishingHole.Z + 20.0f};
                     res = TraceLine.TraceLineGo(from, to, hitFlags);
                     if (res)
                     {
@@ -299,8 +298,7 @@ namespace nManager.Wow.Helpers
 
                     to = new Point(fishingHole.X + offset2, fishingHole.Y + offset1, fishingHole.Z);
                     to.Z = to.Z - 1.0f;
-                    from = new Point(to);
-                    from.Z = fishingHole.Z + 20.0f;
+                    from = new Point(to) {Z = fishingHole.Z + 20.0f};
                     res = TraceLine.TraceLineGo(from, to, hitFlags);
                     if (res)
                     {
@@ -313,8 +311,7 @@ namespace nManager.Wow.Helpers
                     }
                     to = new Point(fishingHole.X - offset1, fishingHole.Y + offset2, fishingHole.Z);
                     to.Z = to.Z - 1.0f;
-                    from = new Point(to);
-                    from.Z = fishingHole.Z + 20.0f;
+                    from = new Point(to) {Z = fishingHole.Z + 20.0f};
                     res = TraceLine.TraceLineGo(from, to, hitFlags);
                     if (res)
                     {
@@ -327,8 +324,7 @@ namespace nManager.Wow.Helpers
                     }
                     to = new Point(fishingHole.X - offset2, fishingHole.Y - offset1, fishingHole.Z);
                     to.Z = to.Z - 1.0f;
-                    from = new Point(to);
-                    from.Z = fishingHole.Z + 20.0f;
+                    from = new Point(to) {Z = fishingHole.Z + 20.0f};
                     res = TraceLine.TraceLineGo(from, to, hitFlags);
                     if (res)
                     {
@@ -342,7 +338,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            Point pt = new Point(0, 0, 0, "invalid");
+            var pt = new Point(0, 0, 0, "invalid");
             return pt;
         }
     }

@@ -92,8 +92,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the context of the thread.  If failure, sets CONTEXT.ContextFlags to zero.</returns>
         public static CONTEXT GetThreadContext(IntPtr hThread, uint ContextFlags)
         {
-            CONTEXT ctx = new CONTEXT();
-            ctx.ContextFlags = ContextFlags;
+            var ctx = new CONTEXT {ContextFlags = ContextFlags};
 
             if (!Imports.GetThreadContext(hThread, ref ctx))
                 ctx.ContextFlags = 0;

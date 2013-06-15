@@ -333,7 +333,7 @@ namespace Battlegrounder.Profile
                 return true;
             BattlegrounderZone bgz =
                 _profile.BattlegrounderZones.Find(
-                    delegate(BattlegrounderZone bgzz) { return bgzz.Name == ZoneList.SelectedItem.ToString(); });
+                    bgzz => bgzz.Name == ZoneList.SelectedItem.ToString());
             if (bgz == null || Battleground.GetCurrentBattleground().ToString() != bgz.BattlegroundId)
             {
                 MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.CantRecordInWrongZone));
@@ -371,7 +371,7 @@ namespace Battlegrounder.Profile
                 {
                     if (
                         _profile.BattlegrounderZones.Find(
-                            delegate(BattlegrounderZone bgz) { return bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString(); }) !=
+                            bgz => bgz.BattlegroundId == Battleground.GetCurrentBattleground().ToString()) !=
                         null)
                     {
                         MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.CantDuplicateZone));

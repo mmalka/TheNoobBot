@@ -91,8 +91,8 @@ namespace nManager.Wow.MemoryClass.Magic
             uint dwBaseAddress = RETURN_ERROR;
             uint lpLoadLibrary, lpAsmStub;
             CONTEXT ctx;
-            StringBuilder AssemblyStub = new StringBuilder();
-            ManagedFasm fasm = new ManagedFasm(hProcess);
+            var AssemblyStub = new StringBuilder();
+            var fasm = new ManagedFasm(hProcess);
 
             lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
             if (lpLoadLibrary == 0)

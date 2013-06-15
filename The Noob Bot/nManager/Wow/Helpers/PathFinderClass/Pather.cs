@@ -254,8 +254,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 float tx, ty;
                 GetTileByLocation(loc, out tx, out ty);
-                int x = (int) Math.Floor(tx);
-                int y = (int) Math.Floor(ty);
+                var x = (int) Math.Floor(tx);
+                var y = (int) Math.Floor(ty);
                 int thirdx, thirdy;
 
                 LoadTile(x, y);
@@ -487,17 +487,13 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         public float GetZ(Point position, bool strict = false)
         {
-            float[] extents;
-            if (strict)
-                extents = new Point(0.5f, 2000.0f, 0.5f).ToFloatArray();
-            else
-                extents = new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
+            float[] extents = strict ? new Point(0.5f, 2000.0f, 0.5f).ToFloatArray() : new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
             var center = position.ToRecast().ToFloatArray();
 
             float tx, ty;
             GetTileByLocation(position, out tx, out ty);
-            int x = (int) Math.Floor(tx);
-            int y = (int) Math.Floor(ty);
+            var x = (int) Math.Floor(tx);
+            var y = (int) Math.Floor(ty);
             LoadTile(x, y);
 
             uint startRef = _query.FindNearestPolygon(center, extents, Filter);
@@ -512,10 +508,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             {
                 float[] result;
                 var status = _query.closestPointOnPolyBoundary(startRef, center, out result);
-                if (status.HasFailed())
-                    z = 0;
-                else
-                    z = result[1];
+                z = status.HasFailed() ? 0 : result[1];
             }
             return z;
         }

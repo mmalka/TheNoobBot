@@ -456,10 +456,7 @@ namespace nManager.Wow.AccountSecurity
                     var result =
                         MemoryClass.Usefuls.FindPattern(new byte[] {0x8b, 0xca, 0x8b, 0xf8, 0xc1, 0xe9, 2, 0x74, 2},
                                                         "xxxxxxxxx");
-                    if ((result != null))
-                        scanFunction = result.dwAddress;
-                    else
-                        scanFunction = 0;
+                    scanFunction = (result != null) ? result.dwAddress : 0;
                 }
             }
             catch (Exception exception)

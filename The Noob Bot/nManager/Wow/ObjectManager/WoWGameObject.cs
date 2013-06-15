@@ -330,7 +330,7 @@ namespace nManager.Wow.ObjectManager
                                 break;
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_ITEM: // Do we have the key(s) ?
-                                int itemId = (int) Row.Record.LockType[j];
+                                var itemId = (int) Row.Record.LockType[j];
                                 if (ItemsManager.GetItemCountByIdLUA(itemId) < 0)
                                     return false;
                                 break;
@@ -364,7 +364,7 @@ namespace nManager.Wow.ObjectManager
                                 // special case for rogues and lockpicking since the skill does not exist anymore
                                 if (skill == SkillLine.Lockpicking)
                                 {
-                                    Spell lockpick = new Spell(1804); // Pick lock
+                                    var lockpick = new Spell(1804); // Pick lock
                                     if (lockpick.KnownSpell && ObjectManager.Me.Level*5 >= reqSkillValue)
                                         return true;
                                     else

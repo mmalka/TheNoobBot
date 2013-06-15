@@ -117,7 +117,7 @@ namespace The_Noob_Bot
                                                        cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
-                Logging.LogType flag = Logging.LogType.S;
+                var flag = Logging.LogType.S;
                 flag |= Logging.LogType.D;
                 flag |= Logging.LogType.E;
                 flag |= Logging.LogType.F;
