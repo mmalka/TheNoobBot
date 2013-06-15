@@ -250,16 +250,13 @@ namespace nManager.Wow.Helpers
                         continue;
                     int currBagFreeSlots = Others.ToInt32(t[0]);
                     BagType currBagType = (BagType) Others.ToInt32(t[1]);
-                    if (currBagType.HasFlag(BagType.None))
-                        continue;
                     if (currBagType == BagType.Unspecified)
                     {
                         unspecified += currBagFreeSlots;
                         continue;
                     }
-                    if (!currBagType.HasFlag(bagType))
+                    if (currBagType.HasFlag(BagType.None) || !currBagType.HasFlag(bagType))
                         continue;
-
                     switch (bagType)
                     {
                         case BagType.MiningBag:
