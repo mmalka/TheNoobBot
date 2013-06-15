@@ -53,8 +53,7 @@ namespace Profiles_Converters.Converters
                             if (subProfile || _profile.GrinderZones.Count <= 0)
                             {
                                 _profile.GrinderZones.Add(new GrinderZone {Hotspots = true});
-                                XElement child2;
-                                child2 = subProfile ? new XElement(child) : new XElement(xml);
+                                XElement child2 = subProfile ? new XElement(child) : new XElement(xml);
 
                                 foreach (XElement childSubProfile in child2.Elements())
                                 {

@@ -17,7 +17,7 @@ namespace The_Noob_Bot
 {
     internal partial class Main : DevComponents.DotNetBar.Metro.MetroAppForm
     {
-        private MainMinimized _minimizedWindow;
+        private readonly MainMinimized _minimizedWindow;
         public static string MinimizesWindowToolTip = "";
         public static string MinimizesWindowBoutonText = "";
         public static bool MinimizesWindowBoutonActive;

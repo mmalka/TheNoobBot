@@ -183,10 +183,10 @@ namespace nManager.Wow.MemoryClass.Magic
         public static IntPtr CreateRemoteThread(IntPtr hProcess, uint dwStartAddress, uint dwParameter,
                                                 uint dwCreationFlags, out uint dwThreadId)
         {
-            IntPtr hThread, lpThreadId;
+            IntPtr lpThreadId;
 
-            hThread = Imports.CreateRemoteThread(hProcess, IntPtr.Zero, 0, (IntPtr) dwStartAddress, (IntPtr) dwParameter,
-                                                 dwCreationFlags, out lpThreadId);
+            IntPtr hThread = Imports.CreateRemoteThread(hProcess, IntPtr.Zero, 0, (IntPtr) dwStartAddress, (IntPtr) dwParameter,
+                                                        dwCreationFlags, out lpThreadId);
             dwThreadId = (uint) lpThreadId;
 
             return hThread;

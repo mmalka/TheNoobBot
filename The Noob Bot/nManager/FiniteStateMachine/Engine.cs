@@ -16,7 +16,7 @@ namespace nManager.FiniteStateMachine
         public String CurrentState { get; private set; }
 
         private Thread _workerThread;
-        private bool _showStateInStatus;
+        private readonly bool _showStateInStatus;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Engine"/> class.

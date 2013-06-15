@@ -103,7 +103,7 @@ namespace Quester.Bot
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
-                int QuesterStatePriority = 2;
+                const int QuesterStatePriority = 2;
 
                 // FSM
                 Fsm.States.Clear();

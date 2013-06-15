@@ -37,7 +37,7 @@ namespace nManager.Wow.MemoryClass
 
         public static PatternResult FindPattern(byte[] pattern, string mask)
         {
-            uint num = 0xfffffff;
+            const uint num = 0xfffffff;
             uint num2 = 0;
             do
             {

@@ -33,19 +33,16 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new ArgumentException("DLL not found.", "szDllPath");
 
             uint dwBaseAddress = RETURN_ERROR;
-            uint lpLoadLibrary;
-            uint lpDll;
-            IntPtr hThread;
 
-            lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            uint lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
             if (lpLoadLibrary > 0)
             {
-                lpDll = SMemory.AllocateMemory(hProcess);
+                uint lpDll = SMemory.AllocateMemory(hProcess);
                 if (lpDll > 0)
                 {
                     if (SMemory.WriteASCIIString(hProcess, lpDll, szDllPath))
                     {
-                        hThread = SThread.CreateRemoteThread(hProcess, lpLoadLibrary, lpDll);
+                        IntPtr hThread = SThread.CreateRemoteThread(hProcess, lpLoadLibrary, lpDll);
 
                         //wait for thread handle to have signaled state
                         //exit code will be equal to the base address of the dll

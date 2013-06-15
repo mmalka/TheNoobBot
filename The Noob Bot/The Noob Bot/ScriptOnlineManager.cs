@@ -2,6 +2,7 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -30,11 +31,11 @@ namespace The_Noob_Bot
                 int keyDecrypt = 0;
                 for (int i = 0; i <= ip.Length - 1; i++)
                 {
-                    if (ip[i].ToString() == "0" || ip[i].ToString() == "1" || ip[i].ToString() == "2" ||
-                        ip[i].ToString() == "3" || ip[i].ToString() == "4" || ip[i].ToString() == "5" ||
-                        ip[i].ToString() == "6" || ip[i].ToString() == "7" || ip[i].ToString() == "8" ||
-                        ip[i].ToString() == "9")
-                        keyDecrypt += Others.ToInt32(ip[i].ToString());
+                    if (ip[i].ToString(CultureInfo.InvariantCulture) == "0" || ip[i].ToString(CultureInfo.InvariantCulture) == "1" || ip[i].ToString(CultureInfo.InvariantCulture) == "2" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "3" || ip[i].ToString(CultureInfo.InvariantCulture) == "4" || ip[i].ToString(CultureInfo.InvariantCulture) == "5" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "6" || ip[i].ToString(CultureInfo.InvariantCulture) == "7" || ip[i].ToString(CultureInfo.InvariantCulture) == "8" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "9")
+                        keyDecrypt += Others.ToInt32(ip[i].ToString(CultureInfo.InvariantCulture));
                 }
 
 

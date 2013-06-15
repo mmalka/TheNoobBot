@@ -12,11 +12,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the exit code of the thread.</returns>
         public uint Execute(uint dwStartAddress, uint dwParameter)
         {
-            IntPtr hThread;
             UIntPtr lpExitCode = UIntPtr.Zero;
             bool bSuccess = false;
 
-            hThread = CreateRemoteThread(dwStartAddress, dwParameter);
+            IntPtr hThread = CreateRemoteThread(dwStartAddress, dwParameter);
             if (hThread == IntPtr.Zero)
                 throw new Exception("Thread could not be remotely created.");
 
@@ -94,7 +93,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool SuspendThread(IntPtr hThread)
         {
-            return (SThread.SuspendThread(hThread) == uint.MaxValue) ? false : true;
+            return (SThread.SuspendThread(hThread) != uint.MaxValue);
         }
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool SuspendThread()
         {
-            return (m_bThreadOpen) ? this.SuspendThread(m_hThread) : false;
+            return (m_bThreadOpen) && this.SuspendThread(m_hThread);
         }
 
         /// <summary>
@@ -113,7 +112,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool ResumeThread(IntPtr hThread)
         {
-            return (SThread.ResumeThread(hThread) == uint.MaxValue) ? false : true;
+            return (SThread.ResumeThread(hThread) != uint.MaxValue);
         }
 
         /// <summary>
@@ -122,7 +121,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool ResumeThread()
         {
-            return (m_bThreadOpen) ? this.ResumeThread(m_hThread) : false;
+            return (m_bThreadOpen) && this.ResumeThread(m_hThread);
         }
     }
 }

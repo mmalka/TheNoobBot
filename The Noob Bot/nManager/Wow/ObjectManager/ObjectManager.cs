@@ -254,7 +254,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        private static List<WoWObject> GetObjectByType(WoWObjectType type)
+        private static IEnumerable<WoWObject> GetObjectByType(WoWObjectType type)
         {
             try
             {
@@ -275,7 +275,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Unit);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Unit);
                 return tempsListObj.Select(a => new WoWUnit(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
@@ -289,7 +289,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Container);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Container);
                 return tempsListObj.Select(a => new WoWContainer(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
@@ -303,7 +303,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Corpse);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Corpse);
                 return tempsListObj.Select(a => new WoWCorpse(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
@@ -317,7 +317,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
                 return tempsListObj.Select(a => new WoWItem(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
@@ -331,7 +331,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
                 foreach (WoWObject a in tempsListObj.Where(a => a.Entry == entry))
                 {
                     return new WoWItem(a.GetBaseAddress);
@@ -349,7 +349,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
                 List<WoWGameObject> retList = new List<WoWGameObject>();
                 foreach (WoWObject a in tempsListObj)
                 {
@@ -370,7 +370,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
                 return tempsListObj.Select(a => new WoWGameObject(a.GetBaseAddress)).ToList();
             }
             catch (Exception e)
@@ -384,7 +384,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
+                IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
                 return
                     (from a in tempsListObj
                      where a.GetBaseAddress != Me.GetBaseAddress

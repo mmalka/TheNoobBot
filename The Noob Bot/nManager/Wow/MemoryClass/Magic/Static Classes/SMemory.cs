@@ -35,10 +35,9 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the number of bytes actually read.</returns>
         public static int ReadRawMemory(IntPtr hProcess, uint dwAddress, IntPtr lpBuffer, int nSize)
         {
-            int lpBytesRead = 0;
-
             try
             {
+                int lpBytesRead = 0;
                 if (!Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead))
                     throw new Exception("ReadProcessMemory failed");
 
@@ -60,14 +59,13 @@ namespace nManager.Wow.MemoryClass.Magic
         public static byte[] ReadBytes(IntPtr hProcess, uint dwAddress, int nSize)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesRead;
             byte[] baRet;
 
             try
             {
                 lpBuffer = Marshal.AllocHGlobal(nSize);
 
-                iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
                 if (iBytesRead != nSize)
                     throw new Exception("ReadProcessMemory error in ReadBytes");
 
@@ -98,16 +96,14 @@ namespace nManager.Wow.MemoryClass.Magic
         public static object ReadObject(IntPtr hProcess, uint dwAddress, Type objType)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesRead;
-            int iObjectSize;
             object objRet;
 
             try
             {
-                iObjectSize = Marshal.SizeOf(objType);
+                int iObjectSize = Marshal.SizeOf(objType);
                 lpBuffer = Marshal.AllocHGlobal(iObjectSize);
 
-                iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, iObjectSize);
+                int iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, iObjectSize);
                 if (iBytesRead != iObjectSize)
                     throw new Exception("ReadProcessMemory error in ReadObject.");
 
@@ -413,16 +409,15 @@ namespace nManager.Wow.MemoryClass.Magic
         public static string ReadASCIIString(IntPtr hProcess, uint dwAddress, int nLength)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesRead, nSize;
             string sRet;
 
             try
             {
-                nSize = nLength*ASCII_CHAR_LENGTH;
+                int nSize = nLength*ASCII_CHAR_LENGTH;
                 lpBuffer = Marshal.AllocHGlobal(nSize + ASCII_CHAR_LENGTH);
                 Marshal.WriteByte(lpBuffer, nLength, 0);
 
-                iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
                 if (iBytesRead != nSize)
                     throw new Exception();
 
@@ -451,16 +446,15 @@ namespace nManager.Wow.MemoryClass.Magic
         public static string ReadUnicodeString(IntPtr hProcess, uint dwAddress, int nLength)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesRead, nSize;
             string sRet;
 
             try
             {
-                nSize = nLength*UNICODE_CHAR_LENGTH;
+                int nSize = nLength*UNICODE_CHAR_LENGTH;
                 lpBuffer = Marshal.AllocHGlobal(nSize + UNICODE_CHAR_LENGTH);
                 Marshal.WriteInt16(lpBuffer, nLength*UNICODE_CHAR_LENGTH, 0);
 
-                iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
                 if (iBytesRead != nSize)
                     throw new Exception();
 
@@ -504,7 +498,6 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteBytes(IntPtr hProcess, uint dwAddress, byte[] lpBytes, int nSize)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesWritten = 0;
 
             try
             {
@@ -512,7 +505,7 @@ namespace nManager.Wow.MemoryClass.Magic
 
                 Marshal.Copy(lpBytes, 0, lpBuffer, nSize);
 
-                iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
 
                 if (nSize != iBytesWritten)
                     throw new Exception("WriteBytes failed!  Number of bytes actually written differed from request.");
@@ -552,19 +545,17 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public static bool WriteObject(IntPtr hProcess, uint dwAddress, object objBuffer, Type objType)
         {
-            int nSize = 0;
-            int iBytesWritten = 0;
             IntPtr lpBuffer = IntPtr.Zero;
 
             try
             {
-                nSize = Marshal.SizeOf(objType);
+                int nSize = Marshal.SizeOf(objType);
 
                 lpBuffer = Marshal.AllocHGlobal(nSize);
 
                 Marshal.StructureToPtr(objBuffer, lpBuffer, false);
 
-                iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
 
                 if (nSize != iBytesWritten)
                     throw new Exception("WriteObject failed!  Number of bytes actually written differed from request.");
@@ -738,15 +729,13 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteASCIIString(IntPtr hProcess, uint dwAddress, string Value)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesWritten = 0;
-            int nSize = 0;
 
             try
             {
-                nSize = Value.Length*ASCII_CHAR_LENGTH;
+                int nSize = Value.Length*ASCII_CHAR_LENGTH;
                 lpBuffer = Marshal.StringToHGlobalAnsi(Value);
 
-                iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
 
                 if (nSize != iBytesWritten)
                     throw new Exception();
@@ -774,15 +763,13 @@ namespace nManager.Wow.MemoryClass.Magic
         public static bool WriteUnicodeString(IntPtr hProcess, uint dwAddress, string Value)
         {
             IntPtr lpBuffer = IntPtr.Zero;
-            int iBytesWritten = 0;
-            int nSize = 0;
 
             try
             {
-                nSize = Value.Length*UNICODE_CHAR_LENGTH;
+                int nSize = Value.Length*UNICODE_CHAR_LENGTH;
                 lpBuffer = Marshal.StringToHGlobalUni(Value);
 
-                iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
+                int iBytesWritten = WriteRawMemory(hProcess, dwAddress, lpBuffer, nSize);
 
                 if (nSize != iBytesWritten)
                     throw new Exception();

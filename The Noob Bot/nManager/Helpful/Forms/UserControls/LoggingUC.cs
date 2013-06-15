@@ -30,7 +30,7 @@ namespace nManager.Helpful.Forms.UserControls
             labelX4.Text = nManager.Translate.Get(nManager.Translate.Id.Fight);
         }
 
-        private List<Logging.Log> _listLog = new List<Logging.Log>();
+        private readonly List<Logging.Log> _listLog = new List<Logging.Log>();
 
         private void SynchroniseLoggin(object sender, Logging.LoggingChangeEventArgs e)
         {

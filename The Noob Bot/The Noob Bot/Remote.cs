@@ -84,7 +84,7 @@ namespace The_Noob_Bot
         }
 
         private Channel channel;
-        private List<string> channelWhisper = new List<string>();
+        private readonly List<string> channelWhisper = new List<string>();
 
         private void SendGetToServer()
         {

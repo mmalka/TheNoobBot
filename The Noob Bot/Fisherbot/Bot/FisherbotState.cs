@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.Threading;
 using nManager;
 using nManager.FiniteStateMachine;
@@ -131,7 +132,7 @@ namespace Fisherbot.Bot
                 {
                     Logging.Write("Fishing failed - No found nearby point (distance near position = " +
                                   ObjectManager.Me.Position.DistanceTo2D(
-                                      FisherbotSetting.CurrentSetting.FisherbotPosition).ToString() + ")");
+                                      FisherbotSetting.CurrentSetting.FisherbotPosition).ToString(CultureInfo.InvariantCulture) + ")");
                     MovementManager.StopMove();
                     nManagerSetting.AddBlackList(_node.Guid);
                     return;

@@ -112,13 +112,12 @@ namespace nManager.Wow.Helpers
             WoWResearchSite curRec = WoWResearchSite.FromId(0); // This record is invalid
             int MinIndex = curRec.MinIndex;
             int MaxIndex = curRec.MaxIndex;
-            Digsite curDigSite;
             for (int i = MinIndex; i <= MaxIndex; i++)
             {
                 curRec = WoWResearchSite.FromId(i);
                 if (curRec.Record.Id != 0)
                 {
-                    curDigSite = new Digsite {id = (int) curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
+                    Digsite curDigSite = new Digsite {id = (int) curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
                     fullList.Add(curDigSite);
                 }
             }

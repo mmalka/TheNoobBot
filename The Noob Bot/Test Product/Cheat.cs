@@ -9,7 +9,7 @@ namespace Test_Product
     {
         #region AntiAfk
 
-        private static uint afk = 0x4C3C1B;
+        private const uint afk = 0x4C3C1B;
 
         private static readonly byte[] AfkOrigine = new byte[] {0x78, 0x42};
         private static readonly byte[] AfkAfter = new byte[] {0xEB, 0x40};

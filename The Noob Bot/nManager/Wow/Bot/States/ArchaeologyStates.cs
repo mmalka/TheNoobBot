@@ -28,7 +28,7 @@ namespace nManager.Wow.Bot.States
 
         public override int Priority { get; set; }
 
-        private List<int> BlackListDigsites = new List<int>();
+        private readonly List<int> BlackListDigsites = new List<int>();
         private int LastZone = 0;
         private Digsite digsitesZone = new Digsite();
         private WoWQuestPOIPoint qPOI;

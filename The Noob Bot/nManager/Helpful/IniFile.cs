@@ -9,7 +9,7 @@ namespace nManager.Helpful
     /// </summary>
     public class IniFile
     {
-        private string _path;
+        private readonly string _path;
 
         [DllImport("kernel32")]
         private static extern long WritePrivateProfileString(string section,

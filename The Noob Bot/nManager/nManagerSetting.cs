@@ -32,7 +32,7 @@ namespace nManager
 
         #region BlackListGuid
 
-        private static Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
+        private static readonly Dictionary<ulong, int> _blackListGuidByTime = new Dictionary<ulong, int>();
 
         public static bool IsBlackListed(ulong guid)
         {
@@ -92,7 +92,7 @@ namespace nManager
 
         #region BlackListZone
 
-        private static Dictionary<Point, float> _blackListZone = new Dictionary<Point, float>();
+        private static readonly Dictionary<Point, float> _blackListZone = new Dictionary<Point, float>();
 
         public static bool IsBlackListedZone(Point position)
         {

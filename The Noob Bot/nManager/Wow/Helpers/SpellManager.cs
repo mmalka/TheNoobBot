@@ -38,12 +38,12 @@ namespace nManager.Wow.Helpers
             /// <summary>
             /// The level of the spell level in the spell book
             /// </summary>
-            [FieldOffset(0x8)] public readonly uint Level;
+            [FieldOffset(0x8)] private readonly uint Level;
 
             /// <summary>
             /// The tab where the spell is stored in the spell book
             /// </summary>
-            [FieldOffset(0xC)] public readonly uint TabId;
+            [FieldOffset(0xC)] private readonly uint TabId;
         }
 
         private static readonly List<uint> MountDruidIdList = new List<uint>();

@@ -5,6 +5,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
@@ -48,7 +49,7 @@ namespace nManager.Wow.Helpers
 
         private static List<uint> _listLure;
 
-        private static List<uint> listLure
+        private static IEnumerable<uint> listLure
         {
             get
             {
@@ -265,27 +266,24 @@ namespace nManager.Wow.Helpers
         /// <returns name="TheBestPoint"></returns>
         public static Point FindTheUltimatePoint(Point fishingHole)
         {
-            float MinRing = 13.0f; //13
-            float MaxRing = 20.0f; //19
+            const float MinRing = 13.0f; //13
+            const float MaxRing = 20.0f; //19
 
-            Enums.CGWorldFrameHitFlags hitFlags =
-                Enums.CGWorldFrameHitFlags.HitTestBoundingModels |
-                Enums.CGWorldFrameHitFlags.HitTestWMO |
-                Enums.CGWorldFrameHitFlags.HitTestUnknown |
-                Enums.CGWorldFrameHitFlags.HitTestGround;
+            const CGWorldFrameHitFlags hitFlags = CGWorldFrameHitFlags.HitTestBoundingModels |
+                                                  CGWorldFrameHitFlags.HitTestWMO |
+                                                  CGWorldFrameHitFlags.HitTestUnknown |
+                                                  CGWorldFrameHitFlags.HitTestGround;
 
-            bool res;
-            Point from, to;
             for (float diameter = MinRing; diameter <= MaxRing; diameter = diameter + 3.0f)
             {
                 for (double angle = 0; angle <= System.Math.PI/2; angle = angle + System.Math.PI/10)
                 {
                     float offset1 = diameter*(float) System.Math.Sin(angle);
                     float offset2 = diameter*(float) System.Math.Cos(angle);
-                    to = new Point(fishingHole.X + offset1, fishingHole.Y - offset2, fishingHole.Z);
+                    Point to = new Point(fishingHole.X + offset1, fishingHole.Y - offset2, fishingHole.Z);
                     to.Z = to.Z - 0.8f;
-                    from = new Point(to) {Z = fishingHole.Z + 20.0f};
-                    res = TraceLine.TraceLineGo(from, to, hitFlags);
+                    Point from = new Point(to) {Z = fishingHole.Z + 20.0f};
+                    bool res = TraceLine.TraceLineGo(@from, to, hitFlags);
                     if (res)
                     {
                         float nz = PathFinder.GetZPosition(to);

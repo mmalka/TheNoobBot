@@ -8,9 +8,9 @@ namespace nManager.Wow.MemoryClass.Magic
     {
         private class PatternDataEntry
         {
-            public byte[] bData;
-            public uint Start;
-            public int Size;
+            public readonly byte[] bData;
+            private uint Start;
+            private int Size;
 
             public PatternDataEntry()
             {

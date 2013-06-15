@@ -335,7 +335,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
-        private static List<string> blackListMaptitle = new List<string>();
+        private static readonly List<string> blackListMaptitle = new List<string>();
 
         private bool downloadTile(string fileName)
         {

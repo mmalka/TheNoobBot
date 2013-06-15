@@ -25,7 +25,7 @@ namespace Quester.Tasks
         private static Timer waitTimer;
         public static bool completed = false;
 
-        private static bool _HARDMODE_ = false;
+        private static bool _HARDMODE_ = false; // TODO: ProductSettings
 
         public static void SelectQuest()
         {

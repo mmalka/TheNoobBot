@@ -11,18 +11,17 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                string macro =
-                    "numTrade = GetNumTradeSkills(); " +
-                    "firstTrade = GetFirstTradeSkill(); " +
-                    "while numTrade>=firstTrade do " +
-                    "  skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps = GetTradeSkillInfo(numTrade); " +
-                    "  if numAvailable > 0 then " +
-                    "    SelectTradeSkill(numTrade); " +
-                    "    RunMacroText(\"/click TradeSkillCreateAllButton\"); " +
-                    "    return; " +
-                    "  end " +
-                    "  numTrade = numTrade - 1; " +
-                    "end";
+                const string macro = "numTrade = GetNumTradeSkills(); " +
+                                     "firstTrade = GetFirstTradeSkill(); " +
+                                     "while numTrade>=firstTrade do " +
+                                     "  skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps = GetTradeSkillInfo(numTrade); " +
+                                     "  if numAvailable > 0 then " +
+                                     "    SelectTradeSkill(numTrade); " +
+                                     "    RunMacroText(\"/click TradeSkillCreateAllButton\"); " +
+                                     "    return; " +
+                                     "  end " +
+                                     "  numTrade = numTrade - 1; " +
+                                     "end";
                 Lua.LuaDoString(macro);
             }
             catch (Exception exception)
@@ -55,8 +54,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                string macro =
-                    "RunMacroText(\"/click TradeSkillFrameCloseButton\"); ";
+                const string macro = "RunMacroText(\"/click TradeSkillFrameCloseButton\"); ";
                 Lua.LuaDoString(macro);
             }
             catch (Exception exception)

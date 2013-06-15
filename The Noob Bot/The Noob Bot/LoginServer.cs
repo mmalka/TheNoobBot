@@ -84,7 +84,7 @@ namespace The_Noob_Bot
         private static string TrueResultLoop = "";
 
         internal static bool IsOnlineserver;
-        private static Thread LoginThread = new Thread(LoopThreads) {Name = "LoopLogon"};
+        private static readonly Thread LoginThread = new Thread(LoopThreads) {Name = "LoopLogon"};
 
         internal static void Connect(string login, string password)
         {
@@ -208,7 +208,7 @@ namespace The_Noob_Bot
 
         private static void LoopThread()
         {
-            bool lalala = true;
+            const bool lalala = true;
             try
             {
                 bool lastResult = true;

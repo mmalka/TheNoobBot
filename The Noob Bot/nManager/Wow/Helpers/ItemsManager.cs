@@ -250,7 +250,7 @@ namespace nManager.Wow.Helpers
         }
 
         // Return best ILevel item
-        private static WoWItem BestItemLevel(List<WoWItem> listItem)
+        private static WoWItem BestItemLevel(IEnumerable<WoWItem> listItem)
         {
             try
             {
@@ -275,7 +275,7 @@ namespace nManager.Wow.Helpers
         }
 
         // Get item subtype (mail, ..)
-        private static List<WoWItem> GetItemSubType(List<WoWItem> listItem, Enums.WoWItemTradeGoodsClass subType)
+        private static List<WoWItem> GetItemSubType(IEnumerable<WoWItem> listItem, Enums.WoWItemTradeGoodsClass subType)
         {
             try
             {
@@ -290,7 +290,7 @@ namespace nManager.Wow.Helpers
         }
 
         // Get item type (amor...)
-        private static List<WoWItem> GetItemType(List<WoWItem> listItem, Enums.WoWItemClass type)
+        private static List<WoWItem> GetItemType(IEnumerable<WoWItem> listItem, Enums.WoWItemClass type)
         {
             try
             {

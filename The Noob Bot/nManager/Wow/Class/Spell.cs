@@ -36,16 +36,13 @@ namespace nManager.Wow.Class
 
         #region Constructors
 
-        private static DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
+        private static readonly DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
 
-        private static DBC<DBCStruct.SpellMiscRec> DBCSpellMisc =
-            new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
+        private static readonly DBC<DBCStruct.SpellMiscRec> DBCSpellMisc =new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
 
-        private static DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes =
-            new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
+        private static readonly DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes =new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
 
-        private static DBC<DBCStruct.SpellRangeRec> DBCSpellRange =
-            new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
+        private static readonly DBC<DBCStruct.SpellRangeRec> DBCSpellRange =new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.

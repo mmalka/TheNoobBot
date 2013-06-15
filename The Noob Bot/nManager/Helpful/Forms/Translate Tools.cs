@@ -7,7 +7,7 @@ namespace nManager.Helpful.Forms
 {
     public partial class TranslateTools : DevComponents.DotNetBar.Metro.MetroForm
     {
-        private Translate.Language _translation = new Translate.Language();
+        private readonly Translate.Language _translation = new Translate.Language();
 
         public TranslateTools()
         {
@@ -16,7 +16,7 @@ namespace nManager.Helpful.Forms
                 InitializeComponent();
                 Translate();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
                 foreach (object id in Enum.GetValues(typeof (Translate.Id)))
                 {
                     _translation.Translations.Add(new Translate.Translation {Id = (Translate.Id) id, Text = ""});

@@ -12,7 +12,7 @@ namespace nManager.Wow.MemoryClass.Magic
     /// </summary>
     public static class SWindow
     {
-        private static object lWindowsLock = new object();
+        private static readonly object lWindowsLock = new object();
         private static List<IntPtr> lWindows;
 
         private static bool EnumWindowsCallback(IntPtr hWnd, IntPtr lParam)

@@ -237,14 +237,14 @@ namespace nManager.Wow.MemoryClass.Magic
             if (bPattern.Length != szMask.Length)
                 throw new ArgumentException("Pattern and Mask lengths must be the same.");
 
-            int ix, iy;
-            bool bFound = false;
+            int ix;
             int PatternLength = bPattern.Length;
             int DataLength = bData.Length - PatternLength;
 
             for (ix = 0; ix < DataLength; ix++)
             {
-                bFound = true;
+                bool bFound = true;
+                int iy;
                 for (iy = 0; iy < PatternLength; iy++)
                 {
                     if ((szMask[iy] == 'x' && bPattern[iy] != bData[ix + iy]) ||
