@@ -55,7 +55,7 @@ namespace nManager.Wow.Bot.States
 
                 // Get unit:
                 _unit = new WoWPlayer(0);
-                var listUnit = new List<WoWPlayer>();
+                List<WoWPlayer> listUnit = new List<WoWPlayer>();
                 listUnit.AddRange(ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                       ? ObjectManager.ObjectManager.GetWoWUnitAlliance()
                                       : ObjectManager.ObjectManager.GetWoWUnitHorde());

@@ -84,12 +84,12 @@ namespace nManager.FiniteStateMachine
 
                     try
                     {
-                        foreach (var beforeState in state.BeforeStates)
+                        foreach (State beforeState in state.BeforeStates)
                         {
                             RunState(beforeState);
                         }
                         state.Run();
-                        foreach (var nextState in state.NextStates)
+                        foreach (State nextState in state.NextStates)
                         {
                             RunState(nextState);
                         }

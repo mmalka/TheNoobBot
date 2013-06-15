@@ -17,7 +17,7 @@ namespace Profiles_Converters.Converters
             {
                 if (File.Exists(path))
                 {
-                    var text = Others.ReadFile(path);
+                    string text = Others.ReadFile(path);
                     if (text.Contains("<HBProfile") && text.Contains("<GrindArea>"))
                         return true;
                 }
@@ -38,11 +38,11 @@ namespace Profiles_Converters.Converters
             {
                 if (IsHonorBuddyGrindProfile(path))
                 {
-                    var _profile = new GrinderProfile();
+                    GrinderProfile _profile = new GrinderProfile();
 
                     #region LoadProfileBuddy
 
-                    var xml = XElement.Load(path);
+                    XElement xml = XElement.Load(path);
 
                     bool subProfile =
                         xml.Elements().Any(child => child.Name.ToString().ToLower() == "SubProfile".ToLower());
@@ -189,7 +189,7 @@ namespace Profiles_Converters.Converters
                                                         {
                                                             if (r != null)
                                                             {
-                                                                var pT =
+                                                                Point pT =
                                                                     new Point(
                                                                         Others.ToSingle(x.Value),
                                                                         Others.ToSingle(y.Value),
@@ -288,7 +288,7 @@ namespace Profiles_Converters.Converters
                                                             {
                                                                 if (z != null)
                                                                 {
-                                                                    var pT =
+                                                                    Point pT =
                                                                         new Point(
                                                                             Others.ToSingle(x.Value),
                                                                             Others.ToSingle(y.Value),
@@ -314,7 +314,7 @@ namespace Profiles_Converters.Converters
 
                     #endregion LoadProfileBuddy
 
-                    var fileName = Path.GetFileNameWithoutExtension(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Grinder\\" + fileName + ".xml",
                                                 _profile))
                     {

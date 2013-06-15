@@ -30,9 +30,9 @@ namespace nManager.Helpful
             {
                 using (fs = new FileStream(path, FileMode.Create))
                 {
-                    using (var w = new StreamWriter(fs, Encoding.UTF8))
+                    using (StreamWriter w = new StreamWriter(fs, Encoding.UTF8))
                     {
-                        var s = new System.Xml.Serialization.XmlSerializer(@object.GetType());
+                        System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(@object.GetType());
                         s.Serialize(w, @object);
                     }
                 }
@@ -66,9 +66,9 @@ namespace nManager.Helpful
             if (!File.Exists(path))
                 return default(T);
 
-            var fs = new FileStream(path, FileMode.Open, FileAccess.Read);
-            var s = new System.Xml.Serialization.XmlSerializer(typeof (T));
-            var result = (T) s.Deserialize(fs);
+            FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
+            System.Xml.Serialization.XmlSerializer s = new System.Xml.Serialization.XmlSerializer(typeof (T));
+            T result = (T) s.Deserialize(fs);
             fs.Close();
             return result;
         }

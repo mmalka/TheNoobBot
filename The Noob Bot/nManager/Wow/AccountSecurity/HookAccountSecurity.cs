@@ -41,7 +41,7 @@ namespace nManager.Wow.AccountSecurity
                     if (!_accountSecurityThreadIsAlive)
                     {
                         _accountSecurityThreadIsAlive = true;
-                        var checkUpdateThreadLaunch = new Thread(LoopAccountSecurityThread)
+                        Thread checkUpdateThreadLaunch = new Thread(LoopAccountSecurityThread)
                             {
                                 Name =
                                     "loopAccountSecurity"
@@ -68,12 +68,12 @@ namespace nManager.Wow.AccountSecurity
                         {
                             if (Memory.WowMemory.Memory.ReadUInt(_codeCaveScanDump) > CurrentAddressReadDump)
                             {
-                                var dumpScanTemps =
+                                DumpScan dumpScanTemps =
                                     (DumpScan)
                                     Memory.WowMemory.Memory.ReadObject(CurrentAddressReadDump, typeof (DumpScan));
                                 if (dumpScanTemps.Length > 0)
                                 {
-                                    var specialAddress = GetSpecialAddressScan(dumpScanTemps);
+                                    string specialAddress = GetSpecialAddressScan(dumpScanTemps);
                                     if (specialAddress != "")
                                     {
                                         Memory.WowProcess.KillWowProcess();
@@ -405,7 +405,7 @@ namespace nManager.Wow.AccountSecurity
                     //const uint MaxAddress = 0x10000000;
                     //uint address = 0x01000000;
 
-                    var timerFindAccountSecurity = new Timer(15*1000);
+                    Timer timerFindAccountSecurity = new Timer(15*1000);
 
                     /*
                     do
@@ -453,7 +453,7 @@ namespace nManager.Wow.AccountSecurity
                     } while (address <= MaxAddress && !timerFindAccountSecurity.IsReady);
                     */
 
-                    var result =
+                    MemoryClass.Usefuls.PatternResult result =
                         MemoryClass.Usefuls.FindPattern(new byte[] {0x8b, 0xca, 0x8b, 0xf8, 0xc1, 0xe9, 2, 0x74, 2},
                                                         "xxxxxxxxx");
                     ScanFunction = (result != null) ? result.dwAddress : 0;
@@ -501,19 +501,19 @@ namespace nManager.Wow.AccountSecurity
                 if (scanned.Address <= 0 || addressAtVerif <= 0)
                     return false;
 
-                var usedAddress = new List<uint>();
+                List<uint> usedAddress = new List<uint>();
                 for (int i = (int) addressAtVerifCount - 1; i >= 0; i--)
                 {
                     usedAddress.Add(addressAtVerif + (uint) i);
                 }
 
-                var scannedAddress = new List<uint>();
+                List<uint> scannedAddress = new List<uint>();
                 for (int i = scanned.Length - 1; i >= 0; i--)
                 {
                     scannedAddress.Add(scanned.Address + (uint) i);
                 }
 
-                foreach (var u in usedAddress)
+                foreach (uint u in usedAddress)
                 {
                     if (scannedAddress.Contains(u))
                         return true;

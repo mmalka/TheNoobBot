@@ -15,7 +15,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 // Search if exist in list
-                foreach (var k in _keybindingsList)
+                foreach (KeybindingsStruct k in _keybindingsList)
                 {
                     if (k.Key != "" && k.Action == action)
                         return k.Key;

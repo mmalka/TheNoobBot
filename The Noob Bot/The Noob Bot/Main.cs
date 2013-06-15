@@ -70,7 +70,7 @@ namespace The_Noob_Bot
             try
             {
                 // Logging tab:
-                var loggingUc = new LoggingUC {Size = new Size(tLogging.Size.Width, tLogging.Size.Height - 0)};
+                LoggingUC loggingUc = new LoggingUC {Size = new Size(tLogging.Size.Width, tLogging.Size.Height - 0)};
                 tLogging.Controls.Add(loggingUc);
             }
             catch (Exception ex)
@@ -100,7 +100,7 @@ namespace The_Noob_Bot
 
                 new Remote();
 
-                var spellBook = new Thread(ThreadSpellBook) {Name = "Spell Book Update"};
+                Thread spellBook = new Thread(ThreadSpellBook) {Name = "Spell Book Update"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
 
@@ -129,7 +129,7 @@ namespace The_Noob_Bot
                 {
                     nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
-                var items = new List<string>();
+                List<string> items = new List<string>();
                 if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
                     nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
@@ -171,9 +171,9 @@ namespace The_Noob_Bot
 
 
                 // Products:
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Products\\", "*.dll"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Products\\", "*.dll"))
                 {
-                    var text = f.Replace(".dll", "");
+                    string text = f.Replace(".dll", "");
                     nManager.Translate.Id ret;
                     if (Enum.TryParse(text.Replace(" ", "_") + "_Product_Description", true, out ret))
                     {
@@ -284,7 +284,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var worker = new Thread(GetSubcriptionInfoThread) {Name = "Get Subcription Info"};
+                Thread worker = new Thread(GetSubcriptionInfoThread) {Name = "Get Subcription Info"};
                 worker.Start();
             }
             catch (Exception ex)
@@ -304,7 +304,7 @@ namespace The_Noob_Bot
                 {
                     while (LoginServer.IsFreeVersion)
                     {
-                        var timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
+                        int timeLeftSec = (LoginServer.StartTime + 1000*60*20) - Others.Times;
                         string timeLeft = Others.SecToHour(timeLeftSec/1000);
                         _subscriptionInfo = nManager.Translate.Get(nManager.Translate.Id.UserName) + ": " +
                                             LoginServer.Login + " " + Environment.NewLine + Environment.NewLine +
@@ -371,7 +371,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var generalSettings = new GeneralSettings();
+                GeneralSettings generalSettings = new GeneralSettings();
                 generalSettings.ShowDialog();
             }
             catch (Exception ex)
@@ -396,7 +396,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var productName = listProductsCb.Text;
+                string productName = listProductsCb.Text;
                 if (productName.Contains(" - "))
                 {
                     string[] texte2 = productName.Split('-');
@@ -564,7 +564,7 @@ namespace The_Noob_Bot
                     targetHealthL.Text = "-/-";
                     targetLevelL.Text = nManager.Translate.Get(nManager.Translate.Id.Level) + " -";
                 }
-                var log = Logging.ReadLast(Logging.LogType.S);
+                Logging.Log log = Logging.ReadLast(Logging.LogType.S);
                 lastLogL.Text = log.ToString();
                 lastLogL.ForeColor = log.Color;
 
@@ -614,7 +614,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var t = new Thread(DevToolsThread) {Name = "DevTools Form"};
+                Thread t = new Thread(DevToolsThread) {Name = "DevTools Form"};
                 t.SetApartmentState(ApartmentState.STA);
                 t.Start();
             }
@@ -628,7 +628,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var f = new DeveloperTools();
+                DeveloperTools f = new DeveloperTools();
                 f.ShowDialog();
             }
             catch (Exception ex)

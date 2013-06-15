@@ -27,8 +27,8 @@ namespace nManager.Wow.Helpers
             {
                 if (mobFaction == 0 && (localFaction == 1 || localFaction == 2))
                     return Reaction.Neutral;
-                var t1 = WoWFactionTemplate.FromId(mobFaction);
-                var t2 = WoWFactionTemplate.FromId(localFaction);
+                WoWFactionTemplate t1 = WoWFactionTemplate.FromId(mobFaction);
+                WoWFactionTemplate t2 = WoWFactionTemplate.FromId(localFaction);
 
 
                 if (t1 == null || t2 == null)

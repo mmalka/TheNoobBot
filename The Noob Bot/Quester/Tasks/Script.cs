@@ -1,6 +1,7 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
@@ -23,7 +24,7 @@ namespace Quester.Tasks
 
 
                 CodeDomProvider cc = new CSharpCodeProvider();
-                var cp = new CompilerParameters();
+                CompilerParameters cp = new CompilerParameters();
                 cp.ReferencedAssemblies.Add("System.dll");
                 cp.ReferencedAssemblies.Add("System.Xml.dll");
                 cp.ReferencedAssemblies.Add("System.Windows.Forms.dll");
@@ -58,10 +59,10 @@ namespace Quester.Tasks
                     return true;
                 }
 
-                var assembly = cr.CompiledAssembly;
+                Assembly assembly = cr.CompiledAssembly;
 
-                var obj = assembly.CreateInstance("Main", true);
-                var instanceFromOtherAssembly = obj as IScript;
+                object obj = assembly.CreateInstance("Main", true);
+                IScript instanceFromOtherAssembly = obj as IScript;
 
                 return instanceFromOtherAssembly != null && instanceFromOtherAssembly.Script();
             }

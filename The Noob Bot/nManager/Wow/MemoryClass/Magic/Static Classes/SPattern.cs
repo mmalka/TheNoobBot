@@ -86,7 +86,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 Delimiter = new char[1] {' '};
 
             string[] saPattern = szPattern.Split(Delimiter);
-            var bPattern = new byte[saPattern.Length];
+            byte[] bPattern = new byte[saPattern.Length];
 
             for (int i = 0; i < saPattern.Length; i++)
                 bPattern[i] = Convert.ToByte(saPattern[i], 0x10);

@@ -12,7 +12,7 @@ namespace nManager.Wow.Helpers
             {
                 if (Others.ExistFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt"))
                 {
-                    var codeLua =
+                    string codeLua =
                         Others.ReadFile(Application.StartupPath + "\\Data\\autoMakeElementalMacro.txt")
                               .Replace(Environment.NewLine, " ");
                     Lua.LuaDoString(codeLua);

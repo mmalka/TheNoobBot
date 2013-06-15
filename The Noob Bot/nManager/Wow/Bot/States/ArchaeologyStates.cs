@@ -6,6 +6,7 @@ using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
@@ -78,14 +79,14 @@ namespace nManager.Wow.Bot.States
                 if (u.GetBaseAddress > 0)
                     return true;
 
-                var listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
+                List<Digsite> listDigsitesZone = Archaeology.GetDigsitesZoneAvailable();
 
                 if (listDigsitesZone.Count > 0)
                 {
-                    var tDigsitesZone = new Digsite {id = 0, name = ""};
-                    var distance = 99999999999999999f;
-                    var priority = -999999999999f;
-                    foreach (var t in listDigsitesZone)
+                    Digsite tDigsitesZone = new Digsite {id = 0, name = ""};
+                    float distance = 99999999999999999f;
+                    float priority = -999999999999f;
+                    foreach (Digsite t in listDigsitesZone)
                     {
                         if (BlackListDigsites.Contains(t.id) || !t.Active) continue;
                         if (!(t.PriorityDigsites >= priority) &&
@@ -183,7 +184,7 @@ namespace nManager.Wow.Bot.States
                             else
                                 return;
 
-                        var points = PathFinder.FindPath(t.Position);
+                        List<Point> points = PathFinder.FindPath(t.Position);
                         MovementManager.Go(points);
                         if (nbLootAttempt > 2)
                         {
@@ -194,7 +195,7 @@ namespace nManager.Wow.Bot.States
                             return;
                         }
                         Logging.Write("Loot " + t.Name);
-                        var timer = new Helpful.Timer(1000*Math.DistanceListPoint(points)/3);
+                        Timer timer = new Helpful.Timer(1000*Math.DistanceListPoint(points)/3);
 
                         while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3)
                         {
@@ -328,12 +329,12 @@ namespace nManager.Wow.Bot.States
                         // set my rotation to survey rotation
 
                         // Get Line to next cast survey
-                        var p1 = ObjectManager.ObjectManager.Me.Position;
+                        Point p1 = ObjectManager.ObjectManager.Me.Position;
                         Thread.Sleep(50);
                         MovementsAction.MoveForward(true);
                         Thread.Sleep(200);
                         MovementsAction.MoveForward(false);
-                        var p2 = ObjectManager.ObjectManager.Me.Position;
+                        Point p2 = ObjectManager.ObjectManager.Me.Position;
 
                         if (p1.X == p2.X && p1.Y == p2.Y)
                         {
@@ -425,7 +426,7 @@ namespace nManager.Wow.Bot.States
                                 }
                                 MountTask.Mount();
                                 LongMove.LongMoveByNewThread(p);
-                                var timer =
+                                Timer timer =
                                     new Helpful.Timer(1000*
                                                       points[points.Count - 1].DistanceTo(
                                                           ObjectManager.ObjectManager.Me.Position)/3);
@@ -462,10 +463,10 @@ namespace nManager.Wow.Bot.States
                                 float d = Math.DistanceListPoint(points)/3;
                                 if (d > 200)
                                     d = 200;
-                                var tm_t = 1000*d/2 + 1200;
+                                float tm_t = 1000*d/2 + 1200;
                                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                                     tm_t /= 0.6f;
-                                var timer = new Helpful.Timer(tm_t);
+                                Timer timer = new Helpful.Timer(tm_t);
                                 while (MovementManager.InMovement && !timer.IsReady &&
                                        ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
                                 {

@@ -30,7 +30,7 @@ namespace Grinder.Bot
             try
             {
                 Profile = new GrinderProfile();
-                var f = new LoadProfile();
+                LoadProfile f = new LoadProfile();
                 f.ShowDialog();
                 // If grinder School Load Profile
                 if (!string.IsNullOrWhiteSpace(GrinderSetting.CurrentSetting.ProfileName) &&
@@ -53,10 +53,10 @@ namespace Grinder.Bot
 
 
                 // Black List:
-                var blackListDic = new Dictionary<Point, float>();
-                foreach (var zone in Profile.GrinderZones)
+                Dictionary<Point, float> blackListDic = new Dictionary<Point, float>();
+                foreach (GrinderZone zone in Profile.GrinderZones)
                 {
-                    foreach (var b in zone.BlackListRadius)
+                    foreach (GrinderBlackListRadius b in zone.BlackListRadius)
                     {
                         blackListDic.Add(b.Position, b.Radius);
                     }
@@ -64,7 +64,7 @@ namespace Grinder.Bot
                 nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Add Npc
-                foreach (var zone in Profile.GrinderZones)
+                foreach (GrinderZone zone in Profile.GrinderZones)
                 {
                     NpcDB.AddNpcRange(zone.Npc);
                 }
@@ -144,7 +144,7 @@ namespace Grinder.Bot
 
             if (Profile.GrinderZones[ZoneIdProfile].Hotspots)
             {
-                var pointsTemps = new List<Point>();
+                List<Point> pointsTemps = new List<Point>();
                 for (int i = 0; i <= Profile.GrinderZones[ZoneIdProfile].Points.Count - 1; i++)
                 {
                     if (i + 1 > Profile.GrinderZones[ZoneIdProfile].Points.Count - 1)

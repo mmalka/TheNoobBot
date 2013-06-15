@@ -14,9 +14,9 @@ namespace nManager.Wow.Helpers
             {
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
 
-                var bagItem = new List<WoWItem>();
+                List<WoWItem> bagItem = new List<WoWItem>();
 
-                var luaCommand = "";
+                string luaCommand = "";
                 luaCommand = luaCommand + "l=0 ";
                 luaCommand = luaCommand + "" + randomString + " = \"\" ";
                 luaCommand = luaCommand + "ItemLinkT = \"\" ";
@@ -39,8 +39,8 @@ namespace nManager.Wow.Helpers
                     listLinkItem = Lua.GetLocalizedText(randomString);
                 }
 
-                var itemId = new List<uint>();
-                var linkItemArray = listLinkItem.Split('^');
+                List<uint> itemId = new List<uint>();
+                string[] linkItemArray = listLinkItem.Split('^');
 
                 foreach (string sR in linkItemArray)
                 {
@@ -60,19 +60,19 @@ namespace nManager.Wow.Helpers
                 if (itemId.Count > 0)
                 {
                     List<WoWItem> objects = ObjectManager.ObjectManager.GetObjectWoWItem();
-                    var emptyBlackList = new List<int>();
+                    List<int> emptyBlackList = new List<int>();
                     foreach (WoWItem o in objects)
                     {
                         try
                         {
                             if (o.Type == Enums.WoWObjectType.Item)
                             {
-                                var itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
+                                uint itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
                                                                                                     (uint)
                                                                                                     Descriptors
                                                                                                         .ObjectFields
                                                                                                         .Entry);
-                                var itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(
+                                ulong itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(
                                     o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 
                                 if (itemId.Contains(itemIdTemp) && itemGuidOwner == ObjectManager.ObjectManager.Me.Guid &&

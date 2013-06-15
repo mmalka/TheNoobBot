@@ -25,7 +25,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (InTransport)
                     {
-                        var t = new WoWUnit(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
+                        WoWUnit t = new WoWUnit(ObjectManager.GetObjectByGuid(TransportGuid).GetBaseAddress);
                         if (t.IsValid && t.IsAlive)
                         {
                             return t.Position;
@@ -35,7 +35,7 @@ namespace nManager.Wow.ObjectManager
                     if (BaseAddress == 0)
                         return new Point(0, 0, 0);
 
-                    var ret =
+                    Point ret =
                         new Point(
                             Memory.WowMemory.Memory.ReadFloat(BaseAddress +
                                                               (uint) Addresses.UnitField.UNIT_FIELD_X),
@@ -100,7 +100,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var p = (int) ((Health*100)/(double) MaxHealth);
+                    int p = (int) ((Health*100)/(double) MaxHealth);
                     if (p < 0 || p > 100)
                     {
                         return 0;
@@ -1333,8 +1333,8 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                var instancePointer = Party.GetPartyPointer(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE);
-                var homePointer = Party.GetPartyPointer();
+                uint instancePointer = Party.GetPartyPointer(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE);
+                uint homePointer = Party.GetPartyPointer();
                 return instancePointer > 0
                            ? PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE
                            : (homePointer > 0 ? PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME : PartyEnums.PartyType.None);
@@ -1725,7 +1725,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                    UnitQuestGiverStatus questGiverStatus = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                     return questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnIn) || questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInInvisible) ||
                            questGiverStatus.HasFlag(UnitQuestGiverStatus.TurnInRepeatable) || questGiverStatus.HasFlag(UnitQuestGiverStatus.LowLevelTurnInRepeatable);
                 }
@@ -1883,7 +1883,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var idBuffs = new List<UInt32> {idBuff};
+                List<uint> idBuffs = new List<UInt32> {idBuff};
                 return BuffManager.AuraStack(BaseAddress, idBuffs);
             }
             catch (Exception e)
@@ -1975,7 +1975,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var descriptor = GetDescriptor<uint>(Descriptors.ObjectFields.DynamicFlags);
+                    uint descriptor = GetDescriptor<uint>(Descriptors.ObjectFields.DynamicFlags);
                     long t;
                     if (value)
                     {
@@ -1986,9 +1986,9 @@ namespace nManager.Wow.ObjectManager
                         t = descriptor & -3L;
                     }
 
-                    var descriptorsArray =
+                    uint descriptorsArray =
                         Memory.WowMemory.Memory.ReadUInt(GetBaseAddress + Descriptors.StartDescriptors);
-                    var addressGD = descriptorsArray +
+                    uint addressGD = descriptorsArray +
                                     ((uint) Descriptors.ObjectFields.DynamicFlags*Descriptors.Multiplicator);
                     Memory.WowMemory.Memory.WriteInt64(addressGD, t);
                 }

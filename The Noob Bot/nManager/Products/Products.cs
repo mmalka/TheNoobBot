@@ -57,8 +57,8 @@ namespace nManager.Products
             try
             {
                 Assembly assembly2 = Assembly.LoadFrom(Others.GetCurrentDirectory + "\\Products\\" + nameDll + ".dll");
-                var obj2 = assembly2.CreateInstance("Main", true);
-                var instanceFromOtherAssembly2 = obj2 as IProduct;
+                object obj2 = assembly2.CreateInstance("Main", true);
+                IProduct instanceFromOtherAssembly2 = obj2 as IProduct;
                 return instanceFromOtherAssembly2;
             }
             catch (Exception e)
@@ -76,10 +76,10 @@ namespace nManager.Products
             {
                 lock (typeof (Products))
                 {
-                    var thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
+                    Thread thread = new Thread(ThreadDisposeProduct) {Name = "Thread Dispose Product."};
                     _isDisposed = false;
                     thread.Start();
-                    var t = new Timer(2*1000);
+                    Timer t = new Timer(2*1000);
                     while (!_isDisposed && !t.IsReady)
                     {
                         Thread.Sleep(10);
@@ -254,14 +254,14 @@ namespace nManager.Products
                         if (_oldIsStarted != IsStarted && OnChangedIsStarted != null)
                         {
                             _oldIsStarted = IsStarted;
-                            var e = new IsStartedChangeEventArgs {IsStarted = IsStarted};
+                            IsStartedChangeEventArgs e = new IsStartedChangeEventArgs {IsStarted = IsStarted};
                             OnChangedIsStarted(e);
                         }
 
                         if (_oldIsAliveProduc != IsAliveProduct && OnChangedIsAliveProduct != null)
                         {
                             _oldIsAliveProduc = IsAliveProduct;
-                            var e = new IsAliveProductChangeEventArgs {IsAliveProduct = IsAliveProduct};
+                            IsAliveProductChangeEventArgs e = new IsAliveProductChangeEventArgs {IsAliveProduct = IsAliveProduct};
                             OnChangedIsAliveProduct(e);
                         }
                     }

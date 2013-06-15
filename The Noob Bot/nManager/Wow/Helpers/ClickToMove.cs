@@ -17,9 +17,9 @@ namespace nManager.Wow.Helpers
                     return;
 
                 // Allocate Memory:
-                var posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                var guidCodecave = Memory.WowMemory.Memory.AllocateMemory(0x8);
-                var precisionCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4);
+                uint posCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                uint guidCodecave = Memory.WowMemory.Memory.AllocateMemory(0x8);
+                uint precisionCodecave = Memory.WowMemory.Memory.AllocateMemory(0x4);
                 if (posCodecave <= 0 || guidCodecave <= 0 || precisionCodecave <= 0)
                     return;
                 // Write value:
@@ -31,7 +31,7 @@ namespace nManager.Wow.Helpers
                 Memory.WowMemory.Memory.WriteFloat(posCodecave + 0x8, z);
 
                 // BOOL __thiscall CGPlayer_C__ClickToMove(WoWActivePlayer *this, CLICKTOMOVETYPE clickType, WGUID *interactGuid, WOWPOS *clickPos, float precision)
-                var asm = new[]
+                string[] asm = new[]
                     {
                         "call " +
                         (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)

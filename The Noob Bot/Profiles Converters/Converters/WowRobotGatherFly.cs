@@ -16,7 +16,7 @@ namespace Profiles_Converters.Converters
             {
                 if (File.Exists(path))
                 {
-                    var text = Others.ReadFile(path);
+                    string text = Others.ReadFile(path);
                     if (text.Contains("<Profile") && text.Contains("<Points>"))
                         return true;
                 }
@@ -37,20 +37,20 @@ namespace Profiles_Converters.Converters
             {
                 if (IsWowRobotGatherFlyProfile(path))
                 {
-                    var origineProfile = XmlSerializer.Deserialize<Profile>(path);
-                    var profile = new GathererProfile();
+                    Profile origineProfile = XmlSerializer.Deserialize<Profile>(path);
+                    GathererProfile profile = new GathererProfile();
 
-                    foreach (var p in origineProfile.Points)
+                    foreach (Point p in origineProfile.Points)
                     {
                         profile.Points.Add(new Point(p.X, p.Y, p.Z, "Flying"));
                     }
-                    foreach (var p in origineProfile.BlackListPoints)
+                    foreach (Point p in origineProfile.BlackListPoints)
                     {
                         profile.BlackListRadius.Add(new GathererBlackListRadius {Position = p, Radius = 15});
                     }
 
 
-                    var fileName = Path.GetFileNameWithoutExtension(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
                                                 profile))

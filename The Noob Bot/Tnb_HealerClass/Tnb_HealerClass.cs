@@ -87,14 +87,14 @@ namespace HealerClass
                         #region Druid Specialisation checking
 
                     case WoWClass.Druid:
-                        var druidRestorationSpell = new Spell("Swiftmend");
+                        Spell druidRestorationSpell = new Spell("Swiftmend");
 
                         if (druidRestorationSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Druid_Restoration.xml";
-                                var currentSetting = new DruidRestoration.DruidRestorationSettings();
+                                DruidRestoration.DruidRestorationSettings currentSetting = new DruidRestoration.DruidRestorationSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting =Settings.Load<DruidRestoration.DruidRestorationSettings>(currentSettingsFile);
@@ -123,13 +123,13 @@ namespace HealerClass
                         #region Paladin Specialisation checking
 
                     case WoWClass.Paladin:
-                        var paladinHolySpell = new Spell("Holy Shock");
+                        Spell paladinHolySpell = new Spell("Holy Shock");
                         if (paladinHolySpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Paladin_Holy.xml";
-                                var currentSetting = new PaladinHoly.PaladinHolySettings();
+                                PaladinHoly.PaladinHolySettings currentSetting = new PaladinHoly.PaladinHolySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PaladinHoly.PaladinHolySettings>(currentSettingsFile);
@@ -158,14 +158,14 @@ namespace HealerClass
                         #region Shaman Specialisation checking
 
                     case WoWClass.Shaman:
-                        var shamanRestorationSpell = new Spell("Riptide");
+                        Spell shamanRestorationSpell = new Spell("Riptide");
 
                         if (shamanRestorationSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Shaman_Restoration.xml";
-                                var currentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                                ShamanRestoration.ShamanRestorationSettings currentSetting = new ShamanRestoration.ShamanRestorationSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting =Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
@@ -194,14 +194,14 @@ namespace HealerClass
                         #region Priest Specialisation checking
 
                     case WoWClass.Priest:
-                        var priestDisciplineSpell = new Spell("Penance");
-                        var priestHolySpell = new Spell("Holy Word: Chastise");
+                        Spell priestDisciplineSpell = new Spell("Penance");
+                        Spell priestHolySpell = new Spell("Holy Word: Chastise");
                         if (priestDisciplineSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Priest_Discipline.xml";
-                                var currentSetting = new PriestDiscipline.PriestDisciplineSettings();
+                                PriestDiscipline.PriestDisciplineSettings currentSetting = new PriestDiscipline.PriestDisciplineSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting =Settings.Load<PriestDiscipline.PriestDisciplineSettings>(currentSettingsFile);
@@ -221,7 +221,7 @@ namespace HealerClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Priest_Holy.xml";
-                                var currentSetting = new PriestHoly.PriestHolySettings();
+                                PriestHoly.PriestHolySettings currentSetting = new PriestHoly.PriestHolySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting =Settings.Load<PriestHoly.PriestHolySettings>(currentSettingsFile);
@@ -250,13 +250,13 @@ namespace HealerClass
                         #region Monk Specialisation checking
 
                     case WoWClass.Monk:
-                        var monkMistweaverSpell = new Spell("Soothing Mist");
+                        Spell monkMistweaverSpell = new Spell("Soothing Mist");
                         if (monkMistweaverSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath +"\\HealerClasses\\Settings\\Monk_Mistweaver.xml";
-                                var currentSetting = new MonkMistweaver.MonkMistweaverSettings();
+                                MonkMistweaver.MonkMistweaverSettings currentSetting = new MonkMistweaver.MonkMistweaverSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting =Settings.Load<MonkMistweaver.MonkMistweaverSettings>(currentSettingsFile);
@@ -417,14 +417,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
@@ -1025,14 +1025,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
@@ -1498,14 +1498,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
@@ -2247,14 +2247,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
@@ -2860,14 +2860,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
@@ -3500,14 +3500,14 @@ namespace HealerClass
                                 else if (Party.IsInGroup())
                                 {
                                     double lowestHp = 100;
-                                    var lowestHpPlayer = new WoWUnit(0);
+                                    WoWUnit lowestHpPlayer = new WoWUnit(0);
                                     foreach (ulong playerInMyParty in Party.GetPartyPlayersGUID())
                                     {
                                         if (playerInMyParty <= 0) continue;
                                         WoWObject obj = ObjectManager.GetObjectByGuid(playerInMyParty);
                                         if (!obj.IsValid || obj.Type != WoWObjectType.Player)
                                             continue;
-                                        var currentPlayer = new WoWPlayer(obj.GetBaseAddress);
+                                        WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                         if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
                                         if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)

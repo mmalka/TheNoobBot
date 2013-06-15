@@ -164,14 +164,14 @@ namespace nManager.Wow.Helpers
         {
             int c = _setPoints.Count;
             int hits = 0;
-            var px = (int) p.X;
-            var py = (int) p.Y;
+            int px = (int) p.X;
+            int py = (int) p.Y;
             for (int i = 0; i < c; i++)
             {
-                var x1 = (int) _setPoints[i].X;
-                var y1 = (int) _setPoints[i].Y;
-                var x2 = (int) _setPoints[(i + 1)%c].X;
-                var y2 = (int) _setPoints[(i + 1)%c].Y;
+                int x1 = (int) _setPoints[i].X;
+                int y1 = (int) _setPoints[i].Y;
+                int x2 = (int) _setPoints[(i + 1)%c].X;
+                int y2 = (int) _setPoints[(i + 1)%c].Y;
                 if ((y1 - py)*(y2 - py) < 0)
                 {
                     int ix = x1 + (x2 - x1)*(py - y1)/(y2 - y1);

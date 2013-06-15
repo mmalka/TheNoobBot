@@ -123,7 +123,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var unMsg = ReadMsg();
+                Message unMsg = ReadMsg();
                 if (unMsg.Msg != null)
                 {
                     return DateTime.Now + " - " + unMsg.Pseudo + " " + getCanal(unMsg.Canal) + " : " + unMsg.Msg +
@@ -141,7 +141,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var unMsg = ReadMsg();
+                Message unMsg = ReadMsg();
                 if (unMsg.Msg != null)
                 {
                     if (unMsg.Canal == 4)
@@ -162,7 +162,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var unMsg = ReadMsg();
+                Message unMsg = ReadMsg();
                 if (unMsg.Msg != null)
                 {
                     if (unMsg.Canal == 1)
@@ -183,7 +183,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var unMsg = ReadMsg();
+                Message unMsg = ReadMsg();
                 if (unMsg.Msg != null)
                 {
                     if (unMsg.Canal == 7)
@@ -233,7 +233,7 @@ namespace nManager.Wow.Helpers
                         (uint)
                         (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
                          (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(ActuelRead)));
-                var unMsg = new Message();
+                Message unMsg = new Message();
                 if (lecture != "")
                 {
                     ActuelRead++;

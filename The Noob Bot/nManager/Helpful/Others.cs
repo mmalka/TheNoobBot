@@ -33,7 +33,7 @@ namespace nManager.Helpful
                     return text;
                 }
 
-                var bytes = Encoding.Default.GetBytes(text);
+                byte[] bytes = Encoding.Default.GetBytes(text);
                 return Encoding.UTF8.GetString(bytes);
             }
             catch (Exception exception)
@@ -77,7 +77,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var ret = new List<string>();
+                List<string> ret = new List<string>();
                 string[] split = text.Split(Environment.NewLine.ToCharArray());
 
                 foreach (string s in split)
@@ -99,7 +99,7 @@ namespace nManager.Helpful
             try
             {
                 string ret = "";
-                foreach (var l in array)
+                foreach (string l in array)
                 {
                     ret += l + Environment.NewLine;
                 }
@@ -121,9 +121,9 @@ namespace nManager.Helpful
         {
             try
             {
-                var p =
+                Process p =
                     new Process();
-                var pi =
+                ProcessStartInfo pi =
                     new ProcessStartInfo
                         {
                             FileName = urlOrPath
@@ -143,7 +143,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var s = Utf8.GetString(bytes, 0, bytes.Length);
+                string s = Utf8.GetString(bytes, 0, bytes.Length);
 
                 if (s.IndexOf("\0", StringComparison.Ordinal) != -1)
                     s = s.Remove(s.IndexOf("\0", StringComparison.Ordinal),
@@ -162,7 +162,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var dsk = new ManagementObject(@"win32_logicaldisk.deviceid=""c:""");
+                ManagementObject dsk = new ManagementObject(@"win32_logicaldisk.deviceid=""c:""");
                 dsk.Get();
                 string volumeSerial = dsk["VolumeSerialNumber"].ToString();
                 return volumeSerial.Sum(c => Convert.ToInt32(c));
@@ -188,7 +188,7 @@ namespace nManager.Helpful
                     FileStream st = null;
                     try
                     {
-                        var check = new MD5CryptoServiceProvider();
+                        MD5CryptoServiceProvider check = new MD5CryptoServiceProvider();
                         st = File.Open(filePath, FileMode.Open, FileAccess.Read);
                         byte[] somme = check.ComputeHash(st);
                         string ret = "";
@@ -230,8 +230,8 @@ namespace nManager.Helpful
         {
             try
             {
-                var l = new List<string>();
-                foreach (var c in stringSpecialChar)
+                List<string> l = new List<string>();
+                foreach (char c in stringSpecialChar)
                 {
                     if (c < 65 || c > 122 && (c > 90 || c < 97))
                     {
@@ -278,13 +278,13 @@ namespace nManager.Helpful
         {
             try
             {
-                var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-                var data = new byte[1];
-                var crypto = new RNGCryptoServiceProvider();
+                char[] chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+                byte[] data = new byte[1];
+                RNGCryptoServiceProvider crypto = new RNGCryptoServiceProvider();
                 crypto.GetNonZeroBytes(data);
                 data = new byte[maxSize];
                 crypto.GetNonZeroBytes(data);
-                var result = new StringBuilder(maxSize);
+                StringBuilder result = new StringBuilder(maxSize);
                 foreach (byte b in data)
                 {
                     result.Append(chars[b%(chars.Length - 1)]);
@@ -311,7 +311,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var proc = new Process {StartInfo = {FileName = "shutdown.exe", Arguments = " -s -f"}};
+                Process proc = new Process {StartInfo = {FileName = "shutdown.exe", Arguments = " -s -f"}};
                 proc.Start();
                 proc.Close();
             }
@@ -331,7 +331,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var r = new Random(unchecked((int) DateTime.Now.Ticks));
+                Random r = new Random(unchecked((int) DateTime.Now.Ticks));
                 return r.Next(@from, to);
             }
             catch (Exception exception)
@@ -350,7 +350,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var houre = (sec/3600) + "H";
+                string houre = (sec/3600) + "H";
                 sec = sec - ((sec/3600)*3600);
 
                 if ((sec/60) < 10)
@@ -383,9 +383,9 @@ namespace nManager.Helpful
         {
             try
             {
-                var coll = new StringCollection();
+                StringCollection coll = new StringCollection();
 
-                using (var sr = new StreamReader(path))
+                using (StreamReader sr = new StreamReader(path))
                 {
                     string line;
 
@@ -396,7 +396,7 @@ namespace nManager.Helpful
                 }
 
 
-                var lines = new string[coll.Count];
+                string[] lines = new string[coll.Count];
                 coll.CopyTo(lines, 0);
                 return lines;
             }
@@ -447,7 +447,7 @@ namespace nManager.Helpful
                     _httpUrl = httpUrl;
                     _fileDest = fileDest;
 
-                    var checkUpdateThreadLaunch = new Thread(DownloadThread) {Name = "DownloadFile"};
+                    Thread checkUpdateThreadLaunch = new Thread(DownloadThread) {Name = "DownloadFile"};
                     checkUpdateThreadLaunch.Start();
 
                     Thread.Sleep(200);
@@ -477,7 +477,7 @@ namespace nManager.Helpful
                 _downloadFinish = true;
                 try
                 {
-                    var client = new WebClient();
+                    WebClient client = new WebClient();
                     client.DownloadFile(_httpUrl, _fileDest);
                 }
                 catch (Exception exception)
@@ -507,7 +507,7 @@ namespace nManager.Helpful
                 return new List<string>();
             return Directory.GetFiles(path + pathDirectory, searchPattern).Select(subfolder =>
                 {
-                    var name = Path.GetFileName(subfolder);
+                    string name = Path.GetFileName(subfolder);
                     return name != null ? name.ToString(CultureInfo.InvariantCulture) : null;
                 }).ToList();
         }
@@ -527,7 +527,7 @@ namespace nManager.Helpful
             {
                 if (!String.IsNullOrWhiteSpace(data))
                     url = url + "?" + data;
-                var httpWRequest = (HttpWebRequest) WebRequest.Create(url);
+                HttpWebRequest httpWRequest = (HttpWebRequest) WebRequest.Create(url);
                 httpWRequest.UserAgent = "TheNoobBot";
                 httpWResponse = (HttpWebResponse) httpWRequest.GetResponse();
                 sr = new StreamReader(httpWResponse.GetResponseStream(), Encoding.GetEncoding("iso-8859-1"));
@@ -594,7 +594,7 @@ namespace nManager.Helpful
                 {
                     // get the response
                     WebResponse webResponse = webRequest.GetResponse();
-                    var sr = new StreamReader(webResponse.GetResponseStream());
+                    StreamReader sr = new StreamReader(webResponse.GetResponseStream());
                     string name = sr.ReadToEnd().Trim();
                     return name;
                 }
@@ -633,7 +633,7 @@ namespace nManager.Helpful
             {
                 byte[] data = new MD5CryptoServiceProvider().ComputeHash(Encoding.ASCII.GetBytes(value));
 
-                var hashedString = new StringBuilder();
+                StringBuilder hashedString = new StringBuilder();
 
                 for (int i = 0; i < data.Length; i++)
 
@@ -658,7 +658,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var chooseFile = new OpenFileDialog
+                OpenFileDialog chooseFile = new OpenFileDialog
                     {InitialDirectory = path, Filter = typeFile};
                 chooseFile.ShowDialog();
                 return chooseFile.FileName;
@@ -674,7 +674,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var chooseFile = new OpenFileDialog {InitialDirectory = path, Filter = typeFile, Multiselect = true};
+                OpenFileDialog chooseFile = new OpenFileDialog {InitialDirectory = path, Filter = typeFile, Multiselect = true};
                 chooseFile.ShowDialog();
                 return chooseFile.FileNames;
             }
@@ -695,7 +695,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var saveFile = new SaveFileDialog {InitialDirectory = path, Filter = typeFile};
+                SaveFileDialog saveFile = new SaveFileDialog {InitialDirectory = path, Filter = typeFile};
                 saveFile.ShowDialog();
                 return saveFile.FileName;
             }
@@ -725,7 +725,7 @@ namespace nManager.Helpful
 
             try
             {
-                var resulMb =
+                DialogResult resulMb =
                     MessageBox.Show(
                         Translate.Get(
                             Translate.Id
@@ -804,7 +804,7 @@ namespace nManager.Helpful
             try
             {
                 string[] texte2 = encryptText.Split('-');
-                var listBytes = new List<byte>();
+                List<byte> listBytes = new List<byte>();
                 int key = HardDriveID();
 
                 for (int i = 0; i <= texte2.Length - 1; i++)
@@ -831,7 +831,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var monStreamReader = new StreamReader(filePath);
+                StreamReader monStreamReader = new StreamReader(filePath);
                 string ligne = monStreamReader.ReadLine();
                 string returnText = "";
 
@@ -865,7 +865,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var monStreamWriter = new StreamWriter(filePath);
+                StreamWriter monStreamWriter = new StreamWriter(filePath);
 
                 monStreamWriter.Write(value);
                 monStreamWriter.Close();
@@ -885,7 +885,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var num = GetTickCount() + milsecToWait;
+                int num = GetTickCount() + milsecToWait;
                 while (GetTickCount() < num)
                 {
                     Application.DoEvents();
@@ -905,26 +905,26 @@ namespace nManager.Helpful
         {
             try
             {
-                var req = WebRequest.Create(ToUtf8(url));
+                WebRequest req = WebRequest.Create(ToUtf8(url));
                 if (userName != "" && userPassword != "")
                 {
-                    var authInfo = ToUtf8(userName) + ":" + ToUtf8(userPassword);
+                    string authInfo = ToUtf8(userName) + ":" + ToUtf8(userPassword);
                     authInfo = Convert.ToBase64String(Encoding.Default.GetBytes(authInfo));
                     req.Headers["Authorization"] = "Basic " + authInfo;
                 }
                 ((HttpWebRequest) req).UserAgent = "TheNoobBot";
 
-                var response = req.GetResponse();
+                WebResponse response = req.GetResponse();
                 string headerResult = "";
                 if (userName != "" && userPassword != "")
                 {
                     headerResult = response.Headers.Get("retn");
                 }
-                var stm = response.GetResponseStream();
+                Stream stm = response.GetResponseStream();
                 if (stm != null)
                 {
-                    var r = new StreamReader(stm);
-                    var sourceResult = r.ReadToEnd();
+                    StreamReader r = new StreamReader(stm);
+                    string sourceResult = r.ReadToEnd();
                     return new List<string> {ToUtf8(headerResult), ToUtf8(sourceResult)};
                 }
             }

@@ -310,7 +310,7 @@ namespace Battlegrounder.Profile
 
         public void CurrentBattlegroundInfo()
         {
-            var bg = new Battleground();
+            Battleground bg = new Battleground();
             if (Battleground.IsInBattleground())
             {
                 if (!string.IsNullOrEmpty(bg.NonLocalizedName))
@@ -378,7 +378,7 @@ namespace Battlegrounder.Profile
                         return;
                     }
 
-                    var bg = new Battleground();
+                    Battleground bg = new Battleground();
                     _profile.BattlegrounderZones.Add(new BattlegrounderZone
                         {
                             Name = bg.NonLocalizedName,

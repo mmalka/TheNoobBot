@@ -44,10 +44,10 @@ namespace nManager
             {
                 lock (typeof (Pulsator))
                 {
-                    var thread = new Thread(ThreadDispose) {Name = "Thread Dispose nManager."};
+                    Thread thread = new Thread(ThreadDispose) {Name = "Thread Dispose nManager."};
                     _isDisposed = false;
                     thread.Start();
-                    var t = new Timer(3*1000);
+                    Timer t = new Timer(3*1000);
                     while (!_isDisposed && !t.IsReady)
                     {
                         Thread.Sleep(10);
@@ -82,7 +82,7 @@ namespace nManager
 
                 try
                 {
-                    var t = new Timer(2*1000);
+                    Timer t = new Timer(2*1000);
                     while (Logging.CountNumberInQueue > 0 && !t.IsReady)
                     {
                         Thread.Sleep(10);

@@ -28,7 +28,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 _pointLongMove = point;
-                var worker2 = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
+                Thread worker2 = new Thread(LongMoveGo) {IsBackground = true, Name = "LongMove"};
                 worker2.Start();
                 Thread.Sleep(100);
             }
@@ -73,7 +73,7 @@ namespace nManager.Wow.Helpers
 
                 Point pTemps = ObjectManager.ObjectManager.Me.Position;
 
-                var timerSit = new Timer(2500);
+                Timer timerSit = new Timer(2500);
 
                 while (Products.Products.IsStarted && (ObjectManager.ObjectManager.Me.IsMounted || MountTask.GetMountCapacity() == MountCapacity.Feet) &&
                        ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f && _used && _usedLoop)
@@ -83,7 +83,7 @@ namespace nManager.Wow.Helpers
                         if (RegenPath.IsReady && ObjectManager.ObjectManager.Me.Position.DistanceTo(point) > 3.5f)
                         {
                             RegenPath = new Timer(1000*60);
-                            var getFullPath = PathFinder.FindPath(point);
+                            List<Point> getFullPath = PathFinder.FindPath(point);
                             MovementManager.Go(getFullPath);
                             RegenPath.Reset();
                         }
@@ -101,7 +101,7 @@ namespace nManager.Wow.Helpers
                                 Point meTemps = ObjectManager.ObjectManager.Me.Position;
                                 meTemps.Z = meTemps.Z - 2;
 
-                                var temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
+                                Point temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
                                 if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
                                     temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
@@ -148,10 +148,10 @@ namespace nManager.Wow.Helpers
                                         temps = new Point(ObjectManager.ObjectManager.Me.Position.X,
                                                           ObjectManager.ObjectManager.Me.Position.Y,
                                                           ObjectManager.ObjectManager.Me.Position.Z - altitude);
-                                        var tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
+                                        Point tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
                                                                 ObjectManager.ObjectManager.Me.Position.Y,
                                                                 ObjectManager.ObjectManager.Me.Position.Z + 5f);
-                                        var temps2 = Math.GetPostion2DOfLineByDistance(tempsMe, point, 80);
+                                        Point temps2 = Math.GetPostion2DOfLineByDistance(tempsMe, point, 80);
                                         temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
                                         if (!TraceLine.TraceLineGo(tempsMe, temps))
                                             if (!TraceLine.TraceLineGo(tempsMe, temps2))

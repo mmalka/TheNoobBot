@@ -209,7 +209,7 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.UseSpiritHealer || _forceSpiritHealer)
             {
                 Thread.Sleep(4000);
-                var objectSpiritHealer =
+                WoWUnit objectSpiritHealer =
                     new WoWUnit(
                         ObjectManager.ObjectManager.GetNearestWoWUnit(
                             ObjectManager.ObjectManager.GetWoWUnitSpiritHealer()).GetBaseAddress);

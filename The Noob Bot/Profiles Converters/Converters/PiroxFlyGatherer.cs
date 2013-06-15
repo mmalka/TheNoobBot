@@ -16,7 +16,7 @@ namespace Profiles_Converters.Converters
             {
                 if (File.Exists(path))
                 {
-                    var text = Others.ReadFile(path);
+                    string text = Others.ReadFile(path);
                     if (text.Contains("[GoTo]") && text.Contains("UseFlyMount"))
                         return true;
                 }
@@ -37,8 +37,8 @@ namespace Profiles_Converters.Converters
             {
                 if (IsPiroxFlyGathererProfile(path))
                 {
-                    var _profile = new GathererProfile();
-                    var file = new IniFile(path);
+                    GathererProfile _profile = new GathererProfile();
+                    IniFile file = new IniFile(path);
                     for (int i = 1; i < 0x2710; i++)
                     {
                         string str4 = file.IniReadValue("GoTo", "z" + i);
@@ -50,7 +50,7 @@ namespace Profiles_Converters.Converters
                                     .Replace(")", "")
                                     .Trim()
                                     .Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
-                            var item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
+                            Point item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
                                                  float.Parse(strArray[1], CultureInfo.InvariantCulture),
                                                  float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
                             _profile.Points.Add(item);
@@ -58,7 +58,7 @@ namespace Profiles_Converters.Converters
                     }
 
 
-                    var fileName = Path.GetFileNameWithoutExtension(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
                                                 _profile))

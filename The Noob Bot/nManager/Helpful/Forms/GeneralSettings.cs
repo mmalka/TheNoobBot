@@ -15,19 +15,19 @@ namespace nManager.Helpful.Forms
                     TopMost = true;
 
                 LoadSetting(nManagerSetting.CurrentSetting);
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.dll"))
                 {
                     CombatClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\CombatClasses\\", "*.cs"))
                 {
                     CombatClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.dll"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.dll"))
                 {
                     HealerClass.Items.Add(f);
                 }
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\HealerClasses\\", "*.cs"))
                 {
                     HealerClass.Items.Add(f);
                 }
@@ -610,7 +610,7 @@ namespace nManager.Helpful.Forms
             {
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
-                    var ret = MessageBox.Show(string.Format("{0}?", Translate.Get(Translate.Id.Do_you_want_save_this_setting)),
+                    DialogResult ret = MessageBox.Show(string.Format("{0}?", Translate.Get(Translate.Id.Do_you_want_save_this_setting)),
                                               Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
                                               MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)

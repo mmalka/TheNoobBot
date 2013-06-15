@@ -40,7 +40,7 @@ namespace nManager.Wow.Bot.Tasks
                                 else
                                     continue;
 
-                                var points = new List<Point>();
+                                List<Point> points = new List<Point>();
                                 if (ObjectManager.ObjectManager.Me.Position.DistanceTo(wowUnit.Position) > 4.0f)
                                 {
                                     points = PathFinder.FindPath(wowUnit.Position);
@@ -51,7 +51,7 @@ namespace nManager.Wow.Bot.Tasks
                                     points.Add(ObjectManager.ObjectManager.Me.Position);
                                     points.Add(wowUnit.Position);
                                 }
-                                var timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
+                                Timer timer = new Timer(((int) Math.DistanceListPoint(points)/3*1000) + 5000);
                                 while (!ObjectManager.ObjectManager.Me.IsDeadMe && (int) wowUnit.GetBaseAddress > 0 &&
                                        Products.Products.IsStarted &&
                                        ObjectManager.ObjectManager.GetNumberAttackPlayer() == 0 &&
@@ -92,7 +92,7 @@ namespace nManager.Wow.Bot.Tasks
                                             if (!nManagerSetting.CurrentSetting.ActivateBeastSkinning)
                                             {
                                                 WoWUnit unit = wowUnit;
-                                                foreach (var u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
+                                                foreach (WoWUnit u in woWUnits.Where(u => u != unit).Where(u => u.Position.DistanceTo(unit.Position) <= 20f))
                                                 {
                                                     nManagerSetting.AddBlackList(u.Guid, 2500);
                                                 }

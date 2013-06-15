@@ -128,7 +128,7 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            var listNPCs = new List<Npc>();
+            List<Npc> listNPCs = new List<Npc>();
             Npc mailBox = null;
 
             // If we need to send items.
@@ -140,7 +140,7 @@ namespace nManager.Wow.Bot.States
                     MountTask.DismountMount();
                     ItemsManager.UseItem(ItemsManager.GetNameById(40768));
                     Thread.Sleep(2000);
-                    var portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
+                    WoWGameObject portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
                     if (portableMailbox.IsValid &&
                         portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.GetBaseAddress)
@@ -176,12 +176,12 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
-                            var drixBlackwrench =
+                            WoWUnit drixBlackwrench =
                                 ObjectManager.ObjectManager.GetNearestWoWUnit(
                                     ObjectManager.ObjectManager.GetWoWUnitByEntry(32641));
                             if (drixBlackwrench.IsValid && drixBlackwrench.IsAlive)
                             {
-                                var drixBlackwrenchNpc = new Npc
+                                Npc drixBlackwrenchNpc = new Npc
                                     {
                                         Entry = drixBlackwrench.Entry,
                                         Position = drixBlackwrench.Position,
@@ -196,12 +196,12 @@ namespace nManager.Wow.Bot.States
                         }
                         else
                         {
-                            var gnimo =
+                            WoWUnit gnimo =
                                 ObjectManager.ObjectManager.GetNearestWoWUnit(
                                     ObjectManager.ObjectManager.GetWoWUnitByEntry(32639));
                             if (gnimo.IsValid && gnimo.IsAlive)
                             {
-                                var gnimoNpc = new Npc
+                                Npc gnimoNpc = new Npc
                                     {
                                         Entry = gnimo.Entry,
                                         Position = gnimo.Position,
@@ -223,12 +223,12 @@ namespace nManager.Wow.Bot.States
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
-                        var cousinSlowhands =
+                        WoWUnit cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
-                            var cousinSlowhandsNpc = new Npc
+                            Npc cousinSlowhandsNpc = new Npc
                                 {
                                     Entry = cousinSlowhands.Entry,
                                     Position = cousinSlowhands.Position,
@@ -246,19 +246,19 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    var npcA = DoSpawnRobot("74A", Npc.NpcType.Repair);
+                    Npc npcA = DoSpawnRobot("74A", Npc.NpcType.Repair);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
-                    var npcG = DoSpawnRobot("110G", Npc.NpcType.Repair);
+                    Npc npcG = DoSpawnRobot("110G", Npc.NpcType.Repair);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
-                    var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Repair);
+                    Npc npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Repair);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
                 }
@@ -283,12 +283,12 @@ namespace nManager.Wow.Bot.States
                         Thread.Sleep(2000);
                         if (ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde")
                         {
-                            var mojodishu =
+                            WoWUnit mojodishu =
                                 ObjectManager.ObjectManager.GetNearestWoWUnit(
                                     ObjectManager.ObjectManager.GetWoWUnitByEntry(32642));
                             if (mojodishu.IsValid && mojodishu.IsAlive)
                             {
-                                var mojodishuNpc = new Npc
+                                Npc mojodishuNpc = new Npc
                                     {
                                         Entry = mojodishu.Entry,
                                         Position = mojodishu.Position,
@@ -303,12 +303,12 @@ namespace nManager.Wow.Bot.States
                         }
                         else
                         {
-                            var hakmuddArgus =
+                            WoWUnit hakmuddArgus =
                                 ObjectManager.ObjectManager.GetNearestWoWUnit(
                                     ObjectManager.ObjectManager.GetWoWUnitByEntry(32638));
                             if (hakmuddArgus.IsValid && hakmuddArgus.IsAlive)
                             {
-                                var hakmuddArgusNpc = new Npc
+                                Npc hakmuddArgusNpc = new Npc
                                     {
                                         Entry = hakmuddArgus.Entry,
                                         Position = hakmuddArgus.Position,
@@ -330,12 +330,12 @@ namespace nManager.Wow.Bot.States
                         MountTask.DismountMount();
                         _grandExpeditionYak.Launch(true, true, true);
                         Thread.Sleep(2000);
-                        var cousinSlowhands =
+                        WoWUnit cousinSlowhands =
                             ObjectManager.ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.ObjectManager.GetWoWUnitByEntry(62822));
                         if (cousinSlowhands.IsValid && cousinSlowhands.IsAlive)
                         {
-                            var cousinSlowhandsNpc = new Npc
+                            Npc cousinSlowhandsNpc = new Npc
                                 {
                                     Entry = cousinSlowhands.Entry,
                                     Position = cousinSlowhands.Position,
@@ -351,19 +351,19 @@ namespace nManager.Wow.Bot.States
                 }
                 else if (_use74A)
                 {
-                    var npcA = DoSpawnRobot("74A", Npc.NpcType.Vendor);
+                    Npc npcA = DoSpawnRobot("74A", Npc.NpcType.Vendor);
                     if (npcA != null)
                         listNPCs.Add(npcA);
                 }
                 else if (_use110G)
                 {
-                    var npcG = DoSpawnRobot("110G", Npc.NpcType.Vendor);
+                    Npc npcG = DoSpawnRobot("110G", Npc.NpcType.Vendor);
                     if (npcG != null)
                         listNPCs.Add(npcG);
                 }
                 else if (_useJeeves)
                 {
-                    var npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Vendor);
+                    Npc npcJeeves = DoSpawnRobot("Jeeves", Npc.NpcType.Vendor);
                     if (npcJeeves != null)
                         listNPCs.Add(npcJeeves);
                 }
@@ -380,7 +380,7 @@ namespace nManager.Wow.Bot.States
             {
                 listNPCs.Sort(
                     (n1, n2) => n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)));
-                foreach (var npc in listNPCs)
+                foreach (Npc npc in listNPCs)
                 {
                     Npc target = npc;
                     //Start target finding based on Seller.
@@ -411,7 +411,7 @@ namespace nManager.Wow.Bot.States
                         if (target.Type == Npc.NpcType.Vendor)
                         {
                             // NPC Buyer
-                            var vQuality = new List<WoWItemQuality>();
+                            List<WoWItemQuality> vQuality = new List<WoWItemQuality>();
                             if (nManagerSetting.CurrentSetting.SellGray)
                                 vQuality.Add(WoWItemQuality.Poor);
                             if (nManagerSetting.CurrentSetting.SellWhite)
@@ -466,7 +466,7 @@ namespace nManager.Wow.Bot.States
                     DoMillingInTown();
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500);
-                    var mQuality = new List<WoWItemQuality>();
+                    List<WoWItemQuality> mQuality = new List<WoWItemQuality>();
                     if (nManagerSetting.CurrentSetting.MailGray)
                         mQuality.Add(WoWItemQuality.Poor);
                     if (nManagerSetting.CurrentSetting.MailWhite)
@@ -478,8 +478,8 @@ namespace nManager.Wow.Bot.States
                     if (nManagerSetting.CurrentSetting.MailPurple)
                         mQuality.Add(WoWItemQuality.Epic);
 
-                    var MailSendingCompleted = false;
-                    for (var i = 7; i > 0 && !MailSendingCompleted; i--)
+                    bool MailSendingCompleted = false;
+                    for (int i = 7; i > 0 && !MailSendingCompleted; i--)
                     {
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(1000);
@@ -529,7 +529,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
                 {
-                    var prospectingState = new ProspectingState();
+                    ProspectingState prospectingState = new ProspectingState();
                     prospectingState.Run();
                 }
             }
@@ -544,7 +544,7 @@ namespace nManager.Wow.Bot.States
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
                 {
-                    var millingState = new MillingState();
+                    MillingState millingState = new MillingState();
                     millingState.Run();
                 }
             }
@@ -576,12 +576,12 @@ namespace nManager.Wow.Bot.States
             MountTask.DismountMount();
             ItemsManager.UseItem(ItemsManager.GetNameById(RobotItemId));
             Thread.Sleep(2000);
-            var unitRobot =
+            WoWUnit unitRobot =
                 ObjectManager.ObjectManager.GetNearestWoWUnit(
                     ObjectManager.ObjectManager.GetWoWUnitByEntry(RobotEntryId));
             if (!unitRobot.IsValid || !unitRobot.IsAlive)
                 return null;
-            var npcRobot = new Npc
+            Npc npcRobot = new Npc
                 {
                     Entry = unitRobot.Entry,
                     Position = unitRobot.Position,

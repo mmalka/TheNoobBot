@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -20,7 +21,7 @@ namespace Gatherer.Bot
                 InitializeComponent();
                 Translate();
                 npcTypeC.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach (var t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                foreach (Npc.NpcType t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
                 {
                     npcTypeC.Items.Add(t.ToString());
                 }
@@ -112,7 +113,7 @@ namespace Gatherer.Bot
             {
                 // Way
                 listPoint.Items.Clear();
-                foreach (var p in _profile.Points)
+                foreach (Point p in _profile.Points)
                 {
                     listPoint.Items.Add(p.ToString());
                 }
@@ -126,7 +127,7 @@ namespace Gatherer.Bot
             {
                 // BlackList
                 listBlackRadius.Items.Clear();
-                foreach (var b in _profile.BlackListRadius)
+                foreach (GathererBlackListRadius b in _profile.BlackListRadius)
                 {
                     listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                 }
@@ -140,7 +141,7 @@ namespace Gatherer.Bot
             {
                 // Npc
                 listNpc.Items.Clear();
-                foreach (var n in _profile.Npc)
+                foreach (Npc n in _profile.Npc)
                 {
                     listNpc.Items.Add(n.Name + " - " + n.Type + " - " + n.Faction);
                 }
@@ -191,7 +192,7 @@ namespace Gatherer.Bot
 
                 while (_loopRecordPoint)
                 {
-                    var lastPoint = _profile.Points[_profile.Points.Count - 1];
+                    Point lastPoint = _profile.Points[_profile.Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
@@ -279,7 +280,7 @@ namespace Gatherer.Bot
                 if (!ObjectManager.Me.IsValid || !ObjectManager.Target.IsValid)
                     return;
 
-                var npc = new Npc
+                Npc npc = new Npc
                     {
                         ContinentId =
                             (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
@@ -313,13 +314,13 @@ namespace Gatherer.Bot
                     return;
                 }
 
-                var npc = new Npc();
+                Npc npc = new Npc();
 
-                var gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
+                List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
 
                 if (gameObjects.Count > 0)
                 {
-                    var gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
+                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
                     if (gameObject.IsValid)
                     {
                         npc.Entry = gameObject.Entry;
@@ -330,10 +331,10 @@ namespace Gatherer.Bot
 
                 if (npc.Entry <= 0)
                 {
-                    var units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
+                    List<WoWUnit> units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
                     if (units.Count > 0)
                     {
-                        var unit = ObjectManager.GetNearestWoWUnit(units);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units);
                         if (unit.IsValid)
                         {
                             npc.Entry = unit.Entry;

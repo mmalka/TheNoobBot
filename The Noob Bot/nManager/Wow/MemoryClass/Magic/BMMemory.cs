@@ -501,7 +501,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public String ReadUTF8String(uint dwAddress)
         {
             string retTemp = "";
-            var listByte = new byte[201];
+            byte[] listByte = new byte[201];
             byte[] buf = ReadBytes(dwAddress, 200);
             int i = 0;
             while (buf[0] != 0 && i <= 200)

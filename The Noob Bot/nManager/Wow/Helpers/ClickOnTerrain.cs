@@ -29,7 +29,7 @@ namespace nManager.Wow.Helpers
             if (point.X == 0 && point.Y == 0)
                 return;
 
-            var s = new Spell(spellId);
+            Spell s = new Spell(spellId);
 
             s.Launch();
 
@@ -64,18 +64,18 @@ namespace nManager.Wow.Helpers
                 if (point.X == 0 && point.Y == 0)
                     return;
 
-                var codeCaveStructClickOnTerrain =
+                uint codeCaveStructClickOnTerrain =
                     Memory.WowMemory.Memory.AllocateMemory(Marshal.SizeOf(typeof (StructClickOnTerrain)));
 
                 //Struct
-                var structClickOnTerrain = new StructClickOnTerrain {X = point.X, Y = point.Y, Z = point.Z};
+                StructClickOnTerrain structClickOnTerrain = new StructClickOnTerrain {X = point.X, Y = point.Y, Z = point.Z};
 
                 // WRITE
                 Memory.WowMemory.Memory.WriteObject(codeCaveStructClickOnTerrain, structClickOnTerrain,
                                                     typeof (StructClickOnTerrain));
 
 
-                var asm = new[]
+                string[] asm = new[]
                     {
                         "call " +
                         (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)

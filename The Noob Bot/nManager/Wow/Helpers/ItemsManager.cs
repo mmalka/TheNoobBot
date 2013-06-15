@@ -68,7 +68,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var itemName = GetNameById(Entry);
+                string itemName = GetNameById(Entry);
                 Lua.RunMacroText("/use " + itemName);
                 Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ")");
             }
@@ -95,7 +95,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var itemName = GetNameById(Entry);
+                string itemName = GetNameById(Entry);
                 ClickOnTerrain.Item(Entry, point);
                 Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ") at position: " + point);
             }
@@ -254,7 +254,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var bestItem = new WoWItem(0);
+                WoWItem bestItem = new WoWItem(0);
                 int best = 0;
 
                 foreach (WoWItem iT in listItem)

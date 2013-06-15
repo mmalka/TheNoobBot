@@ -164,7 +164,7 @@ namespace nManager.Wow.Bot.States
             // Channel
             while (_whisperChannel.ActuelRead < _whisperChannel.GetMsgActuelInWow)
             {
-                var msg = _whisperChannel.ReadWhisperChannel();
+                string msg = _whisperChannel.ReadWhisperChannel();
                 if (!String.IsNullOrWhiteSpace(msg))
                 {
                     _numberWhisper++;
@@ -175,11 +175,11 @@ namespace nManager.Wow.Bot.States
                         closeWow(Translate.Get(Translate.Id.Whisper_Egal_at) + " " + _numberWhisper);
                     if (nManagerSetting.CurrentSetting.PlayASongIfNewWhispReceived)
                     {
-                        var t = new Thread(ThreadSoundNewWhisper) {Name = "Sound alarm", IsBackground = true};
+                        Thread t = new Thread(ThreadSoundNewWhisper) {Name = "Sound alarm", IsBackground = true};
                         t.Start();
 
                         _msgNewWhisper = msg;
-                        var t2 = new Thread(ThreadMessageBoxNewWhisper) {Name = "Messsage Box New Whisper"};
+                        Thread t2 = new Thread(ThreadMessageBoxNewWhisper) {Name = "Messsage Box New Whisper"};
                         t2.Start();
                     }
                 }
@@ -194,7 +194,7 @@ namespace nManager.Wow.Bot.States
             try
             {
                 _threadSound = true;
-                var myPlayer = new SoundPlayer
+                SoundPlayer myPlayer = new SoundPlayer
                     {
                         SoundLocation = Application.StartupPath + "\\Data\\newWhisper.wav"
                     };
@@ -223,7 +223,7 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.UseHearthstone && ItemsManager.GetItemCountByIdLUA(6948) > 0 &&
                 !ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsUsableItemById(6948))
             {
-                var timerHearthstone = new Timer(1000*45);
+                Timer timerHearthstone = new Timer(1000*45);
                 Tasks.MountTask.DismountMount();
                 MovementManager.StopMove();
                 MovementManager.StopMove();

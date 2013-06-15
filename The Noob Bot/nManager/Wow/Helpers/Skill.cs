@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
                 uint id = 0;
                 do
                 {
-                    var value = Memory.WowMemory.Memory.ReadShort(addressGD + v2);
+                    short value = Memory.WowMemory.Memory.ReadShort(addressGD + v2);
 
                     if (value == (int) skill)
                     {
@@ -50,7 +50,7 @@ namespace nManager.Wow.Helpers
                                                          Descriptors.StartDescriptors);
                     uint addressGD = descriptorsArray +
                                      ((uint) Descriptors.PlayerFields.Skill*Descriptors.Multiplicator);
-                    var result = Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillValue);
+                    short result = Memory.WowMemory.Memory.ReadShort(id*0x2 + addressGD + (uint) Addresses.Player.SkillValue);
                     return result;
                 }
                 return 0;

@@ -35,7 +35,7 @@ namespace nManager.Wow.Bot.Tasks
             try
             {
                 nodes = nodes.OrderBy(x => x.GetDistance).ToList();
-                foreach (var node in nodes.Where(node => node.IsValid))
+                foreach (WoWGameObject node in nodes.Where(node => node.IsValid))
                 {
                     Logging.Write("Farm " + node.Name + " > " + node.Position);
                     float zT;
@@ -47,9 +47,9 @@ namespace nManager.Wow.Bot.Tasks
                     else
                         zT = node.Position.Z + 2.5f;
 
-                    var n = new Point(node.Position);
+                    Point n = new Point(node.Position);
                     n.Z = n.Z + 2.5f;
-                    var n2 = new Point(n);
+                    Point n2 = new Point(n);
                     n2.Z = n2.Z + 100;
                     if (TraceLine.TraceLineGo(n2, n, CGWorldFrameHitFlags.HitTestAllButLiquid))
                     {
@@ -73,7 +73,7 @@ namespace nManager.Wow.Bot.Tasks
                     {
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo2D(node.Position) >= 10.0f)
                         {
-                            var temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
+                            Point temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
                             if (temps.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                             {
                                 temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
@@ -204,7 +204,7 @@ namespace nManager.Wow.Bot.Tasks
             try
             {
                 nodes = nodes.OrderBy(x => x.GetDistance).ToList();
-                foreach (var node in nodes)
+                foreach (WoWGameObject node in nodes)
                 {
                     if ((int) node.GetBaseAddress > 0)
                     {

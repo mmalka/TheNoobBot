@@ -25,7 +25,7 @@ namespace Quester.Bot
             try
             {
                 Profile = new QuesterProfile();
-                var f = new LoadQuesterProfile();
+                LoadQuesterProfile f = new LoadQuesterProfile();
                 f.ShowDialog();
                 if (!string.IsNullOrWhiteSpace(QuesterSettings.CurrentSettings.LastProfile) &&
                     ((QuesterSettings.CurrentSettings.LastProfileSimple &&
@@ -38,13 +38,13 @@ namespace Quester.Bot
                                   : XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\" +
                                                                               QuesterSettings.CurrentSettings.LastProfile);
 
-                    foreach (var include in Profile.Includes)
+                    foreach (Include include in Profile.Includes)
                     {
                         try
                         {
                             if (!Tasks.Script.Run(include.ScriptCondition)) continue;
                             //Logging.Write(Translation.GetText(Translation.Text.SubProfil) + " " + include.PathFile);
-                            var profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
+                            QuesterProfile profileInclude = XmlSerializer.Deserialize<QuesterProfile>(Application.StartupPath + "\\Profiles\\Quester\\" + include.PathFile);
                             if (profileInclude != null)
                             {
                                 Profile.Questers.AddRange(profileInclude.Questers);
@@ -90,8 +90,8 @@ namespace Quester.Bot
                     return false;
 
                 // Black List:
-                var blackListDic = new Dictionary<Point, float>();
-                foreach (var b in Profile.Blackspots)
+                Dictionary<Point, float> blackListDic = new Dictionary<Point, float>();
+                foreach (QuesterBlacklistRadius b in Profile.Blackspots)
                 {
                     blackListDic.Add(b.Position, b.Radius);
                 }

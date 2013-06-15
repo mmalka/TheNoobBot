@@ -16,7 +16,7 @@ namespace Profiles_Converters.Converters
             {
                 if (File.Exists(path))
                 {
-                    var text = Others.ReadFile(path);
+                    string text = Others.ReadFile(path);
                     if (text.Contains("<HBProfile") || text.Contains("<GlideProfile"))
                         return true;
                 }
@@ -37,11 +37,11 @@ namespace Profiles_Converters.Converters
             {
                 if (IsGatherBuddyProfile(path))
                 {
-                    var _profile = new GathererProfile();
+                    GathererProfile _profile = new GathererProfile();
 
                     #region LoadProfileBuddy
 
-                    var xml = XElement.Load(path);
+                    XElement xml = XElement.Load(path);
 
                     // Loop through Elements Collection
                     foreach (XElement child in xml.Elements())
@@ -53,7 +53,7 @@ namespace Profiles_Converters.Converters
 
                             if (tempsPosition.Replace(" ", "").Length > 0)
                             {
-                                var positionTempsString =
+                                string[] positionTempsString =
                                     tempsPosition.Replace("  ", " ").Split(' ');
                                 if (positionTempsString.Length == 3)
                                 {
@@ -154,7 +154,7 @@ namespace Profiles_Converters.Converters
                                             float zF;
                                             if (float.TryParse(z.Value, NumberStyles.Number, CultureInfo.InvariantCulture, out zF))
                                             {
-                                                var pT = new Point(xF, yF, zF, "Flying");
+                                                Point pT = new Point(xF, yF, zF, "Flying");
                                                 _profile.Points.Add(pT);
                                             }
                                         }
@@ -166,7 +166,7 @@ namespace Profiles_Converters.Converters
 
                     #endregion LoadProfileBuddy
 
-                    var fileName = Path.GetFileNameWithoutExtension(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
                                                 _profile))
                     {

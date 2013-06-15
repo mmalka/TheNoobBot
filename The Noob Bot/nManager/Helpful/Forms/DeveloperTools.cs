@@ -1,7 +1,9 @@
 using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful.Interface;
@@ -49,7 +51,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                var codeHtml =
+                string codeHtml =
                     "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\"> <html xmlns=\"http://www.w3.org/1999/xhtml\"> <head> <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" /> <title>Get all objects information - " +
                     DateTime.Now.ToString("dd/mm/yy HHh mmMin") +
                     "</title>  <script type\"text/javascript\"> function trouverMots(chaine) { /* document.getElementById('rechDsPg').value = ''; */  var ouvrirBalise = '<span style=\"background-color: '; var frmOvrBalise = ';\">'; var fermerBalise = '</span>'; var doc = document.body.innerHTML; var j = 0;  var arrayClrs = new Array(\"#FFFF00\", \"#66FFFF\", \"#33FF33\", \"#3333FF\", \"#FF9900\", \"#FF33FF\", \"#CCFF00\", \"#FF0000\");  tablMots = chaine.split(' ');  rchSupp = new RegExp( '(' + ouvrirBalise + '[^><]*>)' , 'gi'); doc = doc.replace(rchSupp, ''); rchSupp = new RegExp( '(' + fermerBalise + ')' , 'gi'); doc = doc.replace(rchSupp, '');  for (i = 0; i < tablMots.length; i++) { if (j >= arrayClrs.length) {j = 0;} if (tablMots[i] != '' && tablMots[i].length > 2) { rch = new RegExp( '(' + tablMots[i] + ')' , 'gi'); ouvrBalise = ouvrirBalise + arrayClrs[j] + frmOvrBalise; doc = doc.replace(rch, ouvrBalise + '$1' + fermerBalise); j += 1; } }  document.body.innerHTML = doc; } </script>   </head>  <body>  <p> Search : <input id=\"rechDsPg\" type=\"text\" value=\"\" name=\"rechDsPg\" /> <input type=\"button\" onclick=\"trouverMots(document.getElementById('rechDsPg').value);\" value=\"OK\"> </p>   <table width=\"100%\" border=\"1\">   <tr>   <b>     <td bgcolor=\"#CCCCCC\">Name</td>     <td>Type</td>     <td bgcolor=\"#CCCCCC\">Entry ID</td>     <td>Position X</td>     <td bgcolor=\"#CCCCCC\">Position Y</td>     <td>Position Z</td>     <td bgcolor=\"#CCCCCC\">Distance</td>     <td>Faction</td>     <td bgcolor=\"#CCCCCC\">GUID</td>     <td>Summoned/Created By</td> <td>Unit Created By</td>    </b>   </tr>  ";
@@ -64,7 +66,7 @@ namespace nManager.Helpful.Forms
                     "</td>     <td>" + ObjectManager.Me.SummonedBy + "</td>   </tr>";
 
                 // WoWPlayer
-                foreach (var woWPlayer in ObjectManager.GetObjectWoWPlayer())
+                foreach (WoWPlayer woWPlayer in ObjectManager.GetObjectWoWPlayer())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + woWPlayer.Name +
@@ -76,7 +78,7 @@ namespace nManager.Helpful.Forms
                         "</td>   </tr>";
                 }
                 // WoWUnit
-                foreach (var wowO in ObjectManager.GetObjectWoWUnit())
+                foreach (WoWUnit wowO in ObjectManager.GetObjectWoWUnit())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/npc=" +
@@ -89,7 +91,7 @@ namespace nManager.Helpful.Forms
                         "</td>   </tr>";
                 }
                 // WoWGameObject
-                foreach (var wowO in ObjectManager.GetObjectWoWGameObject())
+                foreach (WoWGameObject wowO in ObjectManager.GetObjectWoWGameObject())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/object=" +
@@ -101,7 +103,7 @@ namespace nManager.Helpful.Forms
                         "</td>     <td>" + wowO.CreatedBy + "</td>   </tr>";
                 }
                 // WoWItem
-                foreach (var wowO in ObjectManager.GetObjectWoWItem())
+                foreach (WoWItem wowO in ObjectManager.GetObjectWoWItem())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/item=" +
@@ -113,7 +115,7 @@ namespace nManager.Helpful.Forms
                         "</td><td>IsEquipped by me ? " + EquippedItems.IsEquippedItemByGuid(wowO.Guid) + "</td>   </tr>";
                 }
                 // WoWCorpse
-                foreach (var wowO in ObjectManager.GetObjectWoWCorpse())
+                foreach (WoWCorpse wowO in ObjectManager.GetObjectWoWCorpse())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name +
@@ -123,7 +125,7 @@ namespace nManager.Helpful.Forms
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" + wowO.Guid + "</td>     <td>-</td>   </tr>";
                 }
                 // WoWContainer
-                foreach (var wowO in ObjectManager.GetObjectWoWContainer())
+                foreach (WoWContainer wowO in ObjectManager.GetObjectWoWContainer())
                 {
                     codeHtml +=
                         "<tr>     <td bgcolor=\"#CCCCCC\">" + wowO.Name + " - (<i><a href=\"http://wowhead.com/item=" +
@@ -138,7 +140,7 @@ namespace nManager.Helpful.Forms
                 codeHtml += " </table> </body> </html>";
                 Others.WriteFile("Get all objects information.html", codeHtml);
 
-                var myInfo = new Process
+                Process myInfo = new Process
                     {
                         StartInfo =
                             {
@@ -161,7 +163,7 @@ namespace nManager.Helpful.Forms
                 infoTb.Text = "";
                 if (ObjectManager.Target.IsValid)
                 {
-                    var pos = ObjectManager.Target.Position;
+                    Point pos = ObjectManager.Target.Position;
                     if (Usefuls.IsOutdoors)
                         pos.Type = "Flying";
                     infoTb.Text =
@@ -223,7 +225,7 @@ namespace nManager.Helpful.Forms
             {
                 infoTb.Text = "";
 
-                foreach (var en in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                foreach (Npc.NpcType en in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
                 {
                     infoTb.Text += en + Environment.NewLine;
                 }
@@ -240,7 +242,7 @@ namespace nManager.Helpful.Forms
             {
                 infoTb.Text = "";
 
-                foreach (var en in Enum.GetValues(typeof (Npc.FactionType)).Cast<Npc.FactionType>().ToList())
+                foreach (Npc.FactionType en in Enum.GetValues(typeof (Npc.FactionType)).Cast<Npc.FactionType>().ToList())
                 {
                     infoTb.Text += en + Environment.NewLine;
                 }
@@ -264,13 +266,13 @@ namespace nManager.Helpful.Forms
                     return;
                 }
 
-                var npc = new Npc();
+                Npc npc = new Npc();
 
-                var gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
+                List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
 
                 if (gameObjects.Count > 0)
                 {
-                    var gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
+                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
                     if (gameObject.IsValid)
                     {
                         npc.Entry = gameObject.Entry;
@@ -281,10 +283,10 @@ namespace nManager.Helpful.Forms
 
                 if (npc.Entry <= 0)
                 {
-                    var units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
+                    List<WoWUnit> units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
                     if (units.Count > 0)
                     {
-                        var unit = ObjectManager.GetNearestWoWUnit(units);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units);
                         if (unit.IsValid)
                         {
                             npc.Entry = unit.Entry;
@@ -353,7 +355,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                var t = new TranslateTools();
+                TranslateTools t = new TranslateTools();
                 t.Show();
             }
             catch (Exception ex)
@@ -372,9 +374,9 @@ namespace nManager.Helpful.Forms
             try
             {
                 CodeDomProvider cc = new CSharpCodeProvider();
-                var cp = new CompilerParameters();
+                CompilerParameters cp = new CompilerParameters();
 
-                var assemblies = AppDomain.CurrentDomain
+                IEnumerable<string> assemblies = AppDomain.CurrentDomain
                                           .GetAssemblies()
                                           .Where(
                                               a =>
@@ -394,10 +396,10 @@ namespace nManager.Helpful.Forms
                     return;
                 }
 
-                var assembly = cr.CompiledAssembly;
+                Assembly assembly = cr.CompiledAssembly;
 
-                var obj = assembly.CreateInstance("Main", true);
-                var instanceFromOtherAssembly = obj as IScriptOnlineManager;
+                object obj = assembly.CreateInstance("Main", true);
+                IScriptOnlineManager instanceFromOtherAssembly = obj as IScriptOnlineManager;
 
 
                 if (instanceFromOtherAssembly != null)
@@ -419,7 +421,7 @@ namespace nManager.Helpful.Forms
                 string questStatusText = "";
                 if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.QuestGiver))
                 {
-                    var questStatusFlag = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                    UnitQuestGiverStatus questStatusFlag = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                     if (questStatusFlag > 0x0)
                         questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
                 }

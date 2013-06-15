@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Reflection;
 using System.Windows.Forms;
 using DevComponents.DotNetBar;
 using DevComponents.DotNetBar.Controls;
+using DevComponents.DotNetBar.Metro;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -39,7 +41,7 @@ namespace nManager.Helpful
             {
                 if (File.Exists(settingsPath))
                 {
-                    var t = XmlSerializer.Deserialize<T>(settingsPath);
+                    T t = XmlSerializer.Deserialize<T>(settingsPath);
                     return t;
                 }
             }
@@ -78,7 +80,7 @@ namespace nManager.Helpful
             {
                 // Create Form
 
-                var form = new DevComponents.DotNetBar.Metro.MetroForm()
+                MetroForm form = new DevComponents.DotNetBar.Metro.MetroForm()
                     {
                         ClientSize = new Size(_sizeWinform),
                         Text = _windowName,
@@ -99,7 +101,7 @@ namespace nManager.Helpful
                     form.MaximizeBox = false;
                 }
                 // Create Tab Control
-                var panel = new Panel
+                Panel panel = new Panel
                     {
                         Anchor =
                             ((AnchorStyles.Top |
@@ -113,10 +115,10 @@ namespace nManager.Helpful
                         Size = new Size(_sizeWinform.X - 10, _sizeWinform.Y - 10)
                     };
 
-                var listExpandablePanel = new List<ExpandablePanel>();
-                var expandablePanelPosY = new Dictionary<string, int>();
+                List<ExpandablePanel> listExpandablePanel = new List<ExpandablePanel>();
+                Dictionary<string, int> expandablePanelPosY = new Dictionary<string, int>();
 
-                foreach (var f in _listFormSetting)
+                foreach (FormSetting f in _listFormSetting)
                 {
                     Label label;
 
@@ -133,7 +135,7 @@ namespace nManager.Helpful
                     if (indexTab < 0)
                     {
                         //var tabPage = new TabPage { AutoScroll = true, Text = f.Category, UseVisualStyleBackColor = true };
-                        var expandablePanel = new ExpandablePanel
+                        ExpandablePanel expandablePanel = new ExpandablePanel
                             {
                                 CanvasColor = SystemColors.Control,
                                 ColorSchemeStyle =
@@ -183,14 +185,14 @@ namespace nManager.Helpful
                     }
 
                     // If is Field:
-                    var fieldInfo = GetType().GetField(f.FieldName);
+                    FieldInfo fieldInfo = GetType().GetField(f.FieldName);
                     if (fieldInfo != null)
                     {
                         NumericUpDown numericUpDown;
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
                         {
                             case TypeCode.Boolean: // CHECKBOX
-                                var switchButton = new SwitchButton
+                                SwitchButton switchButton = new SwitchButton
                                     {
                                         BackColor = Color.WhiteSmoke,
                                         Value = Others.ToBoolean(fieldInfo.GetValue(this) as string),
@@ -351,7 +353,7 @@ namespace nManager.Helpful
                                 break;
 
                             case TypeCode.String:
-                                var textBox = new TextBox
+                                TextBox textBox = new TextBox
                                     {
                                         Location = new Point(10, posY),
                                         Name = f.FieldName,
@@ -376,11 +378,11 @@ namespace nManager.Helpful
                         }
                         if (f.SettingsType.Contains("Percentage") && f.SettingsType != "Percentage")
                         {
-                            var labelName = "";
-                            var percentageField = GetType().GetField(f.FieldName + f.SettingsType);
+                            string labelName = "";
+                            FieldInfo percentageField = GetType().GetField(f.FieldName + f.SettingsType);
                             if (percentageField != null)
                             {
-                                var percentage = new NumericUpDown
+                                NumericUpDown percentage = new NumericUpDown
                                     {
                                         Location = new Point(10 + 180 + 66 + 100 + 60, posY),
                                         Maximum = new decimal(100),
@@ -401,7 +403,7 @@ namespace nManager.Helpful
                                         labelName = "Above Percentage"; // if (UsePowerWordShieldAbovePercentage > 10) 
                                         break;
                                 }
-                                var percentageLabel = new Label
+                                Label percentageLabel = new Label
                                     {
                                         Text = labelName,
                                         Location = new Point(10 + 180 + 66 + 60, posY),
@@ -418,7 +420,7 @@ namespace nManager.Helpful
                     }
                 }
                 // Add tab in tab control:
-                foreach (var tabPage in listExpandablePanel)
+                foreach (ExpandablePanel tabPage in listExpandablePanel)
                 {
                     panel.Controls.Add(tabPage);
                 }
@@ -439,13 +441,13 @@ namespace nManager.Helpful
         {
             try
             {
-                foreach (var f in _listFormSetting)
+                foreach (FormSetting f in _listFormSetting)
                 {
                     if (f.FieldName == string.Empty)
                         continue;
 
-                    var controls = form.Controls.Find(f.FieldName, true);
-                    var fieldInfo = GetType().GetField(f.FieldName);
+                    Control[] controls = form.Controls.Find(f.FieldName, true);
+                    FieldInfo fieldInfo = GetType().GetField(f.FieldName);
                     if (fieldInfo != null && controls.Length > 0)
                     {
                         switch (Type.GetTypeCode(fieldInfo.FieldType))
@@ -483,8 +485,8 @@ namespace nManager.Helpful
                         }
                         if (f.SettingsType.Contains("Percentage") && f.SettingsType != "Percentage")
                         {
-                            var controlsP = form.Controls.Find(f.FieldName + f.SettingsType, true);
-                            var fieldInfoP = GetType().GetField(f.FieldName + f.SettingsType);
+                            Control[] controlsP = form.Controls.Find(f.FieldName + f.SettingsType, true);
+                            FieldInfo fieldInfoP = GetType().GetField(f.FieldName + f.SettingsType);
                             if (fieldInfoP != null && controlsP.Length > 0)
                                 fieldInfoP.SetValue(this,
                                                     Convert.ChangeType(((NumericUpDown) controlsP[0]).Value,

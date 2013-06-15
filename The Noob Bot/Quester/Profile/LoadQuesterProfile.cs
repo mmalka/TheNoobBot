@@ -121,7 +121,7 @@ namespace Quester.Profile
 
         private void QuesterProfileManagementSystemButton_Click(object sender, EventArgs e)
         {
-            var f = new ProfileManager();
+            ProfileManager f = new ProfileManager();
             f.ShowDialog();
             ShowLoadQuesterProfileForm();
         }

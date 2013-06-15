@@ -68,7 +68,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var temp = new StringBuilder(255);
+                StringBuilder temp = new StringBuilder(255);
                 GetPrivateProfileString(section, key, "", temp,
                                         255, _path);
                 return temp.ToString();

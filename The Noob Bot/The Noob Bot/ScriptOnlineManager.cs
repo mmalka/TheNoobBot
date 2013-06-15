@@ -39,8 +39,8 @@ namespace The_Noob_Bot
 
 
                 string[] listByteS = cipherString.Split(' ');
-                var retList = new List<byte>();
-                foreach (var s in listByteS)
+                List<byte> retList = new List<byte>();
+                foreach (string s in listByteS)
                 {
                     try
                     {
@@ -97,8 +97,8 @@ namespace The_Noob_Bot
 
 
                 CodeDomProvider cc = new CSharpCodeProvider();
-                var cp = new CompilerParameters();
-                var assemblies = AppDomain.CurrentDomain
+                CompilerParameters cp = new CompilerParameters();
+                IEnumerable<string> assemblies = AppDomain.CurrentDomain
                                           .GetAssemblies()
                                           .Where(
                                               a =>

@@ -92,7 +92,7 @@ namespace Battlegrounder
         {
             try
             {
-                var f = new SettingsBattlegrounderForm();
+                SettingsBattlegrounderForm f = new SettingsBattlegrounderForm();
                 f.ShowDialog();
                 Logging.Status = "Battlegrounder Settings Complete";
                 Logging.Write("Battlegrounder Settings Complete");

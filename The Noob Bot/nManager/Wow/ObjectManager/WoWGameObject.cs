@@ -212,7 +212,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    var bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.PercentHealth);
+                    int bytes1 = GetDescriptor<Int32>(Descriptors.GameObjectFields.PercentHealth);
                     return (WoWGameObjectType) ((bytes1 >> 8) & 0xFF);
                 }
                 catch (Exception e)
@@ -330,7 +330,7 @@ namespace nManager.Wow.ObjectManager
                                 break;
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_ITEM: // Do we have the key(s) ?
-                                var itemId = (int) Row.Record.LockType[j];
+                                int itemId = (int) Row.Record.LockType[j];
                                 if (ItemsManager.GetItemCountByIdLUA(itemId) < 0)
                                     return false;
                                 break;
@@ -364,7 +364,7 @@ namespace nManager.Wow.ObjectManager
                                 // special case for rogues and lockpicking since the skill does not exist anymore
                                 if (skill == SkillLine.Lockpicking)
                                 {
-                                    var lockpick = new Spell(1804); // Pick lock
+                                    Spell lockpick = new Spell(1804); // Pick lock
                                     if (lockpick.KnownSpell && ObjectManager.Me.Level*5 >= reqSkillValue)
                                         return true;
                                     else
@@ -384,7 +384,7 @@ namespace nManager.Wow.ObjectManager
                                         ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
                                         bonus = 10;
                                 }
-                                var currentSkillLevel = Skill.GetValue(skill);
+                                int currentSkillLevel = Skill.GetValue(skill);
                                 if (currentSkillLevel != 0)
                                     currentSkillLevel += bonus;
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + currentSkillLevel);

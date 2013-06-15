@@ -37,7 +37,7 @@ namespace The_Noob_Bot
             {
                 if (string.IsNullOrEmpty(_cachedSrv) || CachedSrvTimer.IsReady)
                 {
-                    foreach (var server in Servers.Where(server => Others.GetRequest(server + "isOnline.php", "") == "true"))
+                    foreach (string server in Servers.Where(server => Others.GetRequest(server + "isOnline.php", "") == "true"))
                     {
                         _cachedSrv = server;
                         CachedSrvTimer.Reset();
@@ -100,7 +100,7 @@ namespace The_Noob_Bot
                 Login = login.ToLower();
                 Password = password;
 
-                var connectThreadLaunch = new Thread(ConnectThread) {Name = "ConnectThread"};
+                Thread connectThreadLaunch = new Thread(ConnectThread) {Name = "ConnectThread"};
                 connectThreadLaunch.Start();
             }
             catch (Exception e)
@@ -117,12 +117,12 @@ namespace The_Noob_Bot
                 try
                 {
                     _ip = GetReqWithAuthHeader(ScriptServerMyIp, Login, Password)[1];
-                    var resultConnectReq = GetReqWithAuthHeader(ScriptLoginUrl + "?create=true", Login, Password);
-                    var goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
+                    List<string> resultConnectReq = GetReqWithAuthHeader(ScriptLoginUrl + "?create=true", Login, Password);
+                    string goodResultConnectReq = Others.EncrypterMD5(Secret + _ip + Login);
                     repC = resultConnectReq[1];
 
-                    var randomKey = Others.Random(1, 9999);
-                    var resultRandom = GetReqWithAuthHeader(ScriptLoginUrl + "?random=true",
+                    int randomKey = Others.Random(1, 9999);
+                    List<string> resultRandom = GetReqWithAuthHeader(ScriptLoginUrl + "?random=true",
                                                             randomKey.ToString(CultureInfo.InvariantCulture),
                                                             randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
@@ -130,7 +130,7 @@ namespace The_Noob_Bot
                     if (resultRandom[0] == goodResultRandomTry && resultConnectReq[0] == goodResultConnectReq)
                     {
                         TrueResultLoop = goodResultConnectReq;
-                        var connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
+                        Thread connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
                         connectThreadLaunch.Start();
                         return;
                     }
@@ -191,7 +191,7 @@ namespace The_Noob_Bot
             try
             {
                 _trial = true;
-                var connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
+                Thread connectThreadLaunch = new Thread(LoopThread) {Name = "LoopLogin"};
                 connectThreadLaunch.Start();
             }
             catch (Exception e)
@@ -475,7 +475,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var checkUpdateThreadLaunch = new Thread(CheckUpdateThread) {Name = "CheckUpdate"};
+                Thread checkUpdateThreadLaunch = new Thread(CheckUpdateThread) {Name = "CheckUpdate"};
                 checkUpdateThreadLaunch.Start();
             }
             catch /*(Exception e)*/
@@ -518,7 +518,7 @@ namespace The_Noob_Bot
                                     try
                                     {
                                         foreach (
-                                            var process in
+                                            Process process in
                                                 Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName))
                                         {
                                             if (process.Id != Process.GetCurrentProcess().Id)
@@ -548,7 +548,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                var checkUpdateThreadLaunch = new Thread(CheckServerIsOnlineThread) {Name = "CheckIsOnline"};
+                Thread checkUpdateThreadLaunch = new Thread(CheckServerIsOnlineThread) {Name = "CheckIsOnline"};
                 checkUpdateThreadLaunch.Start();
             }
             catch (Exception e)

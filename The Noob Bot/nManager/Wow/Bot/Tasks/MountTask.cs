@@ -2,6 +2,7 @@
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.Class;
 using Timer = nManager.Helpful.Timer;
@@ -56,11 +57,11 @@ namespace nManager.Wow.Bot.Tasks
                 if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
                     _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
-                var wisdom4Winds = new Spell(115913);
+                Spell wisdom4Winds = new Spell(115913);
                 _wisdom4Winds = wisdom4Winds.KnownSpell;
-                var coldWeather = new Spell(54197);
+                Spell coldWeather = new Spell(54197);
                 _coldWeather = coldWeather.KnownSpell;
-                var flightMasterLicense = new Spell(90267);
+                Spell flightMasterLicense = new Spell(90267);
                 _flightMasterLicense = flightMasterLicense.KnownSpell;
 
                 _startupCheck = false;
@@ -95,7 +96,7 @@ namespace nManager.Wow.Bot.Tasks
             {
                 if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
-                    var cont = (Enums.ContinentId) Usefuls.ContinentId;
+                    ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
                     if (_wisdom4Winds && cont == Enums.ContinentId.Pandaria)
@@ -112,9 +113,9 @@ namespace nManager.Wow.Bot.Tasks
                         return MountCapacity.Fly;
 
                     // We are in Outland and Expert Flying or better
-                    var expertRider = new Spell(34090);
-                    var artisanRider = new Spell(34091);
-                    var masterRider = new Spell(90265);
+                    Spell expertRider = new Spell(34090);
+                    Spell artisanRider = new Spell(34091);
+                    Spell masterRider = new Spell(90265);
                     if (cont == Enums.ContinentId.Outland &&
                         (expertRider.KnownSpell || artisanRider.KnownSpell || masterRider.KnownSpell))
                         return MountCapacity.Fly;
@@ -321,7 +322,7 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             else
                             {
-                                var t = new Timer(1000); // 1 sec
+                                Timer t = new Timer(1000); // 1 sec
                                 while (!t.IsReady && !Usefuls.IsOutdoors)
                                 {
                                     if (ObjectManager.ObjectManager.Me.InCombat)
@@ -349,7 +350,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             Logging.WriteNavigator("Take-off in progress.");
             MovementsAction.Ascend(true);
-            var t = new Timer(950);
+            Timer t = new Timer(950);
             while (!Usefuls.IsFlying && !t.IsReady)
             {
                 Thread.Sleep(50);
@@ -362,7 +363,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             Logging.WriteNavigator("Landing in progress.");
             MovementsAction.Descend(true);
-            var t = new Timer(15000);
+            Timer t = new Timer(15000);
             while (Usefuls.IsFlying && !t.IsReady)
             {
                 float z0 = ObjectManager.ObjectManager.Me.Position.Z;

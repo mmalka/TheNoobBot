@@ -55,8 +55,8 @@ namespace nManager
         {
             try
             {
-                var ret = new List<ulong>();
-                foreach (var i in _blackListGuidByTime)
+                List<ulong> ret = new List<ulong>();
+                foreach (KeyValuePair<ulong, int> i in _blackListGuidByTime)
                 {
                     if (i.Value == -1 || i.Value <= Others.Times)
                         ret.Add(i.Key);
@@ -98,7 +98,7 @@ namespace nManager
         {
             try
             {
-                foreach (var f in _blackListZone)
+                foreach (KeyValuePair<Point, float> f in _blackListZone)
                 {
                     if (f.Key.DistanceTo(position) <= f.Value)
                         return true;
@@ -141,7 +141,7 @@ namespace nManager
         {
             try
             {
-                foreach (var f in listBlackZone)
+                foreach (KeyValuePair<Point, float> f in listBlackZone)
                 {
                     _blackListZone.Add(f.Key, f.Value);
                 }

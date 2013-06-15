@@ -103,7 +103,7 @@ namespace Quester.Profile
 
         private void ProfileManagerAddGrouped_Click(object sender, EventArgs e)
         {
-            var f = new GroupedProfileManager();
+            GroupedProfileManager f = new GroupedProfileManager();
             f.ShowDialog();
             RefreshGroupedProfileList();
         }
@@ -112,7 +112,7 @@ namespace Quester.Profile
         {
             if (ExistingGroupedProfiles.Items.Count > 0)
             {
-                var f = new GroupedProfileManager(ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString());
+                GroupedProfileManager f = new GroupedProfileManager(ExistingGroupedProfiles.Items[ExistingGroupedProfiles.SelectedIndex].ToString());
                 f.ShowDialog();
             }
             else

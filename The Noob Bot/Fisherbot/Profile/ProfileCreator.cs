@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Class;
 using nManager.Wow.ObjectManager;
 
 namespace Fisherbot.Profile
@@ -97,7 +98,7 @@ namespace Fisherbot.Profile
             {
                 // Way
                 listPoint.Items.Clear();
-                foreach (var p in _profile.Points)
+                foreach (Point p in _profile.Points)
                 {
                     listPoint.Items.Add(p.ToString());
                 }
@@ -111,7 +112,7 @@ namespace Fisherbot.Profile
             {
                 // BlackList
                 listBlackRadius.Items.Clear();
-                foreach (var b in _profile.BlackListRadius)
+                foreach (FisherbotBlackListRadius b in _profile.BlackListRadius)
                 {
                     listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                 }
@@ -161,7 +162,7 @@ namespace Fisherbot.Profile
 
                 while (_loopRecordPoint)
                 {
-                    var lastPoint = _profile.Points[_profile.Points.Count - 1];
+                    Point lastPoint = _profile.Points[_profile.Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if ((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) ||

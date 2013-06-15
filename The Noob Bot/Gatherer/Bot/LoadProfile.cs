@@ -38,9 +38,9 @@ namespace Gatherer.Bot
         {
             try
             {
-                var profileName = listProfileCb.Text;
+                string profileName = listProfileCb.Text;
                 listProfileCb.Items.Clear();
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Gatherer\\", "*.xml"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Gatherer\\", "*.xml"))
                 {
                     listProfileCb.Items.Add(f);
                 }
@@ -71,7 +71,7 @@ namespace Gatherer.Bot
         {
             try
             {
-                var f = new ProfileCreator();
+                ProfileCreator f = new ProfileCreator();
                 f.ShowDialog();
                 RefreshProfileList();
             }

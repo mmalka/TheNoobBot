@@ -40,12 +40,12 @@ namespace nManager.Wow.Helpers
                     _fromLast = from;
 
                     // protected delegate byte Traceline(ref WoWPoint end, ref WoWPoint start, ref WoWPoint result, ref float distance, uint flags, ref WoWPoint Optional);
-                    var end = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                    var start = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                    var result = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                    var distance = Memory.WowMemory.Memory.AllocateMemory(0x4);
-                    var optional = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
-                    var resultRet = Memory.WowMemory.Memory.AllocateMemory(0x4);
+                    uint end = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    uint start = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    uint result = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    uint distance = Memory.WowMemory.Memory.AllocateMemory(0x4);
+                    uint optional = Memory.WowMemory.Memory.AllocateMemory(0x4*3);
+                    uint resultRet = Memory.WowMemory.Memory.AllocateMemory(0x4);
 
 
                     if (end <= 0 || start <= 0 || result <= 0 || distance <= 0 || optional <= 0)
@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
                     Memory.WowMemory.Memory.WriteFloat(end + 0x8, to.Z + 1.5f);
                     Memory.WowMemory.Memory.WriteInt(resultRet, 0);
 
-                    var asm = new[]
+                    string[] asm = new[]
                         {
                             "call " +
                             (Memory.WowProcess.WowModule +
@@ -99,7 +99,7 @@ namespace nManager.Wow.Helpers
 
 
                     Memory.WowMemory.InjectAndExecute(asm);
-                    var ret = Memory.WowMemory.Memory.ReadInt(resultRet) > 0;
+                    bool ret = Memory.WowMemory.Memory.ReadInt(resultRet) > 0;
 
                     Memory.WowMemory.Memory.FreeMemory(resultRet);
                     Memory.WowMemory.Memory.FreeMemory(end);

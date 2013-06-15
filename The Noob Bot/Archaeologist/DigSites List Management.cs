@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Class;
 
 namespace Archaeologist
 {
@@ -13,7 +15,7 @@ namespace Archaeologist
                 InitializeComponent();
                 Translate();
 
-                var list = nManager.Wow.Helpers.Archaeology.GetAllDigsitesZone();
+                List<Digsite> list = nManager.Wow.Helpers.Archaeology.GetAllDigsitesZone();
                 listDigsitesDGV.DataSource = list;
 
                 solvingEveryXMin.Value = Bot.ArchaeologistSetting.CurrentSetting.SolvingEveryXMin;

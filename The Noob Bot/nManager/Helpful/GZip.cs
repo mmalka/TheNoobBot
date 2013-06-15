@@ -16,7 +16,7 @@ namespace nManager.Helpful
             try
             {
                 // Get the stream of the source file.
-                using (var inFile = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+                using (FileStream inFile = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
                 {
                     // Get original file extension, for example
                     // "doc" from report.doc.gz.
@@ -26,7 +26,7 @@ namespace nManager.Helpful
                     //Create the decompressed file.
                     using (FileStream outFile = File.Create(origName))
                     {
-                        using (var decompress = new GZipStream(inFile,
+                        using (GZipStream decompress = new GZipStream(inFile,
                                                                CompressionMode.Decompress))
                         {
                             // Copy the decompression stream 
@@ -54,12 +54,12 @@ namespace nManager.Helpful
         {
             try
             {
-                var buffer = new byte[4096];
+                byte[] buffer = new byte[4096];
                 if (File.Exists(filename))
                 {
                     using (FileStream inputFile = File.Open(filename, FileMode.Open), outputFile = File.Create(toFile))
                     {
-                        using (var gzip = new GZipStream(outputFile, CompressionMode.Compress))
+                        using (GZipStream gzip = new GZipStream(outputFile, CompressionMode.Compress))
                         {
                             int n;
                             while ((n = inputFile.Read(buffer, 0, buffer.Length)) != 0)

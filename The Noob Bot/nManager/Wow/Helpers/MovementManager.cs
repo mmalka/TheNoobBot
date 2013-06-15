@@ -120,12 +120,12 @@ namespace nManager.Wow.Helpers
             {
                 Logging.Write(
                     "Starting the conversion process. Keep in mind that the best profiles are handmade profiles.");
-                var tempPoints = new List<Point>();
+                List<Point> tempPoints = new List<Point>();
                 outputPoints = new List<Point>();
                 uint failCounter = 0;
-                foreach (var inputPoint in inputPoints)
+                foreach (Point inputPoint in inputPoints)
                 {
-                    var curr = inputPoint.Type.ToLower() == "flying" ? PathFinder.GetZPosition(inputPoint) : inputPoint.Z;
+                    float curr = inputPoint.Type.ToLower() == "flying" ? PathFinder.GetZPosition(inputPoint) : inputPoint.Z;
                     if (curr == 0)
                     {
                         failCounter++;
@@ -289,10 +289,10 @@ namespace nManager.Wow.Helpers
                             Bot.Tasks.MountTask.Mount(false);
                         if (Usefuls.IsFlying)
                         {
-                            var tmpList = new List<Point>();
-                            for (var i = 0; i < _points.Count; i++)
+                            List<Point> tmpList = new List<Point>();
+                            for (int i = 0; i < _points.Count; i++)
                             {
-                                var pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
+                                Point pt = new Point(_points[i].X, _points[i].Y, _points[i].Z + 2.0f, "flying");
                                 tmpList.Add(pt);
                             }
                             _points = tmpList;
@@ -472,7 +472,7 @@ namespace nManager.Wow.Helpers
                     if (_points[idPoint].DistanceTo(ObjectManager.ObjectManager.Me.Position) > 30)
                     {
                         bool result;
-                        var path = PathFinder.FindPath(_points[idPoint], out result);
+                        List<Point> path = PathFinder.FindPath(_points[idPoint], out result);
                         if (result)
                         {
                             for (int i = 0; i <= path.Count - 1; i++)
@@ -574,7 +574,7 @@ namespace nManager.Wow.Helpers
                 {
                     float dx = 1.5f*(float) CSharpMath.Cos(ObjectManager.ObjectManager.Me.Rotation);
                     float dy = 1.5f*(float) CSharpMath.Sin(ObjectManager.ObjectManager.Me.Rotation);
-                    var inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
+                    Point inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                                               ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                                                   ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
@@ -610,7 +610,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
 
-                var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
+                Point lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 Logging.WriteDebug("UnStuck - lastPost = " + lastPost);
                 for (int i = 0; i < 8; i++)
                 {
@@ -752,9 +752,9 @@ namespace nManager.Wow.Helpers
                 MovementsAction.Ascend(false);
                 Logging.WriteDebug("Flying UnStuck - Jump attempt done.");
 
-                var lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
+                Point lastPost = new Point(ObjectManager.ObjectManager.Me.Position);
                 Logging.WriteDebug("Flying UnStuck - lastPost = " + lastPost);
-                var iR = Others.Random(2, 3);
+                int iR = Others.Random(2, 3);
                 for (int i = 0; i < iR; i++)
                 {
                     Logging.WriteDebug("Flying UnStuck - UnStuck attempt " + i + "started.");
@@ -833,7 +833,7 @@ namespace nManager.Wow.Helpers
                             Logging.WriteDebug("Flying UnStuck - Backward Right done.");
                         }
                         Thread.Sleep(100);
-                        var tus = new Timer(3000);
+                        Timer tus = new Timer(3000);
                         while (ClickToMove.GetClickToMoveTypePush() == ClickToMoveType.Move && !tus.IsReady)
                             Thread.Sleep(50);
                         if (ClickToMove.GetClickToMoveTypePush() != ClickToMoveType.None)
@@ -1079,8 +1079,8 @@ namespace nManager.Wow.Helpers
                     Thread.Sleep(100);
                 }
 
-                var timer = new Timer(1*1000*2);
-                var timerWaypoint = new Timer(1*1000*(30/3));
+                Timer timer = new Timer(1*1000*2);
+                Timer timerWaypoint = new Timer(1*1000*(30/3));
                 double distance = (double) position.DistanceTo(ObjectManager.ObjectManager.Me.Position) - 1;
                 if (distance > 45)
                     timerWaypoint = new Timer(1*1000*(distance/3));
@@ -1416,7 +1416,7 @@ namespace nManager.Wow.Helpers
 
         public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {
-            var rand = new Random();
+            Random rand = new Random();
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
             WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             asMoved = false;

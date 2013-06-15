@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 
 namespace Prospecting
 {
@@ -8,7 +9,7 @@ namespace Prospecting
     {
         public static void Pulse()
         {
-            var thread = new Thread(ThreadPulse) {Name = "Thread Prospecting"};
+            Thread thread = new Thread(ThreadPulse) {Name = "Thread Prospecting"};
             thread.Start();
         }
 
@@ -24,7 +25,7 @@ namespace Prospecting
                 return;
             }
 
-            var prospecting = new nManager.Wow.Bot.States.ProspectingState();
+            ProspectingState prospecting = new nManager.Wow.Bot.States.ProspectingState();
             prospecting.Run();
             Logging.Write("Prospecting finished.");
             nManager.Products.Products.ProductStop();

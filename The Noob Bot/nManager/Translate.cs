@@ -45,16 +45,16 @@ namespace nManager
             if (_translate.Translations.Count == 0)
                 Load();
 
-            foreach (var v in _translate.Translations.Where(v => v.Id == id))
+            foreach (Translation v in _translate.Translations.Where(v => v.Id == id))
             {
                 if (!string.IsNullOrWhiteSpace(v.Text))
                     return v.Text;
             }
 
-            var translateTemp =
+            Language translateTemp =
                 XmlSerializer.Deserialize<Language>(Application.StartupPath + "\\Data\\Lang\\English.xml");
 
-            foreach (var v in translateTemp.Translations)
+            foreach (Translation v in translateTemp.Translations)
             {
                 if (id == v.Id && !string.IsNullOrWhiteSpace(v.Text))
                 {

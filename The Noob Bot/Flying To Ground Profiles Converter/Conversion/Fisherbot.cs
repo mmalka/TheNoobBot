@@ -41,7 +41,7 @@ namespace Flying_To_Ground_Profiles_Converter.Conversion
         {
             try
             {
-                var flyingProfile = XmlSerializer.Deserialize<FisherbotProfile>(path);
+                FisherbotProfile flyingProfile = XmlSerializer.Deserialize<FisherbotProfile>(path);
                 string flyingProfileName = Path.GetFileNameWithoutExtension(path);
 
                 if (flyingProfile.Points.Count <= 0)

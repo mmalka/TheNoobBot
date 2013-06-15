@@ -61,12 +61,12 @@ namespace nManager.Wow.Helpers
 
                 m_rows = new Dictionary<int, T>(m_header.numRows);
 
-                for (var i = 0; i < m_header.numRows; ++i)
+                for (int i = 0; i < m_header.numRows; ++i)
                 {
                     uint rowOffset = m_header.FirstRow + (uint) (i*Marshal.SizeOf(typeof (T)));
 
-                    var index = Memory.WowMemory.Memory.ReadInt(rowOffset);
-                    var row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));
+                    int index = Memory.WowMemory.Memory.ReadInt(rowOffset);
+                    T row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));
 
                     m_rows.Add(index, row);
                 }

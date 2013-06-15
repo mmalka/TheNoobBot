@@ -71,7 +71,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spellList = new List<string> {spell};
+                List<string> spellList = new List<string> {spell};
                 return GetSlotBarBySpellName(spellList);
             }
             catch (Exception exception)
@@ -193,7 +193,7 @@ namespace nManager.Wow.Helpers
                 barAndSlot = barAndSlot.Replace("{", "");
                 barAndSlot = barAndSlot.Replace("}", "");
                 barAndSlot = barAndSlot.Replace(" ", "");
-                var keySlot = barAndSlot.Split(';');
+                string[] keySlot = barAndSlot.Split(';');
 
 
                 if (Others.ToUInt32(keySlot[0]) == 1)
@@ -287,7 +287,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var s = new Spell(spellId);
+                Spell s = new Spell(spellId);
                 CastSpellByNameLUA(s.NameInGame);
             }
             catch (Exception exception)
@@ -300,7 +300,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var ret =
+                string ret =
                     Lua.LuaDoString(
                         "ret = \"\"; nameclient = \"" + spellName +
                         "\"; for i=1,GetNumCompanions(\"MOUNT\"),1 do local _, name = GetCompanionInfo(\"MOUNT\", i)  if name == nameclient then ret = \"true\"  return end  end",
@@ -441,7 +441,7 @@ namespace nManager.Wow.Helpers
                 {
                     Logging.Write("Initializing SpellBook - (Wait few seconds)");
                     _usedSbid = true;
-                    var spellBook = new List<uint>();
+                    List<uint> spellBook = new List<uint>();
 
                     UInt32 nbSpells =
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
@@ -452,8 +452,8 @@ namespace nManager.Wow.Helpers
 
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
-                        var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                        var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
+                        uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
+                        SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                         if (si.State == SpellInfo.SpellState.Known)
                             spellBook.Add(si.ID);
                         Application.DoEvents();
@@ -479,13 +479,13 @@ namespace nManager.Wow.Helpers
             {
                 UInt32 nbSpells =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
-                var spellBookInfoPtr =
+                uint spellBookInfoPtr =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
-                var j = 0;
+                int j = 0;
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
+                    uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
+                    SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                     if (si.State == SpellInfo.SpellState.Known)
                         j++;
                 }
@@ -512,7 +512,7 @@ namespace nManager.Wow.Helpers
                 if (_spellBookName.Count <= 0)
                 {
                     _usedSbn = true;
-                    var spellBook = SpellBookID().Select(SpellListManager.SpellNameByIdExperimental).ToList();
+                    List<string> spellBook = SpellBookID().Select(SpellListManager.SpellNameByIdExperimental).ToList();
                     _spellBookName = spellBook;
                     _usedSbn = false;
                 }
@@ -535,7 +535,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (_spellBookSpell.Count <= 0)
                     {
-                        var spellBook = new List<Spell>();
+                        List<Spell> spellBook = new List<Spell>();
                         foreach (Spell spell in SpellBookID().Select(SpellInfoLUA))
                             spellBook.Add(spell);
                         _spellBookSpell = spellBook;
@@ -554,15 +554,15 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var nbSpells =
+                uint nbSpells =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
-                var spellBookInfoPtr =
+                uint spellBookInfoPtr =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
 
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
-                    var Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    var si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
+                    uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
+                    SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
                     if (si.State == SpellInfo.SpellState.Known)
                     {
                         if (!_spellBookID.Contains(si.ID))
@@ -576,7 +576,7 @@ namespace nManager.Wow.Helpers
                 }
 
 
-                foreach (var o in _spellBookSpell)
+                foreach (Spell o in _spellBookSpell)
                 {
                     o.Update();
                 }
@@ -601,7 +601,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var mountList =
+                List<string> mountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
 
                 string key = GetSlotBarBySpellName(mountList);
@@ -620,7 +620,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var mountList =
+                List<string> mountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\mountList.txt"));
 
                 string key = GetClientNameBySpellName(mountList);
@@ -639,7 +639,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var flyMountList =
+                List<string> flyMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
 
                 string key = GetClientNameBySpellName(flyMountList);
@@ -658,7 +658,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var flyMountList =
+                List<string> flyMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\flymountList.txt"));
 
                 string key = GetSlotBarBySpellName(flyMountList);
@@ -677,7 +677,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var aquaticMountList =
+                List<string> aquaticMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
 
                 string key = GetClientNameBySpellName(aquaticMountList);
@@ -696,7 +696,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var aquaticMountList =
+                List<string> aquaticMountList =
                     new List<string>(Others.ReadFileAllLines(Application.StartupPath + "\\Data\\aquaticmountList.txt"));
 
                 string key = GetSlotBarBySpellName(aquaticMountList);
@@ -741,7 +741,7 @@ namespace nManager.Wow.Helpers
 
             public static List<uint> SpellIdByName(string spellName)
             {
-                var listIdSpellFound = new List<UInt32>();
+                List<uint> listIdSpellFound = new List<UInt32>();
                 try
                 {
                     listIdSpellFound.AddRange(from current in ListSpell where current.Name.ToLower() == spellName.ToLower() select current.Id);
@@ -758,7 +758,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    foreach (var current in ListSpell.Where(current => current.Id == spellId))
+                    foreach (SpellList current in ListSpell.Where(current => current.Id == spellId))
                     {
                         return current.Name;
                     }

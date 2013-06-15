@@ -15,9 +15,9 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var listItems = new List<WoWItem>();
+                List<WoWItem> listItems = new List<WoWItem>();
 
-                var itemId = new List<uint>
+                List<uint> itemId = new List<uint>
                     {
                         (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_AMMO).Entry,
                         (uint) GetEquippedItem((int) WoWInventorySlot.INVTYPE_HEAD).Entry,
@@ -62,10 +62,10 @@ namespace nManager.Wow.Helpers
 
         public static WoWItem GetEquippedItem(int invSlot)
         {
-            var guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
-            var items = ObjectManager.ObjectManager.GetObjectWoWItem();
+            ulong guid = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>((Descriptors.PlayerFields) (uint) Descriptors.PlayerFields.InvSlots + (invSlot*2));
+            List<WoWItem> items = ObjectManager.ObjectManager.GetObjectWoWItem();
             WoWItem first = items.FirstOrDefault(x => x.Guid == guid);
-            var item = first ?? new WoWItem(0);
+            WoWItem item = first ?? new WoWItem(0);
             return item;
         }
 
@@ -83,7 +83,7 @@ namespace nManager.Wow.Helpers
             }
             if (success)
             {
-                var item = tmpguid == guid ? new WoWItem(ObjectManager.ObjectManager.GetObjectByGuid(tmpguid).GetBaseAddress) : new WoWItem(0);
+                WoWItem item = tmpguid == guid ? new WoWItem(ObjectManager.ObjectManager.GetObjectByGuid(tmpguid).GetBaseAddress) : new WoWItem(0);
                 return item.IsValid;
             }
             return false;
@@ -94,9 +94,9 @@ namespace nManager.Wow.Helpers
             uint nb = 1;
             try
             {
-                var itemsTemps = GetEquippedItems();
+                List<WoWItem> itemsTemps = GetEquippedItems();
 
-                foreach (var itemsTemp in itemsTemps)
+                foreach (WoWItem itemsTemp in itemsTemps)
                 {
                     if (itemsTemp.GetItemInfo.ItemEquipLoc == inventorySlot.ToString() && nb == resultNb)
                         return itemsTemp;

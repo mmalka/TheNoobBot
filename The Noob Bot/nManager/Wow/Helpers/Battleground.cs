@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
 
         public static int QueueingStatus()
         {
-            var v1 =
+            uint v1 =
                 Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp);
             int v2 =
                 (Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.Battleground.statPvp) &

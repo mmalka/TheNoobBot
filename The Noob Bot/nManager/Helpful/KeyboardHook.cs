@@ -140,8 +140,8 @@ namespace nManager.Helpful
                     if (m.Msg == WmHotkey)
                     {
                         // get the keys.
-                        var key = (Keys) (((int) m.LParam >> 16) & 0xFFFF);
-                        var modifier = (ModifierKeys) ((int) m.LParam & 0xFFFF);
+                        Keys key = (Keys) (((int) m.LParam >> 16) & 0xFFFF);
+                        ModifierKeys modifier = (ModifierKeys) ((int) m.LParam & 0xFFFF);
 
                         // invoke the event to notify the parent.
                         if (KeyPressed != null)

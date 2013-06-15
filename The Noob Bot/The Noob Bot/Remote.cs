@@ -97,7 +97,7 @@ namespace The_Noob_Bot
 
                     for (int i = 0; i < 20; i++)
                     {
-                        var v = channel.ReadWhisperChannel();
+                        string v = channel.ReadWhisperChannel();
                         if (v != "")
                         {
                             channelWhisper.Add(v);
@@ -112,18 +112,18 @@ namespace The_Noob_Bot
                     Logging.WriteError("Remote > SendGetToServer()#1: " + e);
                 }
 
-                var whisper = channelWhisper.Aggregate("",
+                string whisper = channelWhisper.Aggregate("",
                                                        (current, cw) =>
                                                        cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
-                var flag = Logging.LogType.S;
+                Logging.LogType flag = Logging.LogType.S;
                 flag |= Logging.LogType.D;
                 flag |= Logging.LogType.E;
                 flag |= Logging.LogType.F;
                 flag |= Logging.LogType.N;
 
-                var packetClient = new PacketClient
+                PacketClient packetClient = new PacketClient
                     {
                         Name = ObjectManager.Me.Name,
                         Level = (int) ObjectManager.Me.Level,
@@ -152,7 +152,7 @@ namespace The_Noob_Bot
                              packetClient.BagSpace + "|" + packetClient.LastWhisper;
 
 
-                var result =
+                List<string> result =
                     Others.GetReqWithAuthHeader(RemoteScript + "?sessionId=" + _sessionKey + "&forServer=" + req,
                                                 LoginServer.Login, LoginServer.Password);
                 if (result[0] == null)

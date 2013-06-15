@@ -21,7 +21,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var windowRect = new Native.RECT();
+                Native.RECT windowRect = new Native.RECT();
                 Native.GetWindowRect(mainWindowHandle, ref windowRect);
                 return windowRect.right - windowRect.left;
             }
@@ -43,7 +43,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var windowRect = new Native.RECT();
+                Native.RECT windowRect = new Native.RECT();
                 Native.GetWindowRect(mainWindowHandle, ref windowRect);
                 return windowRect.bottom - windowRect.top;
             }
@@ -62,7 +62,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var windowRect = new Native.RECT();
+                Native.RECT windowRect = new Native.RECT();
                 Native.GetWindowRect(mainWindowHandle, ref windowRect);
                 return windowRect.left;
             }
@@ -81,7 +81,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var windowRect = new Native.RECT();
+                Native.RECT windowRect = new Native.RECT();
                 Native.GetWindowRect(mainWindowHandle, ref windowRect);
                 return windowRect.top;
             }
@@ -96,7 +96,7 @@ namespace nManager.Helpful
         {
             try
             {
-                var t = GetWindowPosX(mainWindowHandle);
+                int t = GetWindowPosX(mainWindowHandle);
                 if (GetWindowPosY(mainWindowHandle) < -100 && GetWindowPosX(mainWindowHandle) < -100)
                     return true;
                 return false;
@@ -165,7 +165,7 @@ namespace nManager.Helpful
                 IntPtr hdcSrc = Native.GetWindowDC(handle);
 
                 // get the size
-                var windowRect = new Native.RECT();
+                Native.RECT windowRect = new Native.RECT();
                 Native.GetWindowRect(handle, ref windowRect);
                 int width = windowRect.right - windowRect.left;
                 int height = windowRect.bottom - windowRect.top;

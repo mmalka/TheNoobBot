@@ -7,6 +7,7 @@ using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Class
@@ -58,13 +59,13 @@ namespace nManager.Wow.Class
                 {
                     Id = spellId;
 
-                    var spellRec = DBCSpell.GetRow((int) Id);
+                    DBCStruct.SpellRec spellRec = DBCSpell.GetRow((int) Id);
 
                     if (spellRec.SpellId >= 0)
                     {
                         if (spellId == spellRec.SpellId)
                         {
-                            var castTimeRec =
+                            DBCStruct.SpellCastTimesRec castTimeRec =
                                 DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
                             try
                             {
@@ -75,7 +76,7 @@ namespace nManager.Wow.Class
                                 CastTime = 0;
                             }
 
-                            var range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
+                            DBCStruct.SpellRangeRec range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
                             if (range.Id != 0)
                             {
                                 MaxRangeHostile = range.MaxRangeHostile;
@@ -279,11 +280,11 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
+                    List<WoWUnit> woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
 
                     if (woWUnit.Count > 0)
                     {
-                        var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                        WoWUnit nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
                         if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
                         {
                             if (nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||
@@ -313,11 +314,11 @@ namespace nManager.Wow.Class
         {
             try
             {
-                var woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
+                List<WoWUnit> woWUnit = ObjectManager.ObjectManager.GetWoWUnitByName(NameInGame);
 
                 if (woWUnit.Count > 0)
                 {
-                    var nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
+                    WoWUnit nearestWoWUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(woWUnit);
                     if (nearestWoWUnit.IsValid && nearestWoWUnit.IsAlive)
                     {
                         if ((nearestWoWUnit.SummonedBy == ObjectManager.ObjectManager.Me.Guid ||

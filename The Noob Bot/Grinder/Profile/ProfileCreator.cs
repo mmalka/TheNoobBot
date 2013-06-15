@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -22,7 +23,7 @@ namespace Grinder.Profile
                 Translate();
                 listZoneCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 npcTypeC.DropDownStyle = ComboBoxStyle.DropDownList;
-                foreach (var t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
+                foreach (Npc.NpcType t in Enum.GetValues(typeof (Npc.NpcType)).Cast<Npc.NpcType>().ToList())
                 {
                     npcTypeC.Items.Add(t.ToString());
                 }
@@ -137,7 +138,7 @@ namespace Grinder.Profile
                         addZoneB_Click(null, null);
                         return;
                     }
-                    foreach (var p in _profile.GrinderZones)
+                    foreach (GrinderZone p in _profile.GrinderZones)
                     {
                         // if (!listZoneCb.Items.Contains(p.Name))
                         listZoneCb.Items.Add(p.Name);
@@ -161,8 +162,8 @@ namespace Grinder.Profile
                 try
                 {
                     // Target entry
-                    var text = "";
-                    foreach (var entry in _profile.GrinderZones[_idZone].TargetEntry)
+                    string text = "";
+                    foreach (int entry in _profile.GrinderZones[_idZone].TargetEntry)
                     {
                         if (text != "")
                             text = text + " ; ";
@@ -203,7 +204,7 @@ namespace Grinder.Profile
                 {
                     // Way
                     listPoint.Items.Clear();
-                    foreach (var p in _profile.GrinderZones[_idZone].Points)
+                    foreach (Point p in _profile.GrinderZones[_idZone].Points)
                     {
                         listPoint.Items.Add(p.ToString());
                     }
@@ -217,7 +218,7 @@ namespace Grinder.Profile
                 {
                     // BlackList
                     listBlackRadius.Items.Clear();
-                    foreach (var b in _profile.GrinderZones[_idZone].BlackListRadius)
+                    foreach (GrinderBlackListRadius b in _profile.GrinderZones[_idZone].BlackListRadius)
                     {
                         listBlackRadius.Items.Add(b.Position.X + " ; " + b.Position.Y + " - " + b.Radius);
                     }
@@ -231,7 +232,7 @@ namespace Grinder.Profile
                 {
                     // Npc
                     listNpc.Items.Clear();
-                    foreach (var n in _profile.GrinderZones[_idZone].Npc)
+                    foreach (Npc n in _profile.GrinderZones[_idZone].Npc)
                     {
                         listNpc.Items.Add(n.Name + " - " + n.Type + " - " + n.Faction);
                     }
@@ -283,7 +284,7 @@ namespace Grinder.Profile
 
                 while (_loopRecordPoint)
                 {
-                    var lastPoint = _profile.GrinderZones[_idZone].Points[_profile.GrinderZones[_idZone].Points.Count - 1];
+                    Point lastPoint = _profile.GrinderZones[_idZone].Points[_profile.GrinderZones[_idZone].Points.Count - 1];
                     float disZTemp = lastPoint.DistanceZ(ObjectManager.Me.Position);
 
                     if (((lastPoint.DistanceTo(ObjectManager.Me.Position) > nSeparatorDistance.Value) &&
@@ -375,7 +376,7 @@ namespace Grinder.Profile
                 if (!ObjectManager.Me.IsValid || !ObjectManager.Target.IsValid)
                     return;
 
-                var npc = new Npc
+                Npc npc = new Npc
                     {
                         ContinentId =
                             (nManager.Wow.Enums.ContinentId) (nManager.Wow.Helpers.Usefuls.ContinentId),
@@ -409,13 +410,13 @@ namespace Grinder.Profile
                     return;
                 }
 
-                var npc = new Npc();
+                Npc npc = new Npc();
 
-                var gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
+                List<WoWGameObject> gameObjects = ObjectManager.GetWoWGameObjectByName(nameNpcTb.Text);
 
                 if (gameObjects.Count > 0)
                 {
-                    var gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
+                    WoWGameObject gameObject = ObjectManager.GetNearestWoWGameObject(gameObjects);
                     if (gameObject.IsValid)
                     {
                         npc.Entry = gameObject.Entry;
@@ -426,10 +427,10 @@ namespace Grinder.Profile
 
                 if (npc.Entry <= 0)
                 {
-                    var units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
+                    List<WoWUnit> units = ObjectManager.GetWoWUnitByName(nameNpcTb.Text);
                     if (units.Count > 0)
                     {
-                        var unit = ObjectManager.GetNearestWoWUnit(units);
+                        WoWUnit unit = ObjectManager.GetNearestWoWUnit(units);
                         if (unit.IsValid)
                         {
                             npc.Entry = unit.Entry;
@@ -552,7 +553,7 @@ namespace Grinder.Profile
                 {
                     if (ObjectManager.Target.IsValid)
                     {
-                        var text = listEntryTb.Text;
+                        string text = listEntryTb.Text;
                         if (!string.IsNullOrWhiteSpace(text))
                             text = text + " ; ";
                         text = text + ObjectManager.Target.Entry;
@@ -570,7 +571,7 @@ namespace Grinder.Profile
         {
             try
             {
-                var text = listEntryTb.Text;
+                string text = listEntryTb.Text;
                 lock (typeof (ProfileCreator))
                 {
                     if (text.Replace(" ", "").Replace(";", "").Length > 0)

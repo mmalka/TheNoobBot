@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
+using Gatherer;
 using nManager.Helpful;
 using nManager.Wow.Class;
 
@@ -15,7 +16,7 @@ namespace Profiles_Converters.Converters
             {
                 if (File.Exists(path))
                 {
-                    var text = Others.ReadFile(path);
+                    string text = Others.ReadFile(path);
                     if (text.Contains("<GatherProfile") && text.Contains("<Waypoints_Normal>"))
                         return true;
                 }
@@ -36,16 +37,16 @@ namespace Profiles_Converters.Converters
             {
                 if (IsMMoLazyFlyerProfile(path))
                 {
-                    var _origineProfile = XmlSerializer.Deserialize<GatherProfile>(path);
-                    var _profile = new Gatherer.GathererProfile();
+                    GatherProfile _origineProfile = XmlSerializer.Deserialize<GatherProfile>(path);
+                    GathererProfile _profile = new Gatherer.GathererProfile();
 
-                    foreach (var p in _origineProfile.Waypoints_Normal)
+                    foreach (Position p in _origineProfile.Waypoints_Normal)
                     {
                         _profile.Points.Add(new Point(p.X, p.Y, p.Z, "Flying"));
                     }
 
 
-                    var fileName = Path.GetFileNameWithoutExtension(path);
+                    string fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
                                                 _profile))

@@ -11,12 +11,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spell = new Spell("Milling");
+                Spell spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return;
 
-                var itemArray = "";
-                foreach (var i in items)
+                string itemArray = "";
+                foreach (string i in items)
                 {
                     if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
                     {
@@ -34,7 +34,7 @@ namespace nManager.Wow.Helpers
                     Logging.Write("Milling interrupted, no items founds from the list, check that the names are correctly typed and that you have at least 5 of them.");
                     return;
                 }
-                var macro =
+                string macro =
                     "myTable = {" + itemArray + "} " +
                     "for key,value in pairs(myTable) do " +
                     "	itemsToMil = value " +
@@ -70,12 +70,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var spell = new Spell("Milling");
+                Spell spell = new Spell("Milling");
                 if (!spell.KnownSpell)
                     return false;
 
-                var itemArray = "";
-                foreach (var i in items)
+                string itemArray = "";
+                foreach (string i in items)
                 {
                     if (!string.IsNullOrWhiteSpace(i) && i.Contains("'"))
                     {
@@ -93,7 +93,7 @@ namespace nManager.Wow.Helpers
                     Logging.Write("Milling interrupted, no items founds from the list, check that the names are correctly typed and that you have at least 5 of them.");
                     return false;
                 }
-                var macro =
+                string macro =
                     "myTable = {" + itemArray + "} " +
                     "needRun = \"false\" " +
                     "for key,value in pairs(myTable) do " +

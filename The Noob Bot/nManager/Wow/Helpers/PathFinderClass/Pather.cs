@@ -148,7 +148,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                var extents = new[] {2.5f, 2.5f, 2.5f};
+                float[] extents = new[] {2.5f, 2.5f, 2.5f};
                 return (from danger in dangers
                         let loc = danger.Location.ToRecast().ToFloatArray()
                         let polyRef = Query.FindNearestPolygon(loc, extents, Filter)
@@ -194,7 +194,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             {
                 CheckDungeon();
 
-                var input = loc.ToRecast().ToFloatArray();
+                float[] input = loc.ToRecast().ToFloatArray();
                 float fx, fy;
                 GetTileByLocation(input, out fx, out fy);
                 x = fx;
@@ -254,8 +254,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 float tx, ty;
                 GetTileByLocation(loc, out tx, out ty);
-                var x = (int) Math.Floor(tx);
-                var y = (int) Math.Floor(ty);
+                int x = (int) Math.Floor(tx);
+                int y = (int) Math.Floor(ty);
                 int thirdx, thirdy;
 
                 LoadTile(x, y);
@@ -318,13 +318,13 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 if (_mesh.HasTileAt(x, y))
                     return true;
-                var path = GetTilePath(x, y);
+                string path = GetTilePath(x, y);
 
                 if (!downloadTile(GetTileName(x, y)))
                     return false;
                 if (!File.Exists(path))
                     return false;
-                var data = File.ReadAllBytes(path);
+                byte[] data = File.ReadAllBytes(path);
                 Logging.WriteNavigator("Load finish: " + Continent + "_" + x + "_" + y + ".tile");
                 return LoadTile(data);
             }
@@ -421,9 +421,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
             try
             {
                 resultSuccess = true;
-                var extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
-                var start = startVec.ToRecast().ToFloatArray();
-                var end = endVec.ToRecast().ToFloatArray();
+                float[] extents = new Point(4.5f, 200.0f, 4.5f).ToFloatArray();
+                float[] start = startVec.ToRecast().ToFloatArray();
+                float[] end = endVec.ToRecast().ToFloatArray();
 
                 if (!IsDungeon)
                 {
@@ -431,11 +431,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     LoadAround(endVec);
                 }
 
-                var startRef = _query.FindNearestPolygon(start, extents, Filter);
+                uint startRef = _query.FindNearestPolygon(start, extents, Filter);
                 if (startRef == 0)
                     Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for start (" + startVec + ")");
 
-                var endRef = _query.FindNearestPolygon(end, extents, Filter);
+                uint endRef = _query.FindNearestPolygon(end, extents, Filter);
                 if (endRef == 0)
                     Logging.WriteNavigator(DetourStatus.Failure + " No polyref found for end (" + endVec + ")");
 
@@ -443,7 +443,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     return new List<Point>();
 
                 uint[] pathCorridor;
-                var status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
+                DetourStatus status = _query.FindPath(startRef, endRef, start, end, Filter, out pathCorridor);
                 if (status.HasFailed() || pathCorridor == null)
                 {
                     Logging.WriteNavigator(status + " FindPath failed, start: " + startRef + " end: " + endRef);
@@ -467,7 +467,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 if (finalPath != null)
                 {
-                    var resultPath = new List<Point>(finalPath.Length/3);
+                    List<Point> resultPath = new List<Point>(finalPath.Length/3);
                     for (int i = 0; i < (finalPath.Length/3); i++)
                     {
                         resultPath.Add(
@@ -488,12 +488,12 @@ namespace nManager.Wow.Helpers.PathFinderClass
         public float GetZ(Point position, bool strict = false)
         {
             float[] extents = strict ? new Point(0.5f, 2000.0f, 0.5f).ToFloatArray() : new Point(1.5f, 2000.0f, 1.5f).ToFloatArray();
-            var center = position.ToRecast().ToFloatArray();
+            float[] center = position.ToRecast().ToFloatArray();
 
             float tx, ty;
             GetTileByLocation(position, out tx, out ty);
-            var x = (int) Math.Floor(tx);
-            var y = (int) Math.Floor(ty);
+            int x = (int) Math.Floor(tx);
+            int y = (int) Math.Floor(ty);
             LoadTile(x, y);
 
             uint startRef = _query.FindNearestPolygon(center, extents, Filter);
@@ -507,7 +507,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             if (z == 0 && !strict) // it failed but we are not strict, then search around
             {
                 float[] result;
-                var status = _query.closestPointOnPolyBoundary(startRef, center, out result);
+                DetourStatus status = _query.closestPointOnPolyBoundary(startRef, center, out result);
                 z = status.HasFailed() ? 0 : result[1];
             }
             return z;
@@ -539,7 +539,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 Continent = continent.Substring(continent.LastIndexOf('\\') + 1);
 
-                var dir = Application.StartupPath;
+                string dir = Application.StartupPath;
                 _meshPath = dir + "\\Meshes"; // + continent;
 
 
@@ -554,7 +554,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 string dungeonPath = GetDungeonPath();
                 if (File.Exists(dungeonPath))
                 {
-                    var data = File.ReadAllBytes(dungeonPath);
+                    byte[] data = File.ReadAllBytes(dungeonPath);
                     status = _mesh.Initialize(data);
                     AddMemoryPressure(data.Length);
                     IsDungeon = true;
@@ -597,7 +597,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                var poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
+                Poly poly = tile.GetPolygon((ushort) (index + tile.Header.OffMeshBase));
                 if (poly == null)
                     return;
                 poly.Disable();
@@ -616,7 +616,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (IsDungeon)
                     return;
 
-                var point = best.ToWoW();
+                float[] point = best.ToWoW();
                 LoadAround(new Point(point[0], point[1], point[2]));
 
                 /*float tx, ty;

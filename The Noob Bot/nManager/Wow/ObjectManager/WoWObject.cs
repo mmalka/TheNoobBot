@@ -61,7 +61,7 @@ namespace nManager.Wow.ObjectManager
             {
                 List<WoWUnit> units = ObjectManager.GetObjectWoWUnit();
                 float i = 0;
-                foreach (var iUnit in units)
+                foreach (WoWUnit iUnit in units)
                 {
                     if (iUnit.IsAlive && iUnit.Position.DistanceTo2D(Position) <= (iUnit.AggroDistance + 1f) &&
                         UnitRelation.GetReaction(ObjectManager.Me, iUnit) == Reaction.Hostile)

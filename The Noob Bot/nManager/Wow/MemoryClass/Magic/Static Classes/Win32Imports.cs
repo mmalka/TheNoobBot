@@ -620,7 +620,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns null on failure.</returns>
         public static string GetWindowTitle(IntPtr hWnd, int nMaxCount)
         {
-            var s = new StringBuilder(nMaxCount);
+            StringBuilder s = new StringBuilder(nMaxCount);
             int length;
             if ((length = _GetWindowText(hWnd, s, nMaxCount)) > 0)
                 return s.ToString(0, length);
@@ -649,7 +649,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the classname of the supplied window.</returns>
         public static string GetClassName(IntPtr hWnd, int nMaxCount)
         {
-            var s = new StringBuilder(nMaxCount);
+            StringBuilder s = new StringBuilder(nMaxCount);
             int length;
 
             if ((length = _GetClassName(hWnd, s, nMaxCount)) > 0)

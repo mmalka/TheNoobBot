@@ -37,14 +37,14 @@ namespace nManager.Wow.Bot.States
 
                 // Get Looting
                 _units = new List<WoWUnit>();
-                var tUnit = ObjectManager.ObjectManager.GetWoWUnitLootable();
+                List<WoWUnit> tUnit = ObjectManager.ObjectManager.GetWoWUnitLootable();
                 if (nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                     nManagerSetting.CurrentSetting.BeastNinjaSkinning)
                     tUnit.AddRange(
                         ObjectManager.ObjectManager.GetWoWUnitSkinnable(
                             new List<ulong>(nManagerSetting.GetListGuidBlackListed())));
 
-                foreach (var woWUnit in tUnit)
+                foreach (WoWUnit woWUnit in tUnit)
                 {
                     if (woWUnit.GetDistance2D <= nManagerSetting.CurrentSetting.GatheringSearchRadius &&
                         !nManagerSetting.IsBlackListed(woWUnit.Guid) &&

@@ -82,7 +82,7 @@ namespace Archaeologist
         {
             try
             {
-                var f = new DigSitesListManagement();
+                DigSitesListManagement f = new DigSitesListManagement();
                 f.ShowDialog();
                 Logging.Status = "Settings Archaeologist Complete";
                 Logging.Write("Settings Archaeologist Complete");

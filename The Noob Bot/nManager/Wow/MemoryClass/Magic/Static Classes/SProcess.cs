@@ -88,7 +88,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (hWnds == null || hWnds.Length == 0)
                 return null;
 
-            var ret = new int[hWnds.Length];
+            int[] ret = new int[hWnds.Length];
 
             for (int i = 0; i < ret.Length; i++)
                 ret[i] = GetProcessFromWindow(hWnds[i]);
@@ -121,7 +121,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (hWnds == null || hWnds.Length == 0)
                 return null;
 
-            var ret = new int[hWnds.Length];
+            int[] ret = new int[hWnds.Length];
 
             for (int i = 0; i < ret.Length; i++)
                 ret[i] = GetProcessFromWindow(hWnds[i]);

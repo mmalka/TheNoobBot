@@ -54,7 +54,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var buffIdT = new List<UInt32> {buffId};
+                List<uint> buffIdT = new List<UInt32> {buffId};
                 return HaveBuff(objBase, buffIdT);
             }
             catch (Exception e)

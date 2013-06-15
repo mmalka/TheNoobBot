@@ -54,7 +54,7 @@ namespace nManager.Helpful
             {
                 double angle;
 
-                var r = System.Math.Sqrt(System.Math.Pow(x, 2) + System.Math.Pow(y, 2));
+                double r = System.Math.Sqrt(System.Math.Pow(x, 2) + System.Math.Pow(y, 2));
                 if (r == 0)
                 {
                     return 0;
@@ -159,11 +159,11 @@ namespace nManager.Helpful
                 if (a.X == b.X && a.Y == b.Y)
                     return a;
 
-                var x = b.X - a.X;
-                var y = b.Y - a.Y;
-                var d = (float) System.Math.Sqrt(x*x + (double) (y*y));
-                var xc = a.X + x*distance/d;
-                var yc = a.Y + y*distance/d;
+                float x = b.X - a.X;
+                float y = b.Y - a.Y;
+                float d = (float) System.Math.Sqrt(x*x + (double) (y*y));
+                float xc = a.X + x*distance/d;
+                float yc = a.Y + y*distance/d;
 
                 return new Point(xc, yc, System.Math.Max(a.Z, b.Z));
             }
@@ -179,13 +179,13 @@ namespace nManager.Helpful
             if (a.X == b.X && a.Y == b.Y)
                 return a;
 
-            var x = b.X - a.X;
-            var y = b.Y - a.Y;
-            var z = b.Z - a.Z;
-            var d = (float) System.Math.Sqrt((double) (x*x) + (double) (y*y) + (double) (z*z));
-            var xc = b.X + x/d*distance;
-            var yc = b.Y + y/d*distance;
-            var zc = b.Z + z/d*distance;
+            float x = b.X - a.X;
+            float y = b.Y - a.Y;
+            float z = b.Z - a.Z;
+            float d = (float) System.Math.Sqrt((double) (x*x) + (double) (y*y) + (double) (z*z));
+            float xc = b.X + x/d*distance;
+            float yc = b.Y + y/d*distance;
+            float zc = b.Z + z/d*distance;
 
             return new Point(xc, yc, zc);
         }

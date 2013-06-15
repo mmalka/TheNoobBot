@@ -1,5 +1,6 @@
 using System.Windows.Forms;
 using Fisherbot.Bot;
+using Fisherbot.Profile;
 using nManager;
 using nManager.Helpful;
 
@@ -65,7 +66,7 @@ namespace Fisherbot
         private void RefreshProfilesList()
         {
             fishSchoolProfil.Items.Clear();
-            foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Fisherbot\\", "*.xml"))
+            foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Fisherbot\\", "*.xml"))
             {
                 fishSchoolProfil.Items.Add(f);
             }
@@ -73,7 +74,7 @@ namespace Fisherbot
 
         private void profileCreatorB_Click(object sender, System.EventArgs e)
         {
-            var f = new Profile.ProfileCreator();
+            ProfileCreator f = new Profile.ProfileCreator();
             f.ShowDialog();
             RefreshProfilesList();
         }

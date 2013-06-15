@@ -92,7 +92,7 @@ namespace Fisherbot
         {
             try
             {
-                var f = new SettingsFisherbotForm();
+                SettingsFisherbotForm f = new SettingsFisherbotForm();
                 f.ShowDialog();
                 Logging.Status = "Settings Fisherbot Complete";
                 Logging.Write("Settings Fisherbot Complete");

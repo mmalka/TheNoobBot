@@ -54,7 +54,7 @@ namespace nManager.Wow.Bot.States
                 _nodes = new List<WoWGameObject>();
                 List<WoWGameObject> tNodes = ObjectManager.ObjectManager.GetWoWGameObjectForFarm();
 
-                foreach (var node in tNodes)
+                foreach (WoWGameObject node in tNodes)
                 {
                     if (!nManagerSetting.IsBlackListedZone(node.Position) &&
                         node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&

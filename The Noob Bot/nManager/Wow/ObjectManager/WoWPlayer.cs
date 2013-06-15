@@ -203,13 +203,13 @@ namespace nManager.Wow.ObjectManager
                     {
                         try
                         {
-                            var itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
+                            ulong itemGuidOwner = GetDescriptor<ulong>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
                             if (!EquippedItems.IsEquippedItemByGuid(o.Guid) || itemGuidOwner != Guid)
                                 continue;
-                            var itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.MaxDurability);
+                            int itemMaxDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.MaxDurability);
                             if (itemMaxDurability == 0)
                                 continue;
-                            var itemDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Durability);
+                            int itemDurability = GetDescriptor<int>(o.GetBaseAddress, (uint) Descriptors.ItemFields.Durability);
                             durabilitys += itemDurability;
                             maxDurabilitys += itemMaxDurability;
                         }

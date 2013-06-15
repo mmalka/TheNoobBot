@@ -39,9 +39,9 @@ namespace Grinder.Bot
         {
             try
             {
-                var profileName = listProfileCb.Text;
+                string profileName = listProfileCb.Text;
                 listProfileCb.Items.Clear();
-                foreach (var f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Grinder\\", "*.xml"))
+                foreach (string f in Others.GetFilesDirectory(Application.StartupPath + "\\Profiles\\Grinder\\", "*.xml"))
                 {
                     listProfileCb.Items.Add(f);
                 }
@@ -71,7 +71,7 @@ namespace Grinder.Bot
         {
             try
             {
-                var f = new ProfileCreator();
+                ProfileCreator f = new ProfileCreator();
                 f.ShowDialog();
                 RefreshProfileList();
             }

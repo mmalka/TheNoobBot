@@ -41,8 +41,8 @@ namespace Flying_To_Ground_Profiles_Converter.Conversion
         {
             try
             {
-                var flyingProfile = XmlSerializer.Deserialize<GrinderProfile>(path);
-                var tempFlyingProfile = new GrinderProfile();
+                GrinderProfile flyingProfile = XmlSerializer.Deserialize<GrinderProfile>(path);
+                GrinderProfile tempFlyingProfile = new GrinderProfile();
                 string flyingProfileName = Path.GetFileNameWithoutExtension(path);
 
                 if (flyingProfile.GrinderZones.Count <= 0)

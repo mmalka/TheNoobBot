@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -6,6 +7,7 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Bot.Tasks;
+using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 
 namespace Gatherer.Bot
@@ -20,7 +22,7 @@ namespace Gatherer.Bot
             try
             {
                 // Load Profile:
-                var f = new LoadProfile();
+                LoadProfile f = new LoadProfile();
                 f.ShowDialog();
                 if (
                     !File.Exists(Application.StartupPath + "\\Profiles\\Gatherer\\" +
@@ -37,7 +39,7 @@ namespace Gatherer.Bot
                     Profile.Points.Reverse();
 
                 NpcDB.AddNpcRange(Profile.Npc);
-                var blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
+                Dictionary<Point, float> blackListDic = Profile.BlackListRadius.ToDictionary(b => b.Position, b => b.Radius);
                 nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Update spell list

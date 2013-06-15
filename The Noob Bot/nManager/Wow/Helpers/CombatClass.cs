@@ -1,5 +1,6 @@
 ﻿using System;
 using System.CodeDom.Compiler;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -96,8 +97,8 @@ namespace nManager.Wow.Helpers
                 if (CSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
-                    var cp = new CompilerParameters();
-                    var assemblies = AppDomain.CurrentDomain
+                    CompilerParameters cp = new CompilerParameters();
+                    IEnumerable<string> assemblies = AppDomain.CurrentDomain
                                               .GetAssemblies()
                                               .Where(
                                                   a =>

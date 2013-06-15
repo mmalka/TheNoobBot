@@ -154,7 +154,7 @@ namespace nManager.Wow.Helpers
         public static List<Point> FindPath(Point from, Point to, string continentNameMpq, out bool resultSuccess,
                                            bool addFromAndStart = true, bool loadAllTile = false)
         {
-            var locList = new List<Point>();
+            List<Point> locList = new List<Point>();
             resultSuccess = true;
             try
             {

@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                     if (_listFishingPoles == null)
                     {
                         _listFishingPoles = new List<uint>();
-                        foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\fishingPoles.txt"))
+                        foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\fishingPoles.txt"))
                         {
                             try
                             {
@@ -57,7 +57,7 @@ namespace nManager.Wow.Helpers
                     if (_listLure == null)
                     {
                         _listLure = new List<uint>();
-                        foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\lures.txt"))
+                        foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\lures.txt"))
                         {
                             try
                             {
@@ -96,7 +96,7 @@ namespace nManager.Wow.Helpers
                 if (lureName != string.Empty)
                 {
                     ItemsManager.UseItem(lureName);
-                    var useSpell = new Spell(lureName);
+                    Spell useSpell = new Spell(lureName);
                     useSpell.Launch();
                     Thread.Sleep(1000);
                     Thread.Sleep(Usefuls.Latency);
@@ -219,7 +219,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var idEquiped =
+                uint idEquiped =
                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
                 if (fishingPoleName != string.Empty)
                     if (ItemsManager.GetNameById((int) idEquiped) == fishingPoleName)
@@ -338,7 +338,7 @@ namespace nManager.Wow.Helpers
                 }
             }
 
-            var pt = new Point(0, 0, 0, "invalid");
+            Point pt = new Point(0, 0, 0, "invalid");
             return pt;
         }
     }

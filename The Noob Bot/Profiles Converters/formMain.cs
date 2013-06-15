@@ -32,13 +32,13 @@ namespace Profiles_Converters
         {
             convertB.Enabled = false;
             convertB.Text = nManager.Translate.Get(nManager.Translate.Id.In_progress);
-            var files =
+            string[] files =
                 Others.DialogBoxOpenFileMultiselect(
                     Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
                     "Profile files (*.xml;*.ini)|*.xml;*.ini|All files (*.*)|*.*");
             int error = 0;
             int success = 0;
-            foreach (var file in files)
+            foreach (string file in files)
             {
                 if (!nManager.Products.Products.IsStarted)
                     return;

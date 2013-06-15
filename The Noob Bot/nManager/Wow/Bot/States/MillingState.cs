@@ -3,6 +3,7 @@ using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
+using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {
@@ -71,7 +72,7 @@ namespace nManager.Wow.Bot.States
             Thread.Sleep(500);
             Tasks.MountTask.DismountMount();
             Logging.Write("Milling in progress");
-            var timer = new Helpful.Timer(15*60*1000);
+            Timer timer = new Helpful.Timer(15*60*1000);
             // Milling
             while (Milling.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled) && Products.Products.IsStarted &&
                    Usefuls.InGame &&

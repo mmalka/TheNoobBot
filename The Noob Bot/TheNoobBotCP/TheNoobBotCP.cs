@@ -81,7 +81,7 @@ public class Main : ICustomProfile
                     {
                         string currentSettingsFile = Application.StartupPath +
                                                      "\\Profiles\\Battlegrounder\\ProfileType\\CSharpProfile\\Settings\\CaptureTheFlag.xml";
-                        var currentSetting = new CaptureTheFlag.CaptureTheFlagSettings();
+                        CaptureTheFlag.CaptureTheFlagSettings currentSetting = new CaptureTheFlag.CaptureTheFlagSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
                             currentSetting =

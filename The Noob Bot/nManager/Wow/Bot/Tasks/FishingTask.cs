@@ -101,14 +101,14 @@ namespace nManager.Wow.Bot.Tasks
                                 fishingSpell = new Spell("Fishing");
                             fishingSpell.Launch(false, false, true);
                             Others.Wait(2000);
-                            var objBobber =
+                            WoWGameObject objBobber =
                                 new WoWGameObject(Fishing.SearchBobber());
 
                             if (objBobber.IsValid)
                             {
                                 if (objBobber.GetBaseAddress > 0)
                                 {
-                                    var node =
+                                    WoWGameObject node =
                                         new WoWGameObject(
                                             ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
                                     if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&

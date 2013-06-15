@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
                                                          ((uint) Addresses.VMT.CGUnit_C__GetFacing*4));
                     if (VTable <= 0)
                         return 0;
-                    var objectManagerBase = Addresses.ObjectManager.objectManager;
+                    Addresses.ObjectManager objectManagerBase = Addresses.ObjectManager.objectManager;
                     if (objectManagerBase <= 0)
                         return 0;
 
@@ -25,7 +25,7 @@ namespace nManager.Wow.Helpers
                         return 0;
                     Memory.WowMemory.Memory.WriteFloat(result_Codecave, 0);
 
-                    var asm = new[]
+                    string[] asm = new[]
                         {
                             "call " +
                             (Memory.WowProcess.WowModule +

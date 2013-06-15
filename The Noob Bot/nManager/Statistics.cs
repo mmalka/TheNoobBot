@@ -33,7 +33,7 @@ namespace nManager
                     return 0;
 
                 UInt64 t = (UInt64) (ObjectManager.Me.Experience - _startXp)*(60*60);
-                var r = (int) (t/(UInt64) (Others.TimesSec - _startTime));
+                int r = (int) (t/(UInt64) (Others.TimesSec - _startTime));
 
                 return r;
             }

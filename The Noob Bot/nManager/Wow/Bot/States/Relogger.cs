@@ -58,7 +58,7 @@ namespace nManager.Wow.Bot.States
             {
                 Logging.Status = "relogger";
 
-                var s = new Login.SettingsLogin
+                Login.SettingsLogin s = new Login.SettingsLogin
                     {
                         Login = nManagerSetting.CurrentSetting.EmailOfTheBattleNetAccount,
                         Password = nManagerSetting.CurrentSetting.PasswordOfTheBattleNetAccount,

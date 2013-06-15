@@ -50,7 +50,7 @@ namespace nManager.Wow.Helpers
                     return;
 
                 // Allocate memory
-                var doStringArgCodecave =
+                uint doStringArgCodecave =
                     Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 +
                                                            Others.Random(1, 25));
                 if (doStringArgCodecave <= 0)
@@ -61,7 +61,7 @@ namespace nManager.Wow.Helpers
                 //Console.WriteLine("LuaDoString(" + command + ", " + notInGameMode + ")");
 
                 // Write the asm stuff for Lua_DoString
-                var asm = new[]
+                string[] asm = new[]
                     {
                         "mov eax, " + doStringArgCodecave,
                         "push 0",
@@ -78,7 +78,7 @@ namespace nManager.Wow.Helpers
 
                 if (!notInGameMode)
                 {
-                    var tempsAsm = new List<string>
+                    List<string> tempsAsm = new List<string>
                         {
                             "call " +
                             (Memory.WowProcess.WowModule +
@@ -98,7 +98,7 @@ namespace nManager.Wow.Helpers
                 }
                 else
                 {
-                    var tempsAsm = new List<string>
+                    List<string> tempsAsm = new List<string>
                         {
                             //"call " + ( Memory.WowProcess.WowModule +  (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                             //"test eax, eax",
@@ -130,11 +130,11 @@ namespace nManager.Wow.Helpers
             try
             {
                 // Command to send using LUA
-                var command = commandline;
+                string command = commandline;
                 if (command.Replace(" ", "").Length <= 0)
                     return "";
                 // Allocate memory for command
-                var luaGetLocalizedTextSpace =
+                uint luaGetLocalizedTextSpace =
                     Memory.WowMemory.Memory.AllocateMemory(Encoding.UTF8.GetBytes(command).Length + 1 +
                                                            Others.Random(1, 25));
                 if (luaGetLocalizedTextSpace <= 0)
@@ -144,7 +144,7 @@ namespace nManager.Wow.Helpers
 
                 // Console.WriteLine("GetLocalizedText(" + Commandline + ")");
 
-                var asm = new[]
+                string[] asm = new[]
                     {
                         "call " +
                         (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer)
@@ -171,7 +171,7 @@ namespace nManager.Wow.Helpers
                     };
 
                 // Inject the shit
-                var sResult = Encoding.UTF8.GetString(Memory.WowMemory.InjectAndExecute(asm, true));
+                string sResult = Encoding.UTF8.GetString(Memory.WowMemory.InjectAndExecute(asm, true));
 
                 // Free memory allocated for command
                 Memory.WowMemory.Memory.FreeMemory(luaGetLocalizedTextSpace);

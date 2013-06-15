@@ -1,6 +1,7 @@
 ﻿using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 
 namespace Milling
 {
@@ -8,7 +9,7 @@ namespace Milling
     {
         public static void Pulse()
         {
-            var thread = new Thread(ThreadPulse) {Name = "Thread Milling"};
+            Thread thread = new Thread(ThreadPulse) {Name = "Thread Milling"};
             thread.Start();
         }
 
@@ -23,7 +24,7 @@ namespace Milling
                 return;
             }
 
-            var milling = new nManager.Wow.Bot.States.MillingState();
+            MillingState milling = new nManager.Wow.Bot.States.MillingState();
             milling.Run();
             Logging.Write("Milling finished.");
             nManager.Products.Products.ProductStop();

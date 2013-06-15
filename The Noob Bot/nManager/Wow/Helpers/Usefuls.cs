@@ -47,14 +47,14 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var registre = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft");
+                RegistryKey registre = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Blizzard Entertainment\World of Warcraft");
                 if (registre == null)
                 {
                     MakeWowRegistry();
                     LaunchWow();
                     return 0;
                 }
-                var val = registre.GetValue("InstallPath");
+                object val = registre.GetValue("InstallPath");
                 if (val == null)
                 {
                     MakeWowRegistry();
@@ -67,7 +67,7 @@ namespace nManager.Wow.Helpers
                     LaunchWow();
                     return 0;
                 }
-                var proc = new Process {StartInfo = {FileName = val + "Wow.exe", Arguments = param}};
+                Process proc = new Process {StartInfo = {FileName = val + "Wow.exe", Arguments = param}};
                 proc.Start();
                 return proc.Id;
             }
@@ -238,7 +238,7 @@ namespace nManager.Wow.Helpers
                             randomString + " = " + bag0FreeSlots + " .. \",\" .. " + bag0Type + " .. \";\" .. " + bag1FreeSlots + " .. \",\" .. " + bag1Type + " .. \";\" .. " +
                             bag2FreeSlots + " .. \",\" .. " + bag2Type + " .. \";\" .. " + bag3FreeSlots + " .. \",\" .. " + bag3Type + " .. \";\" .. " + bag4FreeSlots +
                             " .. \",\" .. " + bag4Type);
-            var result = Lua.GetLocalizedText(randomString);
+            string result = Lua.GetLocalizedText(randomString);
             if (!string.IsNullOrEmpty(result) && result.Contains(";"))
             {
                 string[][] bags = result.Split(';').Select(s => s.Split(',')).ToArray();
@@ -248,8 +248,8 @@ namespace nManager.Wow.Helpers
                         continue;
                     if (t[0] == "0")
                         continue;
-                    var currBagFreeSlots = Others.ToInt32(t[0]);
-                    var currBagType = (BagType) Others.ToInt32(t[1]);
+                    int currBagFreeSlots = Others.ToInt32(t[0]);
+                    BagType currBagType = (BagType) Others.ToInt32(t[1]);
                     if (currBagType.HasFlag(BagType.None))
                         continue;
                     if (currBagType == BagType.Unspecified)
@@ -335,7 +335,7 @@ namespace nManager.Wow.Helpers
 
                         _timerContainerNumFreeSlots = new Timer(1000);
                         string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        var result = Lua.LuaDoString(
+                        string result = Lua.LuaDoString(
                             randomString + " = 0; for i = 0, 4 do if GetContainerNumFreeSlots(i) ~= nil then " +
                             randomString + " = " + randomString + " + GetContainerNumFreeSlots(i); end end  ",
                             randomString);
@@ -843,27 +843,27 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var mask =
+                uint mask =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                      (uint) Addresses.PlayerNameStore.nameStorePtr +
                                                      (uint) Addresses.PlayerNameStore.nameMaskOffset);
-                var baseAddresse =
+                uint baseAddresse =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
                                                      (uint) Addresses.PlayerNameStore.nameStorePtr +
                                                      (uint) Addresses.PlayerNameStore.nameBaseOffset);
 
-                var shortGUID = guid & 0xffffffff;
+                ulong shortGUID = guid & 0xffffffff;
                 if (mask == 0xffffffff)
                     return "";
 
-                var offset = 12*(uint) (mask & shortGUID);
-                var current = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset + 8);
+                uint offset = 12*(uint) (mask & shortGUID);
+                uint current = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset + 8);
                 offset = Memory.WowMemory.Memory.ReadUInt(baseAddresse + offset);
 
                 if (current == 0 || (current & 0x1) == 0x1)
                     return "";
 
-                var testGUID = Memory.WowMemory.Memory.ReadUInt(current);
+                uint testGUID = Memory.WowMemory.Memory.ReadUInt(current);
 
                 while (testGUID != shortGUID)
                 {

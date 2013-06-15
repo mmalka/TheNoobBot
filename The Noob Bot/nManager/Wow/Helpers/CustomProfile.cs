@@ -104,7 +104,7 @@ namespace nManager.Wow.Helpers
                 if (cSharpFile)
                 {
                     CodeDomProvider cc = new CSharpCodeProvider();
-                    var cp = new CompilerParameters();
+                    CompilerParameters cp = new CompilerParameters();
                     IEnumerable<string> assemblies = AppDomain.CurrentDomain
                                                               .GetAssemblies()
                                                               .Where(

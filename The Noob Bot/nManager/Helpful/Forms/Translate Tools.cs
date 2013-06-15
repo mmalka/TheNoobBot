@@ -17,7 +17,7 @@ namespace nManager.Helpful.Forms
                 Translate();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
                     this.TopMost = true;
-                foreach (var id in Enum.GetValues(typeof (Translate.Id)))
+                foreach (object id in Enum.GetValues(typeof (Translate.Id)))
                 {
                     _translation.Translations.Add(new Translate.Translation {Id = (Translate.Id) id, Text = ""});
                 }
@@ -40,7 +40,7 @@ namespace nManager.Helpful.Forms
         {
             try
             {
-                var filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\",
+                string filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\",
                                                         "Langage files (*.xml)|*.xml");
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
@@ -56,11 +56,11 @@ namespace nManager.Helpful.Forms
 
         private void loadB_Click(object sender, EventArgs e)
         {
-            var filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\",
+            string filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\",
                                                     "Langage files (*.xml)|*.xml");
             if (File.Exists(filePath))
             {
-                var t = XmlSerializer.Deserialize<Translate.Language>(filePath);
+                Translate.Language t = XmlSerializer.Deserialize<Translate.Language>(filePath);
                 for (int i = 0; i <= t.Translations.Count - 1; i++)
                 {
                     if (!string.IsNullOrEmpty(t.Translations[i].Text))

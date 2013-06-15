@@ -51,7 +51,7 @@ namespace nManager.Wow.Bot.States
 
                 // Get unit:
                 _unit = new WoWUnit(0);
-                var listUnit = new List<WoWUnit>();
+                List<WoWUnit> listUnit = new List<WoWUnit>();
                 if (FactionsTarget.Count > 0)
                     listUnit.AddRange(ObjectManager.ObjectManager.GetWoWUnitByFaction(FactionsTarget));
                 if (EntryTarget.Count > 0)

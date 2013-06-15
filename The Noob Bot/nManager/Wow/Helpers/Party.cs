@@ -39,7 +39,7 @@ namespace nManager.Wow.Helpers
 
         public static List<UInt64> GetPartyPlayersGUID()
         {
-            var partyPlayersGUID = new List<UInt64>();
+            List<ulong> partyPlayersGUID = new List<UInt64>();
             try
             {
                 uint party = GetPartyPointer(ObjectManager.ObjectManager.Me.GetCurrentPartyType);

@@ -35,15 +35,15 @@ namespace The_Noob_Bot
         {
             // Choose lang:
             langChooseCb.Items.Clear();
-            foreach (var l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
+            foreach (string l in Others.GetFilesDirectory(Application.StartupPath + "\\Data\\Lang\\", "*.xml"))
             {
                 langChooseCb.Items.Add(l.Remove(l.Length - 1 - 3));
             }
 
-            var langChoosed = "English.xml";
+            string langChoosed = "English.xml";
             if (Others.ExistFile(Application.StartupPath + "\\Settings\\lang.txt"))
             {
-                var langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
+                string langTemp = Others.ReadFile(Application.StartupPath + "\\Settings\\lang.txt");
                 if (!string.IsNullOrEmpty(langTemp))
                 {
                     if (Others.ExistFile(Application.StartupPath + "\\Data\\Lang\\" + langTemp))
@@ -83,10 +83,10 @@ namespace The_Noob_Bot
             try
             {
                 // File .exe.config
-                var tempsProcess = System.Diagnostics.Process.GetCurrentProcess();
+                System.Diagnostics.Process tempsProcess = System.Diagnostics.Process.GetCurrentProcess();
                 if (!Others.ExistFile(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config"))
                 {
-                    var sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
+                    StreamWriter sw = new StreamWriter(Application.StartupPath + "\\" + tempsProcess.ProcessName + ".exe.config");
                     sw.WriteLine("<?xml version=\"1.0\"?>");
                     sw.WriteLine("<configuration>");
                     sw.WriteLine("<startup useLegacyV2RuntimeActivationPolicy=\"true\">");
@@ -122,7 +122,7 @@ namespace The_Noob_Bot
                 launchBotB.Text = nManager.Translate.Get(nManager.Translate.Id.In_progress);
                 if (LoginOnServer() && AttachProcess())
                 {
-                    var formMain = new Main();
+                    Main formMain = new Main();
                     formMain.Show();
                     Hide();
                 }
@@ -153,7 +153,7 @@ namespace The_Noob_Bot
                     string[] idStringArray =
                         listProcessLb.SelectedItem.ToString().Replace(" ", "").Split('-');
 
-                    var idProcess = Others.ToInt32(idStringArray[0]);
+                    int idProcess = Others.ToInt32(idStringArray[0]);
 
                     if (!Hook.IsInGame(idProcess))
                     {
@@ -213,7 +213,7 @@ namespace The_Noob_Bot
                     if (saveCb.Checked) // Save login and pass
                     {
                         Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
-                        var sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
+                        StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
                         sw.WriteLine(Others.StringToEncryptString(userNameTb.Text.Trim() + "#" + passwordTb.Text.Trim()));
                         sw.Close();
                     }
@@ -255,7 +255,7 @@ namespace The_Noob_Bot
                 // Load email and password
                 if (Others.ExistFile(Application.StartupPath + "\\Settings\\.login"))
                 {
-                    var strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
+                    StreamReader strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
                     try
                     {
                         string texte = Others.EncryptStringToString(strReader.ReadLine());
@@ -324,9 +324,9 @@ namespace The_Noob_Bot
 
                 listProcessLb.Items.Clear();
                 //ProcessList.SelectedIndex = -1;
-                var usedProcess = new List<string>();
+                List<string> usedProcess = new List<string>();
 
-                for (var i = Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
+                for (int i = Process.ListeProcessIdByName().Length - 1; i >= 0; i--)
                 {
                     if (listProcessLb.SelectedIndex == -1 && !Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
                     {
@@ -336,7 +336,7 @@ namespace The_Noob_Bot
                     }
                     else
                     {
-                        var used = "";
+                        string used = "";
                         if (Hook.WowIsUsed(Process.ListeProcessIdByName()[i].Id))
                             used = " - " + nManager.Translate.Get(nManager.Translate.Id.In_use) + ".";
                         usedProcess.Add(Process.ListeProcessIdByName()[i].Id + " - " +
@@ -344,7 +344,7 @@ namespace The_Noob_Bot
                     }
                 }
 
-                foreach (var v in usedProcess)
+                foreach (string v in usedProcess)
                 {
                     listProcessLb.Items.Add(v);
                 }

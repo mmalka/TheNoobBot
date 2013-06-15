@@ -148,7 +148,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var faction =
+                Npc.FactionType faction =
                     (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
                 return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId,
                                     ObjectManager.ObjectManager.Me.Position);
@@ -165,8 +165,8 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var npcTemp = new Npc();
-                foreach (var npc in ListNpc)
+                Npc npcTemp = new Npc();
+                foreach (Npc npc in ListNpc)
                 {
                     if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type ||
                         npc.ContinentId != continentId) continue;
@@ -189,7 +189,7 @@ namespace nManager.Wow.Helpers
 
         public static Npc GetNpcByEntry(int entry)
         {
-            foreach (var npc in ListNpc)
+            foreach (Npc npc in ListNpc)
             {
                 if (npc.Entry == entry)
                     return npc;

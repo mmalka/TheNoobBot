@@ -56,7 +56,7 @@ namespace nManager.Wow.ObjectManager
                                 {
                                     _lastTargetBase = 0;
                                 }
-                            var t = new WoWUnit(GetObjectByGuid(Me.Target).GetBaseAddress);
+                            WoWUnit t = new WoWUnit(GetObjectByGuid(Me.Target).GetBaseAddress);
                             _lastTargetBase = t.GetBaseAddress;
                             return t;
                         }
@@ -105,7 +105,7 @@ namespace nManager.Wow.ObjectManager
                 lock (Locker)
                 {
                     // Remove invalid objects.
-                    foreach (var o in ObjectDictionary)
+                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
                     {
                         o.Value.UpdateBaseAddress(0);
                     }
@@ -114,7 +114,7 @@ namespace nManager.Wow.ObjectManager
                     ReadObjectList();
 
                     // Clear out old references.
-                    var toRemove = (from o in ObjectDictionary where !o.Value.IsValid select o.Key).ToList();
+                    List<ulong> toRemove = (from o in ObjectDictionary where !o.Value.IsValid select o.Key).ToList();
                     foreach (ulong guid in toRemove)
                     {
                         ObjectDictionary.Remove(guid);
@@ -163,7 +163,7 @@ namespace nManager.Wow.ObjectManager
                         ulong objGuid = Memory.WowMemory.Memory.ReadUInt64((uint) currentObject + (uint) Addresses.ObjectManager.objectGUID);
                         if (!ObjectDictionary.ContainsKey(objGuid))
                         {
-                            var objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
+                            WoWObjectType objType = (WoWObjectType) Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.objectTYPE);
 
                             WoWObject obj = null;
                             // Add the object based on it's *actual* type. Note: WoW's Object descriptors for OBJECT_FIELD_TYPE
@@ -332,7 +332,7 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
-                foreach (var a in tempsListObj.Where(a => a.Entry == entry))
+                foreach (WoWObject a in tempsListObj.Where(a => a.Entry == entry))
                 {
                     return new WoWItem(a.GetBaseAddress);
                 }
@@ -350,10 +350,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 List<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
-                var retList = new List<WoWGameObject>();
+                List<WoWGameObject> retList = new List<WoWGameObject>();
                 foreach (WoWObject a in tempsListObj)
                 {
-                    var b = new WoWGameObject(a.GetBaseAddress);
+                    WoWGameObject b = new WoWGameObject(a.GetBaseAddress);
                     if (b.GOType == reqtype)
                         retList.Add(b);
                 }
@@ -414,7 +414,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tempsList = new List<WoWPlayer>();
+                List<WoWPlayer> tempsList = new List<WoWPlayer>();
                 tempsList.AddRange(GetObjectWoWPlayer());
                 return (from a in tempsList where a.IsTargetingMe select new WoWPlayer(a.GetBaseAddress)).ToList();
             }
@@ -429,7 +429,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWUnit(0);
+                WoWUnit objectReturn = new WoWUnit(0);
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
@@ -452,7 +452,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWUnit(0);
+                WoWUnit objectReturn = new WoWUnit(0);
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
@@ -475,7 +475,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWPlayer(0);
+                WoWPlayer objectReturn = new WoWPlayer(0);
                 float tempDistance = 9999999.0f;
                 foreach (WoWPlayer a in listWoWPlayer)
                 {
@@ -498,7 +498,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWGameObject(0);
+                WoWGameObject objectReturn = new WoWGameObject(0);
                 float tempDistance = 9999999.0f;
                 //foreach (var a in listWoWGameObject.Where(a => a.Position.DistanceTo(point) < tempDistance))
                 foreach (WoWGameObject a in listWoWGameObject)
@@ -522,8 +522,8 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new WoWGameObject(0);
-                var tempDistance = 9999999.0f;
+                WoWGameObject objectReturn = new WoWGameObject(0);
+                float tempDistance = 9999999.0f;
                 //foreach (var a in listWoWGameObject.Where(a => a.GetDistance < tempDistance))
                 foreach (WoWGameObject a in listWoWGameObject)
                 {
@@ -546,8 +546,8 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new List<WoWUnit>();
-                foreach (var a in listWoWUnit)
+                List<WoWUnit> objectReturn = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
                 {
                     try
                     {
@@ -575,7 +575,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var factions = new List<uint> {faction};
+                List<uint> factions = new List<uint> {faction};
                 return GetWoWUnitByFaction(listWoWUnit, factions);
             }
             catch (Exception e)
@@ -660,7 +660,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var names = new List<string> {name};
+                List<string> names = new List<string> {name};
                 return GetWoWUnitByName(listWoWUnit, names);
             }
             catch (Exception e)
@@ -713,7 +713,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var entrys = new List<int> {entry};
+                List<int> entrys = new List<int> {entry};
                 return GetWoWUnitByEntry(listWoWUnit, entrys);
             }
             catch (Exception e)
@@ -754,7 +754,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var namesTemps = names.Select(s => s.ToLower()).ToList();
+                List<string> namesTemps = names.Select(s => s.ToLower()).ToList();
                 return listWoWGameObject.Where(a => namesTemps.Contains(a.Name.ToLower())).ToList();
             }
             catch (Exception e)
@@ -769,7 +769,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var names = new List<string> {name};
+                List<string> names = new List<string> {name};
                 return GetWoWGameObjectByName(listWoWGameObject, names);
             }
             catch (Exception e)
@@ -825,7 +825,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> {displayId};
+                List<int> tListInt = new List<int> {displayId};
                 return GetWoWGameObjectByDisplayId(tListInt);
             }
             catch (Exception e)
@@ -866,7 +866,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> {entry};
+                List<int> tListInt = new List<int> {entry};
                 return GetWoWGameObjectByEntry(tListInt);
             }
             catch (Exception e)
@@ -922,7 +922,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tListInt = new List<int> {id};
+                List<int> tListInt = new List<int> {id};
                 return GetWoWGameObjectById(tListInt);
             }
             catch (Exception e)
@@ -1077,7 +1077,7 @@ namespace nManager.Wow.ObjectManager
 
         public static WoWUnit GetUnitInAggroRange()
         {
-            foreach (var u in GetObjectWoWUnit())
+            foreach (WoWUnit u in GetObjectWoWUnit())
             {
                 if (u.IsValid && u.IsAlive && !u.NotAttackable && !u.PlayerControlled &&
                     UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
@@ -1099,7 +1099,7 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var objectReturn = new List<WoWUnit>();
+                List<WoWUnit> objectReturn = new List<WoWUnit>();
                 foreach (WoWUnit a in listWoWUnit)
                 {
                     if ((!BlackListMobAttack.Contains(a.Guid)) || (a.GetMove && !TraceLine.TraceLineGo(a.Position)))
@@ -1132,11 +1132,11 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                var tp = new List<WoWPlayer>();
+                List<WoWPlayer> tp = new List<WoWPlayer>();
 
                 tp.AddRange(Me.PlayerFaction.ToLower() == "horde" ? GetWoWUnitAlliance() : GetWoWUnitHorde());
 
-                var tu = tp.Select(t => new WoWUnit(t.GetBaseAddress)).ToList();
+                List<WoWUnit> tu = tp.Select(t => new WoWUnit(t.GetBaseAddress)).ToList();
 
                 tu.AddRange(GetObjectWoWUnit());
 
@@ -1385,7 +1385,7 @@ namespace nManager.Wow.ObjectManager
 
         public static WoWPlayer GetWoWUnitWGFlagHolder(bool hostileHolder = true)
         {
-            var woWPlayerList = new List<WoWPlayer>();
+            List<WoWPlayer> woWPlayerList = new List<WoWPlayer>();
             if (hostileHolder)
                 woWPlayerList.AddRange(Me.PlayerFaction.ToLower() == "horde"
                                            ? GetWoWUnitAlliance()

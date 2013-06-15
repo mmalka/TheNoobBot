@@ -94,7 +94,7 @@ namespace nManager.Wow.Bot.States
             MountTask.Mount();
 
             // Find path
-            var points = new List<Point>();
+            List<Point> points = new List<Point>();
             if ((trainer.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
             {
                 points.Add(new Point(trainer.Position));

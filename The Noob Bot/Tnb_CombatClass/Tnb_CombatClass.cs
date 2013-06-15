@@ -71,16 +71,16 @@ namespace CombatClass
                         #region DeathKnight Specialisation checking
 
                     case WoWClass.DeathKnight:
-                        var bloodRites = new Spell("Blood Rites");
-                        var reaping = new Spell("Reaping");
-                        var howlingBlast = new Spell("Howling Blast");
+                        Spell bloodRites = new Spell("Blood Rites");
+                        Spell reaping = new Spell("Reaping");
+                        Spell howlingBlast = new Spell("Howling Blast");
 
                         if (bloodRites.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Blood.xml";
-                                var currentSetting = new DeathknightBlood.DeathknightBloodSettings();
+                                DeathknightBlood.DeathknightBloodSettings currentSetting = new DeathknightBlood.DeathknightBloodSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DeathknightBlood.DeathknightBloodSettings>(currentSettingsFile);
@@ -101,7 +101,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Unholy.xml";
-                                var currentSetting = new DeathknightUnholy.DeathknightUnholySettings();
+                                DeathknightUnholy.DeathknightUnholySettings currentSetting = new DeathknightUnholy.DeathknightUnholySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DeathknightUnholy.DeathknightUnholySettings>(currentSettingsFile);
@@ -122,7 +122,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Frost.xml";
-                                var currentSetting = new DeathknightFrost.DeathknightFrostSettings();
+                                DeathknightFrost.DeathknightFrostSettings currentSetting = new DeathknightFrost.DeathknightFrostSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DeathknightFrost.DeathknightFrostSettings>(currentSettingsFile);
@@ -142,7 +142,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Deathknight Apprentice Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
-                            var currentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
+                            DeathknightApprentice.DeathknightApprenticeSettings currentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(currentSettingsFile);
@@ -164,16 +164,16 @@ namespace CombatClass
                         #region Mage Specialisation checking
 
                     case WoWClass.Mage:
-                        var mageArcaneSpell = new Spell("Arcane Blast");
-                        var mageFireSpell = new Spell("Pyroblast");
-                        var mageFrostSpell = new Spell("Summon Water Elemental");
+                        Spell mageArcaneSpell = new Spell("Arcane Blast");
+                        Spell mageFireSpell = new Spell("Pyroblast");
+                        Spell mageFrostSpell = new Spell("Summon Water Elemental");
 
                         if (mageArcaneSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Arcane.xml";
-                                var currentSetting = new MageArcane.MageArcaneSettings();
+                                MageArcane.MageArcaneSettings currentSetting = new MageArcane.MageArcaneSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MageArcane.MageArcaneSettings>(currentSettingsFile);
@@ -194,7 +194,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Fire.xml";
-                                var currentSetting = new MageFire.MageFireSettings();
+                                MageFire.MageFireSettings currentSetting = new MageFire.MageFireSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MageFire.MageFireSettings>(currentSettingsFile);
@@ -215,7 +215,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                                var currentSetting = new MageFrost.MageFrostSettings();
+                                MageFrost.MageFrostSettings currentSetting = new MageFrost.MageFrostSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
@@ -234,7 +234,7 @@ namespace CombatClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                            var currentSetting = new MageFrost.MageFrostSettings();
+                            MageFrost.MageFrostSettings currentSetting = new MageFrost.MageFrostSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
@@ -256,16 +256,16 @@ namespace CombatClass
                         #region Warlock Specialisation checking
 
                     case WoWClass.Warlock:
-                        var warlockDemonologySpell = new Spell("Summon Felguard");
-                        var warlockAfflictionSpell = new Spell("Unstable Affliction");
-                        var warlockDestructionSpell = new Spell("Conflagrate");
+                        Spell warlockDemonologySpell = new Spell("Summon Felguard");
+                        Spell warlockAfflictionSpell = new Spell("Unstable Affliction");
+                        Spell warlockDestructionSpell = new Spell("Conflagrate");
 
                         if (warlockDemonologySpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                                var currentSetting = new WarlockDemonology.WarlockDemonologySettings();
+                                WarlockDemonology.WarlockDemonologySettings currentSetting = new WarlockDemonology.WarlockDemonologySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
@@ -286,7 +286,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Affliction.xml";
-                                var currentSetting = new WarlockAffliction.WarlockAfflictionSettings();
+                                WarlockAffliction.WarlockAfflictionSettings currentSetting = new WarlockAffliction.WarlockAfflictionSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarlockAffliction.WarlockAfflictionSettings>(currentSettingsFile);
@@ -307,7 +307,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Destruction.xml";
-                                var currentSetting = new WarlockDestruction.WarlockDestructionSettings();
+                                WarlockDestruction.WarlockDestructionSettings currentSetting = new WarlockDestruction.WarlockDestructionSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarlockDestruction.WarlockDestructionSettings>(currentSettingsFile);
@@ -327,7 +327,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Warlock Demonology Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                            var currentSetting = new WarlockDemonology.WarlockDemonologySettings();
+                            WarlockDemonology.WarlockDemonologySettings currentSetting = new WarlockDemonology.WarlockDemonologySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
@@ -349,17 +349,17 @@ namespace CombatClass
                         #region Druid Specialisation checking
 
                     case WoWClass.Druid:
-                        var druidFeralSpell = new Spell("Tiger's Fury");
-                        var druidGuardianSpell = new Spell("Savage Defense");
-                        var druidBalanceSpell = new Spell("Eclipse");
-                        var druidRestorationSpell = new Spell("Swiftmend");
+                        Spell druidFeralSpell = new Spell("Tiger's Fury");
+                        Spell druidGuardianSpell = new Spell("Savage Defense");
+                        Spell druidBalanceSpell = new Spell("Eclipse");
+                        Spell druidRestorationSpell = new Spell("Swiftmend");
 
                         if (druidFeralSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Feral.xml";
-                                var currentSetting = new DruidFeral.DruidFeralSettings();
+                                DruidFeral.DruidFeralSettings currentSetting = new DruidFeral.DruidFeralSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DruidFeral.DruidFeralSettings>(currentSettingsFile);
@@ -379,7 +379,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Guardian.xml";
-                                var currentSetting = new DruidGuardian.DruidGuardianSettings();
+                                DruidGuardian.DruidGuardianSettings currentSetting = new DruidGuardian.DruidGuardianSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DruidGuardian.DruidGuardianSettings>(currentSettingsFile);
@@ -399,7 +399,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                                var currentSetting = new DruidBalance.DruidBalanceSettings();
+                                DruidBalance.DruidBalanceSettings currentSetting = new DruidBalance.DruidBalanceSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
@@ -420,7 +420,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Restoration.xml";
-                                var currentSetting = new DruidRestoration.DruidRestorationSettings();
+                                DruidRestoration.DruidRestorationSettings currentSetting = new DruidRestoration.DruidRestorationSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<DruidRestoration.DruidRestorationSettings>(currentSettingsFile);
@@ -439,7 +439,7 @@ namespace CombatClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                            var currentSetting = new DruidBalance.DruidBalanceSettings();
+                            DruidBalance.DruidBalanceSettings currentSetting = new DruidBalance.DruidBalanceSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
@@ -461,15 +461,15 @@ namespace CombatClass
                         #region Paladin Specialisation checking
 
                     case WoWClass.Paladin:
-                        var paladinRetributionSpell = new Spell("Templar's Verdict");
-                        var paladinProtectionSpell = new Spell("Avenger's Shield");
-                        var paladinHolySpell = new Spell("Holy Shock");
+                        Spell paladinRetributionSpell = new Spell("Templar's Verdict");
+                        Spell paladinProtectionSpell = new Spell("Avenger's Shield");
+                        Spell paladinHolySpell = new Spell("Holy Shock");
                         if (paladinRetributionSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                                var currentSetting = new PaladinRetribution.PaladinRetributionSettings();
+                                PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
@@ -489,7 +489,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Protection.xml";
-                                var currentSetting = new PaladinProtection.PaladinProtectionSettings();
+                                PaladinProtection.PaladinProtectionSettings currentSetting = new PaladinProtection.PaladinProtectionSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PaladinProtection.PaladinProtectionSettings>(currentSettingsFile);
@@ -509,7 +509,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Holy.xml";
-                                var currentSetting = new PaladinHoly.PaladinHolySettings();
+                                PaladinHoly.PaladinHolySettings currentSetting = new PaladinHoly.PaladinHolySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PaladinHoly.PaladinHolySettings>(currentSettingsFile);
@@ -529,7 +529,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                            var currentSetting = new PaladinRetribution.PaladinRetributionSettings();
+                            PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
@@ -550,16 +550,16 @@ namespace CombatClass
                         #region Shaman Specialisation checking
 
                     case WoWClass.Shaman:
-                        var shamanEnhancementSpell = new Spell("Lava Lash");
-                        var shamanElementalSpell = new Spell("Thunderstorm");
-                        var shamanRestorationSpell = new Spell("Riptide");
+                        Spell shamanEnhancementSpell = new Spell("Lava Lash");
+                        Spell shamanElementalSpell = new Spell("Thunderstorm");
+                        Spell shamanRestorationSpell = new Spell("Riptide");
 
                         if (shamanEnhancementSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Enhancement.xml";
-                                var currentSetting = new ShamanEnhancement.ShamanEnhancementSettings();
+                                ShamanEnhancement.ShamanEnhancementSettings currentSetting = new ShamanEnhancement.ShamanEnhancementSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<ShamanEnhancement.ShamanEnhancementSettings>(currentSettingsFile);
@@ -579,7 +579,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Elemental.xml";
-                                var currentSetting = new ShamanElemental.ShamanElementalSettings();
+                                ShamanElemental.ShamanElementalSettings currentSetting = new ShamanElemental.ShamanElementalSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<ShamanElemental.ShamanElementalSettings>(currentSettingsFile);
@@ -600,7 +600,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                                var currentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                                ShamanRestoration.ShamanRestorationSettings currentSetting = new ShamanRestoration.ShamanRestorationSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
@@ -619,7 +619,7 @@ namespace CombatClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                            var currentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                            ShamanRestoration.ShamanRestorationSettings currentSetting = new ShamanRestoration.ShamanRestorationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
@@ -640,15 +640,15 @@ namespace CombatClass
                         #region Priest Specialisation checking
 
                     case WoWClass.Priest:
-                        var priestShadowSpell = new Spell("Mind Flay");
-                        var priestDisciplineSpell = new Spell("Penance");
-                        var priestHolySpell = new Spell("Holy Word: Chastise");
+                        Spell priestShadowSpell = new Spell("Mind Flay");
+                        Spell priestDisciplineSpell = new Spell("Penance");
+                        Spell priestHolySpell = new Spell("Holy Word: Chastise");
                         if (priestShadowSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                                var currentSetting = new PriestShadow.PriestShadowSettings();
+                                PriestShadow.PriestShadowSettings currentSetting = new PriestShadow.PriestShadowSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
@@ -669,7 +669,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Discipline.xml";
-                                var currentSetting = new PriestDiscipline.PriestDisciplineSettings();
+                                PriestDiscipline.PriestDisciplineSettings currentSetting = new PriestDiscipline.PriestDisciplineSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PriestDiscipline.PriestDisciplineSettings>(currentSettingsFile);
@@ -690,7 +690,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Holy.xml";
-                                var currentSetting = new PriestHoly.PriestHolySettings();
+                                PriestHoly.PriestHolySettings currentSetting = new PriestHoly.PriestHolySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<PriestHoly.PriestHolySettings>(currentSettingsFile);
@@ -710,7 +710,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Priest Shadow Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                            var currentSetting = new PriestShadow.PriestShadowSettings();
+                            PriestShadow.PriestShadowSettings currentSetting = new PriestShadow.PriestShadowSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
@@ -732,16 +732,16 @@ namespace CombatClass
                         #region Rogue Specialisation checking
 
                     case WoWClass.Rogue:
-                        var rogueCombatSpell = new Spell("Blade Flurry");
-                        var rogueAssassinationSpell = new Spell("Mutilate");
-                        var rogueSubtletySpell = new Spell("Master of Subtlety");
+                        Spell rogueCombatSpell = new Spell("Blade Flurry");
+                        Spell rogueAssassinationSpell = new Spell("Mutilate");
+                        Spell rogueSubtletySpell = new Spell("Master of Subtlety");
 
                         if (rogueCombatSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                                var currentSetting = new RogueCombat.RogueCombatSettings();
+                                RogueCombat.RogueCombatSettings currentSetting = new RogueCombat.RogueCombatSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
@@ -761,7 +761,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
-                                var currentSetting = new RogueAssassination.RogueAssassinationSettings();
+                                RogueAssassination.RogueAssassinationSettings currentSetting = new RogueAssassination.RogueAssassinationSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<RogueAssassination.RogueAssassinationSettings>(currentSettingsFile);
@@ -781,7 +781,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Subtlety.xml";
-                                var currentSetting = new RogueSubtlety.RogueSubtletySettings();
+                                RogueSubtlety.RogueSubtletySettings currentSetting = new RogueSubtlety.RogueSubtletySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<RogueSubtlety.RogueSubtletySettings>(currentSettingsFile);
@@ -799,7 +799,7 @@ namespace CombatClass
                         if (configOnly)
                         {
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                            var currentSetting = new RogueCombat.RogueCombatSettings();
+                            RogueCombat.RogueCombatSettings currentSetting = new RogueCombat.RogueCombatSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
@@ -819,16 +819,16 @@ namespace CombatClass
                         #region Warrior Specialisation checking
 
                     case WoWClass.Warrior:
-                        var warriorArmsSpell = new Spell("Mortal Strike");
-                        var warriorFurySpell = new Spell("Bloodthirst");
-                        var warriorProtectionSpell = new Spell("Shield Slam");
+                        Spell warriorArmsSpell = new Spell("Mortal Strike");
+                        Spell warriorFurySpell = new Spell("Bloodthirst");
+                        Spell warriorProtectionSpell = new Spell("Shield Slam");
 
                         if (warriorArmsSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Arms.xml";
-                                var currentSetting = new WarriorArms.WarriorArmsSettings();
+                                WarriorArms.WarriorArmsSettings currentSetting = new WarriorArms.WarriorArmsSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
@@ -848,7 +848,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Fury.xml";
-                                var currentSetting = new WarriorFury.WarriorFurySettings();
+                                WarriorFury.WarriorFurySettings currentSetting = new WarriorFury.WarriorFurySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarriorFury.WarriorFurySettings>(currentSettingsFile);
@@ -868,7 +868,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Protection.xml";
-                                var currentSetting = new WarriorProtection.WarriorProtectionSettings();
+                                WarriorProtection.WarriorProtectionSettings currentSetting = new WarriorProtection.WarriorProtectionSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<WarriorProtection.WarriorProtectionSettings>(currentSettingsFile);
@@ -887,7 +887,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Warrior Arms Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warrior_Arms.xml";
-                            var currentSetting = new WarriorArms.WarriorArmsSettings();
+                            WarriorArms.WarriorArmsSettings currentSetting = new WarriorArms.WarriorArmsSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
@@ -908,16 +908,16 @@ namespace CombatClass
                         #region Hunter Specialisation checking
 
                     case WoWClass.Hunter:
-                        var hunterMarksmanshipSpell = new Spell("Aimed Shot");
-                        var hunterSurvivalSpell = new Spell("Explosive Shot");
-                        var hunterBeastMasterySpell = new Spell("Kill Command");
+                        Spell hunterMarksmanshipSpell = new Spell("Aimed Shot");
+                        Spell hunterSurvivalSpell = new Spell("Explosive Shot");
+                        Spell hunterBeastMasterySpell = new Spell("Kill Command");
 
                         if (hunterMarksmanshipSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
-                                var currentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
+                                HunterMarksmanship.HunterMarksmanshipSettings currentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<HunterMarksmanship.HunterMarksmanshipSettings>(currentSettingsFile);
@@ -938,7 +938,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Survival.xml";
-                                var currentSetting = new HunterSurvival.HunterSurvivalSettings();
+                                HunterSurvival.HunterSurvivalSettings currentSetting = new HunterSurvival.HunterSurvivalSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<HunterSurvival.HunterSurvivalSettings>(currentSettingsFile);
@@ -959,7 +959,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_BeastMastery.xml";
-                                var currentSetting = new HunterBeastMastery.HunterBeastMasterySettings();
+                                HunterBeastMastery.HunterBeastMasterySettings currentSetting = new HunterBeastMastery.HunterBeastMasterySettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<HunterBeastMastery.HunterBeastMasterySettings>(currentSettingsFile);
@@ -979,7 +979,7 @@ namespace CombatClass
                         {
                             MessageBox.Show(@"Your specification haven't be found, loading Hunter Marksmanship Settings");
                             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
-                            var currentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
+                            HunterMarksmanship.HunterMarksmanshipSettings currentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting = Settings.Load<HunterMarksmanship.HunterMarksmanshipSettings>(currentSettingsFile);
@@ -1001,15 +1001,15 @@ namespace CombatClass
                         #region Monk Specialisation checking
 
                     case WoWClass.Monk:
-                        var monkBrewmasterSpell = new Spell("Dizzying Haze");
-                        var monkWindwalkerSpell = new Spell("Fists of Fury");
-                        var monkMistweaverSpell = new Spell("Soothing Mist");
+                        Spell monkBrewmasterSpell = new Spell("Dizzying Haze");
+                        Spell monkWindwalkerSpell = new Spell("Fists of Fury");
+                        Spell monkMistweaverSpell = new Spell("Soothing Mist");
                         if (monkBrewmasterSpell.KnownSpell)
                         {
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
-                                var currentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
+                                MonkBrewmaster.MonkBrewmasterSettings currentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MonkBrewmaster.MonkBrewmasterSettings>(currentSettingsFile);
@@ -1029,7 +1029,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Windwalker.xml";
-                                var currentSetting = new MonkWindwalker.MonkWindwalkerSettings();
+                                MonkWindwalker.MonkWindwalkerSettings currentSetting = new MonkWindwalker.MonkWindwalkerSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MonkWindwalker.MonkWindwalkerSettings>(currentSettingsFile);
@@ -1049,7 +1049,7 @@ namespace CombatClass
                             if (configOnly)
                             {
                                 string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Monk_Mistweaver.xml";
-                                var currentSetting = new MonkMistweaver.MonkMistweaverSettings();
+                                MonkMistweaver.MonkMistweaverSettings currentSetting = new MonkMistweaver.MonkMistweaverSettings();
                                 if (File.Exists(currentSettingsFile) && !resetSettings)
                                 {
                                     currentSetting = Settings.Load<MonkMistweaver.MonkMistweaverSettings>(currentSettingsFile);
@@ -1070,7 +1070,7 @@ namespace CombatClass
                             MessageBox.Show(@"Your specification haven't be found, loading Monk Brewmaster Settings");
                             string currentSettingsFile = Application.StartupPath +
                                                          "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
-                            var currentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
+                            MonkBrewmaster.MonkBrewmasterSettings currentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
                                 currentSetting =
@@ -1263,7 +1263,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 {
@@ -1935,7 +1935,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 {
@@ -2930,7 +2930,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 {
@@ -3870,7 +3870,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                 {
@@ -4723,7 +4723,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -5515,7 +5515,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -6306,7 +6306,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -7117,7 +7117,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -7925,7 +7925,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -8686,7 +8686,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -9458,7 +9458,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -10256,7 +10256,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -11044,7 +11044,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -11748,7 +11748,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -12631,7 +12631,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -13164,7 +13164,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -13780,7 +13780,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -14246,7 +14246,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -15152,7 +15152,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -16013,7 +16013,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -16815,7 +16815,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -17535,7 +17535,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -18258,7 +18258,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -19096,7 +19096,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -19855,7 +19855,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -20592,7 +20592,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -21310,7 +21310,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -22154,7 +22154,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -23004,7 +23004,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -23815,7 +23815,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -24629,7 +24629,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -25490,7 +25490,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -26203,7 +26203,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -26844,7 +26844,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);
@@ -27480,7 +27480,7 @@ namespace CombatClass
             if (ObjectManager.Target.GetDistance < MySettings.DoAvoidMeleeDistance && ObjectManager.Target.InCombat)
             {
                 Logging.WriteFight("Too Close. Moving Back");
-                var maxTimeTimer = new Timer(1000*2);
+                Timer maxTimeTimer = new Timer(1000*2);
                 MovementsAction.MoveBackward(true);
                 while (ObjectManager.Target.GetDistance < 2 && ObjectManager.Target.InCombat && !maxTimeTimer.IsReady)
                     Thread.Sleep(300);

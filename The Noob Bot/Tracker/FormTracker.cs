@@ -114,14 +114,14 @@ namespace Tracker
 
         private void UpdateTrackInGame()
         {
-            var listUnitFlag = new List<string>();
+            List<string> listUnitFlag = new List<string>();
             for (int i = 0; i <= ctTrack.Items.Count - 1; i++)
             {
                 listUnitFlag.Add(ctTrack.Items[i].ToString());
             }
             nManager.Wow.Helpers.Tracker.TrackCreatureFlags(listUnitFlag);
 
-            var listObjectFlag = new List<string>();
+            List<string> listObjectFlag = new List<string>();
             for (int i = 0; i <= otTrack.Items.Count - 1; i++)
             {
                 listObjectFlag.Add(otTrack.Items[i].ToString());
@@ -135,14 +135,14 @@ namespace Tracker
             {
                 if (unTrack.Items.Count > 0)
                 {
-                    var listName = new List<string>();
+                    List<string> listName = new List<string>();
                     for (int i = 0; i <= unTrack.Items.Count - 1; i++)
                     {
                         listName.Add(unTrack.Items[i].ToString());
                         Application.DoEvents();
                     }
 
-                    var tList = new List<WoWUnit>();
+                    List<WoWUnit> tList = new List<WoWUnit>();
                     tList.AddRange(ObjectManager.GetObjectWoWUnit());
                     for (int i = 0; i <= tList.Count - 1; i++)
                     {

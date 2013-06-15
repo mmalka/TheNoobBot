@@ -11,7 +11,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var macro =
+                string macro =
                     "numTrade = GetNumTradeSkills(); " +
                     "firstTrade = GetFirstTradeSkill(); " +
                     "while numTrade>=firstTrade do " +
@@ -35,11 +35,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var smeltingSpell = new Spell("Smelting");
+                Spell smeltingSpell = new Spell("Smelting");
                 if (!smeltingSpell.KnownSpell)
                     return;
 
-                var macro =
+                string macro =
                     "RunMacroText(\"/click TradeSkillFrameCloseButton\"); " +
                     "CastSpellByName(\"" + smeltingSpell.NameInGame + "\"); ";
                 Lua.LuaDoString(macro);
@@ -55,7 +55,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var macro =
+                string macro =
                     "RunMacroText(\"/click TradeSkillFrameCloseButton\"); ";
                 Lua.LuaDoString(macro);
             }
@@ -70,11 +70,11 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var smeltingSpell = new Spell("Smelting");
+                Spell smeltingSpell = new Spell("Smelting");
                 if (!smeltingSpell.KnownSpell)
                     return false;
 
-                var macro = "";
+                string macro = "";
 
                 if (openWindow)
                 {

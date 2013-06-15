@@ -70,35 +70,35 @@ namespace Battlegrounder
         private void Save()
         {
             BattlegrounderSetting.CurrentSetting.AlteracValley = AlteracValleySwitch.Value;
-            var alteracValleyProfileTypeInfo = AlteracValleyProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem alteracValleyProfileTypeInfo = AlteracValleyProfileType.SelectedItem as ComboboxItem;
             if (alteracValleyProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.AlteracValleyProfileType =
                     alteracValleyProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.AlteracValleyXmlProfile = XMLProfileListAlteracValley.Text;
 
             BattlegrounderSetting.CurrentSetting.WarsongGulch = WarsongGulchSwitch.Value;
-            var warsongGulchProfileTypeInfo = WarsongGulchProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem warsongGulchProfileTypeInfo = WarsongGulchProfileType.SelectedItem as ComboboxItem;
             if (warsongGulchProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.WarsongGulchProfileType =
                     warsongGulchProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.WarsongGulchXmlProfile = XMLProfileListWarsongGulch.Text;
 
             BattlegrounderSetting.CurrentSetting.ArathiBasin = ArathiBasinSwitch.Value;
-            var arathiBasinProfileTypeInfo = ArathiBasinProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem arathiBasinProfileTypeInfo = ArathiBasinProfileType.SelectedItem as ComboboxItem;
             if (arathiBasinProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.ArathiBasinProfileType =
                     arathiBasinProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.ArathiBasinXmlProfile = XMLProfileListArathiBasin.Text;
 
             BattlegrounderSetting.CurrentSetting.EyeoftheStorm = EyeoftheStormSwitch.Value;
-            var eyeoftheStormProfileTypeInfo = EyeoftheStormProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem eyeoftheStormProfileTypeInfo = EyeoftheStormProfileType.SelectedItem as ComboboxItem;
             if (eyeoftheStormProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.EyeoftheStormProfileType =
                     eyeoftheStormProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.EyeoftheStormXmlProfile = XMLProfileListEyeoftheStorm.Text;
 
             BattlegrounderSetting.CurrentSetting.StrandoftheAncients = StrandoftheAncientsSwitch.Value;
-            var strandoftheAncientsProfileTypeInfo = StrandoftheAncientsProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem strandoftheAncientsProfileTypeInfo = StrandoftheAncientsProfileType.SelectedItem as ComboboxItem;
             if (strandoftheAncientsProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.StrandoftheAncientsProfileType =
                     strandoftheAncientsProfileTypeInfo.Value.ToString();
@@ -106,34 +106,34 @@ namespace Battlegrounder
                 XMLProfileListStrandoftheAncients.Text;
 
             BattlegrounderSetting.CurrentSetting.IsleofConquest = IsleofConquestSwitch.Value;
-            var isleofConquestProfileTypeInfo = IsleofConquestProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem isleofConquestProfileTypeInfo = IsleofConquestProfileType.SelectedItem as ComboboxItem;
             if (isleofConquestProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.IsleofConquestProfileType =
                     isleofConquestProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.IsleofConquestXmlProfile = XMLProfileListIsleofConquest.Text;
 
             BattlegrounderSetting.CurrentSetting.TwinPeaks = TwinPeaksSwitch.Value;
-            var twinPeaksProfileTypeInfo = TwinPeaksProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem twinPeaksProfileTypeInfo = TwinPeaksProfileType.SelectedItem as ComboboxItem;
             if (twinPeaksProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.TwinPeaksProfileType = twinPeaksProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.TwinPeaksXmlProfile = XMLProfileListTwinPeaks.Text;
 
             BattlegrounderSetting.CurrentSetting.BattleforGilneas = BattleforGilneasSwitch.Value;
-            var battleforGilneasProfileTypeInfo = BattleforGilneasProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem battleforGilneasProfileTypeInfo = BattleforGilneasProfileType.SelectedItem as ComboboxItem;
             if (battleforGilneasProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.BattleforGilneasProfileType =
                     battleforGilneasProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.BattleforGilneasXmlProfile = XMLProfileListBattleforGilneas.Text;
 
             BattlegrounderSetting.CurrentSetting.TempleofKotmogu = TempleOfKotmoguSwitch.Value;
-            var templeofKotmoguProfileTypeInfo = TempleofKotmoguProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem templeofKotmoguProfileTypeInfo = TempleofKotmoguProfileType.SelectedItem as ComboboxItem;
             if (templeofKotmoguProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.TempleofKotmoguProfileType =
                     templeofKotmoguProfileTypeInfo.Value.ToString();
             BattlegrounderSetting.CurrentSetting.TempleofKotmoguXmlProfile = XMLProfileListTempleofKotmogu.Text;
 
             BattlegrounderSetting.CurrentSetting.SilvershardMines = SilvershardMinesSwitch.Value;
-            var silvershardMinesProfileTypeInfo = SilvershardMinesProfileType.SelectedItem as ComboboxItem;
+            ComboboxItem silvershardMinesProfileTypeInfo = SilvershardMinesProfileType.SelectedItem as ComboboxItem;
             if (silvershardMinesProfileTypeInfo != null)
                 BattlegrounderSetting.CurrentSetting.SilvershardMinesProfileType =
                     silvershardMinesProfileTypeInfo.Value.ToString();
@@ -199,7 +199,7 @@ namespace Battlegrounder
         private void RandomBattlegroundSwitchValueChanged(object sender,
                                                           EventArgs e)
         {
-            var sbi = sender as SwitchButton;
+            SwitchButton sbi = sender as SwitchButton;
             if (sbi != null && sbi.Value)
             {
                 if (CountSwitchActive() > 0)
@@ -220,7 +220,7 @@ namespace Battlegrounder
         private void CheckAllSwitchEvent(object sender,
                                          EventArgs e)
         {
-            var sbi = sender as SwitchButton;
+            SwitchButton sbi = sender as SwitchButton;
             if (RandomBattlegroundSwitch.Value)
             {
                 if (sbi != null) sbi.Value = false;
@@ -252,7 +252,7 @@ namespace Battlegrounder
             {
                 if (Battleground.IsInBattleground())
                 {
-                    var f = new ProfileCreator();
+                    ProfileCreator f = new ProfileCreator();
                     f.ShowDialog();
                 }
                 else
@@ -287,7 +287,7 @@ namespace Battlegrounder
                 {
                     for (int i = 0; i <= battleground.ProfileTypes.Count - 1; i++)
                     {
-                        var item = new ComboboxItem
+                        ComboboxItem item = new ComboboxItem
                             {
                                 Text = battleground.ProfileTypes[i].ProfileTypeName,
                                 Value = battleground.ProfileTypes[i].ProfileTypeId

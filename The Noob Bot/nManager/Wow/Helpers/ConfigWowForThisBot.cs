@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                var configThread = new Thread(ConfigWowThread) {Name = "config wow Thread"};
+                Thread configThread = new Thread(ConfigWowThread) {Name = "config wow Thread"};
                 configThread.Start();
             }
             catch (Exception exception)

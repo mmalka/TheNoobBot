@@ -24,7 +24,7 @@ namespace nManager.Helpful
                 try
                 {
                     _status = value;
-                    var e = new StatusChangeEventArgs {Status = value};
+                    StatusChangeEventArgs e = new StatusChangeEventArgs {Status = value};
                     if (OnChangedStatus != null)
                         OnChangedStatus(Status, e);
                 }
@@ -39,7 +39,7 @@ namespace nManager.Helpful
         {
             try
             {
-                for (var i = _log.Count - 1; i > 0; i--)
+                for (int i = _log.Count - 1; i > 0; i--)
                 {
                     if ((_log[i].LogType & logType) == _log[i].LogType)
                         return _log[i];
@@ -192,7 +192,7 @@ namespace nManager.Helpful
                         if (!Directory.Exists(Application.StartupPath + "\\Logs"))
                             Directory.CreateDirectory(Application.StartupPath + "\\Logs");
 
-                        var sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true,
+                        StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true,
                                                   Encoding.UTF8);
                         sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" +
                                  LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
@@ -200,7 +200,7 @@ namespace nManager.Helpful
 
                         try
                         {
-                            var e = new LoggingChangeEventArgs
+                            LoggingChangeEventArgs e = new LoggingChangeEventArgs
                                 {
                                     Log = new Log
                                         {

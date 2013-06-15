@@ -16,7 +16,7 @@ namespace nManager.Wow.Helpers
                 Usefuls.UpdateLastHardwareAction();
                 if (baseAddress > 0)
                 {
-                    var to = new WoWObject(baseAddress);
+                    WoWObject to = new WoWObject(baseAddress);
                     if (!to.IsValid)
                         return;
                     if (to.Guid <= 0)
@@ -24,14 +24,14 @@ namespace nManager.Wow.Helpers
 
                     // GUID (uint64) to uint32 + uint32
                     Stream t = new MemoryStream(8);
-                    var ta = BitConverter.GetBytes(to.Guid);
+                    byte[] ta = BitConverter.GetBytes(to.Guid);
                     t.Write(ta, 0, ta.Length);
                     t.Position = 0;
-                    var b = new BinaryReader(t);
-                    var p1 = b.ReadUInt32();
-                    var p2 = b.ReadUInt32();
+                    BinaryReader b = new BinaryReader(t);
+                    uint p1 = b.ReadUInt32();
+                    uint p2 = b.ReadUInt32();
 
-                    var asm = new[]
+                    string[] asm = new[]
                         {
                             "call " +
                             (Memory.WowProcess.WowModule +

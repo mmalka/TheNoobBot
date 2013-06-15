@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
+using nManager.Wow.ObjectManager;
 
 namespace nManager.Wow.Helpers
 {
@@ -42,7 +43,7 @@ namespace nManager.Wow.Helpers
                     if (_archaeologyItemsFindList == null)
                     {
                         _archaeologyItemsFindList = new List<int>();
-                        foreach (var i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
+                        foreach (string i in Others.ReadFileAllLines(Application.StartupPath + "\\Data\\archaeologyFind.txt"))
                         {
                             if (!string.IsNullOrWhiteSpace(i))
                                 _archaeologyItemsFindList.Add(Others.ToInt32(i));
@@ -66,7 +67,7 @@ namespace nManager.Wow.Helpers
                 // since it's a static method so the class is initialized fully before the 1st call can be made
                 if (_allDigsiteZone == null || _allDigsiteZone.Count <= 0)
                 {
-                    var listDigsitesZone = new List<Digsite>();
+                    List<Digsite> listDigsitesZone = new List<Digsite>();
 
                     try
                     {
@@ -101,11 +102,11 @@ namespace nManager.Wow.Helpers
 
         public static List<Digsite> GenerateOrUpdate(List<Digsite> listDigsitesZoneFromXML)
         {
-            var doUpdate = listDigsitesZoneFromXML != null;
+            bool doUpdate = listDigsitesZoneFromXML != null;
             if (doUpdate)
                 listDigsitesZoneFromXML.OrderByDescending(c => c.id).ToList();
-            var fullList = new List<Digsite>();
-            var finalList = new List<Digsite>();
+            List<Digsite> fullList = new List<Digsite>();
+            List<Digsite> finalList = new List<Digsite>();
 
             // Extracting the complete list from the DBC
             WoWResearchSite curRec = WoWResearchSite.FromId(0); // This record is invalid
@@ -142,10 +143,10 @@ namespace nManager.Wow.Helpers
             try
             {
                 GetAllDigsitesZone();
-                var resultList = new List<Digsite>();
-                var continentId = (uint) Usefuls.ContinentId;
+                List<Digsite> resultList = new List<Digsite>();
+                uint continentId = (uint) Usefuls.ContinentId;
 
-                var digsitesZoneLua = GetDigsitesZoneLua();
+                List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
 
                 if (digsitesZoneLua.Count > 0)
                 {
@@ -154,7 +155,7 @@ namespace nManager.Wow.Helpers
                         bool zonefound = false;
                         WoWResearchSite RowRSite = WoWResearchSite.FromName(dl.name);
                         WoWQuestPOIPoint qPOI = WoWQuestPOIPoint.FromSetId(RowRSite.Record.QuestIdPoint);
-                        for (var i = 0; i <= _allDigsiteZone.Count - 1; i++)
+                        for (int i = 0; i <= _allDigsiteZone.Count - 1; i++)
                         {
                             if (_allDigsiteZone[i].id == RowRSite.Record.Id && _allDigsiteZone[i].Active)
                             {
@@ -185,7 +186,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
-                var continentId = (uint) Usefuls.ContinentId;
+                uint continentId = (uint) Usefuls.ContinentId;
 
                 if (digsitesZoneLua.Count > 0)
                 {
@@ -210,7 +211,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                var resultList = new List<DigsitesZoneLua>();
+                List<DigsitesZoneLua> resultList = new List<DigsitesZoneLua>();
 
                 const string separatorDigsites = "#";
                 const string separator = "^";
@@ -249,7 +250,7 @@ namespace nManager.Wow.Helpers
                                 try
                                 {
                                     string[] sDigsites = s.Split(Others.ToChar(separator));
-                                    var tDigsitesZoneLua = new DigsitesZoneLua
+                                    DigsitesZoneLua tDigsitesZoneLua = new DigsitesZoneLua
                                         {
                                             name = sDigsites[0],
                                         };
@@ -312,7 +313,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (i == 79906 || i == 79907)
                         continue;
-                    var item = ObjectManager.ObjectManager.GetWoWItemById(i);
+                    WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(i);
                     if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
                         !ItemsManager.IsUsableItemById(i)) continue;
                     while (ItemsManager.GetItemCountByIdLUA(i) > 0)
@@ -324,7 +325,7 @@ namespace nManager.Wow.Helpers
                 }
                 for (int i = 95375; i <= 95382; i++)
                 {
-                    var item = ObjectManager.ObjectManager.GetWoWItemById(i);
+                    WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(i);
                     if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
                         !ItemsManager.IsUsableItemById(i)) continue;
                     while (ItemsManager.GetItemCountByIdLUA(i) > 0)

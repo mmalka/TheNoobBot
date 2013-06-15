@@ -556,7 +556,7 @@ namespace Battlegrounder.Bot
 
             if (_currentProfile.BattlegrounderZones[_zoneIdProfile].Hotspots)
             {
-                var pointsTemps = new List<Point>();
+                List<Point> pointsTemps = new List<Point>();
                 for (int i = 0; i <= _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Count - 1; i++)
                 {
                     if (i + 1 > _currentProfile.BattlegrounderZones[_zoneIdProfile].Points.Count - 1)
