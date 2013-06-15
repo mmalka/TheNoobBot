@@ -3,7 +3,7 @@
 * Credit : Rival, Geesus, Enelya, Marstor, Vesper, Neo2003, Dreadlocks
 * Thanks you !
 */
-
+// ReSharper disable InconsistentNaming
 using System;
 using System.IO;
 using System.Threading;
@@ -74,14 +74,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Deathknight_Blood.xml";
-                            DeathknightBlood.DeathknightBloodSettings CurrentSetting;
-                            CurrentSetting = new DeathknightBlood.DeathknightBloodSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Deathknight_Blood.xml";
+                            var CurrentSetting = new DeathknightBlood.DeathknightBloodSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DeathknightBlood.DeathknightBloodSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DeathknightBlood.DeathknightBloodSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -98,14 +95,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Deathknight_Unholy.xml";
-                            DeathknightUnholy.DeathknightUnholySettings CurrentSetting;
-                            CurrentSetting = new DeathknightUnholy.DeathknightUnholySettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Deathknight_Unholy.xml";
+                            var CurrentSetting = new DeathknightUnholy.DeathknightUnholySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DeathknightUnholy.DeathknightUnholySettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DeathknightUnholy.DeathknightUnholySettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -122,14 +116,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Deathknight_Frost.xml";
-                            DeathknightFrost.DeathknightFrostSettings CurrentSetting;
-                            CurrentSetting = new DeathknightFrost.DeathknightFrostSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Deathknight_Frost.xml";
+                            var CurrentSetting = new DeathknightFrost.DeathknightFrostSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DeathknightFrost.DeathknightFrostSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DeathknightFrost.DeathknightFrostSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -144,17 +135,12 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        MessageBox.Show(
-                            "Your specification haven't be found, loading Deathknight Apprentice Settings");
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
-                        DeathknightApprentice.DeathknightApprenticeSettings CurrentSetting;
-                        CurrentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
+                        MessageBox.Show(@"Your specification haven't be found, loading Deathknight Apprentice Settings");
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
+                        var CurrentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(
-                                    currentSettingsFile);
+                            CurrentSetting =Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -181,14 +167,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Mage_Arcane.xml";
-                            MageArcane.MageArcaneSettings CurrentSetting;
-                            CurrentSetting = new MageArcane.MageArcaneSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Mage_Arcane.xml";
+                            var CurrentSetting = new MageArcane.MageArcaneSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<MageArcane.MageArcaneSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<MageArcane.MageArcaneSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -205,14 +188,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Mage_Fire.xml";
-                            MageFire.MageFireSettings CurrentSetting;
-                            CurrentSetting = new MageFire.MageFireSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Mage_Fire.xml";
+                            var CurrentSetting = new MageFire.MageFireSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<MageFire.MageFireSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<MageFire.MageFireSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -229,14 +209,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                            MageFrost.MageFrostSettings CurrentSetting;
-                            CurrentSetting = new MageFrost.MageFrostSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Mage_Frost.xml";
+                            var CurrentSetting = new MageFrost.MageFrostSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -251,14 +228,11 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                        MageFrost.MageFrostSettings CurrentSetting;
-                        CurrentSetting = new MageFrost.MageFrostSettings();
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Mage_Frost.xml";
+                        var CurrentSetting = new MageFrost.MageFrostSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -285,14 +259,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                            WarlockDemonology.WarlockDemonologySettings CurrentSetting;
-                            CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warlock_Demonology.xml";
+                            var CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -309,14 +280,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warlock_Affliction.xml";
-                            WarlockAffliction.WarlockAfflictionSettings CurrentSetting;
-                            CurrentSetting = new WarlockAffliction.WarlockAfflictionSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warlock_Affliction.xml";
+                            var CurrentSetting = new WarlockAffliction.WarlockAfflictionSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<WarlockAffliction.WarlockAfflictionSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<WarlockAffliction.WarlockAfflictionSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -333,14 +301,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warlock_Destruction.xml";
-                            WarlockDestruction.WarlockDestructionSettings CurrentSetting;
-                            CurrentSetting = new WarlockDestruction.WarlockDestructionSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warlock_Destruction.xml";
+                            var CurrentSetting = new WarlockDestruction.WarlockDestructionSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<WarlockDestruction.WarlockDestructionSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<WarlockDestruction.WarlockDestructionSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -355,16 +320,12 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        MessageBox.Show(
-                            "Your specification haven't be found, loading Warlock Demonology Settings");
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                        WarlockDemonology.WarlockDemonologySettings CurrentSetting;
-                        CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
+                        MessageBox.Show(@"Your specification haven't be found, loading Warlock Demonology Settings");
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warlock_Demonology.xml";
+                        var CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -392,14 +353,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Druid_Feral.xml";
-                            DruidFeral.DruidFeralSettings CurrentSetting;
-                            CurrentSetting = new DruidFeral.DruidFeralSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Druid_Feral.xml";
+                            var CurrentSetting = new DruidFeral.DruidFeralSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DruidFeral.DruidFeralSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DruidFeral.DruidFeralSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -415,14 +373,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Druid_Guardian.xml";
-                            DruidGuardian.DruidGuardianSettings CurrentSetting;
-                            CurrentSetting = new DruidGuardian.DruidGuardianSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Druid_Guardian.xml";
+                            var CurrentSetting = new DruidGuardian.DruidGuardianSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DruidGuardian.DruidGuardianSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DruidGuardian.DruidGuardianSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -438,14 +393,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                            DruidBalance.DruidBalanceSettings CurrentSetting;
-                            CurrentSetting = new DruidBalance.DruidBalanceSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Druid_Balance.xml";
+                            var CurrentSetting = new DruidBalance.DruidBalanceSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -462,14 +414,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Druid_Restoration.xml";
-                            DruidRestoration.DruidRestorationSettings CurrentSetting;
-                            CurrentSetting = new DruidRestoration.DruidRestorationSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Druid_Restoration.xml";
+                            var CurrentSetting = new DruidRestoration.DruidRestorationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<DruidRestoration.DruidRestorationSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<DruidRestoration.DruidRestorationSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -484,14 +433,11 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                        DruidBalance.DruidBalanceSettings CurrentSetting;
-                        CurrentSetting = new DruidBalance.DruidBalanceSettings();
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Druid_Balance.xml";
+                        var CurrentSetting = new DruidBalance.DruidBalanceSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -517,13 +463,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Paladin_Retribution.xml";
                             var CurrentSetting = new PaladinRetribution.PaladinRetributionSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -539,13 +483,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Paladin_Protection.xml";
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Paladin_Protection.xml";
                             var CurrentSetting = new PaladinProtection.PaladinProtectionSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<PaladinProtection.PaladinProtectionSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<PaladinProtection.PaladinProtectionSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -561,8 +503,7 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Paladin_Holy.xml";
+                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Holy.xml";
                             var CurrentSetting = new PaladinHoly.PaladinHolySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
@@ -581,15 +522,12 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        MessageBox.Show(
-                            "Your specification haven't be found, loading Paladin Retribution Settings");
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
+                        MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
+                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
                         var CurrentSetting = new PaladinRetribution.PaladinRetributionSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -615,14 +553,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Shaman_Enhancement.xml";
-                            ShamanEnhancement.ShamanEnhancementSettings CurrentSetting;
-                            CurrentSetting = new ShamanEnhancement.ShamanEnhancementSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Shaman_Enhancement.xml";
+                            var CurrentSetting = new ShamanEnhancement.ShamanEnhancementSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<ShamanEnhancement.ShamanEnhancementSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<ShamanEnhancement.ShamanEnhancementSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -638,14 +573,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Shaman_Elemental.xml";
-                            ShamanElemental.ShamanElementalSettings CurrentSetting;
-                            CurrentSetting = new ShamanElemental.ShamanElementalSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Shaman_Elemental.xml";
+                            var CurrentSetting = new ShamanElemental.ShamanElementalSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<ShamanElemental.ShamanElementalSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<ShamanElemental.ShamanElementalSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -662,14 +594,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                            ShamanRestoration.ShamanRestorationSettings CurrentSetting;
-                            CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Shaman_Restoration.xml";
+                            var CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -684,14 +613,11 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                        ShamanRestoration.ShamanRestorationSettings CurrentSetting;
-                        CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Shaman_Restoration.xml";
+                        var CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -716,14 +642,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                            PriestShadow.PriestShadowSettings CurrentSetting;
-                            CurrentSetting = new PriestShadow.PriestShadowSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Priest_Shadow.xml";
+                            var CurrentSetting = new PriestShadow.PriestShadowSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -740,14 +663,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Priest_Discipline.xml";
-                            PriestDiscipline.PriestDisciplineSettings CurrentSetting;
-                            CurrentSetting = new PriestDiscipline.PriestDisciplineSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Priest_Discipline.xml";
+                            PriestDiscipline.PriestDisciplineSettings CurrentSetting = new PriestDiscipline.PriestDisciplineSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<PriestDiscipline.PriestDisciplineSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<PriestDiscipline.PriestDisciplineSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -764,14 +684,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Priest_Holy.xml";
-                            PriestHoly.PriestHolySettings CurrentSetting;
-                            CurrentSetting = new PriestHoly.PriestHolySettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Priest_Holy.xml";
+                            var CurrentSetting = new PriestHoly.PriestHolySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<PriestHoly.PriestHolySettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<PriestHoly.PriestHolySettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -787,15 +704,12 @@ public class Main : ICombatClass
                     if (configOnly)
                     {
                         MessageBox.Show(
-                            "Your specification haven't be found, loading Priest Shadow Settings");
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                        PriestShadow.PriestShadowSettings CurrentSetting;
-                        CurrentSetting = new PriestShadow.PriestShadowSettings();
+                            @"Your specification haven't be found, loading Priest Shadow Settings");
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Priest_Shadow.xml";
+                        var CurrentSetting = new PriestShadow.PriestShadowSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -822,14 +736,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                            RogueCombat.RogueCombatSettings CurrentSetting;
-                            CurrentSetting = new RogueCombat.RogueCombatSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Rogue_Combat.xml";
+                            var CurrentSetting = new RogueCombat.RogueCombatSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -845,14 +756,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Rogue_Assassination.xml";
-                            RogueAssassination.RogueAssassinationSettings CurrentSetting;
-                            CurrentSetting = new RogueAssassination.RogueAssassinationSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Rogue_Assassination.xml";
+                            var CurrentSetting = new RogueAssassination.RogueAssassinationSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<RogueAssassination.RogueAssassinationSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<RogueAssassination.RogueAssassinationSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -868,14 +776,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Rogue_Subtlety.xml";
-                            RogueSubtlety.RogueSubtletySettings CurrentSetting;
-                            CurrentSetting = new RogueSubtlety.RogueSubtletySettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Rogue_Subtlety.xml";
+                            var CurrentSetting = new RogueSubtlety.RogueSubtletySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<RogueSubtlety.RogueSubtletySettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<RogueSubtlety.RogueSubtletySettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -889,14 +794,11 @@ public class Main : ICombatClass
                     }
                     if (configOnly)
                     {
-                        string currentSettingsFile = Application.StartupPath +
-                                                     "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                        RogueCombat.RogueCombatSettings CurrentSetting;
-                        CurrentSetting = new RogueCombat.RogueCombatSettings();
+                        string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Rogue_Combat.xml";
+                        var CurrentSetting = new RogueCombat.RogueCombatSettings();
                         if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            CurrentSetting =
-                                Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
+                            CurrentSetting =Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
                         }
                         CurrentSetting.ToForm();
                         CurrentSetting.Save(currentSettingsFile);
@@ -921,14 +823,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warrior_Arms.xml";
-                            WarriorArms.WarriorArmsSettings CurrentSetting;
-                            CurrentSetting = new WarriorArms.WarriorArmsSettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warrior_Arms.xml";
+                            var CurrentSetting = new WarriorArms.WarriorArmsSettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -944,14 +843,11 @@ public class Main : ICombatClass
                     {
                         if (configOnly)
                         {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warrior_Fury.xml";
-                            WarriorFury.WarriorFurySettings CurrentSetting;
-                            CurrentSetting = new WarriorFury.WarriorFurySettings();
+                            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Warrior_Fury.xml";
+                            var CurrentSetting = new WarriorFury.WarriorFurySettings();
                             if (File.Exists(currentSettingsFile) && !resetSettings)
                             {
-                                CurrentSetting =
-                                    Settings.Load<WarriorFury.WarriorFurySettings>(currentSettingsFile);
+                                CurrentSetting =Settings.Load<WarriorFury.WarriorFurySettings>(currentSettingsFile);
                             }
                             CurrentSetting.ToForm();
                             CurrentSetting.Save(currentSettingsFile);
@@ -1639,18 +1535,13 @@ public class DeathknightApprentice
 
         public static DeathknightApprenticeSettings GetSettings()
         {
-            string currentSettingsFile = Application.StartupPath +
-                                         "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
+            string currentSettingsFile = Application.StartupPath +"\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
             if (File.Exists(currentSettingsFile))
             {
                 return
-                    CurrentSetting =
-                    Load<DeathknightApprenticeSettings>(currentSettingsFile);
+                    CurrentSetting =Load<DeathknightApprenticeSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DeathknightApprenticeSettings();
-            }
+            return new DeathknightApprenticeSettings();
         }
     }
 
@@ -2654,10 +2545,7 @@ public class DeathknightBlood
                 return
                     CurrentSetting = Load<DeathknightBloodSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DeathknightBloodSettings();
-            }
+            return new DeathknightBloodSettings();
         }
     }
 
@@ -2924,7 +2812,6 @@ public class DeathknightUnholy
             PathofFrost.Launch();
             PathofFrostBuffTimer = new Timer(1000*10);
             PathofFrostTimer = new Timer(1000*60*9.5);
-            return;
         }
     }
 
@@ -3184,13 +3071,11 @@ public class DeathknightUnholy
             DeathSiphon.Launch();
             return;
         }
-
         if (mySettings.UseDeathStrike && DeathStrike.KnownSpell && DeathStrike.IsHostileDistanceGood && ObjectManager.Target.IsValid && ObjectManager.Target.IsAlive
             && ObjectManager.Me.HealthPercent <= mySettings.UseDeathStrikeAtPercentage && DeathStrike.IsSpellUsable)
         {
             DeathStrike.Launch();
-            return;
-        }
+            }
     }
 
     private void Decast()
@@ -3603,10 +3488,7 @@ public class DeathknightUnholy
                 return
                     CurrentSetting = Load<DeathknightUnholySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DeathknightUnholySettings();
-            }
+            return new DeathknightUnholySettings();
         }
     }
 
@@ -4080,20 +3962,17 @@ public class DeathknightFrost
     {
         if (ObjectManager.Me.IsMounted)
             return;
-
         if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.IsSpellUsable)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-
         if (mySettings.UseDeathPact && DeathPact.KnownSpell && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0)
             && ObjectManager.Me.HealthPercent <= mySettings.UseDeathPactAtPercentage && DeathPact.IsSpellUsable)
         {
             DeathPact.Launch();
             return;
         }
-
         if (mySettings.UseDeathPact && DeathPact.KnownSpell && RaiseDead.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseDeathPactAtPercentage &&
             RaiseDead.IsSpellUsable && DeathPact.IsSpellUsable)
         {
@@ -4106,14 +3985,12 @@ public class DeathknightFrost
             }
             return;
         }
-
         if (mySettings.UseLichborne && Lichborne.KnownSpell && DeathCoil.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseLichborneAtPercentage
             && ObjectManager.Me.RunicPower > 39 && Lichborne.IsSpellUsable)
         {
             Lichborne.Launch();
             return;
         }
-
         if (mySettings.UseConversion && Conversion.KnownSpell && ObjectManager.Me.RunicPower > 10 && ObjectManager.Me.HealthPercent <= mySettings.UseConversionAtPercentage &&
             Conversion.IsSpellUsable)
         {
@@ -4124,7 +4001,6 @@ public class DeathknightFrost
             }
             return;
         }
-
         if (mySettings.UseDeathSiphon && DeathSiphon.KnownSpell && DeathSiphon.IsHostileDistanceGood && ObjectManager.Me.HealthPercent <= mySettings.UseDeathSiphonAtPercentage &&
             DeathSiphon.IsSpellUsable)
         {
@@ -4141,7 +4017,6 @@ public class DeathknightFrost
             MindFreeze.Launch();
             return;
         }
-
         if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
             && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
             ArcaneTorrent.IsSpellUsable)
@@ -4149,33 +4024,28 @@ public class DeathknightFrost
             ArcaneTorrent.Launch();
             return;
         }
-
         if (mySettings.UseAntiMagicShell && AntiMagicShell.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
             && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicShellAtPercentage && AntiMagicShell.IsSpellUsable)
         {
             AntiMagicShell.Launch();
             return;
         }
-
         if (Strangulate.KnownSpell && Strangulate.IsHostileDistanceGood && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
             && (mySettings.UseStrangulate && ObjectManager.Me.HealthPercent <= mySettings.UseStrangulateAtPercentage
                 || mySettings.UseAsphyxiate && ObjectManager.Me.HealthPercent <= mySettings.UseAsphyxiateAtPercentage) && Strangulate.IsSpellUsable)
         {
             Strangulate.Launch();
         }
-
         if (mySettings.UseAntiMagicZone && AntiMagicZone.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
             && ObjectManager.Me.HealthPercent <= mySettings.UseAntiMagicZoneAtPercentage && AntiMagicZone.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(51052, ObjectManager.Me.Position);
             return;
         }
-
         if (mySettings.UseChainsofIce && ChainsofIce.KnownSpell && ChainsofIce.IsHostileDistanceGood && ObjectManager.Target.GetMove && !ChainsofIce.TargetHaveBuff &&
             ChainsofIce.IsSpellUsable)
         {
             ChainsofIce.Launch();
-            return;
         }
     }
 
@@ -4463,8 +4333,7 @@ public class DeathknightFrost
         {
             HowlingBlast.Launch();
             FrostFeverTimer = new Timer(1000*27);
-            return;
-        }
+            }
     }
 
     private void Patrolling()
@@ -4632,10 +4501,7 @@ public class DeathknightFrost
                 return
                     CurrentSetting = Load<DeathknightFrostSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DeathknightFrostSettings();
-            }
+            return new DeathknightFrostSettings();
         }
     }
 
@@ -4828,7 +4694,6 @@ public class MageArcane
         if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
         {
             ArcaneExplosion.Launch();
-            return;
         }
     }
 
@@ -5410,10 +5275,7 @@ public class MageArcane
                 return
                     CurrentSetting = Load<MageArcaneSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MageArcaneSettings();
-            }
+            return new MageArcaneSettings();
         }
     }
 
@@ -6211,10 +6073,7 @@ public class MageFrost
                 return
                     CurrentSetting = Load<MageFrostSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MageFrostSettings();
-            }
+            return new MageFrostSettings();
         }
     }
 
@@ -6987,10 +6846,7 @@ public class MageFire
                 return
                     CurrentSetting = Load<MageFireSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MageFireSettings();
-            }
+            return new MageFireSettings();
         }
     }
 
@@ -7632,23 +7488,20 @@ public class WarlockDemonology
                     FelFlame.Launch();
                     Thread.Sleep(200);
                 }
+                return;
             }
-            else
+            if (mySettings.UseDoom && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Metamorphosis.HaveBuff
+                && Corruption.IsSpellUsable && (DoomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
             {
-                if (mySettings.UseDoom && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Metamorphosis.HaveBuff
-                    && Corruption.IsSpellUsable && (DoomTimer.IsReady || !ObjectManager.Target.HaveBuff(603)))
-                {
-                    Corruption.Launch();
-                    DoomTimer = new Timer(1000*60);
-                    Thread.Sleep(200);
-                }
-
-                if (mySettings.UseTouchofChaos && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
-                    && Metamorphosis.HaveBuff)
-                {
-                    ShadowBolt.Launch();
-                    Thread.Sleep(200);
-                }
+                Corruption.Launch();
+                DoomTimer = new Timer(1000*60);
+                Thread.Sleep(200);
+            }
+            if (mySettings.UseTouchofChaos && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
+                && Metamorphosis.HaveBuff)
+            {
+                ShadowBolt.Launch();
+                Thread.Sleep(200);
             }
         }
 
@@ -7656,7 +7509,6 @@ public class WarlockDemonology
         if (Metamorphosis.HaveBuff)
         {
             Metamorphosis.Launch();
-            return;
         }
     }
 
@@ -7827,13 +7679,10 @@ public class WarlockDemonology
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
             if (File.Exists(currentSettingsFile))
             {
-                return
+                return 
                     CurrentSetting = Load<WarlockDemonologySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarlockDemonologySettings();
-            }
+            return new WarlockDemonologySettings();
         }
     }
 
@@ -8574,10 +8423,7 @@ public class WarlockDestruction
                 return
                     CurrentSetting = Load<WarlockDestructionSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarlockDestructionSettings();
-            }
+            return new WarlockDestructionSettings();
         }
     }
 
@@ -9366,10 +9212,7 @@ public class WarlockAffliction
                 return
                     CurrentSetting = Load<WarlockAfflictionSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarlockAfflictionSettings();
-            }
+            return new WarlockAfflictionSettings();
         }
     }
 
@@ -10051,7 +9894,6 @@ public class DruidBalance
             if (Wrath.KnownSpell && Wrath.IsHostileDistanceGood && Wrath.IsSpellUsable)
                 Wrath.Launch();
         }
-        return;
     }
 
     private void Patrolling()
@@ -10200,10 +10042,7 @@ public class DruidBalance
                 return
                     CurrentSetting = Load<DruidBalanceSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DruidBalanceSettings();
-            }
+            return new DruidBalanceSettings();
         }
     }
 
@@ -11084,10 +10923,7 @@ public class DruidFeral
                 return
                     CurrentSetting = Load<DruidFeralSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DruidFeralSettings();
-            }
+            return new DruidFeralSettings();
         }
     }
 
@@ -11747,10 +11583,7 @@ public class DruidRestoration
                 return
                     CurrentSetting = Load<DruidRestorationSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DruidRestorationSettings();
-            }
+            return new DruidRestorationSettings();
         }
     }
 
@@ -12215,17 +12048,13 @@ public class DruidGuardian
             SkullBash.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                ObjectManager.Target.IsTargetingMe)
-            {
-                ArcaneTorrent.Launch();
-                return;
+            ArcaneTorrent.Launch();
             }
-        }
     }
 
     private void DPSBurst()
@@ -12504,10 +12333,7 @@ public class DruidGuardian
                 return
                     CurrentSetting = Load<DruidGuardianSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new DruidGuardianSettings();
-            }
+            return new DruidGuardianSettings();
         }
     }
 
@@ -12821,7 +12647,6 @@ public class PaladinHoly
             if (DivineLight.KnownSpell && DivineLight.IsSpellUsable && mySettings.UseDivineLight)
             {
                 DivineLight.Launch();
-                return;
             }
         }
     }
@@ -13015,7 +12840,8 @@ public class PaladinHoly
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Holy.xml";
             if (File.Exists(currentSettingsFile))
             {
-                return CurrentSetting = Load<PaladinHolySettings>(currentSettingsFile);
+                return 
+                    CurrentSetting = Load<PaladinHolySettings>(currentSettingsFile);
             }
             return new PaladinHolySettings();
         }
@@ -13290,7 +13116,6 @@ public class PaladinProtection
             if (FlashOfLight.KnownSpell && mySettings.UseFlashOfLight && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
-                return;
             }
         }
     }
@@ -13552,12 +13377,10 @@ public class PaladinProtection
             string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Protection.xml";
             if (File.Exists(currentSettingsFile))
             {
-                return CurrentSetting = Load<PaladinProtectionSettings>(currentSettingsFile);
+                return 
+                    CurrentSetting = Load<PaladinProtectionSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new PaladinProtectionSettings();
-            }
+            return new PaladinProtectionSettings();
         }
     }
 
@@ -15091,10 +14914,7 @@ public class ShamanEnhancement
                 return
                     CurrentSetting = Load<ShamanEnhancementSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new ShamanEnhancementSettings();
-            }
+            return new ShamanEnhancementSettings();
         }
     }
 
@@ -15987,10 +15807,7 @@ public class ShamanRestoration
                 return
                     CurrentSetting = Load<ShamanRestorationSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new ShamanRestorationSettings();
-            }
+            return new ShamanRestorationSettings();
         }
     }
 
@@ -16827,10 +16644,7 @@ public class ShamanElemental
                 return
                     CurrentSetting = Load<ShamanElementalSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new ShamanElementalSettings();
-            }
+            return new ShamanElementalSettings();
         }
     }
 
@@ -17606,10 +17420,7 @@ public class PriestShadow
                 return
                     CurrentSetting = Load<PriestShadowSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new PriestShadowSettings();
-            }
+            return new PriestShadowSettings();
         }
     }
 
@@ -18314,10 +18125,7 @@ public class PriestDiscipline
                 return
                     CurrentSetting = Load<PriestDisciplineSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new PriestDisciplineSettings();
-            }
+            return new PriestDisciplineSettings();
         }
     }
 
@@ -19049,10 +18857,7 @@ public class PriestHoly
                 return
                     CurrentSetting = Load<PriestHolySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new PriestHolySettings();
-            }
+            return new PriestHolySettings();
         }
     }
 
@@ -19825,10 +19630,7 @@ public class RogueCombat
                 return
                     CurrentSetting = Load<RogueCombatSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new RogueCombatSettings();
-            }
+            return new RogueCombatSettings();
         }
     }
 
@@ -20260,15 +20062,11 @@ public class RogueSubtlety
             GiftoftheNaaru.Launch();
             return;
         }
-        else
+        if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && mySettings.UseRecuperate
+            && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
         {
-            if (!Recuperate.HaveBuff && ObjectManager.Me.ComboPoint > 1 && mySettings.UseRecuperate
-                && ObjectManager.Me.HealthPercent <= 90 && Recuperate.KnownSpell && Recuperate.IsSpellUsable)
-            {
-                Recuperate.Launch();
-                return;
+            Recuperate.Launch();
             }
-        }
     }
 
     private void Decast()
@@ -20569,10 +20367,7 @@ public class RogueSubtlety
                 return
                     CurrentSetting = Load<RogueSubtletySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new RogueSubtletySettings();
-            }
+            return new RogueSubtletySettings();
         }
     }
 
@@ -21330,10 +21125,7 @@ public class RogueAssassination
                 return
                     CurrentSetting = Load<RogueAssassinationSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new RogueAssassinationSettings();
-            }
+            return new RogueAssassinationSettings();
         }
     }
 
@@ -22170,10 +21962,7 @@ public class WarriorArms
                 return
                     CurrentSetting = Load<WarriorArmsSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarriorArmsSettings();
-            }
+            return new WarriorArmsSettings();
         }
     }
 
@@ -23039,10 +22828,7 @@ public class WarriorProtection
                 return
                     CurrentSetting = Load<WarriorProtectionSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarriorProtectionSettings();
-            }
+            return new WarriorProtectionSettings();
         }
     }
 
@@ -23832,10 +23618,7 @@ public class WarriorFury
                 return
                     CurrentSetting = Load<WarriorFurySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new WarriorFurySettings();
-            }
+            return new WarriorFurySettings();
         }
     }
 
@@ -24641,10 +24424,7 @@ public class HunterMarksmanship
                 return
                     CurrentSetting = Load<HunterMarksmanshipSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new HunterMarksmanshipSettings();
-            }
+            return new HunterMarksmanshipSettings();
         }
     }
 
@@ -25511,10 +25291,7 @@ public class HunterBeastMastery
                 return
                     CurrentSetting = Load<HunterBeastMasterySettings>(currentSettingsFile);
             }
-            else
-            {
-                return new HunterBeastMasterySettings();
-            }
+            return new HunterBeastMasterySettings();
         }
     }
 
@@ -26342,10 +26119,7 @@ public class HunterSurvival
                 return
                     CurrentSetting = Load<HunterSurvivalSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new HunterSurvivalSettings();
-            }
+            return new HunterSurvivalSettings();
         }
     }
 
@@ -26997,10 +26771,7 @@ public class MonkBrewmaster
                 return
                     CurrentSetting = Load<MonkBrewmasterSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MonkBrewmasterSettings();
-            }
+            return new MonkBrewmasterSettings();
         }
     }
 
@@ -27142,7 +26913,6 @@ public class MonkWindwalker
         if (mySettings.UseProvoke && Provoke.KnownSpell && !ObjectManager.Target.InCombat && Provoke.IsHostileDistanceGood && Provoke.IsSpellUsable)
         {
             Provoke.Launch();
-            return;
         }
     }
 
@@ -27615,10 +27385,7 @@ public class MonkWindwalker
                 return
                     CurrentSetting = Load<MonkWindwalkerSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MonkWindwalkerSettings();
-            }
+            return new MonkWindwalkerSettings();
         }
     }
 
@@ -27930,17 +27697,13 @@ public class MonkMistweaver
             ManaTea.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 95 && SurgingMist.KnownSpell && SurgingMist.IsSpellUsable
+            && mySettings.UseSurgingMist && ObjectManager.Me.BuffStack(118674) > 4
+            && !ObjectManager.Me.InCombat)
         {
-            if (ObjectManager.Me.HealthPercent < 95 && SurgingMist.KnownSpell && SurgingMist.IsSpellUsable
-                && mySettings.UseSurgingMist && ObjectManager.Me.BuffStack(118674) > 4
-                && !ObjectManager.Me.InCombat)
-            {
-                SurgingMist.Launch();
-                return;
-            }
+            SurgingMist.Launch();
+            return;
         }
-
         if (HealingSphere.KnownSpell && HealingSphere.IsSpellUsable && ObjectManager.Me.Energy > 39 &&
             ObjectManager.Me.HealthPercent < 60 && mySettings.UseHealingSphere && HealingSphereTimer.IsReady)
         {
@@ -28300,10 +28063,7 @@ public class MonkMistweaver
                 return
                     CurrentSetting = Load<MonkMistweaverSettings>(currentSettingsFile);
             }
-            else
-            {
-                return new MonkMistweaverSettings();
-            }
+            return new MonkMistweaverSettings();
         }
     }
 
@@ -28311,3 +28071,4 @@ public class MonkMistweaver
 }
 
 #endregion
+// ReSharper restore InconsistentNaming

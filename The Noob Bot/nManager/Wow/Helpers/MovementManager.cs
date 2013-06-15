@@ -1166,7 +1166,8 @@ namespace nManager.Wow.Helpers
         /// Moves to Position.
         /// </summary>
         /// <param name="point">The point.</param>
-        public static void MoveTo(Point point, bool Farm = false)
+        /// <param name="farm"></param>
+        public static void MoveTo(Point point, bool farm = false)
         {
             try
             {
@@ -1175,7 +1176,7 @@ namespace nManager.Wow.Helpers
                     if (_workerMoveTo == null)
                         LaunchThreadMoveTo();
 
-                    _farm = Farm;
+                    _farm = farm;
                     _pointTo = new Point(point.X, point.Y, point.Z);
                     _loopMoveTo = true;
                 }
@@ -1192,11 +1193,12 @@ namespace nManager.Wow.Helpers
         /// <param name="x">X.</param>
         /// <param name="y">Y.</param>
         /// <param name="z">Z.</param>
-        public static void MoveTo(float x, float y, float z, bool Farm = false)
+        /// <param name="farm"></param>
+        public static void MoveTo(float x, float y, float z, bool farm = false)
         {
             try
             {
-                MoveTo(new Point(x, y, z), Farm);
+                MoveTo(new Point(x, y, z), farm);
             }
             catch (Exception exception)
             {
@@ -1224,11 +1226,12 @@ namespace nManager.Wow.Helpers
         /// Moves to.
         /// </summary>
         /// <param name="obj">The GameObject.</param>
-        public static void MoveTo(WoWGameObject obj, bool Farm = false)
+        /// <param name="farm"></param>
+        public static void MoveTo(WoWGameObject obj, bool farm = false)
         {
             try
             {
-                MoveTo(obj.Position, Farm);
+                MoveTo(obj.Position, farm);
             }
             catch (Exception exception)
             {

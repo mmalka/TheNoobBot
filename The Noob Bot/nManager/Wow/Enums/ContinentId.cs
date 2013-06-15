@@ -9,13 +9,13 @@
         Kalimdor = 1,
 
         ///<summary>Testing</summary>
-        test = 13,
+        Test0 = 13,
 
         ///<summary>Scott Test</summary>
         ScottTest = 25,
 
         ///<summary>CashTest</summary>
-        Test = 29,
+        Test1 = 29,
 
         ///<summary>Alterac Valley</summary>
         PVPZone01 = 30,
@@ -26,7 +26,7 @@
         ///<summary>Stormwind Stockade</summary>
         StormwindJail = 34,
 
-        ///<summary><unused>StormwindPrison</summary>
+        ///<summary><unused>StormwindPrison</unused></summary>
         StormwindPrison = 35,
 
         ///<summary>Deadmines</summary>
@@ -41,7 +41,7 @@
         ///<summary>Wailing Caverns</summary>
         WailingCaverns = 43,
 
-        ///<summary><unused> Monastery</summary>
+        ///<summary><unused>Monastery</unused></summary>
         Monastery = 44,
 
         ///<summary>Razorfen Kraul</summary>
@@ -112,7 +112,7 @@
         HordePVPBarracks = 450,
 
         ///<summary>Development Land</summary>
-        development = 451,
+        Development = 451,
 
         ///<summary>Blackwing Lair</summary>
         BlackwingLair = 469,

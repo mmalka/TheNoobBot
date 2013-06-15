@@ -22,9 +22,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
-                    ;
-                }
+                    MessageBox.Show(string.Format("{0}.", nManager.Translate.Get(nManager.Translate.Id.File_not_found)));
+                    }
             }
             catch
             {
@@ -38,23 +37,23 @@ namespace Profiles_Converters.Converters
             {
                 if (IsWowRobotGatherFlyProfile(path))
                 {
-                    var _origineProfile = XmlSerializer.Deserialize<Profile>(path);
-                    var _profile = new GathererProfile();
+                    var origineProfile = XmlSerializer.Deserialize<Profile>(path);
+                    var profile = new GathererProfile();
 
-                    foreach (var p in _origineProfile.Points)
+                    foreach (var p in origineProfile.Points)
                     {
-                        _profile.Points.Add(new Point(p.X, p.Y, p.Z, "Flying"));
+                        profile.Points.Add(new Point(p.X, p.Y, p.Z, "Flying"));
                     }
-                    foreach (var p in _origineProfile.BlackListPoints)
+                    foreach (var p in origineProfile.BlackListPoints)
                     {
-                        _profile.BlackListRadius.Add(new GathererBlackListRadius {Position = p, Radius = 15});
+                        profile.BlackListRadius.Add(new GathererBlackListRadius {Position = p, Radius = 15});
                     }
 
 
                     var fileName = Path.GetFileNameWithoutExtension(path);
 
                     if (XmlSerializer.Serialize(Application.StartupPath + "\\Profiles\\Gatherer\\" + fileName + ".xml",
-                                                _profile))
+                                                profile))
                     {
                         Logging.Write("Conversion Success (WowRobot to Gatherer bot): " + fileName);
                         return true;

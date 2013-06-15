@@ -22,9 +22,8 @@ namespace Profiles_Converters.Converters
                 }
                 else
                 {
-                    MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.File_not_found) + ".");
-                    ;
-                }
+                    MessageBox.Show(string.Format("{0}.", nManager.Translate.Get(nManager.Translate.Id.File_not_found)));
+                    }
             }
             catch
             {

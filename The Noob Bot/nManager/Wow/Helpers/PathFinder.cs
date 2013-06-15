@@ -235,10 +235,11 @@ namespace nManager.Wow.Helpers
             return GetZPosition(new Point(x, y, 0), strict);
         }
 
-        ///<summary>
-        ///</summary>
-        ///<param name="point"></param>
-        ///<returns></returns>
+        /// <summary>
+        /// </summary>
+        /// <param name="point"></param>
+        /// <param name="strict"></param>
+        /// <returns></returns>
         public static float GetZPosition(Point point, bool strict = false)
         {
             try
