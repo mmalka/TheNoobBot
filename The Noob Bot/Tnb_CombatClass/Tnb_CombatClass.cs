@@ -92,8 +92,9 @@ public class Main : ICombatClass
                             range = 5.0f;
                             new DeathknightBlood();
                         }
+                        break;
                     }
-                    else if (Reaping.KnownSpell)
+                    if (Reaping.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -115,8 +116,9 @@ public class Main : ICombatClass
                             range = 5.0f;
                             new DeathknightUnholy();
                         }
+                        break;
                     }
-                    else if (HowlingBlast.KnownSpell)
+                    if (HowlingBlast.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -138,33 +140,31 @@ public class Main : ICombatClass
                             range = 5.0f;
                             new DeathknightFrost();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Deathknight Apprentice Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
+                        DeathknightApprentice.DeathknightApprenticeSettings CurrentSetting;
+                        CurrentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(
+                                    currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Deathknight Apprentice Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Deathknight_Apprentice.xml";
-                            DeathknightApprentice.DeathknightApprenticeSettings CurrentSetting;
-                            CurrentSetting = new DeathknightApprentice.DeathknightApprenticeSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<DeathknightApprentice.DeathknightApprenticeSettings>(
-                                        currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Deathknight Apprentice Combat class...");
-                            range = 5.0f;
-                            new DeathknightApprentice();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Deathknight Apprentice Combat class...");
+                        range = 5.0f;
+                        new DeathknightApprentice();
                     }
                     break;
 
@@ -201,7 +201,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (MageFireSpell.KnownSpell)
+                    if (MageFireSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -225,7 +225,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (MageFrostSpell.KnownSpell)
+                    if (MageFrostSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -248,32 +248,29 @@ public class Main : ICombatClass
                             new MageFrost();
                         }
                         break;
+                    }
+                    if (configOnly)
+                    {
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Mage_Frost.xml";
+                        MageFrost.MageFrostSettings CurrentSetting;
+                        CurrentSetting = new MageFrost.MageFrostSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Mage_Frost.xml";
-                            MageFrost.MageFrostSettings CurrentSetting;
-                            CurrentSetting = new MageFrost.MageFrostSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<MageFrost.MageFrostSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("Mage without Spec");
-                            Logging.WriteFight("Loading Mage Frost Combat class...");
-                            range = 30.0f;
-                            new MageFrost();
-                        }
-                        break;
+                        Logging.WriteFight("Mage without Spec");
+                        Logging.WriteFight("Loading Mage Frost Combat class...");
+                        range = 30.0f;
+                        new MageFrost();
                     }
+                    break;
 
                     #endregion
 
@@ -306,8 +303,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new WarlockDemonology();
                         }
+                        break;
                     }
-                    else if (WarlockAfflictionSpell.KnownSpell)
+                    if (WarlockAfflictionSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -329,8 +327,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new WarlockAffliction();
                         }
+                        break;
                     }
-                    else if (WarlockDestructionSpell.KnownSpell)
+                    if (WarlockDestructionSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -352,32 +351,30 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new WarlockDestruction();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Warlock Demonology Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
+                        WarlockDemonology.WarlockDemonologySettings CurrentSetting;
+                        CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Warlock Demonology Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warlock_Demonology.xml";
-                            WarlockDemonology.WarlockDemonologySettings CurrentSetting;
-                            CurrentSetting = new WarlockDemonology.WarlockDemonologySettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<WarlockDemonology.WarlockDemonologySettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Warlock Demonology Combat class...");
-                            range = 30.0f;
-                            new WarlockDemonology();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Warlock Demonology Combat class...");
+                        range = 30.0f;
+                        new WarlockDemonology();
                     }
                     break;
 
@@ -412,8 +409,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Druid Feral Found");
                             new DruidFeral();
                         }
+                        break;
                     }
-                    else if (DruidGuardianSpell.KnownSpell)
+                    if (DruidGuardianSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -434,8 +432,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Feral Guardian Found");
                             new DruidGuardian();
                         }
+                        break;
                     }
-                    else if (DruidBalanceSpell.KnownSpell)
+                    if (DruidBalanceSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -457,8 +456,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new DruidBalance();
                         }
+                        break;
                     }
-                    else if (DruidRestorationSpell.KnownSpell)
+                    if (DruidRestorationSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -480,30 +480,28 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new DruidRestoration();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Druid_Balance.xml";
+                        DruidBalance.DruidBalanceSettings CurrentSetting;
+                        CurrentSetting = new DruidBalance.DruidBalanceSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Druid_Balance.xml";
-                            DruidBalance.DruidBalanceSettings CurrentSetting;
-                            CurrentSetting = new DruidBalance.DruidBalanceSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<DruidBalance.DruidBalanceSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Druid Balance Combat class...");
-                            range = 30.0f;
-                            new DruidBalance();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Druid Balance Combat class...");
+                        range = 30.0f;
+                        new DruidBalance();
                     }
                     break;
 
@@ -535,8 +533,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Paladin Retribution Combat class...");
                             new PaladinRetribution();
                         }
+                        break;
                     }
-                    else if (PaladinProtectionSpell.KnownSpell)
+                    if (PaladinProtectionSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -556,8 +555,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Paladin Protection Combat class...");
                             new PaladinProtection();
                         }
+                        break;
                     }
-                    else if (PaladinHolySpell.KnownSpell)
+                    if (PaladinHolySpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -577,30 +577,28 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new PaladinHoly();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Paladin Retribution Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
+                        var CurrentSetting = new PaladinRetribution.PaladinRetributionSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Paladin Retribution Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                            var CurrentSetting = new PaladinRetribution.PaladinRetributionSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Paladin Retribution Combat class...");
-                            new PaladinRetribution();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Paladin Retribution Combat class...");
+                        new PaladinRetribution();
                     }
                     break;
 
@@ -636,7 +634,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (ShamanElementalSpell.KnownSpell)
+                    if (ShamanElementalSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -660,7 +658,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (ShamanRestorationSpell.KnownSpell)
+                    if (ShamanRestorationSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -684,30 +682,27 @@ public class Main : ICombatClass
                         }
                         break;
                     }
+                    if (configOnly)
+                    {
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
+                        ShamanRestoration.ShamanRestorationSettings CurrentSetting;
+                        CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
+                    }
                     else
                     {
-                        if (configOnly)
-                        {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Shaman_Restoration.xml";
-                            ShamanRestoration.ShamanRestorationSettings CurrentSetting;
-                            CurrentSetting = new ShamanRestoration.ShamanRestorationSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<ShamanRestoration.ShamanRestorationSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("Shaman without Spec");
-                            range = 30.0f;
-                            new ShamanRestoration();
-                        }
-                        break;
+                        Logging.WriteFight("Shaman without Spec");
+                        range = 30.0f;
+                        new ShamanRestoration();
                     }
+                    break;
 
                     #endregion
 
@@ -739,8 +734,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new PriestShadow();
                         }
+                        break;
                     }
-                    else if (PriestDisciplineSpell.KnownSpell)
+                    if (PriestDisciplineSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -762,8 +758,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new PriestDiscipline();
                         }
+                        break;
                     }
-                    else if (PriestHolySpell.KnownSpell)
+                    if (PriestHolySpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -785,32 +782,30 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new PriestHoly();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Priest Shadow Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Priest_Shadow.xml";
+                        PriestShadow.PriestShadowSettings CurrentSetting;
+                        CurrentSetting = new PriestShadow.PriestShadowSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Priest Shadow Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Priest_Shadow.xml";
-                            PriestShadow.PriestShadowSettings CurrentSetting;
-                            CurrentSetting = new PriestShadow.PriestShadowSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<PriestShadow.PriestShadowSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Priest Shadow Combat class...");
-                            range = 30.0f;
-                            new PriestShadow();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Priest Shadow Combat class...");
+                        range = 30.0f;
+                        new PriestShadow();
                     }
                     break;
 
@@ -846,7 +841,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (RogueAssassinationSpell.KnownSpell)
+                    if (RogueAssassinationSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -869,7 +864,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    else if (RogueSubtletySpell.KnownSpell)
+                    if (RogueSubtletySpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -892,29 +887,26 @@ public class Main : ICombatClass
                         }
                         break;
                     }
+                    if (configOnly)
+                    {
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Rogue_Combat.xml";
+                        RogueCombat.RogueCombatSettings CurrentSetting;
+                        CurrentSetting = new RogueCombat.RogueCombatSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
+                    }
                     else
                     {
-                        if (configOnly)
-                        {
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Rogue_Combat.xml";
-                            RogueCombat.RogueCombatSettings CurrentSetting;
-                            CurrentSetting = new RogueCombat.RogueCombatSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<RogueCombat.RogueCombatSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("Rogue without Spec");
-                            new RogueCombat();
-                        }
-                        break;
+                        Logging.WriteFight("Rogue without Spec");
+                        new RogueCombat();
                     }
+                    break;
 
                     #endregion
 
@@ -946,8 +938,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Warrior Arms Combat class...");
                             new WarriorArms();
                         }
+                        break;
                     }
-                    else if (WarriorFurySpell.KnownSpell)
+                    if (WarriorFurySpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -968,8 +961,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Warrior Fury Combat class...");
                             new WarriorFury();
                         }
+                        break;
                     }
-                    else if (WarriorProtectionSpell.KnownSpell)
+                    if (WarriorProtectionSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -990,31 +984,29 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Warrior Protection Combat class...");
                             new WarriorProtection();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Warrior Arms Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Warrior_Arms.xml";
+                        WarriorArms.WarriorArmsSettings CurrentSetting;
+                        CurrentSetting = new WarriorArms.WarriorArmsSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Warrior Arms Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Warrior_Arms.xml";
-                            WarriorArms.WarriorArmsSettings CurrentSetting;
-                            CurrentSetting = new WarriorArms.WarriorArmsSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<WarriorArms.WarriorArmsSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Warrior Arms Combat class...");
-                            new WarriorArms();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Warrior Arms Combat class...");
+                        new WarriorArms();
                     }
                     break;
 
@@ -1049,8 +1041,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new HunterMarksmanship();
                         }
+                        break;
                     }
-                    else if (HunterSurvivalSpell.KnownSpell)
+                    if (HunterSurvivalSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -1072,8 +1065,9 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new HunterSurvival();
                         }
+                        break;
                     }
-                    else if (HunterBeastMasterySpell.KnownSpell)
+                    if (HunterBeastMasterySpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -1095,32 +1089,30 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new HunterBeastMastery();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Hunter Marksmanship Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
+                        HunterMarksmanship.HunterMarksmanshipSettings CurrentSetting;
+                        CurrentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<HunterMarksmanship.HunterMarksmanshipSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Hunter Marksmanship Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Hunter_Marksmanship.xml";
-                            HunterMarksmanship.HunterMarksmanshipSettings CurrentSetting;
-                            CurrentSetting = new HunterMarksmanship.HunterMarksmanshipSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<HunterMarksmanship.HunterMarksmanshipSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
-                            range = 30.0f;
-                            new HunterMarksmanship();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
+                        range = 30.0f;
+                        new HunterMarksmanship();
                     }
                     break;
 
@@ -1153,8 +1145,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Monk Brewmaster Combat class...");
                             new MonkBrewmaster();
                         }
+                        break;
                     }
-                    else if (MonkWindwalkerSpell.KnownSpell)
+                    if (MonkWindwalkerSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -1175,8 +1168,9 @@ public class Main : ICombatClass
                             Logging.WriteFight("Loading Monk Windwalker Combat class...");
                             new MonkWindwalker();
                         }
+                        break;
                     }
-                    else if (MonkMistweaverSpell.KnownSpell)
+                    if (MonkMistweaverSpell.KnownSpell)
                     {
                         if (configOnly)
                         {
@@ -1198,31 +1192,29 @@ public class Main : ICombatClass
                             range = 30.0f;
                             new MonkMistweaver();
                         }
+                        break;
+                    }
+                    if (configOnly)
+                    {
+                        MessageBox.Show(
+                            "Your specification haven't be found, loading Monk Brewmaster Settings");
+                        string currentSettingsFile = Application.StartupPath +
+                                                     "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
+                        MonkBrewmaster.MonkBrewmasterSettings CurrentSetting;
+                        CurrentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        {
+                            CurrentSetting =
+                                Settings.Load<MonkBrewmaster.MonkBrewmasterSettings>(currentSettingsFile);
+                        }
+                        CurrentSetting.ToForm();
+                        CurrentSetting.Save(currentSettingsFile);
                     }
                     else
                     {
-                        if (configOnly)
-                        {
-                            MessageBox.Show(
-                                "Your specification haven't be found, loading Monk Brewmaster Settings");
-                            string currentSettingsFile = Application.StartupPath +
-                                                         "\\CombatClasses\\Settings\\Monk_Brewmaster.xml";
-                            MonkBrewmaster.MonkBrewmasterSettings CurrentSetting;
-                            CurrentSetting = new MonkBrewmaster.MonkBrewmasterSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                CurrentSetting =
-                                    Settings.Load<MonkBrewmaster.MonkBrewmasterSettings>(currentSettingsFile);
-                            }
-                            CurrentSetting.ToForm();
-                            CurrentSetting.Save(currentSettingsFile);
-                        }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Monk Brewmaster Combat class...");
-                            new MonkBrewmaster();
-                        }
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Monk Brewmaster Combat class...");
+                        new MonkBrewmaster();
                     }
                     break;
 
@@ -1326,8 +1318,9 @@ public class DeathknightApprentice
                             {
                                 Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                         {
                             Patrolling();
                         }
@@ -1670,15 +1663,15 @@ public class DeathknightBlood
 
     #region General Timers & Variables
 
-    public int DRW = 1;
-    private Timer EngineeringTimer = new Timer(0);
-    public int LC = 0;
-    public int DefenseHP = 100;
-    public int HealHP = 100;
-    public int DecastHP = 100;
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    public int DRW = 1;
+    public int DecastHP = 100;
+    public int DefenseHP = 100;
+    private Timer EngineeringTimer = new Timer(0);
+    public int HealHP = 100;
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -1707,8 +1700,8 @@ public class DeathknightBlood
     private readonly Spell UnholyPresence = new Spell("Unholy Presence");
     private Timer BloodPlagueTimer = new Timer(0);
     private Timer FrostFeverTimer = new Timer(0);
-    private Timer PathofFrostTimer = new Timer(0);
     private Timer PathofFrostBuffTimer = new Timer(0);
+    private Timer PathofFrostTimer = new Timer(0);
 
     #endregion
 
@@ -1809,9 +1802,9 @@ public class DeathknightBlood
                                     Combat();
                                 }
                             }
+                            break;
                         }
-
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                         {
                             Patrolling();
                         }
@@ -2288,16 +2281,14 @@ public class DeathknightBlood
         {
             Berserking.Launch();
         }
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
         }
-
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
         }
-
         if (mySettings.UseBloodTapForDPS && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Launch();
@@ -2679,15 +2670,15 @@ public class DeathknightUnholy
 
     #region General Timers & Variables
 
-    public int DT = 1;
-    private Timer EngineeringTimer = new Timer(0);
-    public int LC = 0;
-    public int DefenseHP = 100;
-    public int HealHP = 100;
-    public int DecastHP = 100;
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    public int DT = 1;
+    public int DecastHP = 100;
+    public int DefenseHP = 100;
+    private Timer EngineeringTimer = new Timer(0);
+    public int HealHP = 100;
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -2716,8 +2707,8 @@ public class DeathknightUnholy
     private readonly Spell UnholyPresence = new Spell("Unholy Presence");
     private Timer BloodPlagueTimer = new Timer(0);
     private Timer FrostFeverTimer = new Timer(0);
-    private Timer PathofFrostTimer = new Timer(0);
     private Timer PathofFrostBuffTimer = new Timer(0);
+    private Timer PathofFrostTimer = new Timer(0);
 
     #endregion
 
@@ -2817,8 +2808,9 @@ public class DeathknightUnholy
                                     Combat();
                                 }
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                         {
                             Patrolling();
                         }
@@ -3260,49 +3252,47 @@ public class DeathknightUnholy
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
+            return;
         }
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
+            return;
         }
-
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
+            return;
         }
-
         if (mySettings.UseBloodTap && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Launch();
+            return;
         }
-
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-
         if (mySettings.UseUnholyFrenzy && UnholyFrenzy.KnownSpell && ObjectManager.Target.GetDistance < 30 && UnholyFrenzy.IsSpellUsable)
         {
             UnholyFrenzy.Launch();
         }
-
         if (mySettings.UseSummonGargoyle && SummonGargoyle.KnownSpell && ObjectManager.Target.GetDistance < 30 && SummonGargoyle.IsSpellUsable)
         {
             SummonGargoyle.Launch();
         }
-
         if (DarkTransformationTimer.IsReady && DT == 0)
         {
             DT++;
         }
-
         if (mySettings.UseDarkTransformation && DarkTransformation.KnownSpell && DT == 1 && DarkTransformation.IsSpellUsable)
         {
             DarkTransformation.Launch();
@@ -3629,14 +3619,14 @@ public class DeathknightFrost
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    public int LC = 0;
-    public int DefenseHP = 100;
-    public int HealHP = 100;
-    public int DecastHP = 100;
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    public int DecastHP = 100;
+    public int DefenseHP = 100;
+    private Timer EngineeringTimer = new Timer(0);
+    public int HealHP = 100;
+    public int LC = 0;
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -3666,8 +3656,8 @@ public class DeathknightFrost
     private readonly Spell UnholyPresence = new Spell("Unholy Presence");
     private Timer BloodPlagueTimer = new Timer(0);
     private Timer FrostFeverTimer = new Timer(0);
-    private Timer PathofFrostTimer = new Timer(0);
     private Timer PathofFrostBuffTimer = new Timer(0);
+    private Timer PathofFrostTimer = new Timer(0);
 
     #endregion
 
@@ -3765,9 +3755,9 @@ public class DeathknightFrost
                                     Combat();
                                 }
                             }
+                            break;
                         }
-
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                         {
                             Patrolling();
                         }
@@ -4196,44 +4186,41 @@ public class DeathknightFrost
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
-
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
         {
             Berserking.Launch();
+            return;
         }
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
         {
             BloodFury.Launch();
+            return;
         }
-
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
         {
             Lifeblood.Launch();
+            return;
         }
-
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-
         if (mySettings.UseBloodTap && BloodTap.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodTap.IsSpellUsable)
         {
             BloodTap.Launch();
         }
-
         if (mySettings.UsePillarofFrost && PillarofFrost.KnownSpell && ObjectManager.Target.GetDistance < 30 && PillarofFrost.IsSpellUsable)
         {
             PillarofFrost.Launch();
         }
-
         if (mySettings.UseRaiseDeadForDPS && RaiseDead.KnownSpell && ObjectManager.Target.GetDistance < 30 && RaiseDead.IsSpellUsable)
         {
             RaiseDead.Launch();
@@ -4665,11 +4652,11 @@ public class MageArcane
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -4713,13 +4700,13 @@ public class MageArcane
     #region Offensive Cooldown
 
     private readonly Spell AlterTime = new Spell("Alter Time");
-    private Timer AlterTimeTimer = new Timer(0);
     private readonly Spell ArcanePower = new Spell("Arcane Power");
     private readonly Spell FrozenOrb = new Spell("Frozen Orb");
     private readonly Spell MageBomb = new Spell("Mage Bomb");
     private readonly Spell MirrorImage = new Spell("Mirror Image");
     private readonly Spell PresenceofMind = new Spell("Presence of Mind");
     private readonly Spell TimeWarp = new Spell("Time Warp");
+    private Timer AlterTimeTimer = new Timer(0);
 
     #endregion
 
@@ -4746,10 +4733,10 @@ public class MageArcane
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
-    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
+    private Timer ConjureManaGemTimer = new Timer(0);
+    private Timer ConjureRefreshmentTimer = new Timer(0);
 
     #endregion
 
@@ -4787,8 +4774,9 @@ public class MageArcane
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -4827,23 +4815,20 @@ public class MageArcane
             ArcaneBarrage.Launch();
             return;
         }
-        else if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable)
+        if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable)
         {
             ArcaneMissiles.Launch();
             return;
         }
-        else if (mySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
+        if (mySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable)
         {
             ArcaneBlast.Launch();
             return;
         }
-        else
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
         {
-            if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
-            {
-                ArcaneExplosion.Launch();
-                return;
-            }
+            ArcaneExplosion.Launch();
+            return;
         }
     }
 
@@ -4891,13 +4876,13 @@ public class MageArcane
             MageArmor.Launch();
             return;
         }
-        else if (mySettings.UseFrostArmor && !mySettings.UseMageArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
+        if (mySettings.UseFrostArmor && !mySettings.UseMageArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
         {
             FrostArmor.Launch();
             return;
         }
-        else if (mySettings.UseMoltenArmor && !mySettings.UseFrostArmor && !mySettings.UseMageArmor
-                 && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
+        if (mySettings.UseMoltenArmor && !mySettings.UseFrostArmor && !mySettings.UseMageArmor
+            && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
         {
             MoltenArmor.Launch();
             return;
@@ -4950,8 +4935,8 @@ public class MageArcane
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
+        if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
         {
             if (mySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
@@ -4963,71 +4948,67 @@ public class MageArcane
             {
                 FrostNova.Launch();
                 OnCD = new Timer(1000*8);
-                return;
             }
+            return;
         }
-        else if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
+        if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
         {
             IceWard.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
+        if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
         {
             ConeofCold.Launch();
             return;
         }
-        else if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
-                 && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
+        if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
+            && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
         {
             Blink.Launch();
             return;
         }
-        else if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
+        if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
         {
             DeepFreeze.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
+        if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
         {
             IceBarrier.Launch();
             return;
         }
-        else if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
+        if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
         {
             TemporalShield.Launch();
             OnCD = new Timer(1000*4);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 3)
         {
-            if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
-                && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                Invisibility.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Invisibility.Launch();
+            Thread.Sleep(5000);
         }
     }
 
@@ -5042,62 +5023,58 @@ public class MageArcane
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
         {
             ColdSnap.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
-                 && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+        if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
+            && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
             return;
         }
-        else if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
-                 && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
+        if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
+            && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
+            && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
-                 && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
-                 && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
+        if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
+            && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
-                 && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
+        if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
+            && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
             ConjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
-        else
+        if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
+            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
+            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+            && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
         {
-            if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
-                && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-                && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
-            {
-                ConjureRefreshment.Launch();
-                ConjureRefreshmentTimer = new Timer(1000*60*10);
-                return;
-            }
+            ConjureRefreshment.Launch();
+            ConjureRefreshmentTimer = new Timer(1000*60*10);
         }
     }
 
@@ -5110,23 +5087,20 @@ public class MageArcane
             Counterspell.Launch();
             return;
         }
-        else if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
         {
-            if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
-            {
-                Frostjaw.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Frostjaw.Launch();
+            OnCD = new Timer(1000*8);
+            return;
         }
 
         if (mySettings.UseSlow && Slow.KnownSpell && Slow.IsHostileDistanceGood && Slow.IsSpellUsable
@@ -5144,64 +5118,72 @@ public class MageArcane
         {
             AlterTime.Launch();
             AlterTimeTimer = new Timer(1000*4);
+            return;
         }
-        else if (mySettings.UseAlterTime && mySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable
-                 && AlterTime.HaveBuff && ObjectManager.Target.InCombat && ObjectManager.Me.BuffStack(114664) > 3 && AlterTimeTimer.IsReady)
+        if (mySettings.UseAlterTime && mySettings.UseArcaneBarrage && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable
+            && AlterTime.HaveBuff && ObjectManager.Target.InCombat && ObjectManager.Me.BuffStack(114664) > 3 && AlterTimeTimer.IsReady)
         {
             if (ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood && ArcaneBarrage.IsSpellUsable)
             {
                 ArcaneBarrage.Launch();
                 return;
             }
-            return;
         }
-
         if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
-
+        }
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+        }
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-
         if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
             && !ObjectManager.Me.HaveBuff(116257))
+        {
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116014))
+            return;
+        }
+        if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116014))
+        {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-
+        }
         if (mySettings.UseArcanePower && ArcanePower.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArcanePower.IsSpellUsable)
+        {
             ArcanePower.Launch();
-
+        }
         if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        {
             MirrorImage.Launch();
-
+        }
         if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
             && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
             && !ObjectManager.Me.HaveBuff(95809))
         {
-            TimeWarp.Launch();
-            return;
+            {
+                TimeWarp.Launch();
+            }
         }
     }
 
@@ -5220,8 +5202,8 @@ public class MageArcane
             FlamestrikeTimer = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() > 4)
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 4)
         {
             ArcaneExplosion.Launch();
             return;
@@ -5233,25 +5215,25 @@ public class MageArcane
             MageBomb.Launch();
             return;
         }
-        else if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable
-                 && ObjectManager.Me.BuffStack(79683) > 1)
+        if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable
+            && ObjectManager.Me.BuffStack(79683) > 1)
         {
             ArcaneMissiles.Launch();
             return;
         }
-        else if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable
-                 && ObjectManager.Me.BuffStack(114664) > 3)
+        if (mySettings.UseArcaneMissiles && ArcaneMissiles.KnownSpell && ArcaneMissiles.IsHostileDistanceGood && ArcaneMissiles.IsSpellUsable
+            && ObjectManager.Me.BuffStack(114664) > 3)
         {
             ArcaneMissiles.Launch();
             return;
         }
-        else if (ArcaneBarrage.IsSpellUsable && ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood
-                 && mySettings.UseArcaneBarrage && ObjectManager.Me.BuffStack(114664) > 3)
+        if (ArcaneBarrage.IsSpellUsable && ArcaneBarrage.KnownSpell && ArcaneBarrage.IsHostileDistanceGood
+            && mySettings.UseArcaneBarrage && ObjectManager.Me.BuffStack(114664) > 3)
         {
             ArcaneBarrage.Launch();
             return;
         }
-        else if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && ArcaneBlast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
+        if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && ArcaneBlast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Launch();
             Thread.Sleep(400);
@@ -5259,24 +5241,18 @@ public class MageArcane
                 ArcaneBlast.Launch();
             return;
         }
-        else
+        if (mySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable
+            && ObjectManager.Me.BuffStack(114664) < 4)
         {
-            if (mySettings.UseArcaneBlast && ArcaneBlast.KnownSpell && ArcaneBlast.IsHostileDistanceGood && ArcaneBlast.IsSpellUsable
-                && ObjectManager.Me.BuffStack(114664) < 4)
-            {
-                ArcaneBlast.Launch();
-                return;
-            }
+            ArcaneBlast.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MageArcaneSettings
@@ -5450,12 +5426,12 @@ public class MageFrost
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     private Timer FreezeTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -5533,10 +5509,10 @@ public class MageFrost
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
-    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
+    private Timer ConjureManaGemTimer = new Timer(0);
+    private Timer ConjureRefreshmentTimer = new Timer(0);
 
     #endregion
 
@@ -5574,8 +5550,9 @@ public class MageFrost
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -5629,24 +5606,20 @@ public class MageFrost
             IceLance.Launch();
             return;
         }
-        else if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(57761))
+        if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(57761))
         {
             FrostfireBolt.Launch();
             return;
         }
-        else if (mySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
+        if (mySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
         {
             Frostbolt.Launch();
             return;
         }
-        else
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
         {
-            if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
-            {
-                ArcaneExplosion.Launch();
-                return;
-            }
+            ArcaneExplosion.Launch();
         }
     }
 
@@ -5705,13 +5678,13 @@ public class MageFrost
             FrostArmor.Launch();
             return;
         }
-        else if (mySettings.UseMoltenArmor && !mySettings.UseFrostArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
+        if (mySettings.UseMoltenArmor && !mySettings.UseFrostArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
         {
             MoltenArmor.Launch();
             return;
         }
-        else if (mySettings.UseMageArmor && MageArmor.KnownSpell && !mySettings.UseFrostArmor && !mySettings.UseMoltenArmor
-                 && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
+        if (mySettings.UseMageArmor && MageArmor.KnownSpell && !mySettings.UseFrostArmor && !mySettings.UseMoltenArmor
+            && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
         {
             MageArmor.Launch();
             return;
@@ -5720,7 +5693,6 @@ public class MageFrost
         if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && BlazingSpeed.IsSpellUsable && ObjectManager.Me.GetMove)
         {
             BlazingSpeed.Launch();
-            return;
         }
     }
 
@@ -5760,8 +5732,8 @@ public class MageFrost
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
+        if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
         {
             if (mySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
@@ -5773,71 +5745,67 @@ public class MageFrost
             {
                 FrostNova.Launch();
                 OnCD = new Timer(1000*8);
-                return;
             }
+            return;
         }
-        else if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
+        if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
         {
             IceWard.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
+        if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
         {
             ConeofCold.Launch();
             return;
         }
-        else if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
-                 && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
+        if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
+            && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
         {
             Blink.Launch();
             return;
         }
-        else if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
+        if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
         {
             DeepFreeze.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
+        if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
         {
             IceBarrier.Launch();
             return;
         }
-        else if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
+        if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
         {
             TemporalShield.Launch();
             OnCD = new Timer(1000*4);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 3)
         {
-            if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
-                && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                Invisibility.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Invisibility.Launch();
+            Thread.Sleep(5000);
         }
     }
 
@@ -5852,62 +5820,58 @@ public class MageFrost
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
         {
             ColdSnap.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
-                 && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+        if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
+            && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
             return;
         }
-        else if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
-                 && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
+        if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
+            && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
+            && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
-                 && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
-                 && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
+        if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
+            && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
-                 && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
+        if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
+            && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
             ConjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
-        else
+        if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
+            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
+            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+            && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
         {
-            if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
-                && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-                && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
-            {
-                ConjureRefreshment.Launch();
-                ConjureRefreshmentTimer = new Timer(1000*60*10);
-                return;
-            }
+            ConjureRefreshment.Launch();
+            ConjureRefreshmentTimer = new Timer(1000*60*10);
         }
     }
 
@@ -5920,23 +5884,19 @@ public class MageFrost
             Counterspell.Launch();
             return;
         }
-        else if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
         {
-            if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
-            {
-                Frostjaw.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Frostjaw.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -5959,44 +5919,58 @@ public class MageFrost
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
+        }
 
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
+        }
 
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
 
         if (FrozenOrb.IsSpellUsable && FrozenOrb.KnownSpell && FrozenOrb.IsHostileDistanceGood
             && mySettings.UseFrozenOrb)
+        {
             FrozenOrb.Launch();
+        }
 
-        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
-            && !ObjectManager.Me.HaveBuff(116257))
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116257))
+        {
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116014))
+            return;
+        }
+        if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
+            && !ObjectManager.Me.HaveBuff(116014))
+        {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-
+        }
         if (mySettings.UseIcyVeins && IcyVeins.KnownSpell && ObjectManager.Target.GetDistance < 41 && IcyVeins.IsSpellUsable
             && !TimeWarp.HaveBuff)
+        {
             IcyVeins.Launch();
-
+        }
         if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        {
             MirrorImage.Launch();
-
+        }
         if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
             && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
             && !ObjectManager.Me.HaveBuff(95809))
         {
             TimeWarp.Launch();
-            return;
         }
     }
 
@@ -6015,8 +5989,8 @@ public class MageFrost
             FlamestrikeTimer = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() > 4)
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 4)
         {
             ArcaneExplosion.Launch();
             return;
@@ -6028,27 +6002,27 @@ public class MageFrost
             MageBomb.Launch();
             return;
         }
-        else if (mySettings.UseFreeze && ObjectManager.Me.Level > 9 && FreezeTimer.IsReady && ObjectManager.Target.GetDistance < 41
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (mySettings.UseFreeze && ObjectManager.Me.Level > 9 && FreezeTimer.IsReady && ObjectManager.Target.GetDistance < 41
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SpellManager.CastSpellByIDAndPosition(33395, ObjectManager.Target.Position);
             FreezeTimer = new Timer(1000*25);
             Thread.Sleep(400);
             return;
         }
-        else if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(57761))
+        if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(57761))
         {
             FrostfireBolt.Launch();
             return;
         }
-        else if (mySettings.UseIceLance && IceLance.KnownSpell && IceLance.IsHostileDistanceGood && IceLance.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(44544))
+        if (mySettings.UseIceLance && IceLance.KnownSpell && IceLance.IsHostileDistanceGood && IceLance.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(44544))
         {
             IceLance.Launch();
             return;
         }
-        else if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Frostbolt.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
+        if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Frostbolt.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Launch();
             Thread.Sleep(400);
@@ -6056,30 +6030,24 @@ public class MageFrost
                 Frostbolt.Launch();
             return;
         }
-        else
+        if (mySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
         {
-            if (mySettings.UseFrostbolt && Frostbolt.KnownSpell && Frostbolt.IsHostileDistanceGood && Frostbolt.IsSpellUsable)
-            {
-                Frostbolt.Launch();
-                return;
-            }
+            Frostbolt.Launch();
+            return;
         }
 
         if (mySettings.UseFrostfireBolt && FrostfireBolt.KnownSpell && FrostfireBolt.IsHostileDistanceGood && FrostfireBolt.IsSpellUsable
             && !Frostbolt.KnownSpell)
         {
             FrostfireBolt.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MageFrostSettings
@@ -6259,11 +6227,11 @@ public class MageFire
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -6340,10 +6308,10 @@ public class MageFire
     #region Healing Spell
 
     private readonly Spell ConjureManaGem = new Spell("Conjure Mana Gem");
-    private Timer ConjureManaGemTimer = new Timer(0);
     private readonly Spell ConjureRefreshment = new Spell("Conjure Refreshment");
-    private Timer ConjureRefreshmentTimer = new Timer(0);
     private readonly Spell Evocation = new Spell("Evocation");
+    private Timer ConjureManaGemTimer = new Timer(0);
+    private Timer ConjureRefreshmentTimer = new Timer(0);
 
     #endregion
 
@@ -6407,24 +6375,20 @@ public class MageFire
             Pyroblast.Launch();
             return;
         }
-        else if (mySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(48108))
+        if (mySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(48108))
         {
             Pyroblast.Launch();
             return;
         }
-        else if (mySettings.UseScorch && Scorch.KnownSpell && Scorch.IsHostileDistanceGood && Scorch.IsSpellUsable)
+        if (mySettings.UseScorch && Scorch.KnownSpell && Scorch.IsHostileDistanceGood && Scorch.IsSpellUsable)
         {
             Scorch.Launch();
             return;
         }
-        else
+        if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable)
         {
-            if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable)
-            {
-                Fireball.Launch();
-                return;
-            }
+            Fireball.Launch();
         }
     }
 
@@ -6443,24 +6407,20 @@ public class MageFire
             Pyroblast.Launch();
             return;
         }
-            //Blizzard API calls for Inferno Blast using the Fire Blast function.
-        else if (mySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable)
+        //Blizzard API calls for Inferno Blast using the Fire Blast function.
+        if (mySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable)
         {
             FireBlast.Launch();
             return;
         }
-        else if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable)
+        if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable)
         {
             Fireball.Launch();
             return;
         }
-        else
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
         {
-            if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable)
-            {
-                ArcaneExplosion.Launch();
-                return;
-            }
+            ArcaneExplosion.Launch();
         }
     }
 
@@ -6504,22 +6464,30 @@ public class MageFire
             ArcaneBrilliance.Launch();
 
         if (mySettings.UseMoltenArmor && MoltenArmor.KnownSpell && !MoltenArmor.HaveBuff && MoltenArmor.IsSpellUsable)
+        {
             MoltenArmor.Launch();
-        else if (mySettings.UseFrostArmor && !mySettings.UseMoltenArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseFrostArmor && !mySettings.UseMoltenArmor && FrostArmor.KnownSpell && !FrostArmor.HaveBuff && FrostArmor.IsSpellUsable)
+        {
             FrostArmor.Launch();
-        else if (mySettings.UseMageArmor && MageArmor.KnownSpell && !mySettings.UseMoltenArmor && !mySettings.UseFrostArmor
-                 && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseMageArmor && MageArmor.KnownSpell && !mySettings.UseMoltenArmor && !mySettings.UseFrostArmor
+            && !MageArmor.HaveBuff && MageArmor.IsSpellUsable)
+        {
             MageArmor.Launch();
-
+        }
         if (mySettings.UseBlazingSpeed && BlazingSpeed.KnownSpell && ObjectManager.Me.GetMove && BlazingSpeed.IsSpellUsable)
         {
             BlazingSpeed.Launch();
             return;
         }
-
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -6558,8 +6526,8 @@ public class MageFire
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
+        if (mySettings.UseFrostNova && FrostNova.KnownSpell && ObjectManager.Target.GetDistance < 12
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostNovaAtPercentage)
         {
             if (mySettings.UseColdSnap && ColdSnap.KnownSpell && !FrostNova.IsSpellUsable && ColdSnap.IsSpellUsable)
             {
@@ -6571,71 +6539,67 @@ public class MageFire
             {
                 FrostNova.Launch();
                 OnCD = new Timer(1000*8);
-                return;
             }
+            return;
         }
-        else if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
+        if (mySettings.UseIceWard && IceWard.KnownSpell && ObjectManager.Target.GetDistance < 10 && IceWard.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceWardAtPercentage)
         {
             IceWard.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
+        if (mySettings.UseConeofCold && ConeofCold.KnownSpell && ObjectManager.Target.GetDistance < 10 && ConeofCold.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseConeofColdAtPercentage)
         {
             ConeofCold.Launch();
             return;
         }
-        else if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
-                 && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
+        if (mySettings.UseBlink && Blink.KnownSpell && ObjectManager.Target.GetDistance < 11 && Blink.IsSpellUsable
+            && (FrostNova.TargetHaveBuff || ConeofCold.TargetHaveBuff || IceWard.TargetHaveBuff))
         {
             Blink.Launch();
             return;
         }
-        else if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
+        if (mySettings.UseDeepFreeze && DeepFreeze.KnownSpell && DeepFreeze.IsHostileDistanceGood && DeepFreeze.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDeepFreezeAtPercentage)
         {
             DeepFreeze.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
+        if (mySettings.UseIceBarrier && IceBarrier.KnownSpell && !IceBarrier.HaveBuff && IceBarrier.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseIceBarrierAtPercentage)
         {
             IceBarrier.Launch();
             return;
         }
-        else if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
+        if (mySettings.UseTemporalShield && TemporalShield.KnownSpell && !TemporalShield.HaveBuff && TemporalShield.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTemporalShieldAtPercentage && ObjectManager.Me.InCombat)
         {
             TemporalShield.Launch();
             OnCD = new Timer(1000*4);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && WarStomp.IsHostileDistanceGood && WarStomp.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 3)
         {
-            if (mySettings.UseInvisibility && Invisibility.KnownSpell && Invisibility.IsSpellUsable
-                && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                Invisibility.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Invisibility.Launch();
+            Thread.Sleep(5000);
         }
     }
 
@@ -6650,62 +6614,58 @@ public class MageFire
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
+        if (mySettings.UseColdSnap && ColdSnap.KnownSpell && ColdSnap.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseColdSnapAtPercentage)
         {
             ColdSnap.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
-                 && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+        if (mySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= mySettings.UseConjureManaGemAtPercentage
+            && ItemsManager.GetItemCountByIdLUA(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
             return;
         }
-        else if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
-                 && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
+        if (mySettings.UseEvocationForHP && mySettings.UseEvocationGlyph && Evocation.KnownSpell && Evocation.IsSpellUsable
+            && !mySettings.UseRuneofPowerTalent && !mySettings.UseInvocationTalent
+            && ObjectManager.Me.HealthPercent <= mySettings.UseEvocationForHPAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
-                 && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
-                 && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
+        if (mySettings.UseEvocationForMana && Evocation.KnownSpell && !ObjectManager.Me.InCombat && Evocation.IsSpellUsable
+            && !mySettings.UseInvocationTalent && !mySettings.UseRuneofPowerTalent
+            && ObjectManager.Me.ManaPercentage <= mySettings.UseEvocationForManaAtPercentage)
         {
             Evocation.Launch();
             return;
         }
-        else if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
-                 && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
+        if (mySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
+            && ConjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
             ConjureManaGemTimer = new Timer(1000*60*5);
             return;
         }
-        else
+        if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
+            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
+            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
+            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
+            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
+            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
+            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
+            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
+            && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
         {
-            if (mySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && ConjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
-                && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-                && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-                && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-                && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-                && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-                && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-                && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-                && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
-            {
-                ConjureRefreshment.Launch();
-                ConjureRefreshmentTimer = new Timer(1000*60*10);
-                return;
-            }
+            ConjureRefreshment.Launch();
+            ConjureRefreshmentTimer = new Timer(1000*60*10);
         }
     }
 
@@ -6718,31 +6678,29 @@ public class MageFire
             Counterspell.Launch();
             return;
         }
-        else if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
+        if (mySettings.UseArcaneTorrentForDecast && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
         {
-            if (mySettings.UseFrostjaw && Frostjaw.KnownSpell && Frostjaw.IsHostileDistanceGood && Frostjaw.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent <= mySettings.UseFrostjawAtPercentage)
-            {
-                Frostjaw.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Frostjaw.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
     private void DPSBurst()
     {
-        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff
-            && ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
+        if (mySettings.UseAlterTime && AlterTime.KnownSpell && ObjectManager.Target.GetDistance < 41 && AlterTime.IsSpellUsable && !AlterTime.HaveBuff &&
+            ObjectManager.Target.InCombat && ObjectManager.Me.HaveBuff(48108))
+        {
             AlterTime.Launch();
+        }
 
         if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
@@ -6757,40 +6715,47 @@ public class MageFire
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
+        }
         else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
-
+        }
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+        }
         if (mySettings.UseEngGlove && EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-
-        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
-            && !ObjectManager.Me.HaveBuff(116257))
+        if (mySettings.UseInvocationTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable && !ObjectManager.Me.HaveBuff(116257))
+        {
             Evocation.Launch();
-        else if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
-                 && !ObjectManager.Me.HaveBuff(116014))
+            return;
+        }
+        if (mySettings.UseRuneofPowerTalent && Evocation.KnownSpell && ObjectManager.Target.GetDistance < 41 && Evocation.IsSpellUsable
+            && !ObjectManager.Me.HaveBuff(116014))
+        {
             SpellManager.CastSpellByIDAndPosition(116011, ObjectManager.Me.Position);
-
+        }
         if (mySettings.UseCombustion && Combustion.KnownSpell && Combustion.IsHostileDistanceGood && Combustion.IsSpellUsable
             && ObjectManager.Target.HaveBuff(12654))
+        {
             Combustion.Launch();
-
+        }
         if (mySettings.UseMirrorImage && MirrorImage.KnownSpell && ObjectManager.Target.GetDistance < 41 && MirrorImage.IsSpellUsable)
+        {
             MirrorImage.Launch();
-
+        }
         if (mySettings.UseTimeWarp && TimeWarp.IsSpellUsable && TimeWarp.KnownSpell && ObjectManager.Target.GetDistance < 41
             && !ObjectManager.Me.HaveBuff(80354) && !ObjectManager.Me.HaveBuff(57724) && !ObjectManager.Me.HaveBuff(57723)
             && !ObjectManager.Me.HaveBuff(95809))
         {
             TimeWarp.Launch();
-            return;
         }
     }
 
@@ -6809,8 +6774,8 @@ public class MageFire
             FlamestrikeTimer = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() > 4)
+        if (mySettings.UseArcaneExplosion && ArcaneExplosion.KnownSpell && ArcaneExplosion.IsHostileDistanceGood && ArcaneExplosion.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 4)
         {
             ArcaneExplosion.Launch();
             return;
@@ -6822,13 +6787,13 @@ public class MageFire
             MageBomb.Launch();
             return;
         }
-        else if (mySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(48108))
+        if (mySettings.UsePyroblast && Pyroblast.KnownSpell && Pyroblast.IsHostileDistanceGood && Pyroblast.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(48108))
         {
             Pyroblast.Launch();
             return;
         }
-        else if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Pyroblast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
+        if (mySettings.UsePresenceofMind && PresenceofMind.KnownSpell && Pyroblast.IsHostileDistanceGood && PresenceofMind.IsSpellUsable)
         {
             PresenceofMind.Launch();
             Thread.Sleep(400);
@@ -6836,38 +6801,32 @@ public class MageFire
                 Pyroblast.Launch();
             return;
         }
-            //Blizzard API calls for Inferno Blast using the Fire Blast function.
-        else if (mySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(48107))
+        //Blizzard API calls for Inferno Blast using the Fire Blast function.
+        if (mySettings.UseInfernoBlast && FireBlast.KnownSpell && FireBlast.IsHostileDistanceGood && FireBlast.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(48107))
         {
             FireBlast.Launch();
             return;
         }
-        else if (mySettings.UseScorch && Scorch.KnownSpell && Scorch.IsHostileDistanceGood && Scorch.IsSpellUsable
-                 && ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
+        if (mySettings.UseScorch && Scorch.KnownSpell && Scorch.IsHostileDistanceGood && Scorch.IsSpellUsable
+            && ObjectManager.Me.GetMove && !IceFloes.HaveBuff)
         {
             Scorch.Launch();
             return;
         }
-        else
+        if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable
+            && (!ObjectManager.Me.HaveBuff(48107) || !mySettings.UseInfernoBlast || !InfernoBlast.IsSpellUsable)
+            && (!ObjectManager.Me.HaveBuff(48108) || !mySettings.UsePyroblast))
         {
-            if (mySettings.UseFireball && Fireball.KnownSpell && Fireball.IsHostileDistanceGood && Fireball.IsSpellUsable
-                && (!ObjectManager.Me.HaveBuff(48107) || !mySettings.UseInfernoBlast || !InfernoBlast.IsSpellUsable)
-                && (!ObjectManager.Me.HaveBuff(48108) || !mySettings.UsePyroblast))
-            {
-                Fireball.Launch();
-                return;
-            }
+            Fireball.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MageFireSettings
@@ -7048,11 +7007,11 @@ public class WarlockDemonology
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -7174,8 +7133,9 @@ public class WarlockDemonology
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -7227,21 +7187,17 @@ public class WarlockDemonology
             LifeTap.Launch();
             return;
         }
-        else if (mySettings.UseFelFlame && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable)
+        if (mySettings.UseFelFlame && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable)
         {
             FelFlame.Launch();
             return;
         }
-        else
+        if (mySettings.UseHellfire && Hellfire.KnownSpell && Hellfire.IsHostileDistanceGood && Hellfire.IsSpellUsable)
         {
-            if (mySettings.UseHellfire && Hellfire.KnownSpell && Hellfire.IsHostileDistanceGood && Hellfire.IsSpellUsable)
-            {
-                Hellfire.Launch();
+            Hellfire.Launch();
+            Thread.Sleep(200);
+            while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
                 Thread.Sleep(200);
-                while (ObjectManager.Me.IsCast && ObjectManager.Target.HealthPercent > 0)
-                    Thread.Sleep(200);
-                return;
-            }
         }
     }
 
@@ -7341,11 +7297,12 @@ public class WarlockDemonology
             Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Launch();
         }
-
         Thread.Sleep(200);
         if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        {
             GrimoireofSacrifice.Launch();
+        }
     }
 
     private void AvoidMelee()
@@ -7377,48 +7334,44 @@ public class WarlockDemonology
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
+        if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
+        if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
+        if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
         {
-            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -7433,42 +7386,38 @@ public class WarlockDemonology
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
+        if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
+        if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+            && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
+        if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
-        else
+        if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
         {
-            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
-            {
-                DrainLife.Launch();
-                while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
-                return;
-            }
+            DrainLife.Launch();
+            while (ObjectManager.Me.IsCast)
+                Thread.Sleep(200);
         }
     }
 
@@ -7481,21 +7430,17 @@ public class WarlockDemonology
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
+        if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
-        else
+        if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
-            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-            {
-                CommandDemon.Launch();
-                return;
-            }
+            CommandDemon.Launch();
         }
     }
 
@@ -7514,12 +7459,19 @@ public class WarlockDemonology
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
+        }
 
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
+        }
 
         if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
@@ -7530,20 +7482,26 @@ public class WarlockDemonology
 
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+        {
             DarkSoul.Launch();
+        }
 
         if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
+        {
             SummonDoomguard.Launch();
-        else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
+        {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-
+        }
         if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        {
             ArchimondesVengeance.Launch();
-
+        }
         if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
-            return;
         }
     }
 
@@ -7554,15 +7512,21 @@ public class WarlockDemonology
             if (ObjectManager.Me.DemonicFury > 199)
             {
                 if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable)
+                {
                     Corruption.Launch();
+                }
 
                 if (mySettings.UseMetamorphosis)
+                {
                     MetamorphosisCombat();
+                }
             }
         }
 
         if (Metamorphosis.HaveBuff)
+        {
             MetamorphosisCombat();
+        }
 
         if (mySettings.UseCurseoftheElements && CurseoftheElements.KnownSpell && !CurseoftheElements.TargetHaveBuff && CurseoftheElements.IsSpellUsable
             && CurseoftheElements.IsHostileDistanceGood)
@@ -7570,41 +7534,41 @@ public class WarlockDemonology
             CurseoftheElements.Launch();
             return;
         }
-        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
-                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
+        if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
+            && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
         }
-        else if (mySettings.UseLifeTap && LifeTap.KnownSpell && ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage && LifeTap.IsSpellUsable)
+        if (mySettings.UseLifeTap && LifeTap.KnownSpell && ObjectManager.Me.ManaPercentage <= mySettings.UseLifeTapAtPercentage && LifeTap.IsSpellUsable)
         {
             LifeTap.Launch();
             return;
         }
-        else if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable
-                 && HarvestLife.IsHostileDistanceGood)
+        if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && HarvestLife.KnownSpell && HarvestLife.IsSpellUsable
+            && HarvestLife.IsHostileDistanceGood)
         {
             HarvestLife.Launch();
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
             return;
         }
-        else if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable
-                 && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
+        if (mySettings.UseHarvestLife && ObjectManager.GetNumberAttackPlayer() > 4 && DrainLife.KnownSpell && DrainLife.IsSpellUsable
+            && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
         {
             DrainLife.Launch();
             while (ObjectManager.Me.IsCast)
                 Thread.Sleep(200);
             return;
         }
-        else if (mySettings.UseCommandDemon && mySettings.UseSummonFelguard && CommandDemon.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && CommandDemon.IsSpellUsable
-                 && CommandDemon.IsHostileDistanceGood && ObjectManager.Pet.Health > 0)
+        if (mySettings.UseCommandDemon && mySettings.UseSummonFelguard && CommandDemon.KnownSpell && ObjectManager.GetNumberAttackPlayer() > 2 && CommandDemon.IsSpellUsable
+            && CommandDemon.IsHostileDistanceGood && ObjectManager.Pet.Health > 0)
         {
             CommandDemon.Launch();
             return;
         }
-        else if (mySettings.UseHellfire && (!HarvestLife.KnownSpell || !mySettings.UseHarvestLife) && ObjectManager.GetNumberAttackPlayer() > 4
-                 && Hellfire.KnownSpell && ObjectManager.Target.GetDistance < 20 && Hellfire.IsSpellUsable)
+        if (mySettings.UseHellfire && (!HarvestLife.KnownSpell || !mySettings.UseHarvestLife) && ObjectManager.GetNumberAttackPlayer() > 4
+            && Hellfire.KnownSpell && ObjectManager.Target.GetDistance < 20 && Hellfire.IsSpellUsable)
         {
             Hellfire.Launch();
             Thread.Sleep(200);
@@ -7612,31 +7576,27 @@ public class WarlockDemonology
                 Thread.Sleep(200);
             return;
         }
-        else if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
-                 && !Corruption.TargetHaveBuff)
+        if (mySettings.UseCorruption && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+            && !Corruption.TargetHaveBuff)
         {
             Corruption.Launch();
             return;
         }
-        else if (mySettings.UseHandofGuldan && HandofGuldan.KnownSpell && HandofGuldan.IsHostileDistanceGood && HandofGuldan.IsSpellUsable
-                 && !ObjectManager.Target.HaveBuff(47960))
+        if (mySettings.UseHandofGuldan && HandofGuldan.KnownSpell && HandofGuldan.IsHostileDistanceGood && HandofGuldan.IsSpellUsable
+            && !ObjectManager.Target.HaveBuff(47960))
         {
             HandofGuldan.Launch();
             return;
         }
-        else if (mySettings.UseSoulFire && SoulFire.KnownSpell && SoulFire.IsHostileDistanceGood && SoulFire.IsSpellUsable
-                 && ObjectManager.Me.HaveBuff(122355))
+        if (mySettings.UseSoulFire && SoulFire.KnownSpell && SoulFire.IsHostileDistanceGood && SoulFire.IsSpellUsable
+            && ObjectManager.Me.HaveBuff(122355))
         {
             SoulFire.Launch();
             return;
         }
-        else
+        if (mySettings.UseShadowBolt && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
         {
-            if (mySettings.UseShadowBolt && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
-            {
-                ShadowBolt.Launch();
-                return;
-            }
+            ShadowBolt.Launch();
         }
     }
 
@@ -7657,21 +7617,20 @@ public class WarlockDemonology
                 {
                     Hellfire.Launch();
                     Thread.Sleep(200);
+                    return;
                 }
-                else if (mySettings.UseCarrionSwarm && CarrionSwarm.KnownSpell && Metamorphosis.HaveBuff && CarrionSwarm.IsSpellUsable
-                         && ObjectManager.Target.GetDistance < 20)
+                if (mySettings.UseCarrionSwarm && CarrionSwarm.KnownSpell && Metamorphosis.HaveBuff && CarrionSwarm.IsSpellUsable
+                    && ObjectManager.Target.GetDistance < 20)
                 {
                     CarrionSwarm.Launch();
                     Thread.Sleep(200);
+                    return;
                 }
-                else
+                if (mySettings.UseVoidRay && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable
+                    && Metamorphosis.HaveBuff)
                 {
-                    if (mySettings.UseVoidRay && FelFlame.KnownSpell && FelFlame.IsHostileDistanceGood && FelFlame.IsSpellUsable
-                        && Metamorphosis.HaveBuff)
-                    {
-                        FelFlame.Launch();
-                        Thread.Sleep(200);
-                    }
+                    FelFlame.Launch();
+                    Thread.Sleep(200);
                 }
             }
             else
@@ -7699,7 +7658,6 @@ public class WarlockDemonology
             Metamorphosis.Launch();
             return;
         }
-        return;
     }
 
     private void Patrolling()
@@ -7888,11 +7846,11 @@ public class WarlockDestruction
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -8013,8 +7971,9 @@ public class WarlockDestruction
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -8052,10 +8011,9 @@ public class WarlockDestruction
             ShadowBolt.Launch();
             return;
         }
-        else if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
+        if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
         {
             SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-            return;
         }
     }
 
@@ -8091,15 +8049,14 @@ public class WarlockDestruction
         if (mySettings.UseDarkIntent && DarkIntent.KnownSpell && !DarkIntent.HaveBuff && DarkIntent.IsSpellUsable)
             DarkIntent.Launch();
 
-        if (mySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.Me.InCombat)
+        if (mySettings.UseSoulLink && SoulLink.KnownSpell && !SoulLink.HaveBuff && SoulLink.IsSpellUsable && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) &&
+            ObjectManager.Me.InCombat)
             SoulLink.Launch();
 
         if (mySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
             Soulstone.Launch();
 
-        if (mySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
-            && ItemsManager.GetItemCountByIdLUA(5512) == 0)
+        if (mySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCountByIdLUA(5512) == 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -8107,15 +8064,14 @@ public class WarlockDestruction
                 Thread.Sleep(200);
         }
 
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
     private void Pet()
     {
-        if (mySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable
-            && ObjectManager.Pet.HealthPercent < 50)
+        if (mySettings.UseHealthFunnel && HealthFunnel.KnownSpell && ObjectManager.Pet.HealthPercent > 0 && HealthFunnel.IsSpellUsable && ObjectManager.Pet.HealthPercent < 50)
         {
             HealthFunnel.Launch();
             while (ObjectManager.Me.IsCast)
@@ -8126,41 +8082,42 @@ public class WarlockDestruction
             }
         }
 
-        if (mySettings.UseFlamesofXoroth && FlamesofXoroth.KnownSpell && ObjectManager.Me.InCombat && FlamesofXoroth.IsSpellUsable
-            && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
+        if (mySettings.UseFlamesofXoroth && FlamesofXoroth.KnownSpell && ObjectManager.Me.InCombat && FlamesofXoroth.IsSpellUsable &&
+            (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0) && !GrimoireofSacrifice.HaveBuff)
         {
             FlamesofXoroth.Launch();
             Logging.WriteFight(" - PET DEAD - ");
         }
-        else if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable
-                 && ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonFelhunter && SummonFelhunter.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonFelhunter.IsSpellUsable && ObjectManager.Me.InCombat &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonFelhunter.Launch();
         }
-        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable
-                 && ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonImp && SummonImp.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonImp.IsSpellUsable && ObjectManager.Me.InCombat &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonImp.Launch();
         }
-        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable
-                 && ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonVoidwalker && SummonVoidwalker.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonVoidwalker.IsSpellUsable &&
+                 ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonVoidwalker.Launch();
         }
-        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable
-                 && ObjectManager.Me.InCombat && (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
+        else if (mySettings.UseSummonSuccubus && SummonSuccubus.KnownSpell && !GrimoireofSacrifice.HaveBuff && SummonSuccubus.IsSpellUsable && ObjectManager.Me.InCombat &&
+                 (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0))
         {
             Logging.WriteFight(" - PET DEAD - ");
             SummonSuccubus.Launch();
         }
-
         Thread.Sleep(200);
-        if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable
-            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (mySettings.UseGrimoireofSacrifice && GrimoireofSacrifice.KnownSpell && !GrimoireofSacrifice.HaveBuff && GrimoireofSacrifice.IsSpellUsable &&
+            (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        {
             GrimoireofSacrifice.Launch();
+        }
     }
 
     private void AvoidMelee()
@@ -8192,48 +8149,44 @@ public class WarlockDestruction
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
+        if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
+        if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
+        if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
         {
-            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -8248,47 +8201,43 @@ public class WarlockDestruction
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseEmberTap && EmberTap.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
+        if (mySettings.UseEmberTap && EmberTap.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseEmberTapAtPercentage && EmberTap.IsSpellUsable)
         {
             EmberTap.Launch();
             return;
         }
-        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
+        if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
+        if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+            && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
+        if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
-        else
+        if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
         {
-            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
-            {
-                DrainLife.Launch();
-                while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
-                return;
-            }
+            DrainLife.Launch();
+            while (ObjectManager.Me.IsCast)
+                Thread.Sleep(200);
         }
     }
 
@@ -8301,21 +8250,17 @@ public class WarlockDestruction
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
+        if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
-        else
+        if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
-            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-            {
-                CommandDemon.Launch();
-                return;
-            }
+            CommandDemon.Launch();
         }
     }
 
@@ -8334,36 +8279,44 @@ public class WarlockDestruction
         }
 
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
-
+        }
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+        }
         if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+        {
             DarkSoul.Launch();
-
+        }
         if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
+        {
             SummonDoomguard.Launch();
+        }
         else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
+        {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-
+        }
         if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        {
             ArchimondesVengeance.Launch();
-
+        }
         if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
-            return;
         }
     }
 
@@ -8375,9 +8328,9 @@ public class WarlockDestruction
             CurseoftheElements.Launch();
             return;
         }
-        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsHostileDistanceGood &&
-                 CurseofEnfeeblement.IsSpellUsable
-                 && !CurseofEnfeeblement.TargetHaveBuff)
+        if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsHostileDistanceGood &&
+            CurseofEnfeeblement.IsSpellUsable
+            && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
@@ -8395,38 +8348,35 @@ public class WarlockDestruction
                 ImmolateTimer = new Timer(1000*12);
                 return;
             }
-            else if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && HarvestLife.KnownSpell
-                     && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
+            if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && HarvestLife.KnownSpell
+                && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
             {
                 HarvestLife.Launch();
                 while (ObjectManager.Me.IsCast)
                     Thread.Sleep(200);
                 return;
             }
-            else if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && DrainLife.KnownSpell
-                     && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
+            if (mySettings.UseHarvestLife && ObjectManager.Target.HaveBuff(348) && DrainLife.KnownSpell
+                && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable && !HarvestLife.KnownSpell)
             {
                 DrainLife.Launch();
                 while (ObjectManager.Me.IsCast)
                     Thread.Sleep(200);
                 return;
             }
-                // Blizzard API Calls for Incinerate using Shadow Bolt Function
-            else if (mySettings.UseFireandBrimstone && mySettings.UseIncinerate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
-                     && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
+            // Blizzard API Calls for Incinerate using Shadow Bolt Function
+            if (mySettings.UseFireandBrimstone && mySettings.UseIncinerate && FireandBrimstone.KnownSpell && FireandBrimstone.IsSpellUsable
+                && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable)
             {
                 FireandBrimstone.Launch();
                 Thread.Sleep(200);
                 ShadowBolt.Launch();
                 return;
             }
-            else
+            if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
             {
-                if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
-                {
-                    SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
-                    return;
-                }
+                SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
+                return;
             }
         }
 
@@ -8436,42 +8386,36 @@ public class WarlockDestruction
             Conflagrate.Launch();
             return;
         }
-        else if (mySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
-                 && !ObjectManager.Target.HaveBuff(348) || ImmolateTimer.IsReady)
+        if (mySettings.UseImmolate && Corruption.KnownSpell && Corruption.IsHostileDistanceGood && Corruption.IsSpellUsable
+            && !ObjectManager.Target.HaveBuff(348) || ImmolateTimer.IsReady)
         {
             Corruption.Launch();
             ImmolateTimer = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Target.HealthPercent < 20 && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
-                 && mySettings.UseShadowburn)
+        if (ObjectManager.Target.HealthPercent < 20 && Shadowburn.KnownSpell && Shadowburn.IsSpellUsable && Shadowburn.IsHostileDistanceGood
+            && mySettings.UseShadowburn)
         {
             Shadowburn.Launch();
             return;
         }
-        else if (mySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable
-                 && (!ObjectManager.Me.HaveBuff(117828) || ObjectManager.Me.HaveBuff(113858)))
+        if (mySettings.UseChaosBolt && ChaosBolt.KnownSpell && ChaosBolt.IsHostileDistanceGood && ChaosBolt.IsSpellUsable
+            && (!ObjectManager.Me.HaveBuff(117828) || ObjectManager.Me.HaveBuff(113858)))
         {
             ChaosBolt.Launch();
             return;
         }
-        else
+        if (mySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
         {
-            if (mySettings.UseIncinerate && ShadowBolt.KnownSpell && ShadowBolt.IsSpellUsable && ShadowBolt.IsHostileDistanceGood)
-            {
-                ShadowBolt.Launch();
-                return;
-            }
+            ShadowBolt.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: WarlockDestructionSettings
@@ -8646,11 +8590,11 @@ public class WarlockAffliction
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -8775,8 +8719,9 @@ public class WarlockAffliction
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -8971,48 +8916,44 @@ public class WarlockAffliction
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
+        if (mySettings.UseHowlofTerror && HowlofTerror.KnownSpell && ObjectManager.Target.GetDistance < 8 && HowlofTerror.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseHowlofTerrorAtPercentage)
         {
             HowlofTerror.Launch();
             return;
         }
-        else if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
+        if (mySettings.UseDarkBargain && DarkBargain.KnownSpell && DarkBargain.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkBargainAtPercentage)
         {
             DarkBargain.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
-                 && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
+        if (mySettings.UseSacrificialPact && SacrificialPact.KnownSpell && SacrificialPact.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseSacrificialPactAtPercentage
+            && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0))
         {
             SacrificialPact.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
+        if (mySettings.UseShadowfury && Shadowfury.KnownSpell && Shadowfury.IsHostileDistanceGood && Shadowfury.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseShadowfuryAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(30283, ObjectManager.Target.Position);
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
         {
-            if (mySettings.UseStoneform && Stoneform.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -9027,42 +8968,38 @@ public class WarlockAffliction
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
+        if (mySettings.UseGiftoftheNaaru && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
+        if (mySettings.UseDarkRegeneration && DarkRegeneration.KnownSpell && DarkRegeneration.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDarkRegenerationAtPercentage)
         {
             DarkRegeneration.Launch();
             return;
         }
-        else if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
+        if (mySettings.UseCreateHealthstone && HealthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+            && ObjectManager.Me.HealthPercent <= mySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
             ItemsManager.UseItem("Healthstone");
             HealthstoneTimer = new Timer(1000*60*2);
             return;
         }
-        else if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
+        if (mySettings.UseMortalCoil && MortalCoil.KnownSpell && MortalCoil.IsHostileDistanceGood && MortalCoil.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseMortalCoilAtPercentage)
         {
             MortalCoil.Launch();
             return;
         }
-        else
+        if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
         {
-            if (mySettings.UseDrainLife && DrainLife.KnownSpell && DrainLife.IsHostileDistanceGood && DrainLife.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseDrainLifeAtPercentage)
-            {
-                DrainLife.Launch();
-                while (ObjectManager.Me.IsCast)
-                    Thread.Sleep(200);
-                return;
-            }
+            DrainLife.Launch();
+            while (ObjectManager.Me.IsCast)
+                Thread.Sleep(200);
         }
     }
 
@@ -9075,21 +9012,17 @@ public class WarlockAffliction
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
+        if (mySettings.UseTwilightWard && TwilightWard.KnownSpell && TwilightWard.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
+            && ObjectManager.Me.HealthPercent <= mySettings.UseTwilightWardAtPercentage)
         {
             TwilightWard.Launch();
             return;
         }
-        else
+        if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
-            if (mySettings.UseCommandDemon && mySettings.UseSummonFelhunter && CommandDemon.KnownSpell && ObjectManager.Target.GetDistance < 41 && CommandDemon.IsSpellUsable
-                && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
-            {
-                CommandDemon.Launch();
-                return;
-            }
+            CommandDemon.Launch();
         }
     }
 
@@ -9100,44 +9033,51 @@ public class WarlockAffliction
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
         }
-
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
-
+        }
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+        }
         if (mySettings.UseEngGlove && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && EngineeringTimer.IsReady)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
         }
-
         if (DarkSoul.KnownSpell && DarkSoul.IsSpellUsable
             && mySettings.UseDarkSoul && ObjectManager.Target.GetDistance < 41)
+        {
             DarkSoul.Launch();
-
+        }
         if (mySettings.UseSummonDoomguard && SummonDoomguard.KnownSpell && SummonDoomguard.IsHostileDistanceGood && SummonDoomguard.IsSpellUsable)
+        {
             SummonDoomguard.Launch();
-        else if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseSummonInfernal && SummonInfernal.KnownSpell && SummonInfernal.IsHostileDistanceGood && SummonInfernal.IsSpellUsable)
+        {
             SpellManager.CastSpellByIDAndPosition(1122, ObjectManager.Target.Position);
-
+        }
         if (mySettings.UseArchimondesVengeance && ArchimondesVengeance.KnownSpell && ObjectManager.Target.GetDistance < 41 && ArchimondesVengeance.IsSpellUsable)
+        {
             ArchimondesVengeance.Launch();
-
+        }
         if (mySettings.UseGrimoireofService && GrimoireofService.KnownSpell && ObjectManager.Target.GetDistance < 41 && GrimoireofService.IsSpellUsable)
         {
             GrimoireofService.Launch();
-            return;
         }
     }
 
@@ -9149,15 +9089,15 @@ public class WarlockAffliction
             CurseoftheElements.Launch();
             return;
         }
-        else if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
-                 && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
+        if (mySettings.UseCurseofEnfeeblement && !mySettings.UseCurseoftheElements && CurseofEnfeeblement.KnownSpell && CurseofEnfeeblement.IsSpellUsable
+            && CurseofEnfeeblement.IsHostileDistanceGood && !CurseofEnfeeblement.TargetHaveBuff)
         {
             CurseofEnfeeblement.Launch();
             return;
         }
-        else if (mySettings.UseCurseofExhaustion && !mySettings.UseCurseoftheElements && !mySettings.UseCurseofEnfeeblement && CurseofExhaustion.KnownSpell &&
-                 CurseofExhaustion.IsSpellUsable
-                 && CurseofExhaustion.IsHostileDistanceGood && !CurseofExhaustion.TargetHaveBuff)
+        if (mySettings.UseCurseofExhaustion && !mySettings.UseCurseoftheElements && !mySettings.UseCurseofEnfeeblement && CurseofExhaustion.KnownSpell &&
+            CurseofExhaustion.IsSpellUsable
+            && CurseofExhaustion.IsHostileDistanceGood && !CurseofExhaustion.TargetHaveBuff)
         {
             CurseofExhaustion.Launch();
             return;
@@ -9203,21 +9143,21 @@ public class WarlockAffliction
                 SeedofCorruption.Launch();
                 return;
             }
-            else if (mySettings.UseHarvestLife && HarvestLife.KnownSpell && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
+            if (mySettings.UseHarvestLife && HarvestLife.KnownSpell && HarvestLife.IsHostileDistanceGood && HarvestLife.IsSpellUsable)
             {
                 HarvestLife.Launch();
                 while (ObjectManager.Me.IsCast)
                     Thread.Sleep(200);
                 return;
             }
-            else if (mySettings.UseHarvestLife && DrainLife.KnownSpell && DrainLife.IsSpellUsable && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
+            if (mySettings.UseHarvestLife && DrainLife.KnownSpell && DrainLife.IsSpellUsable && DrainLife.IsHostileDistanceGood && !HarvestLife.KnownSpell)
             {
                 DrainLife.Launch();
                 while (ObjectManager.Me.IsCast)
                     Thread.Sleep(200);
                 return;
             }
-            else if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
+            if (mySettings.UseRainofFire && RainofFire.KnownSpell && RainofFire.IsHostileDistanceGood && RainofFire.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(5740, ObjectManager.Target.Position);
                 while (ObjectManager.Me.IsCast)
@@ -9251,25 +9191,19 @@ public class WarlockAffliction
             Haunt.Launch();
             return;
         }
-            // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
-        else
+        // Blizzard API Calls for Malefic Grasp using Shadow Bolt Function
+        if (mySettings.UseMaleficGrasp && !ObjectManager.Me.IsCast && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
+            && !AgonyTimer.IsReady && !CorruptionTimer.IsReady && !UnstableAfflictionTimer.IsReady)
         {
-            if (mySettings.UseMaleficGrasp && !ObjectManager.Me.IsCast && ShadowBolt.KnownSpell && ShadowBolt.IsHostileDistanceGood && ShadowBolt.IsSpellUsable
-                && !AgonyTimer.IsReady && !CorruptionTimer.IsReady && !UnstableAfflictionTimer.IsReady)
-            {
-                ShadowBolt.Launch();
-                return;
-            }
+            ShadowBolt.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: WarlockAfflictionSettings
@@ -9452,10 +9386,10 @@ public class DruidBalance
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private Timer EngineeringTimer = new Timer(0);
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -9571,8 +9505,9 @@ public class DruidBalance
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
                         }
+                        break;
                     }
-                    else if (!ObjectManager.Me.IsCast)
+                    if (!ObjectManager.Me.IsCast)
                         Patrolling();
                 }
             }
@@ -9635,45 +9570,41 @@ public class DruidBalance
             Starsurge.Launch();
             return;
         }
-        else if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable
-                 && !Moonfire.TargetHaveBuff && mySettings.UseMoonfire)
+        if (Moonfire.KnownSpell && Moonfire.IsHostileDistanceGood && Moonfire.IsSpellUsable
+            && !Moonfire.TargetHaveBuff && mySettings.UseMoonfire)
         {
             Moonfire.Launch();
             return;
         }
-        else if (Sunfire.KnownSpell && Sunfire.IsHostileDistanceGood && Sunfire.IsSpellUsable
-                 && !Sunfire.TargetHaveBuff && mySettings.UseSunfire)
+        if (Sunfire.KnownSpell && Sunfire.IsHostileDistanceGood && Sunfire.IsSpellUsable
+            && !Sunfire.TargetHaveBuff && mySettings.UseSunfire)
         {
             Sunfire.Launch();
             return;
         }
-        else if (Starsurge.KnownSpell && Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable
-                 && mySettings.UseStarsurge)
+        if (Starsurge.KnownSpell && Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable
+            && mySettings.UseStarsurge)
         {
             Starsurge.Launch();
             return;
         }
-        else if (Starfire.KnownSpell && Starfire.IsHostileDistanceGood && Starfire.IsSpellUsable
-                 && StarfireUse && mySettings.UseStarfire)
+        if (Starfire.KnownSpell && Starfire.IsHostileDistanceGood && Starfire.IsSpellUsable
+            && StarfireUse && mySettings.UseStarfire)
         {
             Starfire.Launch();
             return;
         }
-        else
+        if (Wrath.KnownSpell && Wrath.IsHostileDistanceGood && Wrath.IsSpellUsable
+            && mySettings.UseWrath)
         {
-            if (Wrath.KnownSpell && Wrath.IsHostileDistanceGood && Wrath.IsSpellUsable
-                && mySettings.UseWrath)
-            {
-                Wrath.Launch();
-                return;
-            }
+            Wrath.Launch();
+            return;
         }
 
         if (Hurricane.KnownSpell && Hurricane.IsHostileDistanceGood && Hurricane.IsSpellUsable
             && mySettings.UseHurricane)
         {
             Hurricane.Launch();
-            return;
         }
     }
 
@@ -9710,29 +9641,28 @@ public class DruidBalance
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
-        else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
-                 && mySettings.UseMarkoftheWild)
+            return;
+        }
+        if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
+            && mySettings.UseMarkoftheWild)
         {
             MarkoftheWild.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && mySettings.UseDash
-                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
-                 && ObjectManager.Me.GetMove)
+        if (!ObjectManager.Me.InCombat && mySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
+            && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
+            && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
-                && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
-                && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
-            {
-                StampedingRoar.Launch();
-                return;
-            }
+            StampedingRoar.Launch();
         }
     }
 
@@ -9771,22 +9701,22 @@ public class DruidBalance
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Barkskin.KnownSpell && Barkskin.IsSpellUsable
-                 && mySettings.UseBarkskin)
+        if (ObjectManager.Me.HealthPercent < 80 && Barkskin.KnownSpell && Barkskin.IsSpellUsable
+            && mySettings.UseBarkskin)
         {
             Barkskin.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && MightyBash.KnownSpell && MightyBash.IsSpellUsable
-                 && mySettings.UseMightyBash && MightyBash.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 80 && MightyBash.KnownSpell && MightyBash.IsSpellUsable
+            && mySettings.UseMightyBash && MightyBash.IsHostileDistanceGood)
         {
             MightyBash.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
-                 && mySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
+        if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
+            && mySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
         {
             MassEntanglement.Launch();
 
@@ -9798,8 +9728,8 @@ public class DruidBalance
             }
             return;
         }
-        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
-                 && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
+        if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
+            && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
         {
             UrsolsVortex.Launch();
 
@@ -9811,8 +9741,8 @@ public class DruidBalance
             }
             return;
         }
-        else if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable
-                 && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
+        if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable
+            && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             NaturesGrasp.Launch();
 
@@ -9824,32 +9754,28 @@ public class DruidBalance
             }
             return;
         }
-        else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseTyphoon)
+        if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
             return;
         }
-        else if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseDisorientingRoar)
+        if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseDisorientingRoar)
         {
             DisorientingRoar.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -9865,77 +9791,73 @@ public class DruidBalance
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && NaturesSwiftness.IsSpellUsable && NaturesSwiftness.KnownSpell
-                 && mySettings.UseNaturesSwiftness && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 80 && NaturesSwiftness.IsSpellUsable && NaturesSwiftness.KnownSpell
+            && mySettings.UseNaturesSwiftness && mySettings.UseHealingTouch)
         {
             NaturesSwiftness.Launch();
             Thread.Sleep(400);
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
-                 && mySettings.UseRenewal)
+        if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
+            && mySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat
-                 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat
+            && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
-                 && mySettings.UseCenarionWard)
+        if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
+            && mySettings.UseCenarionWard)
         {
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
-                 && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
+        if (ObjectManager.Me.HealthPercent < 70 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
+            && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
-                 && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
+            && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             HealingTouchTimer = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
-                 && mySettings.UseMightofUrsoc)
+        if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
+            && mySettings.UseMightofUrsoc)
         {
             MightofUrsoc.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
+            && mySettings.UseTranquility)
         {
-            if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
-                && mySettings.UseTranquility)
+            Tranquility.Launch();
+            while (ObjectManager.Me.IsCast)
             {
-                Tranquility.Launch();
-                while (ObjectManager.Me.IsCast)
-                {
-                    Thread.Sleep(100);
-                    Thread.Sleep(100);
-                }
-                return;
+                Thread.Sleep(100);
+                Thread.Sleep(100);
             }
+            return;
         }
 
         if (ObjectManager.Me.ManaPercentage < 50 && mySettings.UseInnervate)
         {
             Innervate.Launch();
-            return;
         }
     }
 
@@ -9980,57 +9902,65 @@ public class DruidBalance
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
-                 && mySettings.UseForceofNature)
+        if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
+            && mySettings.UseForceofNature)
         {
             SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
-        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                 && ObjectManager.Target.GetDistance < 41)
+        if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 41)
         {
             Incarnation.Launch();
             return;
         }
-        else if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
-                 && ObjectManager.Target.GetDistance < 41)
+        if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
+            && ObjectManager.Target.GetDistance < 41)
         {
             HeartoftheWild.Launch();
             return;
         }
-        else if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
-                 && ObjectManager.Target.GetDistance < 41)
+        if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
+            && ObjectManager.Target.GetDistance < 41)
         {
             NaturesVigil.Launch();
             return;
         }
-        else
+        if (CelestialAlignment.KnownSpell && mySettings.UseCelestialAlignment &&
+            ObjectManager.Target.GetDistance < 41
+            && (CelestialAlignment.IsSpellUsable || ObjectManager.Me.HaveBuff(112071)))
         {
-            if (CelestialAlignment.KnownSpell && mySettings.UseCelestialAlignment &&
-                ObjectManager.Target.GetDistance < 41
-                && (CelestialAlignment.IsSpellUsable || ObjectManager.Me.HaveBuff(112071)))
-            {
-                if (!ObjectManager.Me.HaveBuff(112071))
-                    CelestialAlignment.Launch();
-                CelestialAlignmentCombat();
-            }
+            if (!ObjectManager.Me.HaveBuff(112071))
+                CelestialAlignment.Launch();
+            CelestialAlignmentCombat();
         }
     }
 
@@ -10055,29 +9985,29 @@ public class DruidBalance
             MoonfireTimer = new Timer(1000*11);
             return;
         }
-        else if (Sunfire.KnownSpell && Sunfire.IsHostileDistanceGood && Sunfire.IsSpellUsable
-                 && mySettings.UseSunfire && (!Sunfire.TargetHaveBuff || SunfireTimer.IsReady))
+        if (Sunfire.KnownSpell && Sunfire.IsHostileDistanceGood && Sunfire.IsSpellUsable
+            && mySettings.UseSunfire && (!Sunfire.TargetHaveBuff || SunfireTimer.IsReady))
         {
             Sunfire.Launch();
             SunfireTimer = new Timer(1000*11);
             return;
         }
-        else if (Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable
-                 && Starsurge.KnownSpell && mySettings.UseStarsurge)
+        if (Starsurge.IsHostileDistanceGood && Starsurge.IsSpellUsable
+            && Starsurge.KnownSpell && mySettings.UseStarsurge)
         {
             Starsurge.Launch();
             return;
         }
-        else if (Starfall.KnownSpell && Starfall.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 41 && mySettings.UseStarfall)
+        if (Starfall.KnownSpell && Starfall.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
+            ObjectManager.Target.GetDistance < 41 && mySettings.UseStarfall)
         {
             Starfall.Launch();
             return;
         }
-        else if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-                 && ObjectManager.Target.GetDistance < 41 && WildMushroomDetonate.KnownSpell &&
-                 WildMushroom.IsSpellUsable
-                 && mySettings.UseWildMushroom)
+        if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
+            && ObjectManager.Target.GetDistance < 41 && WildMushroomDetonate.KnownSpell &&
+            WildMushroom.IsSpellUsable
+            && mySettings.UseWildMushroom)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -10088,26 +10018,22 @@ public class DruidBalance
             WildMushroomDetonate.Launch();
             return;
         }
-        else if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
+        if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
+            ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
         }
-        else if (Starfire.KnownSpell && Starfire.IsSpellUsable && Starfire.IsHostileDistanceGood
-                 && StarfireUse && mySettings.UseStarfire)
+        if (Starfire.KnownSpell && Starfire.IsSpellUsable && Starfire.IsHostileDistanceGood
+            && StarfireUse && mySettings.UseStarfire)
         {
             Starfire.Launch();
             return;
         }
-        else
+        if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood
+            && mySettings.UseWrath)
         {
-            if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood
-                && mySettings.UseWrath)
-            {
-                Wrath.Launch();
-                return;
-            }
+            Wrath.Launch();
         }
     }
 
@@ -10290,11 +10216,11 @@ public class DruidFeral
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private int CP;
     private Timer EngineeringTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -10419,8 +10345,9 @@ public class DruidFeral
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -10545,23 +10472,22 @@ public class DruidFeral
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
-        else if (!ObjectManager.Me.InCombat && mySettings.UseDash
-                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
-                 && ObjectManager.Me.GetMove)
+            return;
+        }
+        if (!ObjectManager.Me.InCombat && mySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
+            && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
+            && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
-                && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
-                && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
-            {
-                StampedingRoar.Launch();
-                return;
-            }
+            StampedingRoar.Launch();
         }
     }
 
@@ -10594,40 +10520,40 @@ public class DruidFeral
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && MightyBash.IsHostileDistanceGood
-                 && MightyBash.KnownSpell && MightyBash.IsSpellUsable && mySettings.UseMightyBash)
+        if (ObjectManager.Me.HealthPercent < 90 && MightyBash.IsHostileDistanceGood
+            && MightyBash.KnownSpell && MightyBash.IsSpellUsable && mySettings.UseMightyBash)
         {
             MightyBash.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && ObjectManager.Me.ComboPoint > 2
-                 && Maim.KnownSpell && Maim.IsSpellUsable && mySettings.UseMaim && Maim.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 70 && ObjectManager.Me.ComboPoint > 2
+            && Maim.KnownSpell && Maim.IsSpellUsable && mySettings.UseMaim && Maim.IsHostileDistanceGood)
         {
             CP = ObjectManager.Me.ComboPoint;
             Maim.Launch();
             OnCD = new Timer(1000*CP);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseSurvivalInstincts
-                 && SurvivalInstincts.KnownSpell && SurvivalInstincts.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseSurvivalInstincts
+            && SurvivalInstincts.KnownSpell && SurvivalInstincts.IsSpellUsable)
         {
             SurvivalInstincts.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
-                 && ObjectManager.Target.IsCast && mySettings.UseMassEntanglement &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Me.HealthPercent < 70)
+        if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
+            && ObjectManager.Target.IsCast && mySettings.UseMassEntanglement &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && mySettings.UseTyphoon
                 && ObjectManager.Target.GetDistance < 41 && mySettings.UseTyphoon)
@@ -10639,9 +10565,9 @@ public class DruidFeral
             MassEntanglement.Launch();
             return;
         }
-        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
-                 && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80
-                 && ObjectManager.GetNumberAttackPlayer() > 2)
+        if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
+            && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80
+            && ObjectManager.GetNumberAttackPlayer() > 2)
         {
             UrsolsVortex.Launch();
 
@@ -10653,38 +10579,34 @@ public class DruidFeral
             }
             return;
         }
-        else if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
+        if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             NaturesGrasp.Launch();
             return;
         }
-        else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseTyphoon)
+        if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
             return;
         }
-        else if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseDisorientingRoar)
+        if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseDisorientingRoar)
         {
             DisorientingRoar.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -10701,20 +10623,20 @@ public class DruidFeral
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
-                 && mySettings.UseRenewal)
+        if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
+            && mySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
-                 && mySettings.UseCenarionWard)
+        if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
+            && mySettings.UseCenarionWard)
         {
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && !ObjectManager.Me.InCombat
-                 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 50 && !ObjectManager.Me.InCombat
+            && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
             {
@@ -10723,39 +10645,39 @@ public class DruidFeral
             }
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
-                 && ObjectManager.Me.HaveBuff(69369) && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 70 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
+            && ObjectManager.Me.HaveBuff(69369) && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
-                 && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
+        if (ObjectManager.Me.HealthPercent < 50 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
+            && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
-                 && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
+            && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             HealingTouchTimer = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
-                 && mySettings.UseMightofUrsoc)
+        if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
+            && mySettings.UseMightofUrsoc)
         {
             MightofUrsoc.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
-                 && mySettings.UseTranquility)
+        if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
+            && mySettings.UseTranquility)
         {
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
@@ -10765,13 +10687,9 @@ public class DruidFeral
             }
             return;
         }
-        else
+        if (ObjectManager.Me.ManaPercentage < 10 && mySettings.UseInnervate)
         {
-            if (ObjectManager.Me.ManaPercentage < 10 && mySettings.UseInnervate)
-            {
-                Innervate.Launch();
-                return;
-            }
+            Innervate.Launch();
         }
     }
 
@@ -10809,61 +10727,68 @@ public class DruidFeral
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
-                 && mySettings.UseForceofNature)
+        if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
+            && mySettings.UseForceofNature)
         {
             SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
-        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                 && ObjectManager.Target.GetDistance < 30)
+        if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 30)
         {
             Incarnation.Launch();
             return;
         }
-        else if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
-                 && ObjectManager.Target.GetDistance < 30)
+        if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
+            && ObjectManager.Target.GetDistance < 30)
         {
             HeartoftheWild.Launch();
             return;
         }
-        else if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
-                 && ObjectManager.Target.GetDistance < 30)
+        if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
+            && ObjectManager.Target.GetDistance < 30)
         {
             NaturesVigil.Launch();
             return;
         }
-        else if (TigersFury.KnownSpell && TigersFury.IsSpellUsable && ObjectManager.Me.Energy < 35
-                 && !Berserk.HaveBuff && mySettings.UseTigersFury && ObjectManager.Target.GetDistance < 30)
+        if (TigersFury.KnownSpell && TigersFury.IsSpellUsable && ObjectManager.Me.Energy < 35
+            && !Berserk.HaveBuff && mySettings.UseTigersFury && ObjectManager.Target.GetDistance < 30)
         {
             TigersFury.Launch();
             return;
         }
-        else
+        if (Berserk.KnownSpell && Berserk.IsSpellUsable && mySettings.UseBerserk
+            && ObjectManager.Target.GetDistance < 30)
         {
-            if (Berserk.KnownSpell && Berserk.IsSpellUsable && mySettings.UseBerserk
-                && ObjectManager.Target.GetDistance < 30)
-            {
-                Berserk.Launch();
-                return;
-            }
+            Berserk.Launch();
         }
     }
 
@@ -10881,28 +10806,28 @@ public class DruidFeral
             FaerieFire.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Thrash.IsSpellUsable && Thrash.KnownSpell
-                 && Thrash.IsHostileDistanceGood && !Thrash.TargetHaveBuff && mySettings.UseThrash)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Thrash.IsSpellUsable && Thrash.KnownSpell
+            && Thrash.IsHostileDistanceGood && !Thrash.TargetHaveBuff && mySettings.UseThrash)
         {
             Thrash.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Swipe.IsSpellUsable && Swipe.KnownSpell
-                 && Swipe.IsHostileDistanceGood && mySettings.UseSwipe)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Swipe.IsSpellUsable && Swipe.KnownSpell
+            && Swipe.IsHostileDistanceGood && mySettings.UseSwipe)
         {
             Swipe.Launch();
             return;
         }
-        else if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
-                 && mySettings.UseFerociousBite && !RipTimer.IsReady && ObjectManager.Me.ComboPoint > 4
-                 && ObjectManager.Target.HealthPercent > 24 && !SavageRoarTimer.IsReady
-                 && ObjectManager.Me.Energy > 49 && FivePtRip)
+        if (FerociousBite.IsSpellUsable && FerociousBite.KnownSpell && FerociousBite.IsHostileDistanceGood
+            && mySettings.UseFerociousBite && !RipTimer.IsReady && ObjectManager.Me.ComboPoint > 4
+            && ObjectManager.Target.HealthPercent > 24 && !SavageRoarTimer.IsReady
+            && ObjectManager.Me.Energy > 49 && FivePtRip)
         {
             FerociousBite.Launch();
             return;
         }
-        else if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood && !FivePtSav
-                 && ObjectManager.Me.ComboPoint > 4 && mySettings.UseSavageRoar)
+        if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood && !FivePtSav
+            && ObjectManager.Me.ComboPoint > 4 && mySettings.UseSavageRoar)
         {
             CP = ObjectManager.Me.ComboPoint;
             SavageRoar.Launch();
@@ -10910,9 +10835,9 @@ public class DruidFeral
             FivePtSav = true;
             return;
         }
-        else if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood
-                 && (!SavageRoar.HaveBuff || SavageRoarTimer.IsReady) && mySettings.UseSavageRoar
-                 && ObjectManager.Me.ComboPoint < 5)
+        if (SavageRoar.IsSpellUsable && SavageRoar.KnownSpell && SavageRoar.IsHostileDistanceGood
+            && (!SavageRoar.HaveBuff || SavageRoarTimer.IsReady) && mySettings.UseSavageRoar
+            && ObjectManager.Me.ComboPoint < 5)
         {
             CP = ObjectManager.Me.ComboPoint;
             SavageRoar.Launch();
@@ -10920,14 +10845,11 @@ public class DruidFeral
             FivePtSav = false;
             return;
         }
-        else
+        if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood && !Rake.TargetHaveBuff
+            && mySettings.UseRake)
         {
-            if (Rake.IsSpellUsable && Rake.KnownSpell && Rake.IsHostileDistanceGood && !Rake.TargetHaveBuff
-                && mySettings.UseRake)
-            {
-                Rake.Launch();
-                return;
-            }
+            Rake.Launch();
+            return;
         }
 
         if (ObjectManager.Target.HealthPercent > 24)
@@ -10958,10 +10880,7 @@ public class DruidFeral
                 CP = ObjectManager.Me.ComboPoint;
                 Rip.Launch();
                 RipTimer = new Timer(1000*19);
-                if (CP == 5)
-                    FivePtFer = true;
-                else
-                    FivePtFer = false;
+                FivePtFer = CP == 5;
                 return;
             }
 
@@ -10984,47 +10903,37 @@ public class DruidFeral
             }
         }
 
-        if (ObjectManager.Me.HaveBuff(102543))
+        if (ObjectManager.Me.HaveBuff(102543) && Ravage.KnownSpell && Ravage.IsSpellUsable && Ravage.IsHostileDistanceGood && mySettings.UseRavage)
         {
-            if (Ravage.KnownSpell && Ravage.IsSpellUsable && Ravage.IsHostileDistanceGood
-                && mySettings.UseRavage)
-            {
-                Ravage.Launch();
-                return;
-            }
+            Ravage.Launch();
+            return;
         }
-        else if (Shred.KnownSpell && Shred.IsSpellUsable && Shred.IsHostileDistanceGood
-                 && mySettings.UseShred && mySettings.UseGlyphofShred
-                 && (TigersFury.HaveBuff || Berserk.HaveBuff))
+        if (Shred.KnownSpell && Shred.IsSpellUsable && Shred.IsHostileDistanceGood
+            && mySettings.UseShred && mySettings.UseGlyphofShred
+            && (TigersFury.HaveBuff || Berserk.HaveBuff))
         {
             Shred.Launch();
             return;
         }
-        else
+        if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood
+            && mySettings.UseMangle)
         {
-            if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood
-                && mySettings.UseMangle)
-            {
-                Mangle.Launch();
-                return;
-            }
+            Mangle.Launch();
+            return;
         }
 
         if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
             && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: DruidFeralSettings
@@ -11191,10 +11100,10 @@ public class DruidRestoration
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private Timer EngineeringTimer = new Timer(0);
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -11299,8 +11208,9 @@ public class DruidRestoration
 
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -11355,29 +11265,28 @@ public class DruidRestoration
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
-        else if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
-                 && mySettings.UseMarkoftheWild)
+            return;
+        }
+        if (MarkoftheWild.KnownSpell && MarkoftheWild.IsSpellUsable && !MarkoftheWild.HaveBuff
+            && mySettings.UseMarkoftheWild)
         {
             MarkoftheWild.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && mySettings.UseDash
-                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
-                 && ObjectManager.Me.GetMove)
+        if (!ObjectManager.Me.InCombat && mySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
+            && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
+            && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
-                && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
-                && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
-            {
-                StampedingRoar.Launch();
-                return;
-            }
+            StampedingRoar.Launch();
         }
     }
 
@@ -11411,29 +11320,29 @@ public class DruidRestoration
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Barkskin.KnownSpell && Barkskin.IsSpellUsable
-                 && mySettings.UseBarkskin)
+        if (ObjectManager.Me.HealthPercent < 80 && Barkskin.KnownSpell && Barkskin.IsSpellUsable
+            && mySettings.UseBarkskin)
         {
             Barkskin.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Ironbark.KnownSpell && Ironbark.IsSpellUsable
-                 && mySettings.UseIronbark)
+        if (ObjectManager.Me.HealthPercent < 80 && Ironbark.KnownSpell && Ironbark.IsSpellUsable
+            && mySettings.UseIronbark)
         {
             Ironbark.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && MightyBash.KnownSpell && MightyBash.IsSpellUsable
-                 && mySettings.UseMightyBash && MightyBash.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 80 && MightyBash.KnownSpell && MightyBash.IsSpellUsable
+            && mySettings.UseMightyBash && MightyBash.IsHostileDistanceGood)
         {
             MightyBash.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
-                 && mySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
+        if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
+            && mySettings.UseMassEntanglement && ObjectManager.Me.HealthPercent < 80)
         {
             MassEntanglement.Launch();
 
@@ -11445,8 +11354,8 @@ public class DruidRestoration
             }
             return;
         }
-        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
-                 && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
+        if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
+            && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80)
         {
             UrsolsVortex.Launch();
 
@@ -11458,8 +11367,8 @@ public class DruidRestoration
             }
             return;
         }
-        else if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable
-                 && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
+        if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable
+            && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             NaturesGrasp.Launch();
 
@@ -11471,32 +11380,28 @@ public class DruidRestoration
             }
             return;
         }
-        else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseTyphoon)
+        if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
             return;
         }
-        else if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseDisorientingRoar)
+        if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseDisorientingRoar)
         {
             DisorientingRoar.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -11512,86 +11417,85 @@ public class DruidRestoration
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && NaturesSwiftness.IsSpellUsable && NaturesSwiftness.KnownSpell
-                 && mySettings.UseNaturesSwiftness && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 80 && NaturesSwiftness.IsSpellUsable && NaturesSwiftness.KnownSpell
+            && mySettings.UseNaturesSwiftness && mySettings.UseHealingTouch)
         {
             NaturesSwiftness.Launch();
             Thread.Sleep(400);
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
-                 && mySettings.UseRenewal)
+        if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
+            && mySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat
-                 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 95 && !ObjectManager.Me.InCombat && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
-                 && mySettings.UseCenarionWard)
+        if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
+            && mySettings.UseCenarionWard)
         {
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
-                 && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
+        if (ObjectManager.Me.HealthPercent < 90 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
+            && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && Regrowth.IsSpellUsable && Regrowth.KnownSpell
-                 && !Regrowth.HaveBuff && mySettings.UseRegrowth)
+        if (ObjectManager.Me.HealthPercent < 60 && Regrowth.IsSpellUsable && Regrowth.KnownSpell
+            && !Regrowth.HaveBuff && mySettings.UseRegrowth)
         {
             Regrowth.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Swiftmend.IsSpellUsable && Swiftmend.KnownSpell
-                 && mySettings.UseSwiftmend)
+        if (ObjectManager.Me.HealthPercent < 80 && Swiftmend.IsSpellUsable && Swiftmend.KnownSpell
+            && mySettings.UseSwiftmend)
         {
             Swiftmend.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && WildGrowth.IsSpellUsable && WildGrowth.KnownSpell
-                 && mySettings.UseWildGrowth)
+        if (ObjectManager.Me.HealthPercent < 50 && WildGrowth.IsSpellUsable && WildGrowth.KnownSpell
+            && mySettings.UseWildGrowth)
         {
             WildGrowth.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
-                 && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
+            && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             HealingTouchTimer = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && Nourish.IsSpellUsable && Nourish.KnownSpell
-                 && NourishTimer.IsReady && mySettings.UseNourish && !mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 40 && Nourish.IsSpellUsable && Nourish.KnownSpell
+            && NourishTimer.IsReady && mySettings.UseNourish && !mySettings.UseHealingTouch)
         {
             Nourish.Launch();
             NourishTimer = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
-                 && mySettings.UseMightofUrsoc)
+        if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
+            && mySettings.UseMightofUrsoc)
         {
             MightofUrsoc.Launch();
             return;
         }
-        else if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-                 && WildMushroomBloom.KnownSpell && WildMushroom.IsSpellUsable && mySettings.UseWildMushroom
-                 && ObjectManager.Me.HealthPercent < 80)
+        if (WildMushroom.KnownSpell && WildMushroom.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
+            && WildMushroomBloom.KnownSpell && WildMushroom.IsSpellUsable && mySettings.UseWildMushroom
+            && ObjectManager.Me.HealthPercent < 80)
         {
             for (int i = 0; i < 3; i++)
             {
@@ -11602,25 +11506,21 @@ public class DruidRestoration
             WildMushroomBloom.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
+            && mySettings.UseTranquility)
         {
-            if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
-                && mySettings.UseTranquility)
+            Tranquility.Launch();
+            while (ObjectManager.Me.IsCast)
             {
-                Tranquility.Launch();
-                while (ObjectManager.Me.IsCast)
-                {
-                    Thread.Sleep(100);
-                    Thread.Sleep(100);
-                }
-                return;
+                Thread.Sleep(100);
+                Thread.Sleep(100);
             }
+            return;
         }
 
         if (ObjectManager.Me.ManaPercentage < 50 && mySettings.UseInnervate)
         {
             Innervate.Launch();
-            return;
         }
     }
 
@@ -11631,7 +11531,6 @@ public class DruidRestoration
             && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
-            return;
         }
     }
 
@@ -11647,37 +11546,44 @@ public class DruidRestoration
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
-                 && mySettings.UseForceofNature)
+        if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
+            && mySettings.UseForceofNature)
         {
             SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
-        else
+        if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 41)
         {
-            if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                && ObjectManager.Target.GetDistance < 41)
-            {
-                Incarnation.Launch();
-                return;
-            }
+            Incarnation.Launch();
         }
     }
 
@@ -11690,30 +11596,24 @@ public class DruidRestoration
             MoonfireTimer = new Timer(1000*11);
             return;
         }
-        else if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
-                 ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
+        if (Hurricane.KnownSpell && Hurricane.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2 &&
+            ObjectManager.Target.GetDistance < 41 && mySettings.UseHurricane)
         {
             SpellManager.CastSpellByIDAndPosition(16914, ObjectManager.Target.Position);
             return;
         }
-        else
+        if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood
+            && mySettings.UseWrath)
         {
-            if (Wrath.KnownSpell && Wrath.IsSpellUsable && Wrath.IsHostileDistanceGood
-                && mySettings.UseWrath)
-            {
-                Wrath.Launch();
-                return;
-            }
+            Wrath.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: DruidRestorationSettings
@@ -11863,10 +11763,10 @@ public class DruidGuardian
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private Timer EngineeringTimer = new Timer(0);
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -11981,8 +11881,9 @@ public class DruidGuardian
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -12006,14 +11907,10 @@ public class DruidGuardian
             WildCharge.Launch();
             return;
         }
-        else
+        if (FaerieFire.KnownSpell && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood
+            && mySettings.UseFaerieFire)
         {
-            if (FaerieFire.KnownSpell && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood
-                && mySettings.UseFaerieFire)
-            {
-                FaerieFire.Launch();
-                return;
-            }
+            FaerieFire.Launch();
         }
     }
 
@@ -12038,23 +11935,19 @@ public class DruidGuardian
             if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
             {
                 Mangle.Launch();
-                return;
             }
+            return;
         }
-        else if (Maul.IsSpellUsable && Maul.KnownSpell && Maul.IsHostileDistanceGood
-                 && mySettings.UseMaul)
+        if (Maul.IsSpellUsable && Maul.KnownSpell && Maul.IsHostileDistanceGood
+            && mySettings.UseMaul)
         {
             Maul.Launch();
             return;
         }
-        else
+        if (Swipe.IsSpellUsable && Swipe.KnownSpell && Swipe.IsHostileDistanceGood
+            && mySettings.UseSwipe)
         {
-            if (Swipe.IsSpellUsable && Swipe.KnownSpell && Swipe.IsHostileDistanceGood
-                && mySettings.UseSwipe)
-            {
-                Swipe.Launch();
-                return;
-            }
+            Swipe.Launch();
         }
     }
 
@@ -12085,23 +11978,22 @@ public class DruidGuardian
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
-        else if (!ObjectManager.Me.InCombat && mySettings.UseDash
-                 && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
-                 && ObjectManager.Me.GetMove)
+            return;
+        }
+        if (!ObjectManager.Me.InCombat && mySettings.UseDash
+            && Dash.KnownSpell && Dash.IsSpellUsable && !Dash.HaveBuff && !StampedingRoar.HaveBuff
+            && ObjectManager.Me.GetMove)
         {
             Dash.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
+            && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
+            && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && mySettings.UseStampedingRoar
-                && StampedingRoar.KnownSpell && StampedingRoar.IsSpellUsable && !Dash.HaveBuff
-                && !StampedingRoar.HaveBuff && ObjectManager.Me.GetMove)
-            {
-                StampedingRoar.Launch();
-                return;
-            }
+            StampedingRoar.Launch();
         }
     }
 
@@ -12145,20 +12037,20 @@ public class DruidGuardian
             FrenziedRegeneration.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
-                 && mySettings.UseRenewal)
+        if (ObjectManager.Me.HealthPercent < 70 && Renewal.IsSpellUsable && Renewal.KnownSpell
+            && mySettings.UseRenewal)
         {
             Renewal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
-                 && mySettings.UseCenarionWard)
+        if (ObjectManager.Me.HealthPercent < 90 && CenarionWard.IsSpellUsable && CenarionWard.KnownSpell
+            && mySettings.UseCenarionWard)
         {
             CenarionWard.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && !ObjectManager.Me.InCombat
-                 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 50 && !ObjectManager.Me.InCombat
+            && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell && mySettings.UseHealingTouch)
         {
             while (ObjectManager.Me.HealthPercent < 95 && HealingTouch.IsSpellUsable)
             {
@@ -12167,33 +12059,33 @@ public class DruidGuardian
             }
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
-                 && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
+        if (ObjectManager.Me.HealthPercent < 50 && Rejuvenation.IsSpellUsable && Rejuvenation.KnownSpell
+            && !Rejuvenation.HaveBuff && mySettings.UseRejuvenation)
         {
             Rejuvenation.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
-                 && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
+        if (ObjectManager.Me.HealthPercent < 40 && HealingTouch.IsSpellUsable && HealingTouch.KnownSpell
+            && HealingTouchTimer.IsReady && mySettings.UseHealingTouch)
         {
             HealingTouch.Launch();
             HealingTouchTimer = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
-                 && mySettings.UseMightofUrsoc)
+        if (ObjectManager.Me.HealthPercent < 35 && MightofUrsoc.IsSpellUsable && MightofUrsoc.KnownSpell
+            && mySettings.UseMightofUrsoc)
         {
             MightofUrsoc.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
-                 && mySettings.UseTranquility)
+        if (ObjectManager.Me.HealthPercent < 30 && Tranquility.IsSpellUsable && Tranquility.KnownSpell
+            && mySettings.UseTranquility)
         {
             Tranquility.Launch();
             while (ObjectManager.Me.IsCast)
@@ -12203,13 +12095,9 @@ public class DruidGuardian
             }
             return;
         }
-        else
+        if (ObjectManager.Me.ManaPercentage < 10 && mySettings.UseInnervate)
         {
-            if (ObjectManager.Me.ManaPercentage < 10 && mySettings.UseInnervate)
-            {
-                Innervate.Launch();
-                return;
-            }
+            Innervate.Launch();
         }
     }
 
@@ -12222,46 +12110,46 @@ public class DruidGuardian
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseSavageDefense
-                 && SavageDefense.KnownSpell && SavageDefense.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseSavageDefense
+            && SavageDefense.KnownSpell && SavageDefense.IsSpellUsable)
         {
             SavageDefense.Launch();
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && MightyBash.IsHostileDistanceGood
-                 && MightyBash.KnownSpell && MightyBash.IsSpellUsable && mySettings.UseMightyBash)
+        if (ObjectManager.Me.HealthPercent < 90 && MightyBash.IsHostileDistanceGood
+            && MightyBash.KnownSpell && MightyBash.IsSpellUsable && mySettings.UseMightyBash)
         {
             MightyBash.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && BearHug.KnownSpell && BearHug.IsSpellUsable
-                 && mySettings.UseBearHug && BearHug.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 70 && BearHug.KnownSpell && BearHug.IsSpellUsable
+            && mySettings.UseBearHug && BearHug.IsHostileDistanceGood)
         {
             BearHug.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseSurvivalInstincts
-                 && SurvivalInstincts.KnownSpell && SurvivalInstincts.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 70 && mySettings.UseSurvivalInstincts
+            && SurvivalInstincts.KnownSpell && SurvivalInstincts.IsSpellUsable)
         {
             SurvivalInstincts.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
-                 && ObjectManager.Target.IsCast && mySettings.UseMassEntanglement &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Me.HealthPercent < 70)
+        if (MassEntanglement.KnownSpell && MassEntanglement.IsSpellUsable && MassEntanglement.IsHostileDistanceGood
+            && ObjectManager.Target.IsCast && mySettings.UseMassEntanglement &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Me.HealthPercent < 70)
         {
             if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && mySettings.UseTyphoon
                 && ObjectManager.Target.GetDistance < 41 && mySettings.UseTyphoon)
@@ -12273,9 +12161,9 @@ public class DruidGuardian
             MassEntanglement.Launch();
             return;
         }
-        else if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
-                 && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80
-                 && ObjectManager.GetNumberAttackPlayer() > 2)
+        if (UrsolsVortex.KnownSpell && UrsolsVortex.IsSpellUsable && UrsolsVortex.IsHostileDistanceGood
+            && mySettings.UseUrsolsVortex && ObjectManager.Me.HealthPercent < 80
+            && ObjectManager.GetNumberAttackPlayer() > 2)
         {
             UrsolsVortex.Launch();
 
@@ -12287,38 +12175,34 @@ public class DruidGuardian
             }
             return;
         }
-        else if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
+        if (NaturesGrasp.KnownSpell && NaturesGrasp.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.IsCast && mySettings.UseNaturesGrasp && ObjectManager.Me.HealthPercent < 80)
         {
             NaturesGrasp.Launch();
             return;
         }
-        else if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseTyphoon)
+        if (Typhoon.KnownSpell && Typhoon.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 41 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseTyphoon)
         {
             Typhoon.Launch();
             return;
         }
-        else if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
-                 ObjectManager.GetNumberAttackPlayer() > 2
-                 && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseDisorientingRoar)
+        if (DisorientingRoar.KnownSpell && DisorientingRoar.IsSpellUsable &&
+            ObjectManager.GetNumberAttackPlayer() > 2
+            && ObjectManager.Target.GetDistance < 10 && ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseDisorientingRoar)
         {
             DisorientingRoar.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -12356,61 +12240,64 @@ public class DruidGuardian
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (Enrage.IsSpellUsable && Enrage.KnownSpell && Enrage.IsHostileDistanceGood
-                 && mySettings.UseEnrage && ObjectManager.Me.RagePercentage < 70)
+        if (Enrage.IsSpellUsable && Enrage.KnownSpell && Enrage.IsHostileDistanceGood
+            && mySettings.UseEnrage && ObjectManager.Me.RagePercentage < 70)
         {
             Enrage.Launch();
             return;
         }
-        else if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
-                 && mySettings.UseForceofNature)
+        if (ForceofNature.IsSpellUsable && ForceofNature.KnownSpell && ForceofNature.IsHostileDistanceGood
+            && mySettings.UseForceofNature)
         {
             SpellManager.CastSpellByIDAndPosition(106737, ObjectManager.Target.Position);
             return;
         }
-        else if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
-                 && ObjectManager.Target.GetDistance < 30)
+        if (Incarnation.IsSpellUsable && Incarnation.KnownSpell && mySettings.UseIncarnation
+            && ObjectManager.Target.GetDistance < 30)
         {
             Incarnation.Launch();
             return;
         }
-        else if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
-                 && ObjectManager.Target.GetDistance < 30)
+        if (HeartoftheWild.IsSpellUsable && HeartoftheWild.KnownSpell && mySettings.UseHeartoftheWild
+            && ObjectManager.Target.GetDistance < 30)
         {
             HeartoftheWild.Launch();
             return;
         }
-        else if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
-                 && ObjectManager.Target.GetDistance < 30)
+        if (NaturesVigil.IsSpellUsable && NaturesVigil.KnownSpell && mySettings.UseNaturesVigil
+            && ObjectManager.Target.GetDistance < 30)
         {
             NaturesVigil.Launch();
             return;
         }
-        else
+        if (Berserk.KnownSpell && Berserk.IsSpellUsable && mySettings.UseBerserk
+            && ObjectManager.Target.GetDistance < 30)
         {
-            if (Berserk.KnownSpell && Berserk.IsSpellUsable && mySettings.UseBerserk
-                && ObjectManager.Target.GetDistance < 30)
-            {
-                Berserk.Launch();
-                return;
-            }
+            Berserk.Launch();
         }
     }
 
@@ -12421,68 +12308,61 @@ public class DruidGuardian
             BearForm.Launch();
             return;
         }
-
         if (FaerieFire.KnownSpell && FaerieFire.IsSpellUsable && FaerieFire.IsHostileDistanceGood
             && mySettings.UseFaerieFire && (!FaerieFire.TargetHaveBuff || !ObjectManager.Target.HaveBuff(113746)))
         {
             FaerieFire.Launch();
             return;
         }
-        else if (Growl.KnownSpell && Growl.IsSpellUsable && Growl.IsHostileDistanceGood
-                 && mySettings.UseGrowl && !ObjectManager.Target.InCombat)
+        if (Growl.KnownSpell && Growl.IsSpellUsable && Growl.IsHostileDistanceGood
+            && mySettings.UseGrowl && !ObjectManager.Target.InCombat)
         {
             Growl.Launch();
             return;
         }
-        else if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood
-                 && mySettings.UseMangle)
+        if (Mangle.KnownSpell && Mangle.IsSpellUsable && Mangle.IsHostileDistanceGood
+            && mySettings.UseMangle)
         {
             Mangle.Launch();
             return;
         }
-        else if (Thrash.IsSpellUsable && Thrash.KnownSpell
-                 && Thrash.IsHostileDistanceGood && !Thrash.TargetHaveBuff && mySettings.UseThrash)
+        if (Thrash.IsSpellUsable && Thrash.KnownSpell
+            && Thrash.IsHostileDistanceGood && !Thrash.TargetHaveBuff && mySettings.UseThrash)
         {
             Thrash.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && Swipe.IsSpellUsable && Swipe.KnownSpell
-                 && Swipe.IsHostileDistanceGood && mySettings.UseSwipe)
+        if (ObjectManager.GetNumberAttackPlayer() > 1 && Swipe.IsSpellUsable && Swipe.KnownSpell
+            && Swipe.IsHostileDistanceGood && mySettings.UseSwipe)
         {
             Swipe.Launch();
             return;
         }
-        else if (Lacerate.KnownSpell && Lacerate.IsSpellUsable && Lacerate.IsHostileDistanceGood
-                 && mySettings.UseLacerate)
+        if (Lacerate.KnownSpell && Lacerate.IsSpellUsable && Lacerate.IsHostileDistanceGood
+            && mySettings.UseLacerate)
         {
             Lacerate.Launch();
             return;
         }
-        else if (Maul.KnownSpell && Maul.IsSpellUsable && Maul.IsHostileDistanceGood
-                 && mySettings.UseMaul && ObjectManager.Me.RagePercentage > 90
-                 && ObjectManager.Me.HealthPercent > 90)
+        if (Maul.KnownSpell && Maul.IsSpellUsable && Maul.IsHostileDistanceGood
+            && mySettings.UseMaul && ObjectManager.Me.RagePercentage > 90
+            && ObjectManager.Me.HealthPercent > 90)
         {
             Maul.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: DruidGuardianSettings
@@ -12646,12 +12526,12 @@ public class PaladinHoly
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -12730,8 +12610,9 @@ public class PaladinHoly
                             }
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -12795,17 +12676,25 @@ public class PaladinHoly
         if (SealOfInsight.KnownSpell && mySettings.UseSealOfInsight)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+            {
                 SealOfInsight.Launch();
+            }
+            return;
         }
-        else if (SealOfTruth.KnownSpell && mySettings.UseSealOfTruth)
+        if (SealOfTruth.KnownSpell && mySettings.UseSealOfTruth)
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
+            {
                 SealOfTruth.Launch();
+            }
+            return;
         }
-        else if (SealOfTheRighteousness.KnownSpell && mySettings.UseSealOfTheRighteousness)
+        if (SealOfTheRighteousness.KnownSpell && mySettings.UseSealOfTheRighteousness)
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            {
                 SealOfTheRighteousness.Launch();
+            }
         }
     }
 
@@ -12817,17 +12706,25 @@ public class PaladinHoly
         if (BlessingOfKings.KnownSpell && mySettings.UseBlessingOfKings)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+            {
                 BlessingOfKings.Launch();
+            }
+            return;
         }
-        else if (BlessingOfMight.KnownSpell && mySettings.UseBlessingOfMight)
+        if (BlessingOfMight.KnownSpell && mySettings.UseBlessingOfMight)
         {
             if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+            {
                 BlessingOfMight.Launch();
+            }
+            return;
         }
         if (BeaconOfLight.KnownSpell && mySettings.UseBeaconOfLight)
         {
             if (!BeaconOfLight.HaveBuff && BeaconOfLight.IsSpellUsable)
+            {
                 BeaconOfLight.Launch();
+            }
         }
     }
 
@@ -12949,18 +12846,17 @@ public class PaladinHoly
                 DivineFavor.Launch();
             return;
         }
-        else if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && mySettings.UseLifeblood)
+        if (Lifeblood.KnownSpell && Lifeblood.IsSpellUsable && mySettings.UseLifeblood)
         {
             Lifeblood.Launch();
             return;
         }
-
         if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
+            return;
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
@@ -13136,12 +13032,12 @@ public class PaladinProtection
 
     private readonly Spell ArcaneTorrent = new Spell("Arcane Torrent");
     private readonly Spell Berserking = new Spell("Berserking");
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly Spell GiftoftheNaaru = new Spell("Gift of the Naaru");
     private readonly Spell Lifeblood = new Spell("Lifeblood");
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private readonly Spell Stoneform = new Spell("Stoneform");
     private readonly Spell WarStomp = new Spell("War Stomp");
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -13221,8 +13117,9 @@ public class PaladinProtection
                             }
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -13290,21 +13187,29 @@ public class PaladinProtection
     {
         if (ObjectManager.Me.IsMounted)
             return;
-        else if (SealOfTruth.KnownSpell && mySettings.UseSealOfTruth &&
-                 (ObjectManager.GetNumberAttackPlayer() <= 7 || !mySettings.UseSealOfTheRighteousness))
+        if (SealOfTruth.KnownSpell && mySettings.UseSealOfTruth &&
+            (ObjectManager.GetNumberAttackPlayer() <= 7 || !mySettings.UseSealOfTheRighteousness))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
+            {
                 SealOfTruth.Launch();
+            }
+            return;
         }
-        else if (SealOfTheRighteousness.KnownSpell && mySettings.UseSealOfTheRighteousness)
+        if (SealOfTheRighteousness.KnownSpell && mySettings.UseSealOfTheRighteousness)
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            {
                 SealOfTheRighteousness.Launch();
+            }
+            return;
         }
-        else if (SealOfInsight.KnownSpell && mySettings.UseSealOfInsight)
+        if (SealOfInsight.KnownSpell && mySettings.UseSealOfInsight)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+            {
                 SealOfInsight.Launch();
+            }
         }
     }
 
@@ -13316,12 +13221,17 @@ public class PaladinProtection
         if (BlessingOfMight.KnownSpell && mySettings.UseBlessingOfMight)
         {
             if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+            {
                 BlessingOfMight.Launch();
+            }
+            return;
         }
-        else if (BlessingOfKings.KnownSpell && mySettings.UseBlessingOfKings)
+        if (BlessingOfKings.KnownSpell && mySettings.UseBlessingOfKings)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+            {
                 BlessingOfKings.Launch();
+            }
         }
     }
 
@@ -13390,24 +13300,16 @@ public class PaladinProtection
         if (HolyAvenger.KnownSpell && mySettings.UseHolyAvenger && HolyAvenger.IsSpellUsable)
         {
             HolyAvenger.Launch();
-            if (AvengingWrath.KnownSpell && mySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
-            {
-                AvengingWrath.Launch();
-                return;
-            }
         }
-        else if (AvengingWrath.KnownSpell && mySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
+        if (AvengingWrath.KnownSpell && mySettings.UseAvengingWrath && AvengingWrath.IsSpellUsable)
         {
             AvengingWrath.Launch();
-            return;
         }
-
         if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
@@ -13417,49 +13319,48 @@ public class PaladinProtection
 
     private void DefenseCycle()
     {
-        if (HandOfPurity.KnownSpell && mySettings.UseHandOfPurity && HandOfPurity.IsSpellUsable &&
-            !HandOfPurity.HaveBuff)
+        if (HandOfPurity.KnownSpell && mySettings.UseHandOfPurity && HandOfPurity.IsSpellUsable && !HandOfPurity.HaveBuff)
         {
             HandOfPurity.Launch();
             OnCD = new Timer(1000*6);
+            return;
         }
-        else if (HammerOfJustice.KnownSpell && mySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable)
+        if (HammerOfJustice.KnownSpell && mySettings.UseHammerOfJustice && HammerOfJustice.IsSpellUsable)
         {
             HammerOfJustice.Launch();
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (DivineProtection.KnownSpell && mySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
+        if (DivineProtection.KnownSpell && mySettings.UseDivineProtection && DivineProtection.IsSpellUsable)
         {
             DivineProtection.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (DevotionAura.KnownSpell && mySettings.UseDevotionAura && DevotionAura.IsSpellUsable)
+        if (DevotionAura.KnownSpell && mySettings.UseDevotionAura && DevotionAura.IsSpellUsable)
         {
             DevotionAura.Launch();
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (GuardianOfAncientKings.KnownSpell && mySettings.UseGuardianOfAncientKings &&
-                 GuardianOfAncientKings.IsSpellUsable)
+        if (GuardianOfAncientKings.KnownSpell && mySettings.UseGuardianOfAncientKings &&
+            GuardianOfAncientKings.IsSpellUsable)
         {
             GuardianOfAncientKings.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ArdentDefender.KnownSpell && mySettings.UseArdentDefender &&
-                 ArdentDefender.IsSpellUsable)
+        if (ArdentDefender.KnownSpell && mySettings.UseArdentDefender &&
+            ArdentDefender.IsSpellUsable)
         {
             ArdentDefender.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (WordOfGlory.KnownSpell && mySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
+        if (WordOfGlory.KnownSpell && mySettings.UseWordOfGlory && WordOfGlory.IsSpellUsable)
         {
             WordOfGlory.Launch();
             OnCD = new Timer(1000*5);
-            return;
         }
     }
 
@@ -13717,11 +13618,11 @@ public class PaladinRetribution
 
     #region Defensive Cooldown
 
-    private readonly Spell Reckoning = new Spell("Reckoning");
     private readonly Spell DevotionAura = new Spell("Devotion Aura");
     private readonly Spell DivineProtection = new Spell("Divine Protection");
     private readonly Spell DivineShield = new Spell("Divine Shield");
     private readonly Spell HandOfProtection = new Spell("Hand of Protection");
+    private readonly Spell Reckoning = new Spell("Reckoning");
     private readonly Spell SacredShield = new Spell("Sacred Shield");
 
     #endregion
@@ -13772,8 +13673,9 @@ public class PaladinRetribution
                             }
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -13792,12 +13694,14 @@ public class PaladinRetribution
         if (mySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
+            return;
         }
-        else if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+        if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
+            return;
         }
-        else if (mySettings.UseReckoning && Reckoning.KnownSpell && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
+        if (mySettings.UseReckoning && Reckoning.KnownSpell && Reckoning.IsSpellUsable && Reckoning.IsHostileDistanceGood)
         {
             Reckoning.Launch();
         }
@@ -13862,27 +13766,41 @@ public class PaladinRetribution
             (ObjectManager.GetNumberAttackPlayer() <= 7 || !mySettings.UseSealOfTheRighteousness || !SealOfTheRighteousness.KnownSpell))
         {
             if (!SealOfTruth.HaveBuff && SealOfTruth.IsSpellUsable)
+            {
                 SealOfTruth.Launch();
+            }
+            return;
         }
-        else if (mySettings.UseSealOfTheRighteousness && SealOfTheRighteousness.KnownSpell)
+        if (mySettings.UseSealOfTheRighteousness && SealOfTheRighteousness.KnownSpell)
         {
             if (!SealOfTheRighteousness.HaveBuff && SealOfTheRighteousness.IsSpellUsable)
+            {
                 SealOfTheRighteousness.Launch();
+            }
+            return;
         }
-        else if (mySettings.UseSealOfJustice && SealOfJustice.KnownSpell)
+        if (mySettings.UseSealOfJustice && SealOfJustice.KnownSpell)
         {
             if (!SealOfJustice.HaveBuff && SealOfJustice.IsSpellUsable)
+            {
                 SealOfJustice.Launch();
+            }
+            return;
         }
-        else if (mySettings.UseSealOfInsight && SealOfInsight.KnownSpell)
+        if (mySettings.UseSealOfInsight && SealOfInsight.KnownSpell)
         {
             if (!SealOfInsight.HaveBuff && SealOfInsight.IsSpellUsable)
+            {
                 SealOfInsight.Launch();
+            }
+            return;
         }
-        else if (mySettings.UseSealOfCommand && SealOfCommand.KnownSpell)
+        if (mySettings.UseSealOfCommand && SealOfCommand.KnownSpell)
         {
             if (!SealOfCommand.HaveBuff && SealOfCommand.IsSpellUsable)
+            {
                 SealOfCommand.Launch();
+            }
         }
     }
 
@@ -13894,12 +13812,17 @@ public class PaladinRetribution
         if (mySettings.UseBlessingOfKings && BlessingOfKings.KnownSpell)
         {
             if (!BlessingOfKings.HaveBuff && BlessingOfKings.IsSpellUsable)
+            {
                 BlessingOfKings.Launch();
+            }
+            return;
         }
-        else if (mySettings.UseBlessingOfMight && BlessingOfMight.KnownSpell)
+        if (mySettings.UseBlessingOfMight && BlessingOfMight.KnownSpell)
         {
             if (!BlessingOfMight.HaveBuff && BlessingOfMight.IsSpellUsable)
+            {
                 BlessingOfMight.Launch();
+            }
         }
     }
 
@@ -13950,9 +13873,13 @@ public class PaladinRetribution
             if (mySettings.UseWordOfGlory && WordOfGlory.KnownSpell && WordOfGlory.IsSpellUsable)
                 WordOfGlory.Launch();
             if (mySettings.UseDivineProtection && DivineProtection.KnownSpell && DivineProtection.IsSpellUsable)
+            {
                 DivineProtection.Launch();
+            }
             else if (mySettings.UseHandOfProtection && HandOfProtection.KnownSpell && HandOfProtection.IsSpellUsable && !ObjectManager.Me.HaveBuff(25771))
+            {
                 HandOfProtection.Launch();
+            }
             if (mySettings.UseFlashOfLight && FlashOfLight.KnownSpell && FlashOfLight.IsSpellUsable)
             {
                 FlashOfLight.Launch();
@@ -13997,13 +13924,11 @@ public class PaladinRetribution
             GuardianOfAncientKings.Launch();
             BurstTime = new Timer(1000*6.5);
         }
-
         if (mySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(FirstTrinket.Entry) && ItemsManager.IsUsableItemById(FirstTrinket.Entry))
         {
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
@@ -14024,76 +13949,86 @@ public class PaladinRetribution
         {
             Inquisition.Launch();
             InquisitionToUseInPriotiy = new Timer(1000*(10*3 - 6));
+            return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
-                  (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
-                 (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable &&
-                 TemplarsVerdict.IsHostileDistanceGood &&
-                 (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-                  (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
+             (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) && TemplarsVerdict.KnownSpell &&
+            (!Inquisition.KnownSpell || Inquisition.HaveBuff) && TemplarsVerdict.IsSpellUsable &&
+            TemplarsVerdict.IsHostileDistanceGood &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
+             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             TemplarsVerdict.Launch();
+            return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
-                  (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
-                 mySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-                 DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-                 (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
-                  (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
+        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
+             (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) && DivineStorm.KnownSpell &&
+            mySettings.UseDivineStorm && (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
+            DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower == 5 ||
+             (ObjectManager.Me.HolyPower >= 3 && (!BoundlessConviction.KnownSpell || HolyAvenger.HaveBuff))))
         {
             DivineStorm.Launch();
+            return;
         }
-        else if (mySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
+        if (mySettings.UseHammerOfWrath && HammerOfWrath.KnownSpell && HammerOfWrath.IsSpellUsable && HammerOfWrath.IsHostileDistanceGood)
         {
             HammerOfWrath.Launch();
+            return;
         }
-        else if (mySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
+        if (mySettings.UseExorcism && Exorcism.KnownSpell && Exorcism.IsSpellUsable && Exorcism.IsHostileDistanceGood)
         {
             Exorcism.Launch();
+            return;
         }
-        else if (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
-                 (!mySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
-                  (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
-                   (ObjectManager.GetNumberAttackPlayer() <= 3 && (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows)))))
+        if (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell && CrusaderStrike.IsSpellUsable && CrusaderStrike.IsHostileDistanceGood &&
+            (!mySettings.UseHammerOfTheRighteous || !HammerOfTheRighteous.KnownSpell ||
+             (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell &&
+              (ObjectManager.GetNumberAttackPlayer() <= 3 && (ObjectManager.Target.HaveBuff(115798) || !mySettings.RefreshWeakenedBlows)))))
         {
             CrusaderStrike.Launch();
+            return;
         }
-        else if (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
-                 (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
-                  (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
-                   (ObjectManager.GetNumberAttackPlayer() >= 4 || (!ObjectManager.Target.HaveBuff(115798) && mySettings.RefreshWeakenedBlows)))))
+        if (mySettings.UseHammerOfTheRighteous && HammerOfTheRighteous.KnownSpell && HammerOfTheRighteous.IsSpellUsable && HammerOfTheRighteous.IsHostileDistanceGood &&
+            (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell ||
+             (mySettings.UseCrusaderStrike && CrusaderStrike.KnownSpell &&
+              (ObjectManager.GetNumberAttackPlayer() >= 4 || (!ObjectManager.Target.HaveBuff(115798) && mySettings.RefreshWeakenedBlows)))))
         {
             HammerOfTheRighteous.Launch();
+            return;
         }
-        else if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
+        if (mySettings.UseJudgment && Judgment.KnownSpell && Judgment.IsSpellUsable && Judgment.IsHostileDistanceGood)
         {
             Judgment.Launch();
+            return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
-                  (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) &&
-                 TemplarsVerdict.KnownSpell &&
-                 (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-                 TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
-                 (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        if ((ObjectManager.GetNumberAttackPlayer() <= 2 ||
+             (!mySettings.UseDivineStorm && mySettings.UseTemplarsVerdict)) &&
+            TemplarsVerdict.KnownSpell &&
+            (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
+            TemplarsVerdict.IsSpellUsable && TemplarsVerdict.IsHostileDistanceGood &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             TemplarsVerdict.Launch();
+            return;
         }
-        else if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
-                  (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) &&
-                 DivineStorm.KnownSpell &&
-                 (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
-                 DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
-                 (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
+        if ((ObjectManager.GetNumberAttackPlayer() > 2 ||
+             (mySettings.UseDivineStorm && !mySettings.UseTemplarsVerdict)) &&
+            DivineStorm.KnownSpell &&
+            (!Inquisition.KnownSpell || Inquisition.HaveBuff) &&
+            DivineStorm.IsSpellUsable && DivineStorm.IsHostileDistanceGood &&
+            (ObjectManager.Me.HaveBuff(90174) || ObjectManager.Me.HolyPower >= 3))
         {
             DivineStorm.Launch();
+            return;
         }
-        else if (mySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsSpellUsable && SacredShield.IsHostileDistanceGood
-                 && (!mySettings.UseInquisition || !Inquisition.KnownSpell || Inquisition.HaveBuff)
-                 && (!mySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
-                 && (!mySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
-                 && (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || !CrusaderStrike.IsSpellUsable)
-                 && (!mySettings.UseHammerOfWrath || !HammerOfWrath.KnownSpell || !HammerOfWrath.IsSpellUsable)
-                 && (!mySettings.UseExorcism || !Exorcism.KnownSpell || !Exorcism.IsSpellUsable))
+        if (mySettings.UseSacredShield && SacredShield.KnownSpell && SacredShield.IsSpellUsable && SacredShield.IsHostileDistanceGood
+            && (!mySettings.UseInquisition || !Inquisition.KnownSpell || Inquisition.HaveBuff)
+            && (!mySettings.UseTemplarsVerdict || !TemplarsVerdict.KnownSpell || !TemplarsVerdict.IsSpellUsable)
+            && (!mySettings.UseJudgment || !Judgment.KnownSpell || !Judgment.IsSpellUsable)
+            && (!mySettings.UseCrusaderStrike || !CrusaderStrike.KnownSpell || !CrusaderStrike.IsSpellUsable)
+            && (!mySettings.UseHammerOfWrath || !HammerOfWrath.KnownSpell || !HammerOfWrath.IsSpellUsable)
+            && (!mySettings.UseExorcism || !Exorcism.KnownSpell || !Exorcism.IsSpellUsable))
         {
             // Since we have a GCD available and spell to cast, we can use the Sacred Shield. (Loss of DPS if not placed here.)
             SacredShield.Launch();
@@ -14273,11 +14208,11 @@ public class ShamanEnhancement
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -14405,8 +14340,9 @@ public class ShamanEnhancement
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -14456,34 +14392,29 @@ public class ShamanEnhancement
             EarthShock.Launch();
             return;
         }
-            // Blizzard API Calls for Stormstrike using Primal Strike Function
-        else if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
-                 && mySettings.UseStormstrike)
+        // Blizzard API Calls for Stormstrike using Primal Strike Function
+        if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
+            && mySettings.UseStormstrike)
         {
             PrimalStrike.Launch();
             return;
         }
-        else if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning)
+        if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning)
         {
             ChainLightning.Launch();
             return;
         }
-        else
+        if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
+            && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
         {
-            if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
-            {
-                SearingTotem.Launch();
-                return;
-            }
+            SearingTotem.Launch();
+            return;
         }
-
         if (MagmaTotem.KnownSpell && MagmaTotem.IsSpellUsable && ObjectManager.Target.GetDistance < 8
             && mySettings.UseMagmaTotem && FireTotemReady())
         {
             MagmaTotem.Launch();
-            return;
         }
     }
 
@@ -14515,59 +14446,51 @@ public class ShamanEnhancement
             WaterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        else if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-                  && mySettings.UseWaterShield && !WaterShield.HaveBuff) || !mySettings.UseLightningShield)
+        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
+             && mySettings.UseWaterShield && !WaterShield.HaveBuff) || !mySettings.UseLightningShield)
         {
             WaterShield.Launch();
             return;
         }
-        else if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-                 && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
+        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
+            && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
         {
             LightningShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
-                 && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
+            && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
         {
             SpiritwalkersGrace.Launch();
             return;
         }
-        else
+        if (WindfuryWeapon.KnownSpell && WindfuryWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(33757)
+            && mySettings.UseWindfuryWeapon)
         {
-            if (WindfuryWeapon.KnownSpell && WindfuryWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(33757)
-                && mySettings.UseWindfuryWeapon)
-            {
-                WindfuryWeapon.Launch();
-                return;
-            }
-            else if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(8034)
-                     && mySettings.UseFrostbrandWeapon && !mySettings.UseWindfuryWeapon)
-            {
-                FrostbrandWeapon.Launch();
-                return;
-            }
-            else
-            {
-                if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(36494)
-                    && mySettings.UseRockbiterWeapon && !mySettings.UseWindfuryWeapon
-                    && !mySettings.UseFrostbrandWeapon)
-                {
-                    RockbiterWeapon.Launch();
-                    return;
-                }
-            }
-
-            if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
-                && mySettings.UseFlametongueWeapon && (ObjectManager.Me.HaveBuff(33757)
-                                                       || ObjectManager.Me.HaveBuff(8034) ||
-                                                       ObjectManager.Me.HaveBuff(36494)))
-            {
-                FlametongueWeapon.Launch();
-                return;
-            }
+            WindfuryWeapon.Launch();
+            return;
         }
-
+        if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(8034)
+            && mySettings.UseFrostbrandWeapon && !mySettings.UseWindfuryWeapon)
+        {
+            FrostbrandWeapon.Launch();
+            return;
+        }
+        if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(36494)
+            && mySettings.UseRockbiterWeapon && !mySettings.UseWindfuryWeapon
+            && !mySettings.UseFrostbrandWeapon)
+        {
+            RockbiterWeapon.Launch();
+            return;
+        }
+        if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
+            && mySettings.UseFlametongueWeapon && (ObjectManager.Me.HaveBuff(33757)
+                                                   || ObjectManager.Me.HaveBuff(8034) ||
+                                                   ObjectManager.Me.HaveBuff(36494)))
+        {
+            FlametongueWeapon.Launch();
+            return;
+        }
         if (!ObjectManager.Me.InCombat && GhostWolf.IsSpellUsable && GhostWolf.KnownSpell
             && mySettings.UseGhostWolf && ObjectManager.Me.GetMove && !GhostWolf.HaveBuff
             && ObjectManager.Target.GetDistance > 10)
@@ -14575,10 +14498,11 @@ public class ShamanEnhancement
             GhostWolf.Launch();
             return;
         }
-
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -14610,46 +14534,42 @@ public class ShamanEnhancement
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
-                 StoneBulwarkTotem.IsSpellUsable
-                 && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
+        if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
+            StoneBulwarkTotem.IsSpellUsable
+            && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
         {
             StoneBulwarkTotem.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && ShamanisticRage.IsSpellUsable
-                 && ShamanisticRage.KnownSpell && mySettings.UseShamanisticRage)
+        if (ObjectManager.Me.HealthPercent < 90 && ShamanisticRage.IsSpellUsable
+            && ShamanisticRage.KnownSpell && mySettings.UseShamanisticRage)
         {
             ShamanisticRage.Launch();
             OnCD = new Timer(1000*15);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
+            && mySettings.UseAstralShift)
         {
-            if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
-                && mySettings.UseAstralShift)
-            {
-                AstralShift.Launch();
-                OnCD = new Timer(1000*6);
-                return;
-            }
+            AstralShift.Launch();
+            OnCD = new Timer(1000*6);
         }
     }
 
@@ -14676,48 +14596,44 @@ public class ShamanEnhancement
             }
             return;
         }
-        else if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
-                 && mySettings.UseHealingSurge)
+        if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
+            && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && WaterTotemReady() && mySettings.UseHealingTideTotem)
+        if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && WaterTotemReady() && mySettings.UseHealingTideTotem)
         {
             HealingTideTotem.Launch();
             return;
         }
-        else if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseAncestralGuidance)
+        if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseAncestralGuidance)
         {
             AncestralGuidance.Launch();
             return;
         }
-        else if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                 && mySettings.UseChainHeal)
+        if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
+            && mySettings.UseChainHeal)
         {
             ChainHeal.Launch();
             return;
         }
-        else
+        if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 90
+            && WaterTotemReady() && mySettings.UseHealingStreamTotem)
         {
-            if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < 90
-                && WaterTotemReady() && mySettings.UseHealingStreamTotem)
-            {
-                HealingStreamTotem.Launch();
-                return;
-            }
+            HealingStreamTotem.Launch();
         }
     }
 
@@ -14729,38 +14645,30 @@ public class ShamanEnhancement
             WindShear.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
+            && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
-                && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
-            {
-                GroundingTotem.Launch();
-                return;
-            }
+            GroundingTotem.Launch();
+            return;
         }
-
         if (ObjectManager.Target.GetMove && !FrostShock.TargetHaveBuff && mySettings.UseFrostShock
             && FrostShock.KnownSpell && FrostShock.IsSpellUsable && FrostShock.IsHostileDistanceGood)
         {
             FrostShock.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
+            && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
-                && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
-            {
-                EarthbindTotem.Launch();
-                return;
-            }
+            EarthbindTotem.Launch();
         }
     }
 
@@ -14776,49 +14684,60 @@ public class ShamanEnhancement
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
-                 && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
+        if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
+            && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
             UnleashElements.Launch();
             return;
         }
-        else if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
-                 && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
+        if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
+            && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
         {
             ElementalBlast.Launch();
             return;
         }
-        else if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
-                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 30)
+        if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
+            && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 30)
         {
             Ascendance.Launch();
             return;
         }
-        else if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 30)
+        if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
+            && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 30)
         {
             FireElementalTotem.Launch();
             return;
         }
-        else if (StormlashTotem.KnownSpell && AirTotemReady()
-                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 30)
+        if (StormlashTotem.KnownSpell && AirTotemReady()
+            && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 30)
         {
             if (!StormlashTotem.IsSpellUsable && mySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -14831,34 +14750,29 @@ public class ShamanEnhancement
                 StormlashTotem.Launch();
             return;
         }
-        else if (FeralSpirit.KnownSpell && FeralSpirit.IsSpellUsable
-                 && mySettings.UseFeralSpirit && ObjectManager.Target.GetDistance < 30)
+        if (FeralSpirit.KnownSpell && FeralSpirit.IsSpellUsable
+            && mySettings.UseFeralSpirit && ObjectManager.Target.GetDistance < 30)
         {
             FeralSpirit.Launch();
             return;
         }
-        else if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Me.HaveBuff(57724))
+        if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
-
-        else if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Me.HaveBuff(57723))
+        if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
         }
-        else
+        if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
+            && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
+            && !ObjectManager.Me.HaveBuff(32182))
         {
-            if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
-                && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
-                && !ObjectManager.Me.HaveBuff(32182))
-            {
-                ElementalMastery.Launch();
-                return;
-            }
+            ElementalMastery.Launch();
         }
     }
 
@@ -14870,9 +14784,9 @@ public class ShamanEnhancement
             EarthElementalTotem.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 5 && MagmaTotem.KnownSpell
-                 && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
-                 && !FireElementalTotem.CreatedBySpell)
+        if (ObjectManager.GetNumberAttackPlayer() > 5 && MagmaTotem.KnownSpell
+            && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
+            && !FireElementalTotem.CreatedBySpell)
         {
             MagmaTotem.Launch();
             return;
@@ -14883,21 +14797,21 @@ public class ShamanEnhancement
             SearingTotem.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
-                 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) == 5)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
+            && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) == 5)
         {
             ChainLightning.Launch();
             return;
         }
-        else if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                 && mySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) == 5)
+        if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
+            && mySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) == 5)
         {
             LightningBolt.Launch();
             return;
         }
-        else if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
-                 && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
+        if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
+            && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
         {
             if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashElements.IsHostileDistanceGood
                 && mySettings.UseUnleashElements)
@@ -14909,40 +14823,40 @@ public class ShamanEnhancement
             FlameShockTimer = new Timer(1000*27);
             return;
         }
-        else if (FireNova.KnownSpell && FireNova.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && mySettings.UseFireNova)
+        if (FireNova.KnownSpell && FireNova.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && mySettings.UseFireNova)
         {
             FireNova.Launch();
             return;
         }
-            // Blizzard API Calls for Stormstrike using Primal Strike Function
-        else if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
-                 && mySettings.UseStormstrike)
+        // Blizzard API Calls for Stormstrike using Primal Strike Function
+        if (PrimalStrike.KnownSpell && PrimalStrike.IsSpellUsable && PrimalStrike.IsHostileDistanceGood
+            && mySettings.UseStormstrike)
         {
             PrimalStrike.Launch();
             return;
         }
-        else if (LavaLash.KnownSpell && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood
-                 && mySettings.UseLavaLash)
+        if (LavaLash.KnownSpell && LavaLash.IsSpellUsable && LavaLash.IsHostileDistanceGood
+            && mySettings.UseLavaLash)
         {
             LavaLash.Launch();
             return;
         }
-        else if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashElements.IsHostileDistanceGood
-                 && mySettings.UseUnleashElements)
+        if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashElements.IsHostileDistanceGood
+            && mySettings.UseUnleashElements)
         {
             UnleashElements.Launch();
             return;
         }
-        else if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
-                 && FlameShock.TargetHaveBuff && mySettings.UseEarthShock)
+        if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
+            && FlameShock.TargetHaveBuff && mySettings.UseEarthShock)
         {
             EarthShock.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
-                 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) > 0)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && ChainLightning.KnownSpell
+            && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning && ObjectManager.Me.BuffStack(53817) > 0)
         {
             if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                 && mySettings.UseAncestralSwiftness)
@@ -14953,8 +14867,8 @@ public class ShamanEnhancement
             ChainLightning.Launch();
             return;
         }
-        else if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                 && mySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) > 0)
+        if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
+            && mySettings.UseLightningBolt && ObjectManager.Me.BuffStack(53817) > 0)
         {
             if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                 && mySettings.UseAncestralSwiftness)
@@ -14965,14 +14879,10 @@ public class ShamanEnhancement
             LightningBolt.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
@@ -15010,14 +14920,13 @@ public class ShamanEnhancement
     {
         if (FireElementalTotem.CreatedBySpell)
             return false;
-        else if (EarthElementalTotem.CreatedBySpell)
+        if (EarthElementalTotem.CreatedBySpell)
             return false;
-        else if (SearingTotem.CreatedBySpell)
+        if (SearingTotem.CreatedBySpell)
             return true;
-        else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
+        if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
-        else
-            return true;
+        return true;
     }
 
     private void Patrolling()
@@ -15198,11 +15107,11 @@ public class ShamanRestoration
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -15332,8 +15241,9 @@ public class ShamanRestoration
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -15383,33 +15293,28 @@ public class ShamanRestoration
             EarthShock.Launch();
             return;
         }
-        else if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
-                 && mySettings.UseLavaBurst)
+        if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
+            && mySettings.UseLavaBurst)
         {
             LavaBurst.Launch();
             return;
         }
-        else if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning)
+        if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning)
         {
             ChainLightning.Launch();
             return;
         }
-        else
+        if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
+            && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
         {
-            if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
-            {
-                SearingTotem.Launch();
-                return;
-            }
+            SearingTotem.Launch();
+            return;
         }
-
         if (MagmaTotem.KnownSpell && MagmaTotem.IsSpellUsable && ObjectManager.Target.GetDistance < 8
             && mySettings.UseMagmaTotem && FireTotemReady())
         {
             MagmaTotem.Launch();
-            return;
         }
     }
 
@@ -15441,67 +15346,61 @@ public class ShamanRestoration
             WaterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        else if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-                  && mySettings.UseWaterShield && !WaterShield.HaveBuff)
-                 || (!mySettings.UseLightningShield && !mySettings.UseEarthShield))
+        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
+             && mySettings.UseWaterShield && !WaterShield.HaveBuff)
+            || (!mySettings.UseLightningShield && !mySettings.UseEarthShield))
         {
             WaterShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && EarthShield.KnownSpell && EarthShield.IsSpellUsable
-                 && mySettings.UseEarthShield && !EarthShield.HaveBuff && ObjectManager.Me.ManaPercentage > 15
-                 || !mySettings.UseLightningShield)
+        if (ObjectManager.Me.HealthPercent < 50 && EarthShield.KnownSpell && EarthShield.IsSpellUsable
+            && mySettings.UseEarthShield && !EarthShield.HaveBuff && ObjectManager.Me.ManaPercentage > 15
+            || !mySettings.UseLightningShield)
         {
             EarthShield.Launch();
             return;
         }
-        else if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-                 && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15
-                 && ObjectManager.Me.HealthPercent > 70)
+        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
+            && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15
+            && ObjectManager.Me.HealthPercent > 70)
         {
             LightningShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
-                 && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
+            && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
         {
             SpiritwalkersGrace.Launch();
             return;
         }
-        else
+        if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
+            && mySettings.UseFlametongueWeapon)
         {
-            if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
-                && mySettings.UseFlametongueWeapon)
-            {
-                FlametongueWeapon.Launch();
-                return;
-            }
-            else if (EarthlivingWeapon.KnownSpell && EarthlivingWeapon.IsSpellUsable &&
-                     !ObjectManager.Me.HaveBuff(52007)
-                     && mySettings.UseEarthlivingWeapon && !mySettings.UseFlametongueWeapon)
-            {
-                EarthlivingWeapon.Launch();
-                return;
-            }
-            else if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable &&
-                     !ObjectManager.Me.HaveBuff(8034)
-                     && mySettings.UseFrostbrandWeapon && !mySettings.UseFlametongueWeapon &&
-                     !mySettings.UseEarthlivingWeapon)
-            {
-                FrostbrandWeapon.Launch();
-                return;
-            }
-            else
-            {
-                if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable &&
-                    !ObjectManager.Me.HaveBuff(36494)
-                    && mySettings.UseRockbiterWeapon && !mySettings.UseFlametongueWeapon
-                    && !mySettings.UseFrostbrandWeapon && !mySettings.UseEarthlivingWeapon)
-                {
-                    RockbiterWeapon.Launch();
-                    return;
-                }
-            }
+            FlametongueWeapon.Launch();
+            return;
+        }
+        if (EarthlivingWeapon.KnownSpell && EarthlivingWeapon.IsSpellUsable &&
+            !ObjectManager.Me.HaveBuff(52007)
+            && mySettings.UseEarthlivingWeapon && !mySettings.UseFlametongueWeapon)
+        {
+            EarthlivingWeapon.Launch();
+            return;
+        }
+        if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable &&
+            !ObjectManager.Me.HaveBuff(8034)
+            && mySettings.UseFrostbrandWeapon && !mySettings.UseFlametongueWeapon &&
+            !mySettings.UseEarthlivingWeapon)
+        {
+            FrostbrandWeapon.Launch();
+            return;
+        }
+        if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable &&
+            !ObjectManager.Me.HaveBuff(36494)
+            && mySettings.UseRockbiterWeapon && !mySettings.UseFlametongueWeapon
+            && !mySettings.UseFrostbrandWeapon && !mySettings.UseEarthlivingWeapon)
+        {
+            RockbiterWeapon.Launch();
+            return;
         }
 
         if (!ObjectManager.Me.InCombat && GhostWolf.IsSpellUsable && GhostWolf.KnownSpell
@@ -15514,7 +15413,9 @@ public class ShamanRestoration
 
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -15546,47 +15447,43 @@ public class ShamanRestoration
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
-                 StoneBulwarkTotem.IsSpellUsable
-                 && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
+        if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
+            StoneBulwarkTotem.IsSpellUsable
+            && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
         {
             StoneBulwarkTotem.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && SpiritLinkTotem.KnownSpell &&
-                 SpiritLinkTotem.IsSpellUsable
-                 && AirTotemReady() && mySettings.UseSpiritLinkTotem)
+        if (ObjectManager.Me.HealthPercent < 70 && SpiritLinkTotem.KnownSpell &&
+            SpiritLinkTotem.IsSpellUsable
+            && AirTotemReady() && mySettings.UseSpiritLinkTotem)
         {
             SpiritLinkTotem.Launch();
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
+            && mySettings.UseAstralShift)
         {
-            if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
-                && mySettings.UseAstralShift)
-            {
-                AstralShift.Launch();
-                OnCD = new Timer(1000*6);
-                return;
-            }
+            AstralShift.Launch();
+            OnCD = new Timer(1000*6);
         }
     }
 
@@ -15602,21 +15499,18 @@ public class ShamanRestoration
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage < 50 && TotemicRecall.KnownSpell && TotemicRecall.IsSpellUsable
-                 && mySettings.UseTotemicRecall && !ObjectManager.Me.InCombat
-                 && TotemicRecallReady())
+        if (ObjectManager.Me.ManaPercentage < 50 && TotemicRecall.KnownSpell && TotemicRecall.IsSpellUsable
+            && mySettings.UseTotemicRecall && !ObjectManager.Me.InCombat
+            && TotemicRecallReady())
         {
             TotemicRecall.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.ManaPercentage < 80 && ManaTideTotem.KnownSpell && ManaTideTotem.IsSpellUsable
+            && mySettings.UseManaTideTotem && WaterTotemReady())
         {
-            if (ObjectManager.Me.ManaPercentage < 80 && ManaTideTotem.KnownSpell && ManaTideTotem.IsSpellUsable
-                && mySettings.UseManaTideTotem && WaterTotemReady())
-            {
-                ManaTideTotem.Launch();
-                return;
-            }
+            ManaTideTotem.Launch();
+            return;
         }
 
         if (ObjectManager.Me.HealthPercent < 95 && HealingSurge.KnownSpell && HealingSurge.IsSpellUsable
@@ -15629,66 +15523,62 @@ public class ShamanRestoration
             }
             return;
         }
-        else if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
-                 && mySettings.UseHealingSurge)
+        if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
+            && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             return;
         }
-        else if (GreaterHealingWave.KnownSpell && GreaterHealingWave.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent < 60 && mySettings.UseGreaterHealingWave)
+        if (GreaterHealingWave.KnownSpell && GreaterHealingWave.IsSpellUsable
+            && ObjectManager.Me.HealthPercent < 60 && mySettings.UseGreaterHealingWave)
         {
             GreaterHealingWave.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && WaterTotemReady() && mySettings.UseHealingTideTotem)
+        if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && WaterTotemReady() && mySettings.UseHealingTideTotem)
         {
             HealingTideTotem.Launch();
             return;
         }
-        else if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseAncestralGuidance)
+        if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseAncestralGuidance)
         {
             AncestralGuidance.Launch();
             return;
         }
-        else if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                 && mySettings.UseChainHeal)
+        if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
+            && mySettings.UseChainHeal)
         {
             ChainHeal.Launch();
             return;
         }
-        else if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 90
-                 && WaterTotemReady() && mySettings.UseHealingStreamTotem)
+        if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 90
+            && WaterTotemReady() && mySettings.UseHealingStreamTotem)
         {
             HealingStreamTotem.Launch();
             return;
         }
-        else if (Riptide.KnownSpell && Riptide.IsSpellUsable && ObjectManager.Me.HealthPercent < 90
-                 && mySettings.UseRiptide && !Riptide.HaveBuff)
+        if (Riptide.KnownSpell && Riptide.IsSpellUsable && ObjectManager.Me.HealthPercent < 90
+            && mySettings.UseRiptide && !Riptide.HaveBuff)
         {
             Riptide.Launch();
             return;
         }
-        else
+        if (HealingWave.KnownSpell && HealingWave.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
+            && mySettings.UseHealingWave)
         {
-            if (HealingWave.KnownSpell && HealingWave.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                && mySettings.UseHealingWave)
-            {
-                HealingWave.Launch();
-                return;
-            }
+            HealingWave.Launch();
         }
     }
 
@@ -15700,22 +15590,19 @@ public class ShamanRestoration
             WindShear.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
+            && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
-                && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
-            {
-                GroundingTotem.Launch();
-                return;
-            }
+            GroundingTotem.Launch();
+            return;
         }
 
         if (ObjectManager.Target.GetMove && !FrostShock.TargetHaveBuff && mySettings.UseFrostShock
@@ -15724,14 +15611,10 @@ public class ShamanRestoration
             FrostShock.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
+            && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
-                && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
-            {
-                EarthbindTotem.Launch();
-                return;
-            }
+            EarthbindTotem.Launch();
         }
     }
 
@@ -15747,49 +15630,60 @@ public class ShamanRestoration
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
-                 && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
+        if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
+            && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
             UnleashElements.Launch();
             return;
         }
-        else if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
-                 && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
+        if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
+            && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
         {
             ElementalBlast.Launch();
             return;
         }
-        else if (Ascendance.KnownSpell && Ascendance.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
+        if (Ascendance.KnownSpell && Ascendance.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
+            && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
         {
             Ascendance.Launch();
             return;
         }
-        else if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
+        if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
+            && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
         {
             FireElementalTotem.Launch();
             return;
         }
-        else if (StormlashTotem.KnownSpell && AirTotemReady()
-                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
+        if (StormlashTotem.KnownSpell && AirTotemReady()
+            && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
         {
             if (!StormlashTotem.IsSpellUsable && mySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -15802,28 +15696,23 @@ public class ShamanRestoration
                 StormlashTotem.Launch();
             return;
         }
-        else if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
+        if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
-
-        else if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
+        if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
         }
-        else
+        if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
+            && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
+            && !ObjectManager.Me.HaveBuff(32182))
         {
-            if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
-                && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
-                && !ObjectManager.Me.HaveBuff(32182))
-            {
-                ElementalMastery.Launch();
-                return;
-            }
+            ElementalMastery.Launch();
         }
     }
 
@@ -15842,28 +15731,28 @@ public class ShamanRestoration
             EarthElementalTotem.Launch();
             return;
         }
-        else if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
-                 && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
+        if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
+            && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
         {
             FlameShock.Launch();
             FlameShockTimer = new Timer(1000*27);
             return;
         }
-        else if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
-                 && mySettings.UseLavaBurst && FlameShock.TargetHaveBuff)
+        if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
+            && mySettings.UseLavaBurst && FlameShock.TargetHaveBuff)
         {
             LavaBurst.Launch();
             return;
         }
-        else if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
-                 && mySettings.UseEarthShock && FlameShock.TargetHaveBuff)
+        if (EarthShock.IsSpellUsable && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood
+            && mySettings.UseEarthShock && FlameShock.TargetHaveBuff)
         {
             EarthShock.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && MagmaTotem.KnownSpell
-                 && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
-                 && !FireElementalTotem.CreatedBySpell)
+        if (ObjectManager.GetNumberAttackPlayer() > 1 && MagmaTotem.KnownSpell
+            && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
+            && !FireElementalTotem.CreatedBySpell)
         {
             MagmaTotem.Launch();
             return;
@@ -15874,9 +15763,9 @@ public class ShamanRestoration
             SearingTotem.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && ChainLightning.KnownSpell
-                 && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning && !ObjectManager.Me.HaveBuff(77762))
+        if (ObjectManager.GetNumberAttackPlayer() > 1 && ChainLightning.KnownSpell
+            && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning && !ObjectManager.Me.HaveBuff(77762))
         {
             if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                 && mySettings.UseAncestralSwiftness)
@@ -15887,75 +15776,57 @@ public class ShamanRestoration
             ChainLightning.Launch();
             return;
         }
-        else
+        if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
+            && mySettings.UseLightningBolt && !ObjectManager.Me.HaveBuff(77762))
         {
-            if (LightningBolt.IsHostileDistanceGood && LightningBolt.KnownSpell && LightningBolt.IsSpellUsable
-                && mySettings.UseLightningBolt && !ObjectManager.Me.HaveBuff(77762))
+            if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
+                && mySettings.UseAncestralSwiftness)
             {
-                if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
-                    && mySettings.UseAncestralSwiftness)
-                {
-                    AncestralSwiftness.Launch();
-                    Thread.Sleep(200);
-                }
-                LightningBolt.Launch();
-                return;
+                AncestralSwiftness.Launch();
+                Thread.Sleep(200);
             }
+            LightningBolt.Launch();
         }
     }
 
     private bool FireTotemReady()
     {
-        if (FireElementalTotem.CreatedBySpell || MagmaTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !FireElementalTotem.CreatedBySpell && !MagmaTotem.CreatedBySpell;
     }
 
     private bool EarthTotemReady()
     {
-        if (EarthbindTotem.CreatedBySpell || EarthElementalTotem.CreatedBySpell
-            || StoneBulwarkTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !EarthbindTotem.CreatedBySpell && !EarthElementalTotem.CreatedBySpell && !StoneBulwarkTotem.CreatedBySpell;
     }
 
     private bool WaterTotemReady()
     {
-        if (HealingStreamTotem.CreatedBySpell || HealingTideTotem.CreatedBySpell
-            || ManaTideTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !HealingStreamTotem.CreatedBySpell && !HealingTideTotem.CreatedBySpell && !ManaTideTotem.CreatedBySpell;
     }
 
     private bool AirTotemReady()
     {
-        if (CapacitorTotem.CreatedBySpell || GroundingTotem.CreatedBySpell
-            || StormlashTotem.CreatedBySpell || SpiritLinkTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !CapacitorTotem.CreatedBySpell && !GroundingTotem.CreatedBySpell && !StormlashTotem.CreatedBySpell && !SpiritLinkTotem.CreatedBySpell;
     }
 
     private bool TotemicRecallReady()
     {
         if (FireElementalTotem.CreatedBySpell)
             return false;
-        else if (EarthElementalTotem.CreatedBySpell)
+        if (EarthElementalTotem.CreatedBySpell)
             return false;
-        else if (SearingTotem.CreatedBySpell)
+        if (SearingTotem.CreatedBySpell)
             return true;
-        else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
+        if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
-        else
-            return true;
+        return true;
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: ShamanRestorationSettings
@@ -16132,11 +16003,11 @@ public class ShamanElemental
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -16259,8 +16130,9 @@ public class ShamanElemental
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -16310,33 +16182,28 @@ public class ShamanElemental
             EarthShock.Launch();
             return;
         }
-        else if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
-                 && mySettings.UseLavaBurst)
+        if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
+            && mySettings.UseLavaBurst)
         {
             LavaBurst.Launch();
             return;
         }
-        else if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
-                 && mySettings.UseChainLightning)
+        if (ChainLightning.KnownSpell && ChainLightning.IsSpellUsable && ChainLightning.IsHostileDistanceGood
+            && mySettings.UseChainLightning)
         {
             ChainLightning.Launch();
             return;
         }
-        else
+        if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
+            && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
         {
-            if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
-                && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) && ObjectManager.Target.GetDistance < 31)
-            {
-                SearingTotem.Launch();
-                return;
-            }
+            SearingTotem.Launch();
+            return;
         }
-
         if (MagmaTotem.KnownSpell && MagmaTotem.IsSpellUsable && ObjectManager.Target.GetDistance < 8
             && mySettings.UseMagmaTotem && FireTotemReady())
         {
             MagmaTotem.Launch();
-            return;
         }
     }
 
@@ -16368,50 +16235,43 @@ public class ShamanElemental
             WaterWalkingTimer = new Timer(1000*60*9);
             return;
         }
-        else if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
-                  && mySettings.UseWaterShield && !WaterShield.HaveBuff) || !mySettings.UseLightningShield)
+        if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
+             && mySettings.UseWaterShield && !WaterShield.HaveBuff) || !mySettings.UseLightningShield)
         {
             WaterShield.Launch();
             return;
         }
-        else if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
-                 && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
+        if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
+            && mySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
         {
             LightningShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
-                 && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
+        if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
+            && SpiritwalkersGrace.KnownSpell && mySettings.UseSpiritwalkersGrace && ObjectManager.Me.GetMove)
         {
             SpiritwalkersGrace.Launch();
             return;
         }
-        else
+        if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
+            && mySettings.UseFlametongueWeapon)
         {
-            if (FlametongueWeapon.KnownSpell && FlametongueWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(10400)
-                && mySettings.UseFlametongueWeapon)
-            {
-                FlametongueWeapon.Launch();
-                return;
-            }
-            else if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(8034)
-                     && mySettings.UseFrostbrandWeapon && !mySettings.UseFlametongueWeapon)
-            {
-                FrostbrandWeapon.Launch();
-                return;
-            }
-            else
-            {
-                if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(36494)
-                    && mySettings.UseRockbiterWeapon && !mySettings.UseFlametongueWeapon
-                    && !mySettings.UseFrostbrandWeapon)
-                {
-                    RockbiterWeapon.Launch();
-                    return;
-                }
-            }
+            FlametongueWeapon.Launch();
+            return;
         }
-
+        if (FrostbrandWeapon.KnownSpell && FrostbrandWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(8034)
+            && mySettings.UseFrostbrandWeapon && !mySettings.UseFlametongueWeapon)
+        {
+            FrostbrandWeapon.Launch();
+            return;
+        }
+        if (RockbiterWeapon.KnownSpell && RockbiterWeapon.IsSpellUsable && !ObjectManager.Me.HaveBuff(36494)
+            && mySettings.UseRockbiterWeapon && !mySettings.UseFlametongueWeapon
+            && !mySettings.UseFrostbrandWeapon)
+        {
+            RockbiterWeapon.Launch();
+            return;
+        }
         if (!ObjectManager.Me.InCombat && GhostWolf.IsSpellUsable && GhostWolf.KnownSpell
             && mySettings.UseGhostWolf && ObjectManager.Me.GetMove && !GhostWolf.HaveBuff
             && ObjectManager.Target.GetDistance > 50)
@@ -16419,10 +16279,11 @@ public class ShamanElemental
             GhostWolf.Launch();
             return;
         }
-
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -16454,39 +16315,35 @@ public class ShamanElemental
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
-                 StoneBulwarkTotem.IsSpellUsable
-                 && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
+        if (ObjectManager.Me.HealthPercent < 50 && StoneBulwarkTotem.KnownSpell &&
+            StoneBulwarkTotem.IsSpellUsable
+            && EarthTotemReady() && mySettings.UseStoneBulwarkTotem)
         {
             StoneBulwarkTotem.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
+            && mySettings.UseAstralShift)
         {
-            if (ObjectManager.Me.HealthPercent < 70 && AstralShift.KnownSpell && AstralShift.IsSpellUsable
-                && mySettings.UseAstralShift)
-            {
-                AstralShift.Launch();
-                OnCD = new Timer(1000*6);
-                return;
-            }
+            AstralShift.Launch();
+            OnCD = new Timer(1000*6);
         }
     }
 
@@ -16523,48 +16380,44 @@ public class ShamanElemental
             }
             return;
         }
-        else if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
-                 && mySettings.UseHealingSurge)
+        if (HealingSurge.KnownSpell && HealingSurge.IsSpellUsable && ObjectManager.Me.HealthPercent < 50
+            && mySettings.UseHealingSurge)
         {
             HealingSurge.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && WaterTotemReady() && mySettings.UseHealingTideTotem)
+        if (HealingTideTotem.KnownSpell && HealingTideTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && WaterTotemReady() && mySettings.UseHealingTideTotem)
         {
             HealingTideTotem.Launch();
             return;
         }
-        else if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent < 70
-                 && mySettings.UseAncestralGuidance)
+        if (AncestralGuidance.KnownSpell && AncestralGuidance.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 70
+            && mySettings.UseAncestralGuidance)
         {
             AncestralGuidance.Launch();
             return;
         }
-        else if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
-                 && mySettings.UseChainHeal)
+        if (ChainHeal.KnownSpell && ChainHeal.IsSpellUsable && ObjectManager.Me.HealthPercent < 80
+            && mySettings.UseChainHeal)
         {
             ChainHeal.Launch();
             return;
         }
-        else
+        if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent < 90
+            && WaterTotemReady() && mySettings.UseHealingStreamTotem)
         {
-            if (HealingStreamTotem.KnownSpell && HealingStreamTotem.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent < 90
-                && WaterTotemReady() && mySettings.UseHealingStreamTotem)
-            {
-                HealingStreamTotem.Launch();
-                return;
-            }
+            HealingStreamTotem.Launch();
         }
     }
 
@@ -16576,38 +16429,30 @@ public class ShamanElemental
             WindShear.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
+            && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseGroundingTotem
-                && GroundingTotem.KnownSpell && GroundingTotem.IsSpellUsable && AirTotemReady())
-            {
-                GroundingTotem.Launch();
-                return;
-            }
+            GroundingTotem.Launch();
+            return;
         }
-
         if (ObjectManager.Target.GetMove && !FrostShock.TargetHaveBuff && mySettings.UseFrostShock
             && FrostShock.KnownSpell && FrostShock.IsSpellUsable && FrostShock.IsHostileDistanceGood)
         {
             FrostShock.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
+            && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.GetMove && mySettings.UseEarthbindTotem && EarthTotemReady()
-                && EarthbindTotem.KnownSpell && EarthbindTotem.IsSpellUsable && EarthbindTotem.IsHostileDistanceGood)
-            {
-                EarthbindTotem.Launch();
-                return;
-            }
+            EarthbindTotem.Launch();
         }
     }
 
@@ -16623,49 +16468,60 @@ public class ShamanElemental
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
-                 && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
+        if (UnleashElements.KnownSpell && UnleashElements.IsSpellUsable && UnleashedFury.KnownSpell
+            && mySettings.UseUnleashElements && UnleashElements.IsHostileDistanceGood)
         {
             UnleashElements.Launch();
             return;
         }
-        else if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
-                 && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
+        if (ElementalBlast.KnownSpell && ElementalBlast.IsSpellUsable
+            && mySettings.UseElementalBlast && ElementalBlast.IsHostileDistanceGood)
         {
             ElementalBlast.Launch();
             return;
         }
-        else if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
-                 && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
+        if (Ascendance.KnownSpell && Ascendance.IsSpellUsable
+            && mySettings.UseAscendance && ObjectManager.Target.GetDistance < 41)
         {
             Ascendance.Launch();
             return;
         }
-        else if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
-                 && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
+        if (FireElementalTotem.KnownSpell && FireElementalTotem.IsSpellUsable
+            && mySettings.UseFireElementalTotem && ObjectManager.Target.GetDistance < 41)
         {
             FireElementalTotem.Launch();
             return;
         }
-        else if (StormlashTotem.KnownSpell && AirTotemReady()
-                 && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
+        if (StormlashTotem.KnownSpell && AirTotemReady()
+            && mySettings.UseStormlashTotem && ObjectManager.Target.GetDistance < 41)
         {
             if (!StormlashTotem.IsSpellUsable && mySettings.UseCalloftheElements
                 && CalloftheElements.KnownSpell && CalloftheElements.IsSpellUsable)
@@ -16678,28 +16534,24 @@ public class ShamanElemental
                 StormlashTotem.Launch();
             return;
         }
-        else if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
+        if (Bloodlust.KnownSpell && Bloodlust.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57724))
         {
             Bloodlust.Launch();
             return;
         }
 
-        else if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
-                 && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
+        if (Heroism.KnownSpell && Heroism.IsSpellUsable && mySettings.UseBloodlustHeroism
+            && ObjectManager.Target.GetDistance < 41 && !ObjectManager.Me.HaveBuff(57723))
         {
             Heroism.Launch();
             return;
         }
-        else
+        if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
+            && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
+            && !ObjectManager.Me.HaveBuff(32182))
         {
-            if (ElementalMastery.KnownSpell && ElementalMastery.IsSpellUsable
-                && !ObjectManager.Me.HaveBuff(2825) && mySettings.UseElementalMastery
-                && !ObjectManager.Me.HaveBuff(32182))
-            {
-                ElementalMastery.Launch();
-                return;
-            }
+            ElementalMastery.Launch();
         }
     }
 
@@ -16711,60 +16563,60 @@ public class ShamanElemental
             Thunderstorm.Launch();
             return;
         }
-        else if (EarthElementalTotem.KnownSpell && EarthElementalTotem.IsSpellUsable
-                 && ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseEarthElementalTotem)
+        if (EarthElementalTotem.KnownSpell && EarthElementalTotem.IsSpellUsable
+            && ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseEarthElementalTotem)
         {
             EarthElementalTotem.Launch();
             return;
         }
-        else if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && ObjectManager.GetNumberAttackPlayer() > 5 && mySettings.UseThunderstorm)
+        if (Thunderstorm.KnownSpell && Thunderstorm.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && ObjectManager.GetNumberAttackPlayer() > 5 && mySettings.UseThunderstorm)
         {
             Thunderstorm.Launch();
             return;
         }
-        else if (Earthquake.KnownSpell && Earthquake.IsSpellUsable && Earthquake.IsHostileDistanceGood
-                 && ObjectManager.GetNumberAttackPlayer() > 5 && mySettings.UseEarthquake)
+        if (Earthquake.KnownSpell && Earthquake.IsSpellUsable && Earthquake.IsHostileDistanceGood
+            && ObjectManager.GetNumberAttackPlayer() > 5 && mySettings.UseEarthquake)
         {
             SpellManager.CastSpellByIDAndPosition(61882, ObjectManager.Target.Position);
             return;
         }
-        else if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
-                 && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
+        if (FlameShock.IsSpellUsable && FlameShock.IsHostileDistanceGood && FlameShock.KnownSpell
+            && mySettings.UseFlameShock && (!FlameShock.TargetHaveBuff || FlameShockTimer.IsReady))
         {
             FlameShock.Launch();
             FlameShockTimer = new Timer(1000*27);
             return;
         }
-        else if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
-                 && mySettings.UseLavaBurst && FlameShock.TargetHaveBuff)
+        if (LavaBurst.KnownSpell && LavaBurst.IsSpellUsable && LavaBurst.IsHostileDistanceGood
+            && mySettings.UseLavaBurst && FlameShock.TargetHaveBuff)
         {
             LavaBurst.Launch();
             return;
         }
-        else if (mySettings.UseEarthShock && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood && EarthShock.IsSpellUsable
-                 && (LightningShield.BuffStack > 4 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
+        if (mySettings.UseEarthShock && EarthShock.KnownSpell && EarthShock.IsHostileDistanceGood && EarthShock.IsSpellUsable
+            && (LightningShield.BuffStack > 4 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
         {
             EarthShock.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && MagmaTotem.KnownSpell
-                 && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
-                 && !FireElementalTotem.CreatedBySpell)
+        if (ObjectManager.GetNumberAttackPlayer() > 1 && MagmaTotem.KnownSpell
+            && MagmaTotem.IsSpellUsable && mySettings.UseMagmaTotem
+            && !FireElementalTotem.CreatedBySpell)
         {
             MagmaTotem.Launch();
             return;
         }
-        else if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
-                 && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) &&
-                 ObjectManager.Target.GetDistance < 31)
+        if (SearingTotem.KnownSpell && SearingTotem.IsSpellUsable && mySettings.UseSearingTotem
+            && FireTotemReady() && !SearingTotem.CreatedBySpellInRange(25) &&
+            ObjectManager.Target.GetDistance < 31)
         {
             SearingTotem.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 1 && mySettings.UseChainLightning && ChainLightning.KnownSpell
-                 && ChainLightning.IsHostileDistanceGood && ChainLightning.IsSpellUsable
-                 && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
+        if (ObjectManager.GetNumberAttackPlayer() > 1 && mySettings.UseChainLightning && ChainLightning.KnownSpell
+            && ChainLightning.IsHostileDistanceGood && ChainLightning.IsSpellUsable
+            && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
         {
             if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
                 && mySettings.UseAncestralSwiftness)
@@ -16775,74 +16627,57 @@ public class ShamanElemental
             ChainLightning.Launch();
             return;
         }
-        else
+        if (mySettings.UseLightningBolt && LightningBolt.KnownSpell && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable
+            && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
         {
-            if (mySettings.UseLightningBolt && LightningBolt.KnownSpell && LightningBolt.IsHostileDistanceGood && LightningBolt.IsSpellUsable
-                && (LightningShield.BuffStack < 6 || !mySettings.UseLightningShield || !LightningShield.KnownSpell))
+            if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
+                && mySettings.UseAncestralSwiftness)
             {
-                if (AncestralSwiftness.KnownSpell && AncestralSwiftness.IsSpellUsable
-                    && mySettings.UseAncestralSwiftness)
-                {
-                    AncestralSwiftness.Launch();
-                    Thread.Sleep(200);
-                }
-                LightningBolt.Launch();
-                return;
+                AncestralSwiftness.Launch();
+                Thread.Sleep(200);
             }
+            LightningBolt.Launch();
         }
     }
 
     private bool FireTotemReady()
     {
-        if (FireElementalTotem.CreatedBySpell || MagmaTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !FireElementalTotem.CreatedBySpell && !MagmaTotem.CreatedBySpell;
     }
 
     private bool EarthTotemReady()
     {
-        if (EarthbindTotem.CreatedBySpell || EarthElementalTotem.CreatedBySpell
-            || StoneBulwarkTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !EarthbindTotem.CreatedBySpell && !EarthElementalTotem.CreatedBySpell && !StoneBulwarkTotem.CreatedBySpell;
     }
 
     private bool WaterTotemReady()
     {
-        if (HealingStreamTotem.CreatedBySpell || HealingTideTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !HealingStreamTotem.CreatedBySpell && !HealingTideTotem.CreatedBySpell;
     }
 
     private bool AirTotemReady()
     {
-        if (CapacitorTotem.CreatedBySpell || GroundingTotem.CreatedBySpell
-            || StormlashTotem.CreatedBySpell)
-            return false;
-        return true;
+        return !CapacitorTotem.CreatedBySpell && !GroundingTotem.CreatedBySpell && !StormlashTotem.CreatedBySpell;
     }
 
     private bool TotemicRecallReady()
     {
         if (FireElementalTotem.CreatedBySpell)
             return false;
-        else if (EarthElementalTotem.CreatedBySpell)
+        if (EarthElementalTotem.CreatedBySpell)
             return false;
-        else if (SearingTotem.CreatedBySpell)
+        if (SearingTotem.CreatedBySpell)
             return true;
-        else if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
+        if (FireTotemReady() && EarthTotemReady() && WaterTotemReady() && AirTotemReady())
             return false;
-        else
-            return true;
+        return true;
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: ShamanElementalSettings
@@ -17012,11 +16847,11 @@ public class PriestShadow
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -17134,8 +16969,9 @@ public class PriestShadow
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -17193,8 +17029,8 @@ public class PriestShadow
             DevouringPlague.Launch();
             return;
         }
-        else if (MindSpike.KnownSpell && MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood
-                 && mySettings.UseMindSpike)
+        if (MindSpike.KnownSpell && MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood
+            && mySettings.UseMindSpike)
         {
             MindSpike.Launch();
             if (ObjectManager.Target.HealthPercent < 50 && ObjectManager.Target.HealthPercent > 0)
@@ -17204,14 +17040,10 @@ public class PriestShadow
             }
             return;
         }
-        else
+        if (MindSear.KnownSpell && MindSear.IsSpellUsable && MindSear.IsHostileDistanceGood
+            && mySettings.UseMindSear)
         {
-            if (MindSear.KnownSpell && MindSear.IsSpellUsable && MindSear.IsHostileDistanceGood
-                && mySettings.UseMindSear)
-            {
-                MindSear.Launch();
-                return;
-            }
+            MindSear.Launch();
         }
     }
 
@@ -17241,29 +17073,28 @@ public class PriestShadow
             PowerWordFortitude.Launch();
             return;
         }
-        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
-                 && mySettings.UseInnerFire)
+        if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
+            && mySettings.UseInnerFire)
         {
             InnerFire.Launch();
             return;
         }
-        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
-                 && !mySettings.UseInnerFire && mySettings.UseInnerWill)
+        if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
+            && !mySettings.UseInnerFire && mySettings.UseInnerWill)
         {
             InnerWill.Launch();
             return;
         }
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-            ItemsManager.UseItem(75525);
-        else
         {
-            if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable
-                && mySettings.UseShadowform)
-            {
-                Shadowform.Launch();
-                return;
-            }
+            ItemsManager.UseItem(75525);
+            return;
+        }
+        if (!Shadowform.HaveBuff && Shadowform.KnownSpell && Shadowform.IsSpellUsable
+            && mySettings.UseShadowform)
+        {
+            Shadowform.Launch();
         }
     }
 
@@ -17297,9 +17128,9 @@ public class PriestShadow
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseDispersionHealthAtPercentage && Dispersion.KnownSpell &&
-                 Dispersion.IsSpellUsable
-                 && mySettings.UseDispersionHealth)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseDispersionHealthAtPercentage && Dispersion.KnownSpell &&
+            Dispersion.IsSpellUsable
+            && mySettings.UseDispersionHealth)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && mySettings.UseRenew)
             {
@@ -17310,25 +17141,25 @@ public class PriestShadow
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
-                 VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
+            VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
         {
             VoidTendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
-                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
+            Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
-                 SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
-                 && mySettings.UseSpectralGuise)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
+            SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
+            && mySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && mySettings.UseRenew)
             {
@@ -17339,24 +17170,20 @@ public class PriestShadow
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
-                 Stoneform.IsSpellUsable && Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
+            Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
+            WarStomp.IsSpellUsable && WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
-                WarStomp.IsSpellUsable && WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -17376,73 +17203,69 @@ public class PriestShadow
             FlashHeal.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
-                 HymnofHope.KnownSpell
-                 && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat && mySettings.UseHymnofHope)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+            HymnofHope.KnownSpell
+            && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat && mySettings.UseHymnofHope)
         {
             HymnofHope.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseDispersionManaAtPercentage &&
-                 !ObjectManager.Me.InCombat
-                 && Dispersion.KnownSpell && Dispersion.IsSpellUsable && mySettings.UseDispersionMana)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseDispersionManaAtPercentage &&
+            !ObjectManager.Me.InCombat
+            && Dispersion.KnownSpell && Dispersion.IsSpellUsable && mySettings.UseDispersionMana)
         {
             Dispersion.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
-                 DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
-                 && mySettings.UseDesperatePrayer)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
+            DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
+            && mySettings.UseDesperatePrayer)
         {
             DesperatePrayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
-                 FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
-                 && mySettings.UseFlashHealInCombat)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
+            FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
+            && mySettings.UseFlashHealInCombat)
         {
             FlashHeal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseVampiricEmbraceAtPercentage &&
-                 VampiricEmbrace.IsSpellUsable && VampiricEmbrace.KnownSpell
-                 && mySettings.UseVampiricEmbrace)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseVampiricEmbraceAtPercentage &&
+            VampiricEmbrace.IsSpellUsable && VampiricEmbrace.KnownSpell
+            && mySettings.UseVampiricEmbrace)
         {
             VampiricEmbrace.Launch();
             return;
         }
-        else if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
-                 && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
-                 && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
+        if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
+            && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
+            && !ObjectManager.Me.HaveBuff(6788) &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
+            && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
         {
             PowerWordShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofMendingAtPercentage &&
-                 PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
-                 && mySettings.UsePrayerofMending)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofMendingAtPercentage &&
+            PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
+            && mySettings.UsePrayerofMending)
         {
             PrayerofMending.Launch();
             return;
         }
-        else
+        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseRenewAtPercentage &&
+            mySettings.UseRenew)
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent <= mySettings.UseRenewAtPercentage &&
-                mySettings.UseRenew)
-            {
-                Renew.Launch();
-                return;
-            }
+            Renew.Launch();
         }
     }
 
@@ -17455,7 +17278,6 @@ public class PriestShadow
             ArcaneTorrent.Launch();
             return;
         }
-
         if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseSilence
             && Silence.KnownSpell && Silence.IsSpellUsable && Silence.IsHostileDistanceGood
             && ObjectManager.Target.HealthPercent <= mySettings.UseSilenceAtPercentage)
@@ -17463,15 +17285,11 @@ public class PriestShadow
             Silence.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UsePsychicHorror
+            && PsychicHorror.KnownSpell && PsychicHorror.IsSpellUsable && PsychicHorror.IsHostileDistanceGood
+            && ObjectManager.Target.HealthPercent <= mySettings.UsePsychicHorrorAtPercentage)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UsePsychicHorror
-                && PsychicHorror.KnownSpell && PsychicHorror.IsSpellUsable && PsychicHorror.IsHostileDistanceGood
-                && ObjectManager.Target.HealthPercent <= mySettings.UsePsychicHorrorAtPercentage)
-            {
-                PsychicHorror.Launch();
-                return;
-            }
+            PsychicHorror.Launch();
         }
     }
 
@@ -17487,37 +17305,44 @@ public class PriestShadow
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+        if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
+            && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
         }
-        else
+        if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
+            && mySettings.UseShadowfiend)
         {
-            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
-                && mySettings.UseShadowfiend)
-            {
-                Shadowfiend.Launch();
-                return;
-            }
+            Shadowfiend.Launch();
         }
     }
 
@@ -17529,107 +17354,104 @@ public class PriestShadow
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
-                 && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
+            && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
         {
             Cascade.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
-                 && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
+            && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
         {
             DivineStar.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
-                 && Halo.IsHostileDistanceGood && mySettings.UseHalo)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
+            && Halo.IsHostileDistanceGood && mySettings.UseHalo)
         {
             Halo.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
-                 && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
+        if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
+            && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
         {
             MindSear.Launch();
             return;
         }
-        else if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                 && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
+        if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
+            && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
         {
             ShadowWordDeath.Launch();
             return;
         }
-        else if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
-                 && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
-                 && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
+        if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
+            && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
+            && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
         {
             ShadowWordPain.Launch();
             ShadowWordPainTimer = new Timer(1000*14);
             return;
         }
-        else if (ShadowWordInsanity.KnownSpell && ShadowWordInsanity.IsHostileDistanceGood
-                 && ShadowWordInsanity.IsSpellUsable && mySettings.UseShadowWordInsanity)
+        if (ShadowWordInsanity.KnownSpell && ShadowWordInsanity.IsHostileDistanceGood
+            && ShadowWordInsanity.IsSpellUsable && mySettings.UseShadowWordInsanity)
         {
             ShadowWordInsanity.Launch();
             ShadowWordPainTimer = new Timer(0);
             return;
         }
-        else if (VampiricTouch.KnownSpell && VampiricTouch.IsSpellUsable
-                 && VampiricTouch.IsHostileDistanceGood && mySettings.UseVampiricTouch
-                 && (!VampiricTouch.TargetHaveBuff || VampiricTouchTimer.IsReady))
+        if (VampiricTouch.KnownSpell && VampiricTouch.IsSpellUsable
+            && VampiricTouch.IsHostileDistanceGood && mySettings.UseVampiricTouch
+            && (!VampiricTouch.TargetHaveBuff || VampiricTouchTimer.IsReady))
         {
             VampiricTouch.Launch();
             VampiricTouchTimer = new Timer(1000*11);
             return;
         }
-        else if (MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood && MindSpike.KnownSpell &&
-                 ObjectManager.Me.HaveBuff(87160) && mySettings.UseMindSpike)
+        if (MindSpike.IsSpellUsable && MindSpike.IsHostileDistanceGood && MindSpike.KnownSpell &&
+            ObjectManager.Me.HaveBuff(87160) && mySettings.UseMindSpike)
         {
             MindSpike.Launch();
             return;
         }
-        else if (DevouringPlague.KnownSpell && DevouringPlague.IsSpellUsable && DevouringPlague.IsHostileDistanceGood &&
-                 ObjectManager.Me.ShadowOrbs == 3 && mySettings.UseDevouringPlague
-                 && (!DevouringPlague.TargetHaveBuff || DevouringPlagueTimer.IsReady))
+        if (DevouringPlague.KnownSpell && DevouringPlague.IsSpellUsable && DevouringPlague.IsHostileDistanceGood &&
+            ObjectManager.Me.ShadowOrbs == 3 && mySettings.UseDevouringPlague
+            && (!DevouringPlague.TargetHaveBuff || DevouringPlagueTimer.IsReady))
         {
             DevouringPlague.Launch();
             DevouringPlagueTimer = new Timer(1000*3);
             return;
         }
-        else if (MindBlast.KnownSpell && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood
-                 && ObjectManager.Me.ShadowOrbs < 3 && mySettings.UseMindBlast)
+        if (MindBlast.KnownSpell && MindBlast.IsSpellUsable && MindBlast.IsHostileDistanceGood
+            && ObjectManager.Me.ShadowOrbs < 3 && mySettings.UseMindBlast)
         {
             MindBlast.Launch();
             return;
         }
-        else if (mySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
-                 (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
-                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                 && ObjectManager.Me.ShadowOrbs != 3)
+        if (mySettings.UseMindFlay && MindFlay.KnownSpell && MindFlay.IsHostileDistanceGood && MindFlay.IsSpellUsable && !ObjectManager.Me.IsCast
+            && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
+            (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
+            && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
+            && ObjectManager.Me.ShadowOrbs != 3)
         {
             MindFlay.Launch();
             return;
         }
-            // Blizzard API Calls for Mind Flay using Smite Function
-        else if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
-                 && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
-                 (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
-                 && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
-                 && ObjectManager.Me.ShadowOrbs != 3)
+        // Blizzard API Calls for Mind Flay using Smite Function
+        if (mySettings.UseMindFlay && Smite.KnownSpell && Smite.IsHostileDistanceGood && Smite.IsSpellUsable && !ObjectManager.Me.IsCast
+            && (ShadowWordPain.TargetHaveBuff || !mySettings.UseShadowWordPain || !ShadowWordPain.KnownSpell) &&
+            (VampiricTouch.TargetHaveBuff || !mySettings.UseVampiricTouch || !VampiricTouch.KnownSpell)
+            && !ObjectManager.Me.HaveBuff(87160) && ObjectManager.GetNumberAttackPlayer() < 5
+            && ObjectManager.Me.ShadowOrbs != 3)
         {
             Smite.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: PriestShadowSettings
@@ -17800,10 +17622,10 @@ public class PriestDiscipline
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private Timer EngineeringTimer = new Timer(0);
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -17910,8 +17732,9 @@ public class PriestDiscipline
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -17981,23 +17804,22 @@ public class PriestDiscipline
             PowerWordFortitude.Launch();
             return;
         }
-        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
-                 && mySettings.UseInnerFire)
+        if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
+            && mySettings.UseInnerFire)
         {
             InnerFire.Launch();
             return;
         }
-        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
-                 && !mySettings.UseInnerFire && mySettings.UseInnerWill)
+        if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
+            && !mySettings.UseInnerFire && mySettings.UseInnerWill)
         {
             InnerWill.Launch();
             return;
         }
-        else
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
         {
-            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem(75525);
+            ItemsManager.UseItem(75525);
         }
     }
 
@@ -18031,25 +17853,25 @@ public class PriestDiscipline
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
-                 VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
+            VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
         {
             VoidTendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
-                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
+            Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
-                 SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
-                 && mySettings.UseSpectralGuise)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
+            SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
+            && mySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && mySettings.UseRenew)
             {
@@ -18060,40 +17882,36 @@ public class PriestDiscipline
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordBarrierAtPercentage &&
-                 PowerWordBarrier.IsSpellUsable && PowerWordBarrier.KnownSpell
-                 && mySettings.UsePowerWordBarrier)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordBarrierAtPercentage &&
+            PowerWordBarrier.IsSpellUsable && PowerWordBarrier.KnownSpell
+            && mySettings.UsePowerWordBarrier)
         {
             SpellManager.CastSpellByIDAndPosition(62618, ObjectManager.Me.Position);
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePainSuppressionAtPercentage &&
-                 PainSuppression.IsSpellUsable && PainSuppression.KnownSpell
-                 && mySettings.UsePainSuppression)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePainSuppressionAtPercentage &&
+            PainSuppression.IsSpellUsable && PainSuppression.KnownSpell
+            && mySettings.UsePainSuppression)
         {
             PainSuppression.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
-                 Stoneform.IsSpellUsable && Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
+            Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
+            WarStomp.IsSpellUsable && WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
-                WarStomp.IsSpellUsable && WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -18113,88 +17931,84 @@ public class PriestDiscipline
             FlashHeal.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseInnerFocusAtPercentage && InnerFocus.KnownSpell &&
-                 InnerFocus.IsSpellUsable
-                 && mySettings.UseInnerFocus && !InnerFocus.HaveBuff)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseInnerFocusAtPercentage && InnerFocus.KnownSpell &&
+            InnerFocus.IsSpellUsable
+            && mySettings.UseInnerFocus && !InnerFocus.HaveBuff)
         {
             InnerFocus.Launch();
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
-                 HymnofHope.KnownSpell
-                 && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat &&
-                 mySettings.UseHymnofHope)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+            HymnofHope.KnownSpell
+            && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat &&
+            mySettings.UseHymnofHope)
         {
             HymnofHope.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
-                 DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
-                 && mySettings.UseDesperatePrayer)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
+            DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
+            && mySettings.UseDesperatePrayer)
         {
             DesperatePrayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
-                 FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
-                 && mySettings.UseFlashHealInCombat)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
+            FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
+            && mySettings.UseFlashHealInCombat)
         {
             FlashHeal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGreaterHealAtPercentage &&
-                 GreaterHeal.KnownSpell && GreaterHeal.IsSpellUsable
-                 && mySettings.UseGreaterHeal)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGreaterHealAtPercentage &&
+            GreaterHeal.KnownSpell && GreaterHeal.IsSpellUsable
+            && mySettings.UseGreaterHeal)
         {
             GreaterHeal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
-                 && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
-                 && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
+        if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
+            && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
+            && !ObjectManager.Me.HaveBuff(6788) &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
+            && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
         {
             PowerWordShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofHealingAtPercentage &&
-                 PrayerofHealing.KnownSpell && PrayerofHealing.IsSpellUsable
-                 && mySettings.UsePrayerofHealing)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofHealingAtPercentage &&
+            PrayerofHealing.KnownSpell && PrayerofHealing.IsSpellUsable
+            && mySettings.UsePrayerofHealing)
         {
             PrayerofHealing.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofMendingAtPercentage &&
-                 PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
-                 && mySettings.UsePrayerofMending)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofMendingAtPercentage &&
+            PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
+            && mySettings.UsePrayerofMending)
         {
             PrayerofMending.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseHealAtPercentage &&
-                 HealSpell.KnownSpell && HealSpell.IsSpellUsable
-                 && (mySettings.UseHeal || !GreaterHeal.KnownSpell))
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseHealAtPercentage &&
+            HealSpell.KnownSpell && HealSpell.IsSpellUsable
+            && (mySettings.UseHeal || !GreaterHeal.KnownSpell))
         {
             HealSpell.Launch();
             return;
         }
-        else
+        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseRenewAtPercentage &&
+            mySettings.UseRenew)
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent <= mySettings.UseRenewAtPercentage &&
-                mySettings.UseRenew)
-            {
-                Renew.Launch();
-                return;
-            }
+            Renew.Launch();
         }
     }
 
@@ -18205,7 +18019,6 @@ public class PriestDiscipline
             && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage)
         {
             ArcaneTorrent.Launch();
-            return;
         }
     }
 
@@ -18221,49 +18034,56 @@ public class PriestDiscipline
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+        if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
+            && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
         }
-        else if (Archangel.IsSpellUsable && Archangel.KnownSpell && ObjectManager.Me.BuffStack(81661) > 4
-                 && mySettings.UseArchangel && ObjectManager.Target.GetDistance < 41)
+        if (Archangel.IsSpellUsable && Archangel.KnownSpell && ObjectManager.Me.BuffStack(81661) > 4
+            && mySettings.UseArchangel && ObjectManager.Target.GetDistance < 41)
         {
             Archangel.Launch();
             return;
         }
-        else if (SpiritShell.IsSpellUsable && SpiritShell.KnownSpell && ObjectManager.Me.HealthPercent > 80
-                 && mySettings.UseSpiritShell && ObjectManager.Target.InCombat)
+        if (SpiritShell.IsSpellUsable && SpiritShell.KnownSpell && ObjectManager.Me.HealthPercent > 80
+            && mySettings.UseSpiritShell && ObjectManager.Target.InCombat)
         {
             SpiritShell.Launch();
             return;
         }
-        else
+        if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
+            && mySettings.UseShadowfiend)
         {
-            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
-                && mySettings.UseShadowfiend)
-            {
-                Shadowfiend.Launch();
-                return;
-            }
+            Shadowfiend.Launch();
         }
     }
 
@@ -18275,79 +18095,76 @@ public class PriestDiscipline
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
-                 && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
+            && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
         {
             Cascade.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
-                 && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
+            && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
         {
             DivineStar.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
-                 && Halo.IsHostileDistanceGood && mySettings.UseHalo)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
+            && Halo.IsHostileDistanceGood && mySettings.UseHalo)
         {
             Halo.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
-                 && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
+        if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
+            && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
         {
             MindSear.Launch();
             return;
         }
-        else if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                 && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
+        if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
+            && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
         {
             ShadowWordDeath.Launch();
             return;
         }
-        else if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
-                 && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
-                 && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
+        if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
+            && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
+            && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
         {
             ShadowWordPain.Launch();
             ShadowWordPainTimer = new Timer(1000*14);
             return;
         }
-        else if (PowerWordSolace.KnownSpell && PowerWordSolace.IsHostileDistanceGood
-                 && PowerWordSolace.IsSpellUsable && mySettings.UsePowerWordSolace
-                 && ObjectManager.Me.ManaPercentage < 50)
+        if (PowerWordSolace.KnownSpell && PowerWordSolace.IsHostileDistanceGood
+            && PowerWordSolace.IsSpellUsable && mySettings.UsePowerWordSolace
+            && ObjectManager.Me.ManaPercentage < 50)
         {
             PowerWordSolace.Launch();
             return;
         }
-        else if (Penance.IsSpellUsable && Penance.IsHostileDistanceGood && Penance.KnownSpell
-                 && mySettings.UsePenance)
+        if (Penance.IsSpellUsable && Penance.IsHostileDistanceGood && Penance.KnownSpell
+            && mySettings.UsePenance)
         {
             Penance.Launch();
             return;
         }
-        else if (HolyFire.IsSpellUsable && HolyFire.IsHostileDistanceGood && HolyFire.KnownSpell
-                 && mySettings.UseHolyFire)
+        if (HolyFire.IsSpellUsable && HolyFire.IsHostileDistanceGood && HolyFire.KnownSpell
+            && mySettings.UseHolyFire)
         {
             HolyFire.Launch();
             return;
         }
-        else if (Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseSmite && ShadowWordPain.TargetHaveBuff
-                 && ObjectManager.GetNumberAttackPlayer() < 5)
+        if (Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
+            && mySettings.UseSmite && ShadowWordPain.TargetHaveBuff
+            && ObjectManager.GetNumberAttackPlayer() < 5)
         {
             Smite.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: PriestDisciplineSettings
@@ -18513,10 +18330,10 @@ public class PriestHoly
 
     #region General Timers & Variables
 
-    private Timer EngineeringTimer = new Timer(0);
-    private Timer OnCD = new Timer(0);
     private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
     private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
+    private Timer EngineeringTimer = new Timer(0);
+    private Timer OnCD = new Timer(0);
 
     #endregion
 
@@ -18625,8 +18442,9 @@ public class PriestHoly
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -18696,41 +18514,40 @@ public class PriestHoly
             PowerWordFortitude.Launch();
             return;
         }
-        else if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
-                 && mySettings.UseInnerFire)
+        if (InnerFire.KnownSpell && InnerFire.IsSpellUsable && !InnerFire.HaveBuff
+            && mySettings.UseInnerFire)
         {
             InnerFire.Launch();
             return;
         }
-        else if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
-                 && !mySettings.UseInnerFire && mySettings.UseInnerWill)
+        if (InnerWill.KnownSpell && InnerWill.IsSpellUsable && !InnerWill.HaveBuff
+            && !mySettings.UseInnerFire && mySettings.UseInnerWill)
         {
             InnerWill.Launch();
             return;
         }
-        else if (ChakraChastise.KnownSpell && ChakraChastise.IsSpellUsable && !ChakraChastise.HaveBuff
-                 && mySettings.UseChakraChastise)
+        if (ChakraChastise.KnownSpell && ChakraChastise.IsSpellUsable && !ChakraChastise.HaveBuff
+            && mySettings.UseChakraChastise)
         {
             ChakraChastise.Launch();
             return;
         }
-        else if (ChakraSanctuary.KnownSpell && ChakraSanctuary.IsSpellUsable && !ChakraSanctuary.HaveBuff
-                 && !mySettings.UseChakraChastise && mySettings.UseChakraSanctuary)
+        if (ChakraSanctuary.KnownSpell && ChakraSanctuary.IsSpellUsable && !ChakraSanctuary.HaveBuff
+            && !mySettings.UseChakraChastise && mySettings.UseChakraSanctuary)
         {
             ChakraSanctuary.Launch();
             return;
         }
-        else if (ChakraSerenity.KnownSpell && ChakraSerenity.IsSpellUsable && !ChakraSerenity.HaveBuff
-                 && !mySettings.UseChakraChastise && !mySettings.UseChakraSanctuary && mySettings.UseChakraSerenity)
+        if (ChakraSerenity.KnownSpell && ChakraSerenity.IsSpellUsable && !ChakraSerenity.HaveBuff
+            && !mySettings.UseChakraChastise && !mySettings.UseChakraSanctuary && mySettings.UseChakraSerenity)
         {
             ChakraSerenity.Launch();
             return;
         }
-        else
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
         {
-            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem(75525);
+            ItemsManager.UseItem(75525);
         }
     }
 
@@ -18764,32 +18581,32 @@ public class PriestHoly
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGuardianSpiritAtPercentage && GuardianSpirit.KnownSpell &&
-                 GuardianSpirit.IsSpellUsable
-                 && mySettings.UseGuardianSpirit)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGuardianSpiritAtPercentage && GuardianSpirit.KnownSpell &&
+            GuardianSpirit.IsSpellUsable
+            && mySettings.UseGuardianSpirit)
         {
             GuardianSpirit.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
-                 VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseVoidTendrilsAtPercentage &&
+            VoidTendrils.IsSpellUsable && VoidTendrils.KnownSpell && mySettings.UseVoidTendrils)
         {
             VoidTendrils.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
-                 Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
+        if (ObjectManager.GetNumberAttackPlayer() >= 2 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePsyfiendAtPercentage &&
+            Psyfiend.IsSpellUsable && Psyfiend.KnownSpell && mySettings.UsePsyfiend)
         {
             Psyfiend.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
-                 SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
-                 && mySettings.UseSpectralGuise)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseSpectralGuiseAtPercentage &&
+            SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
+            && mySettings.UseSpectralGuise)
         {
             if (Renew.KnownSpell && Renew.IsSpellUsable && mySettings.UseRenew)
             {
@@ -18800,24 +18617,20 @@ public class PriestHoly
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
-                 Stoneform.IsSpellUsable && Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage &&
+            Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
+            WarStomp.IsSpellUsable && WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage &&
-                WarStomp.IsSpellUsable && WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -18837,107 +18650,103 @@ public class PriestHoly
             FlashHeal.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseDivineHymnAtPercentage && DivineHymn.KnownSpell &&
-                 DivineHymn.IsSpellUsable
-                 && mySettings.UseDivineHymn)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseDivineHymnAtPercentage && DivineHymn.KnownSpell &&
+            DivineHymn.IsSpellUsable
+            && mySettings.UseDivineHymn)
         {
             DivineHymn.Launch();
             return;
         }
-        else if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
-                 HymnofHope.KnownSpell
-                 && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat &&
-                 mySettings.UseHymnofHope)
+        if (ObjectManager.Me.ManaPercentage <= mySettings.UseHymnofHopeAtPercentage &&
+            HymnofHope.KnownSpell
+            && HymnofHope.IsSpellUsable && !ObjectManager.Me.InCombat &&
+            mySettings.UseHymnofHope)
         {
             HymnofHope.Launch(false);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
-                 DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
-                 && mySettings.UseDesperatePrayer)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseDesperatePrayerAtPercentage &&
+            DesperatePrayer.KnownSpell && DesperatePrayer.IsSpellUsable
+            && mySettings.UseDesperatePrayer)
         {
             DesperatePrayer.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
-                 FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
-                 && mySettings.UseFlashHealInCombat)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseFlashHealInCombatAtPercentage &&
+            FlashHeal.KnownSpell && FlashHeal.IsSpellUsable
+            && mySettings.UseFlashHealInCombat)
         {
             FlashHeal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGreaterHealAtPercentage &&
-                 GreaterHeal.KnownSpell && GreaterHeal.IsSpellUsable
-                 && mySettings.UseGreaterHeal)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGreaterHealAtPercentage &&
+            GreaterHeal.KnownSpell && GreaterHeal.IsSpellUsable
+            && mySettings.UseGreaterHeal)
         {
             GreaterHeal.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
-                 && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
-                 && !ObjectManager.Me.HaveBuff(6788) &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
-                 && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
+        if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
+            && !PowerWordShield.HaveBuff && mySettings.UsePowerWordShield
+            && !ObjectManager.Me.HaveBuff(6788) &&
+            ObjectManager.Me.HealthPercent <= mySettings.UsePowerWordShieldAtPercentage
+            && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
         {
             PowerWordShield.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofHealingAtPercentage &&
-                 PrayerofHealing.KnownSpell && PrayerofHealing.IsSpellUsable
-                 && mySettings.UsePrayerofHealing)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UsePrayerofHealingAtPercentage &&
+            PrayerofHealing.KnownSpell && PrayerofHealing.IsSpellUsable
+            && mySettings.UsePrayerofHealing)
         {
             PrayerofHealing.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseCircleofHealingAtPercentage &&
-                 CircleofHealing.KnownSpell && CircleofHealing.IsSpellUsable
-                 && mySettings.UseCircleofHealing)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseCircleofHealingAtPercentage &&
+            CircleofHealing.KnownSpell && CircleofHealing.IsSpellUsable
+            && mySettings.UseCircleofHealing)
         {
             SpellManager.CastSpellByIDAndPosition(34861, ObjectManager.Me.Position);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <=
-                 mySettings.UsePrayerofMendingAtPercentage &&
-                 PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
-                 && mySettings.UsePrayerofMending)
+        if (ObjectManager.Me.HealthPercent <=
+            mySettings.UsePrayerofMendingAtPercentage &&
+            PrayerofMending.KnownSpell && PrayerofMending.IsSpellUsable
+            && mySettings.UsePrayerofMending)
         {
             PrayerofMending.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseHealAtPercentage &&
-                 HealSpell.KnownSpell && HealSpell.IsSpellUsable
-                 && (mySettings.UseHeal || !GreaterHeal.KnownSpell))
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseHealAtPercentage &&
+            HealSpell.KnownSpell && HealSpell.IsSpellUsable
+            && (mySettings.UseHeal || !GreaterHeal.KnownSpell))
         {
             HealSpell.Launch();
             return;
         }
-        else if (LightWell.KnownSpell && LightWell.IsSpellUsable &&
-                 mySettings.UseGlyphofLightspring
-                 &&
-                 ObjectManager.Me.HealthPercent <=
-                 mySettings.UseLightWellAtPercentage && mySettings.UseLightWell)
+        if (LightWell.KnownSpell && LightWell.IsSpellUsable &&
+            mySettings.UseGlyphofLightspring
+            &&
+            ObjectManager.Me.HealthPercent <=
+            mySettings.UseLightWellAtPercentage && mySettings.UseLightWell)
         {
             SpellManager.CastSpellByIDAndPosition(724,
                                                   ObjectManager.Target
                                                                .Position);
             return;
         }
-        else
+        if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
+            ObjectManager.Me.HealthPercent <=
+            mySettings.UseRenewAtPercentage && mySettings.UseRenew)
         {
-            if (Renew.KnownSpell && Renew.IsSpellUsable && !Renew.HaveBuff &&
-                ObjectManager.Me.HealthPercent <=
-                mySettings.UseRenewAtPercentage && mySettings.UseRenew)
-            {
-                Renew.Launch();
-                return;
-            }
+            Renew.Launch();
         }
     }
 
@@ -18964,37 +18773,44 @@ public class PriestHoly
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
-                 && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
+        if (PowerInfusion.IsSpellUsable && PowerInfusion.KnownSpell
+            && mySettings.UsePowerInfusion && ObjectManager.Target.GetDistance < 41)
         {
             PowerInfusion.Launch();
             return;
         }
-        else
+        if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
+            && mySettings.UseShadowfiend)
         {
-            if (Shadowfiend.IsSpellUsable && Shadowfiend.KnownSpell && Shadowfiend.IsHostileDistanceGood
-                && mySettings.UseShadowfiend)
-            {
-                Shadowfiend.Launch();
-                return;
-            }
+            Shadowfiend.Launch();
         }
     }
 
@@ -19006,79 +18822,76 @@ public class PriestHoly
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
-                 && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Cascade.IsSpellUsable && Cascade.KnownSpell
+            && Cascade.IsHostileDistanceGood && mySettings.UseCascade)
         {
             Cascade.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
-                 && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && DivineStar.IsSpellUsable && DivineStar.KnownSpell
+            && DivineStar.IsHostileDistanceGood && mySettings.UseDivineStar)
         {
             DivineStar.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
-                 && Halo.IsHostileDistanceGood && mySettings.UseHalo)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && Halo.IsSpellUsable && Halo.KnownSpell
+            && Halo.IsHostileDistanceGood && mySettings.UseHalo)
         {
             Halo.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
-                 && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
+        if (ObjectManager.GetNumberAttackPlayer() > 4 && MindSear.IsSpellUsable && MindSear.KnownSpell
+            && MindSear.IsHostileDistanceGood && !ObjectManager.Me.IsCast && mySettings.UseMindSear)
         {
             MindSear.Launch();
             return;
         }
-        else if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
-                 && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
+        if (ShadowWordDeath.IsSpellUsable && ShadowWordDeath.IsHostileDistanceGood && ShadowWordDeath.KnownSpell
+            && ObjectManager.Target.HealthPercent < 20 && mySettings.UseShadowWordDeath)
         {
             ShadowWordDeath.Launch();
             return;
         }
-        else if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
-                 && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
-                 && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
+        if (ShadowWordPain.KnownSpell && ShadowWordPain.IsSpellUsable
+            && ShadowWordPain.IsHostileDistanceGood && mySettings.UseShadowWordPain
+            && (!ShadowWordPain.TargetHaveBuff || ShadowWordPainTimer.IsReady))
         {
             ShadowWordPain.Launch();
             ShadowWordPainTimer = new Timer(1000*14);
             return;
         }
-        else if (PowerWordSolace.KnownSpell && PowerWordSolace.IsHostileDistanceGood
-                 && PowerWordSolace.IsSpellUsable && mySettings.UsePowerWordSolace
-                 && ObjectManager.Me.ManaPercentage < 50)
+        if (PowerWordSolace.KnownSpell && PowerWordSolace.IsHostileDistanceGood
+            && PowerWordSolace.IsSpellUsable && mySettings.UsePowerWordSolace
+            && ObjectManager.Me.ManaPercentage < 50)
         {
             PowerWordSolace.Launch();
             return;
         }
-        else if (HolyWordChastise.IsSpellUsable && HolyWordChastise.IsHostileDistanceGood && HolyWordChastise.KnownSpell
-                 && mySettings.UseHolyWordChastise)
+        if (HolyWordChastise.IsSpellUsable && HolyWordChastise.IsHostileDistanceGood && HolyWordChastise.KnownSpell
+            && mySettings.UseHolyWordChastise)
         {
             HolyWordChastise.Launch();
             return;
         }
-        else if (HolyFire.IsSpellUsable && HolyFire.IsHostileDistanceGood && HolyFire.KnownSpell
-                 && mySettings.UseHolyFire)
+        if (HolyFire.IsSpellUsable && HolyFire.IsHostileDistanceGood && HolyFire.KnownSpell
+            && mySettings.UseHolyFire)
         {
             HolyFire.Launch();
             return;
         }
-        else if (Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
-                 && mySettings.UseSmite && ShadowWordPain.TargetHaveBuff
-                 && ObjectManager.GetNumberAttackPlayer() < 5)
+        if (Smite.IsSpellUsable && Smite.KnownSpell && Smite.IsHostileDistanceGood
+            && mySettings.UseSmite && ShadowWordPain.TargetHaveBuff
+            && ObjectManager.GetNumberAttackPlayer() < 5)
         {
             Smite.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: PriestHolySettings
@@ -19256,12 +19069,12 @@ public class RogueCombat
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -19383,8 +19196,9 @@ public class RogueCombat
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -19429,32 +19243,26 @@ public class RogueCombat
                 Garrote.Launch();
                 return;
             }
-            else
+            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
+                && mySettings.UseCheapShot)
             {
-                if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                    && mySettings.UseCheapShot)
-                {
-                    CheapShot.Launch();
-                    return;
-                }
+                CheapShot.Launch();
+                return;
             }
+            return;
         }
-        else if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-                 && mySettings.UseShurikenToss && !mySettings.UseStealth)
+        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
+            && mySettings.UseShurikenToss && !mySettings.UseStealth)
         {
             ShurikenToss.Launch();
             return;
         }
-        else
+        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
+            && mySettings.UseThrow && !mySettings.UseStealth)
         {
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-                && mySettings.UseThrow && !mySettings.UseStealth)
-            {
-                MovementManager.StopMove();
-                Throw.Launch();
-                Thread.Sleep(1000);
-                return;
-            }
+            MovementManager.StopMove();
+            Throw.Launch();
+            Thread.Sleep(1000);
         }
     }
 
@@ -19479,35 +19287,30 @@ public class RogueCombat
             Eviscerate.Launch();
             return;
         }
-        else if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
-                 && mySettings.UseRevealingStrike)
+        if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
+            && mySettings.UseRevealingStrike)
         {
             RevealingStrike.Launch();
             return;
         }
-        else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                 && mySettings.UseSinisterStrike)
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseSinisterStrike)
         {
             SinisterStrike.Launch();
             return;
         }
-        else
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
-            if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
-            {
-                CP = ObjectManager.Me.ComboPoint;
-                SliceandDice.Launch();
-                SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
-                return;
-            }
+            CP = ObjectManager.Me.ComboPoint;
+            SliceandDice.Launch();
+            SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
+            return;
         }
-
         if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
             && mySettings.UseFanofKnives)
         {
             FanofKnives.Launch();
-            return;
         }
     }
 
@@ -19553,48 +19356,42 @@ public class RogueCombat
             LeechingPoison.Launch();
             return;
         }
-        else if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-                 && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
+        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
+            && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
         {
             ParalyticPoison.Launch();
             return;
         }
-        else if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-                 && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
+        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
+            && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
         {
             CripplingPoison.Launch();
             return;
         }
-        else
+        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
+            && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
+            && !LeechingPoison.HaveBuff)
         {
-            if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-                && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-                && !LeechingPoison.HaveBuff)
-            {
-                MindnumbingPoison.Launch();
-                return;
-            }
+            MindnumbingPoison.Launch();
+            return;
         }
-
         if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
             && mySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             BurstofSpeed.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
+            && mySettings.UseSprint && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && mySettings.UseSprint && ObjectManager.Me.GetMove)
-            {
-                Sprint.Launch();
-                return;
-            }
+            Sprint.Launch();
+            return;
         }
-
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -19628,59 +19425,54 @@ public class RogueCombat
             OnCD = new Timer(1000*CP);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-                 && mySettings.UseEvasion)
+        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
+            && mySettings.UseEvasion)
         {
             Evasion.Launch();
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-                 && mySettings.UseCombatReadiness)
+        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
+            && mySettings.UseCombatReadiness)
         {
             CombatReadiness.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-                 && mySettings.UseDismantle)
+        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
+            && mySettings.UseDismantle)
         {
             Dismantle.Launch();
             DismantleTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
+            && mySettings.UseVanish)
         {
-            if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-                && mySettings.UseVanish)
-            {
-                Vanish.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
         }
-
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
             && mySettings.UsePreparation && !Evasion.IsSpellUsable)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -19715,37 +19507,32 @@ public class RogueCombat
             Kick.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-                 && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
+        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
         {
             CloakofShadows.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
+            && !CloakofShadows.HaveBuff)
         {
-            if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-                && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
-                && !CloakofShadows.HaveBuff)
-            {
-                SmokeBomb.Launch();
-                return;
-            }
+            SmokeBomb.Launch();
+            return;
         }
-
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
             && mySettings.UsePreparation && !CloakofShadows.IsSpellUsable && ObjectManager.Target.IsCast
             && ObjectManager.Target.IsTargetingMe)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -19761,44 +19548,51 @@ public class RogueCombat
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (AdrenalineRush.KnownSpell && AdrenalineRush.IsSpellUsable
-                 && mySettings.UseAdrenalineRush && ObjectManager.Target.GetDistance < 30)
+        if (AdrenalineRush.KnownSpell && AdrenalineRush.IsSpellUsable
+            && mySettings.UseAdrenalineRush && ObjectManager.Target.GetDistance < 30)
         {
             AdrenalineRush.Launch();
             return;
         }
-        else if (KillingSpree.KnownSpell && KillingSpree.IsSpellUsable
-                 && mySettings.UseKillingSpree && ObjectManager.Target.GetDistance < 10
-                 && ObjectManager.Me.EnergyPercentage < 35)
+        if (KillingSpree.KnownSpell && KillingSpree.IsSpellUsable
+            && mySettings.UseKillingSpree && ObjectManager.Target.GetDistance < 10
+            && ObjectManager.Me.EnergyPercentage < 35)
         {
             KillingSpree.Launch();
             return;
         }
-        else
+        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
+            && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
         {
-            if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-                && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-            {
-                ShadowBlades.Launch();
-                return;
-            }
+            ShadowBlades.Launch();
         }
     }
 
@@ -19840,58 +19634,52 @@ public class RogueCombat
             Eviscerate.Launch();
             return;
         }
-        else if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
-                 && mySettings.UseRevealingStrike && !RevealingStrike.TargetHaveBuff)
+        if (RevealingStrike.KnownSpell && RevealingStrike.IsSpellUsable && RevealingStrike.IsHostileDistanceGood
+            && mySettings.UseRevealingStrike && !RevealingStrike.TargetHaveBuff)
         {
             RevealingStrike.Launch();
             return;
         }
-        else if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                 && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
             CP = ObjectManager.Me.ComboPoint;
             SliceandDice.Launch();
             SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
             return;
         }
-        else if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                 && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
+        if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
+            && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
         {
             CP = ObjectManager.Me.ComboPoint;
             Rupture.Launch();
             RuptureTimer = new Timer(1000*(4 + (CP*4)));
             return;
         }
-        else if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                 && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
+        if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
+            && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
         {
             ExposeArmor.Launch();
             return;
         }
-        else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                 && mySettings.UseSinisterStrike)
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseSinisterStrike)
         {
             SinisterStrike.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: RogueCombatSettings
@@ -20053,12 +19841,12 @@ public class RogueSubtlety
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -20178,8 +19966,9 @@ public class RogueSubtlety
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -20231,32 +20020,26 @@ public class RogueSubtlety
                 Garrote.Launch();
                 return;
             }
-            else
+            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
+                && mySettings.UseCheapShot)
             {
-                if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                    && mySettings.UseCheapShot)
-                {
-                    CheapShot.Launch();
-                    return;
-                }
+                CheapShot.Launch();
+                return;
             }
+            return;
         }
-        else if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-                 && mySettings.UseShurikenToss && !mySettings.UseStealth)
+        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
+            && mySettings.UseShurikenToss && !mySettings.UseStealth)
         {
             ShurikenToss.Launch();
             return;
         }
-        else
+        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
+            && mySettings.UseThrow && !mySettings.UseStealth)
         {
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-                && mySettings.UseThrow && !mySettings.UseStealth)
-            {
-                MovementManager.StopMove();
-                Throw.Launch();
-                Thread.Sleep(1000);
-                return;
-            }
+            MovementManager.StopMove();
+            Throw.Launch();
+            Thread.Sleep(1000);
         }
     }
 
@@ -20281,30 +20064,25 @@ public class RogueSubtlety
             Eviscerate.Launch();
             return;
         }
-        else if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                 && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
             CP = ObjectManager.Me.ComboPoint;
             SliceandDice.Launch();
             SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
             return;
         }
-        else
+        // Blizzard API Calls for Hemorrhage using Sinister Strike Function
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseHemorrhage)
         {
-            // Blizzard API Calls for Hemorrhage using Sinister Strike Function
-            if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                && mySettings.UseHemorrhage)
-            {
-                SinisterStrike.Launch();
-                return;
-            }
+            SinisterStrike.Launch();
+            return;
         }
-
         if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
             && mySettings.UseFanofKnives)
         {
             FanofKnives.Launch();
-            return;
         }
     }
 
@@ -20350,48 +20128,42 @@ public class RogueSubtlety
             LeechingPoison.Launch();
             return;
         }
-        else if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-                 && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
+        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
+            && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
         {
             ParalyticPoison.Launch();
             return;
         }
-        else if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-                 && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
+        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
+            && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
         {
             CripplingPoison.Launch();
             return;
         }
-        else
+        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
+            && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
+            && !LeechingPoison.HaveBuff)
         {
-            if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-                && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-                && !LeechingPoison.HaveBuff)
-            {
-                MindnumbingPoison.Launch();
-                return;
-            }
+            MindnumbingPoison.Launch();
+            return;
         }
-
         if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
             && mySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             BurstofSpeed.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
+            && mySettings.UseSprint && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && mySettings.UseSprint && ObjectManager.Me.GetMove)
-            {
-                Sprint.Launch();
-                return;
-            }
+            Sprint.Launch();
+            return;
         }
-
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -20425,59 +20197,54 @@ public class RogueSubtlety
             OnCD = new Timer(1000*CP);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-                 && mySettings.UseEvasion)
+        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
+            && mySettings.UseEvasion)
         {
             Evasion.Launch();
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-                 && mySettings.UseCombatReadiness)
+        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
+            && mySettings.UseCombatReadiness)
         {
             CombatReadiness.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-                 && mySettings.UseDismantle)
+        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
+            && mySettings.UseDismantle)
         {
             Dismantle.Launch();
             DismantleTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
+            && mySettings.UseVanish)
         {
-            if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-                && mySettings.UseVanish)
-            {
-                Vanish.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
         }
-
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
             && mySettings.UsePreparation && !Evasion.IsSpellUsable)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -20512,29 +20279,26 @@ public class RogueSubtlety
             Kick.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-                 && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
+        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
         {
             CloakofShadows.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
+            && !CloakofShadows.HaveBuff)
         {
-            if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-                && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
-                && !CloakofShadows.HaveBuff)
-            {
-                SmokeBomb.Launch();
-                return;
-            }
+            SmokeBomb.Launch();
+            return;
         }
 
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
@@ -20542,7 +20306,6 @@ public class RogueSubtlety
             && ObjectManager.Target.IsTargetingMe)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -20558,37 +20321,44 @@ public class RogueSubtlety
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (ShadowDance.KnownSpell && ShadowDance.IsSpellUsable
-                 && mySettings.UseShadowDance && ObjectManager.Target.GetDistance < 10)
+        if (ShadowDance.KnownSpell && ShadowDance.IsSpellUsable
+            && mySettings.UseShadowDance && ObjectManager.Target.GetDistance < 10)
         {
             ShadowDance.Launch();
             return;
         }
-        else
+        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
+            && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
         {
-            if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-                && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-            {
-                ShadowBlades.Launch();
-                return;
-            }
+            ShadowBlades.Launch();
         }
     }
 
@@ -20617,42 +20387,38 @@ public class RogueSubtlety
             Eviscerate.Launch();
             return;
         }
-        else if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                 && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
             CP = ObjectManager.Me.ComboPoint;
             SliceandDice.Launch();
             SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
             return;
         }
-        else if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                 && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
+        if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
+            && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
         {
             CP = ObjectManager.Me.ComboPoint;
             Rupture.Launch();
             RuptureTimer = new Timer(1000*(4 + (CP*4)));
             return;
         }
-        else if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                 && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
+        if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
+            && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
         {
             ExposeArmor.Launch();
             return;
         }
-        else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                 && mySettings.UseHemorrhage)
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseHemorrhage)
         {
             SinisterStrike.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
@@ -20819,12 +20585,12 @@ public class RogueAssassination
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int CP = 0;
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -20945,8 +20711,9 @@ public class RogueAssassination
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -20990,32 +20757,26 @@ public class RogueAssassination
                 Garrote.Launch();
                 return;
             }
-            else
+            if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
+                && mySettings.UseCheapShot)
             {
-                if (CheapShot.IsSpellUsable && CheapShot.IsHostileDistanceGood && CheapShot.KnownSpell
-                    && mySettings.UseCheapShot)
-                {
-                    CheapShot.Launch();
-                    return;
-                }
+                CheapShot.Launch();
+                return;
             }
+            return;
         }
-        else if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
-                 && mySettings.UseShurikenToss && !mySettings.UseStealth)
+        if (ShurikenToss.IsSpellUsable && ShurikenToss.IsHostileDistanceGood && ShurikenToss.KnownSpell
+            && mySettings.UseShurikenToss && !mySettings.UseStealth)
         {
             ShurikenToss.Launch();
             return;
         }
-        else
+        if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
+            && mySettings.UseThrow && !mySettings.UseStealth)
         {
-            if (Throw.IsSpellUsable && Throw.IsHostileDistanceGood && Throw.KnownSpell
-                && mySettings.UseThrow && !mySettings.UseStealth)
-            {
-                MovementManager.StopMove();
-                Throw.Launch();
-                Thread.Sleep(1000);
-                return;
-            }
+            MovementManager.StopMove();
+            Throw.Launch();
+            Thread.Sleep(1000);
         }
     }
 
@@ -21043,36 +20804,31 @@ public class RogueAssassination
                 SliceandDiceTimer = new Timer(1000*(6 + (5*6)));
             return;
         }
-            // Blizzard API Calls for Dispatch using Sinister Strike Function
-        else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                 && mySettings.UseDispatch)
+        // Blizzard API Calls for Dispatch using Sinister Strike Function
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseDispatch)
         {
             SinisterStrike.Launch();
             return;
         }
-        else if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                 && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
             CP = ObjectManager.Me.ComboPoint;
             SliceandDice.Launch();
             SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
             return;
         }
-        else
+        if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
+            && mySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
         {
-            if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
-                && mySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
-            {
-                Mutilate.Launch();
-                return;
-            }
+            Mutilate.Launch();
+            return;
         }
-
         if (FanofKnives.KnownSpell && FanofKnives.IsSpellUsable && FanofKnives.IsHostileDistanceGood
             && mySettings.UseFanofKnives)
         {
             FanofKnives.Launch();
-            return;
         }
     }
 
@@ -21118,48 +20874,42 @@ public class RogueAssassination
             LeechingPoison.Launch();
             return;
         }
-        else if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
-                 && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
+        if (!ParalyticPoison.HaveBuff && ParalyticPoison.KnownSpell && ParalyticPoison.IsSpellUsable
+            && mySettings.UseParalyticPoison && !LeechingPoison.HaveBuff)
         {
             ParalyticPoison.Launch();
             return;
         }
-        else if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
-                 && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
+        if (!CripplingPoison.HaveBuff && CripplingPoison.KnownSpell && CripplingPoison.IsSpellUsable
+            && mySettings.UseCripplingPoison && !LeechingPoison.HaveBuff && ParalyticPoison.HaveBuff)
         {
             CripplingPoison.Launch();
             return;
         }
-        else
+        if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
+            && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
+            && !LeechingPoison.HaveBuff)
         {
-            if (!MindnumbingPoison.HaveBuff && MindnumbingPoison.KnownSpell && MindnumbingPoison.IsSpellUsable
-                && mySettings.UseMindnumbingPoison && !CripplingPoison.HaveBuff && !ParalyticPoison.HaveBuff
-                && !LeechingPoison.HaveBuff)
-            {
-                MindnumbingPoison.Launch();
-                return;
-            }
+            MindnumbingPoison.Launch();
+            return;
         }
-
         if (!ObjectManager.Me.InCombat && BurstofSpeed.IsSpellUsable && BurstofSpeed.KnownSpell
             && mySettings.UseBurstofSpeed && ObjectManager.Me.GetMove)
         {
             BurstofSpeed.Launch();
             return;
         }
-        else
+        if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
+            && mySettings.UseSprint && ObjectManager.Me.GetMove)
         {
-            if (!ObjectManager.Me.InCombat && Sprint.IsSpellUsable && Sprint.KnownSpell
-                && mySettings.UseSprint && ObjectManager.Me.GetMove)
-            {
-                Sprint.Launch();
-                return;
-            }
+            Sprint.Launch();
+            return;
         }
-
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -21193,59 +20943,54 @@ public class RogueAssassination
             OnCD = new Timer(1000*CP);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
-                 && mySettings.UseEvasion)
+        if (ObjectManager.Me.HealthPercent <= 80 && Evasion.KnownSpell && Evasion.IsSpellUsable
+            && mySettings.UseEvasion)
         {
             Evasion.Launch();
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
-                 && mySettings.UseCombatReadiness)
+        if (ObjectManager.Me.HealthPercent <= 90 && CombatReadiness.KnownSpell && CombatReadiness.IsSpellUsable
+            && mySettings.UseCombatReadiness)
         {
             CombatReadiness.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
-                 && mySettings.UseDismantle)
+        if (ObjectManager.Me.HealthPercent <= 95 && Dismantle.KnownSpell && Dismantle.IsSpellUsable
+            && mySettings.UseDismantle)
         {
             Dismantle.Launch();
             DismantleTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
+            && mySettings.UseVanish)
         {
-            if (ObjectManager.GetNumberAttackPlayer() >= 3 && Vanish.KnownSpell && Vanish.IsSpellUsable
-                && mySettings.UseVanish)
-            {
-                Vanish.Launch();
-                Thread.Sleep(5000);
-                return;
-            }
+            Vanish.Launch();
+            Thread.Sleep(5000);
+            return;
         }
-
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
             && mySettings.UsePreparation && !Evasion.IsSpellUsable)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -21280,37 +21025,32 @@ public class RogueAssassination
             Kick.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
-                 && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
-                 ObjectManager.Target.IsTargetingMe)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && ObjectManager.Target.GetDistance < 8
+            && ObjectManager.Me.HealthPercent <= mySettings.UseArcaneTorrentForDecastAtPercentage
+            && mySettings.UseArcaneTorrentForDecast && ObjectManager.Target.IsCast &&
+            ObjectManager.Target.IsTargetingMe)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
-                 && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
+        if (ObjectManager.Target.IsCast && CloakofShadows.KnownSpell && CloakofShadows.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseCloakofShadows)
         {
             CloakofShadows.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
+            && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
+            && !CloakofShadows.HaveBuff)
         {
-            if (ObjectManager.Target.IsCast && SmokeBomb.KnownSpell && SmokeBomb.IsSpellUsable
-                && ObjectManager.Target.IsTargetingMe && mySettings.UseSmokeBomb
-                && !CloakofShadows.HaveBuff)
-            {
-                SmokeBomb.Launch();
-                return;
-            }
+            SmokeBomb.Launch();
+            return;
         }
-
         if (ObjectManager.Me.HealthPercent <= 70 && Preparation.KnownSpell && Preparation.IsSpellUsable
             && mySettings.UsePreparation && !CloakofShadows.IsSpellUsable && ObjectManager.Target.IsCast
             && ObjectManager.Target.IsTargetingMe)
         {
             Preparation.Launch();
-            return;
         }
     }
 
@@ -21326,37 +21066,44 @@ public class RogueAssassination
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (Vendetta.KnownSpell && Vendetta.IsSpellUsable
-                 && mySettings.UseVendetta && Vendetta.IsHostileDistanceGood)
+        if (Vendetta.KnownSpell && Vendetta.IsSpellUsable
+            && mySettings.UseVendetta && Vendetta.IsHostileDistanceGood)
         {
             Vendetta.Launch();
             return;
         }
-        else
+        if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
+            && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
         {
-            if (ShadowBlades.KnownSpell && ShadowBlades.IsSpellUsable
-                && mySettings.UseShadowBlades && ObjectManager.Target.GetDistance < 30)
-            {
-                ShadowBlades.Launch();
-                return;
-            }
+            ShadowBlades.Launch();
         }
     }
 
@@ -21393,48 +21140,44 @@ public class RogueAssassination
                 SliceandDiceTimer = new Timer(1000*(6 + (5*6)));
             return;
         }
-        else if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
-                 && mySettings.UseDispatch)
+        if (SinisterStrike.KnownSpell && SinisterStrike.IsSpellUsable && SinisterStrike.IsHostileDistanceGood
+            && mySettings.UseDispatch)
         {
             SinisterStrike.Launch();
             return;
         }
-        else if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
-                 && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
+        if (SliceandDice.KnownSpell && SliceandDice.IsSpellUsable && SliceandDice.IsHostileDistanceGood
+            && mySettings.UseSliceandDice && !SliceandDice.HaveBuff)
         {
             CP = ObjectManager.Me.ComboPoint;
             SliceandDice.Launch();
             SliceandDiceTimer = new Timer(1000*(6 + (CP*6)));
             return;
         }
-        else if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
-                 && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
+        if (Rupture.KnownSpell && Rupture.IsHostileDistanceGood && Rupture.IsSpellUsable
+            && mySettings.UseRupture && (!Rupture.TargetHaveBuff || RuptureTimer.IsReady))
         {
             CP = ObjectManager.Me.ComboPoint;
             Rupture.Launch();
             RuptureTimer = new Timer(1000*(4 + (CP*4)));
             return;
         }
-        else if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
-                 && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
+        if (ExposeArmor.IsSpellUsable && ExposeArmor.IsHostileDistanceGood && ExposeArmor.KnownSpell
+            && mySettings.UseExposeArmor && !ObjectManager.Target.HaveBuff(113746))
         {
             ExposeArmor.Launch();
             return;
         }
-        else if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
-                 && mySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
+        if (Mutilate.KnownSpell && Mutilate.IsSpellUsable && ObjectManager.Target.HealthPercent > 35
+            && mySettings.UseMutilate && Mutilate.IsHostileDistanceGood)
         {
             Mutilate.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
@@ -21607,11 +21350,11 @@ public class WarriorArms
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -21734,8 +21477,9 @@ public class WarriorArms
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -21793,15 +21537,15 @@ public class WarriorArms
             MortalStrike.Launch();
             return;
         }
-        else if (ColossusSmash.KnownSpell && ColossusSmash.IsHostileDistanceGood && ColossusSmash.IsSpellUsable
-                 && mySettings.UseColossusSmash)
+        if (ColossusSmash.KnownSpell && ColossusSmash.IsHostileDistanceGood && ColossusSmash.IsSpellUsable
+            && mySettings.UseColossusSmash)
         {
             ColossusSmash.Launch();
             return;
         }
-        else if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
-                 && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-                 && (ObjectManager.Me.RagePercentage > 90 || ObjectManager.Me.HaveBuff(125831)))
+        if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
+            && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
+            && (ObjectManager.Me.RagePercentage > 90 || ObjectManager.Me.HaveBuff(125831)))
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -21812,33 +21556,29 @@ public class WarriorArms
             HeroicStrike.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseDragonRoar)
         {
             DragonRoar.Launch();
             return;
         }
-        else
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseBladestorm)
         {
-            if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                && mySettings.UseBladestorm)
-            {
-                Bladestorm.Launch();
-                return;
-            }
+            Bladestorm.Launch();
+            return;
         }
 
         if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ThunderClap.IsHostileDistanceGood
             && mySettings.UseThunderClap)
         {
             ThunderClap.Launch();
-            return;
         }
     }
 
@@ -21868,37 +21608,35 @@ public class WarriorArms
             DefensiveStance.Launch();
             return;
         }
-        else if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable
-                 && mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
+        if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable
+            && mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
         {
             BattleStance.Launch();
             return;
         }
-        else if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable
-                 && mySettings.UseBerserkerStance && !mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
+        if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable
+            && mySettings.UseBerserkerStance && !mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
         {
             BerserkerStance.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff
-                 && mySettings.UseBattleShout)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff
+            && mySettings.UseBattleShout)
         {
             BattleShout.Launch();
             return;
         }
-        else
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff
+            && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
         {
-            if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff
-                && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
-            {
-                CommandingShout.Launch();
-                return;
-            }
+            CommandingShout.Launch();
+            return;
         }
-
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -21930,47 +21668,43 @@ public class WarriorArms
             DisarmTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
-                 && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 8)
+        if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
+            && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 8)
         {
             IntimidatingShout.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDiebytheSword
-                 && DiebytheSword.KnownSpell && DiebytheSword.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDiebytheSword
+            && DiebytheSword.KnownSpell && DiebytheSword.IsSpellUsable)
         {
             DiebytheSword.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
-                 && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
+            && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 30)
         {
             SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -21985,28 +21719,24 @@ public class WarriorArms
             VictoryRush.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
-                 && mySettings.UseRallyingCry && ObjectManager.Me.InCombat)
+        if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
+            && mySettings.UseRallyingCry && ObjectManager.Me.InCombat)
         {
             RallyingCry.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
+            EnragedRegeneration.KnownSpell
+            && mySettings.UseEnragedRegeneration)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
-                EnragedRegeneration.KnownSpell
-                && mySettings.UseEnragedRegeneration)
-            {
-                EnragedRegeneration.Launch();
-                return;
-            }
+            EnragedRegeneration.Launch();
         }
     }
 
@@ -22019,46 +21749,42 @@ public class WarriorArms
             ArcaneTorrent.Launch();
             return;
         }
-        else if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
-                 && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
+        if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
+            && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
         {
             Hamstring.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood
-                 && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood
+            && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
         {
             Pummel.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                 ObjectManager.Target.GetDistance < 10
-                 && DisruptingShout.KnownSpell && DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
+            ObjectManager.Target.GetDistance < 10
+            && DisruptingShout.KnownSpell && DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
         {
             DisruptingShout.Launch();
             return;
         }
-        else if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl
-                 && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
+        if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl
+            && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
         {
             PiercingHowl.Launch();
             return;
         }
-        else if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell
-                 && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
+        if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell
+            && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
         {
             StaggeringShout.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
+            mySettings.UseMassSpellReflection
+            && MassSpellReflection.KnownSpell && MassSpellReflection.IsSpellUsable)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                mySettings.UseMassSpellReflection
-                && MassSpellReflection.KnownSpell && MassSpellReflection.IsSpellUsable)
-            {
-                MassSpellReflection.Launch();
-                return;
-            }
+            MassSpellReflection.Launch();
         }
     }
 
@@ -22074,92 +21800,99 @@ public class WarriorArms
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
-                 && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
+        if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
+            && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
         {
             BerserkerRage.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
+            && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
         {
             BattleShout.Launch();
             return;
         }
-        else if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseCommandingShout && !mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
+            && mySettings.UseCommandingShout && !mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
         {
             CommandingShout.Launch();
             return;
         }
-        else if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness
-                 && ObjectManager.Target.GetDistance < 30)
+        if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness
+            && ObjectManager.Target.GetDistance < 30)
         {
             Recklessness.Launch();
             return;
         }
-        else if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood
-                 && mySettings.UseShatteringThrow)
+        if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood
+            && mySettings.UseShatteringThrow)
         {
             ShatteringThrow.Launch();
             return;
         }
-        else if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable
-                 && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
+        if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable
+            && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
         {
             SkullBanner.Launch();
             return;
         }
-        else if (Avatar.KnownSpell && Avatar.IsSpellUsable
-                 && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
+        if (Avatar.KnownSpell && Avatar.IsSpellUsable
+            && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
         {
             Avatar.Launch();
             return;
         }
-        else if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable
-                 && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
+        if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable
+            && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
         {
             Bloodbath.Launch();
             return;
         }
-        else if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && ObjectManager.Me.RagePercentage > 90
-                 && mySettings.UseDeadlyCalm && HeroicStrike.IsHostileDistanceGood)
+        if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && ObjectManager.Me.RagePercentage > 90
+            && mySettings.UseDeadlyCalm && HeroicStrike.IsHostileDistanceGood)
         {
             DeadlyCalm.Launch();
             return;
         }
-        else
+        if (StormBolt.KnownSpell && StormBolt.IsSpellUsable
+            && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
         {
-            if (StormBolt.KnownSpell && StormBolt.IsSpellUsable
-                && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
-            {
-                StormBolt.Launch();
-                return;
-            }
+            StormBolt.Launch();
+            return;
         }
 
         if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
             && mySettings.UseHeroicStrike && ObjectManager.Me.Level < 10)
         {
             HeroicStrike.Launch();
-            return;
         }
     }
 
@@ -22171,41 +21904,39 @@ public class WarriorArms
             HeroicThrow.Launch();
             return;
         }
-
         if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsHostileDistanceGood
             && mySettings.UseCharge && ObjectManager.Target.GetDistance > Main.range)
         {
             Charge.Launch();
             return;
         }
-
         if (VictoryRush.KnownSpell && VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood
             && mySettings.UseVictoryRush && ObjectManager.Me.HealthPercent < 90)
         {
             VictoryRush.Launch();
             return;
         }
-        else if (SweepingStrikes.KnownSpell && SweepingStrikes.IsSpellUsable &&
-                 ObjectManager.GetNumberAttackPlayer() > 1
-                 && mySettings.UseSweepingStrikes)
+        if (SweepingStrikes.KnownSpell && SweepingStrikes.IsSpellUsable &&
+            ObjectManager.GetNumberAttackPlayer() > 1
+            && mySettings.UseSweepingStrikes)
         {
             SweepingStrikes.Launch();
             return;
         }
-        else if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
-                 && mySettings.UseThunderClap)
+        if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 2
+            && mySettings.UseThunderClap)
         {
             ThunderClap.Launch();
             return;
         }
-        else if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-                 && mySettings.UseWhirlwind)
+        if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
+            && mySettings.UseWhirlwind)
         {
             Whirlwind.Launch();
             return;
         }
-        else if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsHostileDistanceGood
-                 && ObjectManager.GetNumberAttackPlayer() == 3 && mySettings.UseCleave)
+        if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsHostileDistanceGood
+            && ObjectManager.GetNumberAttackPlayer() == 3 && mySettings.UseCleave)
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -22216,9 +21947,9 @@ public class WarriorArms
             Cleave.Launch();
             return;
         }
-        else if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
-                 && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-                 && (ObjectManager.Me.HaveBuff(125831) || ObjectManager.Me.HaveBuff(85730)))
+        if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
+            && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
+            && (ObjectManager.Me.HaveBuff(125831) || ObjectManager.Me.HaveBuff(85730)))
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -22229,72 +21960,66 @@ public class WarriorArms
             HeroicStrike.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseDragonRoar)
         {
             DragonRoar.Launch();
             return;
         }
-        else if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseBladestorm)
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseBladestorm)
         {
             Bladestorm.Launch();
             return;
         }
-        else if (MortalStrike.KnownSpell && MortalStrike.IsSpellUsable && MortalStrike.IsHostileDistanceGood
-                 && mySettings.UseMortalStrike && ObjectManager.Me.RagePercentage < 100)
+        if (MortalStrike.KnownSpell && MortalStrike.IsSpellUsable && MortalStrike.IsHostileDistanceGood
+            && mySettings.UseMortalStrike && ObjectManager.Me.RagePercentage < 100)
         {
             MortalStrike.Launch();
             return;
         }
-        else if (ColossusSmash.KnownSpell && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood
-                 && mySettings.UseColossusSmash)
+        if (ColossusSmash.KnownSpell && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood
+            && mySettings.UseColossusSmash)
         {
             ColossusSmash.Launch();
             return;
         }
-        else if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsHostileDistanceGood
-                 && mySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
+        if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsHostileDistanceGood
+            && mySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
         {
             Execute.Launch();
             return;
         }
-        else if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsHostileDistanceGood
-                 && mySettings.UseOverpower && ObjectManager.Me.RagePercentage < 100)
+        if (Overpower.KnownSpell && Overpower.IsSpellUsable && Overpower.IsHostileDistanceGood
+            && mySettings.UseOverpower && ObjectManager.Me.RagePercentage < 100)
         {
             Overpower.Launch();
             return;
         }
-        else if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsHostileDistanceGood && mySettings.UseSlam
-                 && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.Target.HealthPercent > 20)
+        if (Slam.KnownSpell && Slam.IsSpellUsable && Slam.IsHostileDistanceGood && mySettings.UseSlam
+            && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.Target.HealthPercent > 20)
         {
             Slam.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: WarriorArmsSettings
@@ -22461,11 +22186,11 @@ public class WarriorProtection
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -22592,8 +22317,9 @@ public class WarriorProtection
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -22651,9 +22377,8 @@ public class WarriorProtection
             ShieldSlam.Launch();
             return;
         }
-        else if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
-                 && mySettings.UseHeroicStrike &&
-                 (ObjectManager.Me.RagePercentage > 80 || ObjectManager.Me.HaveBuff(122510)))
+        if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood && mySettings.UseHeroicStrike &&
+            (ObjectManager.Me.RagePercentage > 80 || ObjectManager.Me.HaveBuff(122510)))
         {
             if (ObjectManager.Me.HealthPercent > 80)
             {
@@ -22665,47 +22390,43 @@ public class WarriorProtection
                 HeroicStrike.Launch();
                 return;
             }
+            return;
         }
-        else if (Revenge.KnownSpell && Revenge.IsHostileDistanceGood && Revenge.IsSpellUsable
-                 && ObjectManager.Me.RagePercentage < 95 && mySettings.UseRevenge)
+        if (Revenge.KnownSpell && Revenge.IsHostileDistanceGood && Revenge.IsSpellUsable
+            && ObjectManager.Me.RagePercentage < 95 && mySettings.UseRevenge)
         {
             Revenge.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsHostileDistanceGood
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsHostileDistanceGood
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood
+            && mySettings.UseDragonRoar)
         {
             DragonRoar.Launch();
             return;
         }
-        else if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && Bladestorm.IsHostileDistanceGood
-                 && mySettings.UseBladestorm)
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && Bladestorm.IsHostileDistanceGood
+            && mySettings.UseBladestorm)
         {
             Bladestorm.Launch();
             return;
         }
-        else
+        // Blizzard API Calls for Devastate using Sunder Armor Function
+        if (SunderArmor.KnownSpell && SunderArmor.IsSpellUsable && SunderArmor.IsHostileDistanceGood
+            && mySettings.UseDevastate)
         {
-            // Blizzard API Calls for Devastate using Sunder Armor Function
-            if (SunderArmor.KnownSpell && SunderArmor.IsSpellUsable && SunderArmor.IsHostileDistanceGood
-                && mySettings.UseDevastate)
-            {
-                SunderArmor.Launch();
-                return;
-            }
+            SunderArmor.Launch();
+            return;
         }
-
         if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ThunderClap.IsHostileDistanceGood
             && mySettings.UseThunderClap)
         {
             ThunderClap.Launch();
-            return;
         }
     }
 
@@ -22735,37 +22456,35 @@ public class WarriorProtection
             DefensiveStance.Launch();
             return;
         }
-        else if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable
-                 && mySettings.UseBattleStance && LC == 1)
+        if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable
+            && mySettings.UseBattleStance && LC == 1)
         {
             BattleStance.Launch();
             return;
         }
-        else if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable
-                 && mySettings.UseBerserkerStance && !mySettings.UseBattleStance && !mySettings.UseDefensiveStance)
+        if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable
+            && mySettings.UseBerserkerStance && !mySettings.UseBattleStance && !mySettings.UseDefensiveStance)
         {
             BerserkerStance.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff
-                 && mySettings.UseBattleShout)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff
+            && mySettings.UseBattleShout)
         {
             BattleShout.Launch();
             return;
         }
-        else
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff
+            && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
         {
-            if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff
-                && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
-            {
-                CommandingShout.Launch();
-                return;
-            }
+            CommandingShout.Launch();
+            return;
         }
-
         if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -22797,62 +22516,58 @@ public class WarriorProtection
             DisarmTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
-                 && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 8)
+        if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
+            && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 8)
         {
             IntimidatingShout.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 60 && ShieldWall.KnownSpell && ShieldWall.IsSpellUsable
-                 && mySettings.UseShieldWall)
+        if (ObjectManager.Me.HealthPercent < 60 && ShieldWall.KnownSpell && ShieldWall.IsSpellUsable
+            && mySettings.UseShieldWall)
         {
             ShieldWall.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
-                 && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
+            && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 30)
         {
             SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseDemoralizingShout
-                 && DemoralizingShout.KnownSpell && DemoralizingShout.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Me.HealthPercent < 90 && mySettings.UseDemoralizingShout
+            && DemoralizingShout.KnownSpell && DemoralizingShout.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 30)
         {
             DemoralizingShout.Launch();
             OnCD = new Timer(1000*10);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 80 && ShieldBlock.KnownSpell && ShieldBlock.IsSpellUsable
+            && mySettings.UseShieldBlock)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && ShieldBlock.KnownSpell && ShieldBlock.IsSpellUsable
-                && mySettings.UseShieldBlock)
-            {
-                ShieldBlock.Launch();
-                OnCD = new Timer(1000*6);
-                return;
-            }
+            ShieldBlock.Launch();
+            OnCD = new Timer(1000*6);
         }
     }
 
@@ -22867,34 +22582,30 @@ public class WarriorProtection
             VictoryRush.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && LastStand.IsSpellUsable && LastStand.KnownSpell
-                 && mySettings.UseLastStand && ObjectManager.Me.InCombat)
+        if (ObjectManager.Me.HealthPercent < 30 && LastStand.IsSpellUsable && LastStand.KnownSpell
+            && mySettings.UseLastStand && ObjectManager.Me.InCombat)
         {
             LastStand.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
-                 && mySettings.UseRallyingCry && ObjectManager.Me.InCombat && !LastStand.HaveBuff)
+        if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
+            && mySettings.UseRallyingCry && ObjectManager.Me.InCombat && !LastStand.HaveBuff)
         {
             RallyingCry.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
+            EnragedRegeneration.KnownSpell
+            && mySettings.UseEnragedRegeneration)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
-                EnragedRegeneration.KnownSpell
-                && mySettings.UseEnragedRegeneration)
-            {
-                EnragedRegeneration.Launch();
-                return;
-            }
+            EnragedRegeneration.Launch();
         }
     }
 
@@ -22907,60 +22618,50 @@ public class WarriorProtection
             ArcaneTorrent.Launch();
             return;
         }
-        else if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
-                 && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
+        if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
+            && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
         {
             Hamstring.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood
-                 && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
         {
             Pummel.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                 ObjectManager.Target.GetDistance < 10
-                 && DisruptingShout.KnownSpell && DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Target.GetDistance < 10 && DisruptingShout.KnownSpell &&
+            DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
         {
             DisruptingShout.Launch();
             return;
         }
-        else if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl
-                 && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
+        if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 15)
         {
             PiercingHowl.Launch();
             return;
         }
-        else if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell
-                 && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
+        if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
         {
             StaggeringShout.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && SpellReflection.KnownSpell && SpellReflection.IsSpellUsable
-                 && mySettings.UseSpellReflection)
+        if (ObjectManager.Target.IsCast && SpellReflection.KnownSpell && SpellReflection.IsSpellUsable && mySettings.UseSpellReflection)
         {
             SpellReflection.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                 mySettings.UseMassSpellReflection
-                 && MassSpellReflection.KnownSpell && MassSpellReflection.IsSpellUsable)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseMassSpellReflection && MassSpellReflection.KnownSpell &&
+            MassSpellReflection.IsSpellUsable)
         {
             MassSpellReflection.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ObjectManager.Me.HealthPercent < 80 && ShieldBarrier.KnownSpell && ShieldBarrier.IsSpellUsable &&
+            mySettings.UseShieldBarrier && ShieldBarrierTimer.IsReady)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe
-                && ObjectManager.Me.HealthPercent < 80 && ShieldBarrier.KnownSpell
-                && ShieldBarrier.IsSpellUsable && mySettings.UseShieldBarrier && ShieldBarrierTimer.IsReady)
-            {
-                ShieldBarrier.Launch();
-                ShieldBarrierTimer = new Timer(1000*6);
-                return;
-            }
+            ShieldBarrier.Launch();
+            ShieldBarrierTimer = new Timer(1000*6);
         }
     }
 
@@ -22976,79 +22677,79 @@ public class WarriorProtection
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
-                 && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
+        if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
+            && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
         {
             BerserkerRage.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
         {
             BattleShout.Launch();
             return;
         }
-        else if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseCommandingShout && !mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && mySettings.UseCommandingShout && !mySettings.UseBattleShout &&
+            ObjectManager.Target.GetDistance < 30)
         {
             CommandingShout.Launch();
             return;
         }
-        else if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness
-                 && ObjectManager.Target.GetDistance < 30)
+        if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness && ObjectManager.Target.GetDistance < 30)
         {
             Recklessness.Launch();
             return;
         }
-        else if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood
-                 && mySettings.UseShatteringThrow)
+        if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood && mySettings.UseShatteringThrow)
         {
             ShatteringThrow.Launch();
             return;
         }
-        else if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable
-                 && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
+        if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
         {
             SkullBanner.Launch();
             return;
         }
-        else if (Avatar.KnownSpell && Avatar.IsSpellUsable
-                 && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
+        if (Avatar.KnownSpell && Avatar.IsSpellUsable && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
         {
             Avatar.Launch();
             return;
         }
-        else if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable
-                 && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
+        if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
         {
             Bloodbath.Launch();
             return;
         }
-        else
+        if (StormBolt.KnownSpell && StormBolt.IsSpellUsable && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
         {
-            if (StormBolt.KnownSpell && StormBolt.IsSpellUsable
-                && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
-            {
-                StormBolt.Launch();
-                return;
-            }
+            StormBolt.Launch();
         }
     }
 
@@ -23123,71 +22824,65 @@ public class WarriorProtection
             ShieldSlam.Launch();
             return;
         }
-        else if (Revenge.KnownSpell && Revenge.IsHostileDistanceGood && Revenge.IsSpellUsable
-                 && mySettings.UseRevenge && ObjectManager.Me.RagePercentage < 95)
+        if (Revenge.KnownSpell && Revenge.IsHostileDistanceGood && Revenge.IsSpellUsable
+            && mySettings.UseRevenge && ObjectManager.Me.RagePercentage < 95)
         {
             Revenge.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsHostileDistanceGood
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && Shockwave.IsHostileDistanceGood
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && DragonRoar.IsHostileDistanceGood
+            && mySettings.UseDragonRoar)
         {
             Shockwave.Launch();
             return;
         }
-        else if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && Bladestorm.IsHostileDistanceGood
-                 && mySettings.UseBladestorm)
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && Bladestorm.IsHostileDistanceGood
+            && mySettings.UseBladestorm)
         {
             Bladestorm.Launch();
             return;
         }
-        else if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ThunderClap.IsHostileDistanceGood
-                 && mySettings.UseThunderClap && !ObjectManager.Target.HaveBuff(115798))
+        if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ThunderClap.IsHostileDistanceGood
+            && mySettings.UseThunderClap && !ObjectManager.Target.HaveBuff(115798))
         {
             ThunderClap.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && mySettings.UseBattleShout)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && mySettings.UseBattleShout)
         {
             BattleShout.Launch();
             return;
         }
-        else if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && mySettings.UseCommandingShout
-                 && !mySettings.UseBattleShout)
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && mySettings.UseCommandingShout
+            && !mySettings.UseBattleShout)
         {
             CommandingShout.Launch();
             return;
         }
-        else if (SunderArmor.KnownSpell && SunderArmor.IsSpellUsable && SunderArmor.IsHostileDistanceGood
-                 && mySettings.UseDevastate)
+        if (SunderArmor.KnownSpell && SunderArmor.IsSpellUsable && SunderArmor.IsHostileDistanceGood
+            && mySettings.UseDevastate)
         {
             SunderArmor.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: WarriorProtectionSettings
@@ -23360,11 +23055,11 @@ public class WarriorFury
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -23487,8 +23182,9 @@ public class WarriorFury
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -23547,15 +23243,15 @@ public class WarriorFury
             Bloodthirst.Launch();
             return;
         }
-        else if (ColossusSmash.KnownSpell && ColossusSmash.IsHostileDistanceGood && ColossusSmash.IsSpellUsable
-                 && mySettings.UseColossusSmash)
+        if (ColossusSmash.KnownSpell && ColossusSmash.IsHostileDistanceGood && ColossusSmash.IsSpellUsable
+            && mySettings.UseColossusSmash)
         {
             ColossusSmash.Launch();
             return;
         }
-        else if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
-                 && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-                 && ObjectManager.Me.RagePercentage > 80)
+        if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
+            && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
+            && ObjectManager.Me.RagePercentage > 80)
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -23566,33 +23262,28 @@ public class WarriorFury
             HeroicStrike.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseDragonRoar)
         {
             DragonRoar.Launch();
             return;
         }
-        else
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseBladestorm)
         {
-            if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                && mySettings.UseBladestorm)
-            {
-                Bladestorm.Launch();
-                return;
-            }
+            Bladestorm.Launch();
+            return;
         }
-
         if (ThunderClap.KnownSpell && ThunderClap.IsSpellUsable && ThunderClap.IsHostileDistanceGood
             && mySettings.UseThunderClap)
         {
             ThunderClap.Launch();
-            return;
         }
     }
 
@@ -23616,43 +23307,37 @@ public class WarriorFury
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ObjectManager.Me.HealthPercent < 30 && mySettings.UseDefensiveStance
-            && DefensiveStance.KnownSpell && DefensiveStance.IsSpellUsable && !DefensiveStance.HaveBuff)
+        if (ObjectManager.Me.HealthPercent < 30 && mySettings.UseDefensiveStance && DefensiveStance.KnownSpell && DefensiveStance.IsSpellUsable && !DefensiveStance.HaveBuff)
         {
             DefensiveStance.Launch();
             return;
         }
-        else if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable
-                 && mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
+        if (!BattleStance.HaveBuff && BattleStance.KnownSpell && BattleStance.IsSpellUsable && mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
         {
             BattleStance.Launch();
             return;
         }
-        else if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable
-                 && mySettings.UseBerserkerStance && !mySettings.UseBattleStance && ObjectManager.Me.HealthPercent > 50)
+        if (!BerserkerStance.HaveBuff && BerserkerStance.KnownSpell && BerserkerStance.IsSpellUsable && mySettings.UseBerserkerStance && !mySettings.UseBattleStance &&
+            ObjectManager.Me.HealthPercent > 50)
         {
             BerserkerStance.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff
-                 && mySettings.UseBattleShout)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && !BattleShout.HaveBuff && mySettings.UseBattleShout)
         {
             BattleShout.Launch();
             return;
         }
-        else
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
         {
-            if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && !CommandingShout.HaveBuff
-                && mySettings.UseCommandingShout && !mySettings.UseBattleShout)
-            {
-                CommandingShout.Launch();
-                return;
-            }
+            CommandingShout.Launch();
+            return;
         }
-
-        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+        {
             ItemsManager.UseItem(75525);
+        }
     }
 
     private void AvoidMelee()
@@ -23684,47 +23369,43 @@ public class WarriorFury
             DisarmTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
-                 && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 8)
+        if (ObjectManager.Me.HealthPercent < 20 && mySettings.UseIntimidatingShout
+            && IntimidatingShout.KnownSpell && IntimidatingShout.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 8)
         {
             IntimidatingShout.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDiebytheSword
-                 && DiebytheSword.KnownSpell && DiebytheSword.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDiebytheSword
+            && DiebytheSword.KnownSpell && DiebytheSword.IsSpellUsable)
         {
             DiebytheSword.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
-                 && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
-                 ObjectManager.Target.GetDistance < 30)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseDemoralizingBanner
+            && DemoralizingBanner.KnownSpell && DemoralizingBanner.IsSpellUsable &&
+            ObjectManager.Target.GetDistance < 30)
         {
             SpellManager.CastSpellByIDAndPosition(114203, ObjectManager.Target.Position);
             OnCD = new Timer(1000*15);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -23739,28 +23420,24 @@ public class WarriorFury
             VictoryRush.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
-                 && mySettings.UseRallyingCry && ObjectManager.Me.InCombat)
+        if (ObjectManager.Me.HealthPercent < 30 && RallyingCry.IsSpellUsable && RallyingCry.KnownSpell
+            && mySettings.UseRallyingCry && ObjectManager.Me.InCombat)
         {
             RallyingCry.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
+            GiftoftheNaaru.IsSpellUsable && GiftoftheNaaru.KnownSpell
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
+            EnragedRegeneration.KnownSpell
+            && mySettings.UseEnragedRegeneration)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && EnragedRegeneration.IsSpellUsable &&
-                EnragedRegeneration.KnownSpell
-                && mySettings.UseEnragedRegeneration)
-            {
-                EnragedRegeneration.Launch();
-                return;
-            }
+            EnragedRegeneration.Launch();
         }
     }
 
@@ -23773,46 +23450,42 @@ public class WarriorFury
             ArcaneTorrent.Launch();
             return;
         }
-        else if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
-                 && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
+        if (!Hamstring.TargetHaveBuff && mySettings.UseHamstring && Hamstring.KnownSpell
+            && Hamstring.IsSpellUsable && Hamstring.IsHostileDistanceGood)
         {
             Hamstring.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood
-                 && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && Pummel.IsHostileDistanceGood
+            && Pummel.KnownSpell && Pummel.IsSpellUsable && mySettings.UsePummel)
         {
             Pummel.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                 ObjectManager.Target.GetDistance < 10
-                 && DisruptingShout.KnownSpell && DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
+            ObjectManager.Target.GetDistance < 10
+            && DisruptingShout.KnownSpell && DisruptingShout.IsSpellUsable && mySettings.UseDisruptingShout)
         {
             DisruptingShout.Launch();
             return;
         }
-        else if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl
-                 && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
+        if (ObjectManager.Target.GetMove && !PiercingHowl.TargetHaveBuff && mySettings.UsePiercingHowl
+            && PiercingHowl.KnownSpell && PiercingHowl.IsSpellUsable && ObjectManager.Target.GetDistance < 15)
         {
             PiercingHowl.Launch();
             return;
         }
-        else if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell
-                 && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
+        if (Hamstring.TargetHaveBuff && mySettings.UseStaggeringShout && StaggeringShout.KnownSpell
+            && StaggeringShout.IsSpellUsable && ObjectManager.Target.GetDistance < 20)
         {
             StaggeringShout.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
+            mySettings.UseMassSpellReflection
+            && MassSpellReflection.KnownSpell && MassSpellReflection.IsSpellUsable)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe &&
-                mySettings.UseMassSpellReflection
-                && MassSpellReflection.KnownSpell && MassSpellReflection.IsSpellUsable)
-            {
-                MassSpellReflection.Launch();
-                return;
-            }
+            MassSpellReflection.Launch();
         }
     }
 
@@ -23828,112 +23501,103 @@ public class WarriorFury
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 30 && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50
-                 && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
+        if (BerserkerRage.KnownSpell && BerserkerRage.IsSpellUsable && ObjectManager.Me.RagePercentage < 50 && mySettings.UseBerserkerRage && ObjectManager.Target.GetDistance < 30)
         {
             BerserkerRage.Launch();
             return;
         }
-        else if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (BattleShout.KnownSpell && BattleShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
         {
             BattleShout.Launch();
             return;
         }
-        else if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80
-                 && mySettings.UseCommandingShout && !mySettings.UseBattleShout && ObjectManager.Target.GetDistance < 30)
+        if (CommandingShout.KnownSpell && CommandingShout.IsSpellUsable && ObjectManager.Me.RagePercentage < 80 && mySettings.UseCommandingShout && !mySettings.UseBattleShout &&
+            ObjectManager.Target.GetDistance < 30)
         {
             CommandingShout.Launch();
             return;
         }
-        else if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness
-                 && ObjectManager.Target.GetDistance < 30)
+        if (Recklessness.KnownSpell && Recklessness.IsSpellUsable && mySettings.UseRecklessness && ObjectManager.Target.GetDistance < 30)
         {
             Recklessness.Launch();
             return;
         }
-        else if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood
-                 && mySettings.UseShatteringThrow)
+        if (ShatteringThrow.KnownSpell && ShatteringThrow.IsSpellUsable && ShatteringThrow.IsHostileDistanceGood && mySettings.UseShatteringThrow)
         {
             ShatteringThrow.Launch();
             return;
         }
-        else if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable
-                 && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
+        if (SkullBanner.KnownSpell && SkullBanner.IsSpellUsable && mySettings.UseSkullBanner && ObjectManager.Target.GetDistance < 30)
         {
             SkullBanner.Launch();
             return;
         }
-        else if (Avatar.KnownSpell && Avatar.IsSpellUsable
-                 && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
+        if (Avatar.KnownSpell && Avatar.IsSpellUsable && mySettings.UseAvatar && ObjectManager.Target.GetDistance < 30)
         {
             Avatar.Launch();
             return;
         }
-        else if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable
-                 && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
+        if (Bloodbath.KnownSpell && Bloodbath.IsSpellUsable && mySettings.UseBloodbath && ObjectManager.Target.GetDistance < 30)
         {
             Bloodbath.Launch();
             return;
         }
-        else
+        if (StormBolt.KnownSpell && StormBolt.IsSpellUsable && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
         {
-            if (StormBolt.KnownSpell && StormBolt.IsSpellUsable
-                && mySettings.UseStormBolt && StormBolt.IsHostileDistanceGood)
-            {
-                StormBolt.Launch();
-                return;
-            }
+            StormBolt.Launch();
         }
     }
 
     private void DPSCycle()
     {
-        if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood
-            && mySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
+        if (HeroicThrow.KnownSpell && HeroicThrow.IsSpellUsable && HeroicThrow.IsHostileDistanceGood && mySettings.UseHeroicThrow && !ObjectManager.Target.InCombat)
         {
             HeroicThrow.Launch();
             return;
         }
 
-        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsHostileDistanceGood
-            && mySettings.UseCharge && ObjectManager.Target.GetDistance > Main.range)
+        if (Charge.KnownSpell && Charge.IsSpellUsable && Charge.IsHostileDistanceGood && mySettings.UseCharge && ObjectManager.Target.GetDistance > Main.range)
         {
             Charge.Launch();
             return;
         }
 
-        if (VictoryRush.KnownSpell && VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood
-            && mySettings.UseVictoryRush && ObjectManager.Me.HealthPercent < 90)
+        if (VictoryRush.KnownSpell && VictoryRush.IsSpellUsable && VictoryRush.IsHostileDistanceGood && mySettings.UseVictoryRush && ObjectManager.Me.HealthPercent < 90)
         {
             VictoryRush.Launch();
             return;
         }
-        else if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3
-                 && mySettings.UseWhirlwind)
+        if (Whirlwind.KnownSpell && Whirlwind.IsSpellUsable && ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseWhirlwind)
         {
             Whirlwind.Launch();
             return;
         }
-        else if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsHostileDistanceGood && mySettings.UseCleave
-                 && ObjectManager.GetNumberAttackPlayer() > 1 && ObjectManager.GetNumberAttackPlayer() < 4)
+        if (Cleave.KnownSpell && Cleave.IsSpellUsable && Cleave.IsHostileDistanceGood && mySettings.UseCleave && ObjectManager.GetNumberAttackPlayer() > 1 &&
+            ObjectManager.GetNumberAttackPlayer() < 4)
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -23944,9 +23608,8 @@ public class WarriorFury
             Cleave.Launch();
             return;
         }
-        else if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood
-                 && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3
-                 && ObjectManager.Me.RagePercentage > 80)
+        if (HeroicStrike.KnownSpell && HeroicStrike.IsSpellUsable && HeroicStrike.IsHostileDistanceGood && mySettings.UseHeroicStrike && ObjectManager.GetNumberAttackPlayer() < 3 &&
+            ObjectManager.Me.RagePercentage > 80)
         {
             if (DeadlyCalm.KnownSpell && DeadlyCalm.IsSpellUsable && mySettings.UseDeadlyCalm)
             {
@@ -23957,62 +23620,58 @@ public class WarriorFury
             HeroicStrike.Launch();
             return;
         }
-        else if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && mySettings.UseShockwave)
+        if (Shockwave.KnownSpell && Shockwave.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && mySettings.UseShockwave)
         {
             Shockwave.Launch();
             return;
         }
-        else if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseDragonRoar)
+        if (DragonRoar.KnownSpell && DragonRoar.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseDragonRoar)
         {
             DragonRoar.Launch();
             return;
         }
-        else if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
-                 && mySettings.UseBladestorm)
+        if (Bladestorm.KnownSpell && Bladestorm.IsSpellUsable && ObjectManager.Target.GetDistance < 8
+            && mySettings.UseBladestorm)
         {
             Bladestorm.Launch();
             return;
         }
-        else if (Bloodthirst.KnownSpell && Bloodthirst.IsSpellUsable && Bloodthirst.IsHostileDistanceGood
-                 && mySettings.UseBloodthirst)
+        if (Bloodthirst.KnownSpell && Bloodthirst.IsSpellUsable && Bloodthirst.IsHostileDistanceGood
+            && mySettings.UseBloodthirst)
         {
             Bloodthirst.Launch();
             return;
         }
-        else if (ColossusSmash.KnownSpell && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood
-                 && mySettings.UseColossusSmash)
+        if (ColossusSmash.KnownSpell && ColossusSmash.IsSpellUsable && ColossusSmash.IsHostileDistanceGood
+            && mySettings.UseColossusSmash)
         {
             ColossusSmash.Launch();
             return;
         }
-        else if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsHostileDistanceGood
-                 && mySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
+        if (Execute.KnownSpell && Execute.IsSpellUsable && Execute.IsHostileDistanceGood
+            && mySettings.UseExecute && ObjectManager.GetNumberAttackPlayer() < 4)
         {
             Execute.Launch();
             return;
         }
-        else if (RagingBlow.KnownSpell && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood
-                 && mySettings.UseRagingBlow)
+        if (RagingBlow.KnownSpell && RagingBlow.IsSpellUsable && RagingBlow.IsHostileDistanceGood
+            && mySettings.UseRagingBlow)
         {
             RagingBlow.Launch();
             return;
         }
-        else if (WildStrike.KnownSpell && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood
-                 && mySettings.UseWildStrike && ObjectManager.Me.HaveBuff(46915))
+        if (WildStrike.KnownSpell && WildStrike.IsSpellUsable && WildStrike.IsHostileDistanceGood
+            && mySettings.UseWildStrike && ObjectManager.Me.HaveBuff(46915))
         {
             WildStrike.Launch();
             return;
         }
-        else
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
-            if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                && mySettings.UseArcaneTorrentForResource)
-            {
-                ArcaneTorrent.Launch();
-                return;
-            }
+            ArcaneTorrent.Launch();
         }
     }
 
@@ -24193,11 +23852,11 @@ public class HunterMarksmanship
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -24321,8 +23980,9 @@ public class HunterMarksmanship
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -24379,27 +24039,22 @@ public class HunterMarksmanship
             GlaiveToss.Launch();
             return;
         }
-        else if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-                 && mySettings.UseArcaneShot)
+        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && mySettings.UseArcaneShot)
         {
             ArcaneShot.Launch();
             return;
         }
-        else
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && mySettings.UseSteadyShot)
         {
-            if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                && mySettings.UseSteadyShot)
-            {
-                SteadyShot.Launch();
-                return;
-            }
+            SteadyShot.Launch();
+            return;
         }
-
         if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
             && mySettings.UseExplosiveTrap)
         {
             ExplosiveTrap.Launch();
-            return;
         }
     }
 
@@ -24479,17 +24134,17 @@ public class HunterMarksmanship
                 Thread.Sleep(1000);
             }
         }
-
         if (!ObjectManager.Me.IsCast && (!ObjectManager.Pet.IsAlive || ObjectManager.Pet.Guid == 0)
             && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
             && mySettings.UseCombatRevive && ObjectManager.Target.HealthPercent > 10 && ObjectManager.Me.InCombat)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
+            return;
         }
-        else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-                 && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !ObjectManager.Me.InCombat)
+        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
+            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
+            && !ObjectManager.Me.InCombat)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -24525,24 +24180,25 @@ public class HunterMarksmanship
             Thread.Sleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
                 return;
-            else
-                Thread.Sleep(5000);
+            Thread.Sleep(5000);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
-                 && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
+            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
         {
             Deterrance.Launch();
             Thread.Sleep(200);
+            return;
         }
-        else if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-                 && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
+            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             FreezingTrap.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
-                 && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
+            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             IceTrap.Launch();
             Thread.Sleep(1000);
@@ -24550,9 +24206,9 @@ public class HunterMarksmanship
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
-                 && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
+            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             ConcussiveShot.Launch();
             Thread.Sleep(1000);
@@ -24560,9 +24216,9 @@ public class HunterMarksmanship
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
-                 && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
+            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             BindingShot.Launch();
             Thread.Sleep(1000);
@@ -24570,24 +24226,20 @@ public class HunterMarksmanship
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -24603,29 +24255,25 @@ public class HunterMarksmanship
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-                 && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
+        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
+            && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
         {
             Exhilaration.Launch();
             return;
         }
-        else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-                 && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !ObjectManager.Me.InCombat)
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
+            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
+            && !ObjectManager.Me.InCombat)
         {
             FeedPet.Launch();
             return;
         }
-        else
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
+            && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
+            && MendPetTimer.IsReady)
         {
-            if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-                && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
-                && MendPetTimer.IsReady)
-            {
-                MendPet.Launch();
-                MendPetTimer = new Timer(1000*10);
-                return;
-            }
+            MendPet.Launch();
+            MendPetTimer = new Timer(1000*10);
         }
     }
 
@@ -24638,26 +24286,22 @@ public class HunterMarksmanship
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-                 && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
+            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
         {
             SilencingShot.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-                 && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
+            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
         {
             ScatterShot.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
+            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
-                && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-            {
-                WyvernSting.Launch();
-                return;
-            }
+            WyvernSting.Launch();
         }
     }
 
@@ -24673,102 +24317,109 @@ public class HunterMarksmanship
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
-                 && mySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
+        if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
+            && mySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
         {
             AimedShot.Launch();
             return;
         }
-        else if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
-                 && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
+        if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
+            && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
         {
             SteadyShot.Launch();
             return;
         }
-        else if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-                 && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
+        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
+            && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
         {
             AMurderofCrows.Launch();
             return;
         }
-        else if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
+        if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
         {
             Barrage.Launch();
             return;
         }
-        else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
+            && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
         }
-        else if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
-                 && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
+        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
+            && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
         {
             DireBeast.Launch();
             DireBeastTimer = new Timer(1000*15);
             return;
         }
-        else if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-                 && mySettings.UseFervor)
+        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
+            && mySettings.UseFervor)
         {
             Fervor.Launch();
             return;
         }
-        else if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
-                 GlaiveToss.IsHostileDistanceGood)
+        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
+            GlaiveToss.IsHostileDistanceGood)
         {
             GlaiveToss.Launch();
             return;
         }
-        else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 41)
+        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
+            ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
         }
-        else if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
-                 Powershot.IsHostileDistanceGood)
+        if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
+            Powershot.IsHostileDistanceGood)
         {
             Powershot.Launch();
             return;
         }
-        else if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
-                 Stampede.IsHostileDistanceGood)
+        if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
+            Stampede.IsHostileDistanceGood)
         {
             Stampede.Launch();
             return;
         }
-        else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 41)
+        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
+            && ObjectManager.Target.GetDistance < 41)
         {
             RapidFire.Launch();
             return;
         }
-        else
+        if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness)
         {
-            if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness)
-            {
-                Readiness.Launch();
-                return;
-            }
+            Readiness.Launch();
         }
     }
 
@@ -24781,73 +24432,65 @@ public class HunterMarksmanship
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (ChimeraShot.KnownSpell && ChimeraShot.IsSpellUsable && ChimeraShot.IsHostileDistanceGood
-                 && mySettings.UseChimeraShot)
+        if (ChimeraShot.KnownSpell && ChimeraShot.IsSpellUsable && ChimeraShot.IsHostileDistanceGood
+            && mySettings.UseChimeraShot)
         {
             ChimeraShot.Launch();
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-                 && mySettings.UseKillShot)
+        if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
+            && mySettings.UseKillShot)
         {
             KillShot.Launch();
             return;
         }
-        else if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
-                 && mySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
+        if (AimedShot.KnownSpell && AimedShot.IsSpellUsable && AimedShot.IsHostileDistanceGood
+            && mySettings.UseAimedShot && ObjectManager.Me.HaveBuff(82926))
         {
             AimedShot.Launch();
             return;
         }
-        else if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
-                 && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
+        if (mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable
+            && SteadyFocus.KnownSpell && !ObjectManager.Me.HaveBuff(53220))
         {
             SteadyShot.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood
-                 && MultiShot.IsSpellUsable)
+        if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && MultiShot.KnownSpell && MultiShot.IsHostileDistanceGood
+            && MultiShot.IsSpellUsable)
         {
             MultiShot.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && mySettings.UseSteadyShot && SteadyShot.KnownSpell
-                 && SteadyShot.IsHostileDistanceGood && SteadyShot.IsSpellUsable && ObjectManager.Me.FocusPercentage < 40)
+        if (ObjectManager.GetNumberAttackPlayer() > 3 && mySettings.UseMultiShot && mySettings.UseSteadyShot && SteadyShot.KnownSpell && SteadyShot.IsHostileDistanceGood &&
+            SteadyShot.IsSpellUsable && ObjectManager.Me.FocusPercentage < 40)
         {
             SteadyShot.Launch();
             return;
         }
-        else if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
-                 && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 64)
+        if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 64)
         {
             ArcaneShot.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                 && mySettings.UseArcaneTorrentForResource)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && mySettings.UseSteadyShot && ObjectManager.Me.FocusPercentage < 80)
         {
-            if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                && mySettings.UseSteadyShot && ObjectManager.Me.FocusPercentage < 80)
-            {
-                SteadyShot.Launch();
-                return;
-            }
+            SteadyShot.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: HunterMarksmanshipSettings
@@ -25014,6 +24657,8 @@ public class HunterBeastMastery
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer AncientHysteriaTimer = new Timer(0);
     private Timer BurrowAttackTimer = new Timer(0);
     private Timer EngineeringTimer = new Timer(0);
@@ -25021,8 +24666,6 @@ public class HunterBeastMastery
     public int LC = 0;
     private Timer OnCD = new Timer(0);
     private Timer SpiritMendTimer = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -25148,8 +24791,9 @@ public class HunterBeastMastery
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -25206,36 +24850,28 @@ public class HunterBeastMastery
             GlaiveToss.Launch();
             return;
         }
-        else if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-                 && mySettings.UseArcaneShot)
+        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && mySettings.UseArcaneShot)
         {
             ArcaneShot.Launch();
             return;
         }
-        else
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot)
         {
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && mySettings.UseCobraShot)
-            {
-                CobraShot.Launch();
-                return;
-            }
-            else
-            {
-                if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                    && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
-                {
-                    SteadyShot.Launch();
-                    return;
-                }
-            }
+            CobraShot.Launch();
+            return;
         }
-
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
+        {
+            SteadyShot.Launch();
+            return;
+        }
         if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
             && mySettings.UseExplosiveTrap)
         {
             ExplosiveTrap.Launch();
-            return;
         }
     }
 
@@ -25322,10 +24958,11 @@ public class HunterBeastMastery
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
+            return;
         }
-        else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-                 && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !ObjectManager.Me.InCombat)
+        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
+            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
+            && !ObjectManager.Me.InCombat)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -25361,24 +24998,25 @@ public class HunterBeastMastery
             Thread.Sleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
                 return;
-            else
-                Thread.Sleep(5000);
+            Thread.Sleep(5000);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
-                 && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
+            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
         {
             Deterrance.Launch();
             Thread.Sleep(200);
+            return;
         }
-        else if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-                 && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
+            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             FreezingTrap.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
-                 && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
+            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             IceTrap.Launch();
             Thread.Sleep(1000);
@@ -25386,9 +25024,9 @@ public class HunterBeastMastery
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
-                 && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
+            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             ConcussiveShot.Launch();
             Thread.Sleep(1000);
@@ -25396,9 +25034,9 @@ public class HunterBeastMastery
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
-                 && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
+            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             BindingShot.Launch();
             Thread.Sleep(1000);
@@ -25406,31 +25044,27 @@ public class HunterBeastMastery
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                 Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (Intimidation.IsSpellUsable && Intimidation.KnownSpell && mySettings.UseIntimidation
+            && (ObjectManager.Me.HealthPercent < 80 || ObjectManager.Pet.Health < 80))
         {
-            if (Intimidation.IsSpellUsable && Intimidation.KnownSpell && mySettings.UseIntimidation
-                && (ObjectManager.Me.HealthPercent < 80 || ObjectManager.Pet.Health < 80))
-            {
-                Intimidation.Launch();
-                OnCD = new Timer(1000*3);
-                return;
-            }
+            Intimidation.Launch();
+            OnCD = new Timer(1000*3);
         }
     }
 
@@ -25439,45 +25073,40 @@ public class HunterBeastMastery
         if (ObjectManager.Me.IsMounted)
             return;
 
-        if (ObjectManager.Me.HealthPercent < 85 && ObjectManager.Pet.IsAlive
-            && mySettings.UseSpiritBeastPet && SpiritMendTimer.IsReady)
+        if (ObjectManager.Me.HealthPercent < 85 && ObjectManager.Pet.IsAlive && mySettings.UseSpiritBeastPet && SpiritMendTimer.IsReady)
         {
             Logging.WriteFight("Cast Spirit Mend.");
             Lua.RunMacroText("/target Player");
             Thread.Sleep(200);
             Lua.RunMacroText("/cast Spirit Mend");
             SpiritMendTimer = new Timer(1000*40);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage &&
-                 GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
-                 && mySettings.UseGiftoftheNaaru)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseGiftoftheNaaruAtPercentage && GiftoftheNaaru.KnownSpell && GiftoftheNaaru.IsSpellUsable
+            && mySettings.UseGiftoftheNaaru)
         {
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-                 && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
+        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
+            && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
         {
             Exhilaration.Launch();
             return;
         }
-        else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-                 && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !ObjectManager.Me.InCombat)
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
+            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
+            && !ObjectManager.Me.InCombat)
         {
             FeedPet.Launch();
             return;
         }
-        else
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
+            && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
+            && MendPetTimer.IsReady)
         {
-            if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-                && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
-                && MendPetTimer.IsReady)
-            {
-                MendPet.Launch();
-                MendPetTimer = new Timer(1000*10);
-                return;
-            }
+            MendPet.Launch();
+            MendPetTimer = new Timer(1000*10);
         }
     }
 
@@ -25490,26 +25119,22 @@ public class HunterBeastMastery
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-                 && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
+            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
         {
             SilencingShot.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-                 && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
+            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
         {
             ScatterShot.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
+            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
-                && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-            {
-                WyvernSting.Launch();
-                return;
-            }
+            WyvernSting.Launch();
         }
     }
 
@@ -25525,113 +25150,116 @@ public class HunterBeastMastery
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41 && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41 && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41 && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41 && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-                 && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
+        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
+            && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
         {
             AMurderofCrows.Launch();
             return;
         }
-        else if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
+        if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
         {
             Barrage.Launch();
             return;
         }
-        else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
+            && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
         }
-        else if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
-                 && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
+        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
+            && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
         {
             DireBeast.Launch();
             DireBeastTimer = new Timer(1000*15);
             return;
         }
-        else if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-                 && mySettings.UseFervor)
+        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
+            && mySettings.UseFervor)
         {
             Fervor.Launch();
             return;
         }
-        else if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
-                 GlaiveToss.IsHostileDistanceGood)
+        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
+            GlaiveToss.IsHostileDistanceGood)
         {
             GlaiveToss.Launch();
             return;
         }
-        else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 41)
+        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
+            ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
         }
-        else if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
-                 Powershot.IsHostileDistanceGood)
+        if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
+            Powershot.IsHostileDistanceGood)
         {
             Powershot.Launch();
             return;
         }
-        else if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
-                 Stampede.IsHostileDistanceGood)
+        if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
+            Stampede.IsHostileDistanceGood)
         {
             Stampede.Launch();
             return;
         }
-        else if (BestialWrath.KnownSpell && BestialWrath.IsSpellUsable && mySettings.UseBestialWrath
-                 && ObjectManager.Target.GetDistance < 41)
+        if (BestialWrath.KnownSpell && BestialWrath.IsSpellUsable && mySettings.UseBestialWrath
+            && ObjectManager.Target.GetDistance < 41)
         {
             BestialWrath.Launch();
             return;
         }
-        else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 41 && !BestialWrath.HaveBuff)
+        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
+            && ObjectManager.Target.GetDistance < 41 && !BestialWrath.HaveBuff)
         {
             RapidFire.Launch();
             return;
         }
-        else if (mySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 41
-                 && AncientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
-                 && ObjectManager.Pet.IsAlive && !RapidFire.HaveBuff && !BestialWrath.HaveBuff)
+        if (mySettings.UseCoreHoundPet && ObjectManager.Target.GetDistance < 41
+            && AncientHysteriaTimer.IsReady && ObjectManager.Me.HaveBuff(95809)
+            && ObjectManager.Pet.IsAlive && !RapidFire.HaveBuff && !BestialWrath.HaveBuff)
         {
             Lua.RunMacroText("/cast Ancient Hysteria");
             Logging.WriteFight("Launch Core Hound Pet Ancient Hysteria");
             AncientHysteriaTimer = new Timer(1000*60*6);
             return;
         }
-        else if (ObjectManager.Pet.BuffStack(19623) == 5 && FocusFire.IsSpellUsable &&
-                 FocusFire.KnownSpell
-                 && mySettings.UseFocusFire)
+        if (ObjectManager.Pet.BuffStack(19623) == 5 && FocusFire.IsSpellUsable &&
+            FocusFire.KnownSpell
+            && mySettings.UseFocusFire)
         {
             FocusFire.Launch();
             return;
         }
-        else
+        if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness
+            && !RapidFire.IsSpellUsable && !BestialWrath.IsSpellUsable)
         {
-            if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness
-                && !RapidFire.IsSpellUsable && !BestialWrath.IsSpellUsable)
-            {
-                Readiness.Launch();
-                return;
-            }
+            Readiness.Launch();
         }
     }
 
@@ -25644,83 +25272,73 @@ public class HunterBeastMastery
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                 && mySettings.UseCobraShot && SerpentStingTimer.IsReady)
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot && SerpentStingTimer.IsReady)
         {
             CobraShot.Launch();
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-                 && mySettings.UseKillShot)
+        if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
+            && mySettings.UseKillShot)
         {
             KillShot.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 2 && mySettings.UseMultiShot)
+        if (ObjectManager.GetNumberAttackPlayer() > 2 && mySettings.UseMultiShot)
         {
             if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
             {
                 MultiShot.Launch();
                 return;
             }
-            else if (mySettings.UseChimeraPet && ObjectManager.Target.GetDistance < 10
-                     && ObjectManager.Pet.Guid == 780 && ObjectManager.Pet.Focus > 29
-                     && FroststormBreathTimer.IsReady && ObjectManager.Pet.IsAlive)
+            if (mySettings.UseChimeraPet && ObjectManager.Target.GetDistance < 10
+                && ObjectManager.Pet.Guid == 780 && ObjectManager.Pet.Focus > 29
+                && FroststormBreathTimer.IsReady && ObjectManager.Pet.IsAlive)
             {
                 Lua.RunMacroText("/cast Froststorm Breath");
                 Logging.WriteFight("Launch Chimera Pet AoE");
                 FroststormBreathTimer = new Timer(1000*8);
                 return;
             }
-            else
+            if (mySettings.UseWormPet && ObjectManager.Target.GetDistance < 10
+                && ObjectManager.Pet.Guid == 784 && ObjectManager.Pet.Focus > 29
+                && BurrowAttackTimer.IsReady && ObjectManager.Pet.IsAlive)
             {
-                if (mySettings.UseWormPet && ObjectManager.Target.GetDistance < 10
-                    && ObjectManager.Pet.Guid == 784 && ObjectManager.Pet.Focus > 29
-                    && BurrowAttackTimer.IsReady && ObjectManager.Pet.IsAlive)
-                {
-                    Lua.RunMacroText("/cast Burrow Attack");
-                    Logging.WriteFight("Launch Worm Pet AoE");
-                    BurrowAttackTimer = new Timer(1000*20);
-                    return;
-                }
+                Lua.RunMacroText("/cast Burrow Attack");
+                Logging.WriteFight("Launch Worm Pet AoE");
+                BurrowAttackTimer = new Timer(1000*20);
             }
+            return;
         }
-        else if (KillCommand.KnownSpell && KillCommand.IsSpellUsable && KillCommand.IsHostileDistanceGood
-                 && mySettings.UseKillCommand && ObjectManager.Target.GetDistance < 41)
+        if (KillCommand.KnownSpell && KillCommand.IsSpellUsable && KillCommand.IsHostileDistanceGood
+            && mySettings.UseKillCommand && ObjectManager.Target.GetDistance < 41)
         {
             KillCommand.Launch();
             return;
         }
-        else if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
-                 && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 59)
+        if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
+            && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 59)
         {
             ArcaneShot.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                 && mySettings.UseArcaneTorrentForResource)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 60)
         {
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && mySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 60)
-            {
-                CobraShot.Launch();
-                return;
-            }
-            else
-            {
-                if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                    && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
-                {
-                    SteadyShot.Launch();
-                    return;
-                }
-            }
+            CobraShot.Launch();
+            return;
+        }
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
+        {
+            SteadyShot.Launch();
         }
     }
 
@@ -25909,11 +25527,11 @@ public class HunterSurvival
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     public int LC = 0;
     private Timer OnCD = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -26097,36 +25715,28 @@ public class HunterSurvival
             GlaiveToss.Launch();
             return;
         }
-        else if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
-                 && mySettings.UseArcaneShot)
+        if (ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood && ArcaneShot.KnownSpell
+            && mySettings.UseArcaneShot)
         {
             ArcaneShot.Launch();
             return;
         }
-        else
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot)
         {
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && mySettings.UseCobraShot)
-            {
-                CobraShot.Launch();
-                return;
-            }
-            else
-            {
-                if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                    && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
-                {
-                    SteadyShot.Launch();
-                    return;
-                }
-            }
+            CobraShot.Launch();
+            return;
         }
-
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
+        {
+            SteadyShot.Launch();
+            return;
+        }
         if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ExplosiveTrap.IsHostileDistanceGood
             && mySettings.UseExplosiveTrap)
         {
             ExplosiveTrap.Launch();
-            return;
         }
     }
 
@@ -26213,10 +25823,11 @@ public class HunterSurvival
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
+            return;
         }
-        else if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
-                 && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
-                 && !ObjectManager.Me.InCombat)
+        if (!ObjectManager.Me.IsCast && !ObjectManager.Pet.IsAlive
+            && RevivePet.KnownSpell && RevivePet.IsSpellUsable && mySettings.UseRevivePet
+            && !ObjectManager.Me.InCombat)
         {
             RevivePet.Launch();
             Thread.Sleep(1000);
@@ -26252,24 +25863,25 @@ public class HunterSurvival
             Thread.Sleep(5000);
             if (ObjectManager.Pet.Health == 0 || ObjectManager.Pet.Guid == 0)
                 return;
-            else
-                Thread.Sleep(5000);
+            Thread.Sleep(5000);
+            return;
         }
-        else if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
-                 && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
+        if (ObjectManager.Me.HealthPercent < 50 && mySettings.UseDeterrance
+            && Deterrance.KnownSpell && Deterrance.IsSpellUsable)
         {
             Deterrance.Launch();
             Thread.Sleep(200);
+            return;
         }
-        else if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
-                 && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
+        if (mySettings.UseFreezingTrap && ObjectManager.GetNumberAttackPlayer() > 1 && FreezingTrap.KnownSpell
+            && FreezingTrap.IsSpellUsable && ObjectManager.Target.GetDistance > 10)
         {
             FreezingTrap.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
-                 && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseIceTrap
+            && IceTrap.KnownSpell && IceTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             IceTrap.Launch();
             Thread.Sleep(1000);
@@ -26277,9 +25889,9 @@ public class HunterSurvival
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
-                 && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseConcussiveShot
+            && ConcussiveShot.KnownSpell && ConcussiveShot.IsSpellUsable && ConcussiveShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             ConcussiveShot.Launch();
             Thread.Sleep(1000);
@@ -26287,9 +25899,9 @@ public class HunterSurvival
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
-                 && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
-                 && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
+        if (ObjectManager.Me.HealthPercent < 80 && mySettings.UseBindingShot
+            && BindingShot.KnownSpell && BindingShot.IsSpellUsable && BindingShot.IsHostileDistanceGood
+            && Disengage.KnownSpell && Disengage.IsSpellUsable && mySettings.UseDisengage)
         {
             BindingShot.Launch();
             Thread.Sleep(1000);
@@ -26297,24 +25909,20 @@ public class HunterSurvival
             Disengage.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
-                 WarStomp.KnownSpell
-                 && mySettings.UseWarStomp)
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage && WarStomp.IsSpellUsable &&
+            WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
             WarStomp.Launch();
             OnCD = new Timer(1000*2);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
+            Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
-            if (ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage && Stoneform.IsSpellUsable &&
-                Stoneform.KnownSpell
-                && mySettings.UseStoneform)
-            {
-                Stoneform.Launch();
-                OnCD = new Timer(1000*8);
-                return;
-            }
+            Stoneform.Launch();
+            OnCD = new Timer(1000*8);
         }
     }
 
@@ -26330,29 +25938,25 @@ public class HunterSurvival
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
-                 && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
+        if (Exhilaration.KnownSpell && Exhilaration.IsSpellUsable
+            && mySettings.UseExhilaration && ObjectManager.Me.HealthPercent < 70)
         {
             Exhilaration.Launch();
             return;
         }
-        else if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
-                 && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
-                 && !ObjectManager.Me.InCombat)
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 50
+            && FeedPet.KnownSpell && FeedPet.IsSpellUsable && mySettings.UseFeedPet
+            && !ObjectManager.Me.InCombat)
         {
             FeedPet.Launch();
             return;
         }
-        else
+        if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
+            && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
+            && MendPetTimer.IsReady)
         {
-            if (ObjectManager.Pet.Health > 0 && ObjectManager.Pet.HealthPercent < 80
-                && MendPet.KnownSpell && MendPet.IsSpellUsable && mySettings.UseMendPet
-                && MendPetTimer.IsReady)
-            {
-                MendPet.Launch();
-                MendPetTimer = new Timer(1000*10);
-                return;
-            }
+            MendPet.Launch();
+            MendPetTimer = new Timer(1000*10);
         }
     }
 
@@ -26365,26 +25969,22 @@ public class HunterSurvival
             ArcaneTorrent.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
-                 && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && SilencingShot.IsHostileDistanceGood
+            && SilencingShot.KnownSpell && SilencingShot.IsSpellUsable && mySettings.UseSilencingShot)
         {
             SilencingShot.Launch();
             return;
         }
-        else if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
-                 && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && ScatterShot.IsHostileDistanceGood
+            && ScatterShot.KnownSpell && ScatterShot.IsSpellUsable && mySettings.UseScatterShot)
         {
             ScatterShot.Launch();
             return;
         }
-        else
+        if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
+            && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
         {
-            if (ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && mySettings.UseWyvernSting
-                && WyvernSting.KnownSpell && WyvernSting.IsSpellUsable && WyvernSting.IsHostileDistanceGood)
-            {
-                WyvernSting.Launch();
-                return;
-            }
+            WyvernSting.Launch();
         }
     }
 
@@ -26400,90 +26000,97 @@ public class HunterSurvival
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
-                 && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
+        if (AMurderofCrows.KnownSpell && AMurderofCrows.IsSpellUsable && AMurderofCrows.IsHostileDistanceGood
+            && mySettings.UseAMurderofCrows && !AMurderofCrows.TargetHaveBuff)
         {
             AMurderofCrows.Launch();
             return;
         }
-        else if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
+        if (Barrage.KnownSpell && Barrage.IsSpellUsable && mySettings.UseBarrage && Barrage.IsHostileDistanceGood)
         {
             Barrage.Launch();
             return;
         }
-        else if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
-                 && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
+        if (BlinkStrike.KnownSpell && BlinkStrike.IsSpellUsable && ObjectManager.Pet.IsAlive
+            && mySettings.UseBlinkStrike && ObjectManager.Target.GetDistance < 41)
         {
             BlinkStrike.Launch();
             return;
         }
-        else if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
-                 && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
+        if (DireBeast.KnownSpell && DireBeast.IsSpellUsable && mySettings.UseDireBeast
+            && DireBeast.IsHostileDistanceGood && DireBeastTimer.IsReady)
         {
             DireBeast.Launch();
             DireBeastTimer = new Timer(1000*15);
             return;
         }
-        else if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
-                 && mySettings.UseFervor)
+        if (Fervor.KnownSpell && Fervor.IsSpellUsable && ObjectManager.Me.Focus < 50
+            && mySettings.UseFervor)
         {
             Fervor.Launch();
             return;
         }
-        else if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
-                 GlaiveToss.IsHostileDistanceGood)
+        if (GlaiveToss.KnownSpell && GlaiveToss.IsSpellUsable && mySettings.UseGlaiveToss &&
+            GlaiveToss.IsHostileDistanceGood)
         {
             GlaiveToss.Launch();
             return;
         }
-        else if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
-                 ObjectManager.Target.GetDistance < 41)
+        if (LynxRush.KnownSpell && LynxRush.IsSpellUsable && mySettings.UseLynxRush &&
+            ObjectManager.Target.GetDistance < 41)
         {
             LynxRush.Launch();
             return;
         }
-        else if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
-                 Powershot.IsHostileDistanceGood)
+        if (Powershot.KnownSpell && Powershot.IsSpellUsable && mySettings.UsePowershot &&
+            Powershot.IsHostileDistanceGood)
         {
             Powershot.Launch();
             return;
         }
-        else if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
-                 Stampede.IsHostileDistanceGood)
+        if (Stampede.KnownSpell && Stampede.IsSpellUsable && mySettings.UseStampede &&
+            Stampede.IsHostileDistanceGood)
         {
             Stampede.Launch();
             return;
         }
-        else if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
-                 && ObjectManager.Target.GetDistance < 41)
+        if (RapidFire.KnownSpell && RapidFire.IsSpellUsable && mySettings.UseRapidFire
+            && ObjectManager.Target.GetDistance < 41)
         {
             RapidFire.Launch();
             return;
         }
-        else
+        if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness)
         {
-            if (Readiness.KnownSpell && Readiness.IsSpellUsable && mySettings.UseReadiness)
-            {
-                Readiness.Launch();
-                return;
-            }
+            Readiness.Launch();
         }
     }
 
@@ -26496,106 +26103,95 @@ public class HunterSurvival
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                 && mySettings.UseCobraShot && SerpentStingTimer.IsReady)
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot && SerpentStingTimer.IsReady)
         {
             CobraShot.Launch();
             SerpentStingTimer = new Timer(1000*12);
             return;
         }
-        else if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
-                 && mySettings.UseKillShot)
+        if (KillShot.KnownSpell && KillShot.IsSpellUsable && KillShot.IsHostileDistanceGood
+            && mySettings.UseKillShot)
         {
             KillShot.Launch();
             return;
         }
-        else if (ObjectManager.GetNumberAttackPlayer() > 4 && mySettings.UseMultiShot && mySettings.UseExplosiveTrap
-                 && mySettings.UseExplosiveShot)
+        if (ObjectManager.GetNumberAttackPlayer() > 4 && mySettings.UseMultiShot && mySettings.UseExplosiveTrap
+            && mySettings.UseExplosiveShot)
         {
             if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood)
             {
                 MultiShot.Launch();
                 return;
             }
-            else if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
+            if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10)
             {
                 ExplosiveTrap.Launch();
                 return;
             }
-            else
+            if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood)
             {
-                if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood)
-                {
-                    ExplosiveShot.Launch();
-                    return;
-                }
+                ExplosiveShot.Launch();
+                return;
             }
+            return;
         }
-        else if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
-                 && mySettings.UseExplosiveTrap && ObjectManager.GetNumberAttackPlayer() < 4 &&
-                 ObjectManager.GetNumberAttackPlayer() > 1)
+        if (ExplosiveTrap.KnownSpell && ExplosiveTrap.IsSpellUsable && ObjectManager.Target.GetDistance < 10
+            && mySettings.UseExplosiveTrap && ObjectManager.GetNumberAttackPlayer() < 4 &&
+            ObjectManager.GetNumberAttackPlayer() > 1)
         {
             ExplosiveTrap.Launch();
             return;
         }
-        else if (BlackArrow.KnownSpell && BlackArrow.IsSpellUsable && BlackArrow.IsHostileDistanceGood
-                 && mySettings.UseBlackArrow)
+        if (BlackArrow.KnownSpell && BlackArrow.IsSpellUsable && BlackArrow.IsHostileDistanceGood
+            && mySettings.UseBlackArrow)
         {
             BlackArrow.Launch();
             return;
         }
-        else if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood
-                 && mySettings.UseExplosiveShot)
+        if (ExplosiveShot.KnownSpell && ExplosiveShot.IsSpellUsable && ExplosiveShot.IsHostileDistanceGood
+            && mySettings.UseExplosiveShot)
         {
             ExplosiveShot.Launch();
             return;
         }
-        else if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood
-                 && mySettings.UseMultiShot && ObjectManager.Me.FocusPercentage > 79
-                 && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1)
+        if (MultiShot.KnownSpell && MultiShot.IsSpellUsable && MultiShot.IsHostileDistanceGood
+            && mySettings.UseMultiShot && ObjectManager.Me.FocusPercentage > 79
+            && ObjectManager.GetNumberAttackPlayer() < 4 && ObjectManager.GetNumberAttackPlayer() > 1)
         {
             MultiShot.Launch();
             return;
         }
-        else if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
-                 && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 79)
+        if (ArcaneShot.KnownSpell && ArcaneShot.IsSpellUsable && ArcaneShot.IsHostileDistanceGood
+            && mySettings.UseArcaneShot && ObjectManager.Me.FocusPercentage > 79)
         {
             ArcaneShot.Launch();
             return;
         }
-        else if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
-                 && mySettings.UseArcaneTorrentForResource)
+        if (ArcaneTorrent.IsSpellUsable && ArcaneTorrent.KnownSpell
+            && mySettings.UseArcaneTorrentForResource)
         {
             ArcaneTorrent.Launch();
             return;
         }
-        else
+        if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
+            && mySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 80)
         {
-            if (CobraShot.KnownSpell && CobraShot.IsSpellUsable && CobraShot.IsHostileDistanceGood
-                && mySettings.UseCobraShot && ObjectManager.Me.FocusPercentage < 80)
-            {
-                CobraShot.Launch();
-                return;
-            }
-            else
-            {
-                if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
-                    && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
-                {
-                    SteadyShot.Launch();
-                    return;
-                }
-            }
+            CobraShot.Launch();
+            return;
+        }
+        if (SteadyShot.KnownSpell && SteadyShot.IsSpellUsable && SteadyShot.IsHostileDistanceGood
+            && ObjectManager.Me.FocusPercentage < 60 && (!CobraShot.KnownSpell || !mySettings.UseCobraShot))
+        {
+            SteadyShot.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: HunterSurvivalSettings
@@ -26766,14 +26362,14 @@ public class MonkBrewmaster
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     public int ElusiveBrewStack = 0;
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
     private Timer HealingSphereTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer StaggerTimer = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -26837,10 +26433,10 @@ public class MonkBrewmaster
     private readonly Spell Guard = new Spell("Guard");
     private readonly Spell LegSweep = new Spell("Leg Sweep");
     private readonly Spell PurifyingBrew = new Spell("Purifying Brew");
-    private Timer PurifyingBrewTimer = new Timer(0);
     private readonly Spell SpearHandStrike = new Spell("Spear Hand Strike");
     private readonly Spell SummonBlackOxStatue = new Spell("Summon Black Ox Statue");
     private readonly Spell ZenMeditation = new Spell("Zen Meditation");
+    private Timer PurifyingBrewTimer = new Timer(0);
 
     #endregion
 
@@ -26878,8 +26474,9 @@ public class MonkBrewmaster
 
                             if (ObjectManager.Target.GetDistance < 30)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -26981,74 +26578,70 @@ public class MonkBrewmaster
             GrappleWeaponTimer = new Timer(1000*60);
             return;
         }
-        else if (mySettings.UseElusiveBrew && ElusiveBrew.KnownSpell && ObjectManager.Me.InCombat && ObjectManager.Me.HealthPercent <= mySettings.UseElusiveBrewAtPercentage
-                 && ElusiveBrew.IsSpellUsable && ObjectManager.Me.BuffStack(128939) > 5)
+        if (mySettings.UseElusiveBrew && ElusiveBrew.KnownSpell && ObjectManager.Me.InCombat && ObjectManager.Me.HealthPercent <= mySettings.UseElusiveBrewAtPercentage
+            && ElusiveBrew.IsSpellUsable && ObjectManager.Me.BuffStack(128939) > 5)
         {
             ElusiveBrewStack = ObjectManager.Me.BuffStack(128939);
             ElusiveBrew.Launch();
             OnCD = new Timer(1000*ElusiveBrewStack);
             return;
         }
-        else if (mySettings.UseFortifyingBrew && FortifyingBrew.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseFortifyingBrewAtPercentage &&
-                 FortifyingBrew.IsSpellUsable)
+        if (mySettings.UseFortifyingBrew && FortifyingBrew.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseFortifyingBrewAtPercentage &&
+            FortifyingBrew.IsSpellUsable)
         {
             FortifyingBrew.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (mySettings.UseChargingOxWave && ChargingOxWave.KnownSpell && ChargingOxWave.IsHostileDistanceGood &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseChargingOxWaveAtPercentage
-                 && ChargingOxWave.IsSpellUsable)
+        if (mySettings.UseChargingOxWave && ChargingOxWave.KnownSpell && ChargingOxWave.IsHostileDistanceGood &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseChargingOxWaveAtPercentage
+            && ChargingOxWave.IsSpellUsable)
         {
             ChargingOxWave.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (mySettings.UseDampenHarm && DampenHarm.KnownSpell && DampenHarm.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseDampenHarmAtPercentage)
+        if (mySettings.UseDampenHarm && DampenHarm.KnownSpell && DampenHarm.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseDampenHarmAtPercentage)
         {
             DampenHarm.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseLegSweep && LegSweep.KnownSpell && ObjectManager.Target.GetDistance < 6 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseLegSweepAtPercentage
-                 && LegSweep.IsSpellUsable)
+        if (mySettings.UseLegSweep && LegSweep.KnownSpell && ObjectManager.Target.GetDistance < 6 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseLegSweepAtPercentage
+            && LegSweep.IsSpellUsable)
         {
             LegSweep.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseGuard && Guard.KnownSpell && ObjectManager.Me.HaveBuff(118636) && Guard.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseGuardAtPercentage)
+        if (mySettings.UseGuard && Guard.KnownSpell && ObjectManager.Me.HaveBuff(118636) && Guard.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseGuardAtPercentage)
         {
             Guard.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UsePurifyingBrew && PurifyingBrew.KnownSpell && ObjectManager.Me.HaveBuff(124255) && PurifyingBrewTimer.IsReady &&
-                 PurifyingBrew.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UsePurifyingBrewAtPercentage)
+        if (mySettings.UsePurifyingBrew && PurifyingBrew.KnownSpell && ObjectManager.Me.HaveBuff(124255) && PurifyingBrewTimer.IsReady &&
+            PurifyingBrew.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UsePurifyingBrewAtPercentage)
         {
             PurifyingBrew.Launch();
             PurifyingBrewTimer = new Timer(1000*10);
             return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
         {
-            if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -27060,36 +26653,32 @@ public class MonkBrewmaster
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseHealingSphere && HealingSphere.KnownSpell && HealingSphere.IsSpellUsable && HealingSphereTimer.IsReady &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseHealingSphereAtPercentage)
+        if (mySettings.UseHealingSphere && HealingSphere.KnownSpell && HealingSphere.IsSpellUsable && HealingSphereTimer.IsReady &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseHealingSphereAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
             HealingSphereTimer = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseChiWave && ChiWave.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiWaveAtPercentage && ChiWave.IsSpellUsable)
+        if (mySettings.UseChiWave && ChiWave.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiWaveAtPercentage && ChiWave.IsSpellUsable)
         {
             ChiWave.Launch();
             return;
         }
-        else if (mySettings.UseChiBurst && ChiBurst.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiBurstAtPercentage && ChiBurst.IsSpellUsable)
+        if (mySettings.UseChiBurst && ChiBurst.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiBurstAtPercentage && ChiBurst.IsSpellUsable)
         {
             ChiBurst.Launch();
             return;
         }
-        else if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsSpellUsable)
+        if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsSpellUsable)
         {
             ExpelHarm.Launch();
             return;
         }
-        else
+        if (mySettings.UseZenSphere && ZenSphere.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseZenSphereAtPercentage
+            && !ZenSphere.HaveBuff && ZenSphere.IsSpellUsable)
         {
-            if (mySettings.UseZenSphere && ZenSphere.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseZenSphereAtPercentage
-                && !ZenSphere.HaveBuff && ZenSphere.IsSpellUsable)
-            {
-                ZenSphere.Launch();
-                return;
-            }
+            ZenSphere.Launch();
         }
     }
 
@@ -27101,26 +26690,21 @@ public class MonkBrewmaster
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseDiffuseMagic && DiffuseMagic.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && DiffuseMagic.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDiffuseMagicAtPercentage)
+        if (mySettings.UseDiffuseMagic && DiffuseMagic.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && DiffuseMagic.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDiffuseMagicAtPercentage)
         {
             DiffuseMagic.Launch();
             return;
         }
-        else
+        if (mySettings.UseSpearHandStrike && SpearHandStrike.KnownSpell && ObjectManager.Target.IsCast && SpearHandStrike.IsHostileDistanceGood && SpearHandStrike.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseSpearHandStrikeAtPercentage)
         {
-            if (mySettings.UseSpearHandStrike && SpearHandStrike.KnownSpell && ObjectManager.Target.IsCast && SpearHandStrike.IsHostileDistanceGood && SpearHandStrike.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseSpearHandStrikeAtPercentage)
-            {
-                SpearHandStrike.Launch();
-                return;
-            }
+            SpearHandStrike.Launch();
+            return;
         }
-
         if (mySettings.UseDisable && Disable.KnownSpell && ObjectManager.Target.GetMove && !Disable.TargetHaveBuff && Disable.IsHostileDistanceGood && Disable.IsSpellUsable)
         {
             Disable.Launch();
-            return;
         }
     }
 
@@ -27131,42 +26715,54 @@ public class MonkBrewmaster
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
+        }
+        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+        {
+            Berserking.Launch();
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        {
+            BloodFury.Launch();
+            return;
         }
 
-        if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
-            Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
-            BloodFury.Launch();
-
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+            return;
+        }
         if (mySettings.UseEngGlove && Engineering.KnownSpell && EngineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
 
         if (mySettings.UseChiBrew && ChiBrew.KnownSpell && ObjectManager.Me.Chi == 0 && ChiBrew.IsSpellUsable)
+        {
             ChiBrew.Launch();
+        }
 
         if (mySettings.UseTouchofDeath && TouchofDeath.KnownSpell && TouchofDeath.IsHostileDistanceGood && TouchofDeath.IsSpellUsable)
+        {
             TouchofDeath.Launch();
+        }
 
         if (mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.KnownSpell && InvokeXuentheWhiteTiger.IsHostileDistanceGood && InvokeXuentheWhiteTiger.IsSpellUsable)
+        {
             InvokeXuentheWhiteTiger.Launch();
-
+        }
         if (mySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood && RushingJadeWind.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 3)
         {
             RushingJadeWind.Launch();
-            return;
         }
     }
 
@@ -27180,36 +26776,35 @@ public class MonkBrewmaster
                 SpinningCraneKick.Launch();
                 return;
             }
-            else if (mySettings.UseDizzyingHaze && DizzyingHaze.KnownSpell && !DizzyingHaze.TargetHaveBuff && DizzyingHaze.IsHostileDistanceGood && DizzyingHaze.IsSpellUsable)
+            if (mySettings.UseDizzyingHaze && DizzyingHaze.KnownSpell && !DizzyingHaze.TargetHaveBuff && DizzyingHaze.IsHostileDistanceGood && DizzyingHaze.IsSpellUsable)
             {
                 SpellManager.CastSpellByIDAndPosition(115180, ObjectManager.Target.Position);
                 return;
             }
-            else if (mySettings.UseBreathofFire && BreathofFire.KnownSpell && !BreathofFire.TargetHaveBuff && ObjectManager.Target.GetDistance < 8 && BreathofFire.IsSpellUsable)
+            if (mySettings.UseBreathofFire && BreathofFire.KnownSpell && !BreathofFire.TargetHaveBuff && ObjectManager.Target.GetDistance < 8 && BreathofFire.IsSpellUsable)
             {
                 BreathofFire.Launch();
                 return;
             }
-            else if (mySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && ObjectManager.Target.GetDistance < 30 && RushingJadeWind.IsSpellUsable)
+            if (mySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && ObjectManager.Target.GetDistance < 30 && RushingJadeWind.IsSpellUsable)
             {
                 RushingJadeWind.Launch();
                 return;
             }
+            return;
         }
-
         if (mySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && ObjectManager.Target.GetDistance < 30 && !ObjectManager.Target.HaveBuff(115307) &&
             RushingJadeWind.IsSpellUsable)
         {
             RushingJadeWind.Launch();
             return;
         }
-        else if (mySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable
-                 && (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath) && (!ObjectManager.Me.HaveBuff(115307) || !StanceoftheSturdyOx.KnownSpell))
+        if (mySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable &&
+            (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath) && (!ObjectManager.Me.HaveBuff(115307) || !StanceoftheSturdyOx.KnownSpell))
         {
             BlackoutKick.Launch();
             return;
         }
-
         if (mySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable &&
             (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath)
             &&
@@ -27218,42 +26813,40 @@ public class MonkBrewmaster
             TigerPalm.Launch();
             return;
         }
-
         if (mySettings.UseKegSmash && KegSmash.KnownSpell && KegSmash.IsHostileDistanceGood && ObjectManager.Me.Chi < 3 && KegSmash.IsSpellUsable)
         {
             KegSmash.Launch();
             return;
         }
-        else if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.EnergyPercentage < 40 && ArcaneTorrent.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage)
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ObjectManager.Me.EnergyPercentage < 40 && ArcaneTorrent.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage)
+        {
             ArcaneTorrent.Launch();
-        else if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ObjectManager.Me.Chi < 4
-                 && ExpelHarm.IsHostileDistanceGood && ExpelHarm.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ObjectManager.Me.Chi < 4
+            && ExpelHarm.IsHostileDistanceGood && ExpelHarm.IsSpellUsable)
         {
             ExpelHarm.Launch();
             return;
         }
-        else if (mySettings.UseJab && Jab.KnownSpell && ObjectManager.Me.Chi < 4 && Jab.IsHostileDistanceGood && Jab.IsSpellUsable)
+        if (mySettings.UseJab && Jab.KnownSpell && ObjectManager.Me.Chi < 4 && Jab.IsHostileDistanceGood && Jab.IsSpellUsable)
         {
             Jab.Launch();
             return;
         }
-
         if (mySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable && !ObjectManager.Me.HaveBuff(121125)
             && (ObjectManager.Me.HaveBuff(115307) || !StanceoftheSturdyOx.KnownSpell))
         {
             TigerPalm.Launch();
-            return;
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MonkBrewmasterSettings
@@ -27420,14 +27013,14 @@ public class MonkWindwalker
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
     private Timer HealingSphereTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer RisingSunKickTimer = new Timer(0);
     private Timer TigerPowerTimer = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -27528,8 +27121,9 @@ public class MonkWindwalker
 
                             if (ObjectManager.Target.GetDistance < 30)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -27626,57 +27220,53 @@ public class MonkWindwalker
             GrappleWeaponTimer = new Timer(1000*60);
             return;
         }
-        else if (mySettings.UseFortifyingBrew && FortifyingBrew.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseFortifyingBrewAtPercentage &&
-                 FortifyingBrew.IsSpellUsable)
+        if (mySettings.UseFortifyingBrew && FortifyingBrew.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseFortifyingBrewAtPercentage &&
+            FortifyingBrew.IsSpellUsable)
         {
             FortifyingBrew.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (mySettings.UseChargingOxWave && ChargingOxWave.KnownSpell && ChargingOxWave.IsHostileDistanceGood &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseChargingOxWaveAtPercentage
-                 && ChargingOxWave.IsSpellUsable)
+        if (mySettings.UseChargingOxWave && ChargingOxWave.KnownSpell && ChargingOxWave.IsHostileDistanceGood &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseChargingOxWaveAtPercentage
+            && ChargingOxWave.IsSpellUsable)
         {
             ChargingOxWave.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (mySettings.UseDampenHarm && DampenHarm.KnownSpell && DampenHarm.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseDampenHarmAtPercentage)
+        if (mySettings.UseDampenHarm && DampenHarm.KnownSpell && DampenHarm.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseDampenHarmAtPercentage)
         {
             DampenHarm.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseLegSweep && LegSweep.KnownSpell && ObjectManager.Target.GetDistance < 6 &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseLegSweepAtPercentage
-                 && LegSweep.IsSpellUsable)
+        if (mySettings.UseLegSweep && LegSweep.KnownSpell && ObjectManager.Target.GetDistance < 6 &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseLegSweepAtPercentage
+            && LegSweep.IsSpellUsable)
         {
             LegSweep.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (mySettings.UseTouchofKarma && TouchofKarma.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseTouchofKarmaAtPercentage
-                 && TouchofKarma.IsHostileDistanceGood && TouchofKarma.IsSpellUsable)
+        if (mySettings.UseTouchofKarma && TouchofKarma.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseTouchofKarmaAtPercentage
+            && TouchofKarma.IsHostileDistanceGood && TouchofKarma.IsSpellUsable)
         {
             TouchofKarma.Launch();
             OnCD = new Timer(1000*6);
             return;
         }
-        else if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
+        if (mySettings.UseStoneform && Stoneform.KnownSpell && Stoneform.IsSpellUsable && ObjectManager.Me.HealthPercent <= mySettings.UseStoneformAtPercentage)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
         {
-            if (mySettings.UseWarStomp && WarStomp.KnownSpell && ObjectManager.Target.GetDistance < 8 && WarStomp.IsSpellUsable &&
-                ObjectManager.Me.HealthPercent <= mySettings.UseWarStompAtPercentage)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -27688,36 +27278,32 @@ public class MonkWindwalker
             GiftoftheNaaru.Launch();
             return;
         }
-        else if (mySettings.UseHealingSphere && HealingSphere.KnownSpell && HealingSphere.IsSpellUsable && HealingSphereTimer.IsReady &&
-                 ObjectManager.Me.HealthPercent <= mySettings.UseHealingSphereAtPercentage)
+        if (mySettings.UseHealingSphere && HealingSphere.KnownSpell && HealingSphere.IsSpellUsable && HealingSphereTimer.IsReady &&
+            ObjectManager.Me.HealthPercent <= mySettings.UseHealingSphereAtPercentage)
         {
             SpellManager.CastSpellByIDAndPosition(115460, ObjectManager.Me.Position);
             HealingSphereTimer = new Timer(1000*8);
             return;
         }
-        else if (mySettings.UseChiWave && ChiWave.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiWaveAtPercentage && ChiWave.IsSpellUsable)
+        if (mySettings.UseChiWave && ChiWave.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiWaveAtPercentage && ChiWave.IsSpellUsable)
         {
             ChiWave.Launch();
             return;
         }
-        else if (mySettings.UseChiBurst && ChiBurst.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiBurstAtPercentage && ChiBurst.IsSpellUsable)
+        if (mySettings.UseChiBurst && ChiBurst.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseChiBurstAtPercentage && ChiBurst.IsSpellUsable)
         {
             ChiBurst.Launch();
             return;
         }
-        else if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsSpellUsable)
+        if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsSpellUsable)
         {
             ExpelHarm.Launch();
             return;
         }
-        else
+        if (mySettings.UseZenSphere && ZenSphere.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseZenSphereAtPercentage
+            && !ZenSphere.HaveBuff && ZenSphere.IsSpellUsable)
         {
-            if (mySettings.UseZenSphere && ZenSphere.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseZenSphereAtPercentage
-                && !ZenSphere.HaveBuff && ZenSphere.IsSpellUsable)
-            {
-                ZenSphere.Launch();
-                return;
-            }
+            ZenSphere.Launch();
         }
     }
 
@@ -27729,26 +27315,21 @@ public class MonkWindwalker
             ArcaneTorrent.Launch();
             return;
         }
-        else if (mySettings.UseDiffuseMagic && DiffuseMagic.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && DiffuseMagic.IsSpellUsable
-                 && ObjectManager.Me.HealthPercent <= mySettings.UseDiffuseMagicAtPercentage)
+        if (mySettings.UseDiffuseMagic && DiffuseMagic.KnownSpell && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe && DiffuseMagic.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseDiffuseMagicAtPercentage)
         {
             DiffuseMagic.Launch();
             return;
         }
-        else
+        if (mySettings.UseSpearHandStrike && SpearHandStrike.KnownSpell && ObjectManager.Target.IsCast && SpearHandStrike.IsHostileDistanceGood && SpearHandStrike.IsSpellUsable
+            && ObjectManager.Me.HealthPercent <= mySettings.UseSpearHandStrikeAtPercentage)
         {
-            if (mySettings.UseSpearHandStrike && SpearHandStrike.KnownSpell && ObjectManager.Target.IsCast && SpearHandStrike.IsHostileDistanceGood && SpearHandStrike.IsSpellUsable
-                && ObjectManager.Me.HealthPercent <= mySettings.UseSpearHandStrikeAtPercentage)
-            {
-                SpearHandStrike.Launch();
-                return;
-            }
+            SpearHandStrike.Launch();
+            return;
         }
-
         if (mySettings.UseDisable && Disable.KnownSpell && ObjectManager.Target.GetMove && !Disable.TargetHaveBuff && Disable.IsHostileDistanceGood && Disable.IsSpellUsable)
         {
             Disable.Launch();
-            return;
         }
     }
 
@@ -27759,51 +27340,62 @@ public class MonkWindwalker
             ItemsManager.UseItem(FirstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-
         if (mySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(SecondTrinket.Entry) && ItemsManager.IsUsableItemById(SecondTrinket.Entry))
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-
         if (mySettings.UseBerserking && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 30 && Berserking.IsSpellUsable)
+        {
             Berserking.Launch();
-        else if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+            return;
+        }
+        if (mySettings.UseBloodFury && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 30 && BloodFury.IsSpellUsable)
+        {
             BloodFury.Launch();
-
+            return;
+        }
         if (mySettings.UseLifeblood && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 30 && Lifeblood.IsSpellUsable)
+        {
             Lifeblood.Launch();
-
+            return;
+        }
         if (mySettings.UseEngGlove && Engineering.KnownSpell && EngineeringTimer.IsReady && ObjectManager.Target.GetDistance < 30)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-
         if (mySettings.UseChiBrew && ChiBrew.KnownSpell && ObjectManager.Me.Chi == 0 && ChiBrew.IsSpellUsable)
+        {
             ChiBrew.Launch();
-
+        }
         if (mySettings.UseTouchofDeath && TouchofDeath.KnownSpell && TouchofDeath.IsHostileDistanceGood && TouchofDeath.IsSpellUsable)
+        {
             TouchofDeath.Launch();
-
+        }
         if (mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.KnownSpell && InvokeXuentheWhiteTiger.IsHostileDistanceGood && InvokeXuentheWhiteTiger.IsSpellUsable)
+        {
             InvokeXuentheWhiteTiger.Launch();
-
+        }
         if (mySettings.UseEnergizingBrew && EnergizingBrew.KnownSpell && ObjectManager.Me.Energy < 41 && ObjectManager.Target.GetDistance < 30 && EnergizingBrew.IsSpellUsable)
+        {
             EnergizingBrew.Launch();
-
+        }
         if (mySettings.UseTigereyeBrew && TigereyeBrew.KnownSpell && ObjectManager.Me.BuffStack(125195) > 9 && ObjectManager.Target.GetDistance < 30 && TigereyeBrew.IsSpellUsable)
+        {
             TigereyeBrew.Launch();
-
+        }
         if (mySettings.UseChiWave && ChiWave.KnownSpell && ChiWave.IsHostileDistanceGood && ChiWave.IsSpellUsable)
+        {
             ChiWave.Launch();
-
+        }
         if (mySettings.UseRushingJadeWind && RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood && RushingJadeWind.IsSpellUsable
             && ObjectManager.GetNumberAttackPlayer() > 3)
         {
             RushingJadeWind.Launch();
-            return;
         }
     }
 
@@ -27816,13 +27408,13 @@ public class MonkWindwalker
                 TigerPalm.Launch();
                 return;
             }
-            else if (mySettings.UseRisingSunKick && RisingSunKick.KnownSpell && !RisingSunKick.TargetHaveBuff && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable)
+            if (mySettings.UseRisingSunKick && RisingSunKick.KnownSpell && !RisingSunKick.TargetHaveBuff && RisingSunKick.IsHostileDistanceGood && RisingSunKick.IsSpellUsable)
             {
                 RisingSunKick.Launch();
                 return;
             }
-            else if (mySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast &&
-                     SpinningCraneKick.IsSpellUsable)
+            if (mySettings.UseSpinningCraneKick && SpinningCraneKick.KnownSpell && SpinningCraneKick.IsHostileDistanceGood && !ObjectManager.Me.IsCast &&
+                SpinningCraneKick.IsSpellUsable)
             {
                 SpinningCraneKick.Launch();
                 return;
@@ -27836,54 +27428,51 @@ public class MonkWindwalker
             RisingSunKickTimer = new Timer(1000*4);
             return;
         }
-        else if (mySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable &&
-                 (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath)
-                 && (TigerPowerTimer.IsReady || !ObjectManager.Me.HaveBuff(125359) || ObjectManager.Me.HaveBuff(118864)))
+        if (mySettings.UseTigerPalm && TigerPalm.KnownSpell && TigerPalm.IsHostileDistanceGood && TigerPalm.IsSpellUsable &&
+            (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath)
+            && (TigerPowerTimer.IsReady || !ObjectManager.Me.HaveBuff(125359) || ObjectManager.Me.HaveBuff(118864)))
         {
             TigerPalm.Launch();
             TigerPowerTimer = new Timer(1000*15);
             return;
         }
-        else if (mySettings.UseFistsofFury && FistsofFury.KnownSpell && FistsofFury.IsHostileDistanceGood && FistsofFury.IsSpellUsable &&
-                 (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath)
-                 && !TigerPowerTimer.IsReady && !RisingSunKickTimer.IsReady && ObjectManager.Me.EnergyPercentage < 81)
+        if (mySettings.UseFistsofFury && FistsofFury.KnownSpell && FistsofFury.IsHostileDistanceGood && FistsofFury.IsSpellUsable &&
+            (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath)
+            && !TigerPowerTimer.IsReady && !RisingSunKickTimer.IsReady && ObjectManager.Me.EnergyPercentage < 81)
         {
             FistsofFury.Launch();
             return;
         }
-        else if (mySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable
-                 && (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath))
+        if (mySettings.UseBlackoutKick && BlackoutKick.KnownSpell && BlackoutKick.IsHostileDistanceGood && BlackoutKick.IsSpellUsable
+            && (!ObjectManager.Me.HaveBuff(121125) || !mySettings.UseTouchofDeath))
         {
             BlackoutKick.Launch();
             return;
         }
-        else if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsHostileDistanceGood &&
-                 ExpelHarm.IsSpellUsable
-                 && ObjectManager.Me.Chi < 3)
+        if (mySettings.UseExpelHarm && ExpelHarm.KnownSpell && ObjectManager.Me.HealthPercent <= mySettings.UseExpelHarmAtPercentage && ExpelHarm.IsHostileDistanceGood &&
+            ExpelHarm.IsSpellUsable
+            && ObjectManager.Me.Chi < 3)
         {
             ExpelHarm.Launch();
             return;
         }
-        else if (mySettings.UseJab && Jab.KnownSpell && !ObjectManager.Me.HaveBuff(116768) && Jab.IsHostileDistanceGood && Jab.IsSpellUsable
-                 && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864))
+        if (mySettings.UseJab && Jab.KnownSpell && !ObjectManager.Me.HaveBuff(116768) && Jab.IsHostileDistanceGood && Jab.IsSpellUsable
+            && ObjectManager.Me.Chi < 3 && !ObjectManager.Me.HaveBuff(118864))
         {
             Jab.Launch();
             return;
         }
-        else
+        if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.EnergyPercentage < 90)
         {
-            if (mySettings.UseArcaneTorrentForResource && ArcaneTorrent.KnownSpell && ArcaneTorrent.IsSpellUsable && ObjectManager.Me.EnergyPercentage < 90)
-                ArcaneTorrent.Launch();
+            ArcaneTorrent.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MonkWindwalkerSettings
@@ -28042,13 +27631,13 @@ public class MonkMistweaver
 
     #region General Timers & Variables
 
+    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
+    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
     private Timer EngineeringTimer = new Timer(0);
     private Timer GrappleWeaponTimer = new Timer(0);
     private Timer HealingSphereTimer = new Timer(0);
     private Timer OnCD = new Timer(0);
     private Timer SerpentsZealTimer = new Timer(0);
-    private readonly WoWItem FirstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly WoWItem SecondTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET, 2);
 
     #endregion
 
@@ -28155,8 +27744,9 @@ public class MonkMistweaver
 
                             if (ObjectManager.Target.GetDistance < 41)
                                 Combat();
+                            break;
                         }
-                        else if (!ObjectManager.Me.IsCast)
+                        if (!ObjectManager.Me.IsCast)
                             Patrolling();
                     }
                 }
@@ -28206,36 +27796,35 @@ public class MonkMistweaver
             LegacyoftheEmperor.Launch();
             return;
         }
-        else if (StanceoftheWiseSerpent.KnownSpell && StanceoftheWiseSerpent.IsSpellUsable && !StanceoftheWiseSerpent.HaveBuff
-                 && mySettings.UseStanceoftheWiseSerpent)
+        if (StanceoftheWiseSerpent.KnownSpell && StanceoftheWiseSerpent.IsSpellUsable && !StanceoftheWiseSerpent.HaveBuff
+            && mySettings.UseStanceoftheWiseSerpent)
         {
             StanceoftheWiseSerpent.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && TigersLust.IsSpellUsable && TigersLust.KnownSpell
-                 && mySettings.UseTigersLust && ObjectManager.Me.GetMove)
+        if (!ObjectManager.Me.InCombat && TigersLust.IsSpellUsable && TigersLust.KnownSpell
+            && mySettings.UseTigersLust && ObjectManager.Me.GetMove)
         {
             TigersLust.Launch();
             return;
         }
-        else if (!ObjectManager.Me.InCombat && Roll.IsSpellUsable && Roll.KnownSpell
-                 && mySettings.UseRoll && ObjectManager.Me.GetMove && !TigersLust.HaveBuff
-                 && ObjectManager.Target.GetDistance > 14)
+        if (!ObjectManager.Me.InCombat && Roll.IsSpellUsable && Roll.KnownSpell
+            && mySettings.UseRoll && ObjectManager.Me.GetMove && !TigersLust.HaveBuff
+            && ObjectManager.Target.GetDistance > 14)
         {
             Roll.Launch();
             return;
         }
-        else if (ObjectManager.Me.InCombat && SummonJadeSerpentStatue.IsSpellUsable && SummonJadeSerpentStatue.KnownSpell
-                 && mySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance < 41)
+        if (ObjectManager.Me.InCombat && SummonJadeSerpentStatue.IsSpellUsable && SummonJadeSerpentStatue.KnownSpell
+            && mySettings.UseSummonJadeSerpentStatue && !SummonJadeSerpentStatue.HaveBuff && ObjectManager.Target.GetDistance < 41)
         {
             SummonJadeSerpentStatue.Launch();
             return;
         }
-        else
+        if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
         {
-            if (mySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
-                ItemsManager.UseItem(75525);
+            ItemsManager.UseItem(75525);
         }
     }
 
@@ -28268,64 +27857,60 @@ public class MonkMistweaver
             GrappleWeaponTimer = new Timer(1000*60);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && FortifyingBrew.IsSpellUsable && FortifyingBrew.KnownSpell
-                 && mySettings.UseFortifyingBrew)
+        if (ObjectManager.Me.HealthPercent < 80 && FortifyingBrew.IsSpellUsable && FortifyingBrew.KnownSpell
+            && mySettings.UseFortifyingBrew)
         {
             FortifyingBrew.Launch();
             OnCD = new Timer(1000*20);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && LifeCocoon.IsSpellUsable && LifeCocoon.KnownSpell
-                 && mySettings.UseLifeCocoon)
+        if (ObjectManager.Me.HealthPercent < 80 && LifeCocoon.IsSpellUsable && LifeCocoon.KnownSpell
+            && mySettings.UseLifeCocoon)
         {
             LifeCocoon.Launch();
             OnCD = new Timer(1000*12);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && ChargingOxWave.IsSpellUsable && ChargingOxWave.KnownSpell
-                 && mySettings.UseChargingOxWave && ChargingOxWave.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 90 && ChargingOxWave.IsSpellUsable && ChargingOxWave.KnownSpell
+            && mySettings.UseChargingOxWave && ChargingOxWave.IsHostileDistanceGood)
         {
             ChargingOxWave.Launch();
             OnCD = new Timer(1000*3);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && DampenHarm.IsSpellUsable && DampenHarm.KnownSpell
-                 && mySettings.UseDampenHarm)
+        if (ObjectManager.Me.HealthPercent < 90 && DampenHarm.IsSpellUsable && DampenHarm.KnownSpell
+            && mySettings.UseDampenHarm)
         {
             DampenHarm.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && LegSweep.IsSpellUsable && LegSweep.KnownSpell
-                 && mySettings.UseLegSweep && ObjectManager.Target.GetDistance < 6)
+        if (ObjectManager.Me.HealthPercent < 90 && LegSweep.IsSpellUsable && LegSweep.KnownSpell
+            && mySettings.UseLegSweep && ObjectManager.Target.GetDistance < 6)
         {
             LegSweep.Launch();
             OnCD = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && ZenMeditation.IsSpellUsable && ZenMeditation.KnownSpell
-                 && mySettings.UseZenMeditation)
+        if (ObjectManager.Me.HealthPercent < 80 && ZenMeditation.IsSpellUsable && ZenMeditation.KnownSpell
+            && mySettings.UseZenMeditation)
         {
             ZenMeditation.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
-                 && mySettings.UseStoneform)
+        if (ObjectManager.Me.HealthPercent < 80 && Stoneform.IsSpellUsable && Stoneform.KnownSpell
+            && mySettings.UseStoneform)
         {
             Stoneform.Launch();
             OnCD = new Timer(1000*8);
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 80 && WarStomp.IsSpellUsable && WarStomp.KnownSpell
+            && mySettings.UseWarStomp)
         {
-            if (ObjectManager.Me.HealthPercent < 80 && WarStomp.IsSpellUsable && WarStomp.KnownSpell
-                && mySettings.UseWarStomp)
-            {
-                WarStomp.Launch();
-                OnCD = new Timer(1000*2);
-                return;
-            }
+            WarStomp.Launch();
+            OnCD = new Timer(1000*2);
         }
     }
 
@@ -28363,38 +27948,38 @@ public class MonkMistweaver
             HealingSphereTimer = new Timer(1000*5);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 70 && SurgingMist.KnownSpell && SurgingMist.IsSpellUsable
-                 && mySettings.UseSurgingMist)
+        if (ObjectManager.Me.HealthPercent < 70 && SurgingMist.KnownSpell && SurgingMist.IsSpellUsable
+            && mySettings.UseSurgingMist)
         {
             SurgingMist.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 85 && Uplift.KnownSpell && Uplift.IsSpellUsable
-                 && mySettings.UseUplift && RenewingMist.HaveBuff)
+        if (ObjectManager.Me.HealthPercent < 85 && Uplift.KnownSpell && Uplift.IsSpellUsable
+            && mySettings.UseUplift && RenewingMist.HaveBuff)
         {
             Uplift.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 85 && ChiWave.KnownSpell && ChiWave.IsSpellUsable
-                 && mySettings.UseChiWave)
+        if (ObjectManager.Me.HealthPercent < 85 && ChiWave.KnownSpell && ChiWave.IsSpellUsable
+            && mySettings.UseChiWave)
         {
             ChiWave.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && ChiBurst.KnownSpell && ChiBurst.IsSpellUsable
-                 && mySettings.UseChiBurst)
+        if (ObjectManager.Me.HealthPercent < 90 && ChiBurst.KnownSpell && ChiBurst.IsSpellUsable
+            && mySettings.UseChiBurst)
         {
             ChiBurst.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && ExpelHarm.KnownSpell && ExpelHarm.IsSpellUsable
-                 && mySettings.UseExpelHarm && ExpelHarm.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 90 && ExpelHarm.KnownSpell && ExpelHarm.IsSpellUsable
+            && mySettings.UseExpelHarm && ExpelHarm.IsHostileDistanceGood)
         {
             ExpelHarm.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 90 && EnvelopingMist.KnownSpell && EnvelopingMist.IsSpellUsable
-                 && mySettings.UseEnvelopingMist && !EnvelopingMist.HaveBuff)
+        if (ObjectManager.Me.HealthPercent < 90 && EnvelopingMist.KnownSpell && EnvelopingMist.IsSpellUsable
+            && mySettings.UseEnvelopingMist && !EnvelopingMist.HaveBuff)
         {
             EnvelopingMist.Launch();
             return;
@@ -28405,26 +27990,22 @@ public class MonkMistweaver
             SurgingMist.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && SoothingMist.KnownSpell && SoothingMist.IsSpellUsable
-                 && mySettings.UseSoothingMist && !SoothingMist.HaveBuff && !ObjectManager.Me.IsCast)
+        if (ObjectManager.Me.HealthPercent < 95 && SoothingMist.KnownSpell && SoothingMist.IsSpellUsable
+            && mySettings.UseSoothingMist && !SoothingMist.HaveBuff && !ObjectManager.Me.IsCast)
         {
             SoothingMist.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 95 && RenewingMist.KnownSpell && RenewingMist.IsSpellUsable
-                 && mySettings.UseRenewingMist && !RenewingMist.HaveBuff)
+        if (ObjectManager.Me.HealthPercent < 95 && RenewingMist.KnownSpell && RenewingMist.IsSpellUsable
+            && mySettings.UseRenewingMist && !RenewingMist.HaveBuff)
         {
             RenewingMist.Launch();
             return;
         }
-        else
+        if (ObjectManager.Me.HealthPercent < 95 && ZenSphere.KnownSpell && ZenSphere.IsSpellUsable
+            && mySettings.UseZenSphere)
         {
-            if (ObjectManager.Me.HealthPercent < 95 && ZenSphere.KnownSpell && ZenSphere.IsSpellUsable
-                && mySettings.UseZenSphere)
-            {
-                ZenSphere.Launch();
-                return;
-            }
+            ZenSphere.Launch();
         }
     }
 
@@ -28437,27 +28018,22 @@ public class MonkMistweaver
             ArcaneTorrent.Launch();
             return;
         }
-        else if (DiffuseMagic.KnownSpell && mySettings.UseDiffuseMagic && DiffuseMagic.IsSpellUsable
-                 && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
+        if (DiffuseMagic.KnownSpell && mySettings.UseDiffuseMagic && DiffuseMagic.IsSpellUsable
+            && ObjectManager.Target.IsCast && ObjectManager.Target.IsTargetingMe)
         {
             DiffuseMagic.Launch();
             return;
         }
-        else
+        if (SpearHandStrike.KnownSpell && mySettings.UseSpearHandStrike && ObjectManager.Target.IsCast
+            && SpearHandStrike.IsSpellUsable && SpearHandStrike.IsHostileDistanceGood)
         {
-            if (SpearHandStrike.KnownSpell && mySettings.UseSpearHandStrike && ObjectManager.Target.IsCast
-                && SpearHandStrike.IsSpellUsable && SpearHandStrike.IsHostileDistanceGood)
-            {
-                SpearHandStrike.Launch();
-                return;
-            }
+            SpearHandStrike.Launch();
+            return;
         }
-
         if (ObjectManager.Target.GetMove && !Disable.TargetHaveBuff && mySettings.UseDisable
             && Disable.KnownSpell && Disable.IsSpellUsable && Disable.IsHostileDistanceGood)
         {
             Disable.Launch();
-            return;
         }
     }
 
@@ -28473,61 +28049,68 @@ public class MonkMistweaver
         {
             ItemsManager.UseItem(SecondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
+            return;
         }
-        else if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBerserking)
+        if (Berserking.IsSpellUsable && Berserking.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBerserking)
+        {
             Berserking.Launch();
-        else if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseBloodFury)
+            return;
+        }
+        if (BloodFury.IsSpellUsable && BloodFury.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseBloodFury)
+        {
             BloodFury.Launch();
-        else if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseLifeblood)
+            return;
+        }
+        if (Lifeblood.IsSpellUsable && Lifeblood.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseLifeblood)
+        {
             Lifeblood.Launch();
-        else if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
-                 && mySettings.UseEngGlove)
+            return;
+        }
+        if (EngineeringTimer.IsReady && Engineering.KnownSpell && ObjectManager.Target.GetDistance < 41
+            && mySettings.UseEngGlove)
         {
             Logging.WriteFight("Use Engineering Gloves.");
             Lua.RunMacroText("/use 10");
             EngineeringTimer = new Timer(1000*60);
+            return;
         }
-        else if (ChiBrew.IsSpellUsable && ChiBrew.KnownSpell
-                 && mySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
+        if (ChiBrew.IsSpellUsable && ChiBrew.KnownSpell
+            && mySettings.UseChiBrew && ObjectManager.Me.Chi == 0)
         {
             ChiBrew.Launch();
             return;
         }
-        else if (TouchofDeath.IsSpellUsable && TouchofDeath.KnownSpell && TouchofDeath.IsHostileDistanceGood
-                 && mySettings.UseTouchofDeath)
+        if (TouchofDeath.IsSpellUsable && TouchofDeath.KnownSpell && TouchofDeath.IsHostileDistanceGood
+            && mySettings.UseTouchofDeath)
         {
             TouchofDeath.Launch();
             return;
         }
-        else if (InvokeXuentheWhiteTiger.IsSpellUsable && InvokeXuentheWhiteTiger.KnownSpell
-                 && mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.IsHostileDistanceGood)
+        if (InvokeXuentheWhiteTiger.IsSpellUsable && InvokeXuentheWhiteTiger.KnownSpell
+            && mySettings.UseInvokeXuentheWhiteTiger && InvokeXuentheWhiteTiger.IsHostileDistanceGood)
         {
             InvokeXuentheWhiteTiger.Launch();
             return;
         }
-        else if (ThunderFocusTea.IsSpellUsable && ThunderFocusTea.KnownSpell
-                 && mySettings.UseThunderFocusTea && ObjectManager.Me.HealthPercent < 90)
+        if (ThunderFocusTea.IsSpellUsable && ThunderFocusTea.KnownSpell
+            && mySettings.UseThunderFocusTea && ObjectManager.Me.HealthPercent < 90)
         {
             ThunderFocusTea.Launch();
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 80 && Revival.KnownSpell && Revival.IsSpellUsable
-                 && mySettings.UseRevival)
+        if (ObjectManager.Me.HealthPercent < 80 && Revival.KnownSpell && Revival.IsSpellUsable
+            && mySettings.UseRevival)
         {
             Revival.Launch();
             return;
         }
-        else
+        if (RushingJadeWind.IsSpellUsable && RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood
+            && mySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
         {
-            if (RushingJadeWind.IsSpellUsable && RushingJadeWind.KnownSpell && RushingJadeWind.IsHostileDistanceGood
-                && mySettings.UseRushingJadeWind && ObjectManager.GetNumberAttackPlayer() > 3)
-            {
-                RushingJadeWind.Launch();
-                return;
-            }
+            RushingJadeWind.Launch();
         }
     }
 
@@ -28539,51 +28122,45 @@ public class MonkMistweaver
             SpinningCraneKick.Launch();
             return;
         }
-        else if (CracklingJadeLightning.KnownSpell && CracklingJadeLightning.IsSpellUsable
-                 && mySettings.UseCracklingJadeLightning && ObjectManager.Me.Chi < 4 && CracklingJadeLightning.IsHostileDistanceGood
-                 && !ExpelHarm.IsHostileDistanceGood)
+        if (CracklingJadeLightning.KnownSpell && CracklingJadeLightning.IsSpellUsable
+            && mySettings.UseCracklingJadeLightning && ObjectManager.Me.Chi < 4 && CracklingJadeLightning.IsHostileDistanceGood
+            && !ExpelHarm.IsHostileDistanceGood)
         {
             CracklingJadeLightning.Launch();
             return;
         }
-        else if (BlackoutKick.KnownSpell && BlackoutKick.IsSpellUsable && BlackoutKick.IsHostileDistanceGood
-                 && mySettings.UseBlackoutKick && (!ObjectManager.Me.HaveBuff(127722) || SerpentsZealTimer.IsReady))
+        if (BlackoutKick.KnownSpell && BlackoutKick.IsSpellUsable && BlackoutKick.IsHostileDistanceGood
+            && mySettings.UseBlackoutKick && (!ObjectManager.Me.HaveBuff(127722) || SerpentsZealTimer.IsReady))
         {
             BlackoutKick.Launch();
             SerpentsZealTimer = new Timer(1000*25);
             return;
         }
-        else if (ObjectManager.Me.HealthPercent < 91 && ExpelHarm.KnownSpell && ExpelHarm.IsSpellUsable
-                 && mySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && ExpelHarm.IsHostileDistanceGood)
+        if (ObjectManager.Me.HealthPercent < 91 && ExpelHarm.KnownSpell && ExpelHarm.IsSpellUsable
+            && mySettings.UseExpelHarm && ObjectManager.Me.Chi < 4 && ExpelHarm.IsHostileDistanceGood)
         {
             ExpelHarm.Launch();
             return;
         }
-        else if (Jab.KnownSpell && Jab.IsSpellUsable && mySettings.UseJab && ObjectManager.Me.Chi < 4
-                 && Jab.IsHostileDistanceGood)
+        if (Jab.KnownSpell && Jab.IsSpellUsable && mySettings.UseJab && ObjectManager.Me.Chi < 4
+            && Jab.IsHostileDistanceGood)
         {
             Jab.Launch();
             return;
         }
-        else
+        if (TigerPalm.KnownSpell && TigerPalm.IsSpellUsable && TigerPalm.IsHostileDistanceGood
+            && mySettings.UseTigerPalm && ObjectManager.Me.HealthPercent > 90
+            && ObjectManager.Me.BuffStack(125359) < 3)
         {
-            if (TigerPalm.KnownSpell && TigerPalm.IsSpellUsable && TigerPalm.IsHostileDistanceGood
-                && mySettings.UseTigerPalm && ObjectManager.Me.HealthPercent > 90
-                && ObjectManager.Me.BuffStack(125359) < 3)
-            {
-                TigerPalm.Launch();
-                return;
-            }
+            TigerPalm.Launch();
         }
     }
 
     private void Patrolling()
     {
-        if (!ObjectManager.Me.IsMounted)
-        {
-            Buff();
-            Heal();
-        }
+        if (ObjectManager.Me.IsMounted) return;
+        Buff();
+        Heal();
     }
 
     #region Nested type: MonkMistweaverSettings
