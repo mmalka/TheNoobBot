@@ -74,22 +74,18 @@ namespace Quester.Profile
                 return 1;
 
             var otherQuest = obj as Quest;
-            if (otherQuest != null && otherQuest.ItemPickUp != 0)
-                if (ItemPickUp != 0)
-                    return 0;
-                else
-                    return 1;
+            if (otherQuest == null)
+                return 1;
+            if (otherQuest.ItemPickUp != 0)
+                return ItemPickUp != 0 ? 0 : 1;
             if (ItemPickUp != 0)
                 return -1;
 
-            Npc currentNpc = Bot.Bot.FindQuesterById(PickUp);
-            if (otherQuest != null)
-            {
-                Npc otherNpc = Bot.Bot.FindQuesterById(otherQuest.PickUp);
-                if (otherNpc.Position != null)
-                    return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
-                throw new ArgumentException("Object is not a Quest");
-            }
+            var currentNpc = Bot.Bot.FindQuesterById(PickUp);
+            var otherNpc = Bot.Bot.FindQuesterById(otherQuest.PickUp);
+            if (otherNpc.Position != null)
+                return currentNpc.Position.DistanceTo(ObjectManager.Me.Position).CompareTo(otherNpc.Position.DistanceTo(ObjectManager.Me.Position));
+            throw new ArgumentException("Object is not a Quest");
         }
     }
 
