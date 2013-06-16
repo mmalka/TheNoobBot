@@ -302,9 +302,12 @@ namespace nManager.Wow.Bot.States
                             }
                             else
                             {
-                                Point destination = qPOI.MiddlePoint;
-                                Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
-                                MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
+                                if (qPOI != null)
+                                {
+                                    Point destination = qPOI.MiddlePoint;
+                                    Logging.Write("Go to Digsite " + digsitesZone.name + "; X: " + destination.X + "; Y: " + destination.Y + "; Z: " + (int) destination.Z);
+                                    MovementManager.Go(new List<Point>(new[] {destination})); // MoveTo Digsite
+                                }
                             }
                             nbCastSurveyError = 0;
                             return;
@@ -357,7 +360,7 @@ namespace nManager.Wow.Bot.States
                             p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
                             p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                             p.Z = PathFinder.GetZPosition(p, true);
-                            while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
+                            while (qPOI != null && (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0))
                             {
                                 //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
                                 d += 5;
@@ -368,7 +371,7 @@ namespace nManager.Wow.Bot.States
                                     break;
                             }
                             d = 90;
-                            while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
+                            while (qPOI != null && (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0))
                             {
                                 //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
                                 d -= 10;
