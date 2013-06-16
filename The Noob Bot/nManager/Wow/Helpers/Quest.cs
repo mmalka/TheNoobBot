@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.Patchables;
@@ -248,7 +247,7 @@ namespace nManager.Wow.Helpers
         public struct PlayerQuest
         {
             public int ID;
-            public Quest.PlayerQuest.StateFlag State;
+            public StateFlag State;
             [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)] public short[] ObjectiveRequiredCounts;
             public int Time;
 

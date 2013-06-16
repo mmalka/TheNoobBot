@@ -114,7 +114,7 @@ namespace nManager.Wow.Helpers
                                 {
                                     MovementsAction.Descend(false);
                                     MovementsAction.Ascend(true);
-                                    timerSit = new Helpful.Timer(1000);
+                                    timerSit = new Timer(1000);
                                     // If distance to colission < 40 stop moveto
                                     temps = new Point(point.X, point.Y, ObjectManager.ObjectManager.Me.Position.Z - 2.5f);
                                     if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
@@ -158,12 +158,12 @@ namespace nManager.Wow.Helpers
                                                 MovementsAction.Descend(true);
                                             else
                                             {
-                                                timerSit = new Helpful.Timer(1000);
+                                                timerSit = new Timer(1000);
                                                 MovementsAction.Descend(false);
                                             }
                                         else
                                         {
-                                            timerSit = new Helpful.Timer(1000);
+                                            timerSit = new Timer(1000);
                                             MovementsAction.Descend(false);
                                         }
                                         // End Stop move ground

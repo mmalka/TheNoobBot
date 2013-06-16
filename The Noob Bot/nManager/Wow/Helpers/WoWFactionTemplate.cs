@@ -80,14 +80,14 @@ namespace nManager.Wow.Helpers
 
         public uint Id
         {
-            [CompilerGenerated] get { return this.uint_0; }
-            [CompilerGenerated] private set { this.uint_0 = value; }
+            [CompilerGenerated] get { return uint_0; }
+            [CompilerGenerated] private set { uint_0 = value; }
         }
 
         public FactionTemplateDbcRecord Record
         {
-            [CompilerGenerated] get { return this.factionTemplateDbcRecord_0; }
-            [CompilerGenerated] private set { this.factionTemplateDbcRecord_0 = value; }
+            [CompilerGenerated] get { return factionTemplateDbcRecord_0; }
+            [CompilerGenerated] private set { factionTemplateDbcRecord_0 = value; }
         }
 
         [StructLayout(LayoutKind.Sequential)]

@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using nManager;
 using nManager.Helpful;
 using nManager.Wow;
-using nManager.Wow.Helpers;
 using Process = System.Diagnostics.Process;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 using InteractGame = System.Threading.Thread;
@@ -208,7 +207,9 @@ namespace The_Noob_Bot
 
         private static void LoopThread()
         {
-            const bool lalala = true;
+// ReSharper disable ConvertToConstant.Local
+            bool lalala = true;
+// ReSharper restore ConvertToConstant.Local
             try
             {
                 bool lastResult = true;
@@ -375,7 +376,9 @@ namespace The_Noob_Bot
                 Logging.WriteError("DSfi^sdfDSOfijfze#1" + e);
             }
             IsConnected = false;
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (lalala && IsFreeVersion)
+// ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 Others.OpenWebBrowserOrApplication("http://goo.gl/Fzdgc");
             }
@@ -445,7 +448,7 @@ namespace The_Noob_Bot
         {
             try
             {
-                System.Environment.Exit(0);
+                Environment.Exit(0);
             }
             catch
             {
@@ -488,9 +491,12 @@ namespace The_Noob_Bot
         {
             try
             {
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
                 if (Information.Version == "DevVersionRestrict")
+// ReSharper restore ConditionIsAlwaysTrueOrFalse
                     return;
 #pragma warning disable 162
+// ReSharper disable HeuristicUnreachableCode
                 string resultReq = Others.GetRequest(ScriptUpdate, "null=null");
                 if (resultReq != null)
                 {
@@ -536,6 +542,7 @@ namespace The_Noob_Bot
                         }
                     }
                 }
+// ReSharper restore HeuristicUnreachableCode
 #pragma warning restore 162
             }
             catch /*(Exception e)*/

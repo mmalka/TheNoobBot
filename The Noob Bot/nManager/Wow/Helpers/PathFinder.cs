@@ -37,13 +37,12 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
+                    if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
                                                                    Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
                         if (
-                            !nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to,
-                                                                        Enums.CGWorldFrameHitFlags.HitTestAll))
+                            !TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to))
                         {
                             Logging.WriteNavigator("Swimmming right to the destination");
                             return new List<Point> {to};
@@ -93,13 +92,12 @@ namespace nManager.Wow.Helpers
             {
                 if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
                 {
-                    if (nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
+                    if (TraceLine.TraceLineGo(new Point(to.X, to.Y, to.Z + 1000), to,
                                                                    Enums.CGWorldFrameHitFlags.HitTestLiquid))
                     {
                         // The destination is in water
                         if (
-                            !nManager.Wow.Helpers.TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to,
-                                                                        Enums.CGWorldFrameHitFlags.HitTestAll))
+                            !TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position, to))
                         {
                             Logging.WriteNavigator("Swimmming right to the destination");
                             resultSuccess = true;
@@ -199,7 +197,7 @@ namespace nManager.Wow.Helpers
                 // 1.4+0.5=1.9 is a pretty good value here.
                 for (int i = locList.Count - 2; i > 0; i--)
                 {
-                    Point offset = nManager.Helpful.Math.GetPostionOffsetBy3DDistance(locList[i - 1], locList[i], 1.9f);
+                    Point offset = Helpful.Math.GetPostionOffsetBy3DDistance(locList[i - 1], locList[i], 1.9f);
                     locList[i] = offset;
                 }
 

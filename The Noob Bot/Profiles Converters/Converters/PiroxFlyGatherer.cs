@@ -49,7 +49,7 @@ namespace Profiles_Converters.Converters
                                     .Replace("(", "")
                                     .Replace(")", "")
                                     .Trim()
-                                    .Split(new char[] {','}, StringSplitOptions.RemoveEmptyEntries);
+                                    .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
                             Point item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
                                                  float.Parse(strArray[1], CultureInfo.InvariantCulture),
                                                  float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");

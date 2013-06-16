@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using nManager.Helpful;
 
 namespace nManager.Wow.MemoryClass.Magic
@@ -17,7 +16,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteBytes(uint dwAddress, byte[] Value, int nSize)
         {
-            return SMemory.WriteBytes(this.m_hProcess, dwAddress, Value, nSize);
+            return SMemory.WriteBytes(m_hProcess, dwAddress, Value, nSize);
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteBytes(uint dwAddress, byte[] Value)
         {
-            return this.WriteBytes(dwAddress, Value, Value.Length);
+            return WriteBytes(dwAddress, Value, Value.Length);
         }
 
         /// <summary>
@@ -39,7 +38,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteByte(uint dwAddress, byte Value)
         {
-            return SMemory.WriteByte(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteByte(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -50,7 +49,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteSByte(uint dwAddress, sbyte Value)
         {
-            return SMemory.WriteSByte(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteSByte(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -61,7 +60,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteUShort(uint dwAddress, ushort Value)
         {
-            return SMemory.WriteUShort(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteUShort(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -72,7 +71,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteShort(uint dwAddress, short Value)
         {
-            return SMemory.WriteShort(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteShort(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -83,7 +82,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteUInt(uint dwAddress, uint Value)
         {
-            return SMemory.WriteUInt(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteUInt(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -94,7 +93,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteInt(uint dwAddress, int Value)
         {
-            return SMemory.WriteInt(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteInt(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -105,7 +104,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteUInt64(uint dwAddress, UInt64 Value)
         {
-            return SMemory.WriteUInt64(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteUInt64(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -116,7 +115,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteInt64(uint dwAddress, Int64 Value)
         {
-            return SMemory.WriteInt64(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteInt64(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -127,7 +126,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteFloat(uint dwAddress, float Value)
         {
-            return SMemory.WriteFloat(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteFloat(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -138,7 +137,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteDouble(uint dwAddress, double Value)
         {
-            return SMemory.WriteDouble(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteDouble(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -150,7 +149,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteObject(uint dwAddress, object Value, Type objType)
         {
-            return SMemory.WriteObject(this.m_hProcess, dwAddress, Value, objType);
+            return SMemory.WriteObject(m_hProcess, dwAddress, Value, objType);
         }
 
         /// <summary>
@@ -161,7 +160,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteObject(uint dwAddress, object Value)
         {
-            return SMemory.WriteObject(this.m_hProcess, dwAddress, Value, Value.GetType());
+            return SMemory.WriteObject(m_hProcess, dwAddress, Value, Value.GetType());
         }
 
         /// <summary>
@@ -172,7 +171,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteASCIIString(uint dwAddress, string Value)
         {
-            return SMemory.WriteASCIIString(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteASCIIString(m_hProcess, dwAddress, Value);
         }
 
         /// <summary>
@@ -183,7 +182,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool WriteUnicodeString(uint dwAddress, string Value)
         {
-            return SMemory.WriteUnicodeString(this.m_hProcess, dwAddress, Value);
+            return SMemory.WriteUnicodeString(m_hProcess, dwAddress, Value);
         }
 
         #endregion
@@ -199,10 +198,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public byte[] ReadBytes(uint dwAddress, int nSize)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadBytes(this.m_hProcess, dwAddress, nSize);
+            return SMemory.ReadBytes(m_hProcess, dwAddress, nSize);
         }
 
         /// <summary>
@@ -213,10 +212,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public byte ReadByte(uint dwAddress)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadByte(this.m_hProcess, dwAddress);
+            return SMemory.ReadByte(m_hProcess, dwAddress);
         }
 
         /// <summary>
@@ -227,10 +226,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public sbyte ReadSByte(uint dwAddress)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadSByte(this.m_hProcess, dwAddress);
+            return SMemory.ReadSByte(m_hProcess, dwAddress);
         }
 
         /// <summary>
@@ -241,7 +240,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public ushort ReadUShort(uint dwAddress)
         {
-            return this.ReadUShort(dwAddress, false);
+            return ReadUShort(dwAddress, false);
         }
 
         /// <summary>
@@ -254,10 +253,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public ushort ReadUShort(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadUShort(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadUShort(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -268,7 +267,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public short ReadShort(uint dwAddress)
         {
-            return this.ReadShort(dwAddress, false);
+            return ReadShort(dwAddress, false);
         }
 
         /// <summary>
@@ -281,10 +280,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public short ReadShort(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadShort(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadShort(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -295,7 +294,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public uint ReadUInt(uint dwAddress)
         {
-            return this.ReadUInt(dwAddress, false);
+            return ReadUInt(dwAddress, false);
         }
 
         /// <summary>
@@ -308,10 +307,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public uint ReadUInt(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadUInt(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadUInt(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -322,7 +321,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public int ReadInt(uint dwAddress)
         {
-            return this.ReadInt(dwAddress, false);
+            return ReadInt(dwAddress, false);
         }
 
         /// <summary>
@@ -335,10 +334,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public int ReadInt(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadInt(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadInt(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -349,7 +348,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public UInt64 ReadUInt64(uint dwAddress)
         {
-            return this.ReadUInt64(dwAddress, false);
+            return ReadUInt64(dwAddress, false);
         }
 
         /// <summary>
@@ -362,10 +361,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public UInt64 ReadUInt64(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadUInt64(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadUInt64(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -376,7 +375,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public Int64 ReadInt64(uint dwAddress)
         {
-            return this.ReadInt64(dwAddress, false);
+            return ReadInt64(dwAddress, false);
         }
 
         /// <summary>
@@ -389,10 +388,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public Int64 ReadInt64(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadInt64(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadInt64(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -403,7 +402,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public float ReadFloat(uint dwAddress)
         {
-            return this.ReadFloat(dwAddress, false);
+            return ReadFloat(dwAddress, false);
         }
 
         /// <summary>
@@ -416,10 +415,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public float ReadFloat(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadFloat(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadFloat(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -430,7 +429,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public double ReadDouble(uint dwAddress)
         {
-            return this.ReadDouble(dwAddress, false);
+            return ReadDouble(dwAddress, false);
         }
 
         /// <summary>
@@ -443,10 +442,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <remarks>Sometimes one needs to read a value where the most significant bytes is not first (i.e. when reading a network packet from memory).  In this case, one would specify 'true' for the bReverse parameter to get the value in a readable format.</remarks>
         public double ReadDouble(uint dwAddress, bool bReverse)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadDouble(this.m_hProcess, dwAddress, bReverse);
+            return SMemory.ReadDouble(m_hProcess, dwAddress, bReverse);
         }
 
         /// <summary>
@@ -458,10 +457,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public object ReadObject(uint dwAddress, Type objType)
         {
-            if (!this.m_bProcessOpen || this.m_hProcess == IntPtr.Zero)
+            if (!m_bProcessOpen || m_hProcess == IntPtr.Zero)
                 throw new Exception("Process is not open for read/write.");
 
-            return SMemory.ReadObject(this.m_hProcess, dwAddress, objType);
+            return SMemory.ReadObject(m_hProcess, dwAddress, objType);
         }
 
         /// <summary>
@@ -473,7 +472,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public string ReadASCIIString(uint dwAddress, int nLength)
         {
-            return SMemory.ReadASCIIString(this.m_hProcess, dwAddress, nLength);
+            return SMemory.ReadASCIIString(m_hProcess, dwAddress, nLength);
         }
 
         /// <summary>
@@ -500,7 +499,6 @@ namespace nManager.Wow.MemoryClass.Magic
 
         public String ReadUTF8String(uint dwAddress)
         {
-            string retTemp = "";
             byte[] listByte = new byte[201];
             byte[] buf = ReadBytes(dwAddress, 200);
             int i = 0;
@@ -512,7 +510,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 buf = ReadBytes(dwAddress, 1);
                 //Thread.Sleep(1);
             }
-            retTemp = Others.ToUtf8(listByte);
+            string retTemp = Others.ToUtf8(listByte);
             return retTemp;
         }
 
@@ -525,7 +523,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the value that was read from memory.</returns>
         public string ReadUnicodeString(uint dwAddress, int nLength)
         {
-            return SMemory.ReadUnicodeString(this.m_hProcess, dwAddress, nLength);
+            return SMemory.ReadUnicodeString(m_hProcess, dwAddress, nLength);
         }
 
         #endregion

@@ -38,7 +38,7 @@ namespace Profiles_Converters.Converters
                 if (IsMMoLazyFlyerProfile(path))
                 {
                     GatherProfile _origineProfile = XmlSerializer.Deserialize<GatherProfile>(path);
-                    GathererProfile _profile = new Gatherer.GathererProfile();
+                    GathererProfile _profile = new GathererProfile();
 
                     foreach (Position p in _origineProfile.Waypoints_Normal)
                     {

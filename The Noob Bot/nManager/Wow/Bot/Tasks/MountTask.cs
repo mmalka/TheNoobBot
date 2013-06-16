@@ -86,7 +86,7 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     return MountCapacity.Swimm;
                 }
-                else if (aquaMount != _localizedAbysalMountName)
+                if (aquaMount != _localizedAbysalMountName)
                 {
                     return MountCapacity.Swimm;
                 }
@@ -96,27 +96,27 @@ namespace nManager.Wow.Bot.Tasks
             {
                 if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
-                    ContinentId cont = (Enums.ContinentId) Usefuls.ContinentId;
+                    ContinentId cont = (ContinentId) Usefuls.ContinentId;
 
                     // We are in Pandaria and with "Wisdom of the Four Winds" aura
-                    if (_wisdom4Winds && cont == Enums.ContinentId.Pandaria)
+                    if (_wisdom4Winds && cont == ContinentId.Pandaria)
                         return MountCapacity.Fly;
 
                     // We are in Northfend with "Cold Weather Flying" aura
-                    if (_coldWeather && cont == Enums.ContinentId.Northrend)
+                    if (_coldWeather && cont == ContinentId.Northrend)
                         return MountCapacity.Fly;
 
                     // We are in Azeroth/Kalimdor/Deptholm with "Flight Master's License" aura
                     if (_flightMasterLicense &&
-                        (cont == Enums.ContinentId.Azeroth || cont == Enums.ContinentId.Kalimdor ||
-                         cont == Enums.ContinentId.Maelstrom))
+                        (cont == ContinentId.Azeroth || cont == ContinentId.Kalimdor ||
+                         cont == ContinentId.Maelstrom))
                         return MountCapacity.Fly;
 
                     // We are in Outland and Expert Flying or better
                     Spell expertRider = new Spell(34090);
                     Spell artisanRider = new Spell(34091);
                     Spell masterRider = new Spell(90265);
-                    if (cont == Enums.ContinentId.Outland &&
+                    if (cont == ContinentId.Outland &&
                         (expertRider.KnownSpell || artisanRider.KnownSpell || masterRider.KnownSpell))
                         return MountCapacity.Fly;
 

@@ -46,7 +46,6 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("Smelting > OpenSmeltingWindow(): " + exception);
-                return;
             }
         }
 
@@ -60,7 +59,6 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("Smelting > OpenSmeltingWindow(): " + exception);
-                return;
             }
         }
 

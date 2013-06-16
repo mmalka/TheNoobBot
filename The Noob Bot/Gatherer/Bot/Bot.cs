@@ -6,7 +6,6 @@ using System.Windows.Forms;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
-using nManager.Wow.Bot.Tasks;
 using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 

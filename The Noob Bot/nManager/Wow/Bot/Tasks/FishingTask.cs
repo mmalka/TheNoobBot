@@ -108,9 +108,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (objBobber.GetBaseAddress > 0)
                                 {
-                                    WoWGameObject node =
-                                        new WoWGameObject(
-                                            ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
+                                    WoWGameObject node =new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
                                     if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&
                                         _guidNode > 0 && _precision)
                                         continue;
@@ -118,7 +116,7 @@ namespace nManager.Wow.Bot.Tasks
                                     while (_fishBotLaunched && ObjectManager.ObjectManager.Me.IsCast &&
                                            (int) objBobber.GetBaseAddress > 0 &&
                                            1 !=
-                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) nManager.Wow.Patchables.Addresses.Fishing.BobberHasMoved))
+                                           Memory.WowMemory.Memory.ReadShort(objBobber.GetBaseAddress + (uint) Patchables.Addresses.Fishing.BobberHasMoved))
                                     {
                                         Thread.Sleep(50);
                                         Application.DoEvents();

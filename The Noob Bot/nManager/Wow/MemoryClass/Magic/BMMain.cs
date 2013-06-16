@@ -160,7 +160,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// </summary>
         ~BlackMagic()
         {
-            this.Close();
+            Close();
         }
 
         #endregion
@@ -182,7 +182,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 return true;
 
             if (m_bProcessOpen)
-                this.CloseProcess();
+                CloseProcess();
 
             if (SetDebugPrivileges)
                 System.Diagnostics.Process.EnterDebugMode();
@@ -216,7 +216,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (WindowHandle == IntPtr.Zero)
                 return false;
 
-            return this.Open(SProcess.GetProcessFromWindow(WindowHandle));
+            return Open(SProcess.GetProcessFromWindow(WindowHandle));
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 return true;
 
             if (m_bThreadOpen)
-                this.CloseThread();
+                CloseThread();
 
             m_bThreadOpen = (m_hThread = SThread.OpenThread(dwThreadId)) != IntPtr.Zero;
 
@@ -250,7 +250,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public bool OpenThread()
         {
             if (m_bProcessOpen)
-                return this.OpenThread(SThread.GetMainThreadId(m_ProcessId));
+                return OpenThread(SThread.GetMainThreadId(m_ProcessId));
             return false;
         }
 
@@ -261,10 +261,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool OpenProcessAndThread(int dwProcessId)
         {
-            if (this.Open(dwProcessId) && this.OpenThread())
+            if (Open(dwProcessId) && OpenThread())
                 return true;
 
-            this.Close();
+            Close();
             return false;
         }
 
@@ -275,10 +275,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool OpenProcessAndThread(IntPtr WindowHandle)
         {
-            if (this.Open(WindowHandle) && this.OpenThread())
+            if (Open(WindowHandle) && OpenThread())
                 return true;
 
-            this.Close();
+            Close();
             return false;
         }
 
@@ -294,8 +294,8 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             Asm.Dispose();
 
-            this.CloseProcess();
-            this.CloseThread();
+            CloseProcess();
+            CloseThread();
         }
 
         /// <summary>

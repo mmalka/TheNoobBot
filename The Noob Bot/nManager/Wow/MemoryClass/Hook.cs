@@ -331,8 +331,7 @@ namespace nManager.Wow.MemoryClass
             {
                 if (D3D.IsD3D11(Memory.ProcessId))
                     return D3D.D3D11Adresse();
-                else
-                    return D3D.D3D9Adresse(Memory.ProcessId);
+                return D3D.D3D9Adresse(Memory.ProcessId);
             }
             catch (Exception e)
             {

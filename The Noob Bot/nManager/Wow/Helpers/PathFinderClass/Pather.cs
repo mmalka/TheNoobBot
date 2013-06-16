@@ -461,9 +461,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 uint[] pathRefs;
                 status = _query.FindStraightPath(start, end, pathCorridor, out finalPath, out pathFlags, out pathRefs);
                 if (status.HasFailed() || (finalPath == null || pathFlags == null || pathRefs == null))
-                    if (pathCorridor != null)
-                        Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " +
-                                               pathCorridor.Length);
+                    Logging.WriteNavigator(status + "FindStraightPath failed, refs in corridor: " + pathCorridor.Length);
 
                 if (finalPath != null)
                 {

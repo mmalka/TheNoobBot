@@ -52,7 +52,7 @@ namespace The_Noob_Bot
                 InitializeComponent();
                 Translate();
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
                 InitializeInterface();
                 InitializeUI();
                 _minimizedWindow = new MainMinimized();
@@ -199,7 +199,7 @@ namespace The_Noob_Bot
                 SizeF size = g.MeasureString(label.Text, label.Font);
                 if (size.Width > label.Width)
                 {
-                    this.labelsToolTip.SetToolTip(label, label.Text);
+                    labelsToolTip.SetToolTip(label, label.Text);
                 }
             }
         }

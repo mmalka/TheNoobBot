@@ -11,7 +11,7 @@ namespace Profiles_Converters
             InitializeComponent();
             Translate();
             if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                this.TopMost = true;
+                TopMost = true;
         }
 
         private void Translate()

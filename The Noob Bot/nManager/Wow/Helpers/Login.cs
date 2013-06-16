@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using nManager.Helpful;
-using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Helpers
@@ -178,7 +176,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 _login = true;
-                Timer timeout = new Helpful.Timer(120000);
+                Timer timeout = new Timer(120000);
                 while ((ObjectManager.ObjectManager.Me.GetBaseAddress == 0 || ObjectManager.ObjectManager.Me.Guid == 0L ||
                         !ObjectManager.ObjectManager.Me.IsValid) && _login)
                 {

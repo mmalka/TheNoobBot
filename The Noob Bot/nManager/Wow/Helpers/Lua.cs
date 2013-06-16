@@ -99,6 +99,7 @@ namespace nManager.Wow.Helpers
                 else
                 {
                     List<string> tempsAsm = new List<string>
+// ReSharper disable RedundantEmptyObjectOrCollectionInitializer
                         {
                             //"call " + ( Memory.WowProcess.WowModule +  (uint) Addresses.FunctionWow.ClntObjMgrGetActivePlayer),
                             //"test eax, eax",
@@ -110,6 +111,7 @@ namespace nManager.Wow.Helpers
                             //"test eax, eax",
                             //"jne @out"
                         };
+// ReSharper restore RedundantEmptyObjectOrCollectionInitializer
 
                     tempsAsm.AddRange(asm);
                     asm = tempsAsm.ToArray();

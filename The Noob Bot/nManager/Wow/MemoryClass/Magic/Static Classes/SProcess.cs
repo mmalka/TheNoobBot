@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 
 namespace nManager.Wow.MemoryClass.Magic
 {
@@ -58,7 +57,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns non-zero on success, zero on failure.</returns>
         public static int GetProcessFromWindow(IntPtr hWnd)
         {
-            int dwProcessId = 0;
+            int dwProcessId;
             Imports.GetWindowThreadProcessId(hWnd, out dwProcessId);
             return dwProcessId;
         }
@@ -140,7 +139,9 @@ namespace nManager.Wow.MemoryClass.Magic
                 ProcessName = ProcessName.Remove(ProcessName.Length - 4, 4);
 
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName(ProcessName);
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (procs == null || procs.Length == 0)
+// ReSharper restore ConditionIsAlwaysTrueOrFalse
                 return 0;
 
             return procs[0].Id;

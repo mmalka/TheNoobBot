@@ -1,25 +1,18 @@
 ﻿using System;
-using System.Threading;
 using nManager.Helpful;
 
 namespace nManager.Wow.Helpers
 {
     public class Heal
     {
-        private static bool _healLoop;
-
-        public static bool IsHealing
-        {
-            get { return _healLoop; }
-            set { _healLoop = value; }
-        }
+        public static bool IsHealing { get; set; }
 
         public static void StartHeal()
         {
             try
             {
                 Logging.Write("Start healing process.");
-                _healLoop = true;
+                IsHealing = true;
                 if (MovementManager.InMovement)
                 {
                     MovementManager.StopMove();
@@ -28,7 +21,7 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("StartHealBot(): " + exception);
-                _healLoop = true;
+                IsHealing = true;
             }
         }
 
@@ -37,7 +30,7 @@ namespace nManager.Wow.Helpers
             try
             {
                 Logging.Write("Start healing process.");
-                _healLoop = true;
+                IsHealing = true;
                 if (MovementManager.InMovement)
                 {
                     MovementManager.StopMove();
@@ -46,7 +39,7 @@ namespace nManager.Wow.Helpers
             catch (Exception exception)
             {
                 Logging.WriteError("StartHealBot(): " + exception);
-                _healLoop = true;
+                IsHealing = true;
             }
         }
 
@@ -55,12 +48,12 @@ namespace nManager.Wow.Helpers
             try
             {
                 Logging.Write("Stop healing process.");
-                _healLoop = false;
+                IsHealing = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StopHeal(): " + exception);
-                _healLoop = false;
+                IsHealing = false;
             }
         }
     }

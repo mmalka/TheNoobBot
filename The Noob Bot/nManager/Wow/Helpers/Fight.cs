@@ -11,19 +11,13 @@ namespace nManager.Wow.Helpers
 {
     public class Fight
     {
-        private static bool _fightLoop;
-
-        public static bool InFight
-        {
-            get { return _fightLoop; }
-            set { _fightLoop = value; }
-        }
+        public static bool InFight { get; set; }
 
         public static ulong StartFight(ulong guid = 0)
         {
             MovementManager.StopMove();
             if (ObjectManager.ObjectManager.Me.IsMounted)
-                Bot.Tasks.MountTask.DismountMount();
+                MountTask.DismountMount();
             WoWUnit targetNpc = null;
             try
             {
@@ -40,7 +34,7 @@ namespace nManager.Wow.Helpers
                         new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                 }
 
-                _fightLoop = true;
+                InFight = true;
 
                 if (!ObjectManager.ObjectManager.Me.IsCast)
                     Interact.InteractWith(targetNpc.GetBaseAddress);
@@ -78,7 +72,7 @@ namespace nManager.Wow.Helpers
 
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && !targetNpc.IsLootable &&
                            targetNpc.Health > 0 && targetNpc.IsValid &&
-                           MovementManager.InMovement && _fightLoop && Usefuls.InGame &&
+                           MovementManager.InMovement && InFight && Usefuls.InGame &&
                            (TraceLine.TraceLineGo(targetNpc.Position) ||
                             targetNpc.GetDistance > (CombatClass.GetRange - 1))
                         )
@@ -122,14 +116,14 @@ namespace nManager.Wow.Helpers
                 if (!ObjectManager.ObjectManager.Me.IsCast && ObjectManager.ObjectManager.Me.Target != targetNpc.Guid)
                     Interact.InteractWith(targetNpc.GetBaseAddress);
 
-                _fightLoop = true;
+                InFight = true;
                 Thread.Sleep(500);
                 if (targetNpc.GetDistance < (CombatClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
                     !ObjectManager.ObjectManager.Me.IsCast)
                 {
                     MovementManager.StopMoveTo();
                 }
-                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && _fightLoop &&
+                while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid && InFight &&
                        targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
                 {
                     // Return if player attacked and this target not attack player
@@ -179,18 +173,18 @@ namespace nManager.Wow.Helpers
                         return targetNpc.Guid;
 
                     if (ObjectManager.ObjectManager.Me.IsMounted)
-                        Bot.Tasks.MountTask.DismountMount();
+                        MountTask.DismountMount();
 
                     Thread.Sleep(50);
                 }
 
                 MovementManager.StopMoveTo();
-                _fightLoop = false;
+                InFight = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StartFight(ulong guid = 0, bool inBg = false): " + exception);
-                _fightLoop = false;
+                InFight = false;
             }
             try
             {
@@ -224,7 +218,7 @@ namespace nManager.Wow.Helpers
                             new WoWUnit(ObjectManager.ObjectManager.GetObjectByGuid(guid).GetBaseAddress);
                     }
 
-                    _fightLoop = true;
+                    InFight = true;
 
                     if (!ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -253,7 +247,7 @@ namespace nManager.Wow.Helpers
                         MovementManager.StopMove();
                     }
 
-                    _fightLoop = true;
+                    InFight = true;
                     Thread.Sleep(500);
                     if (targetNpc.GetDistance < (CombatClass.GetRange - 1) && ObjectManager.ObjectManager.Me.GetMove &&
                         !ObjectManager.ObjectManager.Me.IsCast)
@@ -268,7 +262,7 @@ namespace nManager.Wow.Helpers
                         // Initial Target
                     }
                     while (!ObjectManager.ObjectManager.Me.IsDeadMe && !targetNpc.IsDead && targetNpc.IsValid &&
-                           _fightLoop &&
+                           InFight &&
                            targetNpc.GetBaseAddress > 0 && !ObjectManager.ObjectManager.Me.InTransport)
                     {
                         // Target Pos Verif
@@ -291,12 +285,12 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(50);
                     }
                 }
-                _fightLoop = false;
+                InFight = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StartFightDamageDealer(ulong guid = 0, bool inBg = false): " + exception);
-                _fightLoop = false;
+                InFight = false;
             }
             try
             {
@@ -314,12 +308,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                _fightLoop = false;
+                InFight = false;
             }
             catch (Exception exception)
             {
                 Logging.WriteError("StopFight(): " + exception);
-                _fightLoop = false;
+                InFight = false;
             }
         }
     }

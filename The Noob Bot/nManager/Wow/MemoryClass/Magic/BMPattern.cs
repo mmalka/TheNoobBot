@@ -29,7 +29,7 @@ namespace nManager.Wow.MemoryClass.Magic
 
         public uint FindPattern(byte[] bPattern, string szMask)
         {
-            return FindPattern((uint) this.MainModule.BaseAddress, this.MainModule.ModuleMemorySize, bPattern, szMask);
+            return FindPattern((uint) MainModule.BaseAddress, MainModule.ModuleMemorySize, bPattern, szMask);
         }
 
         public uint FindPattern(string szPattern, string szMask, char Delimiter)
@@ -116,8 +116,6 @@ namespace nManager.Wow.MemoryClass.Magic
 
         public uint FindPattern(uint dwStart, int nSize, byte[] bPattern, string szMask)
         {
-            PatternDataEntry dataentry = null;
-
             //foreach (PatternDataEntry pda in m_Data)
             //{
             //	if (dwStart == pda.Start && nSize == pda.Size)
@@ -129,11 +127,11 @@ namespace nManager.Wow.MemoryClass.Magic
 
             //if (dataentry == null)
             //{
-            dataentry = new PatternDataEntry(dwStart, nSize, this.ReadBytes(dwStart, nSize));
+            PatternDataEntry dataentry = new PatternDataEntry(dwStart, nSize, ReadBytes(dwStart, nSize));
             //	m_Data.Add(dataentry);
             //}
 
-            return (uint) (dwStart + SPattern.FindPattern(dataentry.bData, bPattern, szMask));
+            return dwStart + SPattern.FindPattern(dataentry.bData, bPattern, szMask);
         }
 
         public uint FindPattern(uint dwStart, int nSize, string szPattern, string szMask, char Delimiter)

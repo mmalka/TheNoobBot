@@ -39,7 +39,7 @@ namespace Quester.Profile
 
         private void Translate()
         {
-            this.Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager); // Form Title
+            Text = nManager.Translate.Get(nManager.Translate.Id.GroupedProfileManager); // Form Title
 
             AvailableSimpleProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.AvailableSimpleProfiles);
             CurrentlyGroupedProfilesLabel.Text = nManager.Translate.Get(nManager.Translate.Id.CurrentlyGroupedProfiles);

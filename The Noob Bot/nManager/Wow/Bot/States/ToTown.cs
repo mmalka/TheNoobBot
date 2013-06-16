@@ -7,7 +7,6 @@ using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
-using Timer = nManager.Helpful.Timer;
 
 namespace nManager.Wow.Bot.States
 {

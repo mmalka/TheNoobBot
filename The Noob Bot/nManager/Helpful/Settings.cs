@@ -80,7 +80,7 @@ namespace nManager.Helpful
             {
                 // Create Form
 
-                MetroForm form = new DevComponents.DotNetBar.Metro.MetroForm()
+                MetroForm form = new MetroForm
                     {
                         ClientSize = new Size(_sizeWinform),
                         Text = _windowName,

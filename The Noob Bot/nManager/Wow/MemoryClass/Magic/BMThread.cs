@@ -13,7 +13,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint Execute(uint dwStartAddress, uint dwParameter)
         {
             UIntPtr lpExitCode = UIntPtr.Zero;
-            bool bSuccess = false;
+            bool bSuccess;
 
             IntPtr hThread = CreateRemoteThread(dwStartAddress, dwParameter);
             if (hThread == IntPtr.Zero)
@@ -102,7 +102,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool SuspendThread()
         {
-            return (m_bThreadOpen) && this.SuspendThread(m_hThread);
+            return (m_bThreadOpen) && SuspendThread(m_hThread);
         }
 
         /// <summary>
@@ -121,7 +121,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool ResumeThread()
         {
-            return (m_bThreadOpen) && this.ResumeThread(m_hThread);
+            return (m_bThreadOpen) && ResumeThread(m_hThread);
         }
     }
 }

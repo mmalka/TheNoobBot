@@ -4,8 +4,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Threading;
 using nManager.Helpful;
-using nManager.Wow.MemoryClass;
-using nManager.Wow.Patchables;
 using Timer = nManager.Helpful.Timer;
 using Usefuls = nManager.Wow.Helpers.Usefuls;
 

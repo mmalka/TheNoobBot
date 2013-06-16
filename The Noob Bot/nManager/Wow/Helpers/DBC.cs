@@ -28,7 +28,7 @@ namespace nManager.Wow.Helpers
 
         public string String(uint address)
         {
-            return (string) Memory.WowMemory.Memory.ReadUTF8String(address);
+            return Memory.WowMemory.Memory.ReadUTF8String(address);
         }
 
         public Dictionary<int, T> Rows
@@ -88,8 +88,7 @@ namespace nManager.Wow.Helpers
             {
                 if (HasRow(index))
                     return m_rows[index];
-                else
-                    return default(T);
+                return default(T);
             }
             catch (Exception exception)
             {

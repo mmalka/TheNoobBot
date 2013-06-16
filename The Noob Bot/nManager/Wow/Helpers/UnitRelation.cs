@@ -2,7 +2,6 @@
 using nManager.Helpful;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
-using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {

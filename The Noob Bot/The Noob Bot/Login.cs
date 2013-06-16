@@ -26,7 +26,7 @@ namespace The_Noob_Bot
                 System.Drawing.SizeF size = g.MeasureString(label.Text, label.Font);
                 if (size.Width > label.Width)
                 {
-                    this.labelsToolTip.SetToolTip(label, label.Text);
+                    labelsToolTip.SetToolTip(label, label.Text);
                 }
             }
         }

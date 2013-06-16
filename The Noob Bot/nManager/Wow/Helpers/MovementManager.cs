@@ -284,9 +284,9 @@ namespace nManager.Wow.Helpers
                         Math.DistanceListPoint(_points) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                     {
                         if (nManagerSetting.CurrentSetting.UseGroundMount)
-                            Bot.Tasks.MountTask.MountingGroundMount(false);
+                            MountTask.MountingGroundMount(false);
                         else
-                            Bot.Tasks.MountTask.Mount(false);
+                            MountTask.Mount(false);
                         if (Usefuls.IsFlying)
                         {
                             List<Point> tmpList = new List<Point>();
@@ -393,7 +393,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    Bot.Tasks.MountTask.Mount(false);
+                    MountTask.Mount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;
@@ -465,7 +465,7 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    Bot.Tasks.MountTask.Mount(false);
+                    MountTask.Mount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;
@@ -578,7 +578,7 @@ namespace nManager.Wow.Helpers
                                               ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
                     _distmountAttempt = new Point(ObjectManager.ObjectManager.Me.Position.X, ObjectManager.ObjectManager.Me.Position.Y,
                                                   ObjectManager.ObjectManager.Me.Position.Z + 0.8f);
-                    if (ObjectManager.ObjectManager.Me.IsMounted && !nManager.Wow.Helpers.TraceLine.TraceLineGo(_distmountAttempt, inFront, CGWorldFrameHitFlags.HitTestAll))
+                    if (ObjectManager.ObjectManager.Me.IsMounted && !TraceLine.TraceLineGo(_distmountAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Dismounting.");
                         Usefuls.DisMount();
@@ -590,7 +590,7 @@ namespace nManager.Wow.Helpers
                                                  ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
                     inFront = new Point(ObjectManager.ObjectManager.Me.Position.X + dx, ObjectManager.ObjectManager.Me.Position.Y + dy,
                                         ObjectManager.ObjectManager.Me.Position.Z + 1.5f);
-                    if (!nManager.Wow.Helpers.TraceLine.TraceLineGo(_jumpOverAttempt, inFront, CGWorldFrameHitFlags.HitTestAll))
+                    if (!TraceLine.TraceLineGo(_jumpOverAttempt, inFront))
                     {
                         Logging.WriteNavigator("UnStuck - Jumping over.");
                         MovementsAction.Ascend(true);
@@ -1427,7 +1427,7 @@ namespace nManager.Wow.Helpers
                 Target.Name = TargetIsNPC.Name;
                 return TargetIsNPC.GetBaseAddress;
             }
-            else if (TargetIsObject.IsValid)
+            if (TargetIsObject.IsValid)
             {
                 asMoved = Target.Position.DistanceTo(TargetIsObject.Position) > 5;
                 Target.Position = TargetIsObject.Position;
@@ -1511,9 +1511,9 @@ namespace nManager.Wow.Helpers
                                                                                                        Target.Position);
                         WoWUnit TargetIsUnit = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
                         if (TargetIsUnit.IsValid)
-                            nManager.nManagerSetting.AddBlackList(TargetIsUnit.Guid);
+                            nManagerSetting.AddBlackList(TargetIsUnit.Guid);
                         else if (TargetIsObject.IsValid)
-                            nManager.nManagerSetting.AddBlackList(TargetIsObject.Guid);
+                            nManagerSetting.AddBlackList(TargetIsObject.Guid);
                         StopMove();
                     }
                 }

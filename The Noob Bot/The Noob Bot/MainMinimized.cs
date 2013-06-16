@@ -11,7 +11,7 @@ namespace The_Noob_Bot
             InitializeComponent();
             Translate();
             if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                this.TopMost = true;
+                TopMost = true;
         }
 
         private void Translate()

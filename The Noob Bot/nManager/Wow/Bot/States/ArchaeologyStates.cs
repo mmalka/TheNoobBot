@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
@@ -29,20 +28,20 @@ namespace nManager.Wow.Bot.States
         public override int Priority { get; set; }
 
         private readonly List<int> BlackListDigsites = new List<int>();
-        private int LastZone = 0;
+        private int LastZone;
         private Digsite digsitesZone = new Digsite();
         private WoWQuestPOIPoint qPOI;
         private int _nbTryFarmInThisZone;
         private Spell surveySpell;
-        private Helpful.Timer timerAutoSolving;
+        private Timer timerAutoSolving;
 
         public int SolvingEveryXMin = 20;
         private int nbLootAttempt;
         public int MaxTryByDigsite = 30;
-        private int nbCastSurveyError = 0;
+        private int nbCastSurveyError;
 
         private LocState myState = LocState.Iddle;
-        private Helpful.Timer timerLooting;
+        private Timer timerLooting;
 
         private int _bestPathId;
         private int _lastPathId;
@@ -52,7 +51,7 @@ namespace nManager.Wow.Bot.States
 
         private bool IsPointOutOfWater(Point p)
         {
-            return !nManager.Wow.Helpers.TraceLine.TraceLineGo(new Point(p.X, p.Y, p.Z + 1000), p, Enums.CGWorldFrameHitFlags.HitTestLiquid);
+            return !TraceLine.TraceLineGo(new Point(p.X, p.Y, p.Z + 1000), p, Enums.CGWorldFrameHitFlags.HitTestLiquid);
         }
 
         public override bool NeedToRun
@@ -150,14 +149,14 @@ namespace nManager.Wow.Bot.States
 
                 // Solving Every X Min
                 if (timerAutoSolving == null)
-                    timerAutoSolving = new Helpful.Timer(SolvingEveryXMin*1000*60);
+                    timerAutoSolving = new Timer(SolvingEveryXMin*1000*60);
                 if (timerAutoSolving.IsReady && !ObjectManager.ObjectManager.Me.IsDeadMe &&
                     !ObjectManager.ObjectManager.Me.InCombat)
                 {
                     MovementManager.StopMove();
                     LongMove.StopLongMove();
                     Archaeology.SolveAllArtifact();
-                    timerAutoSolving = new Helpful.Timer(SolvingEveryXMin*1000*60);
+                    timerAutoSolving = new Timer(SolvingEveryXMin*1000*60);
                 }
 
                 if (MovementManager.InMovement)
@@ -195,7 +194,7 @@ namespace nManager.Wow.Bot.States
                             return;
                         }
                         Logging.Write("Loot " + t.Name);
-                        Timer timer = new Helpful.Timer(1000*Math.DistanceListPoint(points)/3);
+                        Timer timer = new Timer(1000*Math.DistanceListPoint(points)/3);
 
                         while (MovementManager.InMovement && !timer.IsReady && t.GetDistance > 3)
                         {
@@ -222,12 +221,12 @@ namespace nManager.Wow.Bot.States
                         nbLootAttempt++;
                         myState = LocState.Looting;
                         if (timerLooting == null)
-                            timerLooting = new Helpful.Timer(1000*5);
+                            timerLooting = new Timer(1000*5);
                         else
                             timerLooting.Reset();
                         return;
                     }
-                    else if (_nbTryFarmInThisZone > MaxTryByDigsite) // If try > config try black list
+                    if (_nbTryFarmInThisZone > MaxTryByDigsite) // If try > config try black list
                     {
                         nbLootAttempt = 0;
                         BlackListDigsites.Add(digsitesZone.id);
@@ -313,194 +312,188 @@ namespace nManager.Wow.Bot.States
                         _nbTryFarmInThisZone++;
                         return;
                     }
-                    else
+                    if (myState == LocState.GoingNextPoint)
+                        return;
+                    nbCastSurveyError = 0; // Reset try cast survey
+                    if ((ObjectManager.ObjectManager.Me.InCombat &&
+                         !(ObjectManager.ObjectManager.Me.IsMounted &&
+                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                     {
-                        if (myState == LocState.GoingNextPoint)
-                            return;
-                        nbCastSurveyError = 0; // Reset try cast survey
-                        if ((ObjectManager.ObjectManager.Me.InCombat &&
-                             !(ObjectManager.ObjectManager.Me.IsMounted &&
-                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                        {
-                            return;
-                        }
+                        return;
+                    }
 
+                    ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
+                    // set my rotation to survey rotation
+
+                    // Get Line to next cast survey
+                    Point p1 = ObjectManager.ObjectManager.Me.Position;
+                    Thread.Sleep(50);
+                    MovementsAction.MoveForward(true);
+                    Thread.Sleep(200);
+                    MovementsAction.MoveForward(false);
+                    Point p2 = ObjectManager.ObjectManager.Me.Position;
+
+                    if (p1.X == p2.X && p1.Y == p2.Y)
+                    {
                         ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
-                        // set my rotation to survey rotation
-
-                        // Get Line to next cast survey
-                        Point p1 = ObjectManager.ObjectManager.Me.Position;
+                        p2 = ObjectManager.ObjectManager.Me.Position;
                         Thread.Sleep(50);
-                        MovementsAction.MoveForward(true);
+                        MovementsAction.MoveBackward(true);
                         Thread.Sleep(200);
-                        MovementsAction.MoveForward(false);
-                        Point p2 = ObjectManager.ObjectManager.Me.Position;
+                        MovementsAction.MoveBackward(false);
+                        p1 = ObjectManager.ObjectManager.Me.Position;
+                    }
+                    if (p1.X == p2.X && p1.Y == p2.Y) // Get if p1 != p2 (else wowerror)
+                    {
+                        MovementManager.UnStuck();
+                    }
+                    else // Get next cast survey position
+                    {
+                        Point p;
 
-                        if (p1.X == p2.X && p1.Y == p2.Y)
+                        if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
                         {
-                            ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(t.GetBaseAddress);
-                            p2 = ObjectManager.ObjectManager.Me.Position;
-                            Thread.Sleep(50);
-                            MovementsAction.MoveBackward(true);
-                            Thread.Sleep(200);
-                            MovementsAction.MoveBackward(false);
-                            p1 = ObjectManager.ObjectManager.Me.Position;
-                        }
-                        if (p1.X == p2.X && p1.Y == p2.Y) // Get if p1 != p2 (else wowerror)
-                        {
-                            MovementManager.UnStuck();
-                        }
-                        else // Get next cast survey position
-                        {
-                            Point p;
-
-                            if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
+                            int d = 90;
+                            p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                            p.Z = PathFinder.GetZPosition(p, true);
+                            while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
                             {
-                                int d = 90;
+                                //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
+                                d += 5;
                                 p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
                                 p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                                 p.Z = PathFinder.GetZPosition(p, true);
-                                while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
-                                {
-                                    //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
-                                    d += 5;
-                                    p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
-                                    p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                                    p.Z = PathFinder.GetZPosition(p, true);
-                                    if (d >= 160)
-                                        break;
-                                }
-                                d = 90;
-                                while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
-                                {
-                                    //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
-                                    d -= 10;
-                                    p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
-                                    p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                                    p.Z = PathFinder.GetZPosition(p, true);
-                                    if (d <= 10)
-                                        break;
-                                }
+                                if (d >= 160)
+                                    break;
                             }
-                            else if (t.DisplayId == 10102) // Survey Tool (Yellow) 50 yard
-                                p = Math.GetPostion2DOfLineByDistance(p1, p2, 50 - 10 + 6);
-                            else // Survey Tool (Green) 25 yard
-                                p = Math.GetPostion2DOfLineByDistance(p1, p2, 13 + 2.5f);
+                            d = 90;
+                            while (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0)
+                            {
+                                //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
+                                d -= 10;
+                                p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                                p.Z = PathFinder.GetZPosition(p, true);
+                                if (d <= 10)
+                                    break;
+                            }
+                        }
+                        else if (t.DisplayId == 10102) // Survey Tool (Yellow) 50 yard
+                            p = Math.GetPostion2DOfLineByDistance(p1, p2, 50 - 10 + 6);
+                        else // Survey Tool (Green) 25 yard
+                            p = Math.GetPostion2DOfLineByDistance(p1, p2, 13 + 2.5f);
 
-                            myState = LocState.GoingNextPoint;
-                            p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
-                            p.Z = PathFinder.GetZPosition(p, true);
+                        myState = LocState.GoingNextPoint;
+                        p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
+                        p.Z = PathFinder.GetZPosition(p, true);
+                        if (p.Z == 0)
+                            p.Z = ObjectManager.ObjectManager.Me.Position.Z;
+                        // Find Path
+                        bool resultB;
+                        List<Point> points = PathFinder.FindPath(p, out resultB);
+
+                        // If path not found find neawer
+                        if (points.Count <= 0)
+                        {
+                            Point pt = Math.GetPostion2DOfLineByDistance(p1, p2, 15);
+                            pt.Z = ObjectManager.ObjectManager.Me.Position.Z;
+                            points = PathFinder.FindPath(pt, out resultB);
+                            if (points.Count > 0 && resultB)
+                                p = new Point(pt.X, pt.Y, pt.Z);
+                        }
+
+                        // Go to next position
+                        if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
+                            nbStuck >= 2)
+                            // Use fly mount
+                        {
+                            p.Z = PathFinder.GetZPosition(p);
+
                             if (p.Z == 0)
-                                p.Z = ObjectManager.ObjectManager.Me.Position.Z;
-                            // Find Path
-                            bool resultB;
-                            List<Point> points = PathFinder.FindPath(p, out resultB);
+                                p.Z = ObjectManager.ObjectManager.Me.Position.Z + 35;
+                            else
+                                p.Z = p.Z + 5.0f;
 
-                            // If path not found find neawer
-                            if (points.Count <= 0)
+                            if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                Point pt = Math.GetPostion2DOfLineByDistance(p1, p2, 15);
-                                pt.Z = ObjectManager.ObjectManager.Me.Position.Z;
-                                points = PathFinder.FindPath(pt, out resultB);
-                                if (points.Count > 0 && resultB)
-                                    p = new Point(pt.X, pt.Y, pt.Z);
+                                return;
                             }
+                            MountTask.Mount();
+                            LongMove.LongMoveByNewThread(p);
+                            Timer timer =new Timer(1000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
 
-                            // Go to next position
-                            if ((!resultB && p.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 10) ||
-                                nbStuck >= 2)
-                                // Use fly mount
+                            while (LongMove.IsLongMove && !timer.IsReady &&
+                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
                             {
-                                p.Z = PathFinder.GetZPosition(p);
-
-                                if (p.Z == 0)
-                                    p.Z = ObjectManager.ObjectManager.Me.Position.Z + 35;
-                                else
-                                    p.Z = p.Z + 5.0f;
-
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
                                      !(ObjectManager.ObjectManager.Me.IsMounted &&
                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
-                                    return;
-                                }
-                                MountTask.Mount();
-                                LongMove.LongMoveByNewThread(p);
-                                Timer timer =
-                                    new Helpful.Timer(1000*
-                                                      points[points.Count - 1].DistanceTo(
-                                                          ObjectManager.ObjectManager.Me.Position)/3);
-
-                                while (LongMove.IsLongMove && !timer.IsReady &&
-                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)
-                                {
-                                    if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                                    {
-                                        LongMove.StopLongMove();
-                                        return;
-                                    }
-                                    Thread.Sleep(100);
-                                }
-                                LongMove.StopLongMove();
-                                while (MovementManager.IsUnStuck)
-                                {
-                                    Thread.Sleep(100);
                                     LongMove.StopLongMove();
+                                    return;
                                 }
-                                MovementManager.StopMove();
-                                MountTask.DismountMount();
-                                nbStuck = 0;
+                                Thread.Sleep(100);
                             }
-                            else //  walk to next position
+                            LongMove.StopLongMove();
+                            while (MovementManager.IsUnStuck)
                             {
-                                if (Usefuls.IsFlying)
-                                    for (int i = 0; i < points.Count; i++)
-                                        points[i].Type = "flying";
+                                Thread.Sleep(100);
+                                LongMove.StopLongMove();
+                            }
+                            MovementManager.StopMove();
+                            MountTask.DismountMount();
+                            nbStuck = 0;
+                        }
+                        else //  walk to next position
+                        {
+                            if (Usefuls.IsFlying)
+                                for (int i = 0; i < points.Count; i++)
+                                    points[i].Type = "flying";
 
-                                MovementManager.Go(points);
-                                float d = Math.DistanceListPoint(points)/3;
-                                if (d > 200)
-                                    d = 200;
-                                float tm_t = 1000*d/2 + 1200;
-                                if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
-                                    tm_t /= 0.6f;
-                                Timer timer = new Helpful.Timer(tm_t);
-                                while (MovementManager.InMovement && !timer.IsReady &&
-                                       ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
-                                {
-                                    if ((ObjectManager.ObjectManager.Me.InCombat &&
-                                         !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                           (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                                    {
-                                        return;
-                                    }
-                                    Thread.Sleep(100);
-                                }
-                                // incremente nbstuck if player is stuck
-                                if (ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) < 5 ||
-                                    (MovementManager.InMovement &&
-                                     !(ObjectManager.ObjectManager.Me.InCombat &&
-                                       !(ObjectManager.ObjectManager.Me.IsMounted &&
-                                         (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                                     timer.IsReady))
-                                    nbStuck++;
-                                else
-                                    nbStuck = 0;
-
+                            MovementManager.Go(points);
+                            float d = Math.DistanceListPoint(points)/3;
+                            if (d > 200)
+                                d = 200;
+                            float tm_t = 1000*d/2 + 1200;
+                            if (ObjectManager.ObjectManager.Me.Position.Type.ToLower() == "swimming")
+                                tm_t /= 0.6f;
+                            Timer timer = new Timer(tm_t);
+                            while (MovementManager.InMovement && !timer.IsReady &&
+                                   ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 5)
+                            {
                                 if ((ObjectManager.ObjectManager.Me.InCombat &&
                                      !(ObjectManager.ObjectManager.Me.IsMounted &&
                                        (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                                 {
                                     return;
                                 }
+                                Thread.Sleep(100);
+                            }
+                            // incremente nbstuck if player is stuck
+                            if (ObjectManager.ObjectManager.Me.Position.DistanceTo(t.Position) < 5 ||
+                                (MovementManager.InMovement &&
+                                 !(ObjectManager.ObjectManager.Me.InCombat &&
+                                   !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                     (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
+                                 timer.IsReady))
+                                nbStuck++;
+                            else
+                                nbStuck = 0;
+
+                            if ((ObjectManager.ObjectManager.Me.InCombat &&
+                                 !(ObjectManager.ObjectManager.Me.IsMounted &&
+                                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
+                            {
+                                return;
+                            }
+                            MovementManager.StopMove();
+                            while (MovementManager.IsUnStuck)
+                            {
+                                Thread.Sleep(100);
                                 MovementManager.StopMove();
-                                while (MovementManager.IsUnStuck)
-                                {
-                                    Thread.Sleep(100);
-                                    MovementManager.StopMove();
-                                }
                             }
                         }
                     }

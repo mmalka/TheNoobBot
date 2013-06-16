@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
-using Quester.Bot;
 using Quester.Profile;
 using nManager;
 using nManager.Helpful;
@@ -21,11 +19,13 @@ namespace Quester.Tasks
         private static string QuestStatus = "";
         public static Profile.Quest CurrentQuest;
         private static int _currentQuestObjectiveId = -1;
-        public static Profile.QuestObjective CurrentQuestObjective;
+        public static QuestObjective CurrentQuestObjective;
         private static Timer waitTimer;
         public static bool completed = false;
 
+// ReSharper disable ConvertToConstant.Local
         private static bool _HARDMODE_ = false; // TODO: ProductSettings
+// ReSharper restore ConvertToConstant.Local
 
         public static void SelectQuest()
         {
@@ -34,11 +34,11 @@ namespace Quester.Tasks
             _currentQuestObjectiveId = -1;
             CurrentQuestObjective = null;
 
-            Quester.Bot.Bot.Profile.Quests.Sort();
+            Bot.Bot.Profile.Quests.Sort();
 
             for (int relax = 0; relax <= 2; relax++) // search quest with level = mine, then level = mine+1, then +2
             {
-                foreach (Profile.Quest quest in Quester.Bot.Bot.Profile.Quests)
+                foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
                     if (Quest.GetLogQuestId().Contains(quest.Id))
                     {
@@ -47,7 +47,7 @@ namespace Quester.Tasks
                         return;
                     }
                 }
-                foreach (Profile.Quest quest in Quester.Bot.Bot.Profile.Quests)
+                foreach (Profile.Quest quest in Bot.Bot.Profile.Quests)
                 {
                     if (ObjectManager.Me.Level >= quest.MinLevel && ObjectManager.Me.Level <= quest.MaxLevel &&
                         (_HARDMODE_ || ObjectManager.Me.Level >= quest.QuestLevel - relax)) // Level
@@ -137,7 +137,7 @@ namespace Quester.Tasks
             {
                 if (questObjective.Count == -1)
                     return false;
-                else if (questObjective.CurrentCount >= questObjective.Count)
+                if (questObjective.CurrentCount >= questObjective.Count)
                     return true;
                 return false;
             }
@@ -212,7 +212,7 @@ namespace Quester.Tasks
 
         public static bool IsInAvoidMobsList(WoWUnit woWUnit)
         {
-            foreach (Npc npc in Quester.Bot.Bot.Profile.AvoidMobs)
+            foreach (Npc npc in Bot.Bot.Profile.AvoidMobs)
             {
                 if ((npc.Position.X == 0.0f || npc.Position.DistanceTo(woWUnit.Position) <= 40) &&
                     npc.Entry == woWUnit.Entry)
@@ -314,14 +314,14 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
-                            nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                            ObjectManager.Me.Position)].DistanceTo(
                                                                                ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
-                                    nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                                    ObjectManager.Me.Position)]));
                     }
                     else
@@ -353,14 +353,14 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
-                            nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                            ObjectManager.Me.Position)].DistanceTo(
                                                                                ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
-                                    nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                                    ObjectManager.Me.Position)]));
                     }
                     else
@@ -381,10 +381,10 @@ namespace Quester.Tasks
                     {
                         WoWGameObject node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryAOE}));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -404,16 +404,16 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         MovementManager.StopMove();
                         if (questObjective.EntryAOE > 0)
                         {
                             WoWGameObject node =
                                 ObjectManager.GetNearestWoWGameObject(
-                                    ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
+                                    ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryAOE}));
                             WoWUnit unit =
                                 ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
+                                    ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -475,10 +475,10 @@ namespace Quester.Tasks
                     {
                         WoWGameObject node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryInteractWith}));
+                                ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryInteractWith}));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryInteractWith}));
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryInteractWith}));
                         Point pos;
                         uint baseAddress;
                         if (node.IsValid)
@@ -504,7 +504,7 @@ namespace Quester.Tasks
                                 return;
                             Thread.Sleep(100);
                         }
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
 
@@ -533,10 +533,10 @@ namespace Quester.Tasks
                     {
                         WoWGameObject node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryAOE}));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -556,15 +556,15 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         if (questObjective.EntryAOE > 0)
                         {
                             WoWGameObject node =
                                 ObjectManager.GetNearestWoWGameObject(
-                                    ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
+                                    ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryAOE}));
                             WoWUnit unit =
                                 ObjectManager.GetNearestWoWUnit(
-                                    ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
+                                    ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                             if (node.IsValid)
                             {
                                 MovementManager.Face(node);
@@ -596,14 +596,14 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
-                            nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                            ObjectManager.Me.Position)].DistanceTo(
                                                                                ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
-                                    nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                                    ObjectManager.Me.Position)]));
                     }
                     else
@@ -653,7 +653,7 @@ namespace Quester.Tasks
                     {
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryVehicle}),
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryVehicle}),
                                 questObjective.Position);
                         if (!unit.IsValid)
                         {
@@ -669,7 +669,7 @@ namespace Quester.Tasks
                                 return;
                             Thread.Sleep(100);
                         }
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         Interact.InteractWith(unit.GetBaseAddress);
                         Thread.Sleep(Usefuls.Latency + 500);
                     }
@@ -697,7 +697,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         Keybindings.DownKeybindings(questObjective.Keys);
                         Thread.Sleep(questObjective.WaitMs);
                         Keybindings.UpKeybindings(questObjective.Keys);
@@ -716,10 +716,10 @@ namespace Quester.Tasks
                     {
                         WoWGameObject node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryAOE}));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int>() {questObjective.EntryAOE}));
+                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                         Point pos = new Point();
                         if (node.IsValid)
                         {
@@ -742,7 +742,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
                                                               questObjective.Position);
                         Thread.Sleep(questObjective.WaitMs);
@@ -832,7 +832,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         Spell runeforging = new Spell("Runeforging");
                         Lua.RunMacroText("/cast " + runeforging.NameInGame);
                         Thread.Sleep(500);
@@ -871,7 +871,7 @@ namespace Quester.Tasks
                     }
                     else
                     {
-                        MountTask.DismountMount(true);
+                        MountTask.DismountMount();
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
                         ItemsManager.UseItem(ItemsManager.GetNameById(questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMs);
@@ -885,14 +885,14 @@ namespace Quester.Tasks
                     // Need GoTo Zone:
                     if (
                         questObjective.PathHotspots[
-                            nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                            Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                            ObjectManager.Me.Position)].DistanceTo(
                                                                                ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
-                                    nManager.Helpful.Math.NearestPointOfListPoints(questObjective.PathHotspots,
+                                    Math.NearestPointOfListPoints(questObjective.PathHotspots,
                                                                                    ObjectManager.Me.Position)]));
                     }
                     else
@@ -906,7 +906,7 @@ namespace Quester.Tasks
             // USE TAXI
             if (questObjective.Objective == Objective.UseFlightPath)
             {
-                Npc taxiMan = Quester.Bot.Bot.FindQuesterById(questObjective.EntryInteractWith);
+                Npc taxiMan = Bot.Bot.FindQuesterById(questObjective.EntryInteractWith);
 
                 uint baseAddress = MovementManager.FindTarget(ref taxiMan);
                 if (MovementManager.InMovement)
@@ -930,10 +930,7 @@ namespace Quester.Tasks
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
                 }
-                else
-                {
-                    return; // target not found
-                }
+                // target not found
             }
         }
 
@@ -960,12 +957,12 @@ namespace Quester.Tasks
             if (pickUp)
             {
                 QuestStatus = "Pick-Up Quest";
-                npc = Quester.Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
+                npc = Bot.Bot.FindQuesterById(CurrentQuest.PickUp);
             }
             if (turnIn)
             {
                 QuestStatus = "Turn-In Quest";
-                npc = Quester.Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
+                npc = Bot.Bot.FindQuesterById(CurrentQuest.TurnIn);
             }
 
             if (pickUp && item != 0)
@@ -1030,14 +1027,11 @@ namespace Quester.Tasks
                                         Quest.AbandonQuest(id);
                                     break;
                                 }
-                                else
-                                {
-                                    Quest.CloseQuestWindow();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    Quest.AbandonQuest(id);
-                                    Interact.InteractWith(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                }
+                                Quest.CloseQuestWindow();
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                Quest.AbandonQuest(id);
+                                Interact.InteractWith(baseAddress);
+                                Thread.Sleep(Usefuls.Latency + 500);
                             }
                         }
                         else
@@ -1058,14 +1052,11 @@ namespace Quester.Tasks
                                         Quest.AbandonQuest(id);
                                     break;
                                 }
-                                else
-                                {
-                                    Quest.CloseQuestWindow();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    Quest.AbandonQuest(id);
-                                    Interact.InteractWith(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                }
+                                Quest.CloseQuestWindow();
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                Quest.AbandonQuest(id);
+                                Interact.InteractWith(baseAddress);
+                                Thread.Sleep(Usefuls.Latency + 500);
                                 gossipid++;
                             }
                         }
@@ -1109,13 +1100,10 @@ namespace Quester.Tasks
                                     Quest.AbandonQuest(id);
                                     break;
                                 }
-                                else
-                                {
-                                    Quest.CloseQuestWindow();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractWith(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                }
+                                Quest.CloseQuestWindow();
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                Interact.InteractWith(baseAddress);
+                                Thread.Sleep(Usefuls.Latency + 500);
                             }
                         }
                         else
@@ -1134,13 +1122,10 @@ namespace Quester.Tasks
                                     Quest.FinishedQuestSet.Add(CurrentQuest.Id);
                                     break;
                                 }
-                                else
-                                {
-                                    Quest.CloseQuestWindow();
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                    Interact.InteractWith(baseAddress);
-                                    Thread.Sleep(Usefuls.Latency + 500);
-                                }
+                                Quest.CloseQuestWindow();
+                                Thread.Sleep(Usefuls.Latency + 500);
+                                Interact.InteractWith(baseAddress);
+                                Thread.Sleep(Usefuls.Latency + 500);
                                 gossipid++;
                             }
                         }

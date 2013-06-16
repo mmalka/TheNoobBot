@@ -14,7 +14,7 @@ namespace Fisherbot
             Translate();
             fishSchoolProfil.DropDownStyle = ComboBoxStyle.DropDownList;
             if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                this.TopMost = true;
+                TopMost = true;
             Load();
         }
 
@@ -74,7 +74,7 @@ namespace Fisherbot
 
         private void profileCreatorB_Click(object sender, System.EventArgs e)
         {
-            ProfileCreator f = new Profile.ProfileCreator();
+            ProfileCreator f = new ProfileCreator();
             f.ShowDialog();
             RefreshProfilesList();
         }

@@ -8,8 +8,6 @@ using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
 using nManager.Wow.Helpers;
-using nManager.Wow.ObjectManager;
-using nManager.Wow.Bot;
 using nManager.Wow.Class;
 
 namespace Quester.Bot
@@ -81,7 +79,7 @@ namespace Quester.Bot
                     Profile.Filter();
                     Logging.Write(Profile.Quests.Count + " quests left after filtering on class/race");
 
-                    Quester.Tasks.QuestingTask.completed = false;
+                    Tasks.QuestingTask.completed = false;
 
                     nManager.Wow.Helpers.Quest.ConsumeQuestsCompletedRequest();
                     Logging.Write("received " + nManager.Wow.Helpers.Quest.FinishedQuestSet.Count + " quests.");
@@ -95,7 +93,7 @@ namespace Quester.Bot
                 {
                     blackListDic.Add(b.Position, b.Radius);
                 }
-                nManager.nManagerSetting.AddRangeBlackListZone(blackListDic);
+                nManagerSetting.AddRangeBlackListZone(blackListDic);
 
                 // Update spell list
                 SpellManager.UpdateSpellBook();

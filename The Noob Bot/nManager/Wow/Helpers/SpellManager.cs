@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
-using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers

@@ -37,11 +37,11 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             try
             {
-                int lpBytesRead = 0;
+                int lpBytesRead;
                 if (!Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead))
                     throw new Exception("ReadProcessMemory failed");
 
-                return (int) lpBytesRead;
+                return lpBytesRead;
             }
             catch
             {
@@ -479,7 +479,7 @@ namespace nManager.Wow.MemoryClass.Magic
 
         private static int WriteRawMemory(IntPtr hProcess, uint dwAddress, IntPtr lpBuffer, int nSize)
         {
-            IntPtr iBytesWritten = IntPtr.Zero;
+            IntPtr iBytesWritten;
 
             if (!Imports.WriteProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out iBytesWritten))
                 return 0;

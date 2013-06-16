@@ -1,6 +1,4 @@
-﻿using System.Runtime.CompilerServices;
-using System.Runtime.InteropServices;
-using nManager.Wow.Enums;
+﻿using System.Runtime.InteropServices;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers

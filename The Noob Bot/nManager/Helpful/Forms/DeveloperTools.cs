@@ -25,7 +25,7 @@ namespace nManager.Helpful.Forms
                 InitializeComponent();
                 TranslateForm();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
             }
             catch (Exception ex)
             {
@@ -111,7 +111,7 @@ namespace nManager.Helpful.Forms
                         "\"  target=\"_blank\">on WowHead</a></i>)</td>     <td>WoWItem</td>     <td bgcolor=\"#CCCCCC\">" +
                         wowO.Entry +
                         "</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">-</td>     <td>-</td>     <td bgcolor=\"#CCCCCC\">" +
-                        wowO.Guid + "</td>     <td>" + Wow.ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(wowO.GetBaseAddress, (uint) Descriptors.ItemFields.Owner) +
+                        wowO.Guid + "</td>     <td>" + ObjectManager.Me.GetDescriptor<ulong>(wowO.GetBaseAddress, (uint) Descriptors.ItemFields.Owner) +
                         "</td><td>IsEquipped by me ? " + EquippedItems.IsEquippedItemByGuid(wowO.Guid) + "</td>   </tr>";
                 }
                 // WoWCorpse
@@ -180,7 +180,7 @@ namespace nManager.Helpful.Forms
                         (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) +
                         "</Faction>" + Environment.NewLine +
                         "    <Type>None</Type>" + Environment.NewLine +
-                        "    <ContinentId>" + (Wow.Enums.ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
+                        "    <ContinentId>" + (ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
                         Environment.NewLine +
                         "  </Npc>" +
                         Environment.NewLine + Environment.NewLine +
@@ -302,11 +302,8 @@ namespace nManager.Helpful.Forms
                     return;
                 }
 
-                npc.ContinentId =
-                    (Wow.Enums.ContinentId) (Usefuls.ContinentId);
-                npc.Faction =
-                    (Npc.FactionType)
-                    Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                npc.ContinentId = (ContinentId) (Usefuls.ContinentId);
+                npc.Faction =(Npc.FactionType)Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
 
                 if (Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
@@ -326,7 +323,7 @@ namespace nManager.Helpful.Forms
                     (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true) +
                     "</Faction>" + Environment.NewLine +
                     "    <Type>None</Type>" + Environment.NewLine +
-                    "    <ContinentId>" + (Wow.Enums.ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
+                    "    <ContinentId>" + (ContinentId) (Usefuls.ContinentId) + "</ContinentId>" +
                     Environment.NewLine +
                     "  </Npc>";
                 nameNpcTb.Text = "";

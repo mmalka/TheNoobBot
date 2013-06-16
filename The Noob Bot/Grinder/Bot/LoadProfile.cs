@@ -19,7 +19,7 @@ namespace Grinder.Bot
                 listProfileCb.DropDownStyle = ComboBoxStyle.DropDownList;
                 listProfileCb.Text = GrinderSetting.CurrentSetting.ProfileName;
                 if (nManager.nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
             }
             catch (Exception e)
             {

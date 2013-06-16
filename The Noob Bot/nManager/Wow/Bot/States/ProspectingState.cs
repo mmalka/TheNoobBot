@@ -72,7 +72,7 @@ namespace nManager.Wow.Bot.States
             Thread.Sleep(500);
             Tasks.MountTask.DismountMount();
             Logging.Write("Prospecting in progress");
-            Timer timer = new Helpful.Timer(15*60*1000);
+            Timer timer = new Timer(15*60*1000);
             // Prospecting
             while (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect) && Products.Products.IsStarted &&
                    Usefuls.InGame &&

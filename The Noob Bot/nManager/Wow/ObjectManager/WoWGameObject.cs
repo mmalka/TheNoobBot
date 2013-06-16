@@ -292,8 +292,6 @@ namespace nManager.Wow.ObjectManager
                     return SkillLine.None;
                     //case WoWGameObjectLockType.LOCKTYPE_DISARM_TRAP:
                     //    return SkillLine.Lockpicking;
-                default:
-                    break;
             }
             return SkillLine.None;
         }
@@ -367,8 +365,7 @@ namespace nManager.Wow.ObjectManager
                                     Spell lockpick = new Spell(1804); // Pick lock
                                     if (lockpick.KnownSpell && ObjectManager.Me.Level*5 >= reqSkillValue)
                                         return true;
-                                    else
-                                        return false;
+                                    return false;
                                 }
 
                                 int bonus = 0;
@@ -392,9 +389,6 @@ namespace nManager.Wow.ObjectManager
                                     return false;
 
                                 return true;
-
-                            default:
-                                break;
                         }
                     }
                 }

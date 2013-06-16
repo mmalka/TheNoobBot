@@ -25,7 +25,7 @@ namespace Prospecting
                 return;
             }
 
-            ProspectingState prospecting = new nManager.Wow.Bot.States.ProspectingState();
+            ProspectingState prospecting = new ProspectingState();
             prospecting.Run();
             Logging.Write("Prospecting finished.");
             nManager.Products.Products.ProductStop();

@@ -1,12 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Threading;
 using Quester.Tasks;
 using nManager;
 using nManager.FiniteStateMachine;
-using nManager.Helpful;
 using nManager.Products;
-using nManager.Wow.Bot.Tasks;
-using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Quest = nManager.Wow.Helpers.Quest;
@@ -101,7 +97,7 @@ namespace Quester.Bot
                     QuestingTask.ResetQuestObjective();
                 if (QuestingTask.CurrentQuestObjectiveIsFinish())
                     return;
-                else if (QuestingTask.CurrentQuestObjective == null)
+                if (QuestingTask.CurrentQuestObjective == null)
                     QuestingTask.TurnInQuest();
                 else
                     Script.Run(QuestingTask.CurrentQuestObjective.Script);

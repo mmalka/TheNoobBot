@@ -83,7 +83,7 @@ namespace nManager.Wow.MemoryClass.Magic
                                        params char[] Delimiter)
         {
             if (Delimiter == null)
-                Delimiter = new char[1] {' '};
+                Delimiter = new[] {' '};
 
             string[] saPattern = szPattern.Split(Delimiter);
             byte[] bPattern = new byte[saPattern.Length];
@@ -160,7 +160,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (bData == null)
                 throw new Exception("Could not read memory in FindPattern.");
 
-            return (uint) (dwStart + FindPattern(bData, bPattern, szMask));
+            return dwStart + FindPattern(bData, bPattern, szMask);
         }
 
         /*

@@ -24,7 +24,7 @@ namespace Milling
                 return;
             }
 
-            MillingState milling = new nManager.Wow.Bot.States.MillingState();
+            MillingState milling = new MillingState();
             milling.Run();
             Logging.Write("Milling finished.");
             nManager.Products.Products.ProductStop();

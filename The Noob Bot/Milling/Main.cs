@@ -40,7 +40,7 @@ namespace Milling
         {
             try
             {
-                global::Milling.Milling.Pulse();
+                Milling.Pulse();
                 _isStarted = true;
                 Logging.Status = "Milling started";
             }

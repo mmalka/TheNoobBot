@@ -46,15 +46,11 @@ namespace nManager.Wow.Helpers
                         SetKeyByAction(action, key);
                         return key;
                     }
-                    else
-                    {
-                        Logging.WriteDebug(
-                            "No free keys found on 236 possible bindings, if you got that line, you mainly have a problem with your WoW keybindings.");
-                        return "";
-                    }
-                }
-                else
+                    Logging.WriteDebug(
+                        "No free keys found on 236 possible bindings, if you got that line, you mainly have a problem with your WoW keybindings.");
                     return "";
+                }
+                return "";
             }
             catch (Exception exception)
             {

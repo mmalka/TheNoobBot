@@ -289,8 +289,7 @@ namespace nManager.Wow.Helpers
                         float nz = PathFinder.GetZPosition(to);
                         if (nz == 0)
                             continue;
-                        else
-                            to.Z = nz + 1.0f;
+                        to.Z = nz + 1.0f;
                         return to;
                     }
 
@@ -303,8 +302,7 @@ namespace nManager.Wow.Helpers
                         float nz = PathFinder.GetZPosition(to);
                         if (nz == 0)
                             continue;
-                        else
-                            to.Z = nz + 1.0f;
+                        to.Z = nz + 1.0f;
                         return to;
                     }
                     to = new Point(fishingHole.X - offset1, fishingHole.Y + offset2, fishingHole.Z);
@@ -316,8 +314,7 @@ namespace nManager.Wow.Helpers
                         float nz = PathFinder.GetZPosition(to);
                         if (nz == 0)
                             continue;
-                        else
-                            to.Z = nz + 1.0f;
+                        to.Z = nz + 1.0f;
                         return to;
                     }
                     to = new Point(fishingHole.X - offset2, fishingHole.Y - offset1, fishingHole.Z);
@@ -329,8 +326,7 @@ namespace nManager.Wow.Helpers
                         float nz = PathFinder.GetZPosition(to);
                         if (nz == 0)
                             continue;
-                        else
-                            to.Z = nz + 1.0f;
+                        to.Z = nz + 1.0f;
                         return to;
                     }
                 }

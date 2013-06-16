@@ -204,7 +204,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Mana);
+                    return GetPowerByPowerType(PowerType.Mana);
                 }
                 catch (Exception e)
                 {
@@ -220,7 +220,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Mana);
+                    return GetMaxPowerByPowerType(PowerType.Mana);
                 }
                 catch (Exception e)
                 {
@@ -238,10 +238,7 @@ namespace nManager.Wow.ObjectManager
                 {
                     if (MaxMana > 0)
                         return Mana*100/MaxMana;
-                    else
-                    {
-                        return 100;
-                    }
+                    return 100;
                 }
                 catch (Exception e)
                 {
@@ -257,7 +254,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Rage);
+                    return GetPowerByPowerType(PowerType.Rage);
                 }
                 catch (Exception e)
                 {
@@ -273,7 +270,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Rage);
+                    return GetMaxPowerByPowerType(PowerType.Rage);
                 }
                 catch (Exception e)
                 {
@@ -305,7 +302,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Focus);
+                    return GetPowerByPowerType(PowerType.Focus);
                 }
                 catch (Exception e)
                 {
@@ -321,7 +318,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Focus);
+                    return GetMaxPowerByPowerType(PowerType.Focus);
                 }
                 catch (Exception e)
                 {
@@ -354,7 +351,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Energy);
+                    return GetPowerByPowerType(PowerType.Energy);
                 }
                 catch (Exception e)
                 {
@@ -370,7 +367,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Energy);
+                    return GetMaxPowerByPowerType(PowerType.Energy);
                 }
                 catch (Exception e)
                 {
@@ -402,7 +399,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Chi);
+                    return GetPowerByPowerType(PowerType.Chi);
                 }
                 catch (Exception e)
                 {
@@ -418,7 +415,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Chi);
+                    return GetMaxPowerByPowerType(PowerType.Chi);
                 }
                 catch (Exception e)
                 {
@@ -450,7 +447,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Runes);
+                    return GetPowerByPowerType(PowerType.Runes);
                 }
                 catch (Exception e)
                 {
@@ -466,7 +463,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Runes);
+                    return GetMaxPowerByPowerType(PowerType.Runes);
                 }
                 catch (Exception e)
                 {
@@ -498,7 +495,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.RunicPower);
+                    return GetPowerByPowerType(PowerType.RunicPower);
                 }
                 catch (Exception e)
                 {
@@ -514,7 +511,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.RunicPower);
+                    return GetMaxPowerByPowerType(PowerType.RunicPower);
                 }
                 catch (Exception e)
                 {
@@ -546,7 +543,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.SoulShards);
+                    return GetPowerByPowerType(PowerType.SoulShards);
                 }
                 catch (Exception e)
                 {
@@ -562,7 +559,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.SoulShards);
+                    return GetMaxPowerByPowerType(PowerType.SoulShards);
                 }
                 catch (Exception e)
                 {
@@ -594,7 +591,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Eclipse);
+                    return GetPowerByPowerType(PowerType.Eclipse);
                 }
                 catch (Exception e)
                 {
@@ -610,7 +607,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Eclipse);
+                    return GetMaxPowerByPowerType(PowerType.Eclipse);
                 }
                 catch (Exception e)
                 {
@@ -642,7 +639,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.HolyPower);
+                    return GetPowerByPowerType(PowerType.HolyPower);
                 }
                 catch (Exception e)
                 {
@@ -658,7 +655,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.HolyPower);
+                    return GetMaxPowerByPowerType(PowerType.HolyPower);
                 }
                 catch (Exception e)
                 {
@@ -690,7 +687,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.Alternate);
+                    return GetPowerByPowerType(PowerType.Alternate);
                 }
                 catch (Exception e)
                 {
@@ -706,7 +703,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.Alternate);
+                    return GetMaxPowerByPowerType(PowerType.Alternate);
                 }
                 catch (Exception e)
                 {
@@ -738,7 +735,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.DarkForce);
+                    return GetPowerByPowerType(PowerType.DarkForce);
                 }
                 catch (Exception e)
                 {
@@ -754,7 +751,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.DarkForce);
+                    return GetMaxPowerByPowerType(PowerType.DarkForce);
                 }
                 catch (Exception e)
                 {
@@ -786,7 +783,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.LightForce);
+                    return GetPowerByPowerType(PowerType.LightForce);
                 }
                 catch (Exception e)
                 {
@@ -802,7 +799,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.LightForce);
+                    return GetMaxPowerByPowerType(PowerType.LightForce);
                 }
                 catch (Exception e)
                 {
@@ -834,7 +831,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.ShadowOrbs);
+                    return GetPowerByPowerType(PowerType.ShadowOrbs);
                 }
                 catch (Exception e)
                 {
@@ -850,7 +847,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.ShadowOrbs);
+                    return GetMaxPowerByPowerType(PowerType.ShadowOrbs);
                 }
                 catch (Exception e)
                 {
@@ -882,7 +879,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.BurningEmbers);
+                    return GetPowerByPowerType(PowerType.BurningEmbers);
                 }
                 catch (Exception e)
                 {
@@ -898,7 +895,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.BurningEmbers);
+                    return GetMaxPowerByPowerType(PowerType.BurningEmbers);
                 }
                 catch (Exception e)
                 {
@@ -930,7 +927,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.DemonicFury);
+                    return GetPowerByPowerType(PowerType.DemonicFury);
                 }
                 catch (Exception e)
                 {
@@ -946,7 +943,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.DemonicFury);
+                    return GetMaxPowerByPowerType(PowerType.DemonicFury);
                 }
                 catch (Exception e)
                 {
@@ -978,7 +975,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetPowerByPowerType(Enums.PowerType.ArcaneCharges);
+                    return GetPowerByPowerType(PowerType.ArcaneCharges);
                 }
                 catch (Exception e)
                 {
@@ -994,7 +991,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetMaxPowerByPowerType(Enums.PowerType.ArcaneCharges);
+                    return GetMaxPowerByPowerType(PowerType.ArcaneCharges);
                 }
                 catch (Exception e)
                 {
@@ -1020,7 +1017,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        private uint GetPowerIndexByPowerType(Enums.PowerType powerType)
+        private uint GetPowerIndexByPowerType(PowerType powerType)
         {
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint displayPower = descriptorsArray +
@@ -1033,7 +1030,7 @@ namespace nManager.Wow.ObjectManager
             return result;
         }
 
-        public uint GetPowerByPowerType(Enums.PowerType powerType)
+        public uint GetPowerByPowerType(PowerType powerType)
         {
             uint index = GetPowerIndexByPowerType(powerType);
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
@@ -1044,7 +1041,7 @@ namespace nManager.Wow.ObjectManager
             return powerValue;
         }
 
-        public uint GetMaxPowerByPowerType(Enums.PowerType powerType)
+        public uint GetMaxPowerByPowerType(PowerType powerType)
         {
             uint index = GetPowerIndexByPowerType(powerType);
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
@@ -1347,10 +1344,9 @@ namespace nManager.Wow.ObjectManager
             {
                 if (Party.IsInGroupLUA(PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE))
                     return PartyEnums.PartyType.LE_PARTY_CATEGORY_INSTANCE;
-                else if (Party.IsInGroupLUA())
+                if (Party.IsInGroupLUA())
                     return PartyEnums.PartyType.LE_PARTY_CATEGORY_HOME;
-                else
-                    return PartyEnums.PartyType.None;
+                return PartyEnums.PartyType.None;
             }
         }
 
@@ -1930,7 +1926,7 @@ namespace nManager.Wow.ObjectManager
                 catch (Exception e)
                 {
                     Logging.WriteError("WoWUnit > Reaction: " + e);
-                    return Enums.Reaction.Neutral;
+                    return Reaction.Neutral;
                 }
             }
         }

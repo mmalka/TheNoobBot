@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Collections.Generic;
 using nManager.Helpful;
 using nManager.Wow.Class;
