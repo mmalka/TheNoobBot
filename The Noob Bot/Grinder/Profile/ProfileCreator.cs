@@ -31,7 +31,7 @@ namespace Grinder.Profile
 
                 RefreshListZones();
                 if (nManagerSetting.CurrentSetting.ActivateAlwaysOnTopFeature)
-                    this.TopMost = true;
+                    TopMost = true;
             }
             catch (Exception e)
             {
@@ -145,8 +145,8 @@ namespace Grinder.Profile
                     }
                     if (listZoneCb.SelectedIndex != _idZone)
                     {
-                        listZoneCb.SelectedIndex = _idZone;
-                        return;
+                        if (listZoneCb.Items.Count >= _idZone+1)
+                            listZoneCb.SelectedIndex = _idZone;
                     }
                 }
                 catch
