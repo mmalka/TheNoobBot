@@ -37,7 +37,7 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum UnitFlags2 : int
+    public enum UnitFlags2
     {
         None = 0,
         FeignDeath = 0x1,
@@ -46,7 +46,7 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum UnitNPCFlags : int
+    public enum UnitNPCFlags
     {
         None = 0,
         Gossip = 0x1,
@@ -72,7 +72,7 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum UnitDynamicFlags : int
+    public enum UnitDynamicFlags
     {
         None = 0,
         Invisible = 0x1,
@@ -87,7 +87,7 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum UnitQuestGiverStatus : int
+    public enum UnitQuestGiverStatus
     {
         None = 0x0,
         Unavailable = 0x1,
@@ -103,7 +103,7 @@ namespace nManager.Wow.Enums
     }
 
     [Flags]
-    public enum BagType : int
+    public enum BagType
     {
         None = 0x1000000,
         Unspecified = 0x0,

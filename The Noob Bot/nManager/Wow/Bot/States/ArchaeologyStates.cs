@@ -17,7 +17,9 @@ namespace nManager.Wow.Bot.States
             GoingNextPoint,
             Survey,
             Iddle,
+/*
             Solve,
+*/
         }
 
         public override string DisplayName
@@ -238,7 +240,9 @@ namespace nManager.Wow.Bot.States
                     bool moreMovementNeeded = false;
                     if (qPOI != null && !qPOI.ValidPoint && qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 50.0f)
                     {
+#pragma warning disable 168
                         Point p = qPOI.MiddlePoint; // we are near enouth to compute it
+#pragma warning restore 168
                         if (Usefuls.IsFlying)
                             moreMovementNeeded = true;
                     }
@@ -448,7 +452,9 @@ namespace nManager.Wow.Bot.States
                             }
                             MovementManager.StopMove();
                             MountTask.DismountMount();
+// ReSharper disable RedundantAssignment
                             nbStuck = 0;
+// ReSharper restore RedundantAssignment
                         }
                         else //  walk to next position
                         {
@@ -482,9 +488,13 @@ namespace nManager.Wow.Bot.States
                                    !(ObjectManager.ObjectManager.Me.IsMounted &&
                                      (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
                                  timer.IsReady))
+// ReSharper disable RedundantAssignment
                                 nbStuck++;
+// ReSharper restore RedundantAssignment
                             else
+// ReSharper disable RedundantAssignment
                                 nbStuck = 0;
+// ReSharper restore RedundantAssignment
 
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&

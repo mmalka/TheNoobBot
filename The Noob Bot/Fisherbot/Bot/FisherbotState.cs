@@ -22,10 +22,14 @@ namespace Fisherbot.Bot
         public override int Priority { get; set; }
 
         private WoWGameObject _node;
+/*
         private const float DistanceMarge = 19f;
+*/
         private const float DistanceMin = 13f;
         private const float DistanceMax = 19f;
+/*
         private const int NbTry = 20;
+*/
         private const int TimeTryFindGoodPos = 7000;
 
         public override bool NeedToRun

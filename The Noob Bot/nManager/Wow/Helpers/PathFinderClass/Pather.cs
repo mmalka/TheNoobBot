@@ -591,7 +591,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+// ReSharper disable UnusedMember.Local
         private static void DisableConnection(MeshTile tile, int index)
+// ReSharper restore UnusedMember.Local
         {
             try
             {
@@ -653,7 +655,9 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
         }
 
+// ReSharper disable UnusedMember.Local
         private void LoadDynamic(int x, int y)
+// ReSharper restore UnusedMember.Local
         {
             try
             {

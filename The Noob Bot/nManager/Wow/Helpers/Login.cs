@@ -169,7 +169,7 @@ namespace nManager.Wow.Helpers
             _login = false;
         }
 
-        private static bool _login = false;
+        private static bool _login;
 
         public static bool Pulse(SettingsLogin settings)
         {

@@ -21,7 +21,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// </summary>
         public bool SetDebugPrivileges = true;
 
-        private bool m_bProcessOpen = false;
+        private bool m_bProcessOpen;
 
         /// <summary>
         /// Get whether a process is open for manipulation.
@@ -31,7 +31,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_bProcessOpen; }
         }
 
-        private bool m_bThreadOpen = false;
+        private bool m_bThreadOpen;
 
         /// <summary>
         /// Gets whether a process is open for manipulation.
@@ -51,7 +51,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_hProcess; }
         }
 
-        private int m_ProcessId = 0;
+        private int m_ProcessId;
 
         /// <summary>
         /// Gets the Id of the currently opened process.
@@ -71,7 +71,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_hWnd; }
         }
 
-        private int m_ThreadId = 0;
+        private int m_ThreadId;
 
         /// <summary>
         /// Gets the Id of the currently opened thread.

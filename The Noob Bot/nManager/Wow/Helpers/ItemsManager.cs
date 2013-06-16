@@ -250,7 +250,9 @@ namespace nManager.Wow.Helpers
         }
 
         // Return best ILevel item
+// ReSharper disable UnusedMember.Local
         private static WoWItem BestItemLevel(IEnumerable<WoWItem> listItem)
+// ReSharper restore UnusedMember.Local
         {
             try
             {
@@ -275,7 +277,9 @@ namespace nManager.Wow.Helpers
         }
 
         // Get item subtype (mail, ..)
+// ReSharper disable UnusedMember.Local
         private static List<WoWItem> GetItemSubType(IEnumerable<WoWItem> listItem, Enums.WoWItemTradeGoodsClass subType)
+// ReSharper restore UnusedMember.Local
         {
             try
             {
@@ -290,7 +294,9 @@ namespace nManager.Wow.Helpers
         }
 
         // Get item type (amor...)
+// ReSharper disable UnusedMember.Local
         private static List<WoWItem> GetItemType(IEnumerable<WoWItem> listItem, Enums.WoWItemClass type)
+// ReSharper restore UnusedMember.Local
         {
             try
             {

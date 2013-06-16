@@ -10,7 +10,7 @@ namespace nManager.Wow.ObjectManager
 {
     public class WoWGameObject : WoWObject
     {
-        public enum GameObjectFlags : int
+        public enum GameObjectFlags
         {
             GO_FLAG_IN_USE = 0x00000001, //disables interaction while animated
             GO_FLAG_LOCKED = 0x00000002, //require key, spell, event, etc to be opened. Makes "Locked" appear in tooltip

@@ -96,7 +96,6 @@ namespace nManager.Helpful
         {
             try
             {
-                int t = GetWindowPosX(mainWindowHandle);
                 if (GetWindowPosY(mainWindowHandle) < -100 && GetWindowPosX(mainWindowHandle) < -100)
                     return true;
                 return false;

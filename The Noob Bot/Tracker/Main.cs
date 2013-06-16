@@ -9,7 +9,7 @@ namespace Tracker
     {
         #region IProduct Members
 
-        private FormTracker _formTracker = null;
+        private FormTracker _formTracker;
 
         public void Initialize()
         {

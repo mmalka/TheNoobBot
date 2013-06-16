@@ -343,7 +343,11 @@ namespace nManager.Wow.MemoryClass.Magic
     public static class CONTEXT_FLAGS
     {
         private const uint CONTEXT_i386 = 0x00010000;
+// ReSharper disable InconsistentNaming
+#pragma warning disable 169
         private const uint CONTEXT_i486 = 0x00010000;
+#pragma warning restore 169
+// ReSharper restore InconsistentNaming
 
         /// <summary>
         /// SS:SP, CS:IP, FLAGS, BP

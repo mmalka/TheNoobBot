@@ -1,6 +1,6 @@
 ﻿namespace nManager.Wow.MemoryClass
 {
-    internal class Dictionnary<T>
+    internal class Dictionnary
     {
     }
 }

@@ -106,7 +106,6 @@ namespace nManager.Wow.Helpers
             if (doUpdate)
                 listDigsitesZoneFromXML.OrderByDescending(c => c.id).ToList();
             List<Digsite> fullList = new List<Digsite>();
-            List<Digsite> finalList = new List<Digsite>();
 
             // Extracting the complete list from the DBC
             WoWResearchSite curRec = WoWResearchSite.FromId(0); // This record is invalid
@@ -123,15 +122,15 @@ namespace nManager.Wow.Helpers
             }
             if (doUpdate)
             {
-                finalList = fullList.Concat(listDigsitesZoneFromXML)
-                                    .ToLookup(p => p.id)
-                                    .Select(g => g.Aggregate((p1, p2) => new Digsite
-                                        {
-                                            id = p1.id,
-                                            name = p1.name,
-                                            PriorityDigsites = p2.PriorityDigsites,
-                                            Active = p2.Active
-                                        })).ToList();
+                List<Digsite> finalList = fullList.Concat(listDigsitesZoneFromXML)
+                                                  .ToLookup(p => p.id)
+                                                  .Select(g => g.Aggregate((p1, p2) => new Digsite
+                                                      {
+                                                          id = p1.id,
+                                                          name = p1.name,
+                                                          PriorityDigsites = p2.PriorityDigsites,
+                                                          Active = p2.Active
+                                                      })).ToList();
                 return finalList;
             }
             return /*finalList = */ fullList;
@@ -143,7 +142,9 @@ namespace nManager.Wow.Helpers
             {
                 GetAllDigsitesZone();
                 List<Digsite> resultList = new List<Digsite>();
+#pragma warning disable 168
                 uint continentId = (uint) Usefuls.ContinentId;
+#pragma warning restore 168
 
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
 
@@ -185,7 +186,9 @@ namespace nManager.Wow.Helpers
             try
             {
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
+#pragma warning disable 168
                 uint continentId = (uint) Usefuls.ContinentId;
+#pragma warning restore 168
 
                 if (digsitesZoneLua.Count > 0)
                 {

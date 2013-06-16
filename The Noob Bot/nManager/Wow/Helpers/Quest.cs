@@ -167,8 +167,12 @@ namespace nManager.Wow.Helpers
                 //command += sPrice + " = link and select(11, GetItemInfo(link));";
                 Lua.LuaDoString(command);
                 int price = Others.ToInt32(Lua.GetLocalizedText(sPrice));
+#pragma warning disable 168
                 int quality = Others.ToInt32(Lua.GetLocalizedText(sQuality));
+#pragma warning restore 168
+#pragma warning disable 168
                 int iLevel = Others.ToInt32(Lua.GetLocalizedText(sIlevel));
+#pragma warning restore 168
                 Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + Lua.GetLocalizedText(sEquipSlot) + "\" has a value of " + price);
             }
             Lua.LuaDoString("GetQuestReward(1)");

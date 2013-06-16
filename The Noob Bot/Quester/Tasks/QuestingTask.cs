@@ -282,7 +282,9 @@ namespace Quester.Tasks
                     !nManagerSetting.IsBlackListed(wowUnit.Guid) && wowUnit.IsAlive && wowUnit.IsValid &&
                     (questObjective.CanPullUnitsAlreadyInFight || !wowUnit.InCombat))
                 {
+#pragma warning disable 168
                     ulong addr = MovementManager.FindTarget(wowUnit, wowUnit.AggroDistance*1.1f);
+#pragma warning restore 168
                     if (MovementManager.InMovement)
                         return;
                     Logging.Write("Attacking Lvl " + wowUnit.Level + " " + wowUnit.Name);
@@ -385,7 +387,9 @@ namespace Quester.Tasks
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
+#pragma warning disable 168
                         Point pos = new Point();
+#pragma warning restore 168
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -537,7 +541,9 @@ namespace Quester.Tasks
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
+#pragma warning disable 168
                         Point pos = new Point();
+#pragma warning restore 168
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);
@@ -720,7 +726,9 @@ namespace Quester.Tasks
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
                                 ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
+#pragma warning disable 168
                         Point pos = new Point();
+#pragma warning restore 168
                         if (node.IsValid)
                         {
                             questObjective.Position = new Point(node.Position);

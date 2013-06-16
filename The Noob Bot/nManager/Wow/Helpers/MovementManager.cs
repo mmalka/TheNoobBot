@@ -31,7 +31,7 @@ namespace nManager.Wow.Helpers
         private static bool _farm;
         private static Point _jumpOverAttempt = new Point();
         private static Point _distmountAttempt = new Point();
-        private static uint _cacheTargetAddress = 0;
+        private static uint _cacheTargetAddress;
 
         private static int _currentTargetedPoint;
         // let's remember where we are instead of searching point and doing mess
@@ -1412,11 +1412,13 @@ namespace nManager.Wow.Helpers
         private static Timer _updatePathSpecialTimer = new Timer();
         private static Timer _maxTimerForStuckDetection = new Timer();
         private static Npc _trakedTarget = new Npc();
-        private static ulong _trakedTargetGuid = 0;
+        private static ulong _trakedTargetGuid;
 
         public static uint UpdateTarget(ref Npc Target, out bool asMoved)
         {
+#pragma warning disable 168
             Random rand = new Random();
+#pragma warning restore 168
             WoWUnit TargetIsNPC = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(Target.Entry), Target.Position);
             WoWObject TargetIsObject = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectByEntry(Target.Entry), Target.Position);
             asMoved = false;
@@ -1535,7 +1537,9 @@ namespace nManager.Wow.Helpers
         private static readonly Timer MeleeControlTimer = new Timer(5000);
         private static readonly Timer MeleeControlMovementTimer = new Timer(3000);
 
+// ReSharper disable UnusedMember.Local
         private static void MeleeControl(uint minDist, uint maxDist, bool resetCount)
+// ReSharper restore UnusedMember.Local
         {
             if (_currFightMeleeControl > 5 || (_currFightMeleeControl != 0 && !MeleeControlTimer.IsReady))
                 return;

@@ -9,10 +9,14 @@ namespace nManager.Wow.MemoryClass.Magic
         private class PatternDataEntry
         {
             public readonly byte[] bData;
+// ReSharper disable NotAccessedField.Local
             private uint Start;
             private int Size;
+// ReSharper restore NotAccessedField.Local
 
+// ReSharper disable UnusedMember.Local
             public PatternDataEntry()
+// ReSharper restore UnusedMember.Local
             {
             }
 

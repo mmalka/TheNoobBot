@@ -16,7 +16,9 @@ namespace The_Noob_Bot
 
         private enum FlagRequest
         {
+// ReSharper disable UnusedMember.Local
             None = 0,
+// ReSharper restore UnusedMember.Local
             CloseWow = 1,
             CloseBot = 2,
             ShutDownPc = 3,

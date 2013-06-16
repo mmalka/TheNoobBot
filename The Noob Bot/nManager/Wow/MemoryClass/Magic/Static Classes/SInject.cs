@@ -86,7 +86,11 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new ArgumentException("DLL not found.", "szDllPath");
 
             uint dwBaseAddress = RETURN_ERROR;
+// ReSharper disable InconsistentNaming
+#pragma warning disable 168
             StringBuilder AssemblyStub = new StringBuilder();
+#pragma warning restore 168
+// ReSharper restore InconsistentNaming
             ManagedFasm fasm = new ManagedFasm(hProcess);
 
             uint lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
@@ -146,10 +150,14 @@ namespace nManager.Wow.MemoryClass.Magic
                 }
             }
 
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (fasm != null)
+// ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 fasm.Dispose();
+/*
                 fasm = null;
+*/
             }
 
             SMemory.FreeMemory(hProcess, lpAsmStub);

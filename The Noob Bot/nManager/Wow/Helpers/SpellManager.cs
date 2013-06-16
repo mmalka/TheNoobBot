@@ -19,9 +19,11 @@ namespace nManager.Wow.Helpers
             public enum SpellState : uint
             {
                 Known = 1, // the spell has been learnt and can be cast
+// ReSharper disable UnusedMember.Local
                 FutureSpell = 2, // the spell is known but not yet learnt
                 PetAction = 3,
                 Flyout = 4
+// ReSharper restore UnusedMember.Local
             };
 
             /// <summary>

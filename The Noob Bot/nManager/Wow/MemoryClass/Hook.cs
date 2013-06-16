@@ -115,7 +115,9 @@ namespace nManager.Wow.MemoryClass
                             DisposeHooking();
                         }
 
+// ReSharper disable ConditionIsAlwaysTrueOrFalse
                         if (Memory.ReadByte(JumpAddress) != 0xE9 || true)
+// ReSharper restore ConditionIsAlwaysTrueOrFalse
                             // check if wow is already hooked // TODO try fix error rehook
                         {
                             try
