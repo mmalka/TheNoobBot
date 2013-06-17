@@ -17,9 +17,6 @@ namespace nManager.Wow.Bot.States
             GoingNextPoint,
             Survey,
             Iddle,
-/*
-            Solve,
-*/
         }
 
         public override string DisplayName
@@ -241,6 +238,7 @@ namespace nManager.Wow.Bot.States
                     if (qPOI != null && !qPOI.ValidPoint && qPOI.Center.DistanceTo2D(ObjectManager.ObjectManager.Me.Position) < 50.0f)
                     {
 #pragma warning disable 168
+                        // We call qPOI.MiddlePoint to make the WoWQuestPOIPoint instance compute the middle point, but I don't care were it is
                         Point p = qPOI.MiddlePoint; // we are near enouth to compute it
 #pragma warning restore 168
                         if (Usefuls.IsFlying)
@@ -495,7 +493,6 @@ namespace nManager.Wow.Bot.States
 // ReSharper disable RedundantAssignment
                                 nbStuck = 0;
 // ReSharper restore RedundantAssignment
-
                             if ((ObjectManager.ObjectManager.Me.InCombat &&
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))

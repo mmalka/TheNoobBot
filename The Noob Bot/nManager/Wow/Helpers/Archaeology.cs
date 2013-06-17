@@ -142,10 +142,6 @@ namespace nManager.Wow.Helpers
             {
                 GetAllDigsitesZone();
                 List<Digsite> resultList = new List<Digsite>();
-#pragma warning disable 168
-                uint continentId = (uint) Usefuls.ContinentId;
-#pragma warning restore 168
-
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
 
                 if (digsitesZoneLua.Count > 0)
@@ -186,10 +182,6 @@ namespace nManager.Wow.Helpers
             try
             {
                 List<DigsitesZoneLua> digsitesZoneLua = GetDigsitesZoneLua();
-#pragma warning disable 168
-                uint continentId = (uint) Usefuls.ContinentId;
-#pragma warning restore 168
-
                 if (digsitesZoneLua.Count > 0)
                 {
                     foreach (DigsitesZoneLua dl in digsitesZoneLua)
