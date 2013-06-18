@@ -182,7 +182,7 @@ namespace nManager.Helpful
             float x = b.X - a.X;
             float y = b.Y - a.Y;
             float z = b.Z - a.Z;
-            float d = (float) System.Math.Sqrt((double) (x*x) + (double) (y*y) + (double) (z*z));
+            float d = (float) System.Math.Sqrt((double) (x*x) + y*y + z*z);
             float xc = b.X + x/d*distance;
             float yc = b.Y + y/d*distance;
             float zc = b.Z + z/d*distance;

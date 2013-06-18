@@ -240,7 +240,7 @@ namespace nManager.Wow.Bot.Tasks
                                 if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
                                     MountTask.Mount();
                             }
-                            //uint addr = MovementManager.FindTarget(node, 5.0f); // not used, why ?
+                            MovementManager.FindTarget(node, 5.0f);
                             if (_lastnode != node.Guid)
                             {
                                 _lastnode = node.Guid;

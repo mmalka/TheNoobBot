@@ -13,13 +13,12 @@ namespace nManager.Wow.MemoryClass.Magic
         public uint Execute(uint dwStartAddress, uint dwParameter)
         {
             UIntPtr lpExitCode = UIntPtr.Zero;
-            bool bSuccess;
 
             IntPtr hThread = CreateRemoteThread(dwStartAddress, dwParameter);
             if (hThread == IntPtr.Zero)
                 throw new Exception("Thread could not be remotely created.");
 
-            bSuccess = (SThread.WaitForSingleObject(hThread, 10000) == WaitValues.WAIT_OBJECT_0);
+            bool bSuccess = (SThread.WaitForSingleObject(hThread, 10000) == WaitValues.WAIT_OBJECT_0);
             if (bSuccess)
                 bSuccess = Imports.GetExitCodeThread(hThread, out lpExitCode);
 
