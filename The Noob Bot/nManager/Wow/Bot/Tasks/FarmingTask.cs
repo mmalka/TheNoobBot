@@ -76,21 +76,21 @@ namespace nManager.Wow.Bot.Tasks
                             Point temps = new Point(node.Position.X, node.Position.Y, node.Position.Z + 2.5f);
                             if (temps.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                             {
-                                temps = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
+                                temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, temps, 100);
                             }
                             zT = TraceLine.TraceLineGo(temps) ? ObjectManager.ObjectManager.Me.Position.Z : temps.Z;
 
                             if (ObjectManager.ObjectManager.Me.Position.Z < node.Position.Z + 2.5f)
                             {
                                 // elevate in a 45° angle instead of 90°
-                                Point direction = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                Point direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
                                                                                     node.Position,
                                                                                     (node.Position.Z + 2.5f) - ObjectManager.ObjectManager.Me.Position.Z);
                                 // if there is an obstacle, then go mostly vertical but not 90° to prevent spinning around
                                 if (TraceLine.TraceLineGo(ObjectManager.ObjectManager.Me.Position,
                                                           direction,
                                                           CGWorldFrameHitFlags.HitTestAllButLiquid))
-                                    direction = Math.GetPostion2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
+                                    direction = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
                                                                                   node.Position, 1.0f);
                                 MovementManager.MoveTo(direction.X, direction.Y, node.Position.Z + 5.0f);
                             }

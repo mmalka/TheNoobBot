@@ -359,14 +359,14 @@ namespace nManager.Wow.Bot.States
                         if (t.DisplayId == 10103) // Survey Tool (Red) 100 yard
                         {
                             int d = 90;
-                            p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                            p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
                             p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                             p.Z = PathFinder.GetZPosition(p, true);
                             while (qPOI != null && (!qPOI.IsInside(p) || !IsPointOutOfWater(p) || p.Z == 0))
                             {
                                 //Logging.Write("Point at " + d + " bad, testing " + (d + 5));
                                 d += 5;
-                                p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
                                 p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                                 p.Z = PathFinder.GetZPosition(p, true);
                                 if (d >= 160)
@@ -377,7 +377,7 @@ namespace nManager.Wow.Bot.States
                             {
                                 //Logging.Write("Point at " + d + " bad, testing " + (d - 10));
                                 d -= 10;
-                                p = Math.GetPostion2DOfLineByDistance(p1, p2, d);
+                                p = Math.GetPosition2DOfLineByDistance(p1, p2, d);
                                 p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
                                 p.Z = PathFinder.GetZPosition(p, true);
                                 if (d <= 10)
@@ -385,9 +385,9 @@ namespace nManager.Wow.Bot.States
                             }
                         }
                         else if (t.DisplayId == 10102) // Survey Tool (Yellow) 50 yard
-                            p = Math.GetPostion2DOfLineByDistance(p1, p2, 50 - 10 + 6);
+                            p = Math.GetPosition2DOfLineByDistance(p1, p2, 50 - 10 + 6);
                         else // Survey Tool (Green) 25 yard
-                            p = Math.GetPostion2DOfLineByDistance(p1, p2, 13 + 2.5f);
+                            p = Math.GetPosition2DOfLineByDistance(p1, p2, 13 + 2.5f);
 
                         myState = LocState.GoingNextPoint;
                         p.Z += 5.0f; // just so that the the GetZ don't find caves too easiely
@@ -401,7 +401,7 @@ namespace nManager.Wow.Bot.States
                         // If path not found find neawer
                         if (points.Count <= 0)
                         {
-                            Point pt = Math.GetPostion2DOfLineByDistance(p1, p2, 15);
+                            Point pt = Math.GetPosition2DOfLineByDistance(p1, p2, 15);
                             pt.Z = ObjectManager.ObjectManager.Me.Position.Z;
                             points = PathFinder.FindPath(pt, out resultB);
                             if (points.Count > 0 && resultB)

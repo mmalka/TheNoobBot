@@ -197,7 +197,7 @@ namespace nManager.Wow.Helpers
                 // 1.4+0.5=1.9 is a pretty good value here.
                 for (int i = locList.Count - 2; i > 0; i--)
                 {
-                    Point offset = Helpful.Math.GetPostionOffsetBy3DDistance(locList[i - 1], locList[i], 1.9f);
+                    Point offset = Helpful.Math.GetPositionOffsetBy3DDistance(locList[i - 1], locList[i], 1.9f);
                     locList[i] = offset;
                 }
 

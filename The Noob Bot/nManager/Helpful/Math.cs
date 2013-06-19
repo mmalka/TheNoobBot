@@ -152,7 +152,7 @@ namespace nManager.Helpful
         /// <param name="b"></param>
         /// <param name="distance"></param>
         /// <returns></returns>
-        public static Point GetPostion2DOfLineByDistance(Point a, Point b, float distance)
+        public static Point GetPosition2DOfLineByDistance(Point a, Point b, float distance)
         {
             try
             {
@@ -169,12 +169,12 @@ namespace nManager.Helpful
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetPostion2dOfLineByDistance(Point a, Point b, float distance): " + exception);
+                Logging.WriteError("GetPosition2dOfLineByDistance(Point a, Point b, float distance): " + exception);
             }
             return new Point(0, 0, 0);
         }
 
-        public static Point GetPostionOffsetBy3DDistance(Point a, Point b, float distance)
+        public static Point GetPositionOffsetBy3DDistance(Point a, Point b, float distance)
         {
             if (a.X == b.X && a.Y == b.Y)
                 return a;
