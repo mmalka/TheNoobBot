@@ -143,7 +143,7 @@ namespace Fisherbot.Bot
 
             // Face
             if (_node.IsValid)
-                ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(_node.GetBaseAddress);
+                MovementManager.Face(_node);
             else
             {
                 ObjectManager.Me.Rotation = FisherbotSetting.CurrentSetting.FisherbotRotation;
@@ -170,7 +170,7 @@ namespace Fisherbot.Bot
                         return;
                     }
                     FishingTask.StopLoopFish();
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(_node.GetBaseAddress);
+                    MovementManager.Face(_node);
 
                     if (Usefuls.IsSwimming || _node.GetDistance < DistanceMin)
                     {

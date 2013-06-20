@@ -165,7 +165,7 @@ namespace nManager.Wow.Helpers
                     }
 
                     // Face player to mob
-                    ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(targetNpc.GetBaseAddress);
+                    MovementManager.Face(targetNpc);
 
                     // Timer
                     if (Others.Times > timer && TraceLine.TraceLineGo(targetNpc.Position) &&
@@ -281,7 +281,7 @@ namespace nManager.Wow.Helpers
                         }
 
                         // Face player to mob
-                        ObjectManager.ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(targetNpc.GetBaseAddress);
+                        MovementManager.Face(targetNpc);
                         Thread.Sleep(50);
                     }
                 }

@@ -1273,7 +1273,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -1945,7 +1945,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -2940,7 +2940,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -3880,7 +3880,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -4731,7 +4731,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -5523,7 +5523,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -6314,7 +6314,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -7125,7 +7125,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -7933,7 +7933,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -8694,7 +8694,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -9466,7 +9466,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -10264,7 +10264,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -11052,7 +11052,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -11756,7 +11756,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -12639,7 +12639,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -13172,7 +13172,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -13788,7 +13788,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -14254,7 +14254,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -15160,7 +15160,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -16021,7 +16021,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -16823,7 +16823,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -17543,7 +17543,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -18266,7 +18266,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -19104,7 +19104,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -19863,7 +19863,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -20600,7 +20600,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -21318,7 +21318,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -22162,7 +22162,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -23012,7 +23012,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -23823,7 +23823,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -24637,7 +24637,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -25498,7 +25498,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -26211,7 +26211,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -26852,7 +26852,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
@@ -27488,7 +27488,7 @@ using Timer = nManager.Helpful.Timer;
                     MovementsAction.MoveForward(true);
                     Thread.Sleep(1000);
                     MovementsAction.MoveForward(false);
-                    ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(ObjectManager.Target.GetBaseAddress);
+                    MovementManager.Face(ObjectManager.Target.Position);
                 }
             }
         }
