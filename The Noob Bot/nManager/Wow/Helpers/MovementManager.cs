@@ -1292,9 +1292,7 @@ namespace nManager.Wow.Helpers
                     dif = -dif;
                 if (dif <= 0.10f)
                     return;
-
-                ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
+                ObjectManager.ObjectManager.Me.Rotation = wowFacing;
             }
             catch (Exception exception)
             {
@@ -1322,8 +1320,7 @@ namespace nManager.Wow.Helpers
                 if (dif <= 0.10f)
                     return;
 
-                ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
+                ObjectManager.ObjectManager.Me.Rotation = wowFacing;
             }
             catch (Exception exception)
             {
@@ -1351,8 +1348,7 @@ namespace nManager.Wow.Helpers
                 if (dif <= 0.10f)
                     return;
 
-                ClickToMove.CGPlayer_C__ClickToMove(obj.Position.X, obj.Position.Y, obj.Position.Z, obj.Guid,
-                                                    (Int32) ClickToMoveType.FaceTarget, 0.5f);
+                ObjectManager.ObjectManager.Me.Rotation = wowFacing;
             }
             catch (Exception exception)
             {
@@ -1379,8 +1375,7 @@ namespace nManager.Wow.Helpers
                 if (dif <= 0.10f)
                     return;
 
-                ClickToMove.CGPlayer_C__ClickToMove(position.X, position.Y, position.Z, 0, (Int32) ClickToMoveType.Face,
-                                                    0.5f);
+                ObjectManager.ObjectManager.Me.Rotation = wowFacing;
             }
             catch (Exception exception)
             {
