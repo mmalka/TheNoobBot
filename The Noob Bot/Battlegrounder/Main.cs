@@ -1,14 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Battlegrounder;
 using Battlegrounder.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.ObjectManager;
 
-namespace Battlegrounder
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -55,7 +54,7 @@ namespace Battlegrounder
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Start Battlegrounder Complete";
@@ -77,7 +76,7 @@ namespace Battlegrounder
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Stop Battlegrounder Complete";
                 Logging.Write("Stop Battlegrounder Complete");
@@ -139,4 +138,3 @@ namespace Battlegrounder
 
         #endregion
     }
-}

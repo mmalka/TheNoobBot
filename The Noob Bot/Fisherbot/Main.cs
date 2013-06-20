@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Windows.Forms;
+using Fisherbot;
 using Fisherbot.Bot;
 using nManager.Helpful;
 using nManager.Products;
@@ -8,8 +9,6 @@ using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
 
-namespace Fisherbot
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -55,7 +54,7 @@ namespace Fisherbot
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Start Fisherbot Complete";
@@ -77,7 +76,7 @@ namespace Fisherbot
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Stop Fisherbot Complete";
                 Logging.Write("Stop Fisherbot Complete");
@@ -112,4 +111,3 @@ namespace Fisherbot
 
         #endregion
     }
-}

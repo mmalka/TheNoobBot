@@ -16,8 +16,6 @@ using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using Math = System.Math;
 
-namespace TheNoobBotCP
-{
     public class Main : ICustomProfile
     {
         internal static bool Loop = true;
@@ -521,4 +519,3 @@ namespace TheNoobBotCP
             }
         }
     }
-}

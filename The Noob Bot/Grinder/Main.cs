@@ -6,8 +6,6 @@ using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Grinder
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -46,7 +44,7 @@ namespace Grinder
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Start Grinder Complete";
@@ -68,7 +66,7 @@ namespace Grinder
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Stop Grinder Complete";
                 Logging.Write("Stop Grinder Complete");
@@ -144,4 +142,3 @@ namespace Grinder
 
         #endregion
     }
-}

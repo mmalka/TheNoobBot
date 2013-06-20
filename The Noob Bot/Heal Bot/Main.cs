@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using Heal_Bot.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Heal_Bot
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -43,7 +42,7 @@ namespace Heal_Bot
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Heal Bot started";
@@ -59,7 +58,7 @@ namespace Heal_Bot
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Heal Bot stoped";
             }
@@ -90,4 +89,3 @@ namespace Heal_Bot
 
         #endregion
     }
-}

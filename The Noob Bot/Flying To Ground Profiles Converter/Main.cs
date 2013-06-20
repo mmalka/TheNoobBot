@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using Flying_To_Ground_Profiles_Converter;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Flying_To_Ground_Profiles_Converter
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -87,4 +86,3 @@ namespace Flying_To_Ground_Profiles_Converter
 
         #endregion
     }
-}

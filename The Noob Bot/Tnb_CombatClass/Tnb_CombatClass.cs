@@ -19,8 +19,6 @@ using Timer = nManager.Helpful.Timer;
 // ReSharper disable EmptyGeneralCatchClause
 // ReSharper disable ObjectCreationAsStatement
 
-namespace CombatClass
-{
     public class Main : ICombatClass
     {
         internal static float InternalRange = 5.0f;
@@ -27951,7 +27949,6 @@ namespace CombatClass
     }
 
     #endregion
-}
 
 // ReSharper restore ObjectCreationAsStatement
 // ReSharper restore EmptyGeneralCatchClause

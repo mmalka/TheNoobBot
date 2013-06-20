@@ -6,8 +6,6 @@ using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Gatherer
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -46,7 +44,7 @@ namespace Gatherer
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Start Gatherer Complete";
@@ -68,7 +66,7 @@ namespace Gatherer
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Stop Gatherer Complete";
                 Logging.Write("Stop Gatherer Complete");
@@ -145,4 +143,3 @@ namespace Gatherer
 
         #endregion
     }
-}

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
 using nManager;
+using Damage_Dealer.Bot;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Damage_Dealer
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -43,7 +42,7 @@ namespace Damage_Dealer
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Damage Dealer started";
@@ -59,7 +58,7 @@ namespace Damage_Dealer
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Damage Dealer stoped";
             }
@@ -90,4 +89,3 @@ namespace Damage_Dealer
 
         #endregion
     }
-}

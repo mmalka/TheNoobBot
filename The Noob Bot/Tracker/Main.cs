@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
+using Tracker;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Tracker
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -90,4 +89,3 @@ namespace Tracker
 
         #endregion
     }
-}

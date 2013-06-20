@@ -19,8 +19,6 @@ using nManager.Wow.ObjectManager;
 using Point = System.Drawing.Point;
 using Timer = nManager.Helpful.Timer;
 
-namespace HealerClass
-{
     public class Main : IHealerClass
     {
         internal static float InternalRange = 30f;
@@ -4000,4 +3998,3 @@ namespace HealerClass
     #endregion
 
 // ReSharper restore ObjectCreationAsStatement
-}

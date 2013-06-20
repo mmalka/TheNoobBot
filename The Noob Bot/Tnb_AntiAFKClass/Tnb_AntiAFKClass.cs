@@ -9,8 +9,6 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
-namespace AntiAFKClass
-{
     public class Main : ICombatClass
     {
         internal static float InternalRange = 5.0f;
@@ -77,4 +75,3 @@ namespace AntiAFKClass
             }
         }
     }
-}

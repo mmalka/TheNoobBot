@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
+using Archaeologist;
 using Archaeologist.Bot;
 using nManager;
 using nManager.Helpful;
 using nManager.Products;
 using nManager.Wow.Bot.Tasks;
 
-namespace Archaeologist
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -45,7 +44,7 @@ namespace Archaeologist
         {
             try
             {
-                if (Bot.Bot.Pulse())
+                if (Bot.Pulse())
                 {
                     _isStarted = true;
                     Logging.Status = "Start Archaeologist Complete";
@@ -67,7 +66,7 @@ namespace Archaeologist
         {
             try
             {
-                Bot.Bot.Dispose();
+                Bot.Dispose();
                 _isStarted = false;
                 Logging.Status = "Stop Archaeologist Complete";
                 Logging.Write("Stop Archaeologist Complete");
@@ -145,4 +144,3 @@ namespace Archaeologist
 
         #endregion
     }
-}

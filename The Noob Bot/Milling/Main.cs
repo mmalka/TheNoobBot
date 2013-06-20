@@ -3,8 +3,6 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Products;
 
-namespace Milling
-{
     public class Main : IProduct
     {
         #region IProduct Members
@@ -40,7 +38,7 @@ namespace Milling
         {
             try
             {
-                Milling.Pulse();
+                Milling.Milling.Pulse();
                 _isStarted = true;
                 Logging.Status = "Milling started";
             }
@@ -86,4 +84,3 @@ namespace Milling
 
         #endregion
     }
-}
