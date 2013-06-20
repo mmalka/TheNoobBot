@@ -415,13 +415,13 @@ namespace Quester.Tasks
                                     ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                             if (node.IsValid)
                             {
-                                MovementManager.Face(node);
+                                ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(node.GetBaseAddress);
                                 Interact.InteractWith(node.GetBaseAddress);
                                 nManagerSetting.AddBlackList(node.Guid, 30*1000);
                             }
                             else if (unit.IsValid)
                             {
-                                MovementManager.Face(unit);
+                                ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(unit.GetBaseAddress);
                                 Interact.InteractWith(unit.GetBaseAddress);
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
@@ -565,13 +565,13 @@ namespace Quester.Tasks
                                     ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryAOE}));
                             if (node.IsValid)
                             {
-                                MovementManager.Face(node);
+                                ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(node.GetBaseAddress);
                                 Interact.InteractWith(node.GetBaseAddress);
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                             else if (unit.IsValid)
                             {
-                                MovementManager.Face(unit);
+                                ObjectManager.Me.Rotation = CGUnit_C__GetFacing.GetFacing(unit.GetBaseAddress);
                                 Interact.InteractWith(unit.GetBaseAddress);
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
