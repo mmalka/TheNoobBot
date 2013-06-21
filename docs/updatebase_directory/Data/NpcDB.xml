@@ -11804,34 +11804,6 @@
   </Npc>
   <Npc>
     <SelectGossipOption>1</SelectGossipOption>
-    <Entry>14337</Entry>
-    <Name>Field Repair Bot 74A</Name>
-    <Position>
-      <X>16397.2</X>
-      <Y>-16136</Y>
-      <Z>41.0866</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Neutral</Faction>
-    <Type>Vendor</Type>
-    <ContinentId>development</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
-    <Entry>14337</Entry>
-    <Name>Field Repair Bot 74A</Name>
-    <Position>
-      <X>16397.2</X>
-      <Y>-16136</Y>
-      <Z>41.0866</Z>
-      <Type>None</Type>
-    </Position>
-    <Faction>Neutral</Faction>
-    <Type>Repair</Type>
-    <ContinentId>development</ContinentId>
-  </Npc>
-  <Npc>
-    <SelectGossipOption>1</SelectGossipOption>
     <Entry>14371</Entry>
     <Name>Shen'dralar Provisioner</Name>
     <Position>
