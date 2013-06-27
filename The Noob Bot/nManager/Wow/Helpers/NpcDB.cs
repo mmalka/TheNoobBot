@@ -75,7 +75,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                LoadList(); // Do we really need it here as ListNpc get{ LoadList() } ??
                 lock (typeof (NpcDB))
                 {
                     foreach (Npc npc1 in ListNpc)
@@ -97,7 +96,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                LoadList();
                 lock (typeof (NpcDB))
                 {
                     foreach (Npc npc in npcList)
