@@ -92,7 +92,8 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the context of the thread.  If failure, sets CONTEXT.ContextFlags to zero.</returns>
         public static CONTEXT GetThreadContext(IntPtr hThread, uint ContextFlags)
         {
-            CONTEXT ctx = new CONTEXT {ContextFlags = ContextFlags};
+            CONTEXT ctx = new CONTEXT();
+            ctx.ContextFlags = ContextFlags;
 
             if (!Imports.GetThreadContext(hThread, ref ctx))
                 ctx.ContextFlags = 0;
@@ -183,10 +184,10 @@ namespace nManager.Wow.MemoryClass.Magic
         public static IntPtr CreateRemoteThread(IntPtr hProcess, uint dwStartAddress, uint dwParameter,
                                                 uint dwCreationFlags, out uint dwThreadId)
         {
-            IntPtr lpThreadId;
+            IntPtr hThread, lpThreadId;
 
-            IntPtr hThread = Imports.CreateRemoteThread(hProcess, IntPtr.Zero, 0, (IntPtr) dwStartAddress, (IntPtr) dwParameter,
-                                                        dwCreationFlags, out lpThreadId);
+            hThread = Imports.CreateRemoteThread(hProcess, IntPtr.Zero, 0, (IntPtr) dwStartAddress, (IntPtr) dwParameter,
+                                                 dwCreationFlags, out lpThreadId);
             dwThreadId = (uint) lpThreadId;
 
             return hThread;

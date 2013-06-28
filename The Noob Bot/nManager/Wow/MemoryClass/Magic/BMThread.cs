@@ -12,13 +12,15 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the exit code of the thread.</returns>
         public uint Execute(uint dwStartAddress, uint dwParameter)
         {
+            IntPtr hThread;
             UIntPtr lpExitCode = UIntPtr.Zero;
+            bool bSuccess = false;
 
-            IntPtr hThread = CreateRemoteThread(dwStartAddress, dwParameter);
+            hThread = CreateRemoteThread(dwStartAddress, dwParameter);
             if (hThread == IntPtr.Zero)
                 throw new Exception("Thread could not be remotely created.");
 
-            bool bSuccess = (SThread.WaitForSingleObject(hThread, 10000) == WaitValues.WAIT_OBJECT_0);
+            bSuccess = (SThread.WaitForSingleObject(hThread, 10000) == WaitValues.WAIT_OBJECT_0);
             if (bSuccess)
                 bSuccess = Imports.GetExitCodeThread(hThread, out lpExitCode);
 
@@ -92,7 +94,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool SuspendThread(IntPtr hThread)
         {
-            return (SThread.SuspendThread(hThread) != uint.MaxValue);
+            return (SThread.SuspendThread(hThread) == uint.MaxValue) ? false : true;
         }
 
         /// <summary>
@@ -101,7 +103,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool SuspendThread()
         {
-            return (m_bThreadOpen) && SuspendThread(m_hThread);
+            return (m_bThreadOpen) ? this.SuspendThread(m_hThread) : false;
         }
 
         /// <summary>
@@ -111,7 +113,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool ResumeThread(IntPtr hThread)
         {
-            return (SThread.ResumeThread(hThread) != uint.MaxValue);
+            return (SThread.ResumeThread(hThread) == uint.MaxValue) ? false : true;
         }
 
         /// <summary>
@@ -120,7 +122,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool ResumeThread()
         {
-            return (m_bThreadOpen) && ResumeThread(m_hThread);
+            return (m_bThreadOpen) ? this.ResumeThread(m_hThread) : false;
         }
     }
 }

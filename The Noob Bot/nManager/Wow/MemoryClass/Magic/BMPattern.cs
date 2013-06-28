@@ -8,15 +8,11 @@ namespace nManager.Wow.MemoryClass.Magic
     {
         private class PatternDataEntry
         {
-            public readonly byte[] bData;
-// ReSharper disable NotAccessedField.Local
-            private uint Start;
-            private int Size;
-// ReSharper restore NotAccessedField.Local
+            public byte[] bData;
+            public uint Start;
+            public int Size;
 
-// ReSharper disable UnusedMember.Local
             public PatternDataEntry()
-// ReSharper restore UnusedMember.Local
             {
             }
 
@@ -33,7 +29,7 @@ namespace nManager.Wow.MemoryClass.Magic
 
         public uint FindPattern(byte[] bPattern, string szMask)
         {
-            return FindPattern((uint) MainModule.BaseAddress, MainModule.ModuleMemorySize, bPattern, szMask);
+            return FindPattern((uint) this.MainModule.BaseAddress, this.MainModule.ModuleMemorySize, bPattern, szMask);
         }
 
         public uint FindPattern(string szPattern, string szMask, char Delimiter)
@@ -120,6 +116,8 @@ namespace nManager.Wow.MemoryClass.Magic
 
         public uint FindPattern(uint dwStart, int nSize, byte[] bPattern, string szMask)
         {
+            PatternDataEntry dataentry = null;
+
             //foreach (PatternDataEntry pda in m_Data)
             //{
             //	if (dwStart == pda.Start && nSize == pda.Size)
@@ -131,11 +129,11 @@ namespace nManager.Wow.MemoryClass.Magic
 
             //if (dataentry == null)
             //{
-            PatternDataEntry dataentry = new PatternDataEntry(dwStart, nSize, ReadBytes(dwStart, nSize));
+            dataentry = new PatternDataEntry(dwStart, nSize, this.ReadBytes(dwStart, nSize));
             //	m_Data.Add(dataentry);
             //}
 
-            return dwStart + SPattern.FindPattern(dataentry.bData, bPattern, szMask);
+            return (uint) (dwStart + SPattern.FindPattern(dataentry.bData, bPattern, szMask));
         }
 
         public uint FindPattern(uint dwStart, int nSize, string szPattern, string szMask, char Delimiter)

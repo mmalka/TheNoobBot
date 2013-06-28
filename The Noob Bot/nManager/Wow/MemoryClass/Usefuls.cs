@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using nManager.Wow.MemoryClass.Magic;
 
 namespace nManager.Wow.MemoryClass
 {
@@ -36,11 +37,11 @@ namespace nManager.Wow.MemoryClass
 
         public static PatternResult FindPattern(byte[] pattern, string mask)
         {
-            const uint num = 0xfffffff;
+            uint num = 0xfffffff;
             uint num2 = 0;
             do
             {
-                MEMORY_BASIC_INFORMATION struct2 = new MEMORY_BASIC_INFORMATION();
+                var struct2 = new MEMORY_BASIC_INFORMATION();
                 VirtualQueryEx(Memory.WowMemory.Memory.ProcessHandle, num2, out struct2, Marshal.SizeOf(struct2));
                 try
                 {

@@ -83,7 +83,7 @@ namespace nManager.Wow.MemoryClass.Magic
                                        params char[] Delimiter)
         {
             if (Delimiter == null)
-                Delimiter = new[] {' '};
+                Delimiter = new char[1] {' '};
 
             string[] saPattern = szPattern.Split(Delimiter);
             byte[] bPattern = new byte[saPattern.Length];
@@ -160,7 +160,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (bData == null)
                 throw new Exception("Could not read memory in FindPattern.");
 
-            return dwStart + FindPattern(bData, bPattern, szMask);
+            return (uint) (dwStart + FindPattern(bData, bPattern, szMask));
         }
 
         /*
@@ -237,14 +237,14 @@ namespace nManager.Wow.MemoryClass.Magic
             if (bPattern.Length != szMask.Length)
                 throw new ArgumentException("Pattern and Mask lengths must be the same.");
 
-            int ix;
+            int ix, iy;
+            bool bFound = false;
             int PatternLength = bPattern.Length;
             int DataLength = bData.Length - PatternLength;
 
             for (ix = 0; ix < DataLength; ix++)
             {
-                bool bFound = true;
-                int iy;
+                bFound = true;
                 for (iy = 0; iy < PatternLength; iy++)
                 {
                     if ((szMask[iy] == 'x' && bPattern[iy] != bData[ix + iy]) ||

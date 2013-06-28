@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Text;
+using System.Diagnostics;
+using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 
 namespace nManager.Wow.MemoryClass.Magic
 {
@@ -8,7 +12,7 @@ namespace nManager.Wow.MemoryClass.Magic
     /// </summary>
     public static class SWindow
     {
-        private static readonly object lWindowsLock = new object();
+        private static object lWindowsLock = new object();
         private static List<IntPtr> lWindows;
 
         private static bool EnumWindowsCallback(IntPtr hWnd, IntPtr lParam)
@@ -21,7 +25,7 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             lWindows = new List<IntPtr>();
 
-            Imports.EnumWindowsProc callback = EnumWindowsCallback;
+            Imports.EnumWindowsProc callback = new Imports.EnumWindowsProc(EnumWindowsCallback);
             return Imports.EnumWindows(callback, IntPtr.Zero);
         }
 
@@ -258,9 +262,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 ProcessName = ProcessName.Remove(ProcessName.Length - 4, 4);
 
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName(ProcessName);
-// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (procs == null || procs.Length == 0)
-// ReSharper restore ConditionIsAlwaysTrueOrFalse
                 return IntPtr.Zero;
 
             return procs[0].MainWindowHandle;
@@ -280,9 +282,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 ProcessName = ProcessName.Remove(ProcessName.Length - 4, 4);
 
             System.Diagnostics.Process[] procs = System.Diagnostics.Process.GetProcessesByName(ProcessName);
-// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (procs == null || procs.Length == 0)
-// ReSharper restore ConditionIsAlwaysTrueOrFalse
                 return null;
 
             foreach (System.Diagnostics.Process proc in procs)

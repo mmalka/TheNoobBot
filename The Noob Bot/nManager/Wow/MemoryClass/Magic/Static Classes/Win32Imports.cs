@@ -343,11 +343,7 @@ namespace nManager.Wow.MemoryClass.Magic
     public static class CONTEXT_FLAGS
     {
         private const uint CONTEXT_i386 = 0x00010000;
-// ReSharper disable InconsistentNaming
-#pragma warning disable 169
         private const uint CONTEXT_i486 = 0x00010000;
-#pragma warning restore 169
-// ReSharper restore InconsistentNaming
 
         /// <summary>
         /// SS:SP, CS:IP, FLAGS, BP
@@ -625,9 +621,9 @@ namespace nManager.Wow.MemoryClass.Magic
         public static string GetWindowTitle(IntPtr hWnd, int nMaxCount)
         {
             StringBuilder s = new StringBuilder(nMaxCount);
-            int length;
-            if ((length = _GetWindowText(hWnd, s, nMaxCount)) > 0)
-                return s.ToString(0, length);
+            int Length;
+            if ((Length = _GetWindowText(hWnd, s, nMaxCount)) > 0)
+                return s.ToString(0, Length);
             return null;
         }
 
@@ -654,10 +650,10 @@ namespace nManager.Wow.MemoryClass.Magic
         public static string GetClassName(IntPtr hWnd, int nMaxCount)
         {
             StringBuilder s = new StringBuilder(nMaxCount);
-            int length;
+            int Length;
 
-            if ((length = _GetClassName(hWnd, s, nMaxCount)) > 0)
-                return s.ToString(0, length);
+            if ((Length = _GetClassName(hWnd, s, nMaxCount)) > 0)
+                return s.ToString(0, Length);
 
             return null;
         }

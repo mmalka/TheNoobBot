@@ -21,7 +21,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// </summary>
         public bool SetDebugPrivileges = true;
 
-        private bool m_bProcessOpen;
+        private bool m_bProcessOpen = false;
 
         /// <summary>
         /// Get whether a process is open for manipulation.
@@ -31,7 +31,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_bProcessOpen; }
         }
 
-        private bool m_bThreadOpen;
+        private bool m_bThreadOpen = false;
 
         /// <summary>
         /// Gets whether a process is open for manipulation.
@@ -51,7 +51,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_hProcess; }
         }
 
-        private int m_ProcessId;
+        private int m_ProcessId = 0;
 
         /// <summary>
         /// Gets the Id of the currently opened process.
@@ -71,7 +71,7 @@ namespace nManager.Wow.MemoryClass.Magic
             get { return m_hWnd; }
         }
 
-        private int m_ThreadId;
+        private int m_ThreadId = 0;
 
         /// <summary>
         /// Gets the Id of the currently opened thread.
@@ -160,7 +160,7 @@ namespace nManager.Wow.MemoryClass.Magic
         /// </summary>
         ~BlackMagic()
         {
-            Close();
+            this.Close();
         }
 
         #endregion
@@ -182,7 +182,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 return true;
 
             if (m_bProcessOpen)
-                CloseProcess();
+                this.CloseProcess();
 
             if (SetDebugPrivileges)
                 System.Diagnostics.Process.EnterDebugMode();
@@ -216,7 +216,7 @@ namespace nManager.Wow.MemoryClass.Magic
             if (WindowHandle == IntPtr.Zero)
                 return false;
 
-            return Open(SProcess.GetProcessFromWindow(WindowHandle));
+            return this.Open(SProcess.GetProcessFromWindow(WindowHandle));
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace nManager.Wow.MemoryClass.Magic
                 return true;
 
             if (m_bThreadOpen)
-                CloseThread();
+                this.CloseThread();
 
             m_bThreadOpen = (m_hThread = SThread.OpenThread(dwThreadId)) != IntPtr.Zero;
 
@@ -250,7 +250,7 @@ namespace nManager.Wow.MemoryClass.Magic
         public bool OpenThread()
         {
             if (m_bProcessOpen)
-                return OpenThread(SThread.GetMainThreadId(m_ProcessId));
+                return this.OpenThread(SThread.GetMainThreadId(m_ProcessId));
             return false;
         }
 
@@ -261,10 +261,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool OpenProcessAndThread(int dwProcessId)
         {
-            if (Open(dwProcessId) && OpenThread())
+            if (this.Open(dwProcessId) && this.OpenThread())
                 return true;
 
-            Close();
+            this.Close();
             return false;
         }
 
@@ -275,10 +275,10 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns true on success, false on failure.</returns>
         public bool OpenProcessAndThread(IntPtr WindowHandle)
         {
-            if (Open(WindowHandle) && OpenThread())
+            if (this.Open(WindowHandle) && this.OpenThread())
                 return true;
 
-            Close();
+            this.Close();
             return false;
         }
 
@@ -294,8 +294,8 @@ namespace nManager.Wow.MemoryClass.Magic
         {
             Asm.Dispose();
 
-            CloseProcess();
-            CloseThread();
+            this.CloseProcess();
+            this.CloseThread();
         }
 
         /// <summary>

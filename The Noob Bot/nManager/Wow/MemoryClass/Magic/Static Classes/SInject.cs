@@ -33,16 +33,19 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new ArgumentException("DLL not found.", "szDllPath");
 
             uint dwBaseAddress = RETURN_ERROR;
+            uint lpLoadLibrary;
+            uint lpDll;
+            IntPtr hThread;
 
-            uint lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
             if (lpLoadLibrary > 0)
             {
-                uint lpDll = SMemory.AllocateMemory(hProcess);
+                lpDll = SMemory.AllocateMemory(hProcess);
                 if (lpDll > 0)
                 {
                     if (SMemory.WriteASCIIString(hProcess, lpDll, szDllPath))
                     {
-                        IntPtr hThread = SThread.CreateRemoteThread(hProcess, lpLoadLibrary, lpDll);
+                        hThread = SThread.CreateRemoteThread(hProcess, lpLoadLibrary, lpDll);
 
                         //wait for thread handle to have signaled state
                         //exit code will be equal to the base address of the dll
@@ -86,24 +89,22 @@ namespace nManager.Wow.MemoryClass.Magic
                 throw new ArgumentException("DLL not found.", "szDllPath");
 
             uint dwBaseAddress = RETURN_ERROR;
-// ReSharper disable InconsistentNaming
-#pragma warning disable 168
+            uint lpLoadLibrary, lpAsmStub;
+            CONTEXT ctx;
             StringBuilder AssemblyStub = new StringBuilder();
-#pragma warning restore 168
-// ReSharper restore InconsistentNaming
             ManagedFasm fasm = new ManagedFasm(hProcess);
 
-            uint lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
+            lpLoadLibrary = (uint) Imports.GetProcAddress(Imports.GetModuleHandle("kernel32.dll"), "LoadLibraryA");
             if (lpLoadLibrary == 0)
                 return RETURN_ERROR;
 
-            uint lpAsmStub = SMemory.AllocateMemory(hProcess);
+            lpAsmStub = SMemory.AllocateMemory(hProcess);
             if (lpAsmStub == 0)
                 return RETURN_ERROR;
 
             if (SThread.SuspendThread(hThread) != uint.MaxValue)
             {
-                CONTEXT ctx = SThread.GetThreadContext(hThread, CONTEXT_FLAGS.CONTEXT_CONTROL);
+                ctx = SThread.GetThreadContext(hThread, CONTEXT_FLAGS.CONTEXT_CONTROL);
                 if (ctx.Eip > 0)
                 {
                     try
@@ -150,14 +151,10 @@ namespace nManager.Wow.MemoryClass.Magic
                 }
             }
 
-// ReSharper disable ConditionIsAlwaysTrueOrFalse
             if (fasm != null)
-// ReSharper restore ConditionIsAlwaysTrueOrFalse
             {
                 fasm.Dispose();
-/*
                 fasm = null;
-*/
             }
 
             SMemory.FreeMemory(hProcess, lpAsmStub);
@@ -174,11 +171,14 @@ namespace nManager.Wow.MemoryClass.Magic
         /// <returns>Returns the base address of the injected dll on success, zero on failure.</returns>
         public static uint InjectDllRedirectThread(IntPtr hProcess, int dwProcessId, string szDllPath)
         {
-            IntPtr hThread = SThread.OpenThread(SThread.GetMainThreadId(dwProcessId));
+            IntPtr hThread;
+            uint dwBaseAddress;
+
+            hThread = SThread.OpenThread(SThread.GetMainThreadId(dwProcessId));
             if (hThread == IntPtr.Zero)
                 return RETURN_ERROR;
 
-            uint dwBaseAddress = InjectDllRedirectThread(hProcess, hThread, szDllPath);
+            dwBaseAddress = InjectDllRedirectThread(hProcess, hThread, szDllPath);
 
             Imports.CloseHandle(hThread);
 
