@@ -913,9 +913,9 @@ namespace nManager.Wow.Helpers
             if (AchievementsNotDoneCache.Contains(achievementId))
                 return false;
             string randomString = Others.GetRandomString(Others.Random(4, 10));
-            Lua.LuaDoString("_, _, _, " + randomString + " = GetAchievementInfo(" + achievementId + ");");
+            Lua.LuaDoString("_, _, _, mycheck = GetAchievementInfo(" + achievementId + "); if mycheck then " + randomString + "=\"1\" else " + randomString + "=\"0\" end");
             string ret = Lua.GetLocalizedText(randomString);
-            if (ret == "true")
+            if (ret == "1")
             {
                 AchievementsDoneCache.Add(achievementId);
                 return true;
