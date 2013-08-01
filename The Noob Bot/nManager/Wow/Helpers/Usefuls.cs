@@ -737,6 +737,9 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.MoguIslandDailyArea:
                             retS = "MoguIslandDailyArea";
                             break;
+                        case Enums.ContinentId.EyeoftheStorm2dot0:
+                            retS = "EyeoftheStorm2.0";
+                            break;
                         case Enums.ContinentId.GoldRushBG:
                             retS = "GoldRushBG";
                             break;
