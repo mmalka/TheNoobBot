@@ -765,6 +765,23 @@ namespace nManager.Helpful
         }
 
         /// <summary>
+        /// Delete a file.
+        /// </summary>
+        /// <param name="strPath"></param>
+        /// <returns></returns>
+        public static void DeleteFile(string strPath)
+        {
+            try
+            {
+                File.Delete(strPath);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("DeleteFile(string strPath): " + exception);
+            }
+        }
+
+        /// <summary>
         /// Return a string text ecncrypted.
         /// </summary>
         /// <param name="text"></param>

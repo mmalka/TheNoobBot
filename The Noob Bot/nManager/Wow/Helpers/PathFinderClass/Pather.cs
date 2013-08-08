@@ -82,6 +82,8 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
 
+        const uint MESH_TILES_VERSION = 6;
+
         #region Memory Management
 
         public int MemoryPressure { get; private set; }
@@ -284,8 +286,11 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 CheckDungeon();
 
                 MeshTile tile;
-                if (_mesh.AddTile(data, out tile).HasFailed())
+                if (_mesh.AddTile(data, out tile).HasFailed() || tile.Header.Version != MESH_TILES_VERSION)
+                {
+                    Logging.WriteNavigator("Out of date mesh tile");
                     return false;
+                }
                 AddMemoryPressure(data.Length);
                 // HandleConnections(tile);
                 return true;
@@ -320,13 +325,26 @@ namespace nManager.Wow.Helpers.PathFinderClass
                     return true;
                 string path = GetTilePath(x, y);
 
-                if (!downloadTile(GetTileName(x, y)))
+                string fName = GetTileName(x, y);
+                if (!downloadTile(fName))
                     return false;
                 if (!File.Exists(path))
                     return false;
                 byte[] data = File.ReadAllBytes(path);
                 Logging.WriteNavigator("Load finish: " + Continent + "_" + x + "_" + y + ".tile");
-                return LoadTile(data);
+                if (!LoadTile(data))
+                {
+                    Others.DeleteFile(_meshPath + "\\" + fName);
+                    if (!forceDownloadTile(fName))
+                        return false;
+                    data = File.ReadAllBytes(path);
+                    if (!LoadTile(data))
+                    {
+                        Logging.WriteError("Problem with Meshes tile " + fName + " , cannot load it.");
+                        return false;
+                    }
+                }
+                return true;
             }
             catch (Exception exception)
             {
@@ -339,22 +357,25 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
         private bool downloadTile(string fileName)
         {
+            if (blackListMaptitle.Contains(fileName))
+                return true;
+
+            blackListMaptitle.Add(fileName);
+            return forceDownloadTile(fileName);
+        }
+
+        private bool forceDownloadTile(string fileName)
+        {
             try
             {
-                if (blackListMaptitle.Contains(fileName))
-                    return true;
-
-                blackListMaptitle.Add(fileName);
-
                 const string stringHttpMap = "http://mesh.thenoobbot.com/";
 
                 Directory.CreateDirectory(_meshPath + "\\" + Continent + "\\");
 
                 if (!Others.ExistFile(_meshPath + "\\" + fileName))
                 {
-                    Logging.WriteNavigator("Download map \"" + fileName + "\"");
-                    if (
-                        !Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
+                    Logging.WriteNavigator("Downloading mesh tile \"" + fileName + "\"");
+                    if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
                                              _meshPath + "\\" + fileName + ".gz"))
                         return false;
                     if (!GZip.Decompress(_meshPath + "\\" + fileName + ".gz"))
@@ -370,7 +391,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
             }
             catch (Exception exception)
             {
-                Logging.WriteError("downloadTile(string fileName): " + exception);
+                Logging.WriteError("forceDownloadTile(string fileName): " + exception);
                 return false;
             }
         }
