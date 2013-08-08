@@ -644,7 +644,7 @@
         MoguExteriorRaid = 996,
 
         ///<summary>ValleyOfPower</summary>
-        ValleyOfPower = 998,
+        ValleyOfPower = 998, // This seams to be the Temple of Kotmogu
 
         ///<summary>BFTAllianceScenario</summary>
         BFTAllianceScenario = 999,

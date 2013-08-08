@@ -716,6 +716,9 @@ namespace nManager.Wow.Helpers
                         case Enums.ContinentId.PVPZone03:
                             retS = "PVPZone03";
                             break;
+                        case Enums.ContinentId.ValleyOfPower:
+                            retS = "ValleyOfPower";
+                            break;
                         case Enums.ContinentId.DeathKnightStart:
                             retS = "DeathKnightStart";
                             break;
@@ -733,6 +736,15 @@ namespace nManager.Wow.Helpers
                             break;
                         case Enums.ContinentId.LostIsles:
                             retS = "LostIsles";
+                            break;
+                        case Enums.ContinentId.Gilneas:
+                            retS = "Gilneas";
+                            break;
+                        case Enums.ContinentId.Gilneas2:
+                            retS = "Gilneas2";
+                            break;
+                        case Enums.ContinentId.NewRaceStartZone:
+                            retS = "NewRaceStartZone";
                             break;
                         case Enums.ContinentId.MoguIslandDailyArea:
                             retS = "MoguIslandDailyArea";
