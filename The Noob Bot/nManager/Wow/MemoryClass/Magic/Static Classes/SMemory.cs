@@ -39,8 +39,9 @@ namespace nManager.Wow.MemoryClass.Magic
 
             try
             {
-                if (!Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead))
-                    throw new Exception("ReadProcessMemory failed");
+                /*if (!*/
+                Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead);//)
+                //    throw new Exception("ReadProcessMemory failed");
 
                 return (int) lpBytesRead;
             }
@@ -68,10 +69,10 @@ namespace nManager.Wow.MemoryClass.Magic
                 lpBuffer = Marshal.AllocHGlobal(nSize);
 
                 iBytesRead = ReadRawMemory(hProcess, dwAddress, lpBuffer, nSize);
-                if (iBytesRead != nSize)
-                    throw new Exception("ReadProcessMemory error in ReadBytes");
+                //if (iBytesRead != nSize)
+                //    throw new Exception("ReadProcessMemory error in ReadBytes");
 
-                baRet = new byte[iBytesRead];
+                baRet = new byte[nSize];
                 Marshal.Copy(lpBuffer, baRet, 0, iBytesRead);
             }
             catch
