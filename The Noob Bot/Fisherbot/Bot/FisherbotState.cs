@@ -207,7 +207,7 @@ namespace Fisherbot.Bot
                 FishingTask.LoopFish(0, FisherbotSetting.CurrentSetting.UseLure,
                                      FisherbotSetting.CurrentSetting.LureName);
 
-            timer = FisherbotSetting.CurrentSetting.FishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(1000*120);
+            timer = FisherbotSetting.CurrentSetting.FishSchool ? new nManager.Helpful.Timer(2*60*1000) : new nManager.Helpful.Timer(10*60*1000);
             while ((_node.IsValid || !FisherbotSetting.CurrentSetting.FishSchool) && Products.IsStarted &&
                    !ObjectManager.Me.IsDeadMe &&
                    !ObjectManager.Me.InCombat && !timer.IsReady &&
