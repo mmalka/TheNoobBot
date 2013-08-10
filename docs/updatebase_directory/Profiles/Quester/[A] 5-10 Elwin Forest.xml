@@ -946,6 +946,9 @@
       <NeedQuestCompletedId>
         <int>60</int>
       </NeedQuestCompletedId>
+      <NeedQuestNotCompletedId>
+        <int>106</int>
+      </NeedQuestNotCompletedId>
       <QuestLevel>6</QuestLevel>
       <MinLevel>5</MinLevel>
       <MaxLevel>11</MaxLevel>
