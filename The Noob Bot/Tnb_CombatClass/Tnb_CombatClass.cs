@@ -17154,6 +17154,16 @@ using Timer = nManager.Helpful.Timer;
                 _onCd = new Timer(1000*10);
                 return;
             }
+            if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
+                && !PowerWordShield.HaveBuff && MySettings.UsePowerWordShield
+                && !ObjectManager.Me.HaveBuff(6788) &&
+                ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordShieldAtPercentage
+                && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
+            {
+                PowerWordShield.Launch();
+                _onCd = new Timer(1000 * 6);
+                return;
+            }
             if (ObjectManager.Me.HealthPercent <= MySettings.UseSpectralGuiseAtPercentage &&
                 SpectralGuise.IsSpellUsable && SpectralGuise.KnownSpell
                 && MySettings.UseSpectralGuise)
@@ -17240,15 +17250,6 @@ using Timer = nManager.Helpful.Timer;
                 && MySettings.UseVampiricEmbrace)
             {
                 VampiricEmbrace.Launch();
-                return;
-            }
-            if (PowerWordShield.KnownSpell && PowerWordShield.IsSpellUsable
-                && !PowerWordShield.HaveBuff && MySettings.UsePowerWordShield
-                && !ObjectManager.Me.HaveBuff(6788) &&
-                ObjectManager.Me.HealthPercent <= MySettings.UsePowerWordShieldAtPercentage
-                && (ObjectManager.Me.InCombat || ObjectManager.Me.GetMove))
-            {
-                PowerWordShield.Launch();
                 return;
             }
             if (ObjectManager.Me.HealthPercent <= MySettings.UsePrayerofMendingAtPercentage &&
