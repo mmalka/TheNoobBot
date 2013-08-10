@@ -1185,7 +1185,6 @@ using Timer = nManager.Helpful.Timer;
                                 {
                                     Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                             {
@@ -1663,7 +1662,6 @@ using Timer = nManager.Helpful.Timer;
                                         Combat();
                                     }
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                             {
@@ -2668,7 +2666,6 @@ using Timer = nManager.Helpful.Timer;
                                         Combat();
                                     }
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                             {
@@ -3608,7 +3605,6 @@ using Timer = nManager.Helpful.Timer;
                                         Combat();
                                     }
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                             {
@@ -4603,7 +4599,6 @@ using Timer = nManager.Helpful.Timer;
                                         Combat();
                                     }
                                 }
-                                break;
                             }
 
                             if (!ObjectManager.Me.IsCast)
@@ -5529,7 +5524,6 @@ using Timer = nManager.Helpful.Timer;
                                         Combat();
                                     }
                                 }
-                                break;
                             }
 
                             if (!ObjectManager.Me.IsCast)
@@ -7246,7 +7240,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -8076,7 +8069,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -8821,7 +8813,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -9601,7 +9592,6 @@ using Timer = nManager.Helpful.Timer;
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
                             }
-                            break;
                         }
                         if (!ObjectManager.Me.IsCast)
                             Patrolling();
@@ -10430,7 +10420,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -11266,7 +11255,6 @@ using Timer = nManager.Helpful.Timer;
 
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -11932,7 +11920,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -12654,7 +12641,6 @@ using Timer = nManager.Helpful.Timer;
                                 }
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -13159,7 +13145,6 @@ using Timer = nManager.Helpful.Timer;
                                 }
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -13718,7 +13703,6 @@ using Timer = nManager.Helpful.Timer;
                                 }
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -14385,7 +14369,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -15279,7 +15262,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -16161,7 +16143,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -16990,7 +16971,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -17748,7 +17728,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -18453,7 +18432,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -19202,7 +19180,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -19959,7 +19936,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -20695,7 +20671,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -21449,7 +21424,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -22285,7 +22259,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -23147,7 +23120,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 30)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -23945,7 +23917,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -24752,7 +24723,6 @@ using Timer = nManager.Helpful.Timer;
                                     if (ObjectManager.Target.GetDistance < 41)
                                         Combat();
                                 }
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -26429,7 +26399,6 @@ using Timer = nManager.Helpful.Timer;
 
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -27075,7 +27044,6 @@ using Timer = nManager.Helpful.Timer;
 
                                 if (ObjectManager.Target.GetDistance < 30)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
@@ -27697,7 +27665,6 @@ using Timer = nManager.Helpful.Timer;
 
                                 if (ObjectManager.Target.GetDistance < 41)
                                     Combat();
-                                break;
                             }
                             if (!ObjectManager.Me.IsCast)
                                 Patrolling();
