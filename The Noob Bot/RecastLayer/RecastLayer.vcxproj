@@ -25,6 +25,7 @@
     <ClCompile Include="Recast\RecastArea.cpp" />
     <ClCompile Include="Recast\RecastContour.cpp" />
     <ClCompile Include="Recast\RecastFilter.cpp" />
+    <ClCompile Include="Recast\RecastLayers.cpp" />
     <ClCompile Include="Recast\RecastMesh.cpp" />
     <ClCompile Include="Recast\RecastMeshDetail.cpp" />
     <ClCompile Include="Recast\RecastRasterization.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="Detour\DetourNavMeshQuery.h" />
     <ClInclude Include="Detour\DetourNode.h" />
     <ClInclude Include="Detour\DetourObstacleAvoidance.h" />
+    <ClInclude Include="Detour\DetourStatus.h" />
     <ClInclude Include="NavMeshQueryCallback.h" />
     <ClInclude Include="RecastLayer.h" />
     <ClInclude Include="Recast\Recast.h" />

@@ -2,6 +2,7 @@
 #include "Detour/DetourNavMesh.h"
 #include "Detour/DetourNavMeshQuery.h"
 #include "Detour/DetourNavMeshBuilder.h"
+#include "Detour/DetourStatus.h"
 #include "RecastLayer.h"
 #include "NavMeshQueryCallback.h"
 #include <vcclr.h>
@@ -1126,7 +1127,7 @@ error:
 
 		MeshTile^ GetTile(int x, int y)
 		{
-			auto t = _mesh->getTileAt(x, y);
+			auto t = _mesh->getTileAt(x, y, 0);
 			if (t)
 				return gcnew MeshTile(t, _mesh);
 			return nullptr;
@@ -1152,12 +1153,12 @@ error:
 
 		dtTileRef GetTileReference(int x, int y)
 		{
-			return _mesh->getTileRefAt(x, y);
+			return _mesh->getTileRefAt(x, y, 0);
 		}
 
 		bool HasTileAt(int x, int y)
 		{
-			const dtMeshTile* tile = _mesh->getTileAt(x, y);
+			const dtMeshTile* tile = _mesh->getTileAt(x, y, 0);
 			return tile && tile->header;
 		}
 
@@ -1183,7 +1184,7 @@ error:
 
 		bool BuildRenderGeometry(int tileX, int tileY, [Out] array<float>^% verts, [Out] array<int>^% tris)
 		{
-			const dtMeshTile* tile = _mesh->getTileAt(tileX, tileY);
+			const dtMeshTile* tile = _mesh->getTileAt(tileX, tileY, 0);
 			if (!tile || !tile->header)
 				return false;
 
@@ -1270,7 +1271,7 @@ error:
 
 		DetourStatus RemoveTileAt(int x, int y)
 		{
-			auto tileRef = _mesh->getTileRefAt(x, y);
+			auto tileRef = _mesh->getTileRefAt(x, y, 0);
 			if (!tileRef)
 				return DetourStatus::Failure;
 			unsigned char* retData;
@@ -1288,7 +1289,7 @@ error:
 
 		DetourStatus RemoveTileAt(int x, int y, [Out] array<unsigned char>^% data)
 		{
-			auto ret = _mesh->getTileRefAt(x, y);
+			auto ret = _mesh->getTileRefAt(x, y, 0);
 			if (!ret)
 				return DetourStatus::Failure;
 			unsigned char* retData;
@@ -1654,19 +1655,6 @@ exit:
 			void set(int value)
 			{
 				_params->tileY = value;	
-			}
-		}
-
-		property int TileSize
-		{
-			int get()
-			{
-				return _params->tileSize;
-			}
-
-			void set(int value)
-			{
-				_params->tileSize = value;	
 			}
 		}
 
@@ -2064,7 +2052,7 @@ exit:
 	public ref class Detour
 	{
 	  public:
-		static bool CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, int tileSize, array<OffMeshConnection^>^ offMeshCons);
+		static bool CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, bool buildBvTree, array<OffMeshConnection^>^ offMeshCons);
 	};
 
 }

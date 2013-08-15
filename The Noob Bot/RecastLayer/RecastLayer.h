@@ -209,16 +209,6 @@ namespace RecastLayer
 			return _pm;
 		}
 
-		void RemovePadding(int borderSize)
-		{
-			for (int i = 0; i < _pm->nverts; ++i)
-			{
-				unsigned short* v = &_pm->verts[i*3];
-				v[0] -= (unsigned short)borderSize;
-				v[2] -= (unsigned short)borderSize;
-			}
-		}
-
 		void MarkAll()
 		{
 			for (int i = 0; i < _pm->npolys; i++)

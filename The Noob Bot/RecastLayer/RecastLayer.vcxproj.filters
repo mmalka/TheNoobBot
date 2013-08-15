@@ -75,6 +75,9 @@
     <ClCompile Include="Detour\DetourObstacleAvoidance.cpp">
       <Filter>Detour</Filter>
     </ClCompile>
+    <ClCompile Include="Recast\RecastLayers.cpp">
+      <Filter>Recast</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Recast\Recast.h">
@@ -118,6 +121,9 @@
     </ClInclude>
     <ClInclude Include="NavMeshQueryCallback.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Detour\DetourStatus.h">
+      <Filter>Detour</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

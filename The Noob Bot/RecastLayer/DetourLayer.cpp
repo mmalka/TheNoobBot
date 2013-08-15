@@ -9,7 +9,7 @@ using namespace RecastLayer;
 namespace DetourLayer
 {
 
-	bool Detour::CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, int tileSize, array<OffMeshConnection^>^ offMeshCons)
+	bool Detour::CreateNavMeshData([Out] array<unsigned char>^% data, PolyMesh^ pm, PolyMeshDetail^ dm, int tileX, int tileY, array<float>^ bmin, array<float>^ bmax, float walkableHeight, float walkableRadius, float walkableClimb, float cs, float ch, bool buildBvTree, array<OffMeshConnection^>^ offMeshCons)
 	{
 		dtNavMeshCreateParams params;
 		// PolyMesh data
@@ -41,7 +41,8 @@ namespace DetourLayer
 		params.walkableRadius = walkableRadius;
 		params.tileX = tileX;
 		params.tileY = tileY;
-		params.tileSize = tileSize;
+		params.tileLayer = 0;
+		params.buildBvTree = buildBvTree;
 		
 		// Generate off mesh connection data
 		if (offMeshCons != nullptr)
