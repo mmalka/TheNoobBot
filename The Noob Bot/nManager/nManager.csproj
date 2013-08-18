@@ -131,7 +131,11 @@
     <Compile Include="Wow\Bot\States\MillingState.cs" />
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
+    <Compile Include="Wow\Enums\WowSpecialization.cs" />
+    <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
+    <Compile Include="Wow\Helpers\WoWItemSubClass.cs" />
+    <Compile Include="Wow\Helpers\WoWItemClass.cs" />
     <Compile Include="Wow\Helpers\MovementsAction.cs" />
     <Compile Include="Wow\Bot\States\Pause.cs" />
     <Compile Include="Wow\Bot\States\ProspectingState.cs" />
@@ -259,6 +263,7 @@
     <Compile Include="Wow\Patchables\Descriptors.cs" />
     <Compile Include="Wow\AccountSecurity\HookAccountSecurity.cs" />
     <Compile Include="Wow\AccountSecurity\AccountSecurity.cs" />
+    <Compile Include="Wow\Helpers\EquipmentAndStats.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Helpful\Forms\DeveloperTools.resx">

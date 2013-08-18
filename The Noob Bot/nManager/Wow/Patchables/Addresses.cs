@@ -81,6 +81,8 @@
         /// </summary>
         public enum DBC
         {
+            ItemClass = 0xC08178,
+            ItemSubClass = 0xC08594,
             Spell = 0xC099B0,
             SpellCastTimes = 0xC09488,
             SpellRange = 0xC09958,

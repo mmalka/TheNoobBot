@@ -90,6 +90,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Deathknight Blood Combat class...");
                                 InternalRange = 5.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DeathknightBlood);
                                 new DeathknightBlood();
                             }
                             break;
@@ -111,6 +112,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Deathknight Unholy Combat class...");
                                 InternalRange = 5.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DeathknightUnholy);
                                 new DeathknightUnholy();
                             }
                             break;
@@ -132,6 +134,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Deathknight Frost Combat class...");
                                 InternalRange = 5.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DeathknightFrost);
                                 new DeathknightFrost();
                             }
                             break;
@@ -153,6 +156,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Deathknight Apprentice Combat class...");
                             InternalRange = 5.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DeathknightUnholy);
                             new DeathknightApprentice();
                         }
                         break;
@@ -183,6 +187,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Mage Arcane Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageArcane);
                                 new MageArcane();
                             }
                             break;
@@ -204,6 +209,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Mage Fire Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageFire);
                                 new MageFire();
                             }
                             break;
@@ -225,6 +231,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Mage Frost Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageFrost);
                                 new MageFrost();
                             }
                             break;
@@ -245,6 +252,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("Mage without Spec");
                             Logging.WriteFight("Loading Mage Frost Combat class...");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MageFrost);
                             new MageFrost();
                         }
                         break;
@@ -275,6 +283,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Warlock Demonology Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDemonology);
                                 new WarlockDemonology();
                             }
                             break;
@@ -296,6 +305,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Warlock Affliction Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockAffliction);
                                 new WarlockAffliction();
                             }
                             break;
@@ -317,6 +327,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Warlock Destruction Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDestruction);
                                 new WarlockDestruction();
                             }
                             break;
@@ -338,6 +349,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Warlock Demonology Combat class...");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarlockDemonology);
                             new WarlockDemonology();
                         }
                         break;
@@ -368,6 +380,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Druid Feral Found");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidFeral);
                                 new DruidFeral();
                             }
                             break;
@@ -388,6 +401,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Feral Guardian Found");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidGuardian);
                                 new DruidGuardian();
                             }
                             break;
@@ -409,6 +423,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Druid Balance Found");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidBalance);
                                 new DruidBalance();
                             }
                             break;
@@ -430,6 +445,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Druid Restoration Found");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidRestoration);
                                 new DruidRestoration();
                             }
                             break;
@@ -450,6 +466,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Druid Balance Combat class...");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.DruidBalance);
                             new DruidBalance();
                         }
                         break;
@@ -478,6 +495,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Paladin Retribution Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
                                 new PaladinRetribution();
                             }
                             break;
@@ -498,6 +516,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Paladin Protection Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinProtection);
                                 new PaladinProtection();
                             }
                             break;
@@ -519,6 +538,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Paladin Holy Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinHoly);
                                 new PaladinHoly();
                             }
                             break;
@@ -539,6 +559,7 @@ using Timer = nManager.Helpful.Timer;
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Paladin Retribution Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
                             new PaladinRetribution();
                         }
                         break;
@@ -568,6 +589,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Shaman Enhancement Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanEnhancement);
                                 new ShamanEnhancement();
                             }
                             break;
@@ -589,6 +611,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Shaman Elemental Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanElemental);
                                 new ShamanElemental();
                             }
                             break;
@@ -610,6 +633,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Shaman Restoration Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanRestoration);
                                 new ShamanRestoration();
                             }
                             break;
@@ -629,6 +653,7 @@ using Timer = nManager.Helpful.Timer;
                         {
                             Logging.WriteFight("Shaman without Spec");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.ShamanRestoration);
                             new ShamanRestoration();
                         }
                         break;
@@ -658,6 +683,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Priest Shadow Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PriestShadow);
                                 new PriestShadow();
                             }
                             break;
@@ -679,6 +705,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Priest Discipline Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PriestDiscipline);
                                 new PriestDiscipline();
                             }
                             break;
@@ -700,6 +727,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Priest Holy Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PriestHoly);
                                 new PriestHoly();
                             }
                             break;
@@ -721,6 +749,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Priest Shadow Combat class...");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PriestShadow);
                             new PriestShadow();
                         }
                         break;
@@ -750,6 +779,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Rogue Combat Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueCombat);
                                 new RogueCombat();
                             }
                             break;
@@ -770,6 +800,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Rogue Assassination Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueAssassination);
                                 new RogueAssassination();
                             }
                             break;
@@ -790,6 +821,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Rogue Subtlety Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueSubtlety);
                                 new RogueSubtlety();
                             }
                             break;
@@ -808,6 +840,7 @@ using Timer = nManager.Helpful.Timer;
                         else
                         {
                             Logging.WriteFight("Rogue without Spec");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.RogueCombat);
                             new RogueCombat();
                         }
                         break;
@@ -837,6 +870,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Warrior Arms Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarriorArms);
                                 new WarriorArms();
                             }
                             break;
@@ -857,6 +891,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Warrior Fury Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarriorFury);
                                 new WarriorFury();
                             }
                             break;
@@ -877,6 +912,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Warrior Protection Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarriorProtection);
                                 new WarriorProtection();
                             }
                             break;
@@ -897,6 +933,7 @@ using Timer = nManager.Helpful.Timer;
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Warrior Arms Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.WarriorArms);
                             new WarriorArms();
                         }
                         break;
@@ -927,6 +964,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                                 new HunterMarksmanship();
                             }
                             break;
@@ -948,6 +986,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Hunter Survival Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterSurvival);
                                 new HunterSurvival();
                             }
                             break;
@@ -969,6 +1008,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Hunter BeastMastery Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterBeastMastery);
                                 new HunterBeastMastery();
                             }
                             break;
@@ -990,6 +1030,7 @@ using Timer = nManager.Helpful.Timer;
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Hunter Marksmanship Combat class...");
                             InternalRange = 30.0f;
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.HunterMarksmanship);
                             new HunterMarksmanship();
                         }
                         break;
@@ -1018,6 +1059,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Monk Brewmaster Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MonkBrewmaster);
                                 new MonkBrewmaster();
                             }
                             break;
@@ -1038,6 +1080,7 @@ using Timer = nManager.Helpful.Timer;
                             else
                             {
                                 Logging.WriteFight("Loading Monk Windwalker Combat class...");
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MonkWindwalker);
                                 new MonkWindwalker();
                             }
                             break;
@@ -1059,6 +1102,7 @@ using Timer = nManager.Helpful.Timer;
                             {
                                 Logging.WriteFight("Loading Monk Mistweaver Combat class...");
                                 InternalRange = 30.0f;
+                                EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MonkMistweaver);
                                 new MonkMistweaver();
                             }
                             break;
@@ -1081,6 +1125,7 @@ using Timer = nManager.Helpful.Timer;
                         {
                             Logging.WriteFight("No specialisation detected.");
                             Logging.WriteFight("Loading Monk Brewmaster Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.MonkBrewmaster);
                             new MonkBrewmaster();
                         }
                         break;

@@ -144,7 +144,6 @@ namespace Quester.Bot
         {
             try
             {
-                CombatClass.DisposeCombatClass();
                 Fsm.StopEngine();
                 Fight.StopFight();
                 MovementManager.StopMove();
