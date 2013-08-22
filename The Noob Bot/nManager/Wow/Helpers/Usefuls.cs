@@ -306,35 +306,35 @@ namespace nManager.Wow.Helpers
                 switch (bagType)
                 {
                     case BagType.Unspecified:
-                            return unspecified;
+                        return unspecified;
                     case BagType.MiningBag:
-                            return miningBag + unspecified;
+                        return miningBag + unspecified;
                     case BagType.HerbBag:
-                            return herbBag + unspecified;
+                        return herbBag + unspecified;
                     case BagType.LeatherworkingBag:
-                            return leatherworkingBag + unspecified;
+                        return leatherworkingBag + unspecified;
                     case BagType.GemBag:
-                            return gemBag + unspecified;
+                        return gemBag + unspecified;
                     case BagType.EnchantingBag:
-                            return enchantingBag + unspecified;
+                        return enchantingBag + unspecified;
                     case BagType.InscriptionBag:
-                            return inscriptionBag + unspecified;
+                        return inscriptionBag + unspecified;
                     case BagType.LureBag:
-                            return lureBag + unspecified;
+                        return lureBag + unspecified;
                     case BagType.SoulBag:
-                            return soulBag + unspecified;
+                        return soulBag + unspecified;
                     case BagType.VanityPets:
-                            return vanityPets + unspecified;
+                        return vanityPets + unspecified;
                     case BagType.Unknown:
-                            return unknown + unspecified;
+                        return unknown + unspecified;
                     case BagType.AmmoPouch:
-                            return ammoPouch + unspecified;
+                        return ammoPouch + unspecified;
                     case BagType.Keyring:
-                            return keyring + unspecified;
+                        return keyring + unspecified;
                     case BagType.Quiver:
-                            return quiver + unspecified;
+                        return quiver + unspecified;
                     case BagType.EngineeringBag:
-                            return engineeringBag + unspecified;
+                        return engineeringBag + unspecified;
                 }
             }
             return 0;
@@ -526,67 +526,37 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        public static bool MovementStatus(Addresses.MovementFlags flags)
+        {
+            try
+            {
+                return (Convert.ToBoolean(
+                    Memory.WowMemory.Memory.ReadInt(
+                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
+                                                         (uint) Addresses.MovementFlags.offset1)
+                        + (uint) Addresses.MovementFlags.offset2)
+                    & (int) flags));
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("MovementStatus: " + e);
+                return false;
+            }
+        }
+
         public static bool IsFalling
         {
-            get
-            {
-                try
-                {
-                    return (Convert.ToBoolean(
-                        Memory.WowMemory.Memory.ReadInt(
-                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                             (uint) Addresses.IsFalling.offset1)
-                            + (uint) Addresses.IsFalling.offset2)
-                        & (int) Addresses.IsFalling.flag));
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("IsFalling: " + e);
-                    return false;
-                }
-            }
+            get { return MovementStatus(Addresses.MovementFlags.Falling); }
         }
 
         public static bool IsSwimming
         {
-            get
-            {
-                try
-                {
-                    return (Convert.ToBoolean(
-                        Memory.WowMemory.Memory.ReadInt(
-                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                             (uint) Addresses.IsSwimming.offset1)
-                            + (uint) Addresses.IsSwimming.offset2)
-                        & (int) Addresses.IsSwimming.flag));
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("IsSwimming: " + e);
-                    return false;
-                }
-            }
+            get { return MovementStatus(Addresses.MovementFlags.Swimming); }
         }
 
         public static bool IsFlying
         {
-            get
-            {
-                try
-                {
-                    return (Convert.ToBoolean(
-                        Memory.WowMemory.Memory.ReadInt(
-                            Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                             (uint) Addresses.IsFlying.offset1)
-                            + (uint) Addresses.IsFlying.offset2)
-                        & (int) Addresses.IsFlying.flag));
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("IsFlying: " + e);
-                    return false;
-                }
-            }
+            get { return MovementStatus(Addresses.MovementFlags.Flying); }
         }
 
         public static string RealmName

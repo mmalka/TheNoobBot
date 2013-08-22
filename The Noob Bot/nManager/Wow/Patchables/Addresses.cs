@@ -33,34 +33,23 @@
             ENDSCENE_IDX = 0xA8,
         }
 
-        /// <summary>
-        ///   Is Falling (Script_IsFalling)
-        /// </summary>
-        public enum IsFalling
+        /// <summary> Movement Flags</summary>
+        /// [[base+offset1]+offset2]
+        public enum MovementFlags
         {
-            flag = 0x800,
             offset1 = 0xE4,
             offset2 = 0x38,
-        }
-
-        /// <summary>
-        ///   Is Swimming (Script_IsSwimming) [[base+offset1]+offset2]
-        /// </summary>
-        public enum IsSwimming
-        {
-            flag = 0x100000,
-            offset1 = 0xE4,
-            offset2 = 0x38,
-        }
-
-        /// <summary>
-        ///   Is Flying (Script_IsFlying) [[base+offset1]+offset2]
-        /// </summary>
-        public enum IsFlying
-        {
-            flag = 0x1000000,
-            offset1 = 0xE4,
-            offset2 = 0x38,
+            MovingForward = 0x1,
+            MovingBackwards = 0x2,
+            StrafingLeft = 0x4,
+            StrafingRight = 0x8,
+            TurningLeft = 0x10,
+            TurningRight = 0x20,
+            Stunned = 0x400,
+            Falling = 0x800, // Script_IsFalling
+            FallingFar = 0x1000, // What is this exactly ? "Going to die from the fall" or "far from the floor at this moment"
+            Swimming = 0x100000, // Script_IsSwimming
+            Flying = 0x1000000, // Script_IsFlying
         }
 
         public enum Party
