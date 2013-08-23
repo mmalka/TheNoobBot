@@ -368,7 +368,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         {
             try
             {
-                const string stringHttpMap = "http://mesh.thenoobbot.com/";
+                const string stringHttpMap = "http://meshes.thenoobbot.com/";
 
                 Directory.CreateDirectory(_meshPath + "\\" + Continent + "\\");
 
