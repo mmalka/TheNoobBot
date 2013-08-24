@@ -195,12 +195,12 @@ namespace nManager.Helpful
                                 SwitchButton switchButton = new SwitchButton
                                     {
                                         BackColor = Color.WhiteSmoke,
-                                        Value = Others.ToBoolean(fieldInfo.GetValue(this) as string),
+                                        Value = (bool) fieldInfo.GetValue(this),
                                         ForeColor = Color.Black,
                                         Location = new Point(10, posY),
                                         Name = f.FieldName,
-                                        OffText = "NO",
-                                        OnText = "YES",
+                                        OffText = Translate.Get(Translate.Id.NO),
+                                        OnText = Translate.Get(Translate.Id.YES),
                                         Size = new Size(66, 22),
                                         Style = eDotNetBarStyle.StyleManagerControlled
                                     };
