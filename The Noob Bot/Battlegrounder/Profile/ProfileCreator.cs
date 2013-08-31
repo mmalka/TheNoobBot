@@ -128,7 +128,7 @@ namespace Battlegrounder.Profile
                     }
                     if (ZoneList.SelectedIndex != _idZone)
                     {
-                        if (ZoneList.Items.Count >= _idZone+1)
+                        if (ZoneList.Items.Count >= _idZone + 1)
                             ZoneList.SelectedIndex = _idZone;
                     }
                 }

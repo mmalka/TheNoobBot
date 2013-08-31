@@ -197,17 +197,18 @@ namespace nManager.Wow.Helpers
                 uint subClassId = TheItemSubClassRec.Record.SubClassId;
                 string strInvSlot = Lua.GetLocalizedText(sInventorySlot);
 
-                Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + strInvSlot + "\" class " + (Enums.WoWItemClass)classId + " subclass " + subClassId + " has a value of " + price);
-                if ((Enums.WoWItemClass)classId == Enums.WoWItemClass.Armor)
-                    if ((Enums.WowItemSubClassArmor)subClassId ==  EquipmentAndStats.InternalEquipableArmorItemType
+                Logging.WriteDebug("Item \"" + Lua.GetLocalizedText(sName) + "\" equip \"" + strInvSlot + "\" class " + (Enums.WoWItemClass) classId + " subclass " + subClassId +
+                                   " has a value of " + price);
+                if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Armor)
+                    if ((Enums.WowItemSubClassArmor) subClassId == EquipmentAndStats.InternalEquipableArmorItemType
                         || strInvSlot == "INVTYPE_CLOAK" || strInvSlot == "INVTYPE_NECK"
                         || strInvSlot == "INVTYPE_FINGER" || strInvSlot == "INVTYPE_TRINKET"
                         || (strInvSlot == "INVTYPE_SHIELD" && EquipmentAndStats.HasShield))
                         if (CheckItemStats(i))
                             valueEquipementChoice = i;
-                if ((Enums.WoWItemClass)classId == Enums.WoWItemClass.Weapon)
+                if ((Enums.WoWItemClass) classId == Enums.WoWItemClass.Weapon)
                 {
-                    if (EquipmentAndStats.EquipableWeapons.Contains((Enums.WowItemSubClassWeapon)subClassId))
+                    if (EquipmentAndStats.EquipableWeapons.Contains((Enums.WowItemSubClassWeapon) subClassId))
                         if (CheckItemStats(i))
                             valueEquipementChoice = i;
                 }
@@ -272,7 +273,7 @@ namespace nManager.Wow.Helpers
             string[] itemStatsArray = sResult.Split('^');
             int index = 0;
             bool valid = true;
-            while (index < itemStatsArray.Length -1)
+            while (index < itemStatsArray.Length - 1)
             {
                 string name = itemStatsArray[index];
                 //string value = itemStatsArray[index+1];
@@ -285,7 +286,7 @@ namespace nManager.Wow.Helpers
             return valid;
         }
 
-        static Enums.WoWStatistic ConvertToStatistic(string InterfaceName)
+        private static Enums.WoWStatistic ConvertToStatistic(string InterfaceName)
         {
             switch (InterfaceName)
             {

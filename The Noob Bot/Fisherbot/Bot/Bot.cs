@@ -29,9 +29,9 @@ namespace Fisherbot.Bot
                 // If Fish School Load Profile
                 if (FisherbotSetting.CurrentSetting.FishSchool)
                 {
-                    if (File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" +FisherbotSetting.CurrentSetting.FishSchoolProfil))
+                    if (File.Exists(Application.StartupPath + "\\Profiles\\Fisherbot\\" + FisherbotSetting.CurrentSetting.FishSchoolProfil))
                     {
-                        Profile =XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath +"\\Profiles\\Fisherbot\\" +FisherbotSetting.CurrentSetting.FishSchoolProfil);
+                        Profile = XmlSerializer.Deserialize<FisherbotProfile>(Application.StartupPath + "\\Profiles\\Fisherbot\\" + FisherbotSetting.CurrentSetting.FishSchoolProfil);
                         if (Profile.Points.Count <= 0)
                             return false;
                     }

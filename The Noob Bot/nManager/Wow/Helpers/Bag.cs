@@ -68,10 +68,10 @@ namespace nManager.Wow.Helpers
                             if (o.Type == Enums.WoWObjectType.Item)
                             {
                                 uint itemIdTemp = ObjectManager.ObjectManager.Me.GetDescriptor<uint>(o.GetBaseAddress,
-                                                                                                    (uint)
-                                                                                                    Descriptors
-                                                                                                        .ObjectFields
-                                                                                                        .Entry);
+                                                                                                     (uint)
+                                                                                                     Descriptors
+                                                                                                         .ObjectFields
+                                                                                                         .Entry);
                                 ulong itemGuidOwner = ObjectManager.ObjectManager.Me.GetDescriptor<ulong>(
                                     o.GetBaseAddress, (uint) Descriptors.ItemFields.Owner);
 

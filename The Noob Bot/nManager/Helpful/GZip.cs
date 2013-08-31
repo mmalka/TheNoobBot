@@ -27,7 +27,7 @@ namespace nManager.Helpful
                     using (FileStream outFile = File.Create(origName))
                     {
                         using (GZipStream decompress = new GZipStream(inFile,
-                                                               CompressionMode.Decompress))
+                                                                      CompressionMode.Decompress))
                         {
                             // Copy the decompression stream 
                             // into the output file.

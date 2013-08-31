@@ -402,7 +402,7 @@ namespace nManager.Wow.AccountSecurity
 
                     //const uint MaxAddress = 0x10000000;
                     //uint address = 0x01000000;
-                    
+
                     /*
                     do
                     {

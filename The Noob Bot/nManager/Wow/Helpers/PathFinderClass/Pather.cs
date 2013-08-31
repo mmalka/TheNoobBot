@@ -82,7 +82,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
 
-        const uint MESH_TILES_VERSION = 7;
+        private const uint MESH_TILES_VERSION = 7;
 
         #region Memory Management
 

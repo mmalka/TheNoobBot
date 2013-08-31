@@ -99,12 +99,12 @@ namespace nManager.Wow.Helpers
                     CodeDomProvider cc = new CSharpCodeProvider();
                     CompilerParameters cp = new CompilerParameters();
                     IEnumerable<string> assemblies = AppDomain.CurrentDomain
-                                              .GetAssemblies()
-                                              .Where(
-                                                  a =>
-                                                  !a.IsDynamic &&
-                                                  !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                                              .Select(a => a.Location);
+                                                              .GetAssemblies()
+                                                              .Where(
+                                                                  a =>
+                                                                  !a.IsDynamic &&
+                                                                  !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                                                              .Select(a => a.Location);
                     cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                     StreamReader sr = File.OpenText(pathToHealerClassFile);
                     string toCompile = sr.ReadToEnd();

@@ -303,7 +303,7 @@ namespace nManager.Helpful.Forms
                 }
 
                 npc.ContinentId = (ContinentId) (Usefuls.ContinentId);
-                npc.Faction =(Npc.FactionType)Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
+                npc.Faction = (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.Me.PlayerFaction, true);
 
                 if (Usefuls.IsOutdoors)
                     npc.Position.Type = "Flying";
@@ -374,12 +374,12 @@ namespace nManager.Helpful.Forms
                 CompilerParameters cp = new CompilerParameters();
 
                 IEnumerable<string> assemblies = AppDomain.CurrentDomain
-                                          .GetAssemblies()
-                                          .Where(
-                                              a =>
-                                              !a.IsDynamic &&
-                                              !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                                          .Select(a => a.Location);
+                                                          .GetAssemblies()
+                                                          .Where(
+                                                              a =>
+                                                              !a.IsDynamic &&
+                                                              !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                                                          .Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
 
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp,
@@ -416,9 +416,10 @@ namespace nManager.Helpful.Forms
             if (ObjectManager.Target.IsValid)
             {
                 string questStatusText = "";
-                if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0).HasFlag(UnitNPCFlags.QuestGiver))
+                if (ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag).HasFlag(UnitNPCFlags.QuestGiver))
                 {
-                    UnitQuestGiverStatus questStatusFlag = (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
+                    UnitQuestGiverStatus questStatusFlag =
+                        (UnitQuestGiverStatus) Memory.WowMemory.Memory.ReadInt(ObjectManager.Target.GetBaseAddress + (uint) Addresses.Quests.QuestGiverStatus);
                     if (questStatusFlag > 0x0)
                         questStatusText = "QuestGiverStatus: " + questStatusFlag + Environment.NewLine;
                 }
@@ -432,7 +433,7 @@ namespace nManager.Helpful.Forms
                     "IsDead : " + ObjectManager.Target.IsDead + Environment.NewLine +
                     "UnitFlag: " + ObjectManager.Target.GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags) + Environment.NewLine +
                     "UnitFlag2: " + ObjectManager.Target.GetDescriptor<UnitFlags2>(Descriptors.UnitFields.Flags2) + Environment.NewLine +
-                    "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlagUMNW0) + Environment.NewLine +
+                    "NPCFlag: " + ObjectManager.Target.GetDescriptor<UnitNPCFlags>(Descriptors.UnitFields.NpcFlag) + Environment.NewLine +
                     questStatusText +
                     "DynamicFlag: " + ObjectManager.Target.GetDescriptor<UnitDynamicFlags>(Descriptors.ObjectFields.DynamicFlags) + Environment.NewLine;
             }

@@ -611,8 +611,8 @@ namespace nManager.Helpful.Forms
                 if (e.CloseReason == CloseReason.UserClosing)
                 {
                     DialogResult ret = MessageBox.Show(string.Format("{0}?", Translate.Get(Translate.Id.Do_you_want_save_this_setting)),
-                                              Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
-                                              MessageBoxIcon.Question);
+                                                       Translate.Get(Translate.Id.Save), MessageBoxButtons.YesNo,
+                                                       MessageBoxIcon.Question);
                     if (ret == DialogResult.Yes)
                         SaveSetting();
                 }

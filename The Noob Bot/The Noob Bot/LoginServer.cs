@@ -122,8 +122,8 @@ namespace The_Noob_Bot
 
                     int randomKey = Others.Random(1, 9999);
                     List<string> resultRandom = GetReqWithAuthHeader(ScriptLoginUrl + "?random=true",
-                                                            randomKey.ToString(CultureInfo.InvariantCulture),
-                                                            randomKey.ToString(CultureInfo.InvariantCulture));
+                                                                     randomKey.ToString(CultureInfo.InvariantCulture),
+                                                                     randomKey.ToString(CultureInfo.InvariantCulture));
                     string goodResultRandomTry = Others.EncrypterMD5((randomKey*4) + Secret);
 
                     if (resultRandom[0] == goodResultRandomTry && resultConnectReq[0] == goodResultConnectReq)

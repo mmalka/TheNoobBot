@@ -193,7 +193,7 @@ namespace nManager.Helpful
                             Directory.CreateDirectory(Application.StartupPath + "\\Logs");
 
                         StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Logs\\" + _logFileName, true,
-                                                  Encoding.UTF8);
+                                                           Encoding.UTF8);
                         sw.Write("<font color=\"" + ColorTranslator.ToHtml(LogQueue[0].Color) + "\">" +
                                  LogQueue[0].ToString().Replace(Environment.NewLine, "<br> ") + "</font><br>");
                         sw.Close();

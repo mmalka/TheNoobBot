@@ -23,7 +23,7 @@ namespace Profiles_Converters.Converters
                 else
                 {
                     MessageBox.Show(string.Format("{0}.", nManager.Translate.Get(nManager.Translate.Id.File_not_found)));
-                    }
+                }
             }
             catch
             {
@@ -51,8 +51,8 @@ namespace Profiles_Converters.Converters
                                     .Trim()
                                     .Split(new[] {','}, StringSplitOptions.RemoveEmptyEntries);
                             Point item = new Point(float.Parse(strArray[0], CultureInfo.InvariantCulture),
-                                                 float.Parse(strArray[1], CultureInfo.InvariantCulture),
-                                                 float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
+                                                   float.Parse(strArray[1], CultureInfo.InvariantCulture),
+                                                   float.Parse(strArray[2], CultureInfo.InvariantCulture), "Flying");
                             _profile.Points.Add(item);
                         }
                     }

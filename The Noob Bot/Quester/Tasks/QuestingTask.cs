@@ -315,14 +315,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                           ObjectManager.Me.Position)].DistanceTo(
-                                                                               ObjectManager.Me.Position) > 5)
+                                                          ObjectManager.Me.Position)].DistanceTo(
+                                                              ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                                   ObjectManager.Me.Position)]));
+                                                                  ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -354,14 +354,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                           ObjectManager.Me.Position)].DistanceTo(
-                                                                               ObjectManager.Me.Position) > 5)
+                                                          ObjectManager.Me.Position)].DistanceTo(
+                                                              ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                                   ObjectManager.Me.Position)]));
+                                                                  ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -595,14 +595,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                           ObjectManager.Me.Position)].DistanceTo(
-                                                                               ObjectManager.Me.Position) > 5)
+                                                          ObjectManager.Me.Position)].DistanceTo(
+                                                              ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                                   ObjectManager.Me.Position)]));
+                                                                  ObjectManager.Me.Position)]));
                     }
                     else
                     {
@@ -883,14 +883,14 @@ namespace Quester.Tasks
                     if (
                         questObjective.PathHotspots[
                             Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                           ObjectManager.Me.Position)].DistanceTo(
-                                                                               ObjectManager.Me.Position) > 5)
+                                                          ObjectManager.Me.Position)].DistanceTo(
+                                                              ObjectManager.Me.Position) > 5)
                     {
                         MovementManager.Go(
                             PathFinder.FindPath(
                                 questObjective.PathHotspots[
                                     Math.NearestPointOfListPoints(questObjective.PathHotspots,
-                                                                                   ObjectManager.Me.Position)]));
+                                                                  ObjectManager.Me.Position)]));
                     }
                     else
                     {

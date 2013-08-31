@@ -257,7 +257,7 @@ namespace nManager.Wow.MemoryClass
                                 // injected code
 
                                 Memory.Asm.Inject(InjectedCodeDetour);
-                                var sizeAsm = (uint) (Memory.Asm.Assemble().Length);
+                                uint sizeAsm = (uint) (Memory.Asm.Assemble().Length);
 
                                 // copy and save original instructions
                                 Memory.Asm.Clear();
@@ -319,7 +319,7 @@ namespace nManager.Wow.MemoryClass
 
         private void CheckEndsceneHook()
         {
-            var jmp = Memory.ReadByte(JumpAddress);
+            byte jmp = Memory.ReadByte(JumpAddress);
             if (jmp == 0xE9) return;
             ThreadHooked = false;
             Logging.WriteError("ThreadHooked: False; JmpAddress: " + jmp);
@@ -347,7 +347,7 @@ namespace nManager.Wow.MemoryClass
         /// <returns></returns>
         internal static string ProtectHook()
         {
-            var asm = new List<string>
+            List<string> asm = new List<string>
                 {
                     "mov edx, edx",
                     "mov edi, edi",
@@ -424,7 +424,7 @@ namespace nManager.Wow.MemoryClass
             {
                 lock (Locker)
                 {
-                    var tempsByte = new byte[0];
+                    byte[] tempsByte = new byte[0];
                     try
                     {
                         // Hook Wow:
@@ -448,7 +448,7 @@ namespace nManager.Wow.MemoryClass
 
 
                             // Allocation Memory
-                            var startBaseInject = (uint) Others.Random(0, 60);
+                            uint startBaseInject = (uint) Others.Random(0, 60);
                             uint injectionAsmCodecave =
                                 Memory.AllocateMemory(Memory.Asm.Assemble().Length + Others.Random(60, 80)) +
                                 startBaseInject;
@@ -479,9 +479,9 @@ namespace nManager.Wow.MemoryClass
                                 }
                                 else
                                 {
-                                    var retnByte = new List<byte>();
+                                    List<byte> retnByte = new List<byte>();
                                     uint dwAddress = Memory.ReadUInt(_retnInjectionAsm);
-                                    var buf = Memory.ReadByte(dwAddress);
+                                    byte buf = Memory.ReadByte(dwAddress);
                                     while (buf != 0)
                                     {
                                         retnByte.Add(buf);
@@ -525,7 +525,7 @@ namespace nManager.Wow.MemoryClass
                     pJump = D3D.D3D11Adresse();
                 else
                     pJump = D3D.D3D9Adresse(processId);
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 return memory.ReadByte(pJump) == 0xE9;
             }
             catch (Exception e)
@@ -543,7 +543,7 @@ namespace nManager.Wow.MemoryClass
                     return Translate.Get(Translate.Id.Please_connect_to_the_game);
 
                 // init memory
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
@@ -566,7 +566,7 @@ namespace nManager.Wow.MemoryClass
             try
             {
                 // init memory
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in

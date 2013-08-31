@@ -145,7 +145,7 @@ namespace Grinder.Profile
                     }
                     if (listZoneCb.SelectedIndex != _idZone)
                     {
-                        if (listZoneCb.Items.Count >= _idZone+1)
+                        if (listZoneCb.Items.Count >= _idZone + 1)
                             listZoneCb.SelectedIndex = _idZone;
                     }
                 }

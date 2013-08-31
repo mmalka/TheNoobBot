@@ -108,7 +108,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (objBobber.GetBaseAddress > 0)
                                 {
-                                    WoWGameObject node =new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
+                                    WoWGameObject node = new WoWGameObject(ObjectManager.ObjectManager.GetObjectByGuid(_guidNode).GetBaseAddress);
                                     if (node.Position.DistanceTo2D(objBobber.Position) > distanceBobber && node.IsValid &&
                                         _guidNode > 0 && _precision)
                                         continue;

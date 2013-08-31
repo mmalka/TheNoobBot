@@ -41,7 +41,7 @@ namespace nManager.Helpful.Forms
             try
             {
                 string filePath = Others.DialogBoxSaveFile(Application.StartupPath + "\\Data\\Lang\\",
-                                                        "Langage files (*.xml)|*.xml");
+                                                           "Langage files (*.xml)|*.xml");
                 if (!string.IsNullOrWhiteSpace(filePath))
                 {
                     _translation.Translations = (List<Translate.Translation>) listDigsitesDGV.DataSource;
@@ -57,7 +57,7 @@ namespace nManager.Helpful.Forms
         private void loadB_Click(object sender, EventArgs e)
         {
             string filePath = Others.DialogBoxOpenFile(Application.StartupPath + "\\Data\\Lang\\",
-                                                    "Langage files (*.xml)|*.xml");
+                                                       "Langage files (*.xml)|*.xml");
             if (File.Exists(filePath))
             {
                 Translate.Language t = XmlSerializer.Deserialize<Translate.Language>(filePath);

@@ -34,11 +34,11 @@ namespace nManager.Wow.Class
 
         private static readonly DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
 
-        private static readonly DBC<DBCStruct.SpellMiscRec> DBCSpellMisc =new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
+        private static readonly DBC<DBCStruct.SpellMiscRec> DBCSpellMisc = new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
 
-        private static readonly DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes =new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
+        private static readonly DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes = new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
 
-        private static readonly DBC<DBCStruct.SpellRangeRec> DBCSpellRange =new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
+        private static readonly DBC<DBCStruct.SpellRangeRec> DBCSpellRange = new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.
@@ -62,7 +62,7 @@ namespace nManager.Wow.Class
                                 DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
                             try
                             {
-                                CastTime = (float)castTimeRec.CastTime/1000;
+                                CastTime = (float) castTimeRec.CastTime/1000;
                             }
                             catch
                             {

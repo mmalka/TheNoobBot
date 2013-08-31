@@ -40,7 +40,7 @@ namespace nManager.Wow.MemoryClass.Magic
             try
             {
                 /*if (!*/
-                Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead);//)
+                Imports.ReadProcessMemory(hProcess, dwAddress, lpBuffer, nSize, out lpBytesRead); //)
                 //    throw new Exception("ReadProcessMemory failed");
 
                 return (int) lpBytesRead;

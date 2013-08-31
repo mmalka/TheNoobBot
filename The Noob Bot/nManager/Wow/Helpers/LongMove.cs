@@ -105,7 +105,7 @@ namespace nManager.Wow.Helpers
                                 if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                 {
                                     temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position, point,
-                                                                              100);
+                                                                               100);
                                     temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                 }
                                 if (TraceLine.TraceLineGo(meTemps, temps) ||
@@ -120,7 +120,7 @@ namespace nManager.Wow.Helpers
                                     if (point.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 100)
                                     {
                                         temps = Math.GetPosition2DOfLineByDistance(ObjectManager.ObjectManager.Me.Position,
-                                                                                  point, 40);
+                                                                                   point, 40);
                                         temps.Z = ObjectManager.ObjectManager.Me.Position.Z - 2.5f;
                                     }
                                     if (TraceLine.TraceLineGo(meTemps, temps))
@@ -149,8 +149,8 @@ namespace nManager.Wow.Helpers
                                                           ObjectManager.ObjectManager.Me.Position.Y,
                                                           ObjectManager.ObjectManager.Me.Position.Z - altitude);
                                         Point tempsMe = new Point(ObjectManager.ObjectManager.Me.Position.X,
-                                                                ObjectManager.ObjectManager.Me.Position.Y,
-                                                                ObjectManager.ObjectManager.Me.Position.Z + 5f);
+                                                                  ObjectManager.ObjectManager.Me.Position.Y,
+                                                                  ObjectManager.ObjectManager.Me.Position.Z + 5f);
                                         Point temps2 = Math.GetPosition2DOfLineByDistance(tempsMe, point, 80);
                                         temps2.Z = ObjectManager.ObjectManager.Me.Position.Z - altitude;
                                         if (!TraceLine.TraceLineGo(tempsMe, temps))

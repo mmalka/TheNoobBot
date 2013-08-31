@@ -30,9 +30,12 @@ namespace The_Noob_Bot
                 int keyDecrypt = 0;
                 for (int i = 0; i <= ip.Length - 1; i++)
                 {
-                    if (ip[i].ToString(CultureInfo.InvariantCulture) == "0" || ip[i].ToString(CultureInfo.InvariantCulture) == "1" || ip[i].ToString(CultureInfo.InvariantCulture) == "2" ||
-                        ip[i].ToString(CultureInfo.InvariantCulture) == "3" || ip[i].ToString(CultureInfo.InvariantCulture) == "4" || ip[i].ToString(CultureInfo.InvariantCulture) == "5" ||
-                        ip[i].ToString(CultureInfo.InvariantCulture) == "6" || ip[i].ToString(CultureInfo.InvariantCulture) == "7" || ip[i].ToString(CultureInfo.InvariantCulture) == "8" ||
+                    if (ip[i].ToString(CultureInfo.InvariantCulture) == "0" || ip[i].ToString(CultureInfo.InvariantCulture) == "1" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "2" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "3" || ip[i].ToString(CultureInfo.InvariantCulture) == "4" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "5" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "6" || ip[i].ToString(CultureInfo.InvariantCulture) == "7" ||
+                        ip[i].ToString(CultureInfo.InvariantCulture) == "8" ||
                         ip[i].ToString(CultureInfo.InvariantCulture) == "9")
                         keyDecrypt += Others.ToInt32(ip[i].ToString(CultureInfo.InvariantCulture));
                 }
@@ -99,12 +102,12 @@ namespace The_Noob_Bot
                 CodeDomProvider cc = new CSharpCodeProvider();
                 CompilerParameters cp = new CompilerParameters();
                 IEnumerable<string> assemblies = AppDomain.CurrentDomain
-                                          .GetAssemblies()
-                                          .Where(
-                                              a =>
-                                              !a.IsDynamic &&
-                                              !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
-                                          .Select(a => a.Location);
+                                                          .GetAssemblies()
+                                                          .Where(
+                                                              a =>
+                                                              !a.IsDynamic &&
+                                                              !a.CodeBase.Contains((Process.GetCurrentProcess().ProcessName + ".exe")))
+                                                          .Select(a => a.Location);
                 cp.ReferencedAssemblies.AddRange(assemblies.ToArray());
                 string toCompile = sr;
                 CompilerResults cr = cc.CompileAssemblyFromSource(cp, toCompile);

@@ -428,7 +428,7 @@ namespace nManager.Wow.Bot.States
                             }
                             MountTask.Mount();
                             LongMove.LongMoveByNewThread(p);
-                            Timer timer =new Timer(1000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
+                            Timer timer = new Timer(1000*points[points.Count - 1].DistanceTo(ObjectManager.ObjectManager.Me.Position)/3);
 
                             while (LongMove.IsLongMove && !timer.IsReady &&
                                    ObjectManager.ObjectManager.Me.Position.DistanceTo2D(p) > 10)

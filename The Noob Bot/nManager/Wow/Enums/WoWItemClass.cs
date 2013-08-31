@@ -58,8 +58,7 @@ namespace nManager.Wow.Enums
         Shield = 6,
         Libram = 7,
         Idol = 8,
-        Totem =9,
+        Totem = 9,
         Sigil = 10
     }
-
 }

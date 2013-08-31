@@ -115,8 +115,8 @@ namespace The_Noob_Bot
                 }
 
                 string whisper = channelWhisper.Aggregate("",
-                                                       (current, cw) =>
-                                                       cw.Replace("~", "-").Replace("|", "-") + "~" + current);
+                                                          (current, cw) =>
+                                                          cw.Replace("~", "-").Replace("|", "-") + "~" + current);
                 whisper = whisper.Replace("[Whisper]", "");
 
                 Logging.LogType flag = Logging.LogType.S;
