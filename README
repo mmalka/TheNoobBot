@@ -1,1 +1,24 @@
-TheNoobBot, a world of warcraft bot software.
+TheNoobBot is a software that intend to reproduce real players movements in the World of Warcraft environment.
+
+The bot do uses Injection of ASM for Click To Move, Interact, Lua Executions.
+The bot do read the WoW memory by retrieving the offsets addresses of the usefuls value from the executable file.
+
+TheNoobBot project have been public since 17 february 2013, for the WoW version 4.3.3 and the project is still active as of expansion Mists of Pandaria.
+
+
+Importants things to do for 5.4.0 support:
+
+Find a solution to the new DBC system, SpellDBC can be temp-fixed by using a LUA + internal caching (list), but DBC like LockDBC will cause troubles.
+There should be a way to keep reading DBC like before, they are maybe just encrypted, or cached in another part of the memory.
+
+
+Ideas to realizes
+
+Make sure the FailOver auth server is working well, and merge the Mesh server on it so we can get separated from the Mesh server (useless cost).
+
+Implement a loot tracking system, that will be able to provide statistic on the collections of a defined ItemId or GameObjectId,
+can provides "all time, last 24h, last 48h, last week, last month, last year" informations, with graphs.
+
+Implement/Test the Melee Control Manager system (currently on stand-by).
+
+Implement/Test the InteractWithBeta functions that will allow us to interact with an Unit/Object without walking to it.
