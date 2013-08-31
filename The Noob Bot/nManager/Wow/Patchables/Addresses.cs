@@ -16,11 +16,11 @@
         public enum ObjectManager
         {
             objectManager = 0x462C,
-            firstObject = 0xCC, // to change or verify
-            nextObject = 0x34, // to change or verify
-            localGuid = 0xE0, // to change or verify
-            objectGUID = 0x28, // to change or verify
-            objectTYPE = 0xC, // to change or verify
+            firstObject = 0xCC,
+            nextObject = 0x34,
+            localGuid = 0xE0,
+            objectGUID = 0x28,
+            objectTYPE = 0xC,
         }
 
         /// <summary>
@@ -37,8 +37,8 @@
         /// [[base+offset1]+offset2]
         public enum MovementFlags
         {
-            offset1 = 0xE4, // to change or verify
-            offset2 = 0x38, // to change or verify
+            offset1 = 0xE4,
+            offset2 = 0x38,
             MovingForward = 0x1,
             MovingBackwards = 0x2,
             StrafingLeft = 0x4,
@@ -55,9 +55,9 @@
         public enum Party
         {
             PartyOffset = 0xDAA1AC,
-            NumOfPlayers = 0xC4, // to change or verify
-            NumOfPlayers_SuBGroup = 0xC8, // to change or verify
-            PlayerGuid = 0x10, // to change or verify
+            NumOfPlayers = 0xC4,
+            NumOfPlayers_SuBGroup = 0xC8,
+            PlayerGuid = 0x10,
         }
 
         public enum PetBattle
@@ -128,15 +128,15 @@
         /// </summary>
         public enum UnitField
         {
-            UNIT_SPEED = 0x788, // to change or verify
-            UNIT_FIELD_X = 0x7F8, // to change or verify
-            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4, // to change or verify
-            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8, // to change or verify
-            UNIT_FIELD_R = UNIT_FIELD_X + 0x10, // to change or verify
-            CastingSpellID = 0xC60, // to change or verify // Script_UnitCastingInfo
-            ChannelSpellID = 0xC78, // to change or verify // Script_UnitChannelInfo
-            TransportGUID = 0x7F0, // to change or verify // CGUnit_C__HasVehicleTransport
-            DBCacheRow = 0x974, // to change or verify // CGUnit_C__GetUnitName
+            UNIT_SPEED = 0x788, // to change or verify // 0xE4 ?
+            UNIT_FIELD_X = 0x7F8, // to change or verify // 0x10 ?
+            UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
+            UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
+            UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
+            CastingSpellID = 0xCB0, // Script_UnitCastingInfo
+            ChannelSpellID = 0xCC8, // Script_UnitChannelInfo
+            TransportGUID = 0x828, // CGUnit_C__HasVehicleTransport
+            DBCacheRow = 0x9AC, // CGUnit_C__GetUnitName
             CachedName = 0x6C, // to change or verify // CGUnit_C__GetUnitName
         }
 
@@ -145,14 +145,14 @@
         /// </summary>
         public enum GameObject
         {
-            GAMEOBJECT_FIELD_X = 0xF0, // to change or verify
-            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4, // to change or verify
-            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8, // to change or verify
-            DBCacheRow = 0x1B8, // to change or verify
-            CachedName = 0xB0, // to change or verify
-            CachedData0 = 0x14, // to change or verify
-            CachedData1 = 0x18, // to change or verify
-            CachedData8 = 0x34, // to change or verify // (Data0 + 8 * 0x04)
+            GAMEOBJECT_FIELD_X = 0xF0,
+            GAMEOBJECT_FIELD_Y = GAMEOBJECT_FIELD_X + 0x4,
+            GAMEOBJECT_FIELD_Z = GAMEOBJECT_FIELD_X + 0x8,
+            DBCacheRow = 0x1B8, // CGGameObject_C__GetName
+            CachedName = 0xB0, // CGGameObject_C__GetName_2
+            CachedData0 = 0x14,
+            CachedData1 = 0x18,
+            CachedData8 = 0x34, // (Data0 + 8 * 0x04)
         }
 
         /// <summary>
@@ -170,7 +170,7 @@
         /// </summary>
         public enum Fishing
         {
-            BobberHasMoved = 0xC4, // to change or verify
+            BobberHasMoved = 0xC4,
         }
 
         /// <summary>
@@ -199,10 +199,10 @@
         public enum ClickToMove
         {
             CTM = 0xCF99D0,
-            CTM_PUSH = CTM + 0x1C, // to verify
-            CTM_X = CTM + 0x8C, // to verify
-            CTM_Y = CTM_X + 0x4, // to verify
-            CTM_Z = CTM_Y + 0x4, // to verify
+            CTM_PUSH = CTM + 0x1C,
+            CTM_X = CTM + 0x8C,
+            CTM_Y = CTM_X + 0x4,
+            CTM_Z = CTM_Y + 0x4,
         }
 
         /// <summary>
@@ -218,14 +218,14 @@
         /// </summary>
         public enum FunctionWow
         {
-            ClntObjMgrGetActivePlayer = 0x3932B8,
-            FrameScript_ExecuteBuffer = 0x506C4,
-            CGUnit_C__InitializeTrackingState = 0x41850B,
-            ClntObjMgrGetActivePlayerObj = 0x4ED1,
-            FrameScript__GetLocalizedText = 0x40D03E,
-            CGWorldFrame__Intersect = 0x5E0D4A,
-            Spell_C_HandleTerrainClick = 0x387BDE,
-            Interact = 0x8BA9E7,
+            ClntObjMgrGetActivePlayer = 0x3930BF,
+            FrameScript_ExecuteBuffer = 0x5073E,
+            CGUnit_C__InitializeTrackingState = 0x4185F6,
+            ClntObjMgrGetActivePlayerObj = 0x4DE0,
+            FrameScript__GetLocalizedText = 0x40D186,
+            CGWorldFrame__Intersect = 0x5E0DC0,
+            Spell_C_HandleTerrainClick = 0x387ACF,
+            Interact = 0x8BA907,
         }
 
         /// <summary>
@@ -243,10 +243,10 @@
         /// </summary>
         public enum PlayerNameStore
         {
-            nameStorePtr = 0xC71680 + 0x8, // to verify the + 0x8
-            nameMaskOffset = 0x024, // to verify
-            nameBaseOffset = 0x18, // to verify
-            nameStringOffset = 0x21, // to verify
+            nameStorePtr = 0xC71680 + 0x8,
+            nameMaskOffset = 0x24,
+            nameBaseOffset = 0x18,
+            nameStringOffset = 0x21,
         }
 
         /// <summary>
@@ -254,7 +254,7 @@
         /// </summary>
         public enum Login
         {
-            realmName = 0xEABFE8 + 0x6, // to verify + 0x6
+            realmName = 0xEABFE8 + 0x6,
             battlerNetWindow = 0xC803E0,
             //battleNetAccountId = 0xEAB898, // like in the /WTF/Account directory
         }
@@ -290,13 +290,14 @@
         /// </summary>
         public enum UnitBaseGetUnitAura
         {
-            AURA_COUNT_1 = 0x10F8, // to change or verify
-            AURA_COUNT_2 = 0xDF8, // to change or verify
-            AURA_TABLE_1 = 0xDF8, // to change or verify
-            AURA_TABLE_2 = 0xDFC, // to change or verify
-            AURA_SIZE = 0x30, // to change or verify
-            AURA_SPELL_ID = 0x18, // to change or verify
+            AURA_COUNT_1 = 0x1238,
+            AURA_COUNT_2 = 0xE38,
+            AURA_TABLE_1 = 0xE38,
+            AURA_TABLE_2 = 0xE3C,
+            AURA_SIZE = 0x30, // to verify, ida show i<<6 rather than i*0x30
+            AURA_SPELL_ID = 0x28,
             AURA_STACK = 0x1D, // to change or verify
+            AURA_SPELL_START = 0x24,
         }
 
         /// <summary>
