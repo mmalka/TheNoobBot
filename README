@@ -8,8 +8,10 @@ TheNoobBot project have been public since 17 february 2013, for the WoW version 
 
 Importants things to do for 5.4.0 support:
 
-Find a solution to the new DBC system, SpellDBC can be temp-fixed by using a LUA + internal caching (list), but DBC like LockDBC will cause troubles.
-There should be a way to keep reading DBC like before, they are maybe just encrypted, or cached in another part of the memory.
+Find a solution to the new DBC system, SpellDBC and SpellMiscDBC have changed their way of being read to get informations like "SpellName InGame" (client lang) can be temp-fixed by using a LUA + internal caching (list), others DBC seems not affected.
+There should be a way to keep reading DBC like before, they are maybe just encrypted, we can analyze how LUA reads them the first time to get them.
+They are possbility now server-side, like items names, and will be cached in WDA files after they got read once, will allow more maniability from Blizzard servers.
+It still possible to extract the DBC from the MPQ though... (But wont work as we need to fit client language)
 
 
 Ideas to realizes
