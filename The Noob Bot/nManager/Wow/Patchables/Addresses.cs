@@ -70,17 +70,17 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xC08178, // to change or verify
-            ItemSubClass = 0xC08594, // to change or verify
-            Spell = 0xC099B0, // to change or verify
-            SpellCastTimes = 0xC09488, // to change or verify
-            SpellRange = 0xC09958, // to change or verify
-            SpellMisc = 0xC0987C, // to change or verify
-            FactionTemplate = 0xC07888, // to change or verify
-            Lock = 0xC088D8, // to change or verify
-            Map = 0xC0A740, // to change or verify
-            ResearchSite = 0xC09010, // to change or verify
-            QuestPOIPoint = 0xC08E58, // to change or verify
+            ItemClass = 0xBBA8D4,
+            ItemSubClass = 0xBBACF0,
+            Spell = 0xBBC10C,
+            SpellCastTimes = 0xBBBB8C,
+            SpellRange = 0xBBC088,
+            SpellMisc = 0xBBBFAC,
+            FactionTemplate = 0xBBA010,
+            Lock = 0xBBB060,
+            Map = 0xBBCE04,
+            ResearchSite = 0xBBB740,
+            QuestPOIPoint = 0xBBB588,
         }
 
         /// <summary>
