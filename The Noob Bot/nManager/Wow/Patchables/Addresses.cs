@@ -294,7 +294,7 @@
             AURA_COUNT_2 = 0xE38,
             AURA_TABLE_1 = 0xE38,
             AURA_TABLE_2 = 0xE3C,
-            AURA_SIZE = 0x30, // to verify, ida show i<<6 rather than i*0x30
+            AURA_SIZE = 0x40,
             AURA_SPELL_ID = 0x28,
             AURA_STACK = 0x1D, // to change or verify
             AURA_SPELL_START = 0x24,
