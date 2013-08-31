@@ -70,17 +70,17 @@
         /// </summary>
         public enum DBC
         {
-            ItemClass = 0xBBA8D4,
-            ItemSubClass = 0xBBACF0,
-            Spell = 0xBBC10C,
-            SpellCastTimes = 0xBBBB8C,
-            SpellRange = 0xBBC088,
-            SpellMisc = 0xBBBFAC,
-            FactionTemplate = 0xBBA010,
-            Lock = 0xBBB060,
-            Map = 0xBBCE04,
-            ResearchSite = 0xBBB740,
-            QuestPOIPoint = 0xBBB588,
+            ItemClass = 0xC763D8,
+            ItemSubClass = 0xC76850,
+            Spell = 0xC77DA0,
+            SpellCastTimes = 0xC777C8,
+            SpellRange = 0xC77D1C,
+            SpellMisc = 0xC77BE8,
+            FactionTemplate = 0xC75A90,
+            Lock = 0xC76C18,
+            Map = 0xC78ADC,
+            ResearchSite = 0xC77350,
+            QuestPOIPoint = 0xC77198,
         }
 
         /// <summary>
