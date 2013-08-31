@@ -129,7 +129,7 @@
         public enum UnitField
         {
             UNIT_SPEED = 0x788, // to change or verify // 0xE4 ?
-            UNIT_FIELD_X = 0x7F8, // to change or verify // 0x10 ?
+            UNIT_FIELD_X = 0x830,
             UNIT_FIELD_Y = UNIT_FIELD_X + 0x4,
             UNIT_FIELD_Z = UNIT_FIELD_X + 0x8,
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,

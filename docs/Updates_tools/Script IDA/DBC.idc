@@ -4,8 +4,9 @@
 static main(){
     auto curAddr, xref, count, sPath, hFile;
  
-	// WowClientDB_Common__Load - 4.2.2 build 14545
-	curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 81 EC 08 01 00 00 53 56 57 8B 7D 08 8D" );
+	//curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 81 EC 08 01 00 00 56 57 8B 7D 08 8D 45 FC 50 FF 37 33 F6 89 4D F8" ); //17128
+ 
+    curAddr = FindBinary( 0, SEARCH_DOWN, "55 8B EC 81 EC 08 01 00 00 53 57 8B 7D 08 8D 45 FC 50 FF 37 33 DB 89 4D F8" ); //17345
  
     if ( curAddr == BADADDR ){
         Message("Can't find WowClientDB_Common__Load, aborting...\n");
@@ -18,10 +19,7 @@ static main(){
 	// open our header file
 	hFile = fopen( sPath, "w" );
 	if ( hFile != -1 ){
-		fprintf( hFile, "// %s\n", GetWoWVersionString() );
-		fprintf( hFile, "/*----------------------------------\n" );
-		fprintf( hFile, "Client DB Dumper 14545 - IDC Script\n" );
-		fprintf( hFile, "by Tanaris4\n\n" );
+		fprintf( hFile, "Client DB Dumper - IDC Script\n" );
 		fprintf( hFile, "Credits:\n" );
 		fprintf( hFile, "Kynox\n" );
 		fprintf( hFile, "-----------------------------------*/\n\n" );
@@ -84,7 +82,7 @@ static main(){
  
 			// save to file!
 			if ( hFile != -1 ){
-				fprintf( hFile, "\t%sDBTable = 0x%X,\n", dbName, dbStruct );
+				fprintf( hFile, "\t%sDBTable = 0x%X,\n", dbName, dbStruct);
 			}
  
 			// IDA doesn't make these dwords dammit! Let's do it!
