@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
                 _rItemClassRec0 = _rItemClassDBC.GetRow(id);
                 if (_rItemClassRec0.ClassId == id)
                 {
-                    string temp = _rItemClassDBC.String(_rItemClassRec0.ClassNameOffset);
+                    string temp = Name;
                     if (temp == name)
                     {
                         return;

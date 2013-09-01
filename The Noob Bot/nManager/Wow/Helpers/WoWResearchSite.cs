@@ -18,7 +18,7 @@ namespace nManager.Wow.Helpers
                 _rSiteDBCRecord0 = _rSiteDBC.GetRow(id);
                 if (_rSiteDBCRecord0.Id == id)
                 {
-                    string temp = _rSiteDBC.String(_rSiteDBCRecord0.NameOffset);
+                    string temp = Name;
                     if (temp == name)
                     {
                         return;
