@@ -4,6 +4,7 @@
 5;Death Touch
 7;Suicide
 10;Blizzard
+12;Hot Foot (TEST)
 13;Swim Speed (TEST)
 14;Mana Drain
 17;Power Word: Shield
@@ -4103,6 +4104,7 @@
 14145;Fire Blast
 14146;Clone
 14147;Acid Slime
+14161;Ruthlessness
 14172;Serrated Blades
 14178;Sticky Tar
 14180;Sticky Tar
@@ -8480,7 +8482,6 @@
 23974;Summon Frenzied Bloodseeker Bats
 23978;Speed
 23979;Ancient Power
-23989;Readiness
 23990;Item - Minor Run Speed
 23991;Damage Absorb
 24002;Tranquilizing Poison
@@ -9874,7 +9875,7 @@
 26735;Increase Shadow Dam 67
 26736;Increase Shadow Dam 70
 26737;Increase Shadow Dam 72
-26740;Gnomish Mind Control Cap
+26740;Mind Amplification Dish
 26745;Bolt of Netherweave
 26746;Netherweave Bag
 26747;Bolt of Imbued Netherweave
@@ -18953,6 +18954,7 @@
 40907;Wrangle Aether Rays: Summon Wrangled Aether Ray
 40909;Trope's Slime Cannon
 40917;Wrangle Aether Rays: Character Force Cast
+40924;Threat
 40926;Wrangle Aether Rays: Wrangling Rope Channel
 40927;Akama Soul Expel Channel
 40928;Ichman's Blazing Fireball
@@ -24101,7 +24103,7 @@
 47852;Flight Path - Transitus Shield to Warsong Hold
 47853;Flight Path - Transitus Shield to Valiance Keep
 47854;Frozen Prison
-47897;Breath of Gul'dan
+47897;Demonic Breath
 47898;Enchant Cloak - Greater Speed
 47899;Enchant Cloak - Wisdom
 47900;Enchant Chest - Super Health
@@ -26311,7 +26313,6 @@
 51359;Venture Company Beatdown
 51360;Venture Company Beatdown
 51361;Holy Channeling
-51362;Fire Cannon
 51363;Shadow Bolt
 51364;Copy of Discombobulator Ray
 51365;Nature Wave
@@ -27069,7 +27070,7 @@
 52412;Darmuk Kill Credit Pulse
 52413;Darmuk Kill Credit to Master
 52414;Drag Mine Cart
-52415;Retrieve Seaforium
+52415;Carrying Seaforium
 52416;Summon Mine Cart
 52417;Drop Seaforium Charge
 52418;Carrying Seaforium
@@ -28825,8 +28826,8 @@
 54867;Regrowth
 54868;Rejuvenation
 54869;Healing Touch
-54870;Lifebloom
-54871;The Moonbeast
+54870;Efflorescence
+54871;Guided Stars
 54872;The Orca
 54873;Hurricane
 54874;Skull Bash
@@ -28880,7 +28881,7 @@
 54927;Glyph of Avenging Wrath
 54928;Glyph of Consecration
 54930;Glyph of Focused Shield
-54931;Glyph of Turn Evil
+54931;Glyph of Burden of Guilt
 54932;Aerial Leap
 54933;Hyldnir Harpoon
 54934;Glyph of Blinding Light
@@ -29042,7 +29043,7 @@
 55102;Determined Gore
 55104;Determined Stab
 55106;Numbing Shout
-55109;Rebuke
+55109;Devotion Aura
 55110;Holy Wrath
 55111;Divine Protection
 55112;Templar's Verdict
@@ -29050,7 +29051,7 @@
 55114;Consecration
 55115;Luminous Charger
 55116;Focused Shield
-55117;Turn Evil
+55117;Burden of Guilt
 55118;Blinding Light
 55119;Final Wrath
 55120;Word of Glory
@@ -29452,7 +29453,7 @@
 55664;Cosmetic - Drunken Intoxication (Visual Only)
 55665;Life Drain
 55672;Glyph of Power Word: Shield
-55673;Glyph of Lightwell
+55673;Glyph of Deep Wells
 55675;Glyph of Circle of Healing
 55676;Glyph of Psychic Scream
 55677;Glyph of Purify
@@ -29858,7 +29859,7 @@
 56166;Inner Sanctum
 56167;Holy Nova
 56168;Inner Fire
-56169;Lightwell
+56169;Deep Wells
 56170;Mass Dispel
 56171;Psychic Horror
 56172;Holy Fire
@@ -29974,9 +29975,9 @@
 56288;Health Funnel
 56289;Healthstone
 56290;Subtlety
-56291;Dark Soul
+56291;Curse of the Elements
 56292;Imp Swarm
-56293;Soul Swap
+56293;Havoc
 56294;Shadow Bolt
 56297;Soulstone
 56299;Carrion Swarm
@@ -30031,7 +30032,7 @@
 56368;Glyph of Combustion
 56375;Glyph of Polymorph
 56376;Glyph of Frost Nova
-56377;Glyph of Ice Lance
+56377;Glyph of Splitting Ice
 56378;Summon Disc
 56379;Spear Chain Beam
 56380;Glyph of Evocation
@@ -30224,9 +30225,9 @@
 56589;Frost Nova
 56591;Momentum
 56592;Ice Block
-56593;Ice Lance
+56593;Splitting Ice
 56594;Cone of Cold
-56596;Invisibility
+56596;Rapid Displacement
 56597;Mana Gem
 56599;Crittermorph
 56600;Polymorph
@@ -30420,7 +30421,6 @@
 56818;Glyph of Blade Flurry
 56819;Glyph of Smoke Bomb
 56820;Glyph of Crippling Poison
-56821;Glyph of Adrenaline Rush
 56825;Arcane Explosion
 56827;Aura of Arcane Haste
 56829;Glyph of Misdirection
@@ -30516,7 +30516,7 @@
 56946;Glyph of Hurricane
 56947;Glyph of Innervate
 56948;Glyph of the Orca
-56949;Glyph of Lifebloom
+56949;Glyph of Efflorescence
 56950;Glyph of the Stag
 56951;Glyph of Savagery
 56952;Glyph of Pounce
@@ -30526,7 +30526,7 @@
 56956;Glyph of Prowl
 56957;Glyph of Shred
 56958;Glyph of Skull Bash
-56959;Glyph of The Moonbeast
+56959;Glyph of Guided Stars
 56960;Glyph of Stampede
 56961;Glyph of Maul
 56963;Glyph of Nature's Grasp
@@ -30541,9 +30541,9 @@
 56976;Glyph of Frost Nova
 56978;Glyph of Momentum
 56979;Glyph of Ice Block
-56980;Glyph of Ice Lance
+56980;Glyph of Splitting Ice
 56981;Glyph of Cone of Cold
-56983;Glyph of Invisibility
+56983;Glyph of Rapid Displacement
 56984;Glyph of Mana Gem
 56986;Glyph of Crittermorph
 56987;Glyph of Polymorph
@@ -30585,7 +30585,7 @@
 57030;Glyph of Double Jeopardy
 57031;Glyph of Divinity
 57032;Glyph of the Luminous Charger
-57033;Glyph of Rebuke
+57033;Glyph of Devotion Aura
 57034;Glyph of Blessed Life
 57035;Glyph of Light of Dawn
 57036;Glyph of Turn Evil
@@ -30650,11 +30650,11 @@
 57113;Glyph of Ambush
 57114;Glyph of Decoy
 57115;Glyph of Blade Flurry
-57116;Glyph of Crippling Poison
+57116;Glyph of Sharp Knives
 57117;Glyph of Recuperate
 57118;Wicked Coil
 57119;Glyph of Evasion
-57120;Glyph of Debilitation
+57120;Glyph of Recovery
 57121;Glyph of Expose Armor
 57122;Glyph of Feint
 57123;Glyph of Garrote
@@ -30663,9 +30663,9 @@
 57126;Glyph of Hemorrhage
 57127;Glyph of Smoke Bomb
 57128;Glyph of Cheap Shot
-57129;Glyph of Sap
+57129;Glyph of Hemorraghing Veins
 57130;Glyph of Kick
-57131;Glyph of Adrenaline Rush
+57131;Glyph of Redirect
 57132;Glyph of Shiv
 57133;Glyph of Sprint
 57138;Refreshment
@@ -30674,10 +30674,10 @@
 57141;Decoy
 57142;Blade Flurry
 57143;Life Burst
-57144;Crippling Poison
+57144;Sharp Knives
 57145;Recuperate
 57146;Evasion
-57147;Debilitation
+57147;Recovery
 57148;Expose Armor
 57149;Feint
 57150;Garrote
@@ -30775,9 +30775,9 @@
 57265;Glyph of Health Funnel
 57266;Glyph of Healthstone
 57267;Glyph of Subtlety
-57268;Glyph of Dark Soul
+57268;Glyph of Curse of the Elements
 57269;Glyph of Imp Swarm
-57270;Glyph of Soul Swap
+57270;Glyph of Havoc
 57271;Glyph of Shadow Bolt
 57274;Glyph of Soulstone
 57275;Glyph of Carrion Swarm
@@ -30798,10 +30798,10 @@
 57296;Hemorrhage
 57297;Smoke Bomb
 57298;Cheap Shot
-57299;Sap
+57299;Hemorraghing Veins
 57300;Kick
 57301;Great Feast
-57302;Adrenaline Rush
+57302;Redirect
 57303;Shiv
 57304;Sprint
 57305;Point
@@ -35909,7 +35909,7 @@
 63872;Dispersion
 63873;Leap of Faith
 63874;Penance
-63875;Dark Binding
+63875;Focused Mending
 63876;Mind Spike
 63877;Binding Heal
 63878;Vendetta
@@ -35960,7 +35960,7 @@
 63934;Arcane Barrage
 63936;Brazier Bunny Flare
 63937;Demonic Circle
-63938;Shadowflame
+63938;Unending Resolve
 63939;Darkshore Corruption
 63940;Darkshore Corruption
 63941;Life Tap
@@ -35970,7 +35970,7 @@
 63946;Force Cast Summon Krokk
 63947;Lifebinder's Gift Heal
 63948;Death From Above
-63949;Furious Sundering
+63949;Victorious Throw
 63950;Intimidating Shout
 63951;Spell Reflection
 63952;Shield Wall
@@ -36234,7 +36234,7 @@
 64252;Glyph of Shield Wall
 64253;Glyph of Master's Call
 64254;Glyph of Holy Shock
-64255;Glyph of Furious Sundering
+64255;Glyph of Victorious Throw
 64256;Glyph of Barkskin
 64257;Glyph of Deep Freeze
 64258;Glyph of Cyclone
@@ -36284,9 +36284,9 @@
 64306;Call Withered Ent
 64307;Glyph of Stampeding Roar
 64308;Glyph of the Alabaster Shield
-64309;Glyph of Dark Binding
+64309;Glyph of Focused Mending
 64310;Glyph of Tricks of the Trade
-64311;Glyph of Shadowflame
+64311;Glyph of Unending Resolve
 64312;Glyph of Intimidating Shout
 64313;Glyph of Might of Ursoc
 64314;Glyph of Mirror Image
@@ -41293,7 +41293,7 @@
 70943;Raptor Lasso Credit
 70944;Forcecast Raptor Summon Aura
 70946;Vampiric Bite
-70948;Everlasting Affliction
+70948;Eternal Resolve
 70949;Essence of the Blood Queen
 70950;Essence of the Blood Queen
 70951;Cosmetic - Flies (Chest)
@@ -41415,7 +41415,7 @@
 71096;It's A Town-In-A-Box: Summon Smoke Bunny 03
 71097;It's A Town-In-A-Box: Summon Smoke Bunny 04
 71101;Glyph of Counterspell
-71102;Glyph of Everlasting Affliction
+71102;Glyph of Eternal Resolve
 71103;Combobulating Spray
 71110;Aura of Darkness
 71114;Massive Stomp
@@ -43731,7 +43731,7 @@
 74403;Flame Breath
 74408;Cosmetic - Balance of Nature Impact
 74409;Seal Dream Portal
-74410;Arena - Dampening
+74410;Arena - Passive Player Aura
 74411;Battleground - Dampening
 74412;Emergency Recall
 74413;Attack
@@ -45538,7 +45538,7 @@
 76610;Earth Shock
 76611;Arcane Missiles
 76612;Arcane Missiles
-76613;Mastery: Frostburn
+76613;Mastery: Icicles
 76615;Freeze Solid
 76616;Enslave
 76617;Heat Exhaustion
@@ -45610,7 +45610,6 @@
 76688;Bore
 76689;Ping Mountain Horses
 76690;Forcecast Ping Mountain Horses
-76691;Vengeance
 76692;Empowering Twilight
 76693;Empowering Twilight
 76694;Release Bait
@@ -48962,13 +48961,13 @@
 81258;Riverboat Trigger 02
 81260;Messner Boat Engine
 81261;Solar Beam
-81262;Swiftmend
+81262;Efflorescence
 81263;Riverboat Trigger 03
 81264;Riverboat Trigger 04
 81265;Riverboat Quest Credit
 81266;Apply Quest Invis Zone 11
 81267;Detect: Quest Invis Zone 11
-81269;Swiftmend
+81269;Efflorescence
 81270;Update Player Aura
 81271;Potion on Hip
 81272;Electrocute
@@ -49166,7 +49165,6 @@
 81582;Nefarian Phase 2 Health Aura
 81583;Apply Quest Invis Zone 14
 81584;Detect: Quest Invis Zone 14
-81585;Chakra: Serenity
 81586;Hurl Bone
 81607;Render's Valley Camera
 81608;Stone Trogg Net
@@ -53095,8 +53093,6 @@
 87208;Return to Blam: Summon Corruption 2
 87209;Return to Blam: Summon Corruption 3
 87211;I am a Wheelbarrow
-87212;Summon Shadowy Apparition
-87213;Summon Shadowy Apparition Spawn Effect
 87214;Alliance Banner
 87215;Shoot
 87217;Lean Left!
@@ -53229,7 +53225,6 @@
 87385;Seed of Corruption
 87387;Flame Breath
 87388;Soul Shard
-87389;Corruption
 87391;Viking Helmet
 87393;Corrosive Spray
 87395;Serrated Slash
@@ -53257,8 +53252,6 @@
 87423;Camera to Big Beam
 87424;See Quest Invis 10
 87425;See Quest Invis 11
-87426;Shadowy Apparition
-87427;Shadowy Apparition Visual
 87428;See Quest Invis 12
 87433;RG: Summon Rhea
 87434;RG: Summon Player Mirror Image
@@ -53319,9 +53312,7 @@
 87524;Extreme Unction
 87525;Rise to the Light
 87527;Fireball
-87529;Shadowy Apparition Death Visual
 87530;Remember the Light - Master Summon Trigger
-87532;Shadowy Apparition
 87534;Remember the Light - Summon Anchorite Avuun
 87536;Remember the Light - Summon Prophet Velen
 87538;Remember the Light - Summon Magtoor
@@ -57862,7 +57853,6 @@
 94226;See Quest Invis 26
 94227;See Quest Invis 27
 94228;See Quest Invis 28
-94229;Soul Swap Cooldown Marker
 94230;Entangling Roots Cooldown Marker
 94231;See Calen at Circle of Life [INTERNAL ONLY]
 94232;Summon Calen [INTERNAL ONLY]
@@ -64193,7 +64183,6 @@
 104003;Ox Follow Trigger
 104004;Ox Despawn Trigger
 104005;Light Scope
-104006;Corruption
 104007;Kick
 104008;Push
 104011;Stun
@@ -64272,7 +64261,6 @@
 104237;Golden Carp Consomme
 104238;Throw Kiryn's Poison
 104239;Horror
-104240;Soul Fire
 104241;[DND] Shan Escape
 104242;Unending Breath
 104243;Soulburn: Demonic Circle: Teleport
@@ -64738,7 +64726,6 @@
 105027;Cobalt Blood of Shu'ma
 105028;Empowered Channel: Health Funnel
 105029;See Quest Invis 2 (demon creator)
-105030;Empowered Channel: Drain Life
 105031;Digestive Acid
 105032;Phase Transition (Fist)
 105033;Searing Blood
@@ -65221,7 +65208,7 @@
 105631;Quest 36 III
 105632;Quest 39 I
 105633;Fetish Shaman
-105634;Reverse Death
+105634;Reverse Death (Black Vertex)
 105635;Return to the Shadows
 105636;Corrupted Minions
 105637;Corrupted Minions
@@ -66698,14 +66685,14 @@
 107951;Elusive
 107954;Chen's Resolution: Summon Chen
 107955;Chen's Resolution: Summon Li Li A
-107957;The Golden Dream Initialize
-107958;Summon Vehicle
+107957;The Golden Dream: Initialize
+107958;The Golden Dream: Play Scene
 107959;Summon Siege Breaker
 107960;Combat Trance
 107961;Item - Dragon Soul Stacking Agility Trinket
 107962;Expansive Mind
 107963;Item - Dragon Soul Stacking Healer Trinket
-107964;Golden Dream: Blackout and Teleport
+107964;The Golden Dream: Outro Transition
 107965;Twilight Beam
 107966;Titanic Strength
 107967;Item - Dragon Soul Stacking Strength Trinket
@@ -66915,7 +66902,7 @@
 108281;Ancestral Guidance
 108282;Conductivity
 108283;Echo of the Elements
-108284;Totemic Restoration
+108284;Totemic Persistence
 108285;Call of the Elements
 108287;Totemic Projection
 108288;Heart of the Wild
@@ -66935,8 +66922,6 @@
 108371;Harvest Life
 108373;Dream of Cenarius
 108374;Rising Fire Totem
-108381;Dream of Cenarius
-108382;Dream of Cenarius
 108386;Heart of the Wild
 108387;Update Zone Auras and Phase Shift
 108396;Mortal Coil
@@ -66958,7 +66943,6 @@
 108448;Raw Silk
 108449;Teleport Single - To Maelstrom
 108450;Despair
-108451;Soul Link
 108458;Throw Carrot Hard
 108463;Night Elf Illusion
 108464;Night Elf Illusion
@@ -66986,7 +66970,7 @@
 108501;Grimoire of Service
 108503;Grimoire of Sacrifice
 108504;Silky Belch
-108505;Archimonde's Vengeance
+108505;Archimonde's Darkness
 108508;Mannoroth's Fury
 108513;Bronze Yell 2
 108514;Bronze Yell 3
@@ -67256,7 +67240,6 @@
 109138;Drunk Keg Carry
 109139;Drunk Keg Carry
 109140;Huo Anim Replacement
-109141;Vampiric Dominance
 109142;Twist of Fate
 109143;Trigger Master Shang Xi Final Escort Say
 109144;Force Trigger Master Shang Xi Final Escort Say
@@ -67962,7 +67945,7 @@
 110297;Sludge Spew
 110298;Noggenfogger Elixir [PH]
 110300;Burden of Guilt
-110301;Burden of Guilt
+110301;Evil is a Point of View
 110307;Morchok Siege Missile
 110309;Symbiosis
 110310;Dampening
@@ -68849,7 +68832,7 @@
 112038;Blanche's Boomer Brew Power Bar
 112039;Shadowpan Firework
 112040;Brew
-112041;Shadowpan Firework Explosion
+112041;Shado-Pan Firework Explosion
 112042;Threatening Presence
 112045;Runescroll of Fortitude III
 112048;Shield Barrier
@@ -68896,16 +68879,16 @@
 112266;Glyph of Bladed Judgment
 112429;Glyph of Crow Feast
 112430;Glyph of Burning Anger
-112437;Glyph of Crackling Jade Lightning
+112437;Glyph of Nimble Brew
 112440;Glyph of Paralysis
 112442;Glyph of Life Cocoon
 112444;Glyph of Touch of Karma
 112450;Glyph of Leer of the Ox
 112451;Glyph of Afterlife
 112452;Glyph of Sparring
-112454;Glyph of Stoneskin
+112454;Glyph of Detox
 112457;Glyph of Fortifying Brew
-112458;Glyph of Uplift
+112458;Glyph of Targeted Expulsion
 112460;Glyph of Zen Flight
 112461;Glyph of Water Roll
 112462;Glyph of Crackling Tiger Lightning
@@ -68939,7 +68922,6 @@
 112857;Natural Insight
 112858;Spiritual Insight
 112859;Holy Insight
-112862;Vampiric Dominance
 112865;Aggressive Poison
 112866;Summon Fel Imp
 112867;Summon Voidlord
@@ -68997,7 +68979,6 @@
 112932;Ring of Malice
 112933;Ring of Malice
 112934;Capturing
-112938;Archimonde's Vengeance
 112942;Shadow Focus
 112944;Carrot Breath
 112945;Carrot Breath
@@ -69606,7 +69587,6 @@
 114223;Glyph of Survival Instincts
 114224;Binan Village: Area Trigger Mayor Talk Controller Aura
 114225;Intro Ending
-114228;Glyph of Lifebloom
 114231;Lilian Cosmetic
 114232;Sanctified Wrath
 114233;Jade Delivery
@@ -70253,18 +70233,9 @@
 115094;Summon Manifestation of Fear
 115097;Siphon Water
 115098;Chi Wave
-115099;Dark Soul: Misery
-115100;Dark Soul: Misery Cooldown
 115101;Blanche's Boomer Brew Power Button
 115102;Summon Shazboodle Exposition 001
-115103;Dark Soul: Knowledge
-115104;Dark Soul: Knowledge Cooldown
-115107;Dark Soul: Instability
-115109;Dark Soul: Instability Cooldown
 115110;Acid Bomb
-115112;Dark Soul: Misery
-115113;Dark Soul: Knowledge
-115114;Dark Soul: Instability
 115115;Summon Experienced Guide
 115129;Expel Harm
 115130;Whirl of Illusion
@@ -70700,7 +70671,6 @@
 115703;Glyph of Counterspell
 115704;Dashing Strike
 115705;Glyph of Cone of Cold
-115707;Harvest Life
 115710;Glyph of Deep Freeze
 115711;Packing a Packer Pack
 115713;Glyph of Spellsteal
@@ -71058,7 +71028,6 @@
 116202;Aura of the Elements
 116203;Glyph of Nature's Grasp
 116208;Metamorphosis: Cursed Auras
-116209;Glyph of the Moonbeast
 116215;Player Farm - Summon Tangled Green Cabbage
 116216;Glyph of Skull Bash
 116217;Choking Mist
@@ -71181,8 +71150,6 @@
 116400;Packless Packer Cleanup
 116401;Opening
 116402;Trigger Snow Visual (Off)
-116403;Archimonde's Vengeance
-116405;Archimonde's Vengeance Cooldown
 116406;Shadow Bolt
 116407;The Show Must Go On!: Fire Rockets
 116408;Huck Fish
@@ -72499,7 +72466,6 @@
 118595;Water Cosmetic
 118596;Protection of Zian
 118597;Boop!
-118599;Totemic Restoration
 118600;Chi Torpedo
 118601;Chi Torpedo
 118602;Throw Crops
@@ -72582,7 +72548,6 @@
 118714;Purified Water
 118715;Berserker Barrage
 118716;Phase 3
-118730;Divine Plea
 118736;Berserker Barrage
 118737;Pandaren Kite
 118748;Frenzied Hop
@@ -72617,7 +72582,6 @@
 118794;Delayed Activating Rod
 118795;Resin Residue
 118797;Achievement Complete
-118800;Conductivity
 118812;Conjured Items
 118819;Pollen Puff
 118823;Zin Spin
@@ -72763,7 +72727,6 @@
 119045;Flag on Corpse
 119046;Flying Mantid Eggs
 119047;Fake Stealth Despawn
-119050;Kil'jaeden's Cunning
 119051;Transcendence Clone Target
 119052;Transcendence Clone Target Trigger
 119053;Transcendence Clone Visual
@@ -73063,7 +73026,7 @@
 119719;Summon Nazgrim
 119722;Energy Cascade
 119724;Glyph of Expel Harm
-119725;Expel Harm
+119725;Rapid Rolling
 119726;Niuzao's Knockback Aura
 119727;Niuzao's Knockback
 119728;Throw Jade On Ground
@@ -73233,18 +73196,11 @@
 120000;Sha Corruption
 120001;Detonate
 120002;Detonate
-120003;Timed Fuse
 120004;Update Zone Auras and Phase Shift
-120007;Trial of Ice
-120009;Trial of Ice
-120010;Penalty! (-100)
 120011;Explosion
 120012;Summon Mogu Fleshrender Event
 120013;Gumweed
 120014;Calm Before the Storm
-120018;Fixate
-120019;Instability
-120020;Unstable Blast
 120022;Bloody Suicide
 120023;Ground Slam
 120024;Seismic Slam
@@ -73330,7 +73286,6 @@
 120137;Crossbow
 120138;Quest - Kun-Lai Summit - Cleanup Sha Pool Visual
 120139;Summon Crossbows
-120140;Timed Fuse
 120142;Dart
 120143;Dart
 120144;Portal Effect: Dalaran, Ancient
@@ -73458,9 +73413,6 @@
 120298;Spawn of Hatred
 120299;Voodoo Dolls in 5
 120300;Bind Spirit
-120301;Track Rotation
-120302;Frost Cutter
-120303;Frost Cutter
 120304;Horrendous Shout
 120307;Spawn Fodder Master
 120309;Fire Trap
@@ -73633,7 +73585,6 @@
 120551;Mantid Munitions Blast
 120552;Mantid Munition Explosion
 120553;Dual Wield
-120555;Shadowy Apparition
 120556;Waterspout
 120557;The Humble Grummle
 120558;Intimidation
@@ -73777,7 +73728,6 @@
 120812;Quest - Kun-Lai Summit - Keg Bomb Movement Tracker
 120813;Dashing Strike
 120814;Incantation of Amber
-120815;Rushing Jade Wind
 120816;Flying Serpent Kick
 120817;Relentless
 120822;Great Red Dragon Turtle
@@ -73939,7 +73889,6 @@
 121157;Challenge Mode - 0 Second GO
 121158;Challenge Mode - Completed Emote
 121159;Challenge Mode - Difficulty Aura
-121162;Charged Blast
 121163;Avenging Wrath
 121164;Orb of Power
 121165;Fireball
@@ -74320,7 +74269,6 @@
 121965;Jungle Bomber
 121966;Throw Keg
 121967;Throw Keg
-121968;Rain of Fire
 121969;Summon Spilled Brew
 121970;Trapped!
 121971;Abandon
@@ -74730,7 +74678,6 @@
 122512;Summon Sonic Rings - Forward and Back
 122513;Attenuation
 122514;Attenuation
-122515;Dream of Cenarius Active!
 122516;Consume Amber
 122518;Clear Has Barrel
 122519;Dashing Strike
@@ -75707,11 +75654,8 @@
 123656;Dizzying Haze Cosmetic
 123657;Breath of Fire Cosmetic
 123658;Ox Statue Shield Cosmetic
-123659;Rushing Jade Wind
 123662;Keg Smash Cosmetic
-123664;Rushing Jade Wind
 123666;Summon Thunder Cleft Conversation Bunny 1
-123671;Glyph of Dark Binding
 123672;Summon Thunder Cleft Conversation Bunny 2
 123674;Amber Residue
 123675;Invisibility Detection 11
@@ -75967,7 +75911,7 @@
 123991;Garalon Cosmetic Intro
 123992;Azure Cloud Serpent
 123993;Golden Cloud Serpent
-123995;<DNT> Invoke Xuen, White Tiger Celestial Visual
+123995;Invoke Xuen, the White Tiger
 123996;Crackling Tiger Lightning
 123997;Wild Cleave
 123998;Wild Cleave
@@ -76017,7 +75961,6 @@
 124046;Create Arrow Trap Area Trigger
 124048;Demolish
 124050;Launch Quest
-124051;Archimonde's Vengeance
 124052;Ginseng Tea
 124053;Jade Witch Brew
 124054;Mad Brewer's Breakfast
@@ -76363,7 +76306,7 @@
 124445;Glyph of Fists of Fury
 124446;Glyph of Clash
 124447;Glyph of Enduring Healing Sphere
-124448;Glyph of Expel Harm
+124448;Glyph of Rapid Rolling
 124449;Glyph of Guard
 124450;Glyph of Mana Tea
 124451;Glyph of Zen Meditation
@@ -76377,7 +76320,7 @@
 124459;Glyph of Mind Flay
 124460;Glyph of Vampiric Embrace
 124461;Glyph of Shadow Word: Death
-124463;Glyph of Retreat
+124463;Glyph of Fortuitous Spheres
 124464;Shadow Word: Pain
 124465;Vampiric Touch
 124466;Glyph of the Heavens
@@ -76737,7 +76680,7 @@
 124968;Retreat
 124969;Glyph of Retreat
 124970;Super Chi Blast
-124971;Retreat
+124971;Fortuitous Spheres
 124973;Give Ancient Pandaren Fishing Pole
 124974;Nature's Vigil
 124975;Shadow Detonation
@@ -76909,7 +76852,7 @@
 125165;Zouchin Archer Quiver
 125167;Ancient Pandaren Fishing Charm
 125169;Glyph of Stoneskin
-125170;Stoneskin
+125170;Detox
 125174;Touch of Karma
 125175;Paragon Amber State
 125176;Tremors
@@ -77015,7 +76958,6 @@
 125311;Bananarang
 125312;Blade Tempest
 125313;Mogu'shan Palace - Spotlight
-125314;Harvest Life
 125315;Ground Slam
 125316;Ground Slam
 125317;Bananarang
@@ -77324,7 +77266,7 @@
 125651;Sha Corruption Fountain
 125652;Parasitic Clutch
 125653;The Mariner's Revenge: Phase Aura
-125654;Crackling Jade Lightning
+125654;Nimble Brew
 125657;Smoked Blade
 125660;Glyph of Jab
 125661;Jab
@@ -77334,7 +77276,7 @@
 125667;Second Wind
 125668;Surrounding Mist
 125669;Glyph of Uplift
-125670;Uplift
+125670;Targeted Expulsion
 125671;Glyph of Fists of Fury
 125672;Fists of Fury
 125673;Glyph of Sparring
@@ -77691,9 +77633,9 @@
 126130;Flames of Doubt
 126131;Chomp
 126132;Chomp
-126133;Glyph of Lightspring
-126134;Lightspring
-126135;Lightspring
+126133;Glyph of Lightwell
+126134;Lightwell
+126135;Lightwell
 126136;Bind Lightning
 126137;Lightspring Trigger
 126138;Lightspring Driver
@@ -77706,11 +77648,11 @@
 126147;Growing Doubt
 126148;Croc Snack
 126149;Seed of Doubt
-126150;Lightspring Charges
+126150;Lightwell Charges
 126151;Overpowering Doubt
 126152;Glyph of Confession
 126153;Glyph of Confession
-126154;Lightspring Renew
+126154;Lightwell Renew
 126155;Talking Skull: Skull State Visual
 126156;Unerring Blades
 126157;Croc Snack
@@ -78377,7 +78319,7 @@
 126890;Eminence
 126891;Eminence
 126892;Zen Pilgrimage
-126893;Zen Pilgrimage Storage Aura I
+126893;Zen Pilgrimage/Death Gate/Moonglade Storage Aura I
 126895;Zen Pilgrimage: Return
 126896;Zen Pilgrimage: Return
 126897;Bataari Torch
@@ -78472,7 +78414,7 @@
 127005;Vortex Visibility
 127006;Yu'lon Kite
 127007;Yu'lon Kite
-127008;Chi-ji Kite
+127008;Chi-Ji Kite
 127009;Chi-ji Kite
 127010;Storm Totem
 127011;Summon Storm Totem
@@ -80196,7 +80138,7 @@
 129228;Klaxxi Mind Meld Sonic Missile 02
 129230;Klaxxi Mind Meld Sonic Missile 03
 129231;Klaxxi Mind Meld
-129232;Invoke Xuen, the White Tiger Spawn Smoke
+129232;Invoke Xuen, the White Tiger
 129233;Klaxxi Mind Meld Periodic 03
 129234;Ominous Cackle
 129235;Ominous Cackle
@@ -80213,7 +80155,6 @@
 129246;Scorched Earth Periodic Aura
 129247;Scorched Earth Exclusion Aura
 129248;Scorched Earth Periodic Aura
-129249;Shadow Word: Insanity
 129250;Power Word: Solace
 129253;Power Word: Solace
 129254;Summon Mishi
@@ -81074,7 +81015,7 @@
 130321;The Mission: Teleport Player
 130322;Crane Keg
 130323;Summon Skyfire Gyrocopter
-130324;Invoke Xuen, the White Tiger Eminence
+130324;Eminence
 130325;Song of Harmony
 130326;Riddle of Steel
 130327;Food
@@ -81323,8 +81264,6 @@
 130648;Grow Flower Patch
 130649;Life Spirit
 130650;Water Spirit
-130651;Chi Burst
-130652;Chi Burst
 130653;Luck of the Lotus
 130654;Chi Burst
 130655;Tense Roguestone
@@ -81427,7 +81366,7 @@
 130789;Ping Sully
 130790;Volley
 130791;Shoot
-130792;HMC Dummy Effect Periodic Aura
+130792;HMC Dummy Effect Periodic Aura A
 130793;Provoke
 130794;Summon Skyfire Gyrocopter Master, Town Global
 130795;Douse Flames
@@ -82720,7 +82659,7 @@
 132480;Throw Pigskin
 132482;Aura Tall - Yellow
 132483;Return Pigskin
-132562;Summon Transition Cho
+132562;Summon Transition Cho - Clean Up
 132563;Kick Foot Ball
 132564;Return Foot Ball
 132566;Seed of Corruption
@@ -82770,7 +82709,7 @@
 132651;Cheap Shot
 132652;Chain Heal
 132653;Stealth
-132654;Player Farm - Midnight Update
+132654;Player Farm - 3am Update
 132661;Firewall
 132662;Firewall
 132663;Firewall
@@ -83403,7 +83342,7 @@
 133590;Domination Point Banquet
 133591;Domination Point Banquet
 133592;Food
-133593;Well Fed
+133593;0.146199
 133594;Well Fed
 133595;Well Fed
 133596;Well Fed
@@ -83599,6 +83538,7 @@
 133829;Cone
 133831;Shank
 133835;Visage Tracker
+133836;[DND] Wolf Elite Visual
 133837;Hekima's Scorn
 133842;Stack 'Em High - Goob Carrying Lumber - 2
 133843;Fixate
@@ -83794,7 +83734,7 @@
 134079;Horde Safety Bubble Phase
 134080;Focused
 134081;See Acupuncture
-134082;Domination Point: Horde Landing Cinematic
+134082;Domination Point: Horde Landing Cinematic [UNUSED]
 134083;Domination Point: Teleport and Phase Update
 134084;Spirit Binding
 134085;Cosmetic - Crystalsong Sparkles (1.25)
@@ -84009,7 +83949,7 @@
 134351;Nether Bomb
 134352;Acid Splash
 134353;Acid Splash
-134359;Sky Claw
+134359;Sky Golem
 134361;Screech
 134363;Screech
 134364;Rockfall
@@ -84060,6 +84000,11 @@
 134419;Hunter's Mark Green
 134420;Fight the Jade Warlord
 134434;Snail Shell
+134435;Summon Genn Greymane
+134436;Summon Farseer Nobundo
+134437;Summon Tyrande Whisperwind
+134438;Summon Jaina Proudmoore
+134439;Summon Sha
 134441;Force Cast Summon Farseer Nobundo
 134442;Force Cast Summon Genn Greymane
 134443;Force Cast Summon Jaina Proudmoore
@@ -84481,7 +84426,6 @@
 134969;Arcane Assistance
 134970;Cleverly Disguised Bug
 134971;Cosmetic - Heroic Leap Effect
-134972;Immolate
 134973;Cataclysm
 134974;Blood Rage
 134976;Absolute Certitude
@@ -84878,9 +84822,7 @@
 135453;Settin' Stuff On Fire
 135454;Charge Main Tank
 135456;Ringing
-135457;Hammer of Fiery Wrath
 135458;Throwing Unstable Explosive
-135459;Hammer of Fiery Wrath
 135460;Update Phases
 135464;Radius Marker (with arrow)
 135465;Chaingun
@@ -85303,7 +85245,7 @@
 135951;DLA Hotfix 003
 135952;DLA Hotfix 004
 135953;Lion's Landing: Cinematic
-135954;Domination Point: Horde Landing Cinematic Aura
+135954;Domination Point: Horde Landing Cinematic
 135955;Domination Point: Horde Landing Cinematic
 135956;JLR Hotfix 000
 135957;JLR Hotfix 001
@@ -85747,7 +85689,6 @@
 136563;Filthy
 136564;Frozen Orb
 136565;Filthy
-136566;Zandalari Altar 2 Credit
 136567;Zandalari Altar 3 Credit
 136568;Emit Filth
 136569;Zandalari Altar 4 Credit
@@ -85991,6 +85932,8 @@
 136878;Ensnared
 136879;Violent Gale Winds
 136881;Deluge
+136882;Spoils of Pandaria
+136885;Torment
 136889;Violent Gale Winds
 136890;Damage Self 50%
 136891;Call Lightning (Cosmetic, 4.0 scale)
@@ -86248,7 +86191,6 @@
 137181;Blessed Transformation
 137182;Generic - Despawn Persistent Area Auras (100 yards)
 137183;Sunny Sky
-137184;Rain of Fire
 137185;Summon Stern Eye
 137186;Aftermath
 137187;Dissipate
@@ -86369,7 +86311,7 @@
 137315;Dismounting Shot
 137316;Ping Boss For Dismount
 137317;Arcane Force Shield Yellow
-137319;Tactical Mana Bomb Detonation
+137319;Mistweaver
 137320;Devour
 137321;Cosmetic - Ghost Aura
 137322;Cosmetic - Buried Aura
@@ -87443,7 +87385,6 @@
 138545;Rare Drop Tracking Quest
 138546;Jump Detection
 138547;Start P3
-138548;Fixate
 138549;Chained
 138551;Ball and Chain Visual
 138552;Jump Detection
@@ -87984,7 +87925,7 @@
 139172;Whirling Winds
 139174;Frost Spike
 139175;Anduin's Broken Leg
-139176;Stabilized Lightning Source
+139176;Jard's Peculiar Energy Source
 139177;Frost Spike
 139178;Shell Spin
 139179;Bell Shake
@@ -88000,7 +87941,7 @@
 139189;Infinite Power
 139190;Item - Proc Charges For Smart Heal
 139191;Air Jump
-139192;Sky Claw
+139192;Sky Golem
 139193;Reception
 139194;Air Jump
 139195;Restoration of the Infinite
@@ -88599,7 +88540,7 @@
 139900;Stormcloud
 139901;Stormcloud
 139903;Chain Lightning
-139905;Player Farm - Occupied Demon Ping (Stunned)
+139905;Player Farm - Summoned Demon Aura Removed
 139906;Player Farm - Occupied Soil Ping (Stunned)
 139907;Sha Boss Cosmetic Missile
 139908;Sha Boss Stalker Cosmetic
@@ -89233,7 +89174,7 @@
 140705;Defending the Rift Kill Credit - backup
 140706;Fully Mutated
 140708;Channeling Storms
-140710;Soul Fire
+140710;Metamorphosis
 140713;Gob Squad Recruit
 140714;Gob Squad Recruit
 140715;Rain of Fire
@@ -89276,8 +89217,7 @@
 140756;Teleport to Diremoor
 140758;Enrage
 140759;Evasive
-140760;Soul Fire
-140761;Soul Fire
+140760;Emberstorm
 140762;Summon Abyssal
 140763;Summon Abyssal
 140764;Face Random Player
@@ -89304,7 +89244,6 @@
 140800;Magnetic Pull
 140801;Quills
 140802;Start Infiltrate the Temple
-140803;Center Flag
 140807;Oondasta Loot
 140808;Lightning Storm
 140809;Waterspout
@@ -89375,7 +89314,7 @@
 140894;The Booming Boogaloo
 140895;Hozen Boomstick Back Pack
 140896;Fuse
-140897;Singe Magic
+140897;Sear Magic
 140898;MAZE STARTS HERE  - 1 [DNT]
 140899;MAZE STARTS HERE  - 2 [DNT]
 140900;MAZE STARTS HERE  - 3 [DNT]
@@ -89454,16 +89393,12 @@
 141018;Sing
 141019;Summon Bad Luckydo
 141020;Call Bad Luckydo
-141021;Alliance Flag 2
-141022;Alliance Flag 3
-141023;Alliance Flag 4
 141024;Disappear
 141027;Bad Luckydo
 141029;Got my Grummlepack
 141034;Split
 141035;Vanish
 141036;Goop
-141037;Shadowy Apparition
 141038;Feathery Detonation
 141039;Feathery Detonation
 141040;Jump Nearby on Spawn
@@ -89572,9 +89507,6 @@
 141207;Shoot! Reverse Cast
 141209;RPS Winner Check
 141210;Horde Mine Cart
-141213;Horde Flag 2
-141216;Horde Flag 3
-141219;Horde Flag 4
 141222;Call the Shot
 141223;Call the Shot
 141224;Choose Rock
@@ -89822,6 +89754,7 @@
 141554;Summon Mine Cart
 141555;Horde Visual
 141556;Blindside
+141557;Timer
 141558;Mecha Armor Alpha
 141559;Floot Toot
 141560;Razorbite Facing
@@ -89837,6 +89770,19 @@
 141574;Phase 06 Detector
 141575;Phase 07 Detector
 141576;Phase 08 Detector
+141577;Timer
+141578;Timer
+141579;Timer
+141580;Timer
+141581;Timer
+141582;Timer
+141583;Timer
+141584;Timer
+141585;Timer
+141586;Timer
+141588;Timer
+141589;Timer
+141590;Timer
 141591;Summon Wrathion Image
 141592;Phase 09 Detector
 141593;Summon Wrathion Image
@@ -89994,6 +89940,16 @@
 141791;Niuzao's Challenge
 141792;Phase 10 Detector
 141794;Viletongue Strike
+141795;Summon Paragon: Skeer
+141796;Summon Paragon: Hisek
+141797;Summon Paragon: Ka'roz
+141798;Summon Paragon: Korven
+141799;Summon Paragon: Kaz'tik
+141800;Summon Paragon: Xaril
+141801;Summon Paragon: Rik'kal
+141802;Summon Paragon: Iyyokuk
+141803;Summon Paragon: Kil'ruk
+141804;Summon Paragons
 141805;Wear Blindfold
 141806;Holding Bomb
 141808;Phase Prevention Aura - Crane Temple
@@ -90034,6 +89990,15 @@
 141847;Activate Random Barrel
 141848;Hold Still, Caravan!
 141849;Summon Rapier
+141851;Bloodthirsty
+141852;Compound Eye
+141853;Strong Legs
+141854;Master of Amber
+141855;Dominant Mind
+141856;Vast Apothecarial Knowledge
+141857;Mad Scientist
+141858;Ingenious
+141859;Angel of Death
 141860;Summon Wrathion
 141861;Infuse Armor - Breastplate
 141862;Enchant Gloves - Superior Mastery
@@ -90078,6 +90043,7 @@
 141924;Trigger to Nazgrim
 141925;Trigger to Riko
 141926;Trigger to Dark Shaman
+141927;Basic Damage: Bronze
 141928;Growing Pains
 141929;Power Word: Arrrr
 141930;Color-Seein'
@@ -90085,6 +90051,15 @@
 141935;Make Real Wrathion
 141936;Summon Transition Drill
 141937;Throw Cannon Ball
+141938;Adds: Skeer
+141939;Adds: Hisek
+141940;Adds: Ka'roz
+141941;Adds: Korven
+141942;Adds: Kaz'tik
+141943;Adds: Xaril
+141944;Adds: Rik'kal
+141945;Adds: Iyyokuk
+141946;Adds: Kil'ruk
 141948;Spygear: Shadowstep
 141949;Throw Battery
 141951;Throw Pool Pony
@@ -90146,6 +90121,7 @@
 142029;Viscous Horror
 142030;Filthling
 142037;Black Mark
+142039;Timer
 142041;Molotov Barrage
 142042;Molotov Barrage
 142043;Burnin'
@@ -90157,6 +90133,10 @@
 142059;Curse of the High Seas
 142060;Cursed Pirate Dice
 142061;Roll Cursed Dice
+142062;Mod Scale -10%
+142063;Basic Damage: Silver
+142064;Basic Damage: Gold
+142065;Basic Damage: Endless
 142066;Trigger Advice 01
 142067;Trigger Advice 02
 142068;Trigger Advice 03
@@ -90171,6 +90151,8 @@
 142079;Trigger Wrathion Speech
 142080;Trigger Wrathion Speech
 142082;Trigger Wrathion Speech
+142087;Timer
+142088;Timer
 142091;Crushing Embers
 142092;Crushing Embers
 142093;Crushing Embers
@@ -90189,6 +90171,7 @@
 142108;Titanic Thunderclap
 142109;Cursed Guardian
 142111;Disrupting Bellow
+142112;Trial Failed
 142113;Sweeping Strikes
 142114;Cursed Pirate Visuals
 142115;Buff Self
@@ -90224,6 +90207,10 @@
 142154;Heart of Y'Shaarj
 142155;Heart Corruption Visual
 142156;Teleporter Spawn
+142157;Inner Brilliance
+142158;Item - Periodics Proc Int
+142159;Quickened Tongues
+142160;Item - Spell Hits Proc Haste
 142162;Egress
 142163;Fan of Knives
 142164;Egress
@@ -90233,7 +90220,13 @@
 142168;Kill Credit - Anchor D
 142169;Kill Credit - Anchor E
 142171;Hemorrhagic Shadowstep
+142172;Lightweave Embroidery
+142173;Lightweave Embroidery
+142174;Defend
+142175;Enchant Chest - Glorious Stats
 142176;Shotgun Targetting
+142177;Enchant Bracer - Super Intellect
+142178;Enchant Ring - Greater Intellect
 142179;Turtle Jetski Rope Beam
 142180;Magma Totem
 142181;Flame Buffet Totem
@@ -90244,8 +90237,13 @@
 142186;Maintain Wrathion
 142187;Riding Sea Turtles
 142188;Maintain Wrathion
+142189;Amber Globule
+142190;Amber Globule
+142191;Amber Globule Detonation
 142192;Guardian's Chain
 142193;Teleport Out
+142194;Blessing of the Celestials
+142195;Relic of Yu'lon
 142197;Path of the Last Emperor: Phase Aura
 142198;Lead Climber
 142199;Venom Bombs
@@ -90271,12 +90269,15 @@
 142225;Shark Hunt
 142226;"Gathering Intelligence" - Nazgrim Tracking Flagged
 142227;Throw Torch
+142228;Reave
 142229;Throw Torch
 142231;Path of the Last Emperor: Maintain Summon and Vehicle Aura
+142232;Death from Above
 142233;Cloaking Chicken
 142234;Brawling Champion
 142236;Disable Spec Swap
 142237;Summon Whale Shark
+142238;Heal Illusion
 142239;Brawling Champion
 142240;Brawling Champion
 142241;Brawling Champion
@@ -90296,8 +90297,14 @@
 142258;Unborn Val'kyr Focus
 142259;Summon Master Gadrin
 142262;Explosive Barrel
+142263;Death from Above
+142264;Death from Above
+142265;Death from Above
 142266;Armored Red Dragonhawk
+142269;Reave
+142270;Reave
 142271;Barrens Toughness
+142272;Reave
 142273;Refreshment
 142274;Moneybrau Belch
 142275;Moneybrau Belch
@@ -90312,6 +90319,7 @@
 142288;Summon Wrathion
 142289;Maintain Wrathion
 142291;Debuff Self
+142292;Defeated
 142293;Shark Bite
 142294;Shoot
 142295;Evenomed Shuriken
@@ -90331,7 +90339,10 @@
 142311;Ruined Earth
 142312;Summon Wrathion (Xuen Completion)
 142313;Cloaking Chicken Cloak
+142314;Master Alchemist
+142315;Caustic Blood
 142316;Ruined Earth
+142317;Bloody Explosion
 142319;Demons of the Past
 142320;Glacial Freeze Totem
 142321;Glacial Freeze
@@ -90347,6 +90358,7 @@
 142333;Trigger Deathwing Speech
 142334;Trigger Wrathion Speech
 142335;Ping Wrathion
+142336;Heal Illusion
 142337;Open Doors
 142338;Lava Burst
 142339;Poison Bolt Totem
@@ -90370,10 +90382,19 @@
 142365;Teleport to Ratchet
 142369;Wrathion Party Member
 142372;Control Jerry
+142373;One
+142374;Two
+142375;Three
+142376;Four
+142377;Five
+142378;Six
+142379;Seven
+142380;Eight
 142382;Ominous Bolt
 142383;Dark Twister
 142384;Dark Twister
 142385;Dark Twister
+142386;Calculation
 142387;Molten Arc
 142388;Fixate
 142390;Demons of the Past
@@ -90396,15 +90417,20 @@
 142410;Darkspear Net
 142411;Kor'kron Thrall Fodder
 142413;Pool of Embers
+142414;Insane Calculation: Cacophonous Calamity
+142415;Insane Calculation: Symphonic Strike
+142416;Insane Calculation: Fiery Edge
+142417;Insane Calculation:
 142418;Custom - Cosmetic Net Self
 142419;Zen'tabra Defense
 142420;Zen'tabra Comment
 142421;Swiftmend
 142422;Rising Kick
-142423;Swiftmend
-142424;Swiftmend
+142423;Efflorescence
+142424;Efflorescence
 142425;Trigger Wrathion's Attack
 142426;Lightning Bolt
+142427;Protection Shield
 142428;Zen'tabra Intro Aura
 142430;Summon Zen'tabra
 142431;Fixate
@@ -90449,12 +90475,16 @@
 142477;Fixate Beam Cosmetic
 142478;Armored Blue Dragonhawk
 142479;Kneel
+142480;Mantid Wings
 142481;Ground Spike
+142482;Spoils of Pandaria
 142484;Bloody Charge
 142485;Player Summon Wrathion (Niuzao Completion)
 142486;Summon Wrathion (Niuzao Completion)
 142487;Presence of the Dragonborn
+142489;Exposed!
 142490;Sweeping Strikes
+142492;Encapsulated Pheromones
 142495;Summon Molten Elemental
 142496;Summon Molten Elemental
 142497;Summon Molten Elemental
@@ -90462,34 +90492,68 @@
 142499;Chain Rip
 142502;Melee Teleport
 142503;Melee Teleport
+142504;Insane Calculation: Cacophonous Calamity
 142505;Chain Rip
 142506;Chain Rip
+142507;Insane Calculation: Cacophonous Calamity
+142508;Mogu Shadow Ritualist
+142510;Mogu Shadow Ritualist
+142511;Insane Calculation: Symphonic Strike
 142512;Rocket Jump
+142513;Calculator
+142514;Calculate
 142515;Test - Summon Crocolisk Mount - PRK
+142517;Calculation
+142518;Tally
 142519;Grandpa Grumplefloot Challenge Card
 142520;Grandpa Grumplefloot Challenge Card
 142521;Zephyr
 142522;Dissipate
+142523;Prime Enhancement
+142524;Encapsulated Pheromones
 142525;Zephyr
+142526;Stone Statue
+142528;Toxic Injection
+142529;Diagnostic Sequence
 142530;Bloody Dancing Steel
 142531;Bloody Dancing Steel (DND)
+142532;Toxin: Blue
+142533;Toxin: Red
+142534;Toxin: Yellow
 142535;Spirit of Conquest
 142536;Spirit of Conquest (Passive)
 142537;Spotter Smoke
 142538;Whelp Spawn
+142539;Mantid Swarm
 142541;Summon Intro Scene
 142542;Event Cleanup
 142543;Force Cast - Scouting Dranosh'ar
 142545;Thrall's Tornado
+142546;Apothecary: Knowledge
+142547;Toxin: Orange
+142548;Toxin: Purple
+142549;Toxin: Green
+142550;Toxin: White
 142551;Epicenter
 142552;Epicenter
+142553;Apothecary Cleanse: Blue
+142554;Apothecary Cleanse: Red
+142555;Apothecary Cleanse: Yellow
+142556;Poison: Blue
+142557;Poison: Red
+142558;Poison: Yellow
+142560;Spoils of Pandaria
 142561;Venom Cloud
 142562;Torch Toss
+142563;Poison: White
+142564;Encase in Amber
 142565;Sabotage
+142566;Encase in Amber
 142567;Kickback
 142568;Nitro Boosts
 142570;Rapid Shot
 142571;Rapid Shot
+142576;Amber Regeneration
 142581;Divine Circle
 142583;Divine Circle
 142585;Divine Circle
@@ -90501,6 +90565,7 @@
 142594;Forgemaster Spawn Cosmetic
 142595;Explosive Shot
 142597;Explosive Shot
+142598;Apothecary: Volatile Poultice
 142599;Explosvie Shot
 142600;Explosive Shot
 142601;Despawn Clone
@@ -90518,28 +90583,42 @@
 142613;Hex
 142614;Divine Circle
 142615;Player Summon Wrathion (Chi-ji Completion)
+142616;Master of Amber
 142617;Hex
+142618;Encase in Amber
+142619;Encase in Amber
 142620;Summon Wrathion (Chi-ji Completion)
 142621;Complete Heal
 142623;Hekima's Scorn
 142624;Crusader Smash
 142625;Rejuvenation
 142626;Cursed Bubble Brew
+142627;Bananastorm
+142628;Bananastorm
+142629;Bananastorm
+142630;Hungry
 142631;Kickback
 142632;Concussive Shot
 142634;Butcher Cleave
 142635;Empowered by Y'Shaarj
+142636;Devour
+142638;Devour
+142639;Bananastorm
 142640;Ground Pound
 142641;Brawler's Burly Mushan Beast
 142642;Phoenix Hawk Hatchling Passive
 142643;Phoenix Hawk Breath
+142645;Energize
 142646;Ignite Blood
 142647;Whirling Earth
 142648;Whirling Earth
+142649;Devour
 142650;Lava Spit
+142651;Molt
 142652;Summon Wrathion
 142653;Teleport Target to Self
 142654;Purified
+142655;Swipe
 142656;Tainted Waveling Passive
 142657;Skull Bash
 142658;Netherspace Abyssal Passive
@@ -90549,13 +90628,16 @@
 142664;Throw Hammer
 142665;Ram
 142666;Throw Hammer
+142667;Thick Shell
+142668;Mesmerize
 142669;Banner of Zandalar
 142670;Summon Belligerent Blossom
+142671;Mesmerize
 142674;Summon Wayward Spirit
 142675;Lesser Voidcaller Passive
+142676;Spark of Life
 142677;Gear Icon (Player Name)
 142678;Kill Credit
-142679;Veil of Darkness
 142680;Coilfang Stalker Passive
 142681;Panic
 142682;Player Summon Tiger
@@ -90566,11 +90648,17 @@
 142689;Player Damage Reduction Level 90
 142690;Tap Keg
 142692;Burning Embers
+142694;Spark of Life
+142695;Spark of Life
 142697;Transform to Kil'rek
 142699;Counter Shot
 142700;Flop
+142701;Master of Puppets
+142702;Control Kunchong
 142703;Menagerie Custodian Passive
 142704;Menagerie Custodian Passive
+142705;Devour
+142708;Enraged
 142709;Green Camo
 142710;Tito Cosmetic Aura
 142711;Player Summon Black Ox
@@ -90581,11 +90669,27 @@
 142716;Summon Red Crane
 142717;Summon Tornado
 142718;Shimmerweed (Creature Visual)
+142721;Lift Hook
+142722;Unstable Defense Systems
 142723;Void Shift
 142724;Blue Camo
+142725;Catalyst: Blue
+142726;Catalyst: Red
+142727;Catalyst: Yellow
+142728;Catalyst: Orange
+142729;Catalyst: Purple
+142730;Catalyst: Green
+142731;Catalyst: White
 142732;Yellow Camo
 142733;Red Camo
 142734;Bite
+142735;Reaction: Blue
+142736;Reaction: Red
+142737;Reaction: Yellow
+142738;Reaction: Orange
+142739;Reaction: Purple
+142740;Reaction: Green
+142741;Reaction: White
 142742;Tornado Visual
 142743;Wrathion Cloak Creation State
 142744;Launch Tito
@@ -90593,7 +90697,7 @@
 142746;Ping Xuen
 142747;Ping Yu'lon
 142748;Ping Niuzao
-142749;REUSE
+142749;Pandaren Anvil Hammer
 142750;Ping Chi-ji
 142751;REUSE
 142752;Slip
@@ -90602,11 +90706,13 @@
 142755;Celestial Impact
 142756;Mecha-Armor: Beta
 142758;Periodic Shrink
+142759;Pulse
 142760;Dire Rage
 142761;Annoying Yipping
 142762;Tito Annoying Yipping Passive
 142763;Wrathion Celestial Spheres
 142764;Demolish Armor
+142765;Pulse
 142766;Shattered Earth
 142767;Cloak Complete
 142768;Shattered Earth
@@ -90616,6 +90722,7 @@
 142772;Serpent Spit
 142773;Shattering Charge
 142774;Shattering Charge
+142775;Nova
 142776;Stasis Beam
 142777;Mecha-Armor: Gamma
 142778;Mecha-Armor: Delta
@@ -90628,89 +90735,186 @@
 142790;Chomp
 142795;Better, Stronger, Faster
 142796;Path of the Last Emperor: Ask Seer Hao for Rope
+142797;Noxious Vapors
+142798;Explosive Ring
+142799;Explosive Ring
+142800;Explosive Ring
+142801;Explosive Ring
+142802;Explosive Ring
+142803;Explosive Ring
 142804;Peck
 142805;Path of the Last Emperor: Rope Anchor Boss Emote
 142806;Caravan Aura
 142807;Titan's Protection
+142808;Fiery Edge
+142809;Fiery Edge
+142811;Fiery Edge
+142812;Eerie Fog
+142813;Eerie Fog
+142815;Arcing Smash
+142816;Breath of Y'Shaarj
 142817;kramer state kit beam test
 142819;Frigid Gust
 142825;Frost Shards
+142826;Arcing Smash
+142827;Ghost Cow State
+142828;Illusionary Slayer
+142833;Illusionary Mystic
+142834;Illusionary Varmint
+142835;Illusionary Amber-Weaver
+142836;Illusionary Guardian
+142837;Illusionary Sha
+142838;Illusionary Banshee
+142839;Illusionary Banana-Tosser
 142840;Malevolent Force
 142841;Objective Fail Dummy
+142842;Breath of Y'Shaarj
 142843;Scenario: Dark Heart of Pandaria (Heroic)
 142844;Zephyr
+142848;Y'Shaarj Corruption
+142849;Seismic Slam
 142850;Zephyr
+142851;Seismic Slam
 142852;Summon Rope Swing
 142853;Summon Rope Swing
 142854;Summon Rope Swing
 142859;Bombs Away Targetting
 142860;Path of the Last Emperor: Zephyr Boss Emote
+142861;Ancient Miasma
+142862;Ancient Barrier
+142863;Weak Ancient Barrier
+142864;Ancient Barrier
+142865;Strong Ancient Barrier
+142868;Cosmetic - EmoteWork
 142869;Contested Territory
 142870;Fixate
+142871;Give Malkorok Energy
+142872;Sha Corruption
 142873;Ghost Pirate Cosmetic
 142875;Brawler's Guild Unit Frame
 142876;Cosmetic - Flies (All Over the Place)
+142877;Volatile Poultice
 142878;Enchanted Fey Dragon
+142879;Blood Rage
 142880;Blossoming Ancient
 142881;Fire Trap (Create Area Trigger)
 142882;Destroy Armor
 142883;Guardian's Chain
 142884;Fear
+142885;Sha Corruption
 142886;Summon Rope Swing
 142887;Summon Rope Swing
 142888;Summon Rope Swing
+142889;Sha Corruption
+142890;Blood Rage
+142891;Sha Corruption
+142892;Sha Corruption
+142893;Sha Corruption
 142894;Vertical Slash
 142895;Silenced
 142896;Disarmed
+142897;Volatile Poultice
+142898;Arcing Smash
 142899;Blossoming Ancient Visual Chooser
 142901;5.3 Scenario - Heroic - Push Loot (Guaranteed Loot)
 142902;Rocket Ride to Badlands
 142903;Blossoming Ancient Passive
 142904;Blossoming Ancient Passive Effect
 142905;Iron Hitching Post
+142906;Ancient Miasma
 142908;Use Iron Hitching Post
 142909;Summon Iron Warhorse
 142910;Iron Warhorse
 142911;Throw Gold (Visual)
 142912;Glyph of Lightning Shield
+142913;Displaced Energy
 142914;Cosmetic - Sleep Zzz Breakable 3x
 142915;Darkspear Battle Standard
 142916;Darkspear Battle Standard
 142917;Xan'tish's Flute
+142918;Razor Sharp Blades
 142920;Rainstick
 142921;Ty'thar Fixate
+142922;Razor Sharp Blades
 142923;Healing Rain
 142924;Healing Rain
 142925;Hurricane
+142926;Kil'ruk the Wind-Reaver
+142927;Tenderizing Strikes
+142928;Displaced Energy
+142929;Tenderizing Strikes
+142930;Razor Sharp Blades
+142931;Exposed Veins
+142932;Xaril the Poisoned Mind
 142933;Place Supply Crate
-142951;PH
-142952;PH
-142953;PH
-142954;PH
-142955;PH
-142956;PH
-142957;PH
-142958;PH
-142959;PH
-142960;PH
-142961;PH
-142962;PH
-142963;PH
-142964;PH
-142965;PH
-142966;PH
-142967;PH
-142968;PH
+142934;Torment
+142935;Delayed Catalyst: Blue
+142936;Delayed Catalyst: Red
+142937;Delayed Catalyst: Yellow
+142938;Delayed Catalyst: Orange
+142939;Delayed Catalyst: Purple
+142940;Delayed Catalyst: Green
+142941;Spoils of Pandaria
+142942;Torment
+142943;Spoils of Pandaria
+142944;Return to Stone
+142945;Eerie Fog
+142947;Crimson Reconstitution
+142948;Aim
+142950;Fire
+142951;White Cloud Leggings
+142952;Pennyroyal Leggings
+142953;Krasari Prowler Britches
+142954;Blessed Trillium Greaves
+142955;Leggings of the Night Sky
+142956;Snow Lily Britches
+142957;Gorge Stalker Legplates
+142958;Protector's Trillium Legguards
+142959;Avenger's Trillium Legplates
+142960;White Cloud Belt
+142961;Pennyroyal Belt
+142962;Krasari Prowler Belt
+142963;Blessed Trillium Belt
+142964;Belt of the Night Sky
+142965;Snow Lily Belt
+142966;Gorge Stalker Belt
+142967;Protector's Trillium Waistguard
+142968;Avenger's Trillium Waistplate
+142976;Hardened Magnificent Hide
 142978;Arcane Intensity
+142980;Imploding Energy
 142981;Custom Error
+142983;Torment
+142986;Imploding Energy
+142987;Imploding Energy
+142988;Imploding Energy
+142989;Languish
+142990;Fatal Strike
 142993;Muckbreath
 142994;Bad Breath
 142995;Toothy
 142996;Snap
+142997;Set to Blow
+143001;Overcharged Crawler Mine Spawn Jump
+143002;Detonate!
 143003;Challenge Accepted Skip
 143006;Ocular Stasis
+143007;Corruption Kick
 143008;Trigger Wrathion Speech Skip
+143009;Corruption Kick
+143010;Corruption Kick
+143011;Celestial Cloth
 143012;Trigger Wrathion Speech Skip
+143018;Ancient Miasma
+143019;Corrupted Brew
+143020;Split
+143021;Corrupted Brew
+143022;Split
+143023;Corrupted Brew
+143024;Split
+143027;Clash
+143028;Clash
+143030;Clash
 143034;Childlike Wonder
 143035;Trigger Player Defeat
 143036;Challenge in Progress (Xuen)
@@ -90718,60 +90922,307 @@
 143038;Challenge in Progress (Chi-Ji)
 143039;Challenge in Progress (Niuzao)
 143041;Resurrection
+143042;Ancient Miasma
 143043;Can Skip (Xuen)
 143044;Can Skip (Yu'lon)
 143045;Can Skip (Chi-Ji)
 143046;Can Skip (Niuzao)
+143047;Ancient Miasma
+143048;Shadowstep
 143049;Strip Auras
+143050;Shadowstep
+143052;Jeremy's Test Visual
+143053;Crafted Malevolent Gladiator's Cape of Cruelty
+143054;Crafted Malevolent Gladiator's Cape of Prowess
+143055;Crafted Malevolent Gladiator's Cord of Cruelty
+143056;Crafted Malevolent Gladiator's Cord of Accuracy
+143057;Crafted Malevolent Gladiator's Cord of Meditation
+143058;Crafted Malevolent Gladiator's Treads of Cruelty
+143059;Crafted Malevolent Gladiator's Treads of Alacrity
+143060;Crafted Malevolent Gladiator's Treads of Meditation
+143061;Crafted Malevolent Gladiator's Cuffs of Accuracy
+143062;Crafted Malevolent Gladiator's Cuffs of Prowess
+143063;Crafted Malevolent Gladiator's Cuffs of Meditation
+143064;Crafted Malevolent Gladiator's Drape of Cruelty
+143065;Crafted Malevolent Gladiator's Drape of Prowess
+143066;Crafted Malevolent Gladiator's Drape of Meditation
+143067;Crafted Malevolent Gladiator's Silk Handguards
+143068;Crafted Malevolent Gladiator's Silk Cowl
+143069;Crafted Malevolent Gladiator's Silk Trousers
+143070;Crafted Malevolent Gladiator's Silk Robe
+143071;Crafted Malevolent Gladiator's Silk Amice
+143072;Crafted Malevolent Gladiator's Mooncloth Gloves
+143073;Crafted Malevolent Gladiator's Mooncloth Helm
+143074;Crafted Malevolent Gladiator's Mooncloth Leggings
+143075;Crafted Malevolent Gladiator's Mooncloth Robe
+143076;Crafted Malevolent Gladiator's Mooncloth Mantle
+143077;Crafted Malevolent Gladiator's Satin Gloves
+143078;Crafted Malevolent Gladiator's Satin Hood
+143079;Crafted Malevolent Gladiator's Satin Leggings
+143080;Crafted Malevolent Gladiator's Satin Robe
+143081;Crafted Malevolent Gladiator's Satin Mantle
+143082;Crafted Malevolent Gladiator's Cloak of Alacrity
+143083;Crafted Malevolent Gladiator's Cloak of Prowess
+143084;Crafted Malevolent Gladiator's Felweave Handguards
+143085;Crafted Malevolent Gladiator's Felweave Cowl
+143086;Crafted Malevolent Gladiator's Felweave Trousers
+143087;Crafted Malevolent Gladiator's Felweave Raiment
+143088;Crafted Malevolent Gladiator's Felweave Amice
+143089;Crafted Malevolent Gladiator's Dragonhide Gloves
+143090;Crafted Malevolent Gladiator's Dragonhide Helm
+143091;Crafted Malevolent Gladiator's Dragonhide Legguards
+143092;Crafted Malevolent Gladiator's Dragonhide Robes
+143093;Crafted Malevolent Gladiator's Dragonhide Spaulders
+143094;Crafted Malevolent Gladiator's Belt of Meditation
+143095;Crafted Malevolent Gladiator's Footguards of Meditation
+143096;Crafted Malevolent Gladiator's Bindings of Meditation
+143097;Crafted Malevolent Gladiator's Kodohide Gloves
+143098;Crafted Malevolent Gladiator's Kodohide Helm
+143099;Crafted Malevolent Gladiator's Kodohide Legguards
+143100;Crafted Malevolent Gladiator's Kodohide Robes
+143101;Crafted Malevolent Gladiator's Kodohide Spaulders
+143102;Crafted Malevolent Gladiator's Belt of Cruelty
+143103;Crafted Malevolent Gladiator's Footguards of Alacrity
+143104;Crafted Malevolent Gladiator's Bindings of Prowess
+143105;Crafted Malevolent Gladiator's Wyrmhide Gloves
+143106;Crafted Malevolent Gladiator's Wyrmhide Helm
+143107;Crafted Malevolent Gladiator's Wyrmhide Legguards
+143108;Crafted Malevolent Gladiator's Wyrmhide Robes
+143109;Crafted Malevolent Gladiator's Wyrmhide Spaulders
+143110;Crafted Malevolent Gladiator's Waistband of Cruelty
+143111;Crafted Malevolent Gladiator's Boots of Alacrity
+143112;Crafted Malevolent Gladiator's Armwraps of Accuracy
+143113;Crafted Malevolent Gladiator's Ironskin Gloves
+143114;Crafted Malevolent Gladiator's Ironskin Helm
+143115;Crafted Malevolent Gladiator's Ironskin Legguards
+143116;Crafted Malevolent Gladiator's Ironskin Spaulders
+143117;Crafted Malevolent Gladiator's Ironskin Tunic
+143118;Crafted Malevolent Gladiator's Copperskin Gloves
+143119;Crafted Malevolent Gladiator's Copperskin Helm
+143120;Crafted Malevolent Gladiator's Copperskin Legguards
+143121;Crafted Malevolent Gladiator's Copperskin Spaulders
+143122;Crafted Malevolent Gladiator's Copperskin Tunic
+143123;Crafted Malevolent Gladiator's Waistband of Accuracy
+143124;Crafted Malevolent Gladiator's Boots of Cruelty
+143125;Crafted Malevolent Gladiator's Armwraps of Alacrity
+143126;Crafted Malevolent Gladiator's Leather Tunic
+143127;Crafted Malevolent Gladiator's Leather Gloves
+143128;Crafted Malevolent Gladiator's Leather Helm
+143129;Crafted Malevolent Gladiator's Leather Legguards
+143130;Crafted Malevolent Gladiator's Leather Spaulders
+143131;Crafted Malevolent Gladiator's Links of Cruelty
+143132;Crafted Malevolent Gladiator's Links of Accuracy
+143133;Crafted Malevolent Gladiator's Sabatons of Cruelty
+143134;Crafted Malevolent Gladiator's Sabatons of Alacrity
+143135;Crafted Malevolent Gladiator's Wristguards of Alacrity
+143136;Crafted Malevolent Gladiator's Wristguards of Accuracy
+143137;Crafted Malevolent Gladiator's Chain Armor
+143138;Crafted Malevolent Gladiator's Chain Gauntlets
+143139;Crafted Malevolent Gladiator's Chain Helm
+143140;Crafted Malevolent Gladiator's Chain Leggings
+143141;Crafted Malevolent Gladiator's Chain Spaulders
+143142;Crafted Malevolent Gladiator's Waistguard of Meditation
+143143;Crafted Malevolent Gladiator's Footguards of Alacrity
+143144;Crafted Malevolent Gladiator's Footguards of Meditation
+143145;Crafted Malevolent Gladiator's Armbands of Prowess
+143146;Crafted Malevolent Gladiator's Armbands of Meditation
+143147;Crafted Malevolent Gladiator's Ringmail Armor
+143148;Crafted Malevolent Gladiator's Ringmail Gauntlets
+143149;Crafted Malevolent Gladiator's Ringmail Helm
+143150;Crafted Malevolent Gladiator's Ringmail Leggings
+143151;Crafted Malevolent Gladiator's Ringmail Spaulders
+143152;Crafted Malevolent Gladiator's Linked Armor
+143153;Crafted Malevolent Gladiator's Linked Gauntlets
+143154;Crafted Malevolent Gladiator's Linked Helm
+143155;Crafted Malevolent Gladiator's Linked Leggings
+143156;Crafted Malevolent Gladiator's Linked Spaulders
+143157;Crafted Malevolent Gladiator's Waistguard of Cruelty
+143158;Crafted Malevolent Gladiator's Mail Armor
+143159;Crafted Malevolent Gladiator's Mail Gauntlets
+143160;Crafted Malevolent Gladiator's Mail Helm
+143161;Crafted Malevolent Gladiator's Mail Leggings
+143162;Crafted Malevolent Gladiator's Mail Spaulders
+143163;Crafted Malevolent Gladiator's Dreadplate Chestpiece
+143164;Crafted Malevolent Gladiator's Dreadplate Gauntlets
+143165;Crafted Malevolent Gladiator's Dreadplate Helm
+143166;Crafted Malevolent Gladiator's Dreadplate Legguards
+143167;Crafted Malevolent Gladiator's Dreadplate Shoulders
+143168;Crafted Malevolent Gladiator's Scaled Chestpiece
+143169;Crafted Malevolent Gladiator's Scaled Gauntlets
+143170;Crafted Malevolent Gladiator's Scaled Helm
+143171;Crafted Malevolent Gladiator's Scaled Legguards
+143172;Crafted Malevolent Gladiator's Scaled Shoulders
+143173;Crafted Malevolent Gladiator's Clasp of Cruelty
+143174;Crafted Malevolent Gladiator's Clasp of Meditation
+143175;Crafted Malevolent Gladiator's Greaves of Alacrity
+143176;Crafted Malevolent Gladiator's Greaves of Meditation
+143177;Crafted Malevolent Gladiator's Bracers of Prowess
+143178;Crafted Malevolent Gladiator's Bracers of Meditation
+143179;Crafted Malevolent Gladiator's Ornamented Chestguard
+143180;Crafted Malevolent Gladiator's Ornamented Gloves
+143181;Crafted Malevolent Gladiator's Ornamented Headcover
+143182;Crafted Malevolent Gladiator's Ornamented Legplates
+143183;Crafted Malevolent Gladiator's Ornamented Spaulders
+143184;Crafted Malevolent Gladiator's Girdle of Accuracy
+143185;Crafted Malevolent Gladiator's Girdle of Prowess
+143186;Crafted Malevolent Gladiator's Warboots of Cruelty
+143187;Crafted Malevolent Gladiator's Warboots of Alacrity
+143188;Crafted Malevolent Gladiator's Armplates of Proficiency
+143189;Crafted Malevolent Gladiator's Armplates of Alacrity
+143190;Crafted Malevolent Gladiator's Plate Chestpiece
+143191;Crafted Malevolent Gladiator's Plate Gauntlets
+143192;Crafted Malevolent Gladiator's Plate Helm
+143193;Crafted Malevolent Gladiator's Plate Legguards
+143194;Crafted Malevolent Gladiator's Plate Shoulders
+143195;Crafted Malevolent Gladiator's Barrier
+143196;Crafted Malevolent Gladiator's Redoubt
+143197;Crafted Malevolent Gladiator's Shield Wall
+143198;Garrote
+143199;Expel Miasma
 143201;Summon Teng Applebloom
+143210;Instant Poison
 143211;Resurrect Summon
 143212;Resurrect Summon
+143216;Snipe
+143217;Snipe
+143218;Marked for Death
 143219;Fire!
 143220;Fire!
 143221;Uplifted Spirit
 143222;Fire!
 143223;Summon Melody
+143224;Instant Poison
+143225;Noxious Poison
+143226;Sonic Pulse
+143227;Sonic Pulse
+143228;Sonic Pulse
+143229;Sonic Pulse
+143230;Sonic Pulse
+143231;Sonic Pulse
+143232;Sonic Pulse
+143233;Sonic Pulse
+143234;Sonic Pulse
+143235;Noxious Poison
+143236;Sonic Pulse
+143237;Sonic Pulse
+143238;Sonic Pulse
+143239;Noxious Poison
+143240;Sonic Pulse
 143241;Mirror Name
 143242;Mirror Name
+143243;Rapid Fire
+143244;Terrie's Awesome 8 Yard Debug Spell
+143245;Noxious Poison
 143246;Purple Mantid Wings
 143247;Yellow Mantid Wings
 143251;Demonic Portal Birth Anim Dummy
+143255;Balanced Trillium Ingot
 143256;Iron Reins
 143257;Iron Warhorse Mount Transformation
 143259;Battle Ring Trainee Defeated Credit
 143260;Big Blossom Mine
+143261;Relentless Assault
+143262;Shadowstep
+143263;Summon Deactivated Laser Turret
+143264;Load Sawblade
+143265;Launch Sawblade
+143266;Launch Sawblade
+143267;Shadowstep
 143268;Unbridled Wrath
 143271;Cracked Earth Visual
 143272;Boss Visual - Size
+143273;Hewer of Foes
+143274;Hew
+143275;Hewn
+143276;Noxious Poison
+143277;Mad Scientist
+143278;Genetic Alteration
+143279;Genetic Alteration
+143280;Bloodletting
+143281;Seeping Sha
+143282;Bloodletting
+143283;Bloodletting
+143284;Bloodletting
+143285;Shadowstep
+143286;Seeping Sha
+143287;Bloodletting
+143288;Bloodletting
+143289;Bloodletting
+143290;Sha Bolt
+143291;Launch Sawblade
+143292;Fixate
+143293;Sha Bolt
+143294;Blood Infusion
+143295;Sha Bolt
+143297;Sha Splash
+143298;Sha Splash
 143299;Ping Wrathion CLOAK ACCEPT
+143301;Gouge
 143302;Ping Wrathions SCRIPT EFFECT
 143303;Neltharion's Tears
 143304;Neltharion's Tears
 143305;Neltharion's Tears
 143306;Neltharion's Tears
+143309;Swirl
 143312;Rocket Jump
 143313;Teleport
 143314;Glyph of Nightmares
+143315;Invisible Stalker Transform
 143316;Achievement - Fight Anger with Anger
+143318;Bloodletting
+143319;Bloodletting
+143320;Bloodletting
+143321;Bloodletting
+143322;Regeneration
 143323;Immolation
 143325;Abyssal Hellfire Color Override
+143327;Serrated Slash
+143328;Serrated Slash
+143329;Launch Sawblade
+143330;Gouge
+143331;Gouge
 143333;Water Strider Water Walking
 143334;Direhorn Passive
 143335;Direhorn Passive Effect
+143336;Mutate
+143337;Mutate
+143338;Claw
+143339;Injection
+143340;Injection
 143341;Demonic Gateway Master Validator
 143342;Killing Spree (DND)
+143343;Deafening Screech
+143345;Power Regen
+143355;Genetic Modifications
+143356;Regenerate
+143357;Magnetic Pulse
+143358;Hunger
+143359;Magnetic Pulse
+143360;Magnetic Pulse
 143361;Ping Kadrak
+143362;Feed
 143363;Player Summon Manticore
 143364;Summon Manticore
 143365;Parachute
+143366;Golden Lotus
 143368;Languages
 143369;Languages
+143372;Gene Splice
+143373;Gene Splice
+143374;REUSEME
 143375;Death and Decay
+143376;Sting
+143377;Sting
+143378;Swipe
+143379;Birth
 143381;Hand of Gul'dan
 143382;Ominous Glow
+143383;Injection
+143385;Electrostatic Charge
 143386;Corrupt Goblin
-143388;Y'shaarj Heart Damage Area Trigger
-143389;Defensive Matrix Cosmetic Visual
+143387;Reactive Armor
+143388;Y'Shaarj Heart Damage Area Trigger
+143389;Defensive Matrix (Cosmetic Visual)
 143391;Wild Quiver
 143392;Wild Quiver
 143393;Event Cleanup on Quest Abandon
@@ -90786,9 +91237,81 @@
 143404;Death Grip
 143405;Death Grip
 143408;Accelerated Archaeology Credit
+143409;Power Regen
+143410;Swirl
+143411;Acceleration
+143412;Swirl
+143413;Swirl
+143415;Swirl
 143418;Explosives Stash Cosmetic
+143420;Ironstorm
+143421;Ironstorm
+143423;Sha Sear
+143424;Sha Sear
+143426;Fearsome Roar
+143427;Last Stand
+143428;Tail Lash
 143429;Roasting Spit
+143430;Clump Check
+143431;Magistrike
+143432;Arcane Shock
+143433;Unstable Blink
+143434;Shadow Word: Bane
+143436;Corrosive Blast
+143437;Corrosive Blast
+143438;Shadow Word: Bane
+143440;Blood Frenzy
+143442;Blood Frenzy
+143443;Shadow Word: Bane
+143444;Laser
+143445;Fixate
+143446;Shadow Word: Bane
+143447;Corrosive Blast
+143451;Bloodied Wounds
+143452;Bloodied
+143453;Split
+143454;Split
+143457;Energize (-1)
+143458;Sha Slime
+143459;Sha Residue
+143460;Sha Pool
+143461;Sha Pool
+143462;Sha Pool
+143463;Grow Stacker
+143464;Grow
+143465;Chomp
+143469;Reform
+143471;Unstable Blink
+143473;Empowered Chain Heal
+143474;Healing Tide Totem
+143475;Earth Shield
+143477;Healing Tide
+143478;Healing Tide
+143479;Earth Shield
+143480;Assassin's Mark
+143481;Backstab
+143482;Paragon's Purpose
+143483;Paragon's Purpose
+143484;Cooling Off
+143485;Open Pipe Handler
+143486;Deactivated Spawn Handler
+143487;Magnetic Crush
+143488;Activated Spawn Handler
+143489;Activated Fire Handler
+143490;Activated Leave Handler
+143491;Calamity
+143492;Shoot
+143493;Calamity
+143494;Sundering Blow
+143495;Pandaren Spirit
 143496;Trigger Wrathion Speech
+143497;Bond of the Golden Lotus
+143498;Erupting Sha
+143500;Heroic Shockwave
+143501;Kor'kron Banner
+143502;Execute
+143503;War Song
+143505;Point Blank Shot
 143506;5.3 Pet Battles - Brawler's Pet Supplies
 143507;5.3 Pet Battles - Fabled Pandaren Pet Supplies
 143508;5.3 Pet Battles - Sack of Pet Supplies
@@ -90799,16 +91322,3487 @@
 143520;Trigger Wrathion Speech
 143521;Trigger Wrathion Speech
 143522;Trigger Wrathion Speech
+143523;Purified
+143524;Purified Residue
+143526;Summon Deactivated Rocket Turret
+143528;Summon Deactivated Turret Vehicle
+143530;Set Health (10%)
+143531;Siege Engineer Controller Periodic
+143534;Hammer of Fiery Wrath
+143535;Kor'kron Banner
+143536;Kor'kron Banner
+143538;Congealing
+143540;Congealing
+143542;Ready to Fight
+143543;Dummy Nuke
+143544;Calamity
+143545;Jump to Center
+143546;Dark Meditation
+143548;Cosmetic for Fight Starter
+143552;Summon Fight Starter
+143553;Despawn Passengers
+143558;Deactivated Turret Death Report
+143559;Dark Meditation
+143560;Summon Activated Turret Vehicle
+143561;Summon Activated Rocket Turret
+143563;Transform: Invisible Stalker
+143564;Meditative Field
+143565;Summon Activated Turret Placeholder
+143570;Canned Heat
+143572;Canned Heat
+143574;Swelling Corruption
+143575;Canned Heat
+143576;Canned Heat
+143578;Swelling Corruption
+143579;Sha Corruption
+143580;Sha Corruption
+143581;Swelling Corruption
+143585;Test Banner
+143586;Seismic Slam
+143587;Wild Quiver
+143588;Reverse Death
+143589;Battle Stance
+143590;Energize Nazgrim
+143591;Kor'kron Banner
 143592;Dissipate
+143593;Defensive Stance
+143594;Berserker Stance
+143597;Generate Rage
+143599;Meditation Spike
+143602;Meditation Spike
 143603;Reign of Fire
 143604;Reign of Fire
+143605;Red Sword
+143606;Purple Sword
+143607;Blue Sword
+143608;Green Sword
+143609;Yellow Sword
+143610;Red Drum
+143611;Purple Drum
+143612;Blue Drum
+143613;Green Drum
+143614;Yellow Drum
+143615;Red Bomb
+143616;Purple Bomb
+143617;Blue Bomb
+143618;Green Bomb
+143619;Yellow Bomb
+143620;Red Manitd
+143621;Purple Mantid
+143622;Blue Mantid
+143623;Green Mantid
+143624;Yellow Mantid
 143625;Brawling Champion
+143626;Celestial Cloth and Its Uses
+143627;Red Staff
+143628;Purple Staff
+143629;Blue Staff
+143630;Green Staff
+143631;Yellow Staff
 143637;Murkimus Tyrannicus
+143638;Bonecracker
+143639;Shockwave Missile
+143640;Shockwave Missile
+143641;Shockwave Missile
+143642;Shockwave Missile
+143644;Hardened Magnificent Hide and Its Uses
+143646;Balanced Trillium Ingot and Its Uses
+143649;Dark Meditation
+143650;Jammed!
+143651;Activated Turret Vehicle Fire Notification
+143666;Diminish
 143679;Buff Self
 143680;Buff Self
 143681;Dummy Nuke
-143682;Dummy Nuke
+143682;Fixate
+143686;Apothecary: Cleanse
+143690;Terrie's Awesome 5 Yard Debug Spell
+143692;Terrie's Awesome 40 Yard/60 Degree Cone Debug Spell
+143693;Leap
+143694;Initialize
+143696;Create Amber Bomb
+143697;Summon Dash Target
+143698;Dashing
+143699;Dashing
+143700;Flash
+143701;Whirling
+143702;Whirling
+143703;Rascal-Bot
+143704;Flash
+143705;Golden Lotus
+143706;Shock Blast
+143707;Shock Blast
+143708;Sha Corruption
+143709;Store Kinetic Energy
+143710;Pick Charge Target
+143711;Summon Activated Laser Turret
+143712;Aftershock
+143713;Heroic Shockwave
+143714;Rascal-Bot
+143715;Heroic Shockwave
+143716;Heroic Shockwave
+143717;Targetting
+143718;Builder Confirmation
+143719;Shoot
+143720;Targetting
+143721;Summon Rifleman
+143722;Dash
+143723;Spirit Bound
+143724;Spirit Bound
+143728;Dark Meditation
+143730;Dark Meditation
+143732;Crafty
+143733;Hurl Amber
+143735;Caustic Amber
+143738;Pipe Transfer
+143740;Caustic Amber
+143743;Jard's Peculiar Energy Source
+143745;Dark Meditation
+143746;Manifest Despair
+143747;Malkorok Deal 1 Damage
+143758;Pipe Transfer
+143759;Hurl Amber
+143761;Hurl Amber
+143765;Sonic Projection
+143766;Panic
+143767;Scorching Breath
+143768;Sonic Projection
+143773;Freezing Breath
+143775;Frozen Solid
+143776;Frozen Solid
+143777;Frozen Solid
+143778;Sonic Projection
+143779;Clear Frozen Solid
+143780;Acid Breath
+143781;Burning Blood
+143782;Burning Blood
+143783;Burning Blood
+143784;Burning Blood
+143791;Corrosive Blood
+143795;Corrosive Blood
+143797;Pipe Transfer
+143798;Pipe Transfer
+143799;Pipe Transfer
+143800;Icy Blood
+143801;Icy Blood
+143805;Arcing Smash
+143806;Arcing Smash
+143807;reuse
+143808;Mark of Anguish
+143809;reuse
+143810;reuse
+143811;reuse
+143812;Mark of Anguish
+143813;Cooldown: Creature Special 1 (5s)
+143822;Mark of Anguish
+143828;Locked On
+143829;Laser Ground Effect Periodic
+143830;Laser Ground Effect
+143833;Laser Turret Targetting
+143838;Laser Turret Targetting
+143839;Rifleman Gossip
+143840;Mark of Anguish
+143842;Mark of Anguish
+143843;Dark Meditation
+143844;Laser Turret Bunny Scriptcast Fixate
+143846;Essence of Y'Shaarj
+143848;Essence of Y'Shaarj
+143849;Tower Size
+143850;Essence of Y'Shaarj
+143852;Fireball
+143853;Hurl Rock
+143854;Frostbolt
+143856;Superheated
+143857;Essence of Y'Shaarj
+143860;Waterspeaking
+143864;Fixate
+143866;Laser Visual Forcecast
+143867;Disintegration Laser
+143868;Wave Buff
+143869;Sha Corruption
+143870;Sha Corruption
+143872;Ravager
+143873;Ravager
+143874;Ravager
+143876;Energize Nazgrim
+143877;Energize Nazgrim
+143878;Confirmation Prompt Trigger
+143879;Shadow Word: Bane
+143882;Hunter's Mark
+143884;Shoot
+143885;Summon Unit Trigger
+143887;Multi-Shot
+143894;Magic Gossip
+143895;Splash Gossip
+143896;Snare Gossip
+143897;Summon Catapult
+143898;Summon Magic
+143899;Summon Snare
+143902;Essence of Y'Shaarj
+143908;Essence of Y'Shaarj
+143913;Essence of Y'Shaarj
+143916;Eradicate
+143917;Unlocking
+143919;Languish
+143936;Summon Deactivated Magnet Turret
+143938;Summon Activated Magnet Turret
+143939;Gouge
+143941;Mutilate
+143945;Magnetic Pulse
+143946;Misery, Sorrow, and Gloom
+143947;Magnetic Pulse
+143948;Misery, Sorrow, and Gloom
+143949;Misery, Sorrow, and Gloom
+143955;Misery, Sorrow, and Gloom
+143958;Corruption Shock
+143959;Defiled Ground
+143961;Defiled Ground
+143962;Inferno Strike
+143963;Strong Legs
+143964;Strong Legs
+143966;Hurl Amber
+143967;Amber Explosion
+143968;Frost Pustules
+143969;Jump to Center
+143970;Fire Pustules
+143971;Acid Pustules
+143973;Falling Ash
+143974;Shield Bash
+143975;In Stocks
+143977;Vicious Assault
+143978;Feral Saurok
+143979;Vicious Assault
+143980;Vicious Assault
+143981;Vicious Assault
+143982;Vicious Assault
+143983;Ancient Miasma
+143984;Vicious Assault
+143985;Vicious Assault
+143986;Falling Ash Cosmetic
+143987;Falling Ash
+143988;Lose Item
+143989;Lose Item
+143990;Foul Geyser
+143991;Shock Blast
+143992;Foul Geyser
+143993;Foul Geyser
+143995;Crawler Mine Controller Periodic
+143996;Suicide Self
+143997;Suicide Self
+143998;Suicide Self
+143999;Challenge Area
+144005;Toxic Storm
+144006;Toxic Storm
+144007;Residual Burn
+144008;Crawler Mine Jump
+144009;Crawler Mine Fixate Targetting
+144010;Crawler Mine Fixate
+144011;Summon Activated Crawler Mine Controller
+144012;Summon Disassembled Crawler Mine Vehicle
+144013;Water of Purity
+144014;Fire of the Spirits
+144015;Scenario: _Crafty
+144016;Akolik's Incantation
+144017;Toxic Storm
+144018;Corruption Shock
+144019;Toxic Storm
+144020;Corruption Shock
+144026;Detonate!
+144028;Launch Sawblade
+144029;Toxic Tornado
+144030;Toxic Tornado
+144036;Fixate
+144037;Ping Boss
+144038;Spirit Bound
+144039;Piercing Cry
+144040;Superheated
+144041;Xuen's Presence: Battle Shout
+144042;Xuen's Presence: Arcane Brilliance
+144044;Xuen's Presence: Weakened Armor
+144046;Xuen's Presence: Swiftblade's Cunning
+144047;Xuen's Presence: Leader of the Pack
+144048;Xuen's Presence: Blessing of Might
+144050;Xuen's Presence: Elemental Oath
+144051;Xuen's Presence: Power Word: Fortitude
+144052;Crystal Breaker
+144053;Xuen's Presence: Mark of the Wild
+144054;Xuen's Presence: Mind-numbing Poison
+144055;Spawn Dragon Turtle Boss
+144056;Xuen's Presence: Mortal Strike
+144057;Spirit Strangle
+144058;Xuen's Presence: Weakened Blows
+144059;Spirit Strangle
+144060;Xuen's Presence: Physical Vulnerability
+144061;Xuen's Presence: Curse of the Elements
+144062;Fear
+144063;Xuen's Presence: Standard Raid Debuffs
+144064;Foulness
+144066;Foulness
+144067;Blood Frenzy
+144069;Imploding Energy
+144070;Ashen Wall
+144071;Ashen Wall
+144072;Corrosive Blood
+144073;Arcane Energy
+144074;Ferocity
 144075;Dungeon Deserter
+144076;Crackling Jade Thunderstorm
+144077;Crackling Jade Thunderstorm
+144079;Shadow Weakness
+144080;Renewing Mist
+144081;Shadow Weakness
+144084;Illusionary Ripper
+144085;Illusionary Forager
+144086;Illusionary Ambusher
+144087;Illusionary Wind-Guard
+144088;Illusionary Conqueror
+144089;Toxic Mist
+144090;Foul Stream
+144091;Illusionary Flamecaller
+144094;Sonic Resonance
+144095;Calculated
+144100;Fire Cauldron
+144101;Use Cauldron
+144103;Focused Chi Burst
+144104;Ice Cauldron
+144105;Poison Cauldron
+144106;Wing Blast
+144107;Toxicity
+144108;Arcane Energy
+144110;Shadowstep
+144111;Calculated Heal
+144113;Chomp
+144115;Flame Coating
+144116;Flame Coating
+144117;Restorative Waters
+144118;Restorative Waters
+144119;Amber Regeneration
+144120;Amber Barrier
+144122;Clear Tenderizing Strikes
+144123;Clear Genetic Alteration
+144124;Clear Hewn
+144125;Cauldron Ice Check
+144126;Death from Above
+144128;Summon Ice Boss
+144129;Tremendous Fortitude
+144130;Spell Power
+144135;Cauldron Fire Check
+144136;Summon Fire Boss
+144137;Summon Poison Boss
+144139;Cauldron Poison Check
+144140;Vertex Color Lime Green
+144145;Spirit World
+144153;Demolisher Cannon
+144154;Demolisher Cannons
+144157;Landing Pose
+144172;Empowered Spirit
+144174;Focused Anguish
+144175;Empowered Spirit
+144176;Shadow Weakness
+144181;Fiery Tail
+144182;Fiery Tail
+144191;Explosive Ring
+144192;Explosive Ring
+144193;Explosive Ring
+144194;Explosive Ring
+144195;Explosive Ring
+144197;Bubble Up
+144198;Demolisher Cannon
+144199;Demolisher Cannon
+144200;Despawn Area Triggers
+144201;Herald of Doom
+144202;Item - Proc Crit Rating
+144203;Hardened Shell
+144204;Item - Proc Mastery Rating
+144205;Typhoon
+144206;Water Walking
+144208;Death From Above
+144209;Borer Drill
+144210;Death From Above
+144212;Automatic Repair Beam
+144213;Automatic Repair Beam
+144214;Froststorm Bolt
+144215;Froststorm Strike
+144216;Chilled to the Bone
+144217;Stalker Clean-up Aura
+144218;Borer Drill
+144219;Stalker Clean-up Effect
+144220;Borer Drill
+144221;Borer Drill
+144222;Ash Elemental Spawn
+144223;Bubble Down
+144224;Shared Health
+144225;Shared Health
+144226;Spirit Link
+144227;Spirit Link
+144228;Overcharged Laser
+144229;Breaking
+144230;Chain Lightning
+144231;Drain Life
+144232;Lionheart
+144233;Haste
+144234;Haste
+144235;Summon Alemental
+144236;Pattern Recognition
+144237;Drain Life
+144238;Haste
+144239;Strength of the Champion
+144240;Chain Lightning
+144241;Drain Life
+144242;Close Pipe Handler
+144243;Ancestor's Vengeance
+144244;Wound
+144245;Create Amber Bomb
+144246;Shadow Bolt
+144247;Firebolt
+144248;Poison
+144249;Frostbolt
+144250;Shadow Bolt
+144251;Frostbolt
+144252;Shadow Bolt
+144253;Scenario Progression
+144254;Frost Blast
+144256;Unstable Defense Systems
+144257;Shadow Bolt
+144258;Shadow Bolt
+144260;Puncture Armor
+144261;Lightning Bolt
+144263;Rend
+144264;Rend
+144265;Poison
+144267;Corrosive Poison
+144268;Shadow Bolt
+144270;Firebolt
+144271;Shadow Bolt
+144272;Shadow Bolt
+144273;Unstable Defense Systems
+144274;Claw
+144275;Swipe
+144276;Sting
+144277;Sting
+144278;Generate Rage
+144281;Unstable Defense Systems
+144282;Conveyor Death Beam
+144284;Conveyor Death Beam
+144285;Prey
+144286;Prey
+144287;On Conveyor
+144288;Poisonmist Totem
+144289;Foulstream Totem
+144290;Ashflare Totem
+144291;Rusted Iron Totem
+144292;Turret Death Ping
+144293;Mind Flay
+144296;Borer Drill
+144297;Wisp Form
+144299;Damaged Diving Helmet
+144300;Valor
+144301;Damaged Diving Helmet
+144302;Bloodlust
+144303;Swipe
+144304;Rend
+144305;Control Kunchong
+144306;Seal of the Crusader Judgment Increase
+144307;Seal of the Crusader Judgment Increase
+144308;Seal of the Crusader Judgment Increase
+144309;Seal of the Crusader Judgment Increase
+144310;Seal of the Crusader Judgment Increase
+144311;Seal of the Crusader Judgment Increase
+144312;Magma Totem
+144315;Mortar Blast
+144316;Mortar Blast
+144317;Immolation
+144318;Mana Shield Absorb Increase
+144319;Mana Shield Absorb Increase
+144320;Shadow Bolt
+144321;Shadow Bolt
 144323;Seesaw
+144325;Long Reach
+144326;Long Reach
+144327;Ricochet
+144328;Iron Tomb
+144329;Iron Tomb
+144330;Iron Prison
+144331;Iron Prison
+144332;Long Reach
+144334;Iron Tomb
+144335;Matter Purification Beam
+144340;Beast Slaying 18
+144341;Electrostatic Charge
+144342;Lightning Bolt
+144343;Pride
+144345;Summon Sunreaver Onslaught Rep
+144346;Clear Quest (Sunreaver Onslaught I)
+144347;Summon Kirin Tor Rep
+144348;Clear Quest (Kirin tor Offensive I)
+144349;Summon Diving Helmet
+144351;Mark of Arrogance
+144352;Big Water Bubbles Aura
+144353;Ping
+144354;Ping Aura
 144355;Childlike Wonder
+144356;Ricochet
+144357;Defiled Ground
+144358;Wounded Pride
+144359;Gift of the Titans
+144361;Alemental Death Beer
+144363;Gift of the Titans
+144364;Power of the Titans
+144365;Mark of Anguish
+144367;Noxious Poison
+144368;Alemental Death Beer
+144369;Berserk
+144370;Last Word
+144372;Fireball
+144373;RShwayder Test 02
+144374;Invoke Lava
+144375;Ricochet
+144376;Invoke Lava
+144377;Invoke Lava
+144378;Reuse Me
+144379;Mocking Blast
+144380;Ego Boost
+144381;Wooden Explosion
+144382;Wooden Explosion
+144383;Lava Burns
+144385;Crane Wings
+144387;Crane Wings Starting Knockback
+144388;Break Rocks
+144389;The Crowd Chose You!!!
 144390;Seesaw
+144391;Forward Thrust
+144392;Carrying A Box
+144393;Rock-breaking Hammer
+144394;Carrying A Box
+144395;Create Crane Feather Area Trigger
+144396;Vengeful Strikes
+144397;Vengeful Strikes
+144398;Fan of Bananas
+144399;Seesaw
+144400;Swelling Pride
+144401;Powerful Slam
+144402;Test Damage
+144404;Enrage
+144412;Basic Tank: Silver
+144413;Basic Tank: Gold
+144414;Basic Tank: Endless
+144415;Basic Tank: Bronze
+144416;Join Player Party
+144417;Leave Player Party
+144421;Corruption
+144424;Sticky Sap
+144432;Scenario: Celestial Tournament
+144433;Geyser
+144436;Item - Warrior T16 DPS 2P Bonus
+144437;Vengeful Strikes
+144438;Colossal Rage
+144440;RShwayder Test 01
+144441;Item - Warrior T16 DPS 4P Bonus
+144442;Death Sentence
+144443;Bubble Pop
+144444;Water Bubble
+144448;Cleanse
+144449;Cleanse
+144450;Cleanse
+144452;Purified
+144455;Spirit Winds
+144456;Laser Strike
+144458;Scatter Laser
+144459;Laser Burn
+144460;Scatter Laser
+144461;Firestorm
+144462;Firestorm
+144463;Firestorm
+144464;Flame Vents
+144465;[DND] Shadowy Ghost Visual
+144466;Magnetic Crush
+144467;Ignite Armor
+144468;Inspiring Song
+144470;Crane Rush
+144471;Blazing Song
+144472;Blazing Song
+144473;Beacon of Hope
+144474;Beacon of Hope
+144475;Beacon of Hope
+144476;Pipe Transfer
+144477;Victory
+144478;Spawn Victory Orb
+144479;Expel Corruption
+144480;Expelled Corruption
+144482;Tear Reality
+144483;Seismic Activity
+144484;Seismic Activity
+144485;Shock Pulse
+144486;Reveal Family
+144489;Summon Adds
+144490;Spawn Victory Orb
+144491;Spawn Victory Orb
+144492;Explosive Tar
+144493;Blazing Nova
+144494;Blazing Nova
+144495;Crane Rush
+144496;Explosive Tar
+144497;Explosive Tar
+144498;Explosive Tar
+144499;Reckless Defense
+144500;Reckless Defense
+144501;[DND] Wolf Boss Visual
+144502;Item - Warrior T16 Protection 4P Bonus
+144503;Item - Warrior T16 Protection 2P Bonus
+144504;Manifest Desperation
+144506;Horrific Howl
+144507;Burst of Corruption
+144508;Instakill Vehicle
+144510;Turret Explosion
+144511;Monkey Guru - Costume
+144512;Strike Behind
+144514;Lingering Corruption
+144518;Timeless Coin Purchase
+144519;Crippling Bite
+144520;Guardian
+144521;Damage Dealer
+144522;Fireball
+144525;Explosive Tar
+144527;Threatening Strike
+144528;Opening
+144530;Jadefire Breath
+144531;Leap for the Kill
+144532;Jadefire Bolt
+144533;Jadefire Wall
+144535;Leap for the Kill
+144537;Jadefire Blaze
+144538;Jadefire Blaze
+144539;Jadefire Wall
+144541;Jadefire Bolt
+144545;Jadefire Bolt
+144546;Leap for the Kill
+144547;Expelled Corruption
+144548;Expel Corruption
+144549;Shadowy Cove
+144550;Corrupted Prison
+144551;Shield Guard
+144552;Corrupted Prison
+144553;Mortar Barrage
+144554;Mortar Barrage
+144555;Mortar Barrage
+144556;Mortar Blast
+144557;Seismic Activity
+144559;Corrupted Prison
+144560;Appearance - Horde Tank
+144561;Appearance - Horde Melee
+144562;Appearance - Horde Caster
+144563;Imprison
+144564;Dreadful Howl
+144565;Wildfire Magus
+144566;Item - Paladin T16 Protection 4P Bonus
+144567;Ring of Flame
+144568;Flame Bolt
+144569;Bastion of Power
+144570;Flame Bolt
+144571;Flame Streak
+144572;Flame Streak
+144573;Cutter Laser
+144574;Corrupted Prison
+144575;Cutter Laser
+144576;Cutter Laser
+144577;Flying Wisp
+144578;Forward Thrust
+144579;Moonfang's Tears
+144580;Item - Paladin T16 Protection 2P Bonus
+144581;Blessing of the Guardians
+144582;Hamstring
+144583;Ancestral Chain Heal
+144584;Chain Lightning
+144585;Ancestral Fury
+144586;Item - Paladin T16 Retribution 2P Bonus
+144587;Warrior of the Light
+144588;Fury
+144590;Moonfang's Curse
+144592;Superman Wisp State
+144593;Item - Paladin T16 Retribution 4P Bonus
+144595;Divine Crusader
+144598;Obsidian Cage
+144600;test spell
+144601;test spell 2
+144602;Call the Pack
+144603;Obsidian Cage
+144604;Call the Pack
+144606;Oxen Fortitude
+144607;Oxen Fortitude
+144608;Charge
+144609;Charge
+144610;Headbutt
+144611;Massive Quake
+144612;Massive Quake
+144613;Item - Paladin T16 Holy 4P Bonus
+144615;Corrupted Prison
+144616;Power Iron Star
+144617;HMC Dummy Effect Periodic Aura B
+144618;HMC Dummy Effect Periodic Aura C
+144619;Ring of Flame
+144620;Obsidian Cage
+144621;Obsidian Cage
+144622;Favor of the Kings
+144623;Sunken Hozen Treasure
+144624;Unyielding Faith
+144625;Item - Paladin T16 Holy 2P Bonus
+144626;Cleanse
+144628;Titanic Smash
+144630;Jadeflame Buffet
+144631;Agility
+144633;Crackling Lightning
+144634;Crackling Lightning
+144635;Crackling Lightning
+144636;Corrupted Prison
+144637;Item - Hunter T16 2P Bonus
+144638;Spectral Swipe
+144639;Corruption
+144640;Leap
+144641;Item - Hunter T16 4P Bonus
+144642;Chi Barrage
+144643;Chi Barrage
+144644;Chi Barrage
+144645;Iron Star Impact
+144647;Shockwave Missile Visual
+144648;Explosive Expert
+144649;Hurl Corruption
+144650;Iron Star Impact
+144651;Endless Wave
+144652;Spectral Swipe
+144653;Iron Star Impact
+144654;Burst of Corruption
+144655;Iron Star Impale
+144657;Piercing Corruption
+144658;Shockwave Missile
+144659;Keen Eye
+144660;Shockwave Missile
+144661;Shockwave Missile
+144662;Shockwave Missile
+144663;Shockwave Missile
+144664;Shockwave Missile
+144665;Battle Pet - Chaos
+144668;Avatar of Flame
+144669;Shellshock
+144670;Brutal Kinship
+144671;Item - Hunter T16 BM 4P Player Driver
+144673;Crawler Mine
+144675;Obsidian Wall
+144677;Rolling Fire
+144678;Rolling Fire
+144679;Rolling Fire
+144680;Rolling Fire
+144681;Rolling Fire
+144682;Ordos Cosmetic State
+144683;Corrupted Prison
+144684;Corrupted Prison
+144688;Magma Crush
+144689;Burning Soul
+144690;Burning Soul
+144691;Ancient Flame
+144692;Pool of Fire
+144693;Pool of Fire
+144694;Pool of Fire
+144695;Ancient Flame
+144696;Eternal Agony
+144697;Eternal Agony
+144699;Ancient Flame
+144700;Fangs of the Moon
+144702;Moonfang's Tears
+144705;Crawler Mine
+144706;Ride Vehicle
+144707;Ride Vehicle
+144717;Look Within
+144718;Detonation Sequence
+144724;Look Within
+144725;Look Within
+144726;Look Within
+144727;Look Within
+144728;Despair
+144732;Detonation Sequence
+144733;Essence of Corruption
+144735;Endless Score
+144736;Enchant Gloves - Fishing
+144738;Permanent Feign Death
+144739;Manifestation of Corruption
+144740;Pounce
+144741;Corrupted Rift
+144742;Corrupted Rift
+144745;Desecrate
+144747;Hungry
+144748;Desecrate
+144749;Empowered Desecrate
+144751;Greater Stats
+144752;General Trigger 1
+144753;Detonation Sequence
+144754;Detonation Sequence
+144755;Detonation Sequence
+144756;Item - Druid T16 Balance 4P Bonus
+144757;Increased All Resist 05
+144758;Desecrate
+144759;Aim
+144760;Desecrated Weapon
+144761;Moon Moon
+144762;Desecrated
+144763;Endless Wave
+144764;[DND] Moon Moon Dance
+144766;Crawler Mine Blast
+144767;Item - Druid T16 Balance 2P Bonus
+144768;Greater Stats
+144769;[DND] Moon Moon Jump
+144770;Lunar Bolt
+144772;Solar Bolt
+144774;Reaching Attack
+144775;Dummy to Fin Longpaw
+144776;Ground Pound
+144778;Manifestation Spawn
+144781;Ride Vehicle
+144783;Ghostly Rune
+144784;Self-Reflection
+144787;Moonfang Shroud
+144788;Self-Reflection
+144791;Engulfed Explosion
+144798;Exploding Iron Star
+144800;Self-Reflection
+144806;Ghostly Rune
+144810;[DND] REUSE ME Wolf Boss Mount Visual
+144816;Empowered Desecrate
+144817;Desecrated
+144818;Empowered Desecrated Weapon
+144819;Power of the Old God
+144820;Power of the Old God
+144821;Hellscream's Warsong
+144829;Mad Scientist
+144830;[DND] Moon Moon Jump
+144832;Unleashed
+144833;CLICK ME
+144834;Been Clicked
+144836;Unleashed
+144838;Spoils of Pandaria
+144839;Multi-Shot
+144841;Item - Druid T16 Feral 4P Bonus
+144842;Phase Two Transform
+144843;Overcome
+144844;Multi-Shot
+144845;Exceptional Stats
+144848;Titanic Corruption
+144849;Test of Serenity
+144850;Test of Reliance
+144851;Test of Confidence
+144852;Transition Visual
+144853;Carnivorous Bite
+144854;Final Gift
+144859;Tiger's Fury
+144863;Overcome
+144864;Item - Druid T16 Feral 2P Bonus
+144865;Feral Fury
+144866;Enter Realm of Y'Shaarj
+144867;Enter Realm of Y'Shaarj
+144868;Enter Realm of Y'Shaarj
+144869;Item - Druid T16 Restoration 2P Bonus
+144870;Enter Realm of Y'Shaarj
+144871;Sage Mender
+144872;Return to Stone
+144873;Return to Stone
+144875;Item - Druid T16 Restoration 4P Bonus
+144876;Spark of Life
+144878;Enter Realm of Y'Shaarj
+144879;Item - Druid T16 Guardian 2P Bonus
+144880;Teleport
+144881;Teleport
+144882;Skunky Ale Crash
+144883;Teleport
+144884;Teleport
+144885;Teleport
+144886;Teleport
+144887;Item - Druid T16 Guardian 4P Bonus
+144888;Ursoc's Vigor
+144889;Quilen Guardian
+144890;Bug 365757 Fired!
+144891;Bug 365757 Jump
+144892;Poison Breath
+144893;Mogu Shadow Ritualist
+144895;Knock Up
+144899;Item - Death Knight T16 DPS 2P Bonus
+144901;Death Shroud
+144902;Battle Pet - Chaos
+144904;Rush
+144907;Item - Death Knight T16 DPS 4P Bonus
+144909;Item - Death Knight T16 DPS 4P Bonus (Hidden)
+144910;Bursting Pride
+144911;Bursting Pride
+144918;Cutter Laser
+144919;Tar Explosion
+144920;Y'Shaarj's Protection
+144921;Unstable Defense Systems
+144922;Harden Flesh
+144923;Earthen Shard
+144934;Item - Death Knight T16 Blood 2P Bonus
+144941;Sha-Corrupted
+144942;Sha-Corrupted
+144945;Y'Shaarj's Protection
+144946;Absorb Energy
+144947;Growing Power
+144948;Bone Wall
+144950;Item - Death Knight T16 Blood 4P Bonus
+144952;Projection
+144953;Deathbringer
+144954;Realm of Y'Shaarj
+144955;Ambient FX
+144956;Jump To Ground
+144957;Noodle Soup
+144958;Realm of Y'Shaarj
+144959;Deluxe Noodle Soup
+144960;Pandaren Treasure Noodle Soup
+144961;Food
+144962;Item - Shaman T16 Enhancement 2P Bonus
+144964;Flow of the Elements
+144966;Item - Shaman T16 Enhancement 4P Bonus
+144967;Lava Lash Highlight (DND)
+144969;Annihilate
+144970;Annihilate
+144973;Summon Guardian
+144975;Melee Combatant
+144977;Caster
+144979;Major Corruption
+144980;Greater Corruption
+144982;Corrupted Rift
+144984;Corrupted Rift
+144985;Whirling Corruption
+144989;Whirling Corruption
+144990;Glyph Boss Credit
+144991;Glyph Boss Credit
+144992;Glyph Boss Credit
+144994;Whirling Corruption Additional Missile
+144998;Item - Shaman T16 Elemental 2P Bonus
+144999;Elemental Discharge
+145000;Summon Lightning Elemental
+145002;Lightning Blast
+145003;Item - Shaman T16 Elemental 4P Bonus
+145004;Item - Monk T16 Windwalker 2P Bonus
+145005;Unleash Corruption
+145006;Unleash Corruption
+145007;Unleash Corruption
+145008;Combo Breaker Energize
+145022;Item - Monk T16 Windwalker 4P Bonus
+145023;Empowered Whirling Corruption
+145024;Focus of Xuen
+145028;Kneeling Sniper
+145033;Empowered Whirling Corruption
+145034;Feign Death, Sha Victim, Untrackable
+145036;Whirling Corruption
+145037;Empowered Whirling Corruption
+145038;Noodle Cart Kit
+145043;Empowering Corruption
+145044;Defensive Stance
+145045;Shield Slam
+145046;Thunder Clap
+145047;Shockwave
+145048;Charge
+145049;Item - Monk T16 Brewmaster 2P Bonus
+145050;Empowered
+145051;Protection of Niuzao
+145052;Corrupt
+145053;Consuming Pride
+145054;Shield Block
+145055;Item - Monk T16 Brewmaster 4P Bonus
+145056;Purified Healing
+145057;Shield Wall
+145058;Taunt
+145060;Devastate
+145061;Deluxe Noodle Cart Kit
+145062;Pandaren Treasure Noodle Cart Kit
+145063;Noodle Cart
+145064;Expel Corruption
+145065;Touch of Y'Shaarj
+145066;Projection
+145067;Turn Evil
+145069;REUSE ME
+145071;Touch of Y'Shaarj
+145072;Item - Warlock T16 2P Bonus
+145073;Residual Corruption
+145074;Residual Corruption
+145075;Destructive Influence
+145077;Lumbering Charge
+145079;Lumbering Charge
+145081;Lumbering Charge
+145082;Empowered Grasp
+145083;Deluxe Noodle Cart
+145084;Pandaren Treasure Noodle Cart
+145085;Fiery Wrath
+145086;Endless Wave
+145087;Basic Healer: Silver
+145088;Basic Healer: Gold
+145089;Basic Healer: Endless
+145090;Basic Healer: Bronze
+145091;Item - Warlock T16 4P Bonus
+145092;Reactive Poison
+145093;Reactive Poison
+145094;Reactive Poison
+145095;Reactive Poison
+145096;Touch of Y'Shaarj
+145101;Lightning Dance
+145102;Lightning Dance
+145104;Lightning Dance
+145105;Lightning Dance
+145108;Ysera's Gift
+145109;Ysera's Gift
+145110;Ysera's Gift
+145111;Free Your Mind
+145112;Free Your Mind
+145117;Charging Ox Wave v2
+145118;Amalgam
+145119;Call Reinforcements!
+145120;Infusion
+145121;Spoils of Pandaria
+145125;Spoils of Pandaria
+145126;Unchecked Corruption
+145128;Unchecked Corruption
+145132;Fusion
+145133;Moonfang
+145134;Expelled Corruption
+145138;Astral Insight
+145139;Extract Corruption
+145140;Extract Corruption
+145143;Extract Corruption
+145144;Extract Corruption
+145145;Extract Corruption
+145148;Scout
+145149;Extract Corruption
+145151;Dream of Cenarius
+145152;Dream of Cenarius
+145153;Dream of Cenarius
+145154;Electromagnetic Barrier
+145158;Hand of Gul'dan
+145159;Dark Refund
+145160;Hunter's Mark Chest Test
+145162;Dream of Cenarius
+145163;Touch of Y'shaarj
+145164;Ember Master
+145165;Ember Master Hidden Cooldown
+145166;Noodle Cart
+145167;Grand Noodle Cart Kit
+145169;Deluxe Noodle Cart
+145170;Grand Deluxe Noodle Cart Kit
+145171;Empowered Touch of Y'Shaarj
+145174;Item - Priest T16 Shadow 2P Bonus
+145175;Empowered Touch of Y'Shaarj
+145179;Item - Priest T16 Shadow 4P Bonus
+145180;Empowered Shadows
+145183;Gripping Despair
+145185;Item - Rogue T16 2P Bonus
+145188;Teleport
+145190;Cutter Laser
+145193;Silent Blades
+145194;Unchecked Corruption
+145195;Empowered Gripping Despair
+145196;Pandaren Treasure Noodle Cart
+145197;Grand Pandaren Treasure Noodle Cart Kit
+145198;Illusionary Hive-Singer
+145199;Explosive Despair
+145200;Sonic Blast
+145204;Illusionary Aqualyte
+145205;Wild Mushroom
+145206;Aqua Bomb
+145207;Gripping Despair
+145208;Aqua Bomb
+145209;Steam Visual
+145210;Item - Rogue T16 4P Bonus
+145211;Sleight of Hand
+145212;Unleashed Anger
+145213;Explosive Despair
+145214;Unleashed Anger
+145215;Banishment
+145216;Unleashed Anger
+145217;Banishment
+145218;Harden Flesh
+145219;Corruption
+145222;Transition Visual
+145223;Pipe Transfer
+145224;Pipe Transfer
+145226;Blind Hatred
+145227;Blind Hatred
+145230;Forbidden Magic
+145231;Jump To Ground
+145232;Dragonmaw Flagbearer
+145235;Throw Axe At Heart
+145237;Pipe Transfer
+145238;Pipe Transfer
+145239;Kor'kron Flagbearer
+145240;Forbidden Magic
+145241;Spawn Victory Orb
+145242;Spawn Victory Orb
+145243;Spawn Victory Orb
+145245;Mogu Shadow Ritualist
+145246;Phase Three Transform
+145249;Toxicologist
+145251;Item - Mage T16 2P Bonus
+145252;Profound Magic
+145254;Potent Flames
+145255;Aspect of Moonfang
+145257;Item - Mage T16 4P Bonus
+145258;Illusionary Tunneler
+145260;Burrow
+145261;Fiery Adept
+145263;Chomp
+145264;Frigid Blast
+145266;Refreshment
+145267;Refreshment
+145269;Break-in Period
+145270;Crimson Reconstitution
+145271;Crimson Reconstitution
+145272;Create Conveyor Trigger
+145275;Embodied Doubt
+145276;Embodied Despair
+145278;Way of the Brew
+145279;Way of the Grill
+145280;Way of the Oven
+145281;Way of the Pot
+145282;Way of the Steamer
+145283;Way of the Wok
+145285;Encapsulated Pheromones
+145286;Windstorm
+145288;Matter Scramble
+145299;Orb of Light
+145300;Refreshment
+145301;Refreshment
+145302;Refreshment
+145303;Refreshment
+145304;Well Fed
+145305;Seasoned Pomfruit Slices
+145306;Item - Priest T16 Healer 2P Bonus
+145307;Spiced Blossom Soup
+145308;Mango Ice
+145309;Farmer's Delight
+145310;Stuffed Lushrooms
+145311;Fluffy Silkfeather Omelet
+145314;Wall of Ice
+145318;Pet Saver Aura
+145320;Projection
+145321;Razor Hill - 5.4 - Shaman Heal Trigger
+145326;Razor Hill - 5.4 - Shaman Heal Trigger
+145327;Devout Faith
+145330;Pious Healer
+145331;Weak Minded
+145333;Gather Brew
+145334;Item - Priest T16 Healer 4P Bonus
+145336;Absolution
+145337;Healing Wave
+145345;Orb of Light
+145347;Superheated
+145349;Drunken Stupor
+145350;Wounded
+145351;Magnetic Lasso
+145358;Magnetic Lasso
+145364;Razor Hill - 5.4 - Attack Training Dummy
+145365;Protective Frenzy
+145369;Matter Scramble
+145370;Serrated Slash
+145372;Razor Hill - 5.4 - Attack Archery Dummy
+145374;Resolute Spirit
+145375;Wind Strike
+145377;Erupting Water
+145378;Item - Shaman T16 Restoration 2P Bonus
+145379;Nature's Barrier
+145380;Item - Shaman T16 Restoration 4P Bonus
+145381;Serrated Slash
+145384;Item - Shaman T16 Restoration 4P Cosmetic
+145385;Spiritwalker Champion
+145389;Temporal Anomaly
+145390;Item - Shaman T16 Restoration 4P Summon Dummy Cast
+145392;Renewing Mist
+145393;Matter Scramble
+145394;Item - Shaman T16 Restoration 4P Heal Trigger
+145399;Item - Shaman T16 Restoration 4P Heal Target Dummy
+145401;Illusionary Flamecaller
+145402;Invoke Lava
+145403;Lava Burns
+145404;Invoke Lava
+145405;Invoke Lava
+145406;Fireball
+145407;Mortar Blast
+145408;Illusionary Ripper
+145409;Illusionary Conqueror
+145411;Enrage
+145412;Call Speedy
+145413;Mutilate Off-Hand
+145414;Mutilate
+145415;Mutilate
+145416;Envenom
+145417;Rupture
+145418;Slice and Dice
+145419;Deadly Poison
+145420;Deadly Poison
+145421;Deadly Poison
+145422;Fan of Knives
+145423;Stealth
+145424;Cheap Shot
+145425;Shadowstep
+145426;Shadowstep
+145427;Kick
+145430;Call of the Mists
+145431;Cosmetic Channel
+145433;Arcane Charge
+145434;Arcane Blast
+145435;Arcane Missiles
+145436;Arcane Missiles
+145437;Arcane Barrage
+145439;Item - Monk T16 Mistweaver 2P Bonus
+145441;Yu'lon's Barrier
+145442;Mage Armor
+145444;Overload
+145449;Item - Monk T16 Mistweaver 4P Bonus
+145450;Mist Wave
+145451;Arcane Explosion
+145453;Automated Shredder Death Notify
+145458;Mogu Rune of Power
+145460;Mogu Rune of Power
+145461;Mogu Rune of Power
+145479;Cosmetic Channel
+145480;On Platform
+145483;Return to Stone
+145489;Return to Stone
+145499;Return to Stone
+145509;Kor'kron Choke
+145510;Kor'kron Choke
+145511;Kor'kron Choke
+145514;Return to Stone
+145516;Fading Corruption
+145517;Fading Corruption
+145518;Genesis
+145523;Animated Strike
+145524;Minor Portal
+145525;Berserk
+145526;Projection
+145529;Glyph of Efflorescence
+145530;Counterspell
+145531;Minor Portal
+145532;Frost Nova
+145533;Ice Block
+145534;Time Warp
+145535;Blink
+145536;Hobo Stick
+145537;Return to Stone
+145547;Electrified Ground
+145548;Poison Bolt
+145549;Poison Bolt Totem
+145550;Mind Spike
+145551;Shadowflame
+145552;Coin Toss
+145553;Bribe
+145554;Enrage
+145555;Empowered Chain Heal
+145556;Healing Tide
+145557;Healing Tide
+145558;Healing Tide Totem
+145559;Earth Shield
+145560;Earth Shield
+145561;Assassin's Mark
+145562;Backstab
+145563;Magistrike
+145564;Arcane Shock
+145565;Ironstorm
+145566;Ironstorm
+145567;Cosmetic - Burning Hanging Warlock
+145568;Bonecracker
+145569;Hurl Boulder
+145570;Boulder
+145571;Blind Hatred
+145573;Blind Hatred
+145574;Pandaren Spirit
+145580;Ready to Go!
+145584;Vengeful Strikes
+145585;Storm Bolt Off-Hand
+145590;Sha Cloud
+145591;Sha Cloud
+145597;Goblin Cosmetic
+145598;Phase Three Transform
+145599;Touch of Y'Shaarj
+145600;Goblin Cosmetic (Dead)
+145601;5.4 - Cosmetic - Healing Tide Totem Aura
+145605;Corrupted Brew
+145608;Corrupted Brew
+145609;Corrupted Brew
+145610;Corrupted Brew
+145611;Corrupted Brew
+145612;Corrupted Brew
+145613;Blind Hatred
+145615;Corrupted Brew
+145617;Corrupted Brew
+145619;Carry Crate
+145620;Dominance
+145623;Free Goblin
+145625;Bite
+145626;Dash
+145627;Focus
+145628;Focus
+145629;Anti-Magic Zone
+145631;Corruption Chain
+145632;Dominance
+145633;Enter Quarantine
+145635;Increased Stamina
+145639;Laser Turret Targetting
+145640;Chi Brew
+145646;Control Powerful Demon
+145647;Realm of Y'Shaarj
+145653;Corruption Chain
+145654;Cobra Shot
+145655;Shared Torment
+145656;Serpent Sting
+145657;Shadow Bolt Volley
+145658;Shadow Bolt Volley
+145661;Explosive Shot
+145662;Gamon Cosmetic State
+145663;Hunter's Mark
+145665;Black Arrow
+145666;Feign Death
+145667;Multi-Shot
+145668;Disengage
+145669;Gamon Chain 1
+145670;Gamon Chain 2
+145671;Unlock Chains
+145672;Riposte
+145674;Riposte
+145676;Riposte
+145677;Riposte
+145679;Unchecked Corruption
+145683;10% health
+145684;Banishment
+145685;Unstable Defense Systems
+145687;Unstable Defense Systems
+145688;Unstable Defense Systems
+145690;Unlocking
+145692;Enrage
+145696;Xu-Fu, Cub of Xuen
+145697;Chi-Chi, Hatchling of Chi-Ji
+145698;Yu'la, Broodling of Yu'lon
+145699;Zao, Calfling of Niuzao
+145701;Automatic Repair Beam
+145702;Throw Explosives
+145705;Orb of Light
+145706;Throw Explosives
+145710;Empowered Touch of Y'Shaarj
+145712;Gusting Bomb
+145714;Gusting Bomb
+145715;Gusting Bomb
+145716;Gusting Bomb
+145717;Gusting Bomb
+145718;Gusting Bomb
+145719;Bone Wall
+145721;Overcharged Laser Fire
+145722;Glyph of Angels
+145724;Glyph of Angels
+145725;Despair
+145727;Flamestrike
+145728;Resurrection
+145729;Resistance Totem
+145730;Resistance Totem
+145731;Eye of Kilrogg
+145732;Resistance Totem
+145733;Icy Fear
+145734;Laser Ground Effect Periodic
+145735;Icy Fear
+145736;Laser Ground Effect
+145737;Brutal Kinship
+145738;Item - Hunter T16 BM 4P Pet Driver
+145739;Angels
+145740;Spike Mine
+145741;Laser Ground Effect Periodic
+145742;Laser Ground Effect
+145744;Slave Chains
+145746;Jab
+145747;Encapsulated Pheromones
+145748;Encapsulated Pheromones
+145751;Permanent Feign Death (No Anim)
+145752;Spike Mine Detonation
+145757;Dummy Channel
+145759;Auto Shot
+145765;Fusion
+145768;Unleash Corruption
+145769;Unleash Corruption
+145770;Spike Mine Detonation
+145772;Spike Mine Detonation
+145773;Quarantine Safety Measures
+145774;Overcharge
+145775;Overcharge
+145776;Quarantine Safety Measures
+145779;Quarantine Safety Measures
+145786;Residue
+145790;Residue
+145801;Garrosh Energy
+145806;Mantid Swarm
+145807;Mantid Swarm
+145808;Mantid Swarm
+145809;Sha Energy
+145810;Sha Energy
+145812;Rage of the Empress
+145813;Rage of the Empress
+145817;Windstorm
+145818;Growing Pride
+145828;Amber Shell
+145829;Empowered Desecrate
+145831;Empowered Gripping Despair
+145832;Empowered Touch of Y'Shaarj
+145833;Empowered Whirling Corruption
+145838;Unstable Defense Systems
+145855;Corrosive Blood
+145861;Self-Absorbed
+145864;GB-11010 "Armageddon"-Class Defense System
+145880;Desecrated Weapon
+145881;Gathered Brew
+145883;Noodled
+145884;Noodles
+145885;Bowls
+145886;Bowls
+145887;Boiling Broth
+145888;Boiling Broth
+145891;Overconfidence
+145893;Overconfidence
+145894;Overconfidence
+145895;Overconfidence
+145897;Overconfidence
+145906;Laser Turret Targetting
+145907;Serrated Rampage
+145908;Serrated Rampage
+145909;Immerseus Bonus
+145910;Fallen Protectors Bonus
+145911;Norushen Bonus
+145912;Sha of Pride Bonus
+145913;Galakras Bonus
+145914;Iron Juggernaut Bonus
+145915;Dark Shaman Bonus
+145916;General Nazgrim Bonus
+145917;Malkorok Bonus
+145918;Siegecrafter Blackfuse Bonus
+145919;Spoils of Pandaria Bonus
+145920;Thok the Bloodthirsty Bonus
+145921;Klaxxi Paragons Bonus
+145922;Garrosh Hellscream Bonus
+145923;Immerseus Bonus Loot
+145924;Fallen Protectors Bonus Loot
+145925;Norushen Bonus Loot
+145926;Sha of Pride Bonus Loot
+145927;Galakras Bonus Loot
+145928;Iron Juggernaut Bonus Loot
+145929;Dark Shaman Bonus Loot
+145930;General Nazgrim Bonus Loot
+145931;Malkorok Bonus Loot
+145932;Siegecrafter Blackfuse Bonus Loot
+145933;Spoils of Pandaria Bonus Loot
+145934;Thok the Bloodthirsty Bonus Loot
+145935;Klaxxi Paragons Bonus Loot
+145936;Garrosh Hellscream Bonus Loot
+145937;Skullspitter's Rage
+145940;Growing Overconfidence
+145941;Arrogance
+145942;Vanity
+145943;Battle-Bound
+145944;Sha Smash
+145945;Shadowy Ghost Cosmetic Spawn Spell
+145952;Garrosh Hellscream Push Loot 2
+145954;Garrosh Hellscream Push Loot 2.1
+145955;Readiness
+145956;Garrosh Hellscream Push Loot 2.2
+145958;Readiness
+145959;Readiness
+145960;Readiness
+145961;Readiness
+145962;Readiness
+145963;Readiness
+145964;Readiness
+145965;Readiness
+145966;Readiness
+145967;Readiness
+145968;Readiness
+145969;Readiness
+145973;5.4 Tradeskills - Cooking Noodle Cart - Tier 1 - 10p Spawn
+145974;Enrage
+145975;Readiness
+145976;Readiness
+145978;Readiness
+145979;Door Channel
+145981;Readiness
+145982;Readiness
+145983;Readiness
+145984;Readiness
+145985;Readiness
+145986;Readiness
+145987;Set to Blow
+145988;Readiness
+145989;Sha Nova
+145990;Readiness
+145991;Readiness
+145992;Readiness
+145993;Set to Blow
+145995;Dark Fury
+145996;Set to Blow
+145997;Spoils of Pandaria
+145998;Strength of the Stone
+145999;Deteriorate
+146001;Cutting Laser
+146002;Dread Howl
+146007;Spawn Dead
+146009;Impending Overconfidence
+146011;Blood Drip
+146012;Blood Pool
+146019;Readiness
+146022;Purified
+146023;Readiness
+146024;Sha Vortex
+146025;Readiness
+146027;Mortar Blast
+146028;Molten Slug
+146029;Sha Vortex
+146034;Sha Vortex
+146037;Sha Vortex
+146038;Blaze of Glory
+146039;Blaze of Glory
+146041;Pandaren Spirit
+146042;Sha Corruption
+146043;Fiery Wrath
+146045;Pandaren Spirit
+146046;Expanded Mind
+146047;Item - Attacks Proc Intellect
+146049;Sha Corruption
+146050;Fire Storm
+146051;Amplification
+146052;Pandaren Spirit
+146053;Fire Storm
+146055;Fire Storm
+146056;Pandaren Spirit
+146057;Fire Storm
+146058;Gorehowl
+146059;Multistrike
+146061;Multistrike
+146062;Summon Amalgamated Hubris
+146063;Multistrike
+146064;Multistrike
+146065;Multistrike
+146067;Multistrike
+146068;Blade of the Hundred Steps
+146069;Multistrike
+146070;Multistrike
+146071;Multistrike
+146075;Multistrike
+146076;Pandaren Spirit
+146077;Pandaren Spirit
+146079;5.4 Tradeskills - Cooking Noodle Cart - Tier 2 - 10p Spawn
+146080;5.4 Tradeskills - Cooking Noodle Cart - Tier 3 - 10p Spawn
+146081;Blade of the Hundred Steps
+146083;Poof
+146084;Summon Amalgamated Hubris
+146086;Summon Amalgamated Hubris
+146087;Summon Amalgamated Hubris
+146088;Summon Amalgamated Hubris
+146089;Pandaren Spirit
+146092;Overcharged Visual
+146093;Fragment - Cosmetic Toss Spell
+146094;Pandaren Spirit
+146095;Pandaren Spirit
+146096;Pandaren Spirit
+146097;Pandaren Spirit
+146098;Staff of Resonating Water
+146099;Staff of Resonating Water
+146100;Pandaren Spirit
+146101;Pandaren Spirit
+146102;Pandaren Spirit
+146103;Pandaren Spirit
+146105;Pandaren Spirit
+146118;Damage Debuff for Lack of Equipped Shield
+146119;Missile Strike
+146120;Spell Reflection (warrior)(visual with shield)
+146122;Spell Reflection (warrior)(visual with no shield Horde)
+146123;Magnetic Crush Visual
+146124;Self Doubt
+146127;Shield Wall (warrior)(visual with no shield Horde)
+146128;Shield Wall (warrior)(visual with shield)
+146136;Cleave
+146137;Cleave
+146138;Pandaren Spirit
+146139;Pandaren Spirit
+146140;Pandaren Spirit
+146141;Claw of Burning Anger
+146142;Claw of Burning Anger
+146143;Pandaren Spirit
+146144;Pandaren Spirit
+146145;Pandaren Spirit
+146146;Pandaren Spirit
+146147;Pandaren Spirit
+146148;Pandaren Spirit
+146149;Shockwave Missile
+146152;Shockwave Missile
+146153;Shockwave Missile
+146154;Shockwave Missile
+146155;Shockwave Missile Visual
+146157;Cleave
+146158;Cleave
+146159;Cleave
+146160;Cleave
+146162;Cleave
+146163;Umbral Tempest
+146166;Cleave
+146167;Umbral Tempest
+146170;Umbral Tempest
+146171;Cleave
+146172;Cleave
+146173;Unleashed
+146174;Unleashed
+146176;Multistrike
+146177;Multistrike
+146178;Multistrike
+146179;Frayed
+146180;Gusting Crane Kick
+146182;Gusting Crane Kick
+146183;Item - Proc Intellect
+146184;Wrath of the Darkspear
+146185;Gusting Crane Kick
+146187;Bestial Pride
+146189;Eminence
+146190;Eminence
+146191;Explosive Tar
+146193;Endurance of Niuzao
+146194;Flurry of Xuen
+146195;Flurry of Xuen
+146197;Essence of Yu'lon
+146198;Essence of Yu'lon
+146199;Spirit of Chi-Ji
+146200;Spirit of Chi-Ji
+146202;Wrath
+146203;War Beast Killed
+146213;Keg Toss
+146214;Keg Toss
+146217;Keg Toss
+146218;Yu'lon's Bite
+146219;Item - Spells Proc Crit
+146220;Jealousy
+146221;Scorched Earth
+146222;Breath of Fire
+146223;Scorched Earth
+146225;Scorched Earth
+146226;Breath of Fire
+146227;Jealousy
+146228;Scorched Earth
+146230;Breath of Fire
+146235;Breath of Fire
+146236;Create Belt
+146237;Create Boots
+146238;Create Chestpiece
+146239;Create Gloves
+146240;Create Helm
+146241;Create Leggings
+146242;Create Shoulders
+146243;Create Bracer
+146244;Create Ring
+146245;Outrage
+146246;Create Cloak
+146247;Item - Proc Strength
+146248;Overcharged Missile Death
+146250;Determination
+146251;Item - Proc Strength
+146253;Path of Blossoms
+146254;Fatal Strikes
+146255;Path of Blossoms
+146256;Path of Blossoms
+146257;Path of Blossoms
+146259;Create Belt
+146260;Create Boots
+146261;Create Chestpiece
+146263;Create Gloves
+146264;Create Helm
+146265;Create Leggings
+146266;Create Shoulders
+146267;Create Bracer
+146268;Create Belt
+146269;Create Boots
+146270;Create Chestpiece
+146271;Create Gloves
+146272;Create Helm
+146273;Create Leggings
+146274;Create Shoulders
+146275;Create Bracer
+146276;Create Belt
+146277;Create Boots
+146278;Create Robes
+146279;Create Gloves
+146280;Create Helm
+146281;Create Leggings
+146282;Create Shoulders
+146283;Create Bracer
+146285;Cruelty
+146286;Item - Proc Critical Strike
+146289;Mass Paralysis
+146293;Cruel
+146295;Item - Hits Proc Haste
+146296;Celestial Celerity
+146308;Dextrous
+146309;Item - Proc Agility
+146310;Restless Agility
+146311;Item - Proc Agility
+146312;Celestial Master
+146313;Item - Attacks Proc Mastery
+146314;Titanic Restoration
+146315;Item - Heals Proc Int
+146316;Item - Proc Spirit
+146317;Restless Spirit
+146318;Summon Conversation Stalker
+146319;Just War
+146321;Item - Heals Proc Int
+146323;Inward Contemplation
+146324;Jealousy
+146325;Cutter Laser Target
+146331;Feign Death, Sha Victim, Untrackable
+146342;Superheated Crawler Mine
+146343;Avoidance
+146344;Defensive Maneuvers
+146345;Summon Chat Bunny
+146346;Life Steal
+146347;Life Steal
+146348;Feign Death, Sha Victim, Untrackable
+146349;Catch Grain
+146357;Carrying Grain
+146359;Regeneration
+146360;Depletion
+146361;Slam
+146364;Throw Bomb
+146365;Set to Blow
+146371;Deathdealer Turret Visual
+146372;Laser Targetting
+146373;Deathdealer
+146374;Deathdealer
+146375;Deathdealer
+146376;Deathdealer
+146377;Deathdealer
+146378;Deathdealer Turret Control Periodic
+146380;Summon Activated Rocket Turret
+146381;Summon Deactivated Deathdealer Turret
+146383;5.4 - Cooking - Noodle Cart - Lin Chao-Wei - Spawn Spell
+146385;Timeless Nutriment
+146387;Sprint
+146388;Emote State - Bow
+146389;Cannon Blast
+146390;Cannon Blast
+146394;Disarm
+146395;Tactician
+146396;Wait on Customer
+146397;Legendary Finale
+146398;Select Seat
+146399;Seat Available
+146402;Scorched Earth
+146403;Set Up Game
+146404;Scorched Earth
+146405;Spawn Seat
+146406;Disintegration
+146418;Summon Activated Deathdealer Turret
+146421;Make Noodle Soup
+146422;Make Dragon's Nest Noodle Soup
+146423;Make Pandaren Treasures Noodle Soup
+146424;Noodle Stand
+146426;Timeless Nutriment
+146427;Strange Energy
+146428;Essence of Wrathion
+146429;Battle Pet - Spectral
+146434;Get In Line
+146440;Noodle Soup
+146441;Dragon's Nest Noodle Soup
+146442;Pandaren Treasures Noodle Soup
+146447;Drill-hand Visual
+146448;Waiting for Food
+146449;Deliver Soup
+146452;Resonating Amber
+146454;Resonating Amber
+146455;Resonating Amber
+146456;Drill Charge
+146459;Drill Charge
+146460;Drill Charge
+146461;Drill Charge
+146467;Clear Queue
+146469;Drillstorm
+146470;Drillstorm
+146472;Eating Noodle Soup
+146473;Eating Dragon's Nest Noodle Soup
+146474;Eating Pandaren Treasures Noodle Soup
+146476;Drillstorm
+146479;Drillstorm
+146487;Siege Gate
+146488;Anti-Air Cannon
+146489;Lift Hook
+146491;Lift Hook
+146492;Timeless Nutriment
+146493;Timeless Nutriment
+146494;Smoldering Spores
+146495;Sprite Ward
+146496;Sprite Ward
+146497;Impatient
+146498;Hungry
+146499;Resonating Amber
+146500;Lift Hook
+146501;Amber Growth
+146502;Resonating Amber
+146503;Annihilation
+146504;Annihilation
+146506;Waiting in Line
+146510;Return From Darkness
+146511;Amber Blast
+146512;Fortitude
+146514;Score Me
+146515;Tally Score
+146519;Clear Customers
+146521;Clear Food
+146527;Frenzied Assault
+146528;Noodle Time
+146529;Unstable Defense Systems
+146531;Frenzied Assault
+146534;Vivisection
+146535;Frenzied Assault
+146536;Frenzied Assault
+146537;Obliterating Strike
+146538;Dummy Nuke
+146539;Attack Me
+146540;Fixate
+146544;Thrall Chain 01
+146545;Thrall Chain 02
+146551;Thrall Chain 03
+146552;Thrall Chain 04
+146553;Thrall Chain 05
+146554;Thrall Chain 06
+146555;Drums of Rage
+146556;Pierce
+146557;Frozen Thoughts
+146559;Corruption
+146560;Cloak Transformation Spell 01
+146561;Rocket Pack Visual
+146562;Cloak Transformation Spell 02
+146563;Cloak Transformation Spell 03
+146564;Cloak Transformation Spell 04
+146565;Cloak Transformation Spell 05
+146566;Cloak Transformation Spell 06
+146568;Reverse Cast 1 Damage
+146569;Reverse Cast 1 Damage
+146570;Wave
+146571;Cook
+146572;Jet Pack
+146573;Dance
+146574;Fireworks
+146575;Wave
+146576;Cook
+146577;Fireworks
+146578;Fireworks
+146581;Fixate
+146582;Staff of Resonating Water
+146584;Spoils of Pandaria
+146585;Execution Sentence
+146586;Stay of Execution
+146587;Kor'kron Cosmetic (Dead)
+146589;Skeleton Key
+146590;Skunky Ale Crash
+146594;Gift of the Titans
+146595;Gift of the Titans
+146599;Gorefiend's Grasp
+146604;Leaking Wheat Ale
+146605;Mighty Cleave
+146606;Poison Blast
+146607;Arcing Blast
+146609;Arcing Blast
+146612;Arcing Blast
+146613;Drums of Rage
+146615;Vicious Warsaber
+146621;Ground Slam
+146622;Vicious Skeletal Warhorse
+146623;Banishment
+146624;Essence of Wrathion (Aura)
+146625;Glyph of Recovery
+146628;Glyph of Sharpened Knives
+146629;Glyph of Redirect
+146631;Glyph of Hemorrhaging Veins
+146633;Dive Bomb
+146637;Arcing Blast
+146638;Crafted Malevolent Gladiator's Medallion of Tenacity
+146640;Celestial Firework
+146641;Serpent's Heart Firework
+146642;Grand Celebration Firework
+146645;Glyph of Swift Death
+146646;Glyph of the Loud Horn
+146648;Glyph of Regenerative Magic
+146649;Jade Blossom Firework
+146650;Glyph of Festering Blood
+146651;Autumn Flower Firework
+146652;Glyph of the Skeleton
+146653;Glyph of the Long Winter
+146654;Glyph of the Sprouting Mushroom
+146655;Glyph of Guided Stars
+146656;Glyph of One With Nature
+146657;Glyph of the Lean Pack
+146659;Glyph of Rapid Displacement
+146662;Glyph of Evaporation
+146663;Electromagnetic Barrier
+146664;Wave
+146679;Staff of Resonating Water
+146680;Disintegration Laser
+146681;Throw Spike Mine
+146682;Spike Mine
+146683;Laser Gun Targetting
+146684;Laser Gun Targetting
+146685;Restart Scenario
+146687;Fly-by
+146688;Shoot
+146689;Fly-by Attack
+146693;Fly-by
+146694;Fly-by
+146696;Unstable Spark
+146698;Fly-by
+146699;Fly-by
+146700;Fly-by
+146701;Bottomless Pit
+146702;Fly-by
+146703;Bottomless Pit
+146704;Dragonmaw Strike
+146705;Bottomless Pit
+146706;Pummel
+146707;Disheartening Laugh
+146708;Break Free
+146710;Summon Intro Scene
+146711;Event Cleanup
+146712;Test of Reliance
+146716;Spawn Victory Orb
+146719;Summon Chat Bunny
+146720;Magma Totem
+146721;Magma Totem
+146722;Healing Tide Totem
+146725;Healing Tide
+146726;Healing Tide
+146727;Summon Clone
+146728;Chain Heal
+146731;Monument Visual
+146735;War Banner
+146736;War Banner
+146738;Cannon Blast
+146739;Corruption
+146740;Charge
+146741;Cleave
+146743;Sniped!
+146744;Fracture
+146745;Shoot Me!
+146746;Monument Clean Up
+146747;Dragonmaw Strike
+146748;Pummel
+146750;Magma Totem
+146751;Magma Totem
+146753;Healing Tide Totem
+146754;Healing Tide
+146755;Healing Tide
+146756;Transition Visual
+146757;Chain Heal
+146759;Electric Pulse
+146760;Taunt
+146761;Arcane Barrage
+146762;Frostfire Bolt
+146763;Flame Arrows
+146764;Flame Arrows
+146765;Flame Arrows
+146767;Heroic Leap
+146768;Shoot
+146769;Crusher's Call
+146770;Summon Skeleton
+146771;Distracting Shot
+146772;Multi-Shot
+146773;Shoot
+146774;Barbed Net
+146775;Crusher's Call
+146776;Flame Breath
+146778;Crusher's Call
+146779;Flame Breath
+146780;Crusher's Call
+146781;Frostbolt
+146782;Blizzard
+146783;Summon Water Elemental
+146786;Fireball
+146787;Flamestrike
+146788;Mana Shield
+146793;Bottomless Pit
+146797;Skull Cracker
+146803;Unstable Spark
+146804;Well Fed
+146805;Well Fed
+146806;Well Fed
+146807;Well Fed
+146808;Well Fed
+146809;Well Fed
+146812;Holy Spark
+146815;Supernova
+146816;Legendary Finale
+146817;Aura of Pride
+146818;Aura of Pride
+146820;Unstable Spark
+146821;Lightning Spark
+146822;Projection
+146823;Banishment
+146824;Unstable Spark
+146825;Spiteful Swipe
+146826;Look Within
+146827;Look Within
+146828;Look Within
+146829;Look Within
+146830;Look Within
+146831;Look Within
+146832;Look Within
+146833;Look Within
+146834;Look Within
+146835;Look Within
+146836;Look Within
+146837;Look Within
+146843;Demolisher Cannon
+146845;Transition Visual
+146848;Skull Cracker
+146849;Shattering Cleave
+146854;Demolisher Cannon
+146857;Demolisher Cannon
+146863;Bloody Slash
+146864;Shadow Stalk
+146868;Shadow Assault
+146872;Shadow Assault
+146874;Feral Rage
+146876;Smoke Bomb
+146877;Smoke Bomb
+146878;Smoke Bomb
+146879;Smoke Bomb
+146885;Bulging Bag of Charms
+146886;Kick Flour
+146887;Immature
+146889;Molt
+146890;Summon Immature Kunchong
+146891;Summon Hungry Kunchong
+146895;Flour Explosion
+146896;Smoke Bomb
+146897;Shattering Roar
+146899;Fracture
+146900;Adam's Ribbon Bug
+146901;Fracture
+146902;Poison-Tipped Blades
+146906;Fracture
+146908;Slow and Steady
+146917;See Celestials at Tree
+146918;Dash of Spice
+146919;Dash of Spice
+146920;Spawn
+146921;Accelerated Balanced Trillium Ingot
+146923;Accelerated Hardened Magnificent Hide
+146925;Accelerated Celestial Cloth
+146926;Echo of Y'shaarj
+146927;Rend
+146928;Stack of Books
+146929;Enduring Elixir of Wisdom
+146931;Noodle Cart
+146933;Noodle Cart
+146934;Deluxe Noodle Cart
+146935;Pandaren Treasure Noodle Cart
+146936;Noodle Cart
+146937;Deluxe Noodle Cart
+146938;Pandaren Treasure Noodle Cart
+146939;Enduring Elixir of Wisdom
+146940;Skunky Froth
+146944;Ooze Spawn
+146948;Drunken Stupor
+146949;Ooze Spawn
+146950;Glyph of Targeted Expulsion
+146951;Glyph of Rapid Rolling
+146952;Glyph of Nimble Brew
+146953;Glyph of Fortuitous Spheres
+146954;Glyph of Detox
+146955;Glyph of Devotion Aura
+146956;Glyph of Divine Shield
+146957;Glyph of Hand of Sacrifice
+146958;Glyph of the Exorcist
+146959;Glyph of Pillar of Light
+146960;Glyph of the Headhunter
+146961;Glyph of Improved Distraction
+146962;Glyph of Havoc
+146963;Glyph of Curse of the Elements
+146964;Glyph of Unending Resolve
+146965;Glyph of Victorious Throw
+146966;Phase Three De-Transform
+146967;Phase Three De-Transform
+146968;Glyph of the Raging Whirlwind
+146969;Glyph of the Subtle Defender
+146970;Glyph of Impaling Throws
+146971;Glyph of the Executor
+146972;Phase 3 De-Transform Missile
+146973;Glyph of the Watchful Eye
+146974;Glyph of the Weaponmaster
+146975;Acid Spray
+146976;Glyph of the Unbound Elemental
+146977;Acid Spray
+146978;Acid Spray
+146979;Acid Spray
+146980;Echo of Y'Shaarj: Clean Up
+146982;Berserk
+146983;The Klaxxi Paragons
+146984;Enter Realm of Garrosh
+146985;Enter Realm of Garrosh
+146986;Teleport
+146987;Phase Four Transform
+146988;Permanent Feign Death
+146989;War Harness
+146990;Instakill Ooze
+146991;Flames of Galakrond
+146992;Flames of Galakrond
+146993;Victory Rush
+146995;Serrated Cleave
+146996;Poison Mists
+146999;Growing Power
+147005;Cave-in: Summon Treasure
+147008;Cave-in: Summon Spelurk
+147010;Death From Above
+147011;Manifest Rage
+147013;Manifestation of Rage
+147016;Cave-in: Summon Canh Silentsky
+147020;Canh's Treasure
+147023;Rushing Waters
+147024;Molten Blast
+147025;General Trigger 1
+147026;Rocket Rampage
+147027;Rocket Rampage
+147028;Banishment
+147029;Flames of Galakrond
+147030;Rocket Rampage
+147031;Rocket Rampage
+147035;Manifestation of Rage
+147037;Leafy Explosion
+147038;Berzerker Blaze
+147042;Pulsing Flames
+147043;Pulsing Flames
+147044;Tomb Summon
+147047;Fire Unstable Iron Star
+147048;Iron Star Crater
+147053;Fire Iron Star
+147055;Singing Crystal
+147065;Glyph of Inspired Hymns
+147068;Flames of Galakrond
+147072;Glyph of Inspired Hymns
+147073;Molten Slug
+147074;Rushing Streams
+147077;Ooze Killing Trigger
+147078;Glyph of the Loud Horn
+147081;General Trigger 2
+147082;Burst of Anger
+147083;Lesser Sha Residue
+147088;Bombardment
+147094;Start Siege Engineer Wing Intro
+147111;Break Bottle
+147114;Bottle Break
+147120;Call Bombardment
+147121;Ping Bottle
+147122;Bombardment
+147124;Lil' Bling
+147126;Clump Check
+147130;Clump Check
+147131;Bombardment
+147132;Bombardment
+147133;Bombardment
+147135;Bombardment
+147136;Napalm
+147137;Dread Ship Cosmetic
+147138;Bombardment
+147139;Bombardment
+147140;Bombardment
+147141;Ooze Spawn
+147143;Noodles
+147144;Noodles
+147146;Dash of Spice
+147148;Unstable Iron Star
+147149;Wrathion Scream
+147152;Dsah of Spice
+147153;Instakill Other
+147154;Book of the Ages
+147155;Lesser Purified Residue
+147156;Dew of Eternal Morning
+147157;Skeleton Transform
+147160;Molten Slug
+147163;Health Watcher
+147165;Why Do We Fight?
+147166;Ooze Spawn
+147168;See Wrathion Tantrum
+147169;Crashing Waves
+147170;Piercing Song
+147171;Playful Water Toss
+147172;The Tree of New Seasons
+147173;Unstable Iron Star
+147175;Teleport Player to Tree
+147176;War Banner
+147177;Unstable Iron Star
+147178;Swirl Zone N
+147179;Unstable Iron Star
+147180;5.4 Cooking - Noodle Cart - Noodle Time - Stand Spawn
+147181;Swirl Zone NE
+147182;Swirl Zone NW
+147183;Unstable Corruption
+147184;Swirl Zone
+147185;Rushing Waters
+147186;Rift of Corruption
+147187;Call Gunship
+147189;Swirl Zone SE
+147191;Swirl Zone SW
+147193;Shadowy Apparition
+147196;Summon Diving Helmet
+147197;Noodle Time Intro
+147198;Unstable Corruption
+147199;Rift of Corruption
+147200;Fracture
+147201;Fracture
+147202;Fracture
+147203;Fracture
+147204;Shattering Roar
+147205;Rift of Corruption
+147207;Weakened Resolve
+147209;Malice
+147210;Rift of Corruption
+147211;Rift of Corruption
+147213;Rushing Waters
+147214;Summon Wrathion
+147215;Strip See Invis
+147225;Summon Conversation Stalker
+147226;Book of the Ages
+147227;Wisdom of the Ages
+147228;Wisdom of the Ages
+147229;Malice
+147231;Flame Breath
+147232;Flame Breath
+147233;Enable Unit Frame
+147234;Dummy Nuke
+147235;Malicious Blast
+147236;Malicious Energy
+147262;Bloody Slash
+147263;Bloody Slash
+147264;Bloody Slash
+147265;Bloody Slash
+147266;Enter Realm of Y'Shaarj
+147267;Coalesce
+147268;Coalesce
+147269;Coalesce
+147270;Coalesce
+147271;Coalesce
+147272;Coalesce
+147273;Coalesce
+147274;Coalesce
+147275;Vanish
+147276;Sunset Blade
+147277;Cloudstrike
+147278;Cloudstrike Family Helm
+147279;Spirit Ward
+147280;Time-Lost Wisdom
+147281;Fortitude of Niuzao
+147282;Wisdom of Yu'lon
+147283;Chi-Ji's Hope
+147284;Xuen's Strength
+147285;Ordos' Burning Sacrifice
+147286;Issuing a Challenge
+147287;Volatile Amber Globule
+147288;Huge Fangs
+147289;Huge Fang
+147290;Huge Fang
+147291;Huge Fangs
+147292;Volatile Amber Globule
+147293;Berserking
+147294;Berserking
+147295;Summon Fading Breath
+147296;Summon Fading Breath
+147297;Raging Whirlwind
+147300;Blood Frenzied
+147301;Garrosh Finale - Horde
+147302;Garrosh Finale - Alliance
+147303;test - hw
+147304;Vortex
+147305;Vortex
+147306;Windfeather
+147307;Ping Self
+147308;Vortex
+147309;Healing Song
+147310;Gust of Wind
+147311;Lava Shot
+147312;Well Fed
+147314;Garrosh Finale - Horde
+147315;Strip See Invis - TONG
+147316;Blaze of Glory Explosion
+147317;In a Tower
+147318;Ping Tong
+147319;Crushing Fear
+147320;Crushing Fear
+147321;Vortex
+147322;Summon Tong
+147324;Crushing Fear
+147325;Crushing Fear
+147326;Crushing Fear
+147327;Crushing Fear
+147328;War Banner
+147329;Garrosh Finale - Horde
+147330;Selection Box
+147331;Garrosh Finale - Alliance
+147332;Garrosh Finale - Alliance
+147333;Bubble Shield
+147334;Cosmetic - Green Cat Mark State
+147335;Furious Splash
+147336;Carrying Grain
+147337;Carrying Grain
+147338;Carrying Grain
+147339;Carrying Grain
+147340;Bubble Shield
+147341;Ultimate Despair
+147342;Ultimate Despair
+147343;Burden of Eternity
+147344;Water Bolt Volley
+147345;Brew Bolt
+147346;Rain of Skunky Ale
+147347;Rain of Skunky Ale
+147348;Rain of Skunky Ale
+147349;Wild Mushroom
+147351;Corrupted Water
+147352;Execute
+147353;Glyph of Condensation
+147354;Headbutt
+147355;Timeless Agility
+147356;Ping Tong 02
+147357;Timeless Intellect
+147358;Unbound Water Elemental Transform
+147359;Timeless Strength
+147360;Tray Flip
+147361;Timeless Stamina
+147362;Counter Shot
+147363;Cosmetic Chains
+147364;Rapid Rolling
+147365;Mirror Image Aura
+147366;Reverse Mirror Image Aura
+147367;Weaponmaster
+147368;Iron Fur
+147369;Magnetic Crush
+147370;Magnetic Crush
+147371;Alemental Death Beer
+147374;Stone Form
+147375;Cosmetic - Tiger Cloak
+147376;Cosmetic - Crane Cloak
+147377;Cosmetic - Dragon Cloak
+147378;Cosmetic - Ox Cloak
+147379;Magnetic Pulse
+147380;Magnetic Pulse
+147382;Headbutt
+147383;Debilitation
+147384;Headbutt
+147385;Ox Charge
+147386;Ox Charge
+147388;Collapsing Rift
+147389;Unstable Corruption
+147391;Unstable Corruption
+147392;Cosmetic Channel
+147394;Pounce
+147395;Claw
+147396;Rake
+147398;Waterbolt
+147400;Bite Morsel
+147401;Waiting in Line
+147402;Elixir of Wandering Spirits
+147403;Elixir of Wandering Spirits
+147404;Set to Blow
+147405;Elixir of Wandering Spirits
+147406;Elixir of Wandering Spirits
+147407;Elixir of Wandering Spirits
+147408;Waiting for Food
+147409;Elixir of Wandering Spirits
+147410;Elixir of Wandering Spirits
+147411;Elixir of Wandering Spirits
+147412;Elixir of Wandering Spirits
+147416;Breath of Fire
+147420;One with Nature
+147422;Burning Sacrifice
+147425;Water Spit
+147426;Shell Shield
+147427;Shell Spin
+147429;Shell Spin
+147430;Crushing Bite
+147431;Blizzard
+147433;Create Class Helm
+147434;Create Class Helm
+147435;Create Class Helm
+147437;Blood of Y'Shaarj
+147438;Flame Arrows
+147439;Water Blossom
+147440;Water Blossom
+147441;Water Blossom
+147442;Water Blossom
+147444;Bubble Pop
+147445;Bubble Popper
+147446;Spiritfire Bolt
+147447;Bale Strike
+147448;Spiritflame Strike
+147449;Cosmetic Channel
+147450;Bubble Shield
+147453;The Crumble Bundle
+147454;Jadefire Bolt
+147455;The Crumble Bundle - Clean-Up
+147456;Jadeflame Strike
+147457;Wait on Customer
+147458;Magnetic Pulse
+147459;Magnetic Pulse
+147465;Teleport (DND)
+147466;Aggro Radius Marker
+147467;Teleport (DND)
+147468;Teleport (DND)
+147469;Teleport (DND)
+147470;Teleport (DND)
+147471;Teleport (DND)
+147472;Teleport (DND)
+147473;Teleport (DND)
+147475;Teleport (DND)
+147476;Dew of Eternal Morning
+147479;CLICK ME
+147481;CLICK ME
+147482;Dew of Eternal Morning
+147483;CLICK ME
+147489;Expel Harm
+147490;Healing Rain Visual
+147494;Summon Healing Sphere
+147495;Ghostly Void
+147496;Poison Spit
+147497;Trial Failed
+147499;Trial Success
+147500;Stomp
+147501;Blacksmithing
+147510;Frenzy
+147511;Return to Halfhill
+147512;Stomp
+147513;Exhaustion
+147514;Anti-Air Cannon
+147515;Vortex
+147516;Boulder
+147517;Boulder
+147529;Depth Charge
+147531;Bloodbath
+147532;Set Health Random
+147534;Teleport Corpse
+147535;Venom Spit
+147536;Teleport Corpse
+147543;Stomp
+147544;Stomp
+147545;Boulder
+147546;Boulder
+147550;Test Flak Cannon
+147551;Puke
+147552;Flame Arrows
+147553;Y'Shaarj Touched
+147554;Blood of Y'Shaarj
+147557;Claw Flurry
+147558;Claw Flurry
+147559;Claw Flurry
+147560;Claw Flurry
+147562;Great Wrath
+147563;Healing Touch
+147564;Empowering Corruption
+147565;Sun Worship
+147566;Summon Blood of Y'Shaarj
+147567;Summon Blood of Y'Shaarj
+147568;Snapping Bite
+147569;Snapping Bite
+147570;Shell Spin
+147571;Shell Spin
+147572;Geyser
+147573;Geyser
+147588;Berzerker Blaze
+147589;Snapping Bite
+147590;Shell Spin
+147591;Shell Spin
+147593;Ping Self 02
+147594;Depth Charge
+147595;Stormcrow
+147597;Unlock Armor Cache
+147598;Pouch of Timeless Coins
+147599;Depth Charge
+147600;Pyroblast
+147601;Pyroblast
+147604;Unlocking Sunken Treasure
+147606;Wrecking Ball
+147607;Wrecking Ball
+147608;Phase Three De-Transform
+147609;Wrecking Ball
+147611;Berzerker Blaze Explosion
+147612;Makeshift Harpoon Gun
+147613;Harpoon
+147620;Frozen Power
+147621;Timer Visual - 30
+147622;Timer Visual - 25
+147623;Timer Visual - 20
+147624;Timer Visual - 16
+147625;Harpoon
+147626;Pressure Plate
+147627;Summon Chat Bunny
+147635;Remove Curse
+147636;Cursed Diving Helmet
+147638;Mighty Stomp
+147639;Pressure Plate
+147640;Charge
+147641;Mighty Stomp
+147642;Reaping Whirlwind
+147643;Cursed Swabby Helmet
+147644;Reaper
+147645;Rusty Shank
+147646;Rending Swipe
+147647;Grasp of Y'Shaarj
+147648;Grasp of Y'Shaarj
+147649;Pounce
+147650;Defensive Leap
+147651;Pounce
+147652;Greater Swipe
+147653;Greater Swipe
+147654;Toxic Skin
+147655;Gulp Frog Toxin
+147656;Gulp Frog Toxin
+147657;Cleanse
+147662;Wrecking Ball
+147665;Fixate
+147669;Throw Axe
+147672;Unstable Defense Systems
+147673;Unstable Defense Systems
+147674;Cracking Blow
+147676;Eternity's Embrace
+147677;Eternity's Embrace
+147678;Eternity's Embrace
+147680;Release Lever Locked
+147682;Oath of Guardianship
+147683;Thunder Clap
+147686;Eternity's Embrace
+147687;Eternity's Embrace
+147688;Arcing Smash
+147689;Defensive Shield
+147690;Arcing Smash
+147692;Release Lever Unlocked
+147694;Rusty Shank
+147698;Exorcism
+147700;Oath of Guardianship
+147702;Blazing Cleave
+147703;Burning Fury
+147704;Fiery Charge
+147705;Poison Cloud
+147706;Poison Cloud
+147707;Glyph of Rain of Frogs
+147708;Rain of Frogs
+147709;Rain of Frogs
+147710;Cloak Reveal - Xuen
+147711;Curse of Venom
+147712;Fixate
+147713;Venom Bolt Volley
+147715;Exorcism
+147717;Blackflame Fury
+147718;Legendary Music 1
+147719;Legendary Music 2
+147720;Pyroblast
+147721;Legendary Music 3
+147723;Falling Flames
+147724;Falling Flames
+147725;Falling Flames
+147726;Falling Flames
+147729;Test Beam 2
+147732;Frostflame Attack
+147733;Malicious Energy Explosion
+147745;Rain of Frogs
+147754;Bound Y'Shaarj Power
+147761;Cosmetic - Legendary Cloak Effect
+147762;Glyph of Purging
+147764;Cloak Reveal - Nuizhao
+147766;Cloak Reveal - Chiji
+147768;Cloak Reveal - Yulon
+147769;Renewing Mists
+147770;Glyph of Spirit Wolf
+147771;Cloak Reveal
+147772;Glyph of Flaming Serpents
+147776;Glyph of the Sha
+147778;Glyph of Focused Mending
+147779;Glyph of Shifted Appearances
+147781;Glyph of Eternal Earth
+147782;Timeless Rapids
+147783;Glyph of Spirit Raptors
+147784;Glyph of Lingering Ancestors
+147785;Glyph of the Compy
+147786;Glyph of Flaming Serpents
+147787;Glyph of Astral Fixation
+147788;Glyph of Elemental Familiars
+147793;See Wrathion's Flunkies in Tavern
+147795;See Wrathion's Looted Hoard in Tavern
+147796;Dummy Trap Spell
+147797;Throw
+147798;Glyph of Flaming Serpents
+147800;Corruption
+147801;Frosty State
+147802;Timeless Rapids
+147804;Lightning
+147805;Murky Cloud
+147806;Timeless Rapids
+147807;Murky Cloud
+147809;Timeless Rapids
+147811;Astral Recall
+147812;Time Rift
+147813;Time Lock
+147814;Activating
+147815;Call of the Elements
+147817;Flame Breath
+147818;Fire Blossom
+147819;Fire Blossom
+147820;Tidal Wave
+147822;Fire Blossom
+147823;Muzzle Spray
+147824;Muzzle Spray
+147825;Muzzle Spray
+147826;Lightning Breath
+147827;Storm Blossom
+147828;Storm Blossom
+147829;Storm Blossom
+147830;Muzzle Spray
+147831;Attack Thrall
+147833;Intervene
+147834;Watery Asphyxiation
+147837;Impaling Throw
+147838;Impaling Throw
+147840;Time Rift
+147841;Time Lock
+147843;Gushing Maw
+147844;Gushing Maw
+147845;Swift Death
+147846;Loud Horn
+147848;Regenerative Magic
+147849;Festering Blood
+147850;Divine Shield
+147851;Hand of Sacrifice
+147853;Suffocate
+147854;Purging
+147855;Eternal Earth
+147857;Havoc
+147858;Impaling Throws
+147859;Executor
+147861;Exhausted
+147863;Steam Blast
+147865;Steam Vent
+147866;Steam Vent
+147868;Adrenaline Bomb
+147871;Adrenaline Bomb
+147876;Adrenaline Bomb
+147877;Adrenaline Bomb
+147878;Molten Inferno
+147879;Molten Inferno
+147880;Molten Inferno
+147881;Molten Inferno
+147882;Infusion
+147883;Infusion
+147884;Infusion
+147885;White-Hot
+147891;Flurry of Xuen
+147892;Attack Garrosh
+147893;Phase Three De-Transform
+147896;Ruby Bolt
+147897;The Most Complicated Bomb in the World
+147898;Glyph of Shifted Appearances
+147899;Defend Against Thrall
+147901;Astral Recall
+147902;Astral Recall
+147906;Wrecking Ball
+147908;Raptor Transform
+147916;The Most Complicated Bomb in the World
+147920;Timeless Rapids
+147922;Dummy Nuke
+147923;Spell Reflection (warrior)(visual with no shield Alliance)
+147925;Shield Wall (warrior)(visual with no shield Alliance)
+147936;Timeless Rapids
+147937;Timeless Rapids
+147938;Timeless Rapids
+147939;Timeless Rapids
+147940;Timeless Rapids
+147941;Timeless Rapids
+147942;Timeless Rapids
+147943;Ancestor Visual
+147944;Timeless Rapids
+147945;Timeless Rapids
+147946;Wrecking Ball Visual
+147948;Devour
+147952;Wrecking Ball
+147961;Devour
+147963;Skeleton
+147965;Long Winter
+147966;Got the Bomb
+147968;Sprouting Mushroom
+147969;One with Nature
+147970;Unbound Elemental
+147971;Evaporation
+147972;Condensation
+147973;Exorcist
+147974;Pillar of Light
+147975;Angels
+147976;Sonar Pulse
+147977;Vampiric Frenzy
+147978;Vampiric Frenzy
+147979;Sonar Pulse
+147980;Vampiric Frenzy
+147981;Vampiric Frenzy
+147982;Despawn Spirit Cat
+147983;Rune of Ascendancy
+147984;Test Vehicle
+147985;Curious Bronze Timepiece
+147986;Pull Lever
+147987;Lightning Chain
+147988;Curious Bronze Timepiece
+147989;Riot
+147990;Rifle Shot
+147991;Boom Shot
+147992;Room is Upset
+147993;Room is Less Upset
+147994;Kill Jailers
+147995;Interrupt Channeling
+147996;Chomp
+147997;Cauterize
+147998;Fire Storm
+147999;Fire Storm
+148000;Fire Storm
+148001;Conjure Flarecore Golem
+148002;Greater Pyroblast
+148003;Blazing Blow
+148004;Conjure Eternal Kiln
+148005;Kilnfire
+148006;Cosmetic - Xplosion
+148008;Essence of Yu'lon
+148009;Spirit of Chi-Ji
+148010;Endurance of Niuzao
+148012;Icicle
+148013;Icicle
+148014;Icicle
+148015;Icicle
+148016;Icicle
+148017;Icicle
+148018;Icicle
+148019;Icicle
+148020;Icicle
+148021;Icicle
+148022;Icicle
+148023;Icicle
+148024;Summon Conversation Stalker
+148025;Dragon's Cleave
+148026;Summon Dread Ship Vazuvius
+148027;Albatross Charge
+148028;Albatross Ride Trigger
+148029;Screeching Howl
+148030;Knocked Over
+148031;Grapple
+148032;Teleport to Orgrimmar
+148033;Grapple
+148034;Teleport to Orgrimmar
+148038;Grapple
+148039;Sacred Shield
+148040;Sacred Shield Overridde (Holy)
+148041;Banter
+148042;Banter
+148046;Ashleaft Spriteling
+148047;Azure Crane Chick
+148049;Blackfuse Bombling
+148050;Ruby Droplet
+148051;Dandelion Frolicker
+148052;Death Adder Hatchling
+148054;Set to Blow
+148055;Set to Blow
+148056;Set to Blow
+148058;Droplet of Y'Shaarj
+148059;Gooey Sha-ling
+148060;Jademist Dancer
+148061;Kovok
+148062;Ominous Flame
+148063;Skunky Alemental
+148064;Glyph of Pillar of Light
+148065;Skywisp Moth
+148066;Spineclaw Crab
+148067;Gulp Froglet
+148068;Ashwing Moth
+148069;Flamering Moth
+148071;Sha
+148073;Shifted Appearances
+148074;Inspired Hymns
+148075;Headhunting
+148077;Improved Distraction
+148078;Cursed Grave
+148079;Spirit Raptors
+148080;Lingering Ancestors
+148081;Spirit Wolf
+148082;Flaming Serpent
+148083;Compy
+148084;Elemental Familiars
+148085;Healing Spray
+148086;Ghost Skeleton Pirate
+148089;Wolf Pup Leash
+148090;Grapple
+148093;Summon Genest Visual
+148095;Eerie Fog
+148098;Elemental Familiar
+148099;Unlock Armor Cache
+148100;Astral Fixation
+148101;Elemental Familiar
+148103;Unlock Armor Cache
+148104;Unlock Armor Cache
+148105;Earth Blast
+148106;Rain of Frogs
+148107;Raging Whirlwind
+148108;Subtle Defender
+148109;Explosion
+148110;Eerie Fog
+148111;Water Blast
+148112;Fire Blast
+148113;Watchful Eye
+148114;Weaponmaster
+148118;Summon Elemental Familiar
+148119;Tower Strength
+148120;Tower Strength
+148125;Finding Your Center: Quest Abandon
+148126;The Golden Dream: Summon Outro Bunny
+148129;A Timeless Question Kill Credit
+148133;Crushing Swipe
+148135;Chi Burst
+148136;Lacerating Bite
+148137;Skybox
+148138;Throw Dynamite
+148140;Fan of Knives
+148141;Envenomed Shadowstep
+148142;Ashwing Moth Visual (DNT)
+148143;Wrecking Ball
+148144;Wrecking Ball
+148145;Wrecking Ball
+148151;Player Farm - Reverse Cast Summon Squatting Virmen
+148153;Skeleton Key
+148159;Cannon Barrage
+148162;Lingering Essence of the Crane
+148163;Marcio's Test Live Update [DNL]
+148167;Skull Eyes
+148168;Dark Barrage
+148170;Ghost Pirate
+148179;Cosmetic - HoldRifle and Shoot
+148181;Burning Pitch
+148184;Burning Pitch
+148185;Phase Three De-Transform 4
+148187;Rushing Jade Wind
+148188;Green Sparkles
+148189;Stormsea Landing - Pet Caller
+148194;Cancel Taxi
+148196;Jab
+148203;Annihilate
+148206;"Dapper Gentleman"
+148207;Tower Strength
+148208;Burning Pitch
+148209;Ordon Cosmetic Aura
+148211;Scent of Blood
+148212;Glyph of
+148215;Searing Totem
+148231;Desecrated Arrows
+148232;Arcane Shot
+148233;Cleave
+148234;Cleave
+148235;Cleave
+148239;Desecrated Arrows
+148243;Fixate
+148244;"Little Princess"
+148245;"Dread Pirate"
+148246;Big Pink Bow
+148248;Effective Team
+148249;Effective Team
+148251;Cry! Cry! Cry!
+148255;Glyph of Swift Death
+148256;Glyph of Loud Horn
+148257;Glyph of Regenerative Magic
+148258;Glyph of Festering Blood
+148259;Glyph of Divine Shield
+148260;Glyph of Hand of Sacrifice
+148261;Glyph of Purging
+148262;Glyph of Eternal Earth
+148263;Glyph of Havoc
+148264;Glyph of Impaling Throws
+148265;Glyph of the Executor
+148266;Glyph of the Skeleton
+148267;Glyph of the Long Winter
+148268;Glyph of the Sprouting Mushroom
+148269;Glyph of One with Nature
+148270;Glyph of the Unbound Elemental
+148271;Glyph of Evaporation
+148272;Glyph of Condensation
+148273;Glyph of the Exorcist
+148274;Glyph of Pillar of Light
+148275;Glyph of Angels
+148276;Glyph of the Sha
+148277;Glyph of Shifted Appearances
+148278;Glyph of Inspired Hymns
+148279;Glyph of Headhunting
+148280;Glyph of Improved Distraction
+148281;Glyph of Spirit Raptors
+148282;Glyph of Lingering Ancestors
+148283;Glyph of Spirit Wolf
+148284;Glyph of Flaming Serpent
+148285;Glyph of the Compy
+148286;Glyph of Elemental Familiars
+148287;Glyph of Astral Fixation
+148288;Glyph of Rain of Frogs
+148289;Glyph of the Raging Whirlwind
+148290;Glyph of the Subtle Defender
+148291;Glyph of the Watchful Eye
+148292;Glyph of the Weaponmaster
+148293;Charge
+148294;Charge
+148296;Charged
+148299;Iron Star Impact
+148301;Bombard
+148302;Bombard
+148305;Achievement Check
+148309;Rifle Shot
+148310;Bombard
+148311;Bombard
+148314;Ordos Bonus Loot
+148316;Ordos Bonus
+148317;Celestials Bonus
+148318;Celestials Push Loot
+148320;Celestials Bonus Loot
+148321;Cleave
+148348;Mega Snail vs. Giant Dinosaur
+148350;Suicide
+148351;Drakefire
+148352;Drakefire
+148353;Mega Snail vs. Giant Dinosaur
+148355;Mega Snail vs. Giant Dinosaur
+148360;Cosmetic - Druid Morph w/ Cast
+148361;Mask of Anger
+148364;Cosmetic Missile
+148365;Mask of Doubt
+148366;Mask of Fear
+148367;Mask of Hatred
+148368;Mask of Violence
+148369;Celestial Defender
+148370;Windreaver Technique
+148371;Windreaver Technique
+148373;Bonkers
+148374;Battle Pet - Bonkers
+148375;Brutal Hemorrhage
+148379;No Costume Destination - Zone
+148385;Censer of Eternal Agony
+148386;Black Ash
+148387;Fire-Keeper's Oath
+148388;White Ash
+148391;Premeditated Slaughter
+148392;Spawn of Galakras
+148396;Kor'kron War Wolf
+148397;Premeditated Slaughter
+148398;Censure of Eternal Agony
+148404;Camp Pack
+148414;Aid
+148416;Leave Party
+148417;Kor'kron Juggernaut
+148418;reuse
+148423;Premeditated Slaughter
+148424;Exhausted
+148426;Premeditated Slaughter
+148427;Vengeful Porcupette
+148428;Ashhide Mushan Beast
+148429;Fire-Watcher's Oath
+148431;Portal Effect: Garrosh Raid Exit
+148432;Start Siege Engineer Wing Intro Teleport
+148433;Cosmetic - Seamus Goldenkicks Portal Cast
+148440;Weak Minded
+148441;Game Over
+148446;Winds of Time
+148447;Winds of Time
+148448;Alchemical Mastery
+148451;Alchemical Mastery
+148452;Essence of Corruption
+148456;Alchemical Mastery
+148459;Iron Juggernaut Death
+148460;Arcane Explosion
+148463;Raging Soul
+148467;Deterrence
+148473;Glyph of Focused Fire (NYI)
+148475;Glyph of Enduring Deceit
+148476;Thundering Onyx Cloud Serpent
+148477;Lean Pack
+148480;Death
+148481;Focused Fire
+148482;Enduring Deceit
+148483;Potion of Illusion (New)
+148484;Glyph of Chameleon (NYI)
+148485;Chameleon
+148486;Generic - Scale NPC by 133%
+148487;Glyph of the Lean Pack
+148488;Glyph of Focused Fire
+148489;Glyph of Enduring Deceit
+148490;Glyph of Chameleon
+148491;Gravely Wounded
+148492;Saurfang RP Event
+148498;Saurfang RP Axe
+148499;No Costume Source - Current Visual
+148500;Invisibility and Stealth Detection
+148501;Illusion (New)
+148502;Selfless Healer
+148504;Illusion (New)
+148505;Unstable Defense Systems
+148506;Spike Mine Detonation
+148508;Return to Stone
+148509;Return to Stone
+148510;Shattered Armor
+148511;Return to Stone
+148512;Win
+148513;Fracture
+148514;Fracture
+148515;Shadow Volley
+148516;Shadow Volley
+148517;Molten Fist
+148518;Molten Fist
+148519;Tidal Wave
+148520;Tidal Wave
+148521;Windfeather
+148522;Tidal Wave
+148523;Jade Mist
+148524;Flak Cannon
+148525;Faintly-Glowing Herb
+148526;Sticky Silk
+148527;Gu'chi Swarmling
+148528;Scuttler's Shell
+148529;Rime of the Time-Lost Mariner
+148530;Harmonious Porcupette
+148531;Land Trigger
+148532;Land Trigger
+148533;Molten Word of Ordos
+148534;Ordon Death Chime
+148535;Ordon Death Chime
+148536;Ordon Death Chime
+148537;Falling Flame
+148538;Blackflame Daggers
+148539;Rain Storm
+148540;Snow Storm
+148541;Sunset
+148542;Ash Storm
+148543;Rain Storm
+148544;Snow Storm
+148545;Ash Storm
+148546;Sunset
+148547;Rain Stone
+148548;Blizzard Stone
+148549;Ashen Stone
+148550;Sunset Stone
+148551;Ominous Flame
+148552;Jadefire Spirit
+148553;Eternal Kiln
+148554;Strange Spores
+148555;Golden Moss Effect 3
+148556;Golden Moss Effect 2
+148557;Golden Moss Effect
+148558;Golden Moss
+148559;Golden Moss Effect 4
+148560;Drakefire
+148563;Spectral Grog
+148564;Spectral Grog
+148565;Spectral Grog
+148566;Remove Saurfang RP Axe
+148567;Rotten Little Helper
+148570;Chaos Wave
+148571;Start Siege Engineer Wing Intro
+148572;Shredding Blast
+148574;Heartbeat Sound
+148575;Shredding Blast
+148576;Shredding Blast
+148577;Using Flyer Controller
+148579;Afterburners
+148580;_JKL Blink Trail Missile Test
+148581;Rocket Attack
+148582;Jade Tempest
+148583;Jade Tempest
+148584;Skunky Suds
+148585;Skunky Suds
+148586;Skunky Suds
+148587;Faulty Mutation
+148588;Rotten Little Helper Unsummon
+148589;Faulty Mutation
+148590;Killing Spree (DND)
+148591;Heartbeat Sound
+148592;Kovok Swarm [REPLACE]
+148594;Flash
+148595;Opening Shredder Crate
+148596;Barnacle Crew Despawn Aura
+148597;Summon Crew of the Barnacle
+148598;Kovok Swarm
+148599;Barnacle Crew Despawn
+148607;Mount Shredder
+148608;Strong Legs
+148615;Start Corrupted Vale Intro
+148618;Tyrannical Gladiator's Cloud Serpent
+148619;Grievous Gladiator's Cloud Serpent
+148620;Prideful Gladiator's Cloud Serpent
+148621;Corrupted Vale Cutscene Phase
+148622;Corrupted Vale Return to Normal Phase
+148623;Cauterizing Core
+148624;Use Core
+148625;Celestalon
+148626;Furious Ashhide Mushan
+148627;Warning Sign
+148628;Warning Sign
+148629;Warning Sign
+148630;Warning Sign
+148631;Warning Sign
+148632;Warning Sign
+148633;Warning Sign
+148634;Warning Sign
+148635;Warning Sign
+148636;Warning Sign
+148637;Warning Sign
+148638;Warning Sign
+148639;Warning Sign
+148640;Warning Sign
+148641;Warning Sign
+148642;Warning Sign
+148643;Warning Sign
+148644;Warning Sign
+148645;Warning Sign
+148646;Warning Sign
+148647;Warning Sign
+148648;Dominant Mind
+148649;Master of Amber
+148650;Strong Legs
+148651;Compound Eye
+148652;Angel of Death
+148653;Ingenious
+148654;Mad Scientist
+148655;Bloodthirsty
+148656;Vast Apothecarial Knowledge
+148664;Spike Mine Detonation
+148676;Reave
+148677;Reave
+148681;Reave
+148683;Glyph of Eternal Resolve
+148684;Sky Lantern
+148688;Unending Resolve
+148693;Flamering Moth Visual (DNT)
+148694;Skywisp Moth Visual (DNT)
+148705;Banishment
+148714;Empowered
+148718;Fire Pit
+148720;Refreshment
+148726;Food
+148727;Refreshment
+148728;Healing Mists
+148729;Chi Burst
+148730;Spinning Crane Kick
+148731;Spinning Crane Kick
+148732;Summon Spectral Brewmaster
+148733;Summon Spectral Windwalker
+148734;Summon Spectral Mistweaver
+148740;Create Lavalliere
+148741;Strength in Numbers
+148744;Refreshment
+148745;Refreshment
+148746;Create Curio
+148747;Refreshment
+148749;Refreshment
+148750;Strength in Numbers
+148755;heal proc fail
+148760;Pheromone Cloud
+148761;Spoils of Pandaria
+148762;Pheromone Cloud
+148764;Ride Vehicle
+148768;Deadly Throw
+148773;Golden Glider
+148778;Flames of Galakrond
+148779;Relay Close Pipe Handler
+148785;Obliterate
+148788;Thresher Turret Base
+148789;Sleeping Sleep
+148790;Area RAF
+148791;Chaining Cooking
+148793;Chaining Seating
+148794;Chaining Delivering
+148795;Strength in Numbers
+148806;Phase Three De-Transform
+148807;Tally
+148808;33% Health
+148809;Tally (Chain Bonus)
+148811;Timer Visual - 40
+148812;Timer Visual - 12
+148813;Timer Visual - 37.5
+148814;Timer Visual - 50
+148819;Healing Stream Totem
+148822;Area Trigger OnLeave Bug
+148823;Borer Drill
+148824;Cutter Laser
+148825;Cutter Laser
+148828;Flame Vents
+148830;Penalty (Food Went Bad)
+148835;Penalty
+148839;Demolisher Cannons
+148840;Demolisher Cannons
+148841;Demolisher Cannons
+148845;Jump
+148846;Chen's Festival Brew
+148848;Flamestrike
+148849;Flamestrike
+148854;Skull Banner TEST
+148856;Stormlash Totem TEST
+148858;Demolisher Cannons
+148859;Shadowy Apparition
+148860;Demolisher Cannons
+148861;Demolisher Cannons
+148869;Mortar Blast
+148870;Mortar Blast
+148871;Mortar Blast
+148872;Mortar Blast
+148874;Dark Bargain
+148875;Flame Vents
+148878;Jump
+148879;Jump
+148880;Jump
+148881;Thresher Turret Destroyed
+148882;Jump
+148885;Apple Bucket
+148886;Apple Bucket
+148887;Jump
+148888;Acrid Storm
+148889;Acrid Storm
+148890;Acrid Storm
+148891;Acrid Storm
+148892;Using
+148893;Sparkles
+148895;Item - Proc Agility
+148896;Ferocity
+148897;Extravagant Visions
+148898;Item - Attacks Proc Intellect
+148899;Tenacious
+148901;Item - Proc Strength
+148903;Vicious
+148904;Item - Proc Agility
+148906;Toxic Power
+148907;Item - Attacks Proc Intellect
+148908;Mark of Salvation
+148909;Item - Heals Proc Intellect
+148910;Alpha Strike
+148911;Soothing Power
+148912;Item - Heals Proc Int
+148918;Execute
+148920;Delayed Pipe Rejection Jump
+148921;Thresher Control
+148922;Drink
+148926;Pipe Transfer
+148930;Shanna Death Visual
+148938;Empowering Blood
+148939;Area Trigger Charge Bug
+148940;Empowering Blood
+148941;Thresher Shrapnel
+148942;Freeze Ray
+148944;Wave
+148947;5.4 Tradeskills - Cooking - Noodle Cart - Vendor Chef Apparel
+148948;Clone Me! - No Weapons
+148954;Essence of Yu'lon
+148956;Spirit of Chi-Ji
+148957;Flurry of Xuen
+148958;Endurance of Niuzao
+148961;Drink Pandaren Brew
+148962;Blade Salvo
+148963;Blade Salvo
+148964;Door Explode
+148968;Dark Apotheosis
+148969;Demonic Leap
+148970;Felsteed
+148971;Summon Nightmare
+148972;Dreadsteed
+148974;Foul Link
+148976;Holy Shock
+148978;Shout
+148980;Courage
+148982;Courage
+148983;Courage
+148984;Food
+148985;Sound Effect: Hex Frog
+148986;Sound Effect: Hex Compy
+148988;Sound Effect: Feral Spirit Wolf
+148989;Sound Effect: Feral Spirit Raptor
+148990;Energized Defensive Matrix
+148991;Faith
+148992;Faith
+148994;Faith
+148995;Drink Bitter Brew
+148996;Drink Stormstout Brew
+148997;Drink Unga Brew
+148998;Throw
+148999;Funky Monkey Brew
+149000;Drink Funky Monkey Brew
+149002;Hope
+149003;Hope
+149004;Hope
+149006;Drink Boomer Brew
+149008;Orb of Light
+149009;Drink Greenstone Brew
+149011;Consumed Courage
+149012;Drink Amber-Brew
+149016;Conveyor Death Beam
+149020;Noodle Soup
+149021;Pandaren Brew
+149023;Dragon P.I.E.
+149024;Drink Blazing Brew
+149025;Test
+149026;Test 2
+149027;Ethereal Corruption
+149031;Ethereal Corruption
+149032;Consumed Hope
+149033;Consumed Faith
+149037;Soap Bubbles (Cosmetic)
+149038;Spoils of Pandaria
+149039;Spoils of Pandaria
+149040;Spoils of Pandaria
+149041;Spoils of Pandaria
+149044;Spoils of Pandaria
+149045;Spoils of Pandaria
+149049;Kite String
+149050;Spoils of Pandaria
+149051;Spoils of Pandaria
+149069;Shockwave Destruction Visual
+149070;Shado-Pan Onslaught
+149077;Siegecrafter Blackfuse Holiday Decoration
+149079;Force Demon Creator to Ride Me
+149086;Sawblade Holiday Visual
+149087;Create Sha Crystal
+149091;Crawler Mine Holiday Visual
+149093;Druid - Healing Touch Highlight
+149108;Noodle Cart Kit
+149109;Flag Tom Bone Apart Tracking
+149110;Deluxe Noodle Cart Kit
+149112;Mist Wave
+149113;Pandaren Treasure Noodle Cart Kit
+149117;Unstable Defense Systems
+149122;Flag Intro Tracking - Tom Bone Apart
+149140;Teleport
+149142;Sha Vortex
+149146;Detonate!
+149147;Crawler Mine Fixate
+149148;Crawler Mine Fixate Targetting
+149149;Celestial Beam
+149150;Divine Protection
+149154;Spawn Crawler Mine
+149161;Crawler Mine Jump
+149162;In Celestial Arena
+149164;Rushing Waters
+149177;Summon Spell
+149178;Lightning Breath
+149180;Arc Nova
+149182;Ignored By Smart Heals
+149187;Tidal Wave
+149188;Tidal Wave
+149189;Foul Link
+149194;Draw
+149203;Knockback
+149204;Knockback
+149207;Corrupted Touch
+149209;Corrupted Touch
+149213;Knockback
+149215;Garrosh Raid - Paragons - Amber Bomb - Spawn
+149218;Calls for Aid
+149220;Sha Vortex
+149221;Sha Vortex
+149222;Pouch of Enduring Wisdom
+149223;Oversized Pouch of Enduring Wisdom
+149228;Celestial Defender
+149229;Celestial Defender
+149230;Heal
+149231;Heal
+149232;Heal
+149234;Not In Line
+149246;Squirrel Polymorph
+149252;Empowered Gripping Despair
+149254;Spirit Bond
+149255;Vanish
+149262;Grapple
+149268;Bunker Buster
+149274;Sacrificed to Ordos
+149275;Sacrificed to Ordos
+149276;Flurry of Xuen
+149277;Nova
+149278;Sit
+149279;Sit
+149280;Crimson Acid
+149281;Pet Roar (Zao)
+149282;Pet Roar (Zao)
+149284;Mount Shredder
+149285;Mogu Shadow Ritualist
+149287;Flaming Operative
+149290;Mogu Shadow Ritualist
+149292;Rapid Blast
+149295;Tank Smash
+149296;Shock Pulse
+149299;Mount Hijack Shredder
+149300;Destroy Spider Tank
+149303;Mogu Shadow Ritualist
+149304;Celestials Push Loot Nth time
+149307;Celestial Spawn
+149312;Obliterate
+149318;Freeze Kick
+149319;Copy Off-hand Weapon
+149322;Celestial Winds
+149323;Kairoz Quest Complete Spell
+149329;Dummy Aggro
+149332;Blaze of Glory Explosion
+149333;Flameheart Shawl
+149335;Flameheart
+149336;Blood Frenzied
+149337;Fixate
+149339;Flameheart
+149345;Riverspeaker's Trident
+149346;Rivercall
+149347;Embodied Doubt
+149348;Suicide
+149349;Snowclaw
+149350;Snowdrift Tiger Talons
+149353;Explosion
+149356;Melee
+149365;Dire Beast
+149370;Vision of Time Scene 1
+149371;Vision of Time Scene 2
+149372;Vision of Time Scene 3
+149373;Vision of Time Scene 4
+149374;Vision of Time Scene 5
+149375;Vision of Time Scene 6
+149383;Shield Bash
+149384;Shield Bash
+149388;Siege Engineer Cosmetic Death Explosion [DO NOT TRANSLATE]
+149391;Siege Engineer On Fire [DO NOT TRANSLATE]
+149393;Siege Engineer Burnt [DO NOT TRANSLATE]
+149406;Curse of the Sea
+149407;Teleport to Vault of Y'Shaarj
+149408;Curse of the Sea
+149409;Curse of the Sea
+149418;Jump
+149419;Jump
+149421;Quiet Suicide
+149426;Teleport
+149427;Teleport
+149440;Ancient Miasma
+149443;Ancient Miasma
+149445;Cannon Blast
+149460;Starfall
+149463;Forage
+149467;Cannon Blast
+149468;Iron Star Impact
+149494;Ride Vehicle
+149495;Unending Resolve
+149498;Teleport
+149501;Disappear
+149502;Disappear
+149519;Teleport
+149521;Teleport
+149524;Touch of Y'Shaarj
+149526;Teleport
+149528;Teleport
+149531;Teleport
+149533;Teleport
+149536;Empowering Corruption
+149537;Broken Bones
+149539;A Helping Hand
+149553;Calculated Heal
+149563;Teleport to Docks
+149564;Minor Portal
+149569;Mending
+149575;Explosive Trap
+149601;Dark Bulwark
+149624;Sacrificed to Ordos
+149634;Teleport
+149716;Clone Me! - No Weapons
+149836;Crawler Mine Immunity
+149837;Crawler Mine Jump
+149978;Garrosh Finale - Horde
+149979;Garrosh Finale - Alliance
+149989;Disallow Demonic Circle Summon
+150017;Rake

@@ -1719,11 +1719,17 @@ namespace nManager.Wow.ObjectManager
         {
             get
             {
-                if (!IsCast)
+                try
                 {
+                    if (IsCast)
+                        return (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint) Addresses.UnitField.CanInterrupt) & 8) == 0;
                     return false;
                 }
-                return (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint)Addresses.UnitField.CanInterrupt) & 8) == 0;
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > CanInterruptCurrentCast: " + e);
+                    return false;
+                }
             }
         }
 

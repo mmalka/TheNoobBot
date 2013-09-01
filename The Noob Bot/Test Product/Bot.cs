@@ -425,7 +425,16 @@ namespace Test_Product
                     }
                 }
                 sw.Close();
-
+                */
+                /*
+                var sw = new StreamWriter(Application.StartupPath + "\\spell.txt", true, Encoding.UTF8);
+                for (uint i = 1; i <= 150017; i++)
+                {
+                    var spellName = SpellManager.SpellListManager.SpellNameByIdExperimental(i);
+                    if (!string.IsNullOrEmpty(spellName))
+                    sw.Write(i + ";" + spellName + Environment.NewLine);
+                }
+                sw.Close();
                 //Cheat.AntiAfkPulse();
                 /*
             //D3D9
