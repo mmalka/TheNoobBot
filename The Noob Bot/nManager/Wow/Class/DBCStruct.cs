@@ -26,12 +26,12 @@ namespace nManager.Wow.Class
             public int SpellId;
             public uint Name;
             public uint RankDescription;
-            public int dwordC;
-            public int dword10;
+            public int LongDescription;
+            public int ShortDescription;
             public int SpellRuneCostId;
-            public int dword18;
-            public int dword1C;
-            public int dword20;
+            public int SpellMissileID;
+            public int SpellDescriptionVariableID;
+            public float unk_float1;
             public int SpellScalingId;
             public int SpellAuraOptionsId;
             public int SpellAuraRestrictionsId;
@@ -46,7 +46,7 @@ namespace nManager.Wow.Class
             public int SpellShapeshiftId;
             public int SpellTargetRestrictionsId;
             public int SpellTotemsId;
-            public int dword5C;
+            public int ResearchProjectId;
             public int SpellMiscId;
         }
 
