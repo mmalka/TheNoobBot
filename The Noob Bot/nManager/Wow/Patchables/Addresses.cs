@@ -135,6 +135,7 @@
             UNIT_FIELD_R = UNIT_FIELD_X + 0x10,
             CastingSpellID = 0xCB0, // Script_UnitCastingInfo
             ChannelSpellID = 0xCC8, // Script_UnitChannelInfo
+            CanInterrupt = 0xC64, // Script_UnitCastingInfo/Script_UnitChannelInfo
             TransportGUID = 0x828, // CGUnit_C__HasVehicleTransport
             DBCacheRow = 0x9AC, // CGUnit_C__GetUnitName
             CachedName = 0x6C, // to change or verify // CGUnit_C__GetUnitName
@@ -178,8 +179,8 @@
         /// </summary>
         public enum SpellBook
         {
-            knownSpell = 0xDA9EA0,
             nbSpell = 0xDA9EA0,
+            knownSpell = 0xDA9EA4,
         }
 
         /// <summary>

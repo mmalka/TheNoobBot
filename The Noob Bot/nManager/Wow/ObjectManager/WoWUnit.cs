@@ -1715,6 +1715,18 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool CanInterruptCurrentCast
+        {
+            get
+            {
+                if (!IsCast)
+                {
+                    return false;
+                }
+                return (Memory.WowMemory.Memory.ReadByte(GetBaseAddress + (uint)Addresses.UnitField.CanInterrupt) & 8) == 0;
+            }
+        }
+
         public bool CanTurnIn
         {
             get
