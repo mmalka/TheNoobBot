@@ -32,6 +32,14 @@ namespace nManager.Wow.Class
 
         #region Constructors
 
+        private static readonly DBC<DBCStruct.SpellRec> DBCSpell = new DBC<DBCStruct.SpellRec>((int) Addresses.DBC.Spell);
+
+        private static readonly DBC<DBCStruct.SpellMiscRec> DBCSpellMisc = new DBC<DBCStruct.SpellMiscRec>((int) Addresses.DBC.SpellMisc);
+
+        private static readonly DBC<DBCStruct.SpellCastTimesRec> DBCSpellCastTimes = new DBC<DBCStruct.SpellCastTimesRec>((int) Addresses.DBC.SpellCastTimes);
+
+        private static readonly DBC<DBCStruct.SpellRangeRec> DBCSpellRange = new DBC<DBCStruct.SpellRangeRec>((int) Addresses.DBC.SpellRange);
+
         /// <summary>
         /// Initializes a new instance of the <see cref="Spell"/> class. This class management an spell of your wow player.
         /// </summary>
@@ -43,28 +51,59 @@ namespace nManager.Wow.Class
                 try
                 {
                     Id = spellId;
-                    if (Id > 0 && string.IsNullOrEmpty(SpellManager.SpellListManager.SpellNameById(Id)))
+
+                    DBCStruct.SpellRec spellRec = DBCSpell.GetRow((int) Id);
+
+                    if (spellRec.SpellId >= 0)
                     {
-                        CastTime = (float) SpellManager.GetSpellInfo(spellId).CastTime/1000;
-                        var MinRange = SpellManager.GetSpellInfo(spellId).MinRange;
-                        var MaxRange = SpellManager.GetSpellInfo(spellId).MaxRange;
+                        if (spellId == spellRec.SpellId)
+                        {
+                            DBCStruct.SpellCastTimesRec castTimeRec =
+                                DBCSpellCastTimes.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellCastTimesId);
+                            try
+                            {
+                                CastTime = (float) castTimeRec.CastTime/1000;
+                            }
+                            catch
+                            {
+                                CastTime = 0;
+                            }
 
-                        MaxRangeHostile = MaxRange;
-                        MinRangeHostile = MinRange;
-                        MaxRangeFriend = MaxRange;
-                        MinRangeFriend = MinRange;
+                            DBCStruct.SpellRangeRec range = DBCSpellRange.GetRow(DBCSpellMisc.GetRow(spellRec.SpellMiscId).SpellRangeId);
+                            if (range.Id != 0)
+                            {
+                                MaxRangeHostile = range.MaxRangeHostile;
+                                MinRangeHostile = range.MinRangeHostile;
+                                MaxRangeFriend = range.MaxRangeFriend;
+                                MinRangeFriend = range.MinRangeFriend;
+                            }
+                            else
+                            {
+                                MaxRangeHostile = 0;
+                                MinRangeHostile = 0;
+                                MaxRangeFriend = 0;
+                                MinRangeFriend = 0;
+                            }
 
-                        Name = SpellManager.SpellListManager.SpellNameById(spellId);
-                        NameInGame = SpellManager.GetSpellInfo(spellId).Name;
+                            Name = SpellManager.SpellListManager.SpellNameById(spellId);
+                            try
+                            {
+                                NameInGame = Memory.WowMemory.Memory.ReadUTF8String(spellRec.Name);
+                            }
+                            catch
+                            {
+                                NameInGame = "";
+                            }
 
-                        if (MaxRangeHostile < 5.0f)
-                            MaxRangeHostile = 5.0f;
-                        if (MaxRangeFriend < 5.0f)
-                            MaxRangeFriend = 5.0f;
-                        KnownSpell = SpellManager.SpellBookID().Contains(spellId);
-                        Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
-                        Ids.Add(Id);
-                        return;
+                            if (MaxRangeHostile < 5.0f)
+                                MaxRangeHostile = 5.0f;
+                            if (MaxRangeFriend < 5.0f)
+                                MaxRangeFriend = 5.0f;
+                            KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
+                            Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
+                            Ids.Add(Id);
+                            return;
+                        }
                     }
                 }
                 catch (Exception exception)
@@ -98,9 +137,11 @@ namespace nManager.Wow.Class
                 {
                     foreach (Spell s in SpellManager.SpellBook())
                     {
-                        if (s.Name != spellName) continue;
-                        tSpell = s;
-                        break;
+                        if (s.Name == spellName)
+                        {
+                            tSpell = s;
+                            break;
+                        }
                     }
                 }
                 if (tSpell == null)

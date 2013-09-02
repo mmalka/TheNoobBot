@@ -175,7 +175,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (spellList.Contains(SpellListManager.SpellNameById(sIdt)))
                         {
-                            return SpellListManager.SpellNameById(sIdt);
+                            return SpellListManager.SpellNameByIdExperimental(sIdt);
                         }
                     }
                 }
@@ -513,7 +513,7 @@ namespace nManager.Wow.Helpers
                 if (_spellBookName.Count <= 0)
                 {
                     _usedSbn = true;
-                    List<string> spellBook = SpellBookID().Select(SpellListManager.SpellNameById).ToList();
+                    List<string> spellBook = SpellBookID().Select(SpellListManager.SpellNameByIdExperimental).ToList();
                     _spellBookName = spellBook;
                     _usedSbn = false;
                 }
@@ -524,6 +524,31 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("SpellBookName(): " + exception);
             }
             return new List<string>();
+        }
+
+        private static List<Spell> _spellBookSpell = new List<Spell>();
+
+        public static List<Spell> SpellBook()
+        {
+            try
+            {
+                lock ("SpellBook")
+                {
+                    if (_spellBookSpell.Count <= 0)
+                    {
+                        List<Spell> spellBook = new List<Spell>();
+                        foreach (Spell spell in SpellBookID().Select(SpellInfoLUA))
+                            spellBook.Add(spell);
+                        _spellBookSpell = spellBook;
+                    }
+                }
+                return _spellBookSpell;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("SpellBook(): " + exception);
+            }
+            return new List<Spell>();
         }
 
         public static void UpdateSpellBook()
@@ -544,7 +569,7 @@ namespace nManager.Wow.Helpers
                         if (!_spellBookID.Contains(si.ID))
                         {
                             _spellBookID.Add(si.ID);
-                            _spellBookName.Add(SpellListManager.SpellNameById(si.ID));
+                            _spellBookName.Add(SpellListManager.SpellNameByIdExperimental(si.ID));
                             _spellBookSpell.Add(SpellInfoLUA(si.ID));
                         }
                     }
@@ -571,238 +596,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("UpdateSpellBook(): " + exception);
             }
         }
-
-        private static List<Spell> _spellBookSpell = new List<Spell>();
-
-        public static List<Spell> SpellBook()
-        {
-            try
-            {
-                lock ("SpellBook")
-                {
-                    if (_spellBookSpell.Count <= 0)
-                    {
-                        Logging.Write("Please wait, loading spellbook...");
-                        SpellInfoCreateCache(SpellBookID());
-                        SpellListManager.SpellIdByNameCreateCache();
-                        var spellBook = new List<Spell>();
-                        foreach (var id in SpellBookID())
-                        {
-                            spellBook.Add(new Spell(id));
-                        }
-                        Logging.Write("Spellbook loaded.");
-                        Logging.Status = "Spellbook loaded.";
-                        _spellBookSpell = spellBook;
-                    }
-                }
-                return _spellBookSpell;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellBook(): " + exception);
-            }
-            return new List<Spell>();
-        }
-
-        private static Dictionary<uint, SpellInfoLua> _spellInfos = new Dictionary<uint, SpellInfoLua>();
-
-        public static SpellInfoLua GetSpellInfo(uint id)
-        {
-            try
-            {
-                lock ("GetSpellInfo" + id)
-                {
-                    if (_spellInfos.ContainsKey(id))
-                        return _spellInfos[id];
-                    string randomString = Others.GetRandomString(Others.Random(5, 10));
-                    var result = Lua.LuaDoString(
-                        randomString + " = \"\"; " +
-                        "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(" + id + "); " +
-                        randomString +
-                        " = tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange);"
-                        , randomString);
-                    if (!string.IsNullOrWhiteSpace(result))
-                    {
-                        string[] ar = {"##"};
-                        var slipped = result.Split(ar, StringSplitOptions.None);
-                        if (slipped.Length == 9)
-                        {
-                            var spellInfo = new SpellInfoLua();
-                            int intOut;
-                            float floatOut;
-
-                            // ID
-                            spellInfo.ID = id;
-                            // name
-                            if (!string.IsNullOrWhiteSpace(slipped[0]) && slipped[0] != "nil")
-                                spellInfo.Name = slipped[0];
-                            // rank
-                            if (!string.IsNullOrWhiteSpace(slipped[1]))
-                                spellInfo.Rank = slipped[1];
-                            // icon
-                            if (!string.IsNullOrWhiteSpace(slipped[2]))
-                                spellInfo.Icon = slipped[2];
-                            // cost
-                            if (!string.IsNullOrWhiteSpace(slipped[3]) && int.TryParse(slipped[3].Replace(".", ","), out intOut))
-                                spellInfo.Cost = intOut;
-                            // isFunnel
-                            if (!string.IsNullOrWhiteSpace(slipped[4]) && slipped[4].ToLower() == "true")
-                                spellInfo.IsFunnel = true;
-                            // powerType
-                            if (!string.IsNullOrWhiteSpace(slipped[5]) && int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                spellInfo.PowerType = intOut;
-                            // castTime
-                            if (!string.IsNullOrWhiteSpace(slipped[6]) && int.TryParse(slipped[6].Replace(".", ","), out intOut))
-                                spellInfo.CastTime = intOut;
-                            // minRange
-                            if (!string.IsNullOrWhiteSpace(slipped[7]) && float.TryParse(slipped[7].Replace(".", ","), out floatOut))
-                                spellInfo.MinRange = floatOut;
-                            // maxRange
-                            if (!string.IsNullOrWhiteSpace(slipped[8]) && float.TryParse(slipped[8].Replace(".", ","), out floatOut))
-                                spellInfo.MaxRange = floatOut;
-
-                            _spellInfos.Add(id, spellInfo);
-                            return spellInfo;
-                        }
-                        else
-                        {
-                            Logging.WriteDebug("Return as bad format: public static SpellInfo GetSpellInfo(" + id + ")");
-                        }
-                    }
-                    else
-                    {
-                        Logging.WriteDebug("Cannot found spell: public static SpellInfo GetSpellInfo(" + id + ")");
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellInfo GetSpellInfo(uint id): " + exception);
-            }
-            return new SpellInfoLua();
-        }
-
-        public static List<SpellInfoLua> SpellInfoCreateCache(List<uint> listId)
-        {
-            try
-            {
-                lock ("SpellInfoCreateCache")
-                {
-                    var ret = new List<SpellInfoLua>();
-                    var listIdString = "{ ";
-                    foreach (var id in listId)
-                    {
-                        listIdString += id + " ,";
-                    }
-                    if (listIdString.EndsWith(","))
-                        listIdString = listIdString.Remove(listIdString.Length - 1);
-                    listIdString += "}";
-
-                    string randomString = Others.GetRandomString(Others.Random(5, 10));
-                    var result = Lua.LuaDoString(
-                        randomString + " = \"\"; " +
-                        "local spellBookList = " + listIdString + " " +
-                        "for arrayId = 1, table.getn(spellBookList) do " +
-                        "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(spellBookList[arrayId]); " +
-                        randomString + " = " + randomString +
-                        " .. tostring(name) .. \"##\" .. tostring(rank) .. \"##\" .. tostring(icon) .. \"##\" .. tostring(cost)  .. \"##\" .. tostring(isFunnel)  .. \"##\" .. tostring(powerType)  .. \"##\" .. tostring(castTime)  .. \"##\" .. tostring(minRange)  .. \"##\" .. tostring(maxRange)  .. \"##\" .. tostring(spellBookList[arrayId]);" +
-                        randomString + " = " + randomString + " .. \"||\"" +
-                        "end "
-                        , randomString);
-                    if (!string.IsNullOrWhiteSpace(result))
-                    {
-                        var listSpell = result.Split(new[] {"||"}, StringSplitOptions.None);
-                        if (listSpell.Length > 0)
-                        {
-                            foreach (var s in listSpell)
-                            {
-                                var slipped = s.Split(new[] {"##"}, StringSplitOptions.None);
-                                if (slipped.Length == 10)
-                                {
-                                    var spellInfo = new SpellInfoLua();
-                                    int intOut;
-                                    float floatOut;
-
-                                    // name
-                                    if (!string.IsNullOrWhiteSpace(slipped[0]) && slipped[0] != "nil")
-                                        spellInfo.Name = slipped[0];
-                                    // rank
-                                    if (!string.IsNullOrWhiteSpace(slipped[1]))
-                                        spellInfo.Rank = slipped[1];
-                                    // icon
-                                    if (!string.IsNullOrWhiteSpace(slipped[2]))
-                                        spellInfo.Icon = slipped[2];
-                                    // cost
-                                    if (!string.IsNullOrWhiteSpace(slipped[3]) &&
-                                        int.TryParse(slipped[3].Replace(".", ","), out intOut))
-                                        spellInfo.Cost = intOut;
-                                    // isFunnel
-                                    if (!string.IsNullOrWhiteSpace(slipped[4]) && slipped[4].ToLower() == "true")
-                                        spellInfo.IsFunnel = true;
-                                    // powerType
-                                    if (!string.IsNullOrWhiteSpace(slipped[5]) &&
-                                        int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                        spellInfo.PowerType = intOut;
-                                    // castTime
-                                    if (!string.IsNullOrWhiteSpace(slipped[6]) &&
-                                        int.TryParse(slipped[6].Replace(".", ","), out intOut))
-                                        spellInfo.CastTime = intOut;
-                                    // minRange
-                                    if (!string.IsNullOrWhiteSpace(slipped[7]) &&
-                                        float.TryParse(slipped[7].Replace(".", ","), out floatOut))
-                                        spellInfo.MinRange = floatOut;
-                                    // maxRange
-                                    if (!string.IsNullOrWhiteSpace(slipped[8]) &&
-                                        float.TryParse(slipped[8].Replace(".", ","), out floatOut))
-                                        spellInfo.MaxRange = floatOut;
-                                    // ID
-                                    if (!string.IsNullOrWhiteSpace(slipped[9]) &&
-                                        int.TryParse(slipped[9].Replace(".", ","), out intOut))
-                                        spellInfo.ID = (uint) intOut;
-
-                                    if (listId.Contains(spellInfo.ID))
-                                    {
-                                        if (!_spellInfos.ContainsKey(spellInfo.ID))
-                                            _spellInfos.Add(spellInfo.ID, spellInfo);
-                                        ret.Add(spellInfo);
-                                    }
-                                }
-                                else
-                                {
-                                    Logging.WriteDebug("Return as bad format: public static SpellInfo SpellInfoCreateCache()");
-                                }
-                            }
-                            return ret;
-                        }
-                    }
-                    else
-                    {
-                        Logging.WriteDebug("Cannot found spell: public static SpellInfo SpellInfoCreateCache()");
-                    }
-                }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellInfo GetSpellInfo(uint id): " + exception);
-            }
-            return new List<SpellInfoLua>();
-        }
-
-        public class SpellInfoLua
-        {
-            public uint ID;
-            public string Name = "";
-            public string Rank = "";
-            public string Icon = "";
-            public int Cost;
-            public bool IsFunnel;
-            public int PowerType;
-            public int CastTime;
-            public float MinRange;
-            public float MaxRange;
-        }
-
-        private static readonly Dictionary<string, List<uint>> CacheSpellIdByName = new Dictionary<string, List<uint>>();
 
 
         public static string GetMountBarAndSlot()
@@ -921,104 +714,44 @@ namespace nManager.Wow.Helpers
 
         public class SpellListManager
         {
-            public static Dictionary<uint, string> ListSpell { get; private set; }
+            public static List<SpellList> ListSpell { get; private set; }
             public static List<string> ListSpellName { get; private set; }
-            private static readonly object LoadSpellListeLock = new object();
 
             internal static void LoadSpellListe(string fileName)
             {
                 try
                 {
-                    lock (LoadSpellListeLock)
+                    if (ListSpell == null)
                     {
-                        if (ListSpell == null)
+                        string[] listSpellTemps = Others.ReadFileAllLines(fileName);
+                        ListSpell = new List<SpellList>();
+                        ListSpellName = new List<string>();
+                        foreach (string tempsSpell in listSpellTemps)
                         {
-                            var tListSpell = new Dictionary<uint, string>();
-                            string[] listSpellTemps = Others.ReadFileAllLines(fileName);
-                            foreach (string tempsSpell in listSpellTemps)
-                            {
-                                if (string.IsNullOrWhiteSpace(tempsSpell) || !tempsSpell.Contains(";")) continue;
-
-                                string[] tmpSpell = tempsSpell.Split(';');
-
-                                if (tmpSpell.Length != 2 || string.IsNullOrWhiteSpace(tmpSpell[0]) || string.IsNullOrWhiteSpace(tmpSpell[1])) continue;
-
-                                uint tspellId = Others.ToUInt32(tmpSpell[0]);
-                                if (!tListSpell.ContainsKey(tspellId))
-                                {
-                                    tListSpell.Add(tspellId, tmpSpell[1]);
-                                }
-                            }
-
-                            ListSpell = tListSpell;
-                            ListSpellName = new List<string>();
-                            foreach (var spell in ListSpell)
-                            {
-                                ListSpellName.Add(spell.Value);
-                            }
+                            string[] tmpSpell = tempsSpell.Split(';');
+                            ListSpell.Add(new SpellList(Others.ToUInt32(tmpSpell[0]), tmpSpell[1]));
+                            ListSpellName.Add(tmpSpell[1]);
                         }
                     }
                 }
                 catch (Exception exception)
                 {
                     Logging.WriteError("LoadSpellListe(string fileName): " + exception);
-                    if (ListSpell == null)
-                        Logging.WriteError("ListSpell == null");
-                    else
-                        Logging.WriteError("ListSpell.Count = " + ListSpell.Count);
                 }
             }
 
             public static List<uint> SpellIdByName(string spellName)
             {
-                lock ("SpellIdByName")
+                List<uint> listIdSpellFound = new List<UInt32>();
+                try
                 {
-                    var listIdSpellFound = new List<UInt32>();
-                    try
-                    {
-                        spellName = spellName.ToLower();
-
-                        if (CacheSpellIdByName.TryGetValue(spellName, out listIdSpellFound))
-                            return listIdSpellFound;
-
-                        listIdSpellFound = new List<uint>();
-                        foreach (var spell in ListSpell)
-                        {
-                            if (spell.Value.ToLower() == spellName)
-                                listIdSpellFound.Add(spell.Key);
-                        }
-
-                        CacheSpellIdByName.Add(spellName, listIdSpellFound);
-
-                        return listIdSpellFound;
-                    }
-                    catch (Exception exception)
-                    {
-                        Logging.WriteError("SpellIdByName(string spellName): " + exception);
-                        return listIdSpellFound;
-                    }
+                    listIdSpellFound.AddRange(from current in ListSpell where current.Name.ToLower() == spellName.ToLower() select current.Id);
+                    return listIdSpellFound;
                 }
-            }
-
-            public static void SpellIdByNameCreateCache()
-            {
-                lock ("SpellIdByName")
+                catch (Exception exception)
                 {
-                    try
-                    {
-                        foreach (var spell in ListSpell)
-                        {
-                            var name = spell.Value.ToLower();
-                            if (!CacheSpellIdByName.ContainsKey(name))
-                                CacheSpellIdByName.Add(name, new List<uint> {spell.Key});
-                            else if (!CacheSpellIdByName[name].Contains(spell.Key))
-                                CacheSpellIdByName[name].Add(spell.Key);
-                        }
-                    }
-                    catch (Exception exception)
-                    {
-                        Logging.WriteError("SpellIdByNameCreateCache(): " + exception);
-                    }
+                    Logging.WriteError("SpellIdByName(string spellName): " + exception);
+                    return listIdSpellFound;
                 }
             }
 
@@ -1026,8 +759,10 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    if (ListSpell.ContainsKey(spellId))
-                        return ListSpell[spellId];
+                    foreach (SpellList current in ListSpell.Where(current => current.Id == spellId))
+                    {
+                        return current.Name;
+                    }
                 }
                 catch (Exception exception)
                 {
