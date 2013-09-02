@@ -18,8 +18,7 @@ namespace nManager.Wow.Helpers
                 _rItemClassRec0 = _rItemClassDBC.GetRow(id);
                 if (_rItemClassRec0.ClassId == id)
                 {
-                    string temp = Name;
-                    if (temp == name)
+                    if (Name == name)
                     {
                         return;
                     }
@@ -40,7 +39,10 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get { return _rItemClassDBC.String(_rItemClassRec0.ClassNameOffset); }
+            get { return _rItemClassDBC.String(_rItemClassDBC.GetRowOffset((int) _rItemClassRec0.ClassId) +
+                    _rItemClassRec0.ClassNameOffset +
+                    (uint) Marshal.OffsetOf(typeof(ItemClassDbcRecord), "ClassNameOffset"));
+                }
         }
 
         [StructLayout(LayoutKind.Sequential)]

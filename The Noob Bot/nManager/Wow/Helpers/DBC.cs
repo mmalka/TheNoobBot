@@ -10,6 +10,7 @@ namespace nManager.Wow.Helpers
     {
         private readonly DBCStruct.WoWClientDB m_header;
         private readonly Dictionary<int, T> m_rows;
+        private readonly Dictionary<int, uint> m_rowAddresses;
 
         public int MinIndex
         {
@@ -46,6 +47,11 @@ namespace nManager.Wow.Helpers
             return m_rows.ContainsKey(index);
         }
 
+        public bool HasRowOffset(int index)
+        {
+            return m_rowAddresses.ContainsKey(index);
+        }
+
         /// <summary>
         /// Initializes a new instance of DBC class using specified memory address
         /// </summary>
@@ -60,14 +66,16 @@ namespace nManager.Wow.Helpers
                                                        typeof (DBCStruct.WoWClientDB));
 
                 m_rows = new Dictionary<int, T>(m_header.numRows);
+                m_rowAddresses = new Dictionary<int, uint>(m_header.numRows);
 
                 for (int i = 0; i < m_header.numRows; ++i)
                 {
-                    uint rowOffset = m_header.FirstRow + (uint) (i*Marshal.SizeOf(typeof (T)));
+                    uint rowOffset = m_header.FirstRow + (uint)(i * Marshal.SizeOf(typeof(T)));
 
                     int index = Memory.WowMemory.Memory.ReadInt(rowOffset);
                     T row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));
 
+                    m_rowAddresses.Add(index, rowOffset);
                     m_rows.Add(index, row);
                 }
             }
@@ -96,5 +104,21 @@ namespace nManager.Wow.Helpers
             }
             return default(T);
         }
+
+        public uint GetRowOffset(int index)
+        {
+            try
+            {
+                if (HasRowOffset(index))
+                    return m_rowAddresses[index];
+                return 0;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("GetRowOffset(int index): " + exception);
+            }
+            return 0;
+        }
+
     }
 }

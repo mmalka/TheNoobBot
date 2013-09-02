@@ -20,8 +20,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (_rItemSubClassRec0.ClassId == iClass)
                     {
-                        string temp = _rItemSubClassDBC.String(_rItemSubClassRec0.SubClassLongNameOffset);
-                        if (temp == name)
+                        if (LongName == name)
                         {
                             return;
                         }
@@ -41,9 +40,13 @@ namespace nManager.Wow.Helpers
             get { return _rItemSubClassRec0; }
         }
 
-        public string Name
+        public string LongName
         {
-            get { return _rItemSubClassDBC.String(_rItemSubClassRec0.SubClassNameOffset); }
+            get { return _rItemSubClassDBC.String(_rItemSubClassDBC.GetRowOffset((int) _rItemSubClassRec0.Index) +
+                    _rItemSubClassRec0.SubClassLongNameOffset +
+                    (uint)Marshal.OffsetOf(typeof(ItemSubClassDbcRecord), "SubClassLongNameOffset"));
+                }
+
         }
 
         [StructLayout(LayoutKind.Sequential)]
