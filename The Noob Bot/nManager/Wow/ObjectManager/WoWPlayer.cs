@@ -23,9 +23,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-                    uint displayPower = descriptorsArray +
-                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
-                    return (WoWClass) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[1];
+                    uint sex = descriptorsArray +
+                               ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
+                    return (WoWClass) Memory.WowMemory.Memory.ReadBytes(sex, 4)[1];
                 }
                 catch (Exception e)
                 {
@@ -42,9 +42,9 @@ namespace nManager.Wow.ObjectManager
                 try
                 {
                     uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-                    uint displayPower = descriptorsArray +
-                                        ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
-                    return (WoWRace) Memory.WowMemory.Memory.ReadBytes(displayPower, 4)[0];
+                    uint sex = descriptorsArray +
+                               ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
+                    return (WoWRace) Memory.WowMemory.Memory.ReadBytes(sex, 4)[0];
                 }
                 catch (Exception e)
                 {
