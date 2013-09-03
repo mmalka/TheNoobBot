@@ -42,11 +42,12 @@ namespace nManager.Wow.Helpers
 
         public string LongName
         {
-            get { return _rItemSubClassDBC.String(_rItemSubClassDBC.GetRowOffset((int) _rItemSubClassRec0.Index) +
-                    _rItemSubClassRec0.SubClassLongNameOffset +
-                    (uint)Marshal.OffsetOf(typeof(ItemSubClassDbcRecord), "SubClassLongNameOffset"));
-                }
-
+            get
+            {
+                return _rItemSubClassDBC.String(_rItemSubClassDBC.GetRowOffset((int) _rItemSubClassRec0.Index) +
+                                                _rItemSubClassRec0.SubClassLongNameOffset +
+                                                (uint) Marshal.OffsetOf(typeof (ItemSubClassDbcRecord), "SubClassLongNameOffset"));
+            }
         }
 
         [StructLayout(LayoutKind.Sequential)]

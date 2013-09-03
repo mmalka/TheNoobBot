@@ -39,10 +39,12 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get { return _rItemClassDBC.String(_rItemClassDBC.GetRowOffset((int) _rItemClassRec0.ClassId) +
-                    _rItemClassRec0.ClassNameOffset +
-                    (uint) Marshal.OffsetOf(typeof(ItemClassDbcRecord), "ClassNameOffset"));
-                }
+            get
+            {
+                return _rItemClassDBC.String(_rItemClassDBC.GetRowOffset((int) _rItemClassRec0.ClassId) +
+                                             _rItemClassRec0.ClassNameOffset +
+                                             (uint) Marshal.OffsetOf(typeof (ItemClassDbcRecord), "ClassNameOffset"));
+            }
         }
 
         [StructLayout(LayoutKind.Sequential)]

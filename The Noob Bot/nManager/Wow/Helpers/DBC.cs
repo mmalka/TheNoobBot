@@ -70,7 +70,7 @@ namespace nManager.Wow.Helpers
 
                 for (int i = 0; i < m_header.numRows; ++i)
                 {
-                    uint rowOffset = m_header.FirstRow + (uint)(i * Marshal.SizeOf(typeof(T)));
+                    uint rowOffset = m_header.FirstRow + (uint) (i*Marshal.SizeOf(typeof (T)));
 
                     int index = Memory.WowMemory.Memory.ReadInt(rowOffset);
                     T row = (T) Memory.WowMemory.Memory.ReadObject(rowOffset, typeof (T));
@@ -119,6 +119,5 @@ namespace nManager.Wow.Helpers
             }
             return 0;
         }
-
     }
 }

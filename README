@@ -24,3 +24,5 @@ can provides "all time, last 24h, last 48h, last week, last month, last year" in
 Implement/Test the Melee Control Manager system (currently on stand-by).
 
 Implement/Test the InteractWithBeta functions that will allow us to interact with an Unit/Object without walking to it.
+
+Implement/Test the QuickSpellUsableLUA (never commited yet) functions that will allow us to cast more spell, faster.

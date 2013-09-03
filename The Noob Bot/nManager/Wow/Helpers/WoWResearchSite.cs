@@ -59,11 +59,12 @@ namespace nManager.Wow.Helpers
 
         public string Name
         {
-            get {
+            get
+            {
                 return _rSiteDBC.String(_rSiteDBC.GetRowOffset((int) _rSiteDBCRecord0.Id) +
-                            _rSiteDBCRecord0.NameOffset +
-                            (uint) Marshal.OffsetOf(typeof(ResearchSiteDbcRecord), "NameOffset"));
-                }
+                                        _rSiteDBCRecord0.NameOffset +
+                                        (uint) Marshal.OffsetOf(typeof (ResearchSiteDbcRecord), "NameOffset"));
+            }
         }
 
         // I don't like to expose this, but did not find another way
