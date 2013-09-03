@@ -1021,7 +1021,7 @@ namespace nManager.Wow.ObjectManager
         {
             uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
             uint displayPower = descriptorsArray +
-                                ((uint) Descriptors.UnitFields.DisplayPower*Descriptors.Multiplicator);
+                                ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
             uint index = Memory.WowMemory.Memory.ReadByte(displayPower + 0x1) + (uint) powerType +
                          (uint) Addresses.PowerIndex.Multiplicator*Memory.WowMemory.Memory.ReadByte(displayPower + 0x1);
             uint result =
