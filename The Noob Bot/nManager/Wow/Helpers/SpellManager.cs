@@ -40,12 +40,12 @@ namespace nManager.Wow.Helpers
             /// <summary>
             /// The level of the spell level in the spell book
             /// </summary>
-            [FieldOffset(0x8)] private readonly uint Level;
+            [FieldOffset(0x8)] public readonly uint Level;
 
             /// <summary>
             /// The tab where the spell is stored in the spell book
             /// </summary>
-            [FieldOffset(0xC)] private readonly uint TabId;
+            [FieldOffset(0xC)] public readonly uint TabId;
         }
 
         private static readonly List<uint> MountDruidIdList = new List<uint>();
@@ -524,8 +524,10 @@ namespace nManager.Wow.Helpers
                     {
                         uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                         SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                        if (si.State == SpellInfo.SpellState.Known)
+                        if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
+                        {
                             spellBook.Add(si.ID);
+                        }
                         Application.DoEvents();
                     }
 
@@ -556,7 +558,7 @@ namespace nManager.Wow.Helpers
                 {
                     uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if (si.State == SpellInfo.SpellState.Known)
+                    if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
                         j++;
                 }
                 return j;
@@ -608,14 +610,16 @@ namespace nManager.Wow.Helpers
                 {
                     uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if (si.State == SpellInfo.SpellState.Known)
+                    if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
                     {
                         if (!_spellBookID.Contains(si.ID))
-                        {
                             _spellBookID.Add(si.ID);
-                            _spellBookName.Add(SpellListManager.SpellNameById(si.ID));
-                            _spellBookSpell.Add(SpellInfoLUA(si.ID));
-                        }
+                        string Name = SpellListManager.SpellNameById(si.ID);
+                        if (!_spellBookName.Contains(Name))
+                            _spellBookName.Add(Name);
+                        Spell Spell = SpellInfoLUA(si.ID);
+                        if (!_spellBookSpell.Contains(Spell))
+                            _spellBookSpell.Add(Spell);
                     }
                     Application.DoEvents();
                 }
@@ -652,10 +656,10 @@ namespace nManager.Wow.Helpers
                     if (_spellBookSpell.Count <= 0)
                     {
                         Logging.Write("Please wait, loading spellbook...");
-                        SpellInfoCreateCache(SpellBookID());
+                        List<SpellInfoLua> test = SpellInfoCreateCache(SpellBookID());
                         SpellListManager.SpellIdByNameCreateCache();
-                        var spellBook = new List<Spell>();
-                        foreach (var id in SpellBookID())
+                        List<Spell> spellBook = new List<Spell>();
+                        foreach (uint id in SpellBookID())
                         {
                             spellBook.Add(new Spell(id));
                         }
@@ -684,7 +688,7 @@ namespace nManager.Wow.Helpers
                     if (_spellInfos.ContainsKey(id))
                         return _spellInfos[id];
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
-                    var result = Lua.LuaDoString(
+                    string result = Lua.LuaDoString(
                         randomString + " = \"\"; " +
                         "local name, rank, icon, cost, isFunnel, powerType, castTime, minRange, maxRange = GetSpellInfo(" + id + "); " +
                         randomString +
@@ -693,10 +697,10 @@ namespace nManager.Wow.Helpers
                     if (!string.IsNullOrWhiteSpace(result))
                     {
                         string[] ar = {"##"};
-                        var slipped = result.Split(ar, StringSplitOptions.None);
+                        string[] slipped = result.Split(ar, StringSplitOptions.None);
                         if (slipped.Length == 9)
                         {
-                            var spellInfo = new SpellInfoLua();
+                            SpellInfoLua spellInfo = new SpellInfoLua();
                             int intOut;
                             float floatOut;
 
@@ -757,9 +761,9 @@ namespace nManager.Wow.Helpers
             {
                 lock ("SpellInfoCreateCache")
                 {
-                    var ret = new List<SpellInfoLua>();
-                    var listIdString = "{ ";
-                    foreach (var id in listId)
+                    List<SpellInfoLua> ret = new List<SpellInfoLua>();
+                    string listIdString = "{ ";
+                    foreach (uint id in listId)
                     {
                         listIdString += id + " ,";
                     }
@@ -768,7 +772,7 @@ namespace nManager.Wow.Helpers
                     listIdString += "}";
 
                     string randomString = Others.GetRandomString(Others.Random(5, 10));
-                    var result = Lua.LuaDoString(
+                    string result = Lua.LuaDoString(
                         randomString + " = \"\"; " +
                         "local spellBookList = " + listIdString + " " +
                         "for arrayId = 1, table.getn(spellBookList) do " +
@@ -780,17 +784,17 @@ namespace nManager.Wow.Helpers
                         , randomString);
                     if (!string.IsNullOrWhiteSpace(result))
                     {
-                        var listSpell = result.Split(new[] {"||"}, StringSplitOptions.None);
+                        string[] listSpell = result.Split(new[] {"||"}, StringSplitOptions.None);
                         if (listSpell.Length > 0)
                         {
-                            foreach (var s in listSpell)
+                            foreach (string s in listSpell)
                             {
                                 if (string.IsNullOrWhiteSpace(s))
                                     break;
-                                var slipped = s.Split(new[] {"##"}, StringSplitOptions.None);
+                                string[] slipped = s.Split(new[] {"##"}, StringSplitOptions.None);
                                 if (slipped.Length == 10)
                                 {
-                                    var spellInfo = new SpellInfoLua();
+                                    SpellInfoLua spellInfo = new SpellInfoLua();
                                     int intOut;
                                     float floatOut;
 
@@ -1004,7 +1008,7 @@ namespace nManager.Wow.Helpers
                     {
                         if (ListSpell == null)
                         {
-                            var tListSpell = new Dictionary<uint, string>();
+                            Dictionary<uint, string> tListSpell = new Dictionary<uint, string>();
                             string[] listSpellTemps = Others.ReadFileAllLines(fileName);
                             foreach (string tempsSpell in listSpellTemps)
                             {
@@ -1023,7 +1027,7 @@ namespace nManager.Wow.Helpers
 
                             ListSpell = tListSpell;
                             ListSpellName = new List<string>();
-                            foreach (var spell in ListSpell)
+                            foreach (KeyValuePair<uint, string> spell in ListSpell)
                             {
                                 ListSpellName.Add(spell.Value);
                             }
@@ -1044,7 +1048,7 @@ namespace nManager.Wow.Helpers
             {
                 lock ("SpellIdByName")
                 {
-                    var listIdSpellFound = new List<UInt32>();
+                    List<uint> listIdSpellFound = new List<UInt32>();
                     try
                     {
                         spellName = spellName.ToLower();
@@ -1053,7 +1057,7 @@ namespace nManager.Wow.Helpers
                             return listIdSpellFound;
 
                         listIdSpellFound = new List<uint>();
-                        foreach (var spell in ListSpell)
+                        foreach (KeyValuePair<uint, string> spell in ListSpell)
                         {
                             if (spell.Value.ToLower() == spellName)
                                 listIdSpellFound.Add(spell.Key);
@@ -1077,9 +1081,9 @@ namespace nManager.Wow.Helpers
                 {
                     try
                     {
-                        foreach (var spell in ListSpell)
+                        foreach (KeyValuePair<uint, string> spell in ListSpell)
                         {
-                            var name = spell.Value.ToLower();
+                            string name = spell.Value.ToLower();
                             if (!CacheSpellIdByName.ContainsKey(name))
                                 CacheSpellIdByName.Add(name, new List<uint> {spell.Key});
                             else if (!CacheSpellIdByName[name].Contains(spell.Key))

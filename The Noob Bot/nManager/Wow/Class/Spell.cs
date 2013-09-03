@@ -45,12 +45,12 @@ namespace nManager.Wow.Class
                 {
                     Id = spellId;
 
-                    var spellInfo = SpellManager.GetSpellInfo(Id);
+                    SpellManager.SpellInfoLua spellInfo = SpellManager.GetSpellInfo(Id);
                     if (spellInfo.ID > 0 && spellId == spellInfo.ID)
                     {
                         CastTime = (float) spellInfo.CastTime/1000;
-                        var MinRange = spellInfo.MinRange;
-                        var MaxRange = spellInfo.MaxRange;
+                        float MinRange = spellInfo.MinRange;
+                        float MaxRange = spellInfo.MaxRange;
 
                         MaxRangeHostile = MaxRange;
                         MinRangeHostile = MinRange;
