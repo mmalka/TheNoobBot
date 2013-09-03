@@ -68,7 +68,7 @@ namespace nManager.Wow.Class
                             MaxRangeHostile = 5.0f;
                         if (MaxRangeFriend < 5.0f)
                             MaxRangeFriend = 5.0f;
-                        KnownSpell = SpellManager.KnowSpell(Id);
+                        KnownSpell = SpellManager.KnownSpell(Id);
                         Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         Ids.Add(Id);
                         return;

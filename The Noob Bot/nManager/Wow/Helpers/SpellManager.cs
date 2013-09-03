@@ -464,12 +464,12 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static bool KnowSpell(string spellName)
+        public static bool KnownSpell(string spellName)
         {
             return SpellBookName().Contains(spellName);
         }
 
-        public static bool KnowSpell(uint spellId)
+        public static bool KnownSpell(uint spellId)
         {
             return SpellBookID().Contains(spellId);
         }
