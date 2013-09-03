@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Bot.States;
+using nManager.Wow.Helpers;
 
 namespace Milling
 {
@@ -9,6 +10,8 @@ namespace Milling
     {
         public static void Pulse()
         {
+            // Update spell list
+            SpellManager.UpdateSpellBook();
             Thread thread = new Thread(ThreadPulse) {Name = "Thread Milling"};
             thread.Start();
         }

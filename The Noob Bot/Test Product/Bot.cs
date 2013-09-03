@@ -27,6 +27,8 @@ namespace Test_Product
         {
             try
             {
+                // Update spell list
+                SpellManager.UpdateSpellBook();
                 /*
                 var myConn =
                     new MySqlConnection(

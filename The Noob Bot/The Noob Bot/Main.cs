@@ -116,7 +116,8 @@ namespace The_Noob_Bot
         {
             try
             {
-                SpellManager.SpellBookID();
+                SpellManager.SpellBook();
+
                 if (string.IsNullOrEmpty(nManager.nManagerSetting.CurrentSetting.FlyingMountName))
                 {
                     nManager.nManagerSetting.CurrentSetting.FlyingMountName = SpellManager.GetFlyMountName();
