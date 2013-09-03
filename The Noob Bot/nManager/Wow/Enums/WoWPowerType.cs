@@ -2,6 +2,7 @@
 {
     public enum PowerType
     {
+        Health = -0x2, // only LUA
         Mana = 0x0,
         Rage = 0x1,
         Focus = 0x2,

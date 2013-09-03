@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
@@ -18,14 +19,14 @@ namespace nManager.Wow.Class
         public float CastTime;
         public int Cost;
         public string Icon = "";
-        public string IsFunnel = "";
+        public bool IsFunnel;
         public float MaxRangeHostile;
         public float MinRangeHostile;
         public float MaxRangeFriend;
         public float MinRangeFriend;
         public string Name = "";
         public string NameInGame = "";
-        public string PowerType = "";
+        public PowerType PowerType;
         public string Rank = "";
 
         #endregion Fields
@@ -43,11 +44,13 @@ namespace nManager.Wow.Class
                 try
                 {
                     Id = spellId;
-                    if (Id > 0 && string.IsNullOrEmpty(SpellManager.SpellListManager.SpellNameById(Id)))
+
+                    var spellInfo = SpellManager.GetSpellInfo(Id);
+                    if (spellInfo.ID > 0 && spellId == spellInfo.ID)
                     {
-                        CastTime = (float) SpellManager.GetSpellInfo(spellId).CastTime/1000;
-                        var MinRange = SpellManager.GetSpellInfo(spellId).MinRange;
-                        var MaxRange = SpellManager.GetSpellInfo(spellId).MaxRange;
+                        CastTime = (float) spellInfo.CastTime/1000;
+                        var MinRange = spellInfo.MinRange;
+                        var MaxRange = spellInfo.MaxRange;
 
                         MaxRangeHostile = MaxRange;
                         MinRangeHostile = MinRange;
@@ -55,13 +58,17 @@ namespace nManager.Wow.Class
                         MinRangeFriend = MinRange;
 
                         Name = SpellManager.SpellListManager.SpellNameById(spellId);
-                        NameInGame = SpellManager.GetSpellInfo(spellId).Name;
-
+                        NameInGame = spellInfo.Name;
+                        Cost = spellInfo.Cost;
+                        Icon = spellInfo.Icon;
+                        IsFunnel = spellInfo.IsFunnel;
+                        PowerType = spellInfo.PowerType;
+                        Rank = spellInfo.Rank;
                         if (MaxRangeHostile < 5.0f)
                             MaxRangeHostile = 5.0f;
                         if (MaxRangeFriend < 5.0f)
                             MaxRangeFriend = 5.0f;
-                        KnownSpell = SpellManager.SpellBookID().Contains(spellId);
+                        KnownSpell = SpellManager.KnowSpell(Id);
                         Ids.AddRange(SpellManager.SpellListManager.SpellIdByName(Name));
                         Ids.Add(Id);
                         return;

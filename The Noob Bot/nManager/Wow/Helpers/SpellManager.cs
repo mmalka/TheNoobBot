@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Runtime.InteropServices;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
@@ -405,6 +406,16 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
+        public static bool KnowSpell(string spellName)
+        {
+            return SpellBookName().Contains(spellName);
+        }
+
+        public static bool KnowSpell(uint spellId)
+        {
+            return SpellBookID().Contains(spellId);
+        }
+
         public static bool ExistSpellBookLUA(string spellName)
         {
             try
@@ -650,7 +661,7 @@ namespace nManager.Wow.Helpers
                                 spellInfo.IsFunnel = true;
                             // powerType
                             if (!string.IsNullOrWhiteSpace(slipped[5]) && int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                spellInfo.PowerType = intOut;
+                                spellInfo.PowerType = (PowerType) intOut;
                             // castTime
                             if (!string.IsNullOrWhiteSpace(slipped[6]) && int.TryParse(slipped[6].Replace(".", ","), out intOut))
                                 spellInfo.CastTime = intOut;
@@ -716,6 +727,8 @@ namespace nManager.Wow.Helpers
                         {
                             foreach (var s in listSpell)
                             {
+                                if (string.IsNullOrWhiteSpace(s))
+                                    break;
                                 var slipped = s.Split(new[] {"##"}, StringSplitOptions.None);
                                 if (slipped.Length == 10)
                                 {
@@ -742,7 +755,7 @@ namespace nManager.Wow.Helpers
                                     // powerType
                                     if (!string.IsNullOrWhiteSpace(slipped[5]) &&
                                         int.TryParse(slipped[5].Replace(".", ","), out intOut))
-                                        spellInfo.PowerType = intOut;
+                                        spellInfo.PowerType = (PowerType) intOut;
                                     // castTime
                                     if (!string.IsNullOrWhiteSpace(slipped[6]) &&
                                         int.TryParse(slipped[6].Replace(".", ","), out intOut))
@@ -796,7 +809,7 @@ namespace nManager.Wow.Helpers
             public string Icon = "";
             public int Cost;
             public bool IsFunnel;
-            public int PowerType;
+            public Enums.PowerType PowerType;
             public int CastTime;
             public float MinRange;
             public float MaxRange;
