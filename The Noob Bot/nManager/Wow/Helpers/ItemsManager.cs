@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
     {
         public static int GetItemCount(string name)
         {
-                return GetItemCount(GetItemIdByName(name));
+            return GetItemCount(GetItemIdByName(name));
         }
 
         public static int GetItemCount(int entry)
@@ -59,9 +59,9 @@ namespace nManager.Wow.Helpers
 
         public static void UseItem(int entry)
         {
-         UseItem(GetItemNameById(entry));
+            UseItem(GetItemNameById(entry));
         }
-        
+
         public static void UseItem(int entry, Class.Point point)
         {
             try
@@ -78,7 +78,7 @@ namespace nManager.Wow.Helpers
 
         public static void UseItem(string name, Class.Point point)
         {
-           UseItem(GetItemIdByName(name), point);
+            UseItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name), point);
         }
 
         public static string GetItemNameById(int entry)
@@ -106,12 +106,12 @@ namespace nManager.Wow.Helpers
                 lock (typeof (ItemsManager))
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
-                        Lua.LuaDoString(
-                            "local nameItem = \"" + name + "\" " +
-                            "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
-                            "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
-                            );
-                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
+                    Lua.LuaDoString(
+                        "local nameItem = \"" + name + "\" " +
+                        "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
+                        "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
+                        );
+                    return Others.ToInt32(Lua.GetLocalizedText(randomString));
                 }
             }
             catch (Exception exception)
@@ -154,7 +154,7 @@ namespace nManager.Wow.Helpers
 
         public static bool IsItemOnCooldown(string name)
         {
-            return IsItemOnCooldown(GetItemIdByName(name));
+            return IsItemOnCooldown(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
         public static bool IsItemUsable(int entry)
@@ -178,7 +178,7 @@ namespace nManager.Wow.Helpers
 
         public static bool IsItemUsable(string name)
         {
-                return IsItemUsable(GetItemIdByName(name));
+            return IsItemUsable(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
         public static bool IsHarmfulItem(int entry)
@@ -202,7 +202,7 @@ namespace nManager.Wow.Helpers
 
         public static bool IsHarmfulItem(string name)
         {
-            return IsHarmfulItem(GetItemIdByName(name));
+            return IsHarmfulItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
         public static bool IsHelpfulItem(int entry)
@@ -226,9 +226,9 @@ namespace nManager.Wow.Helpers
 
         public static bool IsHelpfulItem(string name)
         {
-            return IsHelpfulItem(GetItemIdByName(name));
+            return IsHelpfulItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
-    
+
         public static string GetItemSpell(int entry)
         {
             try
@@ -248,7 +248,7 @@ namespace nManager.Wow.Helpers
 
         public static string GetItemSpell(string name)
         {
-            return GetItemSpell(GetItemIdByName(name));
+            return GetItemSpell(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
         // Return best ILevel item
