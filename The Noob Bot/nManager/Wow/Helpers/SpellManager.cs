@@ -20,11 +20,11 @@ namespace nManager.Wow.Helpers
             public enum SpellState : uint
             {
                 Known = 1, // the spell has been learnt and can be cast
-// ReSharper disable UnusedMember.Local
+                // ReSharper disable UnusedMember.Local
                 FutureSpell = 2, // the spell is known but not yet learnt
                 PetAction = 3,
                 Flyout = 4
-// ReSharper restore UnusedMember.Local
+                // ReSharper restore UnusedMember.Local
             };
 
             /// <summary>
@@ -504,31 +504,45 @@ namespace nManager.Wow.Helpers
                 }
                 if (_spellBookID.Count <= 0)
                 {
-                    Logging.Write("Initializing SpellBook - (Wait few seconds)");
                     _usedSbid = true;
                     List<uint> spellBook = new List<uint>();
 
                     UInt32 nbSpells =
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.nbSpell);
+                                                         (uint) Addresses.SpellBook.SpellBookNumSpells);
                     UInt32 spellBookInfoPtr =
                         Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.SpellBook.knownSpell);
+                                                         (uint) Addresses.SpellBook.SpellBookSpellsPtr);
 
                     for (UInt32 i = 0; i < nbSpells; i++)
                     {
                         uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                         SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                        if ((si.TabId <= 1 || si.TabId > 3) && si.State == SpellInfo.SpellState.Known)
+                        if ((si.TabId <= 1 || si.TabId > 4) && si.State == SpellInfo.SpellState.Known)
                         {
                             spellBook.Add(si.ID);
                         }
                         Application.DoEvents();
                     }
 
+                    UInt32 MountBookNumMounts =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.MountBookNumMounts);
+                    UInt32 MountBookMountsPtr =
+                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                         (uint) Addresses.SpellBook.MountBookMountsPtr);
+
+                    for (UInt32 i = 0; i < MountBookNumMounts; i++)
+                    {
+                        uint MountId = Memory.WowMemory.Memory.ReadUInt(MountBookMountsPtr + i*4);
+                        if (MountId > 0)
+                        {
+                            spellBook.Add(MountId);
+                        }
+                        Application.DoEvents();
+                    }
                     _spellBookID = spellBook;
                     _usedSbid = false;
-                    Logging.Write("Initialize SpellBook Finished (" + _spellBookID.Count + " spell found)");
                     SpellBookLoaded = true;
                 }
                 return _spellBookID;
@@ -540,45 +554,20 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
-        public static int SpellAvailable()
-        {
-            try
-            {
-                UInt32 nbSpells =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
-                uint spellBookInfoPtr =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
-                int j = 0;
-                for (UInt32 i = 0; i < nbSpells; i++)
-                {
-                    uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
-                    SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if ((si.TabId <= 1 || si.TabId > 3) && si.State == SpellInfo.SpellState.Known)
-                        j++;
-                }
-                return j;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellAvailable(): " + exception);
-            }
-            return 0;
-        }
-
         public static void UpdateSpellBook()
         {
             try
             {
                 uint nbSpells =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.nbSpell);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
                 uint spellBookInfoPtr =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.knownSpell);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookSpellsPtr);
 
                 for (UInt32 i = 0; i < nbSpells; i++)
                 {
                     uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if ((si.TabId <= 1 || si.TabId > 3 ) && si.State == SpellInfo.SpellState.Known)
+                    if ((si.TabId <= 1 || si.TabId > 4) && si.State == SpellInfo.SpellState.Known)
                     {
                         if (!_spellBookID.Contains(si.ID))
                             _spellBookID.Add(si.ID);
@@ -589,6 +578,26 @@ namespace nManager.Wow.Helpers
                     Application.DoEvents();
                 }
 
+                UInt32 MountBookNumMounts =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.SpellBook.MountBookNumMounts);
+                UInt32 MountBookMountsPtr =
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
+                                                     (uint) Addresses.SpellBook.MountBookMountsPtr);
+
+                for (UInt32 i = 0; i < MountBookNumMounts; i++)
+                {
+                    uint MountId = Memory.WowMemory.Memory.ReadUInt(MountBookMountsPtr + i*4);
+                    if (MountId > 0)
+                    {
+                        if (!_spellBookID.Contains(MountId))
+                            _spellBookID.Add(MountId);
+                        Spell MountSpell = SpellInfoLUA(MountId);
+                        if (!_spellBookSpell.Contains(MountSpell))
+                            _spellBookSpell.Add(MountSpell);
+                    }
+                    Application.DoEvents();
+                }
 
                 foreach (Spell o in _spellBookSpell)
                 {
@@ -620,16 +629,17 @@ namespace nManager.Wow.Helpers
                 {
                     if (_spellBookSpell.Count <= 0)
                     {
-                        Logging.Write("Please wait, loading spellbook...");
+                        Logging.Write("Initializing Character's SpellBook.");
                         SpellInfoCreateCache(SpellBookID());
                         SpellListManager.SpellIdByNameCreateCache();
                         List<Spell> spellBook = new List<Spell>();
+                        Logging.Write("May take few seconds...");
                         foreach (uint id in SpellBookID())
                         {
                             spellBook.Add(new Spell(id));
                         }
-                        Logging.Write("Spellbook loaded.");
-                        Logging.Status = "Spellbook loaded.";
+                        Logging.Write("Character's SpellBook fully loaded. Found " + _spellBookID.Count + " spells and professions.");
+                        Logging.Status = "Character SpellBook loaded.";
                         _spellBookSpell = spellBook;
                     }
                 }

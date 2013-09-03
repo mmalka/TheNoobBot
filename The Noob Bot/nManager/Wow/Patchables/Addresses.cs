@@ -179,8 +179,10 @@
         /// </summary>
         public enum SpellBook
         {
-            nbSpell = 0xDA9EA0,
-            knownSpell = 0xDA9EA4,
+            SpellBookNumSpells = 0xDA9EA0,
+            SpellBookSpellsPtr = SpellBookNumSpells + 0x4,
+            MountBookNumMounts = 0xDA9EEC + 0x4*0x4,
+            MountBookMountsPtr = MountBookNumMounts + 0x4,
         }
 
         /// <summary>
