@@ -1122,11 +1122,11 @@
       <Id>RandomBattleground</Id>
     </Translation>
 	<Translation>
-      <Text>Figyelem: 64bites WoW klienst futtatsz, de a bot ezzel nem kompatibilis, Állítsd át itt: WoWLauncher.exe => Options => Game preferences => Aktiválni-> "Launch 32-bit client".</Text>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
 	<Translation>
-      <Text>Hiba : A 64bites World of Warcraft kliens nem támogatott</Text>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
 	<Translation>

@@ -1121,12 +1121,12 @@
       <Text>Random Battleground</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-    <Translation>
-      <Text>Alerta: Clientul WoW 64bit este in folosinta dar TheNoobBot nu este compatibil, schimba in WoWLauncher.exe =&gt; Options =&gt; Game preferences =&gt; Activate "Launch 32-bit client". </Text>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-    <Translation>
-      <Text>Eroare : World of Warcraft 64bit detectat</Text>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
     <Translation>

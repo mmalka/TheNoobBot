@@ -1109,12 +1109,12 @@
       <Text>随机战场</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-    <Translation>
-      <Text>警告：正在运行的是魔兽世界客户端的64位版本，但 TheNoobBot 与它不兼容，请修改 World of Warcraft Launcher.exe 选项=&gt;游戏设置=&gt;启用“启动32位客户端”。</Text>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-    <Translation>
-      <Text>错误：检测到为魔兽世界客户端的64位版本。</Text>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
 	<Translation>

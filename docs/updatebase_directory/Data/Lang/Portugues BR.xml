@@ -1109,12 +1109,12 @@
       <Text>Campo de batalha Randomico</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-    <Translation>
-      <Text>Aviso: Foi detectado o cliente 64bit do WoW rodando, mas o TNB não é compatível com o mesmo, por favor mude nas configurações em WoWLauncher.exe =&gt; Opções =&gt; Preferências do Jogo =&gt; Marque "Lançar cliente 32-bit".</Text>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-    <Translation>
-      <Text>Erro : Detectado World of Warcraft 64bit</Text>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
 	<Translation>

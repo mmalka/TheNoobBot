@@ -1109,12 +1109,12 @@
       <Text>Tilfeldig_Battleground</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-    <Translation>
-      <Text>WoW_Klient_64bit</Text>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-    <Translation>
-      <Text>Tittel_WoW_Klient_64bit</Text>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
     <Translation>

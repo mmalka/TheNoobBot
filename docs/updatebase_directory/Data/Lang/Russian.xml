@@ -1109,12 +1109,12 @@
       <Text>Случайный баттлграунд</Text>
       <Id>RandomBattleground</Id>
     </Translation>
-    <Translation>
-      <Text>Внимание: TheNoobBot не поддерживает 64-битную версию клиента WoW. Вам необходимо переключить клиент на 32-битную версию в WoWLauncher.exe =&gt; Настройки =&gt; Настройки игры =&gt; Активировать "Запускать 32-битный клиент игры"</Text>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
-    <Translation>
-      <Text>Ошибка: обнаружен World of Warcraft 64bit</Text>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
     <Translation>

@@ -1109,14 +1109,14 @@
 			<Text>隨機戰場</Text>
 			<Id>RandomBattleground</Id>
 		</Translation>
-		<Translation>
-			<Text>警告：正在執行的是魔獸世界客戶端的64位版本，但 TheNoobBot 與它不兼容，請修改 World of Warcraft Launcher.exe 選項=&gt;游戲設置=&gt;啟用“啟動32位客戶端”。</Text>
-			<Id>WoW_Client_64bit</Id>
-		</Translation>
-		<Translation>
-			<Text>錯誤：檢測到為魔獸世界客戶端的64位版本。</Text>
-			<Id>Title_WoW_Client_64bit</Id>
-		</Translation>
+	<Translation>
+      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
+      <Id>WoW_Client_64bit</Id>
+    </Translation>
+	<Translation>
+      <Text>Error : World of Warcraft 64bit detected</Text>
+      <Id>Title_WoW_Client_64bit</Id>
+    </Translation>
 		<Translation>
 		  <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
 		  <Id>ReloggerManagementPanelName</Id>
