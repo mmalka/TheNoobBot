@@ -464,11 +464,6 @@ namespace nManager.Wow.Helpers
             return 0;
         }
 
-        public static bool KnownSpell(string spellName)
-        {
-            return SpellBookName().Contains(spellName);
-        }
-
         public static bool KnownSpell(uint spellId)
         {
             return SpellBookID().Contains(spellId);
@@ -524,7 +519,7 @@ namespace nManager.Wow.Helpers
                     {
                         uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                         SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                        if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
+                        if ((si.TabId <= 1 || si.TabId > 3) && si.State == SpellInfo.SpellState.Known)
                         {
                             spellBook.Add(si.ID);
                         }
@@ -558,7 +553,7 @@ namespace nManager.Wow.Helpers
                 {
                     uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
+                    if ((si.TabId <= 1 || si.TabId > 3) && si.State == SpellInfo.SpellState.Known)
                         j++;
                 }
                 return j;
@@ -568,33 +563,6 @@ namespace nManager.Wow.Helpers
                 Logging.WriteError("SpellAvailable(): " + exception);
             }
             return 0;
-        }
-
-        private static List<string> _spellBookName = new List<string>();
-        private static bool _usedSbn;
-
-        public static List<string> SpellBookName()
-        {
-            try
-            {
-                while (_usedSbn)
-                {
-                    Thread.Sleep(10);
-                }
-                if (_spellBookName.Count <= 0)
-                {
-                    _usedSbn = true;
-                    List<string> spellBook = SpellBookID().Select(SpellListManager.SpellNameById).ToList();
-                    _spellBookName = spellBook;
-                    _usedSbn = false;
-                }
-                return _spellBookName;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("SpellBookName(): " + exception);
-            }
-            return new List<string>();
         }
 
         public static void UpdateSpellBook()
@@ -610,13 +578,10 @@ namespace nManager.Wow.Helpers
                 {
                     uint Struct = Memory.WowMemory.Memory.ReadUInt(spellBookInfoPtr + i*4);
                     SpellInfo si = (SpellInfo) Memory.WowMemory.Memory.ReadObject(Struct, typeof (SpellInfo));
-                    if (si.TabId <= 1 && si.Level <= ObjectManager.ObjectManager.Me.Level && si.State == SpellInfo.SpellState.Known)
+                    if ((si.TabId <= 1 || si.TabId > 3 ) && si.State == SpellInfo.SpellState.Known)
                     {
                         if (!_spellBookID.Contains(si.ID))
                             _spellBookID.Add(si.ID);
-                        string Name = SpellListManager.SpellNameById(si.ID);
-                        if (!_spellBookName.Contains(Name))
-                            _spellBookName.Add(Name);
                         Spell Spell = SpellInfoLUA(si.ID);
                         if (!_spellBookSpell.Contains(Spell))
                             _spellBookSpell.Add(Spell);
@@ -656,7 +621,7 @@ namespace nManager.Wow.Helpers
                     if (_spellBookSpell.Count <= 0)
                     {
                         Logging.Write("Please wait, loading spellbook...");
-                        List<SpellInfoLua> test = SpellInfoCreateCache(SpellBookID());
+                        SpellInfoCreateCache(SpellBookID());
                         SpellListManager.SpellIdByNameCreateCache();
                         List<Spell> spellBook = new List<Spell>();
                         foreach (uint id in SpellBookID())

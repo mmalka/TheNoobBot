@@ -152,7 +152,6 @@ namespace The_Noob_Bot
                 {
                     nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.AddRange(items);
                 }
-                //SpellManager.SpellBook(); // Initialize SpeelBook
             }
             catch (Exception ex)
             {
