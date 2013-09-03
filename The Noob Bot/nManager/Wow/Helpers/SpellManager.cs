@@ -340,6 +340,64 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        public static bool QuickSpellUsableLUA(string spellName)
+        {
+            try
+            {
+                bool DecountLatency = true;
+                uint ReducedMs = 130;
+                bool DebugForTweaking = true;
+                Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+                lock (typeof (SpellManager))
+                {
+                    string randomStringResult = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringTest = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringUsable = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringEnabled = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringStartTime = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringNoRessource = Others.GetRandomString(Others.Random(4, 10));
+                    string randomStringDurationTime = Others.GetRandomString(Others.Random(4, 10));
+                    string Ms = ReducedMs > 0 ? ReducedMs/1000f + "-" : "";
+                    Lua.LuaDoString(
+                        randomStringUsable + ", " + randomStringNoRessource + " = IsUsableSpell(\"" + spellName + "\"); " +
+                        " if (not " + randomStringUsable + ") " +
+                        "   then " +
+                        "     if (not " + randomStringNoRessource + ") " +
+                        "       then " +
+                        "         " + randomStringResult + " = \"false\" " +
+                        "       else " +
+                        "         " + randomStringResult + " = \"false\"" +
+                        "     end" +
+                        "   else " +
+                        "     " + randomStringStartTime + ", " + randomStringDurationTime + ", " + randomStringEnabled + " = GetSpellCooldown(\"" + spellName + "\"); " +
+                        "     if " + randomStringStartTime + " == 0 and " + randomStringDurationTime + " == 0 " +
+                        "       then " +
+                        "         " + randomStringResult + " = \"true\" " +
+                        "       else " +
+                        "         " + randomStringTest + " = " + randomStringStartTime + "+" + randomStringDurationTime + "-GetTime()-" + Ms + "" +
+                        (DecountLatency ? Usefuls.Latency > 0 ? Usefuls.Latency/1000f : 0 : 0) + " " +
+                        "         if ( " + randomStringTest + " <= 0) " +
+                        "           then " +
+                        "             " + randomStringResult + " = \"Accelerated\" " +
+                        "           else " +
+                        "             " + randomStringResult + " = \"false\"; " +
+                        "         end " +
+                        "     end " +
+                        " end");
+                    string sResult = Lua.GetLocalizedText(randomStringResult);
+                    if (DebugForTweaking && sResult == "Accelerated")
+                        Logging.WriteFight("IsSpellUsable: The spell " + spellName + " have been forced Usable with " + Lua.GetLocalizedText(randomStringTest) +
+                                           " seconds in advance. If this is not the next spell launched, optimize your settings.");
+                    return sResult == "true" || sResult == "Accelerated";
+                }
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("SpellUsableLUA(string spellName): " + exception);
+            }
+            return false;
+        }
+
         public static bool HaveBuffLua(string spellNameInGame)
         {
             try

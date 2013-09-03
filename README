@@ -21,8 +21,8 @@ Make sure the FailOver auth server is working well, and merge the Mesh server on
 Implement a loot tracking system, that will be able to provide statistic on the collections of a defined ItemId or GameObjectId,
 can provides "all time, last 24h, last 48h, last week, last month, last year" informations, with graphs.
 
-Implement/Test the Melee Control Manager system (currently on stand-by).
+Test/Improve the Melee Control Manager system (currently on stand-by).
 
-Implement/Test the InteractWithBeta functions that will allow us to interact with an Unit/Object without walking to it.
+Test/Improve the InteractWithBeta functions that will allow us to interact with an Unit/Object without walking to it.
 
-Implement/Test the QuickSpellUsableLUA (never commited yet) functions that will allow us to cast more spell, faster.
+Test/Improve the QuickSpellUsableLUA functions that will allow us to cast more spell, faster.
