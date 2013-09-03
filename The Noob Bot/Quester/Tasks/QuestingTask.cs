@@ -55,7 +55,7 @@ namespace Quester.Tasks
                             if (!Quest.GetQuestCompleted(quest.NeedQuestNotCompletedId)) // Quest done which discalify this one
                                 if (Quest.GetQuestCompleted(quest.NeedQuestCompletedId) || // Quest need completed
                                     quest.NeedQuestCompletedId.Count == 0)
-                                    if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCountByIdLUA(quest.ItemPickUp) > 0))
+                                    if (quest.ItemPickUp == 0 || (quest.ItemPickUp != 0 && ItemsManager.GetItemCount(quest.ItemPickUp) > 0))
                                         if (Script.Run(quest.ScriptCondition)) // Condition
                                         {
                                             CurrentQuest = quest;
@@ -129,7 +129,7 @@ namespace Quester.Tasks
 
             // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
-                if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) < questObjective.CollectCount)
+                if (ItemsManager.GetItemCount(questObjective.CollectItemId) < questObjective.CollectCount)
                     return false;
 
             // KILL MOB
@@ -159,7 +159,7 @@ namespace Quester.Tasks
             // BUY ITEM
             if (questObjective.Objective == Objective.BuyItem)
             {
-                if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
+                if (ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     return true;
                 return false;
             }
@@ -426,7 +426,7 @@ namespace Quester.Tasks
                                 nManagerSetting.AddBlackList(unit.Guid, 30*1000);
                             }
                         }
-                        ItemsManager.UseItem(ItemsManager.GetNameById(questObjective.UseItemId));
+                        ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         if (questObjective.Count > 0)
                             questObjective.CurrentCount++;
                         else
@@ -617,7 +617,7 @@ namespace Quester.Tasks
             {
                 if (ObjectManager.Me.IsDeadMe || ObjectManager.Me.InCombat)
                     return;
-                ItemsManager.EquipItemByName(ItemsManager.GetNameById(questObjective.EquipItemId));
+                ItemsManager.EquipItemByName(ItemsManager.GetItemNameById(questObjective.EquipItemId));
                 questObjective.IsObjectiveCompleted = true;
             }
 
@@ -802,11 +802,11 @@ namespace Quester.Tasks
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
-                    Vendor.BuyItem(ItemsManager.GetNameById(questObjective.CollectItemId), questObjective.CollectCount);
+                    Vendor.BuyItem(ItemsManager.GetItemNameById(questObjective.CollectItemId), questObjective.CollectCount);
                     Thread.Sleep(questObjective.WaitMs == 0 ? 2000 + Usefuls.Latency : questObjective.WaitMs);
-                    if (ItemsManager.GetItemCountByIdLUA(questObjective.CollectItemId) >= questObjective.CollectCount)
+                    if (ItemsManager.GetItemCount(questObjective.CollectItemId) >= questObjective.CollectCount)
                     {
-                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetNameById(questObjective.CollectItemId));
+                        nManagerSetting.CurrentSetting.DontSellTheseItems.Add(ItemsManager.GetItemNameById(questObjective.CollectItemId));
                         questObjective.IsObjectiveCompleted = true;
                     }
                 }
@@ -870,7 +870,7 @@ namespace Quester.Tasks
                     {
                         MountTask.DismountMount();
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
-                        ItemsManager.UseItem(ItemsManager.GetNameById(questObjective.UseItemId));
+                        ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.CurrentCount++; // This is not correct
                     }
@@ -964,7 +964,7 @@ namespace Quester.Tasks
 
             if (pickUp && item != 0)
             {
-                ItemsManager.UseItem(ItemsManager.GetNameById(item));
+                ItemsManager.UseItem(ItemsManager.GetItemNameById(item));
                 Thread.Sleep(250);
                 Quest.AcceptQuest();
                 return;

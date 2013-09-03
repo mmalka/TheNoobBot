@@ -8,163 +8,138 @@ namespace nManager.Wow.Helpers
 {
     public class ItemsManager
     {
-        public static int GetItemCountByNameLUA(string Name)
+        public static int GetItemCount(string name)
         {
-            try
+                return GetItemCount(GetItemIdByName(name));
+        }
+
+        public static int GetItemCount(int entry)
+        {
+            lock (typeof (ItemsManager))
             {
-                lock (typeof (ItemsManager))
+                try
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomString + " = GetItemCount(\"" + Name + "\");");
+                    Lua.LuaDoString(randomString + " = GetItemCount(" + entry + ");");
                     return Others.ToInt32(Lua.GetLocalizedText(randomString));
                 }
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetItemCountByNameLUA(string itemName): " + exception);
-            }
-            return 0;
-        }
-
-        public static int GetItemCountByIdLUA(int Entry)
-        {
-            try
-            {
-                lock (typeof (ItemsManager))
+                catch (Exception exception)
                 {
-                    string randomString = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomString + " = GetItemCount(" + Entry + ");");
-                    try
-                    {
-                        return Others.ToInt32(Lua.GetLocalizedText(randomString));
-                    }
-                    catch
-                    {
-                        return 0;
-                    }
+                    Logging.WriteError("GetItemCountByIdLUA(uint itemId): " + exception);
                 }
+                return 0;
             }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetItemCountByIdLUA(uint itemId): " + exception);
-            }
-            return 0;
         }
 
-        public static void EquipItemByName(string Name)
+        public static void EquipItemByName(string name)
         {
             try
             {
-                Lua.LuaDoString("EquipItemByName(\"" + Name + "\")");
-                Logging.Write("Equip item " + Name);
+                Lua.LuaDoString("EquipItemByName(\"" + name + "\")");
+                Logging.Write("Equip item " + name);
             }
             catch (Exception exception)
             {
-                Logging.WriteError("EquipItemByName(string itemName): " + exception);
+                Logging.WriteError("EquipItemByName(string name): " + exception);
             }
         }
 
-        public static void UseItem(int Entry)
+        public static void UseItem(string name)
         {
             try
             {
-                string itemName = GetNameById(Entry);
-                Lua.RunMacroText("/use " + itemName);
-                Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ")");
+                Lua.RunMacroText("/use " + name);
+                Logging.WriteFight("Use item " + name + " (SpellName: " + GetItemSpell(name) + ")");
             }
             catch (Exception exception)
             {
-                Logging.WriteError("UseItem(uint itemId): " + exception);
+                Logging.WriteError("UseItem(string name): " + exception);
             }
         }
 
-        public static void UseItem(string Name)
+        public static void UseItem(int entry)
+        {
+         UseItem(GetItemNameById(entry));
+        }
+        
+        public static void UseItem(int entry, Class.Point point)
         {
             try
             {
-                Lua.RunMacroText("/use " + Name);
-                Logging.WriteFight("Use item " + Name + " (" + GetItemSpellByItemName(Name) + ")");
+                string itemName = GetItemNameById(entry);
+                ClickOnTerrain.Item(entry, point);
+                Logging.WriteFight("Use item " + itemName + " (SpellName: " + GetItemSpell(itemName) + ")");
             }
             catch (Exception exception)
             {
-                Logging.WriteError("UseItem(string itemName): " + exception);
+                Logging.WriteError("UseItem(int entry, Class.Point point): " + exception);
             }
         }
 
-        public static void UseItem(int Entry, Class.Point point)
+        public static void UseItem(string name, Class.Point point)
         {
-            try
-            {
-                string itemName = GetNameById(Entry);
-                ClickOnTerrain.Item(Entry, point);
-                Logging.WriteFight("Use item " + itemName + " (" + GetItemSpellByItemName(itemName) + ") at position: " + point);
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("UseItem(uint itemId, Class.Point point): " + exception);
-            }
+           UseItem(GetItemIdByName(name), point);
         }
 
-        public static string GetNameById(int Entry)
+        public static string GetItemNameById(int entry)
         {
             try
             {
                 lock (typeof (ItemsManager))
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(randomString + ", _, _, _, _, _, _, _ = GetItemInfo(" + Entry + ")");
+                    Lua.LuaDoString(randomString + ",_,_,_,_,_,_,_,_,_,_ = GetItemInfo(" + entry + ")");
                     return Lua.GetLocalizedText(randomString);
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetNameById(uint idItem): " + exception);
+                Logging.WriteError("GetNameById(int entry): " + exception);
             }
             return "";
         }
 
-        public static int GetIdByName(string Name)
+        public static int GetItemIdByName(string name)
         {
             try
             {
                 lock (typeof (ItemsManager))
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
-                    if (GetItemCountByNameLUA(Name) > 0)
-                    {
                         Lua.LuaDoString(
-                            "local nameItem = \"" + Name + "\" " +
-                            "_, itemLink = GetItemInfo(nameItem); " +
+                            "local nameItem = \"" + name + "\" " +
+                            "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
                             "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
                             );
                         return Others.ToInt32(Lua.GetLocalizedText(randomString));
-                    }
-                    return 0;
                 }
             }
             catch (Exception exception)
             {
-                Logging.WriteError("GetIdByName(string nameItem): " + exception);
+                Logging.WriteError("GetIdByName(string name): " + exception);
             }
             return 0;
         }
 
-        public static bool IsItemOnCooldown(int Entry)
+        public static bool IsItemOnCooldown(int entry)
         {
             try
             {
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + Entry + "); " + randomString +
-                                " = startTime .. \"^\" .. duration .. \"^\" .. enable");
+                Lua.LuaDoString("startTime, duration, enable = GetItemCooldown(" + entry + ") " +
+                                randomString + " = startTime .. \"^\" .. duration .. \"^\" .. time() .. \"^\" .. enable");
                 string[] itemInfoArray = Lua.GetLocalizedText(randomString).Split('^');
+                if (itemInfoArray.Count() != 4)
+                    return true;
 
                 float itemStartTime = Others.ToSingle(itemInfoArray[0]);
                 float itemDuration = Others.ToSingle(itemInfoArray[1]);
-                uint itemEnable = Others.ToUInt32(itemInfoArray[2]);
+                float currTime = Others.ToSingle(itemInfoArray[2]);
+                uint itemEnable = Others.ToUInt32(itemInfoArray[3]);
 
-                if (itemStartTime == 0 && itemDuration == 0)
+                if (itemStartTime <= 0 && itemDuration <= 0)
                     return false;
-                if (itemEnable == 0 || (itemEnable == 1 && itemStartTime < itemDuration))
+                if (itemEnable == 0 || (itemEnable == 1 && itemStartTime + itemDuration < currTime))
                     return true;
                 if (itemEnable == 1)
                     return false;
@@ -172,21 +147,26 @@ namespace nManager.Wow.Helpers
             }
             catch (Exception exception)
             {
-                Logging.WriteError("IsItemOnCooldown(uint itemId): " + exception);
+                Logging.WriteError("IsItemOnCooldown(int entry): " + exception);
             }
             return true;
         }
 
-        public static bool IsUsableItemById(int Entry)
+        public static bool IsItemOnCooldown(string name)
+        {
+            return IsItemOnCooldown(GetItemIdByName(name));
+        }
+
+        public static bool IsItemUsable(int entry)
         {
             try
             {
-                if (string.IsNullOrEmpty(GetItemSpellByItemId(Entry)))
+                if (string.IsNullOrEmpty(GetItemSpell(entry)))
                     return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + Entry + ")");
+                Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + entry + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult != "nil" && sResult == "1")
+                if (sResult == "1")
                     return true;
             }
             catch (Exception exception)
@@ -196,31 +176,65 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
-        public static bool IsUsableItemByName(string Name)
+        public static bool IsItemUsable(string name)
+        {
+                return IsItemUsable(GetItemIdByName(name));
+        }
+
+        public static bool IsHarmfulItem(int entry)
         {
             try
             {
-                if (string.IsNullOrEmpty(GetItemSpellByItemName(Name)))
+                if (string.IsNullOrEmpty(GetItemSpell(entry)))
                     return false;
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = IsUsableItem(" + Name + ")");
+                Lua.LuaDoString(randomString + " = IsHarmfulItem(" + entry + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult != "nil" && sResult == "1")
+                if (sResult == "1")
                     return true;
             }
             catch (Exception exception)
             {
-                Logging.WriteError("IsUsableItemByName(string itemName): " + exception);
+                Logging.WriteError("IsHarmfulItem(string itemName): " + exception);
             }
             return false;
         }
 
-        public static string GetItemSpellByItemId(int Entry)
+        public static bool IsHarmfulItem(string name)
+        {
+            return IsHarmfulItem(GetItemIdByName(name));
+        }
+
+        public static bool IsHelpfulItem(int entry)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(GetItemSpell(entry)))
+                    return false;
+                string randomString = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(randomString + " = IsHelpfulItem(" + entry + ")");
+                string sResult = Lua.GetLocalizedText(randomString);
+                if (sResult == "1")
+                    return true;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("IsHarmfulItem(string itemName): " + exception);
+            }
+            return false;
+        }
+
+        public static bool IsHelpfulItem(string name)
+        {
+            return IsHelpfulItem(GetItemIdByName(name));
+        }
+    
+        public static string GetItemSpell(int entry)
         {
             try
             {
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + Entry + ")");
+                Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + entry + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
                 if (sResult != string.Empty && sResult != "nil")
                     return sResult;
@@ -232,21 +246,9 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
-        public static string GetItemSpellByItemName(string itemName)
+        public static string GetItemSpell(string name)
         {
-            try
-            {
-                string randomString = Others.GetRandomString(Others.Random(4, 10));
-                Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + itemName + ")");
-                string sResult = Lua.GetLocalizedText(randomString);
-                if (sResult != string.Empty && sResult != "nil")
-                    return sResult;
-            }
-            catch (Exception exception)
-            {
-                Logging.WriteError("GetItemSpellByItemName(string itemName): " + exception);
-            }
-            return "";
+            return GetItemSpell(GetItemIdByName(name));
         }
 
         // Return best ILevel item

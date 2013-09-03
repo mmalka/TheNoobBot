@@ -47,7 +47,7 @@ namespace nManager.Wow.Helpers
             if (point.X == 0 && point.Y == 0)
                 return;
 
-            ItemsManager.UseItem(ItemsManager.GetNameById(Entry));
+            ItemsManager.UseItem(ItemsManager.GetItemNameById(Entry));
 
 
             Thread.Sleep(Usefuls.Latency + 50);

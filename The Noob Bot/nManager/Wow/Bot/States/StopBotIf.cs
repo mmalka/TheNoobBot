@@ -220,8 +220,8 @@ namespace nManager.Wow.Bot.States
         private void closeWow(string reason)
         {
             Logging.Write(reason);
-            if (nManagerSetting.CurrentSetting.UseHearthstone && ItemsManager.GetItemCountByIdLUA(6948) > 0 &&
-                !ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsUsableItemById(6948))
+            if (nManagerSetting.CurrentSetting.UseHearthstone && ItemsManager.GetItemCount(6948) > 0 &&
+                !ItemsManager.IsItemOnCooldown(6948) && ItemsManager.IsItemUsable(6948))
             {
                 Timer timerHearthstone = new Timer(1000*45);
                 Tasks.MountTask.DismountMount();
@@ -230,7 +230,7 @@ namespace nManager.Wow.Bot.States
                 timerHearthstone.Reset();
                 while (!Usefuls.IsLoadingOrConnecting && !timerHearthstone.IsReady)
                 {
-                    ItemsManager.UseItem(ItemsManager.GetNameById(6948));
+                    ItemsManager.UseItem(ItemsManager.GetItemNameById(6948));
                     Thread.Sleep(1000);
                 }
                 Thread.Sleep(1000);

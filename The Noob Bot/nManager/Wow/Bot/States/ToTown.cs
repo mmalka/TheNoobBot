@@ -70,28 +70,28 @@ namespace nManager.Wow.Bot.States
                      _travelersTundraMammoth.KnownSpell))
                     _magicMountMammoth = true;
 
-                if ((nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCountByIdLUA(40768) > 0 &&
-                     !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsUsableItemById(40768)))
+                if ((nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCount(40768) > 0 &&
+                     !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsItemUsable(40768)))
                     _useMollE = true;
                 else
                     _useMollE = false;
 
-                if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(18232) > 0 &&
-                     !ItemsManager.IsItemOnCooldown(18232) && ItemsManager.IsUsableItemById(18232)))
+                if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(18232) > 0 &&
+                     !ItemsManager.IsItemOnCooldown(18232) && ItemsManager.IsItemUsable(18232)))
                 {
                     _use74A = true;
                     _use110G = false;
                     _useJeeves = false;
                 }
-                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(34113) > 0 &&
-                          !ItemsManager.IsItemOnCooldown(34113) && ItemsManager.IsUsableItemById(34113)))
+                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(34113) > 0 &&
+                          !ItemsManager.IsItemOnCooldown(34113) && ItemsManager.IsItemUsable(34113)))
                 {
                     _use74A = false;
                     _use110G = true;
                     _useJeeves = false;
                 }
-                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCountByIdLUA(49040) > 0 &&
-                          !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsUsableItemById(49040)))
+                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(49040) > 0 &&
+                          !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsItemUsable(49040)))
                 {
                     _use74A = false;
                     _use110G = false;
@@ -137,7 +137,7 @@ namespace nManager.Wow.Bot.States
                 if (_useMollE)
                 {
                     MountTask.DismountMount();
-                    ItemsManager.UseItem(ItemsManager.GetNameById(40768));
+                    ItemsManager.UseItem(ItemsManager.GetItemNameById(40768));
                     Thread.Sleep(2000);
                     WoWGameObject portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
@@ -500,7 +500,7 @@ namespace nManager.Wow.Bot.States
         {
             if (nManagerSetting.CurrentSetting.FoodName != "" && nManagerSetting.CurrentSetting.NumberOfFoodsWeGot > 0)
             {
-                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.FoodName) <
+                if (ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.FoodName) <
                     nManagerSetting.CurrentSetting.NumberOfFoodsWeGot)
                     return true;
             }
@@ -512,7 +512,7 @@ namespace nManager.Wow.Bot.States
             if (nManagerSetting.CurrentSetting.BeverageName != "" &&
                 nManagerSetting.CurrentSetting.NumberOfBeverageWeGot > 0)
             {
-                if (ItemsManager.GetItemCountByNameLUA(nManagerSetting.CurrentSetting.BeverageName) <
+                if (ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.BeverageName) <
                     nManagerSetting.CurrentSetting.NumberOfBeverageWeGot)
                     return true;
             }
@@ -573,7 +573,7 @@ namespace nManager.Wow.Bot.States
                     return null;
             }
             MountTask.DismountMount();
-            ItemsManager.UseItem(ItemsManager.GetNameById(RobotItemId));
+            ItemsManager.UseItem(ItemsManager.GetItemNameById(RobotItemId));
             Thread.Sleep(2000);
             WoWUnit unitRobot =
                 ObjectManager.ObjectManager.GetNearestWoWUnit(

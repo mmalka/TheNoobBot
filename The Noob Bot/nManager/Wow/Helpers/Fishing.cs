@@ -110,9 +110,9 @@ namespace nManager.Wow.Helpers
                 {
                     foreach (int i in listLure)
                     {
-                        if (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                        if (ItemsManager.GetItemCount(i) > 0)
                         {
-                            ItemsManager.UseItem(ItemsManager.GetNameById(i));
+                            ItemsManager.UseItem(ItemsManager.GetItemNameById(i));
                             Thread.Sleep(1000);
                             while (ObjectManager.ObjectManager.Me.IsCast)
                             {
@@ -136,9 +136,9 @@ namespace nManager.Wow.Helpers
             {
                 foreach (int i in listLure)
                 {
-                    if (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                    if (ItemsManager.GetItemCount(i) > 0)
                     {
-                        return ItemsManager.GetNameById(i);
+                        return ItemsManager.GetItemNameById(i);
                     }
                 }
             }
@@ -177,9 +177,9 @@ namespace nManager.Wow.Helpers
                 {
                     foreach (int i in ListFishingPoles)
                     {
-                        if (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                        if (ItemsManager.GetItemCount(i) > 0)
                         {
-                            ItemsManager.EquipItemByName(ItemsManager.GetNameById(i));
+                            ItemsManager.EquipItemByName(ItemsManager.GetItemNameById(i));
                             Thread.Sleep(500);
                             Thread.Sleep(Usefuls.Latency);
                             while (ObjectManager.ObjectManager.Me.IsCast)
@@ -203,9 +203,9 @@ namespace nManager.Wow.Helpers
             {
                 foreach (int i in ListFishingPoles)
                 {
-                    if (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                    if (ItemsManager.GetItemCount(i) > 0)
                     {
-                        return ItemsManager.GetNameById(i);
+                        return ItemsManager.GetItemNameById(i);
                     }
                 }
             }
@@ -223,7 +223,7 @@ namespace nManager.Wow.Helpers
                 uint idEquiped =
                     ObjectManager.ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2);
                 if (fishingPoleName != string.Empty)
-                    if (ItemsManager.GetNameById((int) idEquiped) == fishingPoleName)
+                    if (ItemsManager.GetItemNameById((int) idEquiped) == fishingPoleName)
                         return true;
 
                 if (ListFishingPoles.Contains(idEquiped))

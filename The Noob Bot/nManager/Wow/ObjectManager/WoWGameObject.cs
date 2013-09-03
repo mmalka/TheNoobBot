@@ -329,7 +329,7 @@ namespace nManager.Wow.ObjectManager
 
                             case WoWGameObjectLockKeyType.LOCK_KEY_ITEM: // Do we have the key(s) ?
                                 int itemId = (int) Row.Record.LockType[j];
-                                if (ItemsManager.GetItemCountByIdLUA(itemId) < 0)
+                                if (ItemsManager.GetItemCount(itemId) < 0)
                                     return false;
                                 break;
 
@@ -371,14 +371,14 @@ namespace nManager.Wow.ObjectManager
                                 int bonus = 0;
                                 if (skill == SkillLine.Herbalism)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(85663) > 0) // Herbalist's Spade
+                                    if (ItemsManager.GetItemCount(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCount(85663) > 0) // Herbalist's Spade
                                         bonus = 10;
                                 }
                                 else if (skill == SkillLine.Mining)
                                 {
-                                    if (ItemsManager.GetItemCountByIdLUA(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCountByIdLUA(2901) > 0) // Mining pick
+                                    if (ItemsManager.GetItemCount(40772) > 0 || // Gnomish Army Knife
+                                        ItemsManager.GetItemCount(2901) > 0) // Mining pick
                                         bonus = 10;
                                 }
                                 int currentSkillLevel = Skill.GetValue(skill);

@@ -487,7 +487,7 @@ public class DruidRestoration
             return;
 
         if (_alchFlaskTimer.IsReady && _mySettings.UseAlchFlask && Alchemy.KnownSpell
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+            && ItemsManager.GetItemCount(75525) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
@@ -2366,7 +2366,7 @@ public class PriestDiscipline
             return;
         }
         if (_alchFlaskTimer.IsReady && _mySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+            && ItemsManager.GetItemCount(75525) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
@@ -3007,7 +3007,7 @@ public class PriestHoly
             return;
         }
         if (_alchFlaskTimer.IsReady && _mySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+            && ItemsManager.GetItemCount(75525) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");
@@ -3642,7 +3642,7 @@ public class MonkMistweaver
             return;
         }
         if (_alchFlaskTimer.IsReady && _mySettings.UseAlchFlask
-            && ItemsManager.GetItemCountByIdLUA(75525) == 1)
+            && ItemsManager.GetItemCount(75525) == 1)
         {
             Logging.WriteFight("Use Alchi Flask");
             Lua.RunMacroText("/use item:75525");

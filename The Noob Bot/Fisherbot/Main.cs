@@ -24,7 +24,7 @@ public class Main : IProduct
                 FisherbotSetting.CurrentSetting.FishingPoleName = Fishing.FishingPolesName();
             if (string.IsNullOrWhiteSpace(FisherbotSetting.CurrentSetting.WeaponName))
                 FisherbotSetting.CurrentSetting.WeaponName =
-                    ItemsManager.GetNameById(
+                    ItemsManager.GetItemNameById(
                         (int) ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2));
 
             Logging.Status = "Initialize Fisherbot Complete";

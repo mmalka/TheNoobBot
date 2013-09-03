@@ -309,8 +309,8 @@ namespace nManager.Wow.Helpers
                         continue;
                     WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(i);
                     if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
-                        !ItemsManager.IsUsableItemById(i)) continue;
-                    while (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                        !ItemsManager.IsItemUsable(i)) continue;
+                    while (ItemsManager.GetItemCount(i) > 0)
                     {
                         MountTask.DismountMount();
                         ItemsManager.UseItem(i);
@@ -321,8 +321,8 @@ namespace nManager.Wow.Helpers
                 {
                     WoWItem item = ObjectManager.ObjectManager.GetWoWItemById(i);
                     if (item == null || !item.IsValid || ItemsManager.IsItemOnCooldown(i) ||
-                        !ItemsManager.IsUsableItemById(i)) continue;
-                    while (ItemsManager.GetItemCountByIdLUA(i) > 0)
+                        !ItemsManager.IsItemUsable(i)) continue;
+                    while (ItemsManager.GetItemCount(i) > 0)
                     {
                         MountTask.DismountMount();
                         ItemsManager.UseItem(i);

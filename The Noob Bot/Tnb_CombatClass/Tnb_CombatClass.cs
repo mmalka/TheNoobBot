@@ -1964,7 +1964,7 @@ public class DeathknightBlood
             DeathsAdvance.Launch();
         }
 
-        if (MySettings.UseAlchFlask && ItemsManager.GetItemCountByIdLUA(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
+        if (MySettings.UseAlchFlask && ItemsManager.GetItemCount(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
             !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525))
         {
@@ -2168,13 +2168,13 @@ public class DeathknightBlood
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -2958,7 +2958,7 @@ public class DeathknightUnholy
             DeathsAdvance.Launch();
         }
 
-        if (MySettings.UseAlchFlask && ItemsManager.GetItemCountByIdLUA(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
+        if (MySettings.UseAlchFlask && ItemsManager.GetItemCount(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
             !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525))
         {
@@ -3140,13 +3140,13 @@ public class DeathknightUnholy
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -3897,7 +3897,7 @@ public class DeathknightFrost
             DeathsAdvance.Launch();
         }
 
-        if (MySettings.UseAlchFlask && ItemsManager.GetItemCountByIdLUA(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
+        if (MySettings.UseAlchFlask && ItemsManager.GetItemCount(75525) > 0 && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) &&
             !ObjectManager.Me.HaveBuff(79639)
             && !ItemsManager.IsItemOnCooldown(75525))
         {
@@ -4061,12 +4061,12 @@ public class DeathknightFrost
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -4903,12 +4903,12 @@ public class MageArcane
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
 
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0 && _conjureManaGemTimer.IsReady &&
+        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0 && _conjureManaGemTimer.IsReady &&
             ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
@@ -4916,14 +4916,14 @@ public class MageArcane
         }
 
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady
-            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-            && ItemsManager.GetItemCountByIdLUA(65500) == 0 // 43-38
+            && ItemsManager.GetItemCount(80610) == 0 // 90
+            && ItemsManager.GetItemCount(65499) == 0 // 85-89
+            && ItemsManager.GetItemCount(43523) == 0 // 84-80
+            && ItemsManager.GetItemCount(43518) == 0 // 79-74
+            && ItemsManager.GetItemCount(65517) == 0 // 73-64
+            && ItemsManager.GetItemCount(65516) == 0 // 63-54
+            && ItemsManager.GetItemCount(65515) == 0 // 53-44
+            && ItemsManager.GetItemCount(65500) == 0 // 43-38
             && ConjureRefreshment.IsSpellUsable)
         {
             ConjureRefreshment.Launch();
@@ -5074,7 +5074,7 @@ public class MageArcane
             return;
         }
 
-        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCount(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
@@ -5144,13 +5144,13 @@ public class MageArcane
             }
         }
 
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -5831,7 +5831,7 @@ public class MageFrost
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -5866,7 +5866,7 @@ public class MageFrost
             BlazingSpeed.Launch();
         }
 
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0 && _conjureManaGemTimer.IsReady &&
+        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0 && _conjureManaGemTimer.IsReady &&
             ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
@@ -5874,14 +5874,14 @@ public class MageFrost
         }
 
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady
-            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-            && ItemsManager.GetItemCountByIdLUA(65500) == 0 // 43-38
+            && ItemsManager.GetItemCount(80610) == 0 // 90
+            && ItemsManager.GetItemCount(65499) == 0 // 85-89
+            && ItemsManager.GetItemCount(43523) == 0 // 84-80
+            && ItemsManager.GetItemCount(43518) == 0 // 79-74
+            && ItemsManager.GetItemCount(65517) == 0 // 73-64
+            && ItemsManager.GetItemCount(65516) == 0 // 63-54
+            && ItemsManager.GetItemCount(65515) == 0 // 53-44
+            && ItemsManager.GetItemCount(65500) == 0 // 43-38
             && ConjureRefreshment.IsSpellUsable)
         {
             ConjureRefreshment.Launch();
@@ -6032,7 +6032,7 @@ public class MageFrost
             return;
         }
 
-        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+        if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage && ItemsManager.GetItemCount(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
@@ -6087,13 +6087,13 @@ public class MageFrost
             AlterTime.Launch();
         }
 
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -6665,7 +6665,7 @@ public class MageFire
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -6808,7 +6808,7 @@ public class MageFire
             return;
         }
         if (MySettings.UseConjureManaGem && ObjectManager.Me.ManaPercentage <= MySettings.UseConjureManaGemAtPercentage
-            && ItemsManager.GetItemCountByIdLUA(36799) > 0)
+            && ItemsManager.GetItemCount(36799) > 0)
         {
             Logging.WriteFight("Use Mana Gem.");
             Lua.RunMacroText("/use item:36799");
@@ -6828,7 +6828,7 @@ public class MageFire
             Evocation.Launch();
             return;
         }
-        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCountByIdLUA(36799) == 0
+        if (MySettings.UseConjureManaGem && ConjureManaGem.KnownSpell && ItemsManager.GetItemCount(36799) == 0
             && _conjureManaGemTimer.IsReady && ConjureManaGem.IsSpellUsable)
         {
             ConjureManaGem.Launch();
@@ -6836,14 +6836,14 @@ public class MageFire
             return;
         }
         if (MySettings.UseConjureRefreshment && ConjureRefreshment.KnownSpell && _conjureRefreshmentTimer.IsReady && ConjureRefreshment.IsSpellUsable
-            && ItemsManager.GetItemCountByIdLUA(80610) == 0 // 90
-            && ItemsManager.GetItemCountByIdLUA(65499) == 0 // 85-89
-            && ItemsManager.GetItemCountByIdLUA(43523) == 0 // 84-80
-            && ItemsManager.GetItemCountByIdLUA(43518) == 0 // 79-74
-            && ItemsManager.GetItemCountByIdLUA(65517) == 0 // 73-64
-            && ItemsManager.GetItemCountByIdLUA(65516) == 0 // 63-54
-            && ItemsManager.GetItemCountByIdLUA(65515) == 0 // 53-44
-            && ItemsManager.GetItemCountByIdLUA(65500) == 0) // 43-38
+            && ItemsManager.GetItemCount(80610) == 0 // 90
+            && ItemsManager.GetItemCount(65499) == 0 // 85-89
+            && ItemsManager.GetItemCount(43523) == 0 // 84-80
+            && ItemsManager.GetItemCount(43518) == 0 // 79-74
+            && ItemsManager.GetItemCount(65517) == 0 // 73-64
+            && ItemsManager.GetItemCount(65516) == 0 // 63-54
+            && ItemsManager.GetItemCount(65515) == 0 // 53-44
+            && ItemsManager.GetItemCount(65500) == 0) // 43-38
         {
             ConjureRefreshment.Launch();
             _conjureRefreshmentTimer = new Timer(1000*60*10);
@@ -6883,13 +6883,13 @@ public class MageFire
             AlterTime.Launch();
         }
 
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -7416,7 +7416,7 @@ public class WarlockDemonology
             Soulstone.Launch();
 
         if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
-            && ItemsManager.GetItemCountByIdLUA(5512) == 0)
+            && ItemsManager.GetItemCount(5512) == 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -7425,7 +7425,7 @@ public class WarlockDemonology
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -7574,7 +7574,7 @@ public class WarlockDemonology
             DarkRegeneration.Launch();
             return;
         }
-        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCount(5512) > 0
             && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
@@ -7622,13 +7622,13 @@ public class WarlockDemonology
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -8224,7 +8224,7 @@ public class WarlockDestruction
         if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
             Soulstone.Launch();
 
-        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCountByIdLUA(5512) == 0)
+        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCount(5512) == 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -8233,7 +8233,7 @@ public class WarlockDestruction
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -8386,7 +8386,7 @@ public class WarlockDestruction
             DarkRegeneration.Launch();
             return;
         }
-        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCount(5512) > 0
             && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
@@ -8434,13 +8434,13 @@ public class WarlockDestruction
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -8990,7 +8990,7 @@ public class WarlockAffliction
             Soulstone.Launch();
 
         if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
-            && ItemsManager.GetItemCountByIdLUA(5512) == 0)
+            && ItemsManager.GetItemCount(5512) == 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -8999,7 +8999,7 @@ public class WarlockAffliction
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -9141,7 +9141,7 @@ public class WarlockAffliction
             DarkRegeneration.Launch();
             return;
         }
-        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCountByIdLUA(5512) > 0
+        if (MySettings.UseCreateHealthstone && _healthstoneTimer.IsReady && ItemsManager.GetItemCount(5512) > 0
             && ObjectManager.Me.HealthPercent <= MySettings.UseCreateHealthstoneAtPercentage)
         {
             Logging.WriteFight("Use Healthstone.");
@@ -9189,12 +9189,12 @@ public class WarlockAffliction
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -9793,7 +9793,7 @@ public class DruidBalance
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
             return;
@@ -10041,13 +10041,13 @@ public class DruidBalance
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -10596,7 +10596,7 @@ public class DruidFeral
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
             return;
@@ -10838,13 +10838,13 @@ public class DruidFeral
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -11377,7 +11377,7 @@ public class DruidRestoration
             return;
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
             return;
@@ -11649,13 +11649,13 @@ public class DruidRestoration
 
     public void HealingBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -12086,7 +12086,7 @@ public class DruidGuardian
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
             return;
@@ -12335,13 +12335,13 @@ public class DruidGuardian
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -12764,7 +12764,7 @@ public class PaladinHoly
         {
             Blessing();
             if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
         }
 
@@ -12950,13 +12950,13 @@ public class PaladinHoly
             Lifeblood.Launch();
             return;
         }
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
             return;
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -13275,7 +13275,7 @@ public class PaladinProtection
         {
             Blessing();
             if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
         }
         Seal();
@@ -13402,12 +13402,12 @@ public class PaladinProtection
         {
             AvengingWrath.Launch();
         }
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -13734,8 +13734,8 @@ public class PaladinRetribution
         private readonly int _combatPotion = ItemsManager.GetIdByName(MySettings.CombatPotion);
 */
     private readonly WoWItem _firstTrinket = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_TRINKET);
-    private readonly int _flaskOrBattleElixir = ItemsManager.GetIdByName(MySettings.FlaskOrBattleElixir);
-    private readonly int _guardianElixir = ItemsManager.GetIdByName(MySettings.GuardianElixir);
+    private readonly int _flaskOrBattleElixir = ItemsManager.GetItemIdByName(MySettings.FlaskOrBattleElixir);
+    private readonly int _guardianElixir = ItemsManager.GetItemIdByName(MySettings.GuardianElixir);
 
 /*
         private readonly WoWItem _hands = EquippedItems.GetEquippedItem(WoWInventorySlot.INVTYPE_HAND);
@@ -13824,13 +13824,13 @@ public class PaladinRetribution
         if (!ObjectManager.Me.IsMounted)
         {
             if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) &&
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.FlaskOrBattleElixir)) &&
                     !ItemsManager.IsItemOnCooldown(_flaskOrBattleElixir) &&
-                    ItemsManager.IsUsableItemById(_flaskOrBattleElixir))
+                    ItemsManager.IsItemUsable(_flaskOrBattleElixir))
                     ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
             if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsUsableItemById(_guardianElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.GuardianElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsItemUsable(_guardianElixir))
                     ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
             Heal();
@@ -13843,18 +13843,18 @@ public class PaladinRetribution
         if (!ObjectManager.Me.IsMounted)
         {
             if (MySettings.UseFlaskOrBattleElixir && MySettings.FlaskOrBattleElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.FlaskOrBattleElixir)) &&
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.FlaskOrBattleElixir)) &&
                     !ItemsManager.IsItemOnCooldown(_flaskOrBattleElixir) &&
-                    ItemsManager.IsUsableItemById(_flaskOrBattleElixir))
+                    ItemsManager.IsItemUsable(_flaskOrBattleElixir))
                     ItemsManager.UseItem(MySettings.FlaskOrBattleElixir);
             if (MySettings.UseGuardianElixir && MySettings.GuardianElixir != string.Empty)
-                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpellByItemName(MySettings.GuardianElixir)) &&
-                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsUsableItemById(_guardianElixir))
+                if (!SpellManager.HaveBuffLua(ItemsManager.GetItemSpell(MySettings.GuardianElixir)) &&
+                    !ItemsManager.IsItemOnCooldown(_guardianElixir) && ItemsManager.IsItemUsable(_guardianElixir))
                     ItemsManager.UseItem(MySettings.GuardianElixir);
             Blessing();
 
             if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+                && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
                 ItemsManager.UseItem(75525);
         }
         Seal();
@@ -14024,12 +14024,12 @@ public class PaladinRetribution
             GuardianOfAncientKings.Launch();
             _burstTime = new Timer(1000*6.5);
         }
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -14594,7 +14594,7 @@ public class ShamanEnhancement
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -14769,13 +14769,13 @@ public class ShamanEnhancement
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -15499,7 +15499,7 @@ public class ShamanRestoration
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -15707,13 +15707,13 @@ public class ShamanRestoration
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -16359,7 +16359,7 @@ public class ShamanElemental
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -16532,13 +16532,13 @@ public class ShamanElemental
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -17154,7 +17154,7 @@ public class PriestShadow
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
             return;
@@ -17364,13 +17364,13 @@ public class PriestShadow
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -17880,7 +17880,7 @@ public class PriestDiscipline
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -18087,13 +18087,13 @@ public class PriestDiscipline
 
     private void HealingBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -18602,7 +18602,7 @@ public class PriestHoly
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -18819,12 +18819,12 @@ public class PriestHoly
 
     private void HealingBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -19439,7 +19439,7 @@ public class RogueCombat
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -19585,13 +19585,13 @@ public class RogueCombat
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -20197,7 +20197,7 @@ public class RogueSubtlety
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -20344,13 +20344,13 @@ public class RogueSubtlety
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -20933,7 +20933,7 @@ public class RogueAssassination
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -21078,13 +21078,13 @@ public class RogueAssassination
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -21650,7 +21650,7 @@ public class WarriorArms
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -21807,13 +21807,13 @@ public class WarriorArms
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -22493,7 +22493,7 @@ public class WarriorProtection
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -22680,13 +22680,13 @@ public class WarriorProtection
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -23342,7 +23342,7 @@ public class WarriorFury
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639) &&
-            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -23499,13 +23499,13 @@ public class WarriorFury
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -24102,7 +24102,7 @@ public class HunterMarksmanship
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -24314,13 +24314,13 @@ public class HunterMarksmanship
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -24914,7 +24914,7 @@ public class HunterBeastMastery
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -25142,13 +25142,13 @@ public class HunterBeastMastery
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -25775,7 +25775,7 @@ public class HunterSurvival
         }
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -25988,13 +25988,13 @@ public class HunterSurvival
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -26540,7 +26540,7 @@ public class MonkBrewmaster
             SpellManager.CastSpellByIDAndPosition(115315, ObjectManager.Target.Position);
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -26706,12 +26706,12 @@ public class MonkBrewmaster
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -27180,7 +27180,7 @@ public class MonkWindwalker
             Roll.Launch();
 
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
             ItemsManager.UseItem(75525);
     }
 
@@ -27329,12 +27329,12 @@ public class MonkWindwalker
 
     private void DPSBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");
@@ -27813,7 +27813,7 @@ public class MonkMistweaver
             return;
         }
         if (MySettings.UseAlchFlask && !ObjectManager.Me.HaveBuff(79638) && !ObjectManager.Me.HaveBuff(79640) && !ObjectManager.Me.HaveBuff(79639)
-            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCountByIdLUA(75525) > 0)
+            && !ItemsManager.IsItemOnCooldown(75525) && ItemsManager.GetItemCount(75525) > 0)
         {
             ItemsManager.UseItem(75525);
         }
@@ -28026,13 +28026,13 @@ public class MonkMistweaver
 
     private void HealingBurst()
     {
-        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsUsableItemById(_firstTrinket.Entry))
+        if (MySettings.UseTrinketOne && !ItemsManager.IsItemOnCooldown(_firstTrinket.Entry) && ItemsManager.IsItemUsable(_firstTrinket.Entry))
         {
             ItemsManager.UseItem(_firstTrinket.Name);
             Logging.WriteFight("Use First Trinket Slot");
         }
 
-        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsUsableItemById(_secondTrinket.Entry))
+        if (MySettings.UseTrinketTwo && !ItemsManager.IsItemOnCooldown(_secondTrinket.Entry) && ItemsManager.IsItemUsable(_secondTrinket.Entry))
         {
             ItemsManager.UseItem(_secondTrinket.Name);
             Logging.WriteFight("Use Second Trinket Slot");

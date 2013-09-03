@@ -22,7 +22,7 @@ namespace nManager.Wow.Helpers
                     {
                         items.Add(i.Replace("'", "’"));
                     }
-                    if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
+                    if (ItemsManager.GetItemCount(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
                             itemArray = itemArray + ", ";
@@ -81,7 +81,7 @@ namespace nManager.Wow.Helpers
                     {
                         items.Add(i.Replace("'", "’"));
                     }
-                    if (ItemsManager.GetItemCountByNameLUA(i) >= 5)
+                    if (ItemsManager.GetItemCount(i) >= 5)
                     {
                         if (!string.IsNullOrEmpty(itemArray))
                             itemArray = itemArray + ", ";
