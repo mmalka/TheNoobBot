@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
     {
         public static int GetItemCount(string name)
         {
-            return GetItemCount(GetItemIdByName(name));
+            return GetItemCount(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
         public static int GetItemCount(int entry)
