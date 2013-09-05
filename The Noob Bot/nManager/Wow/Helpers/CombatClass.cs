@@ -9,6 +9,8 @@ using System.Threading;
 using System.Windows.Forms;
 using Microsoft.CSharp;
 using nManager.Helpful;
+using nManager.Wow.ObjectManager;
+using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
@@ -20,6 +22,21 @@ namespace nManager.Wow.Helpers
         private static Thread _worker;
         private static string _pathToCombatClassFile = "";
         private static string _threadName = "";
+
+        public static bool InRange(WoWUnit unit)
+        {
+            try
+            {
+                float Distance = unit.GetDistance;
+                float CombatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                //Logging.WriteDebug("InRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
+                return Distance - CombatReach < GetRange - 0.5;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
 
         public static float GetRange
         {
