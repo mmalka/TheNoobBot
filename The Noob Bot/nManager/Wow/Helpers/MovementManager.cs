@@ -1533,7 +1533,7 @@ namespace nManager.Wow.Helpers
         private static readonly Timer MeleeControlMovementTimer = new Timer(3000);
 
 // ReSharper disable UnusedMember.Local
-        private static void MeleeControl(uint minDist, uint maxDist, bool resetCount)
+        private static void MeleeControl(WoWUnit unit, bool resetCount)
 // ReSharper restore UnusedMember.Local
         {
             if (_currFightMeleeControl > 5 || (_currFightMeleeControl != 0 && !MeleeControlTimer.IsReady))
@@ -1541,17 +1541,17 @@ namespace nManager.Wow.Helpers
             MeleeControlTimer.Reset(); // No reasons to spam the check, and less than 5 seconds of inactivity is not 'dramatical'.
             if (_currFightMeleeControl > 0 && resetCount)
                 _currFightMeleeControl = 0;
-            if (ObjectManager.ObjectManager.Target.GetDistance < minDist && ObjectManager.ObjectManager.Target.InCombatWithMe)
+            if (!CombatClass.InMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe)
             {
                 Logging.WriteFight("Under the minimal distance from the target, move closer.");
                 _currFightMeleeControl++;
-                GetToMelee(maxDist, maxDist);
+                GetToMelee(unit);
             }
-            if (ObjectManager.ObjectManager.Target.GetDistance > maxDist && ObjectManager.ObjectManager.Target.InCombatWithMe)
+            if (!CombatClass.InRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe)
             {
                 Logging.WriteFight("Over the maximal distance from the target, move closer.");
                 _currFightMeleeControl++;
-                AvoidMelee(minDist, maxDist);
+                AvoidMelee(unit);
             }
             /*
              * resetCount must be set true after each target switching (pull part) of the CombatClass.
@@ -1559,22 +1559,20 @@ namespace nManager.Wow.Helpers
              */
         }
 
-        private static void AvoidMelee(uint minDist, uint maxDist)
+        private static void AvoidMelee(WoWUnit unit)
         {
             MeleeControlMovementTimer.Reset();
             MovementsAction.MoveBackward(true);
-            while (ObjectManager.ObjectManager.Target.GetDistance < minDist && ObjectManager.ObjectManager.Target.GetDistance < maxDist &&
-                   ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+            while (!CombatClass.InMinRange(unit) && CombatClass.InRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
                 Thread.Sleep(50);
             MovementsAction.MoveBackward(false);
         }
 
-        private static void GetToMelee(uint minDist, uint maxDist)
+        private static void GetToMelee(WoWUnit unit)
         {
             MeleeControlMovementTimer.Reset();
             MovementsAction.MoveForward(true);
-            while (ObjectManager.ObjectManager.Target.GetDistance > maxDist && ObjectManager.ObjectManager.Target.GetDistance > minDist &&
-                   ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
+            while (!CombatClass.InRange(unit) && CombatClass.InMinRange(unit) && ObjectManager.ObjectManager.Target.InCombatWithMe && !MeleeControlMovementTimer.IsReady)
                 Thread.Sleep(50);
             MovementsAction.MoveForward(false);
         }

@@ -38,6 +38,21 @@ namespace nManager.Wow.Helpers
             return false;
         }
 
+        public static bool InMinRange(WoWUnit unit)
+        {
+            try
+            {
+                float Distance = unit.GetDistance;
+                float CombatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
+                return Distance - CombatReach < GetRange - 0.5 && Distance - CombatReach > -1.5;
+            }
+            catch (Exception)
+            {
+            }
+            return false;
+        }
+
         public static float GetRange
         {
             get
