@@ -251,7 +251,7 @@ namespace nManager.Helpful
             }
         }
 
-        public static List<string> LUAVariableToDestruct = new List<string>();
+        public static Dictionary<string, long> LUAVariableToDestruct = new Dictionary<string, long>();
 
         public static void LUAGlobalVarDestructor()
         {
@@ -259,18 +259,22 @@ namespace nManager.Helpful
                 return;
             string toExec = "";
             if (LUAVariableToDestruct.Count <= 0) return;
+            Dictionary<string, long> LUAVariableToDestructLater = new Dictionary<string, long>();
             lock (LUAVariableToDestruct)
             {
-                foreach (string lua in LUAVariableToDestruct)
+                foreach (KeyValuePair<string, long> lua in LUAVariableToDestruct)
                 {
-                    if (!Regex.IsMatch(lua, @"^[a-zA-Z]+$"))
+                    if (!Regex.IsMatch(lua.Key, @"^[a-zA-Z]+$"))
                         continue;
-                    toExec = toExec + lua + " = nil; ";
+                    if (lua.Value + 500 < Environment.TickCount)
+                        toExec = toExec + lua.Key + " = nil; ";
+                    else
+                        LUAVariableToDestructLater.Add(lua.Key, lua.Value);
                 }
                 LUAVariableToDestruct.Clear();
+                LUAVariableToDestruct = LUAVariableToDestructLater;
             }
             if (String.IsNullOrWhiteSpace(toExec)) return;
-            Thread.Sleep(50); // Gives times to the latest LUA Var to be used if recently added to the list.
             Lua.LuaDoString(toExec);
         }
 
@@ -291,7 +295,10 @@ namespace nManager.Helpful
                 }
                 lock (LUAVariableToDestruct)
                 {
-                    LUAVariableToDestruct.Add(result.ToString());
+                    if (!LUAVariableToDestruct.ContainsKey(result.ToString()))
+                        LUAVariableToDestruct.Add(result.ToString(), Environment.TickCount);
+                    else
+                        LUAVariableToDestruct[result.ToString()] = Environment.TickCount;
                 }
                 return result.ToString();
             }
