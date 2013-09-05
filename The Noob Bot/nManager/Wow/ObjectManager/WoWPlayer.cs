@@ -35,7 +35,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public WoWSpecialization WoWSpecialization
+        public WoWSpecialization WowSpecialization
         {
             get
             {
@@ -48,15 +48,15 @@ namespace nManager.Wow.ObjectManager
                     }
                     string specInfo = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(
-                        "/script if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id, name, description, icon, background, role = GetSpecializationInfo(GetSpecialization()) " +
-                        specInfo + " = id .. \"^\" .. name .. \"^\" .. role  else " + specInfo + " = 0 end");
+                        "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,background,role = GetSpecializationInfo(GetSpecialization()) " +
+                        specInfo + " = id .. \"^\" .. name .. \"^\" .. role else " + specInfo + " = 0 end");
                     string[] specInfos = Lua.GetLocalizedText(specInfo).Split('^');
                     if (specInfos.Count() != 3)
                     {
                         Logging.WriteDebug("WoW Specialization not found");
                         return WoWSpecialization.None;
                     }
-                    Logging.WriteDebug("WoW Specialization found: " + specInfos[1] + ", role: " + specInfos[2]);
+                    Logging.WriteDebug("WoW Specialization found: " + WowClass + " " + specInfos[1] + ", role: " + specInfos[2]);
                     WoWSpecialization rWoWSpecialization = (WoWSpecialization) Others.ToInt32(specInfos[0]);
                     return rWoWSpecialization;
                 }

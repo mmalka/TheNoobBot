@@ -64,6 +64,7 @@ public class Main : ICombatClass
             if (!InternalLoop)
                 InternalLoop = true;
             Logging.WriteFight("Loading combat system.");
+            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization;
             switch (ObjectManager.Me.WowClass)
             {
                     #region DeathKnight Specialisation checking
@@ -476,10 +477,7 @@ public class Main : ICombatClass
                     #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
-                    Spell paladinRetributionSpell = new Spell("Templar's Verdict");
-                    Spell paladinProtectionSpell = new Spell("Avenger's Shield");
-                    Spell paladinHolySpell = new Spell("Holy Shock");
-                    if (paladinRetributionSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.PaladinRetribution)
                     {
                         if (configOnly)
                         {
@@ -500,7 +498,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (paladinProtectionSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.PaladinProtection)
                     {
                         if (configOnly)
                         {
@@ -521,7 +519,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (paladinHolySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.PaladinHoly)
                     {
                         if (configOnly)
                         {
@@ -543,24 +541,28 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (configOnly)
+                    if (wowSpecialization == WoWSpecialization.None)
                     {
-                        MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
-                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                        PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
-                        if (File.Exists(currentSettingsFile) && !resetSettings)
+                        if (configOnly)
                         {
-                            currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
+                            MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
+                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
+                            PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
+                            if (File.Exists(currentSettingsFile) && !resetSettings)
+                            {
+                                currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
+                            }
+                            currentSetting.ToForm();
+                            currentSetting.Save(currentSettingsFile);
                         }
-                        currentSetting.ToForm();
-                        currentSetting.Save(currentSettingsFile);
-                    }
-                    else
-                    {
-                        Logging.WriteFight("No specialisation detected.");
-                        Logging.WriteFight("Loading Paladin Retribution Combat class...");
-                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
-                        new PaladinRetribution();
+                        else
+                        {
+                            Logging.WriteFight("No specialisation detected.");
+                            Logging.WriteFight("Loading Paladin Retribution Combat class...");
+                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
+                            new PaladinRetribution();
+                        }
+                        break;
                     }
                     break;
 
