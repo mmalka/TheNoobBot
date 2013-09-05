@@ -533,14 +533,26 @@ namespace nManager.Wow.Helpers
                 return (Convert.ToBoolean(
                     Memory.WowMemory.Memory.ReadInt(
                         Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress +
-                                                         (uint) Addresses.MovementFlags.offset1)
-                        + (uint) Addresses.MovementFlags.offset2)
+                                                         (uint) Addresses.MovementFlagsOffsets.Offset1)
+                        + (uint) Addresses.MovementFlagsOffsets.Offset2)
                     & (int) flags));
             }
             catch (Exception e)
             {
                 Logging.WriteError("MovementStatus: " + e);
                 return false;
+            }
+        }
+
+        public static Addresses.MovementFlags GetAllMovementStatus
+        {
+            get
+            {
+                return
+                    (Addresses.MovementFlags)
+                    Memory.WowMemory.Memory.ReadInt(
+                        Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) +
+                        (uint) Addresses.MovementFlagsOffsets.Offset2);
             }
         }
 
