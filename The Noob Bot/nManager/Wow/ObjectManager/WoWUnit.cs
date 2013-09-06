@@ -1832,6 +1832,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public bool NotSelectable
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<UnitFlags>(Descriptors.UnitFields.Flags).HasFlag(UnitFlags.NotSelectable);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > NotSelectable: " + e);
+                    return false;
+                }
+            }
+        }
+
         public bool PlayerControlled
         {
             get

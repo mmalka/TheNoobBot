@@ -456,7 +456,7 @@ namespace nManager.Wow.ObjectManager
                 float tempDistance = 9999999.0f;
                 foreach (WoWUnit a in listWoWUnit)
                 {
-                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid))
+                    if (a.GetDistance < tempDistance && !nManagerSetting.IsBlackListed(a.Guid) && !a.NotSelectable)
                     {
                         objectReturn = a;
                         tempDistance = a.GetDistance;
@@ -1079,7 +1079,7 @@ namespace nManager.Wow.ObjectManager
         {
             foreach (WoWUnit u in GetObjectWoWUnit())
             {
-                if (u.IsValid && u.IsAlive && !u.NotAttackable && !u.PlayerControlled &&
+                if (u.IsValid && u.IsAlive && !u.NotAttackable && !u.PlayerControlled && !u.NotSelectable &&
                     UnitRelation.GetReaction(Me, u) == Reaction.Hostile &&
                     u.GetDistance < (u.AggroDistance*0.90f) &&
                     !(u.InCombat && !u.IsTargetingMe))
