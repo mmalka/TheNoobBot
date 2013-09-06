@@ -16182,6 +16182,12 @@ public class ShamanElemental
 
     #endregion
 
+    #region Talent
+
+    public readonly Spell Conductivity = new Spell("Conductivity");
+
+    #endregion
+
     public ShamanElemental()
     {
         Main.InternalRange = 30.0f;
@@ -16444,6 +16450,17 @@ public class ShamanElemental
             && TotemicRecallReady())
         {
             TotemicRecall.Launch();
+            return;
+        }
+        if (Conductivity.KnownSpell && HealingRain.KnownSpell && MySettings.UseHealingRain
+            && HealingRain.IsSpellUsable && ObjectManager.Me.InCombat
+            && (ObjectManager.GetNumberAttackPlayer() > 1 || ObjectManager.Target.Health > ObjectManager.Me.MaxHealth))
+        {
+            SpellManager.CastSpellByIDAndPosition(73920, ObjectManager.Me.Position);
+            while (ObjectManager.Me.IsCast)
+            {
+                Thread.Sleep(200);
+            }
             return;
         }
         if (ObjectManager.Me.HealthPercent < 95 && HealingSurge.KnownSpell && HealingSurge.IsSpellUsable
