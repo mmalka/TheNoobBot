@@ -982,6 +982,22 @@ namespace nManager.Wow.Helpers
             }
         }
 
+        private static void MicroMove()
+        {
+            if (Others.Random(0, 2) == 0) // 0 or 1
+            {
+                MovementsAction.MoveForward(true);
+                Thread.Sleep(50);
+                MovementsAction.MoveForward(false);
+            }
+            else
+            {
+                MovementsAction.MoveBackward(true);
+                Thread.Sleep(50);
+                MovementsAction.MoveBackward(false);
+            }
+        }
+
         #endregion MovementManager
 
         #region MoveTo
@@ -1290,9 +1306,10 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= 0.10f)
+                if (dif <= System.Math.PI / 4)
                     return;
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
+                MicroMove();
             }
             catch (Exception exception)
             {
@@ -1317,10 +1334,11 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= 0.10f)
+                if (dif <= System.Math.PI / 4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
+                MicroMove();
             }
             catch (Exception exception)
             {
@@ -1345,10 +1363,11 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= 0.10f)
+                if (dif <= System.Math.PI / 4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
+                MicroMove();
             }
             catch (Exception exception)
             {
@@ -1372,10 +1391,11 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= 0.10f)
+                if (dif <= System.Math.PI / 4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
+                MicroMove();
             }
             catch (Exception exception)
             {
