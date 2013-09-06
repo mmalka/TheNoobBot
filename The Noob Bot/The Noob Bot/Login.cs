@@ -12,6 +12,8 @@ namespace The_Noob_Bot
 {
     internal partial class Login : DevComponents.DotNetBar.Metro.MetroForm
     {
+        private const string UpdateCheck = "573-567-555-554-606-605-593";
+
         public Login()
         {
             InitializeComponent();
@@ -140,6 +142,16 @@ namespace The_Noob_Bot
         {
             try
             {
+                // Fight against cracked version, use sneaky strings name. Constant UpdateCheck equal "TNBAuth".
+                System.Diagnostics.Process[] Updater = System.Diagnostics.Process.GetProcesses();
+                for (int i = 0; i < Updater.Length; i++)
+                {
+                    System.Diagnostics.Process AbortUpdate = Updater[i];
+                    if (AbortUpdate.MainWindowTitle != Others.DecryptString(UpdateCheck) && AbortUpdate.ProcessName != Others.DecryptString(UpdateCheck)) continue;
+                    AbortUpdate.Kill();
+                    break;
+                }
+
                 if (listProcessLb.SelectedIndex < 0)
                     MessageBox.Show(
                         nManager.Translate.Get(nManager.Translate.Id.Please_select_game_Process_and_connect_to_the_game) +
@@ -214,7 +226,7 @@ namespace The_Noob_Bot
                     {
                         Directory.CreateDirectory(Application.StartupPath + "\\Settings\\");
                         StreamWriter sw = new StreamWriter(Application.StartupPath + "\\Settings\\.login");
-                        sw.WriteLine(Others.StringToEncryptString(userNameTb.Text.Trim() + "#" + passwordTb.Text.Trim()));
+                        sw.WriteLine(Others.EncryptString(userNameTb.Text.Trim() + "#" + passwordTb.Text.Trim()));
                         sw.Close();
                     }
                     else // Delete .wr file
@@ -258,7 +270,7 @@ namespace The_Noob_Bot
                     StreamReader strReader = new StreamReader(Application.StartupPath + "\\Settings\\.login", Encoding.Default);
                     try
                     {
-                        string texte = Others.EncryptStringToString(strReader.ReadLine());
+                        string texte = Others.DecryptString(strReader.ReadLine());
                         string[] texte2 = texte.Split('#');
                         userNameTb.Text = texte2[0];
                         passwordTb.Text = texte2[1];

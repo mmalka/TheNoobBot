@@ -793,7 +793,7 @@ namespace nManager.Helpful
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public static string StringToEncryptString(string text)
+        public static string EncryptString(string text)
         {
             try
             {
@@ -821,13 +821,13 @@ namespace nManager.Helpful
         /// <summary>
         /// Return a string text decrypted.
         /// </summary>
-        /// <param name="encryptText"></param>
+        /// <param name="encryptedString"></param>
         /// <returns></returns>
-        public static string EncryptStringToString(string encryptText)
+        public static string DecryptString(string encryptedString)
         {
             try
             {
-                string[] texte2 = encryptText.Split('-');
+                string[] texte2 = encryptedString.Split('-');
                 List<byte> listBytes = new List<byte>();
                 int key = HardDriveID();
 
