@@ -103,10 +103,9 @@ namespace nManager.Wow.Helpers
                         Thread.Sleep(50);
                     }
                 }
-                if (timer == 0)
-                    timer = Others.Times +
-                            ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
-                            15000;
+                timer = Others.Times +
+                        ((int) ObjectManager.ObjectManager.Me.Position.DistanceTo(targetNpc.Position)/3*1000) +
+                        5000;
                 if (MovementManager.InMovement)
                 {
                     MovementManager.StopMove();
@@ -133,7 +132,10 @@ namespace nManager.Wow.Helpers
 
                     // Target Pos Verif
                     if (targetNpc.Position.X == 0.0f && targetNpc.Position.Z == 0.0f)
+                    {
+                        InFight = false;
                         return targetNpc.Guid;
+                    }
 
                     // Target mob if not target
                     if ((ObjectManager.ObjectManager.Me.Target != targetNpc.Guid) && !targetNpc.IsDead &&
@@ -166,15 +168,25 @@ namespace nManager.Wow.Helpers
                     // Face player to mob
                     MovementManager.Face(targetNpc);
 
-                    // Timer
+                    // If obstacle between us and the target after this timer expires then stop the fight and blacklist
                     if (Others.Times > timer && TraceLine.TraceLineGo(targetNpc.Position) &&
                         targetNpc.HealthPercent > 90)
+                    {
+                        InFight = false;
                         return targetNpc.Guid;
+                    }
 
                     if (ObjectManager.ObjectManager.Me.IsMounted)
                         MountTask.DismountMount();
 
-                    Thread.Sleep(50);
+                    Thread.Sleep(75 + Usefuls.Latency);
+
+                    // If timer expires and still not in fight, then stop the fight and blacklist
+                    if (Others.Times > timer && !ObjectManager.ObjectManager.Me.InCombat && !targetNpc.IsDead)
+                    {
+                        InFight = false;
+                        return targetNpc.Guid;
+                    }
                 }
 
                 MovementManager.StopMoveTo();
