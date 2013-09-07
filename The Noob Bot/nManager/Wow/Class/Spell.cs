@@ -176,8 +176,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return ObjectManager.ObjectManager.Target.GetDistance <= MaxRangeHostile &&
-                           (ObjectManager.ObjectManager.Target.GetDistance >= MinRangeHostile);
+                    return CombatClass.InCustomRange(ObjectManager.ObjectManager.Target, MinRangeHostile, MaxRangeHostile);
                 }
                 catch (Exception exception)
                 {
@@ -197,8 +196,7 @@ namespace nManager.Wow.Class
             {
                 try
                 {
-                    return ObjectManager.ObjectManager.Target.GetDistance <= MaxRangeFriend &&
-                           (ObjectManager.ObjectManager.Target.GetDistance >= MaxRangeFriend);
+                    return CombatClass.InCustomRange(ObjectManager.ObjectManager.Target, MinRangeFriend, MaxRangeFriend);
                 }
                 catch (Exception exception)
                 {
