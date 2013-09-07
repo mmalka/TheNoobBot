@@ -9843,7 +9843,7 @@ public class DruidBalance
 
     private void DefenseCycle()
     {
-        if (!ObjectManager.Me.HaveBuff(24858) && MySettings.UseMoonkinForm)
+        if (MySettings.UseMoonkinForm && MoonkinForm.KnownSpell && !ObjectManager.Me.HaveBuff(24858))
         {
             MoonkinForm.Launch();
         }
@@ -10123,7 +10123,7 @@ public class DruidBalance
         if (ObjectManager.Me.HaveBuff(48517))
             _starfireUse = false;
 
-        if (!ObjectManager.Me.HaveBuff(24858) && MySettings.UseMoonkinForm)
+        if (MySettings.UseMoonkinForm && MoonkinForm.KnownSpell && !ObjectManager.Me.HaveBuff(24858))
         {
             MoonkinForm.Launch();
             return;
