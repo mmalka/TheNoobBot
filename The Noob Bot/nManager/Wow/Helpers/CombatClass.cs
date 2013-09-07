@@ -27,38 +27,54 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                    return HealerClass.InRange(unit);
                 float distance = unit.GetDistance;
                 float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
                 //Logging.WriteDebug("InRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
                 return distance - combatReach <= GetRange - 0.5;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Logging.WriteError("CombatClass > InRange: " + exception);
+                return false;
             }
-            return false;
         }
 
         public static bool InCustomRange(WoWUnit unit, float minRange, float maxRange)
         {
-            float distance = unit.GetDistance;
-            float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
-            //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
-            return distance - combatReach <= maxRange - 0.5 && distance - combatReach >= minRange + 0.5;
+            try
+            {
+                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                    return HealerClass.InCustomRange(unit, minRange, maxRange);
+                float distance = unit.GetDistance;
+                float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
+                return distance - combatReach <= maxRange - 0.5 && distance - combatReach >= minRange + 0.5;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("CombatClass > InCustomRange: " + exception);
+                return false;
+            }
         }
 
         public static bool InMinRange(WoWUnit unit)
         {
             try
             {
+                if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
+                    return HealerClass.InMinRange(unit);
                 float distance = unit.GetDistance;
                 float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
                 //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
                 return distance - combatReach <= GetRange - 0.5 && distance - combatReach >= -1.5;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
+                Logging.WriteError("CombatClass > InMinRange: " + exception);
+                return false;
             }
-            return false;
         }
 
         public static float GetRange

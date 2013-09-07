@@ -1306,7 +1306,7 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI / 4)
+                if (dif <= System.Math.PI/4)
                     return;
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
                 MicroMove();
@@ -1334,7 +1334,7 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI / 4)
+                if (dif <= System.Math.PI/4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1363,7 +1363,7 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI / 4)
+                if (dif <= System.Math.PI/4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
@@ -1391,7 +1391,7 @@ namespace nManager.Wow.Helpers
                 float dif = wowFacing - ObjectManager.ObjectManager.Me.Rotation;
                 if (dif < 0)
                     dif = -dif;
-                if (dif <= System.Math.PI / 4)
+                if (dif <= System.Math.PI/4)
                     return;
 
                 ObjectManager.ObjectManager.Me.Rotation = wowFacing;
