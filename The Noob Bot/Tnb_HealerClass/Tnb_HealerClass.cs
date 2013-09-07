@@ -425,7 +425,7 @@ public class DruidRestoration
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -438,7 +438,7 @@ public class DruidRestoration
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -452,7 +452,7 @@ public class DruidRestoration
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
@@ -1043,7 +1043,7 @@ public class PaladinHoly
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -1056,7 +1056,7 @@ public class PaladinHoly
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -1070,7 +1070,7 @@ public class PaladinHoly
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
@@ -1516,7 +1516,7 @@ public class ShamanRestoration
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -1529,7 +1529,7 @@ public class ShamanRestoration
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -1543,7 +1543,7 @@ public class ShamanRestoration
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
@@ -2275,7 +2275,7 @@ public class PriestDiscipline
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -2288,7 +2288,7 @@ public class PriestDiscipline
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -2302,7 +2302,7 @@ public class PriestDiscipline
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
@@ -2898,7 +2898,7 @@ public class PriestHoly
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -2911,7 +2911,7 @@ public class PriestHoly
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -2925,7 +2925,7 @@ public class PriestHoly
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
@@ -3549,7 +3549,7 @@ public class MonkMistweaver
                                     WoWPlayer currentPlayer = new WoWPlayer(obj.GetBaseAddress);
                                     if (!currentPlayer.IsValid || !currentPlayer.IsAlive) continue;
 
-                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && currentPlayer.GetDistance < Main.InternalRange)
+                                    if (currentPlayer.HealthPercent < 100 && currentPlayer.HealthPercent < lowestHp && HealerClass.InRange(currentPlayer))
                                     {
                                         lowestHp = currentPlayer.HealthPercent;
                                         lowestHpPlayer = currentPlayer;
@@ -3562,7 +3562,7 @@ public class MonkMistweaver
                                     {
                                         lowestHpPlayer = ObjectManager.Me;
                                     }
-                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && lowestHpPlayer.GetDistance < Main.InternalRange)
+                                    if (ObjectManager.Me.Target != lowestHpPlayer.Guid && lowestHpPlayer.IsAlive && HealerClass.InRange(lowestHpPlayer))
                                     {
                                         Logging.Write("Switching to target " + lowestHpPlayer.Name + ".");
                                         Interact.InteractWith(lowestHpPlayer.GetBaseAddress);
@@ -3576,7 +3576,7 @@ public class MonkMistweaver
                                 Heal.IsHealing = false;
                                 break;
                             }
-                            if (ObjectManager.Target.Position.DistanceTo(ObjectManager.Me.Position) < 40)
+                            if (HealerClass.InRange(ObjectManager.Target))
                                 MountTask.DismountMount(false);
                             HealingFight();
                         }
