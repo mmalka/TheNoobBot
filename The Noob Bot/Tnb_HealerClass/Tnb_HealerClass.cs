@@ -64,6 +64,7 @@ public class Main : IHealerClass
             if (!InternalLoop)
                 InternalLoop = true;
             Logging.WriteFight("Loading healing system.");
+            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization;
             switch (ObjectManager.Me.WowClass)
             {
                     #region Non healer classes detection
@@ -74,6 +75,7 @@ public class Main : IHealerClass
                 case WoWClass.Rogue:
                 case WoWClass.Warrior:
                 case WoWClass.Hunter:
+
                     string error = "Class " + ObjectManager.Me.WowClass + " can't be a healer.";
                     if (configOnly)
                         MessageBox.Show(error);
@@ -85,9 +87,8 @@ public class Main : IHealerClass
                     #region Druid Specialisation checking
 
                 case WoWClass.Druid:
-                    Spell druidRestorationSpell = new Spell("Swiftmend");
 
-                    if (druidRestorationSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DruidRestoration)
                     {
                         if (configOnly)
                         {
@@ -121,8 +122,8 @@ public class Main : IHealerClass
                     #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
-                    Spell paladinHolySpell = new Spell("Holy Shock");
-                    if (paladinHolySpell.KnownSpell)
+
+                    if (wowSpecialization == WoWSpecialization.PaladinHoly)
                     {
                         if (configOnly)
                         {
@@ -156,9 +157,8 @@ public class Main : IHealerClass
                     #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
-                    Spell shamanRestorationSpell = new Spell("Riptide");
 
-                    if (shamanRestorationSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.ShamanRestoration)
                     {
                         if (configOnly)
                         {
@@ -192,9 +192,8 @@ public class Main : IHealerClass
                     #region Priest Specialisation checking
 
                 case WoWClass.Priest:
-                    Spell priestDisciplineSpell = new Spell("Penance");
-                    Spell priestHolySpell = new Spell("Holy Word: Chastise");
-                    if (priestDisciplineSpell.KnownSpell)
+
+                    if (wowSpecialization == WoWSpecialization.PriestDiscipline)
                     {
                         if (configOnly)
                         {
@@ -214,7 +213,7 @@ public class Main : IHealerClass
                             new PriestDiscipline();
                         }
                     }
-                    else if (priestHolySpell.KnownSpell)
+                    else if (wowSpecialization == WoWSpecialization.PriestHoly)
                     {
                         if (configOnly)
                         {
@@ -248,8 +247,8 @@ public class Main : IHealerClass
                     #region Monk Specialisation checking
 
                 case WoWClass.Monk:
-                    Spell monkMistweaverSpell = new Spell("Soothing Mist");
-                    if (monkMistweaverSpell.KnownSpell)
+
+                    if (wowSpecialization == WoWSpecialization.MonkMistweaver)
                     {
                         if (configOnly)
                         {

@@ -70,11 +70,8 @@ public class Main : ICombatClass
                     #region DeathKnight Specialisation checking
 
                 case WoWClass.DeathKnight:
-                    Spell bloodRites = new Spell("Blood Rites");
-                    Spell reaping = new Spell("Reaping");
-                    Spell howlingBlast = new Spell("Howling Blast");
 
-                    if (bloodRites.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DeathknightBlood)
                     {
                         if (configOnly)
                         {
@@ -96,7 +93,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (reaping.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DeathknightUnholy)
                     {
                         if (configOnly)
                         {
@@ -118,7 +115,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (howlingBlast.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DeathknightFrost)
                     {
                         if (configOnly)
                         {
@@ -167,11 +164,8 @@ public class Main : ICombatClass
                     #region Mage Specialisation checking
 
                 case WoWClass.Mage:
-                    Spell mageArcaneSpell = new Spell("Arcane Blast");
-                    Spell mageFireSpell = new Spell("Pyroblast");
-                    Spell mageFrostSpell = new Spell("Summon Water Elemental");
 
-                    if (mageArcaneSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.MageArcane)
                     {
                         if (configOnly)
                         {
@@ -193,7 +187,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (mageFireSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.MageFire)
                     {
                         if (configOnly)
                         {
@@ -215,7 +209,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (mageFrostSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.MageFrost)
                     {
                         if (configOnly)
                         {
@@ -263,11 +257,8 @@ public class Main : ICombatClass
                     #region Warlock Specialisation checking
 
                 case WoWClass.Warlock:
-                    Spell warlockDemonologySpell = new Spell("Summon Felguard");
-                    Spell warlockAfflictionSpell = new Spell("Unstable Affliction");
-                    Spell warlockDestructionSpell = new Spell("Conflagrate");
 
-                    if (warlockDemonologySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarlockDemonology)
                     {
                         if (configOnly)
                         {
@@ -289,7 +280,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (warlockAfflictionSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarlockAffliction)
                     {
                         if (configOnly)
                         {
@@ -311,7 +302,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (warlockDestructionSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarlockDestruction)
                     {
                         if (configOnly)
                         {
@@ -360,12 +351,8 @@ public class Main : ICombatClass
                     #region Druid Specialisation checking
 
                 case WoWClass.Druid:
-                    Spell druidFeralSpell = new Spell("Tiger's Fury");
-                    Spell druidGuardianSpell = new Spell("Savage Defense");
-                    Spell druidBalanceSpell = new Spell("Eclipse");
-                    Spell druidRestorationSpell = new Spell("Swiftmend");
 
-                    if (druidFeralSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DruidFeral)
                     {
                         if (configOnly)
                         {
@@ -386,7 +373,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (druidGuardianSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DruidGuardian)
                     {
                         if (configOnly)
                         {
@@ -407,7 +394,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (druidBalanceSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DruidBalance)
                     {
                         if (configOnly)
                         {
@@ -429,7 +416,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (druidRestorationSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.DruidRestoration)
                     {
                         if (configOnly)
                         {
@@ -477,6 +464,7 @@ public class Main : ICombatClass
                     #region Paladin Specialisation checking
 
                 case WoWClass.Paladin:
+
                     if (wowSpecialization == WoWSpecialization.PaladinRetribution)
                     {
                         if (configOnly)
@@ -541,28 +529,24 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (wowSpecialization == WoWSpecialization.None)
+                    if (configOnly)
                     {
-                        if (configOnly)
+                        MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
+                        string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
+                        PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
+                        if (File.Exists(currentSettingsFile) && !resetSettings)
                         {
-                            MessageBox.Show(@"Your specification haven't be found, loading Paladin Retribution Settings");
-                            string currentSettingsFile = Application.StartupPath + "\\CombatClasses\\Settings\\Paladin_Retribution.xml";
-                            PaladinRetribution.PaladinRetributionSettings currentSetting = new PaladinRetribution.PaladinRetributionSettings();
-                            if (File.Exists(currentSettingsFile) && !resetSettings)
-                            {
-                                currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
-                            }
-                            currentSetting.ToForm();
-                            currentSetting.Save(currentSettingsFile);
+                            currentSetting = Settings.Load<PaladinRetribution.PaladinRetributionSettings>(currentSettingsFile);
                         }
-                        else
-                        {
-                            Logging.WriteFight("No specialisation detected.");
-                            Logging.WriteFight("Loading Paladin Retribution Combat class...");
-                            EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
-                            new PaladinRetribution();
-                        }
-                        break;
+                        currentSetting.ToForm();
+                        currentSetting.Save(currentSettingsFile);
+                    }
+                    else
+                    {
+                        Logging.WriteFight("No specialisation detected.");
+                        Logging.WriteFight("Loading Paladin Retribution Combat class...");
+                        EquipmentAndStats.SetPlayerSpe(WoWSpecialization.PaladinRetribution);
+                        new PaladinRetribution();
                     }
                     break;
 
@@ -571,11 +555,8 @@ public class Main : ICombatClass
                     #region Shaman Specialisation checking
 
                 case WoWClass.Shaman:
-                    Spell shamanEnhancementSpell = new Spell("Lava Lash");
-                    Spell shamanElementalSpell = new Spell("Thunderstorm");
-                    Spell shamanRestorationSpell = new Spell("Riptide");
 
-                    if (shamanEnhancementSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.ShamanEnhancement)
                     {
                         if (configOnly)
                         {
@@ -596,7 +577,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (shamanElementalSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.ShamanElemental)
                     {
                         if (configOnly)
                         {
@@ -618,7 +599,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (shamanRestorationSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.ShamanRestoration)
                     {
                         if (configOnly)
                         {
@@ -665,10 +646,8 @@ public class Main : ICombatClass
                     #region Priest Specialisation checking
 
                 case WoWClass.Priest:
-                    Spell priestShadowSpell = new Spell("Mind Flay");
-                    Spell priestDisciplineSpell = new Spell("Penance");
-                    Spell priestHolySpell = new Spell("Holy Word: Chastise");
-                    if (priestShadowSpell.KnownSpell)
+
+                    if (wowSpecialization == WoWSpecialization.PriestShadow)
                     {
                         if (configOnly)
                         {
@@ -690,7 +669,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (priestDisciplineSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.PriestDiscipline)
                     {
                         if (configOnly)
                         {
@@ -712,7 +691,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (priestHolySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.PriestHoly)
                     {
                         if (configOnly)
                         {
@@ -761,11 +740,8 @@ public class Main : ICombatClass
                     #region Rogue Specialisation checking
 
                 case WoWClass.Rogue:
-                    Spell rogueCombatSpell = new Spell("Blade Flurry");
-                    Spell rogueAssassinationSpell = new Spell("Mutilate");
-                    Spell rogueSubtletySpell = new Spell("Master of Subtlety");
 
-                    if (rogueCombatSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.RogueCombat)
                     {
                         if (configOnly)
                         {
@@ -786,7 +762,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (rogueAssassinationSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.RogueAssassination)
                     {
                         if (configOnly)
                         {
@@ -807,7 +783,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (rogueSubtletySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.RogueSubtlety)
                     {
                         if (configOnly)
                         {
@@ -852,11 +828,8 @@ public class Main : ICombatClass
                     #region Warrior Specialisation checking
 
                 case WoWClass.Warrior:
-                    Spell warriorArmsSpell = new Spell("Mortal Strike");
-                    Spell warriorFurySpell = new Spell("Bloodthirst");
-                    Spell warriorProtectionSpell = new Spell("Shield Slam");
 
-                    if (warriorArmsSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarriorArms)
                     {
                         if (configOnly)
                         {
@@ -877,7 +850,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (warriorFurySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarriorFury)
                     {
                         if (configOnly)
                         {
@@ -898,7 +871,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (warriorProtectionSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.WarriorProtection)
                     {
                         if (configOnly)
                         {
@@ -945,11 +918,8 @@ public class Main : ICombatClass
                     #region Hunter Specialisation checking
 
                 case WoWClass.Hunter:
-                    Spell hunterMarksmanshipSpell = new Spell("Aimed Shot");
-                    Spell hunterSurvivalSpell = new Spell("Explosive Shot");
-                    Spell hunterBeastMasterySpell = new Spell("Kill Command");
 
-                    if (hunterMarksmanshipSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.HunterMarksmanship)
                     {
                         if (configOnly)
                         {
@@ -971,7 +941,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (hunterSurvivalSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.HunterSurvival)
                     {
                         if (configOnly)
                         {
@@ -993,7 +963,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (hunterBeastMasterySpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.HunterBeastMastery)
                     {
                         if (configOnly)
                         {
@@ -1042,10 +1012,8 @@ public class Main : ICombatClass
                     #region Monk Specialisation checking
 
                 case WoWClass.Monk:
-                    Spell monkBrewmasterSpell = new Spell("Dizzying Haze");
-                    Spell monkWindwalkerSpell = new Spell("Fists of Fury");
-                    Spell monkMistweaverSpell = new Spell("Soothing Mist");
-                    if (monkBrewmasterSpell.KnownSpell)
+
+                    if (wowSpecialization == WoWSpecialization.MonkBrewmaster)
                     {
                         if (configOnly)
                         {
@@ -1066,7 +1034,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (monkWindwalkerSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.MonkWindwalker)
                     {
                         if (configOnly)
                         {
@@ -1087,7 +1055,7 @@ public class Main : ICombatClass
                         }
                         break;
                     }
-                    if (monkMistweaverSpell.KnownSpell)
+                    if (wowSpecialization == WoWSpecialization.MonkMistweaver)
                     {
                         if (configOnly)
                         {
