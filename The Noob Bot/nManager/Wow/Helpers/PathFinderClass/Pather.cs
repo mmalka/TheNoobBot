@@ -82,7 +82,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
 
-        private const uint MESH_TILES_VERSION = 7;
+        private const uint MESH_TILES_VERSION = 702;
 
         #region Memory Management
 
@@ -286,7 +286,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 CheckDungeon();
 
                 MeshTile tile;
-                if (_mesh.AddTile(data, out tile).HasFailed() || tile.Header.Version != MESH_TILES_VERSION)
+                if (_mesh.AddTile(data, out tile).HasFailed() || tile.Header.Version < MESH_TILES_VERSION)
                 {
                     Logging.WriteNavigator("Out of date mesh tile");
                     return false;
