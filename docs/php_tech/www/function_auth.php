@@ -15,7 +15,7 @@ $tableCurrentConnection = "wp_SWW_Current_Connection";
 $tableRemote = "wp_SWW_Remote";
 $tableStats = "wp_SWW_Stats";
 
-$secret = 'vsdGDFDSFF4578sGDSD65csds89df4sfcds65vF';
+$secret = '0e8897c8c73772e72d81dd28ebf57ac3';
  
 $mysql = NULL;
  

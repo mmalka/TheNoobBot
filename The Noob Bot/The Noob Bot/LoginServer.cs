@@ -79,7 +79,7 @@ namespace The_Noob_Bot
         internal static bool IsFreeVersion { get; private set; }
         internal static string Login = "";
         internal static string Password = "";
-        private const string Secret = "vsdGDFDSFF4578sGDSD65csds89df4sfcds65vF";
+        private const string Secret = "0e8897c8c73772e72d81dd28ebf57ac3";
         private static string TrueResultLoop = "";
 
         internal static bool IsOnlineserver;
