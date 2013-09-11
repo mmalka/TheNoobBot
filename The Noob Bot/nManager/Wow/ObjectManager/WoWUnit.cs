@@ -136,6 +136,22 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public float GetCombatReach
+        {
+            get
+            {
+                try
+                {
+                    return GetDescriptor<float>(Descriptors.UnitFields.CombatReach);
+                }
+                catch (Exception e)
+                {
+                    Logging.WriteError("WoWUnit > GetCombatReach: " + e);
+                    return 0;
+                }
+            }
+        }
+
         public string CreatureTypeTarget
         {
             get

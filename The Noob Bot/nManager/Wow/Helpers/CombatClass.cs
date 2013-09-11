@@ -30,7 +30,7 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                float combatReach = unit.GetCombatReach;
                 //Logging.WriteDebug("InRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
                 return distance - combatReach <= GetRange - 0.5;
             }
@@ -48,9 +48,9 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InCustomRange(unit, minRange, maxRange);
                 float distance = unit.GetDistance;
-                float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                float combatReach = unit.GetCombatReach;
                 //Logging.WriteDebug("InCustomRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", minRange " + minRange + ", maxRange " + maxRange);
-                return distance - combatReach <= maxRange - 0.5 && distance - combatReach >= minRange + 0.5;
+                return distance - combatReach <= maxRange - 0.5 && distance >= minRange + 0.5;
             }
             catch (Exception exception)
             {
@@ -66,7 +66,7 @@ namespace nManager.Wow.Helpers
                 if (!IsAliveCombatClass && HealerClass.IsAliveHealerClass)
                     return HealerClass.InMinRange(unit);
                 float distance = unit.GetDistance;
-                float combatReach = (float) unit.GetDescriptor<Descriptors.UnitFields>(Descriptors.UnitFields.CombatReach);
+                float combatReach = unit.GetCombatReach;
                 //Logging.WriteDebug("InMinRange check: Distance " + Distance + ", CombatReach " + CombatReach + ", Range " + GetRange);
                 return distance - combatReach <= GetRange - 0.5 && distance - combatReach >= -1.5;
             }
