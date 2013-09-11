@@ -984,6 +984,8 @@ namespace nManager.Wow.Helpers
 
         private static void MicroMove()
         {
+            if (InMovement || InMoveTo)
+                return;
             if (Others.Random(0, 2) == 0) // 0 or 1
             {
                 MovementsAction.MoveForward(true);
