@@ -2032,7 +2032,8 @@ public class DeathknightBlood
             return;
         }
 
-        if (MySettings.UseDeathPact && DeathPact.KnownSpell && RaiseDead.KnownSpell && ObjectManager.Me.HealthPercent <= MySettings.UseDeathPactAtPercentage &&
+        if (MySettings.UseDeathPact && DeathPact.KnownSpell && MySettings.UseRaiseDeadForDPS && RaiseDead.KnownSpell &&
+            ObjectManager.Me.HealthPercent <= MySettings.UseDeathPactAtPercentage &&
             RaiseDead.IsSpellUsable && DeathPact.IsSpellUsable)
         {
             for (int i = 0; i < 3; i++)
