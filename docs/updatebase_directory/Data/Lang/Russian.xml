@@ -1110,11 +1110,11 @@
       <Id>RandomBattleground</Id>
     </Translation>
 	<Translation>
-      <Text>Warning: WoW Client 64bit have been found running but TheNoobBot is not compatible with it, please remove or rename the Wow-64.exe file from your WoW directory.</Text>
+      <Text>Внимание: Была обнаржена WoW Client 64bit с которой несовместим TheNoobBot, пожалуйста удалите или переименуйте Wow-64.exe в папке с установленной word of warcraft</Text>
       <Id>WoW_Client_64bit</Id>
     </Translation>
 	<Translation>
-      <Text>Error : World of Warcraft 64bit detected</Text>
+      <Text>Ошибка : Определена World of Warcraft 64bit</Text>
       <Id>Title_WoW_Client_64bit</Id>
     </Translation>
     <Translation>
@@ -1122,7 +1122,7 @@
       <Id>Uncap_MaxFPS</Id>
     </Translation>
 	<Translation>
-      <Text>AutoRelogger - (Allow you to automaticly relog your char after a disconnection)</Text>
+      <Text>Авторелоггер - (Восстанавливает соединение в случае дисконекта)</Text>
       <Id>ReloggerManagementPanelName</Id>
     </Translation>
   </Translations>
