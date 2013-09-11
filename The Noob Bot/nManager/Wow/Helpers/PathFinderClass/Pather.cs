@@ -288,7 +288,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 MeshTile tile;
                 if (_mesh.AddTile(data, out tile).HasFailed() || tile.Header.Version < MESH_TILES_VERSION)
                 {
-                    Logging.WriteNavigator("Out of date mesh tile");
+                    Logging.WriteNavigator("This mesh tile is outdated or corrupted. Version " + tile.Header.Version + ", required version: " + MESH_TILES_VERSION);
                     return false;
                 }
                 AddMemoryPressure(data.Length);
