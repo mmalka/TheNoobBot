@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using nManager.Helpful;
 using nManager.Wow.Helpers;
 
@@ -40,7 +42,9 @@ namespace nManager.Wow.Class
                     sResult = Lua.GetLocalizedText(randomString);
                 }
                 string[] itemInfoArray = sResult.Split('^');
-
+                IEnumerable<string> counter = from s in itemInfoArray select s;
+                if (counter.Count() != 11)
+                    return;
                 ItemName = itemInfoArray[0];
                 ItemLink = itemInfoArray[1];
                 ItemRarity = Others.ToInt32(itemInfoArray[2]);
