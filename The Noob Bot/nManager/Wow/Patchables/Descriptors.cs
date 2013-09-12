@@ -154,7 +154,7 @@
             InvSlots = CurrentBattlePetBreedQuality + 1,
             FarsightObject = InvSlots + 172,
             KnownTitles = FarsightObject + 2,
-            Coinage = KnownTitles + 8,
+            Coinage = KnownTitles + 10,
             XP = Coinage + 2,
             NextLevelXP = XP + 1,
             Skill = NextLevelXP + 1,
