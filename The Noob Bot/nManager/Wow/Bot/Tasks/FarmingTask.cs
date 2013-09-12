@@ -134,6 +134,8 @@ namespace nManager.Wow.Bot.Tasks
                             }
                             if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                 Usefuls.DisMount();
+                            else if (Usefuls.IsFlying)
+                                MountTask.Land();
                             Thread.Sleep(Usefuls.Latency + 300);
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 200);
