@@ -29,7 +29,7 @@
         public enum Hooking
         {
             DX_DEVICE = 0xB9E394,
-            DX_DEVICE_IDX = 0x2818, // to change or verify
+            DX_DEVICE_IDX = 0x281C,
             ENDSCENE_IDX = 0xA8,
         }
 
