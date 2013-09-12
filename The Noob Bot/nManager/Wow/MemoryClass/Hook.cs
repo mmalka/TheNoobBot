@@ -275,8 +275,21 @@ namespace nManager.Wow.MemoryClass
                                 if (D3D.OriginalBytes == null)
                                 {
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
-                                    if (D3D.OriginalBytes[0] == 0xE9)
+                                    var AllBytesExtract = Memory.ReadBytes(JumpAddress, 6);
+                                    string Bytes = "";
+                                    foreach (uint bit in AllBytesExtract)
+                                    {
+                                        Bytes = Bytes + ", " + bit;
+                                    }
+                                    Logging.WriteFileOnly("Hooking Informations: " + Bytes);
+                                    if (D3D.OriginalBytes[0] != 0xE9)
+                                    {
+                                        if (D3D.OriginalBytes[0] == 85)
+                                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6);
+                                    }
+                                    else
                                         D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
+                                        // D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
@@ -286,14 +299,14 @@ namespace nManager.Wow.MemoryClass
 
                                 // create jump back stub
                                 Memory.Asm.Clear();
-                                Memory.Asm.AddLine("jmp " + (JumpAddress + 5));
+                                Memory.Asm.AddLine("jmp " + (JumpAddress + sizeJumpBack));
                                 nR = Others.Random(0, 10);
                                 for (int i = nR; i >= 1; i--)
                                 {
                                     Memory.Asm.AddLine(ProtectHook());
                                 }
 
-                                Memory.Asm.Inject(InjectedCodeDetour + sizeAsm + (uint) sizeJumpBack);
+                                Memory.Asm.Inject((InjectedCodeDetour + sizeAsm + (uint)sizeJumpBack));
 
                                 // create hook jump
                                 Memory.Asm.Clear(); // $jmpto
