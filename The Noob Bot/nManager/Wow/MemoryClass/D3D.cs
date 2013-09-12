@@ -1,7 +1,6 @@
 ﻿using SlimDX;
 using SlimDX.DXGI;
 using SlimDX.Windows;
-using nManager.Wow.MemoryClass.Magic;
 using Device = SlimDX.Direct3D11.Device;
 using Format = SlimDX.DXGI.Format;
 using SwapChain = SlimDX.DXGI.SwapChain;
@@ -24,9 +23,9 @@ namespace nManager.Wow.MemoryClass
             if (d3d11Adresse <= 0)
             {
                 const int VMT_PRESENT = 8;
-                using (RenderForm rf = new RenderForm())
+                using (var rf = new RenderForm())
                 {
-                    SwapChainDescription desc = new SwapChainDescription
+                    var desc = new SwapChainDescription
                         {
                             BufferCount = 1,
                             Flags = SwapChainFlags.None,
@@ -42,16 +41,16 @@ namespace nManager.Wow.MemoryClass
 
                     Device tmpDevice;
                     SwapChain sc;
-                    Result res = Device.CreateWithSwapChain(SlimDX.Direct3D11.DriverType.Hardware,
-                                                            SlimDX.Direct3D11.DeviceCreationFlags.None, desc, out tmpDevice,
-                                                            out sc);
+                    var res = Device.CreateWithSwapChain(SlimDX.Direct3D11.DriverType.Hardware,
+                                                         SlimDX.Direct3D11.DeviceCreationFlags.None, desc, out tmpDevice,
+                                                         out sc);
                     if (res.IsSuccess)
                     {
                         using (tmpDevice)
                         {
                             using (sc)
                             {
-                                BlackMagic memory = new Magic.BlackMagic(System.Diagnostics.Process.GetCurrentProcess().Id);
+                                var memory = new Magic.BlackMagic(System.Diagnostics.Process.GetCurrentProcess().Id);
                                 d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint) sc.ComPointer) + 4*VMT_PRESENT);
                             }
                         }
@@ -65,7 +64,7 @@ namespace nManager.Wow.MemoryClass
 
         public static uint D3D9Adresse(int processId)
         {
-            BlackMagic memory = new Magic.BlackMagic(processId);
+            var memory = new Magic.BlackMagic(processId);
             uint pDevice =
                 memory.ReadUInt((uint) memory.GetModule("Wow.exe").BaseAddress +
                                 (uint) Patchables.Addresses.Hooking.DX_DEVICE);
