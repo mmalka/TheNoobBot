@@ -48,7 +48,7 @@ namespace nManager.Wow.Helpers
                             "push " + p2,
                             "push " + p1,
                             "mov ecx, eax",
-                            "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.Interact),
+                            "call " + (Memory.WowProcess.WowModule + (uint) Addresses.FunctionWow.CGUnit_C__Interact),
                             "add esp, 8",
                             "@out:",
                             "retn"
