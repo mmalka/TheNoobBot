@@ -910,8 +910,36 @@
       <Id>This_Programme_is_for_The_Game</Id>
     </Translation>
     <Translation>
-      <Text>월드 오브 워크래프트의 버전이나 TNB의 버전을 변경해주세요</Text>
-      <Id>Please_change_your_game_version_or_change_this_programme_version</Id>
+      <Text>This version of the bot is not compatible with this version of World of Warcraft. Please use the right version of the bot or wait for an update if not available yet.</Text>
+      <Id>UpdateRequiredCases</Id>
+    </Translation>
+    <Translation>
+      <Text>This version of TheNoobBot is too advanced for this version of WoW. This version is designed for WoW Build </Text>
+      <Id>UpdateRequireOlderTheNoobBot</Id>
+    </Translation>
+    <Translation>
+      <Text>This version of WoW is too advanced for this version of TheNoobBot. This version is designed for WoW Build </Text>
+      <Id>UpdateRequireNewerTheNoobBot</Id>
+    </Translation>
+    <Translation>
+      <Text>Case 1: You may have a version of TheNoobBot, too recent for this WoW version, </Text>
+      <Id>UpdateRequiredCase1</Id>
+    </Translation>
+    <Translation>
+      <Text>Case 2: You may have a version of WoW, too recent for this TheNoobBot version, </Text>
+      <Id>UpdateRequiredCase2</Id>
+    </Translation>
+    <Translation>
+      <Text>, but you are running the WoW Build </Text>
+      <Id>RunningWoWBuild</Id>
+    </Translation>	
+    <Translation>
+      <Text>please download an older version of TheNoobBot on our forum \"News and release\". (WoW update realms before EU/RU)</Text>
+      <Id>PleaseDownloadOlder</Id>
+    </Translation>
+    <Translation>
+      <Text>please download a newer version of TheNoobBot on our forum \"News and release\". (You may wait until an update is available)</Text>
+      <Id>PleaseDownloadNewer</Id>
     </Translation>
     <Translation>
       <Text>확인되지 않은 게임의 활동이 의심됩니다. 게임과 TNB를 닫아주세요</Text>

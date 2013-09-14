@@ -90,19 +90,30 @@ namespace nManager.Wow.MemoryClass
 
                     if (Memory.IsProcessOpen)
                     {
-                        if (
-                            Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion) !=
-                            Information.TargetWowBuild)
+                        uint wowBuildVersion = Memory.ReadUInt(Wow.Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
+
+                        if (wowBuildVersion != Information.TargetWowBuild)
                         {
-                            if (!System.Diagnostics.Process.GetProcessById(Memory.ProcessId).HasExited)
-                                MessageBox.Show(Translate.Get(Translate.Id.This_Programme_is_for_The_Game) + " " +
-                                                Information.TargetWowVersion + "." +
-                                                Information.TargetWowBuild +
-                                                " . " +
-                                                Translate.Get(
-                                                    Translate.Id
-                                                             .Please_change_your_game_version_or_change_this_programme_version) +
-                                                ".");
+                            if (System.Diagnostics.Process.GetProcessById(Memory.ProcessId).HasExited)
+                                return;
+                            if (wowBuildVersion == 0 || wowBuildVersion < Information.MinWowBuild || wowBuildVersion > Information.MaxWowBuild)
+                            {
+                                // Offsets seems to have changed.
+                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCases));
+                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCase1));
+                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCase2));
+                            }
+                            // Offsets has not changed, but may have a function offsets changes. We may need to create a integrated function offsets pattern finder in that case.
+                            if (Information.TargetWowBuild > wowBuildVersion)
+                            {
+                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBot) + Information.TargetWowVersion + Information.TargetWowBuild +
+                                                Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.PleaseDownloadOlder));
+                            }
+                            if (Information.TargetWowBuild < wowBuildVersion)
+                            {
+                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBot) + Information.TargetWowVersion + Information.TargetWowBuild +
+                                                Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.PleaseDownloadNewer));
+                            }
                             return;
                         }
 
@@ -257,7 +268,7 @@ namespace nManager.Wow.MemoryClass
                                 // injected code
 
                                 Memory.Asm.Inject(InjectedCodeDetour);
-                                var sizeAsm = (uint) (Memory.Asm.Assemble().Length);
+                                uint sizeAsm = (uint) (Memory.Asm.Assemble().Length);
 
                                 // copy and save original instructions
                                 Memory.Asm.Clear();
@@ -275,7 +286,7 @@ namespace nManager.Wow.MemoryClass
                                 if (D3D.OriginalBytes == null)
                                 {
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
-                                    var AllBytesExtract = Memory.ReadBytes(JumpAddress, 6);
+                                    byte[] AllBytesExtract = Memory.ReadBytes(JumpAddress, 6);
                                     string Bytes = "";
                                     foreach (uint bit in AllBytesExtract)
                                     {
@@ -289,7 +300,7 @@ namespace nManager.Wow.MemoryClass
                                     }
                                     else
                                         D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
-                                        // D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
+                                    // D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
@@ -306,7 +317,7 @@ namespace nManager.Wow.MemoryClass
                                     Memory.Asm.AddLine(ProtectHook());
                                 }
 
-                                Memory.Asm.Inject((InjectedCodeDetour + sizeAsm + (uint)sizeJumpBack));
+                                Memory.Asm.Inject((InjectedCodeDetour + sizeAsm + (uint) sizeJumpBack));
 
                                 // create hook jump
                                 Memory.Asm.Clear(); // $jmpto
@@ -332,7 +343,7 @@ namespace nManager.Wow.MemoryClass
 
         private void CheckEndsceneHook()
         {
-            var jmp = Memory.ReadByte(JumpAddress);
+            byte jmp = Memory.ReadByte(JumpAddress);
             if (jmp == 0xE9) return;
             ThreadHooked = false;
             Logging.WriteError("ThreadHooked: False; JmpAddress: " + jmp);
@@ -360,7 +371,7 @@ namespace nManager.Wow.MemoryClass
         /// <returns></returns>
         internal static string ProtectHook()
         {
-            var asm = new List<string>
+            List<string> asm = new List<string>
                 {
                     "mov edx, edx",
                     "mov edi, edi",
@@ -437,7 +448,7 @@ namespace nManager.Wow.MemoryClass
             {
                 lock (Locker)
                 {
-                    var tempsByte = new byte[0];
+                    byte[] tempsByte = new byte[0];
                     try
                     {
                         // Hook Wow:
@@ -461,7 +472,7 @@ namespace nManager.Wow.MemoryClass
 
 
                             // Allocation Memory
-                            var startBaseInject = (uint) Others.Random(0, 60);
+                            uint startBaseInject = (uint) Others.Random(0, 60);
                             uint injectionAsmCodecave =
                                 Memory.AllocateMemory(Memory.Asm.Assemble().Length + Others.Random(60, 80)) +
                                 startBaseInject;
@@ -492,9 +503,9 @@ namespace nManager.Wow.MemoryClass
                                 }
                                 else
                                 {
-                                    var retnByte = new List<byte>();
+                                    List<byte> retnByte = new List<byte>();
                                     uint dwAddress = Memory.ReadUInt(_retnInjectionAsm);
-                                    var buf = Memory.ReadByte(dwAddress);
+                                    byte buf = Memory.ReadByte(dwAddress);
                                     while (buf != 0)
                                     {
                                         retnByte.Add(buf);
@@ -538,7 +549,7 @@ namespace nManager.Wow.MemoryClass
                     pJump = D3D.D3D11Adresse();
                 else
                     pJump = D3D.D3D9Adresse(processId);
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 return memory.ReadByte(pJump) == 0xE9;
             }
             catch (Exception e)
@@ -556,7 +567,7 @@ namespace nManager.Wow.MemoryClass
                     return Translate.Get(Translate.Id.Please_connect_to_the_game);
 
                 // init memory
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
@@ -579,7 +590,7 @@ namespace nManager.Wow.MemoryClass
             try
             {
                 // init memory
-                var memory = new BlackMagic(processId);
+                BlackMagic memory = new BlackMagic(processId);
                 // 
                 uint baseModule = 0;
                 foreach (ProcessModule v in
