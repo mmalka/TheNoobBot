@@ -99,20 +99,28 @@ namespace nManager.Wow.MemoryClass
                             if (wowBuildVersion == 0 || wowBuildVersion < Information.MinWowBuild || wowBuildVersion > Information.MaxWowBuild)
                             {
                                 // Offsets seems to have changed.
-                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCases));
-                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCase1));
-                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequiredCase2));
+                                MessageBox.Show(
+                                    Translate.Get(Translate.Id.UpdateRequiredCases) + Environment.NewLine + Environment.NewLine + Translate.Get(Translate.Id.UpdateRequiredCase1) +
+                                    Environment.NewLine + Translate.Get(Translate.Id.UpdateRequiredCase2),
+                                    Translate.Get(Translate.Id.UpdateRequiredCasesTitle));
+                                return;
                             }
                             // Offsets has not changed, but may have a function offsets changes. We may need to create a integrated function offsets pattern finder in that case.
                             if (Information.TargetWowBuild > wowBuildVersion)
                             {
-                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBot) + Information.TargetWowVersion + Information.TargetWowBuild +
-                                                Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.PleaseDownloadOlder));
+                                MessageBox.Show(
+                                    Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBot) + Information.TargetWowVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
+                                    Information.TargetWowBuild +
+                                    Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) + Environment.NewLine +
+                                    Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadOlder), Translate.Get(Translate.Id.UpdateRequireOlderTheNoobBotTitle));
                             }
                             if (Information.TargetWowBuild < wowBuildVersion)
                             {
-                                MessageBox.Show(Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBot) + Information.TargetWowVersion + Information.TargetWowBuild +
-                                                Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.PleaseDownloadNewer));
+                                MessageBox.Show(
+                                    Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBot) + Information.TargetWowVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) +
+                                    Information.TargetWowBuild +
+                                    Translate.Get(Translate.Id.RunningWoWBuild) + wowBuildVersion + Translate.Get(Translate.Id.RunningWoWBuildDot) + Environment.NewLine +
+                                    Environment.NewLine + Translate.Get(Translate.Id.PleaseDownloadNewer), Translate.Get(Translate.Id.UpdateRequireNewerTheNoobBotTitle));
                             }
                             return;
                         }

@@ -910,7 +910,7 @@
       <Id>This_Programme_is_for_The_Game</Id>
     </Translation>
     <Translation>
-      <Text>This version of the bot is not compatible with this version of World of Warcraft. Please use the right version of the bot or wait for an update if not available yet.</Text>
+      <Text>This version of the bot is not compatible with this version of World of Warcraft Please use the right version of the bot or wait for an update if not yet available.</Text>
       <Id>UpdateRequiredCases</Id>
     </Translation>
     <Translation>
@@ -922,23 +922,23 @@
       <Id>UpdateRequireNewerTheNoobBot</Id>
     </Translation>
     <Translation>
-      <Text>Case 1: You may have a version of TheNoobBot, too recent for this WoW version, </Text>
+      <Text>Case 1: You may have a version of TheNoobBot too recent for this WoW version</Text>
       <Id>UpdateRequiredCase1</Id>
     </Translation>
     <Translation>
-      <Text>Case 2: You may have a version of WoW, too recent for this TheNoobBot version, </Text>
+      <Text>Case 2: You may have a version of WoW too recent for this TheNoobBot version</Text>
       <Id>UpdateRequiredCase2</Id>
     </Translation>
     <Translation>
-      <Text>, but you are running the WoW Build </Text>
+      <Text> but you are running WoW Build </Text>
       <Id>RunningWoWBuild</Id>
     </Translation>	
     <Translation>
-      <Text>please download an older version of TheNoobBot on our forum \"News and release\". (WoW update realms before EU/RU)</Text>
+      <Text>Please download an older version of TheNoobBot on our forum "News and release". (WoW usually update US realms before EU/RU)</Text>
       <Id>PleaseDownloadOlder</Id>
     </Translation>
     <Translation>
-      <Text>please download a newer version of TheNoobBot on our forum \"News and release\". (You may wait until an update is available)</Text>
+      <Text>Please download a newer version of TheNoobBot on our forum "News and release". (You may wait until an update is available)</Text>
       <Id>PleaseDownloadNewer</Id>
     </Translation>
     <Translation>
