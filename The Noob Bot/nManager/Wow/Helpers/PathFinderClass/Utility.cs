@@ -33,6 +33,19 @@ namespace nManager.Wow.Helpers.PathFinderClass
             return true;
         }
 
+        public static bool IsWrongVersion(this DetourStatus status)
+        {
+            try
+            {
+                return status.HasFlag(DetourStatus.WrongVersion);
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("IsWrongVersion(this DetourStatus status): " + exception);
+            }
+            return true;
+        }
+
         public static bool IsInProgress(this DetourStatus status)
         {
             try

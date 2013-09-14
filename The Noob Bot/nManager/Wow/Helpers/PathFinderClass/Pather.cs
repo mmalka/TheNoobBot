@@ -82,8 +82,6 @@ namespace nManager.Wow.Helpers.PathFinderClass
         private readonly NavMeshQuery _query;
         private readonly string _meshPath;
 
-        private const uint MESH_TILES_VERSION = 702;
-
         #region Memory Management
 
         public int MemoryPressure { get; private set; }
@@ -286,9 +284,15 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 CheckDungeon();
 
                 MeshTile tile;
-                if (_mesh.AddTile(data, out tile).HasFailed() || tile.Header.Version < MESH_TILES_VERSION)
+                DetourStatus ret = _mesh.AddTile(data, out tile);
+                if (ret.IsWrongVersion())
                 {
-                    Logging.WriteNavigator("This mesh tile is outdated or corrupted. Version " + tile.Header.Version + ", required version: " + MESH_TILES_VERSION);
+                    Logging.WriteNavigator("This mesh tile is outdated.");
+                    return false;
+                }
+                if (ret.HasFailed())
+                {
+                    Logging.WriteNavigator("This mesh tile is corrupted.");
                     return false;
                 }
                 AddMemoryPressure(data.Length);
