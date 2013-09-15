@@ -25,6 +25,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
             }
+            _rSiteDBCRecord0 = new ResearchSiteDbcRecord();
         }
 
         private WoWResearchSite(int reqId)
