@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace nManager.Wow.Helpers
 {
-    internal class WoWQuestPOIPoint
+    public class WoWQuestPOIPoint
     {
         private readonly List<Point> _setPoints;
         private Point _middlePoint = new Point(0, 0, 0);

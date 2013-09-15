@@ -3,7 +3,7 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
-    internal class WoWResearchSite
+    public class WoWResearchSite
     {
         private ResearchSiteDbcRecord _rSiteDBCRecord0;
 

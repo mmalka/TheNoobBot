@@ -3,7 +3,7 @@ using nManager.Wow.Patchables;
 
 namespace nManager.Wow.Helpers
 {
-    internal class WoWItemClass
+    public class WoWItemClass
     {
         private ItemClassDbcRecord _rItemClassRec0;
 
