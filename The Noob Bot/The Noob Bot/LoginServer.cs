@@ -505,6 +505,7 @@ namespace The_Noob_Bot
                         if (resultReq != Information.Version)
                         {
                             string resultDesc = Others.GetRequest(ScriptUpdate, "show=desc");
+                            string resultLog = Others.GetRequest(ScriptUpdate, "show=changelog");
                             DialogResult dr =
                                 MessageBox.Show(
                                     string.Format("{0}{1}{4}{4}{2}{4}{3}{4}{5}", Translate.Get(Translate.Id.LatestUpdateVersion), resultReq,
@@ -514,7 +515,7 @@ namespace The_Noob_Bot
                             switch (dr)
                             {
                                 case DialogResult.Yes:
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
+                                    Others.OpenWebBrowserOrApplication(resultLog);
                                     Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
 
                                     try

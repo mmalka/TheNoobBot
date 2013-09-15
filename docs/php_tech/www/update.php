@@ -1,17 +1,16 @@
 <?php
- $currentrev = "1.7.0";
- if (!isset($forwebsite) && !$forwebsite) 
+	$currentrev = "1.8.6.US";
+	$wow_patch = "5.4";
+	$forumlink = "http://thenoobbot.com/community/viewtopic.php?f=8&t=6308";
+	$month_release = "09";
+	$day_release = "16";
+	$year_release = "2013";
+ if (!isset($forwebsite) || !$forwebsite) 
  {
     if (isset($_GET['show']) && $_GET['show'] == 'desc')
-	  echo '(WoW 5.3.0.17055)';
+	  echo '1.8.6 is for EU/RU/Others - 1.8.6.US is for US';
+    elseif (isset($_GET['show']) && $_GET['show'] == 'changelog')
+	  echo $forumlink;
     else 
 	  echo $currentrev;
- }
- else
- {
-   $wow_patch = "5.3.0";
-   $forumlink = "http://thenoobbot.com/community/viewtopic.php?f=8&t=6114";
-   $month_release = "06";
-   $day_release = "12";
-   $year_release = "2013";
  }
