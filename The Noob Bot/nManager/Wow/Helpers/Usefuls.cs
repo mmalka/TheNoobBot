@@ -102,12 +102,12 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.GameInfo.gameState) > 0;
+                    return Memory.WowMemory.Memory.ReadByte(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.gameState) > 0;
                 }
                 catch (Exception exception)
                 {
+                    if (exception.ToString() == "Process is not open for read/write.")
+                        Thread.Sleep(500);
                     Logging.WriteError("InGame: " + exception);
                     return false;
                 }
