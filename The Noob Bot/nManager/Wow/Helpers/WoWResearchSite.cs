@@ -40,7 +40,7 @@ namespace nManager.Wow.Helpers
                     return;
                 }
             }
-                _rSiteDBCRecord0 = new ResearchSiteDbcRecord();
+            _rSiteDBCRecord0 = new ResearchSiteDbcRecord();
         }
 
         // Factory function

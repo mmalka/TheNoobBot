@@ -109,18 +109,22 @@
 			<Text>您使用的是試用版本，TNB 會在20分鐘後自動關閉</Text>
 			<Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
 		</Translation>
-		<Translation>
-			<Text>新版發布</Text>
-			<Id>New_update</Id>
-		</Translation>
-		<Translation>
-			<Text>現在更新嗎？</Text>
-			<Id>Do_you_want_to_update_now</Id>
-		</Translation>
-		<Translation>
-			<Text>更新</Text>
-			<Id>Update</Id>
-		</Translation>
+    <Translation>
+      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
+    </Translation>
+    <Translation>
+      <Text>Remote informations about this update: </Text>
+      <Id>LatestUpdateDescription</Id>
+    </Translation>
+    <Translation>
+      <Text>Do you want to update TheNoobBot now ?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, an update is available</Text>
+      <Id>LatestUpdateTitle</Id>
+    </Translation>
 		<Translation>
 			<Text>游戲中有一個可疑的活動，為了您的帳號安全建議關閉游戲和 TNB。點擊“是”關閉 TNB</Text>
 			<Id>The_game_has_an_suspect_activity_it_is_recommended_to_closing_the_game_and_tnb_for_your_account_security_Click_on__Yes__to_close_tnb</Id>

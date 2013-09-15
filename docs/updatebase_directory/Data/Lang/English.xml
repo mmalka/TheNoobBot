@@ -22,7 +22,7 @@
       <Id>Please_connect_to_the_game</Id>
     </Translation>
     <Translation>
-      <Text>The Game is currently used by TheNoobBot or contains traces of a recent TheNoobBot usage, are you sure you want to use this process ?</Text>
+      <Text>The Game is currently used by TheNoobBot or contains traces of a recent TheNoobBot usage, are you sure you want to use this process?</Text>
       <Id>The_Game_is_currently_used_by_TheNoobBot_or_contains_traces</Id>
     </Translation>
     <Translation>
@@ -110,16 +110,20 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>New update</Text>
-      <Id>New_update</Id>
+      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>Do you want to update now</Text>
-      <Id>Do_you_want_to_update_now</Id>
+      <Text>Remote informations about this update: </Text>
+      <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>Update</Text>
-      <Id>Update</Id>
+      <Text>Do you want to update TheNoobBot now?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, an update is available</Text>
+      <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
       <Text>The game has an suspect activity, it is recommended to closing the game and tnb for your account security. Click on "Yes" to close tnb</Text>

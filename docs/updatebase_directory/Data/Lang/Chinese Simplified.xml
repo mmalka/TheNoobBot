@@ -110,16 +110,20 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>新版发布</Text>
-      <Id>New_update</Id>
+      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>现在更新吗？</Text>
-      <Id>Do_you_want_to_update_now</Id>
+      <Text>Remote informations about this update: </Text>
+      <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>更新</Text>
-      <Id>Update</Id>
+      <Text>Do you want to update TheNoobBot now ?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, an update is available</Text>
+      <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
       <Text>游戏中有一个可疑的活动，为了您的帐号安全建议关闭游戏和 TNB。点击“是”关闭 TNB</Text>

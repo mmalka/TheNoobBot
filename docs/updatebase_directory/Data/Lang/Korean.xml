@@ -110,16 +110,20 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>새로운 업데이트가 있습니다</Text>
-      <Id>New_update</Id>
+      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>지금 업데이트 하시겠습니까?</Text>
-      <Id>Do_you_want_to_update_now</Id>
+      <Text>Remote informations about this update: </Text>
+      <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>업데이트</Text>
-      <Id>Update</Id>
+      <Text>Do you want to update TheNoobBot now ?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, an update is available</Text>
+      <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
       <Text>게임에서 의심가는 행동이 있습니다. TNB의 계정 보안으로 인해 게임이 닫혔으므로 "예"를 눌러 TNB를 종료하세요</Text>

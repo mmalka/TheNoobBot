@@ -507,19 +507,15 @@ namespace The_Noob_Bot
                             string resultDesc = Others.GetRequest(ScriptUpdate, "show=desc");
                             DialogResult dr =
                                 MessageBox.Show(
-                                    string.Format(
-                                        Translate.Get(Translate.Id.New_update) + ": \"{0}\" " + resultDesc + ". " +
-                                        Translate.Get(Translate.Id.Do_you_want_to_update_now) + "? {1}", resultReq,
-                                        Environment.NewLine), " " + Translate.Get(Translate.Id.Update) + "",
-                                    MessageBoxButtons.YesNo,
-                                    MessageBoxIcon.Question);
+                                    string.Format("{0}{1}{4}{4}{2}{4}{3}{4}{5}", Translate.Get(Translate.Id.LatestUpdateVersion), resultReq,
+                                                  Translate.Get(Translate.Id.LatestUpdateDescription), resultDesc, Environment.NewLine, Translate.Get(Translate.Id.ConfirmUpdate)),
+                                    Translate.Get(Translate.Id.LatestUpdateTitle), MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                             switch (dr)
                             {
                                 case DialogResult.Yes:
                                     Others.OpenWebBrowserOrApplication("http://thenoobbot.com/");
-                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" +
-                                                                       resultReq + ".rar");
+                                    Others.OpenWebBrowserOrApplication("http://thenoobbot.com/downloads/The_Noob_Bot-" + resultReq + ".rar");
 
                                     try
                                     {

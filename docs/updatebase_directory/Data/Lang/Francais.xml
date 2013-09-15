@@ -110,16 +110,20 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>Mise à jour disponible</Text>
-      <Id>New_update</Id>
+      <Text>La dernière version du bot disponible est: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>Voulez-vous mettre à jour TNB maintenant </Text>
-      <Id>Do_you_want_to_update_now</Id>
+      <Text>Informations complémentaires: </Text>
+      <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>Mettre à jour</Text>
-      <Id>Update</Id>
+      <Text>Voulez-vous télécharger la mise à jour ?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, mise à jour disponible</Text>
+      <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
       <Text>Le jeu a une activité suspecte. Il est recommandé de ne pas utiliser TNB tant que ce message s'affichera. Cliquez sur Oui, pour fermer TNB</Text>

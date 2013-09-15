@@ -110,16 +110,20 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>Nuovo_aggiornamento</Text>
-      <Id>New_update</Id>
+      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>Vuoi aggiornare adesso</Text>
-      <Id>Do_you_want_to_update_now</Id>
+      <Text>Remote informations about this update: </Text>
+      <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>Aggiorna</Text>
-      <Id>Update</Id>
+      <Text>Do you want to update TheNoobBot now ?</Text>
+      <Id>ConfirmUpdate</Id>
+    </Translation>
+    <Translation>
+      <Text>TheNoobBot, an update is available</Text>
+      <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
       <Text>Il gioco ha un comportamento sospetto è raccomandato sospendere il gioco e tnb per la sicurezza del tuo account. Clicca "Si"  per chiudere tnb</Text>
