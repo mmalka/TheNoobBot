@@ -114,7 +114,7 @@ namespace nManager.Wow.Helpers
             for (int i = MinIndex; i <= MaxIndex; i++)
             {
                 curRec = WoWResearchSite.FromId(i);
-                if (curRec.Record.Id != 0 && curRec.Record.Id == i)
+                if (curRec.Record.Id != 0)
                 {
                     Digsite curDigSite = new Digsite {id = (int) curRec.Record.Id, name = curRec.Name, PriorityDigsites = 1, Active = true};
                     fullList.Add(curDigSite);

@@ -27,6 +27,7 @@ namespace nManager.Wow.Helpers
                     }
                 }
             }
+            _rItemSubClassRec0 = new ItemSubClassDbcRecord();
         }
 
         // Factory function
