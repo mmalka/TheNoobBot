@@ -129,7 +129,7 @@ namespace TheNoobViewer
             // Vashjir
             // 
             this.Vashjir.Name = "Vashjir";
-            this.Vashjir.Size = new System.Drawing.Size(112, 22);
+            this.Vashjir.Size = new System.Drawing.Size(152, 22);
             this.Vashjir.Text = "Vashj\'ir";
             this.Vashjir.Click += new System.EventHandler(this.Vashjir_Click);
             // 
@@ -181,7 +181,7 @@ namespace TheNoobViewer
             this.Darkmoon.Size = new System.Drawing.Size(164, 22);
             this.Darkmoon.Text = "Darkmoon Island";
             this.Darkmoon.Click += new System.EventHandler(this.Darkmoon_Click);
-            // 
+            //
             // IsleThunder
             //
             this.IsleThunder.Name = "IsleThunder";

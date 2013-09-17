@@ -38,6 +38,7 @@ namespace meshPathVisualizer
                 for (int x = 0; x < TilesX; x++)
                 {
                     var file = GetMinimapFileByCoords(World, StartTileX + x, StartTileY + y, UnderWater);
+                    System.Console.WriteLine(file);
                     Image tile;
                     try
                     {

@@ -47,8 +47,6 @@ namespace TheNoobViewer
             ZoomCombo.Items.Add("Zoom: 25%");
             ZoomCombo.Items.Add("Zoom: 15%");
             ZoomCombo.SelectedIndex = 1;
-            if (!MpqManager.Initialize())
-                Environment.Exit(1);
             Hops = new List<Hop>();
             zoom = 1;
             path = Application.StartupPath;

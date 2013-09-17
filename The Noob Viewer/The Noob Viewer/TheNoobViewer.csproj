@@ -70,10 +70,12 @@
     <Compile Include="DBC.cs" />
     <Compile Include="Hop.cs" />
     <Compile Include="MinimapImage.cs" />
+    <Compile Include="Mpq.cs" />
     <Compile Include="MpqManager.cs" />
     <Compile Include="Pather.cs" />
     <Compile Include="PathImage.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="StormLib.cs" />
     <Compile Include="TheNoobViewer.cs">
       <SubType>Form</SubType>
     </Compile>
