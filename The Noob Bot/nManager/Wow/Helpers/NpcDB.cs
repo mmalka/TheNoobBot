@@ -144,36 +144,32 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static Npc GetNpcNearby(Npc.NpcType type)
+        public static Npc GetNpcNearby(Npc.NpcType type, bool ignoreRadiusSettings = false)
         {
             try
             {
-                Npc.FactionType faction =
-                    (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
-                return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId,
-                                    ObjectManager.ObjectManager.Me.Position);
+                Npc.FactionType faction = (Npc.FactionType) Enum.Parse(typeof (Npc.FactionType), ObjectManager.ObjectManager.Me.PlayerFaction);
+                return GetNpcNearby(type, faction, (Enums.ContinentId) Usefuls.ContinentId, ObjectManager.ObjectManager.Me.Position, ignoreRadiusSettings);
             }
             catch (Exception ex)
             {
-                Logging.WriteError("NpcDB > GetNpcNearby(Npc.NpcType type): " + ex);
+                Logging.WriteError("NpcDB > GetNpcNearby(Npc.NpcType type, bool ignoreRadiusSettings = false): " + ex);
                 return new Npc();
             }
         }
 
-        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId,
-                                       Point currentPosition)
+        public static Npc GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition, bool ignoreRadiusSettings = false)
         {
             try
             {
                 Npc npcTemp = new Npc();
                 foreach (Npc npc in ListNpc)
                 {
-                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type ||
-                        npc.ContinentId != continentId) continue;
-                    if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) &&
-                        npcTemp.Position.X != 0) continue;
-                    if (npc.Position.DistanceTo(currentPosition) <=
-                        nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
+                    if ((npc.Faction != faction && npc.Faction != Npc.FactionType.Neutral) || npc.Type != type || npc.ContinentId != continentId)
+                        continue;
+                    if (!(npcTemp.Position.DistanceTo(currentPosition) > npc.Position.DistanceTo(currentPosition)) && npcTemp.Position.X != 0)
+                        continue;
+                    if (ignoreRadiusSettings || npc.Position.DistanceTo(currentPosition) <= nManagerSetting.CurrentSetting.MaxDistanceToGoToMailboxesOrNPCs)
                         npcTemp = npc;
                 }
                 return npcTemp;
@@ -181,7 +177,7 @@ namespace nManager.Wow.Helpers
             catch (Exception ex)
             {
                 Logging.WriteError(
-                    "NpcDB > GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition): " +
+                    "NpcDB > GetNpcNearby(Npc.NpcType type, Npc.FactionType faction, Enums.ContinentId continentId, Point currentPosition, bool ignoreRadiusSettings = false): " +
                     ex);
                 return new Npc();
             }
