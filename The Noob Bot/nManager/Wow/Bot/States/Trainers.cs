@@ -30,6 +30,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private uint _lastLevel;
+        public bool Rdy = true;
 
         public override bool NeedToRun
         {
@@ -45,7 +46,17 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                // Need Trainers
+                if (nManagerSetting.CurrentSetting.TrainNewSkills && Rdy)
+                {
+                    Logging.Write("You have activated Train New Skills feature, but it's not yet supported, will be added back soon.");
+                    Rdy = false;
+                }
+                return false;
+                // Real code start here:
+                if (!nManagerSetting.CurrentSetting.TrainNewSkills)
+                    return false;
+
+                // Update level
                 if (_lastLevel == 0)
                     _lastLevel = ObjectManager.ObjectManager.Me.Level;
 
