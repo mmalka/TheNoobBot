@@ -28,7 +28,19 @@ namespace Test_Product
             try
             {
                 // Update spell list
-                SpellManager.UpdateSpellBook();
+                //SpellManager.UpdateSpellBook();
+                // Enum parser !
+                /*var dict = new Dictionary<int, string>();
+                foreach (var name in Enum.GetNames(typeof(SkillLine)))
+                {
+                    dict.Add((int)Enum.Parse(typeof(SkillLine), name), name);
+                }
+                string str = null;
+                foreach (var result in dict)
+                {
+                    str = str + result.Value + " = " + result.Key + ", ";
+                }
+                Logging.Write(str);*/
                 /*
                 var myConn =
                     new MySqlConnection(
