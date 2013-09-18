@@ -49,6 +49,319 @@ namespace nManager.Wow.Bot.States
         private Npc _teacherOfJewelcrafting = new Npc();
         private Npc _teacherOfLeatherworking = new Npc();
 
+        private static bool IsNewSkillAvailable(int value, int maxValue, SkillLine skillLine, bool hardCheck = false)
+        {
+            uint price = 0;
+            uint minLevel = 0;
+            uint maxLevelLeftBeforeLearn = 15;
+            if (hardCheck)
+                maxLevelLeftBeforeLearn = 5;
+            // Note: Price and Levels of skills are hard-coded. But verified ingame with Friendly reputation to Orgrimmar.
+
+            switch (maxValue)
+            {
+                case 0: // To Learn Apprentice
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 10;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 10;
+                            minLevel = 5;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 1000;
+                            minLevel = 20;
+                            break;
+                        case SkillLine.Cooking:
+                        case SkillLine.FirstAid:
+                            price = 95;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.Fishing:
+                            price = 95;
+                            minLevel = 5;
+                            break;
+                        case SkillLine.Riding:
+                            price = 38000;
+                            minLevel = 20;
+                            break;
+                    }
+                    break;
+                case 75: // To Learn Journeyman
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 475;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 475;
+                            minLevel = 10;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 1000;
+                            minLevel = 20;
+                            break;
+                        case SkillLine.Cooking:
+                        case SkillLine.FirstAid:
+                        case SkillLine.Fishing:
+                            price = 475;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.Riding:
+                            price = 475000;
+                            minLevel = 40;
+                            break;
+                    }
+                    break;
+                case 150: // To Learn Expert
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 4750;
+                            minLevel = 10;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 4750;
+                            minLevel = 20;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 1000;
+                            minLevel = 20;
+                            break;
+                        case SkillLine.Cooking:
+                        case SkillLine.FirstAid:
+                        case SkillLine.Fishing:
+                            price = 9500;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.Riding:
+                            price = 2375000;
+                            minLevel = 60;
+                            break;
+                    }
+                    break;
+                case 225: // To Learn Artisan
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 47500;
+                            minLevel = 25;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 47500;
+                            minLevel = 35;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 25000;
+                            minLevel = 35;
+                            break;
+                        case SkillLine.Cooking:
+                            price = 23750;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.FirstAid:
+                            price = 23750;
+                            minLevel = 35;
+                            break;
+                        case SkillLine.Fishing:
+                            price = 100;
+                            minLevel = 10;
+                            break;
+                        case SkillLine.Riding:
+                            // Todo: Check additionals Riding spells.
+                            price = 47500000;
+                            minLevel = 70;
+                            break;
+                    }
+                    break;
+                case 300: // To Learn Master
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 95000;
+                            minLevel = 40;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 95000;
+                            minLevel = 50;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 100000;
+                            minLevel = 50;
+                            break;
+                        case SkillLine.Cooking:
+                        case SkillLine.Fishing:
+                            price = 95000;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.FirstAid:
+                            price = 95000;
+                            minLevel = 50;
+                            break;
+                        case SkillLine.Riding:
+                            // Todo: Check additionals Riding spells.
+                            price = 47500000;
+                            minLevel = 80;
+                            break;
+                    }
+                    break;
+                case 375: // To Learn Grand Master
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                            price = 332500;
+                            minLevel = 55;
+                            break;
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 332500;
+                            minLevel = 65;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 150000;
+                            minLevel = 65;
+                            break;
+                        case SkillLine.Cooking:
+                        case SkillLine.Fishing:
+                            price = 332500;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.FirstAid:
+                            price = 142500;
+                            minLevel = 65;
+                            break;
+                        case SkillLine.Riding:
+                            // Todo: Check additionals Riding spells.
+                            return false;
+                    }
+                    break;
+                case 450: // To Learn Illustrious Grand Master
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 475000;
+                            minLevel = 75;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 250000;
+                            minLevel = 75;
+                            break;
+                        case SkillLine.Cooking:
+                            price = 475000;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.FirstAid:
+                            price = 237500;
+                            minLevel = 75;
+                            break;
+                        case SkillLine.Fishing:
+                            return false;
+                    }
+                    break;
+                case 525: // To Learn Zen Master
+                    switch (skillLine)
+                    {
+                        case SkillLine.Herbalism:
+                        case SkillLine.Mining:
+                        case SkillLine.Skinning:
+                        case SkillLine.Leatherworking:
+                        case SkillLine.Alchemy:
+                        case SkillLine.Tailoring:
+                        case SkillLine.Enchanting:
+                        case SkillLine.Engineering:
+                        case SkillLine.Inscription:
+                        case SkillLine.Blacksmithing:
+                        case SkillLine.Jewelcrafting:
+                            price = 570000;
+                            minLevel = 80;
+                            break;
+                        case SkillLine.Archaeology:
+                            price = 600000;
+                            minLevel = 80;
+                            break;
+                        case SkillLine.Cooking:
+                            price = 570000;
+                            minLevel = 1;
+                            break;
+                        case SkillLine.FirstAid:
+                            price = 285000;
+                            minLevel = 80;
+                            break;
+                    }
+                    break;
+                case 600: // Nothing to learn.
+                    return false;
+            }
+            return maxValue - maxLevelLeftBeforeLearn <= value && ObjectManager.ObjectManager.Me.Level >= minLevel && Usefuls.GetMoneyCopper >= price;
+        }
+
         public override bool NeedToRun
         {
             get
@@ -70,8 +383,6 @@ namespace nManager.Wow.Bot.States
                 }
                 return false;
 
-                //TODO: Find price of newest skill available. Find level req of newest skill available.
-                //TODO: Replace checks like "maxValue < 600 && maxValue - 15 <= value" by a function that will return "true/false" with (value, maxValue, Skill) as parameter, it will check everything (price, etc).
                 //TODO: Please keep the function as is, it's still a work-in-progress, you can talk to me about it on the forum, but I have ideas about what to optimize/changes, etc yet, so better wait a pre-final version.
 
                 // Real code start here:
@@ -86,13 +397,13 @@ namespace nManager.Wow.Bot.States
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Archaeology);
                     value = Skill.GetValue(SkillLine.Archaeology);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Archaeology, true))
                     {
                         // If we pass into this if and don't find a Npc with ignoreRadiusSettings true, we wont find one with the next if, 
                         // so we don't need to check 2 times the NpcDb for nothing.
                         _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (maxValue < 600 && maxValue - 15 <= value)
+                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Archaeology))
                     {
                         _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
                     }
@@ -103,11 +414,11 @@ namespace nManager.Wow.Bot.States
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Fishing);
                     value = Skill.GetValue(SkillLine.Fishing);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Fishing, true))
                     {
                         _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (maxValue < 600 && maxValue - 15 <= value)
+                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Fishing))
                     {
                         _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
                     }
@@ -119,11 +430,11 @@ namespace nManager.Wow.Bot.States
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Herbalism);
                     value = Skill.GetValue(SkillLine.Herbalism);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Herbalism, true))
                     {
                         _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (maxValue < 600 && maxValue - 15 <= value)
+                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Herbalism))
                     {
                         _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
                     }
@@ -135,11 +446,11 @@ namespace nManager.Wow.Bot.States
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Mining);
                     value = Skill.GetValue(SkillLine.Mining);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining, true))
                     {
                         _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (maxValue < 600 && maxValue - 15 <= value)
+                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
                     {
                         _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                     }
@@ -153,11 +464,11 @@ namespace nManager.Wow.Bot.States
                     // Note: Product like DamageDealer (ie. Product not intended to be AFKable: DD, Heal, Track) does not load the TrainNewSkill class at all.
                     maxValue = Skill.GetMaxValue(SkillLine.Skinning);
                     value = Skill.GetValue(SkillLine.Skinning);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Skinning, true))
                     {
                         _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (maxValue < 600 && maxValue - 15 <= value)
+                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Skinning))
                     {
                         _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
                     }
@@ -184,11 +495,11 @@ namespace nManager.Wow.Bot.States
                 // checks Mining
                 maxValue = Skill.GetMaxValue(SkillLine.Mining);
                 value = Skill.GetValue(SkillLine.Mining);
-                if (FakeSettingsOnlyTrainCurrentlyUsedSkills && maxValue < 600 && maxValue - 5 <= value)
+                if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining, true))
                 {
                     _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
                 }
-                else if (maxValue < 600 && maxValue - 15 <= value)
+                else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
                 {
                     _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                 }
