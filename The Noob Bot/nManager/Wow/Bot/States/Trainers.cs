@@ -403,7 +403,7 @@ namespace nManager.Wow.Bot.States
                         // so we don't need to check 2 times the NpcDb for nothing.
                         _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Archaeology))
+                    else if (IsNewSkillAvailable(value, maxValue, SkillLine.Archaeology))
                     {
                         _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
                     }
@@ -418,7 +418,7 @@ namespace nManager.Wow.Bot.States
                     {
                         _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Fishing))
+                    else if (IsNewSkillAvailable(value, maxValue, SkillLine.Fishing))
                     {
                         _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
                     }
@@ -434,7 +434,7 @@ namespace nManager.Wow.Bot.States
                     {
                         _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Herbalism))
+                    else if (IsNewSkillAvailable(value, maxValue, SkillLine.Herbalism))
                     {
                         _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
                     }
@@ -450,7 +450,7 @@ namespace nManager.Wow.Bot.States
                     {
                         _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
+                    else if (IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
                     {
                         _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                     }
@@ -468,7 +468,7 @@ namespace nManager.Wow.Bot.States
                     {
                         _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer, ignoreRadiusSettings: true);
                     }
-                    else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Skinning))
+                    else if (IsNewSkillAvailable(value, maxValue, SkillLine.Skinning))
                     {
                         _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
                     }
@@ -495,11 +495,7 @@ namespace nManager.Wow.Bot.States
                 // checks Mining
                 maxValue = Skill.GetMaxValue(SkillLine.Mining);
                 value = Skill.GetValue(SkillLine.Mining);
-                if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining, true))
-                {
-                    _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
-                }
-                else if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
+                if (IsNewSkillAvailable(value, maxValue, SkillLine.Mining))
                 {
                     _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                 }
