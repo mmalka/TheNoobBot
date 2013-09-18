@@ -53,7 +53,7 @@ namespace nManager.Wow.Bot.States
         {
             uint price = 0;
             uint minLevel = 0;
-            uint maxLevelLeftBeforeLearn = 15;
+            int maxLevelLeftBeforeLearn = 15;
             if (hardCheck)
                 maxLevelLeftBeforeLearn = 5;
             // Note: Price and Levels of skills are hard-coded. But verified ingame with Friendly reputation to Orgrimmar.
@@ -490,8 +490,9 @@ namespace nManager.Wow.Bot.States
                 _teacherOfBlacksmithing = new Npc();
                 _teacherOfJewelcrafting = new Npc();
                 _teacherOfLeatherworking = new Npc();
-
                 /* Model */
+                // Todo: Copy paste the check below for every skills from the list above.
+                /*
                 // checks Mining
                 maxValue = Skill.GetMaxValue(SkillLine.Mining);
                 value = Skill.GetValue(SkillLine.Mining);
@@ -499,113 +500,20 @@ namespace nManager.Wow.Bot.States
                 {
                     _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                 }
+                */
 
-                return false;
+                return _teacherOfAlchemy.Entry > 0 || _teacherOfArchaeology.Entry > 0 || _teacherOfBlacksmithing.Entry > 0 || _teacherOfCooking.Entry > 0 ||
+                       _teacherOfEnchanting.Entry > 0 || _teacherOfEngineering.Entry > 0 || _teacherOfFirstAid.Entry > 0 || _teacherOfFishing.Entry > 0 ||
+                       _teacherOfHerbalism.Entry > 0 || _teacherOfInscription.Entry > 0 || _teacherOfJewelcrafting.Entry > 0 || _teacherOfLeatherworking.Entry > 0 ||
+                       _teacherOfMining.Entry > 0 || _teacherOfRiding.Entry > 0 || _teacherOfSkinning.Entry > 0 || _teacherOfTailoring.Entry > 0;
             }
         }
 
         public override void Run()
         {
-            Npc trainer = null;
-            // Herbalism:
-            if (NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer).Entry > 0 &&
-                nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
-                (Skill.GetMaxValue(SkillLine.Herbalism) - Skill.GetValue(SkillLine.Herbalism)) <= 10 &&
-                Skill.GetValue(SkillLine.Herbalism) > 0)
-                trainer = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
-            // Mining:
-            if (NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer).Entry > 0 &&
-                nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && nManagerSetting.CurrentSetting.TrainNewSkills &&
-                (Skill.GetMaxValue(SkillLine.Mining) - Skill.GetValue(SkillLine.Mining)) <= 10 &&
-                Skill.GetValue(SkillLine.Mining) > 0 && trainer == null)
-                NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
-
-            if (trainer == null)
-                return;
-
-            // Go To Pos Trainer:
-            MovementManager.StopMove();
-            Logging.Write("Go to trainer");
-            // Mounting Mount
-            MountTask.Mount();
-
-            // Find path
-            List<Point> points = new List<Point>();
-            if ((trainer.Position.Type.ToLower() == "flying") && nManagerSetting.CurrentSetting.FlyingMountName != "")
-            {
-                points.Add(new Point(trainer.Position));
-            }
-            else if ((trainer.Position.Type.ToLower() == "swimming") &&
-                     nManagerSetting.CurrentSetting.AquaticMountName != "" && Usefuls.IsSwimming)
-            {
-                points.Add(trainer.Position);
-            }
-            else
-            {
-                points = PathFinder.FindPath(trainer.Position);
-            }
-
-            MovementManager.Go(points);
-            int timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 5000;
-            while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                   !(ObjectManager.ObjectManager.Me.InCombat &&
-                     !(ObjectManager.ObjectManager.Me.IsMounted &&
-                       (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                   !ObjectManager.ObjectManager.Me.IsDeadMe)
-            {
-                if (Others.Times > timer)
-                    MovementManager.StopMove();
-                if (trainer.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) <= 3.8f)
-                    MovementManager.StopMove();
-                Thread.Sleep(100);
-            }
-
-            if ((ObjectManager.ObjectManager.Me.InCombat &&
-                 !(ObjectManager.ObjectManager.Me.IsMounted &&
-                   (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
-                return;
-
-            // GoTo trainer:
-            List<WoWUnit> tListUnit = ObjectManager.ObjectManager.GetWoWUnitTrainer();
-            if (tListUnit.Count > 0)
-            {
-                WoWUnit tTrainer = ObjectManager.ObjectManager.GetNearestWoWUnit(tListUnit, trainer.Position);
-
-                if (tTrainer.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 4)
-                {
-                    points = PathFinder.FindPath(tTrainer.Position);
-                    MovementManager.Go(points);
-                    timer = Others.Times + ((int) Math.DistanceListPoint(points)/3*1000) + 5000;
-                    while (MovementManager.InMovement && Products.Products.IsStarted && Usefuls.InGame &&
-                           !(ObjectManager.ObjectManager.Me.InCombat &&
-                             !(ObjectManager.ObjectManager.Me.IsMounted &&
-                               (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))) &&
-                           !ObjectManager.ObjectManager.Me.IsDeadMe)
-                    {
-                        if (tTrainer.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 5)
-                            MovementManager.StopMove();
-                        if (Others.Times > timer)
-                            MovementManager.StopMove();
-                        Thread.Sleep(100);
-                    }
-                }
-                if (tTrainer.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 6)
-                {
-                    Logging.Write("Training " + trainer.Type);
-
-                    Interact.InteractWith(tTrainer.GetBaseAddress);
-                    Thread.Sleep(5000);
-                    Interact.InteractWith(tTrainer.GetBaseAddress);
-                    Trainer.TrainingSpell();
-                    Thread.Sleep(5000);
-                    // Update spell list
-                    SpellManager.UpdateSpellBook();
-                }
-            }
-            else
-            {
-                Logging.Write("Trainer " + trainer.Type + " no found");
-            }
+            // Todo: Calcul the best way to reach all the target in the less distance.
+            // Todo: Loop each target:
+            // Todo: Use FindTarget() + Interact.InteractWith(target) + Trainer.TrainingSpell() + SpellManager.UpdateSpellBook()
         }
     }
 }
