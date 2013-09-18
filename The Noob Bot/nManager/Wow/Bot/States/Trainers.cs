@@ -196,16 +196,13 @@ namespace nManager.Wow.Bot.States
                             minLevel = 35;
                             break;
                         case SkillLine.Cooking:
+                        case SkillLine.Fishing:
                             price = 23750;
                             minLevel = 1;
                             break;
                         case SkillLine.FirstAid:
                             price = 23750;
                             minLevel = 35;
-                            break;
-                        case SkillLine.Fishing:
-                            price = 100;
-                            minLevel = 10;
                             break;
                         case SkillLine.Riding:
                             // Todo: Check additionals Riding spells.
