@@ -1,5 +1,18 @@
 ﻿namespace nManager.Wow.Enums
 {
+    public enum SkillRank
+    {
+        None = 0,
+        Apprentice = 75,
+        Journeyman = 150,
+        Expert = 225,
+        Artisan = 300,
+        Master = 375,
+        GrandMaster = 450,
+        IllustriousGrandMaster = 525,
+        ZenMaster = 600,
+    }
+
     public enum SkillLine
     {
         None = 0,
