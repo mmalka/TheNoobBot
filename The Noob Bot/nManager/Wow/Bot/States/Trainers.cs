@@ -426,7 +426,7 @@ namespace nManager.Wow.Bot.States
 
                 // checks Herbalism
                 if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
-                    (nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder")))
+                    (nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder" || Products.Products.ProductName == "Quester")))
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Herbalism);
                     value = Skill.GetValue(SkillLine.Herbalism);
@@ -442,7 +442,7 @@ namespace nManager.Wow.Bot.States
 
                 // checks Mining
                 if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
-                    (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder")))
+                    (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder" || Products.Products.ProductName == "Quester")))
                 {
                     maxValue = Skill.GetMaxValue(SkillLine.Mining);
                     value = Skill.GetValue(SkillLine.Mining);
