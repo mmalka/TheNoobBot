@@ -32,13 +32,13 @@ namespace nManager.Wow.Bot.States
         private bool _rdy = true;
         private static uint _whishListSum;
         private static uint _lastPriceAddedToWhishList;
-        public bool FakeSettingsOnlyTrainCurrentlyUsedSkills = false;
-        public bool FakeSettingsTrainMountingCapacity = false;
         private static uint _primarySkillsSlotOnWhishList;
         private static uint _lastPrimarySkillsWhishList;
-        public static bool FakeSettingsOnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum = false; // (Capacity 1 price + Capacity 2 price) * 2 <= Me.Money
-        public static bool FakeSettingsOnlyBecomeApprenticeOfGatheringSkillsIfSlotAvailableWhileQuesting = false;
-        public static bool FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuestingOrIfNeededByProduct = false;
+        public static bool FakeSettingsOnlyTrainCurrentlyUsedSkills = true;
+        public static bool FakeSettingsTrainMountingCapacity = true;
+        public static bool FakeSettingsOnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum = true;
+        public static bool FakeSettingsBecomeApprenticeIfNeededByProduct = true;
+        public static bool FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting = false;
 
         private static readonly Spell Mining = new Spell("Mining");
         private static readonly Spell Alchemy = new Spell("Alchemy");
@@ -69,9 +69,13 @@ namespace nManager.Wow.Bot.States
         private Npc _teacherOfJewelcrafting = new Npc();
         private Npc _teacherOfLeatherworking = new Npc();
         private List<Npc> _listOfTeachers = new List<Npc>();
+        private static readonly List<Npc> TeacherFoundNoSpam = new List<Npc>(); 
 
         private static void TeacherFound(int value, SkillRank skillRank, SkillLine skillLine, Npc teacher)
         {
+            if (TeacherFoundNoSpam.Contains(teacher))
+                return;
+            TeacherFoundNoSpam.Add(teacher);
             SkillRank nextRank = skillRank + 75;
             string current = "You don't know this skill yet";
             if (skillRank > SkillRank.None)
@@ -127,16 +131,17 @@ namespace nManager.Wow.Bot.States
                         case SkillLine.Herbalism:
                         case SkillLine.Mining:
                         case SkillLine.Skinning:
-                            if (!FakeSettingsOnlyBecomeApprenticeOfGatheringSkillsIfSlotAvailableWhileQuesting || PrimarySkillSlotAvailable() == 0)
+                            if (!FakeSettingsBecomeApprenticeIfNeededByProduct || PrimarySkillSlotAvailable() == 0)
                                 return false;
                             if ((skillLine == SkillLine.Mining &&
-                                 (!nManagerSetting.CurrentSetting.ActivateVeinsHarvesting || Products.Products.ProductName != "Quester" ||
-                                  Products.Products.ProductName != "Gatherer")) ||
+                                 (!nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
+                                  (Products.Products.ProductName != "Quester" || Products.Products.ProductName != "Gatherer"))) ||
                                 (skillLine == SkillLine.Herbalism &&
-                                 (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting || Products.Products.ProductName == "Quester" ||
-                                  Products.Products.ProductName == "Gatherer")) ||
+                                 (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
+                                  (Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Gatherer"))) ||
                                 (skillLine == SkillLine.Skinning &&
-                                 (!nManagerSetting.CurrentSetting.ActivateBeastSkinning || Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Grinder")))
+                                 (!nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
+                                  (Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Grinder"))))
                                 return false;
                             primarySkillToLearn = true;
                             price = 10;
@@ -159,22 +164,22 @@ namespace nManager.Wow.Bot.States
                         minLevel = 5;
                         break;*/
                         case SkillLine.Archaeology:
-                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuestingOrIfNeededByProduct || Products.Products.ProductName != "Archaeologist" ||
-                                Products.Products.ProductName != "Quester")
-                                return false;
+                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting || Products.Products.ProductName != "Quester")
+                                if (!FakeSettingsBecomeApprenticeIfNeededByProduct || Products.Products.ProductName != "Archaeologist")
+                                return false; 
                             price = 1000;
                             minLevel = 20;
                             break;
                         case SkillLine.Cooking:
                         case SkillLine.FirstAid:
-                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuestingOrIfNeededByProduct || Products.Products.ProductName != "Quester")
+                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting || Products.Products.ProductName != "Quester")
                                 return false;
                             price = 95;
                             minLevel = 1;
                             break;
                         case SkillLine.Fishing:
-                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuestingOrIfNeededByProduct || Products.Products.ProductName != "Fisherbot" ||
-                                Products.Products.ProductName != "Quester")
+                            if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting || Products.Products.ProductName != "Quester")
+                                if (!FakeSettingsBecomeApprenticeIfNeededByProduct || Products.Products.ProductName != "Fisherbot")
                                 return false;
                             price = 95;
                             minLevel = 5;
@@ -739,6 +744,7 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(1000);
                     needUpdate = true;
                     _listOfTeachers.Remove(teacher);
+                    TeacherFoundNoSpam.Remove(teacher);
                 }
             }
             if (needUpdate)
