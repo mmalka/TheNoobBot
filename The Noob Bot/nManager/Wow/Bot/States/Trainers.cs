@@ -83,14 +83,15 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (nManagerSetting.CurrentSetting.TrainNewSkills && _rdy)
+                if (Information.Version != "DevVersionRestrict")
                 {
-                    Logging.Write("You have activated Train New Skills feature, but it's not yet supported, will be added back soon.");
-                    _rdy = false;
+                    if (nManagerSetting.CurrentSetting.TrainNewSkills && _rdy)
+                    {
+                        Logging.Write("You have activated Train New Skills feature, but it's not yet supported, will be added back soon.");
+                        _rdy = false;
+                    }
+                    return false;
                 }
-                return false;
-
-                //TODO: Please keep the function as is, it's still a work-in-progress, you can talk to me about it on the forum, but I have ideas about what to optimize/changes, etc yet, so better wait a pre-final version.
 
                 // Real code start here:
                 if (!nManagerSetting.CurrentSetting.TrainNewSkills)
@@ -280,10 +281,10 @@ namespace nManager.Wow.Bot.States
                 // if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
                 return _listOfTeachers.Count > 0;
 
-                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes,
-                // also, TheNoobBot is not able -yet- to use these product. I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it, keeping all the craft, so it will use them in next recipe,
-                // and go AH if more recipes are needed. A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com.
-                // For the moment, you know the code is here !
+                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
+                // I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it.
+                // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
+                // For the moment, the code stays here, ready to use anytime we need it.
                 return false;
                 /* Skills to add */
                 _teacherOfAlchemy = new Npc();
@@ -296,10 +297,8 @@ namespace nManager.Wow.Bot.States
                 _teacherOfBlacksmithing = new Npc();
                 _teacherOfJewelcrafting = new Npc();
                 _teacherOfLeatherworking = new Npc();
-                /* Model */
-                // Todo: Copy paste the check below for every skills from the list above.
 
-                // checks Mining
+                // checks Mining - example
                 skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Mining);
                 value = Skill.GetValue(SkillLine.Mining);
                 if (IsNewSkillAvailable(value, skillRank, SkillLine.Mining))
@@ -325,31 +324,77 @@ namespace nManager.Wow.Bot.States
 
         public override void Run()
         {
-            bool needUpdate = false;
-            if (_listOfTeachers.Count > 0)
+            if (_listOfTeachers.Count <= 0) return;
+            Npc bestTeacher = new Npc();
+            for (int i = 0; i < _listOfTeachers.Count; i++)
             {
-                Npc teacher = _listOfTeachers[0];
-                uint baseAddress = MovementManager.FindTarget(ref teacher);
-                if (MovementManager.InMovement)
-                    return;
-                if (baseAddress == 0 && teacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
-                    NpcDB.DelNpc(teacher);
-                else
+                Npc teacher = _listOfTeachers[i];
+                if (bestTeacher.Entry > 0)
                 {
-                    Interact.InteractWith(baseAddress);
-                    Thread.Sleep(500);
-                    Trainer.TrainingSpell();
-                    Thread.Sleep(1000);
-                    needUpdate = true;
-                    _listOfTeachers.Remove(teacher);
-                    TeacherFoundNoSpam.Remove(teacher);
+                    // priority checks first
+                    switch (Products.Products.ProductName)
+                    {
+                        case "Gatherer":
+                            if (bestTeacher.Type == Npc.NpcType.MiningTrainer && teacher.Type != Npc.NpcType.RidingTrainer)
+                                continue;
+                            if (bestTeacher.Type == Npc.NpcType.HerbalismTrainer && teacher.Type != Npc.NpcType.RidingTrainer && teacher.Type != Npc.NpcType.MiningTrainer)
+                                continue;
+                            if (bestTeacher.Type == Npc.NpcType.SkinningTrainer && teacher.Type != Npc.NpcType.RidingTrainer && teacher.Type != Npc.NpcType.MiningTrainer &&
+                                teacher.Type != Npc.NpcType.HerbalismTrainer)
+                                continue;
+                            if (teacher.Type == Npc.NpcType.RidingTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.MiningTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.HerbalismTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer && bestTeacher.Type != Npc.NpcType.MiningTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.SkinningTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer && bestTeacher.Type != Npc.NpcType.MiningTrainer &&
+                                     bestTeacher.Type != Npc.NpcType.HerbalismTrainer)
+                                bestTeacher = teacher;
+                            break;
+                        case "Quester":
+                        case "Grinder":
+                            if (bestTeacher.Type == Npc.NpcType.SkinningTrainer && teacher.Type != Npc.NpcType.RidingTrainer)
+                                continue;
+                            if (bestTeacher.Type == Npc.NpcType.MiningTrainer && teacher.Type != Npc.NpcType.RidingTrainer && teacher.Type != Npc.NpcType.SkinningTrainer)
+                                continue;
+                            if (bestTeacher.Type == Npc.NpcType.HerbalismTrainer && teacher.Type != Npc.NpcType.RidingTrainer && teacher.Type != Npc.NpcType.SkinningTrainer &&
+                                teacher.Type != Npc.NpcType.MiningTrainer)
+                                continue;
+                            if (teacher.Type == Npc.NpcType.RidingTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.SkinningTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.MiningTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer && bestTeacher.Type != Npc.NpcType.SkinningTrainer)
+                                bestTeacher = teacher;
+                            else if (teacher.Type == Npc.NpcType.HerbalismTrainer && bestTeacher.Type != Npc.NpcType.RidingTrainer && bestTeacher.Type != Npc.NpcType.SkinningTrainer &&
+                                     bestTeacher.Type != Npc.NpcType.MiningTrainer)
+                                bestTeacher = teacher;
+                            break;
+                    }
+                    if (bestTeacher == teacher)
+                        continue; // We just set a best from priority checks, so distance check is not important anymore
+                    if (ObjectManager.ObjectManager.Me.Position.DistanceTo(teacher.Position) < ObjectManager.ObjectManager.Me.Position.DistanceTo(bestTeacher.Position))
+                        bestTeacher = teacher; // We do not have priority between teacher and the actual bestTeacher, so we use distance instead
                 }
+                else
+                    bestTeacher = teacher;
             }
-            if (needUpdate)
-                SpellManager.UpdateSpellBook();
 
-            // Todo: Calcul the best way to reach all the target in the less distance.
-            // Note: Not sure about how works the "InMovement => Return" stuff with a state. Will it ask the bot to continue others tasks .. ?
+            uint baseAddress = MovementManager.FindTarget(ref bestTeacher);
+            if (MovementManager.InMovement)
+                return;
+            if (baseAddress == 0 && bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
+                NpcDB.DelNpc(bestTeacher);
+            else
+            {
+                Interact.InteractWith(baseAddress);
+                Thread.Sleep(500);
+                Trainer.TrainingSpell();
+                Thread.Sleep(1000);
+                TeacherFoundNoSpam.Remove(bestTeacher);
+                SpellManager.UpdateSpellBook();
+            }
         }
 
         private static void TeacherFound(int value, SkillRank skillRank, SkillLine skillLine, Npc teacher)
