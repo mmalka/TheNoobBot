@@ -68,6 +68,7 @@ namespace nManager.Wow.Bot.States
         private Npc _teacherOfBlacksmithing = new Npc();
         private Npc _teacherOfJewelcrafting = new Npc();
         private Npc _teacherOfLeatherworking = new Npc();
+        private List<Npc> _listOfTeachers = new List<Npc>();
 
         private static void TeacherFound(int value, SkillRank skillRank, SkillLine skillLine, Npc teacher)
         {
@@ -152,11 +153,11 @@ namespace nManager.Wow.Bot.States
                             return false;
                             // We wont learn Primary skills that are not gathering skills.
                             /*if (PrimarySkillSlotAvailable() == 0)
-                                return false;
-                            primarySkillToLearn = true;
-                            price = 10;
-                            minLevel = 5;
-                            break;*/
+                            return false;
+                        primarySkillToLearn = true;
+                        price = 10;
+                        minLevel = 5;
+                        break;*/
                         case SkillLine.Archaeology:
                             if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuestingOrIfNeededByProduct || Products.Products.ProductName != "Archaeologist" ||
                                 Products.Products.ProductName != "Quester")
@@ -515,6 +516,7 @@ namespace nManager.Wow.Bot.States
                 _teacherOfBlacksmithing = new Npc();
                 _teacherOfJewelcrafting = new Npc();
                 _teacherOfLeatherworking = new Npc();
+                _listOfTeachers = new List<Npc>();
 
                 // checks Archaeology
                 if (!FakeSettingsOnlyTrainCurrentlyUsedSkills || Products.Products.ProductName == "Archaeologist")
@@ -532,7 +534,10 @@ namespace nManager.Wow.Bot.States
                         _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
                     }
                     if (_teacherOfArchaeology.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfArchaeology);
                         TeacherFound(value, skillRank, SkillLine.Archaeology, _teacherOfArchaeology);
+                    }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
@@ -552,7 +557,10 @@ namespace nManager.Wow.Bot.States
                         _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
                     }
                     if (_teacherOfFishing.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfFishing);
                         TeacherFound(value, skillRank, SkillLine.Fishing, _teacherOfFishing);
+                    }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
@@ -574,7 +582,10 @@ namespace nManager.Wow.Bot.States
                         _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                     }
                     if (_teacherOfMining.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfMining);
                         TeacherFound(value, skillRank, SkillLine.Mining, _teacherOfMining);
+                    }
                     else
                     {
                         _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
@@ -589,7 +600,7 @@ namespace nManager.Wow.Bot.States
                     (nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
                      (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder" || Products.Products.ProductName == "Quester")))
                 {
-                    skillRank = (SkillRank)Skill.GetMaxValue(SkillLine.Herbalism);
+                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Herbalism);
                     value = Skill.GetValue(SkillLine.Herbalism);
                     if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Herbalism, true))
                     {
@@ -600,7 +611,10 @@ namespace nManager.Wow.Bot.States
                         _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
                     }
                     if (_teacherOfHerbalism.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfHerbalism);
                         TeacherFound(value, skillRank, SkillLine.Herbalism, _teacherOfHerbalism);
+                    }
                     else
                     {
                         _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
@@ -609,7 +623,7 @@ namespace nManager.Wow.Bot.States
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
                 }
-                
+
                 // checks Skinning
                 if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
                     (nManagerSetting.CurrentSetting.ActivateBeastSkinning && nManagerSetting.CurrentSetting.ActivateMonsterLooting))
@@ -626,7 +640,10 @@ namespace nManager.Wow.Bot.States
                         _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
                     }
                     if (_teacherOfSkinning.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfSkinning);
                         TeacherFound(value, skillRank, SkillLine.Skinning, _teacherOfSkinning);
+                    }
                     else
                     {
                         _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
@@ -648,18 +665,24 @@ namespace nManager.Wow.Bot.States
                         _teacherOfRiding = NpcDB.GetNpcNearby(Npc.NpcType.RidingTrainer);
                     }
                     if (_teacherOfRiding.Entry > 0)
+                    {
+                        _listOfTeachers.Add(_teacherOfRiding);
                         TeacherFound(value, skillRank, SkillLine.Riding, _teacherOfRiding);
+                    }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
                 }
 
-                if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                    return _teacherOfArchaeology.Entry != 0 || _teacherOfFishing.Entry != 0 || _teacherOfHerbalism.Entry != 0 || _teacherOfMining.Entry != 0 ||
-                           _teacherOfSkinning.Entry != 0;
+                // if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                return _listOfTeachers.Count > 0;
 
+                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes,
+                // also, TheNoobBot is not able -yet- to use these product. I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it, keeping all the craft, so it will use them in next recipe,
+                // and go AH if more recipes are needed. A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com.
+                // For the moment, you know the code is here !
+                return false;
                 /* Skills to add */
-                _teacherOfRiding = new Npc();
                 _teacherOfAlchemy = new Npc();
                 _teacherOfCooking = new Npc();
                 _teacherOfFirstAid = new Npc();
@@ -681,7 +704,10 @@ namespace nManager.Wow.Bot.States
                     _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                 }
                 if (_teacherOfMining.Entry > 0)
+                {
+                    _listOfTeachers.Add(_teacherOfMining);
                     TeacherFound(value, skillRank, SkillLine.Mining, _teacherOfMining);
+                }
                 else
                 {
                     _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
@@ -690,18 +716,36 @@ namespace nManager.Wow.Bot.States
                 _lastPriceAddedToWhishList = 0;
                 _lastPrimarySkillsWhishList = 0;
 
-                return _teacherOfAlchemy.Entry > 0 || _teacherOfArchaeology.Entry > 0 || _teacherOfBlacksmithing.Entry > 0 || _teacherOfCooking.Entry > 0 ||
-                       _teacherOfEnchanting.Entry > 0 || _teacherOfEngineering.Entry > 0 || _teacherOfFirstAid.Entry > 0 || _teacherOfFishing.Entry > 0 ||
-                       _teacherOfHerbalism.Entry > 0 || _teacherOfInscription.Entry > 0 || _teacherOfJewelcrafting.Entry > 0 || _teacherOfLeatherworking.Entry > 0 ||
-                       _teacherOfMining.Entry > 0 || _teacherOfRiding.Entry > 0 || _teacherOfSkinning.Entry > 0 || _teacherOfTailoring.Entry > 0;
+                return _listOfTeachers.Count > 0;
             }
         }
 
         public override void Run()
         {
+            bool needUpdate = false;
+            if (_listOfTeachers.Count > 0)
+            {
+                Npc teacher = _listOfTeachers[0];
+                uint baseAddress = MovementManager.FindTarget(ref teacher);
+                if (MovementManager.InMovement)
+                    return;
+                if (baseAddress == 0 && teacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
+                    NpcDB.DelNpc(teacher);
+                else
+                {
+                    Interact.InteractWith(baseAddress);
+                    Thread.Sleep(500);
+                    Trainer.TrainingSpell();
+                    Thread.Sleep(1000);
+                    needUpdate = true;
+                    _listOfTeachers.Remove(teacher);
+                }
+            }
+            if (needUpdate)
+                SpellManager.UpdateSpellBook();
+
             // Todo: Calcul the best way to reach all the target in the less distance.
-            // Todo: Loop each target:
-            // Todo: Use FindTarget() + Interact.InteractWith(target) + Trainer.TrainingSpell() + SpellManager.UpdateSpellBook()
+            // Note: Not sure about how works the "InMovement => Return" stuff with a state. Will it ask the bot to continue others tasks .. ?
         }
     }
 }
