@@ -1,3 +1,5 @@
+using System.Windows.Forms;
+
 namespace The_Noob_Bot
 {
     internal partial class Main
@@ -28,6 +30,7 @@ namespace The_Noob_Bot
         /// </summary>
         private void InitializeComponent()
         {
+            Main.CheckForIllegalCrossThreadCalls = false;
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.metroShell1 = new DevComponents.DotNetBar.Metro.MetroShell();

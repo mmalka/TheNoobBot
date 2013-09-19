@@ -28,6 +28,7 @@ namespace The_Noob_Bot
         /// </summary>
         private void InitializeComponent()
         {
+            Main.CheckForIllegalCrossThreadCalls = false;
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMinimized));
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);

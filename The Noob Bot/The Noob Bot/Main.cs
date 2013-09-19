@@ -22,6 +22,8 @@ namespace The_Noob_Bot
         public static string MinimizesWindowBoutonText = "";
         public static bool MinimizesWindowBoutonActive;
         public static Image MinimizesWindowBoutonImage;
+        private Thread _productStartThread;
+        private Thread _productStopThread;
 
         public void SetDefaultCulture(CultureInfo culture)
         {
@@ -416,21 +418,46 @@ namespace The_Noob_Bot
             }
         }
 
+        private void ThreadStartProduct()
+        {
+            StartBEnabled = false;
+            nManager.Products.Products.ProductStart();
+            StartBEnabled = true;
+        }
+
+        private void ThreadStopProduct()
+        {
+            StartBEnabled = false;
+            nManager.Products.Products.ProductStop();
+            StartBEnabled = true;
+        }
+
+        private bool StartBEnabled
+        {
+            set { startB.Enabled = value; }
+        }
+
         private void startB_Click(object sender, EventArgs e)
         {
             try
             {
-                if (nManager.Products.Products.IsStarted)
+                if (!nManager.Products.Products.IsStarted)
                 {
-                    startB.Enabled = false;
-                    nManager.Products.Products.ProductStop();
-                    startB.Enabled = true;
+                    if (_productStartThread == null)
+                    {
+                        _productStartThread = new Thread(ThreadStartProduct) {IsBackground = true, Name = "Thread Start Product"};
+                    }
+                    _productStartThread.Start();
+                    _productStopThread = null;
                 }
                 else
                 {
-                    startB.Enabled = false;
-                    nManager.Products.Products.ProductStart();
-                    startB.Enabled = true;
+                    if (_productStopThread == null)
+                    {
+                        _productStopThread = new Thread(ThreadStopProduct) {IsBackground = true, Name = "Thread Stop Product"};
+                    }
+                    _productStopThread.Start();
+                    _productStartThread = null;
                 }
             }
             catch (Exception ex)
