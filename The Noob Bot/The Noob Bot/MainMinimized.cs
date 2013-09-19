@@ -1,5 +1,4 @@
 using System;
-using System.Threading;
 using nManager.Helpful;
 using nManager.Wow.ObjectManager;
 
@@ -7,9 +6,6 @@ namespace The_Noob_Bot
 {
     partial class MainMinimized : DevComponents.DotNetBar.Metro.MetroForm
     {
-        private Thread _productStartThread;
-        private Thread _productStopThread;
-
         public MainMinimized()
         {
             InitializeComponent();
@@ -78,51 +74,26 @@ namespace The_Noob_Bot
             }
         }
 
-        private void ThreadStartProduct()
-        {
-            StartBEnabled = false;
-            nManager.Products.Products.ProductStart();
-            StartBEnabled = true;
-        }
-
-        private void ThreadStopProduct()
-        {
-            StartBEnabled = false;
-            nManager.Products.Products.ProductStop();
-            StartBEnabled = true;
-        }
-
-        private bool StartBEnabled
-        {
-            set { startB.Enabled = value; }
-        }
-
         private void startB_Click(object sender, EventArgs e)
         {
             try
             {
-                if (!nManager.Products.Products.IsStarted)
+                if (nManager.Products.Products.IsStarted)
                 {
-                    if (_productStartThread == null)
-                    {
-                        _productStartThread = new Thread(ThreadStartProduct) {IsBackground = true, Name = "Thread Start Product"};
-                    }
-                    _productStartThread.Start();
-                    _productStopThread = null;
+                    startB.Enabled = false;
+                    nManager.Products.Products.ProductStop();
+                    startB.Enabled = true;
                 }
                 else
                 {
-                    if (_productStopThread == null)
-                    {
-                        _productStopThread = new Thread(ThreadStopProduct) {IsBackground = true, Name = "Thread Stop Product"};
-                    }
-                    _productStopThread.Start();
-                    _productStartThread = null;
+                    startB.Enabled = false;
+                    nManager.Products.Products.ProductStart();
+                    startB.Enabled = true;
                 }
             }
             catch (Exception ex)
             {
-                Logging.WriteError("MainMinimized > startB_Click(object sender, EventArgs e): " + ex);
+                Logging.WriteError("Main >  startB_Click(object sender, EventArgs e): " + ex);
             }
         }
 
