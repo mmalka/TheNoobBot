@@ -413,7 +413,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                KnownSpell = SpellManager.ExistSpellBookLUA(NameInGame);
+                KnownSpell = SpellManager.KnownSpell(Id);
             }
             catch (Exception exception)
             {

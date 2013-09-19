@@ -558,6 +558,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                Logging.Write("Initialize Character's SpellBook update.");
                 uint nbSpells =
                     Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.SpellBook.SpellBookNumSpells);
                 uint spellBookInfoPtr =
@@ -599,6 +600,7 @@ namespace nManager.Wow.Helpers
                     Application.DoEvents();
                 }
 
+                Logging.Write("Character's SpellBook is currently being fully updated. May take few seconds...");
                 foreach (Spell o in _spellBookSpell)
                 {
                     o.Update();
@@ -612,6 +614,7 @@ namespace nManager.Wow.Helpers
                 {
                     HealerClass.ResetHealerClass();
                 }
+                Logging.Write("Character's SpellBook fully updated. Found " + _spellBookID.Count + " spells, mounts and professions.");
             }
             catch (Exception exception)
             {
@@ -638,7 +641,7 @@ namespace nManager.Wow.Helpers
                         {
                             spellBook.Add(new Spell(id));
                         }
-                        Logging.Write("Character's SpellBook fully loaded. Found " + _spellBookID.Count + " spells and professions.");
+                        Logging.Write("Character's SpellBook fully loaded. Found " + _spellBookID.Count + " spells, mounts and professions.");
                         Logging.Status = "Character SpellBook loaded.";
                         _spellBookSpell = spellBook;
                     }
