@@ -41,7 +41,8 @@ namespace nManager.Wow.ObjectManager
             {
                 if (Level < 10)
                 {
-                    Logging.WriteDebug("WoW Specialization: low level don't have specialization");
+                    if (doOutput)
+                        Logging.WriteDebug("WoW Specialization: low level don't have specialization");
                     return WoWSpecialization.None;
                 }
                 string specInfo = Others.GetRandomString(Others.Random(4, 10));
@@ -51,10 +52,12 @@ namespace nManager.Wow.ObjectManager
                 string[] specInfos = Lua.GetLocalizedText(specInfo).Split('^');
                 if (specInfos.Count() != 3)
                 {
-                    Logging.WriteDebug("WoW Specialization not found");
+                    if (doOutput)
+                        Logging.WriteDebug("WoW Specialization not found");
                     return WoWSpecialization.None;
                 }
-                Logging.WriteDebug("WoW Specialization found: " + WowClass + " " + specInfos[1] + ", role: " + specInfos[2]);
+                if (doOutput)
+                    Logging.WriteDebug("WoW Specialization found: " + WowClass + " " + specInfos[1] + ", role: " + specInfos[2]);
                 WoWSpecialization rWoWSpecialization = (WoWSpecialization) Others.ToInt32(specInfos[0]);
                 return rWoWSpecialization;
             }

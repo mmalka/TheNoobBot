@@ -134,8 +134,15 @@ namespace The_Noob_Bot
                 if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
                     nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
                 {
-                    items.AddRange(from item in Bag.GetBagItem() let iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry) where iteminfo.ItemRarity > 0 select item.Name);
-                    Logging.Write(items.Count + " items found");
+                    for (int i = 0; i < Bag.GetBagItem().Count; i++)
+                    {
+                        WoWItem item = Bag.GetBagItem()[i];
+                        var iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry);
+                        if (iteminfo.ItemRarity > 0)
+                            items.Add(item.Name);
+                    }
+
+                    Logging.Write(items.Count + " items found.");
                     if (items.Count == 0)
                     {
                         Logging.Write(
