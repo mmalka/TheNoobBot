@@ -20,6 +20,30 @@ namespace nManager.Wow.Bot.States
         public static bool FakeSettingsBecomeApprenticeIfNeededByProduct = true;
         public static bool FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting = false;
 
+        public static List<string> SkillList = new List<string>()
+            {
+                "Archaeology",
+                "Fishing",
+                "Mining",
+                "Herbalism",
+                "Skinning",
+                "Ridings",
+                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
+                // I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it.
+                // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
+                // For the moment, the code stays here, ready to use anytime we need it.
+                /*"Alchemy",
+                "Cooking",
+                "FirstAid",
+                "Tailoring",
+                "Enchanting",
+                "Engineering",
+                "Inscription",
+                "Blacksmithing",
+                "Jewelcrafting",
+                "Leatherworking",*/
+            };
+
         private static readonly Spell Mining = new Spell("Mining");
         private static readonly Spell Alchemy = new Spell("Alchemy");
         private static readonly Spell Skinning = new Spell("Skinning");
@@ -84,216 +108,160 @@ namespace nManager.Wow.Bot.States
                 // Reset all vars that needs a reset.
                 _whishListSum = 0;
                 _primarySkillsSlotOnWhishList = 0;
-                // Initiate all vars that needs to be iniated.
-                SkillRank skillRank;
-                int value;
-                // We need to reset NPC found after each NeedToRun check
-                _teacher = new Npc();
                 _listOfTeachers = new List<Npc>();
 
-                // checks Archaeology
-                if (!FakeSettingsOnlyTrainCurrentlyUsedSkills || Products.Products.ProductName == "Archaeologist")
+                foreach (string currSkill in SkillList)
                 {
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Archaeology);
-                    value = Skill.GetValue(SkillLine.Archaeology);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Archaeology, true))
-                    {
-                        // If we pass into this if and don't find a Npc with ignoreRadiusSettings true, we wont find one with the next if, 
-                        // so we don't need to check 2 times the NpcDb for nothing.
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer, ignoreRadiusSettings: true);
-                    }
-                    else if (IsNewSkillAvailable(value, skillRank, SkillLine.Archaeology))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
-                    }
-                    if (_teacher.Entry > 0)
-                    {
-                        _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Archaeology, _teacher);
-                    }
-                    else
-                        _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                    _lastPriceAddedToWhishList = 0;
-                    _teacher = new Npc();
-                }
-
-                // checks Fishing
-                if (!FakeSettingsOnlyTrainCurrentlyUsedSkills || Products.Products.ProductName == "Fisherbot")
-                {
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Fishing);
-                    value = Skill.GetValue(SkillLine.Fishing);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Fishing, true))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer, ignoreRadiusSettings: true);
-                    }
-                    else if (IsNewSkillAvailable(value, skillRank, SkillLine.Fishing))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
-                    }
-                    if (_teacher.Entry > 0)
-                    {
-                        _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Fishing, _teacher);
-                    }
-                    else
-                        _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                    _lastPriceAddedToWhishList = 0;
-                    _teacher = new Npc();
-                }
-
-                // checks Mining
-                if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
-                    (nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
-                     (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder" || Products.Products.ProductName == "Quester")))
-                {
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Mining);
-                    value = Skill.GetValue(SkillLine.Mining);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Mining, true))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
-                    }
-                    else if (IsNewSkillAvailable(value, skillRank, SkillLine.Mining))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
-                    }
-                    if (_teacher.Entry > 0)
-                    {
-                        _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Mining, _teacher);
-                    }
-                    else
-                    {
-                        _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
-                        _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                    }
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
                     _teacher = new Npc();
-                }
+                    SkillLine skillLine = SkillLine.None;
+                    Npc.NpcType trainer = Npc.NpcType.None;
+                    bool isPrimarySkill = false;
+                    bool isRiding = false;
 
-                // checks Herbalism
-                if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
-                    (nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
-                     (Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder" || Products.Products.ProductName == "Quester")))
-                {
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Herbalism);
-                    value = Skill.GetValue(SkillLine.Herbalism);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Herbalism, true))
+                    switch (currSkill)
                     {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer, ignoreRadiusSettings: true);
+                        case "Archaeology":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills && Products.Products.ProductName != "Archaeologist")
+                                continue;
+                            skillLine = SkillLine.Archaeology;
+                            trainer = Npc.NpcType.ArchaeologyTrainer;
+                            break;
+                        case "Fishing":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills && Products.Products.ProductName != "Fisherbot")
+                                continue;
+                            skillLine = SkillLine.Fishing;
+                            trainer = Npc.NpcType.FishingTrainer;
+                            break;
+                        case "Mining":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills &&
+                                (!nManagerSetting.CurrentSetting.ActivateVeinsHarvesting ||
+                                 nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && Products.Products.ProductName != "Gatherer" && Products.Products.ProductName != "Grinder" &&
+                                 Products.Products.ProductName != "Quester"))
+                                continue;
+                            skillLine = SkillLine.Mining;
+                            trainer = Npc.NpcType.MiningTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Herbalism":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills &&
+                                (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting ||
+                                 nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && Products.Products.ProductName != "Gatherer" && Products.Products.ProductName != "Grinder" &&
+                                 Products.Products.ProductName != "Quester"))
+                                continue;
+                            skillLine = SkillLine.Herbalism;
+                            trainer = Npc.NpcType.HerbalismTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Skinning":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills &&
+                                (!nManagerSetting.CurrentSetting.ActivateBeastSkinning ||
+                                 !nManagerSetting.CurrentSetting.ActivateMonsterLooting && !nManagerSetting.CurrentSetting.BeastNinjaSkinning))
+                                continue;
+                            skillLine = SkillLine.Skinning;
+                            trainer = Npc.NpcType.SkinningTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Ridings":
+                            if (!FakeSettingsTrainMountingCapacity)
+                                continue;
+                            skillLine = SkillLine.Fishing;
+                            trainer = Npc.NpcType.FishingTrainer;
+                            isRiding = true;
+                            break;
+                        case "Alchemy":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Alchemy;
+                            trainer = Npc.NpcType.AlchemyTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Cooking":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Cooking;
+                            trainer = Npc.NpcType.CookingTrainer;
+                            break;
+                        case "FirstAid":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.FirstAid;
+                            trainer = Npc.NpcType.FirstAidTrainer;
+                            break;
+                        case "Tailoring":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Tailoring;
+                            trainer = Npc.NpcType.TailoringTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Enchanting":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Enchanting;
+                            trainer = Npc.NpcType.EnchantingTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Engineering":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Engineering;
+                            trainer = Npc.NpcType.EngineeringTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Inscription":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Inscription;
+                            trainer = Npc.NpcType.InscriptionTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Blacksmithing":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Blacksmithing;
+                            trainer = Npc.NpcType.BlacksmithingTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Jewelcrafting":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Jewelcrafting;
+                            trainer = Npc.NpcType.JewelcraftingTrainer;
+                            isPrimarySkill = true;
+                            break;
+                        case "Leatherworking":
+                            if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                                continue;
+                            skillLine = SkillLine.Leatherworking;
+                            trainer = Npc.NpcType.LeatherworkingTrainer;
+                            isPrimarySkill = true;
+                            break;
                     }
-                    else if (IsNewSkillAvailable(value, skillRank, SkillLine.Herbalism))
+
+                    SkillRank skillRank = (SkillRank) Skill.GetMaxValue(skillLine);
+                    int value = Skill.GetValue(skillLine);
+                    if (!isRiding && FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, skillLine, true))
                     {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
+                        _teacher = NpcDB.GetNpcNearby(trainer, ignoreRadiusSettings: true);
+                    }
+                    else if (IsNewSkillAvailable(value, skillRank, skillLine))
+                    {
+                        _teacher = NpcDB.GetNpcNearby(trainer);
                     }
                     if (_teacher.Entry > 0)
                     {
                         _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Herbalism, _teacher);
+                        TeacherFound(value, skillRank, skillLine, _teacher);
                     }
                     else
                     {
-                        _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
+                        if (isPrimarySkill)
+                            _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     }
-                    _lastPriceAddedToWhishList = 0;
-                    _lastPrimarySkillsWhishList = 0;
-                    _teacher = new Npc();
                 }
-
-                // checks Skinning
-                if (!FakeSettingsOnlyTrainCurrentlyUsedSkills ||
-                    (nManagerSetting.CurrentSetting.ActivateBeastSkinning && nManagerSetting.CurrentSetting.ActivateMonsterLooting))
-                {
-                    // This check is special, there is no product check, because all the products that run the States.Trainings can do Skinning.
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Skinning);
-                    value = Skill.GetValue(SkillLine.Skinning);
-                    if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Skinning, true))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer, ignoreRadiusSettings: true);
-                    }
-                    else if (IsNewSkillAvailable(value, skillRank, SkillLine.Skinning))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
-                    }
-                    if (_teacher.Entry > 0)
-                    {
-                        _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Skinning, _teacher);
-                    }
-                    else
-                    {
-                        _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
-                        _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                    }
-                    _lastPriceAddedToWhishList = 0;
-                    _lastPrimarySkillsWhishList = 0;
-                    _teacher = new Npc();
-                }
-
-
-                // checks Ridings
-                if (FakeSettingsTrainMountingCapacity)
-                {
-                    // This check is shorter because all the products that run the States.Trainings uses mount.
-                    skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Skinning);
-                    value = Skill.GetValue(SkillLine.Skinning);
-                    if (IsNewSkillAvailable(value, skillRank, SkillLine.Riding))
-                    {
-                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.RidingTrainer);
-                    }
-                    if (_teacher.Entry > 0)
-                    {
-                        _listOfTeachers.Add(_teacher);
-                        TeacherFound(value, skillRank, SkillLine.Riding, _teacher);
-                    }
-                    else
-                        _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                    _lastPriceAddedToWhishList = 0;
-                    _teacher = new Npc();
-                }
-
-                //if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                return _listOfTeachers.Count > 0;
-
-                // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
-                // I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it.
-                // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
-                // For the moment, the code stays here, ready to use anytime we need it.
-
-                /* Skills to add *
-                 * Alchemy,
-                 * Cooking,
-                 * First Aid,
-                 * Tailoring,
-                 * Enchanting,
-                 * Engineering,
-                 * Inscription,
-                 * Blacksmithing,
-                 * Jewelcrafting,
-                 * Leatherworking
-                 */
-
-                // checks Mining - example
-                skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Mining);
-                value = Skill.GetValue(SkillLine.Mining);
-                if (IsNewSkillAvailable(value, skillRank, SkillLine.Mining))
-                {
-                    _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
-                }
-                if (_teacher.Entry > 0)
-                {
-                    _listOfTeachers.Add(_teacher);
-                    TeacherFound(value, skillRank, SkillLine.Mining, _teacher);
-                }
-                else
-                {
-                    _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList - _lastPrimarySkillsWhishList;
-                    _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
-                }
-                _lastPriceAddedToWhishList = 0;
-                _lastPrimarySkillsWhishList = 0;
-                _teacher = new Npc();
 
                 return _listOfTeachers.Count > 0;
             }
