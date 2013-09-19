@@ -252,6 +252,7 @@ namespace nManager.Wow.Bot.States
                     }
                     if (_teacher.Entry > 0)
                     {
+                        _teacher.InternalData = (int) skillLine + "," + (int) skillRank;
                         _listOfTeachers.Add(_teacher);
                         TeacherFound(value, skillRank, skillLine, _teacher);
                     }
@@ -333,6 +334,18 @@ namespace nManager.Wow.Bot.States
                 NpcDB.DelNpc(bestTeacher);
             else
             {
+                string[] skillInfo = bestTeacher.InternalData.Split(',');
+                if (skillInfo.Length == 2)
+                {
+                    SkillLine skillLine = (SkillLine) Others.ToInt32(skillInfo[0]);
+                    SkillRank skillRank = (SkillRank) Others.ToInt32(skillInfo[1]);
+                    SkillRank nextRank = skillRank + 75;
+                    string oldRank = "";
+                    if (skillRank != SkillRank.None)
+                        oldRank = " We were only " + skillRank.ToString() + " of " + skillLine.ToString() + ".";
+                    Logging.Write("We have just reached the Teacher of " + skillLine.ToString() + ", " + bestTeacher.Name + ". We are now going to learn " + nextRank.ToString() +
+                                  " of " + skillLine.ToString() + "." + oldRank);
+                }
                 Interact.InteractWith(baseAddress);
                 Thread.Sleep(500);
                 Trainer.TrainingSpell();

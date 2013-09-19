@@ -20,6 +20,9 @@ namespace nManager.Wow.Class
         }
 
         private string _name = "";
+
+        public string InternalData { get; set; }
+
         public int SelectGossipOption = 1;
 
         public Point Position
