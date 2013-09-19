@@ -123,7 +123,8 @@ namespace nManager.FiniteStateMachine
         /// Starts the engine.
         /// </summary>
         /// <param name="framesPerSecond">The frames per second.</param>
-        public void StartEngine(byte framesPerSecond)
+        /// <param name="fsmCustomName">The names of the Thread to recognize it in Thread window.</param>
+        public void StartEngine(byte framesPerSecond, string fsmCustomName = "FSM nManager")
         {
             try
             {
@@ -132,7 +133,7 @@ namespace nManager.FiniteStateMachine
 
                 Running = true;
 
-                _workerThread = new Thread(Run) {IsBackground = true, Name = "FSM"};
+                _workerThread = new Thread(Run) {IsBackground = true, Name = fsmCustomName};
                 _workerThread.Start(sleepTime);
             }
             catch (Exception e)
