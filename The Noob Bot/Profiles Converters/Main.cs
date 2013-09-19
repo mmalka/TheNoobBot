@@ -14,8 +14,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Profiles Converters Complete";
-            Logging.Write("Initialize Profiles Converters Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -28,8 +27,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Profiles Converters Complete";
-            Logging.Write("Dispose Profiles Converters Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -44,7 +42,7 @@ public class Main : IProduct
             formMain = new formMain();
             formMain.Show();
             _isStarted = true;
-            Logging.Status = "Profiles Converters started";
+            Others.ProductStatusLog(Products.ProductName, 4);
         }
         catch (Exception e)
         {
@@ -59,7 +57,7 @@ public class Main : IProduct
             if (formMain != null)
                 formMain.Dispose();
             _isStarted = false;
-            Logging.Status = "Profiles Converters stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -72,8 +70,7 @@ public class Main : IProduct
         try
         {
             MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product) + ".");
-            Logging.Status = "Settings Profiles Converters Complete";
-            Logging.Write("Settings Profiles Converters Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

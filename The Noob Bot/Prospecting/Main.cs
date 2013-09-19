@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -11,8 +12,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Prospecting Complete";
-            Logging.Write("Initialize Prospecting Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -25,8 +25,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Prospecting Complete";
-            Logging.Write("Dispose Prospecting Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -40,7 +39,7 @@ public class Main : IProduct
         {
             Prospecting.Prospecting.Pulse();
             _isStarted = true;
-            Logging.Status = "Prospecting started";
+            Others.ProductStatusLog(Products.ProductName, 4);
         }
         catch (Exception e)
         {
@@ -53,7 +52,7 @@ public class Main : IProduct
         try
         {
             _isStarted = false;
-            Logging.Status = "Prospecting stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -65,9 +64,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Prospecting Complete";
-            Logging.Write("Settings Prospecting Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

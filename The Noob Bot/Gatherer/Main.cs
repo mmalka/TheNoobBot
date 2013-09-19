@@ -16,8 +16,7 @@ public class Main : IProduct
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Gatherer\\");
             GathererSetting.Load();
-            Logging.Status = "Initialize Gatherer Complete";
-            Logging.Write("Initialize Gatherer Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
             GetProductTipOff();
         }
         catch (Exception e)
@@ -31,8 +30,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Gatherer Complete";
-            Logging.Write("Dispose Gatherer Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -44,16 +42,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Gatherer Complete";
-                Logging.Write("Start Gatherer Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Gatherer failed";
-                Logging.Write("Start Gatherer failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -68,8 +65,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Gatherer Complete";
-            Logging.Write("Stop Gatherer Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -83,8 +79,7 @@ public class Main : IProduct
         {
             GathererSetting.CurrentSetting.ToForm();
             GathererSetting.CurrentSetting.Save();
-            Logging.Status = "Settings Gatherer Complete";
-            Logging.Write("Settings Gatherer Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

@@ -26,8 +26,7 @@ public class Main : IProduct
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\CSharpProfile\\");
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Battlegrounder\\AfkSomewhere\\");
             BattlegrounderSetting.Load();
-            Logging.Status = "Initialize Battlegrounder Complete";
-            Logging.Write("Initialize Battlegrounder Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
             GetProductTipOff();
         }
         catch (Exception e)
@@ -41,8 +40,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Battlegrounder Complete";
-            Logging.Write("Dispose Battlegrounder Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -54,16 +52,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Battlegrounder Complete";
-                Logging.Write("Start Battlegrounder Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Battlegrounder failed";
-                Logging.Write("Start Battlegrounder failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -78,8 +75,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Battlegrounder Complete";
-            Logging.Write("Stop Battlegrounder Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -93,8 +89,7 @@ public class Main : IProduct
         {
             SettingsBattlegrounderForm f = new SettingsBattlegrounderForm();
             f.ShowDialog();
-            Logging.Status = "Battlegrounder Settings Complete";
-            Logging.Write("Battlegrounder Settings Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

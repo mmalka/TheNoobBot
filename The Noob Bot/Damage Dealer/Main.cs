@@ -15,8 +15,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Damage Dealer Complete";
-            Logging.Write("Initialize Damage Dealer Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -29,8 +28,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Damage Dealer Complete";
-            Logging.Write("Dispose Damage Dealer Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -42,10 +40,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Damage Dealer started";
+                Others.ProductStatusLog(Products.ProductName, 4);
+            }
+            else
+            {
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -60,7 +63,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Damage Dealer stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -72,9 +75,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Damage Dealer Complete";
-            Logging.Write("Settings Damage Dealer Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

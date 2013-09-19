@@ -959,5 +959,54 @@ namespace nManager.Helpful
             }
             return new List<string> {"", ""};
         }
+
+        public static void ProductStatusLog(string productName, uint stepId)
+        {
+            switch (stepId)
+            {
+                case 1:
+                    if (Logging.Status == productName + " initialized") // do not spam if it was already the last message given
+                        return;
+                    Logging.Status = productName + " initialized";
+                    Logging.Write(productName + " initialized");
+                    break;
+                case 2:
+                    if (Logging.Status == productName + " disposed")
+                        return;
+                    Logging.Status = productName + " disposed";
+                    Logging.Write(productName + " disposed");
+                    break;
+                case 3:
+                    if (Logging.Status == "Start " + productName)
+                        return;
+                    Logging.Status = "Start " + productName;
+                    Logging.Write("Start " + productName);
+                    break;
+                case 4:
+                    if (Logging.Status == productName + " started")
+                        return;
+                    Logging.Status = productName + " started";
+                    Logging.Write(productName + " started");
+                    break;
+                case 5:
+                    if (Logging.Status == productName + " failed to start")
+                        return;
+                    Logging.Status = productName + " failed to start";
+                    Logging.Write(productName + " failed to start");
+                    break;
+                case 6:
+                    if (Logging.Status == productName + " stopped")
+                        return;
+                    Logging.Status = productName + " stopped";
+                    Logging.Write(productName + " stopped");
+                    break;
+                case 7:
+                    if (Logging.Status == "Settings of " + productName + " loaded")
+                        return;
+                    Logging.Status = "Settings of " + productName + " loaded";
+                    Logging.Write("Settings of " + productName + " loaded");
+                    break;
+            }
+        }
     }
 }

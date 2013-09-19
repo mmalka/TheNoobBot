@@ -16,8 +16,7 @@ public class Main : IProduct
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Grinder\\");
             GrinderSetting.Load();
-            Logging.Status = "Initialize Grinder Complete";
-            Logging.Write("Initialize Grinder Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
             GetProductTipOff();
         }
         catch (Exception e)
@@ -31,8 +30,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Grinder Complete";
-            Logging.Write("Dispose Grinder Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -44,16 +42,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Grinder Complete";
-                Logging.Write("Start Grinder Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Grinder failed";
-                Logging.Write("Start Grinder failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -68,8 +65,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Grinder Complete";
-            Logging.Write("Stop Grinder Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -81,9 +77,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Grinder Complete";
-            Logging.Write("Settings Grinder Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

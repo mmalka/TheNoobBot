@@ -27,8 +27,7 @@ public class Main : IProduct
                     ItemsManager.GetItemNameById(
                         (int) ObjectManager.Me.GetDescriptor<uint>(Descriptors.PlayerFields.VisibleItems + 15*2));
 
-            Logging.Status = "Initialize Fisherbot Complete";
-            Logging.Write("Initialize Fisherbot Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -41,8 +40,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Fisherbot Complete";
-            Logging.Write("Dispose Fisherbot Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -54,16 +52,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Fisherbot Complete";
-                Logging.Write("Start Fisherbot Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Fisherbot failed";
-                Logging.Write("Start Fisherbot failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -78,8 +75,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Fisherbot Complete";
-            Logging.Write("Stop Fisherbot Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -93,8 +89,7 @@ public class Main : IProduct
         {
             SettingsFisherbotForm f = new SettingsFisherbotForm();
             f.ShowDialog();
-            Logging.Status = "Settings Fisherbot Complete";
-            Logging.Write("Settings Fisherbot Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

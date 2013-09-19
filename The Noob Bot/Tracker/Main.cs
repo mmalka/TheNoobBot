@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Tracker;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -14,8 +15,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Tracker Complete";
-            Logging.Write("Initialize Tracker Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -28,8 +28,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Tracker Complete";
-            Logging.Write("Dispose Tracker Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -44,7 +43,7 @@ public class Main : IProduct
             _formTracker = new FormTracker();
             _formTracker.Show();
             _isStarted = true;
-            Logging.Status = "Tracker started";
+            Others.ProductStatusLog(Products.ProductName, 4);
         }
         catch (Exception e)
         {
@@ -58,7 +57,7 @@ public class Main : IProduct
         {
             _formTracker.Dispose();
             _isStarted = false;
-            Logging.Status = "Tracker stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -70,9 +69,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Tracker Complete";
-            Logging.Write("Settings Tracker Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

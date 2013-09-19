@@ -15,8 +15,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Flying To Ground Profiles Converter Complete";
-            Logging.Write("Initialize Flying To Ground Profiles Converter Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -29,8 +28,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Flying To Ground Profiles Converter Complete";
-            Logging.Write("Dispose Flying To Ground Profiles Converter Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -45,7 +43,7 @@ public class Main : IProduct
             _welcomeForm = new WelcomeForm();
             _welcomeForm.Show();
             IsStarted = true;
-            Logging.Status = "Flying To Ground Profiles Converter started";
+            Others.ProductStatusLog(Products.ProductName, 4);
         }
         catch (Exception e)
         {
@@ -60,7 +58,7 @@ public class Main : IProduct
             if (_welcomeForm != null)
                 _welcomeForm.Dispose();
             IsStarted = false;
-            Logging.Status = "Flying To Ground Profiles Converter stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -73,8 +71,7 @@ public class Main : IProduct
         try
         {
             MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
-            Logging.Status = "Settings Flying To Ground Profiles Converter Complete";
-            Logging.Write("Settings Flying To Ground Profiles Converter Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

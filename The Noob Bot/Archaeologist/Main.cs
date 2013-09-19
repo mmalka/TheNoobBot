@@ -16,8 +16,7 @@ public class Main : IProduct
         try
         {
             ArchaeologistSetting.Load();
-            Logging.Status = "Initialize Archaeologist Complete";
-            Logging.Write("Initialize Archaeologist Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
             GetProductTipOff();
         }
         catch (Exception e)
@@ -31,8 +30,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Archaeologist Complete";
-            Logging.Write("Dispose Archaeologist Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -44,16 +42,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Archaeologist Complete";
-                Logging.Write("Start Archaeologist Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Archaeologist failed";
-                Logging.Write("Start Archaeologist failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -68,8 +65,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Archaeologist Complete";
-            Logging.Write("Stop Archaeologist Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -83,8 +79,7 @@ public class Main : IProduct
         {
             DigSitesListManagement f = new DigSitesListManagement();
             f.ShowDialog();
-            Logging.Status = "Settings Archaeologist Complete";
-            Logging.Write("Settings Archaeologist Complete");
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

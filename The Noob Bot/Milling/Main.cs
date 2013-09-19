@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -11,8 +12,7 @@ public class Main : IProduct
     {
         try
         {
-            Logging.Status = "Initialize Milling Complete";
-            Logging.Write("Initialize Milling Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -25,8 +25,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Milling Complete";
-            Logging.Write("Dispose Milling Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -40,7 +39,7 @@ public class Main : IProduct
         {
             Milling.Milling.Pulse();
             _isStarted = true;
-            Logging.Status = "Milling started";
+            Others.ProductStatusLog(Products.ProductName, 4);
         }
         catch (Exception e)
         {
@@ -53,7 +52,7 @@ public class Main : IProduct
         try
         {
             _isStarted = false;
-            Logging.Status = "Milling stoped";
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -65,9 +64,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(nManager.Translate.Get(nManager.Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Milling Complete";
-            Logging.Write("Settings Milling Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

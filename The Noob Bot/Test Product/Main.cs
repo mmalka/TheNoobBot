@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows.Forms;
 using Test_Product;
+using nManager;
 using nManager.Helpful;
 using nManager.Products;
 
@@ -16,8 +17,7 @@ public class Main : IProduct
         try
         {
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Test_Product\\");
-            Logging.Status = "Initialize Test_Product Complete";
-            Logging.Write("Initialize Test_Product Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
         }
         catch (Exception e)
         {
@@ -30,8 +30,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Test_Product Complete";
-            Logging.Write("Dispose Test_Product Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -43,16 +42,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Test_Product Complete";
-                Logging.Write("Start Test_Product Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Test_Product failed";
-                Logging.Write("Start Test_Product failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -67,8 +65,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Test_Product Complete";
-            Logging.Write("Stop Test_Product Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -80,9 +77,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show("No setting for this product.");
-            Logging.Status = "Settings Test_Product Complete";
-            Logging.Write("Settings Test_Product Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {

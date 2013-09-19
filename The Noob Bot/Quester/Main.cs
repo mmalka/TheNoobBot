@@ -26,8 +26,7 @@ public class Main : IProduct
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\");
             Directory.CreateDirectory(Application.StartupPath + "\\Profiles\\Quester\\Grouped\\");
             QuesterSettings.Load();
-            Logging.Status = "Initialize Quester Complete";
-            Logging.Write("Initialize Quester Complete");
+            Others.ProductStatusLog(Products.ProductName, 1);
             GetProductTipOff();
         }
         catch (Exception e)
@@ -41,8 +40,7 @@ public class Main : IProduct
         try
         {
             Stop();
-            Logging.Status = "Dispose Quester Complete";
-            Logging.Write("Dispose Quester Complete");
+            Others.ProductStatusLog(Products.ProductName, 2);
         }
         catch (Exception e)
         {
@@ -54,16 +52,15 @@ public class Main : IProduct
     {
         try
         {
+            Others.ProductStatusLog(Products.ProductName, 3);
             if (Bot.Pulse())
             {
                 _isStarted = true;
-                Logging.Status = "Start Quester Complete";
-                Logging.Write("Start Quester Complete");
+                Others.ProductStatusLog(Products.ProductName, 4);
             }
             else
             {
-                Logging.Status = "Start Quester failed";
-                Logging.Write("Start Quester failed");
+                Others.ProductStatusLog(Products.ProductName, 5);
             }
         }
         catch (Exception e)
@@ -78,8 +75,7 @@ public class Main : IProduct
         {
             Bot.Dispose();
             _isStarted = false;
-            Logging.Status = "Stop Quester Complete";
-            Logging.Write("Stop Quester Complete");
+            Others.ProductStatusLog(Products.ProductName, 6);
         }
         catch (Exception e)
         {
@@ -91,9 +87,8 @@ public class Main : IProduct
     {
         try
         {
-            MessageBox.Show(Translate.Get(Translate.Id.No_setting_for_this_product));
-            Logging.Status = "Settings Quester Complete";
-            Logging.Write("Settings Quester Complete");
+            MessageBox.Show(string.Format("{0}.", Translate.Get(Translate.Id.No_setting_for_this_product)));
+            Others.ProductStatusLog(Products.ProductName, 7);
         }
         catch (Exception e)
         {
