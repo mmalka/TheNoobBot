@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using nManager.FiniteStateMachine;
+using nManager.Helpful;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 
 namespace nManager.Wow.Bot.States
 {
-    public class LevelupCheck : State
+    public class SpecializationCheck : State
     {
         public override string DisplayName
         {
-            get { return "LevelupCheck"; }
+            get { return "SpecializationCheck"; }
         }
 
         public override int Priority { get; set; }
@@ -23,12 +25,7 @@ namespace nManager.Wow.Bot.States
             get { return new List<State>(); }
         }
 
-        private static uint _lastLevel;
-        
-        public static uint GetLastLevel
-        {
-            get { return _lastLevel; }
-        }
+        private WoWSpecialization _lastSpecialization = ObjectManager.ObjectManager.Me.WowSpecialization();
 
         public override bool NeedToRun
         {
@@ -42,20 +39,22 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                // Collect our initial Level at product start.
-                if (_lastLevel <= 0)
-                    _lastLevel = ObjectManager.ObjectManager.Me.Level;
-
-                // Update the SpellBook and eventually the talents on level-ups.
-                return _lastLevel != ObjectManager.ObjectManager.Me.Level;
+                uint lastLevel = LevelupCheck.GetLastLevel;
+                if (lastLevel <= 0 || lastLevel != ObjectManager.ObjectManager.Me.Level)
+                    return false;
+                // It's the job of the state LevelupCheck.
+                
+                // Update the SpellBook and the Talents on Specialization changes.
+                return _lastSpecialization != ObjectManager.ObjectManager.Me.WowSpecialization();
             }
         }
 
         public override void Run()
         {
-            _lastLevel = ObjectManager.ObjectManager.Me.Level;
+            Logging.Write("We have detected that your Wow Specialization has changed, reloading it.");
+            _lastSpecialization = ObjectManager.ObjectManager.Me.WowSpecialization();
             if (ObjectManager.ObjectManager.Me.Level >= 15 && nManagerSetting.CurrentSetting.AutoAssignTalents)
-                Talent.DoTalents(); // First talent at level 15.
+                Talent.DoTalents(); // First talent at level 15. Level check kept as additional security, should be useless here.
             SpellManager.UpdateSpellBook(); // It also reset Combat/Healer classes.
         }
     }

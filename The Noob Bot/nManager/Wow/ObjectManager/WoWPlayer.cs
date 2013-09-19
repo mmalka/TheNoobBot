@@ -35,10 +35,8 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public WoWSpecialization WowSpecialization
+        public WoWSpecialization WowSpecialization(bool doOutput = false)
         {
-            get
-            {
                 try
                 {
                     if (Level < 10)
@@ -65,7 +63,6 @@ namespace nManager.Wow.ObjectManager
                     Logging.WriteError("WoWPlayer > WoWSpecialization: " + e);
                 }
                 return WoWSpecialization.None;
-            }
         }
 
         public WoWRace WowRace

@@ -64,7 +64,7 @@ public class Main : IHealerClass
             if (!InternalLoop)
                 InternalLoop = true;
             Logging.WriteFight("Loading healing system.");
-            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization;
+            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization(true);
             switch (ObjectManager.Me.WowClass)
             {
                     #region Non healer classes detection

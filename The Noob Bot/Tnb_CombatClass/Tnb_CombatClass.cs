@@ -64,7 +64,7 @@ public class Main : ICombatClass
             if (!InternalLoop)
                 InternalLoop = true;
             Logging.WriteFight("Loading combat system.");
-            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization;
+            WoWSpecialization wowSpecialization = ObjectManager.Me.WowSpecialization(true);
             switch (ObjectManager.Me.WowClass)
             {
                     #region DeathKnight Specialisation checking
