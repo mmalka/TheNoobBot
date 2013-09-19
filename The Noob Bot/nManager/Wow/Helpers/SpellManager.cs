@@ -554,7 +554,7 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
-        public static void UpdateSpellBook()
+        public static void UpdateSpellBookThread()
         {
             try
             {
@@ -620,6 +620,12 @@ namespace nManager.Wow.Helpers
             {
                 Logging.WriteError("UpdateSpellBook(): " + exception);
             }
+        }
+
+        public static void UpdateSpellBook()
+        {
+            Thread spellBook = new Thread(UpdateSpellBookThread) {Name = "SpellBook Update"};
+            spellBook.Start();
         }
 
         private static List<Spell> _spellBookSpell = new List<Spell>();

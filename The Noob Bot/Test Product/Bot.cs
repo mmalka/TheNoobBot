@@ -28,7 +28,7 @@ namespace Test_Product
             try
             {
                 // Update spell list
-                //SpellManager.UpdateSpellBook();
+                SpellManager.UpdateSpellBook();
                 // Enum parser !
                 /*var dict = new Dictionary<int, string>();
                 foreach (var name in Enum.GetNames(typeof(SkillLine)))

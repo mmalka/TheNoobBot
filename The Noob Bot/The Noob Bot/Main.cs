@@ -100,7 +100,7 @@ namespace The_Noob_Bot
 
                 new Remote();
 
-                Thread spellBook = new Thread(ThreadSpellBook) {Name = "Spell Book Update"};
+                Thread spellBook = new Thread(ThreadSpellBook) {Name = "SpellBook Loading"};
                 spellBook.Start();
                 MovementManager.LaunchThreadMovementManager();
 
