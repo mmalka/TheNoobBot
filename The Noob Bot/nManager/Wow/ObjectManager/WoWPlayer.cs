@@ -37,32 +37,32 @@ namespace nManager.Wow.ObjectManager
 
         public WoWSpecialization WowSpecialization(bool doOutput = false)
         {
-                try
+            try
+            {
+                if (Level < 10)
                 {
-                    if (Level < 10)
-                    {
-                        Logging.WriteDebug("WoW Specialization: low level don't have specialization");
-                        return WoWSpecialization.None;
-                    }
-                    string specInfo = Others.GetRandomString(Others.Random(4, 10));
-                    Lua.LuaDoString(
-                        "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,background,role = GetSpecializationInfo(GetSpecialization()) " +
-                        specInfo + " = id .. \"^\" .. name .. \"^\" .. role else " + specInfo + " = 0 end");
-                    string[] specInfos = Lua.GetLocalizedText(specInfo).Split('^');
-                    if (specInfos.Count() != 3)
-                    {
-                        Logging.WriteDebug("WoW Specialization not found");
-                        return WoWSpecialization.None;
-                    }
-                    Logging.WriteDebug("WoW Specialization found: " + WowClass + " " + specInfos[1] + ", role: " + specInfos[2]);
-                    WoWSpecialization rWoWSpecialization = (WoWSpecialization) Others.ToInt32(specInfos[0]);
-                    return rWoWSpecialization;
+                    Logging.WriteDebug("WoW Specialization: low level don't have specialization");
+                    return WoWSpecialization.None;
                 }
-                catch (Exception e)
+                string specInfo = Others.GetRandomString(Others.Random(4, 10));
+                Lua.LuaDoString(
+                    "if GetSpecialization() ~= nil and GetSpecializationInfo(GetSpecialization()) ~= nil then id,name,description,icon,background,role = GetSpecializationInfo(GetSpecialization()) " +
+                    specInfo + " = id .. \"^\" .. name .. \"^\" .. role else " + specInfo + " = 0 end");
+                string[] specInfos = Lua.GetLocalizedText(specInfo).Split('^');
+                if (specInfos.Count() != 3)
                 {
-                    Logging.WriteError("WoWPlayer > WoWSpecialization: " + e);
+                    Logging.WriteDebug("WoW Specialization not found");
+                    return WoWSpecialization.None;
                 }
-                return WoWSpecialization.None;
+                Logging.WriteDebug("WoW Specialization found: " + WowClass + " " + specInfos[1] + ", role: " + specInfos[2]);
+                WoWSpecialization rWoWSpecialization = (WoWSpecialization) Others.ToInt32(specInfos[0]);
+                return rWoWSpecialization;
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("WoWPlayer > WoWSpecialization: " + e);
+            }
+            return WoWSpecialization.None;
         }
 
         public WoWRace WowRace

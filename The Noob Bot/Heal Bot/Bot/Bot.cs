@@ -22,8 +22,8 @@ namespace Heal_Bot.Bot
 
                 Fsm.AddState(new Pause {Priority = 4});
                 Fsm.AddState(new HealFriendlyTarget {Priority = 3});
-                Fsm.AddState(new SpecializationCheck { Priority = 2 });
-                Fsm.AddState(new LevelupCheck { Priority = 1 });
+                Fsm.AddState(new SpecializationCheck {Priority = 2});
+                Fsm.AddState(new LevelupCheck {Priority = 1});
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

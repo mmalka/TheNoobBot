@@ -24,7 +24,7 @@ namespace nManager.Wow.Bot.States
         }
 
         private static uint _lastLevel;
-        
+
         public static uint GetLastLevel
         {
             get { return _lastLevel; }

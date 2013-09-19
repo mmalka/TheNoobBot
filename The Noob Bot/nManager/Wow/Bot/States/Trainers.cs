@@ -240,7 +240,7 @@ namespace nManager.Wow.Bot.States
                     int value = Skill.GetValue(skillLine);
                     if (currSkill.Key.Contains(skillLine.ToString()) && currSkill.Value != value)
                     {
-                        var tempSkill = new KeyValuePair<string, int>(currSkill.Key, value);
+                        KeyValuePair<string, int> tempSkill = new KeyValuePair<string, int>(currSkill.Key, value);
                         SkillList.Remove(currSkill);
                         SkillList.Add(tempSkill);
                         Logging.Write("Your skill in " + skillLine + " has increased to " + value + ".");

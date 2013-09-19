@@ -43,7 +43,7 @@ namespace nManager.Wow.Bot.States
                 if (lastLevel <= 0 || lastLevel != ObjectManager.ObjectManager.Me.Level)
                     return false;
                 // It's the job of the state LevelupCheck.
-                
+
                 // Update the SpellBook and the Talents on Specialization changes.
                 return _lastSpecialization != ObjectManager.ObjectManager.Me.WowSpecialization();
             }

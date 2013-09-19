@@ -41,7 +41,7 @@ namespace nManager.Wow.MemoryClass
             uint num2 = 0;
             do
             {
-                var struct2 = new MEMORY_BASIC_INFORMATION();
+                MEMORY_BASIC_INFORMATION struct2 = new MEMORY_BASIC_INFORMATION();
                 VirtualQueryEx(Memory.WowMemory.Memory.ProcessHandle, num2, out struct2, Marshal.SizeOf(struct2));
                 try
                 {
