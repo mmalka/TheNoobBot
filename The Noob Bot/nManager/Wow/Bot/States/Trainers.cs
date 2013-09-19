@@ -32,16 +32,16 @@ namespace nManager.Wow.Bot.States
                 // I have an idea of a ProfessionsManager product, where you just ask "level this skill to 600" and it will do it.
                 // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
                 // For the moment, the code stays here, ready to use anytime we need it.
-                /*"Alchemy",
-                "Cooking",
-                "FirstAid",
-                "Tailoring",
-                "Enchanting",
-                "Engineering",
-                "Inscription",
-                "Blacksmithing",
-                "Jewelcrafting",
-                "Leatherworking",*/
+                /*new KeyValuePair<string, int>("Alchemy", Skill.GetValue(SkillLine.Alchemy)),
+                new KeyValuePair<string, int>("Cooking", Skill.GetValue(SkillLine.Cooking)),
+                new KeyValuePair<string, int>("FirstAid", Skill.GetValue(SkillLine.FirstAid)),
+                new KeyValuePair<string, int>("Tailoring", Skill.GetValue(SkillLine.Tailoring)),
+                new KeyValuePair<string, int>("Enchanting", Skill.GetValue(SkillLine.Enchanting)),
+                new KeyValuePair<string, int>("Engineering", Skill.GetValue(SkillLine.Engineering)),
+                new KeyValuePair<string, int>("Inscription", Skill.GetValue(SkillLine.Inscription)),
+                new KeyValuePair<string, int>("Blacksmithing", Skill.GetValue(SkillLine.Blacksmithing)),
+                new KeyValuePair<string, int>("Jewelcrafting", Skill.GetValue(SkillLine.Jewelcrafting)),
+                new KeyValuePair<string, int>("Leatherworking", Skill.GetValue(SkillLine.Leatherworking)),*/
             };
 
         private static readonly Spell Mining = new Spell("Mining");
@@ -243,7 +243,7 @@ namespace nManager.Wow.Bot.States
                         var tempSkill = new KeyValuePair<string, int>(currSkill.Key, value);
                         SkillList.Remove(currSkill);
                         SkillList.Add(tempSkill);
-                        Logging.Write(skillLine + " increased to " + value + "/" + (uint) skillRank + ".");
+                        Logging.Write("Your skill in " + skillLine + " has increased to " + value + ".");
                         return false; // We need to get out of the foreach to avoid causing a System.InvalidOperationException.
                     }
                     if (!nManagerSetting.CurrentSetting.TrainNewSkills || doIgnoreCheck)
