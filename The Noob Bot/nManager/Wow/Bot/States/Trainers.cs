@@ -20,14 +20,14 @@ namespace nManager.Wow.Bot.States
         public static bool FakeSettingsBecomeApprenticeIfNeededByProduct = true;
         public static bool FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting = false;
 
-        public static List<string> SkillList = new List<string>()
+        public static List<KeyValuePair<string, int>> SkillList = new List<KeyValuePair<string, int>>()
             {
-                "Archaeology",
-                "Fishing",
-                "Mining",
-                "Herbalism",
-                "Skinning",
-                "Ridings",
+                new KeyValuePair<string, int>("Archaeology", Skill.GetValue(SkillLine.Archaeology)),
+                new KeyValuePair<string, int>("Fishing", Skill.GetValue(SkillLine.Fishing)),
+                new KeyValuePair<string, int>("Mining", Skill.GetValue(SkillLine.Mining)),
+                new KeyValuePair<string, int>("Herbalism", Skill.GetValue(SkillLine.Herbalism)),
+                new KeyValuePair<string, int>("Skinning", Skill.GetValue(SkillLine.Skinning)),
+                new KeyValuePair<string, int>("Riding", Skill.GetValue(SkillLine.Riding)),
                 // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
                 // I have an idea of a ProfessionsManager product, where you just ask "level this skill to 600" and it will do it.
                 // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
@@ -101,16 +101,12 @@ namespace nManager.Wow.Bot.States
                     return false;
                 }
 
-                // Real code start here:
-                if (!nManagerSetting.CurrentSetting.TrainNewSkills)
-                    return false;
-
                 // Reset all vars that needs a reset.
                 _whishListSum = 0;
                 _primarySkillsSlotOnWhishList = 0;
                 _listOfTeachers = new List<Npc>();
 
-                foreach (string currSkill in SkillList)
+                foreach (KeyValuePair<string, int> currSkill in SkillList)
                 {
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
@@ -119,18 +115,18 @@ namespace nManager.Wow.Bot.States
                     Npc.NpcType trainer = Npc.NpcType.None;
                     bool isPrimarySkill = false;
                     bool isRiding = false;
-
-                    switch (currSkill)
+                    bool doIgnoreCheck = false;
+                    switch (currSkill.Key)
                     {
                         case "Archaeology":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills && Products.Products.ProductName != "Archaeologist")
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Archaeology;
                             trainer = Npc.NpcType.ArchaeologyTrainer;
                             break;
                         case "Fishing":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills && Products.Products.ProductName != "Fisherbot")
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Fishing;
                             trainer = Npc.NpcType.FishingTrainer;
                             break;
@@ -139,7 +135,7 @@ namespace nManager.Wow.Bot.States
                                 (!nManagerSetting.CurrentSetting.ActivateVeinsHarvesting ||
                                  nManagerSetting.CurrentSetting.ActivateVeinsHarvesting && Products.Products.ProductName != "Gatherer" && Products.Products.ProductName != "Grinder" &&
                                  Products.Products.ProductName != "Quester"))
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Mining;
                             trainer = Npc.NpcType.MiningTrainer;
                             isPrimarySkill = true;
@@ -149,7 +145,7 @@ namespace nManager.Wow.Bot.States
                                 (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting ||
                                  nManagerSetting.CurrentSetting.ActivateHerbsHarvesting && Products.Products.ProductName != "Gatherer" && Products.Products.ProductName != "Grinder" &&
                                  Products.Products.ProductName != "Quester"))
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Herbalism;
                             trainer = Npc.NpcType.HerbalismTrainer;
                             isPrimarySkill = true;
@@ -158,82 +154,82 @@ namespace nManager.Wow.Bot.States
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills &&
                                 (!nManagerSetting.CurrentSetting.ActivateBeastSkinning ||
                                  !nManagerSetting.CurrentSetting.ActivateMonsterLooting && !nManagerSetting.CurrentSetting.BeastNinjaSkinning))
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Skinning;
                             trainer = Npc.NpcType.SkinningTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Ridings":
                             if (!FakeSettingsTrainMountingCapacity)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Riding;
                             trainer = Npc.NpcType.RidingTrainer;
                             isRiding = true;
                             break;
                         case "Alchemy":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Alchemy;
                             trainer = Npc.NpcType.AlchemyTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Cooking":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Cooking;
                             trainer = Npc.NpcType.CookingTrainer;
                             break;
                         case "FirstAid":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.FirstAid;
                             trainer = Npc.NpcType.FirstAidTrainer;
                             break;
                         case "Tailoring":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Tailoring;
                             trainer = Npc.NpcType.TailoringTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Enchanting":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Enchanting;
                             trainer = Npc.NpcType.EnchantingTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Engineering":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Engineering;
                             trainer = Npc.NpcType.EngineeringTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Inscription":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Inscription;
                             trainer = Npc.NpcType.InscriptionTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Blacksmithing":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Blacksmithing;
                             trainer = Npc.NpcType.BlacksmithingTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Jewelcrafting":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Jewelcrafting;
                             trainer = Npc.NpcType.JewelcraftingTrainer;
                             isPrimarySkill = true;
                             break;
                         case "Leatherworking":
                             if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
-                                continue;
+                                doIgnoreCheck = true;
                             skillLine = SkillLine.Leatherworking;
                             trainer = Npc.NpcType.LeatherworkingTrainer;
                             isPrimarySkill = true;
@@ -242,6 +238,16 @@ namespace nManager.Wow.Bot.States
 
                     SkillRank skillRank = (SkillRank) Skill.GetMaxValue(skillLine);
                     int value = Skill.GetValue(skillLine);
+                    if (currSkill.Key.Contains(skillLine.ToString()) && currSkill.Value != value)
+                    {
+                        var tempSkill = new KeyValuePair<string, int>(currSkill.Key, value);
+                        SkillList.Remove(currSkill);
+                        SkillList.Add(tempSkill);
+                        Logging.Write(skillLine + " increased to " + value + "/" + (uint) skillRank + ".");
+                        return false; // We need to get out of the foreach to avoid causing a System.InvalidOperationException.
+                    }
+                    if (!nManagerSetting.CurrentSetting.TrainNewSkills || doIgnoreCheck)
+                        continue;
                     if (!isRiding && FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, skillLine, true))
                     {
                         _teacher = NpcDB.GetNpcNearby(trainer, ignoreRadiusSettings: true);
@@ -747,7 +753,7 @@ namespace nManager.Wow.Bot.States
                     _primarySkillsSlotOnWhishList = _primarySkillsSlotOnWhishList + 1;
                     _lastPrimarySkillsWhishList = 1;
                 }
-                else
+                else if (primarySkillToLearn)
                     return false;
                 _whishListSum = _whishListSum + price;
                 _lastPriceAddedToWhishList = price;
