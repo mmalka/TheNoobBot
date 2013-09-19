@@ -113,6 +113,12 @@ namespace nManager.Wow.Helpers
 
         public static void LoadHealerClass()
         {
+            Thread spellBook = new Thread(LoadHealerClassThread) {Name = "Load Healer Class"};
+            spellBook.Start();
+        }
+
+        public static void LoadHealerClassThread()
+        {
             try
             {
                 if (nManagerSetting.CurrentSetting.HealerClass != "")

@@ -113,6 +113,12 @@ namespace nManager.Wow.Helpers
 
         public static void LoadCombatClass()
         {
+            Thread spellBook = new Thread(LoadCombatClassThread) {Name = "Load Combat Class"};
+            spellBook.Start();
+        }
+
+        public static void LoadCombatClassThread()
+        {
             try
             {
                 if (nManagerSetting.CurrentSetting.CombatClass != "")
