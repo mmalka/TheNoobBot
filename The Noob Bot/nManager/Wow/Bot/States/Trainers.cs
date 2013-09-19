@@ -29,7 +29,7 @@ namespace nManager.Wow.Bot.States
                 "Skinning",
                 "Ridings",
                 // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
-                // I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it.
+                // I have an idea of a ProfessionsManager product, where you just ask "level this skill to 600" and it will do it.
                 // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
                 // For the moment, the code stays here, ready to use anytime we need it.
                 /*"Alchemy",
@@ -166,8 +166,8 @@ namespace nManager.Wow.Bot.States
                         case "Ridings":
                             if (!FakeSettingsTrainMountingCapacity)
                                 continue;
-                            skillLine = SkillLine.Fishing;
-                            trainer = Npc.NpcType.FishingTrainer;
+                            skillLine = SkillLine.Riding;
+                            trainer = Npc.NpcType.RidingTrainer;
                             isRiding = true;
                             break;
                         case "Alchemy":
@@ -406,10 +406,10 @@ namespace nManager.Wow.Bot.States
                                 return false;
                             if ((skillLine == SkillLine.Mining &&
                                  (!nManagerSetting.CurrentSetting.ActivateVeinsHarvesting &&
-                                  (Products.Products.ProductName != "Quester" || Products.Products.ProductName != "Gatherer"))) ||
+                                  (Products.Products.ProductName != "Quester" || Products.Products.ProductName != "Gatherer" || Products.Products.ProductName == "Grinder"))) ||
                                 (skillLine == SkillLine.Herbalism &&
                                  (!nManagerSetting.CurrentSetting.ActivateHerbsHarvesting &&
-                                  (Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Gatherer"))) ||
+                                  (Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Gatherer" || Products.Products.ProductName == "Grinder"))) ||
                                 (skillLine == SkillLine.Skinning &&
                                  (!nManagerSetting.CurrentSetting.ActivateBeastSkinning &&
                                   (Products.Products.ProductName == "Quester" || Products.Products.ProductName == "Grinder"))))
@@ -426,14 +426,15 @@ namespace nManager.Wow.Bot.States
                         case SkillLine.Inscription:
                         case SkillLine.Blacksmithing:
                         case SkillLine.Jewelcrafting:
-                            return false;
-                            // We wont learn Primary skills that are not gathering skills.
-                            /*if (PrimarySkillSlotAvailable() == 0)
-                        return false;
-                    primarySkillToLearn = true;
-                    price = 10;
-                    minLevel = 5;
-                    break;*/
+                            if (Products.Products.ProductName != "ProfessionsManager" || PrimarySkillSlotAvailable() == 0)
+                                return false;
+                            const string professionToLevelup = "Profession"; // Example
+                            if (professionToLevelup != skillLine.ToString())
+                                return false;
+                            primarySkillToLearn = true;
+                            price = 10;
+                            minLevel = 5;
+                            break;
                         case SkillLine.Archaeology:
                             if (!FakeSettingsBecomeApprenticeOfSecondarySkillsWhileQuesting || Products.Products.ProductName != "Quester")
                                 if (!FakeSettingsBecomeApprenticeIfNeededByProduct || Products.Products.ProductName != "Archaeologist")
