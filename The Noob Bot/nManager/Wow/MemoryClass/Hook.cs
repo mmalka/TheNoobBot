@@ -302,7 +302,8 @@ namespace nManager.Wow.MemoryClass
                                         MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
                                         Application.Exit();
                                     }
-                                    byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 7);
+                                    byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 10);
+                                    // Gather as much data as possible if there is others graphic cards system.
                                     string bytes = "";
                                     foreach (uint bit in extractAllBytes)
                                     {
@@ -320,9 +321,25 @@ namespace nManager.Wow.MemoryClass
                                             D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7);
                                     }
                                     else
-                                        D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
-                                    // D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
-                                    // D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115};
+                                    {
+                                        // This read the 2 bytes that are just after the Jmp,
+                                        // A6 and FF always follow the Jmp, so we can deduct if we 
+                                        // read by 5, 6 or 7 bytes long.
+                                        byte[] getBytes = Memory.ReadBytes(JumpAddress, 9);
+                                        if (getBytes[5] != 144 && getBytes[6] != 144)
+                                            D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
+                                        else if (getBytes[5] == 144 && getBytes[6] != 144)
+                                            D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
+                                        else if (getBytes[5] == 144 && getBytes[6] == 144)
+                                            D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115};
+                                        else
+                                        {
+                                            Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                            Logging.Write("An error is detected, please restart your WoW Client before running the bot again !");
+                                            MessageBox.Show("An error is detected, please restart your WoW Client before running the bot again !");
+                                            Application.Exit();
+                                        }
+                                    }
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
@@ -344,7 +361,14 @@ namespace nManager.Wow.MemoryClass
                                 // create hook jump
                                 Memory.Asm.Clear(); // $jmpto
                                 Memory.Asm.AddLine("jmp " + (InjectedCodeDetour));
+                                if (sizeJumpBack >= 6)
+                                    Memory.Asm.AddLine("nop");
+                                if (sizeJumpBack == 7)
+                                    Memory.Asm.AddLine("nop");
                                 Memory.Asm.Inject(JumpAddress);
+
+                                // add nop if needed
+                                Memory.Asm.Clear();
                             }
                             catch (Exception e)
                             {
