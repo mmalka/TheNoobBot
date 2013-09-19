@@ -34,23 +34,7 @@ namespace nManager.Wow.Bot.States
         private static readonly List<Npc> TeacherFoundNoSpam = new List<Npc>();
         private List<Npc> _listOfTeachers = new List<Npc>();
         private bool _rdy = true;
-
-        private Npc _teacherOfAlchemy = new Npc();
-        private Npc _teacherOfArchaeology = new Npc();
-        private Npc _teacherOfBlacksmithing = new Npc();
-        private Npc _teacherOfCooking = new Npc();
-        private Npc _teacherOfEnchanting = new Npc();
-        private Npc _teacherOfEngineering = new Npc();
-        private Npc _teacherOfFirstAid = new Npc();
-        private Npc _teacherOfFishing = new Npc();
-        private Npc _teacherOfHerbalism = new Npc();
-        private Npc _teacherOfInscription = new Npc();
-        private Npc _teacherOfJewelcrafting = new Npc();
-        private Npc _teacherOfLeatherworking = new Npc();
-        private Npc _teacherOfMining = new Npc();
-        private Npc _teacherOfRiding = new Npc();
-        private Npc _teacherOfSkinning = new Npc();
-        private Npc _teacherOfTailoring = new Npc();
+        private Npc _teacher = new Npc();
 
         public override string DisplayName
         {
@@ -104,22 +88,7 @@ namespace nManager.Wow.Bot.States
                 SkillRank skillRank;
                 int value;
                 // We need to reset NPC found after each NeedToRun check
-                _teacherOfMining = new Npc();
-                _teacherOfRiding = new Npc();
-                _teacherOfAlchemy = new Npc();
-                _teacherOfCooking = new Npc();
-                _teacherOfFishing = new Npc();
-                _teacherOfFirstAid = new Npc();
-                _teacherOfSkinning = new Npc();
-                _teacherOfHerbalism = new Npc();
-                _teacherOfTailoring = new Npc();
-                _teacherOfEnchanting = new Npc();
-                _teacherOfArchaeology = new Npc();
-                _teacherOfEngineering = new Npc();
-                _teacherOfInscription = new Npc();
-                _teacherOfBlacksmithing = new Npc();
-                _teacherOfJewelcrafting = new Npc();
-                _teacherOfLeatherworking = new Npc();
+                _teacher = new Npc();
                 _listOfTeachers = new List<Npc>();
 
                 // checks Archaeology
@@ -131,20 +100,21 @@ namespace nManager.Wow.Bot.States
                     {
                         // If we pass into this if and don't find a Npc with ignoreRadiusSettings true, we wont find one with the next if, 
                         // so we don't need to check 2 times the NpcDb for nothing.
-                        _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer, ignoreRadiusSettings: true);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer, ignoreRadiusSettings: true);
                     }
                     else if (IsNewSkillAvailable(value, skillRank, SkillLine.Archaeology))
                     {
-                        _teacherOfArchaeology = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.ArchaeologyTrainer);
                     }
-                    if (_teacherOfArchaeology.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfArchaeology);
-                        TeacherFound(value, skillRank, SkillLine.Archaeology, _teacherOfArchaeology);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Archaeology, _teacher);
                     }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
+                    _teacher = new Npc();
                 }
 
                 // checks Fishing
@@ -154,20 +124,21 @@ namespace nManager.Wow.Bot.States
                     value = Skill.GetValue(SkillLine.Fishing);
                     if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Fishing, true))
                     {
-                        _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer, ignoreRadiusSettings: true);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer, ignoreRadiusSettings: true);
                     }
                     else if (IsNewSkillAvailable(value, skillRank, SkillLine.Fishing))
                     {
-                        _teacherOfFishing = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.FishingTrainer);
                     }
-                    if (_teacherOfFishing.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfFishing);
-                        TeacherFound(value, skillRank, SkillLine.Fishing, _teacherOfFishing);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Fishing, _teacher);
                     }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
+                    _teacher = new Npc();
                 }
 
                 // checks Mining
@@ -179,16 +150,16 @@ namespace nManager.Wow.Bot.States
                     value = Skill.GetValue(SkillLine.Mining);
                     if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Mining, true))
                     {
-                        _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer, ignoreRadiusSettings: true);
                     }
                     else if (IsNewSkillAvailable(value, skillRank, SkillLine.Mining))
                     {
-                        _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                     }
-                    if (_teacherOfMining.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfMining);
-                        TeacherFound(value, skillRank, SkillLine.Mining, _teacherOfMining);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Mining, _teacher);
                     }
                     else
                     {
@@ -197,6 +168,7 @@ namespace nManager.Wow.Bot.States
                     }
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
+                    _teacher = new Npc();
                 }
 
                 // checks Herbalism
@@ -208,16 +180,16 @@ namespace nManager.Wow.Bot.States
                     value = Skill.GetValue(SkillLine.Herbalism);
                     if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Herbalism, true))
                     {
-                        _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer, ignoreRadiusSettings: true);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer, ignoreRadiusSettings: true);
                     }
                     else if (IsNewSkillAvailable(value, skillRank, SkillLine.Herbalism))
                     {
-                        _teacherOfHerbalism = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.HerbalismTrainer);
                     }
-                    if (_teacherOfHerbalism.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfHerbalism);
-                        TeacherFound(value, skillRank, SkillLine.Herbalism, _teacherOfHerbalism);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Herbalism, _teacher);
                     }
                     else
                     {
@@ -226,6 +198,7 @@ namespace nManager.Wow.Bot.States
                     }
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
+                    _teacher = new Npc();
                 }
 
                 // checks Skinning
@@ -237,16 +210,16 @@ namespace nManager.Wow.Bot.States
                     value = Skill.GetValue(SkillLine.Skinning);
                     if (FakeSettingsOnlyTrainCurrentlyUsedSkills && IsNewSkillAvailable(value, skillRank, SkillLine.Skinning, true))
                     {
-                        _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer, ignoreRadiusSettings: true);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer, ignoreRadiusSettings: true);
                     }
                     else if (IsNewSkillAvailable(value, skillRank, SkillLine.Skinning))
                     {
-                        _teacherOfSkinning = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.SkinningTrainer);
                     }
-                    if (_teacherOfSkinning.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfSkinning);
-                        TeacherFound(value, skillRank, SkillLine.Skinning, _teacherOfSkinning);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Skinning, _teacher);
                     }
                     else
                     {
@@ -255,6 +228,7 @@ namespace nManager.Wow.Bot.States
                     }
                     _lastPriceAddedToWhishList = 0;
                     _lastPrimarySkillsWhishList = 0;
+                    _teacher = new Npc();
                 }
 
 
@@ -266,49 +240,51 @@ namespace nManager.Wow.Bot.States
                     value = Skill.GetValue(SkillLine.Skinning);
                     if (IsNewSkillAvailable(value, skillRank, SkillLine.Riding))
                     {
-                        _teacherOfRiding = NpcDB.GetNpcNearby(Npc.NpcType.RidingTrainer);
+                        _teacher = NpcDB.GetNpcNearby(Npc.NpcType.RidingTrainer);
                     }
-                    if (_teacherOfRiding.Entry > 0)
+                    if (_teacher.Entry > 0)
                     {
-                        _listOfTeachers.Add(_teacherOfRiding);
-                        TeacherFound(value, skillRank, SkillLine.Riding, _teacherOfRiding);
+                        _listOfTeachers.Add(_teacher);
+                        TeacherFound(value, skillRank, SkillLine.Riding, _teacher);
                     }
                     else
                         _whishListSum = _whishListSum - _lastPriceAddedToWhishList;
                     _lastPriceAddedToWhishList = 0;
+                    _teacher = new Npc();
                 }
 
-                // if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
+                //if (FakeSettingsOnlyTrainCurrentlyUsedSkills)
                 return _listOfTeachers.Count > 0;
 
                 // Addings those skills will request much more work on cost calculcation as they all require to learn new recipes, also, TheNoobBot is not able -yet- to use these product.
                 // I have an idea of a Profession bot, where you just ask "level this skill to 600" and it will do it.
                 // A kind of bot can work with a Database of "to do" list to grow 600, like an export of wowprofessions.com. (buy list (from AH or Merchant) then craft list)
                 // For the moment, the code stays here, ready to use anytime we need it.
-                return false;
-                /* Skills to add */
-                _teacherOfAlchemy = new Npc();
-                _teacherOfCooking = new Npc();
-                _teacherOfFirstAid = new Npc();
-                _teacherOfTailoring = new Npc();
-                _teacherOfEnchanting = new Npc();
-                _teacherOfEngineering = new Npc();
-                _teacherOfInscription = new Npc();
-                _teacherOfBlacksmithing = new Npc();
-                _teacherOfJewelcrafting = new Npc();
-                _teacherOfLeatherworking = new Npc();
+
+                /* Skills to add *
+                 * Alchemy,
+                 * Cooking,
+                 * First Aid,
+                 * Tailoring,
+                 * Enchanting,
+                 * Engineering,
+                 * Inscription,
+                 * Blacksmithing,
+                 * Jewelcrafting,
+                 * Leatherworking
+                 */
 
                 // checks Mining - example
                 skillRank = (SkillRank) Skill.GetMaxValue(SkillLine.Mining);
                 value = Skill.GetValue(SkillLine.Mining);
                 if (IsNewSkillAvailable(value, skillRank, SkillLine.Mining))
                 {
-                    _teacherOfMining = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
+                    _teacher = NpcDB.GetNpcNearby(Npc.NpcType.MiningTrainer);
                 }
-                if (_teacherOfMining.Entry > 0)
+                if (_teacher.Entry > 0)
                 {
-                    _listOfTeachers.Add(_teacherOfMining);
-                    TeacherFound(value, skillRank, SkillLine.Mining, _teacherOfMining);
+                    _listOfTeachers.Add(_teacher);
+                    TeacherFound(value, skillRank, SkillLine.Mining, _teacher);
                 }
                 else
                 {
@@ -317,6 +293,7 @@ namespace nManager.Wow.Bot.States
                 }
                 _lastPriceAddedToWhishList = 0;
                 _lastPrimarySkillsWhishList = 0;
+                _teacher = new Npc();
 
                 return _listOfTeachers.Count > 0;
             }
