@@ -294,21 +294,35 @@ namespace nManager.Wow.MemoryClass
                                 if (D3D.OriginalBytes == null)
                                 {
                                     D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 5);
-                                    byte[] AllBytesExtract = Memory.ReadBytes(JumpAddress, 6);
-                                    string Bytes = "";
-                                    foreach (uint bit in AllBytesExtract)
+                                    byte[] wrongdata = new byte[] {0, 0, 0, 0, 0};
+                                    if (D3D.OriginalBytes == wrongdata)
                                     {
-                                        Bytes = Bytes + ", " + bit;
+                                        Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
+                                        Logging.Write("An error is detected, you must switch the DirectX version used by your WoW client !");
+                                        MessageBox.Show("An error is detected, you must switch the DirectX version used by your WoW client !");
+                                        Application.Exit();
                                     }
-                                    Logging.WriteFileOnly("Hooking Informations: " + Bytes);
+                                    byte[] extractAllBytes = Memory.ReadBytes(JumpAddress, 7);
+                                    string bytes = "";
+                                    foreach (uint bit in extractAllBytes)
+                                    {
+                                        if (bytes == "")
+                                            bytes = bit.ToString();
+                                        else
+                                            bytes = bytes + ", " + bit;
+                                    }
+                                    Logging.WriteFileOnly("Hooking Informations: " + bytes);
                                     if (D3D.OriginalBytes[0] != 0xE9)
                                     {
                                         if (D3D.OriginalBytes[0] == 85)
                                             D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 6);
+                                        else if (D3D.OriginalBytes[0] == 106)
+                                            D3D.OriginalBytes = Memory.ReadBytes(JumpAddress, 7);
                                     }
                                     else
                                         D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
                                     // D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
+                                    // D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115};
                                 }
                                 int sizeJumpBack = D3D.OriginalBytes.Length;
                                 Memory.WriteBytes(InjectedCodeDetour + sizeAsm, D3D.OriginalBytes);
