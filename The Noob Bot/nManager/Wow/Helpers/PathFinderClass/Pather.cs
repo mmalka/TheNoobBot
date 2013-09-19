@@ -335,7 +335,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
                 if (!File.Exists(path))
                     return false;
                 byte[] data = File.ReadAllBytes(path);
-                Logging.WriteNavigator("Load finish: " + Continent + "_" + x + "_" + y + ".tile");
+                Logging.Write("Loading of " + Continent + "_" + x + "_" + y + ".tile terminated.");
                 if (!LoadTile(data))
                 {
                     Others.DeleteFile(_meshPath + "\\" + fName);
@@ -378,7 +378,7 @@ namespace nManager.Wow.Helpers.PathFinderClass
 
                 if (!Others.ExistFile(_meshPath + "\\" + fileName))
                 {
-                    Logging.WriteNavigator("Downloading mesh tile \"" + fileName + "\"");
+                    Logging.Write("Downloading of mesh's tile \"" + fileName + "\" in progress.");
                     if (!Others.DownloadFile(stringHttpMap + fileName.Replace("\\", "/") + ".gz",
                                              _meshPath + "\\" + fileName + ".gz"))
                         return false;
