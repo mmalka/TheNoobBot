@@ -10,8 +10,6 @@ namespace Milling
     {
         public static void Pulse()
         {
-            // Update spell list
-            SpellManager.UpdateSpellBook();
             Thread thread = new Thread(ThreadPulse) {Name = "Thread Milling"};
             thread.Start();
         }

@@ -14,19 +14,17 @@ namespace Damage_Dealer.Bot
         {
             try
             {
-                // Update spell list
-                SpellManager.UpdateSpellBook();
-
                 // Load CC:
                 CombatClass.LoadCombatClass();
 
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 12});
-                Fsm.AddState(new IsAttacked {Priority = 10});
-                Fsm.AddState(new FightHostileTarget {Priority = 9});
-                Fsm.AddState(new LevelupCheck {Priority = 3});
+                Fsm.AddState(new Pause {Priority = 5});
+                Fsm.AddState(new IsAttacked {Priority = 4});
+                Fsm.AddState(new FightHostileTarget {Priority = 3});
+                Fsm.AddState(new SpecializationCheck { Priority = 2 });
+                Fsm.AddState(new LevelupCheck { Priority = 1 });
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

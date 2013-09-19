@@ -14,18 +14,16 @@ namespace Heal_Bot.Bot
         {
             try
             {
-                // Update spell list
-                SpellManager.UpdateSpellBook();
-
                 // Load CC:
                 HealerClass.LoadHealerClass();
 
                 // FSM
                 Fsm.States.Clear();
 
-                Fsm.AddState(new Pause {Priority = 3});
-                Fsm.AddState(new HealFriendlyTarget {Priority = 2});
-                Fsm.AddState(new LevelupCheck {Priority = 1});
+                Fsm.AddState(new Pause {Priority = 4});
+                Fsm.AddState(new HealFriendlyTarget {Priority = 3});
+                Fsm.AddState(new SpecializationCheck { Priority = 2 });
+                Fsm.AddState(new LevelupCheck { Priority = 1 });
                 Fsm.AddState(new Idle {Priority = 0});
 
                 Fsm.States.Sort();

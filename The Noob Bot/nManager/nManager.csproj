@@ -131,6 +131,7 @@
     <Compile Include="Wow\Bot\States\MillingState.cs" />
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
+    <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
     <Compile Include="Wow\Enums\WowSpecialization.cs" />
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
