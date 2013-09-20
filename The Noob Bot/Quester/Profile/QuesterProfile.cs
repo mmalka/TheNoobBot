@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using nManager;
+using nManager.Helpful;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.ObjectManager;
+using Math = System.Math;
 
 namespace Quester.Profile
 {
@@ -25,11 +28,14 @@ namespace Quester.Profile
             exp = (int) ObjectManager.Me.WowClass - 1;
             //exp = 2 - 1; // Paladin
             uint mBitClass = exp >= 0 ? (uint) Math.Pow(2, exp) : 0;
-
-            Quests.RemoveAll(quest => ((quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0) ||
-                                       (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0)
-                                      )
-                );
+            for (int i = 0; i < Quests.Count; i++)
+            {
+                Quest quest = Quests[i];
+                if (quest.ClassMask > 0 && (quest.ClassMask & mBitClass) == 0 ||
+                    (quest.RaceMask > 0 && (quest.RaceMask & mBitRace) == 0) ||
+                    quest.Gender != (uint) WoWGender.Both && quest.Gender != (uint) ObjectManager.Me.WowGender)
+                    Quests.Remove(quest);
+            }
         }
 
         // ToDo: Add another filtering function to remove done quests after requesting them to the server
@@ -55,6 +61,7 @@ namespace Quester.Profile
         public string Name = "";
         public int ClassMask = 0;
         public int RaceMask = 0;
+        public int Gender = 2;
         public int Id = 0;
         public int QuestLevel = 0;
         public int MinLevel = 0;

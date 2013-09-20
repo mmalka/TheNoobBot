@@ -16,23 +16,27 @@ namespace nManager.Wow.ObjectManager
         {
         }
 
+        private byte GetCharByte(uint index)
+        {
+            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
+            uint sex = descriptorsArray + ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator) + 0x4*index;
+
+            return Memory.WowMemory.Memory.ReadByte(sex);
+        }
+
+        public WoWRace WowRace
+        {
+            get { return (WoWRace) GetCharByte(0); }
+        }
+
         public WoWClass WowClass
         {
-            get
-            {
-                try
-                {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-                    uint sex = descriptorsArray +
-                               ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
-                    return (WoWClass) Memory.WowMemory.Memory.ReadBytes(sex, 4)[1];
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > WowClass: " + e);
-                    return WoWClass.None;
-                }
-            }
+            get { return (WoWClass) GetCharByte(1); }
+        }
+
+        public WoWGender WowGender
+        {
+            get { return (WoWGender) GetCharByte(3); }
         }
 
         public WoWSpecialization WowSpecialization(bool doOutput = false)
@@ -66,25 +70,6 @@ namespace nManager.Wow.ObjectManager
                 Logging.WriteError("WoWPlayer > WoWSpecialization: " + e);
             }
             return WoWSpecialization.None;
-        }
-
-        public WoWRace WowRace
-        {
-            get
-            {
-                try
-                {
-                    uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-                    uint sex = descriptorsArray +
-                               ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
-                    return (WoWRace) Memory.WowMemory.Memory.ReadBytes(sex, 4)[0];
-                }
-                catch (Exception e)
-                {
-                    Logging.WriteError("WoWPlayer > WowRace: " + e);
-                    return WoWRace.None;
-                }
-            }
         }
 
         public string PlayerFaction
