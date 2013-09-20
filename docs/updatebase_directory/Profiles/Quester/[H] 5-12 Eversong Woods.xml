@@ -668,7 +668,9 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <UseItemId>22473</UseItemId>
-          <EntryAOE>15941</EntryAOE>
+          <Entry>
+            <int>15941</int>
+          </Entry>
           <Count>1</Count>
           <Position>
             <X>9188.763</X>
@@ -681,7 +683,9 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <UseItemId>22473</UseItemId>
-          <EntryAOE>15945</EntryAOE>
+          <Entry>
+            <int>15945</int>
+          </Entry>
           <Count>1</Count>
           <Position>
             <X>9037.787</X>
@@ -979,7 +983,9 @@
           <Objective>BuyItem</Objective>
           <CollectItemId>22775</CollectItemId>
           <CollectCount>1</CollectCount>
-          <EntryAOE>16442</EntryAOE>
+          <Entry>
+            <int>16442</int>
+          </Entry>
           <Name>Vinemaster Suntouched</Name>
           <Position>
             <X>9681.587</X>
@@ -991,7 +997,9 @@
           <Objective>BuyItem</Objective>
           <CollectItemId>22776</CollectItemId>
           <CollectCount>1</CollectCount>
-          <EntryAOE>16443</EntryAOE>
+          <Entry>
+            <int>16443</int>
+          </Entry>
           <Name>Zalene Firstlight</Name>
           <Position>
             <X>8990.876</X>
@@ -1003,7 +1011,9 @@
           <Objective>BuyItem</Objective>
           <CollectItemId>22777</CollectItemId>
           <CollectCount>1</CollectCount>
-          <EntryAOE>16444</EntryAOE>
+          <Entry>
+            <int>16444</int>
+          </Entry>
           <Name>Halis Dawnstrider</Name>
           <Position>
             <X>8731.693</X>

@@ -97,7 +97,7 @@ namespace Quester.Profile
         internal int CurrentCount = 0;
         internal List<Point> PathHotspots = null;
         public List<int> Entry = new List<int>();
-        public string Name = "Not defined";
+        public string Name = "NoName";
         public List<uint> Factions = new List<uint>();
         public int CollectItemId = 0;
         public int CollectCount = 0;
@@ -134,7 +134,7 @@ namespace Quester.Profile
 
         // UseItemAOE & UseSpellAOE & AOE ATTACK MOB
         public float Range = 5.0f;
-        public int EntryAOE = 0;
+
         // Apply buff from item AOE
         public int BuffId = 0;
         public int BuffCount = 0;

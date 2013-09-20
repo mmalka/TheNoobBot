@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Helpful.Forms;
 using nManager.Helpful.Forms.UserControls;
+using nManager.Wow.Class;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 
@@ -137,7 +138,7 @@ namespace The_Noob_Bot
                     for (int i = 0; i < Bag.GetBagItem().Count; i++)
                     {
                         WoWItem item = Bag.GetBagItem()[i];
-                        var iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry);
+                        ItemInfo iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry);
                         if (iteminfo.ItemRarity > 0)
                             items.Add(item.Name);
                     }

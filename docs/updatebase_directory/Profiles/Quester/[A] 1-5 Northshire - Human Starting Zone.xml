@@ -792,7 +792,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>7268</UseSpellId>
           <Count>2</Count>
           <Hotspots>
@@ -829,7 +831,9 @@
         </QuestObjective>
         <QuestObjective> <!-- Cast Judgement on Target Dummy -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>20271</UseSpellId>
           <Count>1</Count>
           <Hotspots>
@@ -861,7 +865,9 @@
       <Objectives>
         <QuestObjective> <!-- Cast Flash Heal on Wounded Trainee -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44564</EntryAOE>
+          <Entry>
+            <int>44564</int>
+          </Entry>
           <UseSpellId>2061</UseSpellId>
           <Count>5</Count>
           <WaitMs>3000</WaitMs>
@@ -894,7 +900,9 @@
       <Objectives>
         <QuestObjective> <!-- Cast Eviscerate on Training Dummy -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>2098</UseSpellId>
           <Count>3</Count>
           <Hotspots>
@@ -926,7 +934,9 @@
       <Objectives>
         <QuestObjective> <!-- Cast Immolate on Training Dummy -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>348</UseSpellId>
           <Count>5</Count>
           <Hotspots>
@@ -958,7 +968,9 @@
       <Objectives>
         <QuestObjective> <!-- Cast Charge on Training Dummy -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>100</UseSpellId>
           <Count>1</Count>
           <Hotspots>
@@ -990,7 +1002,9 @@
       <Objectives>
         <QuestObjective> <!-- Cast Steady Shot on Training Dummy -->
           <Objective>UseSpell</Objective>
-          <EntryAOE>44548</EntryAOE>
+          <Entry>
+            <int>44548</int>
+          </Entry>
           <UseSpellId>56641</UseSpellId>
           <Count>5</Count>
           <Hotspots>
@@ -1384,7 +1398,9 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <UseItemId>65733</UseItemId>
-          <EntryAOE>50047</EntryAOE>
+          <Entry>
+            <int>50047</int>
+          </Entry>
           <Count>4</Count>
           <WaitMs>2000</WaitMs>
           <Position>
@@ -1414,7 +1430,9 @@
         <QuestObjective>
           <Objective>UseItem</Objective>
           <UseItemId>58362</UseItemId>
-          <EntryAOE>42940</EntryAOE> <!-- Northshire Vineyards Fire Trigger  -->
+          <Entry>
+            <int>42940</int>
+          </Entry> <!-- Northshire Vineyards Fire Trigger  -->
           <Count>10</Count> <!-- it's 8 but I put 10 for security raison because I found 1 Vineyards Fire Trigger bugged, the bot will stop as soon as quest is done anyway -->
           <WaitMs>6000</WaitMs>
           <Position>

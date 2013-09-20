@@ -464,7 +464,9 @@
         <QuestObjective>
           <Objective>UseSpellAOE</Objective>
           <UseSpellId>28730</UseSpellId>
-          <EntryAOE>15274</EntryAOE>
+          <Entry>
+            <int>15274</int>
+          </Entry>
           <Range>8</Range>
           <Position>
             <Point>
@@ -590,7 +592,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>56641</UseSpellId>
           <Range>15</Range>
           <Count>5</Count>
@@ -621,7 +625,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>2098</UseSpellId>
           <Count>3</Count>
           <Hotspots>
@@ -651,7 +657,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>589</UseSpellId>
           <Range>15</Range>
           <Count>5</Count>
@@ -682,7 +690,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>122</UseSpellId>
           <Range>15</Range>
           <Count>2</Count>
@@ -713,7 +723,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>172</UseSpellId>
           <Range>15</Range>
           <Count>5</Count>
@@ -744,7 +756,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>100780</UseSpellId>
           <Count>1</Count>
           <Hotspots>
@@ -757,7 +771,9 @@
         </QuestObjective>
         <QuestObjective>
           <Objective>UseSpell</Objective>
-          <EntryAOE>44937</EntryAOE>
+          <Entry>
+            <int>44937</int>
+          </Entry>
           <UseSpellId>100787</UseSpellId>
           <Count>1</Count>
           <Hotspots>

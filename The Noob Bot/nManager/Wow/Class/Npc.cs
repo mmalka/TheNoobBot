@@ -19,7 +19,7 @@ namespace nManager.Wow.Class
             set { _name = value; }
         }
 
-        private string _name = "";
+        private string _name = "NoName";
 
         public string InternalData { get; set; }
 
