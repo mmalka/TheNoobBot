@@ -13,6 +13,13 @@ namespace nManager.Wow.Helpers
         public static List<int> FinishedQuestSet = new List<int>();
         public static List<int> KilledMobsToCount = new List<int>();
 
+        static Quest()
+        {
+            GetSetIgnoreFight = false;
+        }
+
+        public static bool GetSetIgnoreFight { get; set; }
+
         public static bool GetQuestCompleted(List<int> qList)
         {
             foreach (int q in qList)

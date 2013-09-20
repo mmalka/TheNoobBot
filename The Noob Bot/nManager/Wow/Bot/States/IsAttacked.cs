@@ -32,7 +32,7 @@ namespace nManager.Wow.Bot.States
                     !Products.Products.IsStarted)
                     return false;
 
-                if (CustomProfile.GetSetIgnoreFight)
+                if (CustomProfile.GetSetIgnoreFight || Quest.GetSetIgnoreFight)
                     return false;
 
                 // Get if is attacked:

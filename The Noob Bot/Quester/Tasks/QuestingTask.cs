@@ -120,6 +120,7 @@ namespace Quester.Tasks
 
         public static bool QuestObjectiveIsFinish(ref QuestObjective questObjective)
         {
+            Quest.GetSetIgnoreFight = false;
             if (questObjective == null)
                 return true;
 
@@ -129,8 +130,6 @@ namespace Quester.Tasks
 
             if (questObjective.ScriptConditionIsComplete != string.Empty)
                 return Script.Run(questObjective.ScriptConditionIsComplete);
-
-            CheckMandatoryFieldsByObjective(questObjective);
 
             // COLLECT ITEM || BUY ITEM
             if (questObjective.CollectItemId > 0 && questObjective.CollectCount > 0)
@@ -232,6 +231,7 @@ namespace Quester.Tasks
                 return;
 
             QuestStatus = questObjective.Objective.ToString();
+            CheckMandatoryFieldsByObjective(questObjective);
 
             // Create Path:
             if (questObjective.PathHotspots == null)
@@ -406,6 +406,8 @@ namespace Quester.Tasks
                     }
                     else
                     {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         MovementManager.StopMove();
                         if (questObjective.Entry.Count > 0)
@@ -435,6 +437,7 @@ namespace Quester.Tasks
                         else
                             questObjective.IsObjectiveCompleted = true;
                         Thread.Sleep(questObjective.WaitMs);
+                        Quest.GetSetIgnoreFight = false;
                     }
                 }
             }
@@ -457,12 +460,15 @@ namespace Quester.Tasks
             // WAIT
             if (questObjective.Objective == Objective.Wait)
             {
+                if (questObjective.IgnoreFight)
+                    Quest.GetSetIgnoreFight = true;
                 if (waitTimer == null)
                     waitTimer = new Timer(questObjective.WaitMs);
                 if (waitTimer.IsReady)
                 {
                     questObjective.IsObjectiveCompleted = true;
                     waitTimer = null;
+                    Quest.GetSetIgnoreFight = false;
                 }
             }
 
@@ -505,6 +511,8 @@ namespace Quester.Tasks
                                 return;
                             Thread.Sleep(100);
                         }
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         MovementManager.StopMove();
                         Interact.InteractWith(baseAddress);
@@ -515,6 +523,7 @@ namespace Quester.Tasks
                             Quest.SelectGossipOption(questObjective.GossipOptionsInteractWith);
                         }
                         questObjective.IsObjectiveCompleted = true;
+                        Quest.GetSetIgnoreFight = false;
                     }
                     else
                     {
@@ -577,6 +586,8 @@ namespace Quester.Tasks
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                         }
+                        if(questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)
                         {
@@ -586,6 +597,7 @@ namespace Quester.Tasks
                             Thread.Sleep(questObjective.WaitMs);
                         }
                         questObjective.IsObjectiveCompleted = true;
+                        Quest.GetSetIgnoreFight = false;
                     }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)
@@ -694,11 +706,14 @@ namespace Quester.Tasks
                     }
                     else
                     {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         Keybindings.DownKeybindings(questObjective.Keys);
                         Thread.Sleep(questObjective.WaitMs);
                         Keybindings.UpKeybindings(questObjective.Keys);
                         questObjective.IsObjectiveCompleted = true;
+                        Quest.GetSetIgnoreFight = false;
                     }
                 }
             }
@@ -738,11 +753,14 @@ namespace Quester.Tasks
                     }
                     else
                     {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         SpellManager.CastSpellByIDAndPosition((uint) questObjective.UseSpellId,
                                                               questObjective.Position);
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.IsObjectiveCompleted = true;
+                        Quest.GetSetIgnoreFight = false;
                     }
                 }
             }
@@ -771,6 +789,8 @@ namespace Quester.Tasks
                 }
                 if ((questObjective.Entry.Count <= 0 || localEntry <= 0) && baseAddress == 0)
                 {
+                    if (questObjective.IgnoreFight)
+                        Quest.GetSetIgnoreFight = true;
                     ItemsManager.UseItem(questObjective.UseItemId, questObjective.Position);
                     Thread.Sleep(questObjective.WaitMs);
                     questObjective.IsObjectiveCompleted = true;
@@ -778,6 +798,8 @@ namespace Quester.Tasks
                 }
                 else if (baseAddress != 0)
                 {
+                    if (questObjective.IgnoreFight)
+                        Quest.GetSetIgnoreFight = true;
                     Interact.InteractWith(baseAddress);
                     ItemsManager.UseItem(questObjective.UseItemId, target.Position);
                     Thread.Sleep(questObjective.WaitMs);
@@ -793,6 +815,7 @@ namespace Quester.Tasks
                     }
                     return; // target not found, try next Entry
                 }
+                Quest.GetSetIgnoreFight = false;
             }
 
             // BUY ITEM
@@ -889,11 +912,14 @@ namespace Quester.Tasks
                     }
                     else
                     {
+                        if (questObjective.IgnoreFight)
+                            Quest.GetSetIgnoreFight = true;
                         MountTask.DismountMount();
                         Logging.WriteDebug("Buffing " + wowUnit.Name + "(" + wowUnit.GetBaseAddress + ")");
                         ItemsManager.UseItem(ItemsManager.GetItemNameById(questObjective.UseItemId));
                         Thread.Sleep(questObjective.WaitMs);
                         questObjective.CurrentCount++; // This is not correct
+                        Quest.GetSetIgnoreFight = false;
                     }
                 }
                 else if (!MovementManager.InMovement && questObjective.PathHotspots.Count > 0)

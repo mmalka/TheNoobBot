@@ -123,6 +123,9 @@ namespace Quester.Profile
         // Wait
         public int WaitMs = 0;
 
+        // InteractWith/UseSpell/UseSpellAOE
+        public bool IgnoreFight = false;
+
         // InteractWith
         public int EntryInteractWith = 0;
         public int GossipOptionsInteractWith = -1;
