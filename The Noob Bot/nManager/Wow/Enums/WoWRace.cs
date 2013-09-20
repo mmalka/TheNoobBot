@@ -24,5 +24,8 @@
         Taunka = 19,
         NorthrendSkeleton = 20,
         IceTroll = 21,
+        PandarenNeutral = 24,
+        PandarenAliance = 25,
+        PandarenHorde = 26,
     }
 }

@@ -586,7 +586,7 @@ namespace Quester.Tasks
                                 MovementManager.StopMove(); // because interact will make the character go to the target due to CTM
                             }
                         }
-                        if(questObjective.IgnoreFight)
+                        if (questObjective.IgnoreFight)
                             Quest.GetSetIgnoreFight = true;
                         Spell t = new Spell((uint) questObjective.UseSpellId);
                         for (int i = 0; i < questObjective.Count; i++)

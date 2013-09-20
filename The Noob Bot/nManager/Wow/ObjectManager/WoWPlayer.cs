@@ -96,6 +96,8 @@ namespace nManager.Wow.ObjectManager
                         case "Goblin":
                         case "PandarenHorde":
                             return "Horde";
+                        case "PandarenNeutral":
+                            return "Neutral";
                     }
                 }
                 catch (Exception e)
