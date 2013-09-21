@@ -132,13 +132,15 @@ namespace The_Noob_Bot
                     nManager.nManagerSetting.CurrentSetting.AquaticMountName = SpellManager.GetAquaticMountName();
                 }
                 List<string> items = new List<string>();
+                List<WoWItem> itemsBag = Bag.GetBagItem();
                 if (nManager.nManagerSetting.CurrentSetting.DontSellTheseItems.Count == 0 ||
-                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0)
+                    nManager.nManagerSetting.CurrentSetting.DontMailTheseItems.Count == 0 ||
+                    itemsBag != null && itemsBag.Count > 0)
                 {
-                    for (int i = 0; i < Bag.GetBagItem().Count; i++)
+                    for (int i = 0; i < itemsBag.Count; i++)
                     {
-                        WoWItem item = Bag.GetBagItem()[i];
-                        ItemInfo iteminfo = new nManager.Wow.Class.ItemInfo(item.Entry);
+                        WoWItem item = itemsBag[i];
+                        ItemInfo iteminfo = new ItemInfo(item.Entry);
                         if (iteminfo.ItemRarity > 0)
                             items.Add(item.Name);
                     }

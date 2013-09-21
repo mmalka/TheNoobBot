@@ -19,7 +19,7 @@ namespace nManager.Wow.ObjectManager
         private byte GetCharByte(uint index)
         {
             uint descriptorsArrayOfBytes = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-            uint getBytes = descriptorsArrayOfBytes + ((uint)Descriptors.UnitFields.Sex * Descriptors.Multiplicator);
+            uint getBytes = descriptorsArrayOfBytes + ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator);
             byte[] Bytes = Memory.WowMemory.Memory.ReadBytes(getBytes, 4);
             return Bytes[index];
         }
