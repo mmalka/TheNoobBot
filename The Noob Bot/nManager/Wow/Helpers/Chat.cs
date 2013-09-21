@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using nManager.Helpful;
 using nManager.Wow.Patchables;
 
@@ -126,7 +127,7 @@ namespace nManager.Wow.Helpers
                 Message unMsg = ReadMsg();
                 if (unMsg.Msg != null)
                 {
-                    return DateTime.Now + " - " + unMsg.Pseudo + " " + getCanal(unMsg.Canal) + " : " + unMsg.Msg +
+                    return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
                            "\r\n";
                 }
             }
@@ -146,7 +147,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (unMsg.Canal == 4)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getCanal(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -167,7 +168,7 @@ namespace nManager.Wow.Helpers
                 {
                     if (unMsg.Canal == 1)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getCanal(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -188,7 +189,28 @@ namespace nManager.Wow.Helpers
                 {
                     if (unMsg.Canal == 7)
                     {
-                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getCanal(unMsg.Canal) + " : " + unMsg.Msg +
+                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
+                               "\r\n";
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("ReadWhisperChannel(): " + exception);
+            }
+            return "";
+        }
+
+        public string ReadLootChannel()
+        {
+            try
+            {
+                Message unMsg = ReadMsg();
+                if (unMsg.Msg != null)
+                {
+                    if (unMsg.Canal == 27)
+                    {
+                        return DateTime.Now + " - " + unMsg.Pseudo + " " + getChannel(unMsg.Canal) + " : " + unMsg.Msg +
                                "\r\n";
                     }
                 }
@@ -229,10 +251,11 @@ namespace nManager.Wow.Helpers
                     return new Message();
 
                 string lecture =
-                    Memory.WowMemory.Memory.ReadUTF8String(
+                    Memory.WowMemory.Memory.ReadASCIIString(
                         (uint)
                         (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
                          (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(ActuelRead)));
+                Logging.WriteDebug(lecture);
                 Message unMsg = new Message();
                 if (lecture != "")
                 {
@@ -251,40 +274,44 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        private string getCanal(int canal)
+        private string getChannel(int channel)
         {
             try
             {
-                switch (canal)
+                switch (channel)
                 {
                     case 0:
                         return "[Addon]";
                     case 1:
                         return "[Say]";
                     case 2:
-                        return "[Groupe]";
+                        return "[Party]";
                     case 3:
                         return "[Raid]";
                     case 4:
                         return "[Guild]";
                     case 5:
-                        return "[Officier]";
+                        return "[Officers]";
                     case 6:
-                        return "[Cri]";
+                        return "[Yell]";
                     case 7:
                         return "[Whisper]";
                     case 8:
-                        return "[Chuchotte MOB]";
+                        return "[Monster Whisper]";
                     case 9:
-                        return "[A]";
+                        return "[To]";
                     case 10:
                         return "[Emote]";
                     case 17:
-                        return "[Général]";
+                        return "[General]";
                     case 27:
                         return "[Loot]";
+                    case 51:
+                        return "[Real Id Whisper]";
+                    case 52:
+                        return "[Real Id To]";
                     default:
-                        return "";
+                        return "[Channel " + channel + "]";
                 }
             }
             catch (Exception exception)
