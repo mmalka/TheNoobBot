@@ -105,7 +105,7 @@ namespace nManager.Wow.Class
                 {
                     foreach (Spell s in SpellManager.SpellBook())
                     {
-                        if (s.Name != spellName) continue;
+                        if (s.Name.ToLower().Trim() != spellName.ToLower().Trim()) continue;
                         tSpell = s;
                         break;
                     }
