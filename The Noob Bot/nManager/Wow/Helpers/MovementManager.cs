@@ -393,7 +393,8 @@ namespace nManager.Wow.Helpers
             {
                 if (_movement && _points.Count > 0)
                 {
-                    MountTask.Mount(false);
+                    if (!Usefuls.IsFlying)
+                        MountTask.Mount(false);
                     if (!_movement)
                         return;
                     int idPoint = firstIdPoint;
