@@ -217,7 +217,7 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 if (MountTask.GetMountCapacity() == MountCapacity.Fly)
                                 {
-                                    if (!MountTask.onFlyMount())
+                                    if (!MountTask.OnFlyMount())
                                         MountTask.Mount();
                                     else
                                         MountTask.Takeoff();
@@ -226,7 +226,7 @@ namespace nManager.Wow.Bot.Tasks
                                 }
                                 if (MountTask.GetMountCapacity() == MountCapacity.Swimm)
                                 {
-                                    if (!MountTask.onAquaticMount())
+                                    if (!MountTask.OnAquaticMount())
                                         MountTask.Mount();
                                     Fly(nodes);
                                     return;
@@ -237,7 +237,7 @@ namespace nManager.Wow.Bot.Tasks
                                 nManagerSetting.CurrentSetting.MinimumDistanceToUseMount &&
                                 nManagerSetting.CurrentSetting.UseGroundMount)
                             {
-                                if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.onGroundMount())
+                                if (MountTask.GetMountCapacity() == MountCapacity.Ground && !MountTask.OnGroundMount())
                                     MountTask.Mount();
                             }
                             MovementManager.FindTarget(node, 5.0f);

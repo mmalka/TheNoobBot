@@ -26,30 +26,33 @@ namespace nManager.Wow.Bot.Tasks
         private static bool _wisdom4Winds;
         private static bool _coldWeather;
         private static bool _flightMasterLicense;
+        private static Spell _spellAquaMount = new Spell(0);
+        private static Spell _spellGroundMount = new Spell(0);
+        private static Spell _spellFlyMount = new Spell(0);
 
         public static MountCapacity GetMountCapacity()
         {
             string aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
             string groundMount = nManagerSetting.CurrentSetting.GroundMountName;
             string flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
-            Spell spellAquaMount = new Spell(aquaMount);
-            Spell spellGroundMount = new Spell(groundMount);
-            Spell spellFlyMount = new Spell(flyMount);
+            _spellAquaMount = new Spell(aquaMount);
+            _spellGroundMount = new Spell(groundMount);
+            _spellFlyMount = new Spell(flyMount);
 
             if (_startupCheck)
             {
                 // 1st Check if mounts in general settings exist
-                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !spellGroundMount.KnownSpell)
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !_spellGroundMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
                     groundMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !spellAquaMount.KnownSpell)
+                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !_spellAquaMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
                     aquaMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !spellFlyMount.KnownSpell)
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !_spellFlyMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
                     flyMount = string.Empty;
@@ -128,19 +131,19 @@ namespace nManager.Wow.Bot.Tasks
             return MountCapacity.Feet;
         }
 
-        public static bool onGroundMount()
+        public static bool OnGroundMount()
         {
-            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.GroundMountName);
+            return _spellGroundMount.HaveBuff;
         }
 
-        public static bool onFlyMount()
+        public static bool OnFlyMount()
         {
-            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.FlyingMountName);
+            return _spellFlyMount.HaveBuff;
         }
 
-        public static bool onAquaticMount()
+        public static bool OnAquaticMount()
         {
-            return SpellManager.HaveBuffLua(nManagerSetting.CurrentSetting.AquaticMountName);
+            return _spellAquaMount.HaveBuff;
         }
 
         public static void Mount(bool stopMove = true)
@@ -165,7 +168,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && !onGroundMount())
+                if (ObjectManager.ObjectManager.Me.IsMounted && !OnGroundMount())
                     DismountMount(stopMove);
 
                 if (nManagerSetting.CurrentSetting.GroundMountName != "" && !ObjectManager.ObjectManager.Me.IsMounted &&
@@ -210,7 +213,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && !onAquaticMount())
+                if (ObjectManager.ObjectManager.Me.IsMounted && !OnAquaticMount())
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
@@ -256,7 +259,7 @@ namespace nManager.Wow.Bot.Tasks
         {
             try
             {
-                if (ObjectManager.ObjectManager.Me.IsMounted && (!onFlyMount() && !ObjectManager.ObjectManager.Me.IsDeadMe))
+                if (ObjectManager.ObjectManager.Me.IsMounted && (!OnFlyMount() && !ObjectManager.ObjectManager.Me.IsDeadMe))
                     DismountMount(stopMove);
 
                 if (!ObjectManager.ObjectManager.Me.IsMounted)
