@@ -227,6 +227,7 @@ namespace nManager.Wow.Bot.States
                         KeyValuePair<string, int> tempSkill = new KeyValuePair<string, int>(currSkill.Key, value);
                         SkillList.Remove(currSkill);
                         SkillList.Add(tempSkill);
+                        value += Skill.GetSkillBonus(skillLine);
                         Logging.Write("Your skill in " + skillLine + " has increased to " + value + ".");
                         return false; // We need to get out of the foreach to avoid causing a System.InvalidOperationException.
                     }

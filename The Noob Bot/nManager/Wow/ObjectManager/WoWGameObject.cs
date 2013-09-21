@@ -368,27 +368,12 @@ namespace nManager.Wow.ObjectManager
                                     return false;
                                 }
 
-                                int bonus = 0;
-                                if (skill == SkillLine.Herbalism)
-                                {
-                                    if (ItemsManager.GetItemCount(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCount(85663) > 0) // Herbalist's Spade
-                                        bonus = 10;
-                                }
-                                else if (skill == SkillLine.Mining)
-                                {
-                                    if (ItemsManager.GetItemCount(40772) > 0 || // Gnomish Army Knife
-                                        ItemsManager.GetItemCount(2901) > 0) // Mining pick
-                                        bonus = 10;
-                                }
                                 int currentSkillLevel = Skill.GetValue(skill);
                                 if (currentSkillLevel != 0)
-                                    currentSkillLevel += bonus;
+                                    currentSkillLevel += Skill.GetSkillBonus(skill);
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + currentSkillLevel);
-                                if (Skill.GetValue(skill) == 0 || currentSkillLevel < reqSkillValue)
-                                    return false;
 
-                                return true;
+                                return currentSkillLevel != 0 && currentSkillLevel >= reqSkillValue;
                         }
                     }
                 }
