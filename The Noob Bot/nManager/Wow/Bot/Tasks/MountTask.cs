@@ -32,24 +32,24 @@ namespace nManager.Wow.Bot.Tasks
             string aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
             string groundMount = nManagerSetting.CurrentSetting.GroundMountName;
             string flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
+            Spell spellAquaMount = new Spell(aquaMount);
+            Spell spellGroundMount = new Spell(groundMount);
+            Spell spellFlyMount = new Spell(flyMount);
 
             if (_startupCheck)
             {
                 // 1st Check if mounts in general settings exist
-                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && !SpellManager.ExistMountLUA(groundMount) &&
-                    !SpellManager.ExistSpellBookLUA(groundMount))
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !spellGroundMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
                     groundMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !SpellManager.ExistMountLUA(aquaMount) &&
-                    !SpellManager.ExistSpellBookLUA(aquaMount))
+                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !spellAquaMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
                     aquaMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !SpellManager.ExistMountLUA(flyMount) &&
-                    !SpellManager.ExistSpellBookLUA(flyMount))
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !spellFlyMount.KnownSpell)
                 {
                     MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
                     flyMount = string.Empty;

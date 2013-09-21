@@ -10,7 +10,7 @@ namespace nManager.Wow.Helpers
 {
     public class Interact
     {
-        public static void InteractWith(uint baseAddress)
+        public static void InteractWith(uint baseAddress, bool stopMove = false)
         {
             try
             {
@@ -55,6 +55,8 @@ namespace nManager.Wow.Helpers
                         };
 
                     Memory.WowMemory.InjectAndExecute(asm);
+                    if (stopMove)
+                        MovementManager.StopMove();
                     Thread.Sleep(Usefuls.Latency);
                 }
             }
