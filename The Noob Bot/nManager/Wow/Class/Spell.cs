@@ -364,7 +364,7 @@ namespace nManager.Wow.Class
         {
             try
             {
-                Launch(CastTime == 0);
+                Launch(CastTime != 0);
             }
             catch (Exception exception)
             {
