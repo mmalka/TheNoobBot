@@ -165,6 +165,8 @@ namespace nManager.Wow.Helpers
 
                 if (fishingPoleName != string.Empty)
                 {
+                    if (ItemsManager.GetItemIdByName(fishingPoleName) == 6256)
+                        return; // Useless to equip the basic Fishing Pole
                     ItemsManager.EquipItemByName(fishingPoleName);
                     Thread.Sleep(500);
                     Thread.Sleep(Usefuls.Latency);
@@ -179,6 +181,8 @@ namespace nManager.Wow.Helpers
                     {
                         if (ItemsManager.GetItemCount(i) > 0)
                         {
+                            if (i == 6256)
+                                return; // Useless to equip the basic Fishing Pole
                             ItemsManager.EquipItemByName(ItemsManager.GetItemNameById(i));
                             Thread.Sleep(500);
                             Thread.Sleep(Usefuls.Latency);
