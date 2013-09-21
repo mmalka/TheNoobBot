@@ -14508,20 +14508,20 @@ public class ShamanEnhancement
             (!WaterWalking.HaveBuff || _waterWalkingTimer.IsReady)
             && !ObjectManager.Me.InCombat && MySettings.UseWaterWalking)
         {
-            WaterWalking.Launch();
+            WaterWalking.LaunchOnSelf();
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
         if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
              && MySettings.UseWaterShield && !WaterShield.HaveBuff) || !MySettings.UseLightningShield)
         {
-            WaterShield.Launch();
+            WaterShield.LaunchOnSelf();
             return;
         }
         if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
             && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
         {
-            LightningShield.Launch();
+            LightningShield.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
@@ -15400,7 +15400,7 @@ public class ShamanRestoration
             (!WaterWalking.HaveBuff || _waterWalkingTimer.IsReady)
             && !ObjectManager.Me.InCombat && MySettings.UseWaterWalking)
         {
-            WaterWalking.Launch();
+            WaterWalking.LaunchOnSelf();
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
@@ -15408,7 +15408,7 @@ public class ShamanRestoration
              && MySettings.UseWaterShield && !WaterShield.HaveBuff)
             || (!MySettings.UseLightningShield && !MySettings.UseEarthShield))
         {
-            WaterShield.Launch();
+            WaterShield.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.HealthPercent < 50 && EarthShield.KnownSpell && EarthShield.IsSpellUsable
@@ -15422,7 +15422,7 @@ public class ShamanRestoration
             && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15
             && ObjectManager.Me.HealthPercent > 70)
         {
-            LightningShield.Launch();
+            LightningShield.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable
@@ -16287,20 +16287,20 @@ public class ShamanElemental
             (!WaterWalking.HaveBuff || _waterWalkingTimer.IsReady)
             && !ObjectManager.Me.InCombat && MySettings.UseWaterWalking)
         {
-            WaterWalking.Launch();
+            WaterWalking.LaunchOnSelf();
             _waterWalkingTimer = new Timer(1000*60*9);
             return;
         }
         if ((ObjectManager.Me.ManaPercentage < 5 && WaterShield.KnownSpell && WaterShield.IsSpellUsable
              && MySettings.UseWaterShield && !WaterShield.HaveBuff) || !MySettings.UseLightningShield)
         {
-            WaterShield.Launch();
+            WaterShield.LaunchOnSelf();
             return;
         }
         if (LightningShield.KnownSpell && LightningShield.IsSpellUsable && !LightningShield.HaveBuff
             && MySettings.UseLightningShield && ObjectManager.Me.ManaPercentage > 15)
         {
-            LightningShield.Launch();
+            LightningShield.LaunchOnSelf();
             return;
         }
         if (ObjectManager.Me.InCombat && SpiritwalkersGrace.IsSpellUsable

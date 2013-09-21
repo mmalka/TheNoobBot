@@ -373,6 +373,30 @@ namespace nManager.Wow.Class
         }
 
         /// <summary>
+        /// Cast Spell on Self.
+        /// </summary>
+        public void LaunchOnSelf()
+        {
+            try
+            {
+                WoWUnit lowestHpPlayer = ObjectManager.ObjectManager.Target;
+                if (lowestHpPlayer.IsValid)
+                {
+                    Interact.InteractWithBeta(ObjectManager.ObjectManager.Me.GetBaseAddress);
+                }
+                Launch();
+                if (lowestHpPlayer.IsValid)
+                {
+                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress, true);
+                }
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Spell > LaunchOnSelf():" + exception);
+            }
+        }
+
+        /// <summary>
         /// Cast Spell.
         /// </summary>
         /// <param name="StopMove">if set to <c>true</c> [Don't move during cast].</param>
