@@ -18,10 +18,10 @@ namespace nManager.Wow.ObjectManager
 
         private byte GetCharByte(uint index)
         {
-            uint descriptorsArray = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
-            uint sex = descriptorsArray + ((uint) Descriptors.UnitFields.Sex*Descriptors.Multiplicator) + 0x4*index;
-
-            return Memory.WowMemory.Memory.ReadByte(sex);
+            uint descriptorsArrayOfBytes = Memory.WowMemory.Memory.ReadUInt(BaseAddress + Descriptors.StartDescriptors);
+            uint getBytes = descriptorsArrayOfBytes + ((uint)Descriptors.UnitFields.Sex * Descriptors.Multiplicator);
+            byte[] Bytes = Memory.WowMemory.Memory.ReadBytes(getBytes, 4);
+            return Bytes[index];
         }
 
         public WoWRace WowRace
