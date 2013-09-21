@@ -384,7 +384,7 @@ namespace nManager.Wow.Class
                 {
                     Interact.InteractWithBeta(ObjectManager.ObjectManager.Me.GetBaseAddress);
                 }
-                Launch();
+                Launch(CastTime != 0);
                 if (lowestHpPlayer.IsValid)
                 {
                     Interact.InteractWith(lowestHpPlayer.GetBaseAddress, true);
@@ -393,6 +393,33 @@ namespace nManager.Wow.Class
             catch (Exception exception)
             {
                 Logging.WriteError("Spell > LaunchOnSelf():" + exception);
+            }
+        }
+
+        /// <summary>
+        /// Cast Spell on Self.
+        /// </summary>
+        /// <param name="StopMove">if set to <c>true</c> [Don't move during cast].</param>
+        /// <param name="waitIsCast">if set to <c>true</c> [Wait the cast end].</param>
+        /// <param name="ignoreIfCast"> </param>
+        public void LaunchOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false)
+        {
+            try
+            {
+                WoWUnit lowestHpPlayer = ObjectManager.ObjectManager.Target;
+                if (lowestHpPlayer.IsValid)
+                {
+                    Interact.InteractWithBeta(ObjectManager.ObjectManager.Me.GetBaseAddress);
+                }
+                Launch(StopMove, waitIsCast, ignoreIfCast);
+                if (lowestHpPlayer.IsValid)
+                {
+                    Interact.InteractWith(lowestHpPlayer.GetBaseAddress, true);
+                }
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("Spell > LaunchOnSelf(bool StopMove, bool waitIsCast = true, bool ignoreIfCast = false): " + exception);
             }
         }
 

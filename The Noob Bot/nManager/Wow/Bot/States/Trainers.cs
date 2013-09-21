@@ -39,7 +39,7 @@ namespace nManager.Wow.Bot.States
                 new KeyValuePair<string, int>("Leatherworking", Skill.GetValue(SkillLine.Leatherworking)),*/
             };
 
-        private static readonly Spell Mining = new Spell("Mining");
+        private static readonly Spell Mining = new Spell("Smelting"); // Mining is not part of the SpellBook
         private static readonly Spell Alchemy = new Spell("Alchemy");
         private static readonly Spell Skinning = new Spell("Skinning");
         private static readonly Spell Herbalism = new Spell("Herbalism");
@@ -322,7 +322,7 @@ namespace nManager.Wow.Bot.States
                 return;
             if (baseAddress == 0 && bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
                 NpcDB.DelNpc(bestTeacher);
-            else
+            else if (baseAddress != 0)
             {
                 string[] skillInfo = bestTeacher.InternalData.Split(',');
                 if (skillInfo.Length == 2)
@@ -343,6 +343,7 @@ namespace nManager.Wow.Bot.States
                 TeacherFoundNoSpam.Remove(bestTeacher);
                 SpellManager.UpdateSpellBook();
             }
+            // still on the road, but not in movement for some reasons
         }
 
         private static void TeacherFound(int value, SkillRank skillRank, SkillLine skillLine, Npc teacher)
