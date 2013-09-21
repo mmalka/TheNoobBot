@@ -29,35 +29,38 @@ namespace nManager.Wow.Bot.Tasks
         private static Spell _spellAquaMount = new Spell(0);
         private static Spell _spellGroundMount = new Spell(0);
         private static Spell _spellFlyMount = new Spell(0);
+        private static string _aquaMount;
+        private static string _groundMount;
+        private static string _flyMount;
 
         public static MountCapacity GetMountCapacity()
         {
-            string aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
-            string groundMount = nManagerSetting.CurrentSetting.GroundMountName;
-            string flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
-            _spellAquaMount = new Spell(aquaMount);
-            _spellGroundMount = new Spell(groundMount);
-            _spellFlyMount = new Spell(flyMount);
-
             if (_startupCheck)
             {
                 // 1st Check if mounts in general settings exist
-                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !_spellGroundMount.KnownSpell)
+                _aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
+                _groundMount = nManagerSetting.CurrentSetting.GroundMountName;
+                _flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
+                _spellAquaMount = new Spell(_aquaMount);
+                _spellGroundMount = new Spell(_groundMount);
+                _spellFlyMount = new Spell(_flyMount);
+
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && _groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !_spellGroundMount.KnownSpell)
                 {
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + groundMount);
-                    groundMount = string.Empty;
+                    Others.ShowMessageBox(Translate.Get(Translate.Id.ThisGroundMountDoesNotExist) + _groundMount);
+                    _groundMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 18 && aquaMount != string.Empty && !_spellAquaMount.KnownSpell)
+                if (ObjectManager.ObjectManager.Me.Level >= 18 && _aquaMount != string.Empty && !_spellAquaMount.KnownSpell)
                 {
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + aquaMount);
-                    aquaMount = string.Empty;
+                    Others.ShowMessageBox(Translate.Get(Translate.Id.ThisAquaticMountDoesNotExist) + _aquaMount);
+                    _aquaMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && !_spellFlyMount.KnownSpell)
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && _flyMount != string.Empty && !_spellFlyMount.KnownSpell)
                 {
-                    MessageBox.Show(Translate.Get(Translate.Id.This_mount_does_not_exist) + ": " + flyMount);
-                    flyMount = string.Empty;
+                    Others.ShowMessageBox(Translate.Get(Translate.Id.ThisFlyingMountDoesNotExist) + _flyMount);
+                    _flyMount = string.Empty;
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 60 && aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
+                if (ObjectManager.ObjectManager.Me.Level >= 60 && _aquaMount != string.Empty && _localizedAbysalMountName == string.Empty)
                     _localizedAbysalMountName = SpellManager.SpellListManager.SpellNameByIdExperimental(75207);
 
                 Spell wisdom4Winds = new Spell(115913);
@@ -69,7 +72,7 @@ namespace nManager.Wow.Bot.Tasks
 
                 _startupCheck = false;
             }
-            if (ObjectManager.ObjectManager.Me.Level < 16 || (groundMount == string.Empty && flyMount == string.Empty && aquaMount == string.Empty))
+            if (ObjectManager.ObjectManager.Me.Level < 16 || (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
             {
                 if (ObjectManager.ObjectManager.Me.Level >= 16 && _noMountsInSettings != 1)
                 {
@@ -80,16 +83,16 @@ namespace nManager.Wow.Bot.Tasks
             }
 
             // Wherever we are if we have an aquatic mount and are swimming
-            if (ObjectManager.ObjectManager.Me.Level >= 18 && Usefuls.IsSwimming && aquaMount != string.Empty)
+            if (ObjectManager.ObjectManager.Me.Level >= 18 && Usefuls.IsSwimming && _aquaMount != string.Empty)
             {
                 // We are in Vashjir and the Abyssal Seahorse is selected
-                if (aquaMount == _localizedAbysalMountName &&
+                if (_aquaMount == _localizedAbysalMountName &&
                     (Usefuls.AreaId == 5146 || Usefuls.AreaId == 4815 ||
                      Usefuls.AreaId == 5145 || Usefuls.AreaId == 5144))
                 {
                     return MountCapacity.Swimm;
                 }
-                if (aquaMount != _localizedAbysalMountName)
+                if (_aquaMount != _localizedAbysalMountName)
                 {
                     return MountCapacity.Swimm;
                 }
@@ -97,7 +100,7 @@ namespace nManager.Wow.Bot.Tasks
 
             if (Usefuls.IsOutdoors)
             {
-                if (ObjectManager.ObjectManager.Me.Level >= 58 && flyMount != string.Empty && Usefuls.IsFlyableArea)
+                if (ObjectManager.ObjectManager.Me.Level >= 58 && _flyMount != string.Empty && Usefuls.IsFlyableArea)
                 {
                     ContinentId cont = (ContinentId) Usefuls.ContinentId;
 
@@ -125,7 +128,7 @@ namespace nManager.Wow.Bot.Tasks
 
                     // More work to be done with spell 130487 = "Cloud Serpent Riding"
                 }
-                if (ObjectManager.ObjectManager.Me.Level >= 16 && groundMount != string.Empty)
+                if (ObjectManager.ObjectManager.Me.Level >= 16 && _groundMount != string.Empty)
                     return MountCapacity.Ground;
             }
             return MountCapacity.Feet;

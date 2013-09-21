@@ -921,9 +921,17 @@
       <Text>Per favore configura la tua mount volante in Opzioni generali</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-    <Translation>
-      <Text>Questa mout non esiste</Text>
-      <Id>This_mount_does_not_exist</Id>
+	<Translation>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Per favore seleziona il file exe nella cartella di installazione del gioco</Text>

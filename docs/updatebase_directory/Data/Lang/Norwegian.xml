@@ -925,9 +925,17 @@
       <Text>Vennligst_konfigurer_din_flyvende_mount_i_Generelle_Instillinger</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-    <Translation>
-      <Text>Denne_mounten_eksisterer_ikke</Text>
-      <Id>This_mount_does_not_exist</Id>
+	<Translation>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Vennligst_velg_exe_i_installasjonsmappa_av_spillet</Text>

@@ -1008,5 +1008,11 @@ namespace nManager.Helpful
                     break;
             }
         }
+
+        public static void ShowMessageBox(string message, string title = "")
+        {
+            Thread thread = string.IsNullOrEmpty(title) ? new Thread(() => MessageBox.Show(message)) : new Thread(() => MessageBox.Show(message, title));
+            thread.Start();
+        }
     }
 }

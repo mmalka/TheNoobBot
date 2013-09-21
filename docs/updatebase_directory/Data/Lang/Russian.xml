@@ -921,9 +921,17 @@
       <Text>Настройте летающего маунта в Настройках</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-    <Translation>
-      <Text>Этот маунт не доступен</Text>
-      <Id>This_mount_does_not_exist</Id>
+	<Translation>
+      <Text>Водный маунт не найден: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>Летающий маунт не найден: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>Наземный маунт не найден: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Выбирите exe файл в папке с игрой</Text>

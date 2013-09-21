@@ -921,9 +921,17 @@
       <Text>请在通用设置里配置您的飞行坐骑</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-    <Translation>
-      <Text>坐骑没找到</Text>
-      <Id>This_mount_does_not_exist</Id>
+	<Translation>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>请选择游戏安装目录中 .exe 的文件</Text>

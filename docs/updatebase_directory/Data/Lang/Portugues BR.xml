@@ -921,9 +921,17 @@
       <Text>Por favor, configure sua montaria voadora nas configurações Gerais</Text>
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
-    <Translation>
-      <Text>Esta montaria não existe</Text>
-      <Id>This_mount_does_not_exist</Id>
+	<Translation>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Por favor, selecione .exe diretório de instalação do jogo</Text>

@@ -922,8 +922,16 @@
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
 	<Translation>
-      <Text>이 탈것은 존재하지 않습니다</Text>
-      <Id>This_mount_does_not_exist</Id>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>와우가 설치되어 있는 폴더의 .exe를 선택해주세요</Text>

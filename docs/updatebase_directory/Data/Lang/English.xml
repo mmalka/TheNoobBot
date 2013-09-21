@@ -922,8 +922,16 @@
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
 	<Translation>
-      <Text>This mount does not exist</Text>
-      <Id>This_mount_does_not_exist</Id>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Please select .exe in the install folder of the game</Text>

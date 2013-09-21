@@ -921,10 +921,18 @@
 			<Text>請在通用設置裡配置您的飛行坐騎</Text>
 			<Id>Please_configure_your_Fly_mount_in_General_settings</Id>
 		</Translation>
-		<Translation>
-			<Text>坐騎沒找到</Text>
-			<Id>This_mount_does_not_exist</Id>
-		</Translation>
+	<Translation>
+      <Text>This aquatic mount does not exist: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This flying mount does not exist: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>This ground mount does not exist: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
+    </Translation>
 		<Translation>
 			<Text>請選擇游戲安裝目錄中 .exe 的文件</Text>
 			<Id>Please_select_exe_in_the_install_folder_of_the_game</Id>

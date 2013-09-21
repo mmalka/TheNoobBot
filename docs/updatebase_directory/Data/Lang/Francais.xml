@@ -923,8 +923,16 @@
       <Id>Please_configure_your_Fly_mount_in_General_settings</Id>
     </Translation>
 	<Translation>
-      <Text>Cette monture n'existe pas</Text>
-      <Id>This_mount_does_not_exist</Id>
+      <Text>Cette monture aquatique n'existe pas: </Text>
+      <Id>ThisAquaticMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>Cette monture volante n'existe pas: </Text>
+      <Id>ThisFlyingMountDoesNotExist</Id>
+    </Translation>
+	<Translation>
+      <Text>Cette monture terrestre n'existe pas: </Text>
+      <Id>ThisGroundMountDoesNotExist</Id>
     </Translation>
     <Translation>
       <Text>Selectionner le fichier .exe du jeu la ou vous l'avez installé</Text>
