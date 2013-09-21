@@ -838,8 +838,28 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>새로운 스킬 배움</Text>
-      <Id>Train_New_Skills</Id>
+      <Text>Activate skills auto training</Text>
+      <Id>ActivateSkillsAutoTraining</Id>
+    </Translation>
+    <Translation>
+      <Text>Only train currently used skills</Text>
+      <Id>OnlyTrainCurrentlyUsedSkills</Id>
+    </Translation>
+    <Translation>
+      <Text>Train mounting capacity</Text>
+      <Id>TrainMountingCapacity</Id>
+    </Translation>
+    <Translation>
+      <Text>Only train if we have 2 times more money than required</Text>
+      <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
+    </Translation>
+    <Translation>
+      <Text>Become apprentice if needed by product</Text>
+      <Id>BecomeApprenticeIfNeededByProduct</Id>
+    </Translation>
+    <Translation>
+      <Text>Become apprentice of secondary skills while questing</Text>
+      <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
     </Translation>
     <Translation>
       <Text>전투 시작하지 않음</Text>

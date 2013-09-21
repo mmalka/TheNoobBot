@@ -839,8 +839,28 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Apprendre les métiers</Text>
-      <Id>Train_New_Skills</Id>
+      <Text>Activer l'apprentissage automatique des métiers</Text>
+      <Id>ActivateSkillsAutoTraining</Id>
+    </Translation>
+    <Translation>
+      <Text>S'entrainer seulement si ce métier est actif</Text>
+      <Id>OnlyTrainCurrentlyUsedSkills</Id>
+    </Translation>
+    <Translation>
+      <Text>Apprendre les compétences de monte</Text>
+      <Id>TrainMountingCapacity</Id>
+    </Translation>
+    <Translation>
+      <Text>Apprendre les métiers seulement si nous avons le double de la somme</Text>
+      <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
+    </Translation>
+    <Translation>
+      <Text>Devenir apprenti dans un métier si le produit en a besoin</Text>
+      <Id>BecomeApprenticeIfNeededByProduct</Id>
+    </Translation>
+    <Translation>
+      <Text>Devenir apprenti dans les métiers secondaires pendant le leveling</Text>
+      <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
     </Translation>
     <Translation>
       <Text>Ne pas commencer le combat</Text>
