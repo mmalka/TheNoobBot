@@ -1773,8 +1773,7 @@ namespace nManager.Wow.ObjectManager
             {
                 try
                 {
-                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 ||
-                           HaveBuff(SpellManager.MountDruidId()) || InTransport;
+                    return GetDescriptor<int>(Descriptors.UnitFields.MountDisplayID) > 0 || HaveBuff(SpellManager.MountDruidId()) || InTransport || Usefuls.IsFlying;
                 }
                 catch (Exception e)
                 {
