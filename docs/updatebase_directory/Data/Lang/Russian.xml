@@ -110,19 +110,19 @@
       <Id>You_starting_trial_version__the_tnb_will_automatically_stopped_after____min</Id>
     </Translation>
     <Translation>
-      <Text>The latest update of the bot is: TheNoobBot </Text>
+      <Text>Последнее обновление бота: TheNoobBot </Text>
       <Id>LatestUpdateVersion</Id>
     </Translation>
     <Translation>
-      <Text>Remote informations about this update: </Text>
+      <Text>Немного информация об этом обновлении: </Text>
       <Id>LatestUpdateDescription</Id>
     </Translation>
     <Translation>
-      <Text>Do you want to update TheNoobBot now ?</Text>
+      <Text>Вы хотите обновить TheNoobBot сейчас?</Text>
       <Id>ConfirmUpdate</Id>
     </Translation>
     <Translation>
-      <Text>TheNoobBot, an update is available</Text>
+      <Text>доступно обновление, TheNoobBot</Text>
       <Id>LatestUpdateTitle</Id>
     </Translation>
     <Translation>
@@ -838,27 +838,27 @@
       <Id>Use_Spirit_Healer</Id>
     </Translation>
     <Translation>
-      <Text>Activate skills auto training</Text>
+      <Text>Активируйте автообучение скилов</Text>
       <Id>ActivateSkillsAutoTraining</Id>
     </Translation>
     <Translation>
-      <Text>Only train currently used skills</Text>
+      <Text>Изучать только используемые скилы</Text>
       <Id>OnlyTrainCurrentlyUsedSkills</Id>
     </Translation>
     <Translation>
-      <Text>Train mounting capacity</Text>
+      <Text>Изучать новый уровень ездовых умений</Text>
       <Id>TrainMountingCapacity</Id>
     </Translation>
     <Translation>
-      <Text>Only train if we have 2 times more money than required</Text>
+      <Text>Обучать только если денег в 2 раза больше необходимых</Text>
       <Id>OnlyTrainIfWeHave2TimesMoreMoneyThanOurWishListSum</Id>
     </Translation>
     <Translation>
-      <Text>Become apprentice if needed by product</Text>
+      <Text>Изучение профессии согласно используемому продукту</Text>
       <Id>BecomeApprenticeIfNeededByProduct</Id>
     </Translation>
     <Translation>
-      <Text>Become apprentice of secondary skills while questing</Text>
+      <Text>Изучение вторичных профессий для заданий (Кулинария, кожевничество, рыболовство и т.д.)</Text>
       <Id>BecomeApprenticeOfSecondarySkillsWhileQuesting</Id>
     </Translation>
     <Translation>
