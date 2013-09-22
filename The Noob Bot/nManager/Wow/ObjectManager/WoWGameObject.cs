@@ -296,6 +296,8 @@ namespace nManager.Wow.ObjectManager
             return SkillLine.None;
         }
 
+        public bool IsHerb { get; set; }
+
         public bool CanOpen
         {
             get
@@ -349,6 +351,7 @@ namespace nManager.Wow.ObjectManager
                                 if (skill == SkillLine.Herbalism &&
                                     !nManagerSetting.CurrentSetting.ActivateHerbsHarvesting)
                                     return false;
+
                                 // Prevent mining when the setting is off
                                 if (skill == SkillLine.Mining && !nManagerSetting.CurrentSetting.ActivateVeinsHarvesting)
                                     return false;
@@ -372,8 +375,8 @@ namespace nManager.Wow.ObjectManager
                                 if (currentSkillLevel != 0)
                                     currentSkillLevel += Skill.GetSkillBonus(skill);
                                 //Logging.Write("Requires " + skill + " level " + reqSkillValue + " I have " + currentSkillLevel);
-
-                                return currentSkillLevel != 0 && currentSkillLevel >= reqSkillValue;
+                                IsHerb = skill == SkillLine.Herbalism;
+                                return currentSkillLevel > 0 && currentSkillLevel >= reqSkillValue;
                         }
                     }
                 }

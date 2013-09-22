@@ -132,8 +132,10 @@ namespace nManager.Wow.Bot.Tasks
                             {
                                 Thread.Sleep(50);
                             }
-                            if (!ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
+                            if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                 Usefuls.DisMount();
+                            else if (node.IsHerb)
+                                MovementManager.StopMove();
                             Thread.Sleep(Usefuls.Latency + 300);
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 200);
@@ -150,8 +152,7 @@ namespace nManager.Wow.Bot.Tasks
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                    Lua.RunMacroText("/cancelform");
+                                Usefuls.DisMount();
                                 return;
                             }
                             Thread.Sleep(Usefuls.Latency + 100);
@@ -162,8 +163,7 @@ namespace nManager.Wow.Bot.Tasks
                                  !(ObjectManager.ObjectManager.Me.IsMounted &&
                                    (nManagerSetting.CurrentSetting.IgnoreFightIfMounted || Usefuls.IsFlying))))
                             {
-                                if (ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
-                                    Lua.RunMacroText("/cancelform");
+                                Usefuls.DisMount();
                                 return;
                             }
                             nManagerSetting.AddBlackList(node.Guid, 1000*20);
@@ -208,7 +208,6 @@ namespace nManager.Wow.Bot.Tasks
                 {
                     if ((int) node.GetBaseAddress > 0)
                     {
-                        //var points = new List<Point>(); // not used, why
                         if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) > 4.0f)
                         {
                             if (ObjectManager.ObjectManager.Me.Position.DistanceTo(node.Position) >=
