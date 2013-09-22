@@ -79,7 +79,13 @@ namespace nManager.Helpful
         {
             try
             {
-                return _log.Where(l => (l.LogType & logType) == l.LogType).ToList();
+                List<Log> list = new List<Log>();
+                for (int i = 0; i < _log.Count; i++)
+                {
+                    Log log = _log[i];
+                    if ((log.LogType & logType) == log.LogType) list.Add(log);
+                }
+                return list;
             }
             catch (Exception exception)
             {
@@ -92,8 +98,14 @@ namespace nManager.Helpful
         {
             try
             {
+                List<string> list = new List<string>();
+                for (int i = 0; i < ReadList(logType).Count; i++)
+                {
+                    Log l = ReadList(logType)[i];
+                    if ((l.LogType & logType) == l.LogType) list.Add(l.ToString());
+                }
                 return
-                    (from l in ReadList(logType) where (l.LogType & logType) == l.LogType select l.ToString()).ToList();
+                    list;
             }
             catch (Exception exception)
             {
@@ -186,7 +198,7 @@ namespace nManager.Helpful
                         Console.WriteLine(LogQueue[0].ToString());
                         _log.Add(LogQueue[0]);
 
-                        if (_log.Count > 300)
+                        if (_log.Count > 100)
                             _log.RemoveAt(0);
 
                         if (!Directory.Exists(Application.StartupPath + "\\Logs"))
