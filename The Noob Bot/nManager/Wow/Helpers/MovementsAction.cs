@@ -8,13 +8,11 @@ namespace nManager.Wow.Helpers
 
         public static void Jump()
         {
-            Ascend(true);
-            Ascend(false);
+            Ascend(true, true);
         }
 
         public static void Ascend(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("Ascend(" + start + ")");
             if (UseLUAToMove)
             {
@@ -29,15 +27,12 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                Ascend(!start);
             }
         }
 
         public static void Descend(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("Descend(" + start + ")");
             if (UseLUAToMove)
             {
@@ -52,15 +47,12 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                Descend(!start);
             }
         }
 
         public static void MoveBackward(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("MoveBackward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -75,15 +67,12 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                MoveBackward(!start);
             }
         }
 
         public static void MoveForward(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("MoveForward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -98,15 +87,12 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                MoveForward(!start);
             }
         }
 
         public static void StrafeLeft(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("StrafeLeft(" + start + ")");
             if (UseLUAToMove)
             {
@@ -121,15 +107,12 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                StrafeLeft(!start);
             }
         }
 
         public static void StrafeRight(bool start, bool redo = false)
         {
-            beginning:
             Logging.WriteFileOnly("StrafeRight(" + start + ")");
             if (UseLUAToMove)
             {
@@ -144,9 +127,7 @@ namespace nManager.Wow.Helpers
             }
             if (redo)
             {
-                redo = false;
-                start = !start;
-                goto beginning;
+                StrafeRight(!start);
             }
         }
     }
