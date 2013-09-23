@@ -137,7 +137,11 @@ namespace nManager.Wow.Bot.Tasks
                             else if (node.IsHerb)
                             {
                                 Logging.WriteDebug("Druid IsFlying ? " + Usefuls.IsFlying);
-                                MovementManager.StopMove();
+                                if (Usefuls.IsFlying)
+                                {
+                                    MountTask.Land();
+                                    MovementManager.StopMove();
+                                }
                             }
                             Thread.Sleep(Usefuls.Latency + 300);
                             Interact.InteractWith(node.GetBaseAddress);
