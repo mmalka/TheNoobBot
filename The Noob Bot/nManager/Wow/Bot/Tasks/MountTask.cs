@@ -184,10 +184,10 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting gound mount " + nManagerSetting.CurrentSetting.GroundMountName);
+                    Logging.Write("Mounting gound mount " + _spellGroundMount.NameInGame);
 
                     Thread.Sleep(250);
-                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.GroundMountName);
+                    SpellManager.CastSpellByNameLUA(_spellGroundMount.NameInGame);
                     Thread.Sleep(500 + Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -228,10 +228,10 @@ namespace nManager.Wow.Bot.Tasks
                         MovementManager.StopMove();
                     else
                         MovementManager.StopMoveTo();
-                    Logging.Write("Mounting aquatic mount " + nManagerSetting.CurrentSetting.AquaticMountName);
+                    Logging.Write("Mounting aquatic mount " + _spellAquaMount.NameInGame);
 
                     Thread.Sleep(250);
-                    SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.AquaticMountName);
+                    SpellManager.CastSpellByNameLUA(_spellAquaMount.NameInGame);
                     Thread.Sleep(500 + Usefuls.Latency);
                     while (ObjectManager.ObjectManager.Me.IsCast)
                     {
@@ -294,8 +294,8 @@ namespace nManager.Wow.Bot.Tasks
                         }
                         while (ObjectManager.ObjectManager.Me.GetMove)
                             Thread.Sleep(50 + Usefuls.Latency); // to stop moving/falling
-                        Logging.Write("Mounting fly mount " + nManagerSetting.CurrentSetting.FlyingMountName);
-                        SpellManager.CastSpellByNameLUA(nManagerSetting.CurrentSetting.FlyingMountName);
+                        Logging.Write("Mounting fly mount " + _spellFlyMount.NameInGame);
+                        SpellManager.CastSpellByNameLUA(_spellFlyMount.NameInGame);
                         if (ObjectManager.ObjectManager.Me.InCombat)
                         {
                             return;
