@@ -109,6 +109,8 @@ namespace nManager.Wow.Class
                         tSpell = s;
                         break;
                     }
+                    if (tSpell == null && SpellManager.GetSpellIdBySpellNameInGame(spellName) > 0)
+                        tSpell = new Spell(SpellManager.GetSpellIdBySpellNameInGame(spellName));
                 }
                 if (tSpell == null)
                 {
