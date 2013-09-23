@@ -162,7 +162,7 @@ namespace nManager.Wow.Bot.States
 
 
             // Channel
-            while (_whisperChannel.ActuelRead < _whisperChannel.GetMsgActuelInWow)
+            while (_whisperChannel.CurrentMsg < _whisperChannel.GetCurrentMsgInWow)
             {
                 string msg = _whisperChannel.ReadWhisperChannel();
                 if (!String.IsNullOrWhiteSpace(msg))

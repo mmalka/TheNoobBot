@@ -60,17 +60,15 @@ namespace nManager.Wow.Helpers
     {
         #region Fields
 
-        public int ActuelRead;
+        public int CurrentMsg;
 
-        public int GetMsgActuelInWow
+        public int GetCurrentMsgInWow
         {
             get
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                        (uint) Addresses.Chat.chatBufferPos);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferPos);
                 }
                 catch (Exception exception)
                 {
@@ -88,7 +86,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                GetMsgActuel();
+                GetCurrentMsg();
             }
             catch (Exception exception)
             {
@@ -222,11 +220,11 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
-        private void GetMsgActuel()
+        private void GetCurrentMsg()
         {
             try
             {
-                ActuelRead =
+                CurrentMsg =
                     Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferPos);
             }
             catch (Exception exception)
@@ -239,30 +237,30 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                if (ActuelRead > 59)
-                    ActuelRead = 0;
+                if (CurrentMsg > 59)
+                    CurrentMsg = 0;
 
-                if (ActuelRead >=
+                if (CurrentMsg >=
                     Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                     (uint) Addresses.Chat.chatBufferPos) &&
-                    (ActuelRead -
+                    (CurrentMsg -
                      Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
                                                      (uint) Addresses.Chat.chatBufferPos)) <= 2)
                     return new Message();
 
-                string lecture =
+                string stream =
                     Memory.WowMemory.Memory.ReadASCIIString(
                         (uint)
                         (Memory.WowProcess.WowModule + (uint) Addresses.Chat.chatBufferStart +
-                         (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(ActuelRead)));
-                Logging.WriteDebug(lecture);
+                         (uint) Addresses.Chat.msgFormatedChat + (int) Addresses.Chat.NextMessage*(CurrentMsg)));
+
                 Message unMsg = new Message();
-                if (lecture != "")
+                if (stream != "")
                 {
-                    ActuelRead++;
-                    unMsg.Canal = Others.ToInt32(stringBetween(lecture, "Type: [", "]"));
-                    unMsg.Pseudo = Others.ToUtf8(stringBetween(lecture, "Name: [", "]"));
-                    unMsg.Msg = Others.ToUtf8(stringBetween(lecture, "Text: [", "]"));
+                    CurrentMsg++;
+                    unMsg.Canal = Others.ToInt32(stringBetween(stream, "Type: [", "]"));
+                    unMsg.Pseudo = Others.ToUtf8(stringBetween(stream, "Name: [", "]"));
+                    unMsg.Msg = Others.ToUtf8(stringBetween(stream, "Text: [", "]"));
                 }
 
                 return unMsg;
