@@ -41,9 +41,12 @@ namespace nManager.Wow.Bot.Tasks
                 _aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
                 _groundMount = nManagerSetting.CurrentSetting.GroundMountName;
                 _flyMount = nManagerSetting.CurrentSetting.FlyingMountName;
-                _spellAquaMount = new Spell(_aquaMount);
-                _spellGroundMount = new Spell(_groundMount);
-                _spellFlyMount = new Spell(_flyMount);
+                if (!string.IsNullOrEmpty(_aquaMount.Trim()))
+                    _spellAquaMount = new Spell(_aquaMount);
+                if (!string.IsNullOrEmpty(_groundMount.Trim()))
+                    _spellGroundMount = new Spell(_groundMount);
+                if (!string.IsNullOrEmpty(_flyMount.Trim()))
+                    _spellFlyMount = new Spell(_flyMount);
 
                 if (ObjectManager.ObjectManager.Me.Level >= 16 && _groundMount != string.Empty && nManagerSetting.CurrentSetting.UseGroundMount && !_spellGroundMount.KnownSpell)
                 {

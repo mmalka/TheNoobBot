@@ -88,15 +88,15 @@ namespace nManager.Wow.Bot.States
                     {
                         if (BlackListDigsites.Contains(t.id) || !t.Active) continue;
                         if (!(t.PriorityDigsites >= priority) &&
-                            ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
+                            ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
                             continue;
                         WoWResearchSite OneSite = WoWResearchSite.FromName(t.name);
                         WoWQuestPOIPoint Polygon = WoWQuestPOIPoint.FromSetId(OneSite.Record.QuestIdPoint);
                         Point center = Polygon.Center;
                         float dist = center.DistanceTo(ObjectManager.ObjectManager.Me.Position);
-                        if (!(dist < distance) && ((MountTask.GetMountCapacity() != MountCapacity.Feet && MountTask.GetMountCapacity() != MountCapacity.Ground) || _bestPathStatus))
+                        if (!(dist < distance) && ((MountTask.GetMountCapacity() > MountCapacity.Ground) || _bestPathStatus))
                             continue;
-                        if (MountTask.GetMountCapacity() == MountCapacity.Feet || MountTask.GetMountCapacity() == MountCapacity.Ground)
+                        if (MountTask.GetMountCapacity() <= MountCapacity.Ground)
                         {
                             _pathFound.AddRange(new[] {PathFinder.FindPath(ObjectManager.ObjectManager.Me.Position, center, Usefuls.ContinentNameMpq, out _currentFindPathStatus)});
                             _lastPathId = _pathFound.Count - 1;
