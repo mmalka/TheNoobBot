@@ -43,7 +43,7 @@ namespace nManager.Wow.Bot.States
                     return false;
 
                 // Channel
-                while (_lootChannel.ActuelRead < _lootChannel.GetMsgActuelInWow)
+                while (_lootChannel.CurrentMsg < _lootChannel.GetCurrentMsgInWow)
                 {
                     string msg = _lootChannel.ReadAllChannel();
                     if (!String.IsNullOrWhiteSpace(msg))
