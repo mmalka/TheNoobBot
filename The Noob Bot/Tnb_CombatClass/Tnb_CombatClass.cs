@@ -7383,11 +7383,11 @@ public class WarlockDemonology
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.Me.InCombat)
             SoulLink.Launch();
 
-        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
+        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable && Usefuls.GetContainerNumFreeSlots > 0)
             Soulstone.Launch();
 
         if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
-            && ItemsManager.GetItemCount(5512) == 0)
+            && ItemsManager.GetItemCount(5512) == 0 && Usefuls.GetContainerNumFreeSlots > 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -8192,10 +8192,11 @@ public class WarlockDestruction
             ObjectManager.Me.InCombat)
             SoulLink.Launch();
 
-        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
+        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable && Usefuls.GetContainerNumFreeSlots > 0)
             Soulstone.Launch();
 
-        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCount(5512) == 0)
+        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCount(5512) == 0 &&
+            Usefuls.GetContainerNumFreeSlots > 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();
@@ -8957,11 +8958,11 @@ public class WarlockAffliction
             && (ObjectManager.Pet.Health != 0 || ObjectManager.Pet.Guid != 0) && ObjectManager.Me.InCombat)
             SoulLink.Launch();
 
-        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable)
+        if (MySettings.UseSoulstone && Soulstone.KnownSpell && !Soulstone.HaveBuff && Soulstone.IsSpellUsable && Usefuls.GetContainerNumFreeSlots > 0)
             Soulstone.Launch();
 
-        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable
-            && ItemsManager.GetItemCount(5512) == 0)
+        if (MySettings.UseCreateHealthstone && CreateHealthstone.KnownSpell && CreateHealthstone.IsSpellUsable && ItemsManager.GetItemCount(5512) == 0 &&
+            Usefuls.GetContainerNumFreeSlots > 0)
         {
             Logging.WriteFight(" - Create Healthstone - ");
             CreateHealthstone.Launch();

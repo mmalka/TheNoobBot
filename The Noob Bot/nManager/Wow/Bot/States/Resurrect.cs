@@ -3,6 +3,7 @@ using System.Threading;
 using nManager.FiniteStateMachine;
 using nManager.Helpful;
 using nManager.Wow.Class;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
 using nManager.Wow.ObjectManager;
 using nManager.Wow.Patchables;
@@ -20,6 +21,8 @@ namespace nManager.Wow.Bot.States
         public override int Priority { get; set; }
 
         private Timer _battlegroundResurrect = new Timer(0);
+        private readonly Spell _shamanReincarnation = new Spell("Reincarnation");
+        private readonly Spell _warlockSoulstone = new Spell("Soulstone");
         private bool _forceSpiritHealer;
 
         public override List<State> NextStates
@@ -56,6 +59,46 @@ namespace nManager.Wow.Bot.States
             MovementManager.StopMove();
             MovementManager.StopMoveTo();
             Logging.Write("The player has died. Starting the resurrection process.");
+
+            #region Reincarnation
+
+            if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Shaman && _shamanReincarnation.KnownSpell && _shamanReincarnation.IsSpellUsable)
+            {
+                Thread.Sleep(3500); // Let our killers reset.
+                Lua.RunMacroText("/click StaticPopup1Button2");
+                Thread.Sleep(1000);
+                if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+                {
+                    _failed = false;
+                    Logging.Write("The player have been resurrected using Shaman Reincarnation.");
+                    Statistics.Deaths++;
+                    return;
+                }
+            }
+
+            #endregion
+
+            #region Soulstone
+
+            if (ObjectManager.ObjectManager.Me.WowClass == WoWClass.Warlock && _warlockSoulstone.KnownSpell && _warlockSoulstone.HaveBuff ||
+                ObjectManager.ObjectManager.Me.HaveBuff(6203))
+            {
+                Thread.Sleep(3500); // Let our killers reset.
+                Lua.RunMacroText("/click StaticPopup1Button2");
+                Thread.Sleep(1000);
+                if (!ObjectManager.ObjectManager.Me.IsDeadMe)
+                {
+                    _failed = false;
+                    Logging.Write(ObjectManager.ObjectManager.Me.WowClass == WoWClass.Warlock
+                                      ? "The player have been resurrected using his Soulstone."
+                                      : "The player have been resurrected using a Soulstone offered by a Warlock.");
+                    Statistics.Deaths++;
+                    return;
+                }
+            }
+
+            #endregion
+
             Interact.Repop();
             Thread.Sleep(1000);
             while (ObjectManager.ObjectManager.Me.PositionCorpse.X == 0 &&
