@@ -135,7 +135,10 @@ namespace nManager.Wow.Bot.Tasks
                             if (!node.IsHerb || node.IsHerb && !ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()))
                                 Usefuls.DisMount();
                             else if (node.IsHerb)
+                            {
+                                Logging.WriteDebug("Druid IsFlying ? " + Usefuls.IsFlying);
                                 MovementManager.StopMove();
+                            }
                             Thread.Sleep(Usefuls.Latency + 300);
                             Interact.InteractWith(node.GetBaseAddress);
                             Thread.Sleep(Usefuls.Latency + 200);
