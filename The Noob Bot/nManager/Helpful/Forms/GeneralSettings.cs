@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Forms;
+using nManager.Wow.Bot.Tasks;
 
 namespace nManager.Helpful.Forms
 {
@@ -484,6 +485,7 @@ namespace nManager.Helpful.Forms
                 nManagerSetting.CurrentSetting.UseMollE = UseMollE.Value;
                 nManagerSetting.CurrentSetting.UseRobot = UseRobot.Value;
                 nManagerSetting.CurrentSetting.Save();
+                MountTask.SettingsHasChanged = true;
             }
             catch (Exception e)
             {

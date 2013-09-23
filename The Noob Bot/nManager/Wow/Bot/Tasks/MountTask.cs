@@ -32,10 +32,11 @@ namespace nManager.Wow.Bot.Tasks
         private static string _aquaMount;
         private static string _groundMount;
         private static string _flyMount;
+        public static bool SettingsHasChanged;
 
         public static MountCapacity GetMountCapacity()
         {
-            if (_startupCheck)
+            if (_startupCheck || SettingsHasChanged)
             {
                 // 1st Check if mounts in general settings exist
                 _aquaMount = nManagerSetting.CurrentSetting.AquaticMountName;
@@ -74,6 +75,7 @@ namespace nManager.Wow.Bot.Tasks
                 _flightMasterLicense = flightMasterLicense.KnownSpell;
 
                 _startupCheck = false;
+                SettingsHasChanged = false;
             }
             if (ObjectManager.ObjectManager.Me.Level < 16 || (_groundMount == string.Empty && _flyMount == string.Empty && _aquaMount == string.Empty))
             {
