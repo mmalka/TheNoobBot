@@ -105,12 +105,10 @@ namespace nManager.Wow.Class
                 {
                     foreach (Spell s in SpellManager.SpellBook())
                     {
-                        if (s.Name.ToLower().Trim() != spellName.ToLower().Trim()) continue;
+                        if (s.Name.ToLower().Trim() != spellName.ToLower().Trim() && s.NameInGame.ToLower().Trim() != spellName.ToLower().Trim()) continue;
                         tSpell = s;
                         break;
                     }
-                    if (tSpell == null && SpellManager.GetSpellIdBySpellNameInGame(spellName) > 0)
-                        tSpell = new Spell(SpellManager.GetSpellIdBySpellNameInGame(spellName));
                 }
                 if (tSpell == null)
                 {
