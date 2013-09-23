@@ -52,7 +52,7 @@ namespace nManager.Wow.Bot.States
                 return;
 
             if (!_relogger)
-                Logging.Write("Relog Player");
+                Logging.Write("Initiate player relogging.");
 
             while (Products.Products.IsStarted)
             {
@@ -75,7 +75,7 @@ namespace nManager.Wow.Bot.States
                     Thread.Sleep(5000);
                     if (Usefuls.InGame && !Usefuls.IsLoadingOrConnecting)
                     {
-                        Logging.Write("Relog Player Finished, Restarting bot");
+                        Logging.Write("Ending player relogging with success.");
                         _relogger = false;
                         ConfigWowForThisBot.ConfigWow();
                         //Products.Products.ProductRestart();

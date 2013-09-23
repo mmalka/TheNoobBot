@@ -365,10 +365,10 @@ namespace nManager.Wow.Bot.Tasks
             MovementsAction.Ascend(false);
         }
 
-        public static void Land()
+        public static void Land(bool useLuaToLand = false)
         {
             Logging.WriteNavigator("Landing in progress.");
-            MovementsAction.Descend(true);
+            MovementsAction.Descend(true, false, useLuaToLand);
             Timer t = new Timer(15000);
             while (Usefuls.IsFlying && !t.IsReady)
             {
@@ -378,7 +378,7 @@ namespace nManager.Wow.Bot.Tasks
                     t.ForceReady();
             }
             Thread.Sleep(150);
-            MovementsAction.Descend(false);
+            MovementsAction.Descend(false, false, useLuaToLand);
         }
 
         public static void DismountMount(bool stopMove = true)

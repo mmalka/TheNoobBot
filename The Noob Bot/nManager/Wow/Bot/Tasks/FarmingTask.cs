@@ -141,6 +141,14 @@ namespace nManager.Wow.Bot.Tasks
                                 {
                                     MountTask.Land();
                                     MovementManager.StopMove();
+                                    if (Usefuls.IsFlying)
+                                    {
+                                        Logging.Write("You are still flying after two attemps of Landing.");
+                                        Logging.Write("Make sure you have binded the action \"SitOrStand\" on a keyboard key and not any mouse button or special button.");
+                                        Logging.Write("If you still have this message, please try a \"Reset Keybindings\" before posting on the forum.");
+                                        Logging.Write("A work arround have been used, it may let you actually farm or not. Because it's random, please fix your keybinding issue.");
+                                        MountTask.Land(true);
+                                    }
                                 }
                             }
                             Thread.Sleep(Usefuls.Latency + 300);

@@ -6,15 +6,23 @@ namespace nManager.Wow.Helpers
     {
         public static bool UseLUAToMove = false; // RECOMMANDED AS HELL until I understand why LUA don't wanna work as intended.
 
+
+        public static void CloseChatFrameEditBox()
+        {
+            Lua.LuaDoString("ChatFrame1EditBox:Hide();");
+        }
+
         public static void Jump()
         {
             Ascend(true, true);
         }
 
-        public static void Ascend(bool start, bool redo = false)
+        public static void Ascend(bool start, bool redo = false, bool forceLUA = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("Ascend(" + start + ")");
-            if (UseLUAToMove)
+            if (UseLUAToMove || forceLUA)
             {
                 Lua.LuaDoString(start ? "JumpOrAscendStart();" : "AscendStop();");
             }
@@ -31,10 +39,12 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static void Descend(bool start, bool redo = false)
+        public static void Descend(bool start, bool redo = false, bool forceLUA = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("Descend(" + start + ")");
-            if (UseLUAToMove)
+            if (UseLUAToMove || forceLUA)
             {
                 Lua.LuaDoString(start ? "SitStandOrDescendStart();" : "DescendStop();");
             }
@@ -53,6 +63,8 @@ namespace nManager.Wow.Helpers
 
         public static void MoveBackward(bool start, bool redo = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("MoveBackward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -73,6 +85,8 @@ namespace nManager.Wow.Helpers
 
         public static void MoveForward(bool start, bool redo = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("MoveForward(" + start + ")");
             if (UseLUAToMove)
             {
@@ -93,6 +107,8 @@ namespace nManager.Wow.Helpers
 
         public static void StrafeLeft(bool start, bool redo = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("StrafeLeft(" + start + ")");
             if (UseLUAToMove)
             {
@@ -113,6 +129,8 @@ namespace nManager.Wow.Helpers
 
         public static void StrafeRight(bool start, bool redo = false)
         {
+            if (start && !UseLUAToMove)
+                CloseChatFrameEditBox();
             Logging.WriteFileOnly("StrafeRight(" + start + ")");
             if (UseLUAToMove)
             {
