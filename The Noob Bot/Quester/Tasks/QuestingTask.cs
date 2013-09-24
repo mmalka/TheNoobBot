@@ -483,10 +483,10 @@ namespace Quester.Tasks
                     {
                         WoWGameObject node =
                             ObjectManager.GetNearestWoWGameObject(
-                                ObjectManager.GetWoWGameObjectById(new List<int> {questObjective.EntryInteractWith}));
+                                ObjectManager.GetWoWGameObjectById(questObjective.Entry));
                         WoWUnit unit =
                             ObjectManager.GetNearestWoWUnit(
-                                ObjectManager.GetWoWUnitByEntry(new List<int> {questObjective.EntryInteractWith}));
+                                ObjectManager.GetWoWUnitByEntry(questObjective.Entry));
                         Point pos;
                         uint baseAddress;
                         if (node.IsValid)
@@ -812,7 +812,7 @@ namespace Quester.Tasks
                     UpdateEntryListRow(questObjective);
                     if (EntryListRow == -1)
                     {
-                        Logging.Write("UseItemAOE objective: An empty have been provided in the profile, but not valid nor spawned at the position. UseItemAOE by position instead.");
+                        Logging.Write("UseItemAOE objective: An entry has been provided in the profile, but is not valid nor spawned at the position. Use UseItemAOE by position instead.");
                     }
                     return; // target not found, try next Entry
                 }
@@ -951,7 +951,7 @@ namespace Quester.Tasks
             // USE TAXI
             if (questObjective.Objective == Objective.UseFlightPath)
             {
-                Npc taxiMan = Bot.Bot.FindQuesterById(questObjective.EntryInteractWith);
+                Npc taxiMan = Bot.Bot.FindQuesterById(questObjective.TaxiEntry);
 
                 uint baseAddress = MovementManager.FindTarget(ref taxiMan);
                 if (MovementManager.InMovement)

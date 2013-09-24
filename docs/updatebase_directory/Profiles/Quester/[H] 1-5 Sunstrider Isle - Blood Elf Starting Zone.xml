@@ -406,7 +406,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <EntryInteractWith>180516</EntryInteractWith>
+          <Entry>
+            <int>180516</int>
+          </Entry>
           <Position>
             <X>10405.8</X>
             <Y>-5946.007</Y>

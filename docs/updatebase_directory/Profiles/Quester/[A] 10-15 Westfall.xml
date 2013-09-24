@@ -288,7 +288,9 @@
             <Y>977.6051</Y>
             <Z>29.13114</Z>
           </Position>
-          <EntryInteractWith>42386</EntryInteractWith>
+          <Entry>
+            <int>42386</int>
+          </Entry>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -297,7 +299,9 @@
             <Y>977.6051</Y>
             <Z>29.13114</Z>
           </Position>
-          <EntryInteractWith>42386</EntryInteractWith>
+          <Entry>
+            <int>42386</int>
+          </Entry>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -306,7 +310,9 @@
             <Y>977.6051</Y>
             <Z>29.13114</Z>
           </Position>
-          <EntryInteractWith>42386</EntryInteractWith>
+          <Entry>
+            <int>42386</int>
+          </Entry>
         </QuestObjective>
         <QuestObjective>
           <Objective>InteractWith</Objective>
@@ -315,7 +321,9 @@
             <Y>977.6051</Y>
             <Z>29.13114</Z>
           </Position>
-          <EntryInteractWith>42386</EntryInteractWith>
+          <Entry>
+            <int>42386</int>
+          </Entry>
         </QuestObjective>
       </Objectives>
     </Quest>
@@ -1157,7 +1165,9 @@
             <Y>1307.409</Y>
             <Z>36.74248</Z>
           </Position>
-          <EntryInteractWith>42381</EntryInteractWith>
+          <Entry>
+            <int>42381</int>
+          </Entry>
         </QuestObjective>
         <QuestObjective>
           <Objective>UseItem</Objective>

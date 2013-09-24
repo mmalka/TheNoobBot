@@ -730,7 +730,9 @@
             <Y>-6686.105</Y>
             <Z>22.45436</Z>
           </Position>
-          <EntryInteractWith>15420</EntryInteractWith>
+          <Entry>
+            <int>15420</int>
+          </Entry>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <WaitMs>1000</WaitMs>
         </QuestObjective>
@@ -741,7 +743,9 @@
             <Y>-6686.105</Y>
             <Z>22.45436</Z>
           </Position>
-          <EntryInteractWith>15420</EntryInteractWith>
+          <Entry>
+            <int>15420</int>
+          </Entry>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <WaitMs>8000</WaitMs>
         </QuestObjective>
@@ -1396,7 +1400,7 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <FlightDestinationX>0.59152400493622</FlightDestinationX>
           <FlightDestinationY>0.81615418195724</FlightDestinationY>
-          <EntryInteractWith>44036</EntryInteractWith>
+          <TaxiEntry>44036</TaxiEntry>
           <WaitMs>31000</WaitMs> <!-- Time to get to Silvermoon (30.7sec exactly) -->
         </QuestObjective>
       </Objectives>
@@ -1436,7 +1440,7 @@
           <IgnoreQuestCompleted>true</IgnoreQuestCompleted>
           <FlightDestinationX>0.57375419139862</FlightDestinationX>
           <FlightDestinationY>0.79429793357849</FlightDestinationY>
-          <EntryInteractWith>16192</EntryInteractWith>
+          <TaxiEntry>16192</TaxiEntry>
           <WaitMs>33000</WaitMs> --> <!-- Time to get to Fairbreeze Village (32.5sec exactly) -->
         </QuestObjective>
       </Objectives>
@@ -1660,7 +1664,9 @@
             <Y>-7883.435</Y>
             <Z>74.90952</Z>
           </Position>
-          <EntryInteractWith>180911</EntryInteractWith>
+          <Entry>
+            <int>180911</int>
+          </Entry>
           <WaitMs>5000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1670,7 +1676,9 @@
             <Y>-7883.816</Y>
             <Z>144.4753</Z>
           </Position>
-          <EntryInteractWith>180916</EntryInteractWith>
+          <Entry>
+            <int>180916</int>
+          </Entry>
           <WaitMs>6000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1680,7 +1688,9 @@
             <Y>-7883.816</Y>
             <Z>144.4753</Z>
           </Position>
-          <EntryInteractWith>180916</EntryInteractWith>
+          <Entry>
+            <int>180916</int>
+          </Entry>
           <WaitMs>6000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1690,7 +1700,9 @@
             <Y>-7884.226</Y>
             <Z>160.3558</Z>
           </Position>
-          <EntryInteractWith>180919</EntryInteractWith>
+          <Entry>
+            <int>180919</int>
+          </Entry>
           <WaitMs>6000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1700,7 +1712,9 @@
             <Y>-7884.226</Y>
             <Z>160.3558</Z>
           </Position>
-          <EntryInteractWith>180919</EntryInteractWith>
+          <Entry>
+            <int>180919</int>
+          </Entry>
           <WaitMs>6000</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1710,7 +1724,9 @@
             <Y>-7917.325</Y>
             <Z>178.9283</Z>
           </Position>
-          <EntryInteractWith>180920</EntryInteractWith>
+          <Entry>
+            <int>180920</int>
+          </Entry>
           <WaitMs>5500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1720,7 +1736,9 @@
             <Y>-7917.325</Y>
             <Z>178.9283</Z>
           </Position>
-          <EntryInteractWith>180920</EntryInteractWith>
+          <Entry>
+            <int>180920</int>
+          </Entry>
           <WaitMs>5500</WaitMs>
         </QuestObjective>
         <QuestObjective>
@@ -1731,7 +1749,9 @@
             <Y>-7916.087</Y>
             <Z>176.1297</Z>
           </Position>
-          <EntryInteractWith>180912</EntryInteractWith>
+          <Entry>
+            <int>180912</int>
+          </Entry>
           <WaitMs>5000</WaitMs>
         </QuestObjective>
       </Objectives>
@@ -1885,7 +1905,9 @@
             <Y>-6335.674</Y>
             <Z>64.51009</Z>
           </Position>
-          <EntryInteractWith>19456</EntryInteractWith>
+          <Entry>
+            <int>19456</int>
+          </Entry>
           <GossipOptionsInteractWith>1</GossipOptionsInteractWith>
           <WaitMs>500</WaitMs>
         </QuestObjective>-->

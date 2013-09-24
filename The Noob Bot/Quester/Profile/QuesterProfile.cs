@@ -127,7 +127,6 @@ namespace Quester.Profile
         public bool IgnoreFight = false;
 
         // InteractWith
-        public int EntryInteractWith = 0;
         public int GossipOptionsInteractWith = -1;
 
         // UseSpell
@@ -150,6 +149,7 @@ namespace Quester.Profile
         public int BuffCount = 0;
 
         // Use taxi
+        public int TaxiEntry = 0;
         public string FlightDestinationX = "";
         public string FlightDestinationY = "";
     }
