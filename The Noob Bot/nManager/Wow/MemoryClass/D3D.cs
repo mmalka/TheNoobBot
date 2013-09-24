@@ -1,15 +1,12 @@
-﻿using SharpDX.Direct3D11;
-using SharpDX.Windows;
-using SharpDX;
-using SharpDX.DXGI;
-using SharpDX.Windows;
-using nManager.Helpful;
+﻿using SlimDX;
+using SlimDX.DXGI;
+using SlimDX.Windows;
 using nManager.Wow.MemoryClass.Magic;
-using Device = SharpDX.Direct3D11.Device;
-using Format = SharpDX.DXGI.Format;
-using SwapChain = SharpDX.DXGI.SwapChain;
-using SwapEffect = SharpDX.DXGI.SwapEffect;
-using Usage = SharpDX.DXGI.Usage;
+using Device = SlimDX.Direct3D11.Device;
+using Format = SlimDX.DXGI.Format;
+using SwapChain = SlimDX.DXGI.SwapChain;
+using SwapEffect = SlimDX.DXGI.SwapEffect;
+using Usage = SlimDX.DXGI.Usage;
 
 namespace nManager.Wow.MemoryClass
 {
@@ -44,23 +41,23 @@ namespace nManager.Wow.MemoryClass
                         };
 
                     Device tmpDevice;
-                    SwapChain swapChain;
-                    Device.CreateWithSwapChain(SharpDX.Direct3D.DriverType.Hardware, SharpDX.Direct3D11.DeviceCreationFlags.None, desc, out tmpDevice, out swapChain);
-                    Result res = new Result();
-                    if (res.Success)
+                    SwapChain sc;
+                    Result res = Device.CreateWithSwapChain(SlimDX.Direct3D11.DriverType.Hardware,
+                                                            SlimDX.Direct3D11.DeviceCreationFlags.None, desc, out tmpDevice,
+                                                            out sc);
+                    if (res.IsSuccess)
                     {
                         using (tmpDevice)
                         {
-                            using (swapChain)
+                            using (sc)
                             {
                                 BlackMagic memory = new Magic.BlackMagic(System.Diagnostics.Process.GetCurrentProcess().Id);
-                                d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint) swapChain.NativePointer) + 4*VMT_PRESENT);
+                                d3d11Adresse = memory.ReadUInt(memory.ReadUInt((uint) sc.ComPointer) + 4*VMT_PRESENT);
                             }
                         }
                     }
                 }
             }
-            nManager.Helpful.Logging.Write("Dx11 addr: " + d3d11Adresse);
             return d3d11Adresse;
         }
 
