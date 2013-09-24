@@ -216,9 +216,10 @@ namespace Quester.Tasks
 
         public static bool IsInAvoidMobsList(WoWUnit woWUnit)
         {
-            foreach (Npc npc in Bot.Bot.Profile.AvoidMobs)
+            for (int i = 0; i < Bot.Bot.Profile.AvoidMobs.Count; i++)
             {
-                if ((npc.Position == new Point() || npc.Position.DistanceTo(woWUnit.Position) <= 40) && npc.Entry == woWUnit.Entry)
+                Npc npc = Bot.Bot.Profile.AvoidMobs[i];
+                if ((npc.Position.Z == 0f || npc.Position.DistanceTo(woWUnit.Position) <= 40) && npc.Entry == woWUnit.Entry)
                     return true;
             }
 
@@ -399,7 +400,7 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.Position != new Point() && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
@@ -447,7 +448,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.Position != new Point() && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
@@ -557,7 +558,7 @@ namespace Quester.Tasks
                         }
                     }
 
-                    if (questObjective.Position != new Point() && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
+                    if (questObjective.Position.Z != 0f && questObjective.Position.DistanceTo(ObjectManager.Me.Position) > questObjective.Range)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
@@ -653,7 +654,7 @@ namespace Quester.Tasks
             {
                 if (!MovementManager.InMovement)
                 {
-                    if (questObjective.Position != new Point() &&
+                    if (questObjective.Position.Z != 0f &&
                         questObjective.Position.DistanceTo(ObjectManager.Me.Position) > nManagerSetting.CurrentSetting.GatheringSearchRadius)
                     {
                         MountTask.Mount();
@@ -699,7 +700,7 @@ namespace Quester.Tasks
                 if (!MovementManager.InMovement ||
                     ObjectManager.Me.Position.DistanceTo(questObjective.Position) < 5.0f)
                 {
-                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5.0f && questObjective.Position != new Point())
+                    if (questObjective.Position.DistanceTo(ObjectManager.Me.Position) > 5.0f && questObjective.Position.Z != 0f)
                     {
                         MountTask.Mount();
                         MovementManager.Go(PathFinder.FindPath(questObjective.Position));
@@ -1259,7 +1260,7 @@ namespace Quester.Tasks
                 Logging.WriteError("The Entry (List<int>) of your " + questObjective.Objective + " objective is missing or invalid.");
                 errors++;
             }
-            if (cPosition && questObjective.Position == new Point())
+            if (cPosition && questObjective.Position.Z == 0f)
             {
                 Logging.WriteError("The Position(Point(X, Y, Z)) of your " + questObjective.Objective + " objective is missing or invalid. Can't continue.");
                 errors++;
