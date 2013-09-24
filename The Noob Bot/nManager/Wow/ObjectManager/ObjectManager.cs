@@ -114,16 +114,22 @@ namespace nManager.Wow.ObjectManager
                     ReadObjectList();
 
                     // Clear out old references.
-                    List<ulong> toRemove = (from o in ObjectDictionary where !o.Value.IsValid select o.Key).ToList();
+                    List<ulong> toRemove = new List<ulong>();
+                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
+                    {
+                        if (!o.Value.IsValid) toRemove.Add(o.Key);
+                    }
                     foreach (ulong guid in toRemove)
                     {
                         ObjectDictionary.Remove(guid);
                     }
 
                     // All done! Just make sure we pass up a valid list to the ObjectList.
-                    ObjectList = (from o in ObjectDictionary
-                                  where o.Value.IsValid
-                                  select o.Value).ToList();
+                    List<WoWObject> list = new List<WoWObject>();
+                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
+                        if (o.Value.IsValid)
+                            list.Add(o.Value);
+                    ObjectList = list;
                 }
             }
             catch (Exception e)
@@ -262,7 +268,12 @@ namespace nManager.Wow.ObjectManager
 
 
                 // Simply print each objects GUID and position.
-                return (from o in objects where o.Type == type select new WoWObject(o.GetBaseAddress)).ToList();
+                List<WoWObject> list = new List<WoWObject>();
+                foreach (WoWObject o in objects)
+                {
+                    if (o.Type == type) list.Add(new WoWObject(o.GetBaseAddress));
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -276,7 +287,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Unit);
-                return tempsListObj.Select(a => new WoWUnit(a.GetBaseAddress)).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWObject a in tempsListObj)
+                    list.Add(new WoWUnit(a.GetBaseAddress));
+                return list;
             }
             catch (Exception e)
             {
@@ -290,7 +304,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Container);
-                return tempsListObj.Select(a => new WoWContainer(a.GetBaseAddress)).ToList();
+                List<WoWContainer> list = new List<WoWContainer>();
+                foreach (WoWContainer container in tempsListObj.Select(a => { return new WoWContainer(a.GetBaseAddress); }))
+                    list.Add(container);
+                return list;
             }
             catch (Exception e)
             {
@@ -304,7 +321,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Corpse);
-                return tempsListObj.Select(a => new WoWCorpse(a.GetBaseAddress)).ToList();
+                List<WoWCorpse> list = new List<WoWCorpse>();
+                foreach (WoWObject a in tempsListObj)
+                    list.Add(new WoWCorpse(a.GetBaseAddress));
+                return list;
             }
             catch (Exception e)
             {
@@ -318,7 +338,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
-                return tempsListObj.Select(a => new WoWItem(a.GetBaseAddress)).ToList();
+                List<WoWItem> list = new List<WoWItem>();
+                foreach (WoWObject a in tempsListObj)
+                    list.Add(new WoWItem(a.GetBaseAddress));
+                return list;
             }
             catch (Exception e)
             {
@@ -332,9 +355,12 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Item);
-                foreach (WoWObject a in tempsListObj.Where(a => a.Entry == entry))
+                foreach (WoWObject a in tempsListObj)
                 {
-                    return new WoWItem(a.GetBaseAddress);
+                    if (a.Entry == entry)
+                    {
+                        return new WoWItem(a.GetBaseAddress);
+                    }
                 }
                 return new WoWItem(0);
             }
@@ -371,7 +397,10 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.GameObject);
-                return tempsListObj.Select(a => new WoWGameObject(a.GetBaseAddress)).ToList();
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWObject a in tempsListObj)
+                    list.Add(new WoWGameObject(a.GetBaseAddress));
+                return list;
             }
             catch (Exception e)
             {
@@ -385,10 +414,13 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 IEnumerable<WoWObject> tempsListObj = GetObjectByType(WoWObjectType.Player);
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWObject a in tempsListObj)
+                {
+                    if (a.GetBaseAddress != Me.GetBaseAddress) list.Add(new WoWPlayer(a.GetBaseAddress));
+                }
                 return
-                    (from a in tempsListObj
-                     where a.GetBaseAddress != Me.GetBaseAddress
-                     select new WoWPlayer(a.GetBaseAddress)).ToList();
+                    list;
             }
             catch (Exception e)
             {
@@ -416,7 +448,12 @@ namespace nManager.Wow.ObjectManager
             {
                 List<WoWPlayer> tempsList = new List<WoWPlayer>();
                 tempsList.AddRange(GetObjectWoWPlayer());
-                return (from a in tempsList where a.IsTargetingMe select new WoWPlayer(a.GetBaseAddress)).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in tempsList)
+                {
+                    if (a.IsTargetingMe) list.Add(new WoWPlayer(a.GetBaseAddress));
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -615,13 +652,13 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in GetObjectWoWUnit())
+                {
+                    if (UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead && (!a.InCombat || a.InCombatWithMe)) list.Add(a);
+                }
                 return
-                    GetObjectWoWUnit()
-                        .Where(
-                            a =>
-                            UnitRelation.GetReaction(Me.Faction, a.Faction) == Reaction.Hostile && !a.IsDead &&
-                            (!a.InCombat || a.InCombatWithMe))
-                        .ToList();
+                    list;
             }
             catch (Exception e)
             {
@@ -634,7 +671,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return GetObjectWoWUnit().Count(a => point.DistanceTo(a.Position) <= distanceSearch && !a.IsDead);
+                int count = 0;
+                foreach (WoWUnit a in GetObjectWoWUnit())
+                {
+                    if (point.DistanceTo(a.Position) <= distanceSearch && !a.IsDead) count++;
+                }
+                return count;
             }
             catch (Exception e)
             {
@@ -647,7 +689,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => names.Contains(a.Name) && !a.IsDead && !a.Invisible).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (names.Contains(a.Name) && !a.IsDead && !a.Invisible) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -700,7 +747,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => entrys.Contains(a.Entry) && !a.IsDead && !a.Invisible).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (entrys.Contains(a.Entry) && !a.IsDead && !a.Invisible) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -754,8 +806,15 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                List<string> namesTemps = names.Select(s => s.ToLower()).ToList();
-                return listWoWGameObject.Where(a => namesTemps.Contains(a.Name.ToLower())).ToList();
+                List<string> namesTemps = new List<string>();
+                foreach (string s in names)
+                    namesTemps.Add(s.ToLower());
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWGameObject a in listWoWGameObject)
+                {
+                    if (namesTemps.Contains(a.Name.ToLower())) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -811,7 +870,12 @@ namespace nManager.Wow.ObjectManager
             try
             {
                 //bjectManager.ReadObjectList();
-                return listWoWGameObject.Where(a => displayId.Contains(a.DisplayId)).ToList();
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWGameObject a in listWoWGameObject)
+                {
+                    if (displayId.Contains(a.DisplayId)) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -852,7 +916,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWGameObject.Where(a => entry.Contains(a.Entry)).ToList();
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWGameObject a in listWoWGameObject)
+                {
+                    if (entry.Contains(a.Entry)) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -893,7 +962,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWGameObject.Where(a => id.Contains(a.Entry)).ToList();
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWGameObject a in listWoWGameObject)
+                {
+                    if (id.Contains(a.Entry)) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -906,10 +980,13 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
+                List<WoWGameObject> list = new List<WoWGameObject>();
+                foreach (WoWGameObject a in GetObjectWoWGameObject())
+                {
+                    if ((a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober)) list.Add(a);
+                }
                 return
-                    GetObjectWoWGameObject()
-                        .Where(a => (a.GOType == WoWGameObjectType.Chest || a.GOType == WoWGameObjectType.Goober))
-                        .ToList();
+                    list;
             }
             catch (Exception e)
             {
@@ -949,7 +1026,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsLootable).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsLootable) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -988,7 +1070,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWPlayer.Where(a => a.IsLootable).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWPlayer)
+                {
+                    if (a.IsLootable) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1014,7 +1101,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWPlayer.Where(a => a.IsDead).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWPlayer)
+                {
+                    if (a.IsDead) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1027,7 +1119,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsSkinnable && !withoutGuid.Contains(a.Guid)).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsSkinnable && !withoutGuid.Contains(a.Guid)) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1136,7 +1233,9 @@ namespace nManager.Wow.ObjectManager
 
                 tp.AddRange(Me.PlayerFaction.ToLower() == "horde" ? GetWoWUnitAlliance() : GetWoWUnitHorde());
 
-                List<WoWUnit> tu = tp.Select(t => new WoWUnit(t.GetBaseAddress)).ToList();
+                List<WoWUnit> tu = new List<WoWUnit>();
+                foreach (WoWPlayer t in tp)
+                    tu.Add(new WoWUnit(t.GetBaseAddress));
 
                 tu.AddRange(GetObjectWoWUnit());
 
@@ -1153,7 +1252,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsNpcRepair && !a.IsNpcInnkeeper).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcRepair && !a.IsNpcInnkeeper) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1179,7 +1283,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsNpcVendorFood && !a.IsNpcInnkeeper).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcVendorFood && !a.IsNpcInnkeeper) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1205,7 +1314,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsNpcVendor && !a.IsNpcInnkeeper).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcVendor && !a.IsNpcInnkeeper) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1231,7 +1345,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsNpcTrainer).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcTrainer) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1257,7 +1376,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.IsNpcSpiritHealer).ToList();
+                List<WoWUnit> list = new List<WoWUnit>();
+                foreach (WoWUnit a in listWoWUnit)
+                {
+                    if (a.IsNpcSpiritHealer) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1283,7 +1407,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.PlayerFaction == "Alliance" && !a.IsDead && a.SummonedBy == 0).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWUnit)
+                {
+                    if (a.PlayerFaction == "Alliance" && !a.IsDead && a.SummonedBy == 0) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1309,7 +1438,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.PlayerFaction == "Horde" && !a.IsDead && a.SummonedBy == 0).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWUnit)
+                {
+                    if (a.PlayerFaction == "Horde" && !a.IsDead && a.SummonedBy == 0) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1335,7 +1469,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.PlayerFaction == "Alliance" && a.IsDead && a.SummonedBy == 0).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWUnit)
+                {
+                    if (a.PlayerFaction == "Alliance" && a.IsDead && a.SummonedBy == 0) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
@@ -1361,7 +1500,12 @@ namespace nManager.Wow.ObjectManager
         {
             try
             {
-                return listWoWUnit.Where(a => a.PlayerFaction == "Horde" && a.IsDead && a.SummonedBy == 0).ToList();
+                List<WoWPlayer> list = new List<WoWPlayer>();
+                foreach (WoWPlayer a in listWoWUnit)
+                {
+                    if (a.PlayerFaction == "Horde" && a.IsDead && a.SummonedBy == 0) list.Add(a);
+                }
+                return list;
             }
             catch (Exception e)
             {
