@@ -54,7 +54,9 @@
       <Objectives>
         <QuestObjective>
           <Objective>InteractWith</Objective>
-          <EntryInteractWith>190584</EntryInteractWith>
+          <Entry>
+            <int>190584</int>
+          </Entry>
           <Position>
             <X>2535.668</X>
             <Y>-5607.533</Y>
