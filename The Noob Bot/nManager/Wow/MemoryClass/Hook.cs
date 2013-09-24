@@ -322,16 +322,17 @@ namespace nManager.Wow.MemoryClass
                                     }
                                     else
                                     {
-                                        // This read the 2 bytes that are just after the Jmp,
-                                        // A6 and FF always follow the Jmp, so we can deduct if we 
-                                        // read by 5, 6 or 7 bytes long.
+                                        // on the first hooking, we add 0 nop if 5bytes reading, 1nop if 6 bytes, 2nop if 7 bytes,
+                                        // that's why we need to read 9 here to be able to detect the 7bytes hooking.
+                                        // nop = 144, if there is no nop, that mean we are in a normal 5bytes mode.
                                         byte[] getBytes = Memory.ReadBytes(JumpAddress, 9);
                                         if (getBytes[5] != 144 && getBytes[6] != 144)
-                                            D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236};
+                                            D3D.OriginalBytes = new byte[] {139, 255, 85, 139, 236}; // WinXP/WinVista/Win7
                                         else if (getBytes[5] == 144 && getBytes[6] != 144)
-                                            D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8};
+                                            D3D.OriginalBytes = new byte[] {85, 139, 236, 139, 69, 8}; // Some graphic drivers
                                         else if (getBytes[5] == 144 && getBytes[6] == 144)
-                                            D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115};
+                                            D3D.OriginalBytes = new byte[] {106, 20, 184, 12, 154, 68, 115}; // Win8
+                                            // the 2 lasts bytes of the Win8 way seems to be differents on differents computers.
                                         else
                                         {
                                             Others.OpenWebBrowserOrApplication("http://thenoobbot.com/community/viewtopic.php?f=43&t=464");
