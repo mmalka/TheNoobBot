@@ -130,7 +130,6 @@ namespace nManager.Wow.ObjectManager
                     {
                         ObjectDictionary.Remove(guid);
                     }
-
                 }
             }
             catch (Exception e)

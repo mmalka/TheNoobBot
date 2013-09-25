@@ -75,7 +75,6 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                LoadList(); // Do we really need it here as ListNpc get{ LoadList() } ??
                 lock (typeof (NpcDB))
                 {
                     foreach (Npc npc1 in ListNpc)
@@ -97,21 +96,36 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                LoadList();
                 lock (typeof (NpcDB))
                 {
-                    foreach (Npc npc in npcList)
+                    for (int i = 0; i < npcList.Count; i++)
                     {
+                        Npc npc = npcList[i];
                         bool found = false;
-                        foreach (Npc npc1 in ListNpc)
+                        bool factionChange = false;
+                        Npc oldNpc = new Npc();
+
+                        for (int i2 = 0; i2 < ListNpc.Count; i2++)
                         {
+                            Npc npc1 = ListNpc[i2];
                             if (npc1.Entry == npc.Entry && npc1.Type == npc.Type && npc1.Position.DistanceTo(npc.Position) < 1)
                             {
                                 found = true;
+                                if (npc1.Faction != npc.Faction)
+                                {
+                                    oldNpc = npc1;
+                                    factionChange = true;
+                                }
                                 break;
                             }
                         }
-                        if (!found) ListNpc.Add(npc);
+                        if (found && factionChange)
+                        {
+                            ListNpc.Remove(oldNpc);
+                            ListNpc.Add(npc);
+                        }
+                        else if (!found)
+                            ListNpc.Add(npc);
                     }
                     XmlSerializer.Serialize(Application.StartupPath + "\\Data\\NpcDB.xml", _listNpc);
                 }
