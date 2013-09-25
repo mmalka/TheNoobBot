@@ -115,21 +115,22 @@ namespace nManager.Wow.ObjectManager
 
                     // Clear out old references.
                     List<ulong> toRemove = new List<ulong>();
+                    List<WoWObject> list = new List<WoWObject>();
                     foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
                     {
-                        if (!o.Value.IsValid) toRemove.Add(o.Key);
+                        if (o.Value.IsValid)
+                            list.Add(o.Value);
+                        else
+                            toRemove.Add(o.Key);
                     }
+                    // All done! Just make sure we pass up a valid list to the ObjectList.
+                    ObjectList = list;
+
                     foreach (ulong guid in toRemove)
                     {
                         ObjectDictionary.Remove(guid);
                     }
 
-                    // All done! Just make sure we pass up a valid list to the ObjectList.
-                    List<WoWObject> list = new List<WoWObject>();
-                    foreach (KeyValuePair<ulong, WoWObject> o in ObjectDictionary)
-                        if (o.Value.IsValid)
-                            list.Add(o.Value);
-                    ObjectList = list;
                 }
             }
             catch (Exception e)
