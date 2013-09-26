@@ -133,10 +133,12 @@
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Enums\WoWEventsType.cs" />
     <Compile Include="Wow\Enums\WoWGender.cs" />
     <Compile Include="Wow\Enums\WoWSpecialization.cs" />
     <Compile Include="Wow\Enums\WoWStatistic.cs" />
     <Compile Include="Wow\Enums\UnitFlags.cs" />
+    <Compile Include="Wow\Helpers\EventsListener.cs" />
     <Compile Include="Wow\Helpers\WoWItemSubClass.cs" />
     <Compile Include="Wow\Helpers\WoWItemClass.cs" />
     <Compile Include="Wow\Helpers\MovementsAction.cs" />

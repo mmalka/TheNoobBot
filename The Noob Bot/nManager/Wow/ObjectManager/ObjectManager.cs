@@ -99,7 +99,7 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        public static bool ObjectListReloaded = false;
+        public static bool OthersTempListBuilded = false;
 
         internal static void Pulse()
         {
@@ -133,12 +133,9 @@ namespace nManager.Wow.ObjectManager
                     {
                         ObjectDictionary.Remove(guid);
                     }
-                    if (ObjectListReloaded) return;
-                    lock (LootStatistics.TempList)
-                    {
-                        LootStatistics.TempList.AddRange(ObjectList);
-                    }
-                    ObjectListReloaded = true;
+                    if (OthersTempListBuilded) return;
+                    Thread thread = new Thread(BuildTempList) {Name = "TempList building thread"};
+                    thread.Start();
                 }
             }
             catch (Exception e)
@@ -147,6 +144,11 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        internal static void BuildTempList()
+        {
+            Others.TempList.AddRange(ObjectList);
+            OthersTempListBuilded = true;
+        }
 
         internal static void ReadObjectList()
         {

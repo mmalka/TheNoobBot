@@ -13,7 +13,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Windows.Forms;
+using nManager.Wow;
+using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
+using nManager.Wow.ObjectManager;
 
 namespace nManager.Helpful
 {
@@ -46,31 +49,31 @@ namespace nManager.Helpful
         public static bool ToBoolean(string value)
         {
             bool res;
-            return bool.TryParse(value, out res) && res;
+            return Boolean.TryParse(value, out res) && res;
         }
 
         public static int ToInt32(string value)
         {
             int res;
-            return int.TryParse(value.Trim(), out res) ? res : 0;
+            return Int32.TryParse(value.Trim(), out res) ? res : 0;
         }
 
         public static uint ToUInt32(string value)
         {
             uint res;
-            return uint.TryParse(value.Trim(), out res) ? res : 0;
+            return UInt32.TryParse(value.Trim(), out res) ? res : 0;
         }
 
         public static float ToSingle(string value)
         {
             float res;
-            return float.TryParse(value.Trim(), out res) ? res : 0;
+            return Single.TryParse(value.Trim(), out res) ? res : 0;
         }
 
         public static char ToChar(string value)
         {
             char res;
-            return char.TryParse(value.Trim(), out res) ? res : '\u0000';
+            return Char.TryParse(value.Trim(), out res) ? res : '\u0000';
         }
 
         public static string[] TextToArrayByLine(string text)
@@ -665,8 +668,7 @@ namespace nManager.Helpful
         {
             try
             {
-                OpenFileDialog chooseFile = new OpenFileDialog
-                    {InitialDirectory = path, Filter = typeFile};
+                OpenFileDialog chooseFile = new OpenFileDialog {InitialDirectory = path, Filter = typeFile};
                 chooseFile.ShowDialog();
                 return chooseFile.FileName;
             }
@@ -1011,8 +1013,84 @@ namespace nManager.Helpful
 
         public static void ShowMessageBox(string message, string title = "")
         {
-            Thread thread = string.IsNullOrEmpty(title) ? new Thread(() => MessageBox.Show(message)) : new Thread(() => MessageBox.Show(message, title));
+            Thread thread = String.IsNullOrEmpty(title) ? new Thread(() => MessageBox.Show(message)) : new Thread(() => MessageBox.Show(message, title));
             thread.Start();
+        }
+
+        private static readonly Dictionary<int, int> ItemStock = new Dictionary<int, int>();
+        public static List<WoWObject> TempList = new List<WoWObject>();
+        private static int _oldEventFireCount = -1; // the first call call it with param (0)
+
+        public static void CheckInventoryForLatestLoot(int eventFireCount)
+        {
+            try // to be removed if no fails
+            {
+                if (_oldEventFireCount == eventFireCount)
+                    return; // When looting multiples items, fire multiples times, ignores duplicate.
+                _oldEventFireCount = eventFireCount;
+                while (!ObjectManager.OthersTempListBuilded)
+                    Thread.Sleep(50);
+                Dictionary<int, int> newLoots = new Dictionary<int, int>();
+                bool firstCheck = true;
+                foreach (WoWObject objects in TempList)
+                {
+                    if (objects.Type != WoWObjectType.Item)
+                        continue;
+                    if (!objects.IsValid)
+                        continue;
+                    int localEntry = objects.Entry;
+                    if (localEntry < 1)
+                    {
+                        localEntry = objects.Entry; // Gives a seconds chance.
+                        if (localEntry < 1)
+                        {
+                            localEntry = objects.Entry; // Gives a last chance.
+                            if (localEntry < 1)
+                                continue;
+                        }
+                    }
+                    if (objects.ItemOwner != ObjectManager.Me.Guid)
+                        continue;
+                    if (newLoots.ContainsKey(localEntry))
+                        continue; // ObjectManager return an independant baseAdress for each stack, we just want ONE ItemEntry, not one per stack.
+                    int count = ItemsManager.GetItemCount(localEntry);
+                    if (!ItemStock.ContainsKey(localEntry))
+                    {
+                        newLoots.Add(localEntry, count);
+                        ItemStock.Add(localEntry, count);
+                        continue;
+                    }
+                    firstCheck = false;
+                    if (ItemStock[localEntry] == count)
+                        continue;
+                    if (ItemStock[localEntry] < count)
+                    {
+                        newLoots.Add(localEntry, count - ItemStock[localEntry]);
+                        ItemStock[localEntry] = count;
+                        continue;
+                    }
+                    if (ItemStock[localEntry] > count)
+                    {
+                        // we lost some items, let's ignore this for now and just replace our internal stock
+                        ItemStock[localEntry] = count;
+                    }
+                }
+                TempList.Clear();
+                ObjectManager.OthersTempListBuilded = false;
+
+                if (!firstCheck)
+                {
+                    foreach (KeyValuePair<int, int> pair in newLoots)
+                    {
+                        Logging.Write("You recieve loot: " + ItemsManager.GetItemNameById(pair.Key) + "(" + pair.Key + ") x" + pair.Value);
+                    }
+                }
+                newLoots.Clear();
+            }
+            catch (Exception e)
+            {
+                Logging.WriteError("LootStatistics Internal Foreach: " + e);
+            }
         }
     }
 }

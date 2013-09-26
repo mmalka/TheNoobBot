@@ -155,6 +155,19 @@
         }
 
         /// <summary>
+        ///   EventsListener
+        /// </summary>
+        public enum EventsListener
+        {
+            EventsCount = 0xB9158C,
+            BaseEvents = EventsCount + 0x4,
+            EventOffsetName = 0x14,
+            EventOffsetCount = 0x48,
+            LastLootName = 0xD4BE20,
+        }
+
+
+        /// <summary>
         ///   Unit Field Descriptor
         /// </summary>
         public enum UnitField
