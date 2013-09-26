@@ -81,15 +81,22 @@ namespace nManager.Wow.Helpers
             UseItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name), point);
         }
 
+        public static Dictionary<int, string> ItemNameCache;
+
         public static string GetItemNameById(int entry)
         {
             try
             {
+                if (ItemNameCache.ContainsKey(entry))
+                    return ItemNameCache[entry];
                 lock (typeof (ItemsManager))
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
                     Lua.LuaDoString(randomString + ",_,_,_,_,_,_,_,_,_,_ = GetItemInfo(" + entry + ")");
-                    return Lua.GetLocalizedText(randomString);
+                    string itemName = Lua.GetLocalizedText(randomString);
+                    if (!string.IsNullOrWhiteSpace(itemName))
+                        ItemNameCache.Add(entry, itemName);
+                    return itemName;
                 }
             }
             catch (Exception exception)
@@ -99,10 +106,14 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
+        public static Dictionary<string, int> ItemIdCache;
+
         public static int GetItemIdByName(string name)
         {
             try
             {
+                if (ItemIdCache.ContainsKey(name))
+                    return ItemIdCache[name];
                 lock (typeof (ItemsManager))
                 {
                     string randomString = Others.GetRandomString(Others.Random(4, 10));
@@ -111,7 +122,10 @@ namespace nManager.Wow.Helpers
                         "_,itemLink,_,_,_,_,_,_,_,_,_  = GetItemInfo(nameItem); " +
                         "_,_," + randomString + " = string.find(itemLink, \".*|Hitem:(%d+):.*\"); "
                         );
-                    return Others.ToInt32(Lua.GetLocalizedText(randomString));
+                    int itemEntry = Others.ToInt32(Lua.GetLocalizedText(randomString));
+                    if (itemEntry > 0)
+                        ItemIdCache.Add(name, itemEntry);
+                    return itemEntry;
                 }
             }
             catch (Exception exception)
@@ -229,15 +243,22 @@ namespace nManager.Wow.Helpers
             return IsHelpfulItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
+        public static Dictionary<int, string> ItemSpellCache;
+
         public static string GetItemSpell(int entry)
         {
             try
             {
+                if (ItemSpellCache.ContainsKey(entry))
+                    return ItemSpellCache[entry];
                 string randomString = Others.GetRandomString(Others.Random(4, 10));
                 Lua.LuaDoString(randomString + ",_ = GetItemSpell(" + entry + ")");
                 string sResult = Lua.GetLocalizedText(randomString);
                 if (sResult != string.Empty && sResult != "nil")
+                {
+                    ItemSpellCache.Add(entry, sResult);
                     return sResult;
+                }
             }
             catch (Exception exception)
             {
@@ -285,7 +306,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return listItem.Where(iT => iT.GetItemInfo.ItemSubType == subType.ToString()).ToList();
+                List<WoWItem> list = new List<WoWItem>();
+                foreach (WoWItem iT in listItem)
+                {
+                    if (iT.GetItemInfo.ItemSubType == subType.ToString()) list.Add(iT);
+                }
+                return list;
             }
             catch (Exception exception)
             {
@@ -302,7 +328,12 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                return listItem.Where(iT => iT.GetItemInfo.ItemType == type.ToString()).ToList();
+                List<WoWItem> list = new List<WoWItem>();
+                foreach (WoWItem iT in listItem)
+                {
+                    if (iT.GetItemInfo.ItemType == type.ToString()) list.Add(iT);
+                }
+                return list;
             }
             catch (Exception exception)
             {
