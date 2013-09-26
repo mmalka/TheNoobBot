@@ -69,6 +69,26 @@ namespace nManager.Wow.Helpers
             return new List<uint>();
         }
 
+        private static readonly List<uint> FlightFormsIdsList = new List<uint>();
+
+        public static List<uint> FlightFormsIds()
+        {
+            try
+            {
+                if (FlightFormsIdsList.Count <= 0)
+                {
+                    FlightFormsIdsList.AddRange(SpellListManager.SpellIdByName("Swift Flight Form"));
+                    FlightFormsIdsList.AddRange(SpellListManager.SpellIdByName("Flight Form"));
+                }
+                return FlightFormsIdsList;
+            }
+            catch (Exception exception)
+            {
+                Logging.WriteError("MountDruidId(): " + exception);
+            }
+            return new List<uint>();
+        }
+
         public static string GetSlotBarBySpellName(string spell)
         {
             try

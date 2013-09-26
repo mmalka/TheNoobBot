@@ -54,21 +54,24 @@ namespace nManager.Wow.Bot.States
                 _nodes = new List<WoWGameObject>();
                 List<WoWGameObject> tNodes = ObjectManager.ObjectManager.GetWoWGameObjectForFarm();
 
-                foreach (WoWGameObject node in tNodes)
+                for (int i = 0; i < tNodes.Count; i++)
                 {
-                    if (!nManagerSetting.IsBlackListedZone(node.Position) &&
-                        node.GetDistance2D < nManagerSetting.CurrentSetting.GatheringSearchRadius &&
-                        !nManagerSetting.IsBlackListed(node.Guid) && node.IsValid)
-                        if (node.CanOpen)
-                            if (!PlayerNearest(node))
-                                if (!node.UnitNearest)
-                                    _nodes.Add(node);
+                    WoWGameObject node = tNodes[i];
+                    if (!node.IsValid)
+                        continue;
+                    if (nManagerSetting.IsBlackListed(node.Guid) || nManagerSetting.IsBlackListedZone(node.Position))
+                        continue;
+                    if (node.GetDistance2D > nManagerSetting.CurrentSetting.GatheringSearchRadius)
+                        continue;
+                    if (node.Position.Type.ToLower() == "swimming" && ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.FlightFormsIds()))
+                        continue;
+                    if (!node.CanOpen) continue;
+                    if (PlayerNearest(node)) continue;
+                    if (node.UnitNearest) continue;
+                    _nodes.Add(node);
                 }
 
-                if (_nodes.Count > 0)
-                    return true;
-
-                return false;
+                return _nodes.Count > 0;
             }
         }
 
