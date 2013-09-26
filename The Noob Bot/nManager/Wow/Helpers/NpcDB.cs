@@ -96,6 +96,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
+                LoadList();
                 lock (typeof (NpcDB))
                 {
                     for (int i = 0; i < npcList.Count; i++)
