@@ -81,7 +81,7 @@ namespace nManager.Wow.Helpers
             UseItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name), point);
         }
 
-        public static Dictionary<int, string> ItemNameCache;
+        public static Dictionary<int, string> ItemNameCache = new Dictionary<int, string>();
 
         public static string GetItemNameById(int entry)
         {
@@ -106,7 +106,7 @@ namespace nManager.Wow.Helpers
             return "";
         }
 
-        public static Dictionary<string, int> ItemIdCache;
+        public static Dictionary<string, int> ItemIdCache = new Dictionary<string, int>();
 
         public static int GetItemIdByName(string name)
         {
@@ -243,7 +243,7 @@ namespace nManager.Wow.Helpers
             return IsHelpfulItem(Others.ToInt32(name) > 0 ? Others.ToInt32(name) : GetItemIdByName(name));
         }
 
-        public static Dictionary<int, string> ItemSpellCache;
+        public static Dictionary<int, string> ItemSpellCache = new Dictionary<int, string>();
 
         public static string GetItemSpell(int entry)
         {
