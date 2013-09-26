@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using nManager.Helpful;
+using nManager.Wow.Bot.States;
 using nManager.Wow.Class;
 using nManager.Wow.Enums;
 using nManager.Wow.Helpers;
@@ -98,6 +99,8 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public static bool ObjectListReloaded = false;
+
         internal static void Pulse()
         {
             try
@@ -130,6 +133,12 @@ namespace nManager.Wow.ObjectManager
                     {
                         ObjectDictionary.Remove(guid);
                     }
+                    if (ObjectListReloaded) return;
+                    lock (LootStatistics.TempList)
+                    {
+                        LootStatistics.TempList.AddRange(ObjectList);
+                    }
+                    ObjectListReloaded = true;
                 }
             }
             catch (Exception e)
