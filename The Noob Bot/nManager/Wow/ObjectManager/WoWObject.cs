@@ -116,6 +116,11 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
+        public ulong ItemOwner
+        {
+            get { return GetDescriptor<ulong>(GetBaseAddress, (uint) Descriptors.ItemFields.Owner); }
+        }
+
         public int Entry
         {
             get
