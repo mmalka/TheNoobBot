@@ -39,7 +39,7 @@ namespace nManager.Wow.Helpers
         private static int GetEventFireCount(WoWEventsType eventType)
         {
             uint eventId = (uint) eventType;
-            if (eventId <= 0 || eventId > EventsCount)
+            if (eventId > EventsCount)
                 return 0;
             uint ptrCurrentEvent = Memory.WowMemory.Memory.ReadUInt(PtrFirstEvent + 4*eventId);
             if (ptrCurrentEvent <= 0) return 0;
