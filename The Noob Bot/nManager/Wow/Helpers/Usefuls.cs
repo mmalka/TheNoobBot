@@ -526,7 +526,7 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static bool MovementStatus(Addresses.MovementFlags flags)
+        public static bool MovementStatus(MovementFlags flags)
         {
             try
             {
@@ -544,12 +544,12 @@ namespace nManager.Wow.Helpers
             }
         }
 
-        public static Addresses.MovementFlags GetAllMovementStatus
+        public static MovementFlags GetAllMovementStatus
         {
             get
             {
                 return
-                    (Addresses.MovementFlags)
+                    (MovementFlags)
                     Memory.WowMemory.Memory.ReadInt(
                         Memory.WowMemory.Memory.ReadUInt(ObjectManager.ObjectManager.Me.GetBaseAddress + (uint) Addresses.MovementFlagsOffsets.Offset1) +
                         (uint) Addresses.MovementFlagsOffsets.Offset2);
@@ -558,17 +558,17 @@ namespace nManager.Wow.Helpers
 
         public static bool IsFalling
         {
-            get { return MovementStatus(Addresses.MovementFlags.Falling); }
+            get { return MovementStatus(MovementFlags.Falling); }
         }
 
         public static bool IsSwimming
         {
-            get { return MovementStatus(Addresses.MovementFlags.Swimming); }
+            get { return MovementStatus(MovementFlags.Swimming); }
         }
 
         public static bool IsFlying
         {
-            get { return MovementStatus(Addresses.MovementFlags.Flying); }
+            get { return MovementStatus(MovementFlags.Flying); }
         }
 
         public static string RealmName

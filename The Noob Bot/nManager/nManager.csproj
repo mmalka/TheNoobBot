@@ -133,6 +133,7 @@
     <Compile Include="Wow\Bot\States\MovementLoop.cs" />
     <Compile Include="Wow\Bot\States\PositionTrackingSystem.cs" />
     <Compile Include="Wow\Bot\States\SpecializationCheck.cs" />
+    <Compile Include="Wow\Enums\MovementFlags.cs" />
     <Compile Include="Wow\Enums\WoWEventsType.cs" />
     <Compile Include="Wow\Enums\WoWGender.cs" />
     <Compile Include="Wow\Enums\WoWSpecialization.cs" />
