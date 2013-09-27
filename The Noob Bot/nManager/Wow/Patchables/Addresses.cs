@@ -16,11 +16,12 @@
         public enum ObjectManager
         {
             objectManager = 0x462C,
-            firstObject = 0xCC,
-            nextObject = 0x34,
             localGuid = 0xE0,
             objectGUID = 0x28,
             objectTYPE = 0xC,
+            // These are 'hard coded' in the client. I don't remember the last time they changed.
+            firstObject = 0xCC,
+            nextObject = 0x34,
         }
 
         /// <summary>

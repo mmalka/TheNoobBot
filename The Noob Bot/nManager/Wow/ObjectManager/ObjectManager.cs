@@ -164,14 +164,11 @@ namespace nManager.Wow.ObjectManager
                                                          Addresses.ObjectManagerClass.clientConnection) +
                         (uint) Addresses.ObjectManager.objectManager);
 
-                // These are 'hard coded' in the client. I don't remember the last time they changed.
-                const uint firstObject = (uint) Addresses.ObjectManager.firstObject;
-                const uint nextObject = (uint) Addresses.ObjectManager.nextObject;
                 ulong localPlayerGuid =
                     Memory.WowMemory.Memory.ReadUInt64(ObjectManagerAddress + (uint) Addresses.ObjectManager.localGuid);
 
                 // Get the first object in the linked list.
-                int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + firstObject);
+                int currentObject = Memory.WowMemory.Memory.ReadInt(ObjectManagerAddress + (uint) Addresses.ObjectManager.firstObject);
 
                 while (currentObject != 0)
                 {
@@ -242,7 +239,7 @@ namespace nManager.Wow.ObjectManager
                         Logging.WriteError("ObjectManager >  ReadObjectList()#1: " + e);
                     }
                     // We need the next object.
-                    Int32 currentObjectNew = Memory.WowMemory.Memory.ReadInt((uint) currentObject + nextObject);
+                    Int32 currentObjectNew = Memory.WowMemory.Memory.ReadInt((uint) currentObject + (uint) Addresses.ObjectManager.nextObject);
                     if (currentObjectNew == currentObject)
                     {
                         break;
