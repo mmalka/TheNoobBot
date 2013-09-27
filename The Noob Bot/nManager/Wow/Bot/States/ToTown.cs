@@ -70,39 +70,29 @@ namespace nManager.Wow.Bot.States
                      _travelersTundraMammoth.KnownSpell))
                     _magicMountMammoth = true;
 
-                if ((nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCount(40768) > 0 &&
-                     !ItemsManager.IsItemOnCooldown(40768) && ItemsManager.IsItemUsable(40768)))
+                _useMollE = false;
+                WoWGameObject portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
+                if (portableMailbox.IsValid && portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
                     _useMollE = true;
-                else
-                    _useMollE = false;
+                else if ((nManagerSetting.CurrentSetting.UseMollE && ItemsManager.GetItemCount(40768) > 0 && !ItemsManager.IsItemOnCooldown(40768) &&
+                          ItemsManager.IsItemUsable(40768)))
+                    _useMollE = true;
 
-                if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(18232) > 0 &&
-                     !ItemsManager.IsItemOnCooldown(18232) && ItemsManager.IsItemUsable(18232)))
-                {
+                _use74A = false;
+                _use110G = false;
+                _useJeeves = false;
+                if ((nManagerSetting.CurrentSetting.UseRobot &&
+                     (DoSpawnRobot("74A", Npc.NpcType.Repair, true) != null ||
+                      ItemsManager.GetItemCount(18232) > 0 && !ItemsManager.IsItemOnCooldown(18232) && ItemsManager.IsItemUsable(18232))))
                     _use74A = true;
-                    _use110G = false;
-                    _useJeeves = false;
-                }
-                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(34113) > 0 &&
-                          !ItemsManager.IsItemOnCooldown(34113) && ItemsManager.IsItemUsable(34113)))
-                {
-                    _use74A = false;
+                else if ((nManagerSetting.CurrentSetting.UseRobot &&
+                          (DoSpawnRobot("110G", Npc.NpcType.Repair, true) != null ||
+                           ItemsManager.GetItemCount(34113) > 0 && !ItemsManager.IsItemOnCooldown(34113) && ItemsManager.IsItemUsable(34113))))
                     _use110G = true;
-                    _useJeeves = false;
-                }
-                else if ((nManagerSetting.CurrentSetting.UseRobot && ItemsManager.GetItemCount(49040) > 0 &&
-                          !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsItemUsable(49040)))
-                {
-                    _use74A = false;
-                    _use110G = false;
+                else if ((nManagerSetting.CurrentSetting.UseRobot &&
+                          (DoSpawnRobot("Jeeves", Npc.NpcType.Repair, true) != null ||
+                           ItemsManager.GetItemCount(49040) > 0 && !ItemsManager.IsItemOnCooldown(49040) && ItemsManager.IsItemUsable(49040))))
                     _useJeeves = true;
-                }
-                else
-                {
-                    _use74A = false;
-                    _use110G = false;
-                    _useJeeves = false;
-                }
 
                 if (ObjectManager.ObjectManager.Me.GetDurability <=
                     nManagerSetting.CurrentSetting.RepairWhenDurabilityIsUnderPercent &&
@@ -142,7 +132,7 @@ namespace nManager.Wow.Bot.States
                     WoWGameObject portableMailbox = ObjectManager.ObjectManager.GetNearestWoWGameObject(
                         ObjectManager.ObjectManager.GetWoWGameObjectById(191605));
                     if (portableMailbox.IsValid &&
-                        portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.GetBaseAddress)
+                        portableMailbox.CreatedBy == ObjectManager.ObjectManager.Me.Guid)
                     {
                         mailBox = new Npc
                             {
@@ -160,6 +150,7 @@ namespace nManager.Wow.Bot.States
                 }
                 if (mailBox == null && NpcDB.GetNpcNearby(Npc.NpcType.Mailbox).Entry > 0)
                     mailBox = NpcDB.GetNpcNearby(Npc.NpcType.Mailbox);
+                listNPCs.Add(mailBox);
             }
             // If we need to repair.
             if (ObjectManager.ObjectManager.Me.GetDurability <=
@@ -404,6 +395,7 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Repair items from " + target.Name + " (" + target.Entry + ").");
                             Vendor.RepairAllItems();
                             Thread.Sleep(1000);
+                            Lua.LuaDoString("CloseMerchant()");
                         }
                         // End NPC Repairer
 
@@ -437,63 +429,44 @@ namespace nManager.Wow.Bot.States
                             {
                                 Vendor.BuyItem(nManagerSetting.CurrentSetting.BeverageName, 1);
                             }
+                            Lua.LuaDoString("CloseMerchant()");
+                        }
+
+                        if (target.Type == Npc.NpcType.Mailbox)
+                        {
+                            List<WoWItemQuality> mQuality = new List<WoWItemQuality>();
+                            if (nManagerSetting.CurrentSetting.MailGray)
+                                mQuality.Add(WoWItemQuality.Poor);
+                            if (nManagerSetting.CurrentSetting.MailWhite)
+                                mQuality.Add(WoWItemQuality.Common);
+                            if (nManagerSetting.CurrentSetting.MailGreen)
+                                mQuality.Add(WoWItemQuality.Uncommon);
+                            if (nManagerSetting.CurrentSetting.MailBlue)
+                                mQuality.Add(WoWItemQuality.Rare);
+                            if (nManagerSetting.CurrentSetting.MailPurple)
+                                mQuality.Add(WoWItemQuality.Epic);
+
+                            bool mailSendingCompleted = false;
+                            for (int i = 7; i > 0 && !mailSendingCompleted; i--)
+                            {
+                                Interact.InteractWith(baseAddress);
+                                Thread.Sleep(1000);
+                                Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
+                                                 nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
+                                                 nManagerSetting.CurrentSetting.ForceToMailTheseItems,
+                                                 nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
+                                                 out mailSendingCompleted);
+                                Thread.Sleep(500);
+                            }
+                            Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + mailBox.Name + " (" + mailBox.Entry +
+                                          ").");
                         }
                         // End NPC Seller
-                        Lua.LuaDoString("CloseMerchant()");
                     }
                 }
             }
 
-            #endregion Repairer, Seller/Buyer
-
-            #region Mailbox
-
-            if (mailBox != null)
-            {
-                //Start target finding based on Mailbox.
-                uint baseAddress = MovementManager.FindTarget(ref mailBox);
-                if (MovementManager.InMovement)
-                    return;
-                //End target finding based on Mailbox.
-                if (baseAddress == 0 && mailBox.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
-                {
-                    NpcDB.DelNpc(mailBox);
-                }
-                else
-                {
-                    DoProspectingInTown();
-                    DoMillingInTown();
-                    Interact.InteractWith(baseAddress);
-                    Thread.Sleep(500);
-                    List<WoWItemQuality> mQuality = new List<WoWItemQuality>();
-                    if (nManagerSetting.CurrentSetting.MailGray)
-                        mQuality.Add(WoWItemQuality.Poor);
-                    if (nManagerSetting.CurrentSetting.MailWhite)
-                        mQuality.Add(WoWItemQuality.Common);
-                    if (nManagerSetting.CurrentSetting.MailGreen)
-                        mQuality.Add(WoWItemQuality.Uncommon);
-                    if (nManagerSetting.CurrentSetting.MailBlue)
-                        mQuality.Add(WoWItemQuality.Rare);
-                    if (nManagerSetting.CurrentSetting.MailPurple)
-                        mQuality.Add(WoWItemQuality.Epic);
-
-                    bool MailSendingCompleted = false;
-                    for (int i = 7; i > 0 && !MailSendingCompleted; i--)
-                    {
-                        Interact.InteractWith(baseAddress);
-                        Thread.Sleep(1000);
-                        Mail.SendMessage(nManagerSetting.CurrentSetting.MaillingFeatureRecipient,
-                                         nManagerSetting.CurrentSetting.MaillingFeatureSubject, "",
-                                         nManagerSetting.CurrentSetting.ForceToMailTheseItems,
-                                         nManagerSetting.CurrentSetting.DontMailTheseItems, mQuality,
-                                         out MailSendingCompleted);
-                        Thread.Sleep(500);
-                    }
-                    Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + mailBox.Name + " (" + mailBox.Entry + ").");
-                }
-            }
-
-            #endregion Mailbox
+            #endregion Repairer, Seller/Buyer, MailBox
         }
 
         private bool NeedFoodSupplies()
@@ -509,11 +482,9 @@ namespace nManager.Wow.Bot.States
 
         private bool NeedDrinkSupplies()
         {
-            if (nManagerSetting.CurrentSetting.BeverageName != "" &&
-                nManagerSetting.CurrentSetting.NumberOfBeverageWeGot > 0)
+            if (nManagerSetting.CurrentSetting.BeverageName != "" && nManagerSetting.CurrentSetting.NumberOfBeverageWeGot > 0)
             {
-                if (ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.BeverageName) <
-                    nManagerSetting.CurrentSetting.NumberOfBeverageWeGot)
+                if (ItemsManager.GetItemCount(nManagerSetting.CurrentSetting.BeverageName) < nManagerSetting.CurrentSetting.NumberOfBeverageWeGot)
                     return true;
             }
             return false;
@@ -521,9 +492,7 @@ namespace nManager.Wow.Bot.States
 
         private void DoProspectingInTown()
         {
-            if (!_magicMountMammoth && !_magicMountYak &&
-                nManagerSetting.CurrentSetting.OnlyUseProspectingInTown &&
-                nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
+            if (!_magicMountMammoth && !_magicMountYak && nManagerSetting.CurrentSetting.OnlyUseProspectingInTown && nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
                 nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
@@ -536,9 +505,7 @@ namespace nManager.Wow.Bot.States
 
         private void DoMillingInTown()
         {
-            if (!_magicMountMammoth && !_magicMountYak &&
-                nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
-                nManagerSetting.CurrentSetting.ActivateAutoMilling &&
+            if (!_magicMountMammoth && !_magicMountYak && nManagerSetting.CurrentSetting.OnlyUseMillingInTown && nManagerSetting.CurrentSetting.ActivateAutoMilling &&
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))
@@ -549,35 +516,36 @@ namespace nManager.Wow.Bot.States
             }
         }
 
-        private static Npc DoSpawnRobot(string Robot, Npc.NpcType Type)
+        private static Npc DoSpawnRobot(string robot, Npc.NpcType type, bool checkOnly = false)
         {
-            int RobotItemId;
-            int RobotEntryId;
-            int GossipOption = 0;
-            switch (Robot)
+            int robotItemId;
+            int robotEntryId;
+            int gossipOption = 0;
+            switch (robot)
             {
                 case "74A":
-                    RobotItemId = 18232;
-                    RobotEntryId = 14337;
+                    robotItemId = 18232;
+                    robotEntryId = 14337;
                     break;
                 case "110G":
-                    RobotItemId = 34113;
-                    RobotEntryId = 24780;
+                    robotItemId = 34113;
+                    robotEntryId = 24780;
                     break;
                 case "Jeeves":
-                    RobotItemId = 49040;
-                    RobotEntryId = 35642;
-                    GossipOption = 2;
+                    robotItemId = 49040;
+                    robotEntryId = 35642;
+                    gossipOption = 2;
                     break;
                 default:
                     return null;
             }
-            MountTask.DismountMount();
-            ItemsManager.UseItem(ItemsManager.GetItemNameById(RobotItemId));
-            Thread.Sleep(2000);
-            WoWUnit unitRobot =
-                ObjectManager.ObjectManager.GetNearestWoWUnit(
-                    ObjectManager.ObjectManager.GetWoWUnitByEntry(RobotEntryId));
+            if (!checkOnly)
+            {
+                MountTask.DismountMount();
+                ItemsManager.UseItem(ItemsManager.GetItemNameById(robotItemId));
+                Thread.Sleep(2000);
+            }
+            WoWUnit unitRobot = ObjectManager.ObjectManager.GetNearestWoWUnit(ObjectManager.ObjectManager.GetWoWUnitByEntry(robotEntryId));
             if (!unitRobot.IsValid || !unitRobot.IsAlive)
                 return null;
             Npc npcRobot = new Npc
@@ -589,8 +557,8 @@ namespace nManager.Wow.Bot.States
                     Faction = ObjectManager.ObjectManager.Me.PlayerFaction.ToLower() == "horde"
                                   ? Npc.FactionType.Horde
                                   : Npc.FactionType.Alliance,
-                    SelectGossipOption = GossipOption,
-                    Type = Type
+                    SelectGossipOption = gossipOption,
+                    Type = type
                 };
             return npcRobot;
         }
