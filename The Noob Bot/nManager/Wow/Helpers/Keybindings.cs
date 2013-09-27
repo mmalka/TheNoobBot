@@ -25,12 +25,12 @@ namespace nManager.Wow.Helpers
                 Lua.LuaDoString("key1, key2 = GetBindingKey(\"" + action + "\");");
                 string k1 = Lua.GetLocalizedText("key1");
                 string k2 = Lua.GetLocalizedText("key2");
-                if (k1 != "")
+                if (k1 != "" && k1 != "BUTTON3")
                 {
                     _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = k1});
                     return k1;
                 }
-                if (k2 != "")
+                if (k2 != "" && k2 != "BUTTON3")
                 {
                     _keybindingsList.Add(new KeybindingsStruct {Action = action, Key = k2});
                     return k2;
@@ -42,7 +42,10 @@ namespace nManager.Wow.Helpers
                     string key = GetAFreeKey();
                     if (!string.IsNullOrEmpty(key))
                     {
-                        Logging.WriteDebug(action + " were not bind, currently trying to bind it with key: " + key + ".");
+                        if (k1 == "BUTTON3" || k2 == "BUTTON3")
+                            Logging.WriteDebug(action + " were bind to a mouse button, as TheNoobBot does not support mouse button, currently trying to bind it with key: " + key + ".");
+                        else
+                            Logging.WriteDebug(action + " were not bind, currently trying to bind it with key: " + key + ".");
                         SetKeyByAction(action, key);
                         return key;
                     }
