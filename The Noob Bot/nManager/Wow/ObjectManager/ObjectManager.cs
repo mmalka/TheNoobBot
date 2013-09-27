@@ -134,7 +134,7 @@ namespace nManager.Wow.ObjectManager
                         ObjectDictionary.Remove(guid);
                     }
                     if (OthersTempListBuilded) return;
-                    Thread thread = new Thread(BuildTempList) {Name = "TempList building thread"};
+                    Thread thread = new Thread(o => BuildTempList(ObjectList)) {Name = "TempList building thread"};
                     thread.Start();
                 }
             }
@@ -144,9 +144,9 @@ namespace nManager.Wow.ObjectManager
             }
         }
 
-        internal static void BuildTempList()
+        internal static void BuildTempList(List<WoWObject> localList)
         {
-            Others.TempList.AddRange(ObjectList);
+            Others.TempList.AddRange(localList);
             OthersTempListBuilded = true;
         }
 
