@@ -1477,9 +1477,9 @@ namespace nManager.Wow.Helpers
             return FindTarget(ref _trakedTarget, SpecialRange);
         }
 
-        public static uint FindTarget(ref Npc Target, float SpecialRange = 0)
+        public static uint FindTarget(ref Npc Target, float SpecialRange = 0, bool doMount = true)
         {
-            if (!InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
+            if (doMount && !InMovement && Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) > 5f &&
                 Target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) >= nManagerSetting.CurrentSetting.MinimumDistanceToUseMount)
                 MountTask.Mount();
 

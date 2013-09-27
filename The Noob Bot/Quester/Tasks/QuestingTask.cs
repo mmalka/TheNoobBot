@@ -797,7 +797,7 @@ namespace Quester.Tasks
                     questObjective.IsObjectiveCompleted = true;
                     ResetEntryListRow();
                 }
-                else if (baseAddress != 0)
+                else if (baseAddress > 0)
                 {
                     if (questObjective.IgnoreFight)
                         Quest.GetSetIgnoreFight = true;
@@ -836,7 +836,7 @@ namespace Quester.Tasks
                 uint baseAddress = MovementManager.FindTarget(ref target, questObjective.Range > 5f ? questObjective.Range : 0);
                 if (MovementManager.InMovement)
                     return;
-                if (baseAddress != 0)
+                if (baseAddress > 0)
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
@@ -957,7 +957,7 @@ namespace Quester.Tasks
                 if (MovementManager.InMovement)
                     return;
 
-                if (baseAddress != 0)
+                if (baseAddress > 0)
                 {
                     Interact.InteractWith(baseAddress);
                     Thread.Sleep(500 + Usefuls.Latency);
@@ -1031,7 +1031,7 @@ namespace Quester.Tasks
                 return;
             //End target finding based on QuestGiver.
 
-            if (npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
+            if (/*baseAddress > 0 && */npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
             {
                 Quest.CloseQuestWindow();
                 Interact.InteractWith(baseAddress);
@@ -1178,6 +1178,10 @@ namespace Quester.Tasks
                 }
                 Thread.Sleep(Usefuls.Latency);
             }
+            /*else if (baseAddress == 0 && npc.Position.DistanceTo(ObjectManager.Me.Position) < 6)
+            {
+               This NPC is wrong! 
+            }*/
         }
 
         // end PickUpTurnInQuest

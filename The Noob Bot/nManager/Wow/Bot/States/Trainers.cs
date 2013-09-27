@@ -323,7 +323,7 @@ namespace nManager.Wow.Bot.States
                 return;
             if (baseAddress == 0 && bestTeacher.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
                 NpcDB.DelNpc(bestTeacher);
-            else if (baseAddress != 0)
+            else if (baseAddress > 0)
             {
                 string[] skillInfo = bestTeacher.InternalData.Split(',');
                 if (skillInfo.Length == 2)

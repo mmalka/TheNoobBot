@@ -364,25 +364,24 @@ namespace nManager.Wow.Bot.States
                 }
             }
 
-            #region Repairer, Seller/Buyer
+            #region Repairer, Seller/Buyer, MailBox
 
             if (listNPCs.Count > 0)
             {
-                listNPCs.Sort(
-                    (n1, n2) => n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position)));
+                listNPCs.Sort(OnComparison);
                 foreach (Npc npc in listNPCs)
                 {
                     Npc target = npc;
                     //Start target finding based on Seller.
-                    uint baseAddress = MovementManager.FindTarget(ref target);
+                    uint baseAddress = MovementManager.FindTarget(ref target, 0, !ObjectManager.ObjectManager.Me.IsMounted);
                     if (MovementManager.InMovement)
                         return;
                     if (baseAddress == 0 && target.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position) < 10)
                         NpcDB.DelNpc(target);
-                    else
+                    else if (baseAddress > 0)
                     {
-                        DoProspectingInTown();
-                        DoMillingInTown();
+                        DoProspectingInTown(target);
+                        DoMillingInTown(target);
                         Interact.InteractWith(baseAddress);
                         Thread.Sleep(500);
                         if (target.SelectGossipOption != 0)
@@ -395,13 +394,13 @@ namespace nManager.Wow.Bot.States
                             Logging.Write("Repair items from " + target.Name + " (" + target.Entry + ").");
                             Vendor.RepairAllItems();
                             Thread.Sleep(1000);
-                            Lua.LuaDoString("CloseMerchant()");
                         }
                         // End NPC Repairer
 
                         if (target.Type == Npc.NpcType.Vendor)
                         {
                             // NPC Buyer
+                            Logging.Write("Selling items to " + target.Name + " (" + target.Entry + ").");
                             List<WoWItemQuality> vQuality = new List<WoWItemQuality>();
                             if (nManagerSetting.CurrentSetting.SellGray)
                                 vQuality.Add(WoWItemQuality.Poor);
@@ -415,12 +414,12 @@ namespace nManager.Wow.Bot.States
                                 vQuality.Add(WoWItemQuality.Epic);
                             Vendor.SellItems(nManagerSetting.CurrentSetting.ForceToSellTheseItems,
                                              nManagerSetting.CurrentSetting.DontSellTheseItems, vQuality);
-                            Logging.Write("Selling items to " + target.Name + " (" + target.Entry + ").");
                             Thread.Sleep(3000);
                             // End NPC Buyer
 
                             // NPC Seller
-                            Logging.Write("Buying beverages and food from " + target.Name + " (" + target.Entry + ").");
+                            if (NeedFoodSupplies() || NeedDrinkSupplies())
+                                Logging.Write("Buying beverages and food from " + target.Name + " (" + target.Entry + ").");
                             for (int i = 0; i < 10 && NeedFoodSupplies(); i++)
                             {
                                 Vendor.BuyItem(nManagerSetting.CurrentSetting.FoodName, 1);
@@ -429,9 +428,10 @@ namespace nManager.Wow.Bot.States
                             {
                                 Vendor.BuyItem(nManagerSetting.CurrentSetting.BeverageName, 1);
                             }
-                            Lua.LuaDoString("CloseMerchant()");
+                            // End NPC Seller
                         }
 
+                        // MailBox
                         if (target.Type == Npc.NpcType.Mailbox)
                         {
                             List<WoWItemQuality> mQuality = new List<WoWItemQuality>();
@@ -458,15 +458,24 @@ namespace nManager.Wow.Bot.States
                                                  out mailSendingCompleted);
                                 Thread.Sleep(500);
                             }
-                            Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + mailBox.Name + " (" + mailBox.Entry +
-                                          ").");
+                            if (mailSendingCompleted)
+                                Logging.Write("Sending items to the player " + nManagerSetting.CurrentSetting.MaillingFeatureRecipient + " using " + target.Name + " (" +
+                                              target.Entry + ").");
                         }
-                        // End NPC Seller
+                        // End MailBox
+
+                        Lua.LuaDoString("CloseMerchant()");
                     }
+                    // still on the road, but not in movement for some reasons
                 }
             }
 
             #endregion Repairer, Seller/Buyer, MailBox
+        }
+
+        private int OnComparison(Npc n1, Npc n2)
+        {
+            return n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position).CompareTo(n1.Position.DistanceTo(ObjectManager.ObjectManager.Me.Position));
         }
 
         private bool NeedFoodSupplies()
@@ -490,9 +499,10 @@ namespace nManager.Wow.Bot.States
             return false;
         }
 
-        private void DoProspectingInTown()
+        private void DoProspectingInTown(Npc npc)
         {
-            if (!_magicMountMammoth && !_magicMountYak && nManagerSetting.CurrentSetting.OnlyUseProspectingInTown && nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
+            if ((!_magicMountMammoth && !_magicMountYak || npc.Type != Npc.NpcType.Repair && npc.Type != Npc.NpcType.Vendor) &&
+                nManagerSetting.CurrentSetting.OnlyUseProspectingInTown && nManagerSetting.CurrentSetting.ActivateAutoProspecting &&
                 nManagerSetting.CurrentSetting.MineralsToProspect.Count > 0)
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.MineralsToProspect))
@@ -503,9 +513,10 @@ namespace nManager.Wow.Bot.States
             }
         }
 
-        private void DoMillingInTown()
+        private void DoMillingInTown(Npc npc)
         {
-            if (!_magicMountMammoth && !_magicMountYak && nManagerSetting.CurrentSetting.OnlyUseMillingInTown && nManagerSetting.CurrentSetting.ActivateAutoMilling &&
+            if ((!_magicMountMammoth && !_magicMountYak || npc.Type != Npc.NpcType.Repair && npc.Type != Npc.NpcType.Vendor) && nManagerSetting.CurrentSetting.OnlyUseMillingInTown &&
+                nManagerSetting.CurrentSetting.ActivateAutoMilling &&
                 nManagerSetting.CurrentSetting.HerbsToBeMilled.Count > 0)
             {
                 if (Prospecting.NeedRun(nManagerSetting.CurrentSetting.HerbsToBeMilled))

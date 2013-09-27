@@ -59,8 +59,6 @@ namespace nManager.Wow.Helpers
 
                 Lua.LuaDoString(scriptLua);
                 System.Threading.Thread.Sleep(5000);
-                Lua.LuaDoString("CloseMerchant()");
-                System.Threading.Thread.Sleep(1000);
             }
             catch (Exception e)
             {
