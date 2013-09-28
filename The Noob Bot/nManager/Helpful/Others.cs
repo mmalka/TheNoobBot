@@ -1032,24 +1032,25 @@ namespace nManager.Helpful
                     Thread.Sleep(50);
                 Dictionary<int, int> newLoots = new Dictionary<int, int>();
                 bool firstCheck = true;
-                foreach (WoWObject objects in TempList)
+                foreach (WoWObject currObj in TempList)
                 {
-                    if (objects.Type != WoWObjectType.Item)
+                    WoWObject obj = currObj;
+                    if (obj.Type != WoWObjectType.Item)
                         continue;
-                    if (!objects.IsValid)
+                    if (!obj.IsValid)
                         continue;
-                    int localEntry = objects.Entry;
+                    int localEntry = obj.Entry;
                     if (localEntry < 1)
                     {
-                        localEntry = objects.Entry; // Gives a seconds chance.
+                        localEntry = obj.Entry; // Gives a seconds chance.
                         if (localEntry < 1)
                         {
-                            localEntry = objects.Entry; // Gives a last chance.
+                            localEntry = obj.Entry; // Gives a last chance.
                             if (localEntry < 1)
                                 continue;
                         }
                     }
-                    if (objects.ItemOwner != ObjectManager.Me.Guid)
+                    if (obj.ItemOwner != ObjectManager.Me.Guid)
                         continue;
                     if (newLoots.ContainsKey(localEntry))
                         continue; // ObjectManager return an independant baseAdress for each stack, we just want ONE ItemEntry, not one per stack.

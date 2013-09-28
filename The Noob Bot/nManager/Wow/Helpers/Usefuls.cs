@@ -577,9 +577,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule +
-                                                               (uint) Addresses.Login.realmName);
+                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowProcess.WowModule + (uint) Addresses.Login.realmName);
                 }
                 catch (Exception e)
                 {
@@ -595,10 +593,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(
-                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                             (uint) Addresses.GameInfo.zoneMap));
+                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.zoneMap));
                 }
                 catch (Exception e)
                 {
@@ -614,10 +609,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadUTF8String(
-                            Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                             (uint) Addresses.GameInfo.subZoneMap));
+                    return Memory.WowMemory.Memory.ReadUTF8String(Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.subZoneMap));
                 }
                 catch (Exception e)
                 {
@@ -633,10 +625,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        ((ContinentId)
-                         (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                          (uint) Addresses.GameInfo.continentId))).ToString();
+                    return ((ContinentId) (Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId))).ToString();
                 }
                 catch (Exception e)
                 {
@@ -652,9 +641,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    int cId =
-                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                        (uint) Addresses.GameInfo.continentId);
+                    int cId = Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
 
                     string retS;
                     switch ((ContinentId) cId)
@@ -757,9 +744,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule +
-                                                        (uint) Addresses.GameInfo.continentId);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.continentId);
                 }
                 catch (Exception e)
                 {
@@ -775,8 +760,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.AreaId);
+                    return Memory.WowMemory.Memory.ReadInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.AreaId);
                 }
                 catch (Exception e)
                 {
@@ -792,9 +776,7 @@ namespace nManager.Wow.Helpers
             {
                 try
                 {
-                    return
-                        Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                         (uint) Addresses.GameInfo.buildWowVersion);
+                    return Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.GameInfo.buildWowVersion);
                 }
                 catch (Exception e)
                 {
@@ -808,9 +790,7 @@ namespace nManager.Wow.Helpers
         {
             try
             {
-                Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId())
-                                     ? "/cancelform"
-                                     : "/dismount");
+                Lua.RunMacroText(ObjectManager.ObjectManager.Me.HaveBuff(SpellManager.MountDruidId()) ? "/cancelform" : "/dismount");
             }
             catch (Exception e)
             {
@@ -859,13 +839,9 @@ namespace nManager.Wow.Helpers
             try
             {
                 uint mask =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.PlayerNameStore.nameStorePtr +
-                                                     (uint) Addresses.PlayerNameStore.nameMaskOffset);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.nameStorePtr + (uint) Addresses.PlayerNameStore.nameMaskOffset);
                 uint baseAddresse =
-                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule +
-                                                     (uint) Addresses.PlayerNameStore.nameStorePtr +
-                                                     (uint) Addresses.PlayerNameStore.nameBaseOffset);
+                    Memory.WowMemory.Memory.ReadUInt(Memory.WowProcess.WowModule + (uint) Addresses.PlayerNameStore.nameStorePtr + (uint) Addresses.PlayerNameStore.nameBaseOffset);
 
                 ulong shortGUID = guid & 0xffffffff;
                 if (mask == 0xffffffff)
@@ -890,8 +866,7 @@ namespace nManager.Wow.Helpers
                 }
 
 
-                return
-                    Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
+                return Memory.WowMemory.Memory.ReadUTF8String(current + (uint) Addresses.PlayerNameStore.nameStringOffset);
             }
             catch (Exception e)
             {
